@@ -40,7 +40,7 @@ public class LoadCommand extends Command {
      */
     public LoadCommand(Index index) {
         requireAllNonNull(index);
-        this.backup = new Backup(index);
+        this.backup = new Backup(index, null);
     }
 
     @Override

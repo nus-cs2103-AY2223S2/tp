@@ -7,14 +7,10 @@ import java.nio.file.Path;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.BackupData;
 import seedu.address.model.Model;
 import seedu.address.model.backup.Backup;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 
 /**
  * Backs up the data to a specified index
@@ -37,13 +33,15 @@ public class BackupCommand extends Command {
     public static final String SAVE_ERROR = "Error saving file!";
     private final Backup backup;
     private final Path userPrefsPath = Path.of("preferences.json");
+    private final Path backupDataPath = Path.of("data/backup/backupData.json");
 
     /**
      * @param index of the backup file
+     * @param desc  description of the backup
      */
-    public BackupCommand(Index index) {
+    public BackupCommand(Index index, String desc) {
         requireAllNonNull(index);
-        this.backup = new Backup(index);
+        this.backup = new Backup(index, desc);
     }
 
     @Override
@@ -51,8 +49,12 @@ public class BackupCommand extends Command {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
         AddressBookStorage backupStorage = new JsonAddressBookStorage(Path.of(backup.backupLocation));
         Storage storage = new StorageManager(backupStorage, userPrefsStorage);
+        BackupDataStorage backupDataStorage = new JsonBackupDataStorage(backupDataPath);
         try {
             storage.saveAddressBook(model.getAddressBook());
+            model.addBackupToBackupData(backup);
+            BackupData backupData = model.getBackupData();
+            backupDataStorage.saveBackupData(backupData);
         } catch (IOException ex) {
             throw new CommandException(SAVE_ERROR);
         }

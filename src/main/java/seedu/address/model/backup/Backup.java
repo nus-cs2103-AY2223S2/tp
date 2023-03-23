@@ -16,20 +16,39 @@ public class Backup {
 
     public static final String INDEX_CONSTRAINTS = "Index of backup should be between 1 and 10";
     public final String backupLocation;
+    public final String description;
     public final LocalDateTime backupTime;
     private final Index index;
 
     /**
      * Constructs a {@code Backup}.
      *
-     * @param index Index of the backup.
+     * @param index       Index of the backup.
+     * @param description Description of the backup.
      */
-    public Backup(Index index) {
+    public Backup(Index index, String description) {
         requireNonNull(index);
         checkArgument(isValidIndex(index), INDEX_CONSTRAINTS);
         this.index = index;
+        this.description = description;
         this.backupLocation = getBackupLocation(index);
         this.backupTime = LocalDateTime.now();
+    }
+
+    /**
+     * Constructs a {@code Backup}.
+     *
+     * @param index       Index of the backup.
+     * @param description Description of the backup.
+     * @param backupTime  Timestamp of the backup.
+     */
+    public Backup(Index index, String description, String backupTime) {
+        requireNonNull(index);
+        checkArgument(isValidIndex(index), INDEX_CONSTRAINTS);
+        this.index = index;
+        this.description = description;
+        this.backupLocation = getBackupLocation(index);
+        this.backupTime = LocalDateTime.parse(backupTime);
     }
 
     /**
@@ -51,10 +70,24 @@ public class Backup {
     }
 
     /**
+     * Returns the description of the backup
+     */
+    public String getBackupDesc() {
+        return this.description;
+    }
+
+    /**
      * Returns the index of a backup
      */
     public Index getBackupIndex() {
         return this.index;
+    }
+
+    /**
+     * Returns the timestamp of a backup
+     */
+    public LocalDateTime getBackupTime() {
+        return this.backupTime;
     }
 
     @Override

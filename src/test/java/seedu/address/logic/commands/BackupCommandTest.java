@@ -25,7 +25,7 @@ public class BackupCommandTest {
 
     @Test
     public void constructor_noIndex_throwsCommandException() {
-        assertThrows(NullPointerException.class, () -> new BackupCommand(null));
+        assertThrows(NullPointerException.class, () -> new BackupCommand(null, null));
     }
 
     @Test
@@ -33,16 +33,16 @@ public class BackupCommandTest {
         Index invalidIndex = Index.fromOneBased(11);
         ModelStub modelStub = new ModelStubWithGetAddressBook();
 
-        assertThrows(IllegalArgumentException.class, () -> new BackupCommand(invalidIndex));
+        assertThrows(IllegalArgumentException.class, () -> new BackupCommand(invalidIndex, null));
     }
 
     @Test
     public void equals() {
         Index one = Index.fromOneBased(1);
         Index two = Index.fromOneBased(2);
-        BackupCommand backupCommandOne = new BackupCommand(one);
-        BackupCommand backupCommandOneCopy = new BackupCommand(one);
-        BackupCommand backupCommandTwo = new BackupCommand(two);
+        BackupCommand backupCommandOne = new BackupCommand(one, null);
+        BackupCommand backupCommandOneCopy = new BackupCommand(one, null);
+        BackupCommand backupCommandTwo = new BackupCommand(two, null);
 
         // same object -> returns true
         assertTrue(backupCommandOne.equals(backupCommandOne));
