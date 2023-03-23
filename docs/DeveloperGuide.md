@@ -218,10 +218,12 @@ Step 5. The user exit the application and decided to reopen it two days later.
 Step 6. The second pet that have not been marked will be highlighted while the first pet will not be highlighted since it was already marked.
 
 The following activity diagram summarizes what happens during the process:
+
 ![HighlightActivityDiagram](images/HighlightDiagram.png)
 
 ### Design Considerations:
 **Aspect: How to reduce human error:**
+
 **Alternative 1 (Current Choice) : Automatically execute the feature every certain period of time**
 * Pros:
     * Shows real-time state.
