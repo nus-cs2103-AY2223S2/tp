@@ -14,8 +14,10 @@ Class UserPrefs
 
 Class UniqueXList
 Class X
+Class Service
 Class PartMap
 'Class Part
+Class ServiceList
 }
 
 Class HiddenOutside #FFFFFF
@@ -31,11 +33,15 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Shop *--> "1" UniqueXList
+Shop *--> "1" ServiceList
 UniqueXList --> "~* all" X
 ModelManager -->"~* filtered" X
 
 Shop *--> "1" PartMap
 'PartMap --> "~* all" Part
 ModelManager -->"1" PartMap
+
+ServiceList --> "~* all" Service
+ModelManager -->"~* filtered" Service
 
 @enduml

@@ -132,7 +132,8 @@ The `Model` component,
 
 * stores the address book data i.e., all `X` objects (which are contained in a `UniqueXList` object) where X are Customer/Service/Appointments/Vehicles/Technicians, and all `Part` objects (which are contained in a `partMap` object).
 * in the case of X, stores the currently 'selected' `X` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<X>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* in the case of Part, stores the currently 'selected' `Part` objects (e.g., results of a search query) as a separate ???????
+* in the case of Part, stores the currently 'selected' `Part` objects (e.g., results of a search query) as a separate hashmap.
+* in the case of ServiceList, it acts functionally the same as an `UniqueXList` except that the entry can be non-unique. 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -167,7 +168,7 @@ Here X can be appointment/customer/service/technician/vehicle.
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the execute("viewcustomer 1") API call.
 
-<img src="images/ViewSequenceDiagram.png" width="600"/>
+<img src="images/ViewSequenceDiagram.png"/>
 
 This feature is implemented this way to best match how existing list and find function is done. 
 
