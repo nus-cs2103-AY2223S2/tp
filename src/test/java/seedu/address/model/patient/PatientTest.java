@@ -23,12 +23,12 @@ public class PatientTest {
         assertFalse(ALEX.isSamePatient(null));
 
         // same name, all other attributes different -> returns true
-        Patient editedAlice = new PatientBuilder(ALEX).withStatus(VALID_STATUS_AMY).build();
-        assertTrue(ALEX.isSamePatient(editedAlice));
+        Patient editedAlex = new PatientBuilder(ALEX).withStatus(VALID_STATUS_AMY).build();
+        assertTrue(ALEX.isSamePatient(editedAlex));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PatientBuilder(ALEX).withName(VALID_NAME_BOB).build();
-        assertFalse(ALEX.isSamePatient(editedAlice));
+        editedAlex = new PatientBuilder(ALEX).withName(VALID_NAME_BOB).build();
+        assertFalse(ALEX.isSamePatient(editedAlex));
 
         // name differs in case, all other attributes same -> returns false
         Patient editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
