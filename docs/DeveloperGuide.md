@@ -315,6 +315,43 @@ The following activity diagram summarizes what happens when a TA executes an del
 This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
   a lot of cases which is why it is not allowed for now.
 
+### \[Proposed\] Help feature
+
+#### Proposed Implementation
+
+The proposed Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
+and asking the user to visit the webpage to view the commands, this new Help feature will display the commands in the
+result box. This facilitates the user's usage by providing easy in-app reference instead of having to refer to an
+external window. Switch-Case will be used to identify subsequent commands and parse() method will be implemented
+for helps with deeper abstractions.
+
+<img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="550" />
+
+As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Sort/Filter(Organisation).
+
+#### Usage Example
+
+Command chaining will be used for this feature. Upon entering `help` into the command box, the 3 categories will be displayed.
+To choose the desired category, user will have to chain down the command by entering `help event`. Subsequently
+`help event lab` to access Lab related helps.
+
+#### Design Considerations
+
+Why Command Chaining was used?
+
+PROS
+* Seasoned users will be able to pinpoint the help they require in the future in 1 command
+* Specific syntax will be displayed instead of displaying everything and letting the user find themselves
+* Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire
+
+CONS
+* User will have to type quite a bit
+
+#### Possible Updates
+
+Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
+more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
+
 ### \[Proposed\] Filter feature
 
 #### Proposed Implementation
