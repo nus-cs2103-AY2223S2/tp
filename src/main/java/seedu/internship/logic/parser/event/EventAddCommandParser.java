@@ -1,7 +1,10 @@
 package seedu.internship.logic.parser.event;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.parser.CliSyntax.*;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
 import java.util.stream.Stream;
 
@@ -13,10 +16,9 @@ import seedu.internship.logic.parser.Prefix;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-import seedu.internship.model.event.EventDescription;
-
 
 /**
  * Parses input arguments and creates a new EventAddCommand object
@@ -30,15 +32,16 @@ public class EventAddCommandParser implements Parser<EventAddCommand> {
      */
     public EventAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME,PREFIX_EVENT_START, PREFIX_EVENT_END, PREFIX_EVENT_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME, PREFIX_EVENT_START, PREFIX_EVENT_END,
+                        PREFIX_EVENT_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_END,PREFIX_EVENT_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_END, PREFIX_EVENT_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventAddCommand.MESSAGE_USAGE));
         }
-        if (!arePrefixesPresent(argMultimap,PREFIX_EVENT_START)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_START)) {
             // If Start is not Present , then start == end
-            argMultimap.put(PREFIX_EVENT_START,argMultimap.getValue(PREFIX_EVENT_END).get() );
+            argMultimap.put(PREFIX_EVENT_START, argMultimap.getValue(PREFIX_EVENT_END).get());
         }
 
         Name name = EventParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());
@@ -47,9 +50,10 @@ public class EventAddCommandParser implements Parser<EventAddCommand> {
 
         End end = EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_END).get());
 
-        EventDescription desc = EventParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_EVENT_DESCRIPTION).get());
+        EventDescription desc = EventParserUtil.parseEventDescription(
+                argMultimap.getValue(PREFIX_EVENT_DESCRIPTION).get());
 
-        Event event = new Event(name,start, end, desc);
+        Event event = new Event(name, start, end, desc);
 
         return new EventAddCommand(event);
     }

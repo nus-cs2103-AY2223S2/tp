@@ -1,10 +1,8 @@
 package seedu.internship.logic.commands;
 
-
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
-
-import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 

@@ -3,10 +3,15 @@ package seedu.internship.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.UniqueEventList;
 
+/**
+ * Wraps all data at the event-catalogue level
+ * Duplicates are not allowed (by .isSameEvent comparison)
+ */
 public class EventCatalogue implements ReadOnlyEventCatalogue {
     private final UniqueEventList events;
 
@@ -79,10 +84,6 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
         requireNonNull(editedEvent);
         events.setEvent(target, editedEvent);
     }
-
-    /**
-     *
-     */
 
     /**
      * Removes {@code key} from this {@code event Catalogue}.

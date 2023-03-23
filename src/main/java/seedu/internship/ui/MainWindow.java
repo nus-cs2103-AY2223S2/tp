@@ -1,7 +1,5 @@
 package seedu.internship.ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;

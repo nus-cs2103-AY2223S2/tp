@@ -1,19 +1,18 @@
 package seedu.internship.storage;
 
-import seedu.internship.commons.core.LogsCenter;
-import seedu.internship.commons.exceptions.DataConversionException;
-import seedu.internship.commons.exceptions.IllegalValueException;
-import seedu.internship.commons.util.FileUtil;
-import seedu.internship.commons.util.JsonUtil;
-import seedu.internship.model.ReadOnlyEventCatalogue;
-import seedu.internship.model.ReadOnlyInternshipCatalogue;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.internship.commons.core.LogsCenter;
+import seedu.internship.commons.exceptions.DataConversionException;
+import seedu.internship.commons.exceptions.IllegalValueException;
+import seedu.internship.commons.util.FileUtil;
+import seedu.internship.commons.util.JsonUtil;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 
 /**
  * A class to access EventCatalogue data stored as a json file on the hard disk.

@@ -11,7 +11,6 @@ import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
-import seedu.internship.model.event.Event;
 
 /**
  * Manages storage of InternshipCatalogue data in local storage.

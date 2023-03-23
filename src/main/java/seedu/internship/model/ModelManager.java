@@ -33,8 +33,8 @@ public class ModelManager implements Model {
                          ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(internshipCatalogue, eventCatalogue, userPrefs);
 
-        logger.fine("Initializing with address book: " + "internships " + internshipCatalogue +
-                ", events " + eventCatalogue + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + "internships " + internshipCatalogue
+                + ", events " + eventCatalogue + " and user prefs " + userPrefs);
 
         this.internshipCatalogue = new InternshipCatalogue(internshipCatalogue);
         this.eventCatalogue = new EventCatalogue(eventCatalogue);
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Internship getSelectedInternship(){
+    public Internship getSelectedInternship() {
         return this.internshipCatalogue.getCurrent();
     }
 

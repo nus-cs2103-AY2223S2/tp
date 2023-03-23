@@ -3,12 +3,13 @@ package seedu.internship.model.event;
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
 import seedu.internship.model.internship.Internship;
 
 /**
  * Represents a Event in the internship.
  */
-public class Event  {
+public class Event {
     private final Name name;
     private final Start start;
     private final End end;
@@ -18,7 +19,7 @@ public class Event  {
     /**
      * Every Field must be present and not null.
      */
-    public Event (Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
         requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
@@ -30,7 +31,7 @@ public class Event  {
     /**
      * Every Field must be present and not null, without Internship.
      */
-    public Event (Name name, Start start, End end, EventDescription eventDescription) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription) {
         this.name = name;
         this.start = start;
         this.end = end;
@@ -41,7 +42,7 @@ public class Event  {
      * The class still is immutable , once internship is defined , it cannot be changed
      * @param internship
      */
-    public void setInternship(Internship internship){
+    public void setInternship(Internship internship) {
         if (this.internship == null) {
             this.internship = internship;
         }
@@ -79,7 +80,7 @@ public class Event  {
      * Returns True if both events have the same start, end and internship
      */
     public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this){
+        if (otherEvent == this) {
             return true;
         }
 
@@ -118,7 +119,7 @@ public class Event  {
         return Objects.hash(start, end, internship, eventDescription);
     }
 
-    public boolean isDeadline(){
+    public boolean isDeadline() {
         return this.start.compareTo(end) == 0;
     }
 
@@ -137,9 +138,4 @@ public class Event  {
                 .append(getInternship());
         return builder.toString();
     }
-
-
-
-
-
 }

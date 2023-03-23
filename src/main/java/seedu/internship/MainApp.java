@@ -24,7 +24,14 @@ import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
 import seedu.internship.model.util.SampleDataUtil;
-import seedu.internship.storage.*;
+import seedu.internship.storage.EventCatalogueStorage;
+import seedu.internship.storage.InternshipCatalogueStorage;
+import seedu.internship.storage.JsonEventCatalogueStorage;
+import seedu.internship.storage.JsonInternshipCatalogueStorage;
+import seedu.internship.storage.JsonUserPrefsStorage;
+import seedu.internship.storage.Storage;
+import seedu.internship.storage.StorageManager;
+import seedu.internship.storage.UserPrefsStorage;
 import seedu.internship.ui.Ui;
 import seedu.internship.ui.UiManager;
 

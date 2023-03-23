@@ -2,12 +2,13 @@ package seedu.internship.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -86,7 +87,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventDescription.class.getSimpleName()));
         }
-        if (! EventDescription.isValidDescription(description)) {
+        if (!EventDescription.isValidDescription(description)) {
             throw new IllegalValueException(EventDescription.MESSAGE_CONSTRAINTS);
         }
         final EventDescription modelMessageEventDescription = new EventDescription(description);

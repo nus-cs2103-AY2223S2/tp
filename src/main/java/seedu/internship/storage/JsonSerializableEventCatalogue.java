@@ -1,19 +1,19 @@
 package seedu.internship.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.internship.commons.exceptions.IllegalValueException;
-import seedu.internship.model.EventCatalogue;
-import seedu.internship.model.InternshipCatalogue;
-import seedu.internship.model.ReadOnlyEventCatalogue;
-import seedu.internship.model.ReadOnlyInternshipCatalogue;
-import seedu.internship.model.event.Event;
-import seedu.internship.model.internship.Internship;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.internship.commons.exceptions.IllegalValueException;
+import seedu.internship.model.EventCatalogue;
+import seedu.internship.model.ReadOnlyEventCatalogue;
+import seedu.internship.model.event.Event;
+
+
 
 /**
  * An Immutable EventCatalogue that is serializable to JSON format.

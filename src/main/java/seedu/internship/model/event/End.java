@@ -1,9 +1,11 @@
 package seedu.internship.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents an Event's end timing (time and date).
+ */
 public class End extends TimeParser {
     public static final String MESSAGE_CONSTRAINTS =
             "Date needs to be of the format DD/MM/YYYY HHMM";
