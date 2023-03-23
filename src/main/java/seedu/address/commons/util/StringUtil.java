@@ -79,9 +79,18 @@ public class StringUtil {
     public static String joinTagsAsString(Set<Tag> tags) {
         List<String> tagList = new ArrayList<>();
         for (Tag t: tags) {
-            tagList.add(t.toString());
+            tagList.add(t.getTagName());
         }
         return String.join(" ", tagList);
+    }
+
+    /**
+     * Split a string delimited by space to form a list
+     * @param str
+     * @return
+     */
+    public static List<String> spaceDelimetedStringsToList(String str) {
+        return Arrays.asList(str.split(" "));
     }
 
 }
