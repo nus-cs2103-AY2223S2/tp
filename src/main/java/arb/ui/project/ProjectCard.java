@@ -39,6 +39,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label status;
     @FXML
+    private Label price;
+    @FXML
     private Label id;
     @FXML
     private FlowPane tags;
@@ -57,8 +59,13 @@ public class ProjectCard extends UiPart<Region> {
         } else {
             contentsPane.getChildren().remove(deadline);
         }
+        if (project.isPricePresent()) {
+            price.setText(project.getPrice().toString());
+        } else {
+            contentsPane.getChildren().remove(price);
+        }
 
-        status.setText("Status: " + project.getStatus());
+        status.setText("Status: " + (project.isOverdue() ? "OVERDUE" : project.getStatus().toString()));
 
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

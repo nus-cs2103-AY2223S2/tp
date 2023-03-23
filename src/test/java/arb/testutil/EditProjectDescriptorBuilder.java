@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
@@ -32,6 +33,7 @@ public class EditProjectDescriptorBuilder {
         descriptor = new EditProjectDescriptor();
         descriptor.setTitle(project.getTitle());
         descriptor.setDeadline(project.getDeadline());
+        descriptor.setPrice(project.getPrice());
         descriptor.setTags(project.getTags());
     }
 
@@ -57,6 +59,14 @@ public class EditProjectDescriptorBuilder {
     public EditProjectDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**  
+     * Sets the {@code Price} of the {@code EditProjectDescriptor} that we are building.
+     */
+    public EditProjectDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
 

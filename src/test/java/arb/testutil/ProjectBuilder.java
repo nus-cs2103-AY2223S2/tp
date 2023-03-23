@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
@@ -18,16 +19,21 @@ public class ProjectBuilder {
     public static final String DEFAULT_TITLE = "Large Tree";
     public static final String DEFAULT_DEADLINE = "3pm 2000-01-01";
 
+    public static final String DEFAULT_PRICE = "0";
+
     private Title title;
     private Optional<Deadline> deadline;
+    private Optional<Price> price;
     private Set<Tag> tags;
     private boolean isDone;
+
     /**
      * Creates a {@code ProjectBuilder} with the default details.
      */
     public ProjectBuilder() {
         title = new Title(DEFAULT_TITLE);
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
+        price = Optional.of(new Price(DEFAULT_PRICE));
         tags = new HashSet<>();
         isDone = false;
     }
@@ -38,6 +44,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project projectToCopy) {
         title = projectToCopy.getTitle();
         deadline = Optional.ofNullable(projectToCopy.getDeadline());
+        price = Optional.ofNullable(projectToCopy.getPrice());
         tags = new HashSet<>(projectToCopy.getTags());
         isDone = projectToCopy.getStatus().getStatus();
     }
@@ -78,12 +85,21 @@ public class ProjectBuilder {
         return this;
     }
 
+    /** Sets the {@code Price} of the {@code Project} being built.
+     * @param price Price to set.
+     * @return The ProjectBuilder object.
+     */
+    public ProjectBuilder withPrice(String price) {
+        this.price = Optional.ofNullable(price).map(pr -> new Price(pr));
+        return this;
+    }
+
     /**
      * Builds the Project.
      * @return The new Project.
      */
     public Project build() {
-        Project project = new Project(title, this.deadline.orElse(null), tags);
+        Project project = new Project(title, this.deadline.orElse(null), this.price.orElse(null), tags);
         if (isDone) {
             project.markAsDone();
         }

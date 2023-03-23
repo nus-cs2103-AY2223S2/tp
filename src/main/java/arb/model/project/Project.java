@@ -2,12 +2,15 @@ package arb.model.project;
 
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import arb.commons.core.LogsCenter;
 import arb.model.tag.Tag;
 
 /**
@@ -16,9 +19,12 @@ import arb.model.tag.Tag;
  */
 public class Project {
 
+    private static final Logger logger = LogsCenter.getLogger(Project.class);
+
     // Details fields. Deadline is optional.
     private final Title title;
     private final Optional<Deadline> deadline;
+    private final Optional<Price> price;
     private final Status status;
 
     // Data fields
@@ -28,12 +34,13 @@ public class Project {
      * Constructs a {@code Project}.
      * Title and tags must be present and not null.
      */
-    public Project(Title title, Deadline deadline, Set<Tag> tags) {
+    public Project(Title title, Deadline deadline, Price price, Set<Tag> tags) {
         requireAllNonNull(title, tags);
         this.title = title;
         this.deadline = Optional.ofNullable(deadline);
+        this.price = Optional.ofNullable(price);
         this.tags.addAll(tags);
-        status = new Status();
+        this.status = new Status();
     }
 
     public Title getTitle() {
@@ -46,6 +53,9 @@ public class Project {
     public boolean isDeadlinePresent() {
         return deadline.isPresent();
     }
+    public boolean isPricePresent() {
+        return price.isPresent();
+    }
 
     public Deadline getDeadline() {
         return deadline.orElse(null);
@@ -55,8 +65,24 @@ public class Project {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns true if this project has is overdue
+     */
+    public boolean isOverdue() {
+        LocalDate currentDate = LocalDate.now();
+        logger.info(currentDate.toString());
+        Deadline currentDateAsDeadline = new Deadline(currentDate.toString());
+        logger.info(currentDateAsDeadline.toString());
+        logger.info(Integer.toString(this.getDeadline().compareTo(currentDateAsDeadline)));
+        return this.getDeadline().compareTo(currentDateAsDeadline) < 0 && !this.status.getStatus();
+    }
+
     public Status getStatus() {
         return status;
+    }
+
+    public Price getPrice() {
+        return price.orElse(null);
     }
 
     public void markAsDone() {
@@ -89,6 +115,10 @@ public class Project {
             builder.append(", due by: ").append(getDeadline());
         }
 
+        if (isPricePresent()) {
+            builder.append(", ").append(getPrice());
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -112,12 +142,13 @@ public class Project {
 
         return otherProject.getTitle().equals(getTitle())
                 && otherProject.deadline.equals(deadline)
+                && otherProject.price.equals(price)
                 && otherProject.getStatus().equals(getStatus())
                 && otherProject.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline, status, tags);
+        return Objects.hash(title, deadline, status, price, tags);
     }
 }

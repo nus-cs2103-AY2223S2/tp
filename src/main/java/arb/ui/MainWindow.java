@@ -15,11 +15,13 @@ import arb.ui.tag.TagMappingListPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -47,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private Label listLabel;
 
     @FXML
     private StackPane listPanelPlaceholder;
@@ -126,6 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        listLabel.prefWidth(primaryStage.getWidth());
+        listLabel.setFont(new Font(24));
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -192,16 +200,19 @@ public class MainWindow extends UiPart<Stage> {
 
     private void showClientList() {
         this.logic.setListType(ListType.CLIENT);
+        this.listLabel.setText("Client List");
         this.replaceShownList(clientListPanel.getRoot());
     }
 
     private void showProjectList() {
         this.logic.setListType(ListType.PROJECT);
+        this.listLabel.setText("Project List");
         this.replaceShownList(projectListPanel.getRoot());
     }
 
     private void showTagList() {
         this.logic.setListType(ListType.TAG);
+        this.listLabel.setText("Tag List");
         this.replaceShownList(tagMappingListPanel.getRoot());
     }
 

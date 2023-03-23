@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import arb.commons.core.LogsCenter;
 import arb.commons.exceptions.IllegalValueException;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Status;
 import arb.model.project.Title;
@@ -30,6 +31,8 @@ public class JsonAdaptedProject {
     private final String title;
     private final String deadline;
     private final String status;
+    private final String price;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,10 +40,13 @@ public class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("title") String title,
-            @JsonProperty("deadline") String deadline, @JsonProperty("status") String status,
+            @JsonProperty("deadline") String deadline,
+            @JsonProperty("status") String status,
+            @JsonProperty("price") String price,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = Optional.ofNullable(deadline).orElse(null);
+        this.price = Optional.ofNullable(price).orElse(null);
         this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -55,6 +61,7 @@ public class JsonAdaptedProject {
         this.title = source.getTitle().fullTitle;
         this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
         this.status = Boolean.toString(source.getStatus().getStatus());
+        this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.getPrice().toString()).orElse(null);
         this.tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -84,8 +91,14 @@ public class JsonAdaptedProject {
         }
         final Deadline modelDeadline = Optional.ofNullable(deadline).map(d -> new Deadline(d)).orElse(null);
 
+        if (price != null && !Price.isValidPrice(price)) {
+            throw new IllegalValueException((Price.MESSAGE_CONSTRAINTS));
+        }
+        final Price modelPrice = Optional.ofNullable(price).map(pr -> new Price(pr)).orElse(null);
+
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        Project project = new Project(modelTitle, modelDeadline, modelTags);
+
+        Project project = new Project(modelTitle, modelDeadline, modelPrice, modelTags);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
