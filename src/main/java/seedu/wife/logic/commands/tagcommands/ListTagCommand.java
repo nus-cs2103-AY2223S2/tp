@@ -21,6 +21,7 @@ public class ListTagCommand extends Command {
         Object[] tags = model.getFilteredTagList().toArray();
 
         StringBuilder sb = new StringBuilder();
+        sb.append("Here are your existing tags: ");
         for (Object tag : tags) {
             Tag thisTag = (Tag) tag;
             sb.append(thisTag.getTagName());
