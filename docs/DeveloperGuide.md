@@ -270,15 +270,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                     |
-| -------- | ------------------------------------------ | ------------------------------ |-----------------------------------------------------|
-| `* * *`  | potential user exploring the app           | see the app populated with sample openings         | easily see how the app will look when it is in use. |
-| `* * *`  | user                                       | add an opening regarding the internship I am interested in               | keep note of it                                     |
-| `* * *`  | user                                       | delete an opening      | remove unwanted openings                            |
-| `* * *`  | user                                       | Be able to see all applications          | track my progress                                   |
-| `* *`    | user                                       | see submission deadlines   | check them                                          |
-| `*`      | user | be able to see the total number of accepted applications           | celebrate my success                              |
-| '*' | user | see all the outcomes of my application | properly assess my options |
+| Priority | As a …​                                    | I can …​                                                   | So that I can…​                                     |
+| ------ | ------------------------------------------ |------------------------------------------------------------|-----------------------------------------------------|
+| `* * *` | potential user exploring the app           | see the app populated with sample openings                 | easily see how the app will look when it is in use. |
+| `* * *` | user                                       | add an opening regarding the internship I am interested in | keep note of it                                     |
+| `* * *` | user                                       | delete an opening                                          | remove unwanted openings                            |
+| `* * *` | user                                       | see all applications                                       | track my progress                                   |
+| `* * *` | user                                       | add multiple keydates                                      | store all important dates for each opening          |
+| `* * *` | user                                       | link certain key events of an opening to a date            | remember which event happens on what date           |
+| `* * *` | user                                       | sort my keydates in order                                  | see which keydate of which opening to focus on      |
+| `* * *` | user                                       | see openings of a specific status                          | view specific kinds of openings at once             |
+| `* * *` | user                                       | see what keydates are nearing                              | avoid missing any keydates of any openings          |
+| `* *`  | user                                       | add remarks to my openings                                 | add any addtional details tied to specific openings |
+| `* *`  | user                                       | see submission deadlines                                   | check them                                          |
+| `*`    | user | see the total number of accepted applications              | celebrate my success                                |
+| `*` | user | see all the outcomes of my application                     | properly assess my options                          |
 
 *{More to be added}*
 
@@ -378,6 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Opening**: Item representing an internship opening
+* **Keydate**: Item representing a event tied to a particular date or deadline
 
 
 --------------------------------------------------------------------------------------------------------------------
