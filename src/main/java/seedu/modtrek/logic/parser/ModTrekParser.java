@@ -16,6 +16,7 @@ import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
 import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.logic.commands.TagCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +72,9 @@ public class ModTrekParser {
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

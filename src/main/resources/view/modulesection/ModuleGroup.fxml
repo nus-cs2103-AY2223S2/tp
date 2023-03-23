@@ -12,6 +12,6 @@
         <URL value="@module-group.css" />
     </stylesheets>
 
-    <Label fx:id="moduleGroupTitle" text="Y1S1" styleClass="module-group-title, h3" />
+    <Label fx:id="moduleGroupTitle" text="Y1S1" styleClass="module-group-title, h4" />
     <GridPane fx:id="moduleCardGroup" hgap="5" vgap="5" styleClass="module-card-group" />
 </VBox>

@@ -63,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        resultsSection = new ResultsSection(logic.getFilteredModuleList());
+        resultsSection = new ResultsSection(logic.getDegreeProgression(), logic.getFilteredModuleList());
         resultsSectionPlaceholder.getChildren().add(resultsSection.getRoot());
 
         cliSection = new CliSection(this::executeCommand);
@@ -108,6 +108,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+
             // To refresh the graphics section to display updated list of modules
             resultsSection.displayAllModules(logic.getFilteredModuleList());
 
