@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
@@ -14,6 +14,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.card.Answer;
@@ -88,8 +90,8 @@ public class EditCommand extends Command {
         Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(cardToEdit.getAnswer());
         Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(cardToEdit.getTags());
 
-        assert cardToEdit.getDeck().isPresent() : "The edited card must be inside a deck";
-        Deck updatedDeck = editCardDescriptor.getDeck().orElse(cardToEdit.getDeck().get());
+        assert cardToEdit.getDeck() != null : "The edited card must be inside a deck";
+        Deck updatedDeck = cardToEdit.getDeck();
 
         return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }

@@ -42,7 +42,7 @@ public class CardBuilder {
         question = cardToCopy.getQuestion();
         answer = cardToCopy.getAnswer();
         tags = new HashSet<>(cardToCopy.getTags());
-        deck = cardToCopy.getDeck().get();
+        deck = cardToCopy.getDeck();
     }
 
     /**

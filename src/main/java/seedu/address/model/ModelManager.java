@@ -21,6 +21,7 @@ import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the master deck data.
@@ -89,7 +90,7 @@ public class ModelManager implements Model {
         userPrefs.setMasterDeckFilePath(masterDeckFilePath);
     }
 
-    /* MasterDeck Operations */
+    /* ==================================== MasterDeck Operations ==================================== */
 
     @Override
     public void setMasterDeck(ReadOnlyMasterDeck deck) {
@@ -101,7 +102,7 @@ public class ModelManager implements Model {
         return masterDeck;
     }
 
-    /* PowerCard Operations */
+    /* ==================================== PowerCard Operations ==================================== */
 
     @Override
     public boolean hasCard(Card card) {
@@ -329,6 +330,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void tagCurrentCardInReview(Tag tag) {
+        masterDeck.tagCard(filteredCards.get(0), tag);
+        currReview.tagCurrentCard(tag);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
     public ObservableList<Pair<String, String>> getReviewStatsList() {
         return currReview.getReviewStatsList();
     }
@@ -338,4 +346,18 @@ public class ModelManager implements Model {
         return currReview.getReviewDeckNameList();
     }
 
+    /* ==================================== Model States ==================================== */
+
+    @Override
+    public ModelState getState() {
+        if (currReview != null) {
+            return ModelState.REVIEW_MODE;
+        }
+
+        if (selectedDeck != null) {
+            return ModelState.DECK_MODE;
+        }
+
+        return ModelState.MAIN_MODE;
+    }
 }
