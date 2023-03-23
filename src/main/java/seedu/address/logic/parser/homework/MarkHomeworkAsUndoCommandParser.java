@@ -23,7 +23,7 @@ import seedu.address.model.student.NamePredicate;
  * Parses input arguments and creates a new MarkHomeworkAsDoneCommand object
  */
 public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUndoCommand> {
-    private List<String> names= new ArrayList<>();
+    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the MarkHomeworkAsDoneCommand
      * and returns a MarkHomeworkAsDoneCommand object for execution.

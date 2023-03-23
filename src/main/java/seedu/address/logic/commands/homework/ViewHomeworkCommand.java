@@ -79,15 +79,15 @@ public class ViewHomeworkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         StringBuilder dupNames = new StringBuilder();
-            for (String name : names) {
-                if (model.hasDuplicateName(name)) {
-                    dupNames.append(name).append(", ");
-                }
-                if (dupNames.length() != 0) {
-                    dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-                    throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-                }
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
             }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(namePredicate);
 
         List<Student> studentList = model.getFilteredStudentList();

@@ -19,6 +19,13 @@ public class Exam {
     private final Double weightage;
     private Grade grade;
 
+    /**
+     * Creates a new Exam with the given description, start time, end time.
+     *
+     * @param description The description of the exam.
+     * @param startTime   The start time of the exam.
+     * @param endTime     The end time of the exam.
+     */
     public Exam(String description, LocalDateTime startTime, LocalDateTime endTime) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(startTime);
@@ -34,7 +41,7 @@ public class Exam {
     }
 
     /**
-     * Creates a new Exam with the given description, start time, end time, weightage, status, and grade.
+     * Creates a new Exam with the given description, start time, end time, weightage, and grade.
      *
      * @param description The description of the exam.
      * @param startTime   The start time of the exam.

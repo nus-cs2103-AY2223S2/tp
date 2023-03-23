@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,13 +13,9 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Homework;
 import seedu.address.model.student.Lesson;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
