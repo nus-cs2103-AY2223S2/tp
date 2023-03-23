@@ -13,7 +13,7 @@ public class MarkCorrectCommand extends Command {
 
     public static final String COMMAND_WORD = "'";
 
-    public static final String MESSAGE_SUCCESS = "Nicely! Showing next flashcard."
+    public static final String MESSAGE_SUCCESS = "Nicely! Marked current card as correct."
             + "\nEnter [ to flip card and show answer!"
             + "\nEnter ] to return to previous card."
             + "\nEnter \\ to skip to next card.";

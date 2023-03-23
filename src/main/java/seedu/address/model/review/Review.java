@@ -181,6 +181,7 @@ public class Review {
      */
     public void markCurrCardAsCorrect() {
         scoreList.set(currCardNum - 1, true);
+        updateReviewStatsList();
     }
 
     /**
@@ -189,6 +190,7 @@ public class Review {
      */
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
+        updateReviewStatsList();
     }
 
     public void unflipAllCards() {
