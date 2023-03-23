@@ -77,6 +77,14 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
+     * Returns true if the list strictly (all fields are equal) contains an equivalent employee as the given argument.
+     */
+    public boolean strictlyContains(Employee toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Returns true if the list contains a different employee with the same email as the given argument.
      */
     public boolean sharesEmail(Employee toCheck) {

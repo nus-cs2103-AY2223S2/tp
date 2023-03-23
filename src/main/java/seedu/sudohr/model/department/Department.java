@@ -44,6 +44,18 @@ public class Department {
     }
 
     /**
+     * Returns whether employee exists in the department.
+     */
+    public boolean hasEmployee(Id id) {
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Get an employee by ID
      */
     public Employee getEmployee(Id id) {

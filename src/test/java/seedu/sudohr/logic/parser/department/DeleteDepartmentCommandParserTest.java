@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.parser;
+package seedu.sudohr.logic.parser.department;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.commands.CommandTestUtil.DEPARTMENT_NAME_DESC_ENGINEERING;
