@@ -13,6 +13,7 @@ public class Description {
             "Description must contain at least one character";
     public final String value;
     public final String defaultValue = "No Description";
+    private boolean hasDescription = false;
 
     /**
      * Constructs a {@code Description} with default description.
@@ -30,6 +31,7 @@ public class Description {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         value = description;
+        hasDescription = true;
     }
 
     /**
@@ -37,6 +39,10 @@ public class Description {
      */
     public static boolean isValidDescription(String test) {
         return !test.trim().isEmpty();
+    }
+
+    public boolean getHasDescription() {
+        return hasDescription;
     }
 
     @Override
