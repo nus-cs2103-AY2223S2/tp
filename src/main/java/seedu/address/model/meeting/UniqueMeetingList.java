@@ -52,11 +52,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      * Sorts meeting in the list.
      */
     public void sort(Comparator comparator) {
-        System.out.println(internalList + "\n");
         internalList.sort(comparator);
-
-        System.out.println("sorted");
-        System.out.println(internalList + "\n");
     }
 
     /**

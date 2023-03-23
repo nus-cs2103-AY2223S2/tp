@@ -33,7 +33,11 @@ public class SortMeetingCommand extends Command {
     public static String Prefix;
     public static boolean isReverse;
     public static final String COMMAND_WORD = "sortm";
-    public static final String MESSAGE_USAGE = "sortm";
+    public static final String MESSAGE_USAGE = "sort the meeting list by tags. sort by datetime, location, description, title "
+            +"like: \n"
+            + "sortm dt/ \n"
+            + "if you want to sort in reverse add an r after the tag"
+            + "\n like this: sortm dt/r";
     public static final String MESSAGE_SUCCESS = "Sorted by %1$s" ;
     public static Comparator<Meeting> titleComparator = Comparator.comparing(m -> m.getTitle().toString());
     public static Comparator<Meeting> descriptorComparator = Comparator.comparing(m -> m.getDescription().toString());
@@ -59,6 +63,7 @@ public class SortMeetingCommand extends Command {
             } else {
                 model.sortFilteredMeetingList(titleComparator);
             }
+            break;
         case "des/":
             if (isReverse) { 
                 model.sortFilteredMeetingList(descriptorComparator.reversed());
@@ -73,7 +78,7 @@ public class SortMeetingCommand extends Command {
                 model.sortFilteredMeetingList(locationComparator);
             }
             break;
-        case "dt":
+        case "dt/":
             if (isReverse) { 
                 model.sortFilteredMeetingList(dateTimeComparator.reversed());
             } else {
