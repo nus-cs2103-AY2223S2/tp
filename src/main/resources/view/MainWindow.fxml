@@ -22,7 +22,7 @@
         <URL value="@css/Extensions.css" />
       </stylesheets>
 
-      <VBox styleClass="background">
+      <VBox styleClass="background" >
           <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" styleClass="menu-bar">
             <Menu mnemonicParsing="false" text="File">
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
