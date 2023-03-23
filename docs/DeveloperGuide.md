@@ -19,11 +19,68 @@ The set-up guide is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Architecture
+## Design
 
-The documentation for Architecture is still **_in progress_**
+The documentation for Design is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Implementation
+
+### Enlarged Info Card feature
+As triage staff manage the contacts of doctors and patients, they may wish to pull up
+the personal information of the doctor or patient. Therefore, the right-most column within
+Docedex has been reserved to show the personal information of the selected doctor or patient.
+
+![](images/enlarged-contact-card-display.png)
+
+#### Brief introduction to the components involved
+Let's call the card which displays this information **info cards**. However, the information
+displayed for a doctor compared to a patient has a few differences. Thus, two different info cards
+are required - one to display patient information and one to display doctor information.
+
+Let's call these cards `EnlargedDoctorInfoCard` and `EnlargedPatientInfoCard`. However, we
+only have one `StackPane` to display the information of the queried doctor or patient.
+So, we need a way to toggle between displaying either card, depending on whether the user
+has selected a doctor or patient to view.
+
+
+#### Exploring the user journey
+To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
+representing a doctor, though the ideas below can be extended to the user clicking on a
+`PatientListViewCell`, as well as other ways of querying for a doctor or patient
+(ie. through select-doc or select-ptn command).
+
+Below, we see the sequence diagram of how a mouse click from the user on the `DoctorListViewCell`
+causes the display of information related to the doctor card through the `EnlargedDoctorInfoCard`.
+
+![](images/UserClickDoctorCardSequenceDiagram.png)
+
+#### More details on implementation
+When the user clicks on a `DoctorListViewCell`, the `displayDoctor()` call sets the state of the
+`EnlargedInfoCardDisplayController` to show the doctor. After which, the `ContactDisplay`
+is prompted to feedback this change to the user, by displaying the `EnlargedDoctorInfoCard`
+containing the information of the doctor represented by the clicked `DoctorListViewCell`.
+
+A similar process happens when the user clicks on a `PatientListViewCell`.
+
+#### How is the state of the application stored
+Within `EnlargedInfoCardDisplayController`, two booleans corresponding to displaying doctor
+and patient information respectively store the state of the application.
+
+<div markdown="span" class="alert alert-primary">
+These booleans should never contain the same value for the following reasons:
+1) If both booleans are `false`, then no information is displayed.
+2) If both booleans are `true`, then both doctor and patient information will be
+displayed over each other.
+</div>
+
+#### Alternatives considered
+*_This section is still in progress_*
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Requirements**
 
@@ -103,9 +160,10 @@ Precondition: User is logged in and has access to the add doctor feature.
     Steps 1a1-1a2 are repeated until a valid add command is entered.<br>
     Use case resumes from step 2.
 * 1b. Docedex detects duplicate information within the address book.
-  * 1b1. Docedex prompts user to confirm if they would like a new entry or <u>UCx Edit information.</u>
-  * 1b2. User chooses the option they desire.
-  Use cases resumes from step 2
+  * 1b1. Docedex prompts user to not enter duplicate information <br>
+  * 1b2. User enters command and information to add a doctor.<br>
+  Steps 1b1-1b2 are repeated until a unique entry is entered.<br>
+  Use cases resumes from step 2.
 
 
 **Use case: UC2 - Delete Doctor**

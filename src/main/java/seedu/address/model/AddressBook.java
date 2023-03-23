@@ -196,8 +196,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return doctors.asUnmodifiableObservableList().size() + " doctors"
+                + " and " + patients.asUnmodifiableObservableList().size() + " patients";
     }
 
     @Override
@@ -213,6 +213,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Patient> getUnassignedPatientList() {
+        UniquePatientList unassignedPatients = new UniquePatientList();
+        for (Patient patient : patients) {
+            boolean unassigned = true;
+            for (Doctor doctor : doctors) {
+                if (doctor.hasPatient(patient)) {
+                    unassigned = false;
+                    break;
+                }
+            }
+            if (unassigned) {
+                unassignedPatients.add(patient);
+            }
+        }
+        return unassignedPatients.asUnmodifiableObservableList();
     }
 
 

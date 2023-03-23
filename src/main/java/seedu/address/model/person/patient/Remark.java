@@ -9,8 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Remark {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Remark should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Remark should not be blank";
     /*
      * Remark should not be blank
      */

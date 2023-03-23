@@ -84,7 +84,6 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
             patientsList.add(patient.toModelType());
         }
         final Set<Patient> modelPatients = new HashSet<>(patientsList);
-        // final Set<Patient> modelPatients = new HashSet<>(List.of(new PatientStub()));
 
         Person doctorPerson = super.toModelType();
         return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),

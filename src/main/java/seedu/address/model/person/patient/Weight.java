@@ -14,7 +14,7 @@ public class Weight {
 
     public static final String VALIDATION_REGEX = "^\\s*\\d+(\\.\\d)?\\s*$";
 
-    public final String weight;
+    public final String value;
 
     /**
      * Constructs a {@code Weight}.
@@ -25,31 +25,30 @@ public class Weight {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
         String trimmedWeight = weight.trim();
-        this.weight = trimmedWeight;
+        this.value = trimmedWeight;
     }
 
     /**
      * Returns true if a given string is a valid weight.
      */
     public static boolean isValidWeight(String test) {
-        test = test.trim();
         return test.matches(VALIDATION_REGEX) && !test.equals("0") && !test.equals("0.0");
     }
 
     @Override
     public String toString() {
-        return weight + " kg";
+        return value + " kg";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Weight // instanceof handles nulls
-                && weight.equals(((Weight) other).weight)); // state check
+                && value.equals(((Weight) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return weight.hashCode();
+        return value.hashCode();
     }
 }

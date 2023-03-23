@@ -148,7 +148,7 @@ public class ParserUtil {
     //METHODS FOR PATIENT
 
     /**
-     * Parses a {@code String height} into an {@code Height}.
+     * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code height} is invalid.
@@ -204,7 +204,7 @@ public class ParserUtil {
         if (!Status.isValidStatus(status)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Status(status);
+        return new Status(trimmedStatus);
     }
 
     /**
