@@ -27,6 +27,8 @@ public class ZoomView extends UiPart<Region> {
     private Label progressView;
     @FXML
     private Label zoomTag;
+    @FXML
+    private Label urlView;
 
     /**
      * Constructs a ZoomView that displays the details of the provided bookmark.
@@ -40,6 +42,7 @@ public class ZoomView extends UiPart<Region> {
         authorView.setText("Author: " + bookmark.getAuthor().value);
         GenreView.setText("Genre: " + bookmark.getGenre().value);
         progressView.setText("Progress: " + bookmark.getProgress().value);
+        urlView.setText("Url: " + bookmark.getUrl().value);
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
 
@@ -56,6 +59,7 @@ public class ZoomView extends UiPart<Region> {
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
+        urlView.setVisible(false);
 
     }
 

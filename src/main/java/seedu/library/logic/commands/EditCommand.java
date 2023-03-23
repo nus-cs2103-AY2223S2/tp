@@ -6,6 +6,8 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
+
 import static seedu.library.model.Model.PREDICATE_SHOW_ALL_BOOKMARKS;
 
 import java.util.Collections;
@@ -24,6 +26,8 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -40,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PROGRESS + "PROGRESS] "
             + "[" + PREFIX_GENRE + "GENRE] "
+            + "[" + PREFIX_URL + "URL] "
             + "[" + PREFIX_AUTHOR + "AUTHOR] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -98,9 +103,10 @@ public class EditCommand extends Command {
         Progress updatedProgress = editBookmarkDescriptor.getProgress().orElse(bookmarkToEdit.getProgress());
         Genre updatedGenre = editBookmarkDescriptor.getGenre().orElse(bookmarkToEdit.getGenre());
         Author updatedAuthor = editBookmarkDescriptor.getAuthor().orElse(bookmarkToEdit.getAuthor());
+        Url updatedUrl = editBookmarkDescriptor.getUrl().orElse(bookmarkToEdit.getUrl());
         Set<Tag> updatedTags = editBookmarkDescriptor.getTags().orElse(bookmarkToEdit.getTags());
 
-        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedTags);
+        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedUrl, updatedTags);
     }
 
     @Override
@@ -131,6 +137,7 @@ public class EditCommand extends Command {
         private Genre genre;
         private Author author;
         private Set<Tag> tags;
+        private Url url;
 
         public EditBookmarkDescriptor() {}
 
@@ -144,13 +151,14 @@ public class EditCommand extends Command {
             setGenre(toCopy.genre);
             setAuthor(toCopy.author);
             setTags(toCopy.tags);
+            setUrl(toCopy.url);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, progress, genre, author, tags);
+            return CollectionUtil.isAnyNonNull(title, progress, genre, author, url, tags);
         }
 
         public void setTitle(Title title) {
@@ -183,6 +191,13 @@ public class EditCommand extends Command {
 
         public Optional<Author> getAuthor() {
             return Optional.ofNullable(author);
+        }
+        public void setUrl(Url url) {
+            this.url = url;
+        }
+
+        public Optional<Url> getUrl() {
+            return Optional.ofNullable(url);
         }
 
         /**
@@ -221,7 +236,8 @@ public class EditCommand extends Command {
                     && getProgress().equals(e.getProgress())
                     && getGenre().equals(e.getGenre())
                     && getAuthor().equals(e.getAuthor())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getUrl().equals(e.getUrl());
         }
     }
 }

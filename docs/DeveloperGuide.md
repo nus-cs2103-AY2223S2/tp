@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: Developer Guide
@@ -238,6 +237,48 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### GoTo Feature
+
+#### Implementation
+
+The `Bookmark` class will have an attribute `url` of type `URL` which represents site which the bookmark is hyperlinked to
+
+The `GoToCommand` will then open the site in the default browser of the user. Before the `GoToCommand` object is created.
+* The `GoToCommandParser` will checks if the command is of the correct format and argument index is valid
+* Then the `GoToCommand` will execute these steps in order
+  1. Get the current bookmarklist displayed
+  2. Get bookmark of specified index from the bookmarklist and get its `url` 
+  3. Open the url in the default browser.
+
+The following Activity diagram depicts what happens when the `GoToCommand` is executed.
+
+![GoToActivity](images/GoToActivityDiagram.png)
+
+The following sequence diagram shows the interaction between the objects when a user executes the GoTo command.
+
+![GoToSequence](images/GoToSequenceDiagram.png)
+
+#### Design Considerations:
+
+#### Aspect: What data type to use?:
+
+Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and 
+is then created into a URI object when `GoToCommand` is executed
+
+The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
+
+* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+    * Pros: Easy to implement, easier storage
+    * Cons: May have security due to parsing or encoding errors
+
+* **Alternative 2:** url stored as a URI object in Bookmark
+    * Pros: Will use be safer as errors are caught before object is created
+    * Cons: Difficulty in implementing as harder to parse for user input due to format of URI 
+
+
+
+    
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -286,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a bookmark                       | remove entries that I no longer need                          |
 | `* * *`  | user with many bookmarks | find bookmarks by book title            | locate bookmarsk without having to go through the entire list |
 | `* * *`    | user                                       | edit a bookmark                         | update the information in my bookmark                         |
-| `* *`  | user | view the details of a single bookmark   | see information about a particular book I am tracking         
+| `* *`  | user | view the details of a single bookmark   | see information about a particular book I am tracking         |
 | `* *` | user with mostly unnecessary bookmarks | clear all bookmarks                     | not delete each bookmark one by one                           |
 | `* *` | user with many bookmarks | find bookmarks by book type             | view bookmarks of only a certain type                         |
 | `* *` | user with many bookmarks | find bookmarks by book genre            | sview bookmarks of only a certain genre                       |

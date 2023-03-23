@@ -10,11 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.library.commons.core.LogsCenter;
-import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Progress;
-import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.*;
 import seedu.library.model.util.SampleDataUtil;
 
 
@@ -54,7 +50,10 @@ public class BookmarkListPanel extends UiPart<Region> {
 
     }
     public Bookmark getSelectedItem() {
-        return selectedItem;
+        return bookmarkListView.getSelectionModel().getSelectedItem();
+    }
+    public void unSelect() {
+        bookmarkListView.getSelectionModel().clearSelection();
     }
     public boolean isChangedSelect() {
         return flag;
@@ -65,7 +64,7 @@ public class BookmarkListPanel extends UiPart<Region> {
             return bookmarks.get(0);
         } catch (IndexOutOfBoundsException e) {
             return new Bookmark(new Title("Alex Yeoh"), new Progress("87438807"), new Genre("alexyeoh@example.com"),
-                    new Author("Blk 30 Geylang Street 29, #06-40"),
+                    new Author("Blk 30 Geylang Street 29, #06-40"), new Url(""),
                     SampleDataUtil.getTagSet("friends"));
 
         }

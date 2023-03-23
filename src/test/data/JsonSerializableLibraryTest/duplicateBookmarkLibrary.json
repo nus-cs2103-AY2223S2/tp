@@ -4,11 +4,13 @@
     "progress": "94351253",
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
+    "url": "",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
     "progress": "94351253",
     "genre": "pauline@example.com",
-    "author": "4th street"
+    "author": "4th street",
+    "url": ""
   } ]
 }

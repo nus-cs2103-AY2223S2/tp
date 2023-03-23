@@ -25,11 +25,11 @@ public class TypicalBookmarks {
 
     public static final Bookmark ALICE = new BookmarkBuilder().withTitle("Alice Pauline")
             .withAuthor("123, Jurong West Ave 6, #08-111").withGenre("alice@example.com")
-            .withProgress("94351253")
+            .withProgress("94351253").withUrl("https://www.abc.com")
             .withTags("friends").build();
     public static final Bookmark BENSON = new BookmarkBuilder().withTitle("Benson Meier")
             .withAuthor("311, Clementi Ave 2, #02-25")
-            .withGenre("johnd@example.com").withProgress("98765432")
+            .withGenre("johnd@example.com").withProgress("98765432").withUrl("https://www.def.com")
             .withTags("owesMoney", "friends").build();
     public static final Bookmark CARL = new BookmarkBuilder().withTitle("Carl Kurz").withProgress("95352563")
             .withGenre("heinz@example.com").withAuthor("wall street").build();
