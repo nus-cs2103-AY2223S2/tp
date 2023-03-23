@@ -226,6 +226,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Pair<String, String> > getDeckNameList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int getDeckSize(int deckIndex) {
             throw new AssertionError("This method should not be called.");
         }
@@ -258,6 +263,12 @@ public class AddCommandTest {
         public String getReviewDeckName() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Pair<String, String> > getReviewDeckNameList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void flipCard() {
