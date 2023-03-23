@@ -4,7 +4,9 @@ import static codoc.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import codoc.commons.core.GuiSettings;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private Person protagonist;
     private String currentTab;
+    private final ArrayList<Predicate<Person>> predicateArrayList = new ArrayList<>();
 
     /**
      * Initializes a ModelManager with the given codoc and userPrefs.
@@ -133,8 +136,14 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        if (predicate == PREDICATE_SHOW_ALL_PERSONS) {
+            predicateArrayList.clear();
+        }
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        predicateArrayList.add(predicate);
+        Predicate<Person> combinePredicate = predicateArrayList.stream().reduce(person -> true, Predicate::and);
+        logger.log(Level.INFO, "Number of predicates = " + predicateArrayList.size());
+        filteredPersons.setPredicate(combinePredicate);
     }
 
     //=========== Protagonist ================================================================================
