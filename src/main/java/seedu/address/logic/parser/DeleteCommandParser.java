@@ -46,6 +46,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     return new DeleteLectureCommand(lectureName, moduleCode);
                 }
             } else {
+                if (preamble.contains(",")) {
+
+                }
                 ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
                 return new DeleteModuleCommand(moduleCode);
             }

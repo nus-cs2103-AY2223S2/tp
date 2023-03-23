@@ -275,8 +275,8 @@ public class UntagCommandTest {
     }
 
     private class ModelStubAcceptingUntaggedVideo extends ModelStub {
-        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
-        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        private Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
+        private Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         private Video video;
 
         public ModelStubAcceptingUntaggedVideo(Video video) {
