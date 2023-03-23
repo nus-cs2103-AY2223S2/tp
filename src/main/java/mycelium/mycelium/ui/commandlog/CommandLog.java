@@ -25,8 +25,4 @@ public class CommandLog extends UiPart<Region> {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
     }
-
-    public void clearFeedback() {
-        resultDisplay.clear();
-    }
 }

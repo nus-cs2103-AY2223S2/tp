@@ -3,6 +3,7 @@ package mycelium.mycelium.logic.uievent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.KeyEvent;
+import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.uievent.key.ClearKey;
 import mycelium.mycelium.logic.uievent.key.FindKey;
 import mycelium.mycelium.logic.uievent.key.HelpKey;
@@ -17,6 +18,7 @@ import mycelium.mycelium.ui.MainWindow;
  */
 public class UiEventManager implements UiEvent {
     public static final EventType<KeyEvent> TYPE = KeyEvent.KEY_PRESSED;
+    private Logic logic;
     private MainWindow mainWindow;
 
     /**
@@ -24,7 +26,8 @@ public class UiEventManager implements UiEvent {
      *
      * @param mainWindow the main window
      */
-    public UiEventManager(MainWindow mainWindow) {
+    public UiEventManager(Logic logic, MainWindow mainWindow) {
+        this.logic = logic;
         this.mainWindow = mainWindow;
     }
 
@@ -35,21 +38,21 @@ public class UiEventManager implements UiEvent {
      */
     public void catchAndExecute(KeyEvent event) {
         if (HelpKey.KEY_COMBINATION.match(event)) {
-            new HelpKey().execute(mainWindow);
+            new HelpKey().execute(logic, mainWindow);
         } else if (FindKey.KEY_COMBINATION.match(event)) {
-            new FindKey().execute(mainWindow);
+            new FindKey().execute(logic, mainWindow);
         } else if (SwitchKey.KEY_COMBINATION.match(event)) {
-            new SwitchKey().execute(mainWindow);
+            new SwitchKey().execute(logic, mainWindow);
         } else if (NextItemKey.KEY_COMBINATION.match(event)) {
-            new NextItemKey().execute(mainWindow);
+            new NextItemKey().execute(logic, mainWindow);
         } else if (PrevItemKey.KEY_COMBINATION.match(event)) {
-            new PrevItemKey().execute(mainWindow);
+            new PrevItemKey().execute(logic, mainWindow);
         } else if (ClearKey.KEY_COMBINATION.match(event)) {
-            new ClearKey().execute(mainWindow);
+            new ClearKey().execute(logic, mainWindow);
         } else if (TabKey.KEY_COMBINATION.match(event)) {
-            new TabKey().execute(mainWindow);
+            new TabKey().execute(logic, mainWindow);
         } else {
-            mainWindow.getCommandBox().requestFocus();
+            mainWindow.focusCommandBox();
             return;
         }
         event.consume();

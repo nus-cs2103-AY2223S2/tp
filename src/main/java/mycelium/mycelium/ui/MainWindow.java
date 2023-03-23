@@ -14,10 +14,12 @@ import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.logic.uievent.UiEventManager;
-import mycelium.mycelium.model.FuzzyManager;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.commandbox.CommandBox;
+import mycelium.mycelium.ui.commandbox.mode.CommandMode;
+import mycelium.mycelium.ui.commandbox.mode.Mode;
+import mycelium.mycelium.ui.commandbox.mode.Mode.ModeType;
 import mycelium.mycelium.ui.commandlog.CommandLog;
 import mycelium.mycelium.ui.entitypanel.EntityPanel;
 import mycelium.mycelium.ui.helpwindow.HelpWindow;
@@ -79,22 +81,10 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    public EntityPanel getEntityPanel() {
-        return entityPanel;
-    }
-
-    public CommandBox getCommandBox() {
-        return commandBox;
-    }
-
-    public CommandLog getCommandLog() {
-        return commandLog;
-    }
-
     private void setEventHandlers() {
         getRoot().addEventFilter(
             UiEventManager.TYPE,
-            new UiEventManager(this).getEventHandler());
+            new UiEventManager(logic, this).getEventHandler());
     }
 
     /**
@@ -104,13 +94,7 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Filling inner parts of MainWindow...");
         helpWindow = new HelpWindow();
 
-        commandBox =
-            new CommandBox(this, this::executeCommand, new FuzzyManager(logic.getAddressBook()), (mainWindow) -> {
-            }, (mainWindow) -> {
-                // Just to "reset" the lists back to its state in the address book.
-                mainWindow.setClients(logic.getFilteredClientList());
-                mainWindow.setProjects(logic.getFilteredProjectList());
-            });
+        commandBox = new CommandBox(new CommandMode(this));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         commandLog = new CommandLog();
@@ -161,7 +145,7 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
-        fillInnerParts(); //This should be called before creating other UI parts
+        fillInnerParts();
     }
 
     /**
@@ -169,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    public CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -189,17 +173,66 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-    /**
-     * Sets the clients in the entity panel.
-     */
-    public void setClients(ObservableList<Client> list) {
-        entityPanel.setClients(list);
+    // CommandBox methods ======================================================
+    public ModeType getCommandBoxModeType() {
+        return commandBox.getModeType();
     }
 
-    /**
-     * Sets the projects in the entity panel.
-     */
-    public void setProjects(ObservableList<Project> list) {
-        entityPanel.setProjects(list);
+    public void setCommandBoxMode(Mode mode) {
+        commandBox.setMode(mode);
+    }
+
+    public void setCommandBoxInput(String string) {
+        commandBox.setInput(string);
+    }
+
+    public void setCommandBoxStyleError() {
+        commandBox.setStyleError();
+    }
+
+    public void setCommandBoxStyleDefault() {
+        commandBox.setStyleDefault();
+    }
+
+    public void setCommandBoxStyleListening() {
+        commandBox.setStyleListening();
+    }
+
+    public void focusCommandBox() {
+        commandBox.requestFocus();
+    }
+
+    // CommandLog methods ======================================================
+    public void setFeedbackToUser(String feedback) {
+        commandLog.setFeedbackToUser(feedback);
+    }
+
+    // EntityPanel methods =====================================================
+    public void nextTab() {
+        entityPanel.nextTab();
+    }
+
+    public void selectClientTab() {
+        entityPanel.selectClientTab();
+    }
+
+    public void selectProjectTab() {
+        entityPanel.selectProjectTab();
+    }
+
+    public void setProjects(ObservableList<Project> projectList) {
+        entityPanel.setProjects(projectList);
+    }
+
+    public void setClients(ObservableList<Client> clientList) {
+        entityPanel.setClients(clientList);
+    }
+
+    public void nextItem() {
+        entityPanel.nextItem();
+    }
+
+    public void prevItem() {
+        entityPanel.prevItem();
     }
 }

@@ -1,6 +1,7 @@
 package mycelium.mycelium.logic.uievent.key;
 
 import javafx.scene.input.KeyCombination;
+import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
@@ -10,7 +11,7 @@ public class NextItemKey extends Key {
     public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+J");
 
     @Override
-    public void execute(MainWindow mainWindow) {
-        mainWindow.getEntityPanel().nextItem();
+    public void execute(Logic logic, MainWindow mainWindow) {
+        mainWindow.nextItem();
     }
 }

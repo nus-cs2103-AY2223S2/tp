@@ -1,77 +1,34 @@
 package mycelium.mycelium.ui.commandbox;
 
-import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.function.Consumer;
+import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import mycelium.mycelium.logic.Logic;
-import mycelium.mycelium.logic.commands.CommandResult;
-import mycelium.mycelium.logic.commands.exceptions.CommandException;
-import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.ui.MainWindow;
 import mycelium.mycelium.ui.UiPart;
+import mycelium.mycelium.ui.commandbox.mode.Mode;
+import mycelium.mycelium.ui.commandbox.mode.Mode.ModeType;
 
 /**
- * The UI component that is responsible for receiving user command inputs. It can be in exactly one of two states:
- * listening or not listening. When not listening, it functions like a usual text field and handles user input via a
- * {@link CommandExecutor} upon pressing enter. When listening, it listens to every change in the text field and runs
- * a handler via {@link CommandInputListener} upon every change.
- * <p>
- * Both handlers can be set through the constructor.
+ * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
-
     public static final String ERROR_STYLE_CLASS = "error";
     public static final String LISTENING_STYLE_CLASS = "listening";
     private static final String FXML = "CommandBox.fxml";
 
-    private final CommandExecutor commandExecutor;
-    private final CommandInputListener commandInputListener;
-    private final MainWindow mainWindow;
-    private boolean isListening;
-    /**
-     * A lambda to run when the command box starts listening.
-     */
-    private Consumer<MainWindow> uponListening;
-    /**
-     * A lambda to run when the command box stops listening.
-     */
-    private Consumer<MainWindow> uponNotListening;
-
-    private String previousText;
+    private Mode mode;
 
     @FXML
     private TextField commandTextField;
 
     /**
-     * Creates a {@code CommandBox}.
-     *
-     * @param mainWindow           The main window of the application. Required as some actions modify the window.
-     * @param commandExecutor      Handler for executing user-entered commands.
-     * @param commandInputListener Handler for changes in the command input.
-     * @param uponListening        Action to be performed when the command box starts listening.
-     * @param uponNotListening     Action to be performed when the command box stops listening.
+     * Creates a {@code CommandBox} with an initial mode.
      */
-    public CommandBox(MainWindow mainWindow,
-                      CommandExecutor commandExecutor,
-                      CommandInputListener commandInputListener,
-                      Consumer<MainWindow> uponListening,
-                      Consumer<MainWindow> uponNotListening) {
+    public CommandBox(Mode mode) {
         super(FXML);
-        requireAllNonNull(mainWindow, commandExecutor, commandInputListener, uponListening, uponNotListening);
-        this.commandExecutor = commandExecutor;
-        this.commandInputListener = commandInputListener;
-        this.uponListening = uponListening;
-        this.uponNotListening = uponNotListening;
-        this.mainWindow = mainWindow;
-        this.isListening = false;
-        this.previousText = "";
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        this.mode = requireNonNull(mode);
     }
 
     /**
@@ -79,47 +36,26 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        if (isListening) {
-            return;
-        }
-        String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
-            return;
-        }
-
-        try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
-        }
+        mode.onInputSubmit(commandTextField.getText());
     }
 
     @FXML
     private void handleInputChange() {
-        if (!isListening) {
-            return;
-        }
-        String currentText = commandTextField.getText();
-        commandInputListener.onInputChanged(currentText, mainWindow);
+        mode.onInputChange(commandTextField.getText());
     }
 
     /**
      * Sets the command box style to use the default style.
      */
-    private void setStyleToDefault() {
-        if (isListening) {
-            setStyleToIndicateListening();
-        } else {
-            commandTextField.getStyleClass().remove(LISTENING_STYLE_CLASS);
-        }
+    public void setStyleDefault() {
+        commandTextField.getStyleClass().remove(LISTENING_STYLE_CLASS);
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
     /**
-     * Sets the command box style to indicate a failed command.
+     * Sets the command box style to use the error style.
      */
-    private void setStyleToIndicateCommandFailure() {
+    public void setStyleError() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
@@ -130,9 +66,9 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Sets the command box style to indicate listening.
+     * Sets the command box style to use the listening style.
      */
-    private void setStyleToIndicateListening() {
+    public void setStyleListening() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
         if (styleClass.contains(LISTENING_STYLE_CLASS)) {
@@ -142,53 +78,27 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(LISTENING_STYLE_CLASS);
     }
 
-    private void cacheAndReplaceText() {
-        String replacingText = previousText;
-        previousText = commandTextField.getText();
-        commandTextField.setText(replacingText);
-        commandTextField.positionCaret(replacingText.length());
-    }
-
-    /**
-     * Toggles listening mode.
-     */
-    public void toggleListening() {
-        isListening = !isListening;
-        if (isListening) {
-            uponListening.accept(mainWindow);
-        } else {
-            uponNotListening.accept(mainWindow);
-        }
-        setStyleToDefault();
-        cacheAndReplaceText();
-    }
-
     public void requestFocus() {
         commandTextField.requestFocus();
     }
 
-    public void clearInput() {
-        commandTextField.setText("");
+    public void setInput(String input) {
+        commandTextField.setText(input);
+        commandTextField.positionCaret(input.length());
     }
 
-    /**
-     * Represents a function that can execute commands.
-     */
-    @FunctionalInterface
-    public interface CommandExecutor {
-        /**
-         * Executes the command and returns the result.
-         *
-         * @see Logic#execute(String)
-         */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+    public String getInput() {
+        return commandTextField.getText();
     }
 
-    /**
-     * Represents a function that is called on input change.
-     */
-    @FunctionalInterface
-    public interface CommandInputListener {
-        void onInputChanged(String input, MainWindow mainWindow);
+    public void setMode(Mode mode) {
+        String prevInput = getInput();
+        setInput(this.mode.teardownMode());
+        this.mode = mode;
+        this.mode.setupMode(prevInput);
+    }
+
+    public ModeType getModeType() {
+        return mode.getModeType();
     }
 }
