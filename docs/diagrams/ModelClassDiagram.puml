@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyHMHero" as ReadOnlyHMHero
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as model
+Class HMHero
 Class ModelManager
 Class UserPrefs
 
@@ -18,29 +18,33 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
-
+Class Notes
+Class ApplicationDateTime
+Class "Optional<InterviewDateTime>\n" as datetime
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> model
 
-AddressBook .up.|> ReadOnlyAddressBook
+HMHero .up.|> ReadOnlyHMHero
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up.|> model
+model .right.> ReadOnlyUserPrefs
+model .left.> ReadOnlyHMHero
+ModelManager -left-> "1" HMHero
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+HMHero *--> "1" UniquePersonList
+UniquePersonList -left-> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *-> datetime
+Person *--> "*" Notes
+Person *--> ApplicationDateTime
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
