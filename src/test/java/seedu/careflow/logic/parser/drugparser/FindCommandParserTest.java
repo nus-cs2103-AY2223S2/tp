@@ -1,6 +1,5 @@
 package seedu.careflow.logic.parser.drugparser;
 
-import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.List;
