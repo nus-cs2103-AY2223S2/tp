@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class PolicyTest {
 
-    private PolicyName name = new PolicyName("Health");
+    private PolicyName name = new PolicyName("Health Insurance");
     private CustomDate date = new CustomDate("01.02.2023");
     private Premium premium = new Premium("200");
     private Frequency frequency = new Frequency("weekly");
@@ -18,7 +18,7 @@ class PolicyTest {
     @Test
     void getPolicyName() {
         PolicyName name = policy.getPolicyName();
-        assertEquals(name.toString(), "Health");
+        assertEquals(name.toString(), "Health Insurance");
     }
 
     @Test
@@ -41,8 +41,8 @@ class PolicyTest {
 
     @Test
     void isSamePolicy() {
-        PolicyName name1 = new PolicyName("Health");
-        PolicyName name2 = new PolicyName("life");
+        PolicyName name1 = new PolicyName("Health Insurance");
+        PolicyName name2 = new PolicyName("life Insurance");
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
         Premium premium2 = new Premium("150");
@@ -63,7 +63,7 @@ class PolicyTest {
 
     @Test
     void isSamePolicyString() {
-        PolicyName name1 = new PolicyName("Health");
+        PolicyName name1 = new PolicyName("Health Insurance");
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
         Frequency frequency1 = new Frequency("weekly");
