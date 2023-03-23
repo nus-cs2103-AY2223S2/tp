@@ -110,16 +110,19 @@ public class Review {
         return deck.getDeckName();
     }
 
+    public boolean isFlipped() {
+        return currCard.isFlipped();
+    }
+
+    /**
+     * Flips the current card under review.
+     */
     public void flipCard() {
         if (isFlipped()) {
             currCard.setAsUnflipped();
         } else {
             currCard.setAsFlipped();
         }
-    }
-
-    public boolean isFlipped() {
-        return currCard.isFlipped();
     }
 
     /**

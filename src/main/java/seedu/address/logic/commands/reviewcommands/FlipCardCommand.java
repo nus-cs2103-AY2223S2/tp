@@ -25,6 +25,8 @@ public class FlipCardCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.flipCard();
-        return model.isReviewCardFlipped() ? new CommandResult(MESSAGE_FLIP_SUCCESS) : new CommandResult(MESSAGE_UNFLIP_SUCCESS);
+        return model.isReviewCardFlipped()
+                ? new CommandResult(MESSAGE_FLIP_SUCCESS)
+                : new CommandResult(MESSAGE_UNFLIP_SUCCESS);
     }
 }
