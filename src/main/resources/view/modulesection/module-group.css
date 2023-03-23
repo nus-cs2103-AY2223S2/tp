@@ -11,4 +11,6 @@
 }
 .module-card-group {
     -fx-padding: 5 0;
+
+    -fx-max-width: 400;
 }

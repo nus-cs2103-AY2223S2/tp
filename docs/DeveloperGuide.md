@@ -10,14 +10,15 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ## Table of Contents
 
-1. [Appendix: Requirements](#appendix)
+1. [Implementation](#implementation)
+2. [Appendix: Requirements](#appendix)
    1. [Product Scope](#product-scope)
         1. Target User Profile
-      1. Value Proposition
-   1. [User Stories](#user-stories)
-   1. [Use Cases](#use-cases)
-   1. [Non-Functional Requirements](#non-functional-requirements)
-   1. [Glossary](#glossary)
+        2. Value Proposition
+   2. [User Stories](#user-stories)
+   3. [Use Cases](#use-cases)
+   4. [Non-Functional Requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,9 +165,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementation** <a name="implementation"></a>
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **Add module feature**
+
+#### About this feature
+
+The add module feature allows users to quickly add a module in to the application using the command `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
+
+#### How it is implemented
+
+The `add` command is facilitated by the `AddCommand` and the `AddCommandParser`.
+`AddCommandParser` makes use of the `ArgumentTokenizer::tokenize` to extract out the relevant inputs of each field which
+will be used to make new `Code`, `Credit`, `SemYear`, `Grade` and `Set<Tag>` objects. These objects will then be used 
+to make a new `Module` object. The method `addModule` from the `Model` interface will then add the new `Module` object
+into the `UniqueModuleList` of modules.
+
+#### Parsing user input
+
+1. The user inputs the `add` command with its relevant details.
+2. The `LogicManager` takes the input and passes it to the `ModTrekParser` which processes the input and recognises it as an add command and makes a new `AddCommandParser`.
+3. The `AddCommandParser` then calls `ArgumentTokenizer::tokenize` to extract the relevant inputs of each field. If any of the compulsory fields are missing, a `ParseException` would be thrown.
+4. `ParserUtil` will then check the validity of the input for `Code`, `Credit`, `SemYear`, `Grade` and `Set<Tag>` and make an object for them. If any of the inputs are invalid, a `ParseException` will be thrown.
+5. A `Module` object will then be created with the objects created for each input field and an `AddCommand` object which takes in that `Module` object will be created.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddCommand`
+2. `AddCommand` calls `ModelManager::addModule` which is implemented the `Model` interface to add the `Module` into the `UniqueModuleList` of `DegreeProgression`.
+
+#### Displaying of result
+
+1. `AddCommand` will create a new `CommandResult` with a success message and return it back to the `LogicManager`.
+2. The GUI will make extract out the message from the `CommandResult` and display it to the user.
+
+#### Design consideration
+
+Some users may not have taken the module or are still not certain how they want to tag the module. We hence implemented for the `Code`, `Credit` and `SemYear` fields to be compulsory so that they can add the modules
+yet to be taken as a way of letting them plan what modules that want to take in the future.
+
+The following sequence diagram shows how the `add` command works:
+
+![Interactions Inside the Logic Component for the `add` Command](images/AddSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes an `add` command:
+
+![Activity diagram of add command](images/AddActivityDiagram.png)
 
 ### **Find module feature**
 

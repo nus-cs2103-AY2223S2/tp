@@ -9,9 +9,12 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
+    public static final int NUM_TAGS = 6;
+
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
 
     public final String tagName;
+
 
     /**
      * Constructs a {@code Tag}.
@@ -55,7 +58,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return tagName;
+        return tagName.replace("_", " ");
     }
 
 }
