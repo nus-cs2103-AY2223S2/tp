@@ -2,6 +2,7 @@
 !include style.puml
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
+skinparam ClassBackgroundColor #fefece
 
 title After command "undo"
 
@@ -14,7 +15,7 @@ package States <<rectangle>> {
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current State" #FFFFFF
 
-Pointer -up-> State2
+Pointer -up[#a80036]-> State2
 @end

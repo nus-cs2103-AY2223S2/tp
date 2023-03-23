@@ -2,6 +2,8 @@
 !include style.puml
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
+skinparam ClassBackgroundColor #fefece
+
 
 title Initial state
 
@@ -15,6 +17,6 @@ State2 -[hidden]right-> State3
 hide State2
 hide State3
 
-class Pointer as "Current State" #FFFFF
-Pointer -up-> State1
+class Pointer as "Current State" #FFFFFF
+Pointer -up[#a80036]-> State1
 @end
