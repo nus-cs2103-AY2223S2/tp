@@ -33,7 +33,7 @@ public class ModuleCodePredicate implements Predicate<Module> {
 
     @Override
     public boolean test(Module module) {
-        return (moduleCode.isEmpty() || module.getCode().toString().contains(moduleCode))
+        return (moduleCode.isEmpty() || module.getCode().toString().startsWith(moduleCode))
                 && (credit.isEmpty() || module.getCredit().equals(new Credit(credit)))
                 && (semYear.isEmpty() || module.getSemYear().equals(new SemYear(semYear)))
                 && (grade.isEmpty() || module.getGrade().equals(new Grade(grade)))
