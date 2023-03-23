@@ -1,0 +1,92 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "editDescriptor:EditDescriptor" as EditDescriptor LOGIC_COLOR
+participant "nric:Nric" as Nric LOGIC_COLOR
+participant "editCommand:EditCommand" as EditCommand LOGIC_COLOR
+participant "<<class>>\nEditDescriptor" as EditDescriptorStatic LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> EditCommandParser : parse("S1234567I n/Shaun ag/21")
+activate EditCommandParser
+
+create EditDescriptor
+EditCommandParser -> EditDescriptor
+activate EditDescriptor
+EditDescriptor --> EditCommandParser
+deactivate EditDescriptor
+
+EditCommandParser -> EditDescriptor : setName("Shaun")
+activate EditDescriptor
+deactivate EditDescriptor
+
+EditCommandParser -> EditDescriptor : setAge("21")
+activate EditDescriptor
+deactivate EditDescriptor
+
+create Nric
+EditCommandParser -> Nric : new Nric("S1234567I")
+activate Nric
+Nric --> EditCommandParser
+deactivate Nric
+
+create EditCommand
+EditCommandParser -> EditCommand : new EditCommand(nric, editDescriptor)
+activate EditCommand
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser -->[ : editCommand
+deactivate EditCommandParser
+EditCommandParser -[hidden]-> EditCommand
+destroy EditCommandParser
+
+[-> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : hasElderly(nric)
+activate Model
+Model --> EditCommand : false
+deactivate Model
+
+EditCommand -> Model : hasVolunteer(nric)
+activate Model
+Model --> EditCommand : true
+deactivate Model
+
+EditCommand -> EditCommand : editVolunteer(model)
+activate EditCommand
+
+EditCommand -> Model : getVolunteer(nric)
+activate Model
+Model --> EditCommand : volunteerToEdit
+deactivate Model
+
+EditCommand -> EditDescriptorStatic : createEditedVolunteer(volunteerToEdit, editDescriptor)
+activate EditDescriptorStatic
+EditDescriptorStatic --> EditCommand : editedVolunteer
+deactivate EditDescriptorStatic
+
+EditCommand -> Model : setVolunteer(volunteerToEdit, editedVolunteer)
+activate Model
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : updateFilteredVolunteerList(PREDICATE_SHOW_ALL)
+activate Model
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> EditCommand : new CommandResult(...)
+deactivate EditCommand
+
+EditCommand -->[ : new CommandResult(...)
+deactivate EditCommand
+
+@enduml

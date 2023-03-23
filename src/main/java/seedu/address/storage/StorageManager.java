@@ -108,7 +108,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveElderly(ReadOnlyElderly elderly, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write to elderly data file: " + filePath);
         elderlyStorage.saveElderly(elderly, filePath);
     }
 
@@ -147,7 +147,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveVolunteer(ReadOnlyVolunteer volunteer, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write to volunteers data file: " + filePath);
         volunteerStorage.saveVolunteer(volunteer, filePath);
     }
 
@@ -178,7 +178,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void savePair(ReadOnlyPair pair, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write to pairs data file: " + filePath);
         pairStorage.savePair(pair, filePath);
     }
 
