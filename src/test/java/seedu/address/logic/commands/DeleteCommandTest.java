@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalEmployeeIds.*;
+import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_ONE;
+import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_THREE;
+import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_TWO;
 import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import org.junit.jupiter.api.Test;
