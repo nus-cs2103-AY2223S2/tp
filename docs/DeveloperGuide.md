@@ -270,7 +270,7 @@ The diaplay of the helpwindow is supported by blaba
 
 <br>
 
-#### Aspect: How different methods are viewed by user.
+#### Aspect: How different methods are viewed by user
 **Alternative 1 (Current choice)** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
 * Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
 * Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
