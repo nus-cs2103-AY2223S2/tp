@@ -21,7 +21,7 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
             new Internship(new CompanyName("Apple"), new Role("iOS Developer"), new Status("applied"),
-                new Date("2023-02-01"), new Comment("My dream company!"), getTagSet("iOS")),
+                new Date("2023-02-01"), new Comment("Yay! My dream company!"), getTagSet("iOS")),
             new Internship(new CompanyName("Amazon"), new Role("Cloud Architect"), new Status("new"),
                 new Date("2023-02-02"), new Comment("Need to research more on cloud services."),
                     getTagSet("aws", "cloud services")),

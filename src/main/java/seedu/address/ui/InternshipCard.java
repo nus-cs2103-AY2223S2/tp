@@ -122,9 +122,9 @@ public class InternshipCard extends UiPart<Region> {
         colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
         colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
         colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
-        colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
         colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
-        colorMap.put(ACCEPTED, Color.rgb(10, 50, 20, 1.0));
+        colorMap.put(OFFERED, Color.rgb(42, 174, 166, 1.0));
+        colorMap.put(ACCEPTED, Color.rgb(42, 174, 79, 1.0));
         return colorMap;
     }
 
