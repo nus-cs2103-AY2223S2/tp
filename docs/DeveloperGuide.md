@@ -259,7 +259,7 @@ Purpose: Allows users to add tasks into the OfficeConnectModel
 
 #### Implementation
 The implementation of this feature is supported by `AddTaskCommand` and `AddTaskCommandParser`.
-Below is an activity diagram that illustrates how a user adds new tasks into the OfficeConnectModel. </br>
+Below is a sequence diagram that illustrates how a user adds new tasks into the OfficeConnectModel. </br>
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
@@ -309,9 +309,10 @@ Below is an activity diagram showcasing the 2 steps: </br>
 #### Design Considerations
 **Aspect: Implementation of Delete Task Command**
 
-* **Alternative 1 (current choice):** Require users to call `listtask` to get the index of the task they wish to delete.
+* **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
     * Pros: Increase convenience for users, as they do not have to remember the index of each task. Also easier to implement.
-    * Cons: Increases coupling within OfficeConnectModel, as `deletetask` requires `listtask` to function properly.
+    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
+  obtaining the index needed for `deletetask`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can 
 use this index when deleting tasks
