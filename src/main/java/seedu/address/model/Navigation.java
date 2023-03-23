@@ -11,10 +11,6 @@ import seedu.address.model.navigation.NavigationContext;
  */
 public class Navigation implements ReadOnlyNavigation {
 
-    public static final int ROOT_LAYER = 1;
-    public static final int MODULE_LAYER = 2;
-    public static final int LECTURE_LAYER = 3;
-
     private final Stack<NavigationContext> contextStack;
 
     /**
@@ -38,7 +34,7 @@ public class Navigation implements ReadOnlyNavigation {
      * Navigates to the root context.
      */
     public void goToRoot() {
-        while (contextStack.size() > ROOT_LAYER) {
+        while (getCurrentLayerId() > NavLayer.ROOT.getLayerId()) {
             back();
         }
     }
@@ -48,7 +44,7 @@ public class Navigation implements ReadOnlyNavigation {
      */
     public void back() {
         // At root.
-        if (contextStack.size() <= ROOT_LAYER) {
+        if (getCurrentLayerId() <= NavLayer.ROOT.getLayerId()) {
             return;
         }
         contextStack.pop();
@@ -77,7 +73,7 @@ public class Navigation implements ReadOnlyNavigation {
      */
     public void navigateToModFromRoot(ModuleCode moduleCode) {
 
-        if (!isAtLayer(ROOT_LAYER)) {
+        if (!isAtLayer(NavLayer.ROOT)) {
             return;
         }
 
@@ -89,7 +85,7 @@ public class Navigation implements ReadOnlyNavigation {
      */
     public void navigateToLecFromMod(LectureName lectureName) {
 
-        if (!isAtLayer(MODULE_LAYER)) {
+        if (!isAtLayer(NavLayer.MODULE)) {
             return;
         }
 
@@ -101,8 +97,19 @@ public class Navigation implements ReadOnlyNavigation {
      * @param layer
      * @return true if index of the current layer of the context matches {@code layer}, otherwise false.
      */
-    public boolean isAtLayer(int layer) {
-        return contextStack.size() == layer;
+    public boolean isAtLayer(NavLayer layer) {
+        return contextStack.size() == layer.getLayerId();
+    }
+
+    public NavLayer getCurrentLayer() {
+        return NavLayer.values()[getCurrentLayerId()];
+    }
+
+    public int getCurrentLayerId() {
+        if (contextStack.size() < NavLayer.LOWEST_LAYER_ID || contextStack.size() > NavLayer.HIGHEST_LAYER_ID) {
+            return 0;
+        }
+        return contextStack.size();
     }
 
     @Override
@@ -117,5 +124,26 @@ public class Navigation implements ReadOnlyNavigation {
 
         Navigation other = (Navigation) obj;
         return contextStack.equals(other.contextStack);
+    }
+
+
+    /**
+     * Represents different nav layers.
+     */
+    public enum NavLayer {
+        INVALID(0), ROOT(1), MODULE(2), LECTURE(3);
+
+        public static final int LOWEST_LAYER_ID = 1;
+        public static final int HIGHEST_LAYER_ID = 3;
+
+        private final int layer;
+
+        private NavLayer(int layer) {
+            this.layer = layer;
+        }
+
+        public int getLayerId() {
+            return layer;
+        }
     }
 }

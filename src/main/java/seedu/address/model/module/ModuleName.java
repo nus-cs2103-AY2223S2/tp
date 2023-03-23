@@ -1,27 +1,39 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.Name;
 
 /**
  * Represents a module's name in the tracker.<p>
- * Guarantees: immutable.
+ * Guarantees: immutable, is valid as declared in {@link #isValidName(String)}.
  */
-public class ModuleName {
+public class ModuleName extends Name {
 
-    public final String name;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Module names should only contain alphanumeric characters and spaces";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]*";
 
     /**
      * Constructs a {@code ModuleName}.
      *
-     * @param name A possibly empty, but non-NULL, name.
+     * @param name A valid name.
      */
     public ModuleName(String name) {
-        requireNonNull(name);
-        this.name = name;
+        super(name, VALIDATION_REGEX, MESSAGE_CONSTRAINTS);
     }
 
     /**
-     * Returns true if the name is empty. Otherwise, returns false.
+     * Returns true if {@code test} is a valid name.
+     *
+     * @param test The string to check if it is a valid name.
+     * @return True if {@code test} is a valid name. Otherwise, false.
+     */
+    public static boolean isValidName(String test) {
+        return Name.isValidName(test, VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the name is empty.
      *
      * @return True if the name is empty. Otherwise, false.
      */
@@ -30,19 +42,8 @@ public class ModuleName {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof ModuleName
-                && name.equals(((ModuleName) other).name));
+        return super.equals(other) && other instanceof ModuleName;
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
 }

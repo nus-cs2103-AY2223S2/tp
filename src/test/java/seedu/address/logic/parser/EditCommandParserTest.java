@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EDIT_VIDEO_NAME_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.EDIT_VIDEO_NAME_DESC_V2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_MODULE_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_MODULE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_VIDEO_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
@@ -43,6 +44,7 @@ import seedu.address.logic.commands.edit.EditVideoCommand;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.video.VideoName;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -132,6 +134,12 @@ public class EditCommandParserTest {
     public void parse_editModuleFieldsInvalidUpdatedCode_failure() {
         String input = VALID_MODULE_CODE_2103 + INVALID_EDIT_MODULE_CODE_DESC + EDIT_MODULE_NAME_DESC_2040;
         assertParseFailure(parser, input, ModuleCode.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_editModuleFieldsInvalidUpdatedName_failure() {
+        String input = VALID_MODULE_CODE_2103 + EDIT_MODULE_CODE_DESC_2040 + INVALID_EDIT_MODULE_NAME_DESC;
+        assertParseFailure(parser, input, ModuleName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
