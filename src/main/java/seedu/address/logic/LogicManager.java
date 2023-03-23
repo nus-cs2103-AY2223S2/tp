@@ -84,6 +84,7 @@ public class LogicManager implements Logic {
                 break;
             case CREW:
                 storage.saveCrewManager(model.getCrewManager());
+                storage.saveLocationManager(model.getLocationManager());
                 break;
             default:
                 throw new CommandException("Unknown operation mode");
