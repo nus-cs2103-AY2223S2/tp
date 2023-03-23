@@ -385,6 +385,41 @@ side-effects on the UI. After the user exits from fuzzy finding mode, the UI
 then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
 
+### UiEvents
+UiEvents is an abstraction of Keyboard events that can trigger some changes in 
+user interface and its behaviour. The `UiEventManager` class is responsible of
+bundling all UiEvents that can occur. The following is the class diagram of the 
+`UiEventManager` class.
+![UiEventManager class diagram](images/UiEventManager.png)
+
+There are currently 3 registered event handlers, namely:
+* `HelpKey` (F1)
+  * Opens up the help menu, and focuses on it if already opened
+* `FindKey` (Ctrl+F)
+  * toggles between CommandMode and SearchMode.
+* `SwitchKey` (Ctrl+W)
+  * Switches between the tabs
+
+#### UiEvent Handling
+When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
+method will be called. The following is the sequence diagram for the mentioned method.
+
+![EventHandling sequence diagram](images/EventHandling.png)
+
+The key combination that triggered the event will be checked against each of the 3
+registered event handlers *(`HelpKey`, `FindKey`, and `SwitchKey`)*. Once there is a match,
+an instance of the event handler will be created, executed and the event consumed to
+prevent the event from propagating any further.
+
+##### `HelpKey`
+![Show Help](images/ShowHelp.png)
+
+##### `FindKey`
+![Toggle command box mode](images/ToggleMode.png)
+
+#### `SwitchKey`
+![Switch Tabs](images/SwitchTab.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
