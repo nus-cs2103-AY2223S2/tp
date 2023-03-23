@@ -214,43 +214,80 @@ help
 
 #### `add` - Add a patient
 
-```text
-patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string> --a <group-name> --v <group-name>
-patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string>
-```
+Adds a new Patient type as defined in the command into the system. If any of the optional arguments are omitted, the list will be empty.
 
-Example:
+##### Syntax
+
+<pre>
+patient add --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <bloodType> --a <group-name> --v <group-name>
+patient add --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <bloodType>
+</pre>
+
+##### Example
 
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
 
-#### `delete` - Delete a patient
-
-```text
-patient delete <integer>
-```
-
-Example:
-
-* `patent delete 5`
-
-#### `find` - Locate a patient
-
-Finds patients whose names contain any of the given keywords.
-
-```text
-patient find --name <string>
-```
-
-Example:
-
-* `patient find --name john`
-
 #### `list` - List all patients
+
+Resets the view of the patient pane to display all the Patients. Useful command after using the find command.
+
+##### Syntax
 
 ```text
 patient list
 ```
+
+#### `find` - Locate a patient
+
+Finds patients whose names contain any of the given keywords. You can also include flags to search based on the patient's attributes.
+
+##### Syntax
+
+```text
+patient find <string>
+patient find --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <bloodType> --a <group-name> --v <group-name>
+```
+
+##### Example
+
+* `patient find john`
+* `patient find --b B+`
+
+#### `update` - Update a patient
+
+Updates the Patient using it's PATIENT_ID.
+
+##### Syntax
+
+<pre>
+patient edit <PATIENT_ID> --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string> --a <group-name> --v <group-name>
+patient edit <PATIENT_ID> --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string>
+</pre>
+
+##### Example
+
+* `patient edit 5 --n John Doee --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient edit 5 --n John Doee`
+
+#### `delete` - Delete a patient
+
+Deletes the patient using the PATIENT_ID
+
+##### Syntax
+
+```text
+patient delete <PATIENT_ID>
+```
+
+##### Example
+
+* `patent delete 5`
 
 ### `appointment` - Appointment functionalities
 
@@ -260,7 +297,7 @@ patient list
 appointment add --p <integer> --s <date> --e <date> --v <string>
 ```
 
-Example:
+##### Example
 
 * `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
 
@@ -270,7 +307,7 @@ Example:
 appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
 ```
 
-Example:
+##### Example
 
 * `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
 
@@ -280,7 +317,7 @@ Example:
 appointment delete <integer>
 ```
 
-Example:
+##### Example
 
 * `appointment delete 5`
 

@@ -13,10 +13,18 @@ import seedu.vms.model.GroupName;
  * Represents a vaccination type.
  */
 public class VaxType implements Comparable<VaxType> {
+    public static final int LIMIT_GROUPS = 10;
+    public static final int LIMIT_INGREDIENTS = 30;
+    public static final int LIMIT_HISTORY_REQ = 300;
+
+    public static final String MESSAGE_GROUPS_CONSTRAINTS =
+            String.format("Only a maximum of %d groups are allowed", LIMIT_GROUPS);
     public static final String MESSAGE_AGE_CONSTRAINTS =
             "Minimum age must be lesser than or equals to maximum age";
-    public static final String MESSAGE_SPACING_CONSTRAINTS =
-            "Spacing must be a positive integer";
+    public static final String MESSAGE_INGREDIENTS_CONSTRAINTS =
+            String.format("Only a maximum of %d ingredients are allowed", LIMIT_INGREDIENTS);
+    public static final String MESSAGE_HISTORY_REQ_CONSTRAINTS =
+            String.format("Only a maximum of %d history requirements are allowed", LIMIT_HISTORY_REQ);
 
     public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
     public static final Age DEFAULT_MIN_AGE = Age.MIN_AGE;
@@ -41,7 +49,11 @@ public class VaxType implements Comparable<VaxType> {
     public VaxType(GroupName name, HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
                 HashSet<GroupName> ingredients, List<Requirement> historyReqs) {
+        AppUtil.checkArgument(isValidGroups(groups), MESSAGE_GROUPS_CONSTRAINTS);
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
+        AppUtil.checkArgument(isValidIngredients(ingredients), MESSAGE_INGREDIENTS_CONSTRAINTS);
+        AppUtil.checkArgument(isValidHistoryReq(historyReqs), MESSAGE_HISTORY_REQ_CONSTRAINTS);
+
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
@@ -50,8 +62,20 @@ public class VaxType implements Comparable<VaxType> {
         this.historyReqs = historyReqs;
     }
 
+    public static boolean isValidGroups(HashSet<GroupName> groups) {
+        return groups.size() <= LIMIT_GROUPS;
+    }
+
     public static boolean isValidRange(Age minAge, Age maxAge) {
         return maxAge.compareTo(minAge) >= 0;
+    }
+
+    public static boolean isValidIngredients(HashSet<GroupName> ingredients) {
+        return ingredients.size() <= LIMIT_INGREDIENTS;
+    }
+
+    public static boolean isValidHistoryReq(List<Requirement> historyReqs) {
+        return historyReqs.size() <= LIMIT_HISTORY_REQ;
     }
 
 
