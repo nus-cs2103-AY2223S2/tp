@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+autonumber
+
+[-> BackupCommand : execute()
+activate BackupCommand
+
+create JsonAddressBookStorage
+BackupCommand -> JsonAddressBookStorage
+activate JsonAddressBookStorage
+JsonAddressBookStorage --> BackupCommand : backupStorage
+deactivate JsonAddressBookStorage
+
+BackupCommand -> Storage : SaveAddressBook()
+activate Storage
+deactivate Storage
+
+
+@enduml
