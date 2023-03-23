@@ -50,9 +50,15 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
                         PREFIX_MODULE, PREFIX_REMARK, PREFIX_TAG);
 
+
+        System.out.println(arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE));
+        System.out.println(argMultimap.getPreamble().isEmpty());
+        System.out.println(argMultimap.getPreamble());
+        System.out.println("#######");
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                || !AddCommandType.isValidAddType(argMultimap.getPreamble())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -72,7 +78,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         case ADD_SESSION:
             return new AddSessionCommand();
         case ADD_STUDENT:
-            return new AddStudentCommand();
+            return new AddStudentCommand(student);
         default:
             throw new ParseException("Invalid argument for add command");
         }
@@ -112,6 +118,17 @@ enum AddCommandType {
         }
 
         throw new ParseException("Unrecognised category for add command: " + addType);
+    }
+
+    public static boolean isValidAddType(String addType) {
+        boolean result = false;
+
+        for (AddCommandType sc : AddCommandType.values()) {
+            if (sc.getAddType().equalsIgnoreCase(addType)) {
+                result = true;
+            }
+        }
+        return result;
     }
 
 }
