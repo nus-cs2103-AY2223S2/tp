@@ -21,6 +21,9 @@ public class ModuleCard extends UiPart<Region> {
     private Label moduleCardCode;
 
     @FXML
+    private Label moduleCardYearSem;
+
+    @FXML
     private Label moduleCardCredits;
 
     @FXML
@@ -37,7 +40,30 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module) {
         super(FXML);
 
+        if (!module.isComplete()) {
+            addIncompleteStyles();
+        }
+
+        fillCard(module);
+    }
+
+    /**
+     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
+     * max width of the actual ModuleCards in ModuleGroup.
+     */
+    public ModuleCard() {
+        super(FXML);
+    }
+
+    /**
+     * Populate the ModuleCard with its information (module code, credits, yearsem, grade, tags)
+     * @param module The module object that encapsulates the module information.
+     */
+    private void fillCard(Module module) {
         moduleCardCode.setText(module.getCode().toString());
+
+        moduleCardYearSem.setText(module.getSemYear().toString());
+
         moduleCardCredits.setText(module.getCredit() + "MC");
 
         String grade = module.getGrade().toString();
@@ -49,14 +75,6 @@ public class ModuleCard extends UiPart<Region> {
             String color = ValidTag.getColor(tag.tagName);
             addTag(tagNameShort, tagNameLong, color);
         }
-    }
-
-    /**
-     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
-     * max width of the actual ModuleCards in ModuleGroup.
-     */
-    public ModuleCard() {
-        super(FXML);
     }
 
     /**
@@ -74,5 +92,16 @@ public class ModuleCard extends UiPart<Region> {
         Tooltip tagToolTip = new Tooltip(tagNameLong);
         Tooltip.install(tag, tagToolTip);
         tagToolTip.setShowDelay(Duration.seconds(0.05));
+    }
+
+    /**
+     * Adds CSS styles to ModuleCard for the case where module is incomplete.
+     */
+    private void addIncompleteStyles() {
+        this.getRoot().getStyleClass().add("module-card-incomplete");
+
+        Tooltip incompleteWarning = new Tooltip("This module is incomplete!");
+        Tooltip.install(this.getRoot(), incompleteWarning);
+        incompleteWarning.setShowDelay(Duration.seconds(0.05));
     }
 }

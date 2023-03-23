@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.modtrek.logic.Logic;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
@@ -41,14 +42,15 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Creates a {@code ResultsSection} with the given {@code ObservableList<Module>}.
      */
-    public ResultsSection(ReadOnlyDegreeProgression degreeProgression, ObservableList<Module> modules) {
+    public ResultsSection(Logic logic) {
         super(FXML);
 
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
-                displayProgress(degreeProgression), () ->
-                displayAllModules(modules), () -> displayFindModules(modules));
+                displayProgress(logic.getDegreeProgression()), () ->
+                displayAllModules(logic.getDegreeProgression().getModuleList()), () ->
+                displayFindModules(logic.getFilteredModuleList()));
 
-        displayProgress(degreeProgression);
+        displayProgress(logic.getDegreeProgression());
     }
 
     /**

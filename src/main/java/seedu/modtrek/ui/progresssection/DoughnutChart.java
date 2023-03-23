@@ -61,7 +61,7 @@ public class DoughnutChart extends PieChart {
 
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
-            int completeCredits = completeCreditsMap.get(tag);
+            int completeCredits = completeCreditsMap.get(ValidTag.getShortForm(tag).toString());
             int incompleteCredits = ValidTag.getTotalCredit(tag) - completeCredits;
             doughnutData.add(new PieChart.Data(tag, completeCredits));
             doughnutData.add(new PieChart.Data(tag, incompleteCredits));
@@ -105,12 +105,11 @@ public class DoughnutChart extends PieChart {
         innerCircle = new Circle();
         innerCircle.setStyle("-fx-fill: -black");
 
-        float percentCompleted = (float) degreeProgressionData.getCompletedCredit()
-                / degreeProgressionData.TOTALCREDIT * 100;
-        Text percent = new Text(Math.round(percentCompleted) + "% completed");
+        Text percent = new Text(degreeProgressionData.getOverallPercentage() + "% completed");
         percent.setStyle("-fx-fill: -teal;");
         percent.getStyleClass().add("h2");
 
+        // TODO: update this
         Text totalMc = new Text(degreeProgressionData.getCompletedCredit() + "/"
                 + degreeProgressionData.TOTALCREDIT + " MCs");
         totalMc.setStyle("-fx-fill: -white;");
@@ -340,16 +339,17 @@ public class DoughnutChart extends PieChart {
 
         Map<String, String> texts = new HashMap<>();
 
+        Map<String, Integer> requirementsPercentage = degreeProgressionData.getRequirementsPercentage();
+
         ObservableList<Data> doughnutData = getData();
+
         assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
 
             String tag = ValidTag.getShortForm(completeData.getName()).toString();
 
-            double completeCredits = completeData.getPieValue();
-            double totalCredits = ValidTag.getTotalCredit(tag);
-            long percentCompleted = Math.round(completeCredits / totalCredits * 100);
+            int percentCompleted = requirementsPercentage.get(tag);
 
             String text = tagLongDisplay.get(tag) + "\n" + percentCompleted + "%";
             texts.put(tag, text);

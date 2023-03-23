@@ -48,7 +48,7 @@ public class FooterButtonGroup extends UiPart<Region> {
 
 
         footerButtonGroup.getChildren().addAll(progressButton.getRoot(), getDeco(),
-                moduleListButton.getRoot(), moduleSearchButton.getRoot());
+                moduleListButton.getRoot(), getDeco(), moduleSearchButton.getRoot());
     }
 
     /**

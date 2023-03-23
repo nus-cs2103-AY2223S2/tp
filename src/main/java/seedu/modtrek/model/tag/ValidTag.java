@@ -40,7 +40,7 @@ public enum ValidTag {
     /**
      * Retrieves short form version of the requirement.
      *
-     * @param tagName
+     * @param tagName the long-form version of the requirement
      * @return ValidTag as the short-form
      */
     public static ValidTag getShortForm(String tagName) {
@@ -59,6 +59,33 @@ public enum ValidTag {
             return MS;
         case UNRESTRICTED_ELECTIVES:
             return UE;
+        default:
+            return tag;
+        }
+    }
+
+    /**
+     * Retrieves long form version of the requirement.
+     *
+     * @param tagName the short-form version of the requirement
+     * @return ValidTag as the long-form
+     */
+    public static ValidTag getLongForm(String tagName) {
+        tagName = tagName.replace(" ", "_").toUpperCase();
+        ValidTag tag = ValidTag.valueOf(tagName);
+        switch (tag) {
+        case ULR:
+            return UNIVERSITY_LEVEL_REQUIREMENTS;
+        case CSF:
+            return COMPUTER_SCIENCE_FOUNDATION;
+        case CSBD:
+            return COMPUTER_SCIENCE_BREADTH_AND_DEPTH;
+        case ITP:
+            return IT_PROFESSIONALISM;
+        case MS:
+            return MATHEMATICS_AND_SCIENCES;
+        case UE:
+            return UNRESTRICTED_ELECTIVES;
         default:
             return tag;
         }

@@ -39,8 +39,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private VBox cliSectionPlaceholder;
 
-    /* add more... */
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -63,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        resultsSection = new ResultsSection(logic.getDegreeProgression(), logic.getFilteredModuleList());
+        resultsSection = new ResultsSection(logic);
         resultsSectionPlaceholder.getChildren().add(resultsSection.getRoot());
 
         cliSection = new CliSection(this::executeCommand);
@@ -109,8 +107,15 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
-            // To refresh the graphics section to display updated list of modules
-            resultsSection.displayAllModules(logic.getFilteredModuleList());
+            if (commandResult.isDisplayProgress) {
+                resultsSection.displayProgress(logic.getDegreeProgression());
+            } else if (commandResult.isDisplayAllModules) {
+                resultsSection.displayAllModules(logic.getDegreeProgression().getModuleList());
+            } else if (commandResult.isDisplayFilteredModules) {
+                resultsSection.displayFindModules(logic.getFilteredModuleList());
+            } else {
+                // do nothing for `exit` and `help` commands
+            }
 
             if (commandResult.isExit()) {
                 handleExit();
