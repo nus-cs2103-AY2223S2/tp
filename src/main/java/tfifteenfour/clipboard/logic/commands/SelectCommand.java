@@ -46,12 +46,19 @@ public class SelectCommand extends Command {
             currentSelected.setCurrentPage(PageType.GROUP_PAGE);
             return new CommandResult(this, String.format("Viewing Course: %s", selectedCourse), willModifyState);
         case GROUP_PAGE:
+            try {
+            System.out.println(currentSelected.getSelectedCourse());
             List<Group> groupList = currentSelected.getSelectedCourse().getUnmodifiableGroupList();
+            System.out.println(groupList.size());
             Group selectedGroup = groupList.get(targetIndex.getZeroBased());
+            System.out.println(selectedGroup.getGroupName());
             currentSelected.setSelectedGroup(selectedGroup);
             currentSelected.setCurrentPage(PageType.STUDENT_PAGE);
-            return new CommandResult(this, String.format("Viewing Group: % (%s)", selectedGroup,
+            return new CommandResult(this, String.format("Viewing Group: %s of %s", selectedGroup,
                     currentSelected.getSelectedCourse()), willModifyState);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         case STUDENT_PAGE:
             List<Student> studentList = currentSelected.getSelectedGroup().getUnmodifiableStudentList();
             Student selectedStudent = studentList.get(targetIndex.getZeroBased());
