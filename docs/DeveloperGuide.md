@@ -154,6 +154,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Find Command Implementation
+This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users to search for modules whose names or types contain any of the specified keywords (case-insensitive).
+
+FindCommand Class
+The FindCommand class is responsible for finding and listing all modules in the address book whose name contains any of the argument keywords. Keyword matching is case insensitive.
+The FindCommandParser is responsible for parsing the input given by the user.
+
+The FindCommand utilizes the FilteredList from JavaFx and uses a predicate to initialize a FindCommand object. This predicate is programmed such that it will match for the name of the module and type of the module.
+
+The predicate passed to the FindCommand constructor is from the class NameContainsKeywordsPredicate. This class has a test method which is used by the FilteredList.
+
+Given below is an example usage scenario and how the find command behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `find CS3263` command. The 'find CS3263' will be handled by the LogicManager and AddressBookParser which will extract out the needed argument, more importantly the predicate.
+
+Step 3. Now, the command is executed through the execute method which will update the list through `Model#updateFilteredModuleList`
+
+Step 4. The method set the predicate to the filtered list which will run the `NameContainsKeywordsPredicate#test()` to find the items based on name or type
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -401,3 +424,18 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
 
     2. Test case: 
+
+### Finding a module/type
+1. Finding a module
+    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+  
+    2. Test case: `find CS2103T`<br>  
+       Expected: A module is found on the list. Details of the found module is shown in the list.
+
+    3. Test case: `find tutorial`<br>  
+       Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list.
+       
+    4. Test case: `find tutorial lab`<br>  
+       Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in the list.
+     
+    5. Note: Make sure to list the modules again when you want to find another module
