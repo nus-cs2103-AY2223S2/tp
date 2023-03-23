@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 
+import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingContainsNamesPredicate;
@@ -32,5 +33,10 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new FindMeetingCommand(new MeetingContainsNamesPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    @Override
+    public AutocompleteResult getAutocompleteSuggestion(String args) {
+        return new AutocompleteResult(null, false);
     }
 }
