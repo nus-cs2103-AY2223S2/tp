@@ -33,7 +33,8 @@ public class SortMeetingCommand extends Command {
     public static String Prefix;
     public static boolean isReverse;
     public static final String COMMAND_WORD = "sortm";
-    public static final String MESSAGE_USAGE = "sort the meeting list by tags. sort by datetime, location, description, title "
+    public static final String MESSAGE_USAGE = "sort the meeting list by tags. sort by \n" 
+            + " datetime, location, description, title \n"
             +"like: \n"
             + "sortm dt/ \n"
             + "if you want to sort in reverse add an r after the tag"
