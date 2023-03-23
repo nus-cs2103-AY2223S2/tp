@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportPersonsCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortMeetingCommand;
 import seedu.address.logic.commands.ViewMeetingsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.command.CommandHistory;
@@ -30,7 +31,6 @@ import seedu.address.model.command.CommandHistory;
  * Parses user input.
  */
 public class AddressBookParser {
-
     /**
      * Used for initial separation of command word and args.
      */
@@ -92,10 +92,16 @@ public class AddressBookParser {
 
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
+
         case ExportPersonsCommand.COMMAND_WORD:
             return new ExportPersonsParser().parse(arguments);
+
         case ImportPersonsCommand.COMMAND_WORD:
             return new ImportPersonsParser().parse(arguments);
+
+        case SortMeetingCommand.COMMAND_WORD:
+            return new SortMeetingParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

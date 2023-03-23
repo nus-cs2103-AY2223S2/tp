@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Comparator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    
     /**
      * Returns true if the list contains an equivalent meeting as the given argument.
      */
@@ -45,6 +46,17 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new DuplicateMeetingException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Sorts meeting in the list.
+     */
+    public void sort(Comparator comparator) {
+        System.out.println(internalList + "\n");
+        internalList.sort(comparator);
+
+        System.out.println("sorted");
+        System.out.println(internalList + "\n");
     }
 
     /**

@@ -125,4 +125,5 @@ public class Meeting {
                 + "; Description: "
                 + getDescription();
     }
+    
 }
