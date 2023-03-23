@@ -80,7 +80,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'internbuddy.jar'
 }
 
 //@@author eugenetangkj-reused
