@@ -208,11 +208,11 @@ The following sequence diagram shows how the undo operation works:
 
 > <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
 
-Step 5. The user executes clear. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` to be cleared.
+Step 5. The user executes listcustomers. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` 
+to be cleared.  Commands that are not undoable are not added into the `undoStack`.
 
 ![UndoRedo0](images/UndoRedo7.png)
 
-Step 6. User executes listcustomers command. Commands that are not undoable are not added into the `undoStack`.
 
 
 #### Design considerations:
