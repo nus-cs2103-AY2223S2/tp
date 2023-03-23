@@ -1,9 +1,18 @@
 package seedu.address.storage.json.adapted;
 
+import java.util.Deque;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.GetUtil;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.link.Link;
+import seedu.address.model.location.CrewLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.storage.json.JsonAdaptedModel;
 
@@ -25,19 +34,28 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
     private final String name;
 
     /**
+     * Linked crews, i.e., crews that reside in this location.
+     */
+    public final Map<CrewLocationType, Deque<String>> crewLink;
+
+
+    /**
      * Constructs a {@code JsonAdaptedLocation} with the given location details.
      * This is intended for Jackson to use.
      *
      * @param id   The id of the location.
      * @param name The name of the location.
+     * @param crewLink The link between locations to crews.
      */
     @JsonCreator
     public JsonAdaptedLocation(
             @JsonProperty("id") String id,
-            @JsonProperty("name") String name
+            @JsonProperty("name") String name,
+            @JsonProperty("crewLink") Map<CrewLocationType, Deque<String>> crewLink
     ) {
         this.id = id;
         this.name = name;
+        this.crewLink = crewLink;
     }
 
     /**
@@ -48,6 +66,7 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
     public JsonAdaptedLocation(Location location) {
         this.id = location.getId();
         this.name = location.getName();
+        this.crewLink = location.crewLink.getCopiedContents();
     }
 
     @Override
@@ -57,12 +76,21 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "id")
             );
         }
+
         if (name == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "name")
             );
         }
 
-        return new Location(id, name);
+        Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> linkCrew =
+                Link.fromOrCreate(
+                        Crew.SHAPE_FOR_LOCATION,
+                        crewLink,
+                        GetUtil.getLazy(Model.class)
+                                .map(Model::getCrewManager)
+                );
+
+        return new Location(id, name, linkCrew);
     }
 }
