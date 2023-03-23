@@ -250,7 +250,8 @@ _{more aspects and alternatives to be added}_
 
 ### Help Window
 
-Syntax: ```help```
+Syntax: ```help``` 
+<br>
 Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
 
 #### Implementation
