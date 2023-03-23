@@ -40,7 +40,8 @@ public class ArgumentTokenizer {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         positions.sort((prefixPos1, prefixPos2)->(prefixPos1.startPosition < prefixPos2.startPosition)?1:-1);
         if (positions.size() > 0) {
-            return extractArguments(argsString, Arrays.asList(positions.get(0)));
+            positions.subList(1, positions.size()).clear();
+            return extractArguments(argsString, positions);
         } else {
             return extractArguments(argsString, positions);
         }
