@@ -140,7 +140,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both Dengue Hotspot Tracker data and user preference data in json format, and read them back into corresponding objects.
+* can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -303,14 +303,14 @@ The following activity diagram summarises what happens when a user executes a mu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                 | So that I can…​                                                      |
-| -------- |----------|------------------------------|----------------------------------------------------------------------|
-| `* * *`  | new user | easily view a help page                  | know how to use the app                                              |
-| `* * *`  | user     | add a new dengue case                    | keep track of the dengue cases in Singapore                          |
-| `* * *`  | user     | delete cases from the dengue case list by case ID              | remove entries that I no longer need                                 |
-| `* * *`  | user     | find dengue cases whose postal codes start with any of the input numbers                    | locate details of cases without having to go through the entire list |
-| `* *`    | user     | export the data from the dengue case list from a database in a json file             | analyse them outside of the app              |
-| `*`      | new user | clear all entries                     | start over with an empty data set                                               |
+| Priority | As a …​  | I want to …​                                                             | So that I can…​                                                      |
+| -------- |----------|--------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | new user | easily view a help page                                                  | know how to use the app                                              |
+| `* * *`  | user     | add a new dengue case                                                    | keep track of the dengue cases in Singapore                          |
+| `* * *`  | user     | delete cases from the dengue case list by case ID                        | remove entries that I no longer need                                 |
+| `* * *`  | user     | find dengue cases whose postal codes start with any of the input numbers | locate details of cases without having to go through the entire list |
+| `* *`    | user     | export the data from the dengue case list from a database in a csv file  | analyse them outside of the app              |
+| `*`      | new user | clear all entries                                                        | start over with an empty data set                                               |
 
 *{More to be added}*
 
