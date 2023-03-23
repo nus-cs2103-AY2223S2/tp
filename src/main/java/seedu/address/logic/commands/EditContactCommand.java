@@ -22,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -107,10 +108,12 @@ public class EditContactCommand extends Command {
         Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
         Favorite currentFavorite = personToEdit.getIsFavorite();
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
         Set<Tag> updatedTags = createEditedTags(personToEdit.getTags(), editPersonDescriptor.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
+                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags,
+                updatedComms, currentFavorite, updatedFaculty);
     }
 
     public EditPersonDescriptor getEditPersonDescriptor() {

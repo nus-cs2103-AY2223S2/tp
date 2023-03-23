@@ -14,6 +14,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -48,8 +49,9 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
                              @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("favorite") String isFavorite,
+                           @JsonProperty("faculty") String faculty,
                            @JsonProperty("events") List<JsonAdaptedEvent> events) {
-        super(name, phone, email, address, race, major, gender, comms, modules, tagged, isFavorite);
+        super(name, phone, email, address, race, major, gender, comms, modules, tagged, isFavorite, faculty);
         if (events != null) {
             this.events.addAll(events);
         }
@@ -137,8 +139,13 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
 
         CommunicationChannel modelComms = new CommunicationChannel(this.comms);
 
+        if (!Faculty.isValidFaculty(faculty)) {
+            throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+        final Faculty modelFaculty = new Faculty(faculty);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new User(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
-                modelModules, modelRace, modelTags, modelComms, modelFavoriteStatus, modelUserEvents);
+                modelModules, modelRace, modelTags, modelComms, modelFavoriteStatus, modelFaculty, modelUserEvents);
     }
 }
