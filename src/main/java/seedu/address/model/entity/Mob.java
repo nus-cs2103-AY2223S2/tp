@@ -12,7 +12,7 @@ public class Mob extends Entity {
 
     private final Stats stats;
     // A higher challenge rating (CR) represents an increased difficulty to defeat a mob
-    private final int challengeRating;
+    private final float challengeRating;
     private final boolean isLegendary;
 
     /**
@@ -24,7 +24,7 @@ public class Mob extends Entity {
      * @param isLegendary     legendary status of the mob
      * @param tags            tags categorizing the mob
      */
-    public Mob(Name name, Stats stats, int challengeRating, boolean isLegendary, Set<Tag> tags) {
+    public Mob(Name name, Stats stats, float challengeRating, boolean isLegendary, Set<Tag> tags) {
         super(name, tags);
         this.stats = stats;
         this.challengeRating = challengeRating;
@@ -44,7 +44,7 @@ public class Mob extends Entity {
         this.isLegendary = false;
     }
 
-    public int getChallengeRating() {
+    public float getChallengeRating() {
         return this.challengeRating;
     }
 
@@ -60,26 +60,26 @@ public class Mob extends Entity {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(
-            getName(),
-            stats.getStrength(),
-            stats.getDexterity(),
-            stats.getIntelligence(),
-            getChallengeRating(),
-            getLegendaryStatus(),
-            getTags()
+                getName(),
+                stats.getStrength(),
+                stats.getDexterity(),
+                stats.getIntelligence(),
+                getChallengeRating(),
+                getLegendaryStatus(),
+                getTags()
         );
     }
 
     @Override
     public String toString() {
         String characterDetails = String.format(
-            "Name: %s | Str: %d | Dex: %d | Int: %d | CR: %d | Legendary: %b",
-            getName(),
-            stats.getStrength(),
-            stats.getDexterity(),
-            stats.getIntelligence(),
-            getChallengeRating(),
-            getLegendaryStatus()
+                "Name: %s | Str: %d | Dex: %d | Int: %d | CR: %.1f | Legendary: %b",
+                getName(),
+                stats.getStrength(),
+                stats.getDexterity(),
+                stats.getIntelligence(),
+                getChallengeRating(),
+                getLegendaryStatus()
         );
 
         final StringBuilder builder = new StringBuilder(characterDetails);

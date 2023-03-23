@@ -54,7 +54,11 @@ public class LogicManager implements Logic {
         if (!isInEditMode) {
             command = addressBookParser.parseCommand(commandText);
         } else {
-            command = editModeParser.parseCommand(commandText);
+            try {
+                command = editModeParser.parseCommand(commandText);
+            } catch (NumberFormatException nfe) {
+                throw new ParseException("Incorrect value format!");
+            }
         }
         commandResult = command.execute(model);
         setMode(commandResult.getSwitchMode());

@@ -18,18 +18,21 @@ public class Item extends Entity {
 
     /**
      * Every field should be present and non-null.
-     * @param name name of the character
-     * @param cost price of the item
+     *
+     * @param name   name of the character
+     * @param cost   price of the item
      * @param weight weight of the item
-     * @param tags tags categorizing the item
+     * @param tags   tags categorizing the item
      */
     public Item(Name name, int cost, float weight, Set<Tag> tags) {
         super(name, tags);
         this.cost = cost;
         this.weight = weight;
     }
+
     /**
      * Every field should be present and non-null.
+     *
      * @param name name of the character
      * @param tags tags categorizing the item
      */
@@ -41,6 +44,7 @@ public class Item extends Entity {
 
     /**
      * Every field should be present and non-null.
+     *
      * @param name name of the character
      */
     public Item(Name name) {
@@ -71,7 +75,7 @@ public class Item extends Entity {
     @Override
     public String toString() {
         String characterDetails = String.format(
-                "Name: %s | Cost: %d | Weight: %d | Attribute: %s",
+                "Name: %s | Cost: %d | Weight: %.2f",
                 getName(),
                 getCost(),
                 getWeight()

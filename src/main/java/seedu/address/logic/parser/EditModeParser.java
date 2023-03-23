@@ -35,9 +35,9 @@ import seedu.address.model.tag.Tag;
 public class EditModeParser {
 
     public static final String MESSAGE_INVALID_FIELD = "%s is not a valid editable field! \n"
-        + "Use commands of the form FIELD (name of the field you wish to edit) VALUE (desired value). \n"
-        + "Example: name Johnny Depp \n"
-        + "You may also type 'back' to exit Edit Mode and return to the list view.";
+            + "Use commands of the form FIELD (name of the field you wish to edit) VALUE (desired value). \n"
+            + "Example: name Johnny Depp \n"
+            + "You may also type 'back' to exit Edit Mode and return to the list view.";
     public static final String MESSAGE_INVALID_VALUE_FORMAT = "%s is not a valid value for %s!";
 
     /**
@@ -58,7 +58,7 @@ public class EditModeParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, NumberFormatException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -67,7 +67,8 @@ public class EditModeParser {
         final String fieldWord = matcher.group("fieldWord");
         final String arguments = matcher.group("arguments").trim();
 
-        if (fieldWord.equalsIgnoreCase("back")) {
+        if (fieldWord.equalsIgnoreCase("back")
+                || fieldWord.equalsIgnoreCase("b")) {
             return new BackCommand();
         }
 
@@ -86,7 +87,7 @@ public class EditModeParser {
     }
 
     private EditCharacterDescriptor generateCharacterData(Character toEdit,
-        String fieldWord, String value) throws ParseException {
+            String fieldWord, String value) throws ParseException, NumberFormatException {
         EditCharacterDescriptor outData = new EditCharacterDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
@@ -99,15 +100,15 @@ public class EditModeParser {
             break;
         case "str":
             outData.setStats(new Stats(Integer.valueOf(value),
-                toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
+                    toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
         case "dex":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                Integer.valueOf(value), toEdit.getStats().getIntelligence()));
+                    Integer.valueOf(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                toEdit.getStats().getDexterity(), Integer.valueOf(value)));
+                    toEdit.getStats().getDexterity(), Integer.valueOf(value)));
             break;
         case "level":
         case "lvl":
@@ -123,7 +124,8 @@ public class EditModeParser {
         return outData;
     }
 
-    private EditMobDescriptor generateMobData(Mob toEdit, String fieldWord, String value) throws ParseException {
+    private EditMobDescriptor generateMobData(Mob toEdit, String fieldWord, String value)
+            throws ParseException, NumberFormatException {
         EditMobDescriptor outData = new EditMobDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
@@ -136,24 +138,24 @@ public class EditModeParser {
             break;
         case "str":
             outData.setStats(new Stats(Integer.valueOf(value),
-                toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
+                    toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
         case "dex":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                Integer.valueOf(value), toEdit.getStats().getIntelligence()));
+                    Integer.valueOf(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                toEdit.getStats().getDexterity(), Integer.valueOf(value)));
+                    toEdit.getStats().getDexterity(), Integer.valueOf(value)));
             break;
         case "challengerating":
         case "cr":
-            outData.setChallengeRating(Integer.valueOf(value));
+            outData.setChallengeRating(Float.valueOf(value));
             break;
         case "islegendary":
         case "legend":
         case "l":
-            outData.setIsLegendary(Boolean.getBoolean(value));
+            outData.setIsLegendary(Boolean.valueOf(value));
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
@@ -161,7 +163,8 @@ public class EditModeParser {
         return outData;
     }
 
-    private EditItemDescriptor generateItemData(Item toEdit, String fieldWord, String value) throws ParseException {
+    private EditItemDescriptor generateItemData(Item toEdit, String fieldWord, String value)
+            throws ParseException, NumberFormatException {
         EditItemDescriptor outData = new EditItemDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
@@ -191,7 +194,8 @@ public class EditModeParser {
      * contain only one element which is an empty string, it will be parsed into a {@code Set<Tag>} containing zero
      * tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags)
+            throws ParseException, NumberFormatException {
         assert tags != null;
 
         if (tags.isEmpty()) {

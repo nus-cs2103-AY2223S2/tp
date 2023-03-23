@@ -17,18 +17,19 @@ import seedu.address.model.tag.Tag;
 
 /***/
 public class JsonAdaptedMob {
+
     private final String name;
     private final JsonAdaptedStats stats;
-    private final int challengeRating;
+    private final float challengeRating;
     private final boolean isLegendary;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /***/
     @JsonCreator
     JsonAdaptedMob(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
-                   @JsonProperty("challengeRating") int challengeRating,
-                   @JsonProperty("isLegendary") boolean isLegendary,
-                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("challengeRating") float challengeRating,
+            @JsonProperty("isLegendary") boolean isLegendary,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.stats = stats;
         this.challengeRating = challengeRating;

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox>
+      <VBox styleClass="root" stylesheets="@DnD.css">
          <children>
             <Label fx:id="entityNameLabel" text="Name" textFill="#1e1515">
                <font>
@@ -25,6 +26,9 @@
                </font>
             </Label>
          </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </VBox>
    </content>
 </ScrollPane>
