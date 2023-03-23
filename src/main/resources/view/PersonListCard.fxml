@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefWidth="660.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <HBox>
       <children>
    <HBox alignment="CENTER_LEFT" spacing="5">
@@ -72,8 +72,8 @@
     <VBox minHeight="40.0" HBox.hgrow="ALWAYS">
         <GridPane prefWidth="214.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" maxWidth="146.0" minWidth="10.0" prefWidth="85.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="146.0" minWidth="10.0" prefWidth="83.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="131.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
