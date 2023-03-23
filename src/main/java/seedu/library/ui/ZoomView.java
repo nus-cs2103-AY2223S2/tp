@@ -64,6 +64,7 @@ public class ZoomView extends UiPart<Region> {
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
+        urlView.setVisible(false);
 
     }
 

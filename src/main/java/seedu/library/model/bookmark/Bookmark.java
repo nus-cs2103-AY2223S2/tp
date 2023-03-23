@@ -28,7 +28,7 @@ public class Bookmark {
     /**
      * Every field must be present and not null.
      */
-    public Bookmark(Title title, Progress progress, Genre genre, Author author,Url url, Set<Tag> tags) {
+    public Bookmark(Title title, Progress progress, Genre genre, Author author, Url url, Set<Tag> tags) {
         requireAllNonNull(title, progress, genre, author, tags);
         this.title = title;
         this.progress = progress;

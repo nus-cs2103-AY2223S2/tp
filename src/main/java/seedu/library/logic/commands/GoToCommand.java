@@ -3,13 +3,16 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.util.List;
+import java.awt.Desktop;
+import java.net.URI;
+
 import seedu.library.commons.core.Messages;
 import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
-import java.awt.Desktop;
-import java.net.URI;
+
+
 
 /**
  * open up a browser and goes to specified index bookmark's url if present.
@@ -24,7 +27,7 @@ public class GoToCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_GOTO_BOOKMARK_SUCCESS = "Goto url of Bookmark: %1$s";
     private final Index targetIndex;
-    public GoToCommand(Index targetIndex){
+    public GoToCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
     @Override
@@ -47,6 +50,11 @@ public class GoToCommand extends Command {
         return new CommandResult(String.format(MESSAGE_GOTO_BOOKMARK_SUCCESS, bookmarkToGoto), false, false, false);
     }
 
+    /**
+     * Opens url in users default browser
+     * @param url
+     * @throws IOException
+     */
     public static void openUrl(String url) throws IOException {
         URI targetUrl = URI.create(url);
         Desktop.getDesktop().browse(targetUrl);

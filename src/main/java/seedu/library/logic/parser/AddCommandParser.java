@@ -1,7 +1,12 @@
 package seedu.library.logic.parser;
 
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.library.logic.parser.CliSyntax.*;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -40,8 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Progress progress = ParserUtil.parseProgress(argMultimap.getValue(PREFIX_PROGRESS).get());
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
         Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
-        Url url = argMultimap.getValue(PREFIX_URL).isPresent() ? ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())
-                                                               : new Url("");
+        Url url = argMultimap.getValue(PREFIX_URL).isPresent()
+                ? ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())
+                : new Url("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Bookmark bookmark = new Bookmark(title, progress, genre, author, url, tagList);

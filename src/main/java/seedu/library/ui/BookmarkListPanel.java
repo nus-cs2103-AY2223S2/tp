@@ -10,7 +10,13 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.library.commons.core.LogsCenter;
-import seedu.library.model.bookmark.*;
+import seedu.library.model.bookmark.Author;
+import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Genre;
+import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
+
 import seedu.library.model.util.SampleDataUtil;
 
 

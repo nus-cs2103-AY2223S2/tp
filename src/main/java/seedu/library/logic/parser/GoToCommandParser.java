@@ -1,10 +1,12 @@
 package seedu.library.logic.parser;
 
+import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.GoToCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 
-import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 
 /**
  * Parses input arguments and creates a new GoToCommand object

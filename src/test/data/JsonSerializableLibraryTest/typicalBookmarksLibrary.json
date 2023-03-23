@@ -9,11 +9,7 @@
     },
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
-
     "url": "",
-    "tagged" : [ {
-      "tag": "friends"
-    }]
     "tagged" : [ {
       "tag": "friends"
     }]
