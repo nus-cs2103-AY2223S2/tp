@@ -27,7 +27,10 @@ public class TypicalLeave {
     public static final Leave LEAVE_TYPE_2 = new LeaveBuilder().withLeaveDate("2005-04-03")
             .withEmployees(DANIEL, ELLE, FIONA).build();
     public static final Leave LEAVE_TYPE_3 = new LeaveBuilder().withLeaveDate("2002-03-04")
-            .withEmployees(GEORGE, HOON, IDA).build();
+            .withEmployees(GEORGE, HOON, IDA, FIONA).build();
+
+    public static final Employee EMPLOYEE_ON_LEAVE_TYPE_1 = CARL;
+    public static final Employee EMPLOYEE_ON_LEAVE_TYPE_2_AND_3 = FIONA;
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -39,11 +42,11 @@ public class TypicalLeave {
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
         for (Employee employee : TypicalEmployees.getTypicalEmployees()) {
-            sh.addEmployee(employee);
+            sh.addEmployee(new EmployeeBuilder(employee).build());
         }
 
         for (Leave leave : getTypicalLeaves()) {
-            sh.addLeave(leave);
+            sh.addLeave(new LeaveBuilder(leave).build());
         }
         return sh;
     }

@@ -90,6 +90,10 @@ public class AddEmployeeToLeaveCommandTest {
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
         assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID_COPY,
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
                 new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
 
@@ -263,6 +267,21 @@ public class AddEmployeeToLeaveCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             throw new AssertionError("This method should not be called.");
         }
@@ -280,6 +299,7 @@ public class AddEmployeeToLeaveCommandTest {
         @Override
         public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
             throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
@@ -295,6 +315,7 @@ public class AddEmployeeToLeaveCommandTest {
         @Override
         public ObservableList<Leave> getLeavesList() {
             throw new AssertionError("This method should not be called.");
+
         }
 
         @Override

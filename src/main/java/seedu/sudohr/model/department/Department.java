@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
@@ -43,6 +44,25 @@ public class Department {
     }
 
     /**
+     * Returns whether employee exists in the department.
+     */
+    public boolean hasEmployee(Id id) {
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get an employee by ID
+     */
+    public Employee getEmployee(Id id) {
+        return employees.get(id);
+    }
+
+    /**
      * Returns unmodifiable set of employees.
      */
     public Set<Employee> getEmployees() {
@@ -55,6 +75,13 @@ public class Department {
      */
     public void addEmployee(Employee e) {
         employees.add(e);
+    }
+
+    /**
+     * Replace an employee details with its updated details in the list.
+     */
+    public void setEmployee(Employee employeeToEdit, Employee editedEmployee) {
+        employees.setEmployee(employeeToEdit, editedEmployee);
     }
 
     /**

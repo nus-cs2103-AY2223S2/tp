@@ -140,12 +140,12 @@ public interface Model {
 
     //=========== Department-Level Operations ==========================================================================
 
-    public Department getDepartment(DepartmentName name);
+    Department getDepartment(DepartmentName name);
 
     /**
      * Returns true if a department with the same identity as {@code department} exists in SudoHR.
      */
-    public boolean hasDepartment(Department department);
+    boolean hasDepartment(Department department);
 
     /**
      * Adds a department to SudoHR.
@@ -185,12 +185,27 @@ public interface Model {
     ObservableList<Department> getFilteredDepartmentList();
 
     /**
+     * Deletes an employee from the employee list of the department the deleted employee belongs to.
+     * @param employeeToDelete the employee to delete
+     */
+    void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete);
+
+    /**
+     * Ensures that the updated details of an employee is propagated down to each departments' own employee list.
+     * @param employeeToEdit
+     * @param editedEmployee
+     */
+    void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee);
+
+    /**
      * Updates the filter of the filtered department list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDepartmentList(Predicate<Department> predicate);
 
     //=========== Leave-Level Operations ==========================================================================
+
+    Leave getLeave(LeaveDate date);
 
     /**
      * Adds the given leave.
@@ -219,7 +234,7 @@ public interface Model {
     boolean hasEmployeeOnLeave(LeaveDate date, Employee employee);
 
     /**
-     * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in
+     * Adds an employee's {@code employee} on a given day{@code leaveToAdd} in
      * the sudohr book.
      */
     void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd);
@@ -231,8 +246,7 @@ public interface Model {
     ObservableList<Leave> getLeavesList();
 
     /**
-     * Deletes a employee {@code employee} from a given leave{@code leave} in
-     * the sudohr book.
+     * Deletes an employee {@code employee} from a given leave{@code leave} in SuoHR.
      */
     void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete);
 
@@ -244,15 +258,12 @@ public interface Model {
     void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave);
 
     /**
-     * Update a employee {@code employee} with editedEmployee {@code employee} in all leave
-     * in the sudohr book.
+     * Update an employee {@code employee} with editedEmployee {@code employee} in all leave in SudoHR.
      */
     void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee);
 
     /**
-     * Deletes a employee {@code employee} from all leaves
-     * in the sudohr book.
+     * Deletes an employee {@code employee} from all leaves in SudoHR.
      */
     void cascadeDeleteUserInLeaves(Employee employeeToDelete);
-
 }
