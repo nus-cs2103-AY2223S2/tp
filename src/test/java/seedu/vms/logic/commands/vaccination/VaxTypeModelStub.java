@@ -15,6 +15,8 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -157,6 +159,31 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+        throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
+    }
+
+    @Override
+    public void addKeyword(Keyword keyword) {
+        throw new UnsupportedOperationException("Unimplemented method 'addKeyword'");
+    }
+
+    @Override
+    public void deleteKeyword(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteKeyword'");
+    }
+
+    @Override
+    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredKeywordList'");
+    }
+
+    @Override
+    public KeywordManager getKeywordManager() {
+        throw new UnsupportedOperationException("Unimplemented method 'getKeywordManager'");
+    }
+
+    @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
@@ -172,6 +199,12 @@ public class VaxTypeModelStub implements Model {
     public void setAppointmentManager(AppointmentManager manager) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+    }
+
+    @Override
+    public void setKeywordManager(KeywordManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
     }
 
     @Override

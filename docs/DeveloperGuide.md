@@ -141,6 +141,16 @@ The `Model` component,
 
 </div>
 
+### Appointment component
+**API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
+
+The `Appointment` component,
+
+* Contains the details of patients' appointment
+  * The patients' `Patient id`
+  * The duration of each appointment (Uses the `start time` and `end time`)
+  * The type and dose of `vaccine` to be administered
+  * The `status` of the appointment
 
 ### Storage component
 
@@ -162,6 +172,120 @@ Classes used by multiple components are in the `seedu.vms.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Adding a Patient
+
+The **Adding a Patient** mechanism is facilitated by `VMS`. The Patient created is stored inside `PatientManager` object.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `AddCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing.
+    1. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
+    2. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
+    3. `ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
+    4. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
+    5. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
+    6. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
+4. After successfully parsing the args, `AddCommandParser` will create a Patient using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `AddCommand` with the new Patient object.
+5. When `AddCommand#execute` is called, `model#addPatient` will be called to add the new Patient into the model. `AddCommand` will then return `CommandMessage` to indicate it's success.
+
+Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a ` or `--v` if the it is not applicable.
+
+The activity diagram below illustrates the workflow of patient `AddCommand` that is described above.
+
+<img src="images/patient/AddPatientActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
+
+<img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
+
+### Listing Patients
+
+The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient list` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. `PatientParser` will invoke `ListCommand` directly without intemediary parser commands as `ListCommand` does not accept any argument.
+4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
+
+The activity diagram below illustrates the workflow of patient `ListCommand` that is described above.
+
+<img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
+
+<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
+
+### Finding a Patient
+
+The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
+
+<!-- TODO describe the different search flags. That feature is still in progress -->
+
+##### Execution Sequence
+
+<!-- TODO add sample commands -->
+<!-- TODO describe the search flags parsing things, similar to the Add Patient Parsing -->
+
+The activity diagram below illustrates the workflow of patient `FindCommand` that is described above.
+
+<img src="images/patient/FindPatientActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
+
+<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
+
+`FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
+
+### Editing a Patient
+
+The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient edit 5 --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `EditCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will short circuit and throw a `ParseExeception` if 1. is not fulfilled.
+    1. `ParserUtil#parseIndex` will be called to create a Index object using "5".
+    2. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
+    3. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
+    4. `ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
+    5. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
+    6. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
+    7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
+4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
+5. When `EditCommand#execute` is called, the following will happen.
+    1. It will ensure that the Index given is within the list, else it will throw a CommandExeception 
+    2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
+    3. Then `model#setPatient` will be called to add the new Patient into the model. 
+    4. `EditCommand` will then return `CommandMessage` to indicate it's success.
+
+The activity diagram below illustrates the workflow of patient `EditCommand` that is described above.
+
+<img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+
+Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step. 
+
+<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
+
+### Deleting a Patient
+<!-- TODO -->
+
+##### Execution Sequence
+<!-- TODO -->
+
+<img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
+<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
@@ -334,6 +458,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `VMS` and the **Actor** is the `user`, unless specified otherwise.
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### UC-PAT-001 - Add patient
 
 ##### MSS
@@ -343,6 +469,8 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
   Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### UC-PAT-002 - List patients
 
 ##### MSS
@@ -351,6 +479,8 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 2. VMS shows a the list of patients with their corresponding IDs.
 
   Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### UC-PAT-003 - Update patient
 

@@ -10,6 +10,7 @@ import seedu.vms.logic.commands.basic.HelpCommand;
 import seedu.vms.logic.parser.appointment.AppointmentParser;
 import seedu.vms.logic.parser.basic.BasicParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.logic.parser.keyword.KeywordParser;
 import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.logic.parser.vaccination.VaccinationParser;
 
@@ -35,6 +36,7 @@ public class VmsParser {
     private final PatientParser patientParser = new PatientParser();
     private final AppointmentParser appointmentParser = new AppointmentParser();
     private final VaccinationParser vaccinationParser = new VaccinationParser();
+    private final KeywordParser keywordParser = new KeywordParser();
 
     /**
      * Parses user input into command for execution.
@@ -62,6 +64,9 @@ public class VmsParser {
 
         case VaccinationParser.FEATURE_NAME:
             return vaccinationParser.parse(arguments);
+
+        case KeywordParser.FEATURE_NAME:
+            return keywordParser.parse(arguments);
 
         default:
             return basicParser.parse(userInput);

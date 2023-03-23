@@ -10,6 +10,8 @@ import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -25,6 +27,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Keyword> PREDICATE_SHOW_ALL_KEYWORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -120,6 +125,28 @@ public interface Model {
      */
     void deleteAppointment(int id);
 
+
+    /** Returns an unmodifiable view of the filtered keyword list */
+    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
+
+    /**
+     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredKeywordList(Predicate<Keyword> predicate);
+
+    /**
+     * Adds the given keyword.
+     * {@code keyword} must not already exist in the keyword manager.
+     */
+    void addKeyword(Keyword keyword);
+
+    /**
+     * Deletes the given keyword.
+     * The keyword must exist in the keyword manager.
+     */
+    void deleteKeyword(int id);
+
     /**
      * Marks the given appointment as completed.
      * The appointment must exist in the appointment manager.
@@ -132,11 +159,15 @@ public interface Model {
      */
     void unmarkAppointment(int id);
 
+
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
     /** Returns the {@code AppointmentManager} the model is using. */
     AppointmentManager getAppointmentManager();
+
+    /** Returns the {@code KeywordManager} the model is using. */
+    KeywordManager getKeywordManager();
 
     /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
@@ -157,8 +188,9 @@ public interface Model {
 
     void setVaxTypeManager(VaxTypeManager manager);
 
-
     void setAppointmentManager(AppointmentManager manager);
+
+    void setKeywordManager(KeywordManager keywordManager);
 
 
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);

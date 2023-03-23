@@ -36,4 +36,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_STARTTIME = new Prefix("s");
     public static final Prefix PREFIX_ENDTIME = new Prefix("e");
 
+    /*
+     * ========================================================================
+     * Keyword
+     * ========================================================================
+     */
+    public static final Prefix PREFIX_KEYWORD_MAIN = new Prefix("k");
+    public static final Prefix PREFIX_KEYWORD_SUB = new Prefix("n");
+
 }
