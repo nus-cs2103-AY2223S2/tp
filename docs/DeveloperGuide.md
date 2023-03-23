@@ -162,10 +162,10 @@ The `advance` command advances an `Person` in HMHero, which advances the `status
 
 
 The activity diagram is as such:
-[Add in later]
+[Add in later]()
 
 Here is the activity diagram showing the process of the `advance` command:
-[Add in later]
+[Add in later]()
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
@@ -202,10 +202,10 @@ The `reject` command rejects an `Person` in HMHero, which rejects the `status` o
 
 
 The activity diagram is as such:
-[Add in later]
+[Add in later]()
 
 Here is the activity diagram showing the process of the `advance` command:
-[Add in later]
+[Add in later]()
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
@@ -216,7 +216,7 @@ enter the command correctly via an error message.
 If it does not, then an error is raised to inform the user.
 1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
 the user is prompted to enter the command correctly via an error message.
-2. If step 3, 4 and 5 completes without any exceptions, then the `Person` is successfully rejected.
+2. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
 
 ##### Feature Considerations
 
@@ -226,6 +226,61 @@ status. For example, if an `Person` with the status `Rejected`, then you cannot 
 
 When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
 a default behaviour when rejecting an applicant's status.
+
+
+#### Editing an Applicant
+
+##### Overview
+
+The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
+one-indexed `personList` presented to the user.
+
+The activity diagram is as such:
+[add in later]()
+
+Here is the activity diagram showing the process of the `edit` command:
+[add in later]()
+
+
+##### Feature Details
+
+1. The user specifies an item index that represents an `Person` to be edited.
+1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly 
+via an error message.
+1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
+command correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it already exists. If it already does, 
+then an error is raised to inform the user.
+1. Finally, if an index that is not in the valid range of the Person List is provided, an error is thrown 
+and the user is prompted to enter the command correctly via an error message.
+1. If step 4 completes without any exceptions, then the new `Person` is successfully edited.
+
+##### Feature Considerations
+
+Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the 
+`Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and 
+`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and 
+`91823452`.
+
+When providing multiple arguments with the same delimiter, 
+the last instance of the repeat delimiter is taken during the `parse` command.
+
+
+#### Displaying the list
+
+##### Overview
+The `list` command displays the full list by HMHero.
+
+##### Feature Details
+
+1. The user calls the `list` command.
+1. HMHero performs the necessary calculations to obtain the statistics. HMHero displays the result to the user.
+
+##### Feature Considerations
+
+The five statistics were chosen as a baseline and they are a good starting point for users to help 
+track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
+the total numbers of applicants for each status.
 
 
 
