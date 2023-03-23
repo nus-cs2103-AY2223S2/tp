@@ -9,7 +9,10 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 public class Group {
-	private String groupName;
+	public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
+	public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
+	public String groupName;
 	private final UniqueStudentList students;
 
 	{
@@ -58,6 +61,10 @@ public class Group {
 
         return otherGroup != null
                 && otherGroup.getGroupName().equals(getGroupName());
+    }
+
+	public static boolean isValidGroupName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
 	@Override

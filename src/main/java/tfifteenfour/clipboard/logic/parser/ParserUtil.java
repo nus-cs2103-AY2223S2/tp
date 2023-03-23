@@ -133,7 +133,7 @@ public class ParserUtil {
     public static Course parseCourse(String courseCode) throws ParseException {
         requireNonNull(courseCode);
         String trimmedCourse = courseCode.trim();
-        if (!Course.isValidModuleCode(trimmedCourse)) {
+        if (!Course.isValidCourseCode(trimmedCourse)) {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
         return new Course(trimmedCourse);

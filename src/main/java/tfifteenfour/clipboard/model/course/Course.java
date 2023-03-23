@@ -6,12 +6,12 @@ import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 import javafx.collections.ObservableList;
 
 /**
- * Represents a Module in the CLIpboard.
- * Guarantees: immutable; name is valid as declared in {@link #isValidModuleCode(String)} (String)}
+ * Represents a Course in the CLIpboard.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidCourseCode(String)} (String)}
  */
 public class Course {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Course codes should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String courseCode;
@@ -28,14 +28,14 @@ public class Course {
      */
     public Course(String courseCode) {
         requireNonNull(courseCode);
-        checkArgument(isValidModuleCode(courseCode), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCourseCode(courseCode), MESSAGE_CONSTRAINTS);
         this.courseCode = courseCode;
     }
 
     /**
      * Returns true if a given string is a valid module code.
      */
-    public static boolean isValidModuleCode(String test) {
+    public static boolean isValidCourseCode(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

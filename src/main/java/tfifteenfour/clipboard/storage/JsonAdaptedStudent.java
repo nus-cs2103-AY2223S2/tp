@@ -30,7 +30,6 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String studentId;
-    private final List<JsonAdaptedModuleCode> modules = new ArrayList<>();
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -40,13 +39,11 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("studentId") String studentId,
-           @JsonProperty("modules") List<JsonAdaptedModuleCode> modules,
            @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
-        this.modules.addAll(modules);
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -62,9 +59,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         studentId = source.getStudentId().value;
-        modules.addAll(source.getModules().stream()
-                .map(JsonAdaptedModuleCode::new)
-                .collect(Collectors.toList()));
+
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -77,19 +72,9 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Course> personModules = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }
-
-        if (modules.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Course.class.getSimpleName()));
-        }
-
-        for (JsonAdaptedModuleCode moduleCode : modules) {
-            personModules.add(moduleCode.toModelType());
         }
 
         if (name == null) {
@@ -129,7 +114,7 @@ class JsonAdaptedStudent {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        final Set<Course> modelModules = new HashSet<>(personModules);
+        final Set<Course> modelModules = new HashSet<>();
 
         final Remark modelRemark = new Remark(remark);
 
