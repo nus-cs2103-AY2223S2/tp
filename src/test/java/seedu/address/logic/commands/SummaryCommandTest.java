@@ -13,9 +13,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalPersons;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for SummaryCommand.
- */
 public class SummaryCommandTest {
     private Model model;
 
@@ -25,7 +22,7 @@ public class SummaryCommandTest {
     }
 
     @Test
-    public void execute_listHasNoApplicantsWithInterview_showDefaultMessage() {
+    public void execute_listHasApplicantsWithInterviewDate_outputsCorrectCalculation() {
         Model expectedModel = new ModelManager(new HMHero(model.getAddressBook()), new UserPrefs());
         SummaryCommand summaryCommand = new SummaryCommand();
         CommandResult expectedResult = summaryCommand.execute(expectedModel);
@@ -33,7 +30,7 @@ public class SummaryCommandTest {
     }
 
     @Test
-    public void execute_listHasNoApplicantsWithInterview_showMessage() {
+    public void execute_listHasNoApplicantsWithInterview_showDefaultMessage() {
         ClearCommand clearCommand = new ClearCommand();
         clearCommand.execute(model);
         model.addPerson(TypicalPersons.ALICE);
