@@ -12,6 +12,6 @@ public class SwitchKey extends Key {
 
     @Override
     public void execute(Logic logic, MainWindow mainWindow) {
-        mainWindow.getEntityPanel().nextTab();
+        mainWindow.nextTab();
     }
 }
