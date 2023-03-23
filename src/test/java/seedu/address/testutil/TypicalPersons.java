@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -133,10 +135,12 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person ALEX = new PersonBuilder().withName(NAME_ALEX).withPhone(PHONE_ALEX)
             .withEmail(EMAIL_ALEX).withAddress(ADDRESS_ALEX).withGroupTags(VALID_GROUP_2)
+            .withModuleTags(VALID_MODULE_1, VALID_MODULE_2)
             .withTelegramHandle(TELEGRAM_HANDLE_ALEX).build();
     public static final Person BEN = new PersonBuilder().withName(NAME_BEN).withPhone(PHONE_BEN)
             .withEmail(EMAIL_BEN).withTelegramHandle(TELEGRAM_HANDLE_BEN)
             .withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1, VALID_GROUP_2)
+            .withModuleTags(VALID_MODULE_2)
             .build();
 
     private TypicalPersons() {} // prevents instantiation
