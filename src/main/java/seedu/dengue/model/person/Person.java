@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Represents a Person in the Dengue Hotspot Tracker.
@@ -22,18 +22,18 @@ public class Person {
 
     // Data fields
     private final Age age;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Variant> variants = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Postal postal, Date date, Age age, Set<Tag> tags) {
-        requireAllNonNull(name, postal, date, age, tags);
+    public Person(Name name, Postal postal, Date date, Age age, Set<Variant> variants) {
+        requireAllNonNull(name, postal, date, age, variants);
         this.name = name;
         this.postal = postal;
         this.date = date;
         this.age = age;
-        this.tags.addAll(tags);
+        this.variants.addAll(variants);
     }
 
     public Name getName() {
@@ -53,11 +53,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable variant set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Variant> getVariants() {
+        return Collections.unmodifiableSet(variants);
     }
 
     /**
@@ -92,13 +92,13 @@ public class Person {
                 && otherPerson.getPostal().equals(getPostal())
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getAge().equals(getAge())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getVariants().equals(getVariants());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, postal, date, age, tags);
+        return Objects.hash(name, postal, date, age, variants);
     }
 
     @Override
@@ -112,10 +112,10 @@ public class Person {
                 .append("; Age: ")
                 .append(getAge());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Variant> variantSet = getVariants();
+        if (!variantSet.isEmpty()) {
+            builder.append("; Variants: ");
+            variantSet.forEach(builder::append);
         }
         return builder.toString();
     }

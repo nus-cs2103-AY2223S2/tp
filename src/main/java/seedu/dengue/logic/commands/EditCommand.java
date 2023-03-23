@@ -5,7 +5,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 import static seedu.dengue.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -24,7 +24,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Edits the details of an existing person in the Dengue Hotspot Tracker.
@@ -41,10 +41,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSTAL + "POSTAL] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_VARIANT + "VARIANT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POSTAL + "91234567 "
-            + PREFIX_DATE + "johndoe@example.com";
+            + PREFIX_POSTAL + "598765 "
+            + PREFIX_DATE + "2023-01-05";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -97,9 +97,9 @@ public class EditCommand extends Command {
         Postal updatedPostal = editPersonDescriptor.getPostal().orElse(personToEdit.getPostal());
         Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Variant> updatedVariants = editPersonDescriptor.getVariants().orElse(personToEdit.getVariants());
 
-        return new Person(updatedName, updatedPostal, updatedDate, updatedAge, updatedTags);
+        return new Person(updatedName, updatedPostal, updatedDate, updatedAge, updatedVariants);
     }
 
     @Override
@@ -129,27 +129,27 @@ public class EditCommand extends Command {
         private Postal postal;
         private Date date;
         private Age age;
-        private Set<Tag> tags;
+        private Set<Variant> variants;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internallRy.
+         * A defensive copy of {@code variants} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPostal(toCopy.postal);
             setDate(toCopy.date);
             setAge(toCopy.age);
-            setTags(toCopy.tags);
+            setVariants(toCopy.variants);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, postal, date, age, tags);
+            return CollectionUtil.isAnyNonNull(name, postal, date, age, variants);
         }
 
         public void setName(Name name) {
@@ -185,20 +185,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code variants} to this object's {@code variants}.
+         * A defensive copy of {@code variants} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setVariants(Set<Variant> variants) {
+            this.variants = (variants != null) ? new HashSet<>(variants) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable variant set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code variants} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Variant>> getVariants() {
+            return (variants != null) ? Optional.of(Collections.unmodifiableSet(variants)) : Optional.empty();
         }
 
         @Override
@@ -220,7 +220,7 @@ public class EditCommand extends Command {
                     && getPostal().equals(e.getPostal())
                     && getDate().equals(e.getDate())
                     && getAge().equals(e.getAge())
-                    && getTags().equals(e.getTags());
+                    && getVariants().equals(e.getVariants());
         }
     }
 }

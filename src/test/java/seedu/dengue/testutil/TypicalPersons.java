@@ -8,8 +8,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,15 +26,15 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAge("21").withDate("2023-03-05")
             .withPostal("943512")
-            .withTags("DENV1").build();
+            .withVariants("DENV1").build();
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAge("85").withDate("2022-03-05").withPostal("987654")
-            .withTags("DENV2", "DENV4").build();
+            .withVariants("DENV2", "DENV4").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPostal("953525")
             .withDate("2023-02-02").withAge("35").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPostal("876525")
-            .withDate("2023-01-01").withAge("143").withTags("DENV3").build();
+            .withDate("2023-01-01").withAge("143").withVariants("DENV3").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPostal("948222")
             .withDate("2022-12-31").withAge("65").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPostal("948247")
@@ -50,9 +50,9 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPostal(VALID_POSTAL_AMY)
-            .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY).withTags(VALID_TAG_DENV2).build();
+            .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY).withVariants(VALID_VARIANT_DENV2).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPostal(VALID_POSTAL_BOB)
-            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV1, VALID_TAG_DENV2)
+            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

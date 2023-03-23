@@ -18,7 +18,7 @@ Class Address
 Class Date
 Class Name
 Class Postal
-Class Tag
+Class Variant
 
 }
 
@@ -40,7 +40,7 @@ Person *--> Name
 Person *--> Postal
 Person *--> Date
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Variant
 
 Name -[hidden]right-> Postal
 Postal -[hidden]right-> Address

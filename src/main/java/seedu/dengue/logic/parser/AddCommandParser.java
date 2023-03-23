@@ -5,7 +5,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,7 +17,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -32,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL,
-                        PREFIX_DATE, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_DATE, PREFIX_AGE, PREFIX_VARIANT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_AGE, PREFIX_POSTAL, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,9 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Postal postal = ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Variant> variantList = ParserUtil.parseVariants(argMultimap.getAllValues(PREFIX_VARIANT));
 
-        Person person = new Person(name, postal, date, age, tagList);
+        Person person = new Person(name, postal, date, age, variantList);
 
         return new AddCommand(person);
     }

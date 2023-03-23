@@ -8,7 +8,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,8 +51,8 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_AGE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_DENV1).build();
+        // different variants -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withVariants(VALID_VARIANT_DENV1).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
