@@ -9,14 +9,12 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.parser.ArgumentMultimap;
 import seedu.sudohr.logic.parser.ArgumentTokenizer;
 import seedu.sudohr.logic.parser.Parser;
 import seedu.sudohr.logic.parser.ParserUtil;
-import seedu.sudohr.logic.parser.Prefix;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
@@ -42,8 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_NAME,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -58,13 +56,4 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         return new AddCommand(employee);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

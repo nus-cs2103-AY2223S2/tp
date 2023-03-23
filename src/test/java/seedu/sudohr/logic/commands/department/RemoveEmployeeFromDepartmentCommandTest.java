@@ -22,8 +22,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.testutil.TypicalDepartmentNames;
 import seedu.sudohr.testutil.TypicalEmployees;
 
@@ -158,6 +158,11 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
+        public boolean checkEmployeeExists(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
@@ -252,6 +257,21 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             throw new AssertionError("This method should not be called.");
         }
@@ -267,7 +287,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+        public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 

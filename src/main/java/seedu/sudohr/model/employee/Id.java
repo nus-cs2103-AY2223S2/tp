@@ -9,7 +9,7 @@ import static seedu.sudohr.commons.util.AppUtil.checkArgument;
  */
 public class Id {
     public static final String MESSAGE_CONSTRAINTS =
-            "IDs can take any non-zero (integral) values, and it should not be blank. "
+            "IDs can take any non-zero positive (integral) values, and it should not be blank. "
             + "Note that ID is a field for an employee's unique identification in the company";
 
     /*

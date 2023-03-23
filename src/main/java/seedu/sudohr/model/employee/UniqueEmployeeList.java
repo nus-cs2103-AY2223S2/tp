@@ -33,6 +33,30 @@ public class UniqueEmployeeList implements Iterable<Employee> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns an employee with the specified ID.
+     */
+    public Employee get(Id id) {
+        for (Employee employee: internalList) {
+            if (employee.getId().equals(id)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns true if the list contains an employee with the specified id as given in the argument.
+     */
+    public boolean checkEmployeeExists(Id id) {
+        for (Employee employee : internalList) {
+            if (employee.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if the list contains an equivalent employee as the given argument.
      */
     public boolean contains(Employee toCheck) {
@@ -50,6 +74,14 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         return internalList.stream().filter(
                 e -> !toExclude.isSameEmployee(e))
                 .anyMatch(toCheck::isSameEmployee);
+    }
+
+    /**
+     * Returns true if the list strictly (all fields are equal) contains an equivalent employee as the given argument.
+     */
+    public boolean strictlyContains(Employee toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -90,18 +122,6 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         return internalList.stream().filter(
                         e -> !toExclude.isSameEmployee(e))
                 .anyMatch(toCheck::phoneClashes);
-    }
-
-    /**
-     * Returns an employee with the specified ID.
-     */
-    public Employee get(Id id) {
-        for (Employee employee: internalList) {
-            if (employee.getId().equals(id)) {
-                return employee;
-            }
-        }
-        return null;
     }
 
     /**

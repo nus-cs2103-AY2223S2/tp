@@ -9,8 +9,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * The API of the Model component.
@@ -67,6 +67,14 @@ public interface Model {
 
     //=========== Employee-Level Operations ===========================================
 
+    /**
+     * Returns true if an employee with the specified identity exists in SudoHR.
+     */
+    boolean checkEmployeeExists(Id id);
+
+    /**
+     * Gets an employee in SudoHR by its id.
+     */
     Employee getEmployee(Id employeeId);
 
     /**
@@ -133,12 +141,12 @@ public interface Model {
 
     //=========== Department-Level Operations ==========================================================================
 
-    public Department getDepartment(DepartmentName name);
+    Department getDepartment(DepartmentName name);
 
     /**
      * Returns true if a department with the same identity as {@code department} exists in SudoHR.
      */
-    public boolean hasDepartment(Department department);
+    boolean hasDepartment(Department department);
 
     /**
      * Adds a department to SudoHR.
@@ -170,12 +178,25 @@ public interface Model {
     /**
      * Removes a given employee from a given department
      * @param p The employee to remove
-     * @param d The department to remove the employee fro
+     * @param d The department to remove the employee from
      */
     void removeEmployeeFromDepartment(Employee p, Department d);
 
     /** Returns an unmodifiable view of the filtered department list */
     ObservableList<Department> getFilteredDepartmentList();
+
+    /**
+     * Deletes an employee from the employee list of the department the deleted employee belongs to.
+     * @param employeeToDelete the employee to delete
+     */
+    void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete);
+
+    /**
+     * Ensures that the updated details of an employee is propagated down to each departments' own employee list.
+     * @param employeeToEdit
+     * @param editedEmployee
+     */
+    void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee);
 
     /**
      * Updates the filter of the filtered department list to filter by the given {@code predicate}.
@@ -184,6 +205,8 @@ public interface Model {
     void updateFilteredDepartmentList(Predicate<Department> predicate);
 
     //=========== Leave-Level Operations ==========================================================================
+
+    Leave getLeave(LeaveDate date);
 
     /**
      * Adds the given leave.
@@ -209,10 +232,10 @@ public interface Model {
      * Returns true if a given date{@code date} has the employee {@code employee} in
      * the sudohr book.
      */
-    boolean hasEmployeeOnLeave(Date date, Employee employee);
+    boolean hasEmployeeOnLeave(LeaveDate date, Employee employee);
 
     /**
-     * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in
+     * Adds an employee's {@code employee} on a given day{@code leaveToAdd} in
      * the sudohr book.
      */
     void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd);
@@ -224,8 +247,7 @@ public interface Model {
     ObservableList<Leave> getLeavesList();
 
     /**
-     * Deletes a employee {@code employee} from a given leave{@code leave} in
-     * the sudohr book.
+     * Deletes an employee {@code employee} from a given leave{@code leave} in SuoHR.
      */
     void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete);
 
@@ -237,15 +259,12 @@ public interface Model {
     void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave);
 
     /**
-     * Update a employee {@code employee} with editedEmployee {@code employee} in all leave
-     * in the sudohr book.
+     * Update an employee {@code employee} with editedEmployee {@code employee} in all leave in SudoHR.
      */
     void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee);
 
     /**
-     * Deletes a employee {@code employee} from all leaves
-     * in the sudohr book.
+     * Deletes an employee {@code employee} from all leaves in SudoHR.
      */
     void cascadeDeleteUserInLeaves(Employee employeeToDelete);
-
 }

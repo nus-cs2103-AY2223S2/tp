@@ -14,25 +14,35 @@ import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.department.FindDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListEmployeesInDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
 import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
-import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.department.AddDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.AddEmployeeToDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.DeleteDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.EditDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.FindDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.ListEmployeeDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.ListEmployeesInDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.RemoveEmployeeFromDepartmentCommandParser;
 import seedu.sudohr.logic.parser.employee.AddCommandParser;
 import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.DeleteEmployeeFromLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.ListEmployeeInLeaveCommandParser;
 
 /**
  * Parses user input.
@@ -78,11 +88,21 @@ public class SudoHrParser {
 
         case DeleteDepartmentCommand.COMMAND_WORD:
             return new DeleteDepartmentCommandParser().parse(arguments);
+
         case AddEmployeeToDepartmentCommand.COMMAND_WORD:
             return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case ListDepartmentCommand.COMMAND_WORD:
             return new ListDepartmentCommand();
+
+        case ListEmployeeDepartmentCommand.COMMAND_WORD:
+            return new ListEmployeeDepartmentCommandParser().parse(arguments);
+
+        case ListEmployeesInDepartmentCommand.COMMAND_WORD:
+            return new ListEmployeesInDepartmentCommandParser().parse(arguments);
+
+        case FindDepartmentCommand.COMMAND_WORD:
+            return new FindDepartmentCommandParser().parse(arguments);
 
         case RemoveEmployeeFromDepartmentCommand.COMMAND_WORD:
             return new RemoveEmployeeFromDepartmentCommandParser().parse(arguments);

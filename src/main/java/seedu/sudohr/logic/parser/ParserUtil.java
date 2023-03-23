@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
@@ -17,7 +18,7 @@ import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.Name;
 import seedu.sudohr.model.employee.Phone;
-import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.model.tag.Tag;
 
 /**
@@ -150,17 +151,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseLeaveDate(String date) throws ParseException {
+    public static LeaveDate parseLeaveDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
         LocalDate leaveDate;
         try {
             leaveDate = LocalDate.parse(trimmedDate);
         } catch (DateTimeParseException e) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(LeaveDate.MESSAGE_CONSTRAINTS);
         }
 
-        return new Date(leaveDate);
+        return new LeaveDate(leaveDate);
     }
 
     /**
@@ -191,5 +192,13 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new DepartmentName(trimmedName);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

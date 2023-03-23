@@ -15,8 +15,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -103,6 +103,12 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ========================
 
     @Override
+    public boolean checkEmployeeExists(Id id) {
+        requireNonNull(id);
+        return sudoHr.checkEmployeeExists(id);
+    }
+
+    @Override
     public Employee getEmployee(Id employeeId) {
         requireNonNull(employeeId);
         return sudoHr.getEmployee(employeeId);
@@ -161,7 +167,6 @@ public class ModelManager implements Model {
     @Override
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
-
         sudoHr.setEmployee(target, editedEmployee);
     }
 
@@ -173,6 +178,11 @@ public class ModelManager implements Model {
         requireNonNull(leave);
         sudoHr.addLeave(leave);
 
+    }
+
+    @Override
+    public Leave getLeave(LeaveDate date) {
+        return sudoHr.getLeave(date);
     }
 
     @Override
@@ -197,7 +207,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+    public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
         requireAllNonNull(date, employee);
         return sudoHr.hasEmployeeOnLeave(date, employee);
     }
@@ -212,7 +222,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
         requireAllNonNull(leaveToDelete, employeeToDelete);
-
         sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
     }
 
@@ -296,6 +305,18 @@ public class ModelManager implements Model {
     @Override
     public void removeEmployeeFromDepartment(Employee p, Department d) {
         sudoHr.removeEmployeeFromDepartment(p, d);
+    }
+
+    @Override
+    public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+        requireNonNull(employeeToDelete);
+        sudoHr.cascadeDeleteEmployeeToDepartments(employeeToDelete);
+    }
+
+    @Override
+    public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(employeeToEdit, editedEmployee);
+        sudoHr.cascadeEditEmployeeToDepartments(employeeToEdit, editedEmployee);
     }
 
     //=========== Filtered Department List Accessors =============================================================

@@ -13,8 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Jackson-friendly version of {@link Leave}.
@@ -58,22 +59,26 @@ public class JsonAdaptedLeave {
     public Leave toModelType() throws IllegalValueException {
         final List<Employee> leaveEmployees = new ArrayList<>();
         for (JsonAdaptedEmployee employee : employees) {
-            leaveEmployees.add(employee.toModelType());
+            Employee e = employee.toModelType();
+            if (leaveEmployees.stream().anyMatch(e::isSameEmployee)) {
+                throw new DuplicateEmployeeException();
+            }
+            leaveEmployees.add(e);
         }
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Date.class.getSimpleName()));
+                    LeaveDate.class.getSimpleName()));
         }
 
         LocalDate leaveDate;
         try {
             leaveDate = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(LeaveDate.MESSAGE_CONSTRAINTS);
         }
 
-        final Date currentDate = new Date(leaveDate);
+        final LeaveDate currentDate = new LeaveDate(leaveDate);
         final Set<Employee> modelEmployees = new HashSet<>(leaveEmployees);
 
         return new Leave(currentDate, modelEmployees);
