@@ -56,20 +56,24 @@ public class AssignCommandTest {
      * Test for valid indexes
      */
     @Test
-    public void execute_validIndex_throwsCommandException() throws CommandException {
-        Index personIndex = INDEX_FOURTH;
-        Index taskIndex = INDEX_FOURTH;
-        Person person = model.getFilteredPersonList().get(personIndex.getZeroBased());
-        Task task = officeConnectModel.getTaskModelManager().getFilteredItemList().get(taskIndex.getZeroBased());
+    public void execute_validIndex_throwsCommandException() {
+        try {
+            Index personIndex = INDEX_FOURTH;
+            Index taskIndex = INDEX_FOURTH;
+            Person person = model.getFilteredPersonList().get(personIndex.getZeroBased());
+            Task task = officeConnectModel.getTaskModelManager().getFilteredItemList().get(taskIndex.getZeroBased());
 
-        AssignCommand command = new AssignCommand(personIndex, taskIndex);
-        CommandResult result = command.execute(model, officeConnectModel);
+            AssignCommand command = new AssignCommand(personIndex, taskIndex);
+            CommandResult result = command.execute(model, officeConnectModel);
 
-        Repository<AssignTask> repo = getPersonTaskRepository();
-        repo.addItem(new AssignTask(person.getId(), task.getId()));
+            Repository<AssignTask> repo = getPersonTaskRepository();
+            repo.addItem(new AssignTask(person.getId(), task.getId()));
 
-        assertEquals(String.format(AssignCommand.MESSAGE_SUCCESS, person, task), result.getFeedbackToUser());
-        assertEquals(repo, officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
+            assertEquals(String.format(AssignCommand.MESSAGE_SUCCESS, person, task), result.getFeedbackToUser());
+            assertEquals(repo, officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
+        } catch (CommandException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
+        }
     }
 
     /**
@@ -134,8 +138,6 @@ public class AssignCommandTest {
     }
 
     /**
-     * IMPLEMENTED THIS FOR TESTING FOR NOW
-     * TO DO: WRAP MODEL, OFFICECONNECTMODEL IN ANOTHER CLASS NEXT
      * Returns a {@code Repository} with a few AssignTask mappings for the TypicalTaskRepository and
      * TypicalAddressBook used in this class.
      */

@@ -4,12 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
+import seedu.address.model.shared.Id;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -40,10 +45,28 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Id pid = personToDelete.getId();
+        /*
+        List<AssignTask> assignedTaskList = getDuplicateAssignedTaskList(officeConnectModel, pid);
+        for (AssignTask at: assignedTaskList) {
+            officeConnectModel.getAssignTaskModelManager().deleteItem(at);
+        }
+
         model.deletePerson(personToDelete);
+        */
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
+
+    /*
+    private static ObservableList<AssignTask> getDuplicateAssignedTaskList(OfficeConnectModel officeConnectModel, Id pId) {
+        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
+        return new FilteredList<>(personTaskModelManager
+                .getFilteredItemList()
+                .filtered(assignTask -> assignTask.getPersonId().equals(pId)));
+    }
+    */
 
     @Override
     public boolean equals(Object other) {

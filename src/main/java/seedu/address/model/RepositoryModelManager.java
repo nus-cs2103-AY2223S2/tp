@@ -52,6 +52,7 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     public ReadOnlyRepository<T> getReadOnlyRepository() {
         return repo;
     }
+
     public List<T> filter(Predicate<T> predicate) {
         return repo.getFilterData(predicate);
     }
