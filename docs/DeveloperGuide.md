@@ -234,6 +234,69 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Progress Field
+The `Progress` field of a `Bookmark` is used to track the latest read portion of the associated book. This could be many
+things including the latest read volume of a series, or the chapter or page of a single book. It is mainly for a user to
+remember where he last left off when they revisit the book.
+
+Currently, `Progress` contains 3 public attributes: `volume`, `chapter` and `page` all of which are implemented as
+separate `String` objects. While these attributes can be empty, at least one of them must not be empty. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For a case where all 3 attributes are empty
+, this should be reflected by a `Bookmark` with `Progress = null`.
+</div>
+
+The valid range of values for the 3 attributes are as follows (these are checked in `Progress#isValidProgress`):
+1. Each of the 3 attributes can only be `~` or an unsigned integer in the form of a `String`
+   1. `~` represents an empty value (explained later). 
+   2. If it is an unsigned integer, it may not start with `0`.
+2. At least one of the 3 attributes must be an unsigned integer
+   1. They cannot all be `~`. i.e. Cannot have an empty `Progress`
+
+The format for user input is: `p/VOLUME CHAPTER PAGE`.
+
+The valid range of values for `VOLUME`, `CHAPTER` and `PAGE` are identical to that of the `volume`, `chapter` and `page`
+attributes. Similarly, the value of the 3 attributes is identical to the value stored in JSON when the `Bookmark` is
+saved. For example, if `page` has the value `~`, that exact value is saved into the JSON file.
+
+#### Design considerations:
+
+**Aspect: What data should `Progress` contain?:**
+
+Currently, Progress stores information about the volume, chapter and page of the book being tracked. 
+
+This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical) 
+organise themselves with the 3 attributes. 
+
+Other possible attributes that were considered include: line number and word number. However, they were deemed to be too
+low-level in terms of detail. If we consider a user revisiting a book and wanting to continue where they last left off, 
+it is very unlikely that they will continue from the word or line that they stopped at.
+
+**Aspect: What data type to use?:**
+
+Currently, `volume`, `chapter` and `page` are all stored as separate `String` objects.
+
+This makes it easy to parse user input which enters as a `String` into a `Progress` object, and easy for a `Progress` 
+object to be converted into a set of `String` objects to be saved into a JSON file for storage.
+
+A considered alternative would be to use 3 `Integer` objects instead. The benefit of this would be allowing integer
+arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress`
+values that would require integer arithmetic and the difference in memory cost is negligible. Furthermore, like other
+`Bookmark` fields, `Progress` is designed to be immutable.
+
+**Aspect: How to represent a value that does not exist?:**
+
+Currently, `~` is used to represent absence of a value.
+
+The main reason is to simplify the logic for parsing user input. 
+
+This representation is used for user input format, the actual value stored
+in a `Progress` object and the value saved to storage. Using the same representation allows us to check the validity of
+a `Progress` using a single method (`Progress#isValidProgress`) for all cases.
+
+A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
+then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
+prefixes to differentiate them, but parsing becomes more complex.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
