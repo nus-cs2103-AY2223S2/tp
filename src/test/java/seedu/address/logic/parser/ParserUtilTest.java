@@ -20,7 +20,6 @@ import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.event.Address;
 import seedu.address.model.event.Email;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Phone;
 import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
@@ -126,37 +125,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
-
-    @Test
     public void parseContactPhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseContactPhone(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parseContactPhone_validValueWithoutWhitespace_returnsContactPhone() throws Exception {
         ContactPhone expectedPhone = new ContactPhone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parseContactPhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test

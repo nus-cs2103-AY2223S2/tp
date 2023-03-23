@@ -14,7 +14,6 @@ import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.event.Address;
 import seedu.address.model.event.Email;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Phone;
 import seedu.address.model.event.Rate;
 import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
@@ -83,21 +82,6 @@ public class ParserUtil {
             throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
         return new ContactName(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
     }
 
     /**
