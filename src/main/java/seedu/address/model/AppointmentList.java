@@ -42,7 +42,7 @@ public class AppointmentList implements ReadOnlyAppointmentList {
     }
 
     /**
-     * Returns true if a appointment with the same identity as {@code appointment} exists in the appointment list.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment list.
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);

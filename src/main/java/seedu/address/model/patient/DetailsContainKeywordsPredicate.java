@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
  * Tests that a {@code Patient}'s {@code Name}, {@code Phone}, {@code Email}, {@code Address} or {@code Tag}s matches
  * any of the keywords given.
  */
-public class DetailsContainsKeywordsPredicate implements Predicate<Patient> {
+public class DetailsContainKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;
 
-    public DetailsContainsKeywordsPredicate(List<String> keywords) {
+    public DetailsContainKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Patient> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DetailsContainsKeywordsPredicate // instanceof handles nulls
-            && keywords.equals(((DetailsContainsKeywordsPredicate) other).keywords)); // state check
+            || (other instanceof DetailsContainKeywordsPredicate // instanceof handles nulls
+            && keywords.equals(((DetailsContainKeywordsPredicate) other).keywords)); // state check
     }
 
 }
