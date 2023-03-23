@@ -52,6 +52,8 @@ public class Location implements Item {
      * Creates a Location object from the given id and name
      * @param id a unique id assigned to the location
      * @param name the name of the location
+     * @param crewLink the link to the crews that stay in
+     *                 this location
      */
     public Location(
             String id,
