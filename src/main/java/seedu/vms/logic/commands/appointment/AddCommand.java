@@ -49,7 +49,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
             + " in the appointment manager";
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
-    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient does not have previous appointments for the needed vaccine";
+    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient does not have previous appointments for the"
+            + "needed vaccine";
     public static final String MESSAGE_EXIST_VAX_REQ = "The Patient already has an appointment for this vaccine dose";
     public static final String MESSAGE_EXISTING_APPOINTMENT = "This patient already has an upcoming appointment";
 
@@ -99,7 +100,7 @@ public class AddCommand extends Command {
         // Checks if the given patient has already taken the vaccine or the necessary vaccine
         for (Requirement requirement: vaccinationList.get(toAdd.getVaccination().getName()).getHistoryReqs()) {
             if (!requirement.check(history)) {
-                switch (requirement.getReqType()){
+                switch (requirement.getReqType()) {
                 case ALL:
                     // Fallthrough
                 case ANY:

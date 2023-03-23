@@ -53,7 +53,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
     public static final String MESSAGE_PARSE_DURATION = "Please give both the starting and ending timings";
     public static final String MESSAGE_PAST_APPOINTMENT = "The appointment has already passed";
-    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient does not have previous appointments for the needed vaccine";
+    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient does not have previous appointments for the"
+            + "needed vaccine";
     public static final String MESSAGE_EXIST_VAX_REQ = "The Patient already has an appointment for this vaccine dose";
     public static final String MESSAGE_EXISTING_APPOINTMENT = "This patient already has an upcoming appointment";
 
@@ -121,9 +122,10 @@ public class EditCommand extends Command {
         }
 
         // Checks if the given patient has taken the vaccine or the necessary vaccine
-        for (Requirement requirement: vaccinationList.get(editedAppointment.getVaccination().getName()).getHistoryReqs()) {
+        for (Requirement requirement: vaccinationList.get(editedAppointment.getVaccination().getName())
+                .getHistoryReqs()) {
             if (!requirement.check(history)) {
-                switch (requirement.getReqType()){
+                switch (requirement.getReqType()) {
                 case ALL:
                     // Fallthrough
                 case ANY:
