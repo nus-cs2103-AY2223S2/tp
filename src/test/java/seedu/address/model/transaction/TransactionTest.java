@@ -1,8 +1,5 @@
 package seedu.address.model.transaction;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.TransactionBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_DESC_COFFEE_MACHINES;
@@ -11,6 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_STATUS_COFF
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_VALUE_COFFEE_MACHINES;
 import static seedu.address.testutil.TypicalTransactions.COFFEE_BEANS;
 import static seedu.address.testutil.TypicalTransactions.COFFEE_MACHINES_A;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TransactionBuilder;
 
 class TransactionTest {
 
@@ -27,7 +28,8 @@ class TransactionTest {
 
         // desc with trailing spaces = return false
         String descWithTrailingSpaces = COFFEE_MACHINES_A.getDescription().toString() + " ";
-        Transaction editedCoffeeMachines = new TransactionBuilder(COFFEE_MACHINES_A).withDesc(descWithTrailingSpaces).build();
+        Transaction editedCoffeeMachines = new TransactionBuilder(COFFEE_MACHINES_A).withDesc(descWithTrailingSpaces)
+                .build();
         assertFalse(COFFEE_MACHINES_A.isSameTransaction(editedCoffeeMachines));
     }
 
