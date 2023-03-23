@@ -253,22 +253,22 @@ _{more aspects and alternatives to be added}_
 The proposed CompanyCommand feature allows the user to filter companies based on a given keyword. The idea is that the
 user can filter the job list by company which shows all roles pertaining to a certain company.
 
-The feature uses operations in the `Model` interface as `Model#displaySortedSalaryList()`.
+The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
 
-Given below is an example usage of how Salary Command is being used in the following steps.
+Given below is an example usage of how CompanyCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
    current address book. <img src="images/SalaryCommand0.png" width="800" />
 
-2. The user can choose to use the `SalaryCommand` in asc or desc order.
+2. The user can choose to use the `Company Command` in asc or desc order.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
       order. <img src="images/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
       order. <img src="images/SalaryCommand2.png" width="800" />
 
-The following sequence diagram shows how the Salary Command is being done:
+The following sequence diagram shows how the Company Command is being done:
 
-<img src="images/SalaryCommandSequenceDiagram.png" width="800" />
+<img src="images/CompanyCommandSequenceDiagram.png" width="800" />
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
