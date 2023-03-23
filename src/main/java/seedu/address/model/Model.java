@@ -5,11 +5,13 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -17,8 +19,6 @@ import seedu.address.model.review.Review;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
-
-    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true; //this is unnecessary?
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -154,5 +154,16 @@ public interface Model {
 
     void setNumCardsPerReview(int i);
 
-    ObservableList<String> getReviewStatsList();
+    /**
+     * Returns the state of the model
+     */
+    ModelState getState();
+
+    /**
+     * Tag
+     * @param tag
+     */
+    void tagCurrentCardInReview(Tag tag);
+
+    ObservableList<Pair<String, String>> getReviewStatsList();
 }

@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.cardcommands.EditCommand;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 
 public class EditCardDescriptorTest {
