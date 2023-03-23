@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands.addCommand;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -8,18 +8,13 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
+import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.student.Student;
 
-/**
- * Adds a student to the address book.
- */
-public class AddCommand extends Command {
-
-    public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
+public class AddStudentCommand extends AddCommand {
+	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -42,8 +37,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Student}
      */
-    public AddCommand(Student student) {
-        super(true);
+    public AddStudentCommand(Student student) {
         requireNonNull(student);
         toAdd = student;
     }
@@ -64,6 +58,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddStudentCommand) other).toAdd));
     }
 }

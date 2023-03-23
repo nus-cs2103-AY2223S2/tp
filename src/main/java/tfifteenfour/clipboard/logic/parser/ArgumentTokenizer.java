@@ -20,12 +20,17 @@ public class ArgumentTokenizer {
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @param prefixes   Prefixes to tokenizePrefixes the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+    public static ArgumentMultimap tokenizePrefixes(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    public static String[] tokenizeString(String input) {
+        String[] tokens = input.split("\\s+");
+        return tokens;
     }
 
     /**

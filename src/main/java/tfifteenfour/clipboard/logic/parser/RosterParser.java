@@ -7,21 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tfifteenfour.clipboard.logic.Page;
-import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
-import tfifteenfour.clipboard.logic.commands.DeleteCommand;
-import tfifteenfour.clipboard.logic.commands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
-import tfifteenfour.clipboard.logic.commands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.ListCommand;
 import tfifteenfour.clipboard.logic.commands.ModuleCommand;
-import tfifteenfour.clipboard.logic.commands.RemarkCommand;
-import tfifteenfour.clipboard.logic.commands.SortCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
-import tfifteenfour.clipboard.logic.commands.ViewCommand;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.SortCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,6 +50,7 @@ public class RosterParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
