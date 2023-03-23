@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddDoctorCommandParser" as AddDoctorCommandParser LOGIC_COLOR
+participant "a:AddDoctorCommand" as AddDoctorCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+activate AddressBookParser
+
+create AddDoctorCommandParser
+AddressBookParser -> AddDoctorCommandParser
+activate AddDoctorCommandParser
+
+AddDoctorCommandParser --> AddressBookParser
+deactivate AddDoctorCommandParser
+
+AddressBookParser -> AddDoctorCommandParser : parse("n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+activate AddDoctorCommandParser
+
+create AddDoctorCommand
+AddDoctorCommandParser -> AddDoctorCommand
+activate AddDoctorCommand
+
+AddDoctorCommand --> AddDoctorCommandParser : a
+deactivate AddDoctorCommand
+
+AddDoctorCommandParser --> AddressBookParser : a
+deactivate AddDoctorCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddDoctorCommandParser -[hidden]-> AddressBookParser
+destroy AddDoctorCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddDoctorCommand : execute()
+activate AddDoctorCommand
+
+AddDoctorCommand -> Model : addDoctor(doctor)
+activate Model
+
+Model --> AddDoctorCommand
+deactivate Model
+
+create CommandResult
+AddDoctorCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddDoctorCommand
+deactivate CommandResult
+
+AddDoctorCommand --> LogicManager : result
+deactivate AddDoctorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
