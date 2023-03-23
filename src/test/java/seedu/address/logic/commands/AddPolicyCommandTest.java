@@ -15,6 +15,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
+import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.PolicyBuilder;
 
 class AddPolicyCommandTest {
@@ -26,9 +27,10 @@ class AddPolicyCommandTest {
     public void execute_addPolicyUnfilteredList_success() {
         Client clientToAddPolicy = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         AddPolicyCommand addPolicyCommand = new AddPolicyCommand(INDEX_FIRST_CLIENT, POLICY_STUB);
-        clientToAddPolicy.getPolicyList().add(POLICY_STUB);
-        model.setClient(clientToAddPolicy, clientToAddPolicy);
-        UniquePolicyList clientPolicyList = clientToAddPolicy.getPolicyList();
+        Client copyClient = new ClientBuilder(clientToAddPolicy)
+                .withPolicyList(clientToAddPolicy.getPolicyList().clone()).build();
+        copyClient.getPolicyList().add(POLICY_STUB);
+        UniquePolicyList clientPolicyList = copyClient.getPolicyList();
         assertFalse(clientPolicyList.isEmpty());
     }
     @Test

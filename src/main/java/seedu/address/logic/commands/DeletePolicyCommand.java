@@ -20,8 +20,8 @@ import seedu.address.model.client.policy.Policy;
 public class DeletePolicyCommand extends Command {
     public static final String COMMAND_WORD = "deletePolicy";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the policy from the client identified by the index number used in the displayed list and "
-            + ": the policy identified by the index number used in the displayed policy list associated"
+            + ": Deletes the policy from the client identified by the index number used in the displayed list and"
+            + " the policy identified by the index number used in the displayed policy list"
             + " associated to the client.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + " pi/1";
