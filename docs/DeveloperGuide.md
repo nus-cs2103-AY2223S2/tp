@@ -22,6 +22,7 @@ connections with their peers during their time in University.
 
 System: BookFace
 
+```
 Use case: UC1 - Add Contact
 
 Actor: User
@@ -37,7 +38,9 @@ Extensions:
 2a. BookFace detects incomplete/invalid details entered.
 BookFace displays an example of valid details.
 System repeats Step 1-2 until valid details are entered.
+```
 
+```
 Use case: UC2 - Delete Contact
 
 Actor: User
@@ -53,7 +56,9 @@ Extensions:
 2a. BookFace detects incomplete/invalid index entered.
 BookFace displays an example of a valid index.
 System repeats Step 1-2 until valid information is entered.
+```
 
+```
 Use case: UC3 - Edit Contact
 
 Actor: User
@@ -69,7 +74,9 @@ Extensions:
 2a. BookFace detects incomplete/invalid details entered.
 BookFace displays an example of valid details.
 System repeats Step 1-2 until valid details are entered.
+```
 
+```
 Use case: UC4 - Find Contact
 
 Actor: User
@@ -85,7 +92,9 @@ Extensions:
 2a. BookFace detects no name entered.
 BookFace displays an example of a valid name.
 System repeats Step 1-2 until a name is entered.
+```
 
+```
 Use case: UC5 - List Contacts
 
 Actor: User
@@ -94,7 +103,9 @@ MSS:
 1. User chooses to view all contacts.
 2. BookFace displays all the user's contacts.
    Use case ends.
+```
 
+```
 Use case: UC6 - Get Help on Commands
 
 Actor: User
@@ -103,7 +114,9 @@ MSS:
 1. User chooses to view instructions on how to use BookFace.
 2. BookFace displays a url to its User Guide.
    Use case ends.
+```
 
+```
 Use case: UC7 - Add Image for a Contact
 Actor: User
 MSS:
@@ -117,7 +130,9 @@ Extensions:
 2a. BookFace detects invalid/incomplete filepath or index.
 BookFace displays an example of a valid filepath and index.
 System repeats Step 1-2 until valid information is entered.
+```
 
+```
 Use case: UC8 - Delete Image for a Contact
 
 Actor: User
@@ -136,7 +151,9 @@ System repeats Step 1-2 until valid information is entered.
 
 2b. BookFace detects that the contact does not have an image added.
 Use case ends.
+```
 
+```
 Use case: UC9 - Import Contacts from a Faculty
 
 Actor: User
@@ -152,6 +169,7 @@ Extensions:
 2a. BookFace detects incomplete/invalid details entered.
 BookFace displays an example of valid details.
 System repeats Step 1-2 until valid details are entered.
+```
 
 **Glossary** :
 * Student: A user who belongs to a faculty and attends one or more classes with other students
@@ -265,3 +283,57 @@ directory.
     - Cons:
         - Application will take up increasingly more unnecessary storage during
           its lifetime of usage
+## Import Contacts Feature
+### Import Contacts Implementation
+The import feature is facilitated by the classes `ImportCommand`, `ImportCommandParser`, 
+`SocContacts` and `ChsContacts`. The `ImportCommandParser` first parses through the user
+command to obtain the desired faculty to be imported. An instance of
+a `ImportCommand` containing the desired faculty from either `SocContacts` or 
+`ChsContacts` is then returned. `ImportCommand#execute` is then called, 
+which calls `Model#addPerson` to add the unique contacts into BookFace.
+
+Given below is an example usage scenario for how the import mechanism behaves.
+
+Step 1: User starts up the application and sees their list of contacts. 
+
+Step 2: User decides to import contacts from faculty SOC and input 
+`import soc`. `ImportCommandParser#parse` is then called to parse
+this input for the desired faculty.
+
+> **Note**: If the user inputs a faculty that does not exist,
+> an error will be returned to the user
+>
+
+Step 3: If the faculty was valid, `ImportCommand#execute` is called
+with the valid faculty that was parsed
+
+Step 4: `Model#addPerson` is called for however
+many non-duplicate contacts are to be added.
+
+
+The following sequence diagram shows how the import command works.
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+
+The following activity diagram summarizes what happens when a user executes an
+import command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+### Design Considerations:
+- **Alternative 1 (current choice):** ImportCommand#execute takes in a string to
+determine which faculty of in-built contacts to import
+    - Pros:
+        - User input is easily parsed (as it is just a string), faster to read and
+       execute the command
+    - Cons:
+        - Possibly bad OOP design, ImportCommand#execute should take in a Faculty object
+
+- **Alternative 2:** ImportCommand#execute takes in a Faculty object instead of a string
+to determine which faculty of in-built contacts to import
+    - Pros:
+        - Better OOP design then simply taking in a string
+    - Cons:
+        - Input will take longer to parse as the string input has to be parsed into
+          a faculty object to be used as input to ImportCommand#execute
