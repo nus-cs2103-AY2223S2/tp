@@ -34,12 +34,14 @@ import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.AddProjectCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.DeleteCommand;
@@ -67,6 +69,7 @@ import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
 import seedu.socket.testutil.ProjectBuilder;
+import seedu.socket.testutil.ProjectUtil;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 
 public class SocketParserTest {
@@ -78,6 +81,13 @@ public class SocketParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addpj() throws Exception {
+        Project project = new ProjectBuilder().withProjectMeeting("01/01/23-1000").build();
+        AddProjectCommand command = (AddProjectCommand) parser.parseCommand(ProjectUtil.getAddProjectCommand(project));
+        assertEquals(new AddProjectCommand(project), command);
     }
 
     @Test
