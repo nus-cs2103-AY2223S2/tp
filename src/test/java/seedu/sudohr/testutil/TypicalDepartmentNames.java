@@ -12,5 +12,7 @@ public class TypicalDepartmentNames {
 
     public static final DepartmentName HUMAN_RESOURCES_DEPARTMENT_NAME = new DepartmentName("Human Resources");
 
+    public static final DepartmentName EMPTY_DEPARTMENT_NAME = new DepartmentName("Empty Department");
+
     public static final DepartmentName DEPARTMENT_NAME_NOT_IN_SUDOHR = new DepartmentName("Random Department");
 }

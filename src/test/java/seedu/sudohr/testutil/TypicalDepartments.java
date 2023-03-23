@@ -30,6 +30,9 @@ public class TypicalDepartments {
     public static final Department SALES = new DepartmentBuilder().withDepartmentName("Sales")
             .withEmployees(GEORGE, HOON, IDA).build();
 
+    public static final Department EMPTY_DEPARTMENT = new DepartmentBuilder()
+            .withDepartmentName("Empty Department").build();
+
     public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES = HUMAN_RESOURCES.getEmployees()
             .stream()
             .findFirst()
@@ -56,6 +59,6 @@ public class TypicalDepartments {
     }
 
     public static List<Department> getTypicalDepartments() {
-        return new ArrayList<>(Arrays.asList(HUMAN_RESOURCES, ENGINEERING, SALES));
+        return new ArrayList<>(Arrays.asList(HUMAN_RESOURCES, ENGINEERING, SALES, EMPTY_DEPARTMENT));
     }
 }

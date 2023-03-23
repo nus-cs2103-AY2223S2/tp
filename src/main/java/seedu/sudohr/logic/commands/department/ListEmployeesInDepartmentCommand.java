@@ -25,6 +25,8 @@ public class ListEmployeesInDepartmentCommand extends Command {
             + COMMAND_WORD + PREFIX_DEPARTMENT_NAME + "Human Resources";
 
     public static final String MESSAGE_SUCCESS = "Listed all employees in %1$s";
+
+    public static final String MESSAGE_SUCCESS_NO_EMPLOYEE = "There are currently no employees in %1$s";
     public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The given department does not exist in SudoHR.";
 
 
@@ -49,6 +51,11 @@ public class ListEmployeesInDepartmentCommand extends Command {
         }
 
         model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+
+        if (model.getFilteredEmployeeList().isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_NO_EMPLOYEE, departmentName));
+        }
+
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, departmentName));
 
