@@ -34,7 +34,8 @@
                     </padding>
                 </HBox>
                 <VBox spacing="2">
-                    <Label fx:id="description" styleClass="cell_big_label_task" text="\$first" />
+                    <Label fx:id="description" styleClass="cell_big_label_task" text="\$description" />
+                    <Label fx:id="tank" styleClass="cell_big_label_task" text="\$tank" />
                 </VBox>
             </HBox>
         </VBox>

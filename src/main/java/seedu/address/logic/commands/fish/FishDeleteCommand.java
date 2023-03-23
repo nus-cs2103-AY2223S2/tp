@@ -10,6 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 
 /**
  * Deletes a fish identified using it's displayed index from the address book.
@@ -41,7 +42,10 @@ public class FishDeleteCommand extends FishCommand {
         }
 
         Fish fishToDelete = lastShownList.get(targetIndex.getZeroBased());
+        //get tank of fishToDelete to update the Tank's fish list
+        Tank tank = fishToDelete.getTank();
         model.deleteFish(fishToDelete);
+        tank.getFishList().removeFish(fishToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_FISH_SUCCESS, fishToDelete));
     }
 
