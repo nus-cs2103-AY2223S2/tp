@@ -9,7 +9,7 @@ import seedu.address.model.service.ServiceIdPredicate;
 /**
  * Finds and returns the service details of the provided id.
  */
-public class ViewServiceCommand extends RedoableCommand {
+public class ViewServiceCommand extends Command {
 
     public static final String COMMAND_WORD = "viewservice";
 
@@ -24,7 +24,7 @@ public class ViewServiceCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredServiceList(predicate);
         return new CommandResult(

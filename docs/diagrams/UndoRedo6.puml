@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ": LogicManager" as LogicManager LOGIC_COLOR
+Participant ": AddressBookParser" as AddressBookParser LOGIC_COLOR
+Participant "u: UndoCommand" as UndoCommand LOGIC_COLOR
+Participant ": StackUndoRedo" as StackUndoRedo LOGIC_COLOR
+Participant ": RedoableCommand" as RedoableCommand LOGIC_COLOR
+
+user -[LOGIC_COLOR]> LogicManager : execute("undo")
+activate LogicManager LOGIC_COLOR
+
+LogicManager -[LOGIC_COLOR]> AddressBookParser : ParseCommand("undo")
+activate AddressBookParser LOGIC_COLOR
+
+AddressBookParser -[LOGIC_COLOR]> UndoCommand :
+activate UndoCommand LOGIC_COLOR
+
+UndoCommand --[LOGIC_COLOR]> AddressBookParser
+deactivate UndoCommand
+
+AddressBookParser --[LOGIC_COLOR]> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -[LOGIC_COLOR]> UndoCommand : execute()
+activate UndoCommand LOGIC_COLOR
+
+UndoCommand -[LOGIC_COLOR]> StackUndoRedo : popUndo()
+activate StackUndoRedo LOGIC_COLOR
+
+StackUndoRedo --[LOGIC_COLOR]> UndoCommand
+deactivate StackUndoRedo
+
+UndoCommand -[LOGIC_COLOR]> RedoableCommand : undo()
+activate RedoableCommand LOGIC_COLOR
+
+RedoableCommand --[LOGIC_COLOR]> UndoCommand
+deactivate RedoableCommand
+
+UndoCommand --[LOGIC_COLOR]> LogicManager : result
+deactivate UndoCommand
+
+LogicManager --[LOGIC_COLOR]> user: result
+deactivate LogicManager
+
+@enduml

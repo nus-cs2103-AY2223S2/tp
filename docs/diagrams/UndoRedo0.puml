@@ -1,0 +1,38 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+Command <|-- RedoableCommand
+StackUndoRedo *--> "2" Stack
+RedoableCommand "*" <-left-  Stack
+class Command {
+  # undoRedoStack: StackUndoRedo
+  + execute(): CommandResult
+  + setData(): void
+}
+
+
+
+class RedoableCommand
+ {
+   - previousAddressBook: ReadOnlyShop
+   - isSwapped: boolean
+   - saveAddressBookSnapshot(): void
+   # undo(): void
+   # redo(): void
+   + execute(): CommandResult
+}
+
+class StackUndoRedo {
+    + push(): void
+    + popUndo(): RedoableCommand
+    + popRedo(): RedoableCommand
+}
+
+class Stack {
+}
+
+class Stack {
+
+}
+@enduml
