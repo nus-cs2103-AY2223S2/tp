@@ -7,11 +7,13 @@ import expresslibrary.model.Model;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static expresslibrary.commons.util.CollectionUtil.requireAllNonNull;
+import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class BorrowCommand extends Command {
@@ -22,22 +24,25 @@ public class BorrowCommand extends Command {
             + ": Lends a book identified by the index number used in the book listing to "
             + "the person identified by the index number used in the last person listing. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "b/ [BOOK]\n"
+            + "b/[BOOK] d/[DATE dd/mm/yyyy]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "b/ 2";
+            + "b/2 d/22/09/2025";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Book Index: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Book Index: %2$s, Due Date: %3$s";
+    public static final String MESSAGE_INVALID_DATE = "Date must be provided in the form dd/mm/yyyy";
 
     public static final String MESSAGE_BORROW_SUCCESS = "Person: %1$s borrowed Book: %2$s";
 
     private final Index personIndex;
     private final Index bookIndex;
+    private final LocalDate dueDate;
 
-    public BorrowCommand(Index personIndex, Index bookIndex) {
-        requireAllNonNull(personIndex, bookIndex);
+    public BorrowCommand(Index personIndex, Index bookIndex, LocalDate dueDate) {
+        requireAllNonNull(personIndex, bookIndex, dueDate);
 
         this.personIndex = personIndex;
         this.bookIndex = bookIndex;
+        this.dueDate = dueDate;
     }
 
     @Override
@@ -58,18 +63,23 @@ public class BorrowCommand extends Command {
         // Checkout bookToBorrow (due date, borrower, borrowDate)
         assert bookToBorrow != null;
         if (bookToBorrow.getIsBorrowed()) {
-            //throw new CommandException(Messages.MESSAGE_BOOK_BORROWED);
+            throw new CommandException(Messages.MESSAGE_BOOK_BORROWED);
         }
 
-        Set<Book> borrowedBooks = personToEdit.getBooks();
-        borrowedBooks.add(bookToBorrow);
-
+        // Create the person copy
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), borrowedBooks, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getBooks(), personToEdit.getTags());
+
+        // Update person with borrowed book
+        editedPerson.borrowBook(bookToBorrow);
+
+        // Update book's field with borrower
+        bookToBorrow.loanBookTo(editedPerson, LocalDate.now(), dueDate);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
 
         return new CommandResult(generateSuccessMessage(editedPerson, bookToBorrow));
     }
