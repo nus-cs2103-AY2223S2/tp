@@ -60,6 +60,18 @@ public class TypicalPatients {
             .withRemark("Check back regarding meal plan")
             .build();
 
+    // Do not assign this patient to any doctors in test scenarios
+    public static final Patient UNASSIGNED = new PatientBuilder()
+            .withName("Rob Smith")
+            .withEmail("robbie@gmail.com")
+            .withPhone("12346666")
+            .withHeight("1.74")
+            .withWeight("63.4")
+            .withDiagnosis("None")
+            .withStatus("Outpatient")
+            .withRemark("Non compliant")
+            .build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -67,5 +79,15 @@ public class TypicalPatients {
 
     public static List<Patient> getTypicalPatients() {
         return new ArrayList<>(Arrays.asList(ZAYDEN));
+    }
+
+    /**
+     * Returns a patient that is not assigned to any doctor
+     * in test scenarios.
+     *
+     * @return Patient an unassigned patient.
+     */
+    public static Patient getUnassignedPatient() {
+        return UNASSIGNED;
     }
 }

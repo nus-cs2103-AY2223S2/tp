@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPatients.ZAYDEN;
+import static seedu.address.testutil.TypicalPatients.getUnassignedPatient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +61,8 @@ public class TypicalDoctors {
                 });
             }
         }
+        Patient unassignedPatient = getUnassignedPatient();
+        ab.addPatient(unassignedPatient);
         return ab;
     }
 
