@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.AppParameters;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,7 +27,7 @@ public class DeleteScoreCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_SCORE_SUCCESS = "Deleted score for %1$s: %2$s";
-
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index studentIndex;
     private final Index scoreIndex;
 
@@ -42,6 +45,7 @@ public class DeleteScoreCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -49,6 +53,7 @@ public class DeleteScoreCommand extends Command {
 
         List<Score> lastShownScoreList = personToDeleteScore.getFilteredScoreList();
         if (scoreIndex.getZeroBased() >= lastShownScoreList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
         }
 
