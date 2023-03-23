@@ -101,24 +101,6 @@ public class ClientCard extends UiPart<Region> {
         addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
-        goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
-        caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
-    }
-
-    /**
-     * Sets the calorie to be displayed.
-     * If calorie value is 0000, remove display.
-     *
-     * @param client The current client.
-     * @param calorie The recommended calorie intake of the client.
-     */
-    private void setCalorieCondition(Client client, Label calorie) {
-        if (!client.getCalorie().value.equals("0000")) {
-            calorie.setText(client.getCalorie().value + " cal");
-        } else {
-            calorie.setManaged(false);
-            caloriesIcon.setManaged(false);
-        }
     }
 
     /**
@@ -131,9 +113,27 @@ public class ClientCard extends UiPart<Region> {
     private void setGoalCondition(Client client, Label goal) {
         if (!client.getGoal().value.equals("client has not added a goal")) {
             goal.setText(client.getGoal().value);
+            goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
         } else {
             goal.setManaged(false);
             goalIcon.setManaged(false);
+        }
+    }
+
+    /**
+     * Sets the calorie to be displayed.
+     * If calorie value is 0000, remove display.
+     *
+     * @param client The current client.
+     * @param calorie The recommended calorie intake of the client.
+     */
+    private void setCalorieCondition(Client client, Label calorie) {
+        if (!client.getCalorie().value.equals("0000")) {
+            calorie.setText(client.getCalorie().value + " cal");
+            caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
+        } else {
+            calorie.setManaged(false);
+            caloriesIcon.setManaged(false);
         }
     }
 
