@@ -29,7 +29,7 @@ deactivate SortCommand
 TaskBookParser --> LogicManager : s
 deactivate TaskBookParser
 
-LogicManager -> SortCommand : execute()
+LogicManager -> SortCommand : execute(model)
 activate SortCommand
 
 SortCommand -> Model : sortTask
