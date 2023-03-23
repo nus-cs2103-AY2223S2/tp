@@ -40,8 +40,6 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appointment = appointment;
         System.out.println(appointment.toString());
-
-        patientList.getPatientList().forEach(patient -> System.out.println(patient.getId()));
         id.setText(displayedIndex + ". ");
         /*
         Patient thisPatient = patientList
