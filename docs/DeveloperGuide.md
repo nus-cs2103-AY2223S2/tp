@@ -132,11 +132,11 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command. 
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is 
-3. executed by the `LogicManager`. 
-4. The command can communicate with the `Model` or `OfficeConnectModel` when it is executed (e.g. to add a person or 
-5. add a task or add a assignment). 
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+3. executed by the `LogicManager`.
+4. The command can communicate with the `Model` or `OfficeConnectModel` when it is executed (e.g. to add a person or
+5. add a task or add a assignment).
 6. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")`
@@ -404,7 +404,7 @@ Below is a sequence diagram that illustrates how a user adds new tasks into the 
 
 * **Alternative 1 (current choice):** Only title is required when creating a task. The other fields are optional.
     * Pros: As users may not have a content or status in mind when creating new tasks, this alternative allows flexibility
-  in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not 
+  in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not
   require content descriptions.
     * Cons: More difficult to implement, more likely to cause bugs.
 
@@ -416,8 +416,8 @@ Below is a sequence diagram that illustrates how a user adds new tasks into the 
 #### Constraints:
 **Title must be unique:** </br>
 We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
-titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as 
-"Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be 
+titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as
+"Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title. </br>
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
 to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
@@ -433,34 +433,34 @@ Purpose: Allows users to delete the task at the specified index in the OfficeCon
 The implementation of this feature is supported by `ListTaskCommand`, `DeleteTaskCommand` and `DeleteTaskCommandParser`.
 Below are the steps required to delete a task in the OfficeConnectModel. </br>
 
-Step 1: User keys in `listtask`, which will display the index of all tasks. 
+Step 1: User keys in `listtask`, which will display the index of all tasks.
 The user can thus obtain the index of the task that they want to delete.
 
-Step 2: User keys in `deletetask INDEX` to delete the task at the specified index. 
-If the index is invalid, an error will be thrown. 
+Step 2: User keys in `deletetask INDEX` to delete the task at the specified index.
+If the index is invalid, an error will be thrown.
 
-Below is an activity diagram showcasing the 2 steps: </br> 
+Below is an activity diagram showcasing the 2 steps: </br>
 ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
 
 #### Design Considerations
 **Aspect: Implementation of Delete Task Command**
 
 * **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
-    * Pros: Increase convenience for users, as they do not have to remember the index of each task. Also easier to implement.
+    * Pros: Increase convenience for users, as they do not have to remember the index of each task while being easier to implement.
     * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
   obtaining the index needed for `deletetask`.
 
-* **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can 
+* **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
 use this index when deleting tasks
     * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
   troublesome for them to delete tasks as the number of steps required is reduced by one. 
   Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
     * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
-  If the user does not keep track of the indexes they have used for previous tasks, they may have to still 
+  If the user does not keep track of the indexes they have used for previous tasks, they may have to still
   call `listtask` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not 
   give it an advantage over the first alternative. </br>
   It would also be harder to keep track of invalid indexes. When tasks are deleted, their index should be invalid. Using
-  this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which 
+  this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which
   would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e. first task
   has index 1, second task has index 2 etc.) and thus the invalid indexes can be easily obtained.
 
