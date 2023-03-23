@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant "cmd:AddCommand" as cmd LOGIC_COLOR
+Participant "model:Model" as model MODEL_COLOR
+Participant ":StateHistory" as history MODEL_COLOR
+
+user -[USER_COLOR]> ui : "add p"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("add p")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> cmd : execute(p)
+activate cmd LOGIC_COLOR
+
+cmd -[LOGIC_COLOR]> model : addPerson(p)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> cmd
+deactivate model
+
+cmd -[MODEL_COLOR]-> logic : result
+deactivate cmd
+
+logic -[LOGIC_COLOR]> history : addCommand(cmd, result, model)
+activate history MODEL_COLOR
+
+history --[STORAGE_COLOR]> logic
+deactivate history
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
