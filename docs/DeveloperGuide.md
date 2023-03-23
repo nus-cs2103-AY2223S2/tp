@@ -158,26 +158,28 @@ This section describes some noteworthy details on how certain features are imple
 
 #### ApplicativeParser 
 
-The parser of Vimification is implemented with `ApplicativeParser` instead with traditional regex. `ApplicativeParser` is an idea from function programming language, where we have a set of "combinators", and we can combine these combinators with the power of Applicative or Monad to form more powerful combinators.
+The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. `ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators with the power of Applicative and/or Monad to form more powerful combinators.
 
 The main reason why we used `ApplicativeParser` is because it is easier to read and maintain.
 
-`ApplicativeParser` can be implemented as a wrapper around a function that takes in some input sequence, and returns an container that represents one of these 2 cases:
+`ApplicativeParser` can be implemented as a wrapper around a function that accepts some input sequence, and returns an container that represents one of these possibilities:
 
-* The parser fails, the container should be empty.
-* The parser succeeds, the container should contain the remaining input sequence, and the parsing result.
+* The parser fails, and the container should be empty.
+* The parser succeeds, and the container should contain the remaining input sequence, togerther with the parsing result.
 
-In the current implementation, the container used is `Optional` from Java's standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` is not reflected in the type system, and must be used with care.
+In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care.
 
-Another problem with `Exception` is their ability to short-circuit the parser. When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative.
+When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative, and is undersiable for some combinators, such as `ApplicativeParser#or()`, `ApplicativeParser#many()` and `ApplicativeParser#many1()`.
 
-Combinators of `ApplicativeParser` is provided using static factory methods.
+The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`. This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offsets stored in the `StringView`, instead of having to copy the entire substring into a new `String`.
+
+Some basic combinators of `ApplicativeParser` is provided using static factory methods.
 
 #### CommandParser
 
 The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
 
-A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` combinator, which will be used inside `CommandParser#parse()`.
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` combinator to be used inside `CommandParser#parse()`.
 
 Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
 
