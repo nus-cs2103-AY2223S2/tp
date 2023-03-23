@@ -41,11 +41,13 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_DATE, PREFIX_FILE, PREFIX_NOTE);
 
         //Make the user not create tutorial and students with the same command
-        if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)
-                || !argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
+                PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+        }
+        if ((!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)  || !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
         }
         String name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
         LocalDate date;
