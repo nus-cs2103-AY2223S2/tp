@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HMHero;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +31,7 @@ public class RejectCommandTest {
 
     @Test
     public void execute_appliedStatusApplicant_success() {
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HMHero(model.getAddressBook()), new UserPrefs());
 
         Person personToReject = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         PersonBuilder personInList = new PersonBuilder(personToReject);
@@ -51,7 +51,7 @@ public class RejectCommandTest {
 
     @Test
     public void execute_shortlistedStatusApplicant_success() {
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HMHero(model.getAddressBook()), new UserPrefs());
 
         Person personToReject = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         PersonBuilder personInList = new PersonBuilder(personToReject);
@@ -71,7 +71,7 @@ public class RejectCommandTest {
 
     @Test
     public void execute_acceptedStatusApplicant_success() {
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HMHero(model.getAddressBook()), new UserPrefs());
 
         Person personToReject = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         PersonBuilder personInList = new PersonBuilder(personToReject);
@@ -108,7 +108,7 @@ public class RejectCommandTest {
 
         String expectedMessage = String.format(RejectCommand.MESSAGE_REJECT_PERSON_SUCCESS, rejectedPerson.getName());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HMHero(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(personToReject, rejectedPerson);
         expectedModel.updateFilteredPersonList(namePhonePredicate);
 
