@@ -79,7 +79,18 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    /**
+     * Gets persons at the corresponding indexes
+     * @param indexList list of indexes to retrieve
+     * @return persons at those indexes
+     */
     List<Person> getPersonsByIndexes(List<Index> indexList);
+    /**
+     * Gets meetings at the corresponding indexes
+     * @param indexList list of indexes to retrieve
+     * @return meetings at those indexes
+     */
+    List<Meeting> getMeetingsByIndexes(List<Index> indexList);
 
     /**
      * Adds the given person.

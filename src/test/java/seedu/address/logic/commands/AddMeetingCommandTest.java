@@ -131,6 +131,11 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public List<Meeting> getMeetingsByIndexes(List<Index> indexList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }

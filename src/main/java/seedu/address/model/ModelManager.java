@@ -117,6 +117,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Meeting> getMeetingsByIndexes(List<Index> indexList) {
+        List<Meeting> meetings = new ArrayList<>();
+        for (Index index : indexList) {
+            meetings.add(filteredMeetings.get(
+                    index.getZeroBased())
+            );
+        }
+        return meetings;
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
