@@ -257,15 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of patient records
+* has a need to manage a significant number of patients coming into an A&E in a private hospital 
 * can type fast
-* prefers typing to execute commands and input patient records
+* prefers typing to execute commands and allocating patients by their status to their respective wards
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
-* solve the problem of slow and multiple step process of documenting patient medical records during in-processing
-* provide faster access to a particular patient’s medical records for hospital admin staff
+* solve the problem of slow and multiple step process of allocating patients to their respective wards in an A&E
+* provide faster access to a particular patient’s details for hospital admin staff
+* provide a more efficient process of managing patients by their status to cater to patients who are in urgent need of care, which in turn provides a better quality of service
+* provide a simple system to keep track and update a patient's discharge date 
 
 
 ### User stories
