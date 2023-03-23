@@ -172,7 +172,7 @@ The format is as follows:
 
 Given below is an example scenario and how the delete function woks at each step.
 
-Step 1. The user executes `delete 1` command to delete the 5th task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`. 
+Step 1. The user executes `delete 1` command to delete the 5th task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
 
 Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
 
