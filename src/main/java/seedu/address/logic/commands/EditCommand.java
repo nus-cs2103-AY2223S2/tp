@@ -74,7 +74,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         ObservableList<Employee> lastShownList = model.getFilteredEmployeeList();
 
-        if (!EmployeeId.isValidNumber(employeeId.toString())) {
+        if (!EmployeeId.isValidEmployeeId(employeeId.toString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
