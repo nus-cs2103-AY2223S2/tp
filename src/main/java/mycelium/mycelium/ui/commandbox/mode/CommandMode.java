@@ -2,6 +2,7 @@ package mycelium.mycelium.ui.commandbox.mode;
 
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import mycelium.mycelium.commons.core.LogsCenter;
@@ -43,22 +44,23 @@ public class CommandMode extends Mode {
     }
 
     @Override
-    public void onInputSubmit(String input) {
-        if (input.equals("")) {
-            return;
+    public Optional<Mode> onInputSubmit(String input) {
+        if (!input.equals("")) {
+            try {
+                mainWindow.executeCommand(input);
+                mainWindow.setCommandBoxInput("");
+            } catch (CommandException | ParseException e) {
+                mainWindow.setCommandBoxStyleError();
+            }
         }
-        try {
-            mainWindow.executeCommand(input);
-        } catch (CommandException | ParseException e) {
-            mainWindow.setCommandBoxStyleError();
-        }
+        return Optional.empty();
     }
 
     @Override
-    public String teardownMode() {
+    public void teardownMode() {
         logger.info("Tearing down command mode, restoring input: " + cachedInput);
         mainWindow.setCommandBoxStyleDefault();
-        return cachedInput;
+        mainWindow.setCommandBoxInput(cachedInput);
     }
 
     @Override

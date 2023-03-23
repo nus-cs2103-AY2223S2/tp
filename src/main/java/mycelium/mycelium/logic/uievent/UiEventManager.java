@@ -5,10 +5,12 @@ import javafx.event.EventType;
 import javafx.scene.input.KeyEvent;
 import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.uievent.key.ClearKey;
+import mycelium.mycelium.logic.uievent.key.EndOfLineKey;
 import mycelium.mycelium.logic.uievent.key.FindKey;
 import mycelium.mycelium.logic.uievent.key.HelpKey;
 import mycelium.mycelium.logic.uievent.key.NextItemKey;
 import mycelium.mycelium.logic.uievent.key.PrevItemKey;
+import mycelium.mycelium.logic.uievent.key.StartOfLineKey;
 import mycelium.mycelium.logic.uievent.key.SwitchKey;
 import mycelium.mycelium.logic.uievent.key.TabKey;
 import mycelium.mycelium.ui.MainWindow;
@@ -51,6 +53,10 @@ public class UiEventManager implements UiEvent {
             new ClearKey().execute(logic, mainWindow);
         } else if (TabKey.KEY_COMBINATION.match(event)) {
             new TabKey().execute(logic, mainWindow);
+        } else if (StartOfLineKey.KEY_COMBINATION.match(event)) {
+            new StartOfLineKey().execute(logic, mainWindow);
+        } else if (EndOfLineKey.KEY_COMBINATION.match(event)) {
+            new EndOfLineKey().execute(logic, mainWindow);
         } else {
             mainWindow.focusCommandBox();
             return;
@@ -58,6 +64,11 @@ public class UiEventManager implements UiEvent {
         event.consume();
     }
 
+    /**
+     * Get the event handler for key events.
+     *
+     * @return the event handler for key events
+     */
     public EventHandler<KeyEvent> getEventHandler() {
         return new EventHandler<KeyEvent>() {
             @Override

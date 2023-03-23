@@ -83,6 +83,15 @@ public class EntityList<T> extends UiPart<Region> {
     }
 
     /**
+     * Returns the selected item in the list.
+     *
+     * @return The selected item in the list.
+     */
+    public T getSelectedItem() {
+        return listView.getSelectionModel().getSelectedItem();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code T}.
      */
     class ListViewCell extends ListCell<T> {
