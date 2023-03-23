@@ -41,12 +41,14 @@ public class AddProjectCommand extends Command {
      */
     public AddProjectCommand(Project project) {
         requireNonNull(project);
+        assert project != null;
         toAdd = project;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert model != null;
 
         if (model.hasProject(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);

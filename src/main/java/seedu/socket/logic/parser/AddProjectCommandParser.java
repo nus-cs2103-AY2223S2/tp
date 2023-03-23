@@ -45,6 +45,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
+        assert isRequiredPrefixesPresent == true;
 
         ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
         ProjectRepoHost projectRepoHost = ParserUtil.parseRepoHost(argMultimap.getValue(PREFIX_REPO_HOST).get());
