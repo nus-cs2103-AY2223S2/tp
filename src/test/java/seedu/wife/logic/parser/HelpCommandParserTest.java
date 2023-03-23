@@ -5,7 +5,7 @@ import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.HelpMenu;
-import seedu.wife.logic.commands.HelpCommand;
+import seedu.wife.logic.commands.generalcommands.HelpCommand;
 
 public class HelpCommandParserTest {
 

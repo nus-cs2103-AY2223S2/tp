@@ -1,7 +1,7 @@
 package seedu.wife.logic.parser;
 
 import seedu.wife.commons.core.HelpMenu;
-import seedu.wife.logic.commands.HelpCommand;
+import seedu.wife.logic.commands.generalcommands.HelpCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 
 /**
