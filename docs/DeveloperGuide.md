@@ -154,6 +154,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### Adding an Applicant
+
+#### Overview
+
+The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
+
+The activity diagram is as such:
+
+[Add in later]()
+
+The sequence diagram to show the interactions between different components during an `add` command is as such:
+
+[Add in later]()
+
+#### Feature Details
+
+1. The user specifies Applicants details to create. Compulsory fields are name, phone, address, and email. Optional
+fields include application date time and notes about the applicant.
+1. If any of the compulsory fields are not provided, or the provided inputs are in the wrong format, an error message
+   will be displayed. The user will be prompted to enter the command correctly via the error message.
+1. All applicants added will start at the Applied Status.
+1. If application date time was not provided, HMHero would assume the application date time of the Applicant to be now
+   (the current time on the user's computer)
+1. The applicant is cross-referenced in the `Model` to check if it already exists. If it does, an error is raised
+to inform the user.
+1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
+
 #### Advancing an Applicant
 
 ##### Overview
