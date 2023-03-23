@@ -218,6 +218,45 @@ When adding a student entry, these were the alternatives considered.
     * Cons:
         * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
         * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
+
+## Find feature
+
+### Implementation Details
+
+The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate` and `NameContainsKeywordsPredicate`. <br>
+
+Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
+
+Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
+// TODO sequence diagram
+
+### Feature details
+Our implementation extends from the `find` implementation in AB3 by accommodating `find PARTIAL_KEYWORD` on top of the current `find KEYWORD`.
+> An example of `PARTIAL_KEYWORD` is "Ye" while `KEYWORD` would be "Yeoh". <br>
+
+### General Design Considerations
+THe implementation of `find` is built on top of the original AB3 codebase's `find` command. <br>
+
+Our implementation has some additions such as:
+1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
+2. `find PREFIX` across the various attributes of a `Student` other than their `Name`
+
+**Aspect: Command format:**
+* **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
+  * Pros:
+    * Improves user convenience by giving them flexibility in the completeness of their desired find keyword.
+    * Extensible across other attributes.
+  * Cons:
+    * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
+    * Might be slightly challenging for new users to enter the `PREFIX`.
+* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD`
+  * Pros:
+    * Easier to implement as there is lesser validating done by the app.
+    * Provides the user flexibility in searching across all attributes by default.
+  * Cons:
+    * The filtered list may not be what was desired as short partial keywords like `a` is unlikely to result in a succinct list.
+    * Users will not be able to search keywords for a particular attribute.
+
 ## Edit Feature
 
 ### Implementation Details
@@ -285,7 +324,14 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
       * Less flexible as users cannot decide which attribute to sort by.
       * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
       * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
-
+* **Alternative 2 (Current choice):** `sort ORDER`
+  * Pros:
+    * Provides extensibility of sort (eg. future implementation of `sort edu ORDER` to sort by education level)
+    * Allows users to choose the order they would like to sort the list by
+    * Gives flexibility and convenience to users.
+  * Cons:
+    * Adds complexity to the implementation as more error checking of the inputs is required.
+  
 _{more aspects to be added}_
 ### \[Proposed\] Undo/redo feature
 
