@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -61,27 +60,17 @@ public class JsonRosterStorage implements RosterStorage {
 
 
         File file = new File(filePath.toString());
-        Scanner scanner = new Scanner(file);
-
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            System.out.println(line);
-        }
-
-        scanner.close();
 
         try {
             SerializedRoster jsonRoster = mapper.readValue(file, SerializedRoster.class);
             Roster roster = jsonToRoster(jsonRoster);
-
-            System.out.println(rosterToJson(roster));
 
             return Optional.of(roster);
         } catch (IOException e) {
             e.printStackTrace();
             return Optional.empty();
         }
-        //to add: handling for problematic file
+        //to add: handling for problematic file load (incorrect format / does not exist?)
 
 
 

@@ -46,6 +46,8 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected ReadOnlyRoster roster;
+
 
     @Override
     public void init() throws Exception {
@@ -63,9 +65,10 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
+        model.setRoster(roster);
+        System.out.println(roster.getUnmodifiableCourseList().size());
+        System.out.println("model size BEFORE logic called: " + model.getModifiableFilteredCourseList().size());
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
     }
 
@@ -79,6 +82,8 @@ public class MainApp extends Application {
         ReadOnlyRoster initialData;
         try {
             addressBookOptional = storage.readRoster();
+            System.out.println("SOTRAGE ROSTER###########");
+            System.out.println(addressBookOptional.isPresent());
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Roster");
                 new File("data").mkdir();
@@ -91,7 +96,8 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
             initialData = new Roster();
         }
-
+        System.out.println("initial data size " + initialData.getModifiableCourseList().size());
+        this.roster = initialData;
         return new ModelManager(initialData, userPrefs);
     }
 

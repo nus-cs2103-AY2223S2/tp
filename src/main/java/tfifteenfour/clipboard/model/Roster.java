@@ -54,13 +54,17 @@ public class Roster implements ReadOnlyRoster {
         this.students.setStudents(students);
     }
 
+    public void setCourses(List<Course> courses) {
+        this.courses.setCourses(courses);
+    }
+
     /**
      * Resets the existing data of this {@code Roster} with {@code newData}.
      */
     public void resetData(ReadOnlyRoster newData) {
         requireNonNull(newData);
-
-        setStudents(newData.getUnmodifiableStudentList());
+        // setStudents(newData.getUnmodifiableStudentList());
+        setCourses(newData.getUnmodifiableCourseList());
     }
 
     //// student-level operations
@@ -135,6 +139,7 @@ public class Roster implements ReadOnlyRoster {
 
     @Override
     public ObservableList<Course> getUnmodifiableCourseList() {
+        System.out.println("GET UNMODIFIABLE COURSE LIST##");
         return courses.asUnmodifiableObservableList();
     }
 

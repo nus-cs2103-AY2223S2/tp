@@ -45,6 +45,8 @@ public class ModelManager implements Model {
         viewedStudent = new FilteredList<>(this.roster.getUnmodifiableStudentList());
 
         filteredCourses = new FilteredList<>(this.roster.getModifiableCourseList());
+
+        System.out.println("MODEL MANAGER CONTRUCTOR" + roster.getModifiableCourseList().size());
     }
 
     public ModelManager() {

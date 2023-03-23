@@ -38,6 +38,8 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
+        System.out.println(model.getModifiableFilteredCourseList().size());
+        System.out.println("LOGIC MANGER #####");
         this.model = model;
         this.storage = storage;
         this.currentSelected = new CurrentSelected();
@@ -56,6 +58,9 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        System.out.println(model.getRoster().getUnmodifiableCourseList().size());
+        System.out.println("$$$$$$$$$");
 
         CommandResult commandResult;
         Command command = RosterParser.parseCommand(commandText, currentSelected);
