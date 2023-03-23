@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
@@ -40,11 +39,16 @@ public class ExpenseList implements Iterable<Expense> {
         internalListOfExpenses.remove(toRemove);
     }
 
-    public void replaceDeletedCategory(Category target, MiscellaneousCategory MISCELLANEOUS_CATEGORY) {
+    /**
+     * Replace expenses with {@code target} category with Misc object
+     * @param target
+     * @param misc
+     */
+    public void replaceDeletedCategory(Category target, MiscellaneousCategory misc) {
         requireNonNull(target);
         internalListOfExpenses.forEach(expense -> {
             if (expense.getCategory().equals(target)) {
-                expense.setCategory(MISCELLANEOUS_CATEGORY);
+                expense.setCategory(misc);
             }
         });
     }

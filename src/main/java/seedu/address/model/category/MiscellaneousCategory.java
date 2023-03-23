@@ -7,8 +7,6 @@ package seedu.address.model.category;
 public class MiscellaneousCategory extends Category {
     /**
      * Constructor for MiscellaneousCategory class.
-     * @param categoryName Name of the category
-     * @param description Short description of the category
      */
     public MiscellaneousCategory() {
         super("Misc", "Placeholder Description");

@@ -18,10 +18,10 @@ import seedu.address.model.expense.ExpenseList;
  */
 public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
+    private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
 
-    private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
 
     /*
      * The 'unusual' code block below is a non-static initialization block,

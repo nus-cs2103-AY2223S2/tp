@@ -4,13 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import javafx.beans.Observable;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.util.Callback;
 import seedu.address.model.category.Category;
 
 /**
@@ -147,12 +140,4 @@ public class Expense {
         this.category = category;
     }
 
-//    public static Callback<Expense, Observable[]> extractor() {
-//        return new Callback<Expense, Observable[]>() {
-//            @Override
-//            public Observable[] call(Expense param) {
-//                return new Observable[]{param.name, param.category, param.amount, param.date};
-//            }
-//        };
-//    }
 }
