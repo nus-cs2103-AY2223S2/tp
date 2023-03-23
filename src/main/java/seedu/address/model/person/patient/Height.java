@@ -19,7 +19,7 @@ public class Height {
      */
     public static final String VALIDATION_REGEX = "^\\s*\\d{1}\\.\\d{2}\\s*$";
 
-    public final String height;
+    public final String value;
 
     /**
      * Constructs a {@code Height}.
@@ -30,7 +30,7 @@ public class Height {
         requireNonNull(height);
         checkArgument(isValidHeight(height), MESSAGE_CONSTRAINTS);
         String trimmedHeight = height.trim();
-        this.height = trimmedHeight;
+        this.value = trimmedHeight;
     }
 
     /**
@@ -42,18 +42,18 @@ public class Height {
 
     @Override
     public String toString() {
-        return height + " m";
+        return value + " m";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Height // instanceof handles nulls
-                && height.equals(((Height) other).height)); // state check
+                && value.equals(((Height) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return height.hashCode();
+        return value.hashCode();
     }
 }

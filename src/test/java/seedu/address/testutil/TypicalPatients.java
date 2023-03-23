@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.person.patient.Status;
 
@@ -77,8 +78,19 @@ public class TypicalPatients {
 
     private TypicalPatients() {} // prevents instantiation
 
+    /**
+     * Returns an {@code AddressBook} with all the typical patients.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Patient patient : getTypicalPatients()) {
+            ab.addPatient(patient);
+        }
+        return ab;
+    }
+
     public static List<Patient> getTypicalPatients() {
-        return new ArrayList<>(Arrays.asList(ZAYDEN));
+        return new ArrayList<>(Arrays.asList(ZAYDEN, YANNIE, XANNY, WALTER));
     }
 
     /**
