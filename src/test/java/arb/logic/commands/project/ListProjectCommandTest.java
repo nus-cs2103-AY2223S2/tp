@@ -36,6 +36,12 @@ public class ListProjectCommandTest {
     }
 
     @Test
+    public void execute_currentListShownTag_success() {
+        assertCommandSuccess(new ListProjectCommand(), ListType.TAG, ListType.PROJECT, model,
+                ListProjectCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
     public void execute_listIsFiltered_showsEverything() {
         showProjectAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListProjectCommand(), ListType.PROJECT, ListType.PROJECT, model,

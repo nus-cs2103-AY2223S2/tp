@@ -45,7 +45,7 @@ public class Price implements Comparable<Price> {
     }
     @Override
     public String toString() {
-        return "Price: $" + df.format(fullPrice);
+        return "Price: $" + getPrice();
     }
 
     @Override

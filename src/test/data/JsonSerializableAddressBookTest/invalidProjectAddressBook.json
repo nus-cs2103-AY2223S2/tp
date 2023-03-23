@@ -3,6 +3,6 @@
   "projects": [{
       "title": "RUBBER DUCKY COMMISSION",
       "deadline": "ocean",
-      "status": "NOT DONE"
+      "status": "false"
   }]
 }

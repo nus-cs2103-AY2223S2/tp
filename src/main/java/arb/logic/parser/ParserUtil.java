@@ -121,10 +121,11 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        String lowercaseTrimmedTag = trimmedTag.toLowerCase();
+        if (!Tag.isValidTagName(lowercaseTrimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tag(lowercaseTrimmedTag);
     }
 
     /**

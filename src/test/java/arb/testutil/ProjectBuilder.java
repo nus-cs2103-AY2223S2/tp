@@ -1,11 +1,15 @@
 package arb.testutil;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
+import arb.model.tag.Tag;
+import arb.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Project objects.
@@ -20,6 +24,8 @@ public class ProjectBuilder {
     private Title title;
     private Optional<Deadline> deadline;
     private Optional<Price> price;
+    private Set<Tag> tags;
+    private boolean isDone;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -28,6 +34,8 @@ public class ProjectBuilder {
         title = new Title(DEFAULT_TITLE);
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
         price = Optional.of(new Price(DEFAULT_PRICE));
+        tags = new HashSet<>();
+        isDone = false;
     }
 
     /**
@@ -37,6 +45,8 @@ public class ProjectBuilder {
         title = projectToCopy.getTitle();
         deadline = Optional.ofNullable(projectToCopy.getDeadline());
         price = Optional.ofNullable(projectToCopy.getPrice());
+        tags = new HashSet<>(projectToCopy.getTags());
+        isDone = projectToCopy.getStatus().getStatus();
     }
 
     /**
@@ -60,6 +70,22 @@ public class ProjectBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
+     */
+    public ProjectBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets whether the project to be built is meant to be done.
+     */
+    public ProjectBuilder withStatus(boolean isDone) {
+        this.isDone = isDone;
+        return this;
+    }
+
+    /**
      * Sets the {@code Price} of the {@code Project} being built.
      * @param price Price to set.
      * @return The ProjectBuilder object.
@@ -74,7 +100,11 @@ public class ProjectBuilder {
      * @return The new Project.
      */
     public Project build() {
-        return new Project(title, this.deadline.orElse(null), this.price.orElse(null));
+        Project project = new Project(title, this.deadline.orElse(null), this.price.orElse(null), tags);
+        if (isDone) {
+            project.markAsDone();
+        }
+        return project;
     }
 
 }

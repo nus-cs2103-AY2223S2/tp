@@ -10,6 +10,10 @@ import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
+import arb.model.project.Deadline;
+import arb.model.project.Price;
+import arb.model.project.Project;
+import arb.model.project.Title;
 import arb.model.tag.Tag;
 
 /**
@@ -33,10 +37,23 @@ public class SampleDataUtil {
         };
     }
 
+    public static Project[] getSampleProjects() {
+        return new Project[] {
+            new Project(new Title("Sky Painting"), new Deadline("today"), new Price("3"),
+                getTagSet("painting", "commission")),
+            new Project(new Title("Tree Sculpture"), null, null,
+                getTagSet("sculpture", "personal")),
+            new Project(new Title("Self Portrait"), new Deadline("next week"), null,
+                getTagSet("personal", "painting"))
+        };
+    }
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
+        }
+        for (Project sampleProject : getSampleProjects()) {
+            sampleAb.addProject(sampleProject);
         }
         return sampleAb;
     }

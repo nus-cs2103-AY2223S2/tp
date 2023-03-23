@@ -34,6 +34,7 @@ import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.commands.project.UnmarkProjectCommand;
+import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.ClientContainsTagPredicate;
@@ -204,6 +205,14 @@ public class AddressBookParserTest {
         for (String commandWord : ListProjectCommand.getCommandWords()) {
             assertTrue(parser.parseCommand(commandWord) instanceof ListProjectCommand);
             assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListProjectCommand);
+        }
+    }
+
+    @Test
+    public void parseCommand_listTag() throws Exception {
+        for (String commandWord : ListTagCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ListTagCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListTagCommand);
         }
     }
 
