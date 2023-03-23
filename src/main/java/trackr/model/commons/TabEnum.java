@@ -6,8 +6,8 @@ package trackr.model.commons;
 public enum TabEnum {
     HOME,
     ORDERS,
-    TASK,
-    CONTACT,
+    TASKS,
+    CONTACTS,
     MENU;
 
     public static int getTabIndex(String targetStr) {

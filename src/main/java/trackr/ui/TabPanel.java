@@ -3,8 +3,9 @@ package trackr.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
 
@@ -17,12 +18,13 @@ public class TabPanel extends UiPart<Region> {
 
     private Logic logic;
 
-    private SupplierListPanel supplierListPanel;
+    private HomeView homeView;
+    private SupplierListPanel contactListPanel;
     private TaskListPanel taskListPanel;
     private OrderListPanel orderListPanel;
 
     @FXML
-    private Tab supplierTab;
+    private Tab homeTab;
 
     @FXML
     private Tab orderTab;
@@ -31,7 +33,13 @@ public class TabPanel extends UiPart<Region> {
     private Tab taskTab;
 
     @FXML
-    private StackPane supplierListPanelPlaceholder;
+    private Tab contactTab;
+
+    @FXML
+    private Tab menuTab;
+
+    @FXML
+    private StackPane homePanelPlaceholder;
 
     @FXML
     private StackPane taskListPanelPlaceholder;
@@ -39,16 +47,11 @@ public class TabPanel extends UiPart<Region> {
     @FXML
     private StackPane orderListPanelPlaceholder;
 
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
+    @FXML
+    private StackPane contactListPanelPlaceholder;
 
     /**
-     * Creates an empty TabPane 
+     * Creates an empty TabPane
      */
     public TabPanel(Logic logic) {
         super(FXML);
@@ -61,23 +64,33 @@ public class TabPanel extends UiPart<Region> {
      * Adds all tab in order.
      */
     private void fillTabs() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder
-                .getChildren()
-                .add(taskListPanel.getRoot());
-        addNewTab(taskTab, taskListPanelPlaceholder, "Home");
-
-        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
-        supplierListPanelPlaceholder
-                .getChildren()
-                .add(supplierListPanel.getRoot());
-        addNewTab(supplierTab, supplierListPanelPlaceholder, "Suppliers");
+        homeView = new HomeView(logic);
+        homePanelPlaceholder.getChildren().add(homeView.getRoot());
+        addNewTab(homeTab, homePanelPlaceholder, "Home");
 
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         orderListPanelPlaceholder
                 .getChildren()
                 .add(orderListPanel.getRoot());
         addNewTab(orderTab, orderListPanelPlaceholder, "Orders");
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder
+                .getChildren()
+                .add(taskListPanel.getRoot());
+        addNewTab(taskTab, taskListPanelPlaceholder, "Tasks");
+
+        contactListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
+        contactListPanelPlaceholder
+                .getChildren()
+                .add(contactListPanel.getRoot());
+        addNewTab(contactTab, contactListPanelPlaceholder, "Contacts");
+
+        // Create placeholder with text for menu
+        menuTab.setClosable(false);
+        menuTab.setText("Menu");
+        menuTab.setContent(new Text("Menu Items here."));
+        tabPanel.getTabs().add(menuTab);
     }
 
     /**
@@ -94,8 +107,8 @@ public class TabPanel extends UiPart<Region> {
         tabPanel.getSelectionModel().select(index.getZeroBased());
     }
 
-    public SupplierListPanel getSupplierListPanel() {
-        return supplierListPanel;
+    public SupplierListPanel getContactListPanel() {
+        return contactListPanel;
     }
 
     public TaskListPanel getTaskListPanel() {
