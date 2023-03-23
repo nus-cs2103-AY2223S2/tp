@@ -85,7 +85,7 @@ Format: `help`
 
 Adds an internship application to be tracked.
 
-Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS​`
+Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Job Description and Deadline are optional fields for an application.

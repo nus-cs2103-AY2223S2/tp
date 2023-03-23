@@ -165,6 +165,71 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Application feature
+
+#### About
+The add application command is a core feature of sprINT, allowing users to easily keep track of their internship
+applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
+including the role, company, email, and status.
+
+With the add application command, users no longer have to rely on memory or scattered notes to keep track of their
+applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
+time to monitor their progress.
+
+#### Usage
+To use the add application command in sprINT, simply issue the command in the following format:
+
+add r/[role] c/[company name] e/[company email] s/[status]
+
+Here's a breakdown of what each prefix means:
+
+- `r/` - this prefix is used to indicate the role or position you're applying for in the internship application.
+- `c/` - this prefix is used to indicate the name of the company you're applying to for the internship.
+- `e/` - this prefix is used to indicate the email address of the company or the contact person you're communicating with regarding the application.
+- `s/` - this prefix is used to indicate the status of your application, such as "interested", "applied", "rejected", or "offered".
+- `t/` - this prefix is used to indicate the tags that you want to associate with your application.
+
+#### Implementation
+The add application mechanism is facilitated by the Ui, Logic and Model components of sprINT. 
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for a specific purpose of 
+parsing user commands for adding applications.
+5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
+6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
+the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
+must provide in the input when using the add application feature.
+
+</div>   
+
+7. These fields will then be used to create an `Application` instance.
+8. The newly created `Application` instance will then be used to create an `AddApplicationCommand`. This command instances
+is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `AddApplicationCommand`. This initializes the execution
+the logic behind adding the associated application instance to the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+the execution of the command. 
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
+application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+exception that was thrown and the error message will be displayed to the user.
+
+</div> 
+
+For a more graphical illustration of how an add application command is processed, please refer to the following
+sequence diagram:
+
+![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
+
+
 ### \[In Progress\] Sort feature
 
 #### About
