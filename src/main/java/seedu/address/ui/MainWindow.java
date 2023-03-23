@@ -43,6 +43,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
+    @FXML 
+    private MenuItem importMenuItem;
+
+    @FXML 
+    private MenuItem exportMenuItem;
+
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -159,6 +165,16 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    @FXML 
+    public void handleImport() {
+        logger.info("Import Button Clicked"); 
+    }
+
+    @FXML
+    public void handleExport() {
+        logger.info("Export Button Clicked");
     }
 
     void show() {
