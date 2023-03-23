@@ -108,6 +108,7 @@ public class GroupAddCommand extends Command {
         Set<Tag> groupsAdded = addToModifiedGroup(model, personToGroupAdd);
         Person modifiedPerson = createModifiedPerson(personToGroupAdd, groupsAdded);
         model.setPerson(personToGroupAdd, modifiedPerson);
+        model.commitAddressBook();
         return new CommandResult(String.format(GROUP_ADD_PERSON_SUCCESS, personToGroupAdd.getName(), groupsToAdd));
     }
 

@@ -123,7 +123,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `student` objects (which are contained in a `UniquestudentList` object).
 * stores the currently 'selected' `student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `CoachPref` object that represents the Coach’s preferences. This is exposed to the outside as a `ReadOnlyCoachPref` objects.
+* stores a `UserPref` object that represents the Coach’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `student` needing their own `Tag` objects.<br>
@@ -141,7 +141,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and Coach preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `CoachPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,11 +154,11 @@ Classes used by multiple components are in the `seedu.AddressBook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `AddressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -188,7 +188,7 @@ Step 4. The Coach now decides that adding the student was a mistake, and decides
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the Coach rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `VersionedAddressBook#canUndo()` to check if this is the case. If so, it will return an error to the Coach rather
 than attempting to perform the undo.
 
 </div>
@@ -203,7 +203,7 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `VersionedAddressBook#canRedo()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
 
 </div>
 
@@ -231,8 +231,6 @@ The following activity diagram summarizes what happens when a Coach executes a n
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -442,6 +440,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+### Use case: Undo a command
+
+**MSS**
+
+1. Coach requests to undo a mistakenly entered command.
+2. SportSync undoes the mistakenly entered command.
+
+   Use case ends.
+
+### Use case: Redo a command
+
+**MSS**
+
+1. Coach requests to redo a mistakenly undone command.
+2. SportSync redoes the mistakenly undone command.
+
+   Use case ends.
+
 ### Features
 
 **Group**
@@ -473,6 +489,20 @@ Format: `display`
 * Lists all groups created by the user.
 * Displays all existing user-created groups in the command message.
 
+**Undo**
+
+Format: `undo`
+
+* Returns the state of the address book to the state before the last entered user command.
+* Cannot be used if no user commands have been entered yet.
+
+**Redo**
+
+Format: `redo`
+
+* Returns the state of the address book to the state before undoing the last entered command.
+* If the address book is changed after an undo command, a redo command cannot be done.
+* Cannot be used if no user commands have been entered yet.
 
 *{More to be added}*
 

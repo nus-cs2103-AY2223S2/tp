@@ -21,11 +21,18 @@ Given below are my contributions to the project.
   * Justification: This feature gives convenience to the user by letting them know where a specific contact can be found in relation to others.
   * Highlights: Implementing this feature involved understanding the complex code flow and the relationship between many classes.
 
+* **New Feature**: Added the ability to undo and redo previously entered commands.
+  * What it does: Calling undo will undo the last user-entered command while calling redo will redo the last user-entered command.
+  * Justification: This feature saves the user's time when they accidentally make mistakes while typing.
+  * Highlights: Implementing this feature involved rigorous understanding of class instances and the pass-by-reference concept.
+  * Credits: The previous team that worked on AddressBook 3, as I used their proposed implementation for this.
+
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
 
 * **Enhancements to existing features**:
+    * Updated aesthetics of GUI with curated colour scheme and custom app icon.
 
 * **Documentation**:
     * User Guide: Features as of v1.2b
