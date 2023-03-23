@@ -15,7 +15,6 @@ public class SearchMode extends Mode {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final MainWindow mainWindow;
     private final Logic logic;
-    private final FuzzyManager fuzzyManager;
     private String cachedInput;
 
     /**
@@ -27,7 +26,6 @@ public class SearchMode extends Mode {
     public SearchMode(MainWindow mainWindow, Logic logic) {
         this.mainWindow = mainWindow;
         this.logic = logic;
-        this.fuzzyManager = new FuzzyManager(logic.getAddressBook());
     }
 
     @Override
@@ -39,8 +37,8 @@ public class SearchMode extends Mode {
 
     @Override
     public void onInputChange(String input) {
-        mainWindow.setClients(fuzzyManager.getFuzzyClients(input));
-        mainWindow.setProjects(fuzzyManager.getFuzzyProjects(input));
+        mainWindow.setClients(FuzzyManager.rankItems(logic.getFilteredClientList(), input));
+        mainWindow.setProjects(FuzzyManager.rankItems(logic.getFilteredProjectList(), input));
     }
 
     @Override
