@@ -352,6 +352,39 @@ CONS
 Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
 more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
 
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+After the user types "/filter [group] [criteria] [threshold]" and clicks "enter", our system will parse the input given
+and detect that it is a "filter" command that is being called.
+
+1. Depending on the "[group]" typed by the user, our system goes to the AddressBook in storage and
+   accesses the relevant Unique[group]List. For example, if the desired group is the "tutorial" group,
+   then "UniqueTutorialList" will be accessed to iterate through the people in that group.
+
+2. Our system iterates through each Person object in the list and creates a new list that only stores
+   People objects whose criteria value is below the given threshold.
+
+3. Our system finally displays all the Person objects in the form of a table to the user.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+Todo: add clean image of activity diagram
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Iterates through the existing list and manually filters the desired ones.
+    * Pros: Easy to implement.
+    * Cons: Takes up extra space.
+
+* **Alternative 2:** Uses the previously implemented 'sort' method and set visibility of people whose criteria
+  is lower than threshold to be 0% (hide them from view))
+  itself.
+    * Pros: Will use less space and uses previously implemented code for abstraction.
+    * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
 
 --------------------------------------------------------------------------------------------------------------------
 
