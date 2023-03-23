@@ -43,6 +43,7 @@ public class ImportCommand extends Command {
         requireNonNull(model);
         String duplicates = "";
         String successes = "";
+        int duplicateCounter = 0;
         ArrayList<Person> importList = new ArrayList<Person>();
 
         if (faculty.equalsIgnoreCase("soc")) {
@@ -56,6 +57,7 @@ public class ImportCommand extends Command {
         for (Person toAdd : importList) {
             if (model.hasPerson(toAdd)) {
                 duplicates += toAdd.getName() + MESSAGE_DUPLICATE_IMPORT + "\n";
+                duplicateCounter++;
                 continue;
             } else {
                 duplicates += toAdd.getName() + " was successfully imported\n";
@@ -63,7 +65,7 @@ public class ImportCommand extends Command {
             }
             model.addPerson(toAdd);
         }
-        if (duplicates.length() > 0) {
+        if (duplicateCounter == importList.size()) {
             throw new CommandException(duplicates);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS + successes));
