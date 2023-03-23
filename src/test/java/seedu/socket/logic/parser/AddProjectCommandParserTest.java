@@ -26,6 +26,8 @@ import static seedu.socket.logic.parser.CommandParserTestUtil.assertParseFailure
 import static seedu.socket.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.socket.testutil.TypicalProjects.BRAVO;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddProjectCommand;
@@ -42,7 +44,7 @@ public class AddProjectCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Project expectedProject = new ProjectBuilder(BRAVO).build();
+        Project expectedProject = new ProjectBuilder(BRAVO).putMembers(new HashSet<>()).build();
 
         // whitespace only preamble
         assertParseSuccess(
@@ -114,7 +116,7 @@ public class AddProjectCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero meeting
-        Project expectedProject = new ProjectBuilder(BRAVO).withProjectMeeting("").build();
+        Project expectedProject = new ProjectBuilder(BRAVO).withProjectMeeting("").putMembers(new HashSet<>()).build();
         assertParseSuccess(
                 parser,
                 PROJECT_NAME_DESC_BRAVO
