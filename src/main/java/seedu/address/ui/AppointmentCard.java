@@ -9,8 +9,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.patient.Patient;
 
+/**
+ * UI component that displays information of an {@code Appointment}.
+ */
 public class AppointmentCard extends UiPart<Region> {
     private static final String FXML = "AppointmentCard.fxml";
     public final Appointment appointment;
@@ -31,6 +33,9 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Creates an {@code AppointmentCard} with the given {@code Appointment} and index to display.
+     */
     public AppointmentCard(ReadOnlyPatientList patientList, Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
@@ -38,11 +43,13 @@ public class AppointmentCard extends UiPart<Region> {
 
         patientList.getPatientList().forEach(patient -> System.out.println(patient.getId()));
         id.setText(displayedIndex + ". ");
-//        Patient thisPatient = patientList
-//                .getPatientList()
-//                .stream()
-//                .filter(patient -> patient.getId().equals(appointment.getPatientId()))
-//                .findFirst().orElseThrow();
+        /*
+        Patient thisPatient = patientList
+                .getPatientList()
+                .stream()
+                .filter(patient -> patient.getId().equals(appointment.getPatientId()))
+                .findFirst().orElseThrow();
+        */
         // temporary workaround for buggy id
         patientName.setText("Dummy patient");
         timeSlot.setText(appointment.getTimeslot().timeslotString);

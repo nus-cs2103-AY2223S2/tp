@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.patient.Patient;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * A UI component that displays information of a {@code Patient}.
  */
 public class PatientCard extends UiPart<Region> {
 
