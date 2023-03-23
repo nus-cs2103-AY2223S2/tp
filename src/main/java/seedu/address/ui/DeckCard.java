@@ -23,7 +23,7 @@ public class DeckCard extends UiPart<Region> {
 
     public final Deck deck;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;

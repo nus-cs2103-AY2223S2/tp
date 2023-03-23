@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelState;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
@@ -52,6 +53,13 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the current mode of the application.
+     *
+     * @return the state the model is in.
+     */
+    ModelState getMode();
 
     ObservableList<Pair<String, String>> getReviewStatsList();
 }

@@ -19,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelState;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -203,6 +204,13 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.endReview();
     }
 
+    /**
+     * Highlights the deck user is in.
+     */
+    public void handleDeckMode() {
+
+    }
+
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -219,6 +227,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+
+            ModelState currentState = logic.getMode();
+            if (currentState.equals(ModelState.DECK_MODE)) {
+                handleDeckMode();
+            }
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());

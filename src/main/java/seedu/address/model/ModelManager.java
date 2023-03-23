@@ -208,7 +208,7 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         selectedDeck = filteredDecks.get(zeroBasesIdx);
-        assert selectedDeck != null : "selectedDeck cannot be null here";
+        selectedDeck.setSelected(true);
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 

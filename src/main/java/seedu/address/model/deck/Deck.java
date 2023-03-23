@@ -10,8 +10,9 @@ import java.util.Objects;
 public class Deck {
     public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public final String deckName;
-
+    private final String deckName;
+    private boolean isSelected = false;
+    
     /**
      * Constructing a deck.
      * Every field must be present and not null.
@@ -47,6 +48,14 @@ public class Deck {
 
         return otherDeck != null
                 && otherDeck.getDeckName().equals(getDeckName());
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
     /**
