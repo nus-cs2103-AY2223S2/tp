@@ -317,7 +317,7 @@ use this index when deleting tasks
   would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e. first task
   has index 1, second task has index 2 etc.) and thus the invalid indexes can be easily obtained.
 
-### 3.3 Find
+### 3.3 Find a Person's Assigned Task
 Syntax: `find [NAME]` </br>
 Purpose: Allow users to search and review the list of tasks assigned to the specified person.
 
@@ -328,7 +328,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 
 ![FindTaskActivitySequenceDiagram](images/FindActivityDiagram.png)
 
-### 3.4 Findtask
+### 3.4 Find a Task's Assignees
 Syntax: `findtask [TASKNAME]` </br>
 Purpose: Allow users to search and review the group of individuals assigned to the specified task.
 
@@ -353,50 +353,12 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
       to execute the findtask command if the current display is empty.
 
-### 3.5 Edittask
+### 3.5 Edit a Task
 Syntax: `edittask INDEX title/TITLE c/CONTENT st/STATUS` </br>
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
 The implementation of this feature is supported by `EditTaskCommand` and `EditTaskCommandParser`.
-
-### 3.6 Help Window
-
-Syntax: ```help```
-<br>
-Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
-
-#### 3.6.1 Implementation
-
-A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
-The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
-information, the user can choose to view the comprehensive User Guide instead.
-
-<img src="images/HelpActivityDiagram.png" width="330" />
-
-#### 3.6.2 Design Considerations
-
-**Aspect: Contents of help window**
-**Alternative 1 (Current choice):** Display as a separate window, with concise details included in the sheet.
-* Pros: Serves as a quick reference for the user, without having to go online to view the full comprehensive User Guide.
-* Cons: Major updates in command implementations will have to be updated in the help sheet too, in addition to the online User Guide.
-
-**Alternative 2:** Provide the user with the link to access the online User Guide.
-* Pros: More comprehensive, able to give user the complete detailing of each command.
-* Cons: Troublesome, requires user to go online to view the User Guide. User may also be overwhelmed by length of guide.
-
-<br>
-
-**Aspect: Viewing of various command instructions**
-**Alternative 1 (Current choice):** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.
-* Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
-* Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
-
-**Alternative 2:** Display all executable commands in a list.
-* Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
-* Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
-
-<br>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -506,7 +468,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Documentation, logging, testing, configuration, dev-ops
+## 4. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -515,9 +477,9 @@ _{more aspects and alternatives to be added}_
 * [DevOps guide](DevOps.md)
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix: Requirements
+## 5. Appendix: Requirements
 
-### 6.1 Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 * holds a managerial role
@@ -534,7 +496,7 @@ _{more aspects and alternatives to be added}_
 * able to view all upcoming tasks to be completed at one glance
 * allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
-### 6.2 User stories
+### 5.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -554,13 +516,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details                | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name                        | locate a person easily                                                 |
 
-### 6.3 Acceptance Criteria
+### 5.3 Acceptance Criteria
 
 - When I use the "add" command followed by a task name, a new task with the given name should be added to my task list.
 - The task name should be displayed in the task list.
 - The task should be saved to persistent storage so that it is not lost when I exit the app.
 
-#### 6.3.1 Example Usage
+#### 5.3.1 Example Usage
 
 > addtask s/Draft proposal c/Complete proposal by 1st March st/false
 
@@ -589,7 +551,7 @@ feature would work in practice.
 
 *{More to be added}*
 
-### 6.4 Use cases
+### 5.4 Use cases
 
 <div markdown="span" class="alert alert-info">
 
@@ -599,7 +561,7 @@ feature would work in practice.
 </div>
 
 ---
-#### 6.4.1 Use case 1: Add a person
+#### 5.4.1 Use case 1: Add a person
 
 **Main Success Scenario (MSS):**
 
@@ -620,7 +582,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.2 Use case 2: Delete a person
+#### 5.4.2 Use case 2: Delete a person
 
 **Main Success Scenario (MSS):**
 
@@ -647,7 +609,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 6.4.3 Use case 3: Delete a task
+#### 5.4.3 Use case 3: Delete a task
 
 **Main Success Scenario (MSS):**
 
@@ -674,7 +636,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 6.4.4 Use case 4: Assign a task to a person
+#### 5.4.4 Use case 4: Assign a task to a person
 
 **Main Success Scenario (MSS):**
 
@@ -709,7 +671,7 @@ feature would work in practice.
       Use case resumes at step 2. 
 
 ---
-#### 6.4.5 Use case 5: Remove assignment of task from a person
+#### 5.4.5 Use case 5: Remove assignment of task from a person
 
 **Main Success Scenario (MSS):**
 
@@ -748,7 +710,7 @@ feature would work in practice.
 
 ---
 
-#### 6.4.6 Use case 6: Consulting Help Window
+#### 5.4.6 Use case 6: Consulting Help Window
 
 **Main Success Scenario (MSS):**
 
@@ -775,7 +737,7 @@ feature would work in practice.
       Use case resumes at step 5.
 
 ---
-#### 6.4.7 Use case 7: Add a task
+#### 5.4.7 Use case 7: Add a task
 
 **Main Success Scenario (MSS):**
 
@@ -796,7 +758,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.8 Use case 8: List all tasks
+#### 5.4.8 Use case 8: List all tasks
 
 **Main Success Scenario (MSS):**
 
@@ -807,7 +769,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.9 Use case 9: Mark a tasks
+#### 5.4.9 Use case 9: Mark a tasks
 
 **Main Success Scenario (MSS):**
 
@@ -840,7 +802,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.10 Use case 10: Unmark a tasks
+#### 5.4.10 Use case 10: Unmark a tasks
 
 **Main Success Scenario (MSS):**
 
@@ -873,7 +835,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.11 Use case 11: Find tasks assigned to an individual
+#### 5.4.11 Use case 11: Find tasks assigned to an individual
 
 **Main Success Scenario (MSS):**
 
@@ -890,7 +852,7 @@ feature would work in practice.
   Use case ends.
 
 ---
-#### 6.4.12 Use case 12: Find the group of individuals assigned to a task
+#### 5.4.12 Use case 12: Find the group of individuals assigned to a task
 
 **Main Success Scenario (MSS):**
 
@@ -916,7 +878,7 @@ feature would work in practice.
 5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
 
-### 6.5 Glossary
+### 5.5 Glossary
 
 #### *U*
 * **Unassign**: remove assignment of task from the person.
@@ -929,7 +891,7 @@ feature would work in practice.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Appendix: Instructions for manual testing
+## 6. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -939,7 +901,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 7.1 Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -955,7 +917,7 @@ testers are expected to do more *exploratory* testing.
 
 3_{ more test cases …​ }_
 
-### 7.2 Deleting a person
+### 6.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -970,7 +932,7 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### 7.3 Saving data
+### 6.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
