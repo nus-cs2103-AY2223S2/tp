@@ -26,7 +26,7 @@ activate FindCommandParser
 FindCommandParser --> DengueHotspotTrackerParser
 deactivate FindCommandParser
 
-DengueHotspotTrackerParser -> FindCommandParser : parse("/a Aeron")
+DengueHotspotTrackerParser -> FindCommandParser : parse("n/ Aeron")
 activate FindCommandParser
 
 create FindCommand
