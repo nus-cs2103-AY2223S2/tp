@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.ModelManager.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
-        requireNonNull(model);
+        requireAllNonNull(model, officeConnectModel);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
