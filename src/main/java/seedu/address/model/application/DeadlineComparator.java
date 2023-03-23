@@ -1,8 +1,8 @@
 package seedu.address.model.application;
 
-import seedu.address.model.task.Task;
-
 import java.util.Comparator;
+
+import seedu.address.model.task.Task;
 
 /**
  * Compares two applications based on the deadline of their upcoming task.
