@@ -1,11 +1,11 @@
 package seedu.address.logic.jobs;
 
+import java.util.TimerTask;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-
-import java.util.TimerTask;
 
 /**
  * Represents a job that checks whether a meeting has passed based on the current
