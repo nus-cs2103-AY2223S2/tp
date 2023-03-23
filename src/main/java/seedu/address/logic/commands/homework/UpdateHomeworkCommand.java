@@ -23,7 +23,7 @@ import seedu.address.model.student.Student;
 /**
  * Update the information of an existing homework.
  */
-public class UpdateLessonCommand extends Command {
+public class UpdateHomeworkCommand extends Command {
 
     public static final String COMMAND_WORD = "update-homework";
 
@@ -47,13 +47,13 @@ public class UpdateLessonCommand extends Command {
     /**
      * Creates an UpdateHomeworkCommand to update the information of an existing homework.
      *
-     * @param index of the homework in the filtered homework list to update
-     * @param predicate of the student to update the homework
+     * @param index        of the homework in the filtered homework list to update
+     * @param predicate    of the student to update the homework
      * @param homeworkName of the homework to be updated to
-     * @param deadline of the homework to be updated to
+     * @param deadline     of the homework to be updated to
      */
-    public UpdateLessonCommand(List<String> names, Index index, NamePredicate predicate,
-                               Optional<String> homeworkName, Optional<LocalDateTime> deadline) {
+    public UpdateHomeworkCommand(List<String> names, Index index, NamePredicate predicate,
+                                 Optional<String> homeworkName, Optional<LocalDateTime> deadline) {
         requireNonNull(predicate);
         requireNonNull(index);
 
@@ -97,10 +97,10 @@ public class UpdateLessonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UpdateLessonCommand // instanceof handles nulls
-                && predicate.equals(((UpdateLessonCommand) other).predicate)
-                && index == ((UpdateLessonCommand) other).index
-                && homeworkName.equals(((UpdateLessonCommand) other).homeworkName)
-                && deadline.equals(((UpdateLessonCommand) other).deadline));
+                || (other instanceof UpdateHomeworkCommand // instanceof handles nulls
+                && predicate.equals(((UpdateHomeworkCommand) other).predicate)
+                && index == ((UpdateHomeworkCommand) other).index
+                && homeworkName.equals(((UpdateHomeworkCommand) other).homeworkName)
+                && deadline.equals(((UpdateHomeworkCommand) other).deadline));
     }
 }

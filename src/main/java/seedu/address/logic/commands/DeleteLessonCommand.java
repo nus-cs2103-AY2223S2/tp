@@ -20,7 +20,7 @@ public class DeleteLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a lesson from a student.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_INDEX + "INDEX\n"

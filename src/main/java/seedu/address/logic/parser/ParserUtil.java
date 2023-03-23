@@ -165,6 +165,33 @@ public class ParserUtil {
                 + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
     }
 
+    public static LocalDateTime parseStartTime(String date) throws ParseException {
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(date,
+                    DateTimeFormatter.ofPattern(dateTimeFormat));
+            } catch (Exception e) {
+                // Go to the next dateTimeFormat
+            }
+        }
+
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
+    }
+    public static LocalDateTime parseEndTime(String date) throws ParseException {
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(date,
+                    DateTimeFormatter.ofPattern(dateTimeFormat));
+            } catch (Exception e) {
+                // Go to the next dateTimeFormat
+            }
+        }
+
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
+    }
+
     /**
      * Parses a string to a LocalDateTime object using the acceptable date time formats defined
      *

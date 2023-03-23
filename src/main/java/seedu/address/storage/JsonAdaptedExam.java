@@ -14,7 +14,7 @@ public class JsonAdaptedExam {
     private final String description;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final double weightage;
+    private final Double weightage;
     private Exam.ExamStatus status;
     private Grade grade;
 
@@ -25,7 +25,7 @@ public class JsonAdaptedExam {
     public JsonAdaptedExam(@JsonProperty("description") String description,
                            @JsonProperty("startTime") LocalDateTime startTime,
                            @JsonProperty("endTime") LocalDateTime endTime,
-                           @JsonProperty("weightage") double weightage,
+                           @JsonProperty("weightage") Double weightage,
                            @JsonProperty("status") Exam.ExamStatus status,
                            @JsonProperty("grade") Grade grade) {
         this.description = description;

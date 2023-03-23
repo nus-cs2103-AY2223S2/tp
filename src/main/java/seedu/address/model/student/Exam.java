@@ -16,7 +16,7 @@ public class Exam {
     private final String description;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final double weightage;
+    private final Double weightage;
     private ExamStatus status;
     private Grade grade;
 
@@ -40,8 +40,23 @@ public class Exam {
      * @param status      The status of the exam.
      * @param grade       The grade of the exam.
      */
+
+    public Exam(String description, LocalDateTime startTime, LocalDateTime endTime) {
+        Objects.requireNonNull(description);
+        Objects.requireNonNull(startTime);
+        Objects.requireNonNull(endTime);
+        if (startTime.isAfter(endTime)) {
+            throw new IllegalArgumentException("Start time cannot be after end time.");
+        }
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.weightage = null;
+        this.status = null;
+        this.grade = null;
+    }
     public Exam(String description, LocalDateTime startTime, LocalDateTime endTime,
-                double weightage, ExamStatus status, Grade grade) {
+                Double weightage, ExamStatus status, Grade grade) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(startTime);
         Objects.requireNonNull(endTime);
@@ -50,25 +65,9 @@ public class Exam {
             throw new IllegalArgumentException("Start time cannot be after end time.");
         }
 
-        if (weightage < 0 || weightage > 1) {
-            throw new IllegalArgumentException("Weightage must be between 0 and 1.");
-        }
-
-        if (status.equals(ExamStatus.Finished)) {
-            if (grade == null) {
-                throw new IllegalArgumentException("Grade cannot be null if the exam has ended.");
-            }
-        }
-
-        if (status.equals(ExamStatus.Absent)) {
-            if (grade != null) {
-                throw new IllegalArgumentException("Grade must be null if the student is absent.");
-            }
-        }
-
-        if (status.equals(ExamStatus.Upcoming)) {
-            if (grade != null) {
-                throw new IllegalArgumentException("Grade must be null if the exam has not started yet.");
+        if (weightage != null) {
+            if (weightage < 0 || weightage > 1) {
+                throw new IllegalArgumentException("Weightage must be between 0 and 1.");
             }
         }
 
@@ -113,7 +112,7 @@ public class Exam {
      *
      * @return The weightage of the exam.
      */
-    public double getWeightage() {
+    public Double getWeightage() {
         return weightage;
     }
 
