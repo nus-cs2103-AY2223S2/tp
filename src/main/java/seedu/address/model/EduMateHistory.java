@@ -56,6 +56,7 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
      * @param command Command string
      */
     public void addCommand(String command) {
+        assert command != null;
         eduMateHistory.add(0, command);
         index = 0;
     }
@@ -67,6 +68,9 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
      */
     @Override
     public String getPreviousCommand(boolean isUp) {
+        if (eduMateHistory.size() == 0) {
+            return "";
+        }
         if (isUp) {
             String previousCommand = eduMateHistory.get(index);
             if ((index < eduMateHistory.size() - 1) && (eduMateHistory.size() < maxIndex)) {

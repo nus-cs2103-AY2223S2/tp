@@ -59,12 +59,22 @@ public class CommandBox extends UiPart<Region> {
     }
 
     private void handleKeyPressed(KeyEvent event) {
+        String output = "";
         if (event.getCode() == KeyCode.UP) {
             // add a message to the text field when the up arrow key is pressed
-            commandTextField.setText(logic.getPreviousCommand(true) + "\n");
+            output = logic.getPreviousCommand(true);
         } else if (event.getCode() == KeyCode.DOWN) {
-            commandTextField.setText(logic.getPreviousCommand(false) + "\n");
+            if (commandTextField.getText().length() == 0) {
+                return;
+            }
+            output = logic.getPreviousCommand(false);
         }
+        if (output.equals("")) {
+            return;
+        }
+        commandTextField.setText(output + "\n");
+        commandTextField.positionCaret(commandTextField.getText().length());
+
     }
 
     /**
