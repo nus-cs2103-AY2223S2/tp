@@ -206,6 +206,40 @@ that uses the same name and summary before replacing the required name or summar
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
 
+### \[Implemented\] List feature
+The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
+
+1. The user wishes to list all expenses.
+2. The user wishes to only list expenses in a category.
+3. The user wishes to only list expenses in the past week/month/year.
+4. The user wishes to list expenses in a category from the past week/month/year.
+
+In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+
+To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+
+Given below is an example usage scenario of how the List Command behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `list` command to list out all expenses.
+
+// Insert pictures of results of `list`
+
+Step 2a. The user uses the `list c/category` command.
+
+// Insert pictures of command
+
+Step 2b. The user uses the `list t/(week/month/year)` command.
+
+//Insert pictures of command
+
+The following sequence diagram shows the order of operations of the ListCommand command:
+
+// Insert sequence diagram of how listcommand works.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -497,12 +531,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all expense in the past week.
-2.  FastTrack displays all expenses added by user in the past week .
+1. User requests to list all expense in the past week.
+2. FastTrack displays all expenses added by user in the past week .
 
     Use case ends.
 
-### Use case: UC10 - Find an expense
+### Use case: UC10 - List all expense in a given category in the past week
+
+**MSS**
+
+1. User requests to list all expense in a category in the past week.
+2. FastTrack displays all expenses added by user in the category in the past week.
+
+    Use case ends.
+
+### Use case: UC11 - Find an expense
 
 **MSS**
 
@@ -511,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC11 - Clear all expenses from the expense log
+### Use case: UC12 - Clear all expenses from the expense log
 
 **MSS**
 
@@ -520,7 +563,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC12 - Exit from FastTrack
+### Use case: UC13 - Get Help within the app
+
+**MSS**
+
+1. User wants to check help for the commands to use FastTrack.
+2. User keys in the command to get help.
+3. FastTrack opens a pop-up window to show help for commands and a link to the User Guide.
+
+    Use case ends.
+
+### Use case: UC13 - Exit from FastTrack
 
 **MSS**
 
