@@ -68,8 +68,8 @@ public class ParserUtil {
         String endIndex = startEndRange[1];
         endIndex = endIndex.trim();
 
-        if (!StringUtil.isNonZeroUnsignedInteger(startIndex) &&
-                !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
+        if (!StringUtil.isNonZeroUnsignedInteger(startIndex)
+                && !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
