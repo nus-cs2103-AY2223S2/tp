@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -134,7 +134,7 @@ class JsonAdaptedPet {
                     LocalDateTime.class.getSimpleName()));
         }
         Instant i = Instant.parse(timestamp + "Z");
-        final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+        final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneOffset.UTC);
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

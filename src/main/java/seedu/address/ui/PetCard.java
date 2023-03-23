@@ -63,6 +63,7 @@ public class PetCard extends UiPart<Region> {
         email.setText(pet.getEmail().value);
 
         LocalDateTime arrival = pet.getTimeStamp();
+        System.out.println(arrival);
         double amount = Math.max(0, Duration.between(arrival, LocalDateTime.now()).getSeconds()) * 0.01;
         String amtDue = "$" + (Math.round(amount) * 100.0) / 100.0;
         amountDue.setText(amtDue);
