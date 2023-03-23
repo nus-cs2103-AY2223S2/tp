@@ -274,4 +274,5 @@ public abstract class Event {
         return getStudentPhotos().stream().map(Photo::getUrlPath).collect(Collectors.toList());
     }
 
+    public abstract Event copy();
 }

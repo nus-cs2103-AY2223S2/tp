@@ -139,6 +139,12 @@ public class Consultation extends Event {
                 && otherConsultation.getDate().equals(getDate());
     }
 
+    //Get copy of tutorial
+    @Override
+    public Consultation copy() {
+        return new Consultation(getName(), getStudents(), getNotes(), getDate());
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
