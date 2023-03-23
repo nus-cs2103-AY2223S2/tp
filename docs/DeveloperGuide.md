@@ -121,12 +121,16 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the expense tracker data i.e., all `Category` objects (which are contained in a `UniqueCategoryList` object).
+* stores the currently 'selected' `Category` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Category>` that can be
+'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the expense tracker data i.e., all `Expense` objects (which are contained in a `ExpenseList` object).
+* stores the currently 'selected' `Expense` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Expense>` that can be
+'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Category` list in the `ExpenseTracker`, which `Expense` references. This allows `ExpenseTracker` to only require one `Category` object per unique expense, instead of each `Expense` needing their own `Category` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,7 +145,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `ExpenseTrackerStorage`
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +157,88 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Implemented\] Edit Category feature
+
+The edit category feature is implemented similarly to all the other commands, such as the add category and delete category
+feature. However, the method of handling the user input is slightly more complicated as it falls into one of the following:
+1. The user wishes to edit both the category's name and summary.
+2. The user only wishes to edit the category's name.
+3. The user only wishes to edit the category's summary.
+4. The user is calling the command with no arguments.
+
+In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
+`EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
+whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are 
+passed in as `null` and checked later in `EditCategory#execute()`.
+
+To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
+the index (If it is a valid input.). Thereafter, `UserDefinedCategory#setCategoryName()` and `UserDefinedCategory#setDescription()`
+are used to edit the `Category` object.
+
+Given below is an example usage scenario of how the Edit Category behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `lcat` command to list out all categories.
+
+//Insert pictures of results of lcat.
+
+Step 3. The user uses the `ecat 1 c/newname s/newsummary` command.
+
+//Insert pictures of executing command.
+
+The following sequence diagram shows the order of operations of the Edit Category command:
+
+//Insert sequence diagram of how the edit category command works.
+
+#### Design considerations:
+**Aspect: How the category object is edited**:
+
+* **Alternative 1 (Current choice):** Directly retrieve and edit the currently-specified `Category` object.
+  * Pros: No need to re-point all `Expense` objects currently affiliated with the `Category` object that is being edited.
+  * Cons: Mutates the state of the `Category` object, which might not be ideal if seeking immutability.
+
+* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object 
+that uses the same name and summary before replacing the required name or summary depending on user's arguments.
+  * Pros: Enforces immutability by replacing the previous `Category` object.
+  * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
+
+### \[Implemented\] List feature
+The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
+
+1. The user wishes to list all expenses.
+2. The user wishes to only list expenses in a category.
+3. The user wishes to only list expenses in the past week/month/year.
+4. The user wishes to list expenses in a category from the past week/month/year.
+
+In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+
+To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+
+Given below is an example usage scenario of how the List Command behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `list` command to list out all expenses.
+
+// Insert pictures of results of `list`
+
+Step 2a. The user uses the `list c/category` command.
+
+// Insert pictures of command
+
+Step 2b. The user uses the `list t/(week/month/year)` command.
+
+//Insert pictures of command
+
+The following sequence diagram shows the order of operations of the ListCommand command:
+
+// Insert sequence diagram of how listcommand works.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -256,10 +342,10 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* NUS undergraduate students from the School of Computing 
+* NUS undergraduate students from the School of Computing
 * Tech-savvy and able to type fast
 * Comfortable using CLI apps
-* Has to manage a large number of different general consumption and professional recurring expenses 
+* Has to manage a large number of different general consumption and professional recurring expenses
 
 **Value proposition**:
 * Easy-to-use and allows students to log their daily expenses quickly and efficiently via a CLI
@@ -313,14 +399,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FastTrack responds telling the user that a name is required and the command is invalid.
   * 2a2. User enters add command with the category name.
   * 2a3. Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
     Use case resumes at step 3.
 
 * 2b. The category name already exists
   * 2b1. FastTrack informs the user that the category name has already been used and prompts the user for a different category name.
   * 2b2. User enters add command with the category name.
   * 2b3. Steps 2b1-2b2 are repeated until the data entered are correct.
-    
+
     Use case resumes at step 3.
 
 ### Use case: UC2 - Delete a Category
@@ -332,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User enters the delete command with the index i of the category to be deleted.
 4. FastTrack deletes the category at index i.
 5. FastTrack displays a success message to the user indicating the category has been successfully deleted.
-  
+
    Use case ends.
 
 **Extensions**
@@ -353,8 +439,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. FastTrack responds with a success message indicating the expense has been successfully edited.
 
 **Extensions**
-* 2a. The user selects an expense that does not exist. 
-    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense. 
+* 2a. The user selects an expense that does not exist.
+    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense.
 * 2b. The user tries to save an expense with invalid or missing data.
     * 2b1. FastTrack displays an error message indicating the fields that need to be corrected.
 
@@ -363,16 +449,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all categories. 
+1.  User requests to list all categories.
 2.  FastTrack displays all categories.
-   
+
    Use case ends.
-  
+
 
 **Extensions**
 * 2a. The user does not have any categories.
     * 2a1. FastTrack only displays the Misc category
-      
+
 ### Use case: UC5 - Add an expense
 
 **MSS**
@@ -387,10 +473,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FastTrack returns an error, requesting that the user inputs information in the correct format.
   * 2a2. User inputs information again.
   * 2a3. Steps 2a1-2a2 are repeated until the information being input is of the correct format.
-   
+
     Use case resumes from step 3.
 
-## Use case: UC6 - Delete an expense
+### Use case: UC6 - Delete an expense
 
 **MSS**
 
@@ -407,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FastTrack returns an error, requesting that the user inputs the correct expense index.
     * 3a2. User inputs information again.
     * 3a3. Steps 3a1-3a2 are repeated until the expense index being input by the user is valid.
-  
+
       Use case resumes from step 4.
 
 
@@ -426,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all expense in a given category. 
+1.  User requests to list all expense in a given category.
 2.  FastTrack displays all expenses in a given category added by user.
    Use case ends.
 
@@ -445,12 +531,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all expense in the past week.
-2.  FastTrack displays all expenses added by user in the past week .
+1. User requests to list all expense in the past week.
+2. FastTrack displays all expenses added by user in the past week .
 
     Use case ends.
 
-### Use case: UC10 - Find an expense
+### Use case: UC10 - List all expense in a given category in the past week
+
+**MSS**
+
+1. User requests to list all expense in a category in the past week.
+2. FastTrack displays all expenses added by user in the category in the past week.
+
+    Use case ends.
+
+### Use case: UC11 - Find an expense
 
 **MSS**
 
@@ -458,17 +553,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FastTrack displays all expenses related to the keyword provided.
 
     Use case ends.
-    
-### Use case: UC11 - Clear all expenses from the expense log
+
+### Use case: UC12 - Clear all expenses from the expense log
 
 **MSS**
 
 1. User wants to wipe all currently-logged expenses.
 2. User keys in the command to clear all logged expenses.
-    
+
     Use case ends.
 
-### Use case: UC12 - Exit from FastTrack
+### Use case: UC13 - Get Help within the app
+
+**MSS**
+
+1. User wants to check help for the commands to use FastTrack.
+2. User keys in the command to get help.
+3. FastTrack opens a pop-up window to show help for commands and a link to the User Guide.
+
+    Use case ends.
+
+### Use case: UC13 - Exit from FastTrack
 
 **MSS**
 
@@ -477,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FastTrack exits and is closed.
 
     Use case ends.
-    
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

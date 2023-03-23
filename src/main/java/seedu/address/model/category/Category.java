@@ -18,9 +18,9 @@ public abstract class Category {
      * @param categoryName Name of the category
      * @param summary Short description of the category
      */
-    public Category(String categoryName, String description) {
+    public Category(String categoryName, String summary) {
         this.categoryName = categoryName;
-        this.summary = description;
+        this.summary = summary;
     }
     /**
      * Returns true if a given string is a valid category name.

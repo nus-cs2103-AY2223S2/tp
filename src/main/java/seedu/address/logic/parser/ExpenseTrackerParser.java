@@ -11,8 +11,10 @@ import seedu.address.logic.commands.AddExpenseCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCategory;
 import seedu.address.logic.commands.DeleteExpenseCommand;
+import seedu.address.logic.commands.EditCategory;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCategory;
 import seedu.address.logic.commands.ListCommand;
@@ -21,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ExpenseTrackerParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -56,13 +58,16 @@ public class AddressBookParser {
             return new DeleteExpenseCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ListCategory.COMMAND_WORD:
             return new ListCategory();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -72,6 +77,9 @@ public class AddressBookParser {
 
         case DeleteCategory.COMMAND_WORD:
             return new DeleteCategoryParser().parse(arguments);
+
+        case EditCategory.COMMAND_WORD:
+            return new EditCategoryParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

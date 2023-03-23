@@ -29,6 +29,9 @@ public class ExpenseListPanel extends UiPart<Region> {
         expenseListView.setCellFactory(listView -> new ExpenseListViewCell());
     }
 
+    /**
+     * Refreshes the list of expenses and its related data.
+     */
     public void refreshList() {
         expenseListView.refresh();
     }

@@ -1,6 +1,7 @@
 {
   "categories" : [ {
     "categoryName" : "a",
+<<<<<<< HEAD
     "summary" : "ijifnbinbsg"
   }, {
     "categoryName" : "b",
@@ -55,3 +56,36 @@
     }
   } ]
 }
+=======
+    "summary" : ""
+  }, {
+    "categoryName" : "b",
+    "summary" : ""
+  } ],
+  "expenses" : [ {
+    "name" : "apple",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
+    "category" : {
+      "categoryName" : "a",
+      "summary" : ""
+    }
+  }, {
+    "name" : "orange",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
+    "category" : {
+      "categoryName" : "b",
+      "summary" : ""
+    }
+  }, {
+    "name" : "hello",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
+    "category" : {
+      "categoryName" : "a",
+      "summary" : ""
+    }
+  } ]
+}
+>>>>>>> 8c08838ca74c3f57ca0195c8ccacc612755043c7
