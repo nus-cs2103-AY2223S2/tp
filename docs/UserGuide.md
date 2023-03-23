@@ -209,13 +209,13 @@ Updates the storage count of specified drug entry based on trade name keyword fr
 * NOTE: concatenate + or - in front of value for addition/subtraction respectively
 
 Format:
-<br>`d update -tn TRADE_NAME -up +VALUE` <br> OR <br>
-`d update -tn TRADE_NAME -up -VALUE`
+<br>`d update TRADE_NAME -by +VALUE` <br> OR <br>
+`d update TRADE_NAME -by -VALUE`
 
 Examples:
-* `d update -tn Panadol Flu Max -up -10`
+* `d update Panadol Flu Max -by -10`
   * This **decreases** storage count of the drug entry with trade name matching "Panadol Flu Max" by **10**
-* `d update -tn Tylenol PM -up +50`
+* `d update Tylenol PM -by +50`
   * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
 

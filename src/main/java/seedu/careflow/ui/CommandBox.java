@@ -78,7 +78,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.careflow.logic.Logic#execute(String)
+         * @see seedu.careflow.logic.CareFlowLogic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

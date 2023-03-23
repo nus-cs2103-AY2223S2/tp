@@ -3,6 +3,7 @@ package seedu.careflow.logic.commands.drugcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Deleted Drug: %1$s";
     public static final String MESSAGE_FAILURE = "Drug not found: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE =  OPERATION_TYPE + " " +  COMMAND_WORD
             + ":  Deletes the drug identified by the index number used in the displayed drug list.\n"
             + "Parameters: "
             + PREFIX_INDEX + " INDEX\n"
@@ -32,8 +33,7 @@ public class DeleteCommand extends Command {
             + COMMAND_WORD + ":  Deletes the drug identified by its trade name.\n"
             + "Parameters: "
             + PREFIX_TRADE_NAME + " TRADE NAME\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TRADE_NAME + "Panadol";
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " -tn Panadol";
 
     private Index targetIndex;
     private TradeName targetTradeName;

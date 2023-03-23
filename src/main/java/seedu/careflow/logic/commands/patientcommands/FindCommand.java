@@ -1,6 +1,7 @@
 package seedu.careflow.logic.commands.patientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.careflow.logic.parser.patientparser.PatientParser.OPERATION_TYPE;
 
 import seedu.careflow.commons.core.Messages;
 import seedu.careflow.logic.commands.Command;
@@ -14,10 +15,10 @@ import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patient whose names contain any of "
+    public static final String MESSAGE_USAGE =  OPERATION_TYPE + " " + COMMAND_WORD + ": Finds all patient whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 

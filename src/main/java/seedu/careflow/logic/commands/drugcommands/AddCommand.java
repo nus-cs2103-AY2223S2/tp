@@ -7,6 +7,7 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_SIDE_EFFECT;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_STORAGE_COUNT;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
@@ -21,7 +22,8 @@ import seedu.careflow.model.drug.Drug;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a drug to the drug inventory.\n"
+    public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD + ": Adds a drug to the drug " +
+            "inventory.\n"
             + "Parameters: "
             + PREFIX_TRADE_NAME + " TRADE NAME "
             + PREFIX_ACTIVE_INGREDIENT + " ACTIVE INGREDIENT "
@@ -29,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_SIDE_EFFECT + " SIDE EFFECT(S)... "
             + PREFIX_DIRECTION + " DIRECTION "
             + PREFIX_STORAGE_COUNT + " STORAGE COUNT\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " "
             + PREFIX_TRADE_NAME + " Panadol "
             + PREFIX_ACTIVE_INGREDIENT + " Paracetamol "
             + PREFIX_PURPOSE + " relieve pain / relieve fever / relieve headache "

@@ -1,8 +1,7 @@
 package seedu.careflow.logic.parser.drugparser;
 
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE_BY;
 
 import java.util.stream.Stream;
 
@@ -27,10 +26,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     private final char negative = '-';
     @Override
     public UpdateCommand parse(String userInput) throws ParseException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TRADE_NAME, PREFIX_UPDATE);
-        if (arePrefixesPresent(argumentMultimap, PREFIX_TRADE_NAME, PREFIX_UPDATE)) {
-            TradeName tradeName = ParserUtil.parseTradeName(argumentMultimap.getValue(PREFIX_TRADE_NAME).get());
-            String update = argumentMultimap.getValue(PREFIX_UPDATE).get().trim();
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_UPDATE_BY);
+        if (arePrefixesPresent(argumentMultimap, PREFIX_UPDATE_BY)) {
+            TradeName tradeName = ParserUtil.parseTradeName(argumentMultimap.getPreamble());
+            String update = argumentMultimap.getValue(PREFIX_UPDATE_BY).get();
             boolean add;
             if (update.charAt(0) == negative) {
                 add = false;

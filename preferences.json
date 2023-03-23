@@ -6,7 +6,7 @@
       "x" : 398,
       "y" : 72
     },
-    "theme" : "DARK"
+    "theme" : "LIGHT"
   },
   "patientRecordFilePath" : "data\\patientRecord.json",
   "drugInventoryFilePath" : "data\\drugInventory.json"

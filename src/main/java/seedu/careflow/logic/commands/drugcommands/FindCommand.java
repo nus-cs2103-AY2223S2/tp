@@ -1,6 +1,7 @@
 package seedu.careflow.logic.commands.drugcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 import seedu.careflow.commons.core.Messages;
 import seedu.careflow.logic.commands.Command;
@@ -16,11 +17,11 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     //public static final String MESSAGE_SUCCESS = "Found matching Drug(s): %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE =  OPERATION_TYPE + " " + COMMAND_WORD
             + ": Finds all drug(s) whose trade name contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Panadol";
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " Panadol";
 
     private final TradeNameContainsKeywordsPredicate predicate;
 
