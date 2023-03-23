@@ -41,9 +41,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
+        // TODO: Get value if prefix present, else ensure the input is valid.
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
+                ? Phone.getEmptyPhone()
+                : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get())                ;
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
