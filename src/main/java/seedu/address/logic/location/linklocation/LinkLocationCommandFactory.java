@@ -121,9 +121,9 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int indexOfLight = Integer.parseInt(flightIdOptional.get());
+        int indexOfFlight = Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemByIndex(indexOfLight);
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
