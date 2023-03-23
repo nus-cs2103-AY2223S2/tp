@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import seedu.recipe.model.recipe.Ingredient;
@@ -82,7 +83,13 @@ public class RecipeForm extends UiPart<Region> {
             populateFields();
         }
         saveButton.setOnAction(event -> saveRecipe());
+        saveButton.setOnAction(event -> EditRecipeEvent());
+
         cancelButton.setOnAction(event -> closeForm());
+    }
+
+    private Object EditRecipeEvent() {
+        return null;
     }
 
     /**
@@ -151,7 +158,7 @@ public class RecipeForm extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .map(tag -> tag.tagName)
                 .collect(Collectors.joining(", ")));
-                
+
         storeInitialValues();
     }
     
@@ -223,6 +230,8 @@ public class RecipeForm extends UiPart<Region> {
      */
     public void display() {
         Stage window = new Stage();
+        // Ensures users do not exit the view by clicking outside
+        window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
         window.setMinWidth(500);
         window.setMinHeight(700);
