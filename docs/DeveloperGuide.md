@@ -247,6 +247,14 @@ distance corresponds to a better match; a lower distance corresponds to a worse
 match. The goal of this feature is to provide interactive fuzzy searching and
 display sorted results such that the best match is at the top.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** We will use the terms "fuzzy search" and "fuzzy
+find" interchangeably in this document. The term "fuzzy ranking" refers to the
+entire routine of processing items, computing their Levenshtein distance
+against some input, and sorting them such that the closest matches are at the
+front.
+</div>
+
 The main algorithm is in `Fuzzy#delta`, which is a pure function computing the
 distance between two strings. In order to use it from the application, we also
 have the `FuzzyManager` class which works with some components from the UI. The
@@ -315,6 +323,31 @@ the listening state.)
 The activity diagram below illustrates this dispatching of state.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
+
+#### Updating the UI
+
+From the second sequence diagram above, we see that updates to the UI after
+fuzzy ranking is done via two setters - `MainWindow#setClients` and
+`MainWindow#setProjects`. This departs from the model used in our CRUD
+operations, where (immutable) references to a `FilteredList` of clients and
+projects were obtained upon UI initialization, and any changes such as the
+creation or deletion of a client were automatically propagated to the UI with
+no additional setters required in our application's code.
+
+However, the inclusion of fuzzy search introduces an important requirement -
+*sorting*. We wish to modify the order of items based on how well they match
+the user's input, *and* filter out the items which match poorly. Furthermore,
+upon the user exiting fuzzy search mode, we need to revert the user's view of
+clients and projects back to the way it was, before fuzzy searching began.
+
+In order to decouple these requirements from the more basic ones of CRUD, we
+avoid modifying the original `FilteredList` owned by the UI. The general idea
+is to replace the two lists of projects and clients every time the fuzzy
+ranking is performed. Thus the fuzzy ranking is free to perform any kind of
+sorting and filtering it requires without worrying about any unintentional
+side-effects on the UI. After the user exits from fuzzy finding mode, the UI
+then retrieves a clean reference to the lists of clients and projects from the
+address book, which automatically reverts it to its pre-fuzzy state.
 
 --------------------------------------------------------------------------------------------------------------------
 
