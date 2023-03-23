@@ -7,6 +7,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -48,10 +49,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
             + " in the appointment manager";
-    public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
     public static final String MESSAGE_MISSING_VAX_REQ = "The Patient has not taken all the needed vaccine";
     public static final String MESSAGE_EXIST_VAX_REQ = "The Patient has already taken this vaccine dose";
+    public static final String MESSAGE_EXISTING_APPOINTMENT = "This patient already has an upcoming appointment";
 
     private final Appointment toAdd;
 
@@ -100,7 +101,15 @@ public class AddCommand extends Command {
                 default:
                     // Should not reach here
                 }
+            }
+        }
 
+        // Checks for no existing next appointment
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(toAdd.getPatient())
+                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+                    throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
 
