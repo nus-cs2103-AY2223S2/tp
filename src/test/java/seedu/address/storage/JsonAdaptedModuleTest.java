@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.testutil.TypicalModules;
 
 public class JsonAdaptedModuleTest {
@@ -18,17 +19,18 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_CODE = "Lorem";
     private static final String INVALID_TAG = "H@rd";
 
-    private static final String VALID_CODE = TypicalModules.getCs2040s().getCode().code;
-    private static final String VALID_NAME = TypicalModules.getCs2040s().getName().name;
-    private static final List<JsonAdaptedLecture> VALID_LECTURES = TypicalModules.getCs2040s().getLectureList().stream()
-            .map(JsonAdaptedLecture::new).collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalModules.getCs2040s().getTags().stream()
-            .map(JsonAdaptedTag::new).collect(Collectors.toList());
+    private static final ReadOnlyModule ORIGINAL_MODULE = TypicalModules.getCs2040s();
+    private static final String VALID_CODE = ORIGINAL_MODULE.getCode().code;
+    private static final String VALID_NAME = ORIGINAL_MODULE.getName().name;
+    private static final List<JsonAdaptedLecture> VALID_LECTURES = ORIGINAL_MODULE.getLectureList()
+            .stream().map(JsonAdaptedLecture::new).collect(Collectors.toList());
+    private static final List<JsonAdaptedTag> VALID_TAGS = ORIGINAL_MODULE.getTags()
+            .stream().map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedModule module = new JsonAdaptedModule(TypicalModules.getCs2040s());
-        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+        JsonAdaptedModule adaptedModule = new JsonAdaptedModule(ORIGINAL_MODULE);
+        assertEquals(ORIGINAL_MODULE, adaptedModule.toModelType());
     }
 
     @Test
@@ -77,7 +79,7 @@ public class JsonAdaptedModuleTest {
         lecturesContainingNull.add(null);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, lecturesContainingNull, VALID_TAGS);
-        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+        assertEquals(ORIGINAL_MODULE, module.toModelType());
     }
 
     @Test
@@ -86,7 +88,7 @@ public class JsonAdaptedModuleTest {
         duplicatedTags.addAll(VALID_TAGS);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, duplicatedTags);
-        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+        assertEquals(ORIGINAL_MODULE, module.toModelType());
     }
 
     @Test
@@ -95,7 +97,7 @@ public class JsonAdaptedModuleTest {
         tagsContainingNull.add(null);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, tagsContainingNull);
-        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+        assertEquals(ORIGINAL_MODULE, module.toModelType());
     }
 
 }

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -28,12 +27,7 @@ import seedu.address.testutil.TypicalVideos;
  */
 public class AddVideoCommandIntegrationTest {
 
-    private Model model;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
-    }
+    private final Model model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
 
     @Test
     public void execute_newVideo_success() {
@@ -67,10 +61,8 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        Module module = TypicalModules.getCs2107();
-        ModuleCode moduleCode = module.getCode();
-        Lecture lecture = TypicalLectures.getCs2107Lecture1();
-        LectureName lectureName = lecture.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2107().getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
         assertCommandFailure(new AddVideoCommand(moduleCode, lectureName, validVideo), model,
@@ -79,10 +71,8 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_lectureDoesNotExist_throwsCommandException() {
-        Module module = TypicalModules.getCs2040s();
-        ModuleCode moduleCode = module.getCode();
-        Lecture lecture = TypicalLectures.getSt2334Topic1();
-        LectureName lectureName = lecture.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getSt2334Topic1().getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
         assertCommandFailure(new AddVideoCommand(moduleCode, lectureName, validVideo), model,
@@ -91,10 +81,8 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_duplicateVideo_throwsCommandException() {
-        Module module = TypicalModules.getCs2040s();
-        ModuleCode moduleCode = module.getCode();
-        Lecture lecture = TypicalLectures.getCs2040sWeek1();
-        LectureName lectureName = lecture.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         Video videoInList = TypicalVideos.INTRO_VIDEO;
 
         assertCommandFailure(new AddVideoCommand(moduleCode, lectureName, videoInList), model,

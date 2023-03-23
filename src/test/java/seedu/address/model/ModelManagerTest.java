@@ -93,7 +93,7 @@ public class ModelManagerTest {
     @Test
     public void setLecture_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.setLecture(null, TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic1()));
+                modelManager.setLecture(null, TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic2()));
     }
 
     @Test
