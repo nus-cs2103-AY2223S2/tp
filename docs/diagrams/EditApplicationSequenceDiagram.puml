@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box ApplicationLogic LOGIC_COLOR_T1
+participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":EditApplicationCommandParser" as EditApplicationCommandParser LOGIC_COLOR
+participant "d:EditApplicationCommand" as EditApplicationCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box ApplicationModel MODEL_COLOR_T1
+participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+participant ":Application" as Application MODEL_COLOR
+end box
+
+note left of ApplicationLogicManager #aqua
+Let user input be <str>
+str = "1 r/SYSTEMS ANALYST c/HRT
+e/HRThires@gmail.com s/applied"
+end note
+
+[-> ApplicationLogicManager : execute("edit {str}")
+activate ApplicationLogicManager
+
+ApplicationLogicManager -> InternshipBookParser : parseCommand("edit {str}")
+activate InternshipBookParser
+
+create EditApplicationCommandParser
+InternshipBookParser -> EditApplicationCommandParser
+activate EditApplicationCommandParser
+
+EditApplicationCommandParser --> InternshipBookParser
+deactivate EditApplicationCommandParser
+
+InternshipBookParser -> EditApplicationCommandParser : parse("{str}")
+activate EditApplicationCommandParser
+
+create Application
+EditApplicationCommandParser -> Application
+activate Application
+
+Application --> EditApplicationCommandParser : app
+deactivate Application
+
+create EditApplicationCommand
+EditApplicationCommandParser -> EditApplicationCommand : new EditApplicationCommand(app)
+activate EditApplicationCommand
+
+EditApplicationCommand --> EditApplicationCommandParser : editCommand
+deactivate EditApplicationCommand
+
+EditApplicationCommandParser --> InternshipBookParser : editCommand
+deactivate EditApplicationCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditApplicationCommandParser -[hidden]-> InternshipBookParser
+destroy EditApplicationCommandParser
+
+InternshipBookParser --> ApplicationLogicManager : editCommand
+deactivate InternshipBookParser
+
+ApplicationLogicManager -> EditApplicationCommand : execute()
+activate EditApplicationCommand
+
+EditApplicationCommand -> ApplicationModel : editApplication(app)
+activate ApplicationModel
+
+ApplicationModel --> EditApplicationCommand
+deactivate ApplicationModel
+
+create CommandResult
+EditApplicationCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditApplicationCommand
+deactivate CommandResult
+
+EditApplicationCommand --> ApplicationLogicManager : result
+deactivate EditApplicationCommand
+
+[<--ApplicationLogicManager
+deactivate ApplicationLogicManager
+@enduml
