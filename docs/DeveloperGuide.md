@@ -347,6 +347,63 @@ The following activity diagram shows the usage of the `inc` command.
 
 **insert activity diagram
 
+
+### \[Implementing\] View details of a food item.
+
+#### Overview
+The view feature is meant to be a shorthand for users to view the details of a particular food item.
+Traditionally, to view the details of an item, the user would use the list command to view the details of a food item.
+The user can now specify `view` to view more details of the indexed food item.
+
+
+The following UML diagram shows `view` and its associated class.
+
+*** insert uml
+
+#### Design considerations:
+
+* **Alternative 1 (Current implementation):** The command view with the index of the food item to view the details of.
+    * Pros:
+        * Intuitive for the user to key in the quantity they want to increase/decrease by.
+    * Cons:
+        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
+        * Feels like a hacky solution to the problem.
+        * Does not significantly value-add to the product as compared to just using the edit command.
+
+* **Alternative 2 :** Have a ui switcher to switch between the different views i.e. list view and details view.
+      * Pros:
+         * Code should be easier to maintain, or add new views in the future.
+      * Cons:
+         * Difficulty in implementing the switcher.
+         * Difficulty in implementing the different views.
+
+
+**Implementation** 
+<div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
+new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
+
+The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
+to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
+view from the list view to the details view.
+
+**Usage Scenario**
+
+1. The user specifies an index of the food item to be viewed.
+2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+3. If no specific quantity is specified, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+4. If a specific quantity is specified, the item will be displayed in the view.
+5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
+   key in the command with a valid index.
+
+
+The following activity diagram shows the usage of the `view` command.
+
+**insert activity diagram
+
+
+
 ### \[Implemented\] Dynamic Help
 
 The dynamic help mechanism allows the user to receive help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only receive general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
