@@ -1,10 +1,8 @@
 
 @startuml
-!include Style.puml
+!include StyleHY.puml
 'https://plantuml.com/sequence-diagram
 hide footbox
-
-
 
 
 
@@ -76,4 +74,6 @@ deactivate LD
 deactivate DATE COL2
 D --> PU
 deactivate D COL1
+
+<-- PU
 @enduml
