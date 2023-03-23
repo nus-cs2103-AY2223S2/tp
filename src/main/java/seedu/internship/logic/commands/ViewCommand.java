@@ -49,6 +49,9 @@ public class ViewCommand extends Command {
         model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
         ObservableList<Event> events = model.getFilteredEventList();
 
+        CommandResult cr = new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
+                internshipToView.getCompany()), internshipToView, events);
+
         return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
                 internshipToView.getCompany()), internshipToView, events);
     }

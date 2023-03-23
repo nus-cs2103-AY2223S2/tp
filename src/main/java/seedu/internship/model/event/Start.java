@@ -12,7 +12,7 @@ public class Start extends TimeParser {
     public static final String START_DATE_PARSE_FORMAT = "d/M/y";
     public static final String START_TIME_PARSE_FORMAT = "HHMM";
 
-    private final String startDateTime;
+    public final String startDateTime;
 
     /**
      * Constructs a {@code Start}.

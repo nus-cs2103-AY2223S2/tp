@@ -53,16 +53,12 @@ public class EventAddCommand extends EventCommand {
             throw new CommandException(MESSAGE_END_BEFORE_START);
         }
 
-
-
-
-        // Retreive the Selected Internship Index
+        // Retrieve the Selected Internship Index
         if (!model.hasSelectedInternship()) {
             throw new CommandException(MESSAGE_NO_INTERNSHIP_SELECTED );
         }
 
-
-        // Adding internship infromation to event
+        // Adding internship information to event
         Internship selectedIntern = model.getSelectedInternship();
         eventToAdd.setInternship(selectedIntern);
 
@@ -74,6 +70,7 @@ public class EventAddCommand extends EventCommand {
         model.addEvent(eventToAdd);
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
         ObservableList<Event> events = model.getFilteredEventList();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) , selectedIntern, events);
     }
 

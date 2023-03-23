@@ -191,6 +191,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             if (!commandResult.isEmptyInternship()) {
                 internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
             }

@@ -11,5 +11,4 @@ import seedu.internship.model.Model;
  */
 public abstract class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
-
 }

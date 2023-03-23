@@ -12,7 +12,7 @@ public class End extends TimeParser {
     public static final String END_DATE_PARSE_FORMAT = "d/M/y";
     public static final String END_TIME_PARSE_FORMAT = "HHMM";
 
-    private final String endDateTime;
+    public final String endDateTime;
 
     /**
      * Constructs a {@code End}.

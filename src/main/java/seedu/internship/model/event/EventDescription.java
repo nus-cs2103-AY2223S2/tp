@@ -2,7 +2,7 @@ package seedu.internship.model.event;
 
 import static java.util.Objects.requireNonNull;
 
-public class Description {
+public class EventDescription {
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -20,7 +20,7 @@ public class Description {
      *
      * @param descriptionMessage A valid name for a Description.
      */
-    public Description(String descriptionMessage) {
+    public EventDescription(String descriptionMessage) {
         requireNonNull(descriptionMessage);
         this.descriptionMessage = descriptionMessage;
     }

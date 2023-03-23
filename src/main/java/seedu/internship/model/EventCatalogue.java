@@ -24,7 +24,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     public EventCatalogue() {}
 
     /**
-     * Creates an EventCataloue using the events in the {@code toBeCopied}
+     * Creates an EventCatalogue using the events in the {@code toBeCopied}
      */
     public EventCatalogue(ReadOnlyEventCatalogue toBeCopied) {
         this();
@@ -47,7 +47,6 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
      */
     public void resetData(ReadOnlyEventCatalogue newData) {
         requireNonNull(newData);
-
         setEvents(newData.getEventList());
     }
 
@@ -78,7 +77,6 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
-
         events.setEvent(target, editedEvent);
     }
 

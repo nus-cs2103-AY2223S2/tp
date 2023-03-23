@@ -9,7 +9,7 @@ import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-import seedu.internship.model.event.Description;
+import seedu.internship.model.event.EventDescription;
 
 public class EventParserUtil extends ParserUtil {
 
@@ -82,13 +82,13 @@ public class EventParserUtil extends ParserUtil {
      *
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseEventDescription(String description) throws ParseException {
+    public static EventDescription parseEventDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         // No need ot check valid descripiton , as anything an be in description
         // if (!Description.isValidDescription(trimmedDescription)) {
         //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         // }
-        return new Description(trimmedDescription);
+        return new EventDescription(trimmedDescription);
     }
 }

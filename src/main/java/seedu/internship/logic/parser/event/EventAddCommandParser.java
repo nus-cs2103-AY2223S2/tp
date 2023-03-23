@@ -2,12 +2,9 @@ package seedu.internship.logic.parser.event;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.parser.CliSyntax.*;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
-import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.AddCommand;
+
 import seedu.internship.logic.commands.event.EventAddCommand;
 import seedu.internship.logic.parser.ArgumentMultimap;
 import seedu.internship.logic.parser.ArgumentTokenizer;
@@ -18,7 +15,7 @@ import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-import seedu.internship.model.event.Description;
+import seedu.internship.model.event.EventDescription;
 
 
 /**
@@ -50,7 +47,7 @@ public class EventAddCommandParser implements Parser<EventAddCommand> {
 
         End end = EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_END).get());
 
-        Description desc = EventParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_EVENT_DESCRIPTION).get());
+        EventDescription desc = EventParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_EVENT_DESCRIPTION).get());
 
         Event event = new Event(name,start, end, desc);
 

@@ -1,7 +1,5 @@
 package seedu.internship.model.event;
 
-
-
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
 import static java.util.Objects.requireNonNull;
