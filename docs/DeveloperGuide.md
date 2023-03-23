@@ -274,18 +274,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes the details on how the common commands are implemented.
 
-The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu
+items and tasks while `action` represents the action of the command.
 
 ### FindXYZCommand
 
-The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the
+provided keywords.
 
 The keywords that can be provided are the same as those provided during the `add` and `edit` command.
 For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
 
 The parser for the `find` command would extract out the arguments corresponding to each particular field.
 
-A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on
+whether they match the keywords provided.
 
 The following activity diagram summarizes what happens when the user executes the `find` command.
 
@@ -517,9 +520,9 @@ MSS
 
 * 3a. The given index is invalid.
 
-  * 3a1. Trackr shows an error message.
+    * 3a1. Trackr shows an error message.
 
-    Use case resumes at step 3.
+      Use case resumes at step 3.
 
 **Use case: UC22 - Delete a task (Similar to UC02)**
 
@@ -541,14 +544,14 @@ MSS
 **Extensions**
 
 * 2a. The list is empty.
-  
+
   Use case ends.
 
-* 3a. The Actor enters an invalid index. 
+* 3a. The Actor enters an invalid index.
 
-  * 3a1. Trackr displays an error message.
+    * 3a1. Trackr displays an error message.
 
-    Use case resumes at step 3.
+      Use case resumes at step 3.
 
 * 3b. The Actor enters invalid information.
 
@@ -575,11 +578,11 @@ MSS
 
 **Extensions**
 
-* 2a. The Actor does not enter any search criteria. 
+* 2a. The Actor does not enter any search criteria.
 
-  * 2a1. Trackr displays an error message.
-    
-  * Use case resumes at step 2.
+    * 2a1. Trackr displays an error message.
+
+    * Use case resumes at step 2.
 
 * 4a. No supplier matches the given search criteria.
 
