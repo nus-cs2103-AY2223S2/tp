@@ -261,7 +261,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-<img src="images/ArchitectureDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
@@ -289,7 +289,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/ArchitectureSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
@@ -302,7 +302,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" style="width:70%;margin:0 15%">
+<img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
@@ -316,7 +316,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.2.1</b> Class Diagram for UI Components
 </div>
@@ -341,7 +341,7 @@ The `UI` component,
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.1</b> Class Diagram for Model Components
 </div>
@@ -357,7 +357,7 @@ The `Model` component,
 
 **API** : [`Person.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
-<img src="images/PersonClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.2</b> Class Diagram for Person Components
 </div>
@@ -385,7 +385,7 @@ The `Model` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.1</b> Class Diagram for Logic Components
 </div>
@@ -439,7 +439,7 @@ The User has the default `ContactIndex` of 0.
 
 In summary, the activity diagram is as such:
 
-<img src="images/AddActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.2a</b> Activity Diagram for a typical <code>add</code> command
 </div>
@@ -493,7 +493,7 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 In summary, the activity diagram is as such:
 
-<img src="images/EditActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>edit</code> command
 </div>
@@ -502,7 +502,7 @@ In summary, the activity diagram is as such:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<img src="images/DeleteSequenceDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
@@ -515,6 +515,20 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 </div>
 
 #### **Tag Command**
+
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
+
+The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
+
+:information_source: **Command Formats**:
+
+* `tag m/MODULE`: Tags a module to user.
+* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+
+**Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
 {to be filled by Kenny}
 
@@ -560,13 +574,37 @@ Below is an Activity Diagram for the execution of the `ViewCommand`.
 
 #### **Find Command**
 
-{to be filled by Sean}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
+
+The 'find' command allows users to search for their contacts with partial information. 
+
+For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
+
+**Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and check if there is only one type of information.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** This command can be used before the other commands to return a list of contacts the user wants to work with. 
+
+</div>
+
+**Describing the find** - `ContainsKeywordPredicate` class which extends from `Predicate` handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
+
 
 #### **Sort Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SortCommandParser.java)
 
-The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. 
+
+For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
 
 **Parsing the inputs** - When the user types an input, the parser will *scan* through the arguments. Then, it checks whether the field needs to be sorted in **ascending** or **descending** order. Finally, it combines all the comparators together so that we get a single comparator.
 
@@ -600,7 +638,24 @@ The `sort` command allows users to arrange their contacts in the order they desi
 
 #### **Exit Command**
 
-{to be filled}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ExitCommand.java)
+
+The `exit` command allows users to exit the EduMate Application via the command line.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `exit`: Exits the EduMate Application.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
+
+</div>
+
+
 
 ### **Meet Command**
 
@@ -629,7 +684,7 @@ This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" style="width:80%;margin:0 10%">
+<img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.x</b> Class Diagram for Parser Components
 </div>
@@ -653,7 +708,7 @@ How the parsing works:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.5.1</b> Class Diagram for Storage Components
 </div>
