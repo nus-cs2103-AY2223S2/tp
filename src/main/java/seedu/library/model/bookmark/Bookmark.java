@@ -97,6 +97,7 @@ public class Bookmark {
                 && otherBookmark.getProgress().equals(getProgress())
                 && otherBookmark.getGenre().equals(getGenre())
                 && otherBookmark.getAuthor().equals(getAuthor())
+                //&& otherBookmark.getUrl().equals(getUrl())
                 && otherBookmark.getTags().equals(getTags());
     }
 

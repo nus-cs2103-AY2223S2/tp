@@ -55,7 +55,7 @@ public class BookmarkListPanel extends UiPart<Region> {
 
     }
     public Bookmark getSelectedItem() {
-        return bookmarkListView.getSelectionModel().getSelectedItem();
+        return selectedItem;
     }
     public void unSelect() {
         bookmarkListView.getSelectionModel().clearSelection();
