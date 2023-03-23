@@ -30,17 +30,13 @@ public class ModelManager implements Model {
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
-    private final FilteredList<Entity> filteredAllEntities;
-    // Placeholder for the active list.
     private FilteredList<Entity> filteredActive;
-    private Entity active = null;
 
     private Entity currentSelectedEntity;
 
     /**
-     * Initializes a ModelManager with the given reroll and userPrefs.
+     * Initializes a ModelManager with the given Reroll and userPrefs.
      */
-
     public ModelManager(ReadOnlyReroll reroll, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(reroll, userPrefs);
 
@@ -48,11 +44,12 @@ public class ModelManager implements Model {
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredAllEntities = new FilteredList<>(this.reroll.getAllList());
-        // By default, the active list is all entities.
-        this.filteredActive = this.filteredAllEntities;
+        this.filteredActive = new FilteredList<>(this.reroll.getAllList());
     }
 
+    /**
+     * Initializes a ModelManager with empty Reroll and userPrefs.
+     */
     public ModelManager() {
         this(new Reroll(), new UserPrefs());
     }
@@ -126,9 +123,7 @@ public class ModelManager implements Model {
     @Override
     public void setEntity(Entity target, Entity edited) {
         requireAllNonNull(target, edited);
-        if (!target.getClass().equals(edited.getClass())) {
-            return; // throw error.
-        }
+
         reroll.setEntity(target, edited);
     }
 

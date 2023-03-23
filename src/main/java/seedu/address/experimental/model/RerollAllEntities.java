@@ -3,33 +3,23 @@ package seedu.address.experimental.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
 
-/***/
+/**
+ * Wrap all data at the entity level.
+ * Package-private utility class of Reroll.
+ */
 public class RerollAllEntities implements ReadOnlyEntities {
 
-    private final UniqueEntityList<Entity> entities;
+    private final UniqueEntityList entities;
     {
-        entities = new UniqueEntityList<>();
+        entities = new UniqueEntityList();
     }
 
-    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character;
-    private final Predicate<Entity> isMob = entity -> entity instanceof Mob;
-    private final Predicate<Entity> isItem = entity -> entity instanceof Item;
-
-    private final ObservableList<Entity> characters =
-            new FilteredList<>(entities.asUnmodifiableObservableList(), isCharacter);
-    private final ObservableList<Entity> mobs = new FilteredList<>(entities.asUnmodifiableObservableList(), isMob);
-    private final ObservableList<Entity> items = new FilteredList<>(entities.asUnmodifiableObservableList(), isItem);
-
     // List level operations ==============================
+
     void setEntities(List<Entity> entities) {
         this.entities.setEntities(entities);
     }
@@ -76,26 +66,5 @@ public class RerollAllEntities implements ReadOnlyEntities {
         return other == this
                 || (other instanceof RerollAllEntities
                 && entities.equals(((RerollAllEntities) other).entities));
-    }
-
-    /**
-     * Returns list of characters
-     */
-    public ObservableList<Entity> getCharacters() {
-        return characters;
-    }
-
-    /**
-     * Returns list of items
-     */
-    public ObservableList<Entity> getItems() {
-        return items;
-    }
-
-    /**
-     * Return list of mobs
-     */
-    public ObservableList<Entity> getMobs() {
-        return mobs;
     }
 }

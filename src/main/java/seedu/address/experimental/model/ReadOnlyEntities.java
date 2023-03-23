@@ -4,12 +4,13 @@ import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
 
 /**
- * TBC
+ * Unmodifiable view of an entity list
  */
 public interface ReadOnlyEntities {
     /**
-     * TBC
-     * @return TBC
+     * Returns an unmodifiable view of the entity list.
+     * The list contains entities of a specific class or all classes.
+     * The list will not contain duplicate items.
      */
     ObservableList<Entity> getEntityList();
 }

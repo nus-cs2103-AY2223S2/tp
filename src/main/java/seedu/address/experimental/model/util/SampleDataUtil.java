@@ -10,14 +10,17 @@ import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
-/***/
+
+/***
+ * Contains utility methods for populating {@code Reroll} with sample data.
+ */
 public class SampleDataUtil {
 
     private static Character[] sampleCharacter;
     private static Mob[] sampleMob;
     private static Item[] sampleItem;
 
-    /***/
+    /** Sample Data */
     public static void getSampleEntities() {
         Character c = new Character(new Name("Item1"), new Stats(0, 0, 0), 3, 2, new HashSet<Tag>());
         Mob m1 = new Mob(new Name("Mob1"), new Stats(300, 300, 300), 2, true, new HashSet<Tag>());
@@ -27,7 +30,7 @@ public class SampleDataUtil {
         sampleItem = new Item[] {};
     }
 
-    /***/
+    /** Initialize Reroll with sample data */
     public static ReadOnlyReroll getSampleReroll() {
         Reroll sampleRr = new Reroll();
         getSampleEntities();

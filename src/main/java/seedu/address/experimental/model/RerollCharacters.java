@@ -10,6 +10,10 @@ public class RerollCharacters implements ReadOnlyEntities {
 
     private final ObservableList<Entity> characters;
 
+    /**
+     * Initialize with list of characters.
+     * @param characters Unmodifiable view of characters.
+     */
     public RerollCharacters(ObservableList<Entity> characters) {
         this.characters = characters;
     }

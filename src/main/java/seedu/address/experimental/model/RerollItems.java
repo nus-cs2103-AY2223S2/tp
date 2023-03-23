@@ -10,6 +10,10 @@ public class RerollItems implements ReadOnlyEntities {
 
     private final ObservableList<Entity> items;
 
+    /**
+     * Initialize with list of items.
+     * @param items Unmodifiable view of items
+     */
     public RerollItems(ObservableList<Entity> items) {
         this.items = items;
     }

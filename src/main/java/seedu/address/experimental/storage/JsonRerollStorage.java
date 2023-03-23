@@ -13,16 +13,23 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.experimental.model.ReadOnlyReroll;
-/***/
+
+/**
+ * A class to access Reroll data stored as a Json file on the hard disk.
+ */
 public class JsonRerollStorage implements RerollStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonRerollStorage.class);
 
     private Path filePath;
 
+    /**
+     * Initialize with given file path.
+     */
     public JsonRerollStorage(Path filePath) {
         this.filePath = filePath;
     }
 
+    @Override
     public Path getRerollFilePath() {
         return filePath;
     }
@@ -31,7 +38,8 @@ public class JsonRerollStorage implements RerollStorage {
     public Optional<ReadOnlyReroll> readReroll() throws DataConversionException {
         return readReroll(filePath);
     }
-    /***/
+
+    @Override
     public Optional<ReadOnlyReroll> readReroll(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -53,7 +61,8 @@ public class JsonRerollStorage implements RerollStorage {
     public void saveReroll(ReadOnlyReroll reroll) throws IOException {
         saveReroll(reroll, filePath);
     }
-    /***/
+
+    @Override
     public void saveReroll(ReadOnlyReroll reroll, Path filePath) throws IOException {
         requireNonNull(reroll);
         requireNonNull(filePath);

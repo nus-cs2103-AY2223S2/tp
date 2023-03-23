@@ -15,14 +15,18 @@ import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 
-/***/
+/**
+ * An Immutable Reroll that is serializable to JSON format.
+ */
 @JsonRootName(value = "reroll")
 public class JsonSerializableReroll {
     private final List<JsonAdaptedMob> mobs = new ArrayList<>();
     private final List<JsonAdaptedCharacter> characters = new ArrayList<>();
     private final List<JsonAdaptedItem> items = new ArrayList<>();
 
-    /***/
+    /**
+     * Constructs a {@code JsonSerializableReroll} with the given entities.
+     */
     @JsonCreator
     public JsonSerializableReroll(@JsonProperty("mobs") List<JsonAdaptedMob> mobs,
                                   @JsonProperty("characters") List<JsonAdaptedCharacter> characters,
@@ -31,7 +35,10 @@ public class JsonSerializableReroll {
         this.characters.addAll(characters);
         this.items.addAll(items);
     }
-    /***/
+
+    /**
+     * Converts a given {@code ReadOnlyReroll} into this class for Jackson use.
+     */
     public JsonSerializableReroll(ReadOnlyReroll source) {
         mobs.addAll(source.getMobs().getEntityList().stream().map(x -> (Mob) x)
                 .map(JsonAdaptedMob::new).collect(Collectors.toList()));
@@ -40,7 +47,12 @@ public class JsonSerializableReroll {
         items.addAll(source.getItems().getEntityList().stream().map(x -> (Item) x)
                 .map(JsonAdaptedItem::new).collect(Collectors.toList()));
     }
-    /***/
+
+    /**
+     * Converts this Jackson-friendly adapted Reroll object into the model's {@code Reroll} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
     public Reroll toModelType() throws IllegalValueException {
         Reroll reroll = new Reroll();
         // Add all mobs

@@ -98,8 +98,7 @@ public class Entity {
         return builder.toString();
     }
 
-    // Not implemented. in other branch temp.
-    public boolean isSameEntity(seedu.address.model.entity.Entity other) {
+    public boolean isSameEntity(Entity other) {
         return false;
     }
 }

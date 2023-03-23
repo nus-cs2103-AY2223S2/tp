@@ -15,7 +15,9 @@ import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
-/***/
+/**
+ * Jackson-friendly version of {@link Mob}
+ */
 public class JsonAdaptedMob {
 
     private final String name;
@@ -24,7 +26,9 @@ public class JsonAdaptedMob {
     private final boolean isLegendary;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    /***/
+    /**
+     * Constructs a {@code JsonAdaptedMob} with the given mob details.
+     */
     @JsonCreator
     JsonAdaptedMob(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
             @JsonProperty("challengeRating") float challengeRating,
@@ -39,7 +43,9 @@ public class JsonAdaptedMob {
         }
     }
 
-    /***/
+    /**
+     * Converts a given {@code Mob} into this class for Jackson use.
+     */
     public JsonAdaptedMob(Mob source) {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
@@ -50,7 +56,11 @@ public class JsonAdaptedMob {
                 .collect(Collectors.toList()));
     }
 
-    /***/
+    /**
+     * Converts this Jackson-friendly adapted Item object into the model's {@code Mob} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted item.
+     */
     public Mob toModelType() throws IllegalValueException {
         // dont care
         Stats stat = stats.toModalType();
