@@ -6,11 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
 import seedu.address.model.expense.ExpenseInTimespanPredicate;
 

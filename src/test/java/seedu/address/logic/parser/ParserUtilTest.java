@@ -197,21 +197,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTimespan_week_returnsFirstDayOfWeek() throws Exception{
+    public void parseTimespan_week_returnsFirstDayOfWeek() throws Exception {
         LocalDate firstDayOfWeek = LocalDate.now().with(DayOfWeek.MONDAY);
         assertEquals(firstDayOfWeek, ParserUtil.parseTimespan("week"));
         assertEquals(firstDayOfWeek, ParserUtil.parseTimespan("w"));
     }
 
     @Test
-    public void parseTimespan_month_returnsFirstDayOfMonth() throws Exception{
+    public void parseTimespan_month_returnsFirstDayOfMonth() throws Exception {
         LocalDate firstDayOfMonth = LocalDate.now().withDayOfMonth(1);
         assertEquals(firstDayOfMonth, ParserUtil.parseTimespan("month"));
         assertEquals(firstDayOfMonth, ParserUtil.parseTimespan("m"));
     }
 
     @Test
-    public void parseTimespan_year_returnsFirstDayOfYear() throws Exception{
+    public void parseTimespan_year_returnsFirstDayOfYear() throws Exception {
         LocalDate firstDayOfYear = LocalDate.now().withDayOfYear(1);
         assertEquals(firstDayOfYear, ParserUtil.parseTimespan("year"));
         assertEquals(firstDayOfYear, ParserUtil.parseTimespan("y"));
