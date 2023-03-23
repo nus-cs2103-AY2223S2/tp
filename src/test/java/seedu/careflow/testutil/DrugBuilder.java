@@ -18,13 +18,13 @@ public class DrugBuilder {
     public static final String DEFAULT_ACTIVE_INGREDIENT = "Acetaminophen";
     public static final String DEFAULT_DIRECTION = "The usual recommended dose of Tylenol for adults is 325 to "
             + "1000 mg taken every 4 to 6 hours, up to a maximum of 4000 mg per day. Dosage should be adjusted "
-            + "based on age, weight, and other medical conditions. ";
+            + "based on age, weight, and other medical conditions.";
     public static final String DEFAULT_PURPOSE = "Tylenol is a pain reliever and fever reducer that is "
             + "used to treat mild to moderate pain, such as headaches, toothaches, menstrual cramps, "
             + "back pain, and arthritis.";
     public static final String DEFAULT_SIDE_EFFECT = "Common side effects of Tylenol may include nausea, "
             + "vomiting, stomach pain, and constipation. Less common side effects may include rash, "
-            + "itching, and hives. ";
+            + "itching, and hives.";
     public static final String DEFAULT_STORAGE_COUNT = "20";
 
     private TradeName tradeName;
