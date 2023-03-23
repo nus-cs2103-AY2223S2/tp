@@ -17,7 +17,7 @@ public class Height {
      * The first character of the specialty must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^\\s*\\d{1}\\.\\d{1,2}\\s*$";
+    public static final String VALIDATION_REGEX = "^\\s*\\d{1}\\.\\d{2}\\s*$";
 
     public final String height;
 
