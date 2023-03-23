@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
 public class StringUtilTest {
     @Test
     public void isMatching() {
-        String text = "John Doe John Alex UNCHI [] {} ()";
+        String text = "John Doe John Alex UNCHI[]{}()<a>&&&\\=:";
 
         assertTrue(StringUtil.isMatching(text, List.of("")));
         assertTrue(StringUtil.isMatching(text, List.of("John")));
         assertTrue(StringUtil.isMatching(text, List.of("John", "John")));
         assertTrue(StringUtil.isMatching(text, List.of("John", "unchi")));
         assertTrue(StringUtil.isMatching(text, List.of("oh")));
-        assertTrue(StringUtil.isMatching(text, List.of("[]", "{}", "()")));
+        assertTrue(StringUtil.isMatching(text, List.of("[]", "{}", "()", "<a>", "&&&", "\\", "=", ":")));
 
         assertFalse(StringUtil.isMatching(text, List.of("BANANA")));
         assertFalse(StringUtil.isMatching(text, List.of("Doe", "Doe")));

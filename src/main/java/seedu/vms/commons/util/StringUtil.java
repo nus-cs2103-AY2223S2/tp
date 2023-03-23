@@ -41,12 +41,27 @@ public class StringUtil {
     private static String convertRegexChars(String pattern) {
         return pattern
                 .toUpperCase()
+                .replaceAll("\\\\", "\\\\\\\\")
                 .replaceAll("\\[", "\\\\[")
                 .replaceAll("\\]", "\\\\]")
                 .replaceAll("\\(", "\\\\(")
                 .replaceAll("\\)", "\\\\)")
                 .replaceAll("\\{", "\\\\{")
-                .replaceAll("\\}", "\\\\}");
+                .replaceAll("\\}", "\\\\}")
+                .replaceAll("\\<", "\\\\<")
+                .replaceAll("\\>", "\\\\>")
+                .replaceAll("\\+", "\\\\+")
+                .replaceAll("\\-", "\\\\-")
+                .replaceAll("\\|", "\\\\|")
+                .replaceAll("\\?", "\\\\?")
+                .replaceAll("\\*", "\\\\*")
+                .replaceAll("\\.", "\\\\.")
+                .replaceAll("\\^", "\\\\^")
+                .replaceAll("\\$", "\\\\$")
+                .replaceAll("\\&", "\\\\&")
+                .replaceAll("\\!", "\\\\!")
+                .replaceAll("\\=", "\\\\=")
+                .replaceAll("\\:", "\\\\:");
     }
 
     /**
