@@ -148,15 +148,23 @@ The `Model` component,
 
 
 ### Storage component
-Original Adressbook Storage Component
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+Original AddressBook Storage Component
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
+OfficeConnect Storage Component
+<img src="images/OfficeStorageClassDiagram.png" width="550" />
+The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
+
+To address this requirement, a new generic class called RepositoryStorage has been introduced to the storage component. This addition allows for increased extensibility and flexibility in the storage component's functionality.
+
+The enhanced design is extendable and also capable of supporting the integration of additional databases into the application in the future if required.
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save address book data, task list data, task assignment data  and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` and `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model` and `OfficeConnectModel`)
 
 ### Common classes
 
