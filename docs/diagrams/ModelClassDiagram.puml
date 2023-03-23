@@ -5,46 +5,43 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyShop" as ReadOnlyShop
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Shop
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class UniqueXList
+Class X
+Class Service
+Class PartMap
+'Class Part
+Class ServiceList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Shop .up.|> ReadOnlyShop
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyShop
+ModelManager -left-> "1" Shop
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Shop *--> "1" UniqueXList
+Shop *--> "1" ServiceList
+UniqueXList --> "~* all" X
+ModelManager -->"~* filtered" X
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Shop *--> "1" PartMap
+'PartMap --> "~* all" Part
+ModelManager -->"1" PartMap
 
-ModelManager -->"~* filtered" Person
+ServiceList --> "~* all" Service
+ModelManager -->"~* filtered" Service
+
 @enduml
