@@ -1,22 +1,22 @@
 package seedu.address.model.ward;
 
 public class Capacity {
-    public int capacity;
+    public int maxCapacity;
     public int occupancy = 0;
 
     public Capacity(int capacity) {
-        this.capacity = capacity;
+        this.maxCapacity = capacity;
     }
 
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        this.maxCapacity = capacity;
     }
 
     public boolean isFull() {
-        return occupancy >= capacity;
+        return occupancy >= maxCapacity;
     }
     @Override
     public String toString() {
-        return "Current occupancy rate: " + occupancy + "/" + capacity;
+        return "Current occupancy rate: " + occupancy + "/" + maxCapacity;
     }
 }

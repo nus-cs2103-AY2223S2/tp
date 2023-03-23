@@ -49,7 +49,7 @@ public class Ward implements ReadOnlyAddressBook{
         return name.toString().matches(VALIDATION_REGEX);
     }
 
-    public String name() {
+    public String getName() {
         return name.toString();
     }
 

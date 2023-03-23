@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Ward;
+import seedu.address.model.ward.Ward;
 
 
 /**
@@ -34,8 +33,6 @@ public class WardCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label occupancy;
-    @FXML
     private Label capacity;
 
     /**
@@ -47,12 +44,7 @@ public class WardCard extends UiPart<Region> {
         this.ward = ward;
         id.setText(displayedIndex + ". ");
         name.setText(ward.getName());
-        nric.setText(patient.getNric().value);
-        String statusString = patient.getStatusDesc();
-        status.setText(statusString);
-        status.getStyleClass().clear();
-        status.getStyleClass().add("status-" + statusString);
-        ward.setText(patient.getWard().value);
+        capacity.setText(capacity.toString());
 
     }
 
@@ -70,7 +62,7 @@ public class WardCard extends UiPart<Region> {
 
         // state check
         WardCard card = (WardCard) other;
-        return nric.getText().equals(card.nric.getText())
-                && patient.equals(card.patient);
+        return name.getText().equals(card.name.getText())
+                && ward.equals(card.ward);
     }
 }
