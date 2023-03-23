@@ -13,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find /a Aeron")
+[-> LogicManager : execute("find n/ Aeron")
 activate LogicManager
 
 LogicManager -> DengueHotspotTrackerParser : parseCommand("find /a Aeron")
