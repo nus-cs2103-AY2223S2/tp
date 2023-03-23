@@ -166,4 +166,8 @@ public interface Model {
     void tagCurrentCardInReview(Tag tag);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
+
+    ObservableList<Pair<String, String>> getDeckNameList();
+
+    ObservableList<Pair<String, String>> getReviewDeckNameList();
 }

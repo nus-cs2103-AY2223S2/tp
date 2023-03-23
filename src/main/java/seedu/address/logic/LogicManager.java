@@ -89,6 +89,10 @@ public class LogicManager implements Logic {
         return model.getFilteredDeckList();
     }
 
+    public ObservableList<Pair<String, String>> getDeckNameList() {
+        return model.getDeckNameList();
+    }
+
     @Override
     public Path getMasterDeckFilePath() {
         return model.getMasterDeckFilePath();
@@ -107,5 +111,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Pair<String, String>> getReviewStatsList() {
         return model.getReviewStatsList();
+    }
+
+    @Override
+    public ObservableList<Pair<String, String>> getReviewDeckNameList() {
+        return model.getReviewDeckNameList();
     }
 }

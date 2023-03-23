@@ -52,7 +52,7 @@ public class ReviewCommand extends Command {
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getReviewDeckName()),
-                false, false, true, false
+                false, false, true, false, false, false
         );
     }
 

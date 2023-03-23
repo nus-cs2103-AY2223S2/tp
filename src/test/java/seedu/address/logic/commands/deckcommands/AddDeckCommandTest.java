@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
@@ -172,6 +173,13 @@ public class AddDeckCommandTest {
         }
 
         @Override
+        public ObservableList<Pair<String, String>> getDeckNameList() {
+            ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
+            placeholder.add(new Pair("Current Deck:", "No deck selected!"));
+            return placeholder;
+        }
+
+        @Override
         public void addDeck(Deck deck) {
             throw new AssertionError("This method should not be called.");
         }
@@ -244,6 +252,12 @@ public class AddDeckCommandTest {
         public String getReviewDeckName() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Pair<String, String> > getReviewDeckNameList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void flipCard() {

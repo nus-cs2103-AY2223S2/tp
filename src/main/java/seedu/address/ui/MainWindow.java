@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -38,8 +41,10 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     //PLACEHOLDER FOR DECKLIST
     private UiPart<Region> leftPanel;
+    private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ObservableList<Pair<String, String>> deckTitlePlaceholder = FXCollections.observableArrayList();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane rightPanelPlaceholder;
+
+    @FXML
+    private StackPane rightPanelTitle;
 
     @FXML
     private StackPane leftPanelPlaceholder;
@@ -61,6 +69,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow titlePanel;
+
 
 
     /**
@@ -125,6 +134,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(title);
 
+        Pair<String, String> header = new Pair("Current Deck:", "No deck selected!");
+        deckTitlePlaceholder.add(header);
+        rightTitle = new DeckNamePanel(deckTitlePlaceholder);
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredCardList());
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -185,6 +199,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
+        rightTitle = new DeckNamePanel(logic.getReviewDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
@@ -200,9 +217,32 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
+        rightPanelTitle.getChildren().removeAll();
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
         personListPanel.endReview();
     }
 
+    /**
+     * Shows the deck Title.
+     */
+    public void handleSelectDeck() {
+        rightPanelTitle.getChildren().removeAll();
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
+    }
+
+    /**
+     * Hides the deck Title.
+     */
+    public void handleUnSelectDeck() {
+        rightPanelTitle.getChildren().removeAll();
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -237,6 +277,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isEndReview()) {
                 handleEndReview();
+            }
+
+            if (commandResult.isSelectDeck()) {
+                handleSelectDeck();
+            }
+
+            if (commandResult.isUnselectDeck()) {
+                handleUnSelectDeck();
             }
 
             return commandResult;

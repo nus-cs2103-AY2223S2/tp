@@ -27,10 +27,12 @@ public class SelectDeckCommandTest {
         SelectDeckCommand selectDeckCommand = new SelectDeckCommand(validIndex);
         String expectedMessage = String.format(SelectDeckCommand.MESSAGE_SUCCESS, testDeck.getDeckName());
         Model expectedModel = new ModelManager();
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage, false, false, false, false, true, false);
         expectedModel.addDeck(testDeck);
         expectedModel.selectDeck(validIndex);
 
-        assertCommandSuccess(selectDeckCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectDeckCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
