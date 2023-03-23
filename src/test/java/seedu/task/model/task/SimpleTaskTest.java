@@ -44,9 +44,9 @@ public class SimpleTaskTest {
         editedAlice = new SimpleTaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedBob = new SimpleTaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameTask(editedBob));
+        assertTrue(BOB.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";

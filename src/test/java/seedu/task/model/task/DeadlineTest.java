@@ -43,9 +43,9 @@ public class DeadlineTest {
         editedReturn = new DeadlineBuilder(RETURN_BOOK).withName("Assignment").build();
         assertFalse(RETURN_BOOK.isSameTask(editedReturn));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedAssignment = new DeadlineBuilder(ASSIGNMENT).withName("Assignment".toLowerCase()).build();
-        assertFalse(ASSIGNMENT.isSameTask(editedAssignment));
+        assertTrue(ASSIGNMENT.isSameTask(editedAssignment));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = "Assignment" + " ";
