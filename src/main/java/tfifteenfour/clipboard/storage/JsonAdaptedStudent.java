@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
@@ -77,7 +77,7 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<ModuleCode> personModules = new ArrayList<>();
+        final List<Course> personModules = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -85,7 +85,7 @@ class JsonAdaptedStudent {
 
         if (modules.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleCode.class.getSimpleName()));
+                    Course.class.getSimpleName()));
         }
 
         for (JsonAdaptedModuleCode moduleCode : modules) {
@@ -129,7 +129,7 @@ class JsonAdaptedStudent {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        final Set<ModuleCode> modelModules = new HashSet<>(personModules);
+        final Set<Course> modelModules = new HashSet<>(personModules);
 
         final Remark modelRemark = new Remark(remark);
 

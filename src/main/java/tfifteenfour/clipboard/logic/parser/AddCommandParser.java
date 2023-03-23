@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
-        Set<ModuleCode> modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
+        Set<Course> modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
         Remark remark = new Remark("");
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Student student = new Student(name, phone, email, studentId, modules, remark, tags);

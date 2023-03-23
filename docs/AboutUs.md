@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at any of the following emails: 
+You can reach us at any of the following emails:
 * [Afiq Zuhairi Bin Sahri](mailto:afiqzuhairi@gmail.com)
 * [Chong Yijing Isabel](mailto:e0775756@u.nus.edu)
 * [Seow Wen Xuan, Kelvin](mailto:s.wxk19@gmail.com)

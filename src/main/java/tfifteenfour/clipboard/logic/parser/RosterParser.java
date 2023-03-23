@@ -15,6 +15,7 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.ListCommand;
+import tfifteenfour.clipboard.logic.commands.ModuleCommand;
 import tfifteenfour.clipboard.logic.commands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.ViewCommand;
@@ -61,6 +62,9 @@ public class RosterParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case ModuleCommand.COMMAND_WORD:
+            return new ModuleCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

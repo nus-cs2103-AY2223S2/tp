@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Student;
@@ -88,7 +88,7 @@ public class EditStudentDescriptorBuilder {
      * that we are building.
      */
     public EditStudentDescriptorBuilder withModules(String... modules) {
-        Set<ModuleCode> modulesSet = Stream.of(modules).map(ModuleCode::new).collect(Collectors.toSet());
+        Set<Course> modulesSet = Stream.of(modules).map(Course::new).collect(Collectors.toSet());
         descriptor.setModules(modulesSet);
         return this;
     }

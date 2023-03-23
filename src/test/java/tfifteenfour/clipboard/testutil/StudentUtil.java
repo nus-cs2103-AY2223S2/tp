@@ -11,7 +11,7 @@ import java.util.Set;
 
 import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
-import tfifteenfour.clipboard.model.student.ModuleCode;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.tag.Tag;
 
@@ -55,7 +55,7 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStudentId().ifPresent(address -> sb.append(PREFIX_STUDENTID).append(address.value).append(" "));
 
-        Set<ModuleCode> modules = descriptor.getModules().get();
+        Set<Course> modules = descriptor.getModules().get();
         modules.forEach(s -> sb.append(PREFIX_MODULE).append(s.moduleCode).append(" "));
 
         if (descriptor.getTags().isPresent()) {
