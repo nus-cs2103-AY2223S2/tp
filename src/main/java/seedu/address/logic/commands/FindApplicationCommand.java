@@ -17,7 +17,7 @@ public class FindApplicationCommand extends ApplicationCommand {
             + "which has company names containing "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "  Goggle Mata";
+            + "Example: " + COMMAND_WORD + " Goggle Mata";
 
     private final NameContainsKeywordsPredicate predicate;
 
