@@ -73,6 +73,7 @@ public class ModuleCard extends UiPart<Region> {
         for (Tag tag : module.getTags()) {
             String tagNameShort = ValidTag.getShortForm(tag.tagName).toString();
             String tagNameLong = tag.toString();
+            System.out.println(tagNameLong);
             String color = ValidTag.getColor(tag.tagName);
             addTag(tagNameShort, tagNameLong, color);
         }
