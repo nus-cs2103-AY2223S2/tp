@@ -4,7 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import seedu.address.commons.util.GetUtil;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.item.Item;
+import seedu.address.model.link.Link;
 
 /**
  * Location is a unit place that the flight can travel to or
@@ -21,6 +27,7 @@ public class Location implements Item {
             );
     private static final String NAME_STRING = "Name";
     private static final String ID_STRING = "ID";
+    public final Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink;
     private final String name;
     private final String id;
 
@@ -28,8 +35,17 @@ public class Location implements Item {
      * Creates a Location object with the given name.
      * @param name name of the location
      */
-    public Location(String name) {
-        this(UUID.randomUUID().toString(), name);
+    public Location(
+            String name
+    ) {
+        this(
+            UUID.randomUUID().toString(),
+            name,
+            new Link<>(
+                    Crew.SHAPE_FOR_LOCATION,
+                    GetUtil.getLazy(Model.class).map(Model::getCrewManager)
+            )
+        );
     }
 
     /**
@@ -37,9 +53,14 @@ public class Location implements Item {
      * @param id a unique id assigned to the location
      * @param name the name of the location
      */
-    public Location(String id, String name) {
+    public Location(
+            String id,
+            String name,
+            Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink
+    ) {
         this.id = id;
         this.name = name;
+        this.crewLink = crewLink;
     }
 
     /**

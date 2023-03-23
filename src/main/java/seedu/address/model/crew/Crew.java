@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.model.item.Item;
+import seedu.address.model.location.CrewLocationType;
 
 /**
  * Represents a Crew in the Wingman app.
@@ -19,6 +20,10 @@ public class Crew implements Item {
                     FlightCrewType.SENIOR_FLIGHT_ATTENDANT, 1,
                     FlightCrewType.FLIGHT_ATTENDANT, 12,
                     FlightCrewType.TRAINEE, 4
+            );
+    public static final Map<CrewLocationType, Integer> SHAPE_FOR_LOCATION =
+            Map.of(
+                    CrewLocationType.LOCATION_USING, 1000000
             );
     private static final String ID_STRING = "ID";
     private static final String NAME_STRING = "Name";
