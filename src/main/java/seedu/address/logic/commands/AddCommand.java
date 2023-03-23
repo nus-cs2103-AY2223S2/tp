@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + PREFIX_NRIC + "NRIC "
             + "[optional]" + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe" + PREFIX_NRIC + "S1234567A" + PREFIX_STATUS + "GRAY \n";
+            + PREFIX_NAME + "John Doe " + PREFIX_NRIC + "S1234567A " + PREFIX_STATUS + "GRAY \n";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in MedInfo";
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPatient(toAdd)) {
+        if (model.hasPatientNric(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
