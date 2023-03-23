@@ -46,7 +46,7 @@
         </VBox>
 
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"  />
 
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
