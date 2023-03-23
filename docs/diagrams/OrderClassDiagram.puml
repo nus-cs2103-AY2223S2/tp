@@ -1,0 +1,72 @@
+'@startuml
+' !include style.puml
+' skinparam arrowThickness 1.1
+' skinparam arrowColor MODEL_COLOR
+' skinparam classBackgroundColor MODEL_COLOR
+' skinparam groupInheritance 1
+'
+' Abstract Class "{abstract}\nItem" as Item
+'
+' together {
+' Class MenuItem
+' Class Quantity
+' Class Status
+' Class Deadline
+' Class Customer
+' }
+'
+' Class ItemList<T extends Item>
+' Class UniqueItemList<T>
+'
+' ItemList *--> "1" UniqueItemList
+' UniqueItemList --> Item
+'
+' Order *--> "1" MenuItem
+' Order *--> "1" Quantity
+' Order *--> "1" Customer
+' Order *--> "1" Deadline
+' Order *--> "1" Status
+' Order --u|> Item
+
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class Order
+Class MenuItem
+Class Customer
+Class Quantity
+Class OrderStatus
+Class OrderDeadline
+Class OrderList extends ItemList
+Class UniqueOrderList extends UniqueItemList
+Class ItemList<T extends Item>
+
+
+ItemList *--r> "1 " UniqueItemList
+UniqueItemList -r>"*" Item
+
+OrderList *--r> "1 " UniqueOrderList
+UniqueOrderList ->"*" Order
+Order *--> "1" MenuItem
+Order *--> "1" OrderDeadline
+Order *--> "1 " OrderStatus
+Order *--> "1 " Customer
+Order *--> "1 " Quantity
+Order -u|> Item
+
+OrderDeadline --|> Deadline
+OrderStatus --|> Status
+
+@enduml

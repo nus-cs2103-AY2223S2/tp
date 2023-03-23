@@ -186,6 +186,34 @@ Here is how `Task` works:
 * Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
 
+
+This is the class representation for the `Menu` class.
+
+<p align ="center">
+   <img src="images/MenuClassDiagram.svg" width="450" />
+ </p>
+
+Here is how `Menu` works:
+
+* Each `Menu` contains non-negative and non-zero number of `MenuItem`.
+* Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
+* The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
+* The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
+
+This is the class representation for the `Order` class.
+
+<p align ="center">
+   <img src="images/OrderClassDiagram.svg" width="450" />
+ </p>
+
+Here is how `Order` works:
+
+* Each `OrderList` contains non-negative and non-zero number of `Order`.
+* Each `Order` contains their description, status and deadline (e.g., `ItemName` for menu's item name).
+* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
+* The `Order` object have its `List` called `OrderList` and `UniqueList`.
+
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
