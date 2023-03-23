@@ -21,25 +21,22 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RevertAllCommand;
+import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.commands.task.ListTaskCommand;
+import seedu.address.logic.commands.task.note.AddNoteCommand;
 import seedu.address.logic.commands.task.note.ClearNoteCommand;
 import seedu.address.logic.commands.task.note.DeleteNoteCommand;
 import seedu.address.logic.commands.task.note.ListNoteCommand;
-import seedu.address.logic.commands.task.note.NoteCommand;
+import seedu.address.logic.commands.task.todo.AddTodoCommand;
 import seedu.address.logic.commands.task.todo.ClearTodoCommand;
 import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
 import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
-import seedu.address.logic.commands.task.todo.TodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.task.FindTaskCommandParser;
-import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
-import seedu.address.logic.parser.task.note.NoteCommandParser;
-import seedu.address.logic.parser.task.todo.DeleteTodoCommandParser;
-import seedu.address.logic.parser.task.todo.EditContentCommandParser;
-import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
-import seedu.address.logic.parser.task.todo.TodoCommandParser;
+import seedu.address.logic.parser.task.TaskParser;
 
 /**
  * Parses user input.
@@ -50,6 +47,14 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private final TaskParser taskParser;
+
+    /**
+     * Creates a TaskParser instance for every InternEase parser object.
+     */
+    public AddressBookParser() {
+        taskParser = new TaskParser();
+    }
 
     /**
      * Parses user input into command for execution.
@@ -101,47 +106,34 @@ public class AddressBookParser {
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);
 
-        case FindTaskCommand.COMMAND_WORD:
-            return new FindTaskCommandParser().parse(arguments);
-
-        case TodoCommand.COMMAND_WORD:
-            return new TodoCommandParser().parse(arguments);
-
-        case ListTodoCommand.COMMAND_WORD:
-            return new ListTodoCommand();
-
-        case EditDeadlineCommand.COMMAND_WORD:
-            return new EditDeadlineCommandParser().parse(arguments);
-
-        case EditNoteContentCommand.COMMAND_WORD:
-            return new EditContentCommandParser().parse(arguments);
-
-        case DeleteTodoCommand.COMMAND_WORD:
-            return new DeleteTodoCommandParser().parse(arguments);
-
-        case ClearTodoCommand.COMMAND_WORD:
-            return new ClearTodoCommand();
-
-        case NoteCommand.COMMAND_WORD:
-            return new NoteCommandParser().parse(arguments);
-
-        case ListNoteCommand.COMMAND_WORD:
-            return new ListNoteCommand();
-
-        case DeleteNoteCommand.COMMAND_WORD:
-            return new DeleteNoteCommandParser().parse(arguments);
-
-        case ClearNoteCommand.COMMAND_WORD:
-            return new ClearNoteCommand();
-
-        case AddInterviewDateCommand.COMMAND_WORD:
-            return new AddInterviewDateCommandParser().parse(arguments);
-
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
 
         case ListArchivedCommand.COMMAND_WORD:
             return new ListArchivedCommand();
+
+        case AddInterviewDateCommand.COMMAND_WORD:
+            return new AddInterviewDateCommandParser().parse(arguments);
+
+        case RevertCommand.COMMAND_WORD:
+            return new RevertCommand();
+
+        case RevertAllCommand.COMMAND_WORD:
+            return new RevertAllCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+        case FindTaskCommand.COMMAND_WORD:
+        case AddTodoCommand.COMMAND_WORD:
+        case ListTodoCommand.COMMAND_WORD:
+        case EditDeadlineCommand.COMMAND_WORD:
+        case EditNoteContentCommand.COMMAND_WORD:
+        case DeleteTodoCommand.COMMAND_WORD:
+        case ClearTodoCommand.COMMAND_WORD:
+        case AddNoteCommand.COMMAND_WORD:
+        case ListNoteCommand.COMMAND_WORD:
+        case DeleteNoteCommand.COMMAND_WORD:
+        case ClearNoteCommand.COMMAND_WORD:
+            return taskParser.parseTaskCommand(commandWord, arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -19,8 +19,8 @@ import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.NoteContent;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -28,6 +28,7 @@ import seedu.address.model.todo.NoteContent;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INTERVAL = "The start date must be before or equal to the end date.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

@@ -22,7 +22,7 @@ public enum InternshipStatus {
     public static boolean isValidStatus(String test) {
         InternshipStatus[] internshipStatuses = InternshipStatus.values();
         for (InternshipStatus internshipStatus : internshipStatuses) {
-            if (internshipStatus.name().equals(test)) {
+            if (internshipStatus.name().equals(test.toUpperCase())) {
                 return true;
             }
         }

@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.TodoType;
+import seedu.address.ui.task.note.NoteListPanel;
+import seedu.address.ui.task.todo.TodoListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,11 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TodoListPanel todoListPanel;
+    private NoteListPanel noteListPanel;
+    private MixedPanel mixedPanel;
+    private CommandBox commandBox;
+    private StatusBarFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -111,16 +119,28 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredInternshipList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
+        noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
+        mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList());
+
+        personListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
+                mixedPanel.getRoot(), personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void changePanelPlaceholder(MainWindow m, TodoType type) {
+        m.getPersonListPanel().getRoot().setVisible(type == TodoType.NONE);
+        m.getTodoListPanel().getRoot().setVisible(type == TodoType.TODO);
+        m.getNoteListPanel().getRoot().setVisible(type == TodoType.NOTE);
+        m.getMixedPanel().getRoot().setVisible(type == TodoType.BOTH);
     }
 
     /**
@@ -167,6 +187,22 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public TodoListPanel getTodoListPanel() {
+        return todoListPanel;
+    }
+
+    public NoteListPanel getNoteListPanel() {
+        return noteListPanel;
+    }
+
+    public MixedPanel getMixedPanel() {
+        return mixedPanel;
+    }
+
+    public StatusBarFooter getStatusBarFooter() {
+        return statusBarFooter;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -176,7 +212,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            changePanelPlaceholder(this, commandResult.getType());
+            this.getStatusBarFooter().setStatusFooterBarText(logic, commandResult.getType());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
 
             if (commandResult.isShowHelp()) {

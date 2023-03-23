@@ -7,12 +7,13 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.todo.Note;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.Note;
 
 /**
  * Adds an application to the internship tracker.
  */
-public class NoteCommand extends Command {
+public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "note";
 
@@ -25,12 +26,14 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the todo list";
 
+    private static final TodoType type = TodoType.NOTE;
+
     private final Note note;
 
     /**
      * Creates an AddCommand to add the specified {@code InternshipApplication}
      */
-    public NoteCommand(Note noteContent) {
+    public AddNoteCommand(Note noteContent) {
         requireNonNull(noteContent);
         note = noteContent;
     }
@@ -44,13 +47,13 @@ public class NoteCommand extends Command {
         }
 
         model.addNote(note);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, note));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, note), type);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NoteCommand // instanceof handles nulls
-                && note.equals(((NoteCommand) other).note));
+                || (other instanceof AddNoteCommand // instanceof handles nulls
+                && note.equals(((AddNoteCommand) other).note));
     }
 }

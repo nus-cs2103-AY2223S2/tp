@@ -1,233 +1,351 @@
-//package seedu.address.logic.commands;
-//
-//import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.testutil.Assert.assertThrows;
-//
-//import java.nio.file.Path;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.function.Predicate;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import javafx.collections.ObservableList;
-//import seedu.address.commons.core.GuiSettings;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.Model;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.ReadOnlyUserPrefs;
-//import seedu.address.model.contact.Contact;
-//import seedu.address.model.person.CompanyName;
-//import seedu.address.model.person.InternshipApplication;
-//import seedu.address.model.person.JobTitle;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.PersonBuilder;
-//
-//public class AddCommandTest {
-//
-//    @Test
-//    public void constructor_nullPerson_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new AddCommand(null));
-//    }
-//
-//    @Test
-//    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-//        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-//        Person validPerson = new PersonBuilder().build();
-//        CompanyName c = new CompanyName("LinkedIn");
-//        JobTitle j = new JobTitle("Data Scientist");
-//        InternshipApplication expectedApplication = new InternshipApplication(c, j);
-//
-//        CommandResult commandResult = new AddCommand(expectedApplication).execute(modelStub);
-//
-//        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-//    }
-//
-//    @Test
-//    public void execute_duplicatePerson_throwsCommandException() {
-//        CompanyName c = new CompanyName("LinkedIn");
-//        JobTitle j = new JobTitle("Data Scientist");
-//        InternshipApplication expectedApplication = new InternshipApplication(c, j);
-//        Person validPerson = new PersonBuilder().build();
-//        AddCommand addCommand = new AddCommand(expectedApplication);
-//        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-//
-//        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
-//        -> addCommand.execute(modelStub));
-//    }
-//
-//    @Test
-//    public void equals() {
-//        CompanyName c = new CompanyName("LinkedIn");
-//        JobTitle j = new JobTitle("Data Scientist");
-//        InternshipApplication expectedApplication = new InternshipApplication(c, j);
-//        Person alice = new PersonBuilder().withName("Alice").build();
-//        Person bob = new PersonBuilder().withName("Bob").build();
-//        AddCommand addAliceCommand = new AddCommand(expectedApplication);
-//        AddCommand addBobCommand = new AddCommand(expectedApplication);
-//
-//        // same object -> returns true
-//        assertTrue(addAliceCommand.equals(addAliceCommand));
-//
-//        // same values -> returns true
-//        AddCommand addAliceCommandCopy = new AddCommand(expectedApplication);
-//        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-//
-//        // different types -> returns false
-//        assertFalse(addAliceCommand.equals(1));
-//
-//        // null -> returns false
-//        assertFalse(addAliceCommand.equals(null));
-//
-//        // different person -> returns false
-//        assertFalse(addAliceCommand.equals(addBobCommand));
-//    }
-//
-//    /**
-//     * A default model stub that have all of the methods failing.
-//     */
-//    private class ModelStub implements Model {
-//        @Override
-//        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public ReadOnlyUserPrefs getUserPrefs() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public GuiSettings getGuiSettings() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void setGuiSettings(GuiSettings guiSettings) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public Path getAddressBookFilePath() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void setAddressBookFilePath(Path addressBookFilePath) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void addApplication(InternshipApplication person) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void addPerson(Person person) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void setInternEase(ReadOnlyAddressBook newData) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public ReadOnlyAddressBook getAddressBook() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public boolean hasApplication(InternshipApplication application) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public boolean hasPerson(Person person) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void deleteInternship(Person target) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void setPerson(Person target, Person editedPerson) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public ObservableList<Person> getFilteredPersonList() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public ObservableList<InternshipApplication> getFilteredInternshipList() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void updateFilteredPersonList(Predicate<Person> predicate) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void addContactToInternship(Person target, Contact contact) {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//    }
-//
-//    /**
-//     * A Model stub that contains a single person.
-//     */
-//    private class ModelStubWithPerson extends ModelStub {
-//        private final Person person;
-//
-//        ModelStubWithPerson(Person person) {
-//            requireNonNull(person);
-//            this.person = person;
-//        }
-//
-//        @Override
-//        public boolean hasPerson(Person person) {
-//            requireNonNull(person);
-//            return this.person.isSamePerson(person);
-//        }
-//    }
-//
-//    /**
-//     * A Model stub that always accept the person being added.
-//     */
-//    private class ModelStubAcceptingPersonAdded extends ModelStub {
-//        final ArrayList<Person> personsAdded = new ArrayList<>();
-//
-//        @Override
-//        public boolean hasPerson(Person person) {
-//            requireNonNull(person);
-//            return personsAdded.stream().anyMatch(person::isSamePerson);
-//        }
-//
-//        @Override
-//        public void addPerson(Person person) {
-//            requireNonNull(person);
-//            personsAdded.add(person);
-//        }
-//
-//        @Override
-//        public ReadOnlyAddressBook getAddressBook() {
-//            return new AddressBook();
-//        }
-//    }
-//
-//}
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNote;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
+import seedu.address.testutil.InternshipBuilder;
+
+public class AddCommandTest {
+
+    @Test
+    public void constructor_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    }
+
+    @Test
+    public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingInternshipAdded modelStub = new ModelStubAcceptingInternshipAdded();
+        InternshipApplication validInternship = new InternshipBuilder().build();
+
+        CommandResult commandResult = new AddCommand(validInternship).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
+    }
+
+    @Test
+    public void execute_duplicateInternship_throwsCommandException() {
+        InternshipApplication validInternship = new InternshipBuilder().build();
+        AddCommand addCommand = new AddCommand(validInternship);
+        ModelStub modelStub = new ModelStubWithInternship(validInternship);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
+            -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        InternshipApplication bankOfAmerica = new InternshipBuilder().withCompanyName("Bank Of America").build();
+        InternshipApplication deutscheBank = new InternshipBuilder().withCompanyName("Deutsche Bank").build();
+        AddCommand addBankOfAmericaCommand = new AddCommand(bankOfAmerica);
+        AddCommand addDeutscheBankCommand = new AddCommand(deutscheBank);
+
+        // same object -> returns true
+        assertTrue(addBankOfAmericaCommand.equals(addBankOfAmericaCommand));
+
+        // same values -> returns true
+        AddCommand addBankOfAmericaCommandCopy = new AddCommand(bankOfAmerica);
+        assertTrue(addBankOfAmericaCommand.equals(addBankOfAmericaCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addBankOfAmericaCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addBankOfAmericaCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addBankOfAmericaCommand.equals(addDeutscheBankCommand));
+    }
+
+    /**
+     * A default model stub that have all the methods failing.
+     */
+
+    private class ModelStub implements Model {
+        @Override
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNoteListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getTodoListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addApplication(InternshipApplication person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTodo(InternshipTodo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addApplications(List<InternshipApplication> applications) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Person person) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setInternEase(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTodoList getTodoList() {
+            return null;
+        }
+
+        @Override
+        public ReadOnlyNote getNoteList() {
+            return null;
+        }
+
+        @Override
+        public boolean hasApplication(InternshipApplication application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTodo(InternshipTodo todo) {
+            return false;
+        }
+
+        @Override
+        public boolean hasNote(Note note) {
+            return false;
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInternship(InternshipApplication target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTodo(InternshipTodo target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Note target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearTodo(ReadOnlyTodoList internEase) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearNote(ReadOnlyNote internEase) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setApplication(InternshipApplication target,
+                                            InternshipApplication editedApplication) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNote(Note target, Note editedNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipApplication> getFilteredInternshipList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTodo> getFilteredTodoList() {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<InternshipApplication> getCachedInternshipList() {
+            return null;
+        }
+
+        @Override
+        public InternshipApplication getAndRemoveCachedApplication() {
+            return null;
+        }
+
+        @Override
+        public void addInternshipToCache(InternshipApplication application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAllInternshipToCache(List<InternshipApplication> application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEmptyInternshipCacheList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTodoList(Predicate<InternshipTodo> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+    }
+
+    /**
+     * A Model stub that contains a single internship.
+     */
+    private class ModelStubWithInternship extends ModelStub {
+        private final InternshipApplication internship;
+
+        ModelStubWithInternship(InternshipApplication internship) {
+            requireNonNull(internship);
+            this.internship = internship;
+        }
+
+        @Override
+        public boolean hasApplication(InternshipApplication internship) {
+            requireNonNull(internship);
+            return this.internship.isSameApplication(internship);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the internship application being added.
+     */
+    private class ModelStubAcceptingInternshipAdded extends ModelStub {
+        final ArrayList<InternshipApplication> internshipsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasApplication(InternshipApplication internship) {
+            requireNonNull(internship);
+            return internshipsAdded.stream().anyMatch(internship::isSameApplication);
+        }
+
+        @Override
+        public void addApplication(InternshipApplication person) {
+            requireNonNull(person);
+            internshipsAdded.add(person);
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
+    }
+
+}

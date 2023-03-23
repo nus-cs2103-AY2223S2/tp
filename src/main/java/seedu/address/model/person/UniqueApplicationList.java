@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
  * An InternshipApplication is considered unique by comparing using
@@ -46,6 +47,20 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds applications to the list.
+     * The application must not already exist in the list.
+     */
+    public void add(List<InternshipApplication> toAdds) {
+        requireNonNull(toAdds);
+
+        for (InternshipApplication toAdd : toAdds) {
+            if (!contains(toAdd)) {
+                internalList.add(toAdd);
+            }
+        }
     }
 
     /**
@@ -123,7 +138,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code internships} contains only unique internships.
      */
     private boolean applicationsAreUnique(List<InternshipApplication> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {

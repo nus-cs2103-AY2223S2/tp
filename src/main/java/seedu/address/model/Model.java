@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -8,17 +9,21 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.Note;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
     /** {@code Predicate} that evaluate to true for all unarchived applications */
@@ -60,6 +65,16 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' todo list file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Returns the user prefs' note list file path.
+     */
+    Path getNoteListFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -69,8 +84,16 @@ public interface Model {
      */
     void setInternEase(ReadOnlyAddressBook internEase);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
+
+    /** Returns the TodoList */
+    ReadOnlyTodoList getTodoList();
+
+    /** Returns the NoteList */
+    ReadOnlyNote getNoteList();
 
     /**
      * Returns true if an internship application with the same identity as
@@ -96,12 +119,6 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
      * Deletes the given internship application.
      * The application must exist in the address book.
      */
@@ -122,12 +139,12 @@ public interface Model {
     /**
      * Clears todo list.
      */
-    void clearTodo(ReadOnlyAddressBook internEase);
+    void clearTodo(ReadOnlyTodoList internEase);
 
     /**
      * Clears note list.
      */
-    void clearNote(ReadOnlyAddressBook internEase);
+    void clearNote(ReadOnlyNote internEase);
 
     /**
      * Adds the given application.
@@ -148,17 +165,25 @@ public interface Model {
     void addNote(Note note);
 
     /**
+     * Adds the given applications.
+     * {@code InternshipApplications} must not already exist in the tracker.
+     */
+    void addApplications(List<InternshipApplication> applications);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
     /**
-     * Replaces the given person {@code target} with {@code editedApplication}.
+     * Replaces the given internshipApplication {@code target} with {@code editedApplication}.
      * {@code target} must exist in the address book.
      * The application identity of {@code editedApplication} must not be the
      * same as another existing application in the address book.
      */
     void setApplication(InternshipApplication target, InternshipApplication editedApplication);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -171,7 +196,8 @@ public interface Model {
      * {@code target} must exist in the tracker.
      * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
      */
-    void setTodo(InternshipTodo target, InternshipTodo editedTodo);
+    void setTodo(InternshipTodo target,
+                 InternshipTodo editedTodo);
 
     /**
      * Replaces the given note {@code target} with {@code editedNote}.
@@ -180,10 +206,14 @@ public interface Model {
      */
     void setNote(Note target, Note editedNote);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered internship list */
+    /**
+     * Returns an unmodifiable view of the filtered internship list
+     */
     ObservableList<InternshipApplication> getFilteredInternshipList();
 
     /** Returns an unmodifiable view of the filtered todo list */
@@ -194,6 +224,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<InternshipApplication> predicate);
@@ -212,7 +243,34 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the cached internship list.
+     */
+    List<InternshipApplication> getCachedInternshipList();
+
+
+    /**
+     * Gets and remove item from the cached internship list.
+     */
+    InternshipApplication getAndRemoveCachedApplication();
+
+    /**
+     * Add current deleted internship application to the end of the cached internship list.
+     */
+    void addInternshipToCache(InternshipApplication application);
+
+    /**
+     * Add all cleared internship applications to the end of the cached internship list.
+     */
+    void addAllInternshipToCache(List<InternshipApplication> application);
+
+    /**
+     * Empties the internship cache list.
+     */
+    void setEmptyInternshipCacheList();
 }

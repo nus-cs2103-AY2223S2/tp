@@ -1,4 +1,4 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -15,10 +15,6 @@ import seedu.address.model.tag.TodoType;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class InternshipTodo {
-
-    // To be removed once Person class is updated
-    private static final String VALID_NOTE_PLACEHOLDER = "No note content yet";
-
     // Identity fields
     private final CompanyName title;
     private final JobTitle jobTitle;
@@ -37,9 +33,23 @@ public class InternshipTodo {
         this.title = title;
         this.jobTitle = jobTitle;
         this.deadline = deadline;
-        this.note = new NoteContent(VALID_NOTE_PLACEHOLDER);
+        this.note = null;
         this.date = LocalDate.now();
         this.type = TodoType.TODO;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, LocalDate date,
+                          TodoType type) {
+        requireAllNonNull(title, jobTitle, deadline, date, type);
+        this.title = title;
+        this.jobTitle = jobTitle;
+        this.deadline = deadline;
+        this.note = null;
+        this.date = date;
+        this.type = type;
     }
 
     /**
@@ -55,6 +65,20 @@ public class InternshipTodo {
         this.type = TodoType.TODO;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, NoteContent note,
+                          LocalDate date, TodoType type) {
+        requireAllNonNull(title, jobTitle, deadline, date, type);
+        this.title = title;
+        this.jobTitle = jobTitle;
+        this.deadline = deadline;
+        this.note = note;
+        this.date = date;
+        this.type = type;
+    }
+
     public CompanyName getInternshipTitle() {
         return title;
     }
@@ -67,12 +91,24 @@ public class InternshipTodo {
         return deadline;
     }
 
+    public String getJsonDeadline() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(deadline.getDeadline());
+    }
+
     public NoteContent getNote() {
         return note;
     }
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getJsonDate() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
+    }
+
+    public String getDateString() {
+        return DateTimeFormatter.ofPattern("dd MMM yyyy, EEEE").format(date);
     }
 
     public TodoType getType() {
@@ -148,8 +184,8 @@ public class InternshipTodo {
                     .append(getDeadline());
         }
 
-        if (!note.content.equals(VALID_NOTE_PLACEHOLDER)) {
-            builder.append("; Note: ")
+        if (note != null) {
+            builder.append("; NoteList: ")
                     .append(getNote());
         }
 
