@@ -164,7 +164,7 @@ that is updated with every command that may affect appointment set.
 One situation that trigger the edit appointments feature is when a suer edits an appointment.
 The following details explain how it works:
 
-   *  What is does:
+   *  What it does:
       * When an appointment is edited in the clients list, it is automatically added to the
       list of appointments.
       * The list is automatically sorted in increasing order of the appointment data time.
