@@ -314,6 +314,83 @@ The following activity diagram summarizes what happens when a TA executes an del
   
 This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
   a lot of cases which is why it is not allowed for now.
+
+### Add Students to Events feature
+
+#### Current Implementation
+
+The current Add Students to Events (addStudent) feature is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
+
+The addStudent feature implements the following operations:
+* `Event#addStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
+* `AddressBook#addStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
+* `AddressBook#addStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
+* `AddressBook#addStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
+* `Model#addStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
+* `Model#addStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
+* `Model#addStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+
+These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#addStudent(Person student)` operation is also implemented in all `Event` subclasses.
+
+Given below is an example usage scenario and how the addStudent mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised to be empty.
+
+Step 2. The user executes `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` to add a student.
+
+Step 3. The user executes `touch tutorial Tutorial/tut` to add an Event.
+
+Step 4. The user executes `addStudent 1 Tutorial/tut` to add the first student in the Person list into the Event(tutorial) called "tut". 
+
+The following activity diagram summarizes what happens when a TA executes an add student to event:
+
+<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How the command input is structured**
+
+* **Alternative 1 (current choice):** Chooses the student from a list of students.
+    * Pros: Do not have to fill in all student details for every addStudent command.
+    * Cons: May be difficult to find student when total student size gets big.
+
+* **Alternative 2:** Enter student details for every addStudent command.
+    * Pros: Do not have to maintain a student list (can get messy with lots of students)
+    * Cons: More troublesome to key in 1 student to multiple Events compared to Alternative 1.
+
+_{more aspects and alternatives to be added}_
+
+### \[Proposed\] Delete Operation for Students within Event
+
+#### Proposed Implementation
+
+The proposed mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
+
+The addStudent feature implements the following operations:
+* `Event#deleteStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
+* `AddressBook#deleteStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
+* `AddressBook#deleteStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
+* `AddressBook#deleteStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
+* `Model#deleteStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
+* `Model#deleteStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
+* `Model#deleteStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+
+These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#deleteStudent(Person student)` operation is also implemented in all `Event` subclasses.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application. The user has already used the application before and has an `Event` established with a non-empty student list.
+
+Step 2. The user executes `delete student 1 Tutorial/tut` to delete the student at index 1 (1-based) of the student list in the `Tutorial` named tut.
+
+The following activity diagram summarizes what happens when a TA executes an delete student from event:
+
+<img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+_{more aspects and alternatives to be added}_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
