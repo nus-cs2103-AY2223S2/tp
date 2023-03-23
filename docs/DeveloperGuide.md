@@ -238,6 +238,154 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### 3.1 Add Feature
+
+The add feature now supports three types of additions: simple tasks, events and deadlines. The AddCommandParser will handle the multiple prefixes in the input before the AddCommand adds a list of tasks into the taskbook.
+Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
+
+You can find the specific implementation in the 'AddCommandParser' class and the 'AddCommand' class
+
+Given below is a scenario of how the add command is used and behaves.
+
+Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
+
+Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are
+simple tasks. The tasks will have the same description but different names
+
+Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
+
+Step 4. The add command is returned to the logic manager for execution.
+
+Step 5. For each of the task in the temporary task list, we add them to the task list in the model.
+
+Step 6. The result of execution is returned to the logic manager and the UI will display the result as a message.
+
+The following diagram summarises the sequence of events happening during the execution.
+![AddCommandSequenceDiagram](images/AddCommand.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+
+### 3.2 Clear Feature
+
+### 3.3 Delete Feature
+
+### 3.4 Edit Feature
+
+### 3.5 Find Feature
+
+Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field.
+The FindCommandParser does the heavy lifting where it will automatically create appropriate predicates based on user input.
+
+You can find the specific implementation in the `FindCommandParser` class and the `FindCommand` class.
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `find` command with parameter `n/read`. The parser recognises the command word and calls the FindCommandParser.
+
+Step 2. The `FindCommandParser` recognises that the parameter is being searched is the name field.
+
+Step 3. `FindCommandParser` calls `FindCommand` with appropriate predicate (`NameContainsAllKeywordsPredicate`).
+
+Step 4. `FindCommand` is executed and model filters with the predicate passed.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `find` command:
+
+![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+
+#### 3.5.1 Design Consideration
+
+#### Option 1 (current choice):
+* Find can search any attribute
+* It searches via matched substring
+* In the case of a sample search term `n/read book`, the whole string must be in the name of the task.
+* Only accepts 1 attribute at a time.
+* Can accept multiple of same attribute search terms along with a flag to indicate type of searching.
+* e.g. `all/`
+
+Pros: Simple for users while still being flexible and powerful.  
+Cons: Cannot find by multiple attributes at a time for more powerful functionality.
+
+#### Option 2:
+* Allow mix-and-matching of attributes for searching
+* Can still have a flag to indicate any or all search term matching
+
+Pros: More powerful functionality  
+Cons: More complicated to implement and unwieldy for users.
+
+### 3.6 List Feature
+
+### 3.7 Help Feature
+
+### 3.8 Stats Feature
+
+### 3.9 sort Feature
+
+Given below is an example usage scenario and how the sort command behaves at each step
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `sort` command to sort the list. Look at [Sort Design Consideration](#391-design-consideration) for the sorting logic.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+
+#### 3.9.1 Design Consideration
+
+Sorts the list using the following format:
+
+Aspect: How are tasks sorted:
+
+###### Option 1(current choice):
+
+* SimpleTask is listed above Deadline and Event.
+* Deadline is  listed below SimpleTask and above Event.
+* Event is  listed below SimpleTask and Event.
+* When comparing 2 tasks of the same class:
+    * SimpleTask
+        * The task with lesser tags is listed above the task with more tags.
+        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+    * Deadline
+        * The task with the earlier deadline is listed above the task with later deadline.
+        * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
+        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+    * Event
+        * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
+        * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
+        * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
+        * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+
+Pros: Neater and more intuitive
+Cons: Will have to scroll down to see the order for Events if there are too many SimpleTasks.
+
+###### Option 2:
+
+Same as above, but:
+* Event is listed above SimpleTask and Deadline.
+* Deadline is  listed below Event and above SimpleTask.
+* SimpleTask is listed below Deadline and Event.
+
+Pros: Able to see the Events happening close to date.
+Cons: Have to scroll down to see SimpleTasks.
+
+### 3.10 Alert Feature
+
+### 3.11 Plan Feature
+
 
 --------------------------------------------------------------------------------------------------------------------
 
