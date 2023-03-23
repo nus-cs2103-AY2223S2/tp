@@ -67,7 +67,7 @@ public class AssignPatientCommand extends Command {
     private static Doctor createDoctorWithAssign(Doctor doctorToAssign, Patient patientToAssign)
             throws CommandException {
         assert doctorToAssign != null;
-
+        assert patientToAssign != null;
         Set<Patient> patientsSet = doctorToAssign.getPatients();
 
         if (patientsSet.contains(patientToAssign)) {
