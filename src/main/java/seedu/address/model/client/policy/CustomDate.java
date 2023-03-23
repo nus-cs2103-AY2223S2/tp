@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -15,7 +16,8 @@ public class CustomDate {
     public static final String MESSAGE_CONSTRAINTS =
             "date should only contain numbers, in the format of dd.mm.yyyy";
 
-    public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}\\.\\d{4}$";
+    public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}.\\d{4}$";
+
     public final LocalDate date;
 
     /**
@@ -43,10 +45,16 @@ public class CustomDate {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidDate(String date) {
+        boolean valid = true;
+        try {
+            LocalDate localDate = stringToDate(date);
+        } catch (DateTimeParseException e) {
+            valid = false;
+        }
+        return (date.matches(VALIDATION_REGEX) && valid);
     }
 
     public String getDisplayString() {
