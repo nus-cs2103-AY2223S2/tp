@@ -21,4 +21,11 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     public AppointmentManager(ReadOnlyAppointmentManager toBeCopied) {
         super(toBeCopied);
     }
+
+    /**
+     * Creates an AppointmentManager using the appointments in the {@code toBeCopied}
+     */
+    public void mark(int id) {
+        this.getMapView().get(id).getValue().mark();
+    }
 }
