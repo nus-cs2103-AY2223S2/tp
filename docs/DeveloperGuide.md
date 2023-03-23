@@ -250,9 +250,31 @@ For the project list, it can be sorted either by deadline or name. When the user
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Done Status
+
+#### Implementation
+
+The displaying of the "DONE" status is facilitated by the `markAsDone()`
+method in the Project class. 
+
+The Done status is highlighted in the UI when the project is done. 
+The ProjectCard class has been updated to run the aforementioned `markAsDone()`
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
+
+### Not Done Status
+
+#### Implementation
+
+The displaying of the "NOT DONE" status is facilitated by the `markAsUndone()`
+method in the Project class.
+
+The Not Done status is highlighted in the UI when the project is not done and not overdue.
+The ProjectCard class has been updated to run the aforementioned `markAsUndone()`
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
+
 ### Overdue Status
 
-### Implementation
+#### Implementation
 The displaying of the "OVERDUE" status is facilitated by the isOverdue method 
 in the Project class. The isOverdue method returns a boolean after using the 
 compareTo method in the Deadline class which checks the current date 
