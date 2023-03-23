@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.library.commons.core.GuiSettings;
-import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
+import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 import seedu.library.testutil.LibraryBuilder;
 
 public class ModelManagerTest {
@@ -120,7 +120,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getTitle().value.split("\\s+");
         modelManager.updateFilteredBookmarkList(
-                new TitleContainsKeywordsPredicate(Arrays.asList(keywords), null, null, null));
+                new BookmarkContainsKeywordsPredicate(Arrays.asList(keywords), null, null, null));
         assertFalse(modelManager.equals(new ModelManager(library, userPrefs, tags)));
 
         // resets modelManager to initial state for upcoming tests

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.library.logic.commands.FindCommand;
-import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
+import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new TitleContainsKeywordsPredicate(
+                new FindCommand(new BookmarkContainsKeywordsPredicate(
                         Arrays.asList("Alice", "Bob"), null, null, null));
         assertParseSuccess(parser, " n/ Alice Bob", expectedFindCommand);
 

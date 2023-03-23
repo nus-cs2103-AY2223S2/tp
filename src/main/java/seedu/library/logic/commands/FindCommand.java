@@ -6,7 +6,7 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.library.commons.core.Messages;
 import seedu.library.model.Model;
-import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
+import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 
 /**
  * Finds and lists all bookmarks in library whose title contains any of the argument keywords.
@@ -22,9 +22,9 @@ public class FindCommand extends Command {
             + "Parameters: PREFIX KEYWORD [MORE_PREFIX] [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TITLE + " Ranker's Chainsaw Solo " + PREFIX_GENRE + " Action";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    private final BookmarkContainsKeywordsPredicate predicate;
 
-    public FindCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindCommand(BookmarkContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
