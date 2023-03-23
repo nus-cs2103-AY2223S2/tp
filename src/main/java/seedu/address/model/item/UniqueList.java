@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -225,17 +227,17 @@ public class UniqueList<T extends Item> implements Iterable<T> {
     }
 
     /**
-     * Returns true if {@code items} contains only unique items.
+     * Returns true if {@code items} contains duplicate.
      *
      * @param items the list of items to be checked.
      */
     public static <T extends Item> boolean itemsHaveDuplicate(List<T> items) {
-        for (int i = 0; i < items.size() - 1; i++) {
-            for (int j = i + 1; j < items.size(); j++) {
-                if (Item.isSame(items.get(i), items.get(j))) {
-                    return true;
-                }
+        Set<String> checkSet = new HashSet<>();
+        for (T item : items) {
+            if (checkSet.contains(item.getId())) {
+                return true;
             }
+            checkSet.add(item.getId());
         }
         return false;
     }
