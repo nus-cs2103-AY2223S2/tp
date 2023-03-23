@@ -36,7 +36,10 @@ public class SampleDataUtilTest {
         assertEquals(sampleInternships[4].getCompanyName().toString(), "Grab");
 
         //Check sixth internship
-        assertEquals(sampleInternships[5].getCompanyName().toString(), "Facebook");
+        assertEquals(sampleInternships[5].getCompanyName().toString(), "Paypal");
+
+        //Check seventh internship
+        assertEquals(sampleInternships[6].getCompanyName().toString(), "Facebook");
     }
 
     @Test
