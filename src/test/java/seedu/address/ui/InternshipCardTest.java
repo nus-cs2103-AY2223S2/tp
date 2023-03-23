@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -83,6 +84,8 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(colorMap.get(OFFERED).equals(Color.rgb(42, 174, 79, 1.0)));
         //Check "Rejected" color
         assertTrue(colorMap.get(REJECTED).equals(Color.rgb(250, 68, 68, 1.0)));
+        //Check "Accepted" color
+        assertTrue(colorMap.get(ACCEPTED).equals(Color.rgb(10, 50, 20, 1.0)));
     }
 
     @ Test
@@ -90,7 +93,7 @@ public class InternshipCardTest extends GuiUnitTest {
         // Test new
         Internship internship = new InternshipBuilder().withStatus(NEW).build();
         InternshipCard internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date Added: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Deadline of Application: ");
         // Test applied
         internship = new InternshipBuilder().withStatus(APPLIED).build();
         internshipCard = new InternshipCard(internship, 1);
@@ -107,12 +110,17 @@ public class InternshipCardTest extends GuiUnitTest {
         internship = new InternshipBuilder().withStatus(OFFERED).build();
         internshipCard = new InternshipCard(internship, 1);
         assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
-                "Date of Notice of Offer: ");
+                "Deadline of Offer Acceptance: ");
         // Test rejected
         internship = new InternshipBuilder().withStatus(REJECTED).build();
         internshipCard = new InternshipCard(internship, 1);
         assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
                 "Date of Notice of Rejection: ");
+        // Test accepted
+        internship = new InternshipBuilder().withStatus(ACCEPTED).build();
+        internshipCard = new InternshipCard(internship, 1);
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Date of Acceptance: ");
     }
 
 
