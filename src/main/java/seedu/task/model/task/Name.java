@@ -38,6 +38,10 @@ public class Name implements Comparable<Name> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean hasSameName(Name name) {
+        return this.fullName.toLowerCase().equals(name.fullName.toLowerCase());
+    }
+
     /**
      * Compares the name by their lexicographical order.
      *
