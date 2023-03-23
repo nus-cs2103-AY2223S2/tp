@@ -214,25 +214,23 @@ help
 
 #### `add` - Add a patient
 
-```text
-patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string> --a <group-name> --v <group-name>
-patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string>
-```
+<pre>
+patient add --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string> --a <group-name> --v <group-name>
+patient add --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string>
+</pre>
 
 Example:
 
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
 
-#### `delete` - Delete a patient
+#### `list` - List all patients
 
 ```text
-patient delete <integer>
+patient list
 ```
-
-Example:
-
-* `patent delete 5`
 
 #### `find` - Locate a patient
 
@@ -246,11 +244,29 @@ Example:
 
 * `patient find --name john`
 
-#### `list` - List all patients
+#### `update` - Update a patient
+
+<pre>
+patient edit <index> --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string> --a <group-name> --v <group-name>
+patient edit <index> --name <string> --phone <phone-number> --d <date> \
+    --bloodtype <string>
+</pre>
+
+Example:
+
+* `patient edit 5 --n John Doee --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient edit 5 --n John Doee`
+
+#### `delete` - Delete a patient
 
 ```text
-patient list
+patient delete <integer>
 ```
+
+Example:
+
+* `patent delete 5`
 
 ### `appointment` - Appointment functionalities
 
