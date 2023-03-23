@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCustomerCommandParser" as ViewCustomerCommandParser LOGIC_COLOR
+participant "d:ViewCustomerCommand" as DeleteCustomerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":<u>IdGenerator" as IdGenerator LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletecustomer 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletecustomer 1")
+activate AddressBookParser
+
+create ViewCustomerCommandParser
+AddressBookParser -> ViewCustomerCommandParser
+activate ViewCustomerCommandParser
+
+ViewCustomerCommandParser --> AddressBookParser
+deactivate ViewCustomerCommandParser
+
+AddressBookParser -> ViewCustomerCommandParser : parse("1")
+activate ViewCustomerCommandParser
+
+create DeleteCustomerCommand
+ViewCustomerCommandParser -> DeleteCustomerCommand
+activate DeleteCustomerCommand
+
+DeleteCustomerCommand --> ViewCustomerCommandParser : d
+deactivate DeleteCustomerCommand
+
+ViewCustomerCommandParser --> AddressBookParser : d
+deactivate ViewCustomerCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCustomerCommandParser -[hidden]-> AddressBookParser
+destroy ViewCustomerCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteCustomerCommand : execute()
+activate DeleteCustomerCommand
+
+DeleteCustomerCommand -> Model : deletePerson(1)
+activate Model
+
+Model --> DeleteCustomerCommand
+deactivate Model
+
+DeleteCustomerCommand -> IdGenerator : setCustomerIdUnused(1)
+activate IdGenerator
+DeleteCustomerCommand <-- IdGenerator
+
+deactivate IdGenerator
+
+create CommandResult
+DeleteCustomerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCustomerCommand
+deactivate CommandResult
+
+DeleteCustomerCommand --> LogicManager : result
+deactivate DeleteCustomerCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
