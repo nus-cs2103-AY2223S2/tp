@@ -84,7 +84,6 @@ public class DeleteCommandTest {
         // different employee -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
         assertFalse(deleteThirdCommand.equals(deleteSecondCommand));
-
     }
 
     /**

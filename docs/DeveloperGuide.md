@@ -153,34 +153,63 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Add Feature
+
+#### Implementation
+This section explains the implementation of the `add` feature.
+The command takes in one parameter which is the employee name, executing the command leads to the addition of an
+employee into the ExecutivePro database.
+
+Below is a sequence diagram and the explanation of `add` command.
+
+![AddCommand](images/AddCommandSequenceDiagram.png)
+
+Step 1. Users will enter the command `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25
+d/Marketing`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `AddCommandParser`
+to parse the user input. This creates a `AddCommand` object.
+
+Step 3. The `execute` method of `AddCommand` will be called, it returns a `CommandResult`object.
+
+Step 4. This adds the `employee` from the list to the model. The `employeeId` will be set and if there
+currently exists an `employee` object with the same field data, a `CommandException` will be thrown and
+a message indicating duplicate person will be shown.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
 
 ### Delete Feature
 
 #### Implementation
-This section explains the implementation of the `delete` feature.
-The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID
 
+This section explains the implementation of the `delete` feature.
+The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee
+with that specific employee ID
 Below is a sequence diagram and the explanation of `delete` command.
 
 ![DeleteCommand](images/DeleteCommand.png)
 
 Step 1. Users will enter the command `delete 1`.
 
-Step 2. `LogicManager#execute` method is called on the user input. This prompts the `DeleteCommandParser` to parse the user input.
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `DeleteCommandParser` to
+parse the user input.
 This creates a `DeleteCommand` object.
 
 Step 3. The `execute` method of `DeleteCommand` will be called, it returns a `CommandResult`object.
 
-Step 4. This finds the `person` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
+
+Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
 `CommandException` will be thrown and a message indicating invalid Employee ID will be returned. However,
-if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted from the database.
+if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted
+from the database.
 
 Step 5. `storage#saveAddressBook()` is then called, and updates the storage to remove the employee.
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an
+undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
