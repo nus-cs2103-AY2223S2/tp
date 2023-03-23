@@ -44,17 +44,41 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
                     DeleteEventCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL).get());
-        } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULTATION).get());
-        } else if (argMultimap.getValue(PREFIX_LAB).isPresent()) {
-            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LAB).get());
+        if ((!arePrefixesPresent(argMultimap, PREFIX_LAB)  ||
+                !arePrefixesPresent(argMultimap, PREFIX_CONSULTATION) ||
+                !arePrefixesPresent(argMultimap, PREFIX_TUTORIAL) ||
+                !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddLabCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(args);
-        return new DeleteEventCommand(index);
+        Index index;
+        DeleteEventCommand deleteEventCommand;
 
+        if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL).get());
+            deleteEventCommand = new DeleteEventCommand(index);
+            deleteEventCommand.markTutorial();
+        } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULTATION).get());
+            deleteEventCommand = new DeleteEventCommand(index);
+            deleteEventCommand.markConsultation();
+        } else {
+            //If it is not tutorial and not a consultation, it has to be a lab
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LAB).get());
+            deleteEventCommand = new DeleteEventCommand(index);
+            deleteEventCommand.markLab();
+        }
+        return deleteEventCommand;
+
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

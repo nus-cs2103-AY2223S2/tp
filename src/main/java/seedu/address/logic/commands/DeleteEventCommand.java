@@ -8,10 +8,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Tutorial;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an event identified using it's displayed index from the address book.
  */
 public class DeleteEventCommand extends Command {
 
@@ -22,7 +24,7 @@ public class DeleteEventCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + "Tutorial/1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Event: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
 
     private final Index targetIndex;
 
@@ -37,21 +39,21 @@ public class DeleteEventCommand extends Command {
         isConsultation = false;
     }
 
-    void markTutorial() {
+    public void markTutorial() {
         isTutorial = true;
         //ensures no mishandling of cases
         isLab = false;
         isConsultation = false;
     }
 
-    void markLab() {
+    public void markLab() {
         isLab = true;
         //ensures no mishandling of cases
         isTutorial = false;
         isConsultation = false;
     }
 
-    void markConsultation() {
+    public void markConsultation() {
         isConsultation = true;
         //ensures no mishandling of cases
         isLab = false;
@@ -61,15 +63,53 @@ public class DeleteEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        if (isTutorial) {
+            return executeTutorial(model);
+        } else if (isLab) {
+            return executeLab(model);
+        } else {
+            return executeConsultation(model);
+        }
+    }
+
+    public CommandResult executeTutorial(Model model) throws CommandException {
+
+        List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Tutorial tutorialToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTutorial(tutorialToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete));
+    }
+
+
+    public CommandResult executeLab(Model model) throws CommandException {
+
+        List<Lab> lastShownList = model.getFilteredLabList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
+
+        Lab labToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteLab(labToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete));
+    }
+
+    public CommandResult executeConsultation(Model model) throws CommandException {
+
+        List<Consultation> lastShownList = model.getFilteredConsultationList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
+
+        Consultation consultationToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteConsultation(consultationToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, consultationToDelete));
     }
 
     @Override
