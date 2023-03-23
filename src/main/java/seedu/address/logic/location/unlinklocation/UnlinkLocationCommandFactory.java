@@ -104,12 +104,15 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
         if (locationIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfLocation =
+                Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItem(locationIdOptional.get());
+                locationManagerLazy.get().getItemByIndex(indexOfLocation);
         if (locationOptional.isEmpty()) {
             return false;
         }
         target.put(type, locationOptional.get());
+
         return true;
     }
 
@@ -119,11 +122,14 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfFlight =
+                Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
