@@ -231,7 +231,7 @@ cycle through and append those that are missing from the current command input.
 attributes. Simply cycling through and appending missing `Prefix` might require users to backspace some
 unnecessary `Prefix`.
 
-**Alternative 2**: Autocomplete by custom behaviour depending on the command
+**Alternative 2 (current choice)**: Autocomplete by custom behaviour depending on the command
 
 * This would require each `XYZCommandParser` to implement their own behaviour on how autocompletion should
 behave for that particular command.
