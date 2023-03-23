@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Review session that is currently underway.
@@ -115,7 +116,7 @@ public class Review {
 
     public void unflipCard() {
         currCard.setAsUnflipped();
-    }
+    } // can remove?
 
     public boolean isFlipped() {
         return currCard.isFlipped();
@@ -194,6 +195,15 @@ public class Review {
     public void flipAllCards() {
         cardList.stream().forEach(Card::setAsFlipped);
     }
+
+    /**
+     * Tags current card in review based on enum Hard, Medium, Easy
+     * @param tag
+     */
+    public void tagCurrentCard(Tag tag) {
+        currCard.addTag(tag);
+    }
+
 
     public ObservableList<Pair<String, String> > getReviewStatsList() {
         updateReviewStatsList();

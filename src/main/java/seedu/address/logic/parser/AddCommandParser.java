@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddCommand.AddCardDescriptor;
+import seedu.address.logic.commands.cardcommands.AddCommand;
+import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;

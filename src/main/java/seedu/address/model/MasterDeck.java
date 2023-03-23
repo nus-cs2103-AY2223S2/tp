@@ -10,6 +10,7 @@ import seedu.address.model.card.Card;
 import seedu.address.model.card.UniqueCardList;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.deck.UniqueDeckList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -94,6 +95,10 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         requireNonNull(editedCard);
 
         cards.setCard(target, editedCard);
+    }
+
+    public void tagCard(Card target, Tag tag) {
+        cards.tagCard(target, tag);
     }
 
     /**

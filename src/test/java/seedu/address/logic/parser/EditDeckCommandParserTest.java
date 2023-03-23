@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditDeckCommand;
+import seedu.address.logic.commands.deckcommands.EditDeckCommand;
 
 public class EditDeckCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

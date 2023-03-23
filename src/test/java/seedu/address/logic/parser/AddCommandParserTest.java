@@ -21,22 +21,22 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddCommand.AddCardDescriptor;
+import seedu.address.logic.commands.cardcommands.AddCommand;
+import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddCardDescriptorBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
 
         AddCardDescriptor expectedCardDescriptor = new AddCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build();
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build(); // No deck specified
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_PHOTOSYNTHESIS
@@ -63,8 +63,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         AddCardDescriptor expectedCard = new AddCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build();
-        System.out.println(expectedCard.getTags());
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build(); // tags are optional
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 new AddCommand(expectedCard));
     }

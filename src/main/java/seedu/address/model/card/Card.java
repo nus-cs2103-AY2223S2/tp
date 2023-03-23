@@ -19,11 +19,11 @@ public class Card {
     // Identity fields
     private final Question question;
     private final Answer answer;
+    private final Deck deck;
 
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final Deck deck;
     private boolean isFlipped = true;
 
     /**
@@ -55,6 +55,9 @@ public class Card {
 
     public Deck getDeck() {
         return deck;
+    }
+    public void addTag(Tag tag) { // cannot modify directly!
+        this.tags.add(tag);
     }
 
     /**
