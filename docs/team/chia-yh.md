@@ -45,17 +45,17 @@ Given below are my contributions to the project.
   * Set up the GitHub [team organization](https://github.com/AY2223S2-CS2103T-T12-4)/[repository](https://github.com/AY2223S2-CS2103T-T12-4/tp)
   * Set up and helped maintain the [issue tracker](https://github.com/AY2223S2-CS2103T-T12-4/tp/issues)
   * Set up GitHub Projects to manage [User Stories](https://github.com/orgs/AY2223S2-CS2103T-T12-4/projects/2)
-  * Update [README](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/README.md) page to match project [\#43](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/43)
+  * Updated [README](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/README.md) page to match project [\#43](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/43)
   * Set up milestones for [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5), [v1.3](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/3), [v1.3b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/6), [v1.4](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/4)
   * Closed milestones [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5)
 
 * **Enhancements to existing features**:
-  * Update `Person` class with new fields utilising newly added classes, modify behavior to allow fields to be empty [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76)
-  * Update `edit` command to allow `Language` instances to be added cumulatively, instead of being replaced by new instances [\#82](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/82)
-  * Convert link in `HelpWindow` shown by `help` command into a Hyperlink to allow users to more easily access the user guide [\#103](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/103)
-  * Refactor code to remove references to `AB-3` [\#116](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/116) 
-  * Update `VALIDATION_REGEX`, `equals` in `Name` to enhance duplicate detection for `Person` instances [\#146](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/146)
-  * Update `VALIDATION_REGEX` in `Tag` to limit length [\#147](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/147)
+  * Updated `Person` class with new fields utilising newly added classes, modify behavior to allow fields to be empty [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76)
+  * Updated `edit` command to allow `Language` instances to be added cumulatively, instead of being replaced by new instances [\#82](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/82)
+  * Converted link in `HelpWindow` shown by `help` command into a Hyperlink to allow users to more easily access the user guide [\#103](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/103)
+  * Refactored code to remove references to `AB-3` [\#116](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/116) 
+  * Updated `VALIDATION_REGEX`, `equals` in `Name` to enhance duplicate detection for `Person` instances [\#146](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/146)
+  * Updated `VALIDATION_REGEX` in `Tag` to limit length [\#147](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/147)
 
 * **Documentation**:
   * User Guide:
@@ -65,9 +65,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added documentation for target user profile, value proposition, user stories [\#53](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/53)
     * Added use cases `UC01`, `UC02`, `UC09` [\#54](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/54)
-    * Update glossary [\#55](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/55)
-    * Update non-functional requirements [\#56](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/56)
-    * Update implementation of `undo`/`redo` and credit proposed implementation in `AB-3` [\#106](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/106)
+    * Updated glossary [\#55](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/55)
+    * Updated non-functional requirements [\#56](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/56)
+    * Updated implementation of `undo`/`redo` and credit proposed implementation in `AB-3` [\#106](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/106)
+    * Updated existing UML diagrams to reflect changes in implementation of `Model` and `Storage` architectures, current implementation of `undo` and `redo`, as well as changes from code refactoring [\#164](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/164)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): `to be added soon`
