@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.CARL;
-import static seedu.address.testutil.TypicalEmployees.ELLE;
-import static seedu.address.testutil.TypicalEmployees.FIONA;
-import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
+import static seedu.address.testutil.TypicalEmployees.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -73,6 +70,26 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEmployeeList());
     }
+
+//    @Test
+//    public void execute_singlePartialKeyword_multipleEmployeesFound() {
+//        String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 3);
+//        NameContainsKeywordsPredicate predicate = preparePredicate("el");
+//        FindCommand command = new FindCommand(predicate);
+//        expectedModel.updateFilteredEmployeeList(predicate);
+//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+//        assertEquals(Arrays.asList(DANIEL, ELLE, IDA), model.getFilteredEmployeeList());
+//    }
+
+//    @Test
+//    public void execute_multiplePartialKeyword_multipleEmployeesFound() {
+//        String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 5);
+//        NameContainsKeywordsPredicate predicate = preparePredicate("Da ER");
+//        FindCommand command = new FindCommand(predicate);
+//        expectedModel.updateFilteredEmployeeList(predicate);
+//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+//        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, HOON, IDA), model.getFilteredEmployeeList());
+//    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
