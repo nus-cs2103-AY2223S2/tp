@@ -208,6 +208,7 @@ public class ParserUtil {
      * Parses {@code String timespan} into a {@code LocalDate}.
      */
     public static LocalDate parseTimespan(String timespan) throws ParseException {
+        assert timespan != null : "input should not be null";
         requireNonNull(timespan);
         String trimmedTimespan = timespan.trim();
         LocalDate now = LocalDate.now();
