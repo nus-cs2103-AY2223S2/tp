@@ -168,7 +168,7 @@ feature. However, the method of handling the user input is slightly more complic
 
 In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
 `EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
-whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are 
+whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are
 passed in as `null` and checked later in `EditCategory#execute()`.
 
 To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
@@ -200,7 +200,7 @@ The following sequence diagram shows the order of operations of the Edit Categor
   * Pros: No need to re-point all `Expense` objects currently affiliated with the `Category` object that is being edited.
   * Cons: Mutates the state of the `Category` object, which might not be ideal if seeking immutability.
 
-* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object 
+* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object
 that uses the same name and summary before replacing the required name or summary depending on user's arguments.
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
@@ -266,7 +266,7 @@ The following Class Diagram describes the structure of the `AnalyticModelManager
 1. `allExpenses`: an `ObservableList` of Expense objects representing all expenses in the expense tracker
 2. `allCategories`: an `ObservableList` of Category objects representing all expense categories in the expense tracker
 
-The fields contained within `AnalyticModelManager` are of type `DoubleProperty` which implement the `Observable` interface. This allows the `UI` to establish bindings to each property. 
+The fields contained within `AnalyticModelManager` are of type `DoubleProperty` which implement the `Observable` interface. This allows the `UI` to establish bindings to each property.
 A binding is a mechanism of JavaFX allows for the establishment of relationships between variables. The `UI` observes each `DoubleProperty` for changes, and then updates the GUI automatically when it detects that the `DoubleProperty` has changed.
 
 Each `DoubleProperty` is updated using the respective calculation method, e.g. `AnalyticModelManager#getWeeklySpent()` for the `weeklySpent` property. A listener listens for changes in the `ObservableList` objects, `allExpenses` and `allCategories`.
@@ -289,7 +289,7 @@ This method of implementation closely follows the _Observer Pattern_, which prom
 
 **Aspect: GUI update when user updates expenses in FastTrack**:
 
-* **Alternative 1:** Call methods to calculate and refresh the summary statistics after every user command. 
+* **Alternative 1:** Call methods to calculate and refresh the summary statistics after every user command.
     * Pros: More convenient to implement since it is easy to ensure the GUI is always updated whenever the user enters a command
     * Cons: Inefficient, as this would require tearing down and creating a new instance of each `UI` component in order to display the updated data. Redundant calculations would also need to be performed every single time the user enters a command that does not change the underlying expense data.
 * **Alternative 2 (Current choice):** Use the _Observer Pattern_ to allow `UI` to update whenever the underlying data of FastTrack changes
