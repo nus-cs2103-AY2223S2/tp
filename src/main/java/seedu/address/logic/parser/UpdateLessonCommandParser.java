@@ -1,11 +1,12 @@
-package seedu.address.logic.parser.homework;
+package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,19 +15,14 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.homework.UpdateHomeworkCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.commands.UpdateLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
  * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
  */
-public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand> {
+public class UpdateLessonCommandParser implements Parser<seedu.address.logic.commands.UpdateLessonCommand> {
     private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
@@ -34,17 +30,19 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public UpdateHomeworkCommand parse(String args) throws ParseException {
+    public UpdateLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX, PREFIX_HOMEWORK, PREFIX_DEADLINE);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX, PREFIX_LESSON, PREFIX_STARTTIME,
+                PREFIX_ENDTIME);
 
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_HOMEWORK)
-                && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_DEADLINE))
-                || !argMultimap.getPreamble().isEmpty()) {
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_LESSON)
+            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_STARTTIME)
+            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_ENDTIME))
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdateHomeworkCommand.MESSAGE_USAGE));
+                UpdateLessonCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
@@ -63,23 +61,28 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one name is allowed for update homework command."));
+                "Only one name is allowed for update homework command."));
         }
 
         // if homework name is not present, set it to null, else parse it
-        Optional<String> homeworkName = Optional.empty();
-        if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
-            homeworkName = Optional.of(argMultimap.getValue(PREFIX_HOMEWORK).get());
+        Optional<String> lessonName = Optional.empty();
+        if (argMultimap.getValue(PREFIX_LESSON).isPresent()) {
+            lessonName = Optional.of(argMultimap.getValue(PREFIX_LESSON).get());
         }
 
         // if deadline is not present, set it to null, else parse it
-        Optional<LocalDateTime> deadline = Optional.empty();
-        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+        Optional<LocalDateTime> startTime = Optional.empty();
+        if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
+            startTime = Optional.of(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
 
-        return new UpdateHomeworkCommand(names, index, new NamePredicate(nameKeywords),
-                homeworkName, deadline);
+        Optional<LocalDateTime> endTime = Optional.empty();
+        if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
+            endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));
+        }
+
+        return new UpdateLessonCommand(names, index, new NamePredicate(nameKeywords),
+            lessonName, startTime, endTime);
     }
 
     /**

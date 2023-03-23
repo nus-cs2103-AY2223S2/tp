@@ -17,7 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Homework;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
@@ -41,18 +41,18 @@ public class UpdateHomeworkCommand extends Command {
     private final Index index;
     private final Optional<String> homeworkName;
     private final Optional<LocalDateTime> deadline;
-    private final NameContainsKeywordsPredicate predicate;
+    private final NamePredicate predicate;
     private final List<String> names;
 
     /**
      * Creates an UpdateHomeworkCommand to update the information of an existing homework.
      *
-     * @param index of the homework in the filtered homework list to update
-     * @param predicate of the student to update the homework
+     * @param index        of the homework in the filtered homework list to update
+     * @param predicate    of the student to update the homework
      * @param homeworkName of the homework to be updated to
-     * @param deadline of the homework to be updated to
+     * @param deadline     of the homework to be updated to
      */
-    public UpdateHomeworkCommand(List<String> names, Index index, NameContainsKeywordsPredicate predicate,
+    public UpdateHomeworkCommand(List<String> names, Index index, NamePredicate predicate,
                                  Optional<String> homeworkName, Optional<LocalDateTime> deadline) {
         requireNonNull(predicate);
         requireNonNull(index);

@@ -16,11 +16,11 @@ import seedu.address.model.student.Student;
 /**
  * Deletes a lesson from a student.
  */
-public class DeleteLessonCommand extends Command {
+public class DeleteExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-lesson";
+    public static final String COMMAND_WORD = "delete-exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a lesson from a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an exam from a student.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_INDEX + "INDEX\n"
@@ -36,7 +36,7 @@ public class DeleteLessonCommand extends Command {
     /**
      * Creates a DeleteLessonCommand to delete the specified lesson from the specified student.
      */
-    public DeleteLessonCommand(List<String> inputNames, NamePredicate predicate, Index targetIndex) {
+    public DeleteExamCommand(List<String> inputNames, NamePredicate predicate, Index targetIndex) {
         requireNonNull(predicate);
         requireNonNull(targetIndex);
 
@@ -73,12 +73,12 @@ public class DeleteLessonCommand extends Command {
         StringBuilder sb = new StringBuilder();
         for (Student student : studentList) {
             try {
-                sb.append(String.format(Messages.MESSAGE_LESSON_DELETED_SUCCESS, targetIndex.getOneBased(),
-                    student.getLesson(targetIndex).toString(), student.getName().toString()));
+                sb.append(String.format(Messages.MESSAGE_EXAM_DELETED_SUCCESS, targetIndex.getOneBased(),
+                    student.getExam(targetIndex).toString(), student.getName().toString()));
                 sb.append("\n");
-                student.deleteLesson(targetIndex);
+                student.deleteExam(targetIndex);
             } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
             }
         }
 
@@ -88,8 +88,7 @@ public class DeleteLessonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteLessonCommand // instanceof handles nulls
-            && predicate.equals(((DeleteLessonCommand) other).predicate)); // state check
+            || (other instanceof DeleteExamCommand // instanceof handles nulls
+            && predicate.equals(((DeleteExamCommand) other).predicate)); // state check
     }
 }
-
