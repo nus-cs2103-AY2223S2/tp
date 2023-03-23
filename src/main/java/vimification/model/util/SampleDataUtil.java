@@ -10,14 +10,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import vimification.model.task.Task;
-import vimification.model.task.Todo;
 import vimification.model.task.components.DateTime;
-import vimification.model.task.components.Description;
-import vimification.model.task.Deadline;
-import vimification.model.task.Event;
-import vimification.model.task.Status;
-import vimification.model.LogicTaskList;
-import vimification.model.ReadOnlyTaskPlanner;
 
 /**
  * Contains utility methods for populating {@code TaskPlanner} with sample data.

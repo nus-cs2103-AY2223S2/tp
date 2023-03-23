@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import vimification.model.task.Task;
+import vimification.model.task.Todo;
 import javafx.fxml.FXML;
 
 /**
@@ -32,7 +33,17 @@ public class TaskDetailPanel extends UiPart<VBox> {
 
     public void setup() {
         descriptionText.setText(task.getDescription());
-        typeText.setText("Todo");
+
+        String taskType = getTaskType(task);
+        typeText.setText(taskType);
+    }
+
+    public String getTaskType(Task task) {
+        if (task instanceof Todo) {
+            return "Todo";
+        }
+
+        return "Deadline";
     }
 
 }

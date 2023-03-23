@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.CreateCommand;
 import vimification.logic.commands.LogicCommand;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
@@ -15,7 +14,6 @@ import vimification.logic.parser.ParserException;
 import vimification.logic.parser.VimificationParser;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
-import vimification.model.task.Todo;
 import vimification.storage.Storage;
 
 /**

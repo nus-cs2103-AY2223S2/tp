@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import vimification.logic.Logic;
 import vimification.logic.commands.CommandException;
+import vimification.logic.commands.CommandResult;
 import vimification.logic.parser.ParserException;
 
 /**
@@ -43,7 +44,6 @@ public class CommandInput extends UiPart<TextField> {
 
         if (isEnterEvent) {
             String commandString = this.getRoot().getText();
-            checkIsQuitCommand(commandString);
             executeCommand(commandString);
             returnFocusToParent();
         }
@@ -60,22 +60,48 @@ public class CommandInput extends UiPart<TextField> {
         }
     }
 
-    private void executeCommand(String commandString) {
-        System.out.println("Your command is " + commandString);
-
-        try {
-            logic.execute(commandString);
-        } catch (CommandException e) {
-            // TODO : Load Error message at the bottom components
-        } catch (ParserException e) {
-            // TODO : Load Error message at the bottom components
+    private String cleanCommandString(String commandString) {
+        boolean isCommandHasColon = commandString.startsWith(":");
+        if (!isCommandHasColon) {
+            System.out.println("[Your command] " + commandString + " is invalid");
         }
 
-        // TODO: Remove dummy parser after Viet Anh pushes new parser
-        String index = (commandString.split(":"))[1];
+        String strippedCommandString = commandString.substring(1).strip();
+        return strippedCommandString;
+    }
 
-        if (isNumeric(index)) {
-            parent.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(index));
+    private void executeCommand(String input) {
+
+        String commandString = cleanCommandString(input);
+        System.out.println("Your command is " + input);
+
+        processUiCommand(commandString);
+
+        try {
+            CommandResult result = logic.execute(commandString);
+            parent.initializeTaskListPanel();
+            System.out.println(result.getFeedbackToUser());
+        } catch (CommandException e) {
+            System.out.println("[Your command] " + input + " is invalid");
+        } catch (ParserException e) {
+            System.out.println("[Your command] " + input + " can't be parsed");
+        }
+    }
+
+    private void processUiCommand(String commandString) {
+        checkIsExitCommand(commandString);
+
+        // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
+        if (isNumeric(commandString)) {
+            parent.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(commandString));
+            return;
+        }
+    }
+
+    private void checkIsExitCommand(String result) {
+        boolean isExit = result.equals("wq!");
+        if (isExit) {
+            Platform.exit();
         }
     }
 
@@ -84,37 +110,6 @@ public class CommandInput extends UiPart<TextField> {
         this.getRoot().setVisible(false);
     }
 
-    private void checkIsQuitCommand(String commandString) {
-        // TODO : Create a Parser to parse the command and create a Driver to run it.
-        if (commandString.equals(":wq!")) {
-            Platform.exit();
-        }
-    }
-
-    /**
-     * Specifies whether the root of {@code Node} and any subnodes should be rendered as part of the
-     * scene graph. A node may be visible and yet not be shown in the rendered scene if, for
-     * instance, it is off the screen or obscured by another Node. Invisible nodes never receive
-     * mouse events or keyboard focus and never maintain keyboard focus when they become invisible.
-     *
-     * @defaultValue true
-     */
-    public void setVisible(boolean isVisible) {
-        this.getRoot().setVisible(isVisible);
-    }
-
-    /**
-     * Requests that this {@code Node} get the input focus, and that this {@code Node}'s top-level
-     * ancestor become the focused window. To be eligible to receive the focus, the node must be
-     * part of a scene, it and all of its ancestors must be visible, and it must not be disabled. If
-     * this node is eligible, this function will cause it to become this {@code Scene}'s "focus
-     * owner". Each scene has at most one focus owner node. The focus owner will not actually have
-     * the input focus, however, unless the scene belongs to a {@code Stage} that is both visible
-     * and active.
-     */
-    public void requestFocus() {
-        this.getRoot().requestFocus();
-    }
 
     @FXML
     public void initialize() {
