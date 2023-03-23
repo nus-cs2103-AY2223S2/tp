@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.testutil.TypicalLectures;
 
 public class JsonAdaptedLectureTest {
@@ -19,17 +19,17 @@ public class JsonAdaptedLectureTest {
     private static final String INVALID_NAME = "Lecture_01**";
     private static final String INVALID_TAG = "H@rd";
 
-    private static final String VALID_NAME = TypicalLectures.getCs2040sWeek1().getName().name;
-    private static final List<JsonAdaptedVideo> VALID_VIDEOS = TypicalLectures.getCs2040sWeek1().getVideoList().stream()
+    private static final ReadOnlyLecture ORIGINAL_LECTURE = TypicalLectures.getCs2040sWeek1();
+    private static final String VALID_NAME = ORIGINAL_LECTURE.getName().name;
+    private static final List<JsonAdaptedVideo> VALID_VIDEOS = ORIGINAL_LECTURE.getVideoList().stream()
             .map(JsonAdaptedVideo::new).collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalLectures.getCs2040sWeek1().getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = ORIGINAL_LECTURE.getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validLectureDetails_returnsLecture() throws Exception {
-        Lecture lecture = TypicalLectures.getCs2040sWeek1();
-        JsonAdaptedLecture adaptedLecture = new JsonAdaptedLecture(lecture);
-        assertEquals(lecture, adaptedLecture.toModelType());
+        JsonAdaptedLecture adaptedLecture = new JsonAdaptedLecture(ORIGINAL_LECTURE);
+        assertEquals(ORIGINAL_LECTURE, adaptedLecture.toModelType());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class JsonAdaptedLectureTest {
         videosContainingNull.add(null);
 
         JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, videosContainingNull, VALID_TAGS);
-        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
+        assertEquals(ORIGINAL_LECTURE, lecture.toModelType());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class JsonAdaptedLectureTest {
         duplicatedTags.addAll(VALID_TAGS);
 
         JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, duplicatedTags);
-        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
+        assertEquals(ORIGINAL_LECTURE, lecture.toModelType());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class JsonAdaptedLectureTest {
         tagsContainingNull.add(null);
 
         JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, tagsContainingNull);
-        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
+        assertEquals(ORIGINAL_LECTURE, lecture.toModelType());
     }
 
 }

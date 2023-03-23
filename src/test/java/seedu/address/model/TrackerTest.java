@@ -53,9 +53,9 @@ public class TrackerTest {
 
     @Test
     public void resetData_withDuplicateModules_throwsDuplicaateModuleException() {
-        Module originalCs2040s = TypicalModules.getCs2040s();
-        Module editedCs2040s = new ModuleBuilder(originalCs2040s).withTags("Easy").build();
-        List<Module> modules = Arrays.asList(originalCs2040s, editedCs2040s);
+        Module originalModule = TypicalModules.getCs2040s();
+        Module editedModule = new ModuleBuilder(originalModule).withTags("Easy").build();
+        List<Module> modules = Arrays.asList(originalModule, editedModule);
         ReadOnlyTracker newData = new TrackerStub(modules);
 
         assertThrows(DuplicateModuleException.class, () -> tracker.resetData(newData));
@@ -78,13 +78,13 @@ public class TrackerTest {
 
     @Test
     public void hasModule_moduleWithSameCodeInTracker_returnsTrue() {
-        Module originalCs2040s = TypicalModules.getCs2040s();
-        tracker.addModule(originalCs2040s);
-
-        Module editedCs2040s = new ModuleBuilder(originalCs2040s)
+        Module originalModule = TypicalModules.getCs2040s();
+        Module editedModule = new ModuleBuilder(originalModule)
                 .withName("Algorithms and Data Structures").build();
 
-        assertTrue(tracker.hasModule(editedCs2040s));
+        tracker.addModule(originalModule);
+
+        assertTrue(tracker.hasModule(editedModule));
     }
 
     @Test
@@ -163,29 +163,36 @@ public class TrackerTest {
     }
 
     @Test
-    public void setModule_editedModuleHasNoChange_moduleNoChange() {
+    public void setModule_editedModuleIsTheSame_moduleNoChange() {
         Module module = TypicalModules.getCs2040s();
 
         tracker.addModule(module);
-
         tracker.setModule(module, module);
 
         assertTrue(tracker.hasModule(module));
     }
 
     @Test
+    public void setModule_editedModuleHasNoChange_moduleNoChange() {
+        Module module = TypicalModules.getCs2040s();
+        Module moduleCopy = new ModuleBuilder(module).build();
+
+        tracker.addModule(module);
+        tracker.setModule(module, moduleCopy);
+
+        assertTrue(tracker.hasModule(module));
+    }
+
+    @Test
     public void setModule_editedModuleHasSameCode_moduleReplaced() {
-        Module originalCs2040s = TypicalModules.getCs2040s();
-
-        tracker.addModule(originalCs2040s);
-
-        Module editedCs2040s = new ModuleBuilder(originalCs2040s)
+        Module originalModule = TypicalModules.getCs2040s();
+        Module editedCs2040s = new ModuleBuilder(originalModule)
                 .withName("Algorithms and Data Structures").build();
 
+        tracker.addModule(originalModule);
+        tracker.setModule(originalModule, editedCs2040s);
 
-        tracker.setModule(originalCs2040s, editedCs2040s);
-
-        assertTrue(tracker.getModule(originalCs2040s.getCode()).equals(editedCs2040s));
+        assertTrue(tracker.getModule(originalModule.getCode()).equals(editedCs2040s));
     }
 
     @Test
@@ -194,7 +201,6 @@ public class TrackerTest {
         Module editedModule = TypicalModules.getSt2334();
 
         tracker.addModule(originalModule);
-
         tracker.setModule(originalModule, editedModule);
 
         assertFalse(tracker.hasModule(originalModule));
