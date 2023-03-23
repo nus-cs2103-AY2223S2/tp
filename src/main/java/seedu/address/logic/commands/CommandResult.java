@@ -52,7 +52,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser,
-                false, false, false, false, false ,false);
+                false, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -79,7 +79,7 @@ public class CommandResult {
         return selectDeck;
     }
 
-    public boolean isUnselectDeck(){
+    public boolean isUnselectDeck() {
         return unselectDeck;
     }
 

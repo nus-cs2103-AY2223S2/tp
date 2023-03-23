@@ -42,7 +42,7 @@ public class Deck {
      */
     public ObservableList<Pair<String, String>> getDeckNameList() {
         this.deckNameList.clear();
-        Pair<String, String> header = new Pair("Current Deck:",this.deckName);
+        Pair<String, String> header = new Pair("Current Deck:", this.deckName);
         this.deckNameList.add(header);
         return this.deckNameList;
     }

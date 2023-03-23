@@ -278,7 +278,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isSelectDeck()) {
                 handleSelectDeck();
             }
-            
+
             if (commandResult.isUnselectDeck()) {
                 handleUnSelectDeck();
             }
