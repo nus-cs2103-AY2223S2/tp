@@ -29,7 +29,7 @@ import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in OfficeConnect.
  */
 public class EditCommand extends Command {
 

@@ -11,6 +11,16 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Tasks} objects to be used in tests.
  */
 public class TypicalTasks {
+
+    public static final String VALID_TITLE_SEND_EMAIL = "Send email to superior";
+    public static final String VALID_TITLE_SUBMIT_REPORT = "Submit report for approval";
+
+    public static final String VALID_CONTENT_SEND_EMAIL = "Email Mr. Chan about the recent updates on Project X.";
+    public static final String VALID_CONTENT_SUBMIT_REPORT = "Get Mr. Tan to look through the reports and send them";
+    public static final String VALID_STATUS_UNDONE = "false";
+    public static final String VALID_STATUS_DONE = "true";
+    public static final String VALID_ID = "d9cc62ca-0f19-11ec-82a8-0242ac131234";
+
     public static final Task SEND_EMAIL_TO_CLIENT = new TaskBuilder().withTitle("Send email to client")
             .withContent("Email Mr. Chan about the recent updates on Project X.").build();
     public static final Task COMPLETE_SLIDES = new TaskBuilder().withTitle("Complete slides").withStatus(true)

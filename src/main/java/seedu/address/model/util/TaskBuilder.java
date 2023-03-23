@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import seedu.address.model.Repository;
+import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -22,6 +23,8 @@ public class TaskBuilder {
     private Content content;
     private Status status;
 
+    private Id id;
+
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
@@ -29,6 +32,7 @@ public class TaskBuilder {
         title = new Title(DEFAULT_TITLE);
         content = new Content(DEFAULT_CONTENT);
         status = new Status(DEFAULT_STATUS);
+        id = new Id();
     }
 
     /**
@@ -38,6 +42,7 @@ public class TaskBuilder {
         title = taskToCopy.getTitle();
         content = taskToCopy.getContent();
         status = taskToCopy.getStatus();
+        id = taskToCopy.getId();
     }
 
     private Task buildRandomTask() {
@@ -95,12 +100,34 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStatus(String status) {
+        this.status = new Status(Boolean.parseBoolean(status));
+        return this;
+    }
+    /**
+     * Sets the {@code Id} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withId(String id) {
+        this.id = new Id(id);
+        return this;
+    }
+    /**
+     * Sets the {@code Id} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withId(Id id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Sets Task to be created
      *
      * @return Task containing specified {@code Title, @code Content, @code Status}
      */
     public Task build() {
-        return new Task(title, content, status);
+        return new Task(title, content, status, id);
     }
 
 
