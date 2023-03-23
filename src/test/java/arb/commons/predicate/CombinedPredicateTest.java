@@ -33,9 +33,11 @@ public class CombinedPredicateTest {
         assertTrue(thirdCombinedPredicate.equals(fourthCombinedPredicate)); // same predicates, different order
 
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Ben"));
-        NameContainsKeywordsPredicate secondNamePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Ben", "Alice"));
+        NameContainsKeywordsPredicate secondNamePredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Ben", "Alice"));
         CombinedPredicate<Client> firstClientCombinedPredicate = new CombinedPredicate<>(Arrays.asList(namePredicate));
-        CombinedPredicate<Client> secondClientCombinedPredicate = new CombinedPredicate<>(Arrays.asList(secondNamePredicate));
+        CombinedPredicate<Client> secondClientCombinedPredicate =
+                new CombinedPredicate<>(Arrays.asList(secondNamePredicate));
         assertTrue(firstClientCombinedPredicate.equals(secondClientCombinedPredicate));
     }
 }

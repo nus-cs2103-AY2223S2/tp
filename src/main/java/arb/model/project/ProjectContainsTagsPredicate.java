@@ -1,4 +1,4 @@
-/*package arb.model.project;
+package arb.model.project;
 
 import java.util.List;
 import java.util.Set;
@@ -9,11 +9,12 @@ import arb.model.tag.Tag;
 
 /**
  * Tests that a {@code Project}'s contains any of the tags given.
+ */
 public class ProjectContainsTagsPredicate implements Predicate<Project> {
     private final Set<Tag> tags;
 
     public ProjectContainsTagsPredicate(List<String> keywords) {
-        this.tags = keywords.stream().map(s -> new Tag(s)).collect(Collectors.toSet());
+        this.tags = keywords.stream().map(s -> new Tag(s.toLowerCase())).collect(Collectors.toSet());
     }
 
     @Override
@@ -33,4 +34,4 @@ public class ProjectContainsTagsPredicate implements Predicate<Project> {
     public int hashCode() {
         return tags.hashCode();
     }
-}*/
+}

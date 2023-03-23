@@ -22,6 +22,7 @@ import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
+import arb.model.project.ProjectContainsTagsPredicate;
 import arb.model.project.ProjectWithinTimeframePredicate;
 import arb.model.project.TitleContainsKeywordsPredicate;
 
@@ -53,9 +54,9 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         if (tags.stream().anyMatch(t -> t.isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_TAG_ERROR));
         }
-        //if (!tag.isEmpty()) {
-        //    predicates.add(new ProjectContainsTagPredicate(tags));
-        //}
+        if (!tags.isEmpty()) {
+            predicates.add(new ProjectContainsTagsPredicate(tags));
+        }
 
         List<String> titleKeywords = argMultimap.getAllValues(PREFIX_NAME);
         if (titleKeywords.stream().anyMatch(t -> t.isEmpty())) {

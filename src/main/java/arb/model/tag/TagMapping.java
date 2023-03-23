@@ -2,6 +2,8 @@ package arb.model.tag;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 /**
  * Stores how many clients and projects is tagged by a certain {@code Tag}.
  * Guarantees: {@code Tag} tags at least one client or project in the address book.
@@ -112,5 +114,10 @@ public class TagMapping {
                 && ((TagMapping) otherObject).tag.equals(tag)
                 && ((TagMapping) otherObject).numberOfClientsTagged == numberOfClientsTagged
                 && ((TagMapping) otherObject).numberOfProjectsTagged == numberOfProjectsTagged;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tag, numberOfClientsTagged, numberOfProjectsTagged);
     }
 }

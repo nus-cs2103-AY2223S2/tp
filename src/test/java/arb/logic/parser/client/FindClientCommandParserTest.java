@@ -14,6 +14,7 @@ import arb.logic.commands.client.FindClientCommand;
 import arb.model.client.Client;
 import arb.model.client.ClientContainsTagPredicate;
 import arb.model.client.NameContainsKeywordsPredicate;
+import arb.testutil.PredicateUtil;
 
 public class FindClientCommandParserTest {
 
@@ -26,13 +27,15 @@ public class FindClientCommandParserTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void parse_validArgs_returnsFindClientCommand() {
         List<String> expectedTags = Arrays.asList("friend");
         List<String> expectedNames = Arrays.asList("Alice", "Bob");
         ClientContainsTagPredicate expectedTagsPredicate = new ClientContainsTagPredicate(expectedTags);
         NameContainsKeywordsPredicate expectedTitlesPredicate = new NameContainsKeywordsPredicate(expectedNames);
-        CombinedPredicate<Client> expectedCombinedPredicate = new CombinedPredicate<>(Arrays.asList(expectedTagsPredicate, expectedTitlesPredicate));
-        
+        CombinedPredicate<Client> expectedCombinedPredicate =
+                PredicateUtil.getCombinedPredicate(expectedTagsPredicate, expectedTitlesPredicate);
+
         // no leading and trailing whitespaces
         FindClientCommand expectedFindClientCommand =
                 new FindClientCommand(expectedCombinedPredicate);
