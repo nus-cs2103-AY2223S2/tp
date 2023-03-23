@@ -254,6 +254,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean checkPilotByIndex(int index) {
+        Optional<Pilot> pilot = pilotManager.getItemByIndex(index);
+
+        if (pilot.isPresent()) {
+            Pilot pilotToCheck = pilot.get();
+            return pilotToCheck.isAvailable();
+        } else {
+            throw new PilotNotFoundException();
+        }
+    }
+
+    @Override
     public ObservableList<Pilot> getFilteredPilotList() {
         return filteredPilots;
     }
@@ -428,6 +440,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean checkCrewByIndex(int index) {
+        Optional<Crew> crew = crewManager.getItemByIndex(index);
+
+        if (crew.isPresent()) {
+            Crew crewToCheck = crew.get();
+            return crewToCheck.isAvailable();
+        } else {
+            throw new CrewNotFoundException();
+        }
+    }
+
+    @Override
     public ObservableList<Crew> getFilteredCrewList() {
         return filteredCrew;
     }
@@ -495,6 +519,18 @@ public class ModelManager implements Model {
 
         if (temp.isPresent()) {
             Plane planeToCheck = temp.get();
+            return planeToCheck.isAvailable();
+        } else {
+            throw new PlaneNotFoundException();
+        }
+    }
+
+    @Override
+    public boolean checkPlaneByIndex(int index) {
+        Optional<Plane> plane = planeManager.getItemByIndex(index);
+
+        if (plane.isPresent()) {
+            Plane planeToCheck = plane.get();
             return planeToCheck.isAvailable();
         } else {
             throw new PlaneNotFoundException();

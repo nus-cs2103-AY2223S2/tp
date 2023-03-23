@@ -157,6 +157,14 @@ public interface Model {
     boolean checkPilot(String id);
 
     /**
+     * Checks the availability of a pilot.
+     *
+     * @param index the index of the pilot in the list
+     * @return the availability of the pilot
+     */
+    boolean checkPilotByIndex(int index);
+
+    /**
      * Returns an unmodifiable view of the filtered pilot list
      */
     ObservableList<Pilot> getFilteredPilotList();
@@ -310,6 +318,15 @@ public interface Model {
      */
     boolean checkCrew(String id);
 
+    /**
+     * Checks the availability of the crew
+     * by order index.
+     *
+     * @param index the index of the crew, by order
+     * @return whether the crew is available
+     */
+    boolean checkCrewByIndex(int index);
+
     void updateFilteredCrewList(Predicate<Crew> predicate);
 
     ObservableList<Crew> getFilteredCrewList();
@@ -347,6 +364,15 @@ public interface Model {
      * @return   the availability of the plane.
      */
     boolean checkPlane(String id);
+
+    /**
+     * Checks the availability of the plane by index, where
+     * the index should be based on the order in the list.
+     *
+     * @param index the index of the plane to check
+     * @return the availability of the plane
+     */
+    boolean checkPlaneByIndex(int index);
 
     ObservableList<Plane> getFilteredPlaneList();
 
