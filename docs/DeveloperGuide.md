@@ -187,7 +187,7 @@ Executing the command edits the details of the employee into the ExecutivePro da
 
 Below is a sequence diagram and the explanation of `edit` command.
 
-![AddCommand](images/editSequenceDiagram.png)
+![AddCommand](images/EditSequenceDiagram.png)
 
 Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
 
