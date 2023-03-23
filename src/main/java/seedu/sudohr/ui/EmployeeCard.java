@@ -2,11 +2,13 @@ package seedu.sudohr.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
@@ -31,6 +33,8 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label department;
+    @FXML
     private Label employeeId;
     @FXML
     private Label index;
@@ -46,11 +50,12 @@ public class EmployeeCard extends UiPart<Region> {
     /**
      * Creates a {@code EmployeeCard} with the given {@code Employee} and index to display.
      */
-    public EmployeeCard(Employee employee, int displayedIndex) {
+    public EmployeeCard(Employee employee, int displayedIndex, ObservableList<Department> departments) {
         super(FXML);
         this.employee = employee;
         index.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
+        department.setText(getEmployeeDepartment(employee, departments));
         employeeId.setText("Employee ID: " + employee.getId().value);
         phone.setText(employee.getPhone().value);
         address.setText(employee.getAddress().value);
@@ -60,6 +65,14 @@ public class EmployeeCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    private String getEmployeeDepartment(Employee employee, ObservableList<Department> departmentList) {
+        for (Department department : departmentList) {
+            if (department.hasEmployee(employee)) {
+                return department.getName().fullName;
+            }
+        }
+        return "";
+    }
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

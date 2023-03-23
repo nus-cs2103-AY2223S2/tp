@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.sudohr.commons.core.LogsCenter;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
@@ -16,6 +17,7 @@ import seedu.sudohr.model.employee.Employee;
 public class EmployeeListPanel extends UiPart<Region> {
     private static final String FXML = "EmployeeListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EmployeeListPanel.class);
+    private final ObservableList<Department> departmentList;
 
     @FXML
     private ListView<Employee> employeeListView;
@@ -23,8 +25,9 @@ public class EmployeeListPanel extends UiPart<Region> {
     /**
      * Creates a {@code EmployeeListPanel} with the given {@code ObservableList}.
      */
-    public EmployeeListPanel(ObservableList<Employee> employeeList) {
+    public EmployeeListPanel(ObservableList<Employee> employeeList, ObservableList<Department> departmentList) {
         super(FXML);
+        this.departmentList = departmentList;
         employeeListView.setItems(employeeList);
         employeeListView.setCellFactory(listView -> new EmployeeListViewCell());
     }
@@ -41,9 +44,8 @@ public class EmployeeListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EmployeeCard(employee, getIndex() + 1).getRoot());
+                setGraphic(new EmployeeCard(employee, getIndex() + 1, departmentList).getRoot());
             }
         }
     }
-
 }
