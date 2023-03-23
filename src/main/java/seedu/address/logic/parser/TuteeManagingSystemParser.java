@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -17,6 +16,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.QueryCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -41,8 +41,9 @@ public class TuteeManagingSystemParser {
         Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
         Map.entry(ListCommand.COMMAND_WORD, args -> new ListCommand()),
         Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
+        Map.entry(QueryCommand.COMMAND_WORD, new QueryCommandParser()),
         Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
-        Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser())
+        Map.entry(UnmarkCommand.COMMAND_WORD, new UnmarkCommandParser())
     );
 
     /**

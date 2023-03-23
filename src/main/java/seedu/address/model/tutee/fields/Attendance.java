@@ -16,7 +16,7 @@ public class Attendance implements Iterable<LocalDate> {
     private final Set<LocalDate> attendances;
 
     public Attendance(Set<LocalDate> attendances) {
-        this.attendances = attendances;
+        this.attendances = new HashSet<>(attendances);
     }
 
     public Attendance() {
@@ -29,7 +29,7 @@ public class Attendance implements Iterable<LocalDate> {
      * @return A new Attendance instance with the new date marked
      */
     public Attendance markAttendance(LocalDate date) {
-        Set<LocalDate> copy = Set.copyOf(attendances);
+        Set<LocalDate> copy = new HashSet<>(attendances);
         copy.add(date);
         return new Attendance(copy);
     }
@@ -42,7 +42,7 @@ public class Attendance implements Iterable<LocalDate> {
      *     given date, marking them as absent again will throw a {@link NoSuchElementException}
      */
     public Attendance unmarkAttendance(LocalDate date) {
-        Set<LocalDate> copy = Set.copyOf(attendances);
+        Set<LocalDate> copy = new HashSet<>(attendances);
         if (!copy.remove(date)) {
             throw new NoSuchElementException();
         }
