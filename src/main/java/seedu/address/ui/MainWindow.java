@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -29,6 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
+    private static final ObservableList<Pair<String,String>> EMPTY_TITLE =
+            FXCollections.observableArrayList(new Pair<>("", ""));
+
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -203,8 +209,8 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().add(REVIEW_TITLE);
 
         rightPanelTitlePlaceholder.getChildren().clear();
-        rightPanelTitlePlaceholder.maxHeight(0);
-        rightPanelTitlePlaceholder.maxWidth(0);
+        rightTitle = new DeckNamePanel(EMPTY_TITLE);
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
     }
 
     /**
@@ -251,7 +257,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            handleSelectDeck();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -266,7 +271,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEndReview()) {
+                handleSelectDeck();
                 handleEndReview();
+            }
+
+            if (commandResult.isSelectDeck() || commandResult.isUnselectDeck()) {
+                handleSelectDeck();
             }
 
             return commandResult;

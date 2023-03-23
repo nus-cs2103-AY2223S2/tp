@@ -125,6 +125,8 @@
 
 #personListView {
     -fx-background-color: #e6eaeb;
+    -fx-background-radius: 0 0 15 15;
+    -fx-border-radius: 0 0 15 15;
 }
 
 #deckNamePane {
@@ -142,13 +144,13 @@
 }
 
 #deckNameView {
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-    -fx-background-color: white;
+    -fx-background-radius: 15 15 0 0;
+    -fx-border-radius: 15 15 0 0;
+    -fx-background-color: #e6eaeb;
 }
 
 #rightPanelTitlePlaceholder {
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 0 0 0 0;
 }
 
 /* ============ TAGS ========== */
