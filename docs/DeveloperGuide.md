@@ -266,35 +266,54 @@ The proposed CRUD (Create, Read, Update and Delete) mechanism for events is faci
 * Delete a consultation which will be saved in the current address book state in its history.
 * Edit a consultation which will be saved in the current address book state in its history.
 
-The following activity diagram summarizes what happens when a TA executes an add event:
+The following activity diagram summarizes what happens when a TA executes an add event.
+Do take note that whether the event is recurring or not is included as well:
 
 <img src="images/TrAcker-activity-diagrams/AddEventActivityDiagram.png" width="250" />
 
-
 The following activity diagram summarizes what happens when a TA executes an delete event:
 
-<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="250" />
+<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="550" />
 
 The following activity diagram summarizes what happens when a TA executes an edit event:
 
-<img src="images/TrAcker-activity-diagrams/EditEventActivityDiagram.png" width="250" />
+<img src="images/TrAcker-activity-diagrams/EditEventActivityDiagram.png" width="550" />
 
+The following activity diagram summarizes what happens when a TA executes an add student to event:
+
+<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an edit student in event:
+
+<img src="images/TrAcker-activity-diagrams/EditStudentInEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an delete student from event:
+
+<img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How CRUD (non-recurring) events executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Save Tutorial, Lab and Consultation as separate events.
+    * Pros: Easy to implement, better abstraction.
+    * Cons: More memory since more code is written.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Combine all the Tutorial, Lab and Consultations in an event, and check whether it is Tutorial, Lab or Consultation based on the title or command.
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory since less code is written,
+    * Cons: Involves checking the content of the event such as the title, which does not obey to Software Principles.
 
-_{more aspects and alternatives to be added}_
+**Aspect: How CRUD (recurring) events executes:**
 
+* **1:** Increments Tutorial, Lab and Consultation only by date.
+    * Pros: Ensures consistency and no duplicates due to mishandled / unhandles cases.
+    * Cons: There can be a recurring event based by name. For example, the head TA can be in charge of multiple tutorials occurring at the same time,
+  but TrAcker does not allow this since only one event can occur during a period of time (i.e. no timing overlap of events ).
+  
+  
+This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
+  a lot of cases which is why it is not allowed for now.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
