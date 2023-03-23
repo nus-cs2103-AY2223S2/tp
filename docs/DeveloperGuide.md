@@ -237,6 +237,67 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Timetable feature
+#### Proposed Implementation
+
+The proposed timetable mechanism is facilitated by `VersionedDeliveryJobSystem`. It extends `DeliveryJobSystem` with a job list history. Additionally, it implements the following operations:
+
+* `DeliveryJobSystem#commit()` — Saves the current delivery job system state in its history.
+* `DeliveryJobSystem#timetable_date()` — Shows timetable of the specified week by user.
+* `DeliveryJobSystem#timetable()` — Shows timetable of current week.
+
+These operations are exposed in the `Model` and `Logic` interface as `Model#commitDeliveryJob()`, `Logic#executeTimetableCommand()` and `Logic#execute()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedDeliveryJobSystem` will be initialized with the initial delivery job system state.
+
+Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the address book after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
+
+Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified address book state to be saved into the `deliveryJobListSystem`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
+
+</div>
+
+Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
+
+The `timetable_date` command is quite similar — it also calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+
+The following sequence diagram shows how the timetable operation works:
+
+![TimetableSequenceDiagram](images/TimetableSequenceDiagram.png)
+
+The following sequence diagram shows how the timetable_date operation works:
+
+![TimetableSequenceDiagram](images/TimetableDateSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TimetableCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How timetable executes:**
+
+* **Alternative 1 (current choice):** Saves the entire delivery job list system.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows which date to show timetable of specific week.
+    * Pros: Will use less memory.
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
