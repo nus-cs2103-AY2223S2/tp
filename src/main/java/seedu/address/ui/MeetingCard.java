@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -10,7 +9,7 @@ import seedu.address.model.meeting.Meeting;
  * An UI component that displays information of a {@code Meeting}.
  */
 public class MeetingCard extends UiPart<Region> {
-
+    public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "MeetingListCard.fxml";
 
     /**
@@ -20,7 +19,6 @@ public class MeetingCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     public final Meeting meeting;
     @FXML
     private Label id;
@@ -53,6 +51,20 @@ public class MeetingCard extends UiPart<Region> {
                         .get());
         meetingLocation.setText("Location: " + meeting.getLocation().toString());
         description.setText("Description: " + meeting.getDescription().toString());
+        formatDateTimePast();
+    }
+
+    /**
+     * Updates the font colour of the dateTime depending on whether the meeting is over.
+     * If the meeting has passed based on the current system date/time, the font will be RED.
+     * Else it will be WHITE by default.
+     */
+    public void formatDateTimePast() {
+        if (meeting.hasPassed()) {
+            dateTime.getStyleClass().add(ERROR_STYLE_CLASS);
+        } else {
+            dateTime.getStyleClass().remove(ERROR_STYLE_CLASS);
+        }
     }
 
     @Override
