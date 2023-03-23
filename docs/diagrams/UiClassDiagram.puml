@@ -13,8 +13,13 @@ Class HelpWindow
 Class ResultDisplay
 Class RecipeListPanel
 Class RecipeCard
+Class RecipePopup
+Class RecipeForm
 Class StatusBarFooter
 Class CommandBox
+Class AddRecipeEvent
+Class DeleteRecipeEvent
+Class EditRecipeEvent
 }
 
 package Model <<Rectangle>> {
@@ -36,7 +41,7 @@ MainWindow *-down-> "1" RecipeListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-RecipeListPanel -down-> "*" RecipeCard
+RecipeListPanel o-down-> "*" RecipeCard
 
 MainWindow -left-|> UiPart
 
@@ -46,8 +51,21 @@ RecipeListPanel --|> UiPart
 RecipeCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+RecipeForm --|> UiPart
+RecipePopup --|> UiPart
 
 RecipeCard ..> Model
+DeleteRecipeEvent ..> Model
+EditRecipeEvent ..> Model
+AddRecipeEvent ..> Model
+
+RecipeCard *-down-> "0..1"  RecipePopup
+RecipeCard *-down-> "0..1"  RecipeForm
+
+RecipePopup *-down-|> "0..1" DeleteRecipeEvent
+RecipeForm *-down-|> "0..1" AddRecipeEvent
+RecipeForm *-down-|> "0..1" EditRecipeEvent
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
