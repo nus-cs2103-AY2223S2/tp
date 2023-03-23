@@ -21,7 +21,8 @@ emails are sent during working hours, so that subordinates will not be disturbed
 
 ## **Acknowledgements**
 
-OfficeConnect is a brownfield Java project based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) 
+OfficeConnect is a brownfield Java project based on
+the [AB3 project template](https://github.com/se-edu/addressbook-level3)
 by [se-education.org](https://se-education.org).
 * Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
