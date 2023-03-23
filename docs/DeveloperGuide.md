@@ -257,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Has a need to manage a significant number of applicants who applied to their department.
+* Has a need to manage a significant number of applicants who applied to their department
 * Is a Hiring Manager
 * Prefers desktop apps over other types
 * Can type fast
@@ -356,7 +356,13 @@ The following legend describes the symbols used in this section:
 
 * 3b. The given applicant's phone number does not exist.
 
-    * 3a1. HMHero shows an error message.
+    * 3b1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+* 3c. The given applicant's name and corresponding phone number combination does not exist.
+
+    * 3c1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
