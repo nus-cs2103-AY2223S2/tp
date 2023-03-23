@@ -18,6 +18,7 @@ public class StartTime {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     private final LocalTime time;
+    public String startTime;
 
     /**
      * Constructs a {@code StartTime} with the specified start time.
