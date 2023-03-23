@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
+<?import javafx.scene.Cursor?>
 <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane>
@@ -14,18 +15,38 @@
                <children>
                   <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79addc" height="30.0" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="100.0" />
-                        <Label contentDisplay="CENTER" text="Contact" textAlignment="CENTER" />
+                        <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0"
+                                onAction="#viewContactTab"
+                                style="-fx-background-color: #79addc; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: black;"
+                                text="Contact">
+                           <cursor>
+                              <Cursor fx:constant="HAND"/>
+                           </cursor>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                      <children>
-                        <Label contentDisplay="CENTER" text="Module" textAlignment="CENTER" />
+                        <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0"
+                                onAction="#viewContactTab"
+                                style="-fx-background-color: #79addc; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: black;"
+                                text="Contact">
+                           <cursor>
+                              <Cursor fx:constant="HAND"/>
+                           </cursor>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                      <children>
-                        <Label contentDisplay="CENTER" text="Skill" textAlignment="CENTER" />
+                        <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0"
+                                onAction="#viewContactTab"
+                                style="-fx-background-color: #79addc; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: black;"
+                                text="Contact">
+                           <cursor>
+                              <Cursor fx:constant="HAND"/>
+                           </cursor>
+                        </Button>
                      </children>
                   </StackPane>
                </children>
