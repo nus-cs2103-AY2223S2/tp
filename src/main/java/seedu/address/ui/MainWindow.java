@@ -227,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the deck Title.
      */
     public void handleSelectDeck() {
-        rightPanelTitle.getChildren().removeAll();
+        rightPanelTitle.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
@@ -237,18 +237,10 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the deck Title.
      */
     public void handleUnSelectDeck() {
-        rightPanelTitle.getChildren().removeAll();
+        rightPanelTitle.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
-    public UiPart<Region> getLeftPanel() {
-        return leftPanel;
     }
 
     /**
