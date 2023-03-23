@@ -56,7 +56,7 @@ public class Review {
         Collections.fill(scoreList, false);
 
         // initialise reviewStats
-        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
+        reviewStatsList = FXCollections.observableList(new ArrayList<>());
     }
 
     /**
@@ -135,7 +135,7 @@ public class Review {
 
     /**
      * Move to the next card to be under review.
-     * @return
+     * @return boolean indicating if card is the last card
      */
     public boolean goToNextCard() {
         boolean priorStateIsFlipped = currCard.isFlipped();
