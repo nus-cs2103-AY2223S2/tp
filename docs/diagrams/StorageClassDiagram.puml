@@ -16,7 +16,7 @@ Class StorageManager
 
 package "EduMate Storage" MAIN_COLOR_BACKGROUND {
 Class "<<interface>>\nEduMateStorage" as EduMateStorage
-Class JsonEduMateStorage
+Class EduMateStorageManager
 Class JsonSerializableEduMate
 Class JsonAdaptedPerson
 Class JsonAdaptedUser
@@ -36,8 +36,8 @@ Storage1 -left-|> UserPrefsStorage
 Storage1 -right-|> EduMateStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonEduMateStorage .up.|> EduMateStorage
-JsonEduMateStorage ..> JsonSerializableEduMate
+EduMateStorageManager .up.|> EduMateStorage
+EduMateStorageManager ..> JsonSerializableEduMate
 JsonSerializableEduMate --> "*" JsonAdaptedPerson
 JsonSerializableEduMate --> JsonAdaptedUser
 JsonAdaptedPerson --> "*" JsonAdaptedTag
