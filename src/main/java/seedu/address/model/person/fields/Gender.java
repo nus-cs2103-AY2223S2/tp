@@ -33,20 +33,10 @@ public class Gender extends Field {
     }
 
     @Override
-    public String toString() {
-        return this.value;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
                 && this.value.equals(((Gender) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return this.value.hashCode();
     }
 
 }
