@@ -61,6 +61,23 @@ public class DegreeProgressionData {
         return (double) Math.round(gpa * 100) / 100;
     }
 
+    public String getFullDetails() {
+        StringBuilder details = new StringBuilder();
+        details.append("Requirement: completed/total\n");
+        for (String tag : ValidTag.getTags()) {
+            details.append(String.format("%1$s: %2$d / %3$d\n",
+                    tag.replace("_", " "),
+                    completedRequirementCredits.getOrDefault(ValidTag.getShortForm(tag).toString(), 0),
+                    ValidTag.getTotalCredit(tag)));
+        }
+        details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))
+                .append("OVERALL PROGRESS\n")
+                .append(String.format("> Completed: %1$d\n", completedCredit))
+                .append(String.format("> Planned:   %1$d\n", plannedCredit))
+                .append(String.format("> Total:     %1$d\n", TOTALCREDIT));
+        return details.toString();
+    }
+
     private void computeModule(Module module) {
         int credit = Integer.valueOf(module.getCredit().toString());
         if (module.isComplete() && module.isGradeable()) {
@@ -87,7 +104,7 @@ public class DegreeProgressionData {
     private void initCompletedRequirementCredits() {
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
-            completedRequirementCredits.put(tag, 0);
+            completedRequirementCredits.put(ValidTag.getShortForm(tag).toString(), 0);
         }
     }
 }

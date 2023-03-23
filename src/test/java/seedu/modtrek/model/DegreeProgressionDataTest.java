@@ -26,12 +26,12 @@ public class DegreeProgressionDataTest {
     @Test
     public void getCompletedRequirementCredits() {
         Map<String, Integer> expected = Map.of(
-                "COMPUTER_SCIENCE_FOUNDATION", 16,
-                "MATHEMATICS_AND_SCIENCES", 12,
-                "IT_PROFESSIONALISM", 0,
-                "COMPUTER_SCIENCE_BREADTH_AND_DEPTH", 0,
-                "UNIVERSITY_LEVEL_REQUIREMENTS", 0,
-                "UNRESTRICTED_ELECTIVES", 0);
+                "CSF", 16,
+                "MS", 12,
+                "ITP", 0,
+                "CSBD", 0,
+                "ULR", 0,
+                "UE", 0);
         assertEquals(expected, data.getCompletedRequirementCredits());
     }
 
