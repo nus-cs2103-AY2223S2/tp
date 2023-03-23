@@ -171,6 +171,16 @@ The two commands are very similar. Currently, they only differ in their predicat
 
 We chose to use two different commands as we expect to expand upon the find commands differently in the future, such as allowing partial matches for `find` but not `find_details`. The details of a patient often include too many words for partial matching to be relevant. Thus, decoupling the commands from each other allows future extension of the commands to be easier.
 
+### Delete appointment ('delete_appt') command
+
+**Implementation**
+
+The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by identifying the chosen appointment by its AppointmentId, filtering `model` appointment list via `model.getFilteredAppointmentList()` and obtaining a `matchingAppointments` list and finally removing the first `Appointment` on the list.
+
+**Design considerations**
+
+We decided to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -524,7 +534,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. A sample of the expected result is shown below:
+   ![v1.2_jar](images/v1.2_jar.jpg)
 
 1. Saving window preferences
 
