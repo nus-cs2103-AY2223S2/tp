@@ -21,7 +21,7 @@ public class BetweenDatePredicate extends DatePredicate {
 
     @Override
     public boolean test(InternshipApplication internshipApplication) {
-        assert internshipApplication != null: "internshipApplication should not be null";
+        assert internshipApplication != null : "internshipApplication should not be null";
         return internshipApplication.getInterviewDate() != null
                 && internshipApplication.getInterviewDate().isBetweenInclusive(startDate, endDate);
     }
