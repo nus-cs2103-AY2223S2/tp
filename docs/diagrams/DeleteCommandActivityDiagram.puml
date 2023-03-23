@@ -15,13 +15,14 @@ if () then ([Invalid Index Argument])
     stop
 else ([else])
     :Get zero-based index from one-based index;
-    :Check out-of-bounds condition for index on XYZList;
+    :Check out-of-bounds condition for index on FilteredXYZList;
     if () then ([true])
         : Display invalid XYZ index error message;
         stop
     else ([false])
-        : Retrieve item to delete from XYZList;
+        : Retrieve item to delete from FilteredXYZList;
         : Item is deleted from XYZList;
+        : XYZList with XYZ removed is saved to local storage;
         : Success message is returned;
         stop
 @enduml

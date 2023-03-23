@@ -298,9 +298,9 @@ The following activity diagram summarizes what happens when the user executes th
 
 ### DeleteXYZCommand
 
-The `delete` command removes an `XYZ` from internal `XYZList`.
+The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
 
-The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `XYZList` that the user wishes to delete using a one-based index.
+The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `FilteredXYZList` that the user wishes to delete using a one-based index.
 
 The parser for `delete` command extracts the index found in the arguments. If the argument is valid, then zero-based index is used to remove `XYZ` from the `XYZList`.
 
@@ -309,6 +309,7 @@ The following activity diagram summarizes what happens when the user executes th
  <p align="center">
      <img src="images/DeleteCommandActivityDiagram.svg">
  </p>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
