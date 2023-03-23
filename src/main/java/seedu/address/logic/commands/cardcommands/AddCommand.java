@@ -43,7 +43,7 @@ public class AddCommand extends Command {
     private final AddCardDescriptor cardDescriptor;
 
     /**
-     * Creates an AddCommand to add the specified {@code Card}
+     * Creates an AddCommand to add the specified {@code AddCardDescriptor} as Card
      */
     public AddCommand(AddCardDescriptor cardDescriptor) {
         requireNonNull(cardDescriptor);
@@ -55,9 +55,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         Optional<Deck> selectedDeck = model.getSelectedDeck();
 
-        if (selectedDeck.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_SELECTED_DECK);
-        }
+        assert selectedDeck.isPresent() : MESSAGE_NO_SELECTED_DECK;
 
         cardDescriptor.setDeck(selectedDeck.get());
         Card toAdd = cardDescriptor.buildCard();

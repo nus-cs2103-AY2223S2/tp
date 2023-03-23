@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.cardcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.cardcommands.EditCommand;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 
 public class EditCardDescriptorTest {

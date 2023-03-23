@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.cardcommands.AddCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
@@ -28,11 +28,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
-<<<<<<< HEAD
-import seedu.address.testutil.AddCardDescriptorBuilder;
-=======
 import seedu.address.model.tag.Tag;
->>>>>>> master
+import seedu.address.testutil.AddCardDescriptorBuilder;
 import seedu.address.testutil.CardBuilder;
 
 public class AddCommandTest {
@@ -55,20 +52,20 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateCard_throwsCommandException() {
+        ModelStub modelStub = new ModelStubWithDuplicatedCard();
         Card validCard = new CardBuilder().build();
         AddCardDescriptorBuilder cardDescBuilder = new AddCardDescriptorBuilder(validCard);
         AddCommand addCommand = new AddCommand(cardDescBuilder.build());
-        ModelStub modelStub = new ModelStubWithDuplicatedCard();
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void execute_noSelectedDeck_throwsCommandException() {
+        ModelStub modelStub = new ModelStubWithoutSelectedDeck();
         Card validCard = new CardBuilder().build();
         AddCardDescriptorBuilder cardDescBuilder = new AddCardDescriptorBuilder(validCard);
         AddCommand addCommand = new AddCommand(cardDescBuilder.build());
-        ModelStub modelStub = new ModelStubWithoutSelectedDeck();
-        assertThrows(CommandException.class, AddCommand.MESSAGE_NO_SELECTED_DECK, () -> addCommand.execute(modelStub));
+        assertThrows(AssertionError.class, AddCommand.MESSAGE_NO_SELECTED_DECK, () -> addCommand.execute(modelStub));
     }
 
     @Test
