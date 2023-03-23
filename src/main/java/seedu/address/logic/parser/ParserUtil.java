@@ -137,7 +137,7 @@ public class ParserUtil {
      *
      * @throws ParseException if start time given is after the end time given
      */
-    public static Meeting parseMeeting(String meeting) {
+    /*public static Meeting parseMeeting(String meeting) {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
 
@@ -146,7 +146,7 @@ public class ParserUtil {
         LocalDateTime end = dateTimes[1];
 
         return new Meeting(start, end);
-    }
+    }*/
 
     /**
      * Parses {@code String dateTime} into a pair of
@@ -185,5 +185,45 @@ public class ParserUtil {
             }
         }
         throw new ParseException(Region.MESSAGE_CONSTRAINTS);
+    }
+
+    public static String parseMeetingDescription(String desc) {
+        return desc.trim();
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     * @param start String of meeting start
+     * @return meeting start parsed to LocalDateTime
+     */
+    public static LocalDateTime parseStart(String start) {
+        String[] dateTime = start.split(" ");
+        String[] date = dateTime[0].split("-");
+        String[] time = dateTime[1].split(":");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        int startHour = Integer.parseInt(time[0]);
+        int startMinute = Integer.parseInt(time[1]);
+        return LocalDateTime.of(year, month, day, startHour, startMinute);
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     * @param start String of meeting start
+     * @param end String of meeting end
+     * @return meeting end parsed to LocalDateTime
+     */
+    public static LocalDateTime parseEnd(String start, String end) {
+        LocalDateTime startTime = parseStart(start);
+        String[] endTimes = end.split(":");
+        int endHour = Integer.parseInt(endTimes[0]);
+        int endMin = Integer.parseInt(endTimes[1]);
+        if (endHour - startTime.getHour() < 0) {
+            LocalDateTime endTime = startTime.plusDays(1).withHour(endHour).withMinute(endMin);
+            return endTime;
+        }
+        LocalDateTime endTime = startTime.withHour(endHour).withMinute(endMin);
+        return endTime;
     }
 }
