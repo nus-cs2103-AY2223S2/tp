@@ -332,7 +332,7 @@ in the `onInputChange()` method and does nothing for `onInputSubmit()`.
 
 ![ModeAbstractClassDiagram](images/ModeAbstractClassDiagram.png)
 
-The activity diagram below illustrates this dispatching of state concering
+The activity diagram below illustrates this dispatching of state concerning
 changes in user input.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
