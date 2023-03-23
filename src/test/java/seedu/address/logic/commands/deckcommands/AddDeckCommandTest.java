@@ -251,12 +251,12 @@ public class AddDeckCommandTest {
         }
 
         @Override
-        public boolean markWrong() {
+        public void markWrong() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean markCorrect() {
+        public void markCorrect() {
             throw new AssertionError("This method should not be called.");
         }
 

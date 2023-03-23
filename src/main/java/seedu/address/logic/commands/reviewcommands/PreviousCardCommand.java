@@ -19,8 +19,6 @@ public class PreviousCardCommand extends Command {
             + "\nEnter \\ to skip to next card.";
     public static final String MESSAGE_NO_MORE_PREV_CARD = "This is the first card.";
 
-
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

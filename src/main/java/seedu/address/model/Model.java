@@ -144,9 +144,9 @@ public interface Model {
 
     void flipCard();
 
-    boolean markWrong();
+    void markWrong();
 
-    boolean markCorrect();
+    void markCorrect();
 
     boolean goToPrevCard();
 
@@ -158,6 +158,8 @@ public interface Model {
      * Returns the state of the model
      */
     ModelState getState();
+
+    boolean isReviewCardFlipped();
 
     /**
      * Tag

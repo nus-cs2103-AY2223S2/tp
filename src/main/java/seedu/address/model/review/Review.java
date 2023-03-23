@@ -28,7 +28,6 @@ public class Review {
     private final List<Boolean> scoreList;
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
-    private boolean isFlipped;
 
     private final int totalNumCards;
     private List<Integer> orderOfCards;
@@ -112,12 +111,12 @@ public class Review {
     }
 
     public void flipCard() {
-        currCard.setAsFlipped();
+        if (isFlipped()) {
+            currCard.setAsUnflipped();
+        } else {
+            currCard.setAsFlipped();
+        }
     }
-
-    public void unflipCard() {
-        currCard.setAsUnflipped();
-    } // can remove?
 
     public boolean isFlipped() {
         return currCard.isFlipped();

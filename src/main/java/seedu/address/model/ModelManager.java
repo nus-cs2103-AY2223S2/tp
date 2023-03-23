@@ -265,15 +265,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean markCorrect() {
+    public void markCorrect() {
         this.currReview.markCurrCardAsCorrect();
-        return goToNextCard();
     }
 
     @Override
-    public boolean markWrong() {
+    public void markWrong() {
         this.currReview.markCurrCardAsWrong();
-        return goToNextCard();
     }
 
     @Override
@@ -317,6 +315,11 @@ public class ModelManager implements Model {
         assert currReview != null : "Flip command executed without a Review session.";
         currReview.flipCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public boolean isReviewCardFlipped() {
+        return currReview.isFlipped();
     }
 
     @Override
