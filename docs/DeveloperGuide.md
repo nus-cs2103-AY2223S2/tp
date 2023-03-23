@@ -5,19 +5,15 @@ students are more familiar with and used to using CLI.
 
 ##### Table of Contents
 
-1. [Quick Start](#quickstart)
-2. [Features](#features)
-    1. [Add Roles: `add`](#addrole)
-    2. [Delete Role: `delete`](#deleterole)
-    3. [Edit Role: `edit`](#editrole)
-    4. [Find Role: `find`](#findrole)
-    5. [Sort by Salary: `salary`](#sortsalary)
-    6. [Sort by deadline: `deadline`](#sortdeadline)
-    7. [Find by Companies: `company`](#findcompanies)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
-5. [FAQ](#faq)
-6. [Command Summary](#summary)
+Todo: Add links
+1. [Acknowledgements]()
+2. [Setting up, getting started]()
+3. [Design]()
+   1. [UI Component]()
+   2. [Logic Component]()
+   3. [Model Component]()
+   4. [Storage Component]()
+4. [Implementation]()
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,6 +325,46 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
 _{more aspects and alternatives to be added}_
+
+
+### \[Proposed\] View Command Feature
+The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
+less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline, 
+etc.
+
+The view command does not affect the address book in any way. In other words, it does not add/edit/delete
+any roles in the address book.
+
+An example usage of the `View` command is given below:
+
+1. The user launches the application for the first time. The AddressBook will be initialized with the current address book.
+   <img src="images/ViewCommand0.png" width="800" />
+2. The user can use the `view` command to show more details pertaining to a role. 
+   - The user executes `view 1` to view details regarding the first role.
+     <img src="images/ViewCommand1.png" width="800" />
+
+The following sequence diagram shows how the `view` Command is being done:
+[to be created]
+
+The following activity diagram summarizes what happens when a user executes a `view` command:
+[to be created]
+
+#### Design considerations:
+
+**Aspect: How view Command executes:**
+
+* **Alternative 1 (current choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
+appending its information to the `feedbackToUser` string.
+    * Pros: Easy to implement, hard to have bugs.
+    * Cons: Limited customization of `feedbackToUser` in `ResultDisplay`
+* **Alternative 2 (alternative choice):** Create a view manager for `ResultDisplay`, changing the children
+node of `ResultDisplay` based on command given (in this case, `view`)
+    * Pros: Provides an easy and extendable way to create custom views
+    * Cons: Need to refactor most of the existing codebase.
+
+_{more aspects and alternatives to be added}_
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
