@@ -41,9 +41,12 @@ deactivate DATE
 participant "<<class>>\nLocalDate" as LD COL5
 D -> LD : parse("20000101", "yyyyMMdd")
 activate LD COL5
-LD -> LD : toString()
-activate LD COL5
+
+LD --> D : LocalDate 2000-01-01
 deactivate LD
+
+D -> LD : toString()
+activate LD COL5
 LD --> D : "2000-01-01"
 deactivate LD
 
