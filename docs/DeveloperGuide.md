@@ -2,9 +2,26 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## About Fish Ahoy!
 
+Fish Ahoy! is a desktop CLI-focused application, designed to help users take better care of their 
+aquatic pets. It allows fish keepers to:
+
+1. Keep track of their tanks and fishes in a hierarchical view, sorted by tanks.
+2. Keep track of their fishes' attributes like the last time it was fed and how often it needs to be fed
+3. Consolidate fish-up-keeping tasks and automatically remind users to feed their fish according to information
+given by the user
+
+This developer guide aims to provide instructions and guidelines for developers to understand how to
+effectively use and contribute to this project by explaining design considerations for certain key features. Moreover, 
+new developers can use this guide as an entry point for navigating this extensive code base.
+* Table of Contents
+  * Acknowledgements
+  * Setting up, getting started
+  * Design
+  * Implementation
+  * Documentation, logging, testing, configuration, dev-ops
+  * Appendix
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -237,6 +254,9 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### `Fish`, `Tank` and `Task` tracking
+#### Implementation
 
 
 --------------------------------------------------------------------------------------------------------------------
