@@ -59,9 +59,19 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
             return checks[0] && checks[1] && checks[2];
         }
 
-        return keywords.stream()
+        boolean roleCheck = keywords.stream()
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        application.getRole().toString(), keyword));
+        boolean companyNameCheck = keywords.stream()
                 .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getCompanyName().toString(), keyword));
+        boolean companyEmailCheck = keywords.stream()
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        application.getCompanyEmail().toString(), keyword));
+        boolean statusCheck = keywords.stream()
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        application.getStatus().toString(), keyword));
+        return roleCheck || companyNameCheck || companyEmailCheck || statusCheck;
     }
 
 

@@ -36,7 +36,6 @@ public class FindApplicationCommandParser implements ApplicationParser<FindAppli
                 PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS)) {
-            System.out.println("hi");
             String[] keywords = trimmedArgs.split("\\s+");
             return new FindApplicationCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
@@ -78,6 +77,4 @@ public class FindApplicationCommandParser implements ApplicationParser<FindAppli
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-
 }
