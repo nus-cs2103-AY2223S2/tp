@@ -150,11 +150,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
     public void deleteInternship(InternshipApplication application) {
         addressBook.removeApplication(application);
     }

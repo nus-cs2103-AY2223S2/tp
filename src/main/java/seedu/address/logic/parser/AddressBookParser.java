@@ -112,11 +112,20 @@ public class AddressBookParser {
         case ListArchivedCommand.COMMAND_WORD:
             return new ListArchivedCommand();
 
+        case AddInterviewDateCommand.COMMAND_WORD:
+            return new AddInterviewDateCommandParser().parse(arguments);
+
         case RevertCommand.COMMAND_WORD:
             return new RevertCommand();
 
         case RevertAllCommand.COMMAND_WORD:
             return new RevertAllCommand();
+            
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ListArchivedCommand.COMMAND_WORD:
+            return new ListArchivedCommand();
 
         case AddInterviewDateCommand.COMMAND_WORD:
             return new AddInterviewDateCommandParser().parse(arguments);

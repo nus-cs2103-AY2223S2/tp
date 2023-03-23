@@ -119,12 +119,6 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
      * Deletes the given internship application.
      * The application must exist in the address book.
      */
@@ -183,7 +177,7 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Replaces the given person {@code target} with {@code editedApplication}.
+     * Replaces the given internshipApplication {@code target} with {@code editedApplication}.
      * {@code target} must exist in the address book.
      * The application identity of {@code editedApplication} must not be the
      * same as another existing application in the address book.
