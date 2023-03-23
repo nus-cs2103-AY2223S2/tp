@@ -381,20 +381,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a module
 
-1. Deleting a module while all modules are being shown
-
-   1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
-
-   2. Test case: `delete 1`<br>
+1. Test case: `delete 1`<br>
       Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
+      
+2. Test case: `delete 0`<br>
       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+4. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -408,34 +404,36 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a module
 
-    1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>  
-       Expected: A new module is added to the list. Details of the added module is shown in the status message. Empty optional fields are left as "None.".
+    1. Test case: `add n/CS2103T p/Tutorial a/COM1`<br>  
+       Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added module is shown in the status message. Empty optional fields are left as "None.".
        
-    2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>  
-       Expected: A new module with optional fields are added to the list. Details of the added module is shown in the status message.
+    2. Test case: `add n/CS2101 p/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>  
+       Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3, timeslot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
        
     3. Test case: `add n/CS1101S`<br>
-       Expected: No module is added as compulsory fields are missing. Error details shown in the status message.
+       Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the status message.
        
 ### Editing a module
-
-1. Editing a module while all modules are being shown
-
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
-
-    2. Test case: 
+1 Editing a module 
+  1.  Test case: `edit 1 n/CS1101S`
+      Expected: The name of the first module in the list is edited, and is now CS1101S. Details of the updated module is shown in the status message. 
+      
+  2. Test case: `edit 2 e/12pm - 2pm 
+     Expected: The time slot of the first module in the list is edited, and is now 12pm - 2pm. Details of the updated module is shown in the status message. 
+  
+  3. Test case: `edit 1 p/Lecture 
+     Expected: The type of the first module in the list is edited, and is now Lecture. Details of the updated module is shown in the status message. 
 
 ### Finding a module/type
 1. Finding a module
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
   
-    2. Test case: `find CS2103T`<br>  
+    1. Test case: `find CS2103T`<br>  
        Expected: A module is found on the list. Details of the found module is shown in the list.
 
-    3. Test case: `find tutorial`<br>  
+    2. Test case: `find tutorial`<br>  
        Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list.
        
-    4. Test case: `find tutorial lab`<br>  
+    3. Test case: `find tutorial lab`<br>  
        Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in the list.
      
-    5. Note: Make sure to list the modules again when you want to find another module
+    4. Note: Make sure to list the modules again when you want to find another module
