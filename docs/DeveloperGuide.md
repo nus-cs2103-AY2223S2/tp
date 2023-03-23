@@ -255,10 +255,11 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 #### Implementation
 
-A HelpWindow will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar. 
-The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow.
+A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar. 
+The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
+information, the user can choose to view the comprehensive User Guide instead.
 
-<img src="images/HelpActivityDiagram.png" width="550" />
+<img src="images/HelpActivityDiagram.png" width="300" />
 
 #### Design Considerations
 
