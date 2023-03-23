@@ -1,31 +1,50 @@
 @startuml
 !include style.puml
+allowmixing
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
-Class "<<interface>>\nLogic" as Logic
+Class "<<interface>>\nLogic" as LogicC
 Class LogicManager
+LogicManager .up.|> LogicC
+
 }
 
 package Model{
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelC
 Class ModelManager
+ModelManager .up.|> ModelC
+
 }
+
+package OfficeConnectModel{
+Class OfficeConnectModel
+Class "RepositoryModelManager<Task>"  as repoTask
+Class "RepositoryModelManager<AssignTask>" as repoAssign
+OfficeConnectModel --> repoTask
+OfficeConnectModel --> repoAssign
+Class "RepositoryModelManager<T>" as repo
+repoTask ..up.|> "<<bind>>T::Task" repo
+repoAssign ..up.|> "<<bind>>T::AssignTask" repo
+
+}
+
+
 
 package Storage{
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as StorageC
 Class StorageManager
+StorageManager .up.|> StorageC
+
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+rectangle HiddenOutside #FFFFFF
+HiddenOutside ..> LogicC
 
-LogicManager .up.|> Logic
-ModelManager .up.|> Model
-StorageManager .up.|> Storage
 
-LogicManager --> Model
-LogicManager --> Storage
+LogicManager ---> ModelC
+LogicManager -> OfficeConnectModel
+LogicManager ---> StorageC
 @enduml
