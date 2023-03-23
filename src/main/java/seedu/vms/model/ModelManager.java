@@ -78,7 +78,7 @@ public class ModelManager implements Model {
     /**
      * Convenience constructor to construct a {@code ModelManager} with an
      * empty {@code PatientManager}, {@code VaxTypeManager}, {@code AppointmentManager},
-     *       and {@code KeywordManager}.
+     * and {@code KeywordManager}.
      */
     public ModelManager() {
         this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(),
