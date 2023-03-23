@@ -300,6 +300,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case resumes at step 3.
 
+**Use case: Export a student's progress**
+
+**MSS**
+
+1. Tutor requests to export a student's progress.
+2. MATHUTORING shows an export progress window.
+3. Tutor requests to save the student's progress.
+4. MATHUTORING shows a browse files window.
+5. Tutor requests the directory and file name of the student's progress file.
+6. MATHUTORING saves the file.
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The given file name is invalid. 
+
+  * 5a1. File manager informs the tutor that the file name is invalid.
+    
+    Use case resumes at step 5.
+
+* 5b. A file with the exact same name and type exists and is currently being opened.
+
+  * 5b1. MATHUTORING informs the tutor that the file cannot be saved because the file with the same name exists and is
+  currently being opened.
+
+    Use case resumes at step 5.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
