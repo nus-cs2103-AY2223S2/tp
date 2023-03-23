@@ -54,11 +54,10 @@ public class Lesson {
     @Override
     public String toString() {
         return "Lesson{"
-                + "day=" + day
-                + "\nstartTime=" + startTime
-                + "\nendTime=" + endTime
-                + "\nlocation=" + location
-                + "\nmodule=" + module + '}';
+                + day
+                + ", " + startTime
+                + " to " + endTime
+                + " at " + location + '}';
     }
 
     @Override
@@ -86,5 +85,11 @@ public class Lesson {
             canFit &= slots.get(i).isFree();
         }
         return canFit;
+    }
+
+    @Override
+    public int hashCode() {
+        String hash = day.toString() + startTime.toString() + endTime.toString();
+        return hash.hashCode();
     }
 }
