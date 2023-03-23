@@ -29,7 +29,7 @@ create DeleteCommandParser
 TaskBookParser -> DeleteCommandParser : DeleteCommandParser()
 activate DeleteCommandParser
 
-DeleteCommandParser --> TaskBookParser : d
+DeleteCommandParser --> TaskBookParser
 deactivate DeleteCommandParser
 
 TaskBookParser -> DeleteCommandParser : parse("1 2")
