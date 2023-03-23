@@ -5,6 +5,69 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `RecipeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
+
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Edit Form Feature
+
+#### Implementation
+
+The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`, 
+that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index. 
+The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
+
+In addition, it implements the following operations:
+* `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
+* `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
+* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by calling `EditRecipeEvent`.
+* `RecipeForm#display` —  Displays the prepopulated form with corresponding UI components such as `Save Changes` button and `TextField` rows.
+* `RecipeForm#closeForm()` —  Closes the form without saving any changes.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+### Example Usage Scenario
+
+Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
+
+Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
+
+Step 3. The user clicks on the "Save" button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
+
+Step 4. The `changedValues` HashMap, along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
+
+Step 5. The form is closed upon successful saving of the edited recipe.
+
+_EditFormSequenceDiagram
+
+Activity Diagram
+
+The following activity diagram summarizes the process when a user edits a recipe using the RecipeForm:
+
+_EditFormActivityDiagram
+
+Notes
+If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
+The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
+
+
 ## **Appendix: Requirements**
 
 ### Product scope
