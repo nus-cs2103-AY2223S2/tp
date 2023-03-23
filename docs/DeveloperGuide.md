@@ -235,6 +235,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 ### Progress Field
+
+#### Implementation
+
 The `Progress` field of a `Bookmark` is used to track the latest read portion of the associated book. This could be many
 things including the latest read volume of a series, or the chapter or page of a single book. It is mainly for a user to
 remember where he last left off when they revisit the book.
