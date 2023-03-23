@@ -246,6 +246,20 @@ If no argument is provided, Persons will be sorted by name and Projects will be 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
 The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
+### Find Feature
+The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
+The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
+`FindCommand` extends `Command` and implements the following operation:
+* `FindCommand#execute()` — Finds and displats the list of persons in the application that contains the given keyword of each respective fields.
+
+The `FindCommandParser` class is used to parse & verify the user input and create the find command.
+Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
+
+This list of Predicate classes include:
+* ``
+
+If no argument is provided, an empty list will be shown.
+
 
 ### \[Proposed\] Data archiving
 
