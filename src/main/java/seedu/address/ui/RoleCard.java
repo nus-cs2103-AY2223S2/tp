@@ -35,21 +35,13 @@ public class RoleCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label company;
     @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
-    @FXML
-    private Label website;
     @FXML
     private Label salary;
     @FXML
     private Label deadline;
-    @FXML
-    private Label jobDescription;
     @FXML
     private Label experience;
 
@@ -61,13 +53,10 @@ public class RoleCard extends UiPart<Region> {
         this.role = role;
         id.setText(displayedIndex + ". ");
         name.setText(role.getName().fullName);
-        phone.setText(role.getPhone().value);
         company.setText(role.getCompany().value);
-        email.setText(role.getEmail().value);
         role.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        website.setText(role.getWebsite().value);
         salary.setText("$" + role.getSalary().salary);
         LocalDate currDeadline = LocalDate.parse(role.getDeadline().deadline);
         if (currDeadline.isBefore(LocalDate.now())) {
@@ -76,7 +65,6 @@ public class RoleCard extends UiPart<Region> {
         } else {
             deadline.setText(role.getDeadline().deadline);
         }
-        jobDescription.setText(role.getJobDescription().value);
         experience.setText(role.getExperience().value);
     }
 

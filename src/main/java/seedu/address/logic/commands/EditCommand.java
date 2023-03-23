@@ -46,7 +46,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the role "
             + "by the index number used in the displayed role list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values.\n \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ROLE + "NAME] "
             + "[" + PREFIX_CONTACT + "PHONE] "
@@ -55,7 +55,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_JOBDESCRIPTION + "JOBDESCRIPTION] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_WEBSITE + "www.google.com "

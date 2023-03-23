@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]..."
             + PREFIX_SALARY + "SALARY "
-            + PREFIX_DEADLINE + "DEADLINE \n"
+            + PREFIX_DEADLINE + "DEADLINE \n \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROLE + "Software Engineer "
             + PREFIX_CONTACT + "98765432 "
