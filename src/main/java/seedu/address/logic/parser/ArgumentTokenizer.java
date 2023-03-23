@@ -29,6 +29,24 @@ public class ArgumentTokenizer {
     }
 
     /**
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * respective argument values. Only the first prefix is tokenized.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     */
+    public static ArgumentMultimap tokenizeFirstPrefix(String argsString, Prefix... prefixes) {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+        positions.sort((prefixPos1, prefixPos2)->(prefixPos1.startPosition < prefixPos2.startPosition)?1:-1);
+        if (positions.size() > 0) {
+            return extractArguments(argsString, Arrays.asList(positions.get(0)));
+        } else {
+            return extractArguments(argsString, positions);
+        }
+    }
+
+    /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}

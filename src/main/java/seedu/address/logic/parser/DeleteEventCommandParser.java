@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERFORMANCE;
@@ -33,29 +34,27 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
      */
     public DeleteEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
+                ArgumentTokenizer.tokenizeFirstPrefix(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
 
         //Make the user not create tutorial and students with the same command
-        if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)
-                || !argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
+                PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteEventCommand.MESSAGE_USAGE));
         }
-        String name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
+        if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULTATION).get());
+        } else if (argMultimap.getValue(PREFIX_LAB).isPresent()) {
+            ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LAB).get());
+        }
 
         Index index = ParserUtil.parseIndex(args);
         return new DeleteEventCommand(index);
 
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
