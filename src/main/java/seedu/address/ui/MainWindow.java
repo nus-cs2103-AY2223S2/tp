@@ -55,10 +55,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane scheduledMeetsPlaceholder;
 
-    public void setUserName(User user) {
-        String name = String.valueOf(user.getName());
-        userName.setText(name);
-    }
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -127,10 +123,19 @@ public class MainWindow extends UiPart<Stage> {
         updateUserProfilePanel(logic.getUser());
     }
 
+    /**
+     * Updates user profile panel with specified person.
+     * @param person The contact to show in user profile panel.
+     */
     public void updateUserProfilePanel(Person person) {
         userProfilePanel = new UserProfilePanel(person);
         userProfilePlaceholder.getChildren().clear();
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+    }
+
+    public void setUserName(User user) {
+        String name = String.valueOf(user.getName());
+        userName.setText(name);
     }
 
     void show() {

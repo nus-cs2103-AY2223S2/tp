@@ -26,11 +26,9 @@ public class UserProfilePanel extends UiPart<Region> {
     private static final String EMAIL = "Email: ";
     private static final String ADDRESS = "Address: ";
     private static final String TELEGRAM = "Telegram: ";
-    private static final String GROUP_TAGS = "Groups: ";
-    private static final String MODULE_TAGS = "Modules: ";
-    public final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
+    private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
             + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
-    public final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
+    private static final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
             + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     private Logic logic;
@@ -66,6 +64,7 @@ public class UserProfilePanel extends UiPart<Region> {
         address.setText(ADDRESS + this.user.getAddress());
         address.setWrapText(true);
         telegramHandle.setText(TELEGRAM + this.user.getTelegramHandle());
+
         user.getImmutableGroupTags().forEach(groupTag -> {
             Button temp = new Button(groupTag.tagName);
             temp.setStyle(GROUP_TAG_STYLE);

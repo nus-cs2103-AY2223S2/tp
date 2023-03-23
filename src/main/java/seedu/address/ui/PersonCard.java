@@ -17,6 +17,10 @@ import seedu.address.model.tag.ModuleTag;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
+    private static final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,10 +31,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-    public final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
-            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
-    public final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
-            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     @FXML
     private HBox cardPane;
