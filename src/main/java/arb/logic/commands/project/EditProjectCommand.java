@@ -3,12 +3,14 @@ package arb.logic.commands.project;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
+import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,7 @@ import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
+import arb.model.tag.Tag;
 
 /**
  * Edits the details of an existing project in the address book.
@@ -48,6 +51,7 @@ public class EditProjectCommand extends Command {
             + "[" + PREFIX_NAME + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PRICE + "PRICE] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sunset painting "
             + PREFIX_DEADLINE + "2023-07-05 "
@@ -105,7 +109,9 @@ public class EditProjectCommand extends Command {
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         Price updatedPrice = editProjectDescriptor.getPrice().orElse(projectToEdit.getPrice());
-        return new Project(updatedTitle, updatedDeadline, updatedPrice);
+        Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
+
+        return new Project(updatedTitle, updatedDeadline, updatedPrice, updatedTags);
     }
 
     @Override
@@ -141,9 +147,9 @@ public class EditProjectCommand extends Command {
     public static class EditProjectDescriptor {
         private Title title;
         private Deadline deadline;
-
         private Price price;
 
+        private Set<Tag> tags;
 
         public EditProjectDescriptor() {}
 
@@ -154,13 +160,14 @@ public class EditProjectCommand extends Command {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
             setPrice(toCopy.price);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, price);
+            return CollectionUtil.isAnyNonNull(title, deadline, price, tags);
         }
 
         public void setTitle(Title title) {
@@ -187,6 +194,23 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(price);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -204,7 +228,8 @@ public class EditProjectCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline())
-                    && getPrice().equals(e.getPrice());
+                    && getPrice().equals(e.getPrice())
+                    && getTags().equals(e.getTags());
         }
     }
 }

@@ -24,6 +24,7 @@ import arb.model.ReadOnlyAddressBook;
 import arb.model.ReadOnlyUserPrefs;
 import arb.model.client.Client;
 import arb.model.project.Project;
+import arb.model.tag.TagMapping;
 import arb.testutil.ProjectBuilder;
 import javafx.collections.ObservableList;
 
@@ -211,6 +212,11 @@ public class AddProjectCommandTest {
 
         @Override
         public void updateSortedProjectList(Comparator<Project> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<TagMapping> getTagMappingList() {
             throw new AssertionError("This method should not be called.");
         }
     }

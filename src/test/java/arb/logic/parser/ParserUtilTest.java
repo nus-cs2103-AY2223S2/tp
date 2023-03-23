@@ -19,6 +19,7 @@ import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -30,6 +31,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_TITLE = "Sk! P@inting";
     private static final String INVALID_DEADLINE = "ocean";
+    private static final String INVALID_PRICE = "and";
     private static final String INVALID_SORTING_OPTION = "sky";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -40,6 +42,7 @@ public class ParserUtilTest {
 
     private static final String VALID_TITLE = "Sky Painting";
     private static final String VALID_DEADLINE = "3pm today";
+    private static final String VALID_PRICE = "3";
     private static final String VALID_SORTING_OPTION = "deadline";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -180,6 +183,15 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTags_withCaseDifferences_returnsSameTagSet() throws Exception {
+        Set<Tag> tagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> capitalTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1.toUpperCase(),
+                VALID_TAG_2.toUpperCase()));
+
+        assertEquals(tagSet, capitalTagSet);
+    }
+
+    @Test
     public void parseTitle_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
     }
@@ -226,6 +238,24 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+    }
+
+    @Test
     public void parseSortingOption_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSortingOption((String) null));
     }
@@ -244,5 +274,11 @@ public class ParserUtilTest {
     public void parseSortingOption_validValueWithWhitespace_returnsSortingOption() throws Exception {
         String sortingOptionWithWhitespace = WHITESPACE + VALID_SORTING_OPTION + WHITESPACE;
         assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(sortingOptionWithWhitespace));
+    }
+
+    @Test
+    public void parseSortingOption_withCaseDifferences_returnsSortingOption() throws Exception {
+        String capitalSortingOption = VALID_SORTING_OPTION.toUpperCase();
+        assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(capitalSortingOption));
     }
 }

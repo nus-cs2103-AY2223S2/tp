@@ -3,10 +3,14 @@ package arb.testutil;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
+import static arb.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
 
 import arb.logic.commands.project.AddProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.model.project.Project;
+import arb.model.tag.Tag;
 
 /**
  * A utility class for Project.
@@ -29,6 +33,9 @@ public class ProjectUtil {
         sb.append(PREFIX_NAME + project.getTitle().fullTitle + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().toString() + " ");
         sb.append(PREFIX_PRICE + project.getPrice().getPrice() + " ");
+        project.getTags().stream().forEach(
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
         return sb.toString();
     }
 
@@ -42,6 +49,15 @@ public class ProjectUtil {
                 .append(deadline.toString()).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
                 .append(price.getPrice().toString()).append(" "));
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+
         return sb.toString();
     }
 }

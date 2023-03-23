@@ -3,11 +3,15 @@ package arb.model.project;
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
+import arb.model.tag.Tag;
 
 /**
  * Represents a Project in the address book.
@@ -23,16 +27,20 @@ public class Project {
     private final Optional<Price> price;
     private final Status status;
 
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Constructs a {@code Project}.
-     * Title must be present and not null.
+     * Title and tags must be present and not null.
      */
-    public Project(Title title, Deadline deadline, Price price) {
-        requireAllNonNull(title);
+    public Project(Title title, Deadline deadline, Price price, Set<Tag> tags) {
+        requireAllNonNull(title, tags);
         this.title = title;
         this.deadline = Optional.ofNullable(deadline);
         this.price = Optional.ofNullable(price);
-        status = new Status();
+        this.tags.addAll(tags);
+        this.status = new Status();
     }
 
     public Title getTitle() {
@@ -53,10 +61,18 @@ public class Project {
         return deadline.orElse(null);
     }
 
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
     /**
      * Returns true if this project has is overdue
      */
     public boolean isOverdue() {
+        if (!isDeadlinePresent()) {
+            return false;
+        }
+
         LocalDate currentDate = LocalDate.now();
         logger.info(currentDate.toString());
         Deadline currentDateAsDeadline = new Deadline(currentDate.toString());
@@ -107,6 +123,12 @@ public class Project {
             builder.append(", ").append(getPrice());
         }
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
@@ -121,13 +143,16 @@ public class Project {
         }
 
         Project otherProject = (Project) other;
+
         return otherProject.getTitle().equals(getTitle())
                 && otherProject.deadline.equals(deadline)
-                && otherProject.getStatus().equals(getStatus());
+                && otherProject.price.equals(price)
+                && otherProject.getStatus().equals(getStatus())
+                && otherProject.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline, status);
+        return Objects.hash(title, deadline, status, price, tags);
     }
 }

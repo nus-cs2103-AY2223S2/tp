@@ -5,5 +5,5 @@ package arb.model;
  * type of list a command should show to the user.
  */
 public enum ListType {
-    NONE, PROJECT, CLIENT
+    NONE, PROJECT, CLIENT, TAG
 }
