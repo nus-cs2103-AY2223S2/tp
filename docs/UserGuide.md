@@ -241,7 +241,7 @@ Format: `import JSON f/ true`
 Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
 
 ### Import meetings: `importm`
-* Imports the persons in the provided JSON.
+* Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
 Example:
