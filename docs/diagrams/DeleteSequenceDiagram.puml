@@ -3,66 +3,80 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":GoToCommandParser" as GoToCommandParser LOGIC_COLOR
+participant ":GoToCommand" as GoToCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Desktop" as Desktop LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("goto 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> LibraryParser : parseCommand("delete 1")
+activate LibraryParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create GoToCommandParser
+LibraryParser -> GoToCommandParser
+activate GoToCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+GoToCommandParser --> LibraryParser
+deactivate GoToCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+LibraryParser -> GoToCommandParser : parse("1")
+activate GoToCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create GoToCommand
+GoToCommandParser -> GoToCommand : GoToCommand(1)
+activate GoToCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+GoToCommand --> GoToCommandParser :
+deactivate GoToCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+GoToCommandParser --> LibraryParser :
+deactivate GoToCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+GoToCommandParser -[hidden]-> LibraryParser
+destroy GoToCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+LibraryParser --> LogicManager :
+deactivate LibraryParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> GoToCommand : execute()
+activate GoToCommand
 
-DeleteCommand -> Model : deletePerson(1)
+GoToCommand -> Model : getFilteredBookmarkList()
 activate Model
 
-Model --> DeleteCommand
+Model --> GoToCommand : lastShownList
 deactivate Model
 
+create Desktop
+GoToCommand -> Desktop
+activate Desktop
+Desktop --> GoToCommand
+deactivate Desktop
+
+GoToCommand -> Desktop : openUrl(url)
+activate Desktop
+
+
+
 create CommandResult
-DeleteCommand -> CommandResult
+GoToCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> GoToCommand
 deactivate CommandResult
+Desktop --> GoToCommand
+deactivate Desktop
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+GoToCommand --> LogicManager : result
+deactivate GoToCommand
 
 [<--LogicManager
 deactivate LogicManager

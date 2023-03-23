@@ -7,6 +7,7 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
-                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_AUTHOR, PREFIX_TAG);
+                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_AUTHOR, PREFIX_URL, PREFIX_TAG);
 
         Index index;
 
@@ -55,6 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_AUTHOR).isPresent()) {
             editBookmarkDescriptor.setAuthor(ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get()));
+        }
+        if (argMultimap.getValue(PREFIX_URL).isPresent()) {
+            editBookmarkDescriptor.setUrl((ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookmarkDescriptor::setTags);
 

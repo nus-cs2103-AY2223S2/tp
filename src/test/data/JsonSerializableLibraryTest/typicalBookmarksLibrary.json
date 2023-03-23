@@ -9,6 +9,7 @@
     },
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
+    "url": "",
     "tagged" : [ {
       "tag": "friends"
     }]
@@ -21,6 +22,7 @@
     },
     "genre": "johnd@example.com",
     "author": "311, Clementi Ave 2, #02-25",
+    "url": "",
     "tagged" : [ {
       "tag": "owesMoney"
     }, {
@@ -35,6 +37,7 @@
     },
     "genre": "heinz@example.com",
     "author": "wall street",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "Daniel Meier",
@@ -45,6 +48,7 @@
     },
     "genre": "cornelia@example.com",
     "author": "10th street",
+    "url": "",
     "tagged" : [ {
       "tag": "friends"
     } ]
@@ -57,6 +61,7 @@
     },
     "genre": "werner@example.com",
     "author": "michegan ave",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "Fiona Kunz",
@@ -67,6 +72,7 @@
     },
     "genre": "lydia@example.com",
     "author": "little tokyo",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "George Best",
@@ -77,6 +83,7 @@
     },
     "genre": "anna@example.com",
     "author": "4th street",
+    "url": "",
     "tagged" : [ ]
   } ]
 }

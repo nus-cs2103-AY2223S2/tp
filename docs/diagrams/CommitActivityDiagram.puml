@@ -4,12 +4,16 @@ start
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
+:check command validity;
 
-if () then ([command commits AddressBook])
-    :Purge redundant states;
-    :Save AddressBook to
-    addressBookStateList;
-else ([else])
+if () then ([yes])
+    : Get current Observable bookmarklist;
+    : Get url of bookmark at target index;
+    : Open the url in default browser;
+else ([No])
+    : prompt correct syntax;
 endif
 stop
+
+
 @enduml

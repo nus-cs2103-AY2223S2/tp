@@ -234,6 +234,44 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### GoTo Feature
+
+#### Implementation
+
+The `Bookmark` class will have an attribute `url` of type `URL` which represents site which the bookmark is hyperlinked to
+
+The `GoToCommand` will then open the site in the default browser of the user. Before the `GoToCommand` object is created.
+* The `GoToCommandParser` will checks if the command is of the correct format and argument index is valid
+* Then the `GoToCommand` will execute these steps in order
+  1. Get the current bookmarklist displayed
+  2. Get bookmark of specified index from the bookmarklist and get its `url` 
+  3. Open the url in the default browser.
+
+The following Activity diagram depicts what happens when the `GoToCommand` is executed.
+
+![GoToActivity](images/GoToActivityDiagram.png)
+
+The following sequence diagram shows the interaction between the objects when a user executes the GoTo command.
+
+![GoToSequence](images/GoToSequenceDiagram.png)
+
+#### Design Considerations:
+
+#### Aspect: What data type to use?:
+
+Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and 
+is then created into a URI object when `GoToCommand` is executed
+
+The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
+
+* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+    * Pros: Easy to implement, easier storage
+    * Cons: May have security due to parsing or encoding errors
+
+* **Alternative 2:** url stored as a URI object in Bookmark
+    * Pros: Will use be safer as errors are caught before object is created
+    * Cons: Difficulty in implementing as harder to parse for user input due to format of URI 
+
 ### Progress Field
 
 #### Implementation
@@ -311,7 +349,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -335,30 +372,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new bookmark             |   start tracking a book                                                |
-| `* * *`  | user                                       | delete a bookmark              | remove entries that I no longer need                                   |
-| `* * *`  | user with many bookmarks | find bookmarks by book title   | locate bookmarsk without having to go through the entire list |
-| `* * *`    | user                                       | edit a bookmark                 | update the information in my bookmark               |
-| `* *`  | user | view the details of a single bookmark | see information about a particular book I am tracking
-| `* *` | user with mostly unnecessary bookmarks | clear all bookmarks |  not delete each bookmark one by one |
-| `* *` | user with many bookmarks | find bookmarks by book type | view bookmarks of only a certain type|
-| `* *` | user with many bookmarks | find bookmarks by book genre | sview bookmarks of only a certain genre|
-| `* *` | user  | rate a book through its bookmark | remember how much I enjoyed the book|
-| `* *`      | user with many bookmarks | sort bookmarks by book title           | locate a bookmark easily             |
-| `* *` | user with many bookmarks | sort bookmarks by rating | locate bookmarks of books I enjoyed easily|
-| `* *` | user who likes detail | add tags to bookmark | give additional labels to a bookmark|
-| `* *` | user with many bookmarks | find bookmarks by their tags | view only bookmarks who have certain tags|
-| `* *` | user with many bookmarks | find bookmarks by book author | view bookmarks of books written by a specific author|
-| `* *` | user | add hyperlinks to bookmarks | link the website where I am reading the book's chapters from|
-| `*` | user | add book characters to a bookmark | store noteworthy characters which I remember the book by|
-| `* ` | user | find bookmarks using name of characters | locate books with certain characters easily|
-| `* *` | user with many bookmarks | sort bookmarks by date of creation | view bookmarks in order of creation |
-| `* *` | user with many bookmarks | find bookmarks by last modified date | view bookmarks in order of most recently updated|
-| `* *` | user  | add last read chapter to a bookmark | know where I last left off with a certain book|
-| `* *` | user | find bookmarks based on their status | view only bookmarks of a certain status easily|
+| Priority | As a …​                                    | I want to …​                            | So that I can…​                                               |
+| -------- | ------------------------------------------ |-----------------------------------------|---------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                  | refer to instructions when I forget how to use the App        |
+| `* * *`  | user                                       | add a new bookmark                      | start tracking a book                                         |
+| `* * *`  | user                                       | delete a bookmark                       | remove entries that I no longer need                          |
+| `* * *`  | user with many bookmarks | find bookmarks by book title            | locate bookmarsk without having to go through the entire list |
+| `* * *`    | user                                       | edit a bookmark                         | update the information in my bookmark                         |
+| `* *`  | user | view the details of a single bookmark   | see information about a particular book I am tracking         |
+| `* *` | user with mostly unnecessary bookmarks | clear all bookmarks                     | not delete each bookmark one by one                           |
+| `* *` | user with many bookmarks | find bookmarks by book type             | view bookmarks of only a certain type                         |
+| `* *` | user with many bookmarks | find bookmarks by book genre            | sview bookmarks of only a certain genre                       |
+| `* *` | user  | rate a book through its bookmark        | remember how much I enjoyed the book                          |
+| `* *`      | user with many bookmarks | sort bookmarks by book title            | locate a bookmark easily                                      |
+| `* *` | user with many bookmarks | sort bookmarks by rating                | locate bookmarks of books I enjoyed easily                    |
+| `* *` | user who likes detail | add tags to bookmark                    | give additional labels to a bookmark                          |
+| `* *` | user with many bookmarks | find bookmarks by their tags            | view only bookmarks who have certain tags                     |
+| `* *` | user with many bookmarks | find bookmarks by book author           | view bookmarks of books written by a specific author          |
+| `* *` | user | add hyperlinks to bookmarks             | link the website where I am reading the book's chapters from  |
+| `* *` | user | goto url of bookmarks                   | easily go to site of bookmark                                 |
+| `*` | user | add book characters to a bookmark       | store noteworthy characters which I remember the book by      |
+| `* ` | user | find bookmarks using name of characters | locate books with certain characters easily                   |
+| `* *` | user with many bookmarks | sort bookmarks by date of creation      | view bookmarks in order of creation                           |
+| `* *` | user with many bookmarks | find bookmarks by last modified date    | view bookmarks in order of most recently updated              |
+| `* *` | user  | add last read chapter to a bookmark     | know where I last left off with a certain book                |
+| `* *` | user | find bookmarks based on their status    | view only bookmarks of a certain status easily                |
 
 *{More to be added}*
 

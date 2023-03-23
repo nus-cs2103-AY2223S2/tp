@@ -8,6 +8,7 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 import seedu.library.model.util.SampleDataUtil;
 
@@ -20,11 +21,13 @@ public class BookmarkBuilder {
     public static final String[] DEFAULT_PROGRESS = {"1", "50", "~"};
     public static final String DEFAULT_GENRE = "amy@gmail.com";
     public static final String DEFAULT_AUTHOR = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_URL = "https://www.abc.com";
 
     private Title title;
     private Progress progress;
     private Genre genre;
     private Author author;
+    private Url url;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class BookmarkBuilder {
         progress = new Progress(DEFAULT_PROGRESS);
         genre = new Genre(DEFAULT_GENRE);
         author = new Author(DEFAULT_AUTHOR);
+        url = new Url(DEFAULT_URL);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class BookmarkBuilder {
         progress = bookmarkToCopy.getProgress();
         genre = bookmarkToCopy.getGenre();
         author = bookmarkToCopy.getAuthor();
+        url = bookmarkToCopy.getUrl();
         tags = new HashSet<>(bookmarkToCopy.getTags());
     }
 
@@ -89,9 +94,16 @@ public class BookmarkBuilder {
         this.genre = new Genre(genre);
         return this;
     }
+    /**
+     * Sets the {@code Url} of the {@code Bookmark} that we are building.
+     */
+    public BookmarkBuilder withUrl(String url) {
+        this.url = new Url(url);
+        return this;
+    }
 
     public Bookmark build() {
-        return new Bookmark(title, progress, genre, author, tags);
+        return new Bookmark(title, progress, genre, author, url, tags);
     }
 
 }
