@@ -103,7 +103,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+the </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -153,6 +153,139 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Quick Access Buttons on Each Student Card
+
+#### Motivation for Quick Access Buttons
+When a `tutor` wants to view a `student's` profile, homework, lessons, or exams, they need to use the commandbax. However, the current ResultDisplay is purely text-based, making it difficult and time-consuming for `tutors` to access and digest the relevant information.
+
+To address this issue, we propose the implementation of Quick Access Buttons on each `Student Card`. These buttons will provide tutors with easy and quick access to the relevant `student` information. By simply clicking on the appropriate button, tutors can view the `student's` profile, homework, lessons, or exams in a more informative and visually appealing way, complete with multiple diagrams or charts.
+
+The inclusion of these Quick Access Buttons will not only improve the user experience for `tutors` but also save them valuable time that can be better spent on other aspects of their teaching. With the information at their fingertips, `tutors` will be better equipped to make informed decisions and provide personalized guidance to each student.
+
+#### Implementation of Quick Access Buttons
+
+Given below is the partial class diagram of `Ui` component related to Quick Access Buttons on the Student Card.
+
+<img src="images/UiQuickAccessButton.png" width="600" height="600"/>
+
+Each `Student Card` contains exactly four buttons `Profile`, `Homework`, `Lessons`, and `Exams`. Each of the buttons can generate a Special `DetailedContent`, which will be displayed in the `DetialedInfoSection` on the `MainWindow`
+
+Given below is the partial class diagram of `Ui` component related to Detailed Information Section on the Student Card.
+
+<img src="images/UiDetailedInfoSectionDiagram.png" width="1000" height="600"/>
+
+The `DetailedInfoSection` is made up of a `HeaderBar`, displaying the type of the current `DetailedInfoSection` and the name of the `Student` to which the information belongs. `DetailedContent`component has five subclasses extending it, namely `WelcomeContent`, `ProfileContent`,  `GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent`. 
+
+Given below is the partial class diagram of `Ui` component related to Profile Content.
+
+<img src="images/UiProfileContent.png" width="600" height="600"/>
+
+Given below is the sequence diagram showing how the action of clicking the `ProfileButton` of a `Student` creates a new `ProfileContent` for that particular student
+
+<img src="images/ProfileClickSequenceDiagram.png \" width="1200" height="600" />
+
+**How the Profile Section is created when Profile Button is Clicked**
+
+1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+4. `StudentCard` will create a new `ProfileContent` with the `Student`. 
+5. The `ProfileContent` constructor calls `Student#getName()`, `Student#getPhone()`, `Student#getEmail()`, `Student#getAddress()` which returns the name, phone, email, and address of the student.
+6. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `ProfileContent` created from the previous calls. 
+7. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+`GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent` are further extended by subclasses:
+
+* `EmptyHomeworkContent` and `FilledHomeworkContent` extend `GeneralHomeworkContent`, representing the situation where the `Student` has `Homework` and where the `Student` has no `Homework` respectively. 
+
+  Specifically, `FilledHomeworkContent` has `HomeworkListPanel` with `HomeworkCard` on it, showing all homework of a `Student` and a `HomeworkPieChart`, reflecting the ratio of completed and pending `Homework` of  a `Student.`
+
+   Given below is the partial class diagram of `Ui` component related to Filled Homework Content.
+
+  <img src="images/UiFilledHomeworkContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `HomeworkButton` of a `Student` creates a new `HomeworkContent` for that particular student
+
+  <img src="images/HomeworkClickSequenceDiagram.png \" width="1200" height="600" />
+
+  **How the Filled Homework Section is created when Homework Button is Clicked**
+
+  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Homework`, `StudentCard` will create a new `EmptyHomeorkContent` with the `Student`. 
+  5. If `Student` have `Homework`, `StudentCard` will create a new `FilledHomeorkContent` with the `Student`. 
+  6. The `FilledHomeworkContent` constructor calls `Student#getName()`, `Student#getHomeworkPiechartData()`, `Student#HomeworkList()`, which returns the name, Pie Chart Data, and Homework List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyHomeworkContent`  or `FilledHomeworkContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+* `EmptyLessonsContent` and `FilledLessonsContent` extend `GeneralLessonsContent`, representing the situation where the `Student` has `Lessons` and where the `Student` has no `Lessons` respectively. 
+
+  Specifically, `FilledLessonsContent` has `PastLessonsListPanel` with `LessonCard` on it, showing all past `Lessons` of a `Student` and `UpcomingLessonsListPanel` with `LessonCard` on it, showing all upcoming `Lessons` of a `Student`.
+
+   Given below is the partial class diagram of `Ui` component related to Filled Lessons Content.
+
+  <img src="images/UiFilledLessonsContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `LessonsButton` of a `Student` creates a new `LessonsContent` for that particular student
+
+  <img src="images/LessonsClickSequenceDiagram.png \" width="1200" height="600" />
+
+  **How the Filled Lessons Section is created when Lessons Button is Clicked**
+
+  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Lessons`, `StudentCard` will create a new `EmptyLessonsContent` with the `Student`. 
+  5. If `Student` have `Lessons`, `StudentCard` will create a new `FilledLessonsContent` with the `Student`. 
+  6. The `FilledLessonsContent` constructor calls `Student#getName()`, `Student#getPastLessonsList()`, `Student#UpcomingLessonsList()`, which returns the name, Past Lessons List, and Upcoming Lessons List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyLessonsContent`  or `FilledLessonsContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+* `EmptyExamsContent` and `FilledExamsContent` extend `GeneralExamsContent`, representing the situation where the `Student` has `Exams` and where the `Student` has no `Exams` respectively. 
+
+  Specifically, `FilledExamsContent` has `AllExamsListPanel` with `ExamCard` on it, showing all past `Exams` of a `Student` and `UpcomingLessonsListPanel` with `ExamCard` on it, showing the most recent three upcoming `Exams` of a `Student`
+
+  Given below is the partial class diagram of `Ui` component related to Filled Exams Content
+
+  <img src="images/UiFilledExamsContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `ExamsButton` of a `Student` creates a new `ExamsContent` for that particular student
+
+  <img src="images/ExamsClickSequenceDiagram.png \" width="1200" height="600" />
+
+  **How the Filled Exams Section is created when Lessons Button is Clicked**
+
+  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Exams`, `StudentCard` will create a new `EmptyExamsContent` with the `Student`. 
+  5. If `Student` have `Exams`, `StudentCard` will create a new `FilledExamsContent` with the `Student`. 
+  6. The `FilledExamssContent` constructor calls `Student#getName()`, `Student#ExamsList()`, `Student#UpcomingExamsList()`, which returns the name, All Exams List, Upcoming Exams List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyExamsContent`  or `FilledExamsContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+The following activity diagram summarises how the UI responds to an click button command.
+
+<img src="images/ClickButtonActivityDiagram.png \" height="600" width="1000"/>
+
+####  Alternatives considered for Quick Access Buttons
+
+While designing the Quick Access Buttons on the Student Card, several alternatives were considered to ensure an optimal user experience.
+
+* **Alternative 1 :** One alternative that was considered was to have a pop-up window for each button click event. However, this alternative was ultimately rejected due to its potential drawbacks.
+  * Pros: 
+    * Provides a clear and separate window to display the detailed information for each button.
+    * Can be designed to provide a consistent layout and structure for displaying the detailed information.
+    * Can be a good choice if there is a need to provide a lot of detailed information for each button click.
+    * Can be helpful in providing a larger viewing area for the detailed information.
+  * Cons: 
+    * Requires additional user interaction to close the pop-up window, which can be cumbersome and time-consuming.
+    * Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
+    * Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
+    * Can require additional resources and time to design and implement compared to other alternatives.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -311,12 +444,14 @@ Priorities:
     * 2a1. TutorPro notifies the user of a duplicate.
     * 2a2. TutorPro continues to take input.
       
+    
     Use case continues at step 1.
-
+    
 * 2b. The wrong formatting was used.
     * 2b1. TutorPro notifies the user of wrong formatting.
     * 2b2. TutorPro continues to take input.
       
+    
     Use case continues at step 1.
 
 
@@ -341,6 +476,7 @@ Priorities:
 
     * 3a1. AddressBook shows an error message.
       
+    
     Use case resumes at step 2.
 
 

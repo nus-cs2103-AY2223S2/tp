@@ -13,7 +13,7 @@ import seedu.address.ui.UiUtil;
 /**
  * A UI component that displays detailed information of a {@code Student}.
  */
-public class ProfileContent extends UiPart<Region> {
+public class ProfileContent extends DetailedContent {
     private static final Logger logger = LogsCenter.getLogger(ProfileContent.class);
     private static final String FXML = "ProfileContent.fxml";
     private static final int MAX_LINE_LENGTH = 40;
