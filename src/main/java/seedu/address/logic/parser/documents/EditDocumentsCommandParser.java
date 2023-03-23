@@ -21,8 +21,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class EditDocumentsCommandParser implements Parser<EditDocumentsCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddContactCommand
-     * and returns an AddContactCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditDocumentsCommand
+     * and returns an EditDocumentsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditDocumentsCommand parse(String args) throws ParseException {

@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.documents.AddDocumentsCommand;
+import seedu.address.logic.commands.documents.DeleteDocumentsCommand;
 import seedu.address.logic.commands.documents.EditDocumentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -42,6 +43,9 @@ public class DocumentsParser {
 
         case EditDocumentsCommand.COMMAND_WORD:
             return new EditDocumentsCommandParser().parse(arguments);
+
+        case DeleteDocumentsCommand.COMMAND_WORD:
+            return new DeleteDocumentsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

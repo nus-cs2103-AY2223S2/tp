@@ -39,7 +39,7 @@ public class AddDocumentsCommand extends Command {
             + PREFIX_RESUME + "https://docs.google.com/document/d/EXAMPLE_RESUME/edit "
             + PREFIX_COVER_LETTER + "https://docs.google.com/document/d/EXAMPLE_COVER_LETTER/edit";
 
-    public static final String MESSAGE_ADD_RESUME_SUCCESS = "Resume and/or cover letter added to application: %1$s";
+    public static final String MESSAGE_ADD_DOCUMENTS_SUCCESS = "Resume and/or cover letter added to application: %1$s";
 
     private final Index targetIndex;
 
@@ -71,7 +71,7 @@ public class AddDocumentsCommand extends Command {
 
         model.setApplication(internshipToAddDocuments, internshipWithDocuments);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
-        return new CommandResult(String.format(MESSAGE_ADD_RESUME_SUCCESS, internshipToAddDocuments + "\n" + toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_DOCUMENTS_SUCCESS, internshipToAddDocuments + "\n" + toAdd));
     }
 
     /**

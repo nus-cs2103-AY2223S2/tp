@@ -44,9 +44,10 @@ public class EditDocumentsCommand extends Command {
             + PREFIX_COVER_LETTER + "https://docs.google.com/document/d/EXAMPLE_COVER_LETTER/edit";
 
     public static final String MESSAGE_DOCUMENTS_NOT_FOUND =
-            "Resume and/or cover letter must be present before editing";
+            "No resume and/or cover letter added";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_EDIT_RESUME_SUCCESS = "Resume and/or cover letter updated for application: %1$s";
+    public static final String MESSAGE_EDIT_DOCUMENTS_SUCCESS =
+            "Resume and/or cover letter updated for application: %1$s";
 
     private final Index targetIndex;
 
@@ -82,7 +83,7 @@ public class EditDocumentsCommand extends Command {
 
         model.setApplication(internshipToEditDocuments, internshipWithUpdatedDocuments);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_RESUME_SUCCESS, internshipToEditDocuments));
+        return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENTS_SUCCESS, internshipToEditDocuments));
     }
 
     /**

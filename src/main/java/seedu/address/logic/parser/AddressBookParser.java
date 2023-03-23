@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.commands.documents.AddDocumentsCommand;
+import seedu.address.logic.commands.documents.DeleteDocumentsCommand;
 import seedu.address.logic.commands.documents.EditDocumentsCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
@@ -160,6 +161,7 @@ public class AddressBookParser {
 
         case AddDocumentsCommand.COMMAND_WORD:
         case EditDocumentsCommand.COMMAND_WORD:
+        case DeleteDocumentsCommand.COMMAND_WORD:
             return new DocumentsParser().parseDocumentsCommand(userInput);
 
         default:
