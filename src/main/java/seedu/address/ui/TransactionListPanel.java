@@ -6,7 +6,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
 
 import java.util.logging.Logger;
@@ -15,19 +14,19 @@ import java.util.logging.Logger;
  * Panel containing the list of persons.
  */
 public class TransactionListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "TransactionListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TransactionListPanel.class);
 
     @FXML
-    private ListView<Transaction> txnListView;
+    private ListView<Transaction> transactionListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public TransactionListPanel(ObservableList<Transaction> txnList) {
         super(FXML);
-        txnListView.setItems(txnList);
-        txnListView.setCellFactory(listView -> new TransactionListViewCell());
+        transactionListView.setItems(txnList);
+        transactionListView.setCellFactory(listView -> new TransactionListViewCell());
     }
 
     /**

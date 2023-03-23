@@ -14,7 +14,7 @@ import java.util.Comparator;
  */
 public class TransactionCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TransactionListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -36,6 +36,8 @@ public class TransactionCard extends UiPart<Region> {
     private Label value;
     @FXML
     private Label status;
+    @FXML
+    private Label owner;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -44,9 +46,10 @@ public class TransactionCard extends UiPart<Region> {
         super(FXML);
         this.txn = txn;
         id.setText(displayedIndex + ". ");
-        description.setText(txn.getDescription());
+        description.setText(txn.getDescription().toString());
         value.setText(txn.getValue().toString());
         status.setText(txn.getStatus().value);
+        owner.setText(txn.getOwner().toString());
     }
 
     @Override

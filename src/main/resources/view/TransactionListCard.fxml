@@ -14,12 +14,12 @@
          <Region fx:constant="USE_PREF_SIZE" />
        </minWidth>
      </Label>
-     <Label fx:id="name" styleClass="cell_big_label" text="\$first">
+     <Label fx:id="description" styleClass="cell_big_label" text="\$description">
             <HBox.margin>
                <Insets right="10.0" />
             </HBox.margin>
          </Label>
-      <Label fx:id="status" contentDisplay="RIGHT" styleClass="cell_lead_status_label" text="\$lead_status">
+      <Label fx:id="status" contentDisplay="RIGHT" styleClass="cell_lead_status_label" text="\$txn_status">
             <padding>
                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </padding>
@@ -32,32 +32,16 @@
       <VBox.margin>
          <Insets bottom="5.0" />
       </VBox.margin></HBox>
-<FlowPane fx:id="tags" alignment="CENTER_LEFT" prefWrapLength="100.0">
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-   </FlowPane>
 <HBox id="cardPane" fx:id="cardPane">
- <VBox alignment="CENTER_LEFT" minHeight="75.0" minWidth="300.0">
-   <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
-   <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-   <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-   <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-   <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+ <VBox alignment="CENTER_LEFT" minWidth="300.0">
+     <Label fx:id="owner" styleClass="cell_small_label" text="\$owner" />
+   <Label fx:id="value" styleClass="cell_small_label" text="\$value" />
  </VBox>
-   <VBox minHeight="40.0" HBox.hgrow="ALWAYS">
-      <children>
-      <Label fx:id="industry" styleClass="cell_small_label" text="\$industry" />
-      <Label fx:id="company" styleClass="cell_small_label" text="\$company" />
-      <Label fx:id="occupation" styleClass="cell_small_label" text="\$occupation" />
-      <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" />
-      </children>
-   </VBox>
       <VBox.margin>
          <Insets />
       </VBox.margin>
       <padding>
-         <Insets bottom="5.0" right="5.0" top="5.0" />
+         <Insets bottom="5.0" right="5.0" />
       </padding>
 </HBox>
    <padding>
