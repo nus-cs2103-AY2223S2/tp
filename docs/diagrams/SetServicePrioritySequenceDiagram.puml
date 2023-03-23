@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":XCommandParser" as XCommandParser LOGIC_COLOR
+participant "p:XServiceCommand" as XServiceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("prioritise/deprioritise 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("prioritise/deprioritise 1")
+activate AddressBookParser
+
+create XCommandParser
+AddressBookParser -> XCommandParser
+activate XCommandParser
+
+XCommandParser --> AddressBookParser
+deactivate XCommandParser
+
+AddressBookParser -> XCommandParser : parse("1")
+activate XCommandParser
+
+create XServiceCommand
+XCommandParser -> XServiceCommand
+activate XServiceCommand
+
+XServiceCommand --> XCommandParser : p
+deactivate XServiceCommand
+
+XCommandParser --> AddressBookParser : p
+deactivate XCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+XCommandParser -[hidden]-> AddressBookParser
+destroy XCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> XServiceCommand : execute()
+activate XServiceCommand
+
+XServiceCommand -> Model : getServiceList()
+activate Model
+
+Model --> XServiceCommand
+deactivate Model
+
+XServiceCommand -> XServiceCommand : createAdjustedPriorityService(service)
+activate XServiceCommand
+
+XServiceCommand --> XServiceCommand
+deactivate XServiceCommand
+
+XServiceCommand -> Model : setService(serviceToUpdate, updatedService)
+activate Model
+
+Model --> XServiceCommand
+deactivate Model
+
+XServiceCommand -> Model : updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES)
+activate Model
+
+Model --> XServiceCommand
+deactivate Model
+
+
+create CommandResult
+XServiceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> XServiceCommand
+deactivate CommandResult
+
+XServiceCommand --> LogicManager : result
+deactivate XServiceCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
