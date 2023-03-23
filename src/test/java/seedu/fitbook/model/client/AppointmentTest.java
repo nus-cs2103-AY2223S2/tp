@@ -19,6 +19,13 @@ public class AppointmentTest {
     }
 
     @Test
+    public void isValidDate_throwIllegalArgumentException() {
+        String invalidAppointment = "31-02-2024 18:30";
+        assertThrows(IllegalArgumentException.class, () -> new Appointment(invalidAppointment));
+    }
+
+
+    @Test
     public void isValidAppointment() {
         assertThrows(NullPointerException.class, () -> Appointment.isValidAppointment(null));
     }
