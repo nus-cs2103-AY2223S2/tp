@@ -31,7 +31,7 @@ public class Phone {
         value = "";
     }
 
-    public static Phone getNoPhone() {
+    public static Phone getEmptyPhone() {
         return NO_PHONE;
     }
 
@@ -47,7 +47,7 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         if (phone.length() == 0) {
-            return getNoPhone();
+            return getEmptyPhone();
         }
         return new Phone(phone);
     }
