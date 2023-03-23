@@ -354,7 +354,7 @@ Alternatively, executing these would do the same thing:
 
 * `add n/Thomas p/91918153 e/thomas@gmail.com n/Sally p/97833468 a/6 Sims Drive (s)543230`
 
-  In this case, the name "Thomas" will be overridden by "Sally", and the phone "91918153" 
+    In this case, the name "Thomas" will be overridden by "Sally", and the phone "91918153" 
 will be overridden by "97833468".
 <br> <br>
 
@@ -423,9 +423,11 @@ What you should expect to find:
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<menu>
 <li> For each command, "Format" indicates the syntax of the command. </li>
 <li> Square brackets indicates an optional parameter. </li>
-<li> In most commands, if the same parameter is repeated and only one is required, we take the last value provided.</li>
+<li> In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
+</li> </menu>
 </div>
 
 ### 6.1 Applicant Commands
