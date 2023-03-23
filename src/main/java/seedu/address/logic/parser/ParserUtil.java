@@ -87,6 +87,35 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    //METHODS FOR DOCTOR
+
+    /**
      * Parses a {@code String speciality} into an {@code Speciality}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -116,8 +145,10 @@ public class ParserUtil {
         return new Yoe(trimmedYoe);
     }
 
+    //METHODS FOR PATIENT
+
     /**
-     * Parses a {@code String height} into an {@code Height}.
+     * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code height} is invalid.
@@ -125,12 +156,11 @@ public class ParserUtil {
     public static Height parseHeight(String height) throws ParseException {
         requireNonNull(height);
         String trimmedHeight = height.trim();
-        if (!Height.isValidHeight(trimmedHeight)) {
+        if (!Height.isValidHeight(height)) {
             throw new ParseException(Height.MESSAGE_CONSTRAINTS);
         }
         return new Height(trimmedHeight);
     }
-
 
     /**
      * Parses a {@code String weight} into an {@code Weight}.
@@ -141,12 +171,11 @@ public class ParserUtil {
     public static Weight parseWeight(String weight) throws ParseException {
         requireNonNull(weight);
         String trimmedWeight = weight.trim();
-        if (!Weight.isValidWeight(trimmedWeight)) {
+        if (!Weight.isValidWeight(weight)) {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
         return new Weight(trimmedWeight);
     }
-
 
     /**
      * Parses a {@code String diagnosis} into an {@code Diagnosis}.
@@ -157,7 +186,7 @@ public class ParserUtil {
     public static Diagnosis parseDiagnosis(String diagnosis) throws ParseException {
         requireNonNull(diagnosis);
         String trimmedDiagnosis = diagnosis.trim();
-        if (!Diagnosis.isValidDiagnosis(trimmedDiagnosis)) {
+        if (!Diagnosis.isValidDiagnosis(diagnosis)) {
             throw new ParseException(Diagnosis.MESSAGE_CONSTRAINTS);
         }
         return new Diagnosis(trimmedDiagnosis);
@@ -172,7 +201,7 @@ public class ParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
+        if (!Status.isValidStatus(status)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(trimmedStatus);
@@ -187,36 +216,9 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
+        if (!Remark.isValidRemark(remark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }
