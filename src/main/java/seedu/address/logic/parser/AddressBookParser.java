@@ -52,12 +52,14 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private final TaskParser taskParser;
+    private final DocumentsParser documentsParser;
 
     /**
      * Creates a TaskParser instance for every InternEase parser object.
      */
     public AddressBookParser() {
         taskParser = new TaskParser();
+        documentsParser = new DocumentsParser();
     }
 
     /**
@@ -142,7 +144,7 @@ public class AddressBookParser {
         case AddDocumentsCommand.COMMAND_WORD:
         case EditDocumentsCommand.COMMAND_WORD:
         case DeleteDocumentsCommand.COMMAND_WORD:
-            return new DocumentsParser().parseDocumentsCommand(userInput);
+            return documentsParser.parseDocumentsCommand(commandWord, arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
