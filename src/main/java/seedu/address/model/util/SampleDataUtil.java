@@ -21,25 +21,25 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
             new Internship(new CompanyName("Apple"), new Role("iOS Developer"), new Status("applied"),
-                new Date("2023-02-01"), new Comment("My dream company!"), getTagSet("front")),
+                new Date("2023-02-01"), new Comment("Yay! My dream company!"), getTagSet("iOS")),
             new Internship(new CompanyName("Amazon"), new Role("Cloud Architect"), new Status("new"),
-                new Date("2023-02-02"), new Comment("Need to research more on cloud technology."),
+                new Date("2023-02-02"), new Comment("Need to research more on cloud services."),
                     getTagSet("aws", "cloud services")),
             new Internship(new CompanyName("Google"), new Role("Software Engineer"), new Status("assessment"),
-                new Date("2023-02-03"), new Comment("Good company culture"),
+                new Date("2023-02-03"), new Comment("Good company culture and environment."),
                     getTagSet("golang", "backend")),
             new Internship(new CompanyName("Samsung"), new Role("Android Developer"), new Status("interview"),
-                new Date("2023-02-02"), new Comment("To compare with Apple again."),
+                new Date("2023-02-02"), new Comment("To compare with Apple's offer again."),
                     getTagSet("android", "mobile")),
             new Internship(new CompanyName("Grab"), new Role("Frontend Designer"), new Status("offered"),
-                new Date("2023-02-02"), new Comment("Good benefits."),
+                new Date("2023-02-02"), new Comment("Good benefits. Can consider."),
                     getTagSet("react", "css")),
-            new Internship(new CompanyName("Facebook"), new Role("Backend Developer"), new Status("rejected"),
-                new Date("2023-02-02"), new Comment("Rejected because I lack proficiency in SQL."),
-                    getTagSet("sql")),
             new Internship(new CompanyName("Paypal"), new Role("Product Manager"), new Status("Accepted"),
-                    new Date("2023-04-05"), new Comment("Starting work on 1 May."),
-                    getTagSet("UI", "UX"))
+                new Date("2023-04-05"), new Comment("Starting work on 1 May. Excited!"),
+                    getTagSet("UI", "UX")),
+            new Internship(new CompanyName("Facebook"), new Role("Backend Developer"), new Status("rejected"),
+                new Date("2023-02-02"), new Comment("Rejected since I lack proficiency in SQL."),
+                    getTagSet("sql")),
         };
     }
 

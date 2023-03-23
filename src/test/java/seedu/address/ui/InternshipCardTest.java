@@ -80,12 +80,12 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(colorMap.get(ASSESSMENT).equals(Color.rgb(250, 68, 155, 1.0)));
         //Check "Interview" color
         assertTrue(colorMap.get(INTERVIEW).equals(Color.rgb(126, 68, 250, 1.0)));
-        //Check "Offered" color
-        assertTrue(colorMap.get(OFFERED).equals(Color.rgb(42, 174, 79, 1.0)));
         //Check "Rejected" color
         assertTrue(colorMap.get(REJECTED).equals(Color.rgb(250, 68, 68, 1.0)));
+        //Check "Offered" color
+        assertTrue(colorMap.get(OFFERED).equals(Color.rgb(42, 174, 166, 1.0)));
         //Check "Accepted" color
-        assertTrue(colorMap.get(ACCEPTED).equals(Color.rgb(10, 50, 20, 1.0)));
+        assertTrue(colorMap.get(ACCEPTED).equals(Color.rgb(42, 174, 79, 1.0)));
     }
 
     @ Test
