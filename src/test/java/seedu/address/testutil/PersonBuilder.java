@@ -33,7 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_JOBTITLE = "industrial engineer";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
-    public static final String DEFAULT_TASK = "";
+    public static final String DEFAULT_TASK = "Eat dinner.";
     private Name name;
     private Gender gender;
     private Phone phone;

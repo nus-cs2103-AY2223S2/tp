@@ -41,6 +41,7 @@ class JsonAdaptedPerson {
     private final String jobTitle;
     private final String address;
     private final String remark;
+    private final String task;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -56,6 +57,7 @@ class JsonAdaptedPerson {
             @JsonProperty("occupation") String occupation,
             @JsonProperty("jobTitle") String jobTitle,
             @JsonProperty("remark") String remark,
+            @JsonProperty("task") String task,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.gender = gender;
@@ -67,6 +69,7 @@ class JsonAdaptedPerson {
         this.jobTitle = jobTitle;
         this.address = address;
         this.remark = remark;
+        this.task = task;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -86,6 +89,7 @@ class JsonAdaptedPerson {
         jobTitle = source.getJobTitle().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
+        task = source.getTask().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -182,9 +186,12 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        if(task == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Task.class.getSimpleName()));
+        }
+        final Task modelTask = new Task(task);
 
-        final Task modelTask = new Task(""); //TODO: Implement parsing and marshalling in the storage commit.
+        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelCompany, modelIndustry,
                 modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags, modelTask);
