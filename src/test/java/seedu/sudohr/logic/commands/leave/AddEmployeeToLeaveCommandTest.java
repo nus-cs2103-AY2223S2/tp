@@ -50,7 +50,7 @@ public class AddEmployeeToLeaveCommandTest {
                 TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
-        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+        assertTrue(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(new LeaveDate(LocalDate.parse(
                 VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
@@ -76,7 +76,7 @@ public class AddEmployeeToLeaveCommandTest {
                 TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
-        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+        assertTrue(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(new LeaveDate(LocalDate.parse(
                 VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
@@ -398,7 +398,7 @@ public class AddEmployeeToLeaveCommandTest {
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
             if (sudoHr.hasLeave(leaveToAdd)) {
-                return sudoHr.getLeave(leaveToAdd);
+                return sudoHr.getInternalLeaveIfExist(leaveToAdd);
             } else {
                 sudoHr.addLeave(leaveToAdd);
                 return leaveToAdd;
