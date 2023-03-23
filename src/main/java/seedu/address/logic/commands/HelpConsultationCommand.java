@@ -10,7 +10,7 @@ public class HelpConsultationCommand extends HelpCommand {
     public static final String COMMAND_WORD = "help consultation";
 
     public static final String CONSULTATION_SYNTAX = "Consultation Input Format:\n"
-            + "Syntax to be decided, do stay tune";
+            + "mkdir Consultation/[Consultation Name]";
 
     @Override
     public CommandResult execute(Model model) {
