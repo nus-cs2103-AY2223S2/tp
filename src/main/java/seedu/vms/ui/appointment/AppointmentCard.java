@@ -23,6 +23,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label appointmentTime;
     @FXML
     private Label vaccine;
+    @FXML
+    private Label status;
 
     /**
      * Constructs a {@code AppointmentCard}.
@@ -40,6 +42,7 @@ public class AppointmentCard extends UiPart<Region> {
                 + appointment.getAppointmentEndTime()
                 .format(DateTimeFormatter.ofPattern("h:mm a MMM d yyyy")));
         vaccine.setText(appointment.getVaccination().toString());
+        status.setText(appointment.getStatus() ? "Completed" : "Not Completed");
     }
 }
 

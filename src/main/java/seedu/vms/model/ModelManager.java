@@ -15,6 +15,8 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -31,16 +33,20 @@ public class ModelManager implements Model {
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
+    private final KeywordManager keywordManager;
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
+    private final FilteredIdDataMap<Keyword> filteredKeywordMap;
+
+    private final VmsParser vmsParser;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
-            AppointmentManager appointmentManager, ReadOnlyUserPrefs userPrefs) {
+            AppointmentManager appointmentManager, KeywordManager keywordManager, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(patientManager, vaxTypeManager, appointmentManager, userPrefs);
 
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
@@ -51,9 +57,14 @@ public class ModelManager implements Model {
         this.appointmentManager = new AppointmentManager(appointmentManager);
         filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
 
+        this.keywordManager = new KeywordManager(keywordManager);
+        filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
+
         this.vaxTypeManager = vaxTypeManager;
 
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.vmsParser = new VmsParser();
     }
 
     /**
@@ -61,11 +72,17 @@ public class ModelManager implements Model {
      * empty {@code VaxTypeManager} and {@code AppointmentManager}.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
-        this(patientManager, new VaxTypeManager(), new AppointmentManager(), userPrefs);
+        this(patientManager, new VaxTypeManager(), new AppointmentManager(), new KeywordManager(), userPrefs);
     }
 
+    /**
+     * Convenience constructor to construct a {@code ModelManager} with an
+     * empty {@code PatientManager}, {@code VaxTypeManager}, {@code AppointmentManager},
+     * and {@code KeywordManager}.
+     */
     public ModelManager() {
-        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(),
+                new KeywordManager(), new UserPrefs());
     }
 
     // =========== UserPrefs ==================================================================================
@@ -97,7 +114,7 @@ public class ModelManager implements Model {
     @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
         // TODO: Avoid creating a new parser everytime
-        return new VmsParser().parseCommand(userCommand);
+        return vmsParser.parseCommand(userCommand);
     }
 
     // =========== PatientManager ================================================================================
@@ -149,6 +166,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markAppointment(int id) {
+        appointmentManager.mark(id);
+    }
+
+    @Override
+    public void unmarkAppointment(int id) {
+        appointmentManager.unmark(id);
+    }
+
+    @Override
     public void setAppointment(int id, Appointment editedAppointment) {
         requireAllNonNull(editedAppointment);
 
@@ -180,6 +207,29 @@ public class ModelManager implements Model {
     @Override
     public void setVaxTypeManager(VaxTypeManager manager) {
         vaxTypeManager.resetData(manager);
+    }
+
+    // =========== KeywordManager ==============================================================================
+
+    @Override
+    public void addKeyword(Keyword keyword) {
+        keywordManager.add(keyword);
+        updateFilteredKeywordList(PREDICATE_SHOW_ALL_KEYWORDS);
+    }
+
+    @Override
+    public void deleteKeyword(int id) {
+        keywordManager.remove(id);
+    }
+
+    @Override
+    public KeywordManager getKeywordManager() {
+        return keywordManager;
+    }
+
+    @Override
+    public void setKeywordManager(KeywordManager keywordManager) {
+        this.keywordManager.resetData(keywordManager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================
@@ -227,6 +277,18 @@ public class ModelManager implements Model {
     @Override
     public AppointmentManager getAppointmentManager() {
         return appointmentManager;
+    }
+
+    // =========== Filtered Keyword Map Accessors ==========================================================
+    @Override
+    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+        return filteredKeywordMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+        requireNonNull(predicate);
+        filteredKeywordMap.filter(predicate);
     }
 
     // =========== Misc methods ================================================================================

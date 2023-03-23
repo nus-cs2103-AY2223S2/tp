@@ -2,12 +2,15 @@ package seedu.vms.model.vaccination;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.exceptions.LimitExceededException;
+import seedu.vms.model.GroupName;
 import seedu.vms.testutil.SampleVaxTypeData;
 
 public class VaxTypeManagerTest {
@@ -47,6 +50,47 @@ public class VaxTypeManagerTest {
 
 
     @Test
+    public void add_limitReached_exceptionThrown() {
+        int setLimit = 5;
+        VaxTypeManager manager = new VaxTypeManager(setLimit);
+
+        addToManager(manager, setLimit);
+
+        assertThrows(LimitExceededException.class, () -> manager.add(new VaxType(
+                new GroupName(String.valueOf(setLimit)),
+                SampleVaxTypeData.GROUPS_1,
+                SampleVaxTypeData.MIN_AGE_1,
+                SampleVaxTypeData.MAX_AGE_1,
+                SampleVaxTypeData.INGREDIENTS_1,
+                SampleVaxTypeData.HISTORY_REQS_1)));
+    }
+
+
+    @Test
+    public void resetData_validReset() {
+        int setLimit = 5;
+        VaxTypeManager manager = new VaxTypeManager(setLimit);
+        addToManager(manager, setLimit);
+
+        VaxTypeManager otherManager = new VaxTypeManager(setLimit);
+        otherManager.resetData(manager);
+
+        assertEquals(manager.asUnmodifiableObservableMap(), otherManager.asUnmodifiableObservableMap());
+    }
+
+
+    @Test
+    public void resetData_limitReached_exceptionThrown() {
+        int setLimit = 5;
+        VaxTypeManager manager = new VaxTypeManager(setLimit);
+        addToManager(manager, setLimit);
+
+        assertThrows(LimitExceededException.class,
+                () -> new VaxTypeManager(setLimit - 1).resetData(manager));
+    }
+
+
+    @Test
     public void containsCheck() {
         VaxTypeManager storage = new VaxTypeManager();
         assertFalse(storage.contains(TYPE_1.getName()));
@@ -69,5 +113,18 @@ public class VaxTypeManagerTest {
 
         storage.remove(TYPE_1.getName());
         assertFalse(storage.get(TYPE_1.getName()).isPresent());
+    }
+
+
+    private void addToManager(VaxTypeManager manager, int number) {
+        for (int i = 0; i < number; i++) {
+            manager.add(new VaxType(
+                    new GroupName(String.valueOf(i)),
+                    SampleVaxTypeData.GROUPS_1,
+                    SampleVaxTypeData.MIN_AGE_1,
+                    SampleVaxTypeData.MAX_AGE_1,
+                    SampleVaxTypeData.INGREDIENTS_1,
+                    SampleVaxTypeData.HISTORY_REQS_1));
+        }
     }
 }

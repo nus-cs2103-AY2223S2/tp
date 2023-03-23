@@ -1,4 +1,4 @@
-package seedu.vms.model.vaccination;
+package seedu.vms.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,6 +7,8 @@ import java.util.List;
 
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
+import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.model.vaccination.VaxType;
 
 
 /** Testing utility class for vaccinations. */

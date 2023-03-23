@@ -7,6 +7,8 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import java.time.LocalDateTime;
+
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.appointment.EditCommand;
 import seedu.vms.logic.commands.appointment.EditCommand.EditAppointmentDescriptor;
@@ -14,6 +16,8 @@ import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.appointment.Appointment;
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -43,13 +47,24 @@ public class EditCommandParser implements CommandParser {
             editAppointmentDescriptor.setPatient(ParserUtil
                     .parseIndex(argsMap.getValue(PREFIX_PATIENT).get()));
         }
-        if (argsMap.getValue(PREFIX_STARTTIME).isPresent()) {
-            editAppointmentDescriptor.setStartTime(ParserUtil
-                    .parseDate(argsMap.getValue(PREFIX_STARTTIME).get()));
-        }
-        if (argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
-            editAppointmentDescriptor.setEndTime(ParserUtil
-                    .parseDate(argsMap.getValue(PREFIX_ENDTIME).get()));
+        if (argsMap.getValue(PREFIX_STARTTIME).isPresent() || argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
+            if (argsMap.getValue(PREFIX_STARTTIME).isPresent() ^ argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
+                throw new ParseException(EditCommand.MESSAGE_PARSE_DURATION);
+            }
+
+            LocalDateTime startTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_STARTTIME).get());
+            LocalDateTime endTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_ENDTIME).get());
+
+            if (Appointment.isInvalidAppointmentTime(startTime)) {
+                throw new ParseException(Appointment.MESSAGE_START_TIME_CONSTRAINTS);
+            }
+
+            if (!Appointment.isValidDuration(startTime, endTime)) {
+                throw new ParseException(Appointment.MESSAGE_DURATION_CONSTRAINTS);
+            }
+
+            editAppointmentDescriptor.setStartTime(startTime);
+            editAppointmentDescriptor.setEndTime(endTime);
         }
         if (argsMap.getValue(PREFIX_VACCINATION).isPresent()) {
             editAppointmentDescriptor.setVaccine(ParserUtil

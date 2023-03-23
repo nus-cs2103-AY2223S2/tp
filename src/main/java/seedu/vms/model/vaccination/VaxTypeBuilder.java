@@ -1,5 +1,6 @@
 package seedu.vms.model.vaccination;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,9 @@ import seedu.vms.model.GroupName;
  * {@link VaxTypeManager}.
  */
 public class VaxTypeBuilder {
+    private static final String FORMAT_IVE_MESSAGE = "The following vaccination constraints have been violated\n%s";
+    private static final String FORMAT_CONSTRAINTS = "- %s\n";
+
     private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist: %s";
     private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist: %s";
 
@@ -142,7 +146,7 @@ public class VaxTypeBuilder {
 
 
     private VaxType build(VaxTypeManager manager) throws IllegalValueException {
-        Optional<VaxType> refVaxType = manager.remove(refName.toString());
+        Optional<VaxType> refVaxType = manager.get(refName.toString());
 
         HashSet<GroupName> grps = setGrps.orElse(refVaxType
                 .map(VaxType::getGroups)
@@ -160,12 +164,51 @@ public class VaxTypeBuilder {
                 .map(VaxType::getHistoryReqs)
                 .orElse(VaxType.DEFAULT_HISTORY_REQS));
 
-        if (!VaxType.isValidRange(minAge, maxAge)) {
-            throw new IllegalValueException(VaxType.MESSAGE_AGE_CONSTRAINTS);
+        Optional<String> errMessage = validateParams(grps, minAge, maxAge, ingredients, historyReqs);
+        if (errMessage.isPresent()) {
+            throw new IllegalValueException(errMessage.get());
         }
 
         VaxType vaxType = new VaxType(name, grps, minAge, maxAge, ingredients, historyReqs);
+        manager.remove(refName.toString());
         manager.add(vaxType);
         return vaxType;
+    }
+
+
+    private Optional<String> validateParams(HashSet<GroupName> groups,
+                Age minAge, Age maxAge,
+                HashSet<GroupName> ingredients,
+                List<Requirement> historyReq) {
+        ArrayList<String> errMessages = new ArrayList<>();
+
+        if (!VaxType.isValidGroups(groups)) {
+            errMessages.add(VaxType.MESSAGE_GROUPS_CONSTRAINTS);
+        }
+        if (!VaxType.isValidRange(minAge, maxAge)) {
+            errMessages.add(VaxType.MESSAGE_AGE_CONSTRAINTS);
+        }
+        if (!VaxType.isValidIngredients(ingredients)) {
+            errMessages.add(VaxType.MESSAGE_INGREDIENTS_CONSTRAINTS);
+        }
+        if (!VaxType.isValidHistoryReq(historyReq)) {
+            errMessages.add(VaxType.MESSAGE_HISTORY_REQ_CONSTRAINTS);
+        }
+
+        if (errMessages.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(formatErrorMessage(errMessages));
+    }
+
+
+    private String formatErrorMessage(List<String> errMessages) {
+        StringBuilder builder = new StringBuilder();
+
+        for (String message : errMessages) {
+            builder.append(String.format(FORMAT_CONSTRAINTS, message));
+        }
+
+        return String.format(FORMAT_IVE_MESSAGE, builder.toString());
     }
 }

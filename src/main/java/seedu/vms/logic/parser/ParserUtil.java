@@ -14,6 +14,7 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
+import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
@@ -187,6 +188,39 @@ public class ParserUtil {
         } catch (IllegalArgumentException illArgEx) {
             throw new ParseException("Unknown requirement type", illArgEx);
         }
+    }
+
+    /*
+     * ========================================================================
+     * Keyword
+     * ========================================================================
+     */
+
+    /**
+     * Parses a {@code String keyword} into a {@code String keyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    public static String parseKeyword(String keyword) throws ParseException {
+        requireNonNull(keyword);
+        String trimmedKeyword = keyword.trim();
+        return trimmedKeyword;
+    }
+
+    /**
+     * Parses a {@code String keyword} into a {@code String keyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    public static String parseMainKeyword(String mainKeyword) throws ParseException {
+        requireNonNull(mainKeyword);
+        String trimmedMainKeyword = mainKeyword.trim();
+        if (!Keyword.isValidMainKeyword(trimmedMainKeyword)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedMainKeyword;
     }
 
     /*
