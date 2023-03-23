@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.CommandTestUtil;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
@@ -35,7 +36,10 @@ import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
+import arb.model.client.ClientContainsTagPredicate;
+import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
+import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
@@ -138,9 +142,13 @@ public class AddressBookParserTest {
     public void parseCommand_findClient() throws Exception {
         List<String> tags = Arrays.asList("friend", "husband");
         List<String> names = Arrays.asList("foo", "baz");
+        ClientContainsTagPredicate expectedTagsPredicate = new ClientContainsTagPredicate(tags);
+        NameContainsKeywordsPredicate expectedKeywordsPredicate = new NameContainsKeywordsPredicate(names);
+        CombinedPredicate<Client> expectedCombinedPredicate = new CombinedPredicate<>(Arrays.asList(expectedKeywordsPredicate, expectedTagsPredicate));
         for (String commandWord : FindClientCommand.getCommandWords()) {
-            assertTrue(parser.parseCommand(
-                    ClientUtil.getFindClientCommand(tags, names, commandWord)) instanceof FindClientCommand);
+            FindClientCommand command = (FindClientCommand) parser
+                    .parseCommand(ClientUtil.getFindClientCommand(tags, names, commandWord));
+            assertEquals(new FindClientCommand(expectedCombinedPredicate), command);
         }
     }
 
@@ -148,9 +156,13 @@ public class AddressBookParserTest {
     public void parseCommand_findProject() throws Exception {
         List<String> tags = Arrays.asList("painting", "pottery");
         List<String> names = Arrays.asList("foo", "bar", "baz");
+        //ProjectContainsTagsPredicate expectedTags = new ProjectContainsTagsPredicate(tags);
+        TitleContainsKeywordsPredicate expectedKeywordsPredicate = new TitleContainsKeywordsPredicate(names);
+        CombinedPredicate<Project> expectedCombinedPredicate = new CombinedPredicate<>(Arrays.asList(expectedKeywordsPredicate));
         for (String commandWord : FindProjectCommand.getCommandWords()) {
-            assertTrue(parser.parseCommand(ProjectUtil
-                    .getFindProjectCommand(tags, names, commandWord)) instanceof FindProjectCommand);
+            FindProjectCommand command = (FindProjectCommand) parser
+                    .parseCommand(ProjectUtil.getFindProjectCommand(tags, names, commandWord));
+            assertEquals(new FindProjectCommand(expectedCombinedPredicate), command);
         }
     }
 

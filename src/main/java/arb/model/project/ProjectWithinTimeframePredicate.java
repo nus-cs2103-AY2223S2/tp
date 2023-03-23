@@ -1,5 +1,6 @@
 package arb.model.project;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -33,5 +34,10 @@ public class ProjectWithinTimeframePredicate implements Predicate<Project> {
                 || (other instanceof ProjectWithinTimeframePredicate // instanceof handles nulls
                 && start.equals(((ProjectWithinTimeframePredicate) other).start) // state check
                 && end.equals(((ProjectWithinTimeframePredicate) other).end));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
     }
 }

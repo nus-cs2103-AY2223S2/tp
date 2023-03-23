@@ -30,4 +30,8 @@ public class TitleContainsKeywordsPredicate implements Predicate<Project> {
                 && keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    @Override
+    public int hashCode() {
+        return keywords.hashCode();
+    }
 }

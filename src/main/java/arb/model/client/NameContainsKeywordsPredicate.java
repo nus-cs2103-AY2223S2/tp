@@ -30,4 +30,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    @Override
+    public int hashCode() {
+        return keywords.hashCode();
+    }
+
 }

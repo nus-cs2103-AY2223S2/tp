@@ -34,8 +34,12 @@ public class ProjectContainsTagPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different project -> returns false
+        // different tags -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        ProjectContainsTagPredicate secondPredicateCopy =
+                new ProjectContainsTagPredicate(Arrays.asList("second", "first"));
+        assertTrue(secondPredicate.equals(secondPredicateCopy)); // different order
     }
 
     @Test

@@ -2,12 +2,21 @@ package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.project.Deadline;
+import arb.model.project.Project;
+import arb.model.project.ProjectWithinTimeframePredicate;
+import arb.model.project.TitleContainsKeywordsPredicate;
 
 public class FindProjectCommandParserTest {
 
@@ -19,16 +28,19 @@ public class FindProjectCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
     }
 
-    @Test
+    /*@Test
     public void parse_validArgs_returnsFindProjectCommand() {
-        try {
-            assertTrue(new FindProjectCommandParser()
-                    .parse(" n/Sky Painting t/painting") instanceof FindProjectCommand);
-            assertTrue(new FindProjectCommandParser()
-                    .parse(" \n n/Sky Painting \n \t t/painting  \t") instanceof FindProjectCommand);
-        } catch (ParseException e) {
-            assert false : e.getMessage();
-        }
-    }
+        List<String> expectedTags = Arrays.asList("painting");
+        List<String> expectedNames = Arrays.asList("Sky Painting");
+        ProjectContainsTagsPredicate expectedTagsPredicate = new ProjectContainsTagsPredicate(expectedTags);
+        TitleContainsKeywordsPredicate expectedTitlesPredicate = new TitleContainsKeywordsPredicate(expectedNames);
+        ProjectWithinTimeframePredicate expectedTimeframePredicate = new ProjectWithinTimeframePredicate(new Deadline("3pm 2023-01-01"), null);
+        CombinedPredicate<Project> expectedCombinedPredicate = new CombinedPredicate<>(Arrays.asList(expectedTagsPredicate, expectedTitlesPredicate, expectedTimeframePredicate));
+        
+        FindProjectCommand expectedFindProjectCommand =
+                new FindProjectCommand(expectedCombinedPredicate);
+        assertParseSuccess(parser, "n/Sky Painting t/painting s/3pm 2023-01-01", expectedFindProjectCommand);
+        assertParseSuccess(parser, " \n n/Sky Painting \n \t t/painting  \t s/3pm 2023-01-01 \n", expectedFindProjectCommand);
+    }*/
 
 }

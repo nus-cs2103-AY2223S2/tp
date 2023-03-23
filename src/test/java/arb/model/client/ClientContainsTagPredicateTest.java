@@ -34,8 +34,12 @@ public class ClientContainsTagPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different client -> returns false
+        // different tags -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        ClientContainsTagPredicate secondPredicateCopy =
+                new ClientContainsTagPredicate(Arrays.asList("second", "first"));
+        assertTrue(secondPredicateCopy.equals(secondPredicate)); // different order -> returns true
     }
 
     @Test

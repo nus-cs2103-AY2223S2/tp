@@ -34,8 +34,12 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different client -> returns false
+        // different keywords -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        NameContainsKeywordsPredicate secondPredicateCopy =
+                new NameContainsKeywordsPredicate(Arrays.asList("second", "first"));
+        assertTrue(secondPredicate.equals(secondPredicateCopy)); // different order -> returns true
     }
 
     @Test

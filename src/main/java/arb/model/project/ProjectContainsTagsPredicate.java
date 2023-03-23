@@ -28,4 +28,9 @@ public class ProjectContainsTagsPredicate implements Predicate<Project> {
                 || (other instanceof ProjectContainsTagsPredicate // instanceof handles nulls
                 && tags.equals(((ProjectContainsTagsPredicate) other).tags)); // state check
     }
+
+    @Override
+    public int hashCode() {
+        return tags.hashCode();
+    }
 }*/

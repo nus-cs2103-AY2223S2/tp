@@ -2,12 +2,18 @@ package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.client.FindClientCommand;
-import arb.logic.parser.exceptions.ParseException;
+import arb.model.client.Client;
+import arb.model.client.ClientContainsTagPredicate;
+import arb.model.client.NameContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {
 
@@ -21,13 +27,19 @@ public class FindClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindClientCommand() {
-        try {
-            assertTrue(new FindClientCommandParser().parse(" n/Alice t/friend") instanceof FindClientCommand);
-            assertTrue(new FindClientCommandParser()
-                    .parse(" \n n/Alice \n \t t/friend  \t") instanceof FindClientCommand);
-        } catch (ParseException e) {
-            assert false : e.getMessage();
-        }
+        List<String> expectedTags = Arrays.asList("friend");
+        List<String> expectedNames = Arrays.asList("Alice", "Bob");
+        ClientContainsTagPredicate expectedTagsPredicate = new ClientContainsTagPredicate(expectedTags);
+        NameContainsKeywordsPredicate expectedTitlesPredicate = new NameContainsKeywordsPredicate(expectedNames);
+        CombinedPredicate<Client> expectedCombinedPredicate = new CombinedPredicate<>(Arrays.asList(expectedTagsPredicate, expectedTitlesPredicate));
+        
+        // no leading and trailing whitespaces
+        FindClientCommand expectedFindClientCommand =
+                new FindClientCommand(expectedCombinedPredicate);
+        assertParseSuccess(parser, " n/Alice n/Bob t/friend", expectedFindClientCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n n/Alice \n \t n/Bob  \t t/friend \n", expectedFindClientCommand);
     }
 
 }

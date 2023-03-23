@@ -29,4 +29,9 @@ public class ClientContainsTagPredicate implements Predicate<Client> {
                 || (other instanceof ClientContainsTagPredicate // instanceof handles nulls
                 && tags.equals(((ClientContainsTagPredicate) other).tags)); // state check
     }
+
+    @Override
+    public int hashCode() {
+        return tags.hashCode();
+    }
 }
