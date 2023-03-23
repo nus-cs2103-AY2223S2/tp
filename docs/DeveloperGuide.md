@@ -280,7 +280,7 @@ our purposes.
 ![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
 ![FuzzyManagerSequenceDiagramC](images/FuzzyManagerSequenceDiagramC.png)
 
-The two sequence diagrams below describe the flow of events upon a change in
+The two sequence diagrams above describe the flow of events upon a change in
 the input text. The `handleInputChanged()` method on `CommandBox` is invoked by
 JavaFX, which in turn invokes the `FuzzyManager`. The `FuzzyManager` obtains a
 reference to the unfiltered and unsorted list of clients and projects from
