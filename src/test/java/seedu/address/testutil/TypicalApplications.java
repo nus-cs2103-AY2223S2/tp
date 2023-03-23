@@ -34,6 +34,16 @@ public class TypicalApplications {
             .withCompanyName("Microsoft").withCompanyEmail("hrthires@hrt.com")
             .withStatus("offered").build();
 
+    public static final Application META = new ApplicationBuilder().withRole("UX Design Intern")
+            .withCompanyName("Meta").withCompanyEmail("metahires@meta.com")
+            .withStatus("applied").withTask("01-11-2023", "Online Assessment")
+            .build();
+
+    public static final Application GOVTECH = new ApplicationBuilder().withRole("Cybersecurity Intern")
+            .withCompanyName("Govtech").withCompanyEmail("govtechhires@govtech.sg")
+            .withStatus("applied").withTask("31-10-2023", "Interview")
+            .build();
+
     // Manually added
     public static final Application HUDSON_RIVER = new ApplicationBuilder().withRole("Junior Trader Analyst")
             .withCompanyName("Hudson River Trading").withCompanyEmail("hrthires@hrt.com")
@@ -66,6 +76,6 @@ public class TypicalApplications {
     }
 
     public static List<Application> getTypicalApplications() {
-        return new ArrayList<>(Arrays.asList(GOOGLE, AMAZON, APPLE, MICROSOFT));
+        return new ArrayList<>(Arrays.asList(GOOGLE, AMAZON, APPLE, MICROSOFT, META, GOVTECH));
     }
 }

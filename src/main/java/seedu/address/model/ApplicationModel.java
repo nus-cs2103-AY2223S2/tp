@@ -86,4 +86,11 @@ public interface ApplicationModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /**
+     * Checks if given application already has an existing task attached to it.
+     */
+    boolean applicationHasTask(Application application);
+
+    void addTaskToApplication(Application target, Application editedApplication);
 }

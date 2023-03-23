@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
@@ -15,7 +16,7 @@ import seedu.address.model.application.Application;
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
             + "Parameters: "
@@ -27,7 +28,9 @@ public class AddApplicationCommand extends ApplicationCommand {
             + PREFIX_ROLE + "SWE Intern "
             + PREFIX_COMPANY_NAME + "Goggle "
             + PREFIX_COMPANY_EMAIL + "gogglehiring@goggletalents.com "
-            + PREFIX_STATUS + "interested";
+            + PREFIX_STATUS + "interested "
+            + PREFIX_TAG + "highSalary "
+            + PREFIX_TAG + "bestWelfare";
 
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";

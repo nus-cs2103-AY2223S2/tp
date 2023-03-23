@@ -5,14 +5,19 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -20,13 +25,17 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing application in the internship book.
  */
 public class EditApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the application identified "
             + "by the index number used in the displayed application list. "
@@ -35,7 +44,8 @@ public class EditApplicationCommand extends ApplicationCommand {
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY NAME] "
             + "[" + PREFIX_COMPANY_EMAIL + "COMPANY EMAIL] "
-            + "[" + PREFIX_STATUS + "STATUS]\n "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY_EMAIL + "gogglerecruiter@goggletalents.com "
             + PREFIX_STATUS + "ACCEPTED";
@@ -86,7 +96,7 @@ public class EditApplicationCommand extends ApplicationCommand {
      * Creates and returns a {@code Application} with the details of {@code appToEdit}
      * edited with {@code editApplicationDescriptor}.
      */
-    private static Application createEditedApplication(Application appToEdit,
+    protected static Application createEditedApplication(Application appToEdit,
                                                        EditApplicationDescriptor editApplicationDescriptor) {
         assert appToEdit != null;
 
@@ -95,8 +105,35 @@ public class EditApplicationCommand extends ApplicationCommand {
         CompanyEmail updatedCompanyEmail = editApplicationDescriptor.getCompanyEmail()
                 .orElse(appToEdit.getCompanyEmail());
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(appToEdit.getStatus());
+        Task updatedTask = editApplicationDescriptor.getTask().orElse(appToEdit.getTask());
+        Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(appToEdit.getTags());
 
-        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus);
+        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail,
+                updatedStatus, updatedTask, updatedTags);
+    }
+
+    /**
+     * Creates and returns a {@code Application} with the details of {@code appToEdit}
+     * edited with {@code editTaskDescriptor}.
+     */
+    protected static Application createEditedApplication(Application appToEdit,
+                                                         EditTaskDescriptor editTaskDescriptor) {
+        assert appToEdit != null;
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(appToEdit.getTask().getDeadline());
+        Description updatedDescription = editTaskDescriptor.getDescription()
+                .orElse(appToEdit.getTask().getDescription());
+        Task updatedTask = new Task(updatedDeadline, updatedDescription);
+
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), updatedTask, appToEdit.getTags());
+    }
+
+    /**
+     * Creates and returns an {@code Application} with no task.
+     */
+    protected static Application createEditedApplicationWithoutTask(Application appToEdit) {
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), null, appToEdit.getTags());
     }
 
     @Override
@@ -126,24 +163,30 @@ public class EditApplicationCommand extends ApplicationCommand {
         private CompanyName companyName;
         private CompanyEmail companyEmail;
         private Status status;
+        private Set<Tag> tags;
+
+        private Task task;
 
         public EditApplicationDescriptor() {}
 
         /**
          * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
          */
         public EditApplicationDescriptor(EditApplicationDescriptor toCopy) {
             setRole(toCopy.role);
             setCompanyName(toCopy.companyName);
             setCompanyEmail(toCopy.companyEmail);
             setStatus(toCopy.status);
+            setTask(toCopy.task);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status);
+            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status, task, tags);
         }
 
         public void setRole(Role role) {
@@ -178,6 +221,31 @@ public class EditApplicationCommand extends ApplicationCommand {
             return Optional.ofNullable(status);
         }
 
+        public void setTask(Task task) {
+            this.task = task;
+        }
+
+        public Optional<Task> getTask() {
+            return Optional.ofNullable(task);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -196,7 +264,8 @@ public class EditApplicationCommand extends ApplicationCommand {
             return getRole().equals(e.getRole())
                     && getCompanyName().equals(e.getCompanyName())
                     && getCompanyEmail().equals(e.getCompanyEmail())
-                    && getStatus().equals(e.getStatus());
+                    && getStatus().equals(e.getStatus())
+                    && getTask().equals(e.getTask());
         }
     }
 }

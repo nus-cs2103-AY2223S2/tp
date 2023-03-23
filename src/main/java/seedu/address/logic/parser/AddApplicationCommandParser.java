@@ -5,7 +5,9 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddApplicationCommand;
@@ -15,7 +17,7 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
-
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddApplicationCommand object
@@ -29,7 +31,8 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
      */
     public AddApplicationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_COMPANY_EMAIL, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_COMPANY_EMAIL, PREFIX_STATUS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_COMPANY_EMAIL, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,8 +46,9 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
         CompanyEmail companyEmail = ApplicationParserUtil.parseCompanyEmail(
                 argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
         Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Application application = new Application(role, companyName, companyEmail, status);
+        Application application = new Application(role, companyName, companyEmail, status, null, tagList);
 
         return new AddApplicationCommand(application);
     }
