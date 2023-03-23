@@ -14,6 +14,13 @@ public class Description {
     public final String value;
 
     /**
+     * Constructs a {@code Description} with default description.
+     */
+    public Description() {
+        value = "No Description";
+    }
+
+    /**
      * Constructs a {@code Description}.
      *
      * @param description A valid description.
