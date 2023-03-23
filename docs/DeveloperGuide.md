@@ -154,6 +154,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Lead Status feature
+
+The Lead Status feature aims to provide information about the contact based on when the status was last set.
+It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and 
+`LocalDateTime` timestamp.
+
+Because we would like to limit the types of statuses a contact should have, for consistency's sake, each 
+type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for 
+abbreviations of each status type.
+
+![](images/PersonLeadStatusDiagram.png)
+
+The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
+The user is able to change the lead status of a contact to any other lead status. The timestamp is updated to the 
+`LocalDateTime.now()` of when the command is executed. If the lead status to change to is the same as the preexisting 
+one, the command returns and does not alter the previous lead status (and timestamp).
+
+![](images/StatusSequenceDiagram.png)
+(to update seq diagram to reflect timestamp implementation)
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -6,7 +6,7 @@ import static seedu.address.model.person.status.LeadStatusName.QUALIFIED;
 import static seedu.address.model.person.status.LeadStatusName.UNCONTACTED;
 import static seedu.address.model.person.status.LeadStatusName.UNQUALIFIED;
 import static seedu.address.model.person.status.LeadStatusName.WORKING;
-import static seedu.address.model.person.status.LeadStatusName.isValidLeadStatus;
+import static seedu.address.model.person.status.LeadStatusName.isValidStatusName;
 
 
 /**
@@ -29,7 +29,7 @@ public class LeadStatus {
      */
     public LeadStatus(String statusName) {
         requireNonNull(statusName);
-        checkArgument(isValidLeadStatus(statusName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatusName(statusName), MESSAGE_CONSTRAINTS);
         this.statusName = LeadStatusName.get(statusName);
     }
 
