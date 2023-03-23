@@ -204,7 +204,7 @@ The `unmark` feature allows for unmarking of the 'Mark' attribute in events shou
 The `unmark` feature is implemented with the following considerations:
 
 - A valid `index` will be taken in as a parameter to facilitate unmarking of the correct event.
-- The unmark feature builds on the existing implementation of the 'Mark' class.
+- The unmark feature builds alongside the existing implementation of the 'Mark' class.
 - Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
 - Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
@@ -212,7 +212,7 @@ The `unmark` feature is implemented with the following considerations:
 
 * **Alternative 1 (current choice): Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false** 
   * Pros: Easier to implement.
-  * Cons: Results in higher coupling as it is editing a vairable in an event instance, may lead to errors in runtime and testing.
+  * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
 
 * **Alternative 2: Replace current instance of specified event with a new unmarked event instance**
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
