@@ -258,14 +258,14 @@ Format: `exit`
 
 ### 3.1 Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TaskBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### 3.2 Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TaskBook data are saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, taskBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### 3.3 Archiving data files `[coming in v2.0]`
