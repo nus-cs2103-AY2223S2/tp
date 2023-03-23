@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,6 +30,8 @@ public class DetailDisplay extends UiPart<Region> {
 
     private Person person;
 
+    private FileList filelist;
+
     @FXML
     private Label name;
     @FXML
@@ -52,7 +55,7 @@ public class DetailDisplay extends UiPart<Region> {
     @FXML
     private Button uploadButton;
     @FXML
-    private ListView<?> viewDisplay;
+    private ListView<UiFile> viewDisplay;
 
     public DetailDisplay() {
         super(FXML);
@@ -61,8 +64,10 @@ public class DetailDisplay extends UiPart<Region> {
     /**
      * Displays information of a specified person.
      */
-    public void setInfo(Person person) {
+    public void setInfo(Person person, ObservableList<UiFile> fileList) {
         this.person = person;
+        viewDisplay.setItems(fileList);
+        viewDisplay.setCellFactory(listView -> new FileList.FileListViewCell());
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
