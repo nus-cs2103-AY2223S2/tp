@@ -8,7 +8,11 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableMap;
@@ -24,7 +28,6 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxChecker;
 import seedu.vms.model.vaccination.VaxType;
 

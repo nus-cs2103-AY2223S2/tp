@@ -25,7 +25,6 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxChecker;
 import seedu.vms.model.vaccination.VaxType;
 
@@ -90,7 +89,7 @@ public class AddCommand extends Command {
             Appointment appointment = entry.getValue().getValue();
             if (appointment.getPatient().equals(toAdd.getPatient())
                 && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
-                    throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
+                throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
 
