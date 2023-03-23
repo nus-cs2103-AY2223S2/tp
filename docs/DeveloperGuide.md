@@ -269,18 +269,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### 3.2 Clear Feature
 
 ### 3.3 Delete Feature
-Deletes a task based on index(es) of tasks from the list currently being shown to users. In the previous iteration of AB3,
-deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of
-the program. Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed
-to users should the input be invalid.
+Deletes a task based on index(es) of tasks from the list currently being shown to users.
+In the previous iteration of AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
+Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed to users should the input be invalid.
 
 Multiple deletions within a single command must be done in the following manner:
 1. Indices must be separated by whitespace, such as `delete 1 2 3`
 2. Indices must be entered in ascending order
 
-In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed,
-and users will be informed about the non-execution. This is to enforce atomicity and date safety, as deletion is irreversible,
-so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
+In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed, and users will be informed about the non-execution.
+This is to enforce atomicity and date safety, as deletion is irreversible, so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
 
 Given below is an example usage scenario and how `delete` is executed.
 
@@ -356,9 +354,8 @@ Cons: More complicated to implement and unwieldy for users.
 ### 3.7 Help Feature
 
 ### 3.8 Stats Feature
-Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1
-view - categorise by tags. The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10
-tags.
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
+The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10 tags.
 
 ### 3.9 Sort Feature
 
