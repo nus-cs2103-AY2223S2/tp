@@ -171,6 +171,68 @@ Classes used by multiple components are in the `seedu.elister.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Undo/Redo
+
+The `undo` command supports:
+
+* Reverting the most recent `Command` that affected the `Model` state (by changing a `Person` within it
+or its list of displayed `Persons`).
+* Reverting a specified number of such `Commands` at once.
+
+The `redo` command supports:
+
+* Reinstating any undone `Command`, or a specified number of such `Commands`.
+
+#### Implementation
+
+Both commands operate using the `StateHistory` class, which is a container
+that records - and can ultimately reconstruct - previous `Model` states.
+
+Externally, `StateHistory` listens to the `CommandResult` of each executing command.
+It also requires commands to declare two new fields in `CommandResult`:
+
+* `undoable`  —  Whether the `Command` should be reverted upon an `Undo`.
+This is to be `true` if the command modifies `Model` by modifying a person or its list of displayed people.
+* `deterministic`  —  Whether the modification to `Model` that was just made by `Command`
+was the sole possible outcome of its execution.
+
+By default, `StateHistory` points to the latest version of `Model` and offers a copy of its state.
+This pointer can be moved backward or forward to retrieve copies of past states, or copies of undone future states:
+
+* `StateHistory#undo(int n)` — Moves the pointer _n_ commands backward.
+* `StateHistory#redo(int n)` — Moves the pointer _n_ commands forward.
+* `StateHistory#presentModel()` — Retrieves a copy of the pointer's `Model` state.
+
+The `Model` objects produced by `StateHistory#presentModel()` are state-detached copies of the originals -
+fields related to containing or displaying `Persons` are deep copies, whereas fields involving UI preferences
+reuse the original objects (thus including any mutations done later).
+
+`StateHistory` listens for `CommandResults` like so:
+
+![StateHistorySequenceDiagram](images/StateHistorySequenceDiagram.png)
+
+In turn, the sequence diagram of `UndoCommand` is:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+#### Design considerations:
+
+Given the [proposed] inclusion of `import` and `export` commands, implementing a specific
+reversal for each individual command was deemed impractical. Instead, the approach chosen was
+to store previous `Model` states in their entirety.
+
+However, to avoid excessive memory usage, only select seed copies of `Model` are actually stored.
+Instead, previous `Commands` are also kept, and most `Model` states
+are recreated by applying the relevant commands to seed states.
+
+Seed states are captured
+
+* upon program startup
+* after a non-`deterministic` command
+* every 10 commands, to avoid rerunning too many commands
+
+These details are handled transparently by `StateHistory`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
