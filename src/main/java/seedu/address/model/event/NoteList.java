@@ -29,7 +29,9 @@ public class NoteList {
     /**
      * Initialize an empty list
      */
-    public NoteList() { return; }
+    public NoteList() {
+        return;
+    }
 
     /**
      * Gets the list notes saved in this object

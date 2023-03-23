@@ -5,7 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
+import seedu.address.model.event.NoteList;
+import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.UniqueConsultationList;
+import seedu.address.model.event.UniqueLabList;
+import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 

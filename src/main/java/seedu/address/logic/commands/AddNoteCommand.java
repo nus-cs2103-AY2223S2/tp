@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.event.Note;
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.event.Note;
+
+/**
+ * Allows TA to add a note by checking if the command input matches add-note
+ */
 public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "add-note";
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
@@ -34,6 +37,12 @@ public class AddNoteCommand extends Command {
         toAdd = note;
     }
 
+    /**
+     * Executes the addition of note and saves it into the model state
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
