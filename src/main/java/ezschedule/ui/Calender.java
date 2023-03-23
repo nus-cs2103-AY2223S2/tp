@@ -125,11 +125,12 @@ public class Calender extends UiPart<Region> {
                 calendarActivityBox.getChildren().add(moreActivities);
                 moreActivities.setOnMouseClicked(mouseEvent -> {
                     //On ... click print all activities for given date
+                    // TODO TO SHOW EVENTS
                     System.out.println(calendarActivities);
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getName() + ", " + calendarActivities.get(k).getDate());
+            Text text = new Text(calendarActivities.get(k).getName().toString());
             calendarActivityBox.getChildren().add(text);
             text.setOnMouseClicked(mouseEvent -> {
                 //On Text clicked
