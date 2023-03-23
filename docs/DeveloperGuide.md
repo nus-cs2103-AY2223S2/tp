@@ -233,12 +233,22 @@ Below is an activity diagram that showcase the event that occurs when find comma
 
 > The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
 
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include /mod or /lec arguments for the current context.
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for ancommands related to the current context.
 
-Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system itself.
+Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
 
 #### Usage scenario
 Given below is an example usage scenario and how the navigation system behaves at each step.
+
+Step 1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+
+Step 2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
+
+![FindActivityDiagram](images/NavSequenceDiagram0.png)
+
+Step 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+
+Step 4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
 
 ### \[Proposed\] Undo/redo feature
 
