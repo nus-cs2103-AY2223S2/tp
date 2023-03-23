@@ -45,7 +45,7 @@ class JsonAdaptedOpening {
         this.company = company;
         this.email = email;
         this.status = status;
-        this.remark = remark;
+        this.remark = remark == null ? "" : remark;
         if (dates != null) {
             this.dates.addAll(dates);
         }
@@ -59,7 +59,7 @@ class JsonAdaptedOpening {
         company = source.getCompany().fullCompany;
         email = source.getEmail().value;
         status = source.getStatus().fullStatus;
-        remark = source.getRemark().value;
+        remark = source.getRemark() == null ? null : source.getRemark().value;
         dates.addAll(source.getDates().stream()
                 .map(JsonAdaptedDate::new)
                 .collect(Collectors.toList()));

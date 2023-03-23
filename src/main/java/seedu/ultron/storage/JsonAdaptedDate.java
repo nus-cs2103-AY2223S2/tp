@@ -2,7 +2,6 @@ package seedu.ultron.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.ultron.commons.exceptions.IllegalValueException;
 import seedu.ultron.model.opening.Date;
@@ -30,11 +29,6 @@ class JsonAdaptedDate {
     public JsonAdaptedDate(Date source) {
         name = source.fullName;
         date = source.fullDate;
-    }
-
-    @JsonValue
-    public String getdateName() {
-        return date;
     }
 
     /**
