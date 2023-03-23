@@ -37,7 +37,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 import seedu.dengue.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_VARIANT_DENV2).build();
+        Person expectedPerson = new PersonBuilder(BOB).withVariants(VALID_VARIANT_DENV2).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB
@@ -67,17 +67,17 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_AMY
                 + AGE_DESC_BOB + VARIANT_DESC_DENV2, new AddCommand(expectedPerson));
 
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
+        // multiple variants - all accepted
+        Person expectedPersonMultipleVariants = new PersonBuilder(BOB).withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + VARIANT_DESC_DENV1 + VARIANT_DESC_DENV2, new AddCommand(expectedPersonMultipleTags));
+                + VARIANT_DESC_DENV1 + VARIANT_DESC_DENV2, new AddCommand(expectedPersonMultipleVariants));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        // zero variants
+        Person expectedPerson = new PersonBuilder(AMY).withVariants().build();
         assertParseSuccess(parser, NAME_DESC_AMY + POSTAL_DESC_AMY + DATE_DESC_AMY + AGE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -125,9 +125,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + INVALID_AGE_DESC
                 + VARIANT_DESC_DENV1 + VARIANT_DESC_DENV2, Age.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid variant
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + INVALID_VARIANT_DESC + VALID_VARIANT_DENV2, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_VARIANT_DESC + VALID_VARIANT_DENV2, Variant.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + POSTAL_DESC_BOB + DATE_DESC_BOB + INVALID_AGE_DESC,

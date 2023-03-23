@@ -13,7 +13,7 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -105,24 +105,24 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code variant} is invalid.
      */
-    public static Tag parseTag(String variant) throws ParseException {
+    public static Variant parseVariant(String variant) throws ParseException {
         requireNonNull(variant);
-        String trimmedTag = variant.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        String trimmedVariant = variant.trim();
+        if (!Variant.isValidVariantName(trimmedVariant)) {
+            throw new ParseException(Variant.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Variant(trimmedVariant);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> variants} into a {@code Set<Variant>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Variant> parseVariants(Collection<String> variants) throws ParseException {
+        requireNonNull(variants);
+        final Set<Variant> variantSet = new HashSet<>();
+        for (String variantName : variants) {
+            variantSet.add(parseVariant(variantName));
         }
-        return tagSet;
+        return variantSet;
     }
 }

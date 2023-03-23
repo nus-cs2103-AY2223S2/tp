@@ -52,7 +52,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different variants -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_VARIANT_DENV1).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withVariants(VALID_VARIANT_DENV1).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

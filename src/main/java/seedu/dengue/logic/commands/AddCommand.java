@@ -24,7 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_POSTAL + "POSTAL "
             + PREFIX_DATE + "DATE "
             + PREFIX_AGE + "AGE "
-            + "[" + PREFIX_VARIANT + "TAG]...\n"
+            + "[" + PREFIX_VARIANT + "VARIANT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_POSTAL + "611321 "

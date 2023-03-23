@@ -63,10 +63,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
-                .withTags(VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV2).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
-                .withTags(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
     }
 
     /**

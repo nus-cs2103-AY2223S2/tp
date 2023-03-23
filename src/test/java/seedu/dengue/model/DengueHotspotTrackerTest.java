@@ -46,7 +46,7 @@ public class DengueHotspotTrackerTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withTags(VALID_VARIANT_DENV1)
+        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         DengueHotspotTrackerStub newData = new DengueHotspotTrackerStub(newPersons);
@@ -73,7 +73,7 @@ public class DengueHotspotTrackerTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInDengueHotspotTracker_returnsTrue() {
         dengueHotspotTracker.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withTags(VALID_VARIANT_DENV1)
+        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1)
                 .build();
         assertTrue(dengueHotspotTracker.hasPerson(editedAlice));
     }

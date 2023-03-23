@@ -10,7 +10,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPostal(person.getPostal());
         descriptor.setDate(person.getDate());
         descriptor.setAge(person.getAge());
-        descriptor.setTags(person.getTags());
+        descriptor.setVariants(person.getVariants());
     }
 
     /**
@@ -72,12 +72,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code variants} into a {@code Set<Variant>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withVariants(String... variants) {
+        Set<Variant> variantSet = Stream.of(variants).map(Variant::new).collect(Collectors.toSet());
+        descriptor.setVariants(variantSet);
         return this;
     }
 

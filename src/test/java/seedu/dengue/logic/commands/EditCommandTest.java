@@ -56,10 +56,10 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPostal(VALID_POSTAL_BOB)
-                .withTags(VALID_VARIANT_DENV1).build();
+                .withVariants(VALID_VARIANT_DENV1).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPostal(VALID_POSTAL_BOB).withTags(VALID_VARIANT_DENV1).build();
+                .withPostal(VALID_POSTAL_BOB).withVariants(VALID_VARIANT_DENV1).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

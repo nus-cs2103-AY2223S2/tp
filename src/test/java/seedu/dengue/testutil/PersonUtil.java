@@ -11,7 +11,7 @@ import java.util.Set;
 import seedu.dengue.logic.commands.AddCommand;
 import seedu.dengue.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * A utility class for Person.
@@ -34,8 +34,8 @@ public class PersonUtil {
         sb.append(PREFIX_POSTAL + person.getPostal().value + " ");
         sb.append(PREFIX_DATE + person.getDate().value + " ");
         sb.append(PREFIX_AGE + person.getAge().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_VARIANT + s.tagName.toString() + " ")
+        person.getVariants().stream().forEach(
+            s -> sb.append(PREFIX_VARIANT + s.variantName.toString() + " ")
         );
         return sb.toString();
     }
@@ -49,12 +49,12 @@ public class PersonUtil {
         descriptor.getPostal().ifPresent(postal -> sb.append(PREFIX_POSTAL).append(postal.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         descriptor.getAge().ifPresent(address -> sb.append(PREFIX_AGE).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
+        if (descriptor.getVariants().isPresent()) {
+            Set<Variant> variantSet = descriptor.getVariants().get();
+            if (variantSet.isEmpty()) {
                 sb.append(PREFIX_VARIANT);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_VARIANT).append(s.tagName).append(" "));
+                variantSet.forEach(s -> sb.append(PREFIX_VARIANT).append(s.variantName).append(" "));
             }
         }
         return sb.toString();

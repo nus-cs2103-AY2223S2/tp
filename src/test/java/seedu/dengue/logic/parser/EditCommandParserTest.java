@@ -40,7 +40,7 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS); // invalid postal
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_VARIANT_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_VARIANT_DESC, Variant.MESSAGE_CONSTRAINTS); // invalid variant
 
         // invalid postal followed by valid date
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + DATE_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
@@ -94,11 +94,11 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + POSTAL_DESC_BOB + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1 + VARIANT_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_EMPTY + VARIANT_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VARIANT_EMPTY + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
+        // while parsing {@code PREFIX_VARIANT} alone will reset the dengue variants of the {@code Person} being edited,
+        // parsing it together with a valid variant results in error
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1 + VARIANT_EMPTY, Variant.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_EMPTY + VARIANT_DESC_DENV1, Variant.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_EMPTY + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1, Variant.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATE_DESC
@@ -114,7 +114,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
-                .withTags(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -159,9 +159,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // variants
         userInput = targetIndex.getOneBased() + VARIANT_DESC_DENV2;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_VARIANT_DENV2).build();
+        descriptor = new EditPersonDescriptorBuilder().withVariants(VALID_VARIANT_DENV2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -175,7 +175,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
-                .withTags(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
+                .withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -202,11 +202,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetVariants_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + VARIANT_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withVariants().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

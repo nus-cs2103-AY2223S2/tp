@@ -56,9 +56,9 @@ public class PersonCard extends UiPart<Region> {
         age.setText(String.format(AGE_FORMAT, person.getAge().value));
         postal.setText(String.format(POSTAL_FORMAT, person.getPostal().value));
         date.setText(String.format(DATE_FORMAT, person.getDate().value));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(variant -> variant.tagName))
-                .forEach(variant -> variants.getChildren().add(new Label(variant.tagName.toString())));
+        person.getVariants().stream()
+                .sorted(Comparator.comparing(variant -> variant.variantName))
+                .forEach(variant -> variants.getChildren().add(new Label(variant.variantName.toString())));
     }
 
     @Override

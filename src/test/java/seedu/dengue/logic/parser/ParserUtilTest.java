@@ -18,7 +18,7 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -149,48 +149,48 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseVariant_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVariant(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_VARIANT));
+    public void parseVariant_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVariant(INVALID_VARIANT));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_VARIANT_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_VARIANT_1));
+    public void parseVariant_validValueWithoutWhitespace_returnsVariant() throws Exception {
+        Variant expectedVariant = new Variant(VALID_VARIANT_1);
+        assertEquals(expectedVariant, ParserUtil.parseVariant(VALID_VARIANT_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_VARIANT_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_VARIANT_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseVariant_validValueWithWhitespace_returnsTrimmedVariant() throws Exception {
+        String variantWithWhitespace = WHITESPACE + VALID_VARIANT_1 + WHITESPACE;
+        Variant expectedVariant = new Variant(VALID_VARIANT_1);
+        assertEquals(expectedVariant, ParserUtil.parseVariant(variantWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseVariants_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVariants(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_VARIANT_1, INVALID_VARIANT)));
+    public void parseVariants_collectionWithInvalidVariants_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVariants(Arrays.asList(VALID_VARIANT_1, INVALID_VARIANT)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseVariants_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseVariants(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_VARIANT_1, VALID_VARIANT_2));
-        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_VARIANT_1), new Tag(VALID_VARIANT_2)));
+    public void parseVariants_collectionWithValidVariants_returnsVariantSet() throws Exception {
+        Set<Variant> actualVariantSet = ParserUtil.parseVariants(Arrays.asList(VALID_VARIANT_1, VALID_VARIANT_2));
+        Set<Variant> expectedVariantSet = new HashSet<>(Arrays.asList(new Variant(VALID_VARIANT_1), new Variant(VALID_VARIANT_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedVariantSet, actualVariantSet);
     }
 }

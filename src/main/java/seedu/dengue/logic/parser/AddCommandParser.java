@@ -17,7 +17,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -43,9 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Postal postal = ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_VARIANT));
+        Set<Variant> variantList = ParserUtil.parseVariants(argMultimap.getAllValues(PREFIX_VARIANT));
 
-        Person person = new Person(name, postal, date, age, tagList);
+        Person person = new Person(name, postal, date, age, variantList);
 
         return new AddCommand(person);
     }
