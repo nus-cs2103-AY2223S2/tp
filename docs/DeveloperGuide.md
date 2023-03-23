@@ -272,7 +272,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the details on how the common commands are implemented.
+
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+
+### FindXYZCommand
+
+The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the same as those provided during the `add` and `edit` command.
+For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
+
+The parser for the `find` command would extract out the arguments corresponding to each particular field.
+
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
+
+The following activity diagram summarizes what happens when the user executes the `find` command.
+
+<p align="center">
+    <img src="images/FindCommandActivityDiagram.svg">
+</p>
 
 ### \[Proposed\] Undo/redo feature
 
