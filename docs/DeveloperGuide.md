@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -125,12 +125,6 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -286,6 +280,24 @@ While designing the Quick Access Buttons on the Student Card, several alternativ
     * Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
     * Can require additional resources and time to design and implement compared to other alternatives.
 
+### School and GradeLevel Fields
+
+#### v1.2 Implementation of School and GradeLevel Fields
+
+As of v1.2, School and GradeLevel fields are parsed via the `AddCommandParser` class. `AddCommandParser#parse` method 
+checks whether the prefixes for school and/or gradelevel are present, and if present, then adds it to 
+the new student as `Tags`. They are then treated throughout the program the same as other `Tags`.
+
+It has been implemented this way for its ease of implementation, and because it shows the School and GradeLevel 
+in the Students list view, without having to open up the student's profile.
+
+#### New Implementation of School and GradeLevel Fields in v1.3
+
+In v1.3, we are adding School and GradeLevel as separate fields in the Student's profile, instead of `Tags`. These will 
+show up in the Student Profile view.
+
+This is to reduce the number of Tags placed under each Student's name in the Students list view, making it look less 
+cluttered.
 
 ### \[Proposed\] Undo/redo feature
 
