@@ -8,6 +8,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 
 /**
@@ -51,6 +53,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
     public static final String MESSAGE_PARSE_DURATION = "Please give both the starting and ending timings";
     public static final String MESSAGE_PAST_APPOINTMENT = "The appointment has already passed";
+    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient does not have previous appointments for the needed vaccine";
+    public static final String MESSAGE_EXIST_VAX_REQ = "The Patient already has an appointment for this vaccine dose";
+    public static final String MESSAGE_EXISTING_APPOINTMENT = "This patient already has an upcoming appointment";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -95,6 +100,16 @@ public class EditCommand extends Command {
         // Checks if the appointment to be edited has not passed
         if (appointmentToEdit.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
             throw new CommandException(MESSAGE_PAST_APPOINTMENT);
+        }
+
+        // Checks for no existing next appointment
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(editedAppointment.getPatient())
+                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+                throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
+            }
         }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
