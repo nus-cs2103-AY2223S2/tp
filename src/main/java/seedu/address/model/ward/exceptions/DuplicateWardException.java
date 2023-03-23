@@ -9,3 +9,4 @@ public class DuplicateWardException extends RuntimeException {
         super("Operation would result in duplicate wards");
     }
 }
+

@@ -48,8 +48,18 @@ public class Ward {
         return name.toString().matches(VALIDATION_REGEX);
     }
 
-    public String getName() {
+    public Name getName() {
+        return name;
+    }
+    public Capacity getCapacity() {
+        return capacity;
+    }
+    public String getNameString() {
         return name.toString();
+    }
+
+    public String getCapacityString() {
+        return capacity.toString();
     }
 
     public boolean isSameWard(Ward other) {
@@ -138,6 +148,5 @@ public class Ward {
     public int hashCode() {
         return patients.hashCode();
     }
-
 
 }

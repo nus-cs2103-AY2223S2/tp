@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.model.ward.exceptions.DuplicateWardException;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
@@ -33,6 +34,14 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
+
+    /**
+     * Initializes wardlist with default Waiting Room ward with capacity of 30 inside.
+     */
+    public UniqueWardList() {
+        Ward waitingRoom = new Ward(new Name("Waiting Room"), new Capacity(30));
+        add(waitingRoom);
+    }
 
     /**
      * Returns size of list.

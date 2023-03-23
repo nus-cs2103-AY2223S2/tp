@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.ward.Ward;
 import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandTest {
@@ -108,6 +109,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //// Patient methods ==========================================================================================
         @Override
         public void addPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
@@ -150,6 +152,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //// Ward methods ==========================================================================================
+        @Override
+        public void addWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteWard(Ward target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setWard(Ward target, Ward editedWard) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Ward> getFilteredWardList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredWardList(Predicate<Ward> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

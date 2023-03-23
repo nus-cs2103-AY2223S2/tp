@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
+    private WardListPanel wardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane patientListPanelPlaceholder;
+    @FXML
+    private StackPane wardListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +116,9 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
+        wardListPanel = new WardListPanel(logic.getFilteredWardList());
+        wardListPanelPlaceholder.getChildren().add(wardListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -165,6 +171,9 @@ public class MainWindow extends UiPart<Stage> {
 
     public PatientListPanel getPatientListPanel() {
         return patientListPanel;
+    }
+    public WardListPanel getWardListPanel() {
+        return wardListPanel;
     }
 
     /**
