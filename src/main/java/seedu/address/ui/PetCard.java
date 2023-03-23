@@ -62,7 +62,7 @@ public class PetCard extends UiPart<Region> {
         address.setText(pet.getAddress().value);
         email.setText(pet.getEmail().value);
         LocalDateTime arrival = pet.getTimeStamp();
-        String amt = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * (0.01));
+        String amt = String.valueOf(Math.max(0, Duration.between(arrival, LocalDateTime.now()).getSeconds() * (0.01)));
         amountDue.setText(amt);
         deadline.setText(pet.getDeadline().toString());
         pet.getTags().stream()
