@@ -65,6 +65,16 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' todo list file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Returns the user prefs' note list file path.
+     */
+    Path getNoteListFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);

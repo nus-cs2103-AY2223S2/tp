@@ -14,7 +14,7 @@ import seedu.address.model.task.TitleContainsKeywordsPredicate;
  */
 public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "find_tn";
+    public static final String COMMAND_WORD = "find_task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all todos and notes whose names "
             + "contain any of the specified keywords (case-insensitive) "
