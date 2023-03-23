@@ -40,10 +40,14 @@ task coverage(type: JacocoReport) {
     }
 }
 
+run {
+    enableAssertions = true
+}
+
 dependencies {
     implementation 'joda-time:joda-time:2.12.2'
     // https://mvnrepository.com/artifact/io.github.p-org.solvers/z3
-    implementation group: 'io.github.p-org.solvers', name: 'z3', version: '4.8.14-v5'
+    //implementation group: 'io.github.p-org.solvers', name: 'z3', version: '4.8.14-v5'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
