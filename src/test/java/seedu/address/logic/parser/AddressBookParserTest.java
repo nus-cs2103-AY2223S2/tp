@@ -25,6 +25,7 @@ import seedu.address.logic.commands.txncommands.ListTxnCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTxnDescriptorBuilder;
@@ -136,9 +137,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addTask() throws Exception {
-        final String task = "Some task.";
+        final Task task = new Task("Some task.");
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_TASK + task);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_TASK + task.value);
         assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
     }
 }

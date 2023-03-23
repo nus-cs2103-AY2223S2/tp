@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddTaskCommand.
@@ -26,7 +27,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute() {
-        final String task = "Some task";
+        final Task task = new Task("Some task");
 
         assertCommandFailure(new AddTaskCommand(INDEX_FIRST_PERSON, task), model,
                 String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), task));
@@ -34,10 +35,12 @@ public class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        final AddTaskCommand standardCommand = new AddTaskCommand(INDEX_FIRST_PERSON, VALID_TASK_AMY);
+        final AddTaskCommand standardCommand = new AddTaskCommand(INDEX_FIRST_PERSON,
+                new Task(VALID_TASK_AMY));
 
         // same values -> returns true
-        AddTaskCommand commandWithSameValues = new AddTaskCommand(INDEX_FIRST_PERSON, VALID_TASK_AMY);
+        AddTaskCommand commandWithSameValues = new AddTaskCommand(INDEX_FIRST_PERSON,
+                new Task(VALID_TASK_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -50,9 +53,11 @@ public class AddTaskCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddTaskCommand(INDEX_SECOND_PERSON, VALID_TASK_AMY)));
+        assertFalse(standardCommand.equals(new AddTaskCommand(INDEX_SECOND_PERSON,
+                new Task(VALID_TASK_AMY))));
 
         // different task -> returns false
-        assertFalse(standardCommand.equals(new AddTaskCommand(INDEX_FIRST_PERSON, VALID_TASK_BOB)));
+        assertFalse(standardCommand.equals(new AddTaskCommand(INDEX_FIRST_PERSON,
+                new Task(VALID_TASK_BOB))));
     }
 }

@@ -14,6 +14,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -32,6 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_JOBTITLE = "industrial engineer";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_TASK = "";
     private Name name;
     private Gender gender;
     private Phone phone;
@@ -42,6 +44,7 @@ public class PersonBuilder {
     private JobTitle jobTitle;
     private Address address;
     private Remark remark;
+    private Task task;
     private Set<Tag> tags;
 
     /**
@@ -58,6 +61,7 @@ public class PersonBuilder {
         jobTitle = new JobTitle(DEFAULT_JOBTITLE);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
+        task = new Task(DEFAULT_TASK);
         tags = new HashSet<>();
     }
 
@@ -75,6 +79,7 @@ public class PersonBuilder {
         jobTitle = personToCopy.getJobTitle();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
+        task = personToCopy.getTask();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -165,7 +170,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Task} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTask(String task) {
+        this.task = new Task(task);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags);
+        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags, task);
     }
 }

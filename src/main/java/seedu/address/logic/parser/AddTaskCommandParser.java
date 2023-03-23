@@ -8,14 +8,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Task;
 
 /**
- * Parses input arguments and creates a new {@code RemarkCommand} object
+ * Parses input arguments and creates a new {@code AddTaskCommand} object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code addTaskCommand}
+     * and returns a {@code AddTaskCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
@@ -29,8 +30,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), ive);
         }
 
-        String remark = argMultimap.getValue(PREFIX_ADD_TASK).orElse("");
+        String task = argMultimap.getValue(PREFIX_ADD_TASK).orElse("");
 
-        return new AddTaskCommand(index, remark);
+        return new AddTaskCommand(index, new Task(task));
     }
 }

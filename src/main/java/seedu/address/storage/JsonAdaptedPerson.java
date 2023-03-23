@@ -21,6 +21,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -183,7 +184,9 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final Task modelTask = new Task(""); //TODO: Implement parsing and marshalling in the storage commit.
+
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelCompany, modelIndustry,
-                modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags);
+                modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags, modelTask);
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.model.person.Task;
 
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
@@ -20,12 +21,13 @@ public class AddTaskCommandParserTest {
         // have task
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_ADD_TASK + nonEmptyTask;
-        AddTaskCommand expectedCommand = new AddTaskCommand(INDEX_FIRST_PERSON, nonEmptyTask);
+        AddTaskCommand expectedCommand = new AddTaskCommand(INDEX_FIRST_PERSON,
+                new Task(nonEmptyTask));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no task
         userInput = targetIndex.getOneBased() + " " + PREFIX_ADD_TASK;
-        expectedCommand = new AddTaskCommand(INDEX_FIRST_PERSON, "");
+        expectedCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

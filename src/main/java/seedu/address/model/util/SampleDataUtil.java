@@ -17,13 +17,15 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Task;
+import seedu.address.model.tag.Tag;;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
+    public static final Task EMPTY_TASK = new Task("");
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"),
@@ -36,7 +38,8 @@ public class SampleDataUtil {
                 new JobTitle("procurement officer"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 EMPTY_REMARK,
-                getTagSet("friends")),
+                getTagSet("friends"),
+                EMPTY_TASK),
             new Person(new Name("Bernice Yu"),
                 new Gender("female"),
                 new Phone("99272758"),
@@ -47,7 +50,8 @@ public class SampleDataUtil {
                 new JobTitle("industrial engineer"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 EMPTY_REMARK,
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"),
+                EMPTY_TASK),
             new Person(new Name("Charlotte Oliveiro"),
                 new Gender("female"),
                 new Phone("93210283"),
@@ -58,7 +62,8 @@ public class SampleDataUtil {
                 new JobTitle("CEO"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 EMPTY_REMARK,
-                getTagSet("neighbours")),
+                getTagSet("neighbours"),
+                EMPTY_TASK),
             new Person(new Name("David Li"),
                 new Gender("male"),
                 new Phone("91031282"),
@@ -69,7 +74,8 @@ public class SampleDataUtil {
                 new JobTitle("tech lead"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 EMPTY_REMARK,
-                getTagSet("family")),
+                getTagSet("family"),
+                EMPTY_TASK),
             new Person(new Name("Irfan Ibrahim"),
                 new Gender("male"),
                 new Phone("92492021"),
@@ -80,7 +86,8 @@ public class SampleDataUtil {
                 new JobTitle("software developer"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 EMPTY_REMARK,
-                getTagSet("classmates")),
+                getTagSet("classmates"),
+                EMPTY_TASK),
             new Person(new Name("Roy Balakrishnan"),
                 new Gender("male"),
                 new Phone("92624417"),
@@ -91,7 +98,8 @@ public class SampleDataUtil {
                 new JobTitle("research instructor"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 EMPTY_REMARK,
-                getTagSet("colleagues"))
+                getTagSet("colleagues"),
+                EMPTY_TASK)
         };
     }
 
