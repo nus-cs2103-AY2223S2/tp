@@ -260,11 +260,11 @@ A Help Window will be opened either by entering the `help` command, or by clicki
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
 information, the user can choose to view the comprehensive User Guide instead.
 
-<img src="images/HelpActivityDiagram.png" width="300" />
+<img src="images/HelpActivityDiagram.png" width="330" />
 
 #### Design Considerations
 
-#### Aspect: How the help sheet will be viewed
+#### Aspect: Contents of help window
 **Alternative 1 (Current choice):** Display as a separate window, with concise details included in the sheet.
 * Pros: Serves as a quick reference for the user, without having to go online to view the full comprehensive User Guide.
 * Cons: Major updates in command implementations will have to be updated in the help sheet too, in addition to the online User Guide.
@@ -275,7 +275,7 @@ information, the user can choose to view the comprehensive User Guide instead.
 
 <br>
 
-#### Aspect: How different methods are viewed by user
+#### Aspect: Viewing of various command instructions
 **Alternative 1 (Current choice):** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
 * Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
 * Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
