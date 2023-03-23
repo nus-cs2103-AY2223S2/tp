@@ -182,10 +182,8 @@ This command displays the details of all employees in order of their employee ID
 
 #### Implementation
 
-The list of employees to be displayed is stored in the `Model` as a `FilteredList`,
-which is based on the full source list of all employees.
-When a `Predicate` is set for the `FilteredList`, 
-the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
 
 Below is a sequence diagram and the explanation of the `list` command.
 
@@ -193,16 +191,14 @@ Below is a sequence diagram and the explanation of the `list` command.
 
 Step 1. User enters the command `list`.
 
-Step 2. `LogicManager#execute` method is called on the user input. 
+Step 2. `LogicManager#execute` method is called on the user input.
 This prompts the `ExecutiveProParser` to parse the user input, which then returns a `ListCommand` object.
 
-Step 3. The `execute` method of this `ListCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` 
-to set the `Predicate` of the `FilteredList` to one that always evaluates to `true` for any `Employee`.
+Step 3. The `execute` method of this `ListCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that always evaluates to `true` for any `Employee`.
 
 Step 4. Every `Employee` now satisfies the `Predicate`, so the `FilteredList` updates to contain every employee in the source list.
 
-Step 5. The `UI` component listens to changes in this `FilteredList`, 
-and updates the GUI to display this list of all employees to the user.
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of all employees to the user.
 
 ### Change Theme Feature: `theme`
 This command changes the appearance of ExecutivePro's GUI to the specified theme.
@@ -219,10 +215,9 @@ Step 1. User enters a valid command, e.g. `theme light`.
 
 Step 2. `LogicManager` parses and executes the command, and returns to the `MainWindow` a `CommandResult` object containing the specified theme "light".
 
-Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then calls its own `handleChangeTheme` method with this theme. 
+Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then calls its own `handleChangeTheme` method with this theme.
 
-Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, 
-and adds in the desired stylesheets matching the theme "light".
+Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
 
