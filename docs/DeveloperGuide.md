@@ -95,6 +95,8 @@ to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls th
 
 Finally, the `CommandResult` is returned which is the message the user will see indicating a successful deletion.
 
+<img src="images/WingmanDeleteXYZSequenceDiagram.png" width="966">
+
 **Why was it implemented this way?**
 
 For the parsing logic in the Wingman app, the commands were split based on their related "mode." This implementation 
