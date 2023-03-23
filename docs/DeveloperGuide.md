@@ -523,7 +523,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
     * 5a1. OfficeConnect shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2. 
 
 ---
 **Use case 5: Remove assignment of task from a person**
@@ -559,6 +559,9 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 5a1. OfficeConnect shows an error message.
 
       Use case resumes at step 2.
+
+**Below is an activity diagram showcasing removing assignment of task from a person:**
+<img src="images/UnassignActivity.png" width="250" />
 
 ---
 
