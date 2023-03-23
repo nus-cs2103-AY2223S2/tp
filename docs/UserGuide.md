@@ -117,9 +117,9 @@ sub-section in this User Guide so that it is easy for you to jump across differe
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
 This User Guide contains many clickable links for you to navigate around different sections.
-You may use the keyboard shortcuts <code>Alt + Left arrow`</code>  and <code>`Alt + Right arrow`</code>
-to navigate back and forth between the links quickly. (<code>Command + Left arrow`</code> and
-<code>`Command + Right arrow`</code> if you are using Mac).
+You may use the keyboard shortcuts <code>Alt + Left arrow</code>  and <code>Alt + Right arrow</code>
+to navigate back and forth between the links quickly. (<code>Command + Left arrow</code> and
+<code>Command + Right arrow</code> if you are using Mac).
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -340,17 +340,19 @@ feel the need to record a note for this applicant.
 
 The command you would like to enter into the command box would be:
 
-```add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230```
+```
+add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
+```
 <br> <br>
 
 Alternatively, executing these would do the same thing:
 
-* ```add n/Thomas e/thomas@gmail.com p/91918153 a/6 Sims Drive (s)543230```
+* `add n/Thomas e/thomas@gmail.com p/91918153 a/6 Sims Drive (s)543230`
 
   This is because the order of the flags does not matter.
 <br> <br>
 
-* ```add n/Thomas p/91918153 e/thomas@gmail.com n/Sally p/97833468 a/6 Sims Drive (s)543230```
+* `add n/Thomas p/91918153 e/thomas@gmail.com n/Sally p/97833468 a/6 Sims Drive (s)543230`
 
   In this case, the name "Thomas" will be overridden by "Sally", and the phone "91918153" 
 will be overridden by "97833468".
@@ -358,15 +360,15 @@ will be overridden by "97833468".
 
 However, note that the following executions are invalid:
 
-* ```addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230```
+* `addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
 
   There must be between the placeholders and flags.
 
-* ```add n/ThomaŚ p/91918153 e/thomas@gmail.com a/6 Sims Drivè (s)543230```
+* `add n/ThomaŚ p/91918153 e/thomas@gmail.com a/6 Sims Drivè (s)543230`
 
   The restrictions of placeholders are not followed.
 
-* ```add```
+* `add`
 
   There is insufficient information provided; you must minimally provide a name.
 
@@ -389,7 +391,9 @@ For example, after adding an applicant, you decided to see the list of applicant
 
 The command you would like to enter into the [Command Input Box](#51-user-interface) would be:
 
-```list```
+```
+list
+```
 
 You should now have a better understanding of how commands are formatted and used. All commands are consolidated
 in the [Command Summary](#7-command-summary).
@@ -401,6 +405,7 @@ Here is a checklist you can use before running a command:
 * [ ] I know the flags for each parameter to be supplied
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
+
 
 ## 6. Commands
 
@@ -452,7 +457,9 @@ HMHero does not already contain an applicant with the name "Thomas".
 
 **Command Input Box:**
 
-```add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230```
+```
+add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
+```
 
 **Command Output Box:**
 ```
@@ -508,7 +515,9 @@ HMHero contains the following applicants:
 
 **Command Input Box:**
 
-```find n/Thomas p/98765432```
+```
+find n/Thomas p/98765432
+```
 
 **Command Output Box:**
 
@@ -544,7 +553,9 @@ HMHero contains the following applicants, each with their own attributes:
 
 **Command Input Box:**
 
-```list```
+```
+list
+```
 
 **Command Output Box:**
 ```
@@ -591,7 +602,9 @@ HMHero contains the following applicants, each with their own attributes:
 
 **Command Input Box:**
 
-```delete n/Thomas p/91918153```
+```
+delete n/Thomas p/91918153
+```
 
 **Command Output Box:**
 
@@ -644,9 +657,9 @@ HMHero contains the following applicants, each with their own attributes:
 
 **Command Input Box:**
 
-1. ```advance n/Thomas p/91918153 d/20-03-2023 12:12```
+1. `advance n/Thomas p/91918153 d/20-03-2023 12:12`, followed by
 
-2. ```advance n/Thomas Tan p/91818153```
+2. `advance n/Thomas Tan p/91818153`
 
 **Command Output Box:**
 ```
@@ -663,7 +676,7 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 
 #### 6.1.6. Reject an applicant: `reject`
 
-**Format**: `reject n/NAME p/PHONE
+**Format**: `reject n/NAME p/PHONE`
 
 > Rejects an applicant in HMHero using name and phone
 
@@ -689,7 +702,9 @@ HMHero contains the following applicants, each with their own attributes:
 
 **Command Input Box:**
 
-```reject n/Thomas p/91918153 d/20-03-2023 12:12```
+```
+reject n/Thomas p/91918153 d/20-03-2023 12:12
+```
 
 **Command Output Box:**
 
@@ -723,7 +738,9 @@ HMHero contains the following applicants, each with their own attributes:
 
 **Command Input Box:**
 
-```interview```
+```
+interview
+```
 
 **Command Output Box:**
 ```
@@ -775,7 +792,9 @@ For example, "15" would represent 15th hour of the day. </ul>
 
 **Command Input Box:**
 
-```edit 1 p/97833468 n/Tammy note/Python note/Java```
+```
+edit 1 p/97833468 n/Tammy note/Python note/Java
+```
 
 **Command Output Box:**
 ```
@@ -829,9 +848,11 @@ Possible inputs:
 ```
 help
 ```
+
 ```
 help delete
 ```
+
 ```
 help help
 ```
