@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
@@ -230,8 +231,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Pair<String, String>> getDeckNameList() {
-        return selectedDeck.getDeckNameList();
+    public ObservableList<Pair<String, String> > getDeckNameList() {
+        ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
+        placeholder.add(new Pair("Current Deck:","No deck selected!"));
+        return Optional.ofNullable(selectedDeck)
+                .map(Deck::getDeckNameList)
+                .orElse(placeholder);
     }
 
     @Override
