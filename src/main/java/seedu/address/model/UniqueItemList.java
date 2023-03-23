@@ -58,7 +58,7 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
                 && !target.hasSameId(editedItem)) {
             throw new DuplicateItemException();
         }
-        
+
 
         internalList.set(index, editedItem);
     }

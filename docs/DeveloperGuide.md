@@ -364,7 +364,6 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
 * holds a managerial role
 * has a need to manage a significant number of subordinates
 * has a need to assign large number of tasks to subordinates
