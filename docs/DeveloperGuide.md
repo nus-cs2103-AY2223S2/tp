@@ -24,7 +24,7 @@ emails are sent during working hours, so that subordinates will not be disturbed
 OfficeConnect is a brownfield Java project based on
 the [AB3 project template](https://github.com/se-edu/addressbook-level3)
 by [se-education.org](https://se-education.org).
-* Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
+* Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
 * [JUnit5](https://junit.org/junit5/)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java) 
+(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -74,7 +74,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
@@ -401,7 +401,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - The task should be saved to persistent storage so that it is not lost when I exit the app.
 
 ## Example Usage
-
 
 > addtask s/Draft proposal c/Complete proposal by 1st March st/false
 - New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
