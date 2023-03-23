@@ -76,8 +76,7 @@ public class FindTaskCommand extends Command {
     private static ObservableList<AssignTask> getAssignedPersonList(OfficeConnectModel officeConnectModel, Id tId) {
         RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
         return personTaskModelManager
-                .getFilteredItemList()
-                .filtered(persontask -> persontask.getTaskId().equals(tId));
+                .filterItemList(persontask -> persontask.getTaskId().equals(tId));
     }
 
     @Override

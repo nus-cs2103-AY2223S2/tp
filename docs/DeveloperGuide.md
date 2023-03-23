@@ -250,7 +250,48 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Find
+Syntax: `find [NAME]` </br>
+Purpose: Allow users to search and review the list of tasks assigned to the specified person. 
+
+#### Implementation
+The implementation of this feature is supported by `FindCommand` and `FindCommandParser`.
+
+Below is an activity diagram that illustrates the control flow for the Find feature. </br>
+
+![FindTaskActivitySequenceDiagram](images/FindActivityDiagram.png)
+
+#### Findtask
+Syntax: `findtask [TASKNAME]` </br>
+Purpose: Allow users to search and review the group of individuals assigned to the specified task.
+
+#### Implementation
+The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
+
+Below is an activity diagram that illustrates how a user finds who are assigned to a task. </br>
+
+![FindTaskActivitySequenceDiagram](images/FindTaskActivitySequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: Form of query**
+
+* **Alternative 1 (current choice):** Query using TASK_TITLE
+    * Pros: More intuitive as users do not have to keep track of the list index of the tasks. 
+    Able to query for tasks that are already logged in OfficeConnect using the title of the task.
+    * Cons: Length of commands are dependent on length of title. Users have to remember the name of the tasks.
+
+* **Alternative 2:** Query using INDEX
+    * Pros: Shorter command to type out.
+    * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
+      to execute the findtask command if the current display is empty.
+
+#### Edittask
+Syntax: `edittask INDEX title/TITLE c/CONTENT st/STATUS` </br>
+Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
+
+#### Implementation
+The implementation of this feature is supported by `EditTaskCommand` and `EditTaskCommandParser`.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -293,6 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- |--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                      | refer to instructions when I forget how to use the App                 |
 | `* * *`  | manager                                    | add tasks                                   |                                                                        |
+| `* * *`  | manager                                    | edit tasks                                  | keep the task updated with the most updated information                |
 | `* * *`  | manager                                    | delete tasks                                | remove tasks that I no longer need                                     |
 | `* * *`  | manager                                    | find tasks assigned to specific subordinate | better manage my subordinates workload                                 |
 | `* * *`  | manager                                    | check all ongoing tasks available           | better delegate my tasks                                               |
@@ -649,7 +691,8 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 
 ### Glossary
-1. Unassign: remove assignment of task from the person.
+#### *U*
+* **Unassign**: remove assignment of task from the person.
 
 #### *M*
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
