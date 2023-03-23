@@ -28,7 +28,6 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyReroll getReroll();
 
