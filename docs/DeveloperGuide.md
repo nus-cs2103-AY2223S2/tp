@@ -636,7 +636,16 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 #### **List Command**
 
-{to be filled}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
+
+The `list` command will allow users to view all the contacts saved in `EduMate`.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `list`: lists all contacts in the EduMate Application.
+
+</div>
 
 #### **Exit Command**
 
@@ -688,7 +697,15 @@ the participants could meet up.
 Integration with the `LocationUtil` so that we can find the exact location of every participant
 before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
 
-###
+### **Organise Command**
+
+<div markdown="span" class="alert alert-warning">
+    :construction: Slated for release in v1.3b.
+</div>
+
+The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+
+The `Scheduler` will check if the timing is a suitable for every participant to meet.
 
 ### **Parsers**
 
