@@ -157,6 +157,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View Feature
+
+### Current Implementation
+
+* How the feature is implemented (or is going to be implemented).
+
+* Why it is implemented that way.
+
+* Alternatives considered.
+
+
+Sequence diagram
+
+
+
+
+
+
+
+
 ### Undo/Redo Feature
 
 #### Current Implementation
