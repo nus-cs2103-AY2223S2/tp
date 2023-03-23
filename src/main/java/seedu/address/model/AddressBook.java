@@ -5,12 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Consultation;
-import seedu.address.model.event.Lab;
-import seedu.address.model.event.Tutorial;
-import seedu.address.model.event.UniqueConsultationList;
-import seedu.address.model.event.UniqueLabList;
-import seedu.address.model.event.UniqueTutorialList;
+import seedu.address.model.event.*;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -25,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTutorialList tutorials;
     private final UniqueLabList labs;
     private final UniqueConsultationList consultations;
+    private final NoteList notes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -38,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials = new UniqueTutorialList();
         labs = new UniqueLabList();
         consultations = new UniqueConsultationList();
+        notes = new NoteList();
     }
 
     public AddressBook() {}
@@ -287,6 +284,22 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeConsultation(Consultation key) {
         consultations.remove(key);
+    }
+
+    /**
+     * Returns true if a note with the same identity as {@code note} exists in the address book.
+     */
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return notes.contains(note);
+    }
+
+    /**
+     * Adds note to address book note list
+     * @param note The note to add.
+     */
+    public void addNote(Note note) {
+        notes.add(note);
     }
 
     //// util methods

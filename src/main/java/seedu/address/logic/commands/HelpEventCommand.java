@@ -11,9 +11,9 @@ public class HelpEventCommand extends HelpCommand {
     public static final String COMMAND_WORD = "event";
 
     public static final String EVENT_CATEGORIES = "Event categories:\n"
-            + "tutorial\n"
-            + "lab\n"
-            + "consultation";
+            + "help event tutorial\n"
+            + "help event lab\n"
+            + "help event consultation";
 
     /**
      * Checks the argument and return the desired event help command

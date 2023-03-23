@@ -314,6 +314,182 @@ The following activity diagram summarizes what happens when a TA executes an del
   
 This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
   a lot of cases which is why it is not allowed for now.
+
+### Add Students to Events feature
+
+#### Current Implementation
+
+The current Add Students to Events (addStudent) feature is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
+
+The addStudent feature implements the following operations:
+* `Event#addStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
+* `AddressBook#addStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
+* `AddressBook#addStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
+* `AddressBook#addStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
+* `Model#addStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
+* `Model#addStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
+* `Model#addStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+
+These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#addStudent(Person student)` operation is also implemented in all `Event` subclasses.
+
+Given below is an example usage scenario and how the addStudent mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised to be empty.
+
+Step 2. The user executes `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` to add a student.
+
+Step 3. The user executes `touch tutorial Tutorial/tut` to add an Event.
+
+Step 4. The user executes `addStudent 1 Tutorial/tut` to add the first student in the Person list into the Event(tutorial) called "tut". 
+
+The following activity diagram summarizes what happens when a TA executes an add student to event:
+
+<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How the command input is structured**
+
+* **Alternative 1 (current choice):** Chooses the student from a list of students.
+    * Pros: Do not have to fill in all student details for every addStudent command.
+    * Cons: May be difficult to find student when total student size gets big.
+
+* **Alternative 2:** Enter student details for every addStudent command.
+    * Pros: Do not have to maintain a student list (can get messy with lots of students)
+    * Cons: More troublesome to key in 1 student to multiple Events compared to Alternative 1.
+
+_{more aspects and alternatives to be added}_
+
+### \[Proposed\] Delete Operation for Students within Event
+
+#### Proposed Implementation
+
+The proposed mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
+
+The addStudent feature implements the following operations:
+* `Event#deleteStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
+* `AddressBook#deleteStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
+* `AddressBook#deleteStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
+* `AddressBook#deleteStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
+* `Model#deleteStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
+* `Model#deleteStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
+* `Model#deleteStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+
+These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#deleteStudent(Person student)` operation is also implemented in all `Event` subclasses.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application. The user has already used the application before and has an `Event` established with a non-empty student list.
+
+Step 2. The user executes `delete student 1 Tutorial/tut` to delete the student at index 1 (1-based) of the student list in the `Tutorial` named tut.
+
+The following activity diagram summarizes what happens when a TA executes an delete student from event:
+
+<img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+_{more aspects and alternatives to be added}_
+
+
+### \[Proposed\] Help feature
+
+#### Proposed Implementation
+
+The proposed Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
+and asking the user to visit the webpage to view the commands, this new Help feature will display the commands in the
+result box. This facilitates the user's usage by providing easy in-app reference instead of having to refer to an
+external window. Switch-Case will be used to identify subsequent commands and parse() method will be implemented
+for helps with deeper abstractions.
+
+<img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="550" />
+
+As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Sort/Filter(Organisation).
+
+#### Usage Example
+
+Command chaining will be used for this feature. Upon entering `help` into the command box, the 3 categories will be displayed.
+To choose the desired category, user will have to chain down the command by entering `help event`. Subsequently
+`help event lab` to access Lab related helps.
+
+#### Design Considerations
+
+Why Command Chaining was used?
+
+PROS
+* Seasoned users will be able to pinpoint the help they require in the future in 1 command
+* Specific syntax will be displayed instead of displaying everything and letting the user find themselves
+* Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire
+
+CONS
+* User will have to type quite a bit
+
+#### Possible Updates
+
+Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
+more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+After the user types "/filter [group] [criteria] [threshold]" and clicks "enter", our system will parse the input given
+and detect that it is a "filter" command that is being called.
+
+1. Depending on the "[group]" typed by the user, our system goes to the AddressBook in storage and
+   accesses the relevant Unique[group]List. For example, if the desired group is the "tutorial" group,
+   then "UniqueTutorialList" will be accessed to iterate through the people in that group.
+
+2. Our system iterates through each Person object in the list and creates a new list that only stores
+   People objects whose criteria value is below the given threshold.
+
+3. Our system finally displays all the Person objects in the form of a table to the user.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+Todo: add clean image of activity diagram
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Iterates through the existing list and manually filters the desired ones.
+    * Pros: Easy to implement.
+    * Cons: Takes up extra space.
+
+* **Alternative 2:** Uses the previously implemented 'sort' method and set visibility of people whose criteria
+  is lower than threshold to be 0% (hide them from view))
+  itself.
+    * Pros: Will use less space and uses previously implemented code for abstraction.
+    * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
+
+### \[Proposed\] Note feature
+
+#### Proposed Implementation
+
+The proposed CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `add note`, `list note`, `delete note`, and `edit note`. The Teaching Assistant (TA) using the application will be able to:
+
+* Add a new note to an event which will be saved in the corresponding event's current address book state in its history.
+* List all notes for an event which are saved in the corresponding event's current address book state in its history.
+* Delete a note for an event which is saved in the corresponding event's current address book state in its history.
+* Edit/Update a note for an event which is saved in the corresponding event's current address book state in its history.
+
+The following activity diagram summarizes what happens when a TA executes a note-related command.
+
+<img src="images/TrAcker-activity-diagrams/NoteActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How CRUD notes executes:**
+
+* **Alternative 1 (current choice):** Make note an attribute of event objects, and updates to notes are executed at the event level.
+    * Pros: Easier to manage a list of notes and design the GUI.
+    * Cons: Less flexible with individual note operation such as note merges.
+
+* **Alternative 2:** Make note object parallel with event and reference event from notes.
+    * Pros: Harder to manage a list objects and cause additional memory overhead.
+    * Cons: Easier to sort notes based on event dates.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

@@ -27,7 +27,9 @@ public class PhotoCommandParser implements Parser<PhotoCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PhotoCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PhotoCommand.MESSAGE_USAGE
+                    + "\n"
+                    + PhotoCommand.PHOTO_EXAMPLE), ive);
         }
 
         String photo = argMultimap.getValue(PREFIX_PHOTO).orElse("");

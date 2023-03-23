@@ -19,13 +19,10 @@ public class PhotoCommand extends Command {
 
     public static final String COMMAND_WORD = "photo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the photo of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing photo will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "photo/ [PHOTO]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+    public static final String MESSAGE_USAGE = "Photo Syntax: INDEX (must be a positive integer) "
+            + "photo/ [PHOTO]";
+
+    public static final String PHOTO_EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
             + "photo/ https://picsum.photos/id/342/200/300";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =

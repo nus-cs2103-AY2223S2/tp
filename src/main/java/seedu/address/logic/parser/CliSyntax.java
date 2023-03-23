@@ -22,4 +22,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("-date ");
     public static final Prefix PREFIX_FILE = new Prefix("-file ");
     public static final Prefix PREFIX_NOTE = new Prefix("-note ");
+
+    // Add note directly instead of depending on events
+    public static final Prefix PREFIX_NOTE_EXTERNAL = new Prefix("Note/");
+    public static final Prefix PREFIX_NOTE_CONTENT = new Prefix("-content");
 }

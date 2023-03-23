@@ -302,6 +302,15 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String note}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseNoteContent(String note) {
+        String trimmedNote = note.trim();
+        return trimmedNote;
+    }
+
+    /**
      * Parses a {@code String count}.
      * Leading and trailing whitespaces will be trimmed.
      *

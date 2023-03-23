@@ -27,6 +27,11 @@ public class NoteList {
     }
 
     /**
+     * Initialize an empty list
+     */
+    public NoteList() { return; }
+
+    /**
      * Gets the list notes saved in this object
      * @return A list of {@code Note} objects
      */
@@ -75,6 +80,15 @@ public class NoteList {
      */
     public Note remove(int index) throws IndexOutOfBoundsException {
         return getNotes().remove(index);
+    }
+
+    /**
+     * Contains a note or not
+     * @param note The note to check against
+     * @return A boolean response
+     */
+    public boolean contains(Note note) {
+        return getNotes().contains(note);
     }
 
     /**
