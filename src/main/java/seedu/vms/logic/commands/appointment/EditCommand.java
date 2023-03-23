@@ -91,15 +91,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
         }
 
-        // Checks if appointment manager already contains an appointment from the patient of the given index
-        AppointmentManager appointmentManager = model.getAppointmentManager();
-        if (appointmentManager.containsPatient(appointmentToEdit.getPatient())) {
-            throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
-        }
-
         model.setAppointment(index.getZeroBased(), editedAppointment);
 
-        // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandMessage(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 

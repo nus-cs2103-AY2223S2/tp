@@ -74,12 +74,6 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
         }
 
-        // Checks if appointment manager already contains an appointment from the patient of the given index
-        AppointmentManager appointmentManager = model.getAppointmentManager();
-        if (appointmentManager.containsPatient(toAdd.getPatient())) {
-            throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
-        }
-
         model.addAppointment(toAdd);
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
