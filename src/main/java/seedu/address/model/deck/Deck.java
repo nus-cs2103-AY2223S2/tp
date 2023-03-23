@@ -5,14 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * A group of cards
+ * A deck associated with a list of cards. Deck is guaranteed to be immutable.
  */
-public class Deck {
+public final class Deck {
     public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     private final String deckName;
-    private boolean isSelected = false;
-    
+    private final boolean isSelected;
+
     /**
      * Constructing a deck.
      * Every field must be present and not null.
@@ -20,6 +20,26 @@ public class Deck {
     public Deck(String deckName) {
         requireAllNonNull(deckName);
         this.deckName = deckName;
+        isSelected = false;
+    }
+
+    /**
+     * Private constructor called internally during deck selection. This is to keep deck immutable.
+     * @param deckName Name of the deck
+     * @param isSelected Boolean indicating if deck is selected.
+     */
+    private Deck(String deckName, boolean isSelected) {
+        requireAllNonNull(deckName);
+        this.deckName = deckName;
+        this.isSelected = isSelected;
+    }
+
+    public Deck buildSelectedDeck() {
+        return new Deck(deckName, true);
+    }
+
+    public Deck buildUnselectedDeck() {
+        return new Deck(deckName, false);
     }
 
     /**
@@ -48,10 +68,6 @@ public class Deck {
 
         return otherDeck != null
                 && otherDeck.getDeckName().equals(getDeckName());
-    }
-
-    public void setSelected(boolean isSelected) {
-        this.isSelected = isSelected;
     }
 
     public boolean isSelected() {

@@ -207,13 +207,21 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        selectedDeck = filteredDecks.get(zeroBasesIdx);
-        selectedDeck.setSelected(true);
+        Deck toSelect = filteredDecks.get(zeroBasesIdx);
+
+        if (selectedDeck != null) {
+            unselectDeck();
+        }
+
+        selectedDeck = toSelect.buildSelectedDeck();
+        setDeck(toSelect, selectedDeck); // update UniqueDeckList
+
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
     @Override
     public void unselectDeck() {
+        setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }

@@ -211,7 +211,6 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
