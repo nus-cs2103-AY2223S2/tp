@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "parcels" : [ "shopee" ],
-    "deliveryStatus": "PENDING",
+    "deliveryStatus": "FAILED",
     "noOfDeliveryAttempts": 0
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "parcels" : [ "nike", "adidas" ],
-    "deliveryStatus": "PENDING",
+    "deliveryStatus": "OTW",
     "noOfDeliveryAttempts": 0
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +22,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "parcels" : [ ],
-    "deliveryStatus": "PENDING",
+    "deliveryStatus": "DONE",
     "noOfDeliveryAttempts": 0
   }, {
     "name" : "Daniel Meier",

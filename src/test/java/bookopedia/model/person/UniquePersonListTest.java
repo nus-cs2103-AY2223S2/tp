@@ -3,8 +3,7 @@ package bookopedia.model.person;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.testutil.Assert.assertThrows;
-import static bookopedia.testutil.TypicalPersons.ALICE;
-import static bookopedia.testutil.TypicalPersons.BOB;
+import static bookopedia.testutil.TypicalPersons.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -167,5 +166,14 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    void sortPersons_list() {
+        uniquePersonList.setPersons(Arrays.asList(BENSON, ALICE, DANIEL, CARL));
+        uniquePersonList.sort();
+        UniquePersonList sortedPersonList = new UniquePersonList();
+        sortedPersonList.setPersons(Arrays.asList(DANIEL, BENSON, CARL, ALICE));
+        assertEquals(uniquePersonList, sortedPersonList);
     }
 }
