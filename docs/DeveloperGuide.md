@@ -257,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Has a need to manage a significant number of applicants who applied to their company / department.
+* Has a need to manage a significant number of applicants who applied to their department.
 * Is a Hiring Manager
 * Prefers desktop apps over other types
 * Can type fast
@@ -285,9 +285,9 @@ The following legend describes the symbols used in this section:
 | Priority | As a …                                | I want to …                                                       | So that …                                                                            |
 |----------|---------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | `* * *`  | Hiring Manager                        | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
-| `* * *`  | Hiring Manager                        | View the number of applicants in each stage                       | I can have a glance of the status at each application stage                          |
-| `* * *`  | Hiring Manager                        | Advance the application statuses of applicants                    | I can move an applicant into the next stage of the application cycle                 |
-| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the company.                             |
+| `* * *`  | Hiring Manager                        | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager                        | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the department.                          |
 | `* * *`  | Hiring Manager                        | Delete single applicant                                           | I can delete applicants that I do not wish to track in the application anymore.      |
 | `* * *`  | Busy Hiring Manager                   | Search for applicants                                             | I can view details of specific applicants                                            |
 | `* * * ` | Senior Hiring Manager                 | Identify duplicate applications from the same applicant           | I can prevent applicants from sending multiple applications                          |
@@ -300,7 +300,6 @@ The following legend describes the symbols used in this section:
 | `* `     | Careless Hiring Manager               | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
 | `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                 | I can keep track of skill-sets needed for each job to match applicants               |
 
-                                 |
 ### Use cases
 
 (For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
@@ -317,20 +316,26 @@ The following legend describes the symbols used in this section:
 
 **Extensions**
 
-* 2a. The given details is insufficient.
+* 1a. Compulsory fields (name, phone, email, address) are not given.
 
-    * 2a1. HMHero shows an error message.
+    * 1a1. HMHero shows an error message.
 
-      Use case ends.
+      Use case resumes at step 1.
+  
 
+
+* 1b. If a duplicate applicant already exists in HMHero.
+    * 1b1. HMHero shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete an applicant**
 
 **MSS**
 
-1.  User requests to list applicants
+1.  User requests to list all applicants
 2.  HMHero shows a list of applicants
-3.  User requests to delete a specific applicant in the list
+3.  User enters the command to delete a specific applicant in the list
 4.  HMHero deletes the applicant
 
     Use case ends.
@@ -341,11 +346,19 @@ The following legend describes the symbols used in this section:
 
   Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+
+
+* 3b. The given applicant's phone number does not exist.
+
+    * 3a1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 **Use case: Advance an applicant’s status**
 
@@ -353,7 +366,7 @@ The following legend describes the symbols used in this section:
 
 1.  User requests to list applicants
 2.  HMHero shows a list of applicants
-3.  User requests to advance the status of a specific applicant in the list
+3.  User enters the command to advance the status of a specific applicant in the list
 4.  HMHero advances the applicant’s status.
 
     Use case ends.
@@ -362,25 +375,49 @@ The following legend describes the symbols used in this section:
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-* 4a. The given applicant’s status is already “Accepted”.
 
-    * 4a1. HMHero shows an error message.
+* 3b. The given applicant's phone number does not exist.
 
-      Use case ends.
+    * 3b1. HMHero shows an error message.
 
-* 4b. The given applicant’s status is already “Rejected”.
+      Use case resumes at step 3.
 
-    * 4b1. HMHero shows an error message.
 
-      Use case ends.
+* 3c. The given applicant’s current status is `APPLIED` but no interview date and time was given. 
+
+    * 3c1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3d. The given applicant’s current status is not `APPLIED` but an interview date and time was given.
+
+    * 3d1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3e. The given interview date time is of invalid formatting.
+
+    * 3e1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3f. The given applicant’s current status is already `REJECTED` or `ACCEPTED`.
+
+    * 3f1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 
 **Use case: Reject an applicant’s status**
@@ -389,8 +426,8 @@ The following legend describes the symbols used in this section:
 
 1.  User requests to list applicants
 2.  HMHero shows a list of applicants
-3.  User requests to reject a specific applicant in the list
-4.  HMHero sets the applicant’s status as “rejected”.
+3.  User enters the command to reject a specific applicant in the list
+4.  HMHero sets the applicant’s status as `REJECTED`.
 
     Use case ends.
 
@@ -401,56 +438,115 @@ The following legend describes the symbols used in this section:
 
   Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-* 3b. The given applicant is already accepted
+
+* 3b. The given applicant's phone number does not exist.
 
     * 3b1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+
+
+* 3c. The given applicant's current status is already `REJECTED`.
+
+    * 3c1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 
 **Use case: Viewing help**
 
 **MSS**
 
-1.  User requests to show for the commands available.
+1.  User enters the command to show for the commands available.
 2.  HMHero shows the table of commands.
 
     Use case ends.
 
 
-*{More to be added}*
+**Use case: Remind upcoming interviews**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User enters the command to remind himself/herself of the upcoming interviews
+4.  HMHero shows all applicants with interview dates within the next three days.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. There are no `SHORTLISTED` applicants
+
+  Use case ends.
+
+
+* 3b. There are no interview dates within the next three days.
+    
+  Use case ends.
+
+
+**Use case: View all interview dates**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
+4.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. There are no `SHORTLISTED` applicants
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should respond within 1 second for any command.
+4.  Should not require any internet connection.
 5.  Should be usable by a novice who has never used managed applicants on HMHero before.
-6.  HMHero does not prompt user for upcoming interview dates
-7.  HMHero does not sync applicants data across the team.
+6.  Should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
+7.  The data of the application is stored locally.
+8.  No database management system should be used.
+9.  The product is not required to handle the screening of resume for each applicant.
 
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Applicant status**:
-    1. Applied (default)
+* **Applicant**: An applicant is a person who applied to the user's department in the company.
+* **Application stage**:
+    1. Applied (default, when applicant is added into HMHero)
     2. Shortlisted
     3. Accepted
     4. Rejected
-* **Application stage**:
+* **Application cycle**:
     * All applicants added are at the Applied status by default. From there, hiring managers can advance their
     application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
-![Application Stage](images/application_stage.png)
+![Application Cycle](images/application_stage.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -458,9 +554,8 @@ The following legend describes the symbols used in this section:
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div> markdown="span" class="alert alert-info">:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
