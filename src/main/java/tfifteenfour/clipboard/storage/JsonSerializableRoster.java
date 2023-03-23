@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
-import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.course.Course;
 
 /**
  * An Immutable Roster that is serializable to JSON format.
@@ -19,16 +19,16 @@ import tfifteenfour.clipboard.model.student.Student;
 @JsonRootName(value = "clipboard")
 class JsonSerializableRoster {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_COURSE = "Course list contains duplicate course(s).";
 
-    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
+    private final List<JsonAdaptedCourse> courses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableRoster} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableRoster(@JsonProperty("persons") List<JsonAdaptedStudent> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableRoster(@JsonProperty("courses") List<JsonAdaptedCourse> courses) {
+        this.courses.addAll(courses);
     }
 
     /**
@@ -37,8 +37,8 @@ class JsonSerializableRoster {
      * @param source future changes to this will not affect the created {@code JsonSerializableRoster}.
      */
     public JsonSerializableRoster(ReadOnlyRoster source) {
-        persons.addAll(source.getUnmodifiableStudentList()
-                .stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        courses.addAll(source.getUnmodifiableCourseList()
+                .stream().map(JsonAdaptedCourse::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +48,12 @@ class JsonSerializableRoster {
      */
     public Roster toModelType() throws IllegalValueException {
         Roster roster = new Roster();
-        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
-            Student student = jsonAdaptedStudent.toModelType();
-            if (roster.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedCourse jsonAdaptedCourse : courses) {
+            Course course = jsonAdaptedCourse.toModelType();
+            if (roster.hasCourse(course)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_COURSE);
             }
-            roster.addStudent(student);
+            roster.addCourse(course);
         }
         return roster;
     }
