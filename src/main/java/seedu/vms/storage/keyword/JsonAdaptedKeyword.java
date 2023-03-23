@@ -40,6 +40,6 @@ public class JsonAdaptedKeyword {
      *                               the adapted keyword.
      */
     public Keyword toModelType() throws IllegalValueException {
-        return new Keyword(keyword, mainKeyword);
+        return new Keyword(mainKeyword, keyword);
     }
 }

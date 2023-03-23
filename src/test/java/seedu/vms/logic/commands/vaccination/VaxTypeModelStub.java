@@ -13,6 +13,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -140,6 +141,26 @@ public class VaxTypeModelStub implements Model {
         return manager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
+    @Override
+    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+        throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
+    }
+
+    @Override
+    public void addKeyword(Keyword keyword) {
+        throw new UnsupportedOperationException("Unimplemented method 'addKeyword'");
+    }
+
+    @Override
+    public void deleteKeyword(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteKeyword'");
+    }
+
+    @Override
+    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredKeywordList'");
     }
 
     @Override

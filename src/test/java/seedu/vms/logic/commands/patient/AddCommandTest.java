@@ -24,6 +24,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -174,9 +175,30 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addKeyword(Keyword keyword) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteKeyword(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
+        }
+
+        @Override
+        public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
         }
 
         @Override
