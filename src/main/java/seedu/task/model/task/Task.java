@@ -78,7 +78,7 @@ public abstract class Task implements Comparable<Task> {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && this.name.hasSameName(otherTask.name);
     }
 
     public abstract boolean isSimpleTask();
