@@ -1,9 +1,5 @@
 package seedu.vms.model.appointment;
 
-import java.util.Map;
-
-import seedu.vms.commons.core.index.Index;
-import seedu.vms.model.IdData;
 import seedu.vms.model.StorageModel;
 
 /**

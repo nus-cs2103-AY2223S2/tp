@@ -1,11 +1,14 @@
 package seedu.vms.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
+
+import java.time.LocalDateTime;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.appointment.EditCommand;
@@ -16,7 +19,6 @@ import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 
-import java.time.LocalDateTime;
 
 /**
  * Parses input arguments and creates a new EditCommand object

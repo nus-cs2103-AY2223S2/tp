@@ -20,7 +20,6 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
-import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
