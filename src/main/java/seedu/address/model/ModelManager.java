@@ -214,7 +214,7 @@ public class ModelManager implements Model {
         }
 
         selectedDeck = toSelect.buildSelectedDeck();
-        setDeck(toSelect, selectedDeck); // update UniqueDeckList
+        setDeck(toSelect, selectedDeck); // update UniqueDeckList and GUI
 
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }

@@ -42,6 +42,8 @@ public class DeckCard extends UiPart<Region> {
 
         if (deck.isSelected()) {
             this.getRoot().setStyle("-fx-background-color: #007aff");
+            this.id.setStyle("-fx-text-fill: white");
+            this.name.setStyle("-fx-text-fill: white");
         }
     }
 
