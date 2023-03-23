@@ -33,7 +33,8 @@ You can reach us at the email `what email should we put here?`
 
 <img src="images/bipbipboopboop.png" width="200px">
 
-[[github](http://github.com/bipbipboopboop)] [[portfolio](team/bipbipboopboop.md)]
+[[github](http://github.com/bipbipboopboop)]
+[[portfolio](team/bipbipboopboop.md)]
 
 - Role: Developer
 - Responsibilities: UI, Integration
@@ -45,15 +46,15 @@ You can reach us at the email `what email should we put here?`
 [[github](http://github.com/daniellingzy)]
 [[portfolio](team/daniellingzy.md)]
 
-- Role: Test Engineer 
+- Role: Test Engineer
 - Responsibilities: Software Development Testing
 
-## James Doe
+## Cheng Deren
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/DerenC.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/DerenC)]
+[[portfolio](team/DerenC.md)]
 
 - Role: Developer
-- Responsibilities: UI
+- Responsibilities: Command
