@@ -32,15 +32,14 @@ class CsvAdaptedPerson {
     /**
      * Constructs a {@code CsvAdaptedPerson} with the given person details.
      */
-    public CsvAdaptedPerson(String str) {
-        String[] tokens = str.split(",");
-        this.name = tokens[0];
-        this.phone = tokens[1];
-        this.email = tokens[2];
-        this.address = tokens[3];
-        this.income = tokens[4];
-        for (int i = 5; i < tokens.length; ++i) {
-            this.tagged.add(new CsvAdaptedTag(tokens[i]));
+    public CsvAdaptedPerson(List<String> tokens) {
+        this.name = tokens.get(0);
+        this.phone = tokens.get(1);
+        this.email = tokens.get(2);
+        this.address = tokens.get(3);
+        this.income = tokens.get(4);
+        for (int i = 5; i < tokens.size(); ++i) {
+            this.tagged.add(new CsvAdaptedTag(tokens.get(i)));
         }
     }
 

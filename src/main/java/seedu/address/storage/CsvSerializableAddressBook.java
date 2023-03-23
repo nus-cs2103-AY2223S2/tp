@@ -16,15 +16,17 @@ class CsvSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private static final String CSV_HEADERS = "Name,Phone,Email,Address,Tags\n";
+    public static final String CSV_HEADERS = "Name,Phone,Email,Address,Income,Tags\n";
 
     private final List<CsvAdaptedPerson> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code CsvSerializableAddressBook} with the given persons.
      */
-    public CsvSerializableAddressBook(List<CsvAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public CsvSerializableAddressBook(List<List<String>> listOfTokens) {
+        for (List<String> tokens: listOfTokens) {
+            persons.add(new CsvAdaptedPerson(tokens));
+        }
     }
 
     /**
