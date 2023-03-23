@@ -146,14 +146,18 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
+.result-display, .history-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
 
-.result-display .label {
+.history-display {
+    -fx-font-size: 11pt;
+}
+
+.result-display .label, .history-display .label {
     -fx-text-fill: black !important;
 }
 
@@ -332,7 +336,7 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#resultDisplay .content {
+#resultDisplay .content, #historyDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }
