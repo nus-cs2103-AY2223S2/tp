@@ -208,7 +208,35 @@ is thrown.
 #### Proposed implementation
 Similar to the exporting and importing of contacts.
 
-### Autocomplete inputs
+### Autocompletion of Argument Prefixes
+
+Autocompletion of command inputs is facilitated by the individual command parsers (`XYZCommandParser`) which are
+implementing the `Parser` interface in the `Logic` component. Each `XYZCommandParser` implements how autocompletion
+should work for that particular command by overriding `Parser#getAutocompleteSuggestion`. This action is triggered when
+the user presses `TAB` when the command input starts with a valid command.
+
+The `CommandBox` UI component is actively listening for `TAB` keystrokes by having a `KeyPressedHandler` which will
+trigger `XYZCommandParser#getAutocompleteSuggestion`. A `AutocompleteResult` would then be returned to the `CommandBox`
+which contains the `Prefix` to be appended to the current command input, or used to replace the last `Prefix` in the
+current command input.
+
+#### Design Considerations
+
+**Alternative 1**: Autocomplete by appending the next relevant `Prefix` that is missing
+
+* This will be easier to implement as all we need is to have a list of `Prefix` that is relevant for the command and 
+cycle through and append those that are missing from the current command input.
+* Checking for missing `Prefix` from the command input can be achieved with the help of `ArgumentTokenizer`.
+* Downside: some commands such as `edit` does not need all the `Prefix` as user might just want to modify two 
+attributes. Simply cycling through and appending missing `Prefix` might require users to backspace some
+unnecessary `Prefix`.
+
+**Alternative 2**: Autocomplete by custom behaviour depending on the command
+
+* This would require each `XYZCommandParser` to implement their own behaviour on how autocompletion should
+behave for that particular command.
+* Benefit: There is more flexibility in customising how to best cater autocompletion for each individual
+command to better the user experience.
 
 ### Traverse commands
 
