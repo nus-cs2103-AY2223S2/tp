@@ -9,8 +9,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * The API of the Model component.
@@ -216,7 +216,7 @@ public interface Model {
      * Returns true if a given date{@code date} has the employee {@code employee} in
      * the sudohr book.
      */
-    boolean hasEmployeeOnLeave(Date date, Employee employee);
+    boolean hasEmployeeOnLeave(LeaveDate date, Employee employee);
 
     /**
      * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in

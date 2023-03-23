@@ -7,7 +7,7 @@ import java.time.LocalDate;
 /**
  * Represents a Leave's date in the sudohr book.
  */
-public class Date {
+public class LeaveDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should only be of the form YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -19,7 +19,7 @@ public class Date {
      *
      * @param date A LocalDate object representing the leave date.
      */
-    public Date(LocalDate date) {
+    public LeaveDate(LocalDate date) {
         requireNonNull(date);
         value = date;
     }
@@ -39,8 +39,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                        && value.equals(((Date) other).value)); // state check
+                || (other instanceof LeaveDate // instanceof handles nulls
+                        && value.equals(((LeaveDate) other).value)); // state check
     }
 
     @Override

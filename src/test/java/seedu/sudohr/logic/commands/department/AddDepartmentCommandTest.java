@@ -1,3 +1,4 @@
+
 package seedu.sudohr.logic.commands.department;
 
 import static java.util.Objects.requireNonNull;
@@ -25,8 +26,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class AddDepartmentCommandTest {
@@ -256,7 +257,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+        public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
         }
