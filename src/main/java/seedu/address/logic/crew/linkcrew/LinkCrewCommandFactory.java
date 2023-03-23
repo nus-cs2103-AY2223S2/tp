@@ -136,11 +136,29 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
     public LinkCrewCommand createCommand(CommandParam param) throws ParseException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
+        Optional<String> seniorFlightAttendantIdOptional =
+                param.getNamedValues(SENIOR_FLIGHT_ATTENDANT_PREFIX);
+        Optional<String> flightAttendantIdOptional =
+                param.getNamedValues(FLIGHT_ATTENDANT_PREFIX);
+        Optional<String> traineeIdOptional =
+                param.getNamedValues(TRAINEE_PREFIX);
         Map<FlightCrewType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addCrew(
                 cabinServiceDirectorIdOptional,
                 FlightCrewType.CABIN_SERVICE_DIRECTOR,
+                crews
+        ) || addCrew(
+                seniorFlightAttendantIdOptional,
+                FlightCrewType.SENIOR_FLIGHT_ATTENDANT,
+                crews
+        ) || addCrew(
+                flightAttendantIdOptional,
+                FlightCrewType.FLIGHT_ATTENDANT,
+                crews
+        ) || addCrew(
+                traineeIdOptional,
+                FlightCrewType.TRAINEE,
                 crews
         );
 
