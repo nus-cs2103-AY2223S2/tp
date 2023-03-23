@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    
     //todo: list has issue after adding the field BUSINESS_SIZE,
     // I think it's just UI issue, I'll leave it to the person in charge of list.
 
