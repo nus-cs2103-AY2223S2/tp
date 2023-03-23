@@ -128,7 +128,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-
 Here is the `Item` class that is what all model objects depend on.
 
 <img src="images/ItemClassDiagram.png" width="450" />
