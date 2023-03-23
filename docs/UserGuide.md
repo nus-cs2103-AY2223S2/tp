@@ -777,7 +777,7 @@ For example, “05” would represent May. </li>
 <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
 <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
 For example, "15" would represent 15th hour of the day. </li>
-<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </li> 
+<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 50th minute of the hour. </li> 
 </ul>> </div>
 
 
