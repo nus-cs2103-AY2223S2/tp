@@ -18,9 +18,11 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.cardcommands.AddCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
+import seedu.address.model.ModelState;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
@@ -272,6 +274,11 @@ public class AddCommandTest {
 
         @Override
         public boolean goToNextCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ModelState getState() {
             throw new AssertionError("This method should not be called.");
         }
 

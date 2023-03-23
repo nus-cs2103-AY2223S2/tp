@@ -20,8 +20,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
 
-    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true; //this is unnecessary?
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -156,6 +154,15 @@ public interface Model {
 
     void setNumCardsPerReview(int i);
 
+    /**
+     * Returns the state of the model
+     */
+    ModelState getState();
+
+    /**
+     * Tag
+     * @param tag
+     */
     void tagCurrentCardInReview(Tag tag);
 
     ObservableList<Pair<String, String>> getReviewStatsList();

@@ -89,7 +89,7 @@ public class ModelManager implements Model {
         userPrefs.setMasterDeckFilePath(masterDeckFilePath);
     }
 
-    /* MasterDeck Operations */
+    /* ==================================== MasterDeck Operations ==================================== */
 
     @Override
     public void setMasterDeck(ReadOnlyMasterDeck deck) {
@@ -101,7 +101,7 @@ public class ModelManager implements Model {
         return masterDeck;
     }
 
-    /* PowerCard Operations */
+    /* ==================================== PowerCard Operations ==================================== */
 
     @Override
     public boolean hasCard(Card card) {
@@ -326,7 +326,23 @@ public class ModelManager implements Model {
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 
+    @Override
     public ObservableList<Pair<String, String>> getReviewStatsList() {
         return currReview.getReviewStatsList();
+    }
+
+    /* ==================================== Model States ==================================== */
+
+    @Override
+    public ModelState getState() {
+        if (currReview != null) {
+            return ModelState.REVIEW_MODE;
+        }
+
+        if (selectedDeck != null) {
+            return ModelState.DECK_MODE;
+        }
+
+        return ModelState.MAIN_MODE;
     }
 }

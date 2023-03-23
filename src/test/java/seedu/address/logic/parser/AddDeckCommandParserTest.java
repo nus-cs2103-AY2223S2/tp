@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddDeckCommand;
+import seedu.address.logic.commands.deckcommands.AddDeckCommand;
 import seedu.address.model.deck.Deck;
 
 public class AddDeckCommandParserTest {

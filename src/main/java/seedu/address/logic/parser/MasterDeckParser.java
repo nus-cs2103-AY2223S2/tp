@@ -6,29 +6,29 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddDeckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteDeckCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditDeckCommand;
-import seedu.address.logic.commands.EndReviewCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FlipCardCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MarkCorrectCommand;
-import seedu.address.logic.commands.MarkWrongCommand;
-import seedu.address.logic.commands.NextCardCommand;
-import seedu.address.logic.commands.PreviousCardCommand;
-import seedu.address.logic.commands.ReviewCommand;
-import seedu.address.logic.commands.SelectDeckCommand;
-import seedu.address.logic.commands.SetNumCardsPerReviewCommand;
-import seedu.address.logic.commands.TagCardDuringReviewCommand;
-import seedu.address.logic.commands.UnselectDeckCommand;
+import seedu.address.logic.commands.cardcommands.AddCommand;
+import seedu.address.logic.commands.cardcommands.DeleteCommand;
+import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.deckcommands.AddDeckCommand;
+import seedu.address.logic.commands.deckcommands.DeleteDeckCommand;
+import seedu.address.logic.commands.deckcommands.EditDeckCommand;
+import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
+import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
+import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
+import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
+import seedu.address.logic.commands.reviewcommands.MarkCorrectCommand;
+import seedu.address.logic.commands.reviewcommands.MarkWrongCommand;
+import seedu.address.logic.commands.reviewcommands.NextCardCommand;
+import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
+import seedu.address.logic.commands.reviewcommands.ReviewCommand;
+import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -40,6 +40,24 @@ public class MasterDeckParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private String commandWord;
+    private String arguments;
+
+
+    /**
+     * Parses the command word and the arguments from user input String.
+     *
+     * @param userInput The String input from user
+     * @throws ParseException If the user input does not conform to the expected format
+     */
+    private void updateCommandWordAndArguments(String userInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        this.commandWord = matcher.group("commandWord");
+        this.arguments = matcher.group("arguments");
+    }
 
     /**
      * Parses user input into command for execution when no deck is selected.
@@ -48,24 +66,22 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenDeckNotSelected(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInMainMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddDeckCommand.COMMAND_WORD:
             return new AddDeckCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case DeleteDeckCommand.COMMAND_WORD:
             return new DeleteDeckCommandParser().parse(arguments);
+
+        case EditDeckCommand.COMMAND_WORD:
+            return new EditDeckCommandParser().parse(arguments);
+
+        case SelectDeckCommand.COMMAND_WORD:
+            return new SelectDeckCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -76,20 +92,17 @@ public class MasterDeckParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case EditDeckCommand.COMMAND_WORD:
-            return new EditDeckCommandParser().parse(arguments);
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case SelectDeckCommand.COMMAND_WORD:
-            return new SelectDeckCommandParser().parse(arguments);
 
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
         case SetNumCardsPerReviewCommand.COMMAND_WORD:
             return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -103,14 +116,9 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenDeckSelected(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInDeckMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -143,20 +151,15 @@ public class MasterDeckParser {
     }
 
     /**
-     * Parses user input into command for execution when a review is underway and the card is unflipped.
+     * Parses user input into command for execution when a review is underway.
      *
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenReviewingAndUnflipped(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInReviewMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case EndReviewCommand.COMMAND_WORD:
@@ -171,42 +174,11 @@ public class MasterDeckParser {
         case FlipCardCommand.COMMAND_WORD:
             return new FlipCardCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-    }
-
-    /**
-     * Parses user input into command for execution when a review is underway and the card is flipped.
-     *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public Command parseCommandWhenReviewingAndFlipped(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-
-        case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
-
         case MarkCorrectCommand.COMMAND_WORD:
             return new MarkCorrectCommand();
 
         case MarkWrongCommand.COMMAND_WORD:
             return new MarkWrongCommand();
-
-        case PreviousCardCommand.COMMAND_WORD:
-            return new PreviousCardCommand();
-
-        case NextCardCommand.COMMAND_WORD:
-            return new NextCardCommand();
 
         case TagCardDuringReviewCommand.COMMAND_WORD:
             return new TagCardDuringReviewCommandParser().parse(arguments);
