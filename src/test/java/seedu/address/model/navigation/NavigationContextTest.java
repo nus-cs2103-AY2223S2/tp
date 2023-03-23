@@ -21,7 +21,7 @@ public class NavigationContextTest {
 
     @Test
     void addModule() {
-        Module mod = TypicalModules.CS2040S;
+        Module mod = TypicalModules.getCs2040s();
         NavigationContext context = new NavigationContext();
         context = context.addModule(mod.getCode());
 
@@ -31,8 +31,8 @@ public class NavigationContextTest {
 
     @Test
     void addLecture() {
-        Module mod = TypicalModules.CS2040S;
-        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+        Module mod = TypicalModules.getCs2040s();
+        Lecture lec = TypicalLectures.getCs2040sWeek1();
 
         NavigationContext context = new NavigationContext();
 
