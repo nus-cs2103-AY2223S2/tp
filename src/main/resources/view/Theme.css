@@ -147,7 +147,7 @@
     -fx-background-color: white;
 }
 
-#rightPanelTitle {
+#rightPanelTitlePlaceholder {
     -fx-padding: 0 0 10 0;
 }
 

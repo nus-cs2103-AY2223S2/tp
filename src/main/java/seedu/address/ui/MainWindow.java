@@ -44,7 +44,6 @@ public class MainWindow extends UiPart<Stage> {
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private ObservableList<Pair<String, String>> deckTitlePlaceholder = FXCollections.observableArrayList();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane rightPanelPlaceholder;
 
     @FXML
-    private StackPane rightPanelTitle;
+    private StackPane rightPanelTitlePlaceholder;
 
     @FXML
     private StackPane leftPanelPlaceholder;
@@ -134,11 +133,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(MAIN_TITLE);
 
-        Pair<String, String> header = new Pair<>("Current Deck:", "No deck selected!");
-        deckTitlePlaceholder.add(header);
-
-        rightTitle = new DeckNamePanel(deckTitlePlaceholder);
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList());
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -208,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
+
+        rightPanelTitlePlaceholder.getChildren().clear();
+        rightPanelTitlePlaceholder.maxHeight(0);
+        rightPanelTitlePlaceholder.maxWidth(0);
     }
 
     /**
@@ -228,9 +228,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the deck Title.
      */
     public void handleSelectDeck() {
-        rightPanelTitle.getChildren().clear();
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
     }
 
@@ -238,9 +238,9 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the deck Title.
      */
     public void handleUnSelectDeck() {
-        rightPanelTitle.getChildren().clear();
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
     }
 
@@ -254,6 +254,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            handleSelectDeck();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -269,14 +270,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isEndReview()) {
                 handleEndReview();
-            }
-
-            if (commandResult.isSelectDeck()) {
-                handleSelectDeck();
-            }
-
-            if (commandResult.isUnselectDeck()) {
-                handleUnSelectDeck();
             }
 
             return commandResult;
