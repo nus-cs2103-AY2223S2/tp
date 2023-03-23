@@ -1,13 +1,14 @@
 package seedu.address.model.calendar;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.CalendarEventBuilder;
-import seedu.address.testutil.TypicalPersons;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.testutil.CalendarEventBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class CalendarMonthTest {
     private static final CalendarEvent EVENT_1 = new CalendarEventBuilder()
@@ -20,7 +21,8 @@ public class CalendarMonthTest {
             .withPerson(TypicalPersons.ALICE)
             .build();
 
-    private static final ObservableList<CalendarEvent> EVENT_LIST_1 = FXCollections.observableArrayList(EVENT_1, EVENT_2);
+    private static final ObservableList<CalendarEvent> EVENT_LIST_1 = FXCollections
+            .observableArrayList(EVENT_1, EVENT_2);
     private static final ObservableList<CalendarEvent> EVENT_LIST_2 = FXCollections.observableArrayList(EVENT_3);
 
     @Test
