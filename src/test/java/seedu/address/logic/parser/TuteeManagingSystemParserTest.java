@@ -31,7 +31,7 @@ import seedu.address.testutil.TuteeTestBuilder;
 
 public class TuteeManagingSystemParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TuteeManagingSystemParser parser = new TuteeManagingSystemParser();
 
     @Test
     public void parseCommand_add() throws Exception {
