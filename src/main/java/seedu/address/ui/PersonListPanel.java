@@ -50,11 +50,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
 
             } else {
-                if (card.isFlipped()) {
-                    setGraphic(new FlippedReviewCard(card).getRoot());
-                } else {
-                    setGraphic(new UnflippedReviewCard(card).getRoot());
-                }
+                setGraphic(new ReviewCard(card).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
                         + "-fx-background-color:#e6eaeb ");
             }
