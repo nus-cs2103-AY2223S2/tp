@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -162,7 +161,7 @@ public class ModelManager implements Model {
 
     @Override
     public void sortFilteredMeetingList(Comparator comparator) {
-       addressBook.sortMeeting(comparator); 
+        addressBook.sortMeeting(comparator);
     }
 
     @Override

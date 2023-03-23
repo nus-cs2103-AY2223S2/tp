@@ -5,20 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 
-import java.util.Set;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.SortMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.DateTime;
-import seedu.address.model.meeting.Description;
-import seedu.address.model.meeting.Location;
-import seedu.address.model.meeting.Title;
-import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new AddMeetingCommand object.
@@ -29,7 +22,7 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesValidUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        if(argumentMultimap.getLength() != 2) {
+        if (argumentMultimap.getLength() != 2) {
             return false;
         } else {
             return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
@@ -54,13 +47,11 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
         Prefix prefix = argMultimap.getFirstKey();
         Optional<String> param = argMultimap.getValue(prefix);
         System.out.println(param.get());
-        if(param.get().equals("r")) {
-                return new SortMeetingCommand(prefix, true);
-            } else if (param.get().equals("")){
-
-                return new SortMeetingCommand(prefix, false);
-            }
-            
+        if (param.get().equals("r")) {
+            return new SortMeetingCommand(prefix, true);
+        } else if (param.get().equals("")) {
+            return new SortMeetingCommand(prefix, false);
+        }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
     }
 }
