@@ -49,7 +49,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_BENEDICT,
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_APPLICANT_NAME_BENEDICT,
                 AMY);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
@@ -75,7 +75,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())),
                 VALID_BENEDICT_2_NAME_WITH_ID, AMY);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
@@ -101,7 +101,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())),
                 VALID_APPLICANT_NAME_AMY, BENEDICT_2);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
@@ -137,7 +137,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), "Donkey", AMY);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), "Donkey", AMY);
 
         String expectedErrorMessage = String.format(EditApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND, "Donkey",
                 newListing.getTitle().fullTitle);
@@ -152,7 +152,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())),
                 INVALID_BENEDICT_1_NAME_WITH_ID, AMY);
 
         String expectedErrorMessage = String.format(EditApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND,
@@ -169,7 +169,7 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())),
                 VALID_APPLICANT_NAME_BENEDICT, AMY);
 
         String expectedErrorMessage = String.format(EditApplicantCommand.MESSAGE_AMBIGUOUS_APPLICANT,
