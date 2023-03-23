@@ -349,12 +349,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Adding a task
 
-Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]` </br>
+Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]`  
 Purpose: Allows users to add tasks into the OfficeConnectModel
 
 #### Implementation
 The implementation of this feature is supported by `AddTaskCommand` and `AddTaskCommandParser`.
-Below is a sequence diagram that illustrates how a user adds new tasks into the OfficeConnectModel. </br>
+Below is a sequence diagram that illustrates how a user adds new tasks into the OfficeConnectModel.  
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
@@ -373,11 +373,11 @@ Below is a sequence diagram that illustrates how a user adds new tasks into the 
   creating tasks may be forced to key in random content to add tasks.
 
 #### Constraints:
-**Title must be unique:** </br>
+**Title must be unique:**  
 We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
 titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as 
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be 
-able to clearly distinguish the purpose of each task just by looking at the title. </br>
+able to clearly distinguish the purpose of each task just by looking at the title.  
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
 to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
@@ -385,12 +385,12 @@ Hence, our approach in mandating unique titles are geared towards improving orga
 both the short and long term.
 
 ### Deleting a task
-Syntax: `deletetask INDEX` </br>
+Syntax: `deletetask INDEX`  
 Purpose: Allows users to delete the task at the specified index in the OfficeConnectModel.
 
 #### Implementation
 The implementation of this feature is supported by `ListTaskCommand`, `DeleteTaskCommand` and `DeleteTaskCommandParser`.
-Below are the steps required to delete a task in the OfficeConnectModel. </br>
+Below are the steps required to delete a task in the OfficeConnectModel.  
 
 Step 1: User keys in `listtask`, which will display the index of all tasks. 
 The user can thus obtain the index of the task that they want to delete.
@@ -398,7 +398,8 @@ The user can thus obtain the index of the task that they want to delete.
 Step 2: User keys in `deletetask INDEX` to delete the task at the specified index. 
 If the index is invalid, an error will be thrown. 
 
-Below is an activity diagram showcasing the 2 steps: </br> 
+Below is an activity diagram showcasing the 2 steps:
+
 ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
 
 #### Design Considerations
@@ -414,10 +415,10 @@ use this index when deleting tasks
     * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
   troublesome for them to delete tasks as the number of steps required is reduced by one. 
   Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
-    * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
+    * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks.  
   If the user does not keep track of the indexes they have used for previous tasks, they may have to still 
   call `listtask` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not 
-  give it an advantage over the first alternative. </br>
+  give it an advantage over the first alternative.  
   It would also be harder to keep track of invalid indexes. When tasks are deleted, their index should be invalid. Using
   this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which 
   would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e first task
