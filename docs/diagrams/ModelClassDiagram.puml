@@ -14,23 +14,7 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-Class CommunicationChannel
-Class Faculty
-Class Favorite
-Class Gender
-Class Major
-Class Modules
-Class Race
-Class Tags
-Class NusMod
 
-Class Field
-Class SuperField
 }
 
 Class HiddenOutside #FFFFFF
@@ -47,36 +31,9 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> CommunicationChannel
-Person *--> Faculty
-Person *--> Favorite
-Person *--> Major
-Person *-right-> Modules
-Modules *--> "*" NusMod
-Person *--> Race
-Person *-right-> Tags
-Tags *--> "*" Tag
 
-Field -up-|> Name
-Field -up-|> Phone
-Field -up-|> Email
-Field -up-|> CommunicationChannel
-Field -up-|> Faculty
-Field -up-|> Favorite
-Field -up-|> Major
-Field --|> NusMod
-Field -up-|> Race
-Field -up-|> Tag
 
-SuperField -up-|> Modules
-SuperField -up-|> Tags
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
 @enduml

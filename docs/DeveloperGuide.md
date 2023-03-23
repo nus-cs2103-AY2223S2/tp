@@ -144,6 +144,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+Within the Model component holds the Person Class.
+
+<img src="images/PersonDiagram.png" width="450" />
+
+Each field in Person inherits from either the Field abstract class or the SuperField abstract class.
+
+* The Field abstract class represents a field with a singular value. This is used for fields like e.g. Name, Gender
+and Major. 
+* The SuperField abstract class represents a field that has multiple values. This is used for fields like e.g. Modules 
+and Tags. The SuperField class contains a set of values that are a subclass of Field.
+* The Field and SuperField abstract classes are used to abstract our common logic between the various fields in Person, while
+  also allowing for polymorphism.
+
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
