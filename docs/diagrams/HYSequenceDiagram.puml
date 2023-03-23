@@ -76,4 +76,5 @@ D --> PU
 deactivate D COL1
 
 <-- PU
+deactivate PU
 @enduml
