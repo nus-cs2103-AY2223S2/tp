@@ -25,7 +25,7 @@
          </HBox>
          <HBox alignment="CENTER">
             <children>
-                  <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" wrapText="true" />
+                  <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" textAlignment="CENTER" wrapText="true" />
             </children>
          </HBox>
             <FlowPane fx:id="tags" alignment="CENTER" />
