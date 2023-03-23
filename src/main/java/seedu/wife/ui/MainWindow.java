@@ -130,10 +130,10 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.setBackground(new Background(new BackgroundFill(
                 Color.valueOf("D9D9D9"), new CornerRadii(5), null)));
 
-//        todo: link enter button and change colour and corner radius
-//        enterButton.onKeyPressedProperty().
-//        enterButton.setBackground(new Background(new BackgroundFill(
-//                Color.valueOf("006994"), new CornerRadii(5), null)));
+        //      link enter button and change colour and corner radius
+        //      enterButton.onKeyPressedProperty().
+        //      enterButton.setBackground(new Background(new BackgroundFill(
+        //      Color.valueOf("006994"), new CornerRadii(5), null)));
     }
 
     /**
