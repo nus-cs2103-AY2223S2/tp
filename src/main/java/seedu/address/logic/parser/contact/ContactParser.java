@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.DeleteContactCommand;
 import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -27,6 +28,9 @@ public class ContactParser {
 
         case EditContactCommand.COMMAND_WORD:
             return new EditContactCommandParser().parse(arguments);
+
+        case DeleteContactCommand.COMMAND_WORD:
+            return new DeleteContactCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
