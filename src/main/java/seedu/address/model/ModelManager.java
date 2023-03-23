@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -22,23 +23,29 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final History history;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, History history) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.history = new History(history);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new History());
+    }
+
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new History());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -120,6 +127,28 @@ public class ModelManager implements Model {
     @Override
     public void deleteTag(Person person, Tag tag) {
         addressBook.deleteTag(person, tag);
+    }
+
+    //=========== History ================================================================================
+
+    @Override
+    public Path getHistoryStoragePath() {
+        return history.getHistoryStoragePath();
+    }
+
+    @Override
+    public void setHistoryStoragePath(Path newPath) {
+        history.setHistoryStoragePath(newPath);
+    }
+
+    @Override
+    public History getHistory() {
+        return history;
+    }
+
+    @Override
+    public void setHistory(History newHistory) {
+        history.resetData(newHistory);
     }
 
     //=========== Filtered Person List Accessors =============================================================
