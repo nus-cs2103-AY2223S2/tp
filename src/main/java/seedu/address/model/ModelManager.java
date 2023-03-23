@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.job.Order;
@@ -137,12 +138,13 @@ public class ModelManager implements Model {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
             if (order.toString().equals("asc")) {
-                System.out.println(s1);
                 return Integer.compare(s1, s2);
             } else {
                 return Integer.compare(s2, s1);
             }
         });
+        logger.info("Sorted AddressBook " + this.addressBook);
+
         this.addressBook.setRoles(roles);
     }
 
