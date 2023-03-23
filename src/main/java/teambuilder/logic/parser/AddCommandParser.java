@@ -9,7 +9,6 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
