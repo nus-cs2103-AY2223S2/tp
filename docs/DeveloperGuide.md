@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,7 +151,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
@@ -159,7 +158,6 @@ Here is the `Item` class that is what all model objects depend on.
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
-
 
 This is the class representation for the `Supplier` and `Customer` class.
 
@@ -173,7 +171,6 @@ Here is how `Supplier` and `Customer` works:
 * Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
 
-
 This is the class representation for the `Task` class.
 
 <p align="center">
@@ -185,7 +182,6 @@ Here is how `Task` works:
 * Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
 * Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
-
 
 This is the class representation for the `Menu` class.
 
@@ -212,7 +208,6 @@ Here is how `Order` works:
 * Each `Order` contains their description, status and deadline (e.g., `ItemName` for menu's item name).
 * The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
-
 
 ### Storage component
 
@@ -259,9 +254,9 @@ The following activity diagram summarizes what happens when the user executes th
 
 The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
-* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
-* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
+* `VersionedTrackr#commit()`— Saves the current trackr state in its history.
+* `VersionedTrackr#undo()`— Restores the previous trackr state from its history.
+* `VersionedTrackr#redo()`— Restores a previously undone trackr state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
 
@@ -300,7 +295,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
+The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -371,6 +366,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 Our application:
+
 * allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
 * enables faster contact management compared to a typical mouse/_GUI_ driven app
@@ -409,7 +405,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
 
-
 **Use case: Add a new task**
 
 MSS
@@ -440,7 +435,7 @@ MSS
 **Extensions**
 
 * 2a. The Actor does not enter all required information.
-Trackr shows an error message.
+  Trackr shows an error message.
 
   Use case ends without adding any supplier.
 
@@ -452,14 +447,14 @@ MSS
 2. Actor enters an add order command with the required information.
 3. Trackr saves the new order to the system.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter all required information.
-Trackr shows an error message.
+  Trackr shows an error message.
 
-    Use case ends without adding any order.
+  Use case ends without adding any order.
 
 **Use case: Create a new menu item**
 
@@ -469,24 +464,25 @@ MSS
 2. Actor enters an add menu item command with the required information.
 3. Trackr saves the new meni item to the system.
 
-    Use case ends.
+   Use case ends.
 
 **Extension**
-* 2a. The Actor does not enter all required information.
-Trackr shows an error message.
 
-    Use case ends without adding any new menu item.
+* 2a. The Actor does not enter all required information.
+  Trackr shows an error message.
+
+  Use case ends without adding any new menu item.
 
 **Use case: Delete an order**
 
 **MSS**
 
-1.  Actor requests to list orders
-2.  Trackr shows a list of orders
-3.  Actor requests to delete a specific order in the list
-4.  Trackr deletes the order
+1. Actor requests to list orders
+2. Trackr shows a list of orders
+3. Actor requests to delete a specific order in the list
+4. Trackr deletes the order
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -496,20 +492,20 @@ Trackr shows an error message.
 
 * 3a. The given index is invalid.
 
-    * 3a1. Trackr shows an error message.
+  * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 **Use case: Delete a task in list**
 
 **MSS**
 
-1.  Actor requests to list todos
-2.  Trackr shows a list of todos
-3.  Actor requests to delete a specific todo in the list
-4.  Trackr deletes the order
+1. Actor requests to list todos
+2. Trackr shows a list of todos
+3. Actor requests to delete a specific todo in the list
+4. Trackr deletes the order
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -519,20 +515,20 @@ Trackr shows an error message.
 
 * 3a. The given index is invalid.
 
-    * 3a1. Trackr shows an error message.
+  * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 **Use case: Delete a supplier**
 
 **MSS**
 
-1.  Actor requests to list suppliers
-2.  Trackr shows a list of suppliers
-3.  Actor requests to delete a specific supplier in the list
-4.  Trackr deletes the person
+1. Actor requests to list suppliers
+2. Trackr shows a list of suppliers
+3. Actor requests to delete a specific supplier in the list
+4. Trackr deletes the person
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -542,9 +538,9 @@ Trackr shows an error message.
 
 * 3a. The given index is invalid.
 
-    * 3a1. Trackr shows an error message.
+  * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 **Use case: Edit an order**
 
@@ -555,16 +551,16 @@ MSS
 3. Actor enters an edit order command with the index of the order and the updated information
 4. Trackr updates the order details with the new information
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-Use case ends.
+  Use case ends.
 * 3a. The Actor enters an invalid index.
-Trackr displays an error message.
+  Trackr displays an error message.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: Edit a supplier information**
 
@@ -581,11 +577,11 @@ MSS
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 * 3a. The Actor enters an invalid index.
-Trackr displays an error message.
+  Trackr displays an error message.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: Edit a task information**
 
@@ -618,7 +614,7 @@ MSS
 3. Actor enters an edit menu item command with the index of the task and the updated information.
 4. Trackr updates the menu details with the new information.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -684,16 +680,16 @@ MSS
 3. Trackr searches for tasks that match the given criteria.
 4. Trackr displays a list of tasks that match the criteria.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter any search criteria.
-Trackr displays an error message.
-Use case ends.
+  Trackr displays an error message.
+  Use case ends.
 
 * 4a. No task matches the given search criteria.
-Trackr displays a message indicating no matching task is found.
+  Trackr displays a message indicating no matching task is found.
 
   Use case ends.
 
@@ -705,24 +701,24 @@ MSS
 2. Actor enters the tab command with the target tab.
 3. Trackr switches to the target tab.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The Actor enters an invalid target tab.
-Trackr displays an error message.
+  Trackr displays an error message.
 
-    Use case ends.
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -754,16 +750,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+  1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -771,16 +767,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -788,6 +784,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
