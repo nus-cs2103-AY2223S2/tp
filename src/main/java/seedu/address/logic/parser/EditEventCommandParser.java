@@ -53,7 +53,9 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            System.out.println("tutorial prefix");
             newEvent = new Tutorial(ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get()));
+            System.out.println(newEvent);
             isTutorial = true;
             isLab = false;
             isConsultation = false;
