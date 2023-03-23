@@ -211,7 +211,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   **How the Filled Homework Section is created when Homework Button is Clicked**
 
-  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  1. Based on the graph above, after the user clicks the view homework button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
   3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
   4. If `Student` does not have `Homework`, `StudentCard` will create a new `EmptyHomeorkContent` with the `Student`. 
@@ -234,7 +234,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   **How the Filled Lessons Section is created when Lessons Button is Clicked**
 
-  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  1. Based on the graph above, after the user clicks the view lessons button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
   3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
   4. If `Student` does not have `Lessons`, `StudentCard` will create a new `EmptyLessonsContent` with the `Student`. 
@@ -255,9 +255,9 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   <img src="images/ExamsClickSequenceDiagram.png \" width="1200" height="600" />
 
-  **How the Filled Exams Section is created when Lessons Button is Clicked**
+  **How the Filled Exams Section is created when Exams Button is Clicked**
 
-  1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  1. Based on the graph above, after the user clicks the view exams button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
   3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
   4. If `Student` does not have `Exams`, `StudentCard` will create a new `EmptyExamsContent` with the `Student`. 
