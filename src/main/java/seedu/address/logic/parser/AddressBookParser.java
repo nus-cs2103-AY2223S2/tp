@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.contact.AddContactCommand;
 import seedu.address.logic.commands.AddInterviewDateCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearByCommand;
@@ -23,6 +22,8 @@ import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
+import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.AddNoteCommand;
@@ -104,6 +105,7 @@ public class AddressBookParser {
             return new EditStatusCommandParser().parse(arguments);
 
         case AddContactCommand.COMMAND_WORD:
+        case EditContactCommand.COMMAND_WORD:
             return contactParser.parseContactCommand(commandWord, arguments);
 
         case ClearByCommand.COMMAND_WORD:
