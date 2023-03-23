@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -32,13 +35,14 @@ public class LogicManagerTest {
 
     private Model model = new ModelManager();
     private Logic logic;
+    private StorageManager storage;
 
     @BeforeEach
     public void setUp() {
         JsonMasterDeckStorage masterDeckStorage =
                 new JsonMasterDeckStorage(temporaryFolder.resolve("masterDeck.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(masterDeckStorage, userPrefsStorage);
+        storage = new StorageManager(masterDeckStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -56,7 +60,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_invalidCommandWhenDeckNotSelected_throwsParseException() { // deck needs to be selected
-        String invalidCommandWhenDeckNotSelected = "unselectDeck";
+        String invalidCommandWhenDeckNotSelected = UnselectDeckCommand.COMMAND_WORD;
         assertParseException(invalidCommandWhenDeckNotSelected, MESSAGE_UNKNOWN_COMMAND);
     }
 
@@ -64,6 +68,15 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validCommandWhenDeckSelected_success() throws Exception { // select deck when deck selected
+        String unselectDeck = UnselectDeckCommand.COMMAND_WORD;
+        Model modelWithDeckSelected = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+        modelWithDeckSelected.selectDeck(INDEX_FIRST);
+        Logic logic = new LogicManager(modelWithDeckSelected, storage);
+        assertLogicSuccess(unselectDeck, UnselectDeckCommand.MESSAGE_SUCCESS, logic);
     }
 
     @Test
@@ -102,6 +115,12 @@ public class LogicManagerTest {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
+    }
+
+    private void assertLogicSuccess(String inputCommand, String expectedMessage,
+                                    Logic logic) throws CommandException, ParseException {
+        CommandResult result = logic.execute(inputCommand);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 
     /**
