@@ -1,26 +1,16 @@
 package seedu.address.model.transaction;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.testutil.TransactionBuilder;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_DESC_COFFEE_MACHINES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_OWNER_COFFEE_MACHINES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_STATUS_COFFEE_MACHINES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TXN_VALUE_COFFEE_MACHINES;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalTransactions.COFFEE_BEANS;
 import static seedu.address.testutil.TypicalTransactions.COFFEE_MACHINES_A;
-
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TransactionBuilder;
 
 class TransactionTest {
 
