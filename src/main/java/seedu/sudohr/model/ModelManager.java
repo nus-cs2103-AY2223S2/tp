@@ -199,7 +199,7 @@ public class ModelManager implements Model {
     @Override
     public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
         if (sudoHr.hasLeave(leaveToAdd)) {
-            return sudoHr.getLeave(leaveToAdd);
+            return sudoHr.getInternalLeaveIfExist(leaveToAdd);
         } else {
             sudoHr.addLeave(leaveToAdd);
             return leaveToAdd;
