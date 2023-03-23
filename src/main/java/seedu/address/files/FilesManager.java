@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -23,6 +24,7 @@ public class FilesManager {
     private FileStorage store;
     private FileGenerator create;
     private String path;
+    private List<Path> files;
 
     /**
      * Instantiates a new Files manager.
@@ -35,6 +37,7 @@ public class FilesManager {
         create = new FileGenerator(person,
                 "Handsome", "description", 20);
         path = "reports/" + person.getName().fullName;
+        getAllFiles();
     }
 
     public void initFile() {
@@ -71,34 +74,28 @@ public class FilesManager {
         return directories;
     }
 
-    public List<Path> getAllFiles(Path directory) {
-        List<Path> files = new ArrayList<>();
+    public void getAllFiles() {
+        Path directory = Paths.get(path);
+        files = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(directory)) {
             stream.filter(Files::isRegularFile)
                     .forEach(files::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return files;
     }
+
+    public List<String> getAllFileNames() {
+        List<String> fileNames = files.stream()
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .collect(Collectors.toList());
+        return fileNames;
+    }
+
+
     public int numberOfFiles(Path drc) {
-        return getAllFiles(drc).size();
-    }
-    /**
-     * @param fileName
-     * @return
-     */
-    public boolean fileExists(String fileName) {
-        List<Path> directories = getAllDirectories();
-        for (Path directory : directories) {
-            List<Path> files = getAllFiles(directory);
-            for (Path file : files) {
-                if (file.getFileName().toString().equals(fileName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return files.size();
     }
 
     /**
