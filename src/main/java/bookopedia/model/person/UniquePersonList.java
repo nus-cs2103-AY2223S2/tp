@@ -99,7 +99,7 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the list of persons based on their delivery status in ascending order.
+     * Replaces the current list with a sorted list based on delivery status in ascending order.
      */
     public void sort() {
         internalList.sort(new Comparator<Person>() {
