@@ -7,7 +7,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 
-
 /**
  * Lists all internships that have deadlines in the upcoming week.
  */

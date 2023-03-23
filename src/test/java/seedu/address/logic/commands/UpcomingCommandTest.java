@@ -1,23 +1,23 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
+import static seedu.address.testutil.TypicalInternshipsVariableDates.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_INTERNSHIP_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalInternshipsVariableDates.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -33,14 +33,14 @@ public class UpcomingCommandTest {
     @Test
     public void dateInternships() {
         Internship today = new InternshipBuilder().withDate(currentDate.format(formatter)).build();
-        Internship yesterday = new InternshipBuilder().withDate(currentDate.plusDays(-1).
-                format(formatter)).build();
-        Internship oneday = new InternshipBuilder().withDate(currentDate.plusDays(1).
-                format(formatter)).build();
-        Internship sixdays= new InternshipBuilder().withDate(currentDate.plusDays(6).
-                format(formatter)).build();
-        Internship sevendays = new InternshipBuilder().withDate(currentDate.plusDays(7).
-                format(formatter)).build();
+        Internship yesterday = new InternshipBuilder().withDate(currentDate.plusDays(-1)
+                .format(formatter)).build();
+        Internship oneday = new InternshipBuilder().withDate(currentDate.plusDays(1)
+                .format(formatter)).build();
+        Internship sixdays = new InternshipBuilder().withDate(currentDate.plusDays(6)
+                .format(formatter)).build();
+        Internship sevendays = new InternshipBuilder().withDate(currentDate.plusDays(7)
+                .format(formatter)).build();
 
         assertTrue(PREDICATE_SHOW_UPCOMING_INTERNSHIPS.test(today));
         assertTrue(PREDICATE_SHOW_UPCOMING_INTERNSHIPS.test(sixdays));
@@ -54,7 +54,7 @@ public class UpcomingCommandTest {
         String dateToday = currentDate.format(formatter).toString();
         Internship interview = new InternshipBuilder().withDate(dateToday).withStatus("interview").build();
         Internship offered = new InternshipBuilder().withDate(dateToday).withStatus("offered").build();
-        Internship neww  = new InternshipBuilder().withDate(dateToday).withStatus("new").build();
+        Internship neww = new InternshipBuilder().withDate(dateToday).withStatus("new").build();
         Internship rejected = new InternshipBuilder().withDate(dateToday).withStatus("rejected").build();
         Internship assessment = new InternshipBuilder().withDate(dateToday).withStatus("assessment").build();
         Internship applied = new InternshipBuilder().withDate(dateToday).withStatus("applied").build();

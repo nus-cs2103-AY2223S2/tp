@@ -1,15 +1,13 @@
 package seedu.address.testutil;
 
-import seedu.address.model.InternBuddy;
-import seedu.address.model.internship.Internship;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.InternBuddy;
+import seedu.address.model.internship.Internship;
 
 /**
  * A utility class containing a list of {@code Internship} objects to be used in tests.
@@ -59,33 +57,6 @@ public class TypicalInternshipsVariableDates {
             .withComment("I love Supercell Games!")
             .withTags("design", "game").build();
 
-
-    // Manually added
-    public static final Internship TESLA = new InternshipBuilder().withCompanyName("Tesla")
-            .withRole("App Developer")
-            .withStatus("offered")
-            .withDate("2023-02-08").build();
-    public static final Internship NITENDOGAMES = new InternshipBuilder().withCompanyName("Nitendo Games")
-            .withRole("Game Developer")
-            .withStatus("interview")
-            .withDate("2023-02-09").build();
-
-    // Manually added - Internship's details found in {@code CommandTestUtil}
-    public static final Internship APPLE = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
-            .withRole(VALID_ROLE_APPLE)
-            .withStatus(VALID_STATUS_APPLE)
-            .withDate(VALID_DATE_APPLE)
-            .withComment(VALID_COMMENT_APPLE)
-            .withTags(VALID_TAG_FRONT).build();
-    public static final Internship GOOGLE = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
-            .withRole(VALID_ROLE_GOOGLE)
-            .withStatus(VALID_STATUS_GOOGLE)
-            .withDate(VALID_DATE_GOOGLE)
-            .withComment(VALID_COMMENT_GOOGLE)
-            .withTags(VALID_TAG_FRONT, VALID_TAG_BACK)
-            .build();
-
-    public static final String KEYWORD_MATCHING_GAMES = "Games"; // A keyword that matches GAMES
 
     private TypicalInternshipsVariableDates() {} // prevents instantiation
 
