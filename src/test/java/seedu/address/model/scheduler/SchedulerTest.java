@@ -28,8 +28,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.timetable.time.SchoolDay;
-import seedu.address.model.timetable.time.TimePeriod;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimePeriod;
 
 class SchedulerTest {
 
@@ -86,7 +86,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.MONDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
     @Test
@@ -101,7 +101,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.MONDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
     @Test
@@ -116,7 +116,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.MONDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
     @Test
@@ -131,7 +131,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.MONDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
     @Test
@@ -145,7 +145,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.MONDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
 
     }
 
@@ -161,7 +161,7 @@ class SchedulerTest {
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
-        assertEquals(SchoolDay.WEDNESDAY, longestInterval.get().getSchoolDay());
+        assertEquals(Day.WEDNESDAY, longestInterval.get().getSchoolDay());
 
     }
 

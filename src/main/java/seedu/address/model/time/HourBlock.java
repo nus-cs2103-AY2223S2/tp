@@ -1,36 +1,36 @@
-package seedu.address.model.timetable.time;
+package seedu.address.model.time;
 
 import java.util.Optional;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.timetable.Lesson;
-import seedu.address.model.timetable.exceptions.LessonClashException;
-import seedu.address.model.timetable.exceptions.WrongTimeException;
-import seedu.address.model.timetable.time.util.TimeUtils;
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.scheduler.exceptions.CommitmentClashException;
+import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.time.util.TimeUtils;
 
 
 /**
  * Represents an hour timeslot in a Timetable.
  */
-public class TimeSlot extends TimePeriod {
+public class HourBlock extends TimePeriod {
 
     public static final String WRONG_TIME_MESSAGE = "Timing does not match!";
     public static final String ALREADY_FILLED_MESSAGE = "Slot is already filled by a class!";
 
     private Optional<Lesson> lesson = Optional.empty();
 
-    public TimeSlot(LocalTime startTime, SchoolDay schoolDay) {
+    public HourBlock(LocalTime startTime, Day schoolDay) {
         super(startTime, startTime.plusHours(1), schoolDay);
     }
 
     /**
-     * Copys a TimeSlot to another TimeSlot.
+     * Copys a HourBlock to another HourBlock.
      */
-    public TimeSlot(TimeSlot timeSlot) {
-        super(timeSlot.getStartTime(), timeSlot.getEndTime(), timeSlot.getSchoolDay());
-        this.lesson = timeSlot.getLesson();
+    public HourBlock(HourBlock hourBlock) {
+        super(hourBlock.getStartTime(), hourBlock.getEndTime(), hourBlock.getSchoolDay());
+        this.lesson = hourBlock.getLesson();
     }
 
     public LocalTime getStartTime() {
@@ -74,7 +74,7 @@ public class TimeSlot extends TimePeriod {
      */
     public void setLesson(Lesson lesson) {
         if (!isFree()) {
-            throw new LessonClashException(ALREADY_FILLED_MESSAGE);
+            throw new CommitmentClashException(ALREADY_FILLED_MESSAGE);
         } else if (canFitLesson(lesson)) {
             this.lesson = Optional.ofNullable(lesson);
         } else {
@@ -120,7 +120,7 @@ public class TimeSlot extends TimePeriod {
         if (!super.equals(o)) {
             return false;
         }
-        TimeSlot timeSlot = (TimeSlot) o;
-        return lesson.equals(timeSlot.getLesson());
+        HourBlock hourBlock = (HourBlock) o;
+        return lesson.equals(hourBlock.getLesson());
     }
 }

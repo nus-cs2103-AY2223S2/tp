@@ -25,8 +25,8 @@ import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_6PM_1HR
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.model.timetable.Lesson;
-import seedu.address.model.timetable.Timetable;
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.scheduler.Timetable;
 
 /**
  * Composes of all the Typical Timetables

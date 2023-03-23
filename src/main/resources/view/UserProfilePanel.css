@@ -1,16 +1,27 @@
-#name {
-    -fx-font-family: 'SansSerif Bold Italic', sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-size: 23px;
-    -fx-text-fill: #FFFFFF;
+/* ---- Fonts ---- */
+
+@font-face {
+    font-family: 'Inter Medium';
+    src: url('../fonts/Inter/static/Inter-Medium.ttf');
 }
 
-#phone, #email, #address, #telegramHandle, #groupTags, #moduleTags {
-    -fx-font-family: "SansSerif";
-    -fx-font-size: 14px;
-    -fx-text-fill: #C7C7C7;
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('../fonts/Inter/static/Inter-Bold.ttf');
+}
+
+#name {
+    -fx-font-family: 'Inter Bold';
+    -fx-font-size: 18px;
+    -fx-text-fill: rgb(94, 40, 102);
+}
+
+#phone, #email, #address, #telegramHandle {
+    -fx-font-family: "Inter Medium";
+    -fx-font-size: 12px;
+    -fx-text-fill: rgb(94, 40, 102, 0.7);
+    -fx-opacity: 0.7;
     -fx-padding: 2;
-    -fx-wrap-text: true;
 }
 
 #userProfilePane {

@@ -1,10 +1,10 @@
-package seedu.address.model.timetable.time;
+package seedu.address.model.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.timetable.exceptions.WrongTimeException;
-import seedu.address.model.timetable.time.util.TimeUtils;
+import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.time.util.TimeUtils;
 
 /**
  * Represents a time period of a variable amount.
@@ -14,7 +14,7 @@ public class TimeBlock extends TimePeriod {
     /**
      * Constructs a period in time.
      */
-    public TimeBlock(LocalTime startTime, LocalTime endTime, SchoolDay schoolDay) {
+    public TimeBlock(LocalTime startTime, LocalTime endTime, Day schoolDay) {
         super(startTime, endTime, schoolDay);
     }
 

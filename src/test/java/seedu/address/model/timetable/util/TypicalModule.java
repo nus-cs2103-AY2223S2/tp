@@ -1,6 +1,6 @@
 package seedu.address.model.timetable.util;
 
-import seedu.address.model.timetable.Module;
+import seedu.address.model.scheduler.Module;
 
 /**
  * Represents a typical module.
