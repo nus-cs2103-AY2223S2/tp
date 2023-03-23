@@ -36,6 +36,10 @@ public class Event implements Comparable<Event> {
         return endTime;
     }
 
+    public String getCompletedStatus() {
+        return endTime.isPastTime() ? "Event completed" : "";
+    }
+
     /**
      * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two events.
