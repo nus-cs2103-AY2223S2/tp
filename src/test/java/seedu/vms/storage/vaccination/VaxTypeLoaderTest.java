@@ -13,10 +13,10 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
-import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.testutil.SampleVaxTypeData;
+import seedu.vms.testutil.VaxTestingUtil;
 
 
 public class VaxTypeLoaderTest {
