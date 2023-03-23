@@ -134,7 +134,7 @@ Here are all the specifiers that can be used:
 | c         | Preferred Communication Channel | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags and modules taken(including 0). 
+A person can have any number of tags and modules taken(including 0).
 
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
@@ -330,7 +330,7 @@ Use this command to exit the application!
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                               |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
 | **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
 | **Select** | `select INDEX`<br> e.g., `select 2`                                                                                                                                   |
