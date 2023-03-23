@@ -49,7 +49,12 @@ public class DeliveryJobFullDetail extends UiPart<Region> {
             deliveryTimeSlot.setText("N.A");
         });
 
-        earning.setText(job.getEarning().value);
+        job.getEarning().ifPresentOrElse(val -> {
+            earning.setText(val.value);
+        }, () -> {
+            earning.setText("N.A");
+        });
+
         completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
     }
 }

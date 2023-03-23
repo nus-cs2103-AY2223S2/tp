@@ -119,8 +119,8 @@ public class StatisticsWindow extends UiPart<Stage> {
     void fillInnerParts() {
 
         // new simple DeliveryJobListPanel constructor with no event handlers
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
-        deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
+        //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
+        //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
 
         ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
         totalJob.setText(new TotalJobs(list.size()).toString());

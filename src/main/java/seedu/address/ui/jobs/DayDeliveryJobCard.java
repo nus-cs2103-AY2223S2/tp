@@ -10,9 +10,9 @@ import seedu.address.ui.UiPart;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class DeliveryJobCard extends UiPart<Region> {
+public class DayDeliveryJobCard extends UiPart<Region> {
 
-    private static final String FXML = "DeliveryJobListCard.fxml";
+    private static final String FXML = "DayDeliveryJobListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,7 +46,7 @@ public class DeliveryJobCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DeliveryJobCard(DeliveryJob job, int displayedIndex) {
+    public DayDeliveryJobCard(DeliveryJob job, int displayedIndex) {
         super(FXML);
         this.job = job;
         id.setText(displayedIndex + ". ");
@@ -83,12 +83,12 @@ public class DeliveryJobCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeliveryJobCard)) {
+        if (!(other instanceof DayDeliveryJobCard)) {
             return false;
         }
 
         // state check
-        DeliveryJobCard card = (DeliveryJobCard) other;
+        DayDeliveryJobCard card = (DayDeliveryJobCard) other;
         return id.getText().equals(card.id.getText())
                 && job.equals(card.job);
     }

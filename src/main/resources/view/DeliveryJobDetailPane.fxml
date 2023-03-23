@@ -35,7 +35,7 @@
                           </rowConstraints>
                            <children>
                               <StackPane fx:id="senderContactInfoPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.vgrow="ALWAYS" />
-                              <StackPane fx:id="recepientContactInfoPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+                              <StackPane fx:id="recipientContactInfoPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>

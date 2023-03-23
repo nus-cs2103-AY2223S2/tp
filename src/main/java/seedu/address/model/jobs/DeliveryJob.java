@@ -15,64 +15,65 @@ public class DeliveryJob {
     private final String jobId;
 
     // Delivery informations
-    private final String recepient;
+    private final String recipient;
     private final String sender; // aka customer
     private final Optional<DeliveryDate> deliveryDate;
     private final Optional<DeliverySlot> deliverySlot;
-    private final Earning earning;
-    private final boolean isDelivered;
+    private final Optional<Earning> earning;
+    private final Boolean isDelivered;
 
     /**
      * Constructs a job entity.
      *
-     * @param recepient
+     * @param recipient
      * @param sender
      * @param earning
      */
-    public DeliveryJob(String recepient, String sender, String earning) {
-        this(genJobId(recepient, sender), recepient, sender, Optional.empty(), Optional.empty(), earning, false);
+    public DeliveryJob(String recipient, String sender, String earning) {
+        this(genJobId(recipient, sender), recipient, sender, Optional.empty(), Optional.empty(),
+                Optional.of(new Earning(earning)), false);
     }
 
     /**
      * Constructs a job entity.
      *
-     * @param recepient
+     * @param recipient
      * @param sender
      * @param deliveryDate
      * @param deliverySlot
      * @param earning
      */
-    public DeliveryJob(String recepient, String sender, String deliveryDate, String deliverySlot, String earning) {
-        this(genJobId(recepient, sender), recepient, sender, Optional.of(new DeliveryDate(deliveryDate)),
-                Optional.of(new DeliverySlot(deliverySlot)), earning, false);
+    public DeliveryJob(String recipient, String sender, String deliveryDate, String deliverySlot, String earning) {
+        this(genJobId(recipient, sender), recipient, sender, Optional.of(new DeliveryDate(deliveryDate)),
+                Optional.of(new DeliverySlot(deliverySlot)), Optional.of(new Earning(earning)), false);
     }
 
     /**
      * DeliveryJob
      *
      * @param jobId
-     * @param recepient
+     * @param recipient
      * @param deliverySlot
      * @param sender
      * @param earning
      * @param isDelivered
      */
-    public DeliveryJob(String jobId, String recepient, String sender, Optional<DeliveryDate> deliveryDate,
+    public DeliveryJob(String jobId, String recipient, String sender, Optional<DeliveryDate> deliveryDate,
             Optional<DeliverySlot> deliverySlot,
-            String earning,
-            boolean isDelivered) {
+            Optional<Earning> earning,
+            Boolean isDelivered) {
         this.jobId = jobId;
-        this.recepient = recepient;
+        this.recipient = recipient;
         this.sender = sender;
         this.deliveryDate = deliveryDate;
         this.deliverySlot = deliverySlot;
-        this.earning = new Earning(earning);
+        this.earning = earning;
         this.isDelivered = isDelivered;
     }
 
-    private static String genJobId(String recepient, String sender) {
-        requireNonNull(recepient, sender);
-        return recepient.substring(0, 2)
+    private static String genJobId(String recipient, String sender) {
+        requireNonNull(recipient, sender);
+        return recipient.substring(0, 2)
                 .concat(sender.substring(0, 2))
                 .concat(UUID.randomUUID().toString().substring(0, 6))
                 .toUpperCase();
@@ -82,8 +83,8 @@ public class DeliveryJob {
         return jobId;
     }
 
-    public String getRecepientId() {
-        return recepient;
+    public String getRecipientId() {
+        return recipient;
     }
 
     public String getSenderId() {
@@ -98,11 +99,11 @@ public class DeliveryJob {
         return deliverySlot;
     }
 
-    public Earning getEarning() {
+    public Optional<Earning> getEarning() {
         return earning;
     }
 
-    public boolean getDeliveredStatus() {
+    public Boolean getDeliveredStatus() {
         return isDelivered;
     }
 
@@ -152,7 +153,7 @@ public class DeliveryJob {
         builder.append(
                 String.format(outString,
                         jobId,
-                        getRecepientId(),
+                        getRecipientId(),
                         getSenderId(),
                         getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
                         getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
@@ -160,5 +161,104 @@ public class DeliveryJob {
                         getDeliveredStatus()));
 
         return builder.toString();
+    }
+
+    /**
+     * Buider class for building DeliveryJob.
+     */
+    public static class Builder {
+        private String jobId;
+        private String recipient;
+        private String sender; // aka customer
+        private Optional<DeliveryDate> deliveryDate = Optional.empty();
+        private Optional<DeliverySlot> deliverySlot = Optional.empty();
+        private Optional<Earning> earning = Optional.empty();
+        private Boolean isDelivered;
+
+        /**
+         * Sets jobid.
+         *
+         * @param id
+         * @return
+         */
+        public Builder jobId(String id) {
+            this.jobId = id;
+            return this;
+        }
+
+        /**
+         * Sets recipient.
+         *
+         * @param id
+         * @return
+         */
+        public Builder recipient(String id) {
+            this.recipient = id;
+            return this;
+        }
+
+        /**
+         * Sets sender.
+         *
+         * @param id
+         * @return
+         */
+        public Builder sender(String id) {
+            this.sender = id;
+            return this;
+        }
+
+        /**
+         * Sets deliveryDate.
+         *
+         * @param date
+         * @return
+         */
+        public Builder deliveryDate(String date) {
+            this.deliveryDate = Optional.of(new DeliveryDate(date));
+            return this;
+        }
+
+        /**
+         * Sets deliverySlot.
+         *
+         * @param slot
+         * @return
+         */
+        public Builder deliverySlot(String slot) {
+            this.deliverySlot = Optional.of(new DeliverySlot(slot));
+            return this;
+        }
+
+        /**
+         * Sets earning.
+         *
+         * @param earn
+         * @return
+         */
+        public Builder earning(String earn) {
+            this.earning = Optional.of(new Earning(earn));
+            return this;
+        }
+
+        /**
+         * Sets isDelivered.
+         *
+         * @param isDelivered
+         * @return
+         */
+        public Builder isDelivered(boolean isDelivered) {
+            this.isDelivered = isDelivered;
+            return this;
+        }
+
+        /**
+         * Builds DeliveryJob.
+         */
+        public DeliveryJob build() {
+            return new DeliveryJob(jobId, recipient, sender,
+                    deliveryDate,
+                    deliverySlot, earning, isDelivered);
+        }
     }
 }

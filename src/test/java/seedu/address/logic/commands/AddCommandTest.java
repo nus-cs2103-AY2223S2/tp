@@ -279,6 +279,10 @@ public class AddCommandTest {
         public void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystemFilePath'");
+
+        public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
         }
 
     }
