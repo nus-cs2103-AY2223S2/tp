@@ -12,12 +12,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CreateExamCommand;
 import seedu.address.logic.commands.CreateLessonCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.DeleteLessonCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UpdateExamCommand;
+import seedu.address.logic.commands.UpdateLessonCommand;
 import seedu.address.logic.commands.ViewExamCommand;
 import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.commands.homework.CreateHomeworkCommand;
@@ -120,6 +123,15 @@ public class AddressBookParser {
 
         case ViewExamCommand.COMMAND_WORD:
             return new ViewExamCommandParser().parse(arguments);
+
+        case DeleteExamCommand.COMMAND_WORD:
+            return new DeleteExamCommandParser().parse(arguments);
+
+        case UpdateLessonCommand.COMMAND_WORD:
+            return new UpdateLessonCommandParser().parse(arguments);
+
+        case UpdateExamCommand.COMMAND_WORD:
+            return new UpdateExamCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

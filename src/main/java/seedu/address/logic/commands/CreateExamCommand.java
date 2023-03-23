@@ -81,7 +81,7 @@ public class CreateExamCommand extends Command {
         }
 
         //Todo: currently weightage is 0 for convenience, implement this where possible
-        Exam exam = new Exam(examDescription, startTime, endTime, 0d, Exam.ExamStatus.Upcoming, null);
+        Exam exam = new Exam(examDescription, startTime, endTime, 0d, null);
 
         try {
             for (Student student : studentList) {

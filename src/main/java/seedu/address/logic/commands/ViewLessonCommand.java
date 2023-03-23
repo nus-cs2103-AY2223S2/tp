@@ -123,11 +123,12 @@ public class ViewLessonCommand extends Command {
             List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
                 donePredicate);
             if (!lessonList.isEmpty()) {
-                sb.append(String.format(NAME_LABEL, student.getName().fullName)).append(LINE_BREAK);
+                sb.append(student.getName().fullName).append(":\n");
+
                 numOfLessons += lessonList.size();
 
                 for (int i = 0; i < lessonList.size(); i++) {
-                    sb.append(i + 1).append(DOT).append(lessonList.get(i)).append(LINE_BREAK);
+                    sb.append(i + 1).append(". ").append(lessonList.get(i)).append("\n");
                 }
 
                 sb.append(SEPERATOR);
