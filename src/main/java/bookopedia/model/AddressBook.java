@@ -60,7 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the current list with a sorted list based on delivery status in ascending order.
      */
     public void sort() {
-        this.persons.sort();
+        persons.sort();
     }
 
     //// person-level operations
