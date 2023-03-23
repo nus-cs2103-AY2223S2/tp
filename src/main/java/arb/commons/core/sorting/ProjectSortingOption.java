@@ -1,6 +1,7 @@
 package arb.commons.core.sorting;
 
 import static arb.model.Model.PROJECT_DEADLINE_COMPARATOR;
+import static arb.model.Model.PROJECT_PRICE_COMPARATOR;
 import static arb.model.Model.PROJECT_TITLE_COMPARATOR;
 
 import java.util.Arrays;
@@ -15,10 +16,11 @@ import arb.model.project.Project;
 /** Represents a sorting option to sort the project list by. */
 public enum ProjectSortingOption {
     DEADLINE("deadline", "d", "Sorted all projects by deadline!", PROJECT_DEADLINE_COMPARATOR),
-    NAME("name", "n", "Sorted all projects by name!", PROJECT_TITLE_COMPARATOR);
+    NAME("name", "n", "Sorted all projects by name!", PROJECT_TITLE_COMPARATOR),
+    PRICE("price", "pr", "Sorted all projects by price!", PROJECT_PRICE_COMPARATOR);
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Sorting options should be either \'deadline\' or \'name\'";
+            "Sorting options should be either \'deadline\' or \'name\' or \'price\'";
     private static final EnumSet<ProjectSortingOption> sortingOptions = EnumSet.allOf(ProjectSortingOption.class);
 
     private final Set<String> optionStrings;

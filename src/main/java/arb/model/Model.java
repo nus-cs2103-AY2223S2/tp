@@ -42,6 +42,18 @@ public interface Model {
         return p1.getDeadline().compareTo(p2.getDeadline());
     };
 
+    /** {@code comparator} for sorted project list that compares using project prices */
+    Comparator<Project> PROJECT_PRICE_COMPARATOR = (p1, p2) -> {
+        if (!p1.isPricePresent() && !p2.isPricePresent()) {
+            return 0;
+        } else if (!p1.isPricePresent()) {
+            return 1;
+        } else if (!p2.isPricePresent()) {
+            return -1;
+        }
+        return p1.getPrice().compareTo(p2.getPrice());
+    };
+
     /** Null {@code comparator} for sorted client list */
     Comparator<Client> CLIENT_NO_COMPARATOR = null;
 
