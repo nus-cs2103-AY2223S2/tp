@@ -75,10 +75,10 @@ public class EditStatusCommand extends Command {
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
         Contact contact = internshipApplication.getContact();
-        boolean archived = internshipApplication.archived();
+        boolean isArchived = internshipApplication.isArchived();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, archived, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, contact, status, isArchived, interviewDate);
     }
 
     @Override

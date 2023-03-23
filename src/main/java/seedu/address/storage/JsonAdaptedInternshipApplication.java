@@ -60,7 +60,7 @@ public class JsonAdaptedInternshipApplication {
             contact.add(source.getContact().getEmail().value);
         }
         status = source.getStatus().name();
-        archived = source.archived();
+        archived = source.isArchived();
         if (source.getInterviewDate() != null) {
             interviewDate = source.getInterviewDate().toString();
         } else {

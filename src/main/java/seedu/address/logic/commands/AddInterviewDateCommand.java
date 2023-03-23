@@ -74,10 +74,10 @@ public class AddInterviewDateCommand extends Command {
         CompanyName companyName = internshipToAddInterviewDate.getCompanyName();
         JobTitle jobTitle = internshipToAddInterviewDate.getJobTitle();
         Contact contact = internshipToAddInterviewDate.getContact();
-        boolean archived = internshipToAddInterviewDate.archived();
+        boolean isArchived = internshipToAddInterviewDate.isArchived();
         InternshipStatus status = internshipToAddInterviewDate.getStatus();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, archived, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, contact, status, isArchived, interviewDate);
     }
 
     @Override
