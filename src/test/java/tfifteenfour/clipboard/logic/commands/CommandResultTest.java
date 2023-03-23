@@ -27,7 +27,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult(null, "different", false)));
 
-        // different hasChangedModelState value -> returns false
+        // different hasChangedRosterState value -> returns false
         assertFalse(commandResult.equals(new CommandResult(null, "feedback", true)));
     }
 
@@ -41,7 +41,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(null, "different", false).hashCode());
 
-        // different hasChangedModelState value -> returns different hashcode
+        // different hasChangedRosterState value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(null, "feedback", true).hashCode());
     }
 }

@@ -14,15 +14,15 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** The roster state has been modified */
-    private final boolean hasChangedModelState;
+    private final boolean hasChangedRosterState;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(Command command, String feedbackToUser, boolean hasChangedModelState) {
+    public CommandResult(Command command, String feedbackToUser, boolean hasChangedRosterState) {
         this.command = command;
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.hasChangedModelState = hasChangedModelState;
+        this.hasChangedRosterState = hasChangedRosterState;
     }
 
     public String getFeedbackToUser() {
@@ -30,7 +30,7 @@ public class CommandResult {
     }
 
     public boolean isStateModified() {
-        return hasChangedModelState;
+        return hasChangedRosterState;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && hasChangedModelState == otherCommandResult.hasChangedModelState
+                && hasChangedRosterState == otherCommandResult.hasChangedRosterState
                 && (command == null || otherCommandResult.command == null
                 ? command == otherCommandResult.command
                 : command.getClass() == otherCommandResult.command.getClass());
@@ -54,7 +54,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(command, feedbackToUser, hasChangedModelState);
+        return Objects.hash(command, feedbackToUser, hasChangedRosterState);
     }
 
     public Command getCommand() {
