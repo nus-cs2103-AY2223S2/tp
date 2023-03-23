@@ -281,8 +281,8 @@ illustrate this in further detail.
 The two figures above illustrate the end to end sequence between a change in
 user input (e.g. a user types a single character) until the updating of the UI.
 The `handleInputChanged()` method on `CommandBox` is invoked by JavaFX, and the
-contents of the command box is passed to a `SearchMode` instance to handle.
-From here, it is a simple three-step process.
+contents of the command box are passed to a `SearchMode` instance to handle.
+From here, it is a three-step process.
 
 1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
 1. Pass the two lists through the `FuzzyManager#rankItems` method, which
