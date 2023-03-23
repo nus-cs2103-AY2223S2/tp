@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User inputs new-lesson command;
+:Instantiates a CreateLessonCommand;
+:Creates a Lesson object according to user inputs;
+:Adds the lesson to the specified Student's list of lessons;
+:Update the UI to inform user the Lesson is successfully added;
+
+@enduml
