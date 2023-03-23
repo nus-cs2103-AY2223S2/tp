@@ -53,7 +53,7 @@ List of commands:
 - Clearing all entries: `clear`
 - Uploading a student's photo: `upload`
 - Exiting the program: `exit`
-
+---
 ### Opening help window: `help`
 
 Opens a window showing a link to this User Guide.
@@ -62,15 +62,15 @@ Format:
 ```
 help
 ```
-
+---
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
 Scrolls through past commands in command box.
 
-- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands.
+- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
 - You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
 - Press `ENTER` to execute the command.
-
+---
 ### Listing all students: `list`
 
 Lists all students in the student roster.
@@ -82,7 +82,7 @@ list
 
 - Students will be listed in the order they were added to CLIpboard.
 - To sort the students based on their names or student IDs, use the `sort` command.
-
+---
 ### Sorting list of students: `sort`
 
 Sorts list of students in student roster.
@@ -96,7 +96,7 @@ sort <CATEGORY>
 Examples:
 - `sort name` will sort list of students alphabetically according to name.
 - `sort id` will sort list of students alphanumerically according to student ID.
-
+---
 ### Adding a student: `add`
 
 Adds a student to the student roster.
@@ -113,7 +113,7 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X m/CS2103T`
 - `add n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X m/CS2105 t/T06`
 
-
+---
 ### Editing a student: `edit`
 
 Edits an existing student in the student roster.
@@ -131,7 +131,7 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>] [m
 Examples:
 - `edit 1 n/John Doe` will replace the name of the first student listed in the student list to 'John Doe'.
 - `edit 4 p/99887766 m/CS2105` will replace the phone number and module of the fourth student listed in the student list to '99887766' and 'CS2105' respectively.
-
+---
 ### Adding or deleting a remark: `remark`
 
 Add or delete a remark to/from a student in the student roster.
@@ -151,7 +151,7 @@ remark <INDEX>
 Examples:
 - `remark 1 r/Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
-
+---
 ### Deleting a student: `delete`
 
 Deletes a student from the student roster.
@@ -163,7 +163,7 @@ delete <INDEX>
 
 Examples:
 - `delete 1` will delete 1st student listed in the student list panel of CLIpboard.
-
+---
 ### View a student's information: `view`
 
 Views personal information for a particular student.
@@ -176,7 +176,7 @@ view <INDEX>
 Examples:
 - `view 2` will display the full student details of the 2nd student in the student list on the view panel.
 
-
+---
 ### Finding students by name: `find`
 
 Finds students whose names contain any of the given keywords.
@@ -192,6 +192,7 @@ Examples:
 
 ![image](images/findAlexYuResult.png)
 
+---
 ### Clearing all entries: `clear`
 
 Clears all entries in the student roster.
@@ -200,7 +201,7 @@ Format:
 ```
 clear
 ```
-
+---
 ### Uploading a student's photo: `upload`
 
 Uploads a student's photo to be displayed on the student roster.
@@ -218,7 +219,7 @@ Only images of file type .png is accepted
 
 Examples:
 - `upload /Users/AlexYeoh/Desktop/A0123456X.png`
-
+---
 ### Exiting the program: `exit`
 
 Exits the program.
