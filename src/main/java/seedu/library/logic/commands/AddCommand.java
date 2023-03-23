@@ -6,6 +6,7 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
 
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Model;
@@ -24,12 +25,14 @@ public class AddCommand extends Command {
             + PREFIX_AUTHOR + "AUTHOR "
             + PREFIX_PROGRESS + "PROGRESS "
             + PREFIX_GENRE + "GENRE "
+            + PREFIX_URL + "URL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Hobbit "
             + PREFIX_AUTHOR + "J. R. R. Tolkien "
-            + PREFIX_PROGRESS + "Finished "
+            + PREFIX_PROGRESS + "1 1 1 "
             + PREFIX_GENRE + "Fantasy "
+            + PREFIX_URL + "https://allnovel.net/the-hobbit.html "
             + PREFIX_TAG + "Literature Reading "
             + PREFIX_TAG + "Holiday reading list";
 

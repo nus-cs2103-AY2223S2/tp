@@ -15,6 +15,7 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.util.SampleDataUtil;
 
 
@@ -56,6 +57,9 @@ public class BookmarkListPanel extends UiPart<Region> {
     public Bookmark getSelectedItem() {
         return selectedItem;
     }
+    public void unSelect() {
+        bookmarkListView.getSelectionModel().clearSelection();
+    }
     public boolean isChangedSelect() {
         return flag;
     }
@@ -64,8 +68,10 @@ public class BookmarkListPanel extends UiPart<Region> {
             Bookmark item = bookmarks.get(0);
             return bookmarks.get(0);
         } catch (IndexOutOfBoundsException e) {
-            return new Bookmark(new Title("Alex Yeoh"), new Progress("87438807"), new Genre("alexyeoh@example.com"),
-                    new Author("Blk 30 Geylang Street 29, #06-40"),
+            String[] sampleProgress = {"1", "32", "56"};
+            return new Bookmark(new Title("Alex Yeoh"), new Progress(sampleProgress), new Genre("alexyeoh@example.com"),
+                    new Author("Blk 30 Geylang Street 29, #06-40"), new Url(""),
+
                     SampleDataUtil.getTagSet("friends"));
 
         }

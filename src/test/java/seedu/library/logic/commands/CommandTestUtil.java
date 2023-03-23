@@ -18,7 +18,7 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
+import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**
@@ -28,8 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_PROGRESS_AMY = "11111111";
-    public static final String VALID_PROGRESS_BOB = "22222222";
+    public static final String VALID_PROGRESS_AMY = "1 32 7";
+    public static final String VALID_PROGRESS_BOB = "2 20 12";
     public static final String VALID_GENRE_AMY = "Amy";
     public static final String VALID_GENRE_BOB = "Bob";
     public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";
@@ -120,7 +120,8 @@ public class CommandTestUtil {
 
         Bookmark bookmark = model.getFilteredBookmarkList().get(targetIndex.getZeroBased());
         final String[] splitName = bookmark.getTitle().value.split("\\s+");
-        model.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBookmarkList(new BookmarkContainsKeywordsPredicate(
+                Arrays.asList(splitName[0]), null, null, null));
 
         assertEquals(1, model.getFilteredBookmarkList().size());
     }

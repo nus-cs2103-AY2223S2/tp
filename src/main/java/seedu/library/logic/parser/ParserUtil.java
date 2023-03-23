@@ -13,6 +13,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -59,10 +60,11 @@ public class ParserUtil {
     public static Progress parseProgress(String progress) throws ParseException {
         requireNonNull(progress);
         String trimmedProgress = progress.trim();
-        if (!Progress.isValidProgress(trimmedProgress)) {
+        String[] splitProgress = trimmedProgress.split(" ");
+        if (!Progress.isValidProgress(splitProgress)) {
             throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
         }
-        return new Progress(trimmedProgress);
+        return new Progress(splitProgress);
     }
 
     /**
@@ -94,6 +96,20 @@ public class ParserUtil {
         }
         return new Genre(trimmedGenre);
     }
+    /**
+     * Parses a {@code String url} into an {@code Url}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code url} is invalid.
+     */
+    public static Url parseUrl(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        if (!Url.isValidUrlLink(trimmedUrl)) {
+            throw new ParseException(Url.MESSAGE_CONSTRAINTS);
+        }
+        return new Url(trimmedUrl);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -109,6 +125,7 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
+
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.

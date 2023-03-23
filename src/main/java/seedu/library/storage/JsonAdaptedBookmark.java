@@ -15,6 +15,7 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -25,22 +26,26 @@ class JsonAdaptedBookmark {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Bookmark's %s field is missing!";
 
     private final String title;
-    private final String progress;
+    private final JsonAdaptedProgress progress;
     private final String genre;
     private final String author;
+    private final String url;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBookmark} with the given bookmark details.
      */
     @JsonCreator
-    public JsonAdaptedBookmark(@JsonProperty("title") String title, @JsonProperty("progress") String progress,
+    public JsonAdaptedBookmark(@JsonProperty("title") String title,
+                               @JsonProperty("progress") JsonAdaptedProgress progress,
                                @JsonProperty("genre") String genre, @JsonProperty("author") String author,
+                               @JsonProperty("url") String url,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.url = url;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -51,9 +56,10 @@ class JsonAdaptedBookmark {
      */
     public JsonAdaptedBookmark(Bookmark source) {
         title = source.getTitle().value;
-        progress = source.getProgress().value;
+        progress = new JsonAdaptedProgress(source.getProgress());
         genre = source.getGenre().value;
         author = source.getAuthor().value;
+        url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -82,10 +88,8 @@ class JsonAdaptedBookmark {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Progress.class.getSimpleName()));
         }
-        if (!Progress.isValidProgress(progress)) {
-            throw new IllegalValueException(Progress.MESSAGE_CONSTRAINTS);
-        }
-        final Progress modelProgress = new Progress(progress);
+
+        final Progress modelProgress = progress.toModelType();
 
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
@@ -102,9 +106,17 @@ class JsonAdaptedBookmark {
             throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
         }
         final Author modelAuthor = new Author(author);
+        if (url == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Url.class.getSimpleName()));
+        }
+        if (!Url.isValidUrlLink(url)) {
+            throw new IllegalValueException(Url.MESSAGE_CONSTRAINTS);
+        }
+        final Url modelUrl = new Url(url);
+
 
         final Set<Tag> modelTags = new HashSet<>(bookmarkTags);
-        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelTags);
+        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelUrl, modelTags);
     }
 
 }

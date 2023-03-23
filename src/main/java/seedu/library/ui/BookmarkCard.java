@@ -57,7 +57,7 @@ public class BookmarkCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
 
-        progress.setText(bookmark.getProgress().value);
+        progress.setText(bookmark.getProgress().toString());
         b1.setText(bookmark.getProgress().toString());
 
         if (bookmark.getProgress().toString().toUpperCase().equals("FINISHED")) {

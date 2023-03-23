@@ -2,17 +2,27 @@
   "_comment": "Library save file which contains the same Bookmark values as in TypicalBookmarks#getTypicalLibrary()",
   "bookmarks": [ {
     "title": "Alice Pauline",
-    "progress" : "94351253",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
+    "url": "",
     "tagged" : [ {
       "tag": "friends"
     }]
   }, {
     "title": "Benson Meier",
-    "progress" : "98765432",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "johnd@example.com",
     "author": "311, Clementi Ave 2, #02-25",
+    "url": "",
     "tagged" : [ {
       "tag": "owesMoney"
     }, {
@@ -20,35 +30,60 @@
     }]
   }, {
     "title": "Carl Kurz",
-    "progress" : "95352563",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "heinz@example.com",
     "author": "wall street",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "Daniel Meier",
-    "progress" : "87652533",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "cornelia@example.com",
     "author": "10th street",
+    "url": "",
     "tagged" : [ {
       "tag": "friends"
     } ]
   }, {
     "title": "Elle Meyer",
-    "progress" : "9482224",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "werner@example.com",
     "author": "michegan ave",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "Fiona Kunz",
-    "progress" : "9482427",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "lydia@example.com",
     "author": "little tokyo",
+    "url": "",
     "tagged" : [ ]
   }, {
     "title": "George Best",
-    "progress" : "9482442",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "anna@example.com",
     "author": "4th street",
+    "url": "",
     "tagged" : [ ]
   } ]
 }

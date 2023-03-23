@@ -32,7 +32,9 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
    * `clear` : Deletes all Bookmarks.
-
+   
+   * `clear` : Goto url of Bookmark.
+   
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -143,6 +145,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
 * `find Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
+### Going to a url : `goto
+
+Opens up specified bookmark's url in default browser
+
+Format: 'goto INDEX'
+
+* Opens the url of bookmark at the specified `INDEX`.
+* The index refers to the index number shown in the displayed bookmark list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+* Examples:
+* `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
+* `find Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the MyLib.
@@ -189,6 +206,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chainsaw Man`
+**GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
 **Help** | `help`
 

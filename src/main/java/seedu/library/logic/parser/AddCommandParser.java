@@ -6,6 +6,7 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,6 +18,7 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -32,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR,
-                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_TAG);
+                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_URL, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PROGRESS, PREFIX_GENRE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,9 +45,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Progress progress = ParserUtil.parseProgress(argMultimap.getValue(PREFIX_PROGRESS).get());
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
         Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
+        Url url = argMultimap.getValue(PREFIX_URL).isPresent()
+                ? ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())
+                : new Url("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Bookmark bookmark = new Bookmark(title, progress, genre, author, tagList);
+        Bookmark bookmark = new Bookmark(title, progress, genre, author, url, tagList);
         boolean hasTags = arePrefixesPresent(argMultimap, PREFIX_TAG);
         return new AddCommand(bookmark, hasTags);
     }

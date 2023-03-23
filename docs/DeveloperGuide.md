@@ -234,6 +234,105 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### GoTo Feature
+
+#### Implementation
+
+The `Bookmark` class will have an attribute `url` of type `URL` which represents site which the bookmark is hyperlinked to
+
+The `GoToCommand` will then open the site in the default browser of the user. Before the `GoToCommand` object is created.
+* The `GoToCommandParser` will checks if the command is of the correct format and argument index is valid
+* Then the `GoToCommand` will execute these steps in order
+  1. Get the current bookmarklist displayed
+  2. Get bookmark of specified index from the bookmarklist and get its `url` 
+  3. Open the url in the default browser.
+
+The following Activity diagram depicts what happens when the `GoToCommand` is executed.
+
+![GoToActivity](images/GoToActivityDiagram.png)
+
+The following sequence diagram shows the interaction between the objects when a user executes the GoTo command.
+
+![GoToSequence](images/GoToSequenceDiagram.png)
+
+#### Design Considerations:
+
+#### Aspect: What data type to use?:
+
+Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and 
+is then created into a URI object when `GoToCommand` is executed
+
+The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
+
+* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+    * Pros: Easy to implement, easier storage
+    * Cons: May have security due to parsing or encoding errors
+
+* **Alternative 2:** url stored as a URI object in Bookmark
+    * Pros: Will use be safer as errors are caught before object is created
+    * Cons: Difficulty in implementing as harder to parse for user input due to format of URI 
+
+### Progress Field
+
+#### Implementation
+
+The `Progress` field of a `Bookmark` is used to track the latest read portion of the associated book. This could be many
+things including the latest read volume of a series, or the chapter or page of a single book. It is mainly for a user to
+remember where he last left off when they revisit the book.
+
+Currently, `Progress` contains 3 public attributes: `volume`, `chapter` and `page`, all of which are implemented as
+separate `String` objects. While these attributes can be empty, at least one of them must not be empty. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For a case where all 3 attributes are empty
+, this should be reflected by a `Bookmark` with `Progress = null`.
+</div>
+
+The valid range of values for the 3 attributes are as follows:
+1. Each of the 3 attributes can only be `~` or an unsigned integer in the form of a `String`
+   * `~` represents an empty value.
+   * If it is an unsigned integer, it may not start with `0`.
+2. At least one of the 3 attributes must be an unsigned integer
+   * They cannot all be `~`. i.e. Cannot have an empty `Progress`
+
+The format for user input is: `p/VOLUME CHAPTER PAGE`.
+
+The valid range of values for `VOLUME`, `CHAPTER` and `PAGE` are identical to that of the `volume`, `chapter` and `page`
+attributes. Similarly, the value of the 3 attributes is identical to the value stored in JSON when the `Bookmark` is
+saved. For example, if `page` has the value `~`, that exact value is saved into the JSON file.
+
+#### Design considerations:
+
+**Aspect: What data should `Progress` contain?:**
+
+Currently, Progress stores information about the volume, chapter and page of the book being tracked. 
+
+This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical) 
+organise themselves with the 3 attributes. 
+
+Other possible attributes that were considered include: line number and word number. However, if we consider a user revisiting a book and wanting to continue where they last left off, 
+it is very unlikely that they will continue from the word or line that they stopped at.
+
+**Aspect: What data type to use?:**
+
+Currently, `volume`, `chapter` and `page` are all stored as separate `String` objects.
+
+This makes it easy to parse user input (which is a `String`) into a `Progress` object, and easy for a `Progress` 
+object to be converted into a set of `String` objects to be saved into a JSON file for storage.
+
+A considered alternative is to use 3 `Integer` objects instead. The benefit of this would be allowing integer
+arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress` 
+in a way that would require integer arithmetic and the difference in memory cost is negligible. Furthermore, like other
+`Bookmark` fields, `Progress` is designed to be immutable.
+
+**Aspect: How to represent a value that does not exist?:**
+
+Currently, `~` is used to represent absence of a value.
+
+The main reason is to simplify the logic for parsing user input.
+
+A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
+then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
+prefixes to differentiate them, but parsing becomes more complex.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -250,7 +349,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -274,30 +372,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new bookmark             |   start tracking a book                                                |
-| `* * *`  | user                                       | delete a bookmark              | remove entries that I no longer need                                   |
-| `* * *`  | user with many bookmarks | find bookmarks by book title   | locate bookmarsk without having to go through the entire list |
-| `* * *`    | user                                       | edit a bookmark                 | update the information in my bookmark               |
-| `* *`  | user | view the details of a single bookmark | see information about a particular book I am tracking
-| `* *` | user with mostly unnecessary bookmarks | clear all bookmarks |  not delete each bookmark one by one |
-| `* *` | user with many bookmarks | find bookmarks by book type | view bookmarks of only a certain type|
-| `* *` | user with many bookmarks | find bookmarks by book genre | sview bookmarks of only a certain genre|
-| `* *` | user  | rate a book through its bookmark | remember how much I enjoyed the book|
-| `* *`      | user with many bookmarks | sort bookmarks by book title           | locate a bookmark easily             |
-| `* *` | user with many bookmarks | sort bookmarks by rating | locate bookmarks of books I enjoyed easily|
-| `* *` | user who likes detail | add tags to bookmark | give additional labels to a bookmark|
-| `* *` | user with many bookmarks | find bookmarks by their tags | view only bookmarks who have certain tags|
-| `* *` | user with many bookmarks | find bookmarks by book author | view bookmarks of books written by a specific author|
-| `* *` | user | add hyperlinks to bookmarks | link the website where I am reading the book's chapters from|
-| `*` | user | add book characters to a bookmark | store noteworthy characters which I remember the book by|
-| `* ` | user | find bookmarks using name of characters | locate books with certain characters easily|
-| `* *` | user with many bookmarks | sort bookmarks by date of creation | view bookmarks in order of creation |
-| `* *` | user with many bookmarks | find bookmarks by last modified date | view bookmarks in order of most recently updated|
-| `* *` | user  | add last read chapter to a bookmark | know where I last left off with a certain book|
-| `* *` | user | find bookmarks based on their status | view only bookmarks of a certain status easily|
+| Priority | As a …​                                    | I want to …​                            | So that I can…​                                               |
+| -------- | ------------------------------------------ |-----------------------------------------|---------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                  | refer to instructions when I forget how to use the App        |
+| `* * *`  | user                                       | add a new bookmark                      | start tracking a book                                         |
+| `* * *`  | user                                       | delete a bookmark                       | remove entries that I no longer need                          |
+| `* * *`  | user with many bookmarks | find bookmarks by book title            | locate bookmarsk without having to go through the entire list |
+| `* * *`    | user                                       | edit a bookmark                         | update the information in my bookmark                         |
+| `* *`  | user | view the details of a single bookmark   | see information about a particular book I am tracking         |
+| `* *` | user with mostly unnecessary bookmarks | clear all bookmarks                     | not delete each bookmark one by one                           |
+| `* *` | user with many bookmarks | find bookmarks by book type             | view bookmarks of only a certain type                         |
+| `* *` | user with many bookmarks | find bookmarks by book genre            | sview bookmarks of only a certain genre                       |
+| `* *` | user  | rate a book through its bookmark        | remember how much I enjoyed the book                          |
+| `* *`      | user with many bookmarks | sort bookmarks by book title            | locate a bookmark easily                                      |
+| `* *` | user with many bookmarks | sort bookmarks by rating                | locate bookmarks of books I enjoyed easily                    |
+| `* *` | user who likes detail | add tags to bookmark                    | give additional labels to a bookmark                          |
+| `* *` | user with many bookmarks | find bookmarks by their tags            | view only bookmarks who have certain tags                     |
+| `* *` | user with many bookmarks | find bookmarks by book author           | view bookmarks of books written by a specific author          |
+| `* *` | user | add hyperlinks to bookmarks             | link the website where I am reading the book's chapters from  |
+| `* *` | user | goto url of bookmarks                   | easily go to site of bookmark                                 |
+| `*` | user | add book characters to a bookmark       | store noteworthy characters which I remember the book by      |
+| `* ` | user | find bookmarks using name of characters | locate books with certain characters easily                   |
+| `* *` | user with many bookmarks | sort bookmarks by date of creation      | view bookmarks in order of creation                           |
+| `* *` | user with many bookmarks | find bookmarks by last modified date    | view bookmarks in order of most recently updated              |
+| `* *` | user  | add last read chapter to a bookmark     | know where I last left off with a certain book                |
+| `* *` | user | find bookmarks based on their status    | view only bookmarks of a certain status easily                |
 
 *{More to be added}*
 
