@@ -30,6 +30,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
@@ -109,7 +110,7 @@ public class EditContactCommand extends Command {
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
         Favorite currentFavorite = personToEdit.getIsFavorite();
         Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
-        Set<Tag> updatedTags = createEditedTags(personToEdit.getTags(), editPersonDescriptor.getTags());
+        Tags updatedTags = createEditedTags(personToEdit.getSetOfTags(), editPersonDescriptor.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags,
@@ -124,12 +125,9 @@ public class EditContactCommand extends Command {
      * Creates and returns a {@code Module} with the updated Details of Modules Taken.
      * If the same NusMods appears in both Old Modules and New Modules, we count that as removal.
      * Otherwise,it is an addition.
-     *
-     * @param oldModules
-     * @param optionalNewModules
      */
     public static Modules createEditedModules(Modules oldModules, Optional<Modules> optionalNewModules) {
-        Set<NusMod> unmodifiableOldNusMods = oldModules.getMods();
+        Set<NusMod> unmodifiableOldNusMods = oldModules.getValues();
         Set<NusMod> oldNusMods = new HashSet<>(unmodifiableOldNusMods);
         Set<NusMod> finalNusMods = new HashSet<>();
 
@@ -138,7 +136,7 @@ public class EditContactCommand extends Command {
         }
 
         Modules newModules = optionalNewModules.get();
-        Set<NusMod> newNusMods = newModules.getMods();
+        Set<NusMod> newNusMods = newModules.getValues();
         for (NusMod nusMod : newNusMods) {
             if (oldNusMods.contains(nusMod)) {
                 oldNusMods.remove(nusMod);
@@ -155,18 +153,15 @@ public class EditContactCommand extends Command {
      * Creates and returns a {@code Set<Tag>} with the Updated set of Tags.
      * If the same Tag appears in both Old Set and New Set, we count that as removal.
      * Otherwise,it is an addition.
-     *
-     * @param unmodifiableOldTags
-     * @param optionalNewTags
      */
-    public static Set<Tag> createEditedTags(Set<Tag> unmodifiableOldTags, Optional<Set<Tag>> optionalNewTags) {
+    public static Tags createEditedTags(Set<Tag> unmodifiableOldTags, Optional<Tags> optionalNewTags) {
         Set<Tag> finalSet = new HashSet<>();
         Set<Tag> oldTags = new HashSet<>(unmodifiableOldTags);
         if (optionalNewTags.isEmpty()) {
-            return oldTags;
+            return new Tags(oldTags);
         }
 
-        Set<Tag> newTags = optionalNewTags.get();
+        Set<Tag> newTags = optionalNewTags.get().values;
         for (Tag tags : newTags) {
             if (oldTags.contains(tags)) {
                 oldTags.remove(tags);
@@ -176,7 +171,7 @@ public class EditContactCommand extends Command {
         }
 
         finalSet.addAll(oldTags);
-        return finalSet;
+        return new Tags(finalSet);
     }
 
     @Override

@@ -64,10 +64,10 @@ public class UserPanel extends UiPart<Region> {
 
         // Adds card for modules taken, if any
         boolean hasModules = user.getModules() != null
-                && user.getModules().mods != null
-                && !user.getModules().mods.isEmpty();
+                && user.getModules().values != null
+                && !user.getModules().values.isEmpty();
         if (hasModules) {
-            regions.add(new PersonModulesCard("Modules", user.getModules().mods).getRoot());
+            regions.add(new PersonModulesCard("Modules", user.getModules().values).getRoot());
         }
 
         return regions;

@@ -94,9 +94,9 @@ public class PersonCard extends UiPart<Region> {
 
         ObservableList<Node> tagsList = tags.getChildren();
         tagsList.clear();
-        tagsList.addAll(person.getTags().stream()
+        tagsList.addAll(person.getSetOfTags().stream()
                 .sorted(Comparator.comparing(Object::toString))
-                .map(tag -> new Label(tag.tagName))
+                .map(tag -> new Label(tag.value))
                 .collect(Collectors.toList()));
         if (hasTags()) {
             summary.add(tags);

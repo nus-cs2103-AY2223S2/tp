@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
@@ -27,7 +26,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
@@ -117,7 +116,7 @@ public abstract class EditPersonCommandParser {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Tags> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {

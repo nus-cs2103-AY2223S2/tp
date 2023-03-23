@@ -26,7 +26,7 @@ public class JsonAdaptedNusMod {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedNusMod(NusMod source) {
-        this.modName = source.name;
+        this.modName = source.value;
     }
 
     @JsonValue

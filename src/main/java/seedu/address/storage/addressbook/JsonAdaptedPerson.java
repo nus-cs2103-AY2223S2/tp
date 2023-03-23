@@ -22,6 +22,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
@@ -84,22 +85,22 @@ public class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        this.name = source.getName().fullName;
+        this.name = source.getName().value;
         this.phone = source.getPhone().value;
         this.email = source.getEmail().value;
         this.address = source.getAddress().value;
-        this.race = source.getRace().race;
-        this.major = source.getMajor().majorName;
-        this.gender = source.getGender().gender.toString();
-        this.comms = source.getComms().nameOfCommunicationChannel;
-        this.modules.addAll(source.getModules().mods.stream()
-                .map(mod -> (new JsonAdaptedNusMod(mod.name)))
+        this.race = source.getRace().value;
+        this.major = source.getMajor().value;
+        this.gender = source.getGender().value;
+        this.comms = source.getComms().value;
+        this.modules.addAll(source.getModules().values.stream()
+                .map(mod -> (new JsonAdaptedNusMod(mod.value)))
                 .collect(Collectors.toList()));
-        this.tagged.addAll(source.getTags().stream()
+        this.tagged.addAll(source.getSetOfTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         this.isFavorite = source.getIsFavorite().toString();
-        this.faculty = source.getFaculty().faculty;
+        this.faculty = source.getFaculty().value;
     }
 
     /**
@@ -171,7 +172,7 @@ public class JsonAdaptedPerson {
 
         final Faculty faculty = new Faculty(this.faculty);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Tags modelTags = new Tags(new HashSet<>(personTags));
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
                 modelModules, modelRace, modelTags, modelComms, favoriteStatus, faculty);
     }
