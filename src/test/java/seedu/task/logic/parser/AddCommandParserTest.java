@@ -4,6 +4,7 @@ import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
+import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -125,18 +126,20 @@ public class AddCommandParserTest {
         Task expectedTask = new SimpleTaskBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY,
                 new AddCommand(expectedTask));
+
+        // no description
+        expectedTask = new SimpleTaskBuilder(AMY).withTags().withDescription().build();
+        System.out.println(expectedTask.getDescription());
+        assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_DEFAULT,
+                new AddCommand(expectedTask));
     }
 
     @Test
-    public void parseSimpleTask_compulsoryFieldMissing_failure() {
+    public void parseSimpleTask_withDefaultFields_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_DESCRIPTION_BOB,
                 expectedMessage);
 
         // all prefixes missing

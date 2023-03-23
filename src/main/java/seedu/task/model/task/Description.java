@@ -12,12 +12,13 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Description must contain at least one character";
     public final String value;
+    public final String defaultValue = "No Description";
 
     /**
      * Constructs a {@code Description} with default description.
      */
     public Description() {
-        value = "No Description";
+        value = defaultValue;
     }
 
     /**
@@ -45,6 +46,7 @@ public class Description {
 
     @Override
     public boolean equals(Object other) {
+        System.out.println(defaultValue.equals(((Description) other).value));
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
                 && value.equals(((Description) other).value)); // state check

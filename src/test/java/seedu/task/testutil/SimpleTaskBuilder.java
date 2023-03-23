@@ -18,7 +18,6 @@ import seedu.task.model.util.SampleDataUtil;
 public class SimpleTaskBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_DESCRIPTION = "Amy's description";
 
     private Name name;
     private Description description;
@@ -31,7 +30,7 @@ public class SimpleTaskBuilder {
      */
     public SimpleTaskBuilder() {
         name = new Name(DEFAULT_NAME);
-        description = new Description(DEFAULT_DESCRIPTION);
+        description = new Description();
         tags = new HashSet<>();
         effort = new Effort();
     }
@@ -67,6 +66,14 @@ public class SimpleTaskBuilder {
      */
     public SimpleTaskBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Description} of the {@code Task} that we are building.
+     */
+    public SimpleTaskBuilder withDescription() {
+        this.description = new Description();
         return this;
     }
 
