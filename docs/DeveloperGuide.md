@@ -255,30 +255,30 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 #### Implementation
 
-A HelpWindow will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar. Below details the workflow of a user who wishes to access the HelpWindow.
+A HelpWindow will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar. 
+The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow.
 
-Step 1. User either keys in `help`, or by clicking on "Help" button in the toolbar.
-Step 2. 
+<img src="images/HelpActivityDiagram.png" width="550" />
 
 #### Design Considerations
 
 #### Aspect: How the help sheet will be viewed
-**Alternative 1 (Current choice)** Display as a separate window, with concise details included in the sheet.
+**Alternative 1 (Current choice):** Display as a separate window, with concise details included in the sheet.
 * Pros: Serves as a quick reference for the user, without having to go online to view the full comprehensive User Guide.
 * Cons: Major updates in command implementations will have to be updated in the help sheet too, in addition to the online User Guide.
 
-**Alternative 2** Provide the user with the link to access the online User Guide.
+**Alternative 2:** Provide the user with the link to access the online User Guide.
 * Pros: More comprehensive, able to give user the complete detailing of each command.
 * Cons: Troublesome, requires user to go online to view the User Guide. User may also be overwhelmed by length of guide.
 
 <br>
 
 #### Aspect: How different methods are viewed by user
-**Alternative 1 (Current choice)** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
+**Alternative 1 (Current choice):** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
 * Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
 * Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
 
-**Alternative 2** Display all executable commands in a list.
+**Alternative 2:** Display all executable commands in a list.
 * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
 * Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
 
