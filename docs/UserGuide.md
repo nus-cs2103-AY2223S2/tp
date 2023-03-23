@@ -5,6 +5,9 @@ title: User Guide
 
 NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
+<<<<<<< HEAD
+### Viewing help : 'help'
+=======
 * Table of Contents
 {:toc}
 
@@ -66,12 +69,17 @@ NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use vi
 </div>
 
 ### Viewing help : `help` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Brings users to the help page.
 
 Format: `help`
 
+<<<<<<< HEAD
+### Adding a person: 'add'
+=======
 ### Adding a person: `add` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Adds a person to the address book.
 
@@ -82,13 +90,21 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank t/criminal`
 
+<<<<<<< HEAD
+### Listing all persons : 'list'
+=======
 ### Listing all persons : `list` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Shows a list of all persons in the contact list.
 
 Format: list
 
+<<<<<<< HEAD
+### Editing a person : 'edit'
+=======
 ### Editing a person : `edit` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Edits an existing person in the contact list.
 
@@ -155,7 +171,11 @@ Examples:
 
 - `unMark 3` unmarks the contact at index 3 as not requiring any further follow up action.
 
+<<<<<<< HEAD
+### Deleting a person : 'delete'
+=======
 ### Deleting a person : `delete` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Deletes the specified person from the contact list.
 
@@ -170,7 +190,11 @@ Examples:
 - `delete 2` deletes the 2nd person in the address book.
 - find Betsy followed by `delete 1` deletes the 1st person in the results of the find command.
 
+<<<<<<< HEAD
+### Finding via keywords : 'find'
+=======
 ### Finding via keywords : `find` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Finds the entries with the relevant keywords
 
@@ -183,13 +207,21 @@ Examples:
 - 'find' followed by `KEYWORD1 KEYWORD2 …` returns all the
 - 'find Betsy' followed by delete 1 deletes the 1st person in the results of the find command.
 
+<<<<<<< HEAD
+### Clearing all entries : 'clear'
+=======
 ### Clearing all entries : `clear` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Clears all entries from the address book.
 
 Format: `clear`
 
+<<<<<<< HEAD
+### Exiting the program : 'exit'
+=======
 ### Exiting the program : `exit` [coming soon]
+>>>>>>> v1.2-help,edit
 
 Exits the program.
 

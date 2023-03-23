@@ -238,6 +238,50 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Data Summary feature
+
+#### Proposed Implementation
+
+The proposed data summary feature. It extends `AddressBook`. Data summary includes contact count, number of tags,...
+
+Given below is an example usage scenario and how the data summary mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user populate the address book with commands such as add, edit, delete.
+
+Step 3. The user click on the summary tab.
+
+
+Step 4. The user now sees a summary of his/her data.
+
+
+Step 5. The user then decides to close the tab, he/she clicks on the close button.
+
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SummaryActivityDiagram.png" width="250" />
+
+#### Why this implementation:
+Keeping a summary in a new tab makes the UI much neater, rather than displaying a summary in the main page.
+This also allows user to access their summary easily as the summary tab will be fixed at the top of the page.
+
+#### Design considerations:
+
+**Aspect: How data summary display executes:**
+
+* **Alternative 1 (current choice):** Display in a separate tab.
+    * Pros: Convenience for the user.
+    * Cons: Slight revamp of UI is needed.
+
+* **Alternative 2:** Display in the main page.
+  
+    * Pros: East to implement.
+    * Cons: Information will be cramped together.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
