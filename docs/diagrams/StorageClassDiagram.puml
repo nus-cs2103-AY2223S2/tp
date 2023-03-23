@@ -4,6 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+allowmixing
 package Storage{
 
 package "UserPrefs Storage" #F4F6F6{
@@ -22,14 +23,32 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "Repository Task Storage" #lightblue {
+  interface "RepositoryStorage<Task>" as RepositoryStorageTask #gray
+  class JsonTaskStorage #gray
+  class JsonSerializableTaskBook #gray
+  class JsonAdaptedTask #gray
 }
 
-Class HiddenOutside #FFFFFF
+package "Repository AssignTask Storage" #lightblue {
+  interface "RepositoryStorage<AssignTask>" as RepositoryStorageAssignTask #gray
+  class JsonAssignTaskStorage #gray
+  class JsonSerializableAssignTasks #gray
+  class JsonAdaptedAssignTask #gray
+}
+interface "RepositoryStorage<T>" as RepositoryStorage
+
+
+rectangle HiddenOutside
+
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
+
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" RepositoryStorageAssignTask
+StorageManager -up-> "1" RepositoryStorageTask
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
@@ -39,5 +58,17 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+JsonTaskStorage .up.|> RepositoryStorageTask
+JsonTaskStorage ..> JsonSerializableTaskBook
+JsonSerializableTaskBook --> "*" JsonAdaptedTask
+
+
+JsonAssignTaskStorage .up.|> RepositoryStorageAssignTask
+JsonAssignTaskStorage ..> JsonSerializableAssignTasks
+JsonSerializableAssignTasks --> "*" JsonAdaptedAssignTask
+
+RepositoryStorageAssignTask .up.|> "<<bind>>T::AssignTask" RepositoryStorage
+RepositoryStorageTask ...up.|> "<<bind>>T::Task" RepositoryStorage
 
 @enduml

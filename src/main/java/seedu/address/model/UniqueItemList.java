@@ -59,6 +59,7 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
             throw new DuplicateItemException();
         }
 
+
         internalList.set(index, editedItem);
     }
 
