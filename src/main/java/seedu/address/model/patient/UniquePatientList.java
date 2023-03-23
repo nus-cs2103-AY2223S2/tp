@@ -32,6 +32,14 @@ public class UniquePatientList implements Iterable<Patient> {
     private final ObservableList<Patient> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
+
+    /**
+     * Returns size of list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
     /**
      * Returns true if the list contains an equivalent patient as the given
      * argument.
