@@ -17,21 +17,31 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should start a review **/
+    /** The application should select a Deck**/
+    private final boolean selectDeck;
+
+    /** The application should unselect a Deck**/
+    private final boolean unselectDeck;
+
+    /** The application should end a review **/
     private final boolean startReview;
 
     /** The application should end a review **/
     private final boolean endReview;
 
 
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(
-            String feedbackToUser, boolean showHelp, boolean exit, boolean startReview, boolean endReview) {
+            String feedbackToUser, boolean showHelp, boolean exit,
+            boolean startReview, boolean endReview, boolean selectDeck, boolean unselectDeck) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.selectDeck = selectDeck;
+        this.unselectDeck = unselectDeck;
         this.startReview = startReview;
         this.endReview = endReview;
     }
@@ -41,7 +51,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser,
+                false, false, false, false, false ,false);
     }
 
     public String getFeedbackToUser() {
@@ -64,6 +75,14 @@ public class CommandResult {
         return endReview;
     }
 
+    public boolean isSelectDeck() {
+        return selectDeck;
+    }
+
+    public boolean isUnselectDeck(){
+        return unselectDeck;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -80,12 +99,15 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && startReview == otherCommandResult.startReview
-                && endReview == otherCommandResult.endReview;
+                && endReview == otherCommandResult.endReview
+                && selectDeck == otherCommandResult.selectDeck
+                && unselectDeck == otherCommandResult.unselectDeck;
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, startReview, endReview);
+        return Objects.hash(feedbackToUser, showHelp, exit, startReview, endReview, selectDeck, unselectDeck);
     }
 
 }

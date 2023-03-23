@@ -226,6 +226,19 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.endReview();
     }
 
+    public void handleSelectDeck() {
+        rightPanelTitle.getChildren().removeAll();
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
+    }
+
+    public void handleUnSelectDeck() {
+        rightPanelTitle.getChildren().removeAll();
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -260,6 +273,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isEndReview()) {
                 handleEndReview();
+            }
+            if (commandResult.isSelectDeck()) {
+                handleSelectDeck();
+            }
+            if (commandResult.isUnselectDeck()) {
+                handleUnSelectDeck();
             }
 
             return commandResult;

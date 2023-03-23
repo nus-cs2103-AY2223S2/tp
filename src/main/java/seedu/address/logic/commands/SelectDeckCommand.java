@@ -44,7 +44,8 @@ public class SelectDeckCommand extends Command {
         }
 
         model.selectDeck(deckIndex);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeckName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeckName()),
+                false, false, false, false, false, true);
     }
 
     @Override
