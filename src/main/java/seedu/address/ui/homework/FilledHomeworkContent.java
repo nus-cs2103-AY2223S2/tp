@@ -6,18 +6,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.Student;
-import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays detailed information of a {@code Student}.
  */
-public class HomeworkContent extends UiPart<Region> {
-    private static final Logger logger = LogsCenter.getLogger(HomeworkContent.class);
+public class FilledHomeworkContent extends GeneralHomeworkContent {
+    private static final Logger logger = LogsCenter.getLogger(FilledHomeworkContent.class);
     private static final String FXML = "HomeworkContent.fxml";
     private static final String NAME_LABEL = "Name: %s";
     private static final String LIST_NAME_LABEL = "Homework List: ";
@@ -33,9 +31,9 @@ public class HomeworkContent extends UiPart<Region> {
     private StackPane homeworkListPlaceholder;
 
     /**
-     * Creates a {@code HomeworkContent} with the given {@code Student}.
+     * Creates a {@code FilledHomeworkContent} with the given {@code Student}.
      */
-    public HomeworkContent(Student student) {
+    public FilledHomeworkContent(Student student) {
         super(FXML);
 
         name.setText(String.format(NAME_LABEL, student.getName().getFirstName()));
@@ -54,7 +52,7 @@ public class HomeworkContent extends UiPart<Region> {
     @Override
     public boolean equals(Object obj) {
         return obj == this // short circuit if same object
-                || (obj instanceof HomeworkContent // instanceof handles nulls
-                && name.equals(((HomeworkContent) obj).name)); // state check
+                || (obj instanceof FilledHomeworkContent // instanceof handles nulls
+                && name.equals(((FilledHomeworkContent) obj).name)); // state check
     }
 }

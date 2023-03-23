@@ -9,13 +9,12 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
-Class ResultDisplay
 Class StudentListPanel
 Class StudentCard
-Class StatusBarFooter
-Class CommandBox
-Class DetailedInfoSection
+Class ProfileButton
+Class HomeworkButton
+Class LessonsButton
+Class ExamsButton
 }
 
 package Model <<Rectangle>> {
@@ -31,35 +30,27 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StudentListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow *-down-> "1" DetailedInfoSection
-MainWindow --> "0..1" HelpWindow
+StudentCard *-down-> "1" ProfileButton
+StudentCard *-down-> "1" HomeworkButton
+StudentCard *-down-> "1" LessonsButton
+StudentCard *-down-> "1" ExamsButton
 
 StudentListPanel -down-> "*" StudentCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
 StudentListPanel --|> UiPart
 StudentCard --|> UiPart
-StatusBarFooter --|> UiPart
-DetailedInfoSection --|> UiPart
-HelpWindow --|> UiPart
+ProfileButton --|> UiPart
+HomeworkButton --|> UiPart
+LessonsButton --|> UiPart
+ExamsButton --|> UiPart
 
 StudentCard ..> Model
-DetailedInfoSection ..> Model
-DetailedInfoSection <.. StudentCard
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-StudentListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

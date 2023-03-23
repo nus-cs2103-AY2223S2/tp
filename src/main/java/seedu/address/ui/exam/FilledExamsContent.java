@@ -5,20 +5,18 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Exam;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.ui.UiPart;
-import seedu.address.ui.homework.HomeworkContent;
+import seedu.address.ui.homework.FilledHomeworkContent;
 
 /**
  * Panel containing the list of Exams.
  */
-public class ExamsContent extends UiPart<Region> {
-    private static final Logger logger = LogsCenter.getLogger(HomeworkContent.class);
+public class FilledExamsContent extends GeneralExamsContent {
+    private static final Logger logger = LogsCenter.getLogger(FilledHomeworkContent.class);
 
     private static final String FXML = "ExamsContent.fxml";
     private final Name studentName;
@@ -38,9 +36,9 @@ public class ExamsContent extends UiPart<Region> {
     private StackPane upcomingExamsListPlaceholder;
 
     /**
-     * Creates a {@code HomeworkContent} with the given {@code Student}.
+     * Creates a {@code FilledHomeworkContent} with the given {@code Student}.
      */
-    public ExamsContent(Student student) {
+    public FilledExamsContent(Student student) {
         super(FXML);
         studentName = student.getName();
 
@@ -68,12 +66,12 @@ public class ExamsContent extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ExamsContent)) {
+        if (!(other instanceof FilledExamsContent)) {
             return false;
         }
 
         // state check
-        ExamsContent card = (ExamsContent) other;
+        FilledExamsContent card = (FilledExamsContent) other;
         return studentName.equals(card.studentName);
     }
 }
