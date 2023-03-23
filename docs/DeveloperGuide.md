@@ -119,7 +119,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`X` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XCommandParser` (`X` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -161,14 +161,25 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Current Implementation
 
-* How the feature is implemented (or is going to be implemented).
+The view function is facilitated by `ViewXCommand` (`X` is a placeholder for the specific command name e.g., `ViewCustomerCommand`).
 
-* Why it is implemented that way.
+Here X can be appointment/customer/service/technician/vehicle.
 
-* Alternatives considered.
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("viewcustomer 1") API call.
+
+<img src="images/ViewSequenceDiagram.png" width="600"/>
+
+This feature is implemented this way to best match how existing list and find function is done. 
+
+This is done this way so that the code is easily maintainable and readable if once the developer understands how `listX` functions works. 
+
+However, as you may have noticed, `ViewPartCommand`'s diagram differs slightly.
+
+The Sequence Diagram that illustrates the interactions within the Logic component for the execute("viewpartcommand 1") API call is to be added.
+
+* To add image *
 
 
-Sequence diagram
 
 
 
