@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Command Autocompletion, Real-Time Input Validation and Recommendation
 
 Autocompletion and Recommendation are features that can greatly enhance the user experience when using the application.
-To support this feature, we have implemented a `CommandRecommedationEngine` that aims to accurately predict the set of
+To support this feature, we have implemented a `CommandRecommendationEngine` that aims to accurately predict the set of
 words that the user intends to type based off a preset of words. These words are the in-built commands and argument
 prefixes.
 
@@ -196,7 +196,7 @@ and then **verify** the arguments associated with it. The following activity dia
 
 Our implementation strategy involves utilizing an event listener to provide immediate feedback to the user regarding the
 correctness of the attributes specified, instead of depending on the parser for this purpose. For example, if the
-`AddElderlyCommand` does not accept any arguments without a prefix but user specifies anyways, a **warning** will
+`AddElderlyCommand` does not accept any arguments without a prefix but the user specifies anyhow, a **warning** will
 be given.
 
 <div markdown="block" class="alert alert-info">
@@ -204,9 +204,7 @@ be given.
 **:information_source: Notes:**<br>
 
 * Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
-  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an
-  error
-  will be thrown when the user confirms the command.
+  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an error will be thrown when the user confirms the command.
 * There is a known UI bug regarding the recommendation engine when the text in `commandTextField` overflows. To improve
   user experience, the recommendation engine is disabled once overflow is detected.
 
