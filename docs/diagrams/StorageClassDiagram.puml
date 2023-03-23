@@ -1,9 +1,9 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor black
-skinparam classBackgroundColor black
-skinparam BackgroundColor gray
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
 allowmixing
 package Storage{
 
@@ -24,25 +24,19 @@ Class JsonAdaptedTag
 }
 
 package "Repository Task Storage" #lightblue {
-  interface "RepositoryStorage<<font color='#FF0000'>Task</font>>" as RepositoryStorageTask #gray
+  interface "RepositoryStorage<Task>" as RepositoryStorageTask #gray
   class JsonTaskStorage #gray
   class JsonSerializableTaskBook #gray
   class JsonAdaptedTask #gray
 }
 
 package "Repository AssignTask Storage" #lightblue {
-  interface "RepositoryStorage<<font color='#FF0000'>AssignTask</font>>" as RepositoryStorageAssignTask #gray
+  interface "RepositoryStorage<AssignTask>" as RepositoryStorageAssignTask #gray
   class JsonAssignTaskStorage #gray
   class JsonSerializableAssignTasks #gray
   class JsonAdaptedAssignTask #gray
 }
 interface "RepositoryStorage<T>" as RepositoryStorage
-skinparam rectangle {
-  BackgroundColor #gray
-  BorderColor #gray
-  FontColor #gray
-
-}
 
 
 rectangle HiddenOutside
