@@ -91,7 +91,7 @@ public class DegreeProgressionData {
     }
 
     public int getOverallPercentage() {
-        return  (int) ((float) completedCredit / TOTALCREDIT * 100);
+        return (int) ((float) completedCredit / TOTALCREDIT * 100);
     }
 
     private void computeModule(Module module) {

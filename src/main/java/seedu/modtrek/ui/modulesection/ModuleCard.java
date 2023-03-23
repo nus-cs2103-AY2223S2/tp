@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.modtrek.model.module.Module;
@@ -73,7 +72,6 @@ public class ModuleCard extends UiPart<Region> {
         for (Tag tag : module.getTags()) {
             String tagNameShort = ValidTag.getShortForm(tag.tagName).toString();
             String tagNameLong = tag.toString();
-            System.out.println(tagNameLong);
             String color = ValidTag.getColor(tag.tagName);
             addTag(tagNameShort, tagNameLong, color);
         }
