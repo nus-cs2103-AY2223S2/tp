@@ -29,8 +29,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static Text title = new Text("PowerCard");
     private static final String FXML = "MainWindow.fxml";
+    private static final Text MAIN_TITLE = new Text("Main");
+    private static final Text REVIEW_TITLE = new Text("Review");
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -132,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        titlePanel.getChildren().add(title);
+        titlePanel.getChildren().add(MAIN_TITLE);
 
         Pair<String, String> header = new Pair("Current Deck:", "No deck selected!");
         deckTitlePlaceholder.add(header);
@@ -207,6 +208,9 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         personListPanel.toggleReview();
+
+        titlePanel.getChildren().clear();
+        titlePanel.getChildren().add(REVIEW_TITLE);
     }
 
     /**
@@ -222,6 +226,9 @@ public class MainWindow extends UiPart<Stage> {
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
         personListPanel.endReview();
+
+        titlePanel.getChildren().clear();
+        titlePanel.getChildren().add(MAIN_TITLE);
     }
 
     /**
