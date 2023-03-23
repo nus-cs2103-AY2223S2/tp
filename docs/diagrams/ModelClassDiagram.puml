@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyHMHero" as ReadOnlyHMHero
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as model
 Class HMHero
 Class ModelManager
 Class UserPrefs
@@ -24,19 +24,19 @@ Class "Optional<InterviewDateTime>\n" as datetime
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> model
 
 HMHero .up.|> ReadOnlyHMHero
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyHMHero
+ModelManager .up.|> model
+model .right.> ReadOnlyUserPrefs
+model .left.> ReadOnlyHMHero
 ModelManager -left-> "1" HMHero
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 HMHero *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList -left-> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
