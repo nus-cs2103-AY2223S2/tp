@@ -9,10 +9,12 @@ import java.util.Objects;
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    /** Boolean to switch between screens */
+    public final boolean isDisplayAllModules;
+    public final boolean isDisplayFilteredModules;
+    public final boolean isDisplayProgress;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final String feedbackToUser;
 
     /** The application should exit. */
     private final boolean exit;
@@ -20,9 +22,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isDisplayAllModules,
+            boolean isDisplayProgress, boolean isDisplayFilteredModules, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
+        this.isDisplayAllModules = isDisplayAllModules;
+        this.isDisplayProgress = isDisplayProgress;
+        this.isDisplayFilteredModules = isDisplayFilteredModules;
         this.exit = exit;
     }
 
@@ -31,15 +36,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, true, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
-    }
-
-    public boolean isShowHelp() {
-        return showHelp;
     }
 
     public boolean isExit() {
@@ -59,13 +60,15 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && isDisplayAllModules == otherCommandResult.isDisplayAllModules
+                && isDisplayFilteredModules == otherCommandResult.isDisplayFilteredModules
+                && isDisplayProgress == otherCommandResult.isDisplayProgress
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, isDisplayAllModules, isDisplayFilteredModules, isDisplayProgress, exit);
     }
 
 }

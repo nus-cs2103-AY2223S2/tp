@@ -24,7 +24,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName.replace(" ", "_").toUpperCase();
+        this.tagName = ValidTag.getShortForm(tagName).toString();
     }
 
     /**
