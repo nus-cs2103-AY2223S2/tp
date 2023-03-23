@@ -77,8 +77,6 @@ public class UniqueFishList implements Iterable<Fish> {
         if (!internalList.remove(toRemove)) {
             throw new FishNotFoundException();
         }
-        System.out.println("removing " + toRemove);
-        System.out.println(this.internalList);
     }
 
     public void setFishes(UniqueFishList replacement) {
@@ -101,8 +99,6 @@ public class UniqueFishList implements Iterable<Fish> {
 
     public void setLastFedDateFishes(String newDate) {
         requireAllNonNull(newDate);
-        System.out.println("internallist at setLastDate");
-        System.out.println(this.internalList.toString());
         internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));
     }
 

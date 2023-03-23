@@ -56,10 +56,7 @@ public class TankFeedCommand extends TankCommand {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
 
-//        model.setDateFishesInTank(tankToFeed, today);
         model.setLastFedDateFishes(tankToFeed, formattedDate);
-
-        model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
 
         return new CommandResult(String.format(MESSAGE_FEED_TANK_SUCCESS, tankToFeed));
     }

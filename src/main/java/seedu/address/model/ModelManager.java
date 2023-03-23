@@ -318,6 +318,8 @@ public class ModelManager implements Model {
     public void setLastFedDateFishes(Tank tankToFeed, String date) {
 //        addressBook.setLastFedDateFishes(tankToFeed, date);
         tankToFeed.setLastFedDateFishes(date);
+        updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
+
     }
 
     //=========== Filtered TankList Accessors =============================================================
