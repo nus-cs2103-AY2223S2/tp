@@ -99,7 +99,6 @@ public class CommandBox extends UiPart<Region> {
     }
 
     public void setMode(Mode mode) {
-        System.out.println("Transitioning");
         this.mode.teardownMode();
         this.mode = mode;
         this.mode.setupMode(getInput());
