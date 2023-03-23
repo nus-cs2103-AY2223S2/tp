@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.internship.Internship;
-
+import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+
+
 
 /**
  * Lists all internships that have deadlines in the upcoming week.
@@ -22,7 +20,8 @@ public class UpcomingCommand extends Command {
             + "No parameters required. Any parameters will be ignored.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed all upcoming internships";
+    public static final String MESSAGE_SUCCESS = "Listed all internship entries with events or deadlines "
+            + "in the following week";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

@@ -1,9 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.internship.Internship;
@@ -21,7 +25,10 @@ public interface Model {
         LocalDate now = LocalDate.now();
         LocalDate nextWeek = now.plusWeeks(1);
         LocalDate deadline = LocalDate.parse(internship.getDate().toString(), formatter);
-        return !deadline.isBefore(now) && deadline.isBefore(nextWeek);
+        String status = internship.getStatus().toString();
+        List<String> accepted_statuses = new ArrayList<>(Arrays.asList(
+                "new", "offered", "assessment", "interview"));
+        return !deadline.isBefore(now) && deadline.isBefore(nextWeek) && accepted_statuses.contains(status);
     };
 
     /**
