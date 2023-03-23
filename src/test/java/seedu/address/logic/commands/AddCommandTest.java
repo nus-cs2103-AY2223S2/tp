@@ -20,7 +20,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -159,27 +158,6 @@ public class AddCommandTest {
         public void deleteTag(Person person, Tag tag) {
             throw new AssertionError("This method should not be called");
         }
-
-        @Override
-        public Path getHistoryStoragePath() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public void setHistoryStoragePath(Path filePath) {
-            throw new AssertionError("This method should not be called");
-        }
-    
-        @Override
-        public void setHistory(History history) {
-            throw new AssertionError("This method should not be called");
-        }
-    
-        @Override
-        public History getHistory() {
-            throw new AssertionError("This method should not be called");
-        }
-
     }
 
     /**
