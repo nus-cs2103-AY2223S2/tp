@@ -508,6 +508,20 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 #### **Tag Command**
 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
+
+The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
+
+:information_source: **Command Formats**:
+
+* `tag m/MODULE`: Tags a module to user.
+* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+
+**Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
+
 {to be filled by Kenny}
 
 #### **User Command**
