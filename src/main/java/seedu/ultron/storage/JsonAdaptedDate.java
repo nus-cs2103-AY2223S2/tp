@@ -32,11 +32,6 @@ class JsonAdaptedDate {
         date = source.fullDate;
     }
 
-    @JsonValue
-    public String getdateName() {
-        return date;
-    }
-
     /**
      * Converts this Jackson-friendly adapted date object into the model's {@code date} object.
      *
