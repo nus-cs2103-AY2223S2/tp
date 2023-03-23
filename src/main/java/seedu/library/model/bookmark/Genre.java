@@ -16,13 +16,7 @@ public class Genre {
             + "and it should not be blank\n"
             + "View list of valid genres with the command: genre";
 
-    /*
-     * The first character of the genre must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private static final List<String> VALID_GENRES = Arrays.asList("Action", "Adventure", "Comedy", "Drama",
+    public static final List<String> VALID_GENRES = Arrays.asList("Action", "Adventure", "Comedy", "Drama",
             "Fantasy", "Historical", "Horror", "Martial Arts", "Sci-Fi", "Mystery", "Romance", "Sports", "Others");
 
     public final String value;
@@ -46,6 +40,11 @@ public class Genre {
         String validGenreOptions = String.join("|", VALID_GENRES);
         return "\\b(" + validGenreOptions + ")\\b";
     }
+
+    public static List<String> getValidGenres() {
+        return VALID_GENRES;
+    }
+
     /**
      * Returns true if a given string is a valid genre.
      */
