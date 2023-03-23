@@ -170,11 +170,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `InternBuddyParser` class creates an `XYZCommandParser`
-  (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes
-  shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the
-  `InternBuddyParser` returns back as a `Command` object.
+(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes
+shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the
+`InternBuddyParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from
-  the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -186,8 +186,8 @@ The `Model` component,
 
 * stores the internsip data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
 * stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list
-  which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed'
-  (e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.).
+which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed'
+(e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -258,16 +258,16 @@ The following gives a more detailed explanation of the `add` operation.
 ###### Whether to make all fields in the `add` command compulsory
 1. **Alternative 1 (chosen): Make only essential fields compulsory**
     * Pros: More user-centric as not all users want to enter the optional information,
-      which is not exactly critical in tracking internships.
+            which is not exactly critical in tracking internships.
     * Cons: More work is to be done in code implementation. For example, the absence of optional
-      fields should not cause a `ParseException`, and there is a need to include a
-      default value of `NA` for input without any `Comment`.
+            fields should not cause a `ParseException`, and there is a need to include a
+            default value of `NA` for input without any `Comment`.
 2. **Alternative 2: Make all fields compulsory**
     * Pros: Easier to implement as there is no need to differentiate between compulsory
-      and optional fields during command parsing, and it is easier to compare between
-      different `Internship` since we just require an exact match of all fields.
+            and optional fields during command parsing, and it is easier to compare between
+            different `Internship` since we just require an exact match of all fields.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
-      are forced to input something for the `Add` command to work.
+            are forced to input something for the `Add` command to work.
 
 ###### Whether to update the right UI panel according to the `add` command
 
@@ -444,17 +444,17 @@ The following is a more detailed explanation on how `EditCommand` works.
 **Aspect: How edit executes:**
 
 * **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
-    * Pros:
-        * Maintains immutability of `Internship` class
-    * Cons:
-        * May be less efficient than alternative 2
+    * Pros: 
+      * Maintains immutability of `Internship` class
+    * Cons: 
+      * May be less efficient than alternative 2
 
 * **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
-    * Pros:
-        * Will use less memory (no new `internship` object will be created).
-        * Saves time since there is no need to create the new object.
-    * Cons:
-        * Reduces the defensiveness of the code and class
+    * Pros: 
+      * Will use less memory (no new `internship` object will be created). 
+      * Saves time since there is no need to create the new object.
+    * Cons: 
+      * Reduces the defensiveness of the code and class
 
 
 _{more aspects and alternatives to be added}_
