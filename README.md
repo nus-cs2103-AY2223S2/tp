@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/nus-cs2103-AY2223S2/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/nus-cs2103-AY2223S2/tp)
 ![Ui](docs/images/Ui.png)
 
-* This is BookFace, a university-centered address book application.
+* This is BookFace, an NUS-centered address book application.
   Example usages:
     * Add contacts along with the image of the person
     * Quickly import university related contacts
