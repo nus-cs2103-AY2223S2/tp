@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,8 +23,14 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.listing.JobDescription;
+import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
 
 public class Autocompletion {
@@ -112,10 +118,24 @@ public class Autocompletion {
     }
 
     public static void main(String[] args) {
+        Model model = new ModelManager();
+        model.addListing(new Listing(new JobTitle("Chicken rice uncle"), new JobDescription("test"),
+                new ArrayList<>(Arrays.asList(new Applicant(new Name("John"))))));
+        model.addListing(new Listing(new JobTitle("Chicken rice auntie"), new JobDescription("test"),
+                new ArrayList<>(Arrays.asList(
+                        new Applicant(new Name("John")),
+                        new Applicant(new Name("John")),
+                        new Applicant(new Name("Jane"))))));
+        model.addListing(new Listing(new JobTitle("Software Developer"), new JobDescription("unique"),
+                new ArrayList<>(Arrays.asList(
+                        new Applicant(new Name("Ali")),
+                        new Applicant(new Name("Xiao Ming")),
+                        new Applicant(new Name("Muthu"))))));
+
         String query = "DELEtE";
         System.out.println("Query: " + query);
         System.out.println("---------------------------");
-        for (String suggestion: getListOfSuggestions(query)) {
+        for (String suggestion: getListOfSuggestions(query, model)) {
             System.out.println(suggestion);
         }
     }
