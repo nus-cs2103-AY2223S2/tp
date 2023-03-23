@@ -166,7 +166,7 @@ The index of the category to delete is obtained using a `DeleteCategoryParser` b
 
 To check if the user has entered a valid index, the `DeleteCategoryCommand#execute()` throws a `CommandException` when the index provided is out of bounds.
 
-After a successful removal of a `Category`, all `Expense` with the deleted `Category` will have its category field replaced with `MiscellaneousCategory`. This is to reflect the deletion on existing expenses added. 
+After a successful removal of a `Category`, all `Expense` with the deleted `Category` will have its category field replaced with `MiscellaneousCategory`. This is to reflect the deletion on existing expenses added.
 
 Given below is an example usage scenario of how the Delete Category behaves:
 
@@ -182,9 +182,9 @@ Step 3. The user executes `delcat 2` command to delete the 2nd category in the c
 
 Step 4. `DeleteCategoryParser#parse()` is called, extracting the `Index` 2 from the command. A `DeleteCategoryCommand` will be returned. `DeleteCategoryCommand#execute()` is then called, a check on the `Index` provided will be done to ensure that it is a valid category, else a `CommandException` will be thrown.
 
-Step 5. `Model#deleteCategory()` is then called, which will further call `ExpenseTracker#removeCategory()`. 
+Step 5. `Model#deleteCategory()` is then called, which will further call `ExpenseTracker#removeCategory()`.
 
-Step 6. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`. 
+Step 6. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`.
 
 ### \[Implemented\] Edit Category feature
 
@@ -197,7 +197,7 @@ feature. However, the method of handling the user input is slightly more complic
 
 In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
 `EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
-whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are 
+whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are
 passed in as `null` and checked later in `EditCategory#execute()`.
 
 To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
@@ -229,7 +229,7 @@ The following sequence diagram shows the order of operations of the Edit Categor
   * Pros: No need to re-point all `Expense` objects currently affiliated with the `Category` object that is being edited.
   * Cons: Mutates the state of the `Category` object, which might not be ideal if seeking immutability.
 
-* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object 
+* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object
 that uses the same name and summary before replacing the required name or summary depending on user's arguments.
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
