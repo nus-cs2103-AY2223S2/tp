@@ -95,7 +95,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different recipe -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
@@ -104,7 +104,6 @@ public class DeleteCommandTest {
      */
     private void showNoRecipe(Model model) {
         model.updateFilteredRecipeList(p -> false);
-
         assertTrue(model.getFilteredRecipeList().isEmpty());
     }
 }
