@@ -238,6 +238,33 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add transaction feature
+
+#### Proposed Implementation
+
+The proposed add transaction mechanism is facilitated by `UniqueTransactionList`. It is similar to `UniquePersonList` which stores a list of unique transaction records.
+
+Given below is an example scenario and how to add transaction mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Storage` will check if there are existing transaction records in local storage. If transaction records are found, a `UniqueTransactionList` is created with existing transaction records. Else, an empty `UniqueTransactionList` is created in `AddressBook`.
+
+Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new transaction record. the `addtxn` command will be parsed by `AddTxnCommandParser` and a `AddTxnCommand` will be created. `AddTxnCommand#exexute()` add the input transaction record if it has a valid owner and it's not a duplicate of existing record, then it creates a `CommandResult` to provide feedback to the user.
+
+![AddTxnCommandSequenceDiagram](images/AddTxnCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How add transaction executes:**
+
+* **Alternative 1 (current choice):** Saves all transaction records in a separate list, each transaction has a non-null owner attribute indicates the other party involved in this transaction.
+    * Pros: Easy to implement, easy to search through all transaction records.
+    * Cons: May need long time to list down all transaction records under the save name.
+
+* **Alternative 2:** Each Person object has a transaction list attribute, to store transactions belong to him or her.
+    * Pros: Less time taken to identify transactions with the same person as no need to search through the whole transaction list.
+    * Cons: Difficult to carry out operations on all transactions.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,6 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | frantic salesperson                        | be warned when I make certain actions in my application | won’t jeopardise my work through carelessness            |
 | `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                   |
 | `*`      | new user                                   | import my current database                              |                                                          |
+| `*`      | salesperson                                | record down all transactions with clients               |                                                          |
 
 
 ### Use cases
