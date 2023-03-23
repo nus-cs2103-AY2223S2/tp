@@ -43,7 +43,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                             PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM, PREFIX_EFFORT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()
+                || (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)
+                    && (arePrefixesPresent(argMultimap, PREFIX_FROM)
+                        || arePrefixesPresent(argMultimap, PREFIX_TO)))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
