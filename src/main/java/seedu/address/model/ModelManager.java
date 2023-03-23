@@ -189,6 +189,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
+        sortedEvents.setComparator(null);
         filteredEvents.setPredicate(predicate);
     }
 
