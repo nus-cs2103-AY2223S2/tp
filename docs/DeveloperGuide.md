@@ -214,6 +214,56 @@ The following activity diagram shows what happens when a user executes an `add` 
 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
 
+### Sort feature
+
+#### About this feature
+The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
+The flag parameter indicates which category to sort by. 
+
+The available categories are:
+- Semester Year (Default)
+- Module Code Prefix
+- Grade
+- Tags
+- Credits
+
+#### How it is implemented
+When the user inputs the `sort` command with the flag as parameter, the input will be parsed and the flag will be retrieved
+with `ArgumentMultimap#preamble()`. As the command is executed, the list will be sorted into a treemap according to the
+flag. Once sorted, the GUI is able to display the sorted modules.
+
+#### Parsing user input
+1. The user input `sort` command
+2. The `ModTrekParser` processes the input and creates a new `SortCommandParser`
+3. The `SortCommandParser` calls the `ArgumentMultimap#preamble()` to retrieve the flag. 
+If the flag is missing, a `ParseException` will be thrown.
+4. The `SortCommandParser` will check if the flag is valid. If it is invalid, a `ParseException` will be thrown.
+5. The `SortCommandParser` then creates a `SortCommand` determined by the flag.
+
+#### Command execution
+1. The `LogicManager` executes the `SortCommand`.
+2. The `SortCommand` calls `Model#sortMap(CliSyntax flag)` to update the internal state of the map in the model to
+sort by the corresponding category.
+
+#### Displaying of result
+1. The `SortCommand` creates a `CommandResult` with a success message and boolean to indicate which of the GUI screen
+to switch to.
+
+The following sequence diagram shows how `SortCommand` works during execution for `sort /m`:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The following activity diagram shows the logic flow as the user inputs the `sort` command for `sort /m`:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations
+*Aspect: Command to sort the modules*
+
+As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories.
+However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, 
+the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -339,15 +389,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority |   As a…  |                                                  I want to…                                                   |                             So that I can…                             |
 |:--------:|:--------:|:-------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|
-|  * * *   | New user |                                            see usage instructions                                             | refer to instructions when I forget how to use the App                 |
 |  * * *   | User     |                              add a new module to a current or previous semester                               | track what modules I have already taken                                |
+|  * * *   | User     |                                              edit module details                                              | correct mistakes in details I previously added                         |
+|  * * *   | User     |                                                delete a module                                                | remove modules that I have wrongly added                               |
 |  * * *   | User     |                                             list out all modules                                              | view what modules I have already taken                                 |
 |  * * *   | User     | tag a module with  degree requirements (e.g. University Level Requirements, Computer Science Foundation etc). | track which degree requirement each module fulfils                     |
-|  * * *   | User     |                                                delete a module                                                | remove modules that I have wrongly added                               |
-|   * *    | User     |                             find a module by code, grade, semester and/or credits                             | locate details of modules without having to go through the entire list |
-|  * * *   | User     |                                              edit module details                                              | correct mistakes in details I previously added                         |
-|   * *    | User     |                                      view a graph of my degree progress                                       | find out which type of modules I need to take in future semesters      |
-
+|  * * *   | New user |                                            see usage instructions                                             | refer to instructions when I forget how to use the App                 |
+|   * *    | User     |                             find a module by code, grade, semester and/or credits                             | locate some specific modules without having to go through the entire list |
+|   * *    | User     |                             sort modules by subject, grade, semester, credits, level, tag                     | view my modules from another consolidated point of view |
+|   * *    | User     |                                      view my GPA                                       | know how well I have done so far in my CS |
+|   * *    | User     |                      check how much of each degree requirement I have completed                  |  know what requirements I still need to complete |
+|   * *    | User     |                  view my current degree completion progress in terms of percentage and number of MCs completed                     | - |
 
 *{More to be added}*
 
@@ -532,8 +584,17 @@ Use case ends.
 |        Term        |                                                                                                                             Explanation                                                                                                                            |
 |:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Mainstream OS      | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                                         |
-| Degree Requirement | Each module can be tagged into a degree requirement (or category) of any of the following types: University Level Requirements, Computer Science Foundation, Computer Science Breadth & Depth, IT Professionalism, Mathematics & Sciences, Unrestricted Electives. |
-| Degree Progress    | The completion status of each degree requirement, Cumulative Average Point (CAP), total MCs completed and remaining MCs needed to complete the degree.                                                                                                             |
+| Degree Requirement | Each module can be tagged into a degree requirement (or category) of any of the following types: University Level Requirements (ULR), Computer Science Foundation (CSF), Computer Science Breadth & Depth (CSBD), IT Professionalism (ITP), Mathematics & Sciences (MS), Unrestricted Electives (UE). |
+| Degree Progress / Progression    | The completion status of each degree requirement, Cumulative Average Point (CAP), total MCs completed and remaining MCs needed to complete the degree.                                                                                                             |
+| CS | Computer Science |
+| CAP / GPA | Cumulative Average Point / Grade Point Average can be used interchangeably, denotes a measure of a student's academic performance over the entire duration of his/her studies at NUS. |
+| MC / credits | Modular Credits, denotes the weightage of each module and is used in the calculation of CAP. |
+| Code | Module Code |
+| Year & Semester | Denotes the year (counted by number of years in the course) and semester (Semester 1, Special term 1, Semester 2, special term 2) in which the user has taken the module in. |
+| CLI | Command line interface. This is the bottom-right section of the app, whereby users input data on a command line. |
+| GUI | Graphical user interface. Our app has a GUI that will be launched upon using the jar file |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These modules information are specific to National University of Singapore. Furthermore, we are using the old terms `Module`, `Modular Credits`, `CAP` prior to 1 August 2023. After 1 August 2023, `Module` is changed to `Course`, `Modular Credits` to `Units`, `CAP` to `GPA` (Grade Point Average). We used these terms to specifically cater to our target audience, who are CS students students matriculated in AY 21/22. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
