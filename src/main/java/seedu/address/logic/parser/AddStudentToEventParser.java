@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Index index;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB);
+                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -39,8 +40,16 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
 
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
-        String eventName = !tutorialName.isEmpty() ? tutorialName.get() : labName.get();
-        String eventType = !tutorialName.isEmpty() ? "tutorial" : "lab";
+        Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
+        //todo: test
+        String eventName = tutorialName.orElse(labName.orElse(consultationName.get()));
+        String eventType = "tutorial";
+        if (!labName.isEmpty()) {
+            eventType = "lab";
+        }
+        if (!consultationName.isEmpty()) {
+            eventType = "consultation";
+        }
 
         return new AddStudentToEventCommand(index, eventName, eventType);
     }
