@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s Details matches any of the keywords given.
+ * Tests that a {@code Person}'s Details matches the keywords given.
  */
 public class PersonContainsTagsPredicate implements Predicate<Person> {
     private final List<String> keywords;
@@ -18,7 +18,6 @@ public class PersonContainsTagsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-
         return keywords.stream()
                 .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
                     person.getTags()

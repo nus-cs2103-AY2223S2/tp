@@ -22,9 +22,7 @@ public class FindCommand extends Command {
     // private final NameContainsKeywordsPredicate predicate;
     private final PersonContainsKeywordsPredicate predicate;
 
-    // public FindCommand(NameContainsKeywordsPredicate predicate) {
-    //     this.predicate = predicate;
-    // }
+
     public FindCommand(PersonContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

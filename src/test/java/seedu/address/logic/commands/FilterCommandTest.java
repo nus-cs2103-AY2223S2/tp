@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -28,10 +29,6 @@ public class FilterCommandTest {
 
     @Test
     public void equals() {
-        // NameContainsKeywordsPredicate firstPredicate =
-        //         new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        // NameContainsKeywordsPredicate secondPredicate =
-        //         new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         PersonContainsTagsPredicate firstPredicate =
                 new PersonContainsTagsPredicate(Collections.singletonList("first"));
@@ -61,12 +58,11 @@ public class FilterCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        // NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         PersonContainsTagsPredicate predicate = preparePredicate(" ");
         FilterCommand command = new FilterCommand(predicate);
+        CommandResult result = command.execute(model);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(expectedModel, model);
     }
 
     @Test
@@ -77,15 +73,13 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonContainsTagsPredicate}.
      */
-    // private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-    //     return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    // }
+    
     private PersonContainsTagsPredicate preparePredicate(String userInput) {
         return new PersonContainsTagsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
