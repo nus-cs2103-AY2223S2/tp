@@ -1,16 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddLabCommand;
-import seedu.address.logic.commands.AddNoteCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Lab;
-import seedu.address.model.event.Note;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
+import seedu.address.logic.commands.AddNoteCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Note;
 
 /**
  * Parser for notes (TODO: add more note options)

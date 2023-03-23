@@ -32,7 +32,9 @@ public class PhotoCommandParserTest {
 
     @Test
     public void parse_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PhotoCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PhotoCommand.MESSAGE_USAGE
+                + "\n"
+                + PhotoCommand.PHOTO_EXAMPLE);
 
         // no parameters
         assertParseFailure(parser, PhotoCommand.COMMAND_WORD, expectedMessage);

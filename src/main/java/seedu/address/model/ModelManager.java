@@ -14,8 +14,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
-import seedu.address.model.event.Tutorial;
 import seedu.address.model.event.Note;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
