@@ -163,13 +163,6 @@ This is implemented using the `EditCommand`, `EditPersonDescriptor` and `EditCom
 The `EditCommand` receives an index of the person to be edited and an editable `EditPersonDescriptor` class which
 consists of the updated fields of the person.
 
-#### Class Diagram
-
-Below is a partial class diagram for `EditPersonCommand`, to make it more comprehensible, details not related to
-`EditPersonCommand` are abstracted away.
-
-<img src="images/EditCommandClassDiagram.png" width="600" />
-
 #### Sequence Diagram
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
@@ -194,12 +187,31 @@ The following activity diagram summarises what happens when a user executes an e
 #### Design consideration
 
 **Aspect: Overwriting or merging**
-1. Only allows group and tag to be overwritten
-   * Pros: Easy implementation and reduces editing errors
-   * Cons: Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
-2. [Current implementation] Allows group and tag to be added on instead of overwritten
-   * Pros: Users can just add on one or more group/tag instead of retyping existing group/tag
-   * Cons: More bug-prone due to duplicate group/tag and adding to non-existing group
+* **Alternative 1:** Only allows group and tag to be overwritten.
+  * Pros: Easy implementation and reduces editing errors.
+  * Cons: Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
+  
+* **[Current implementation] Alternative 2:** Allows group and tag to be added on instead of overwritten.
+   * Pros: Users can just add on one or more group/tag instead of retyping existing group/tag.
+   * Cons: More bug-prone due to duplicate group/tag and adding to non-existing group.
+
+* **Justification**
+  * Users had to retype existing groups/tags plus additional groups/tags they want to add on to a person.
+  * Reduces the length of command input for users by allowing them to add/merge without overwriting current groups/tags.
+
+**Aspect: User command for GroupCommand**
+* **Alternative 1:** Edit the group attribute of a person with a separate command.
+   * Pros: Reduce coupling.
+   * Cons: More commands for user to work with.
+  
+* **[Current implementation] Alternative 2:** Edit the group attribute of a person using the existing edit command
+   * Pros: Easy to implement, lesser commands for user to remember
+   * Cons: Easy for user to make an erroneous command.
+
+* **Justification**
+  * As editing a group requires the same index as the existing `EditCommand`, it would be better to reuse the same
+    command.
+  * Lesser commands for users to remember
 
 #### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
 
