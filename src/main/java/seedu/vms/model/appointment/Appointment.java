@@ -105,13 +105,14 @@ public class Appointment implements Comparable<Appointment> {
         return otherAppointment.getPatient() == (getPatient())
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
                 && otherAppointment.getAppointmentEndTime().equals(getAppointmentEndTime())
-                && otherAppointment.getVaccination().equals(getVaccination());
+                && otherAppointment.getVaccination().equals(getVaccination())
+                && (otherAppointment.isCompleted == isCompleted);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientId, startTime, endTime, vaccine);
+        return Objects.hash(patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     @Override
