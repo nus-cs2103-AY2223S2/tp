@@ -548,7 +548,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
    2. Vaccination name
    3. Vaccination group name
    4. Vaccination ingredient name
-4. On top of 2, should also be able to handle requirement set of sizes up to 300.
+4. On top of 2, should also be able to handle requirement set of sizes up to 30.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 6. Should auto save to prevent data loss if application crashes.
 7. All functionalities should be accessible through CLI.

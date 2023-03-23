@@ -13,9 +13,9 @@ import seedu.vms.model.GroupName;
 /** Represents a vaccination requirement. */
 public class Requirement {
     public static final String MESSAGE_CONSTRAINTS =
-            "Requirement set cannot be empty and must have no more than 300 elements";
+            "Requirement set cannot be empty and must have no more than 30 elements";
 
-    public static final int LIMIT = 300;
+    public static final int LIMIT = 30;
 
     private final RequirementType reqType;
     private final HashSet<GroupName> reqSet;
@@ -39,7 +39,7 @@ public class Requirement {
 
 
     public static boolean isValidReqSet(HashSet<GroupName> reqSet) {
-        return !reqSet.isEmpty() && reqSet.size() <= 300;
+        return !reqSet.isEmpty() && reqSet.size() <= LIMIT;
     }
 
 
