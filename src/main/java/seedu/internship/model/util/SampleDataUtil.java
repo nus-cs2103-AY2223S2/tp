@@ -24,31 +24,31 @@ import seedu.internship.model.tag.Tag;
  * Contains utility methods for populating {@code InternshipCatalogue} with sample data.
  */
 public class SampleDataUtil {
-    // Sample Data 1
-    static private Position position_1 = new Position("Machine Learning");
-    static private Company company_1 = new Company("Tiktok");
-    static private Status status_1 = new Status(0);
-    static private Description description_1 = new Description("This is a dummy internship");
-    static private Set<Tag> tags = getTagSet("important");
+    // Sample Internships
+    static private Internship internship_1 = new Internship(new Position("Machine Learning"),
+            new Company("Tiktok"), new Status(0),
+            new Description("This is a dummy internship"), getTagSet("important"));
+    static private Internship internship_2 = new Internship(new Position("Software Engineer"),
+            new Company("Grab"), new Status(1),
+            new Description("This is a dummy internship"), getTagSet());
+    static private Internship internship_3 =  new Internship(new Position("Data Analytics"),
+            new Company("Google"), new Status(2),
+            new Description("This is a dummy internship"), getTagSet("important"));
+    static private Internship internship_4 =  new Internship(new Position("Machine Learning"),
+            new Company("GovTech"), new Status(3),
+            new Description("This is a dummy internship"), getTagSet("important", "priority"));
+    static private Internship internship_5 = new Internship(new Position("Software Engineer"),
+            new Company("GovTech"), new Status(3),
+            new Description("This is a dummy internship"), getTagSet("interesting"));
+    static private Internship internship_6 = new Internship(new Position("Software Testing"),
+            new Company("Razor"), new Status(0),
+            new Description("This is a dummy internship"), getTagSet());
+
+
 
     public static Internship[] getSampleInternships() {
         return new Internship[] {
-            new Internship(position_1, company_1, status_1, description_1, tags),
-            new Internship(new Position("Software Engineer"), new Company("Grab"),
-                        new Status(1), new Description("This is a dummy internship"),
-                        getTagSet("fun")),
-            new Internship(new Position("Data Analytics"), new Company("Google"),
-                        new Status(2), new Description("This is a dummy internship"),
-                        getTagSet("important")),
-            new Internship(new Position("Machine Learning"), new Company("GovTech"),
-                        new Status(3), new Description("This is a dummy internship"),
-                        getTagSet("important")),
-            new Internship(new Position("Software Engineer"), new Company("GovTech"),
-                        new Status(3), new Description("This is a dummy internship"),
-                        getTagSet("interesting")),
-            new Internship(new Position("Software Testing"), new Company("Razor"),
-                        new Status(0), new Description("This is a dummy internship"),
-                        getTagSet("fun")),
+            internship_1, internship_2, internship_3, internship_4, internship_5, internship_6
         };
     }
 
@@ -62,12 +62,42 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[]{
-            new Event(new Name("Technical Interview"), new Start("10/09/2023 1500"),
-                    new End("10/09/2023 1700"), new EventDescription("On Zoom"),
-                    new Internship(position_1, company_1, status_1, description_1, tags)),
-            new Event(new Name("HR Interview"), new Start("15/09/2023 1500"),
-                    new End("15/09/2023 1700"), new EventDescription("On Zoom"),
-                    new Internship(position_1, company_1, status_1, description_1, tags))
+            new Event(new Name("Resume Submission"), new Start("1/01/2023 2359"),
+                    new End("1/01/2023 2359"), new EventDescription("Via Talent Connect"),
+                    internship_1),
+            new Event(new Name("Resume Submission"), new Start("1/01/2023 2359"),
+                    new End("1/01/2023 2359"), new EventDescription("Via Talent Connect"),
+                     internship_2),
+            new Event(new Name("Technical Examination"), new Start("10/03/2023 1200"),
+                    new End("10/03/2023 1400"), new EventDescription("On Zoom"),
+                    internship_2),
+            new Event(new Name("Technical Interview"), new Start("17/03/2023 1500"),
+                    new End("17/03/2023 1700"), new EventDescription("On Zoom"),
+                    internship_2),
+            new Event(new Name("HR Interview"), new Start("25/04/2023 1500"),
+                    new End("25/04/2023 1700"), new EventDescription("On Zoom"),
+                    internship_2),
+            new Event(new Name("Resume Submission"), new Start("1/01/2023 2359"),
+                    new End("1/01/2023 2359"), new EventDescription("Via Talent Connect"),
+                    internship_3),
+            new Event(new Name("Technical Interview"), new Start("11/02/2023 1500"),
+                     new End("11/02/2023 1700"), new EventDescription("Venue TBC"),
+                     internship_3),
+            new Event(new Name("HR Interview"), new Start("16/03/2023 1500"),
+                     new End("16/03/2023 1700"), new EventDescription("On Zoom"),
+                     internship_3),
+            new Event(new Name("Offer Confirmation Submission"), new Start("25/04/2023 2359"),
+                    new End("25/04/2023 2359"), new EventDescription("Via Email"),
+                    internship_3),
+            new Event(new Name("Resume Submission"), new Start("01/01/2023 2359"),
+                    new End("01/01/2023 2359"), new EventDescription("Via Email"),
+                    internship_4),
+            new Event(new Name("Resume Submission"), new Start("01/02/2023 2359"),
+                    new End("01/02/2023 2359"), new EventDescription("Via TalentConnect"),
+                    internship_5),
+            new Event(new Name("Resume Submission"), new Start("01/02/2023 2359"),
+                    new End("01/02/2023 2359"), new EventDescription("Via TalentConnect"),
+                    internship_6)
         };
     }
 
