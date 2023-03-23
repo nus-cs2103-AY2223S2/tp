@@ -29,8 +29,8 @@ public class BorrowCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "b/2 d/22/09/2025";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Book Index: %2$s, Due Date: %3$s";
     public static final String MESSAGE_INVALID_DATE = "Date must be provided in the form dd/mm/yyyy";
+    public static final String MESSAGE_EARLY_DATE = "Due date must be after today's date";
 
     public static final String MESSAGE_BORROW_SUCCESS = "Person: %1$s borrowed Book: %2$s";
 
@@ -95,7 +95,6 @@ public class BorrowCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit, Book bookToBorrow) {
-        //String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(MESSAGE_BORROW_SUCCESS, personToEdit, bookToBorrow);
     }
 
