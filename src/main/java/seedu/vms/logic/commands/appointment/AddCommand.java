@@ -79,15 +79,24 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
         }
 
-        // Checks if the given patient has taken the vaccine or the necessary vaccine
         Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
         HashSet<GroupName> history = new HashSet<>();
         for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
             Appointment appointment = entry.getValue().getValue();
             if (appointment.getPatient().equals(toAdd.getPatient())) {
                 history.addAll(vaccinationList.get(appointment.getVaccination().getName()).getGroups());
+
+                // Checks for no existing next appointment
+                if (appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+                    throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
+                }
+
+                // Adds vaccine to patient history
+                history.addAll(vaccinationList.get(appointment.getVaccination().getName()).getGroups());
             }
         }
+
+        // Checks if the given patient has already taken the vaccine or the necessary vaccine
         for (Requirement requirement: vaccinationList.get(toAdd.getVaccination().getName()).getHistoryReqs()) {
             if (!requirement.check(history)) {
                 switch (requirement.getReqType()){
@@ -100,15 +109,6 @@ public class AddCommand extends Command {
                 default:
                     // Should not reach here
                 }
-            }
-        }
-
-        // Checks for no existing next appointment
-        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
-            Appointment appointment = entry.getValue().getValue();
-            if (appointment.getPatient().equals(toAdd.getPatient())
-                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
-                    throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
 
