@@ -138,6 +138,9 @@ public class ParserUtil {
         if (!PolicyName.isValidName(trimmedPolicyName)) {
             throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
         }
+        if (!PolicyName.isValidNameEnum(trimmedPolicyName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS_ENUM);
+        }
         return new PolicyName(trimmedPolicyName);
     }
 
