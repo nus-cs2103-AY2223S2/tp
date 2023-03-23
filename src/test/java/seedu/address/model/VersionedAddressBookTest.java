@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
@@ -38,11 +40,54 @@ public class VersionedAddressBookTest {
     }
 
     @Test
-    public void cannotUndoOrRedoInitially() {
+    public void commitWipesRedundantStates() throws CommandException {
+        AddressBook addressBookTest = getTypicalAddressBook();
+        VersionedAddressBook versionedAddressBookTest = new VersionedAddressBook(addressBookTest);
+        int initialLength = versionedAddressBookTest.getStateList().size();
+        versionedAddressBookTest.removePerson(ALICE);
+        versionedAddressBookTest.commit();
+        versionedAddressBookTest.undo();
+        versionedAddressBookTest.commit();
+        int finalLength = versionedAddressBookTest.getStateList().size();
+        assertNotEquals(initialLength, finalLength);
+    }
+
+    @Test
+    public void redoWorks() throws CommandException {
         AddressBook addressBookTest = new AddressBook();
+        VersionedAddressBook versionedAddressBookTest = new VersionedAddressBook(addressBookTest);
+        versionedAddressBookTest.addPerson(ALICE);
+        versionedAddressBookTest.commit();
+        int initialLength = versionedAddressBookTest.getStateList().size();
+        versionedAddressBookTest.undo();
+        versionedAddressBookTest.redo();
+        int finalLength = versionedAddressBookTest.getStateList().size();
+        assertEquals(initialLength, finalLength);
+    }
+
+    @Test
+    public void statePointerMovesCorrectly() throws CommandException {
+        AddressBook addressBookTest = new AddressBook();
+        VersionedAddressBook versionedAddressBookTest = new VersionedAddressBook(addressBookTest);
+        int initialLength = versionedAddressBookTest.getStateList().size();
+        assertEquals(initialLength, 1);
+        assertEquals(versionedAddressBookTest.getCurrentStatePointer(), 0);
+        versionedAddressBookTest.addPerson(ALICE);
+        versionedAddressBookTest.commit();
+        int finalLength = versionedAddressBookTest.getStateList().size();
+        assertEquals(finalLength, 2);
+        assertEquals(versionedAddressBookTest.getCurrentStatePointer(), 1);
+        assertTrue(versionedAddressBookTest.getStateList().contains(versionedAddressBookTest.getCurrentState()));
+    }
+
+    @Test
+    public void cannotUndoOrRedoInitially() {
+        AddressBook addressBookTest = getTypicalAddressBook();
         VersionedAddressBook versionedAddressBookTest = new VersionedAddressBook(addressBookTest);
         assertFalse(versionedAddressBookTest.canUndo());
         assertFalse(versionedAddressBookTest.canRedo());
+        assertThrows(CommandException.class, versionedAddressBookTest::undo);
+        assertThrows(CommandException.class, versionedAddressBookTest::redo);
     }
 
     @Test

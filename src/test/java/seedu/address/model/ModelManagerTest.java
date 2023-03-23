@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -91,6 +92,16 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void undo_throwsCommandException() {
+        assertThrows(CommandException.class, () -> modelManager.undoAddressBook());
+    }
+
+    @Test
+    public void redo_throwsCommandException() {
+        assertThrows(CommandException.class, () -> modelManager.redoAddressBook());
     }
 
     @Test

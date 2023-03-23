@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
  */
 public class RedoCommandTest {
 
+    private final RedoCommand redoCommand = new RedoCommand();
+
     @Test
     public void execute_takesNoNull() {
-        RedoCommand redoCommand = new RedoCommand();
         assertThrows(NullPointerException.class, () -> redoCommand.execute(null));
     }
 }

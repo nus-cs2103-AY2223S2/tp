@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
  */
 public class UndoCommandTest {
 
+    private final UndoCommand undoCommand = new UndoCommand();
+
     @Test
     public void execute_takesNoNull() {
-        UndoCommand undoCommand = new UndoCommand();
         assertThrows(NullPointerException.class, () -> undoCommand.execute(null));
     }
 }
