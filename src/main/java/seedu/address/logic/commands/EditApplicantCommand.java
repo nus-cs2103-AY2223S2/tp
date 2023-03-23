@@ -25,11 +25,11 @@ public class EditApplicantCommand extends Command {
     public static final String COMMAND_WORD = "edit_app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an applicant's details for a listing. "
-            + "by the index number of the listing used in the displayed listing book. "
+            + "Ordered by the index number of the listing used in the displayed listing book.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPLICANT_WITH_ID + "OLD_APPLICANT]...\n"
-            + "[" + PREFIX_APPLICANT + "NEW_APPLICANT]...\n"
+            + PREFIX_APPLICANT_WITH_ID + "OLD_APPLICANT "
+            + PREFIX_APPLICANT + "NEW_APPLICANT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPLICANT_WITH_ID + "John "
             + PREFIX_APPLICANT + "Sam";

@@ -26,7 +26,7 @@ import seedu.address.testutil.ApplicantBuilder;
 import seedu.address.testutil.ListingBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for DeleteApplicantCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditApplicantCommand.
  */
 public class EditApplicantCommandTest {
     private static final Applicant AMY = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_AMY).build();
