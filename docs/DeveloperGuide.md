@@ -176,7 +176,8 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the Den
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitDengueHotspotTracker()`, causing another modified Dengue Hotspot Tracker state to be saved into the `dengueHotspotTrackerStateList`.
+Step 3. The user executes `add n/David d/2000 31 Jan...` to add a new person. The `add` command also calls `Model#commitDengueHotspotTracker()`, causing another modified Dengue Hotspot Tracker state to be saved into the `dengueHotspotTrackerStateList`.
+
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
