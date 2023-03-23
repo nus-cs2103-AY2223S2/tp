@@ -196,9 +196,32 @@ The AddEmployeeToLeave Command makes use of the following classes:
 
 `LeaveContainsEmployeePredicate` iterates through all employees and check if they are in the `Leave` object on a specific day.
 
+Given below is an example of a usage scenario and what each class does at each step.
+
+Step 1: The user types and enters the command `addEmployeeToLeave eid/1 g/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+
+Step 2: The command will be parsed by the `SudoHr#parseCommand()` which returns a `AddEmployeeToLeaveCommandParser`.
+
+Step 3: AddEmployeeToLeaveCommandParser will parse the employee id and date using the parse(args) method, which trims the keywords entered by the user.
+
+Step 4: AddEmployeeToLeaveCommandParser then creates a AddEmployeeToLeaveCommand by the date and eid to its constructor.
+
+Step 5: The AddEmployeeToLeaveCommand will then be executed using `execute(model)` method.
+
+Step 6: The command then execute the model's `getEmployee(eid)` command to get the employee with the corresponding eid
+
+Step 7. The command execute the model's `addEmployeetoLeave(eid,date)` command to add the employee to the leave on the specific day.
+
+Step 8: The `updateFilteredEmployeeList(predicate)` method will be called and the list of employees will be filtered according to the `LeaveContainsEmployeePredicate`. This list will include all employees having a leave on that day.
+
+Step 9: A `CommandResult` will be returned.
+
+Step 10: The list of employees taking leave on the specific day will then be displayed to the user.
+
+
 Given below is an example of how `AddEmployeeToLeaveCommand` works
 
-
+![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/department/ListDepartmentSequenceDiagram.png)
 
 
 ### Cascading employee updates to department and event

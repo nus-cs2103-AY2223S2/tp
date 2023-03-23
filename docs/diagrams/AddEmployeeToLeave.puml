@@ -7,62 +7,84 @@ participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
 participant ":AddEmployeeToLeaveCommandParser" as AddEmployeeToLeaveCommandParser LOGIC_COLOR
 participant "a:AddEmployeeToLeaveCommand" as AddEmployeeToLeaveCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":LeaveContainsEmployeePredicate" as LeaveContainsEmployeePredicate LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("addEmployeeToLeave eid/1 g/2022-03-04")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> SudoHrParser : parseCommand("addEmployeeToLeave eid/1 g/2022-03-04")
+activate SudoHrParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create AddEmployeeToLeaveCommandParser
+SudoHrParser -> AddEmployeeToLeaveCommandParser
+activate AddEmployeeToLeaveCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+AddEmployeeToLeaveCommandParser --> SudoHrParser
+deactivate AddEmployeeToLeaveCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+SudoHrParser -> AddEmployeeToLeaveCommandParser : parse("eid/1 g/2022-03-04")
+activate AddEmployeeToLeaveCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create AddEmployeeToLeaveCommand
+AddEmployeeToLeaveCommandParser -> AddEmployeeToLeaveCommand
+activate AddEmployeeToLeaveCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+AddEmployeeToLeaveCommand --> AddEmployeeToLeaveCommandParser : a
+deactivate AddEmployeeToLeaveCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+AddEmployeeToLeaveCommandParser --> SudoHrParser : a
+deactivate AddEmployeeToLeaveCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+AddEmployeeToLeaveCommandParser -[hidden]-> SudoHrParser
+destroy AddEmployeeToLeaveCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+SudoHrParser --> LogicManager : a
+deactivate SudoHrParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> AddEmployeeToLeaveCommand : execute()
+activate AddEmployeeToLeaveCommand
 
-DeleteCommand -> Model : deletePerson(1)
+AddEmployeeToLeaveCommand -> Model : getEmployee(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> AddEmployeeToLeaveCommand
+deactivate Model
+
+AddEmployeeToLeaveCommand -> Model : addEmployeeToLeave(1,2022-03-04)
+activate Model
+
+
+Model --> AddEmployeeToLeaveCommand
+deactivate Model
+
+create LeaveContainsEmployeePredicate
+AddEmployeeToLeaveCommand -> LeaveContainsEmployeePredicate
+activate LeaveContainsEmployeePredicate
+
+LeaveContainsEmployeePredicate --> AddEmployeeToLeaveCommand : p
+deactivate LeaveContainsEmployeePredicate
+
+AddEmployeeToLeaveCommand -> Model : updateFilteredEmployeeList(p)
+activate Model
+
+
+Model --> AddEmployeeToLeaveCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+AddEmployeeToLeaveCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> AddEmployeeToLeaveCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+AddEmployeeToLeaveCommand --> LogicManager : result
+deactivate AddEmployeeToLeaveCommand
 
 [<--LogicManager
 deactivate LogicManager
