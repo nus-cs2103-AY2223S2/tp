@@ -50,13 +50,13 @@ Student *--> "1" Email
 Student *--> "1" Address
 Student *--> "*" Tag
 
-Student *--> UniqueHomeworkList
+Student *--> "1" UniqueHomeworkList
 UniqueHomeworkList *--> "*" Homework
 
-Student *--> UniqueLessonsList
+Student *--> "1" UniqueLessonsList
 UniqueLessonsList *--> "*" Lesson
 
-Student *--> UniqueExamList
+Student *--> "1" UniqueExamList
 UniqueExamList *--> "*" Exam
 
 
