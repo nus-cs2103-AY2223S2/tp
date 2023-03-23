@@ -269,6 +269,18 @@ public class AddCommandTest {
             throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
         }
 
+        @Override
+        public Path getDeliveryJobSystemFilePath() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getDeliveryJobSystemFilePath'");
+        }
+
+        @Override
+        public void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystemFilePath'");
+        }
+
     }
 
     /**

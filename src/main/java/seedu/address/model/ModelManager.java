@@ -177,6 +177,17 @@ public class ModelManager implements Model {
     // DeliveryJob System =====================================================
 
     @Override
+    public Path getDeliveryJobSystemFilePath() {
+        return userPrefs.getDeliveryJobSystemFilePath();
+    }
+
+    @Override
+    public void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath) {
+        requireNonNull(deliveryJobSystemFilePath);
+        userPrefs.setDeliveryJobSystemFilePath(deliveryJobSystemFilePath);
+    }
+
+    @Override
     public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
         this.deliveryJobSystem.resetData(jobSystem);
     }

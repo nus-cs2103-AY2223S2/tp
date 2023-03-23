@@ -90,4 +90,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return deliveryJobSystemFilePath;
     }
 
+    public void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath) {
+        requireNonNull(deliveryJobSystemFilePath);
+        this.deliveryJobSystemFilePath = deliveryJobSystemFilePath;
+    }
+
 }

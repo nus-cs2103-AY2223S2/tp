@@ -24,6 +24,7 @@ import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
+import seedu.address.ui.person.AddressBookWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -46,6 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private TimetableWindow timetableWindow;
     private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
+    private AddressBookWindow addressBookWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -62,9 +64,8 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem reminderListMenuItem;
     @FXML
     private MenuItem statsItem;
-
-    // @FXML
-    // private StackPane personListPanelPlaceholder;
+    @FXML
+    private MenuItem addressBookMenuItem;
 
     @FXML
     private StackPane deliveryJobListPanelPlaceholder;
@@ -94,6 +95,7 @@ public class MainWindow extends UiPart<Stage> {
         timetableWindow = new TimetableWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic);
     }
 
     public Stage getPrimaryStage() {
@@ -139,9 +141,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
             deliveryJobDetailPlaceholder.getChildren().clear();
             if (idx >= 0) {
@@ -156,9 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         }, job -> {
             try {
                 executeCommand(DeleteDeliveryJobCommand.COMMAND_WORD + " " + job.getJobId());
-            } catch (ParseException e) {
-                logger.warning(e.getMessage());
-            } catch (CommandException e) {
+            } catch (ParseException | CommandException e) {
                 logger.warning(e.getMessage());
             }
         });
@@ -169,7 +166,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDeliveryJobSystemFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -226,6 +223,36 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Statistics window.
+     */
+    @FXML
+    private void handleStats() {
+        if (!statsWindow.isShowing()) {
+            statsWindow.show();
+            statsWindow.fillInnerParts();
+        } else {
+            statsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens Address book window.
+     */
+    @FXML
+    private void handleAddressBook() {
+        if (!addressBookWindow.isShowing()) {
+            addressBookWindow.show();
+            addressBookWindow.fillInnerParts();
+        } else {
+            addressBookWindow.focus();
+        }
+    }
+
+    public DeliveryJobListPanel getDeliveryJobListPanel() {
+        return deliveryJobListPanel;
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -241,28 +268,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         timetableWindow.hide();
         statsWindow.hide();
+        addressBookWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Opens Statistics window.
-     */
-    @FXML
-    private void handleStats() {
-        if (!statsWindow.isShowing()) {
-            statsWindow.show();
-            statsWindow.fillInnerParts();
-        } else {
-            statsWindow.focus();
-        }
-    }
-
-    // public PersonListPanel getPersonListPanel() {
-    //     return personListPanel;
-    // }
-
-    public DeliveryJobListPanel getDeliveryJobListPanel() {
-        return deliveryJobListPanel;
     }
 
     /**

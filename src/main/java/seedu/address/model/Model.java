@@ -102,6 +102,16 @@ public interface Model {
 
     // DELIVERY JOB SYSTEM ===================================
 
+    /**
+     * Returns the user prefs' delivery job system file path.
+     */
+    Path getDeliveryJobSystemFilePath();
+
+    /**
+     * Sets the user prefs' delivery job system file path.
+     */
+    void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath);
+
     void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem);
 
     ReadOnlyDeliveryJobSystem getDeliveryJobSystem();

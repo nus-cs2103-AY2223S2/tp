@@ -27,6 +27,11 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <Label fx:id="personId" opacity="0.85" styleClass="cell_big_label" text="\$fid">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
