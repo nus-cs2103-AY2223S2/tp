@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
@@ -44,8 +43,17 @@ public abstract class EditPersonCommand extends Command {
         Favorite currentFavorite = personToEdit.getIsFavorite();
         Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
 
-        Tags updatedTags = createEditedTags(personToEdit.getTags(), editPersonDescriptor.getTags());
-        Modules updatedModules = createEditedModules(personToEdit.getModules(), editPersonDescriptor.getModules());
+        Tags updatedTags = editPersonDescriptor.getTags()
+                //Creates the edited tags.
+                .map(tags -> createEditedTags(personToEdit.getTags(), tags))
+                //If it was empty, then just get original tags.
+                .orElseGet(personToEdit::getTags);
+
+        Modules updatedModules = editPersonDescriptor.getModules()
+                //Creates the edited modules.
+                .map(modules -> createEditedModules(personToEdit.getModules(), modules))
+                //If it was empty, then just get original modules.
+                .orElseGet(personToEdit::getModules);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags,
@@ -56,16 +64,12 @@ public abstract class EditPersonCommand extends Command {
      * Creates a set of Field that removes all entries that were already in the oldFields Set and adds the new ones.
      */
     public static <T extends Field> Set<T> createdEditedFields(SuperField<T> oldFields,
-                                                               Optional<? extends SuperField<T>> optionalNewFields) {
+                                                               SuperField<T> optionalNewFields) {
         Set<T> unmodifiableOldFields = oldFields.getValues();
         Set<T> oldFieldSet = new HashSet<>(unmodifiableOldFields);
         Set<T> finalFieldSet = new HashSet<>();
 
-        if (optionalNewFields.isEmpty()) {
-            return oldFields.getValues();
-        }
-
-        Set<T> newFields = optionalNewFields.get().getValues();
+        Set<T> newFields = optionalNewFields.getValues();
         for (T field : newFields) {
             if (oldFieldSet.contains(field)) {
                 oldFieldSet.remove(field);
@@ -83,7 +87,7 @@ public abstract class EditPersonCommand extends Command {
      * If the same NusMods appears in both Old Modules and New Modules, we count that as removal.
      * Otherwise,it is an addition.
      */
-    public static Modules createEditedModules(Modules oldModules, Optional<Modules> optionalNewModules) {
+    public static Modules createEditedModules(Modules oldModules, Modules optionalNewModules) {
         return new Modules(createdEditedFields(oldModules, optionalNewModules));
     }
 
@@ -92,7 +96,7 @@ public abstract class EditPersonCommand extends Command {
      * If the same Tag appears in both Old Set and New Set, we count that as removal.
      * Otherwise,it is an addition.
      */
-    public static Tags createEditedTags(Tags oldTags, Optional<Tags> optionalNewTags) {
+    public static Tags createEditedTags(Tags oldTags, Tags optionalNewTags) {
         return new Tags(createdEditedFields(oldTags, optionalNewTags));
     }
 }
