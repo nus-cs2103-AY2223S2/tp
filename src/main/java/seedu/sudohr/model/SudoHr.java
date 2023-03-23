@@ -307,6 +307,17 @@ public class SudoHr implements ReadOnlySudoHr {
         return leaves.getLeave(date);
     }
 
+    // add docs
+    public Leave getLeave(Leave leaveToAdd) {
+        ObservableList<Leave> leaveList = this.getLeavesList();
+        for (Leave leave : leaveList) {
+            if (leave.isSameLeave(leaveToAdd)) {
+                return leave;
+            }
+        }
+        return leaveToAdd;
+    }
+
     /**
      * Adds a leave to the address book.
      * The leave must not already exist in the address book.
@@ -324,26 +335,15 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a leave with the same identity as {@code leave} exists in
-     * the sudohr book.
+     * Returns true if a leave with the same identity as {@code leave} exists in SudoHR.
      */
     public boolean hasLeave(Leave leave) {
         requireNonNull(leave);
         return leaves.contains(leave);
     }
 
-    public Leave getLeave(Leave leaveToAdd) {
-        ObservableList<Leave> leaveList = this.getLeavesList();
-        for (Leave leave : leaveList) {
-            if (leave.isSameLeave(leaveToAdd)) {
-                return leave;
-            }
-        }
-        return leaveToAdd;
-    }
-
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in
+     * Returns true if an employee with the same identity as {@code employee} exists in
      * the specified leave
      * {@code date}
      * the sudohr book.
@@ -360,8 +360,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a employee {@code employee} to a specified leave{@code leave}
-     * in the sudohr book.
+     * Adds a employee {@code employee} to a specified leave{@code leave} in SudoHR.
      */
     public void addEmployeeToLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);

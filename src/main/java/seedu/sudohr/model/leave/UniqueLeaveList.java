@@ -55,7 +55,7 @@ public class UniqueLeaveList implements Iterable<Leave> {
     }
 
     /**
-     *
+     * Gets the leave object by date.
      * @param date
      * @return
      */
