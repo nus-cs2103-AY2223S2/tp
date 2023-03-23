@@ -66,13 +66,15 @@ public class ModelManager implements Model {
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        // return userPrefs.getAddressBookFilePath();
+        return userPrefs.getInternshipBookFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        // userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setInternshipBookFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
