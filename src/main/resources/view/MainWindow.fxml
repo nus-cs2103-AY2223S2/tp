@@ -40,11 +40,8 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-
             <SplitPane dividerPositions="0.6" prefHeight="160.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <items>
-      
               <VBox fx:id="personList" minWidth="500.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
