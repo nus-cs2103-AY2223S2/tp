@@ -248,10 +248,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Help Sheet
+### Help Window
 
 Syntax: ```help```
 Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
+
+#### Implementation
+
+The diaplay of the helpwindow is supported by blaba
 
 #### Design Considerations
 
@@ -269,7 +273,7 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 #### Aspect: How different methods are viewed by user.
 **Alternative 1 (Current choice)** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
 * Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
-* Cons: More complex structures to be used when implementing the Ui of the help sheet. Restructuring of tree also may be necessary when big changes are made to structure of commands.
+* Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
 
 **Alternative 2** Display all executable commands in a list.
 * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
