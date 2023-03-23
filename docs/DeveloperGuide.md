@@ -141,6 +141,16 @@ The `Model` component,
 
 </div>
 
+### Appointment component
+**API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
+
+The `Appointment` component,
+
+* Contains the details of patients' appointment
+  * The patients' `Patient id`
+  * The duration of each appointment (Uses the `start time` and `end time`)
+  * The type and dose of `vaccine` to be administered
+  * The `status` of the appointment
 
 ### Storage component
 
