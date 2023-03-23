@@ -25,6 +25,7 @@ import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -202,6 +203,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public KeywordManager getKeywordManager() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getKeywordManager'");
+        }
+
+        @Override
         public AppointmentManager getAppointmentManager() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
@@ -223,6 +230,12 @@ public class AddCommandTest {
         public void setAppointmentManager(AppointmentManager manager) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+        }
+
+        @Override
+        public void setKeywordManager(KeywordManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
         }
 
         @Override

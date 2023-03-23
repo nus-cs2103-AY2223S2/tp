@@ -17,6 +17,7 @@ import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.keyword.KeywordManager;
+import seedu.vms.model.keyword.ReadOnlyKeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -194,6 +195,7 @@ public class ModelManager implements Model {
     }
 
     // =========== KeywordManager ==============================================================================
+
     @Override
     public void addKeyword(Keyword keyword) {
         keywordManager.add(keyword);
@@ -203,6 +205,16 @@ public class ModelManager implements Model {
     @Override
     public void deleteKeyword(int id) {
         keywordManager.remove(id);
+    }
+
+    @Override
+    public KeywordManager getKeywordManager() {
+        return keywordManager;
+    }
+
+    @Override
+    public void setKeywordManager(KeywordManager keywordManager) {
+        this.keywordManager.resetData(keywordManager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================

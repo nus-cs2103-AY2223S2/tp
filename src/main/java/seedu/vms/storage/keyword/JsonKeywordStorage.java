@@ -18,6 +18,15 @@ import static java.util.Objects.requireNonNull;
 public class JsonKeywordStorage implements KeywordStorage{
     public static final Path USER_KEYWORD_PATH = Path.of("data", "keyword.json");
 
+    private final Path filePath;
+
+    public JsonKeywordStorage() {
+        this(USER_KEYWORD_PATH);
+    }
+
+    public JsonKeywordStorage(Path filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public KeywordManager loadKeywords() throws IOException {

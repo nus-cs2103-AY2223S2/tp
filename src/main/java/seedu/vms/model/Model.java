@@ -10,6 +10,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -150,6 +151,9 @@ public interface Model {
     /** Returns the {@code AppointmentManager} the model is using. */
     AppointmentManager getAppointmentManager();
 
+    /** Returns the {@code KeywordManager} the model is using. */
+    KeywordManager getKeywordManager();
+
     /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
 
@@ -169,6 +173,7 @@ public interface Model {
 
     void setVaxTypeManager(VaxTypeManager manager);
 
-
     void setAppointmentManager(AppointmentManager manager);
+
+    void setKeywordManager(KeywordManager keywordManager);
 }
