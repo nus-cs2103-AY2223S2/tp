@@ -4,16 +4,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -36,28 +35,20 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                            PREFIX_EMAIL, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_TAG);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+            if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-
-            //@@author chatGPT-reused
-            // Reused from chatGPT
-            // with minor modifications
-            String[] nameKeywords = name.toString().trim().split("\\s+");
-
-            return new DeleteCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
-                    name.toString().trim());
+            Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+            return new DeleteCommand(nric);
         } catch (ParseException pe) {
             throw pe;
         }
 
     }
-
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
