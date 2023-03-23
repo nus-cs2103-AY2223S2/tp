@@ -3,13 +3,16 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+
 
 /**
  * Controller for user profile page
@@ -22,9 +25,11 @@ public class UserProfilePanel extends UiPart<Region> {
     private static final String PHONE_NUMBER = "Phone number: ";
     private static final String EMAIL = "Email: ";
     private static final String ADDRESS = "Address: ";
-    private static final String TELEGRAM = "Telegram";
-    private static final String GROUP_TAGS = "Groups: ";
-    private static final String MODULE_TAGS = "Modules: ";
+    private static final String TELEGRAM = "Telegram: ";
+    private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
+    private static final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     private Logic logic;
     private User user;
@@ -41,10 +46,9 @@ public class UserProfilePanel extends UiPart<Region> {
     private Label address;
     @FXML
     private Label telegramHandle;
-    @FXML //TODO: MIGHT CHANGE TO FLOW PANE LATER ON
-    private Label groupTags;
-    @FXML //TODO: MIGHT CHANGE TO FLOW PANE LATER ON
-    private Label moduleTags;
+
+    @FXML
+    private FlowPane allTags;
 
     /**
      * Creates a new User profile window.
@@ -58,9 +62,23 @@ public class UserProfilePanel extends UiPart<Region> {
         phone.setText(PHONE_NUMBER + this.user.getPhone());
         email.setText(EMAIL + this.user.getEmail());
         address.setText(ADDRESS + this.user.getAddress());
+        address.setWrapText(true);
         telegramHandle.setText(TELEGRAM + this.user.getTelegramHandle());
-        moduleTags.setText(MODULE_TAGS + this.user.getModuleTags());
-        groupTags.setText(GROUP_TAGS + this.user.getGroupTags().toString());
+
+        user.getImmutableGroupTags().forEach(groupTag -> {
+            Button temp = new Button(groupTag.tagName);
+            temp.setStyle(GROUP_TAG_STYLE);
+            allTags.getChildren().add(temp);
+        });
+
+        user.getImmutableModuleTags().forEach(moduleTag -> {
+            Button temp = new Button(moduleTag.tagName);
+            temp.setStyle(MODULE_TAG_STYLE);
+            allTags.getChildren().add(temp);
+        });
+
+        allTags.setHgap(5.0);
+        allTags.setVgap(3.0);
     }
 
     /**
@@ -73,7 +91,20 @@ public class UserProfilePanel extends UiPart<Region> {
         email.setText(EMAIL + person.getEmail());
         address.setText(ADDRESS + person.getAddress());
         telegramHandle.setText(TELEGRAM + person.getTelegramHandle());
-        moduleTags.setText(MODULE_TAGS + person.getModuleTags());
-        groupTags.setText(GROUP_TAGS + person.getGroupTags().toString());
+
+        person.getImmutableGroupTags().forEach(groupTag -> {
+            Button temp = new Button(groupTag.tagName);
+            temp.setStyle(GROUP_TAG_STYLE);
+            allTags.getChildren().add(temp);
+        });
+
+        person.getImmutableModuleTags().forEach(moduleTag -> {
+            Button temp = new Button(moduleTag.tagName);
+            temp.setStyle(MODULE_TAG_STYLE);
+            allTags.getChildren().add(temp);
+        });
+
+        allTags.setHgap(4.0);
+        allTags.setVgap(5.0);
     }
 }

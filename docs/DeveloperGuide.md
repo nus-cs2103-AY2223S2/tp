@@ -47,6 +47,7 @@ title: Developer Guide
        * [Sort Command](#sort-command)
        * [List Command](#list-command)
        * [Exit Command](#exit-command)
+       * [Meet Command](#meet-command)
    * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -560,9 +561,11 @@ The last viewed profile will remain displayed on the profile panel should there 
 - `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 </div>
 
-**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
-If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
-The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
+- If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
+
+    The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
@@ -574,7 +577,7 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution <process></process>
+    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
 
 #### **Find Command**
@@ -639,7 +642,16 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 #### **List Command**
 
-{to be filled}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
+
+The `list` command will allow users to view all the contacts saved in `EduMate`.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `list`: lists all contacts in the EduMate Application.
+
+</div>
 
 #### **Exit Command**
 
@@ -681,9 +693,25 @@ This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
 #### LocationUtil
 {to be filled by Hafeez}
 #### Scheduler
-{to be filled by Russell}
+The Scheduler uses the participants' schedule to find common time periods that everyone
+would be free so that a meetup could be scheduled.
 
-###
+The scheduler will always recommend timeslots and rank them in descending time duration that
+the participants could meet up.
+
+##### What needs to be fixed:
+Integration with the `LocationUtil` so that we can find the exact location of every participant
+before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
+
+### **Organise Command**
+
+<div markdown="span" class="alert alert-warning">
+    :construction: Slated for release in v1.3b.
+</div>
+
+The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+
+The `Scheduler` will check if the timing is a suitable for every participant to meet.
 
 ### **Parsers**
 
