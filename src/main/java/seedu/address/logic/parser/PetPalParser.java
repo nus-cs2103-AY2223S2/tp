@@ -67,6 +67,9 @@ public class PetPalParser {
         case RemindCommand.COMMAND_WORD:
             return new RemindCommand(new DeadlineWithinThreeDaysPredicate());
 
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

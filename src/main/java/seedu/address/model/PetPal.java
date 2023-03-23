@@ -30,7 +30,7 @@ public class PetPal implements ReadOnlyPetPal {
     public PetPal() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an PetPal using the Pets in the {@code toBeCopied}
      */
     public PetPal(ReadOnlyPetPal toBeCopied) {
         this();
