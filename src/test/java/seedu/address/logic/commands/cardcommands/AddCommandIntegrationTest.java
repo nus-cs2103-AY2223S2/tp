@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.cardcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.card.Card;
+import seedu.address.testutil.AddCardDescriptorBuilder;
 import seedu.address.testutil.CardBuilder;
 
 /**
@@ -24,24 +25,28 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
-        model.selectDeck(Index.fromOneBased(1));
+        model.selectDeck(Index.fromOneBased(1)); // Deck("Programming Concept")
     }
 
     @Test
     public void execute_newCard_success() {
-        Card validCard = new CardBuilder().build();
+        Card validCard = new CardBuilder().build(); // Deck("Default")
+        AddCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(validCard).build();
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
-        expectedModel.addCard(validCard);
+        expectedModel.selectDeck(Index.fromOneBased(1));
+        cardDescriptor.setDeck(expectedModel.getSelectedDeck().get()); // Change Deck to selectedDeck
+        expectedModel.addCard(cardDescriptor.buildCard());
 
-        assertCommandSuccess(new AddCommand(validCard), model,
+        assertCommandSuccess(new AddCommand(cardDescriptor), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validCard), expectedModel);
     }
 
     @Test
     public void execute_duplicateCard_throwsCommandException() {
-        Card cardInList = model.getMasterDeck().getCardList().get(0);
-        assertCommandFailure(new AddCommand(cardInList), model, AddCommand.MESSAGE_DUPLICATE_CARD);
+        Card cardInList = model.getMasterDeck().getCardList().get(0); // This card also belongs to the selectedDeck
+        AddCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(cardInList).build();
+        assertCommandFailure(new AddCommand(cardDescriptor), model, AddCommand.MESSAGE_DUPLICATE_CARD);
     }
 
 }

@@ -51,7 +51,7 @@ class JsonAdaptedCard {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        deck = source.getDeck().map(Deck::getDeckName).get();
+        deck = source.getDeck().getDeckName();
     }
 
     /**

@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteDeckCommand;
+import seedu.address.logic.commands.deckcommands.DeleteDeckCommand;
 
 public class DeleteDeckCommandParserTest {
 

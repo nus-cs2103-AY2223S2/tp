@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_GRAVITY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -44,8 +43,7 @@ public class UniqueDeckListTest {
     @Test
     public void contains_cardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCardList.add(LOOP);
-        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE)
-                .build();
+        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
         assertTrue(uniqueCardList.contains(editedLoop));
     }
 
