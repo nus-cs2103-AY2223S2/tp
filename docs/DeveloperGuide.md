@@ -337,3 +337,62 @@ to determine which faculty of in-built contacts to import
     - Cons:
         - Input will take longer to parse as the string input has to be parsed into
           a faculty object to be used as input to ImportCommand#execute
+## Add Feature
+### Add Implementation
+The Add feature is facilitated by the classes `AddCommand`,
+`AddCommandParser` and `ParserUtil`.
+The `AddCommandParser` first parses through the user command to obtain
+the necessary inputs through using `ParserUtil#parseIndex`. Following which an
+instance of a `AddCommand` containing the details encapsulated in Person class is returned.
+`AddCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image, and deletes the existing person through
+`DeleteCommand`.
+
+Given below is an example usage scenario for how the add mechanism behaves.
+
+Step 1: User starts up the application and sees their list of contacts. User must then enter
+[name] [status] [phone] [email] [address] as they are required by the system if not it will cause
+an invalid exception.
+
+Step 2: The user decides that the image given to the contact at index 4 is not
+suitable, and wants to delete it. The user inputs `delete-image 4`.
+`DeleteImageCommandParser#parse` is then called to parse this input for the
+desired index.
+
+> **Note**: If the user inputs an index of a contact which currently does not have
+an image, or if the user inputs an invalid index, an error will be returned to
+the user
+
+Step 3: If the instruction was valid, `Model#deleteImage` is called to set the
+image of the contact to the default image.
+
+Step 4: `ImageUtil#deleteImage` is then called to delete the existing image
+from the program directory.
+
+The following sequence diagram shows how the delete-image operation works.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+> **Note**: The lifeline of the `DeleteImageCommandParser` and `DeleteImageCommand`
+> should end at the destroy marker (X) but due to the limitations of PlantUML, the
+> lifeline reaches the end of the diagram.
+
+The following activity diagram summarizes what happens when a user executes a
+delete-image command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+### Design Considerations:
+- **Alternative 1 (current choice):** Delete the existing image file from program
+  directory.
+    - Pros:
+        - Ensures application does not consume excess storage
+    - Cons:
+        - Extra complexity in requiring file i/o operations
+
+- **Alternative 2:** Disregard deleting the image file from program directory.
+    - Pros:
+        - Easier to implement
+    - Cons:
+        - Application will take up increasingly more unnecessary storage during
+          its lifetime of usage
