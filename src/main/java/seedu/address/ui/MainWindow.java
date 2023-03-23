@@ -274,9 +274,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isEndReview()) {
                 handleEndReview();
             }
+
             if (commandResult.isSelectDeck()) {
                 handleSelectDeck();
             }
+            
             if (commandResult.isUnselectDeck()) {
                 handleUnSelectDeck();
             }
