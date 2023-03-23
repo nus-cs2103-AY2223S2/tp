@@ -13,13 +13,9 @@ public class FlipCardCommand extends Command {
 
     public static final String COMMAND_WORD = "[";
 
-    public static final String MESSAGE_FLIP_SUCCESS = "Flashcard is flipped! Showing answer."
-            + "\nTo mark correct enter '"
-            + "\nTo mark wrong enter ;";
+    public static final String MESSAGE_FLIP_SUCCESS = "Flashcard is flipped! Showing answer.";
 
-    public static final String MESSAGE_UNFLIP_SUCCESS = "Flashcard is unflipped! Showing only the question."
-            + "\nTo mark correct enter '"
-            + "\nTo mark wrong enter ;";
+    public static final String MESSAGE_UNFLIP_SUCCESS = "Flashcard is unflipped! Showing only the question.";
 
     @Override
     public CommandResult execute(Model model) {

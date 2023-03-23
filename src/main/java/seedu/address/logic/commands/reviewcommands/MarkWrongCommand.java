@@ -13,10 +13,7 @@ public class MarkWrongCommand extends Command {
 
     public static final String COMMAND_WORD = ";";
 
-    public static final String MESSAGE_SUCCESS = "You'll get it next time! Marked current card as incorrect."
-            + "\nEnter [ to flip card and show answer!"
-            + "\nEnter ] to return to previous card."
-            + "\nEnter \\ to skip to next card.";
+    public static final String MESSAGE_SUCCESS = "You'll get it next time! Marked current card as incorrect.";
 
     @Override
     public CommandResult execute(Model model) {

@@ -13,10 +13,7 @@ public class PreviousCardCommand extends Command {
 
     public static final String COMMAND_WORD = "]";
 
-    public static final String MESSAGE_SUCCESS = "Went back to previous flashcard."
-            + "\nEnter [ to flip card and show answer!"
-            + "\nEnter ] to return to previous card."
-            + "\nEnter \\ to skip to next card.";
+    public static final String MESSAGE_SUCCESS = "Went back to previous flashcard.";
     public static final String MESSAGE_NO_MORE_PREV_CARD = "This is the first card.";
 
     @Override

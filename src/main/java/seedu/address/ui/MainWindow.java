@@ -186,7 +186,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleStartReview() {
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
-        leftPanelPlaceholder.getChildren().removeAll();
+        leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         personListPanel.toggleReview();
@@ -197,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleEndReview() {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
-        leftPanelPlaceholder.getChildren().removeAll();
+        leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         personListPanel.endReview();
