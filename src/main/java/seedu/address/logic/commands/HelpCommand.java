@@ -16,9 +16,9 @@ public class HelpCommand extends Command {
             + "Type 'help' into the command for more instructions.";
 
     public static final String HELP_CATEGORIES = "Help categories available: \n"
-            + "help tutorial\n"
-            + "help lab\n"
-            + "help consultation";
+            + "help student\n"
+            + "help event\n"
+            + "help organisation";
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(HELP_CATEGORIES);

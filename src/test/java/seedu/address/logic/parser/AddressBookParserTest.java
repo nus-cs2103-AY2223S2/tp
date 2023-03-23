@@ -91,8 +91,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addStudentToEvent() throws Exception {
-        //assertTrue(parser.parseCommand(AddStudentToEventCommand.COMMAND_WORD) instanceof AddStudentToEventCommand);
-        assertTrue(parser.parseCommand(AddStudentToEventCommand.COMMAND_WORD + " 3 Tutorial/tut")
+        assertTrue(parser.parseCommand(AddStudentToEventCommand.COMMAND_WORD + " 3 Tutorial/foo")
                 instanceof AddStudentToEventCommand);
     }
 

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.SAMPLE_CONSULTATION;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_TUTORIAL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -89,17 +90,24 @@ public class AddressBookTest {
     }
 
     @Test
-    void addStudentToTutorial() {
+    void addStudentToTutorial_success() {
         Tutorial newTut = SAMPLE_TUTORIAL;
         newTut.addStudent(ALICE);
         assert(newTut.countStudents() == 1);
     }
 
     @Test
-    void addStudentToLab() {
+    void addStudentToLab_success() {
         Lab newLab = SAMPLE_LAB;
         newLab.addStudent(ALICE);
         assert(newLab.countStudents() == 1);
+    }
+
+    @Test
+    void addStudentToConsultation_success() {
+        Consultation newConsultation = SAMPLE_CONSULTATION;
+        newConsultation.addStudent(ALICE);
+        assert(newConsultation.countStudents() == 1);
     }
 
     /**
