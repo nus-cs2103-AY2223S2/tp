@@ -181,6 +181,57 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![RemindActivityDiagram](images/RemindActivityDiagram.png)
 
+### Calculator Feature
+#### Current Implementation
+The calculator mechanism is facilitated by the `AddCommand` class.
+The calculator  calculates the amount of money owed by pet owners to the daycare owners,
+based on an initial timestamp of type java `LocalDateTime` that is required to be non-null when
+entering the `Add` command.
+##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
+Step 1. The user launches the application for the first time.
+
+Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
+
+Step 3. The user may exit and reopen PetPal at a future date. The user will see how much is the amount due to them as a field in each pet card by their respective owners.
+
+Step 4. The amount updates upon clicking on the PetCard on panel, or upon restarting the client.
+
+The calculator feature is not an additional command, and does not have an activity or sequence diagram.
+
+### Undo Feature
+#### Current Implementation
+The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
+The `ModelManager` class is implemented by PetPal and has a `petPalCache` field which is of type`PetPal`.
+
+'UndoCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
+##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
+<pre>
+Step 1. The user launches the application for the first time.
+
+Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
+
+Step 3. The user realises that he has made a mistake and executes `undo`.
+</pre>
+Step 4. The list displayed returns to previous state without the new Doggo added.
+##### Extensions:
+<pre>
+Step 2a. The user decides to delete a pet from the pet list. The user executes `delete 1`.
+     3a. The user realises that he has made a mistake and executes `undo`.
+     4a. The list displayed returns to previous state with item 1 that was just deleted.
+</pre>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UnDoSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![UndoActivityDiagram](images/UndoActivityDiagram.png)
+
+
+
+
+
 #### Design Considerations:
 **Choice 1 (Current Choice) : Filter pet list upon command**
 * Pros:

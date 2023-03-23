@@ -1,0 +1,8 @@
+@startuml
+start
+:User executes command;
+
+:PetPal goes back to previously saved state;
+
+stop
+@enduml
