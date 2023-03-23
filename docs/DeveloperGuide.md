@@ -250,7 +250,7 @@ Given below is an example usage scenario and how the Prefix find mechanism behav
 
 Step 1. The user launches the application.
 
-Step 2. The user executes the `find /a 13 /n Thomas /p 612` command to filter the list of cases which contain a dengue
+Step 2. The user executes the `find a/ 13 n/ Thomas p/ 612` command to filter the list of cases which contain a dengue
  case associated with the name Thomas, who is of the age 13 and has a postal code beginning with 612.
 
 Step 3. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `find` command word,
