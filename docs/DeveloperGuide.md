@@ -175,8 +175,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Implementation
 
-The new contact feature is facilitated by the `Contact` class. Contact class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
-A new contact created will be added to the Contact list which will be saved in a JSON file.
+The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
+A new contact created will be added to the contact list which will be saved in a JSON file.
 
 ### Design considerations:
 
