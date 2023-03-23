@@ -51,7 +51,7 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         nric.setText(patient.getNric().value);
-        String statusString = patient.getStatus().getDesc();
+        String statusString = patient.getStatusDesc();
         status.setText(statusString);
         status.getStyleClass().clear();
         status.getStyleClass().add("status-" + statusString);

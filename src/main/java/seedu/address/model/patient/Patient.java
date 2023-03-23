@@ -90,6 +90,9 @@ public class Patient {
     public Status getStatus() {
         return status;
     }
+    public String getStatusDesc() {
+        return status.getDesc();
+    }
 
     public Ward getWard() {
         return ward;
