@@ -181,6 +181,10 @@ fields include application date time and notes about the applicant.
 to inform the user.
 1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
 
+#### Feature Considerations
+
+
+
 #### Advancing an Applicant
 
 ##### Overview
@@ -253,6 +257,12 @@ status. For example, if an `Person` with the status `Rejected`, then you cannot 
 
 When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
 a default behaviour when rejecting an applicant's status.
+
+#### Finding an Applicant
+
+#### Overview
+
+#### Feature Details
 
 
 #### Editing an Applicant
