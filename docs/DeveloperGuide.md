@@ -200,9 +200,6 @@ The following details explain how it works:
       * cons: expired date time cannot be updated immediately unless the user reopen the application.
 
 
-2. 
-
-
 ### Find feature
 
 #### Implementation
