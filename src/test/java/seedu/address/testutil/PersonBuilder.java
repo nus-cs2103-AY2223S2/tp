@@ -179,6 +179,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags, task);
+        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
+                remark, tags, task);
     }
 }
