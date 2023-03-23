@@ -21,7 +21,7 @@ public class StatusPredicate implements Predicate<InternshipApplication> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof StatusPredicate // instanceof handles nulls
                 && status.equals(((StatusPredicate) other).status)); // state check
     }
 }

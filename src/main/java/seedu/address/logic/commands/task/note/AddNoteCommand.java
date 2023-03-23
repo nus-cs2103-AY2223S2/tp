@@ -13,7 +13,7 @@ import seedu.address.model.task.Note;
 /**
  * Adds an application to the internship tracker.
  */
-public class NoteCommand extends Command {
+public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "note";
 
@@ -33,7 +33,7 @@ public class NoteCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code InternshipApplication}
      */
-    public NoteCommand(Note noteContent) {
+    public AddNoteCommand(Note noteContent) {
         requireNonNull(noteContent);
         note = noteContent;
     }
@@ -53,7 +53,7 @@ public class NoteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NoteCommand // instanceof handles nulls
-                && note.equals(((NoteCommand) other).note));
+                || (other instanceof AddNoteCommand // instanceof handles nulls
+                && note.equals(((AddNoteCommand) other).note));
     }
 }

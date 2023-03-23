@@ -15,7 +15,7 @@ import seedu.address.model.task.InternshipTodo;
 /**
  * Adds an application to the internship tracker.
  */
-public class TodoCommand extends Command {
+public class AddTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
 
@@ -39,7 +39,7 @@ public class TodoCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code InternshipApplication}
      */
-    public TodoCommand(InternshipTodo applicationTodo) {
+    public AddTodoCommand(InternshipTodo applicationTodo) {
         requireNonNull(applicationTodo);
         todo = applicationTodo;
     }
@@ -59,7 +59,7 @@ public class TodoCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TodoCommand // instanceof handles nulls
-                && todo.equals(((TodoCommand) other).todo));
+                || (other instanceof AddTodoCommand // instanceof handles nulls
+                && todo.equals(((AddTodoCommand) other).todo));
     }
 }

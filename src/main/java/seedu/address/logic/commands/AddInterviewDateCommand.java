@@ -32,6 +32,7 @@ public class AddInterviewDateCommand extends Command {
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "06/07/2023 12:00 PM";
 
+
     public static final String MESSAGE_ADD_INTERVIEW_DATE_SUCCESS = "Interview date added to application: %1$s";
 
     private final Index targetIndex;

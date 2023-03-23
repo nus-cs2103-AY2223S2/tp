@@ -21,18 +21,18 @@ public class CompanyName {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code CompanyName}.
      *
-     * @param name A valid name.
+     * @param companyName A valid companyName.
      */
-    public CompanyName(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public CompanyName(String companyName) {
+        requireNonNull(companyName);
+        checkArgument(isValidName(companyName), MESSAGE_CONSTRAINTS);
+        fullName = companyName;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid companyName.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);

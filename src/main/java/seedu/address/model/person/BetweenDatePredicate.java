@@ -29,7 +29,7 @@ public class BetweenDatePredicate extends DatePredicate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof BetweenDatePredicate // instanceof handles nulls
                 && startDate.equals(((BetweenDatePredicate) other).startDate)
                 && endDate.equals(((BetweenDatePredicate) other).endDate)); // state check
     }

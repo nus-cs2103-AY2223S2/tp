@@ -25,7 +25,7 @@ public class AfterDatePredicate extends DatePredicate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof AfterDatePredicate // instanceof handles nulls
                 && afterDate.equals(((AfterDatePredicate) other).afterDate)); // state check
     }
 }

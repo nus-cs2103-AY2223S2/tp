@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.task.note.NoteCommand;
+import seedu.address.logic.commands.task.note.AddNoteCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -16,20 +16,20 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Parses input arguments and creates a new NoteCommand object
+ * Parses input arguments and creates a new AddNoteCommand object
  */
-public class NoteCommandParser implements Parser<NoteCommand> {
+public class NoteCommandParser implements Parser<AddNoteCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the NoteCommand
-     * and returns an NoteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddNoteCommand
+     * and returns an AddNoteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public NoteCommand parse(String args) throws ParseException {
+    public AddNoteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
         NoteContent content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).orElse(null));
@@ -37,7 +37,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
 
         Note note = new Note(content);
 
-        return new NoteCommand(note);
+        return new AddNoteCommand(note);
     }
 
     /**

@@ -156,6 +156,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+### How add feature is implemented
+
+The `add` command allows users to add an internship application to the tracker. The add mechanism is facilitated by `AddCommand` class. It extends `Command`but overrides the `Command#execute` to add an internship application to the tracker.
+
+The sequence diagram below shows how the `AddCommand` object is created:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+Step 1. Parsing
+
+The `AddCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
+
+Step 2. Execution
+
+The `AddCommand#execute` calls `Model#addApplication`, causing an update to the internship list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+
+
 ### Add contact feature
 
 #### How is the feature implemented
@@ -336,9 +358,61 @@ For the ease of implementation and avoid ambiguity, constructor `ClearByCommand:
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 _{more aspects and alternatives to be added}_
 
+### Add Interview Date feature 
+
+#### How is the feature implemented
+
+The `add_date` command allows users to add an interview date to an internship application. The implementation of the `add_date` command is facilitated by the `AddInterviewDateCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddInterviewDateCommandParser#parse` methods.
+
+The constructor of the class `AddInterviewDateCommand` requires 2 arguments, a valid positive `Integer` index and a `InterviewDate` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
+
+Given below is an explanation on the `add_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The method `AddInterviewDateCommandParser#parse` is invoked only if the command word matches `AddInterviewDateCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `AddInterviewDateCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The internship application where the interview date is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the interview date. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
+
+#### Why is it implemented this way
+
+The `AddInterviewDateCommand` provides enhancement to the existing `AddCommand` by separating the process of adding the interview date for an application from the initial process of
+adding a new internship application. This prevents the `AddCommand` from getting cluttered with large amount of arguments that may become difficult for the user to remember.
+
+**Aspect: Where to save the contact details:**
+
+* **Alternative 1 (current choice):** Separating it into a separate `InterviewDate` class.
+    * Pros: Flexibility to add more details to the contact if needed in the future.
+    * Cons: More time required to implement.
+
+* **Alternative 2:** Adding interview date as an attribute in the `InternshipApplication` class.
+    * Pros: Easier than implement.
+    * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
+  
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Upcoming Interview reminder 
+
+_{Explain here how the data archiving feature will be implemented}_
+
 
 
 --------------------------------------------------------------------------------------------------------------------
