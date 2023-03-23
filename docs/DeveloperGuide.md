@@ -2,30 +2,81 @@
 layout: page
 title: Developer Guide
 ---
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows users to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
+using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
+<br/>
+<p align="center">
+  <img width="300" height="175" src="images/internbuddy-computer.png">
+</p>
+
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## About the Developer Guide
+This developer guide aims to provide developers with insights into the implementation details
+of InternBuddy and to explain the design considerations behind the different features. It
+utilises Unified Modeling Language (UML) diagrams created using [PlantUML](https://plantuml.com/)
+for a visual explanation of the implementations.
 
-* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
-[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries. It
-is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
+Apart from shedding light onto InternBuddy's  internal details, this developer guide also provides
+information on how one can test the features of InternBuddy, and showcases the user study component
+that we went through in the initial development phase for requirements gathering.
 
---------------------------------------------------------------------------------------------------------------------
+Hopefully, interested developers would be able to easily set up the InternBuddy project and
+extends its functionality through this developer guide.
+
+## Using the Developer Guide
+This developer guide uses a set of formatting standards and syntax to better communicate
+information.
+
+### Information Box
+<div markdown="span" class="alert alert-primary">
+
+:info: **Info:** Provides useful information that supplements the main text
+</div>
+
+### Tip Box
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  Suggestions on how to enhance your experience
+</div>
+
+### Warning Box
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
+carefully before committing
+</div>
+
+### Code Blocks
+Important code-related text and file paths are indicated using syntax highlighting.
+
+`command`, `PARAMETER`, `filepath.json`, `ClassName`
+
+
+### Keyboard Actions
+Keyboard keys are indicated using rounded boxes.
+
+<kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Enter</kbd> <kbd>&uarr;</kbd>
+
+
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
+set up the InternBuddy project in your personal computer.
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -38,7 +89,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -71,24 +122,30 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
+inherit from the abstract `UiPart` class which captures the commonalities between classes that
+represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching
+`.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -104,7 +161,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -112,23 +169,32 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `InternBuddyParser` class creates an `XYZCommandParser`
+(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes
+shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the
+`InternBuddyParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from
+the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the internsip data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
+* stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list
+which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed'
+(e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** An alternative (arguably, a more OOP)
+model is given below. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
+to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
+
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -137,13 +203,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both internship data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `InternBuddyStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -568,3 +634,15 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+
+## **Acknowledgements**
+
+* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+  and [TestFX](https://github.com/TestFX/TestFX) libraries. It
+  is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
+  the [SE-EDU initiative](https://se-education.org).
+* InternBuddy also utilises code adapted from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) primarily for the purpose of GUI testing.
