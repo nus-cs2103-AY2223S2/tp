@@ -61,4 +61,22 @@ public class Status {
     public int hashCode() {
         return value.hashCode();
     }
+
+    /**
+     * Returns description of the status code.
+     *
+     * @return Description of status code.
+     */
+    public String getDesc() {
+        switch(value) {
+        case "GREEN":
+            return "STABLE";
+        case "YELLOW":
+            return "SERIOUS";
+        case "RED":
+            return "CRITICAL";
+        default:
+            return "UNKNOWN";
+        }
+    }
 }

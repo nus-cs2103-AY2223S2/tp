@@ -110,6 +110,9 @@ public class Patient {
     public Status getStatus() {
         return status;
     }
+    public String getStatusDesc() {
+        return status.getDesc();
+    }
 
     public Ward getWard() {
         return ward;
@@ -145,6 +148,20 @@ public class Patient {
         return otherPatient != null
             && otherPatient.getNric().equals(this.getNric())
             && otherPatient.getName().equals(this.getName());
+    }
+
+    /**
+     * Returns true if both patients have the same nric.
+     * This defines a weaker notion of equality between two patients in order to prevent duplicate nric
+     * being added to the list.
+     */
+    public boolean isSameNric(Patient otherPatient) {
+        if (otherPatient == this) {
+            return true;
+        }
+
+        return otherPatient != null
+            && otherPatient.getNric().equals(this.getNric());
     }
 
     /**
