@@ -161,11 +161,9 @@ This section describes some noteworthy details on how certain features are imple
 The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
 
 * `FitBook#getFilteredClientList()` — Retrieves the client list.
-* `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the 
-   given predicate.
+* `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the given predicate.
 
-These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, 
-`FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
+These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
@@ -198,8 +196,7 @@ The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end 
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
