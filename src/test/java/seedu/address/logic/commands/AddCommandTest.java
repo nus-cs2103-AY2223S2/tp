@@ -174,6 +174,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean canRedo() {
+            return false;
+        }
+
         //todo
         @Override
         public void commit() {
@@ -189,11 +194,6 @@ public class AddCommandTest {
         @Override
         public void undo() {
 
-        }
-
-        @Override
-        public boolean canRedo() {
-            return false;
         }
 
         //todo

@@ -30,8 +30,8 @@ public class TypicalClients {
             .withPolicyList(
                     new PolicyBuilder().withPolicyName("Fire Insurance").withStartDate("31.01.2023")
                             .withPremium("1000").withFrequency("monthly").build(),
-                    new PolicyBuilder().withPolicyName("Water Insurance").withStartDate("11.11.2023")
-                            .withPremium("2000").withFrequency("yearly").build()
+                    new PolicyBuilder().withPolicyName("Life Insurance").withStartDate("11.11.2023")
+                            .withPremium("2000").withFrequency("monthly").build()
             ).build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
