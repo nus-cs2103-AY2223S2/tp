@@ -128,8 +128,14 @@ public class Roster implements ReadOnlyRoster {
         return students.asModifiableObservableList();
     }
 
+    @Override
     public ObservableList<Course> getModifiableCourseList() {
         return courses.asModifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Course> getUnmodifiableCourseList() {
+        return courses.asUnmodifiableObservableList();
     }
 
     @Override

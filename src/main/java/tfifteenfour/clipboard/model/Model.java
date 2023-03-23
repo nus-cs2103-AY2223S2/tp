@@ -90,6 +90,8 @@ public interface Model {
 
     ObservableList<Course> getModifiableFilteredCourseList();
 
+    ObservableList<Course> getUnmodifiableFilteredCourseList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

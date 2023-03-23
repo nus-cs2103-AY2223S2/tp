@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.model;
 
 import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -15,5 +16,9 @@ public interface ReadOnlyRoster {
     ObservableList<Student> getUnmodifiableStudentList();
 
     ObservableList<Student> getModifiableStudentList();
+
+    ObservableList<Course> getUnmodifiableCourseList();
+
+    ObservableList<Course> getModifiableCourseList();
 
 }

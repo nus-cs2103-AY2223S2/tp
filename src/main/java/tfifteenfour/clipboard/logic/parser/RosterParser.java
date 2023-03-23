@@ -6,13 +6,14 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_UNKNOWN_COMMA
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tfifteenfour.clipboard.logic.Page;
+import tfifteenfour.clipboard.logic.CurrentSelected;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.ListCommand;
 import tfifteenfour.clipboard.logic.commands.ModuleCommand;
+import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
@@ -41,7 +42,7 @@ public class RosterParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Command parseCommand(String userInput, Page currentPage) throws ParseException {
+    public static Command parseCommand(String userInput, CurrentSelected currentSelected) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -90,8 +91,13 @@ public class RosterParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser(currentSelected).parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

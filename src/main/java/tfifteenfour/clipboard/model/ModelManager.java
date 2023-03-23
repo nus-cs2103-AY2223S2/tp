@@ -65,7 +65,7 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(roster.getUnmodifiableStudentList());
         viewedStudent = new FilteredList<>(roster.getUnmodifiableStudentList());
 
-        filteredCourses = new FilteredList<>(roster.getModifiableCourseList());
+        filteredCourses = new FilteredList<>(roster.getUnmodifiableCourseList());
 
     }
 
@@ -190,6 +190,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Course> getModifiableFilteredCourseList() {
         return roster.getModifiableCourseList();
+    }
+
+    @Override
+    public ObservableList<Course> getUnmodifiableFilteredCourseList() {
+        return filteredCourses;
     }
 
     @Override

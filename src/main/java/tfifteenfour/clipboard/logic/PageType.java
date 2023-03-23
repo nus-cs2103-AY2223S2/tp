@@ -1,7 +1,7 @@
 package tfifteenfour.clipboard.logic;
 
-public enum Page {
-    MODULE_PAGE,
+public enum PageType {
+    COURSE_PAGE,
     GROUP_PAGE,
     STUDENT_PAGE,
     SESSION_PAGE,
