@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -72,7 +73,7 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(ROLE_LABEL + internship.getRole().fullRole);
 
         //Add Date
-        String dateLabel = getDateLabel();
+        String dateLabel = getDateLabel(internship.getStatus().toString());
         date.setText(dateLabel + internship.getDate().fullDate);
 
         //Add Tags
@@ -114,7 +115,7 @@ public class InternshipCard extends UiPart<Region> {
      *
      * @return a hashmap containing the colors associated with each status type
      */
-    public HashMap<String, Color> setupColours() {
+    public static HashMap<String, Color> setupColours() {
         //Hashmap that stores the colours associated with each status
         HashMap<String, Color> colorMap = new HashMap<String, Color>();
         colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
@@ -123,6 +124,7 @@ public class InternshipCard extends UiPart<Region> {
         colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
         colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
         colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
+        colorMap.put(ACCEPTED, Color.rgb(10, 50, 20, 1.0));
         return colorMap;
     }
 
@@ -130,14 +132,13 @@ public class InternshipCard extends UiPart<Region> {
     /**
      * Returns the label for the date field in Internship Card.
      *
+     * @param statusString The current status of the associated Internship.
+     *
      * @return the corresponding String as a label for the date.
      */
-    public String getDateLabel() {
+    public static String getDateLabel(String statusString) {
         String dateLabel;
-        switch (this.internship.getStatus().toString()) {
-        case NEW:
-            dateLabel = "Date Added: ";
-            break;
+        switch (statusString) {
         case APPLIED:
             dateLabel = "Date Applied: ";
             break;
@@ -148,13 +149,16 @@ public class InternshipCard extends UiPart<Region> {
             dateLabel = "Date of Interview: ";
             break;
         case OFFERED:
-            dateLabel = "Date of Notice of Offer: ";
+            dateLabel = "Deadline of Offer Acceptance: ";
             break;
         case REJECTED:
             dateLabel = "Date of Notice of Rejection: ";
             break;
+        case ACCEPTED:
+            dateLabel = "Date of Acceptance: ";
+            break;
         default:
-            dateLabel = "Date: ";
+            dateLabel = "Deadline of Application: ";
         }
         return dateLabel;
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -18,15 +19,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose company names contain any"
-            + " of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + " of the specified name, role, status and tag keywords and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_COMPANY_NAME + "NAME_KEYWORD]"
-            + "[" + PREFIX_STATUS + "STATUS_KEYWORD]"
+            + "[" + PREFIX_COMPANY_NAME + "NAME_KEYWORD]... "
+            + "[" + PREFIX_ROLE + "ROLE_KEYWORD]... "
+            + "[" + PREFIX_STATUS + "STATUS_KEYWORD]... "
             + "[" + PREFIX_TAG + "TAG_KEYWORD]...\n"
             + "Example: " + COMMAND_WORD
-            + PREFIX_COMPANY_NAME + "apple google facebook"
-            + PREFIX_STATUS + "applied interview offered"
-            + PREFIX_TAG + "python"
+            + PREFIX_COMPANY_NAME + "apple "
+            + PREFIX_COMPANY_NAME + "google "
+            + PREFIX_ROLE + "software "
+            + PREFIX_ROLE + "developer "
+            + PREFIX_STATUS + "applied "
+            + PREFIX_STATUS + "offered "
+            + PREFIX_TAG + "python "
             + PREFIX_TAG + "java";
 
     private final InternshipContainsKeywordsPredicate predicate;

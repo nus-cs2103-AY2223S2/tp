@@ -14,8 +14,8 @@ import java.util.List;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It"
-                    + " should not be blank too.";
+            "Status should only be one of the following: new, applied, assessment, interview, offered, "
+                    + "rejected or accepted. It should not be blank too.";
 
     public static final String NEW = "new";
     public static final String APPLIED = "applied";
@@ -23,9 +23,10 @@ public class Status {
     public static final String INTERVIEW = "interview";
     public static final String OFFERED = "offered";
     public static final String REJECTED = "rejected";
+    public static final String ACCEPTED = "accepted";
     //A set of valid statuses
     public static final List<String> LIST_OF_VALID_STATUSES =
-            Arrays.asList(NEW, APPLIED, ASSESSMENT, INTERVIEW, OFFERED, REJECTED);
+            Arrays.asList(NEW, APPLIED, ASSESSMENT, INTERVIEW, OFFERED, REJECTED, ACCEPTED);
     public static final HashSet<String> SET_OF_VALID_STATUSES = new HashSet<String>(LIST_OF_VALID_STATUSES);
 
     public final String fullStatus;

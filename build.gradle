@@ -23,6 +23,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -135,6 +139,10 @@ test {
             test.exclude 'seedu/address/ui/**'
         }
     }
+}
+
+tasks.withType(JavaExec) {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

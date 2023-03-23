@@ -2,24 +2,26 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
-import seedu.address.model.internship.Status;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static final Logger logger = LogsCenter.getLogger(FindCommandParser.class);
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -28,68 +30,67 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_STATUS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_ROLE, PREFIX_STATUS, PREFIX_DATE,
+                        PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
+            FindCommandParser.logger.info("User inputted find command with non-empty preamble.");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         if (!argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()
+                && !argMultimap.getValue(PREFIX_ROLE).isPresent()
                 && !argMultimap.getValue(PREFIX_STATUS).isPresent()
+                && !argMultimap.getValue(PREFIX_DATE).isPresent()
                 && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            FindCommandParser.logger.info("User inputted find command with no fields");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<String> nameKeywords;
-        List<String> statusKeywords;
-        List<String> tagKeywords;
+        List<String> nameList = this.parseCompanyNames(argMultimap.getAllValues(PREFIX_COMPANY_NAME));
+        List<String> roleList = this.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
+        List<String> statusList = this.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
+        List<String> dateList = this.parseDates(argMultimap.getAllValues(PREFIX_DATE));
+        List<String> tagList = this.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
-            CompanyName companyName = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
-            nameKeywords = split(companyName.fullCompanyName);
-        } else {
-            nameKeywords = Collections.emptyList();
-        }
+        return new FindCommand(new InternshipContainsKeywordsPredicate(nameList, roleList, statusList, dateList,
+                tagList));
+    }
 
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-            statusKeywords = split(status.fullStatus);
-        } else {
-            statusKeywords = Collections.emptyList();
-        }
+    private List<String> parseCompanyNames(List<String> unparsedNames) throws ParseException {
+        List<String> parsedNames = ParserUtil.parseCompanyNames(unparsedNames).stream()
+                .map(name -> name.fullCompanyName)
+                .collect(Collectors.toList());
+        return parsedNames;
+    }
 
-        List<String> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).stream()
+    private List<String> parseRoles(List<String> unparsedRoles) throws ParseException {
+        List<String> parsedRoles = ParserUtil.parseRoles(unparsedRoles).stream()
+                .map(role -> role.fullRole)
+                .collect(Collectors.toList());
+        return parsedRoles;
+    }
+
+    private List<String> parseStatuses(List<String> unparsedStatuses) throws ParseException {
+        List<String> parsedStatuses = ParserUtil.parseStatuses(unparsedStatuses).stream()
+                .map(status -> status.fullStatus)
+                .collect(Collectors.toList());
+        return parsedStatuses;
+    }
+
+    private List<String> parseDates(List<String> unparsedDates) throws ParseException {
+        List<String> parsedDates = ParserUtil.parseDates(unparsedDates).stream()
+                .map(date -> date.fullDate)
+                .collect(Collectors.toList());
+        return parsedDates;
+    }
+
+    private List<String> parseTags(List<String> unparsedTags) throws ParseException {
+        List<String> parsedTags = ParserUtil.parseTags(unparsedTags).stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toList());
-
-        tagKeywords = split(tags);
-
-        return new FindCommand(new InternshipContainsKeywordsPredicate(nameKeywords, statusKeywords, tagKeywords));
+        return parsedTags;
     }
-
-    private List<String> split(String str) throws ParseException {
-        if (str.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] keywords = str.split("\\s+");
-        return Arrays.asList(keywords);
-    }
-
-    private List<String> split(List<String> ls) throws ParseException {
-        for (String tag : ls) {
-            if (tag.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-        }
-
-        return ls.stream()
-                .map(tag -> tag.split("\\s+"))
-                .flatMap(arr -> Arrays.asList(arr).stream())
-                .collect(Collectors.toList());
-    }
-
 }

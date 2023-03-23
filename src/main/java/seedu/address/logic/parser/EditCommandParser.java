@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -10,9 +12,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
@@ -24,16 +29,27 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+
+    private static final Logger logger = LogsCenter.getLogger(EditCommandParser.class);
+
+    /**
+     * Parses arguments to construct an {@code EditCommand}
+     *
+     * @param args Raw user input.
+     * @return an {@code EditCommand} encapsulating the user's input.
+     * @throws ParseException if the user's input cannot be parsed into a valid {@code EditCommand}.
+     */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_STATUS, PREFIX_ROLE, PREFIX_DATE,
-                        PREFIX_TAG);
+                        PREFIX_COMMENT, PREFIX_TAG);
 
         Index index;
 
@@ -57,6 +73,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editInternshipDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
+        if (argMultimap.getValue(PREFIX_COMMENT).isPresent()) {
+            String commentContent = "";
+            try {
+                String userInput = argMultimap.getValue(PREFIX_COMMENT).get();
+                if (userInput.equals("")) {
+                    logger.info("User entered empty comment string, should reset comment to NA");
+                    commentContent = "NA";
+                } else {
+                    commentContent = userInput;
+                }
+            } catch (NoSuchElementException emptyComment) {
+                //Should not reach here
+                assert(false);
+            }
+            editInternshipDescriptor.setComment(ParserUtil.parseComment(commentContent));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editInternshipDescriptor::setTags);
 
         if (!editInternshipDescriptor.isAnyFieldEdited()) {

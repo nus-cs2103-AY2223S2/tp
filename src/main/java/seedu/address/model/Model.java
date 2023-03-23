@@ -1,6 +1,11 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -13,6 +18,18 @@ import seedu.address.model.internship.Internship;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
+
+    /** {@code Predicate} that shows upcoming internships */
+    Predicate<Internship> PREDICATE_SHOW_UPCOMING_INTERNSHIPS = internship -> {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate now = LocalDate.now();
+        LocalDate nextWeek = now.plusWeeks(1);
+        LocalDate deadline = LocalDate.parse(internship.getDate().toString(), formatter);
+        String status = internship.getStatus().toString();
+        List<String> accepted_statuses = new ArrayList<>(Arrays.asList(
+                "new", "offered", "assessment", "interview"));
+        return !deadline.isBefore(now) && deadline.isBefore(nextWeek) && accepted_statuses.contains(status);
+    };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,20 +54,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getInternBuddyFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setInternBuddyFilePath(Path InternBuddyFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code internbuddy}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInternBuddy(ReadOnlyInternBuddy internBuddy);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the InternBuddy */
+    ReadOnlyInternBuddy getInternBuddy();
 
     /**
      * Returns true if an internship with the same identity as {@code Internship} exists in InternBuddy.
@@ -59,9 +76,15 @@ public interface Model {
 
     /**
      * Deletes the given internship.
-     * The internship must exist in the address book.
+     * The internship must exist in InternBuddy.
      */
     void deleteInternship(Internship target);
+
+    /**
+     * Views the given internship.
+     * The {@code internship} must exist in InternBuddy.
+     */
+    void viewInternship(Internship target);
 
     /**
      * Adds the given internship.
@@ -88,4 +111,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    /**
+     * Gets the internship that is currently being selected for viewing
+     *
+     * @return the currently selected internship
+     */
+    Internship getSelectedInternship();
+
+
+    /**
+     * Updates the internship that is currently being selected for viewing
+     *
+     * @param target The internship that is selected for viewing
+     */
+    void updateSelectedInternship(Internship target);
 }

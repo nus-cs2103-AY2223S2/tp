@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -51,6 +52,7 @@ public class InternshipCardTest extends GuiUnitTest {
         InternshipCard internshipCardAmazonOne = new InternshipCard(TypicalInternships.AMAZON, 1);
         InternshipCard internshipCardAmazonTwo = new InternshipCard(TypicalInternships.AMAZON, 2);
         InternshipCard internshipCardAmazonOneDuplicate = new InternshipCard(TypicalInternships.AMAZON, 1);
+        InternshipCard internshipCardTesla = new InternshipCard(TypicalInternships.TESLA, 1);
         //Same object
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOne));
 
@@ -62,6 +64,9 @@ public class InternshipCardTest extends GuiUnitTest {
 
         //Different objects but same internship and index
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOneDuplicate));
+
+        ////Same index but different internships
+        assertFalse(internshipCardAmazonOne.equals(internshipCardTesla));
     }
 
     @Test
@@ -79,6 +84,8 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(colorMap.get(OFFERED).equals(Color.rgb(42, 174, 79, 1.0)));
         //Check "Rejected" color
         assertTrue(colorMap.get(REJECTED).equals(Color.rgb(250, 68, 68, 1.0)));
+        //Check "Accepted" color
+        assertTrue(colorMap.get(ACCEPTED).equals(Color.rgb(10, 50, 20, 1.0)));
     }
 
     @ Test
@@ -86,27 +93,34 @@ public class InternshipCardTest extends GuiUnitTest {
         // Test new
         Internship internship = new InternshipBuilder().withStatus(NEW).build();
         InternshipCard internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date Added: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Deadline of Application: ");
         // Test applied
         internship = new InternshipBuilder().withStatus(APPLIED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date Applied: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date Applied: ");
         // Test Assessment
         internship = new InternshipBuilder().withStatus(ASSESSMENT).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Assessment: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date of Assessment: ");
         // Test Interview
         internship = new InternshipBuilder().withStatus(INTERVIEW).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Interview: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date of Interview: ");
         // Test Offered
         internship = new InternshipBuilder().withStatus(OFFERED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Notice of Offer: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Deadline of Offer Acceptance: ");
         // Test rejected
         internship = new InternshipBuilder().withStatus(REJECTED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Notice of Rejection: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Date of Notice of Rejection: ");
+        // Test accepted
+        internship = new InternshipBuilder().withStatus(ACCEPTED).build();
+        internshipCard = new InternshipCard(internship, 1);
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Date of Acceptance: ");
     }
 
 
@@ -119,7 +133,7 @@ public class InternshipCardTest extends GuiUnitTest {
         Label internshipRoleLabel = (Label) internshipRegion.lookup("#role");
         Label internshipDate = (Label) internshipRegion.lookup("#date");
         Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
-        String expectedDateLabel = internshipCard.getDateLabel();
+        String expectedDateLabel = internshipCard.getDateLabel(internship.getStatus().toString());
         ObservableList<Node> internshipNodeTags = ((FlowPane) internshipRegion.lookup("#tags")).getChildren();
 
         assertEquals(companyName.getText(), internship.getCompanyName().toString());
@@ -128,7 +142,6 @@ public class InternshipCardTest extends GuiUnitTest {
         assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
         assertIterableEquals(internshipNodeTags.stream().map(node -> ((Label) node).getText()).sorted()
                 .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()));
-        //@@author
     }
 
 }

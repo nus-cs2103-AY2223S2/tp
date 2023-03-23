@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Role;
@@ -25,12 +26,14 @@ public class ParserUtilTest {
     private static final String INVALID_ROLE = "i@S Developer";
     private static final String INVALID_STATUS = "pending";
     private static final String INVALID_DATE = "23-02-01";
+    private static final String INVALID_COMMENT = "";
     private static final String INVALID_TAG = " ";
 
     private static final String VALID_COMPANY_NAME = "Apple";
     private static final String VALID_ROLE = "iOS Developer";
     private static final String VALID_STATUS = "applied";
     private static final String VALID_DATE = "2023-02-01";
+    private static final String VALID_COMMENT = "I love Apple!";
     private static final String VALID_TAG_1 = "front";
     private static final String VALID_TAG_2 = "back";
 
@@ -136,16 +139,39 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
         Date expectedDate = new Date(VALID_DATE);
         assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test
-    public void parseDate_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
         String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
         Date expectedDate = new Date(VALID_DATE);
         assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseComment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseComment((String) null));
+    }
+
+    @Test
+    public void parseComment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseComment(INVALID_COMMENT));
+    }
+
+    @Test
+    public void parseComment_validValueWithoutWhitespace_returnsComment() throws Exception {
+        Comment expectedComment = new Comment(VALID_COMMENT);
+        assertEquals(expectedComment, ParserUtil.parseComment(VALID_COMMENT));
+    }
+
+    @Test
+    public void parseComment_validValueWithWhitespace_returnsTrimmedComment() throws Exception {
+        String commentWithWhitespace = WHITESPACE + VALID_COMMENT + WHITESPACE;
+        Comment expectedComment = new Comment(VALID_COMMENT);
+        assertEquals(expectedComment, ParserUtil.parseComment(commentWithWhitespace));
     }
 
     @Test

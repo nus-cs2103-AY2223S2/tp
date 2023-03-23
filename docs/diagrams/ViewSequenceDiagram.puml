@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("view 1")
+activate InternBuddyParser
+
+create ViewCommandParser
+InternBuddyParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> InternBuddyParser
+deactivate ViewCommandParser
+
+InternBuddyParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
+
+ViewCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> ViewCommandParser : indexObject
+deactivate ParserUtil
+
+create ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand(indexObject)
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> InternBuddyParser : v
+deactivate ViewCommandParser
+
+InternBuddyParser --> LogicManager : v
+destroy ViewCommandParser
+deactivate InternBuddyParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> ViewCommand : filteredInternshipList
+deactivate Model
+
+ViewCommand -> Model : updateSelectedInternship(retrievedInternship)
+activate Model
+
+Model --> ViewCommand
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : cr
+deactivate ViewCommand
+
+[<--LogicManager : cr
+destroy ViewCommand
+deactivate LogicManager
+
+@enduml

@@ -2,6 +2,7 @@ package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
@@ -83,6 +84,10 @@ public class InternshipTest {
 
         // different date -> returns false
         editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).build();
+        assertFalse(APPLE.equals(editedApple));
+
+        // different comment -> returns false
+        editedApple = new InternshipBuilder(APPLE).withComment(VALID_COMMENT_GOOGLE).build();
         assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
