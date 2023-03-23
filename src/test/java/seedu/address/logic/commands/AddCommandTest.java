@@ -157,6 +157,11 @@ public class AddCommandTest {
         public void updateFilteredPetList(Predicate<Pet> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

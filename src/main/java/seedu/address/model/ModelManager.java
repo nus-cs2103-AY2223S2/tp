@@ -129,6 +129,7 @@ public class ModelManager implements Model {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());
     }
+
     @Override
     public void setPet(Pet target, Pet editedPet) {
         requireAllNonNull(target, editedPet);
