@@ -266,14 +266,14 @@ The following activity diagram shows what happens when a user executes a `find` 
 ### **Delete module feature**
 
 #### About this feature
-The delete feature allows users to delete multiple modules via the command 
+The delete feature allows users to delete multiple modules via the command
 `delete /m <module code> /m <module code>...` or all modules via the command `delete all`.
 
 #### How it is implemented
-When the user inputs `delete` command, the input will be parsed and the `all` keyword will be extracted using 
-`ArgumentMultimap#preamble()`. Otherwise, if the parser does not find the `all` keyword in the input, 
-the parser will parse module codes in the input in the form `/m <module code>` using 
-`ArgumentMultimap#getAllValues(PREFIX_CODE)`. As the commmand is executed, all modules will be removed from the 
+When the user inputs `delete` command, the input will be parsed and the `all` keyword will be extracted using
+`ArgumentMultimap#preamble()`. Otherwise, if the parser does not find the `all` keyword in the input,
+the parser will parse module codes in the input in the form `/m <module code>` using
+`ArgumentMultimap#getAllValues(PREFIX_CODE)`. As the commmand is executed, all modules will be removed from the
 `UniqueModuleList` if the `all` keyword is present or the modules with the matching parsed modules codes
 will be removed from the `UniqueModuleList` using the command `ModelManager#deleteModule(Module)`.
 
@@ -283,19 +283,19 @@ will be removed from the `UniqueModuleList` using the command `ModelManager#dele
 as a delete command and makes a new `DeleteCommandParser`.
 3. The `DeleteCommandParser` then calls `ArgumentTokenizer::tokenize` to extract the relevant inputs
 of each field. If any of the compulsory fields are missing, a `ParseException` would be thrown.
-4. `ParserUtil` will then check the validity of the inputs for `Set<Code>` if the `all` keyword is missing. If the 
+4. `ParserUtil` will then check the validity of the inputs for `Set<Code>` if the `all` keyword is missing. If the
 inputs are invalid, a `ParseException` would be thrown.
-5. `Code` objects and a `Set<Code>` object will be created and a `DeleteCommand` object which takes in a boolean, 
+5. `Code` objects and a `Set<Code>` object will be created and a `DeleteCommand` object which takes in a boolean,
 `isAll` to indicate if the `all` keyword is present in the user input, and a `Set<Code>` object will be created.
 
 #### Command execution
 1. The `LogicManager` executes the `DeleteCommand`.
 2. The `DeleteCommand` object calls `ModelManager::deleteModule` which is implements the `Model` interface to delete
 the retrieved `Module` objects from `UniqueModuleList` of `DegreeProgression` based on the `isAll` boolean and
-   `Set<Code>` object.
+`Set<Code>` object.
 
 #### Displaying of result
-1. `DeleteCommand` will create a new `CommandResult` object with message indicating which modules were successfully 
+1. `DeleteCommand` will create a new `CommandResult` object with message indicating which modules were successfully
 deleted based on the input and return it back to `LogicManager`.
 2. The GUI will extract out the message from the `CommandResult` and display it to the user.
 
@@ -307,14 +307,15 @@ User may choose between the two formats for the `delete` command which function 
     * Format notation: `delete /m <moduleCode> ...`
     * Example: `delete /m CS3233 /m CS3203`
     * Reason for implementation: User may want to conveniently delete a specific modules they have withdrawn from
-  or wrongly added.
+or wrongly added.
 
 * **Format 2:** Deletes all modules.
     * Format notation: `delete all`
-    * Reason for implementation: User may want to start adding modules freshly, in case they realise all or most of the 
-  modules they added are irrelevant to them.
+    * Reason for implementation: User may want to start adding modules freshly, in case they realise all or most of the
+modules they added are irrelevant to them.
 
-The following sequence diagram shows how the `delete`
+The following sequence diagram shows how the `delete`:
+![sequence diagram of delete command](images/DeleteSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user executes a `delete` command:
 ![Activity Diagram of delete command](images/DeleteActivityDiagram.png)
