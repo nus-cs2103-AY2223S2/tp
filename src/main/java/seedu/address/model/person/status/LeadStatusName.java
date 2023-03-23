@@ -42,7 +42,7 @@ public enum LeadStatusName {
      * Returns true if a given String key maps to a valid LeadStatusName.
      * For example, a valid key can be "X" or "Unqualified" for the LeadStatus of "Unqualified"
      */
-    public static boolean isValidLeadStatus(String test) {
+    public static boolean isValidStatusName(String test) {
         return SYMBOL_LEAD_STATUS_MAP.containsKey(test)
                 || STRING_LEAD_STATUS_NAME_MAP.containsKey(test);
     }
@@ -53,7 +53,7 @@ public enum LeadStatusName {
      * @return a valid LeadStatus
      */
     public static LeadStatusName get(String name) {
-        checkArgument(isValidLeadStatus(name), LeadStatus.MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatusName(name), LeadStatus.MESSAGE_CONSTRAINTS);
         if (STRING_LEAD_STATUS_NAME_MAP.containsKey(name)) {
             return STRING_LEAD_STATUS_NAME_MAP.get(name);
         } else {
