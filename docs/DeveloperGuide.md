@@ -254,7 +254,7 @@ Step 2. The user executes the `find /a 13 /n Thomas /p 612` command to filter th
  case associated with the name Thomas, who is of the age 13 and has a postal code beginning with 612.
 
 Step 3. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `find` command word,
- passes the argument `/a 13 /n Thomas /p 612` to the `FindCommandParser`.
+ passes the argument `a/ 13 n/ Thomas p/ 612` to the `FindCommandParser`.
 
 Step 4. `FindCommandParser#parse()` will call on `ArgumentTokenizer#Tokenize()` and subsequently gets the values of
  each individual Prefix using `ArgumentMultimap#getValue()`.
