@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import codoc.commons.core.LogsCenter;
 import codoc.model.person.Person;
+import codoc.ui.MainWindow;
 import codoc.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,22 +33,23 @@ public class InfoTab extends UiPart<Region> {
     /**
      * Creates a {@code InfoTab} with the given {@code protagonist} and {@code tab}.
      */
-    public InfoTab(Person protagonist, String tab) {
+    public InfoTab(MainWindow mainWindow) {
 
         super(FXML);
-
+        Person protagonist = mainWindow.getLogic().getProtagonist();
+        String tab = mainWindow.getLogic().getCurrentTab();
         logger.info("Setting up Info Panel...");
 
         if (tab != null) {
             if (tab.equals("c")) {
                 logger.info("[Info Panel]: Creating DetailedContact...");
-                detailedInfo = new DetailedContact(protagonist);
+                detailedInfo = new DetailedContact(mainWindow);
             } else if (tab.equals("m")) {
                 logger.info("[Info Panel]: Creating DetailedModule...");
-                detailedInfo = new DetailedModule(protagonist);
+                detailedInfo = new DetailedModule(mainWindow);
             } else {
                 logger.info("[Info Panel]: Creating DetailedSkill...");
-                detailedInfo = new DetailedSkill(protagonist);
+                detailedInfo = new DetailedSkill(mainWindow);
             }
         }
 

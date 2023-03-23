@@ -20,8 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
+ * can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -84,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -128,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+        infoTab = new InfoTab(this);
         infoTabPlaceholder.getChildren().add(infoTab.getRoot());
     }
 
@@ -176,6 +177,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public Logic getLogic() {
+        return logic;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -186,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+            infoTab = new InfoTab(this);
             infoTabPlaceholder.getChildren().set(0, infoTab.getRoot());
 
             if (commandResult.isShowHelp()) {
@@ -203,5 +208,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void tabExecuteCommand(String commandText) throws CommandException, ParseException {
+        executeCommand(commandText);
     }
 }
