@@ -79,9 +79,10 @@ public class AddContactCommand extends Command {
         CompanyName companyName = internshipToAddContact.getCompanyName();
         JobTitle jobTitle = internshipToAddContact.getJobTitle();
         InternshipStatus status = internshipToAddContact.getStatus();
+        boolean archived = internshipToAddContact.archived();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, contact, status, archived, interviewDate);
     }
 
     @Override

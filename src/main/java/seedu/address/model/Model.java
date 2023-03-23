@@ -28,11 +28,10 @@ public interface Model {
 
     /** {@code Predicate} that evaluate to true for all unarchived applications */
     Predicate<InternshipApplication> PREDICATE_SHOW_ONGOING_APPLICATIONS = internshipApplication ->
-            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
+            !internshipApplication.archived();
 
     /** {@code Predicate} that evaluate to true for all archived internship applications */
-    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
-            internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
+    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = InternshipApplication::archived;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<InternshipTodo> PREDICATE_SHOW_ALL_TODO = unused -> true;

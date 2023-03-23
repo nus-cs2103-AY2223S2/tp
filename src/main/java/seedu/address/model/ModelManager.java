@@ -52,7 +52,7 @@ public class ModelManager implements Model {
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
         cachedInternshipList = new ArrayList<>();
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
     }
 
     public ModelManager() {

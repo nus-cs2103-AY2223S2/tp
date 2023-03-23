@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.AddNoteCommand;
@@ -37,6 +38,7 @@ import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.TaskParser;
+import seedu.address.logic.parser.task.UnarchiveCommandParser;
 
 /**
  * Parses user input.
@@ -108,6 +110,9 @@ public class AddressBookParser {
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
+
+        case UnarchiveCommand.COMMAND_WORD:
+            return new UnarchiveCommandParser().parse(arguments);
 
         case ListArchivedCommand.COMMAND_WORD:
             return new ListArchivedCommand();

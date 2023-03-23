@@ -26,6 +26,7 @@ public class JsonAdaptedInternshipApplication {
     private final String jobTitle;
     private final List<String> contact = new ArrayList<>();
     private final String status;
+    private final boolean archived;
     private final String interviewDate;
 
     /**
@@ -35,6 +36,7 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
                                             @JsonProperty("status") String status,
+                                            @JsonProperty("archived") boolean archived,
                                             @JsonProperty("interviewDate") String interviewDate,
                                             @JsonProperty("contact") List<String> contact) {
         this.companyName = companyName;
@@ -43,6 +45,7 @@ public class JsonAdaptedInternshipApplication {
             this.contact.addAll(contact);
         }
         this.status = status;
+        this.archived = archived;
         this.interviewDate = interviewDate;
     }
 
@@ -57,6 +60,7 @@ public class JsonAdaptedInternshipApplication {
             contact.add(source.getContact().getEmail().value);
         }
         status = source.getStatus().name();
+        archived = source.archived();
         if (source.getInterviewDate() != null) {
             interviewDate = source.getInterviewDate().toString();
         } else {
@@ -98,6 +102,8 @@ public class JsonAdaptedInternshipApplication {
         }
         final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
 
+        final boolean modelArchived = archived;
+
         if (!InterviewDate.isValidInterviewDate(interviewDate)) {
             throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
         }
@@ -116,9 +122,10 @@ public class JsonAdaptedInternshipApplication {
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
             return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
-                    modelInterviewDate);
+                    modelArchived, modelInterviewDate);
         }
 
-        return new InternshipApplication(modelCompanyName, modelJobTitle, null, modelStatus, modelInterviewDate);
+        return new InternshipApplication(modelCompanyName, modelJobTitle, null, modelStatus,
+                modelArchived, modelInterviewDate);
     }
 }

@@ -20,6 +20,7 @@ public class InternshipApplication {
     private final JobTitle jobTitle;
     private final InterviewDate interviewDate;
     private final InternshipStatus status;
+    private final boolean archived;
 
 
     // Data fields
@@ -35,6 +36,7 @@ public class InternshipApplication {
         this.jobTitle = job;
         this.contact = null;
         this.status = InternshipStatus.NA;
+        this.archived = false;
         this.interviewDate = null;
     }
 
@@ -42,12 +44,13 @@ public class InternshipApplication {
      * The company name and job title field must be present and not null.
      */
     public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status,
-                                 InterviewDate interviewDate) {
+                                 boolean archived, InterviewDate interviewDate) {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
         this.contact = contact;
         this.status = status;
+        this.archived = archived;
         this.interviewDate = interviewDate;
     }
 
@@ -76,6 +79,10 @@ public class InternshipApplication {
 
     public InterviewDate getInterviewDate() {
         return interviewDate;
+    }
+
+    public boolean archived() {
+        return archived;
     }
 
     /**
@@ -125,7 +132,9 @@ public class InternshipApplication {
                 .append("; Job Title: ")
                 .append(getJobTitle())
                 .append("; Status: ")
-                .append(getStatus());;
+                .append(getStatus())
+                .append("; Archived: ")
+                .append(archived());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
