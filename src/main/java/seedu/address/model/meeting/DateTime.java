@@ -19,18 +19,18 @@ import seedu.address.model.meeting.exceptions.InvalidDateTimeFormatException;
 /**
  * Represents a Meetings's date/time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
- *
+ * <p>
  * TODO: Include more acceptable formats for date/time instead of just dd/MM/yyyy HH:mm
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
     public static final String DATE_FORMAT = "dd/MM/yyyy";
     public static final String TIME_FORMAT = "HH:mm";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Dates/Times should only contain alphanumeric characters and spaces, and it should not be blank"
-            + "and adhere to the following constraints:\n"
-            + "1. Date must comply with the format: " + DATE_FORMAT + ".\n"
-            + "2. Time must comply with the format: " + TIME_FORMAT + " in 24-hour format.";
+                    + "and adhere to the following constraints:\n"
+                    + "1. Date must comply with the format: " + DATE_FORMAT + ".\n"
+                    + "2. Time must comply with the format: " + TIME_FORMAT + " in 24-hour format.";
 
     /**
      * The first character of the date/time string must not be a whitespace,
@@ -95,7 +95,7 @@ public class DateTime {
      * Constructs a {@code DateTime} with a duration specified.
      *
      * @param startDateTime A valid start date/time.
-     * @param endDateTime A valid end date/time.
+     * @param endDateTime   A valid end date/time.
      */
     public DateTime(String startDateTime, String endDateTime) {
         requireAllNonNull(startDateTime, endDateTime);
@@ -298,7 +298,7 @@ public class DateTime {
     public String toString() {
         String end = meetingDuration != null && !meetingDuration.isZero()
                 ? LocalDateTime.of(meetingDate, meetingTime).plus(meetingDuration).format(
-                        DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
+                DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
                 : "";
 
         if (!end.isEmpty()) {
@@ -325,5 +325,10 @@ public class DateTime {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(meetingDate, meetingTime, meetingDuration);
+    }
+
+    @Override
+    public int compareTo(DateTime o) {
+        return this.meetingDate.compareTo(o.meetingDate);
     }
 }

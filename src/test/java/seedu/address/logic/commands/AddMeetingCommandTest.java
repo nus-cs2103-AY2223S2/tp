@@ -26,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -131,9 +132,10 @@ public class AddMeetingCommandTest {
         }
 
         @Override
-        public List<Meeting> getMeetingsByIndexes(List<Index> indexList) {
+        public List<Meeting> getMeetingsByIndexesAndStartEnd(List<Index> indexList, DateTime start, DateTime end) {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
