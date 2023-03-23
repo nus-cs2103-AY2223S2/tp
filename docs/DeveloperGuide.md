@@ -279,6 +279,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 *{Explain here how the data archiving feature will be implemented}*
 
+### Copy to clipboard
+
+#### Implementation
+
+The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`. 
+Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
+
+The following sequence diagram shows how the copy operation works:
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
+
+
+ 
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
