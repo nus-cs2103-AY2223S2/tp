@@ -63,14 +63,16 @@ Given below are my contributions to the project.
       [#98](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/98),
       [#100](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/100),
       [#125](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/125),
-      [#129](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/129)
+      [#129](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/129),
+      [#141](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/141)
 
     * PRs reviewed (with non trivial review comments):
       * [#31](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/31),
       [#35](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/35),
       [#104](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/104),
       [#132](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/132),
-      [#133](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/133)
+      [#133](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/133),
+      [#140](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/140)
 
     * Bugs found and raised:
       * [#90](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/90)
