@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyListingBook getListingBook();
 
-    /** Returns an unmodifiable view of the filtered list of listing */
-    ObservableList<Listing> getFilteredListingList();
+    /** Returns an unmodifiable view of the list of listing to be displayed */
+    ObservableList<Listing> getDisplayedListingBook();
 
     /**
      * Returns the user prefs' listing book file path.

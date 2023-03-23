@@ -47,7 +47,7 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_BENEDICT);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_APPLICANT_NAME_BENEDICT);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
 
@@ -71,7 +71,7 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_BENEDICT_2_NAME_WITH_ID);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_BENEDICT_2_NAME_WITH_ID);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
 
@@ -103,7 +103,7 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), "Donkey");
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), "Donkey");
 
         String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND, "Donkey",
                 newListing.getTitle().fullTitle);
@@ -118,7 +118,7 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), INVALID_BENEDICT_1_NAME_WITH_ID);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), INVALID_BENEDICT_1_NAME_WITH_ID);
 
         String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND,
                 INVALID_BENEDICT_1_NAME_WITH_ID,
@@ -134,7 +134,7 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_BENEDICT);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_APPLICANT_NAME_BENEDICT);
 
         String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_AMBIGUOUS_APPLICANT,
                 VALID_APPLICANT_NAME_BENEDICT,

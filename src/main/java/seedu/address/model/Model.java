@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -77,12 +78,18 @@ public interface Model {
      */
     void setListing(Listing target, Listing editedListing);
 
-    /** Returns an unmodifiable view of the filtered listing book */
-    ObservableList<Listing> getFilteredListingList();
+    /** Returns an unmodifiable view of the displayed listing book */
+    ObservableList<Listing> getDisplayedListingBook();
 
     /**
-     * Updates the filter of the filtered listing book to filter by the given {@code predicate}.
+     * Updates the filter of the displayed listing book to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredListingList(Predicate<Listing> predicate);
+    void updateFilteredListingBook(Predicate<Listing> predicate);
+
+    /**
+     * Updates the sorter of the displayed listing book to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedListingBook(ListingComparator comparator);
 }

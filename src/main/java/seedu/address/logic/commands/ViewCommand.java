@@ -18,7 +18,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredListingList(PREDICATE_SHOW_ALL_LISTINGS);
+        model.updateFilteredListingBook(PREDICATE_SHOW_ALL_LISTINGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
