@@ -29,7 +29,11 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
 import seedu.address.model.person.doctor.DoctorFilter;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -99,9 +103,11 @@ public class CommandTestUtil {
     public static final String INVALID_SPECIALTY_DESC = " " + PREFIX_SPECIALTY + "GP&"; // '&' not allowed in specialty
     public static final String INVALID_YOE_DESC = " " + PREFIX_YOE + "129037"; // YOE maximum 2 digits
     public static final String INVALID_HEIGHT_DESC = " " + PREFIX_HEIGHT + "129037"; // Height should be 2 decimal place
-    public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "129037"; // Weight maximum 3 digits
+    public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "34.333"; // Weight maximum 1 decimal place
     public static final String INVALID_DIAGNOSIS_DESC = " " + PREFIX_DIAGNOSIS + "A!DS"; // '!' not allowed in diagnosis
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "hospitalised"; // Wrong status
+    public static final String INVALID_REMARK_DESC = " " + PREFIX_REMARK + ""; // Empty remark
+
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -111,6 +117,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_AMY;
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_BOB;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_PTN_AMY;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_PTN_BOB;
+
 
 
     static {
@@ -125,6 +134,14 @@ public class CommandTestUtil {
         DESC_DR_BOB = new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withSpecialty(VALID_SPECIALTY_BOB)
                 .withYoe(VALID_YOE_BOB).withTags(VALID_TAG_FRIEND).build();
+        DESC_PTN_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withHeight(VALID_HEIGHT_AMY)
+                .withWeight(VALID_WEIGHT_AMY).withDiagnosis(VALID_DIAGNOSIS_AMY).withStatus(VALID_STATUS_AMY)
+                .withRemark(VALID_REMARK_AMY).withTags(VALID_TAG_FRIEND).build();
+        DESC_PTN_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withHeight(VALID_HEIGHT_BOB)
+                .withWeight(VALID_WEIGHT_BOB).withDiagnosis(VALID_DIAGNOSIS_BOB).withStatus(VALID_STATUS_BOB)
+                .withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -196,5 +213,18 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredDoctorList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showPatientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        final String[] splitName = patient.getName().fullName.split("\\s+");
+        model.updateFilteredPatientList(new PatientContainsKeywordsPredicate(new PatientFilter(splitName[0], "",
+                "", "", "", "", "", "", new HashSet<>())));
+
+        assertEquals(1, model.getFilteredPatientList().size());
+    }
 }

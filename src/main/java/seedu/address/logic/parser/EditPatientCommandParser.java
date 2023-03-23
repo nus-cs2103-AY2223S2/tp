@@ -37,7 +37,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HEIGHT, PREFIX_WEIGHT,
-                        PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_TAG);
+                        PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG);
 
         Index index;
 
