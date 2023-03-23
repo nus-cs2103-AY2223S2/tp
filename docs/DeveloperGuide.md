@@ -277,7 +277,7 @@ The diaplay of the helpwindow is supported by blaba
 
 **Alternative 2** Display all executable commands in a list.
 * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
-* Cons: User may need to eyeball through all the commands in order to find what he/she is looking for.
+* Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
 
 <br>
 
