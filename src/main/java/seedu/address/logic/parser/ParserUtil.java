@@ -220,6 +220,6 @@ public class ParserUtil {
         if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
             return now.withDayOfYear(1);
         }
-        return null;
+        throw new ParseException("Not a valid date format (week, month, year)");
     }
 }
