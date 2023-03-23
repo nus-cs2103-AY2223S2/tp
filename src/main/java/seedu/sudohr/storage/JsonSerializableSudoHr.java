@@ -38,8 +38,8 @@ class JsonSerializableSudoHr {
      */
     @JsonCreator
     public JsonSerializableSudoHr(@JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
-                                  @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
+            @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
+            @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
         this.employees.addAll(employees);
         this.departments.addAll(departments);
         this.leaves.addAll(leaves);
@@ -95,7 +95,6 @@ class JsonSerializableSudoHr {
 
             sudoHr.addDepartment(department);
         }
-
 
         for (JsonAdaptedLeave jsonAdaptedLeave : leaves) {
             Leave leave = jsonAdaptedLeave.toModelType();

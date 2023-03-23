@@ -22,8 +22,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.testutil.TypicalDepartmentNames;
 import seedu.sudohr.testutil.TypicalEmployees;
 
@@ -261,6 +261,21 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'addLeave'");
@@ -279,7 +294,7 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+        public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
         }

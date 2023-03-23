@@ -8,6 +8,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -42,8 +43,11 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
+import seedu.sudohr.testutil.LeaveBuilder;
+import seedu.sudohr.testutil.TypicalLeave;
 
 public class SudoHrTest {
 
@@ -606,6 +610,48 @@ public class SudoHrTest {
         assertThrows(UnsupportedOperationException.class, () -> sudoHr.getDepartmentList().remove(0));
     }
 
+    //// Leave tests
+
+    @Test
+    public void resetData_withDuplicateLeave_throwsDuplicateLeaveException() {
+        // Two employees with the same identity fields
+        List<Employee> newEmployees = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
+        List<Leave> newLeaves = Arrays.asList(TypicalLeave.LEAVE_TYPE_1, TypicalLeave.LEAVE_TYPE_1);
+
+        SudoHrLeaveStub newData = new SudoHrLeaveStub(newEmployees, newLeaves);
+
+        assertThrows(DuplicateLeaveException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void hasLeave_nullLeave_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> sudoHr.hasLeave(null));
+    }
+
+    @Test
+    public void hasLeave_leaveNotInAddressBook_returnsFalse() {
+        assertFalse(sudoHr.hasLeave(TypicalLeave.LEAVE_TYPE_1));
+    }
+
+    @Test
+    public void hasLeave_leaveInAddressBook_returnsTrue() {
+        sudoHr.addLeave(TypicalLeave.LEAVE_TYPE_1);
+        assertTrue(sudoHr.hasLeave(TypicalLeave.LEAVE_TYPE_1));
+    }
+
+    @Test
+    public void hasLeave_leaveWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        sudoHr.addLeave(TypicalLeave.LEAVE_TYPE_1);
+        Leave editedLeave = new LeaveBuilder().withLeaveDate(VALID_LEAVE_DATE_LEAVE_TYPE_1)
+                .build();
+        assertTrue(sudoHr.hasLeave(editedLeave));
+    }
+
+    @Test
+    public void getLeaveList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getLeavesList().remove(0));
+    }
+
     /**
      * A stub ReadOnlySudoHr whose employees and departments list can violate interface constraints.
      */
@@ -617,6 +663,36 @@ public class SudoHrTest {
         SudoHrStub(Collection<Employee> employees, Collection<Department> departments) {
             this.employees.setAll(employees);
             this.departments.setAll(departments);
+        }
+
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
+            return employees;
+        }
+
+        @Override
+        public ObservableList<Department> getDepartmentList() {
+            return departments;
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            return leaves;
+        }
+    }
+
+
+    /**
+     * A stub ReadOnlySudoHr whose employees and departments list can violate interface constraints.
+     */
+    private static class SudoHrLeaveStub implements ReadOnlySudoHr {
+        private final ObservableList<Employee> employees = FXCollections.observableArrayList();
+        private final ObservableList<Department> departments = FXCollections.observableArrayList();
+        private final ObservableList<Leave> leaves = FXCollections.observableArrayList();
+
+        SudoHrLeaveStub(Collection<Employee> employees, Collection<Leave> leave) {
+            this.employees.setAll(employees);
+            this.leaves.setAll(leave);
         }
 
         @Override

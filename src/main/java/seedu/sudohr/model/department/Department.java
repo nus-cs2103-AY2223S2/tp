@@ -47,12 +47,19 @@ public class Department {
      * Returns whether employee exists in the department.
      */
     public boolean hasEmployee(Id id) {
-        for (Employee employee: employees) {
+        for (Employee employee : employees) {
             if (employee.getId().equals(id)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Get an employee by ID
+     */
+    public Employee getEmployee(Id id) {
+        return employees.get(id);
     }
 
     /**
@@ -68,6 +75,13 @@ public class Department {
      */
     public void addEmployee(Employee e) {
         employees.add(e);
+    }
+
+    /**
+     * Replace an employee details with its updated details in the list.
+     */
+    public void setEmployee(Employee employeeToEdit, Employee editedEmployee) {
+        employees.setEmployee(employeeToEdit, editedEmployee);
     }
 
     /**

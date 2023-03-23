@@ -6,7 +6,7 @@ import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.Parser;
 import seedu.sudohr.logic.parser.ParserUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
-import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Parses input arguments and creates a new ListEmployeeInLeaveCommandParser
@@ -23,7 +23,7 @@ public class ListEmployeeInLeaveCommandParser implements Parser<ListEmployeeInLe
      */
     public ListEmployeeInLeaveCommand parse(String args) throws ParseException {
         try {
-            Date date = ParserUtil.parseLeaveDate(args);
+            LeaveDate date = ParserUtil.parseLeaveDate(args);
             return new ListEmployeeInLeaveCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(
