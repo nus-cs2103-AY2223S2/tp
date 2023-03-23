@@ -376,7 +376,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
     * 3a1. MediMeet requests for a valid time/time input.
     * 3a2. User provides a valid date/time input.
-  
+
 Steps 3a1-3a2 are repeated until a valid input is provided.
 Use case resumes at step 4.
 
@@ -407,7 +407,7 @@ Use case resumes at step 2.
 1. User requests to filter appointments.
 2. MediMeet asks the user to enter the criteria to filter appointments by.
 3. User enters the criteria to filter appointments by.
-4. MediMeet shows the list of appointments that match the request.                                                                                 
+4. MediMeet shows the list of appointments that match the request.                                                                              
    Use case ends.
 
 **Extensions:**
@@ -432,7 +432,7 @@ Use case resumes at step 4.
 4. MediMeet displays the patient details.
 5. User provides the edited patient details.
 6. MediMeet edits the details of the patient and displays the new patient details.
-   
+
    Use case ends.
 
 **Extensions**

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.ReadOnlyPatientList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -41,6 +42,7 @@ public interface Logic {
      */
     ReadOnlyAppointmentList getAppointmentList();
 
+    ObservableList<Appointment> getFilteredAppointmentList();
     /**
      * Returns the user prefs' address book file path.
      */
