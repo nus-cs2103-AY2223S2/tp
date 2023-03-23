@@ -9,6 +9,7 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
 
@@ -65,6 +66,10 @@ public class LinkCrewCommand implements Command {
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
         }
         return new CommandResult(this.toString());
     }

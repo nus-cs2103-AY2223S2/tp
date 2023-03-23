@@ -4,6 +4,7 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exception.IndexOutOfBoundException;
 
 
 /**
@@ -27,7 +28,14 @@ public class CheckPlaneCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        boolean isAvailable = model.checkPlaneByIndex(index);
+        boolean isAvailable;
+        try {
+            isAvailable = model.checkPlaneByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
         if (isAvailable) {
             return new CommandResult("This plane is available.");
         } else {

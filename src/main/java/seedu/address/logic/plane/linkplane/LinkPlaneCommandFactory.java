@@ -12,6 +12,7 @@ import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
@@ -131,7 +132,7 @@ public class LinkPlaneCommandFactory implements CommandFactory<LinkPlaneCommand>
 
 
     @Override
-    public LinkPlaneCommand createCommand(CommandParam param) throws ParseException {
+    public LinkPlaneCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
         Map<FlightPlaneType, Plane> planes = new HashMap<>();

@@ -7,6 +7,7 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.exception.IndexOutOfBoundException;
 
 
 /**
@@ -37,7 +38,13 @@ public class DeleteCrewCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        crewToDelete = model.getCrewManager().getItemByIndex(index);
+        try {
+            crewToDelete = model.getCrewManager().getItemByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
         model.deleteCrewByIndex(index);
         return new CommandResult("Deleted crew: " + id);
     }

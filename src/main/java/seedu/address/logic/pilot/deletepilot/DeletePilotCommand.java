@@ -6,6 +6,7 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.pilot.Pilot;
 
 /**
@@ -35,8 +36,14 @@ public class DeletePilotCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        pilotToDelete = model.getPilotManager().getItemByIndex(index);
-        model.deleteLocationByIndex(index);
+        try {
+            pilotToDelete = model.getPilotManager().getItemByIndex(index);
+            model.deleteLocationByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
         return new CommandResult("Deleted pilot: " + id);
     }
 }

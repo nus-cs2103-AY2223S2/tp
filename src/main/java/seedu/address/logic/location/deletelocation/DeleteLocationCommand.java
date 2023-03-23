@@ -6,6 +6,7 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.location.Location;
 
 /**
@@ -26,8 +27,14 @@ public class DeleteLocationCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        locationToDelete = model.getLocationManager().getItemByIndex(index);
-        model.deleteLocationByIndex(index);
+        try {
+            locationToDelete = model.getLocationManager().getItemByIndex(index);
+            model.deleteLocationByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
         return new CommandResult("Deleted location: " + id);
     }
 }

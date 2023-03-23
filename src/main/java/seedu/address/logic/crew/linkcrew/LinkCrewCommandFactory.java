@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 
 /**
@@ -138,7 +139,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
     }
 
     @Override
-    public LinkCrewCommand createCommand(CommandParam param) throws ParseException {
+    public LinkCrewCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =

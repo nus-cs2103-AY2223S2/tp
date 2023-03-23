@@ -149,7 +149,7 @@ public class ItemManager<T extends Item> implements
 
     @Override
     public Optional<T> getItemByIndex(int idx) throws IndexOutOfBoundException {
-        if (idx > items.size()) {
+        if (idx > items.size() || items.size() == 0) {
             throw new IndexOutOfBoundException(idx, items.size());
         }
 
