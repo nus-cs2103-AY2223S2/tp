@@ -37,11 +37,6 @@ DATE --> DATE : "yyyyMMdd"
 deactivate DATE COL2
 DATE --> D
 deactivate DATE COL2
-D -> D : checkArgument(validity, constraints)
-activate D COL1
-
-
-deactivate D COL1
 
 
 D --> PU
