@@ -344,6 +344,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `VMS` and the **Actor** is the `user`, unless specified otherwise.
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### UC-PAT-001 - Add patient
 
 ##### MSS
@@ -353,6 +355,8 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
   Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### UC-PAT-002 - List patients
 
 ##### MSS
@@ -361,6 +365,8 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 2. VMS shows a the list of patients with their corresponding IDs.
 
   Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### UC-PAT-003 - Update patient
 
