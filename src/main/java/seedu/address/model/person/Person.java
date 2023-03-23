@@ -317,6 +317,10 @@ public class Person {
         return appointment != null;
     }
 
+    public void markAppointment() {
+        appointment = null;
+    }
+
     // notice: after adding Appoinment, time attribute in person becomes invalid
     // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
