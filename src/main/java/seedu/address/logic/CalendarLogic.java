@@ -3,10 +3,6 @@ package seedu.address.logic;
 import static javafx.scene.paint.Color.WHITE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -25,14 +21,13 @@ import seedu.address.ui.calendar.CalendarEventListPanel;
  * The manager of the logic for the Calendar.
  */
 public class CalendarLogic {
-    private static final String[] MONTH_NAMES = {
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-    };
+    private static final String[] MONTH_NAMES = { "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December" };
     private static final String[] DAY_NAMES = {
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
-    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; -fx-font-family: 'Comic Sans';"
+    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white;"
+            + " -fx-font-family: 'Comic Sans';"
             + "-fx-background-color: #fff";
 
     private static final String EMPTY_MESSAGE = "";
@@ -40,7 +35,7 @@ public class CalendarLogic {
     private static final String WRONG_FORMAT_MESSAGE = "failure";
     private Stage primaryStage;
     private Logic logic;
-    Calendar currentMonth;
+    private Calendar currentMonth;
     private CalendarMonth calendarMonth;
     private ObservableList<CalendarEvent> filteredCalendarEventList;
     private CalendarDisplay calendarDisplay;

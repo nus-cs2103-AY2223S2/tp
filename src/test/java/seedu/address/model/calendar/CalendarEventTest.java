@@ -83,5 +83,4 @@ class CalendarEventTest {
         CalendarEvent event = new CalendarEvent(alice);
         assertEquals(event.hashCode(), event.hashCode());
     }
-
-    }
+}
