@@ -89,17 +89,17 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList) throws IOException {
-        saveTrackr(addressBook, taskList, orderList, trackrStorage.getTrackrFilePath());
+        saveTrackr(supplierList, taskList, orderList, trackrStorage.getTrackrFilePath());
     }
 
     @Override
-    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        trackrStorage.saveTrackr(addressBook, taskList, orderList, filePath);
+        trackrStorage.saveTrackr(supplierList, taskList, orderList, filePath);
     }
 
 }

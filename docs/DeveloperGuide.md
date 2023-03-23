@@ -2,12 +2,17 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Introduction**
+
+Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the benefits of a Graphical User Interface (GUI).
+
+**Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
@@ -24,12 +29,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center">
+  <img src="images/ArchitectureDiagram.svg" width="280" />
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -38,6 +46,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -50,12 +59,13 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+  <img src="images/ArchitectureSequenceDiagram.svg" width="650" />
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -64,7 +74,9 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+  <img src="images/ComponentManagers.svg" width="300" />
+</p>
 
 The sections below give more details of each component.
 
@@ -72,7 +84,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+  <img src="images/UiClassDiagram.svg" />
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -91,9 +105,12 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+  <img src="images/LogicClassDiagram.png" width="550"/>
+</p>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -103,22 +120,28 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+  :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+  <img src="images/ParserClasses.png" width="600"/>
+</p> 
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<p align="center">
+  <img src="images/ModelClassDiagram.svg" width="450" />
+</p>
 
 The `Model` component,
 
@@ -131,14 +154,18 @@ The `Model` component,
 
 Here is the `Item` class that is what all model objects depend on.
 
-<img src="images/ItemClassDiagram.png" width="450" />
-
+<p align="center">
+  <img src="images/ItemClassDiagram.svg" width="350" />
+</p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
+
 This is the class representation for the `Supplier` and `Customer` class.
 
-<img src="images/PersonClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/PersonClassDiagram.svg" width="500" />
+</p>
 
 Here is how `Supplier` and `Customer` works:
 
@@ -149,13 +176,16 @@ Here is how `Supplier` and `Customer` works:
 
 This is the class representation for the `Task` class.
 
-<img src="images/TaskClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/TaskClassDiagram.svg" width="450" />
+</p>
 
 Here is how `Task` works:
 
 * Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
-* Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
+* Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
+
 
 This is the class representation for the `Menu` class.
 
@@ -183,20 +213,17 @@ Here is how `Order` works:
 * The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<p align="center">
+  <img src="images/StorageClassDiagram.svg" width="550" />
+</p>
 
 The `Storage` component,
+
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
@@ -215,62 +242,62 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
+* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
+* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedTrackr` will be initialized with the initial trackr state, and the `currentStatePointer` pointing to that single trackr state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/UndoRedoState0.svg)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete_task 5` command to delete the 5th task in the trackr. The `delete_task` command calls `Model#commitTrackr()`, causing the modified state of the trackr after the `delete_task 5` command executes to be saved in the `trackrStateList`, and the `currentStatePointer` is shifted to the newly inserted trackr state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/UndoRedoState1.svg)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add_task n/Sort Storage …​` to add a new task. The `add_task` command also calls `Model#commitTrackr()`, causing another modified trackr state to be saved into the `trackrStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/UndoRedoState2.svg)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTrackr()`, so the trackr state will not be saved into the `trackrStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTrackr()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous trackr state, and restores the trackr to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/UndoRedoState3.svg)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Trackr state, then there are no previous Trackr states to restore. The `undo` command uses `Model#canUndoTrackr()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/UndoSequenceDiagram.svg)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list_task`. Commands that do not modify the trackr, such as `list_task`, will usually not call `Model#commitTrackr()`, `Model#undoTrackr()` or `Model#redoTrackr()`. Thus, the `trackrStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/UndoRedoState4.svg)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the `currentStatePointer` is not pointing at the end of the `trackrStateList`, all trackr states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add_task n/Sort Storage …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/UndoRedoState5.svg)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
