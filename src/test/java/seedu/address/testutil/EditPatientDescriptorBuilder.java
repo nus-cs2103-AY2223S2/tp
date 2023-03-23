@@ -8,25 +8,25 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditPatientDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditPatientDescriptorBuilder {
 
     private EditCommand.EditPatientDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditPatientDescriptorBuilder() {
         descriptor = new EditPatientDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPatientDescriptor descriptor) {
+    public EditPatientDescriptorBuilder(EditPatientDescriptor descriptor) {
         this.descriptor = new EditPatientDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing
+     * Returns an {@code EditPatientDescriptor} with fields containing
      * {@code patient}'s details
      */
-    public EditPersonDescriptorBuilder(Patient patient) {
+    public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditCommand.EditPatientDescriptor();
         descriptor.setName(patient.getName());
         descriptor.setNric(patient.getNric());
@@ -34,28 +34,28 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are
+     * Sets the {@code Name} of the {@code EditPatientDescriptor} that we are
      * building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditPatientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
 
     /**
-     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are
+     * Sets the {@code Nric} of the {@code EditPatientDescriptor} that we are
      * building.
      */
-    public EditPersonDescriptorBuilder withNric(String nric) {
+    public EditPatientDescriptorBuilder withNric(String nric) {
         descriptor.setNric(new Nric(nric));
         return this;
     }
 
     /**
-     * Sets the {@code Status} of the {@code EditPersonDescriptor} that we are
+     * Sets the {@code Status} of the {@code EditPatientDescriptor} that we are
      * building.
      */
-    public EditPersonDescriptorBuilder withStatus(String status) {
+    public EditPatientDescriptorBuilder withStatus(String status) {
         descriptor.setStatus(new Status(status));
         return this;
     }

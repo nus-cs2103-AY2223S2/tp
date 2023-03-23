@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
@@ -68,7 +69,7 @@ public class ParserUtil {
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code status} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
@@ -83,7 +84,7 @@ public class ParserUtil {
      * Parses a {@code String ward} into a {@code Ward}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code ward} is invalid.
      */
     public static Ward parseWard(String ward) throws ParseException {
         requireNonNull(ward);
@@ -92,5 +93,20 @@ public class ParserUtil {
             throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
         }
         return new Ward(trimmedWard);
+    }
+
+    /**
+     * Parses a {@code String discharge} into a {@code Discharge}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code discharge} is invalid.
+     */
+    public static Discharge parseDischarge(String discharge) throws ParseException {
+        requireNonNull(discharge);
+        String trimmedDischarge = discharge.trim();
+        if (!Discharge.isValidDischarge(trimmedDischarge)) {
+            throw new ParseException(Discharge.MESSAGE_CONSTRAINTS);
+        }
+        return new Discharge(trimmedDischarge);
     }
 }

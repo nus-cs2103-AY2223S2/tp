@@ -18,6 +18,7 @@ public class Patient {
     // Data fields
     private Status status = new Status("GRAY");
     private Ward ward = new Ward("Waiting Room");
+    private Discharge discharge = new Discharge("To Be Confirmed");
 
     /**
      * Constructor for Patient taking in nric and name.
@@ -79,6 +80,25 @@ public class Patient {
         this.ward = ward;
     }
 
+    /**
+     * Constructor for Patient taking in nric, name, status, ward.
+     *
+     * @param nric        Patient NRIC
+     * @param name        Patient name
+     * @param status      Patient status
+     * @param ward        Patient ward
+     * @param discharge   Patient discharge
+     *               Every field must be present and not null.
+     */
+    public Patient(Nric nric, Name name, Status status, Ward ward, Discharge discharge) {
+        requireAllNonNull(nric, name, status, ward, discharge);
+        this.nric = nric;
+        this.name = name;
+        this.status = status;
+        this.ward = ward;
+        this.discharge = discharge;
+    }
+
     public Nric getNric() {
         return nric;
     }
@@ -97,6 +117,9 @@ public class Patient {
     public Ward getWard() {
         return ward;
     }
+    public Discharge getDischarge() {
+        return discharge;
+    }
 
     public void setStatus(Status newStatus) {
         requireAllNonNull(newStatus);
@@ -106,6 +129,11 @@ public class Patient {
     public void setWard(Ward newWard) {
         requireAllNonNull(newWard);
         ward = newWard;
+    }
+
+    public void setDischarge(Discharge newDischarge) {
+        requireAllNonNull(newDischarge);
+        discharge = newDischarge;
     }
 
     /**
@@ -160,7 +188,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, name, status, ward);
+        return Objects.hash(nric, name, status, ward, discharge);
     }
 
     @Override
@@ -172,7 +200,9 @@ public class Patient {
             .append("; Status: ")
             .append(getStatus())
             .append("; Ward: ")
-            .append(getWard());
+            .append(getWard())
+            .append("; Discharge: ")
+            .append(getDischarge());
 
         return builder.toString();
     }

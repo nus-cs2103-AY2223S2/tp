@@ -30,7 +30,6 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         value = status;
     }
 

@@ -2,10 +2,14 @@
   "patients": [ {
     "name": "Valid Patient",
     "nric": "S1234567A",
-    "status": "GRAY"
+    "status": "GRAY",
+    "ward" : "A1",
+    "discharge" : "24/01/2023 1800"
   }, {
     "name": "Patient With Invalid Status",
     "nric": "S1234567A",
-    "status": "CYAN"
+    "status": "CYAN",
+    "ward" : "A1",
+    "discharge" : "24/01/2023 1800"
   } ]
 }

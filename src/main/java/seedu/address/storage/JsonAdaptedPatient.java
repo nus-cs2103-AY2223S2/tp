@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
+import seedu.address.model.patient.Ward;
 
 
 /**
@@ -20,6 +22,8 @@ class JsonAdaptedPatient {
     private final String name;
     private final String nric;
     private final String status;
+    private final String ward;
+    private final String discharge;
 
 
     /**
@@ -27,10 +31,13 @@ class JsonAdaptedPatient {
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
-                              @JsonProperty("status") String status) {
+                              @JsonProperty("status") String status, @JsonProperty("ward") String ward,
+                              @JsonProperty("discharge") String discharge) {
         this.name = name;
         this.nric = nric;
         this.status = status;
+        this.ward = ward;
+        this.discharge = discharge;
     }
 
     /**
@@ -40,6 +47,8 @@ class JsonAdaptedPatient {
         name = source.getName().fullName;
         nric = source.getNric().value;
         status = source.getStatus().value;
+        ward = source.getWard().value;
+        discharge = source.getDischarge().value;
 
     }
 
@@ -74,11 +83,27 @@ class JsonAdaptedPatient {
         if (!Status.isValidStatus(status)) {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-
         final Status modelStatus = new Status(status);
 
+        if (ward == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Ward.class.getSimpleName()));
+        }
+        if (!Ward.isValidWard(ward)) {
+            throw new IllegalValueException(Ward.MESSAGE_CONSTRAINTS);
+        }
+        final Ward modelWard = new Ward(ward);
 
-        return new Patient(modelNric, modelName, modelStatus);
+        if (discharge == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Discharge.class.getSimpleName()));
+        }
+        if (!Discharge.isValidDischarge(discharge)) {
+            throw new IllegalValueException(Discharge.MESSAGE_CONSTRAINTS);
+        }
+        final Discharge modelDischarge = new Discharge(discharge);
+
+
+        return new Patient(modelNric, modelName, modelStatus, modelWard, modelDischarge);
     }
 
 }
