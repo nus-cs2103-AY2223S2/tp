@@ -25,7 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+public class HMHeroParser {
 
     /**
      * Used for initial separation of command word and args.

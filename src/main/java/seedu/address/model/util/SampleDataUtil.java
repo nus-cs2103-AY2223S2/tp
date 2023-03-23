@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HMHero;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
@@ -52,7 +52,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        HMHero sampleAb = new HMHero();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

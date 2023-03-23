@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HMHeroParser" as HMHeroParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,34 +16,34 @@ end box
 [-> LogicManager : execute("delete n/John p/91234567")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete n/John p/91234567")
-activate AddressBookParser
+LogicManager -> HMHeroParser : parseCommand("delete n/John p/91234567")
+activate HMHeroParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser : DeleteCommandParser()
+HMHeroParser -> DeleteCommandParser : DeleteCommandParser()
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> HMHeroParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("delete n/John p/91234567")
+HMHeroParser -> DeleteCommandParser : parse("delete n/John p/91234567")
 activate DeleteCommandParser
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand : DeleteCommand("John", "91234567")
+DeleteCommandParser -> DeleteCommand : DeleteCommand("John", 91234567)
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> HMHeroParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> HMHeroParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+HMHeroParser --> LogicManager : d
+deactivate HMHeroParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
@@ -51,7 +51,11 @@ activate DeleteCommand
 DeleteCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
 
+Model --> DeleteCommand
+deactivate Model
+
 DeleteCommand -> Model : deletePerson(p)
+activate Model
 
 Model --> DeleteCommand
 deactivate Model

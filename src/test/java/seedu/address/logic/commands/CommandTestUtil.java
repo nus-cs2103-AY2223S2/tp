@@ -17,7 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HMHero;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -148,7 +148,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        HMHero expectedHMHero = new HMHero(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -156,7 +156,7 @@ public class CommandTestUtil {
         /* we don't check for filtered list if reject command fails because we still want list to be filtered
         so that user can see */
         if (!(command instanceof RejectCommand)) {
-            assertEquals(expectedAddressBook, actualModel.getAddressBook());
+            assertEquals(expectedHMHero, actualModel.getAddressBook());
             assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
         } else {
 
