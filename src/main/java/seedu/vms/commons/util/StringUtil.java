@@ -18,7 +18,7 @@ public class StringUtil {
      * for but the case does not matter.
      *
      * @param text - the text to test.
-     * @param pattern - the patterns to search for.
+     * @param patterns - the patterns to search for.
      * @return {@code true} if the given text matches the given list of
      *      patterns and {@code false} otherwise.
      */
