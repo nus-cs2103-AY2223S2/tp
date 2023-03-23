@@ -437,6 +437,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Make appointment with specified patient**
+
+**MSS**
+1. User search for all appointments on a specified date
+2. Mediate displays all patients with appointment all that date with time sorted.
+3. User make appointment with specified patient using CommandLine
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+* 2a.
+  * 2a1. User's input is invalid
+  * 2a2. wait to be modified
+
 
 ### Non-Functional Requirements
 
