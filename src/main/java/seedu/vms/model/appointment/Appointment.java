@@ -34,6 +34,17 @@ public class Appointment implements Comparable<Appointment> {
         this.vaccine = vaccine;
         isCompleted = false;
     }
+    public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine,
+                       Boolean isCompleted) {
+        requireAllNonNull(patientId, startTime, endTime, vaccine, isCompleted);
+        AppUtil.checkArgument(isValidDuration(startTime, endTime), MESSAGE_DURATION_CONSTRAINTS);
+
+        this.patientId = patientId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.vaccine = vaccine;
+        this.isCompleted = isCompleted;
+    }
 
     public LocalDateTime getAppointmentTime() {
         return startTime;
