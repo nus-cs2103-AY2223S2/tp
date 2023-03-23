@@ -90,7 +90,7 @@ public class EditApplicantCommand extends Command {
 
         model.setListing(listingToEditApplicantFrom, editedListing);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, oldApplicant.get(), newApplicant.getName().fullName,
+        return new CommandResult(String.format(MESSAGE_SUCCESS, oldApplicantId, newApplicant.getName().fullName,
                 listingToEditApplicantFrom.getTitle()));
 
     }

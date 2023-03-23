@@ -87,7 +87,7 @@ public class EditApplicantCommandTest {
         ).build());
 
         String expectedMessage = String.format(EditApplicantCommand.MESSAGE_SUCCESS,
-                VALID_APPLICANT_NAME_BENEDICT,
+                VALID_BENEDICT_2_NAME_WITH_ID,
                 VALID_APPLICANT_NAME_AMY,
                 originalListing.getTitle().fullTitle);
 
