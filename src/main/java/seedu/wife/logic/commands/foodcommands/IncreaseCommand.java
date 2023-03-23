@@ -20,7 +20,8 @@ import seedu.wife.model.food.Quantity;
  */
 public class IncreaseCommand extends Command {
     public static final String COMMAND_WORD = "inc";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increases the quantity of the food item at the given index. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increases the quantity of the food item"
+            + " at the given index. "
             + "If no specific quantity is mentioned, it increases by 1 by default\n"
             + "Parameters: INDEX [q/quantity to increase by]...\n"
             + "Example: " + COMMAND_WORD + " 1 q/100";
@@ -49,7 +50,7 @@ public class IncreaseCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
-        Food foodToIncrease= lastShownList.get(index.getZeroBased());
+        Food foodToIncrease = lastShownList.get(index.getZeroBased());
         Food increasedFood = createIncreasedFood(foodToIncrease, increaseFoodDescriptor);
 
         model.setFood(foodToIncrease, increasedFood);
@@ -65,7 +66,8 @@ public class IncreaseCommand extends Command {
     private static Food createIncreasedFood(Food foodToIncrease, IncreaseFoodDescriptor increaseFoodDescriptor) {
         assert foodToIncrease != null;
         Quantity updatedQuantity = foodToIncrease.getQuantity().increaseQuantity(increaseFoodDescriptor.getQuantity());
-        return new Food(foodToIncrease.getName(), foodToIncrease.getUnit(), updatedQuantity, foodToIncrease.getExpiryDate(), foodToIncrease.getTags());
+        return new Food(foodToIncrease.getName(), foodToIncrease.getUnit(), updatedQuantity,
+                foodToIncrease.getExpiryDate(), foodToIncrease.getTags());
     }
 
     /**
@@ -109,7 +111,7 @@ public class IncreaseCommand extends Command {
             // state check
             IncreaseCommand.IncreaseFoodDescriptor e = (IncreaseCommand.IncreaseFoodDescriptor) other;
 
-            return  getQuantity().equals(e.getQuantity());
+            return getQuantity().equals(e.getQuantity());
         }
     }
 }
