@@ -1,9 +1,12 @@
 package seedu.address.model.entity;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,6 +62,19 @@ public class Item extends Entity {
 
     public float getWeight() {
         return this.weight;
+    }
+
+    @Override
+    public List<Pair<String, String>> getFields() {
+        Set<Tag> tags = getTags();
+        final StringBuilder serializedTags = new StringBuilder();
+        tags.forEach(serializedTags::append);
+        return List.of(
+                new Pair<>("Name", getName().toString()),
+                new Pair<>("Cost", String.valueOf(getCost())),
+                new Pair<>("Weight", String.valueOf(getWeight())),
+                new Pair<>("Tags", serializedTags.toString())
+        );
     }
 
     @Override

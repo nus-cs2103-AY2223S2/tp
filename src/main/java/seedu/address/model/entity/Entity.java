@@ -2,18 +2,16 @@ package seedu.address.model.entity;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book. Guarantees: details are present and not null, field values are validated,
  * immutable.
  */
-public class Entity {
+public abstract class Entity {
 
     // Identity fields
     private final Name name;
@@ -36,6 +34,8 @@ public class Entity {
         requireAllNonNull(name);
         this.name = name;
     }
+
+    public abstract List<Pair<String, String>> getFields();
 
     public Name getName() {
         return name;

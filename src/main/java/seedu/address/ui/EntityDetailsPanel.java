@@ -2,7 +2,10 @@ package seedu.address.ui;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import seedu.address.model.entity.Entity;
+
+import java.util.List;
 
 /**
  * Panel containing the detailed view of the entity.
@@ -30,13 +33,12 @@ public class EntityDetailsPanel extends UiPart<Region> {
     public void updateEntityDetails(Entity entity) {
         entityNameLabel.setText(entity.getName().fullName);
         entityClassificationLabel.setText("[" + entity.getClass().getSimpleName() + "]");
-        String detailsText = "";
-        System.out.println(entity.toString());
-        String[] entityDetails = entity.toString().split("\\|");
-        for (int i = 1; i < entityDetails.length; i++) {
-            System.out.println(entityDetails[i]);
-            detailsText += entityDetails[i].trim() + "\n";
+        final StringBuilder detailsText = new StringBuilder();
+        List<Pair<String, String>> fields = entity.getFields();
+        for (Pair<String, String> p : fields) {
+            String text = String.format("%s: %s\n", p.getKey(), p.getValue());
+            detailsText.append(text);
         }
-        entityDetailsLabel.setText(detailsText);
+        entityDetailsLabel.setText(detailsText.toString());
     }
 }

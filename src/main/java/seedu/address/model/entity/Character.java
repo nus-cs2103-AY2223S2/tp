@@ -1,8 +1,12 @@
 package seedu.address.model.entity;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,6 +58,22 @@ public class Character extends Entity {
 
     public Stats getStats() {
         return this.stats;
+    }
+
+    @Override
+    public List<Pair<String, String>> getFields() {
+        Set<Tag> tags = getTags();
+        final StringBuilder serializedTags = new StringBuilder();
+        tags.forEach(serializedTags::append);
+        return List.of(
+                new Pair<>("Name", getName().toString()),
+                new Pair<>("Str", String.valueOf(stats.getStrength())),
+                new Pair<>("Dex", String.valueOf(stats.getDexterity())),
+                new Pair<>("Int", String.valueOf(stats.getIntelligence())),
+                new Pair<>("Level", String.valueOf(getLevel())),
+                new Pair<>("XP", String.valueOf(getXP())),
+                new Pair<>("Tags", serializedTags.toString())
+        );
     }
 
     @Override
