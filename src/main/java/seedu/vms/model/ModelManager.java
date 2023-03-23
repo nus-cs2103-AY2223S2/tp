@@ -3,6 +3,7 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -217,6 +218,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
         return filteredVaxTypeMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
+        filteredVaxTypeMap.setFilters(filters);
     }
 
     @Override

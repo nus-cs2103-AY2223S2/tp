@@ -1,5 +1,6 @@
 package seedu.vms.model;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
@@ -158,4 +159,7 @@ public interface Model {
 
 
     void setAppointmentManager(AppointmentManager manager);
+
+
+    void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
 }

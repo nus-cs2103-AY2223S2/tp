@@ -1,5 +1,6 @@
 package seedu.vms.logic.commands.vaccination;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
@@ -168,6 +169,12 @@ public class VaxTypeModelStub implements Model {
     public void setAppointmentManager(AppointmentManager manager) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+    }
+
+    @Override
+    public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
     }
 
 }
