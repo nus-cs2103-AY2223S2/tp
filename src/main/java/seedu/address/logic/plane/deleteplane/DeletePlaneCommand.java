@@ -15,7 +15,7 @@ public class DeletePlaneCommand implements Command {
     /**
      * The UUID of the plane to be deleted.
      */
-    private final String uuid;
+    private final String id;
 
     /**
      * This can be used to undo the deletion.
@@ -26,16 +26,17 @@ public class DeletePlaneCommand implements Command {
      * Creates a command that, when executed, deletes the plane with the
      * given UUID.
      *
-     * @param uuid the UUID of the plane to be deleted.
+     * @param id the UUID of the plane to be deleted.
      */
-    public DeletePlaneCommand(String uuid) {
-        this.uuid = uuid;
+    public DeletePlaneCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        planeToDelete = model.getPlaneManager().getItem(this.uuid);
-        model.deletePlane(uuid);
-        return new CommandResult("Deleted plane: " + uuid);
+        int index = Integer.parseInt(id);
+        planeToDelete = model.getPlaneManager().getItemByIndex(index);
+        model.deletePlaneByIndex(index);
+        return new CommandResult("Deleted plane: " + id);
     }
 }
