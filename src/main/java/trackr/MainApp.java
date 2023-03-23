@@ -55,6 +55,8 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing Trackr ]===========================");
         super.init();
 
+        assert false;
+
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
