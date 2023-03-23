@@ -282,6 +282,27 @@ This also allows user to access their summary easily as the summary tab will be 
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Lead Receptivity feature
+
+#### Proposed Implementation
+The proposed feature will be added as an additional field in the person class. 
+
+#### Design considerations: 
+
+1. Users would like to be able to sort by which leads are the most promising 
+2. Users would also be able to edit how their leads receptivity have changed over time 
+
+{more to be elaborated in the future} 
+
+
+#### Why this implementation 
+This feature will be implemented as an additional field to the contact that can be added. 
+This feature will allow users to sort by which leads they believe are the most promising and thus focus their 
+attention on them accordingly
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
