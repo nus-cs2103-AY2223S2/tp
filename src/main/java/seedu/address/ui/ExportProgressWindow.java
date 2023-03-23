@@ -143,6 +143,10 @@ public class ExportProgressWindow extends UiPart<Stage> {
             String studentName = this.person.getName().fullName;
             String[] studentNameSplit = studentName.split(" ");
 
+            for(int i = 0; i < studentNameSplit.length; i++) {
+
+            }
+
             contentStream.beginText();
             contentStream.setFont(boldFont, 18);
             contentStream.moveTextPositionByAmount( 100, 700);
