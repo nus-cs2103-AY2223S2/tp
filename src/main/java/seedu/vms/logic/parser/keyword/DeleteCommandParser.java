@@ -9,6 +9,9 @@ import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and deletes a Keyword object.
+ */
 public class DeleteCommandParser implements CommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand

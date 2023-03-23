@@ -1,21 +1,20 @@
 package seedu.vms.storage.keyword;
 
-import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.commons.util.FileUtil;
-import seedu.vms.commons.util.JsonUtil;
-import seedu.vms.model.keyword.KeywordManager;
-import seedu.vms.storage.keyword.JsonSerializableKeywordManager;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static java.util.Objects.requireNonNull;
+import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.FileUtil;
+import seedu.vms.commons.util.JsonUtil;
+import seedu.vms.model.keyword.KeywordManager;
 
 /**
  * An {@link KeywordStorage} to handle read and write operations from and to
  * JSON files containing {@link KeywordManager} data.
  */
-public class JsonKeywordStorage implements KeywordStorage{
+public class JsonKeywordStorage implements KeywordStorage {
     public static final Path USER_KEYWORD_PATH = Path.of("data", "keyword.json");
 
     private final Path filePath;

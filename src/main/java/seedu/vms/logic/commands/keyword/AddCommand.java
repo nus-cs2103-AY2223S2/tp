@@ -1,14 +1,19 @@
 package seedu.vms.logic.commands.keyword;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_MAIN;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_SUB;
+
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.Model;
 import seedu.vms.model.keyword.Keyword;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.vms.logic.parser.CliSyntax.*;
-
+/**
+ * Adds a keyword to the patient manager.
+ */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_GROUP = "keyword";

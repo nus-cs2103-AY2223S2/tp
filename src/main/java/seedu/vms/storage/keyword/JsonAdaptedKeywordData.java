@@ -2,12 +2,14 @@ package seedu.vms.storage.keyword;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.patient.Patient;
-import seedu.vms.storage.patient.JsonAdaptedPatient;
 
+/**
+ * Jackson-friendly version of {@code IdData<Keyword>}.
+ */
 public class JsonAdaptedKeywordData {
     private final boolean isActive;
     private final int id;

@@ -1,21 +1,18 @@
 package seedu.vms.storage.keyword;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.commons.exceptions.LimitExceededException;
-import seedu.vms.model.IdData;
-import seedu.vms.model.appointment.Appointment;
-import seedu.vms.model.appointment.AppointmentManager;
-import seedu.vms.model.appointment.ReadOnlyAppointmentManager;
-import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.keyword.KeywordManager;
-import seedu.vms.model.keyword.ReadOnlyKeywordManager;
-import seedu.vms.storage.appointment.JsonAdaptedAppointmentData;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.LimitExceededException;
+import seedu.vms.model.IdData;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
+import seedu.vms.model.keyword.ReadOnlyKeywordManager;
 
 /**
  * An Immutable KeywordManager that is serializable to JSON format.

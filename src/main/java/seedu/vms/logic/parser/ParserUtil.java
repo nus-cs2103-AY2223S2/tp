@@ -196,7 +196,7 @@ public class ParserUtil {
      * ========================================================================
      */
 
-     /**
+    /**
      * Parses a {@code String keyword} into a {@code String keyword}.
      * Leading and trailing whitespaces will be trimmed.
      *

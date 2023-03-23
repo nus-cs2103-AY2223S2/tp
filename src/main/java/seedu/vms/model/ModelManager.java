@@ -17,7 +17,6 @@ import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.keyword.KeywordManager;
-import seedu.vms.model.keyword.ReadOnlyKeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -77,7 +76,8 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new KeywordManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(),
+                new KeywordManager(), new UserPrefs());
     }
 
     // =========== UserPrefs ==================================================================================

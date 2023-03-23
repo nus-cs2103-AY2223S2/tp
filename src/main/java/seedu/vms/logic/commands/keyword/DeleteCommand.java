@@ -1,5 +1,9 @@
 package seedu.vms.logic.commands.keyword;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Map;
+
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.CommandMessage;
@@ -9,11 +13,10 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.keyword.Keyword;
 
-import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-
-public class DeleteCommand extends Command{
+/**
+ * Deletes a keyword identified using it's displayed index from the keyword manager.
+ */
+public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_GROUP = "keyword";
 
@@ -48,6 +51,7 @@ public class DeleteCommand extends Command{
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.vms.logic.commands.keyword.DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((seedu.vms.logic.commands.keyword.DeleteCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((seedu.vms.logic.commands.keyword.DeleteCommand) other)
+                .targetIndex)); // state check
     }
 }

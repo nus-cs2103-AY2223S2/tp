@@ -1,10 +1,8 @@
 package seedu.vms.storage.keyword;
 
-import seedu.vms.model.appointment.AppointmentManager;
-import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.keyword.KeywordManager;
-
 import java.io.IOException;
+
+import seedu.vms.model.keyword.KeywordManager;
 
 /**
  * Represents the storage for {@link KeywordManager}.

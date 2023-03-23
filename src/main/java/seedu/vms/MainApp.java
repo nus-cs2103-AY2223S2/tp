@@ -30,8 +30,8 @@ import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.UserPrefsStorage;
 import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
-import seedu.vms.storage.keyword.KeywordStorage;
 import seedu.vms.storage.keyword.JsonKeywordStorage;
+import seedu.vms.storage.keyword.KeywordStorage;
 import seedu.vms.storage.patient.JsonPatientManagerStorage;
 import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
@@ -71,7 +71,8 @@ public class MainApp extends Application {
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
         AppointmentStorage appointmentStorage = new JsonAppointmentStorage();
         KeywordStorage keywordStorage = new JsonKeywordStorage();
-        storage = new StorageManager(patientManagerStorage, vaxTypeStorage, appointmentStorage, userPrefsStorage, keywordStorage);
+        storage = new StorageManager(patientManagerStorage, vaxTypeStorage,
+                appointmentStorage, userPrefsStorage, keywordStorage);
 
         initLogging(config);
 

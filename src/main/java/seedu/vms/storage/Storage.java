@@ -8,6 +8,7 @@ import seedu.vms.storage.vaccination.VaxTypeStorage;
 /**
  * API of the Storage component
  */
-public interface Storage extends PatientManagerStorage, UserPrefsStorage, VaxTypeStorage, AppointmentStorage, KeywordStorage {
+public interface Storage extends PatientManagerStorage, UserPrefsStorage,
+        VaxTypeStorage, AppointmentStorage, KeywordStorage {
 
 }

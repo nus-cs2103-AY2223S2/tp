@@ -10,9 +10,9 @@ import seedu.vms.logic.commands.basic.HelpCommand;
 import seedu.vms.logic.parser.appointment.AppointmentParser;
 import seedu.vms.logic.parser.basic.BasicParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.logic.parser.keyword.KeywordParser;
 import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.logic.parser.vaccination.VaccinationParser;
-import seedu.vms.logic.parser.keyword.KeywordParser;
 
 
 /** Parsers user input.  */
