@@ -2,8 +2,8 @@ package bookopedia.model;
 
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.testutil.Assert.assertThrows;
-import static bookopedia.testutil.TypicalPersons.ALICE;
-import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookopedia.testutil.TypicalPersons.*;
+import static bookopedia.testutil.TypicalPersons.CARL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -80,6 +80,13 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void sortAddressBook() {
+        addressBook.setPersons(getTypicalPersons());
+        addressBook.sort();
+        assertEquals(addressBook.getPersonList(), Arrays.asList(DANIEL, ELLE, FIONA, GEORGE, BENSON, CARL, ALICE));
     }
 
     /**

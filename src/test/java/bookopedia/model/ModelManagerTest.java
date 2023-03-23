@@ -2,8 +2,8 @@ package bookopedia.model;
 
 import static bookopedia.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static bookopedia.testutil.Assert.assertThrows;
-import static bookopedia.testutil.TypicalPersons.ALICE;
-import static bookopedia.testutil.TypicalPersons.BENSON;
+import static bookopedia.testutil.TypicalPersons.*;
+import static bookopedia.testutil.TypicalPersons.CARL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -128,5 +128,13 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void sortAddressBook() {
+        modelManager.setAddressBook(getTypicalAddressBook());
+        modelManager.sort();
+        assertEquals(modelManager.getAddressBook().getPersonList(),
+                Arrays.asList(DANIEL, ELLE, FIONA, GEORGE, BENSON, CARL, ALICE));
     }
 }
