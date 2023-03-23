@@ -40,7 +40,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    //PLACEHOLDER FOR DECKLIST
     private UiPart<Region> leftPanel;
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
@@ -135,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(MAIN_TITLE);
 
-        Pair<String, String> header = new Pair("Current Deck:", "No deck selected!");
+        Pair<String, String> header = new Pair<>("Current Deck:", "No deck selected!");
         deckTitlePlaceholder.add(header);
         rightTitle = new DeckNamePanel(deckTitlePlaceholder);
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
@@ -235,7 +234,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the deck Title.
      */
     public void handleSelectDeck() {
-        rightPanelTitle.getChildren().removeAll();
+        rightPanelTitle.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
@@ -245,18 +244,10 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the deck Title.
      */
     public void handleUnSelectDeck() {
-        rightPanelTitle.getChildren().removeAll();
+        rightPanelTitle.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
-    public UiPart<Region> getLeftPanel() {
-        return leftPanel;
     }
 
     /**
