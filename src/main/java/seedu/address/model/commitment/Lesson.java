@@ -1,12 +1,14 @@
-package seedu.address.model.timetable;
+package seedu.address.model.commitment;
 
 import java.util.ArrayList;
 
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
-import seedu.address.model.timetable.time.SchoolDay;
-import seedu.address.model.timetable.time.TimeSlot;
+import seedu.address.model.scheduler.Module;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+
 
 
 /**
@@ -14,7 +16,7 @@ import seedu.address.model.timetable.time.TimeSlot;
  */
 public class Lesson {
 
-    private final SchoolDay day;
+    private final Day day;
     private final LocalTime startTime;
     private final LocalTime endTime;
     private final Location location;
@@ -23,7 +25,7 @@ public class Lesson {
     /**
      * Constructs a lesson.
      */
-    public Lesson(Module module, LocalTime startTime, LocalTime endTime, SchoolDay schoolDay, Location location) {
+    public Lesson(Module module, LocalTime startTime, LocalTime endTime, Day schoolDay, Location location) {
         this.day = schoolDay;
         this.module = module;
         this.startTime = startTime;
@@ -35,7 +37,7 @@ public class Lesson {
         return module;
     }
 
-    public SchoolDay getDay() {
+    public Day getDay() {
         return day;
     }
 
@@ -79,7 +81,7 @@ public class Lesson {
     /**
      * Checks if there is a sequence of timeslots to fit lesson.
      */
-    public boolean canFitLessonIntoDaySchedule(ArrayList<TimeSlot> slots) {
+    public boolean canFitLessonIntoDaySchedule(ArrayList<HourBlock> slots) {
         boolean canFit = true;
         for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
             canFit &= slots.get(i).isFree();
