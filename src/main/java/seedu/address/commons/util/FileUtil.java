@@ -91,6 +91,10 @@ public class FileUtil {
      */
     public static File getSelectedFileWithExtension(JFileChooser fileChooser) {
         File file = fileChooser.getSelectedFile();
+        if (file == null) {
+            return null;
+        }
+
         FileFilter fileFilter = fileChooser.getFileFilter();
         if (fileFilter instanceof FileNameExtensionFilter) {
             String[] extensions = ((FileNameExtensionFilter) fileFilter).getExtensions();
