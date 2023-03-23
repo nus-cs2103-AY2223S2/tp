@@ -211,6 +211,74 @@ adding a new internship application. This prevents the `AddCommand` from getting
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
 
+
+### Find feature
+
+The `find` command allows user to find all `InternshipApplication` whose 
+1. `CompanyName` and `JobTitle` contain the specified keyword, or
+2. `Internship status` contain the specified status, or
+3. `InterviewDate` is before, after, or between specified date(s).
+
+>**NOTE:**
+> The matching of keyword in `CompanyName` and `JobTitle` is case-insensitive. As long as one word within CompanyName` 
+> and `JobTitle` matches any of the KEYWORDS, it will be shown in result.
+
+#### How is the feature implemented
+
+The sequence diagram below describes the interaction between classes when find command entered.
+![FindSequenceDiagram](./images/FindSequenceDiagram.png)
+
+Step 1. Parsing
+
+If the command word matches the word "find", `FindCommandParser#parse()` will be called to parse 
+the argument of find. The parsing logic is further divided into three cases below:
+- Case 1: If the prefix `s/` is specified, the argument that follows the prefix immediately is 
+deemed as `InternshipStatus`. A `FindStatusCommand` with `StatusPredicate` is created to be executed. 
+- Case 2: If one of the following prefixes `before/`, `after/`, OR `from/` and `to/` is specified, the argument
+that follows immediately is deemed as `InterviewDate`. A `FindDateCommand` with appropriate subclasses of
+`DatePredicate` is created to be executed. 
+- Case 3: If none of the prefix among `s/`, `before/`, `after/`, `from/`, `to/` is specified 
+in the argument. `FindCommandParser` constructs a `FindCommand` object and treat all arguments that follow as `KEYWORD`
+
+Step 2. Execution
+
+The corresponding command is then invoked. Within each command's `execute` method, 
+`Model#updateFilteredInternshipList()` is invoked by passing in the predicate. For Cases 1 and 2, 
+only those `InternshipApplication`'s with matching `ApplicationStatus` or `InterviewDate` are added to the Model's
+`filteredInternships` whereas for Case 3, if any word within the `CompanyName` or `JobTitle` matches one of the 
+`KEYWORD`(s), then that application is added to the Model's `filteredInternships`.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command 
+is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` 
+displaying the returned message for 2.5 seconds.
+
+
+#### Why is it implemented this way
+
+The class diagram below shows current structure of classes related to `find` command.
+![FindFeatureClassDiagram](./images/FindFeatureClassDiagram.png)
+
+It is designed and implemented in this way to make the find command more extensible to further enhancement to be made.
+For example, developer may want to enable more prefixes that be searched using the search command. By the 
+use of inheritance, one can easily modify the behaviour of `find` command through overrding of the `execute` command
+and rely on polymorphism.
+
+#### Alternatives considered
+
+**Syntax of `find` command**
+
+* **Alternative 1 (current choice):** Now to find attribute in `InternshipApplication`, the command syntax used is
+by using its prefix, i.e. in this form `find s/PENDING`. 
+  * Pros: shorter command
+  * Cons: Parser logic is harder to maintain as compared to Alternative 2
+
+* **Alternative 2:** We can also make it in such format find_<Attribute>, e.g. find_status. 
+  * Pros: Easy parser to implement
+  * Cons: Longer command which takes longer time to type
+
+
 ### Clear_by feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
