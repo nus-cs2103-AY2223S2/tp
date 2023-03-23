@@ -27,18 +27,18 @@ public class SampleDataUtil {
         String[] sampleProgressC = {"~", "~", "50"};
         return new Bookmark[] {
             new Bookmark(new Title("Rankers Guide"), new Progress(sampleProgressA),
-                    new Genre("Modern Fantasy"), new Author("TeJe"),
+                    new Genre("Fantasy"), new Author("TeJe"),
                     EMPTY_URL,
                     getTagSet("Hunters")),
             new Bookmark(new Title("Chainsaw Man"), new Progress(sampleProgressB), new Genre("Action"),
                     new Author("Tatsuki Fujimoto"),
                     EMPTY_URL,
                     getTagSet("Gore")),
-            new Bookmark(new Title("Solo Leveling"), new Progress(sampleProgressC), new Genre("Modern Fantasy"),
+            new Bookmark(new Title("Solo Leveling"), new Progress(sampleProgressC), new Genre("Fantasy"),
                     new Author("Chugong"),
                     EMPTY_URL,
                     getTagSet("Hunters", "System", "Cheats")),
-            new Bookmark(new Title("Dungeon Defense"), new Progress(sampleProgressA), new Genre("Western Fantasy"),
+            new Bookmark(new Title("Dungeon Defense"), new Progress(sampleProgressA), new Genre("Fantasy"),
                     new Author("Yoo Heonhwa"),
                     EMPTY_URL,
                     getTagSet("Antihero"))
