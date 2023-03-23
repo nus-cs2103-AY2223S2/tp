@@ -154,6 +154,36 @@ Classes used by multiple components are in the `vimificationbook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Parser
+
+#### ApplicativeParser 
+
+The parser of Vimification is implemented with `ApplicativeParser` instead with traditional regex. `ApplicativeParser` is an idea from function programming language, where we have a set of "combinators", and we can combine these combinators with the power of Applicative or Monad to form more powerful combinators.
+
+The main reason why we used `ApplicativeParser` is because it is easier to read and maintain.
+
+`ApplicativeParser` can be implemented as a wrapper around a function that takes in some input sequence, and returns an container that represents one of these 2 cases:
+
+* The parser fails, the container should be empty.
+* The parser succeeds, the container should contain the remaining input sequence, and the parsing result.
+
+In the current implementation, the container used is `Optional` from Java's standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` is not reflected in the type system, and must be used with care.
+
+Another problem with `Exception` is their ability to short-circuit the parser. When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative.
+
+Combinators of `ApplicativeParser` is provided using static factory methods.
+
+#### CommandParser
+
+The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
+
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` combinator, which will be used inside `CommandParser#parse()`.
+
+Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
+
+This implementation allows us to fail early and report errors if the prefix does not represent any command, or quickly parse the command without having to try multiple alternatives.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
