@@ -42,20 +42,6 @@ public class Person {
         this.noOfDeliveryAttempts = noOfDeliveryAttempts;
     }
 
-    /**
-     * Every field must be present and not null except phone and email.
-     * Pending delivery status assigned by default.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.parcels.addAll(parcels);
-        this.deliveryStatus = DeliveryStatus.PENDING;
-        this.noOfDeliveryAttempts = 0;
-    }
-
     public Name getName() {
         return name;
     }
