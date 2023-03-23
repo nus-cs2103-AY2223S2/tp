@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new DeleteDoctorCommand object
+ * Parses input arguments and creates a new DeletePatientCommand object
  */
 public class DeletePatientCommandParser implements Parser<DeletePatientCommand> {
 
