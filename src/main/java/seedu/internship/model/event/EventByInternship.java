@@ -1,9 +1,12 @@
 package seedu.internship.model.event;
 
 import java.util.function.Predicate;
+
 import seedu.internship.model.internship.Internship;
 
-
+/**
+ * Predicate filters to give you a List with one required events.
+ */
 public class EventByInternship implements Predicate<Event> {
     private final Internship intern;
 

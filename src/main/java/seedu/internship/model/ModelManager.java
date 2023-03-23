@@ -31,9 +31,10 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyInternshipCatalogue internshipCatalogue, ReadOnlyEventCatalogue eventCatalogue,
                          ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(internshipCatalogue, userPrefs);
+        requireAllNonNull(internshipCatalogue, eventCatalogue, userPrefs);
 
-        logger.fine("Initializing with address book: " + internshipCatalogue + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + "internships " + internshipCatalogue
+                + ", events " + eventCatalogue + " and user prefs " + userPrefs);
 
         this.internshipCatalogue = new InternshipCatalogue(internshipCatalogue);
         this.eventCatalogue = new EventCatalogue(eventCatalogue);
@@ -124,7 +125,6 @@ public class ModelManager implements Model {
     @Override
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
-
         internshipCatalogue.setInternship(target, editedInternship);
     }
 
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Internship getSelectedInternship(){
+    public Internship getSelectedInternship() {
         return this.internshipCatalogue.getCurrent();
     }
 
@@ -180,7 +180,6 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         eventCatalogue.setEvent(target, editedEvent);
     }
 

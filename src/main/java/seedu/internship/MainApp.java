@@ -24,7 +24,9 @@ import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
 import seedu.internship.model.util.SampleDataUtil;
+import seedu.internship.storage.EventCatalogueStorage;
 import seedu.internship.storage.InternshipCatalogueStorage;
+import seedu.internship.storage.JsonEventCatalogueStorage;
 import seedu.internship.storage.JsonInternshipCatalogueStorage;
 import seedu.internship.storage.JsonUserPrefsStorage;
 import seedu.internship.storage.Storage;
@@ -61,7 +63,10 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         InternshipCatalogueStorage internshipCatalogueStorage = new JsonInternshipCatalogueStorage(
                 userPrefs.getInternshipCatalogueFilePath());
-        storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
+        EventCatalogueStorage eventCatalogueStorage = new JsonEventCatalogueStorage(
+                userPrefs.getEventCatalogueFilePath());
+
+        storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage, eventCatalogueStorage);
 
         initLogging(config);
 
@@ -80,25 +85,32 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInternshipCatalogue> internshipCatalogueOptional;
+        Optional<ReadOnlyEventCatalogue> eventCatalogueOptional;
         ReadOnlyInternshipCatalogue initialData;
-
-        ReadOnlyEventCatalogue initialEvent = new EventCatalogue();
+        ReadOnlyEventCatalogue initialEvent;
 
         try {
             internshipCatalogueOptional = storage.readInternshipCatalogue();
-            if (!internshipCatalogueOptional.isPresent()) {
+            eventCatalogueOptional = storage.readEventCatalogue();
+
+            if (!internshipCatalogueOptional.isPresent() || !eventCatalogueOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Internship Catalogue");
             }
             initialData = internshipCatalogueOptional.orElseGet(SampleDataUtil::getSampleInternshipCatalogue);
+            initialEvent = eventCatalogueOptional.orElseGet(SampleDataUtil::getSampleEventCatalogue);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty InternshipCatalogue");
             initialData = new InternshipCatalogue();
+            initialEvent = new EventCatalogue();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty InternshipCatalogue");
             initialData = new InternshipCatalogue();
+            initialEvent = new EventCatalogue();
         }
 
-        return new ModelManager(initialData,initialEvent,  userPrefs);
+
+
+        return new ModelManager(initialData, initialEvent, userPrefs);
     }
 
     private void initLogging(Config config) {

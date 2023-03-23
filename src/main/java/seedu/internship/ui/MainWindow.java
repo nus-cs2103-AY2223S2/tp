@@ -1,7 +1,5 @@
 package seedu.internship.ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -191,6 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             if (!commandResult.isEmptyInternship()) {
                 internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
             }

@@ -1,10 +1,8 @@
 package seedu.internship.logic.commands;
 
-
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
-
-import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
@@ -71,7 +69,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, EMPTY_INTERNSHIP,EMPTY_UNIQUE_EVENTS_LIST);
+        this(feedbackToUser, false, false, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
     }
 
     public String getFeedbackToUser() {

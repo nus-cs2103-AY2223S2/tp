@@ -2,7 +2,11 @@ package seedu.internship.model.event;
 
 import static java.util.Objects.requireNonNull;
 
-public class Description {
+/**
+ * Represents an Event's Description.
+ * Guarantees: immutable.
+ */
+public class EventDescription {
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -20,7 +24,7 @@ public class Description {
      *
      * @param descriptionMessage A valid name for a Description.
      */
-    public Description(String descriptionMessage) {
+    public EventDescription(String descriptionMessage) {
         requireNonNull(descriptionMessage);
         this.descriptionMessage = descriptionMessage;
     }
@@ -49,7 +53,8 @@ public class Description {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.internship.model.internship.Description // instanceof handles nulls
-                && descriptionMessage.equals(((seedu.internship.model.internship.Description) other).descriptionMessage)); // state check
+                && descriptionMessage.equals(((seedu.internship.model.internship.Description) other)
+                .descriptionMessage)); // state check
     }
 
     @Override

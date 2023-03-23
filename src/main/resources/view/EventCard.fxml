@@ -77,7 +77,7 @@
                         <Font size="6.0" />
                      </font>
                   </Label>
-                  <Label fx:id="description" prefWidth="230.0" styleClass="event-card-text" text="\\$description" wrapText="true">
+                  <Label fx:id="description" prefWidth="230.0" styleClass="event-card-text" text="\\$eventDescription" wrapText="true">
                      <font>
                         <Font size="6.0" />
                      </font>
