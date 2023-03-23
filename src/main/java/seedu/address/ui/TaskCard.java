@@ -20,6 +20,8 @@ public class TaskCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label description;
+    @FXML
+    private Label tank;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -29,6 +31,11 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().description);
+        if (task.isTankRelatedTask()) {
+            tank.setText(task.getTank().getTankName().fullTankName);
+        } else {
+            tank.setText("");
+        }
     }
 
     @Override
