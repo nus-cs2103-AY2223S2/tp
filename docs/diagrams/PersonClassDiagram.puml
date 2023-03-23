@@ -11,7 +11,7 @@ Class Supplier
 Class Customer
 Abstract Class "{abstract}\nName" as Name
 
-together{
+together {
 Class PersonName
 Class PersonAddress
 Class PersonEmail

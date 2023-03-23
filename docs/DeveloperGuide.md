@@ -38,15 +38,12 @@ title: Developer Guide
 
 ## **Introduction**
 
-Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is
-for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the
-benefits of a Graphical User Interface (GUI).
+Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the benefits of a Graphical User Interface (GUI).
 
 **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* If you would like to contribute code to the parent project (AddressBook-Level3),
-  see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,10 +57,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -79,10 +73,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
-is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -98,8 +89,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete_supplier 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
 <p align="center">
   <img src="images/ArchitectureSequenceDiagram.svg" width="650" />
@@ -108,13 +98,9 @@ the command `delete_supplier 1`.
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
-the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
-through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
-implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p align="center">
   <img src="images/ComponentManagers.svg" width="300" />
@@ -124,36 +110,26 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
 <p align="center">
   <img src="images/UiClassDiagram.svg" />
 </p>
 
-The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit
-from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible
-GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/MainWindow.java) is
-specified
-in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in
-  the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -164,13 +140,11 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
-   executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
-call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -186,12 +160,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
-  a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-  interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -205,13 +175,9 @@ The `Model` component,
 
 * `XYZ` is a placeholder for the specific object (e.g., `Supplier`, `Task`), which are all `Item` objects.
 * stores trackr data i.e., all `XYZ` objects (contained in respective `UniqueXYZList` object).
-* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a separate _filtered_ list which is
-  exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI bound to this list so that
-  the UI automatically updates when the data in the list changes).
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
-  a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components).
+* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI bound to this list so that the UI automatically updates when the data in the list changes).
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 Here is the `Item` class that is what all model objects depend on.
 
@@ -219,8 +185,8 @@ Here is the `Item` class that is what all model objects depend on.
   <img src="images/ItemClassDiagram.svg" width="300" />
 </p>
 
-Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model
-definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+
 
 This is the class representation for the `Supplier` and `Customer` class.
 
@@ -231,8 +197,7 @@ This is the class representation for the `Supplier` and `Customer` class.
 Here is how `Supplier` and `Customer` works:
 
 * `Supplier` and `Customer` inherit off `Person` class, which depends on the `Item` class.
-* Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the
-  address)
+* Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
 
 This is the class representation for the `Task` class.
@@ -257,8 +222,7 @@ Here is how `Menu` works:
 
 * Each `Menu` contains non-negative and non-zero number of `MenuItem`.
 * Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
-* The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit
-  off `Name`).
+* The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 
 This is the class representation for the `Order` class.
@@ -271,14 +235,12 @@ Here is how `Order` works:
 
 * Each `OrderList` contains non-negative and non-zero number of `Order`.
 * Each `Order` contains their description, status and deadline (e.g., `ItemName` for menu's item name).
-* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (
-  e.g., `OrderDeadline` inherit off `Deadline`).
+* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
@@ -287,10 +249,8 @@ Here is how `Order` works:
 The `Storage` component,
 
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the
-  functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
-  that belong to the `Model`)
+* inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -302,21 +262,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes the details on how the common commands are implemented.
 
-The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu
-items and tasks while `action` represents the action of the command.
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
 
 ### FindXYZCommand
 
-The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the
-provided keywords.
+The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
 The keywords that can be provided are the same as those provided during the `add` and `edit` command.
 For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
 
 The parser for the `find` command would extract out the arguments corresponding to each particular field.
 
-A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on
-whether they match the keywords provided.
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
 
 The following activity diagram summarizes what happens when the user executes the `find` command.
 
@@ -324,36 +281,44 @@ The following activity diagram summarizes what happens when the user executes th
     <img src="images/FindCommandActivityDiagram.svg">
 </p>
 
+### AddXYZCommand
+
+The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList` and the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+
+The parser for the `add` command would extract out the arguments corresponding to each particular field.
+
+The following activity diagram summarizes what happens when the user executes the `add` command.
+
+ <p align="center">
+     <img src="images/AddCommandActivityDiagram.svg">
+ </p>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history,
-stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following
-operations:
+The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedTrackr#commit()`— Saves the current trackr state in its history.
-* `VersionedTrackr#undo()`— Restores the previous trackr state from its history.
-* `VersionedTrackr#redo()`— Restores a previously undone trackr state from its history.
+* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
+* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
+* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()`
-and `Model#redoTrackr()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTrackr` will be initialized with the initial
-trackr state, and the `currentStatePointer` pointing to that single trackr state.
+Step 1. The user launches the application for the first time. The `VersionedTrackr` will be initialized with the initial trackr state, and the `currentStatePointer` pointing to that single trackr state.
 
 ![UndoRedoState0](images/UndoRedoState0.svg)
 
-Step 2. The user executes `delete_task 5` command to delete the 5th task in the trackr. The `delete_task` command
-calls `Model#commitTrackr()`, causing the modified state of the trackr after the `delete_task 5` command executes to be
-saved in the `trackrStateList`, and the `currentStatePointer` is shifted to the newly inserted trackr state.
+Step 2. The user executes `delete_task 5` command to delete the 5th task in the trackr. The `delete_task` command calls `Model#commitTrackr()`, causing the modified state of the trackr after the `delete_task 5` command executes to be saved in the `trackrStateList`, and the `currentStatePointer` is shifted to the newly inserted trackr state.
 
 ![UndoRedoState1](images/UndoRedoState1.svg)
 
-Step 3. The user executes `add_task n/Sort Storage …​` to add a new task. The `add_task` command also
-calls `Model#commitTrackr()`, causing another modified trackr state to be saved into the `trackrStateList`.
+Step 3. The user executes `add_task n/Sort Storage …​` to add a new task. The `add_task` command also calls `Model#commitTrackr()`, causing another modified trackr state to be saved into the `trackrStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.svg)
 
@@ -361,9 +326,7 @@ calls `Model#commitTrackr()`, causing another modified trackr state to be saved 
 
 </div>
 
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo`
-command. The `undo` command will call `Model#undoTrackr()`, which will shift the `currentStatePointer` once to the left,
-pointing it to the previous trackr state, and restores the trackr to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTrackr()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous trackr state, and restores the trackr to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.svg)
 
@@ -380,23 +343,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the
-right, pointing to the previously undone state, and restores the trackr to that state.
+The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list_task`. Commands that do not modify the trackr, such
-as `list_task`, will usually not call `Model#commitTrackr()`, `Model#undoTrackr()` or `Model#redoTrackr()`. Thus,
-the `trackrStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list_task`. Commands that do not modify the trackr, such as `list_task`, will usually not call `Model#commitTrackr()`, `Model#undoTrackr()` or `Model#redoTrackr()`. Thus, the `trackrStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.svg)
 
-Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the `currentStatePointer` is not pointing
-at the end of the `trackrStateList`, all trackr states after the `currentStatePointer` will be purged. Reason: It no
-longer makes sense to redo the `add_task n/Sort Storage …​` command. This is the behavior that most modern desktop
-applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the `currentStatePointer` is not pointing at the end of the `trackrStateList`, all trackr states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add_task n/Sort Storage …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.svg)
 
@@ -409,13 +366,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -455,9 +412,9 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 Our application:
-
-* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them.
-* serves as a user-friendly alternative to free applications such as Microsoft Excel by providing a standard format.
+* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
+* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
+* enables faster contact management compared to a typical mouse/_GUI_ driven app
 
 ### User stories
 
@@ -521,13 +478,21 @@ MSS
 
       Use case resumes at step 1.
 
-**Use case: UC11 - Add a new customer (Similar to UC01)**
+**Use case: UC11 - Add a new customer**
 
-**Use case: UC21 - Add a new task (Similar to UC01)**
+(Similar to UC01)
 
-**Use case: UC31 - Add a new order (Similar to UC01)**
+**Use case: UC21 - Add a new task**
 
-**Use case: UC41 - Add a new menu item (Similar to UC01)**
+(Similar to UC01)
+
+**Use case: UC31 - Add a new order**
+
+(Similar to UC01)
+
+**Use case: UC41 - Add a new menu item**
+
+(Similar to UC01)
 
 **Use case: UC02 - Delete a contact**
 
@@ -552,11 +517,17 @@ MSS
 
       Use case resumes at step 3.
 
-**Use case: UC22 - Delete a task (Similar to UC02)**
+**Use case: UC22 - Delete a task**
 
-**Use case: UC32 - Delete an order (Similar to UC02)**
+(Similar to UC01)
 
-**Use case: UC42 - Delete a menu item (Similar to UC02)**
+**Use case: UC32 - Delete an order**
+
+(Similar to UC01)
+
+**Use case: UC42 - Delete a menu item**
+
+(Similar to UC01)
 
 **Use case: UC03 - Edit a contact**
 
@@ -567,7 +538,7 @@ MSS
 3. Actor enters an edit contact command for a specific contact and the updated information.
 4. Trackr updates the contact details with the new information.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -587,11 +558,17 @@ MSS
 
       Use case resumes at step 3.
 
-**Use case: UC23 - Edit a task (Similar to UC03)**
+**Use case: UC23 - Edit a task**
 
-**Use case: UC33 - Edit an order (Similar to UC03)**
+(Similar to UC01)
 
-**Use case: UC43 - Edit a menu item (Similar to UC03)**
+**Use case: UC33 - Edit an order**
+
+(Similar to UC01)
+
+**Use case: UC43 - Edit a menu item**
+
+(Similar to UC01)
 
 **Use case: UC04 - Finding a supplier**
 
@@ -616,13 +593,21 @@ MSS
 
   Use case ends.
 
-**Use case: UC14 - Find a customer (Similar to UC04)**
+**Use case: UC14 - Find a customer**
 
-**Use case: UC24 - Find a task (Similar to UC04)**
+(Similar to UC01)
 
-**Use case: UC34 - Find an order (Similar to UC04)**
+**Use case: UC24 - Find a task**
 
-**Use case: UC44 - Find a menu item (Similar to UC04)**
+(Similar to UC01)
+
+**Use case: UC34 - Find an order**
+
+(Similar to UC01)
+
+**Use case: UC44 - Find a menu item**
+
+(Similar to UC01)
 
 **Use case: UC50 - Switch to another tab**
 
@@ -645,8 +630,6 @@ MSS
    able to accomplish most of the tasks faster using commands than using the mouse.
 1. Should store data locally only.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -655,13 +638,10 @@ MSS
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
 * **Customer**: Customer refers to someone whom the user receives an order from
 * **Order**: Order refers to the customers' orders the user accepts
-* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it
-  can be about tidying inventory)
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
 * **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
-* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are
-  not restricted
-* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the
-  type of status that can be added is restricted
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -678,17 +658,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -696,17 +675,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -714,6 +692,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

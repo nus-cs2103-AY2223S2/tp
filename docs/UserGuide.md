@@ -257,12 +257,12 @@ Examples:
 
 Switch to another tab.
 
-Syntax: `tab TAB`
+Syntax: `tab t/TAB`
 
-* The available tabs are: `Home`, `Orders`, `Suppliers`
+* The available tabs are: `Home`, `Orders`, `Contacts`
 
 Examples:
-* `tab t/Home` switches the tab to the `Home` tab
+* `tab t/HOME` switches the tab to the `Home` tab
 
 ### Exiting the program : `exit`
 
