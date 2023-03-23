@@ -287,6 +287,12 @@ Since the information of a `Person` is required, the `Model#getFilteredPersonLis
 The following sequence diagram shows how the copy operation works:
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `CopyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
 
 ### \[Proposed\] Data archiving
