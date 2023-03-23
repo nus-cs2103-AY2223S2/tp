@@ -19,6 +19,7 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private PetPalStorage petPalStorage;
     private UserPrefsStorage userPrefsStorage;
+    private PetPalStorage petPalArchiveStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PetPalStorage} and {@code UserPrefStorage}.
@@ -75,4 +76,30 @@ public class StorageManager implements Storage {
         petPalStorage.savePetPal(petPal, filePath);
     }
 
+    // ================================= Archive Methods ============================================================
+
+    @Override
+    public Path getPetPalArchiveFilePath() {
+        return petPalStorage.getPetPalArchiveFilePath();
+    }
+    @Override
+    public Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException {
+        return readPetPalArchive(petPalStorage.getPetPalArchiveFilePath());
+    }
+    @Override
+    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read archive data from file: " + filePath);
+        return Optional.empty();
+    }
+
+    @Override
+    public void savePetPalArchive(ReadOnlyPetPal petPal) throws IOException {
+        savePetPalArchive(petPal, petPalStorage.getPetPalArchiveFilePath());
+    }
+
+    @Override
+    public void savePetPalArchive(ReadOnlyPetPal petPal, Path filePath) throws IOException {
+        logger.fine("Attempting to write to archive data file: " + filePath);
+        petPalStorage.savePetPalArchive(petPal, filePath);
+    }
 }

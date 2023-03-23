@@ -31,7 +31,8 @@ public class Pet {
     /**
      * Every field must be present and not null.
      */
-    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, LocalDateTime timestamp, Deadline deadline, Set<Tag> tags) {
+    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address,
+               LocalDateTime timestamp, Deadline deadline, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, timestamp, deadline, tags);
         this.ownerName = ownerName;
         this.name = name;
@@ -66,7 +67,9 @@ public class Pet {
         return timestamp;
     }
 
-    public Deadline getDeadline() { return deadline; }
+    public Deadline getDeadline() {
+        return deadline;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

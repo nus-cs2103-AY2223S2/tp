@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.PetPal;
 import seedu.address.model.ReadOnlyPetPal;
-import seedu.address.model.pet.*;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

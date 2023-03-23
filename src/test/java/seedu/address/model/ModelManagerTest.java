@@ -96,12 +96,13 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         PetPal petPal = new PetPalBuilder().withPet(ALICE).withPet(BENSON).build();
+        PetPal archivePetPal = new PetPal();
         PetPal differentPetPal = new PetPal();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(petPal, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(petPal, userPrefs);
+        modelManager = new ModelManager(petPal, archivePetPal, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(petPal, archivePetPal, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +115,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different PetPal -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPetPal, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentPetPal, archivePetPal, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPetList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(petPal, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(petPal, archivePetPal, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
@@ -127,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPetPalFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(petPal, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(petPal, archivePetPal, differentUserPrefs)));
     }
 }

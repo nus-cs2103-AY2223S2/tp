@@ -67,8 +67,8 @@ public class TypicalPets {
      */
     public static PetPal getTypicalPetPal() {
         PetPal pp = new PetPal();
-        for (Pet person : getTypicalPet()) {
-            pp.addPet(person);
+        for (Pet pet : getTypicalPet()) {
+            pp.addPet(pet);
         }
         return pp;
     }

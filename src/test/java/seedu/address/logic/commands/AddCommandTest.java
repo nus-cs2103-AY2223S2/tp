@@ -124,6 +124,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyPetPal getPetPalArchive() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPet(Pet pet) {
             throw new AssertionError("This method should not be called.");
         }
@@ -139,6 +144,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void archivePet(Pet petToArchive) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Pet> getFilteredPetList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,11 +156,6 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPetList(Predicate<Pet> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void archivePet(Pet petToArchive) {
-
         }
     }
 

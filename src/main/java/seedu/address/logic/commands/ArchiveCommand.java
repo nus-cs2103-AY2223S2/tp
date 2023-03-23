@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Archives the Pet to an archive file
@@ -22,7 +22,7 @@ public class ArchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_PET_SUCCESS = "Archived Pet: %1$s";
+    public static final String MESSAGE_ARCHIVE_PET_SUCCESS = "Archived Pet:\n %1$s";
 
     private final Index targetIndex;
 
@@ -47,7 +47,7 @@ public class ArchiveCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ArchiveCommand // instanceof handles nulls
+                && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
     }
 }

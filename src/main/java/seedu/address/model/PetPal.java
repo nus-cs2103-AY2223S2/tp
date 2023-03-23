@@ -9,8 +9,8 @@ import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.UniquePetList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the PetPal level
+ * Duplicates are not allowed (by .isSamepet comparison)
  */
 public class PetPal implements ReadOnlyPetPal {
 
@@ -30,7 +30,7 @@ public class PetPal implements ReadOnlyPetPal {
     public PetPal() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a PetPal using the pets in the {@code toBeCopied}
      */
     public PetPal(ReadOnlyPetPal toBeCopied) {
         this();
@@ -40,8 +40,8 @@ public class PetPal implements ReadOnlyPetPal {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the pets list with {@code pets}.
+     * {@code pets} must not contain duplicate pets.
      */
     public void setPets(List<Pet> pets) {
         this.pets.setPets(pets);
@@ -56,10 +56,10 @@ public class PetPal implements ReadOnlyPetPal {
         setPets(newData.getPetList());
     }
 
-    //// person-level operations
+    //// pet-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a pet with the same identity as {@code pet} exists in the address book.
      */
     public boolean hasPet(Pet pet) {
         requireNonNull(pet);
@@ -67,17 +67,17 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a pet to the address book.
+     * The pet must not already exist in the address book.
      */
     public void addPet(Pet p) {
         pets.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given pet {@code target} in the list with {@code editedpet}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The pet identity of {@code editedPet} must not be the same as another existing pet in the address book.
      */
     public void setPet(Pet target, Pet editedPet) {
         requireNonNull(editedPet);
@@ -86,11 +86,19 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PetPal}.
      * {@code key} must exist in the address book.
      */
     public void removePet(Pet key) {
         pets.remove(key);
+    }
+
+    /**
+     * Archives {@code p} from the {@code PetPal}
+     * {@code p} must exists in the address book
+     */
+    public void archivePet(Pet p) {
+        pets.archive(p);
     }
 
     //// util methods

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.pet.Pet;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a PetPal
  */
 public interface ReadOnlyPetPal {
 

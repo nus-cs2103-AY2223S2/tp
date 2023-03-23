@@ -24,7 +24,8 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPetPalStorage petPalStorage = new JsonPetPalStorage(getTempFilePath("ab"));
+        JsonPetPalStorage petPalStorage = new JsonPetPalStorage(getTempFilePath("ab"),
+                getTempFilePath("cd"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(petPalStorage, userPrefsStorage);
     }
