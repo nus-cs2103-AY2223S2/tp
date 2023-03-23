@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@StatisticsBox.css" />
+    </stylesheets>
+    <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+    </padding>
+    <StackPane maxHeight="20" prefHeight="20">
+        <Label text="Due soon projects" alignment="CENTER" styleClass="chart-title"/>
+    </StackPane>
+
+    <StackPane fx:id="listView" styleClass="stack-pane" maxHeight="200">
+        <ListView fx:id="dueProjectPanel" styleClass="bg"/>
+    </StackPane>
+
+    <StackPane fx:id="pies" styleClass="stack-pane">
+        <PieChart fx:id="deadlinePieChart" legendSide="RIGHT" title="Deadline statistics" startAngle="90"/>
+    </StackPane>
+</VBox>

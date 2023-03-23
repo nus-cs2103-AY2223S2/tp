@@ -1,6 +1,7 @@
 package mycelium.mycelium.logic;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import javafx.collections.ObservableList;
 import mycelium.mycelium.commons.core.GuiSettings;
@@ -42,6 +43,9 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of projects
      */
     ObservableList<Project> getFilteredProjectList();
+
+    ObservableList<Project> getDueProjectList();
+    HashMap<String, Long> getProjectStatistics();
 
     /**
      * Returns the user prefs' address book file path.

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +14,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
@@ -234,6 +238,56 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
+    }
+
+    @Override
+    public ObservableList<Project> getDueProjectList() {
+        Comparator<Project> comparatorByDeadline = (p1, p2) -> {
+            LocalDate deadlineP1 = p1.getDeadline().get();
+            LocalDate deadlineP2 = p2.getDeadline().get();
+
+            assert deadlineP1 != null;
+            assert deadlineP2 != null;
+
+            if (p1.equals(p2)) {
+                return 0;
+            } else if (deadlineP1.isBefore(deadlineP2)) {
+                return -1;
+            } else if (deadlineP1.isEqual(deadlineP2)) {
+                return p1.getName().getValue().compareTo(p1.getName().getValue());
+            } else {
+                return 1;
+            }
+        };
+
+        ObservableList<Project> sortedProjectList;
+        sortedProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
+                && !p.getStatus().toString().equals("done")).sorted(comparatorByDeadline);
+        return FXCollections.observableList(sortedProjectList.subList(0,
+                sortedProjectList.size() >= 3 ? 3 : sortedProjectList.size()));
+    }
+
+    @Override
+    public HashMap<String, Long> getProjectStatistics() {
+        HashMap<String, Long> projectStatusWithCount = new HashMap<>();
+
+        long notStarted = 0;
+        long done = 0;
+        long inProgress = 0;
+
+        notStarted = this.filteredProjects.stream().filter(project ->
+                project.getStatus().toString().equals("not_started")).count();
+        projectStatusWithCount.put("Not Started", notStarted);
+
+        done = this.filteredProjects.stream().filter(project ->
+                project.getStatus().toString().equals("done")).count();
+        projectStatusWithCount.put("Done", done);
+
+        inProgress = this.filteredProjects.stream().filter(project ->
+                project.getStatus().toString().equals("in_progress")).count();
+        projectStatusWithCount.put("In Progress", inProgress);
+
+        return projectStatusWithCount;
     }
 
     @Override

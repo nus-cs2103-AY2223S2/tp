@@ -1,5 +1,6 @@
 package mycelium.mycelium.model;
 
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -46,6 +47,19 @@ public interface ProjectModel {
      */
     ObservableList<Project> getFilteredProjectList();
 
+    /**
+     * Retrieves a list of three due soon projects in Mycelium.
+     *
+     * @return The list of three due soon projects
+     */
+    ObservableList<Project> getDueProjectList();
+
+    /**
+     * Retrieves a hash map of status name and corresponding count of projects with that status.
+     *
+     * @return The hashmap of status name with corresponding project counts
+     */
+    HashMap<String, Long> getProjectStatistics();
 
     /**
      * Mutates the list of projects by filtering with some predicate.
