@@ -12,7 +12,8 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "\\d{3,}|\\s*";
+    private static final Phone NO_PHONE = new Phone();
     public final String value;
 
     /**
@@ -20,10 +21,39 @@ public class Phone {
      *
      * @param phone A valid phone number.
      */
-    public Phone(String phone) {
+    private Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+    }
+
+    private Phone() {
+        value = "";
+    }
+
+    public static Phone getEmptyPhone() {
+        return NO_PHONE;
+    }
+
+    /**
+     * Creates a phone instance if the phone number is not blank, otherwise return the unique "empty_phone" instance.
+     * The method also ensures that the phone is of the correct formatting, i.e. if the phone is not blank it should
+     * only contain numerical characters and have a length of at least 3.
+     *
+     * @param phone The phone number is given by the input string.
+     * @return An instance of Phone, based on the input string.
+     */
+    public static Phone of(String phone) {
+        requireNonNull(phone);
+        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        if (phone.length() == 0) {
+            return getEmptyPhone();
+        }
+        return new Phone(phone);
+    }
+
+    public boolean isEmptyPhone() {
+        return this == NO_PHONE;
     }
 
     /**

@@ -37,8 +37,8 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        phone = Phone.of(DEFAULT_PHONE);
+        email = Email.of(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         major = new Major(DEFAULT_MAJOR);
         tags = new HashSet<>();
@@ -102,7 +102,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Phone.of(phone);
         return this;
     }
 
@@ -110,12 +110,27 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = Email.of(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building to be empty Email.
+     */
+    public PersonBuilder withoutEmail() {
+        this.email = Email.getEmptyEmail();
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building to be an emptyPhone.
+     */
+    public PersonBuilder withoutPhone() {
+        this.phone = Phone.getEmptyPhone();
         return this;
     }
 
     public Person build() {
         return new Person(name, phone, email, address, major, tags, teams);
     }
-
 }

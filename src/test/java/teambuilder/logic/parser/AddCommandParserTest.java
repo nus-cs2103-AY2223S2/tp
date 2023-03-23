@@ -83,6 +83,18 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + MAJOR_DESC_AMY, new AddCommand(expectedPerson));
+        // missing phone prefix
+        Person expectedBob = new PersonBuilder(BOB).withoutPhone().withTags().build();
+        assertParseSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, new AddCommand(expectedBob));
+        assertParseSuccess(parser, NAME_DESC_BOB + " p/ " + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, new AddCommand(expectedBob));
+
+        expectedBob = new PersonBuilder(BOB).withoutEmail().withTags().build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, new AddCommand(expectedBob));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/"
+                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, new AddCommand(expectedBob));
     }
 
     @Test
@@ -92,18 +104,6 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
-                + ADDRESS_DESC_BOB + MAJOR_DESC_BOB, expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VALID_ADDRESS_BOB + MAJOR_DESC_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB

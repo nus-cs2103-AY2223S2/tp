@@ -29,7 +29,9 @@ public class Email {
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + "|\\s*";
+
+    private static final Email NO_EMAIL = new Email();
 
     public final String value;
 
@@ -38,10 +40,31 @@ public class Email {
      *
      * @param email A valid email address.
      */
-    public Email(String email) {
+    private Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    private Email() {
+        value = "";
+    }
+
+    /**
+     * Creates an email based on the given string.
+     * If the email is not blank, ensure that the email matches the regex pattern. Otherwise, if whitespaces or an emtpy
+     * string is passed as the argument, return the default NO_EMAIL in the email class.
+     *
+     * @param email The email address given by user.
+     * @return      Email based on the input string.
+     */
+    public static Email of(String email) {
+        requireNonNull(email);
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        if (email.length() == 0) {
+            return getEmptyEmail();
+        }
+        return new Email(email);
     }
 
     /**
@@ -49,6 +72,10 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static Email getEmptyEmail() {
+        return NO_EMAIL;
     }
 
     @Override
