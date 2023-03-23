@@ -16,9 +16,11 @@ public class UnselectDeckCommandTest {
     public void execute_unselectDeck_success() {
         Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+        CommandResult expectedCommandResult = new CommandResult(
+                UnselectDeckCommand.MESSAGE_SUCCESS, false, false, false, false, false, true);
         expectedModel.unselectDeck();
 
-        assertCommandSuccess(new UnselectDeckCommand(), model, UnselectDeckCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UnselectDeckCommand(), model, expectedCommandResult, expectedModel);
     }
 
 }
