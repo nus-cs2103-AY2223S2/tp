@@ -235,6 +235,21 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Sort Feature
+The sort feature allows users to sort the list of persons and projects in the application. 
+The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
+They extend `Command` and implements the following operations:
+* `SortCommand#execute()` — Sorts the list of persons in the application.
+* `SortProjectCommand#execute()` — Sorts the list of projects in the application.
+
+The `SortCommandParser` and `SortProjectCommandParser` classes are used to parse the user input and create the respective commands. 
+The respective classes verify that the user input is valid and create the commands accordingly.
+If no argument is provided, Persons will be sorted by name and Projects will be sorted by deadline by default.
+
+The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
+The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
