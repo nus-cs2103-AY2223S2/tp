@@ -16,7 +16,7 @@ public class CurrentSelected {
 		this.currentPage = PageType.COURSE_PAGE;
 	}
 
-	public PageType getCurrenPage() {
+	public PageType getCurrentPage() {
 		return currentPage;
 	}
 
