@@ -1,0 +1,8 @@
+@startuml
+
+ start
+ :User executes ListXYZCommand;
+ :Retrieve FilteredXYZList;
+ :Success message is returned;
+ stop
+ @enduml
