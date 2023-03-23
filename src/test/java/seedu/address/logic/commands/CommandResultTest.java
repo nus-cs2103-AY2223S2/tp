@@ -55,8 +55,8 @@ public class CommandResultTest {
 
     @Test
     public void toString_returnsExpectedString() {
-        CommandResult result = new CommandResult("Feedback to user", true, true);
-        assertEquals("Command Result: Feedback to user, true, true", result.toString());
+        CommandResult result = new CommandResult("Feedback to user", true, true, true);
+        assertEquals("Command Result: Feedback to user, true, true, true", result.toString());
     }
 
     @Test
