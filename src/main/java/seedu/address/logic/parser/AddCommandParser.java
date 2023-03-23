@@ -35,17 +35,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        assert (name != null);
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        assert (nric != null);
 
         Patient patient;
 
         if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
             Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            assert(status != null);
             patient = new Patient(nric, name, status);
         } else {
             patient = new Patient(nric, name);
         }
-
 
         return new AddCommand(patient);
     }
