@@ -555,9 +555,11 @@ The User profile will be displayed on the profile panel should there be any exce
 - `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 </div>
 
-**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
-If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `n/`. If a name is not present, it will search for an index (of `int` type) instead. 
-The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
+- If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
+
+    The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
