@@ -423,11 +423,12 @@ What you should expect to find:
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<menu>
-<li> For each command, "Format" indicates the syntax of the command. </li>
-<li> Square brackets indicates an optional parameter. </li>
-<li> In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
-</li> </menu>
+<ul>
+    <li>For each command, "Format" indicates the syntax of the command.</li>
+    <li>Square brackets indicates an optional parameter.</li>
+    <li>In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
+</li> 
+</ul>
 </div>
 
 ### 6.1 Applicant Commands
