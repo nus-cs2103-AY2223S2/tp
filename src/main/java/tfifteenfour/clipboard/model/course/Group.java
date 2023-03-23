@@ -1,5 +1,7 @@
 package tfifteenfour.clipboard.model.course;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -61,6 +63,11 @@ public class Group {
 
         return otherGroup != null
                 && otherGroup.getGroupName().equals(getGroupName());
+    }
+
+	public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
     }
 
 	public static boolean isValidGroupName(String test) {
