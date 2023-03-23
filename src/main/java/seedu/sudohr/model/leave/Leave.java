@@ -15,13 +15,13 @@ import seedu.sudohr.model.employee.UniqueEmployeeList;
  */
 public class Leave {
 
-    private final Date date;
+    private final LeaveDate date;
     private final UniqueEmployeeList employees;
 
     /**
      * Every field must be present and not null.
      */
-    public Leave(Date date) {
+    public Leave(LeaveDate date) {
         this.date = date;
         this.employees = new UniqueEmployeeList();
     }
@@ -29,7 +29,7 @@ public class Leave {
     /**
      * Creates a new leave with the specified date {@code date} and employees{@code employees}
      */
-    public Leave(Date date, UniqueEmployeeList employees) {
+    public Leave(LeaveDate date, UniqueEmployeeList employees) {
         this.date = date;
         this.employees = employees;
     }
@@ -37,13 +37,13 @@ public class Leave {
     /**
      * Creates a new leave with the specified date {@code date} and employees{@code employees}
      */
-    public Leave(Date date, Set<Employee> employees) {
+    public Leave(LeaveDate date, Set<Employee> employees) {
         this.date = date;
         this.employees = new UniqueEmployeeList();
         this.employees.addAll(employees);
     }
 
-    public Date getDate() {
+    public LeaveDate getDate() {
         return date;
     }
 
@@ -98,6 +98,16 @@ public class Leave {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(date);
+    }
+
+    /**
+     * Equality only compares by leave date.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Leave // instanceof handles nulls
+                        && date.equals(((Leave) other).date));
     }
 
     @Override

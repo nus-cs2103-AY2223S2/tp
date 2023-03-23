@@ -1,16 +1,20 @@
-package seedu.sudohr.logic.commands.department;
+package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
@@ -24,85 +28,95 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
-import seedu.sudohr.testutil.TypicalDepartmentNames;
 import seedu.sudohr.testutil.TypicalEmployees;
+import seedu.sudohr.testutil.TypicalLeave;
 
-public class RemoveEmployeeFromDepartmentCommandTest {
+/**
+ * Adds a employee using it's displayed index to a specific leave using it's
+ * displayed index in sudohr book.
+ */
+public class AddEmployeeToLeaveCommandTest {
 
-    // Handle removing an employee
     @Test
-    public void execute_employeeAcceptedByDepartment_addSuccessful() throws CommandException {
+    public void execute_employeeAcceptedByLeave_addSuccessful() throws CommandException {
 
-        RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved modelStub =
-                new RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved();
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
-        Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
-        modelStub.addDepartment(toAdd);
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
+                TypicalEmployees.ALICE_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        new AddEmployeeToDepartmentCommand(new Id("101"),
-                TypicalDepartmentNames.DEPARTMENT_NAME_FIRST).execute(modelStub);
-
-        CommandResult commandResult = new RemoveEmployeeFromDepartmentCommand(new Id("101"),
-                TypicalDepartmentNames.DEPARTMENT_NAME_FIRST).execute(modelStub);
-
-        assertEquals(String.format(RemoveEmployeeFromDepartmentCommand.MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS,
-                        TypicalEmployees.ALICE, TypicalDepartmentNames.DEPARTMENT_NAME_FIRST),
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
+                TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
-        assertFalse(modelStub.sudoHr.getDepartment(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
 
-    // Remove from nonexistent department
+    // handle adding to leave objects that already exists
+
     @Test
-    public void execute_removeEmployeeFromNonExistentDepartment_throwsCommandException() {
-        RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved modelStub =
-                new RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved();
+    public void execute_employeeAcceptedByLeaveAndPreviousEmployeeExists_addSuccessful() throws CommandException {
+
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
+        modelStub.addEmployee(TypicalEmployees.BENSON);
 
-        assertThrows(CommandException.class, RemoveEmployeeFromDepartmentCommand.MESSAGE_DEPARTMENT_NOT_FOUND, () ->
-                new RemoveEmployeeFromDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
-                        .execute(modelStub));
+        new AddEmployeeToLeaveCommand(
+                TypicalEmployees.ALICE_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
+                TypicalEmployees.BENSON_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
+                TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
+                commandResult.getFeedbackToUser());
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                .hasEmployee(TypicalEmployees.ALICE));
     }
 
-    // Remove a nonexistent employee
+    // handle duplicate employee in Leave
     @Test
-    public void execute_removeNonExistentEmployeeFromDepartment_throwsCommandException() {
-        RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved modelStub =
-                new RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved();
-        Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
-        modelStub.addDepartment(toAdd);
-
-        assertThrows(CommandException.class, RemoveEmployeeFromDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
-                new RemoveEmployeeFromDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
-                        .execute(modelStub));
-    }
-
-    // Remove an employee that is not in the department
-    @Test
-    public void execute_removeNonExistentEmployeeInDepartmentFromDepartment_throwsCommandException() {
-        RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved modelStub =
-                new RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved();
-        Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
-        modelStub.addDepartment(toAdd);
+    public void execute_duplicateEmployeeInLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
+        new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        assertThrows(CommandException.class,
-                RemoveEmployeeFromDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND_IN_DEPARTMENT, () ->
-                new RemoveEmployeeFromDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
-                        .execute(modelStub));
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID_COPY,
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+
     }
 
-    // Remove null
+    // Handle adding null employee
     @Test
-    public void execute_addNullEmployeeToDepartment_throwsCommandException() throws CommandException {
-        RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved modelStub =
-                new RemoveEmployeeFromDepartmentCommandTest.ModelStubAcceptingEmployeeRemoved();
-        Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
-        modelStub.addDepartment(toAdd);
+    public void execute_addNullEmployeeToLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
-        assertThrows(NullPointerException.class, () -> new RemoveEmployeeFromDepartmentCommand(null,
-                TypicalDepartmentNames.DEPARTMENT_NAME_FIRST));
+        assertThrows(NullPointerException.class, () -> new AddEmployeeToLeaveCommand(null,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
+
+    // Handle adding null leave date
+    @Test
+    public void execute_addEmployeeToNullLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+
+        assertThrows(NullPointerException.class, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -158,11 +172,6 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
-        public boolean checkEmployeeExists(Id id) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
@@ -191,6 +200,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
@@ -284,6 +294,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         @Override
         public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
             throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
@@ -299,6 +310,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         @Override
         public ObservableList<Leave> getLeavesList() {
             throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
@@ -320,13 +332,23 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
-     * A Model stub that always accept the employee being removed from the department.
+     * A Model stub that always accept the employee being added to the leave.
      */
-    private class ModelStubAcceptingEmployeeRemoved extends RemoveEmployeeFromDepartmentCommandTest.ModelStub {
+    private class ModelStubAcceptingEmployeeAdded extends ModelStub {
         private SudoHr sudoHr = new SudoHr();
+        private final FilteredList<Employee> filteredEmployees;
+
+        private ModelStubAcceptingEmployeeAdded() {
+            this.filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
+        }
 
         @Override
         public void addEmployee(Employee employee) {
@@ -340,24 +362,75 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasDepartment(Department department) {
-            requireNonNull(department);
-            return sudoHr.hasDepartment(department);
-        }
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            return filteredEmployees;
 
-        @Override
-        public void addDepartment(Department d) {
-            sudoHr.addDepartment(d);
-        }
-
-        @Override
-        public Department getDepartment(DepartmentName name) {
-            return sudoHr.getDepartment(name);
         }
 
         @Override
         public ReadOnlySudoHr getSudoHr() {
             return sudoHr;
         }
+
+        @Override
+        public void addLeave(Leave leave) {
+            requireNonNull(leave);
+            sudoHr.addLeave(leave);
+
+        }
+
+        @Override
+        public boolean hasLeave(Leave leave) {
+            requireNonNull(leave);
+            return sudoHr.hasLeave(leave);
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            return this.sudoHr.getLeavesList();
+        }
+
+        @Override
+        public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+            if (sudoHr.hasLeave(leaveToAdd)) {
+                return sudoHr.getLeave(leaveToAdd);
+            } else {
+                sudoHr.addLeave(leaveToAdd);
+                return leaveToAdd;
+            }
+        }
+
+        @Override
+        public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
+            requireAllNonNull(date, employee);
+            return sudoHr.hasEmployeeOnLeave(date, employee);
+        }
+
+        @Override
+        public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+            requireAllNonNull(leaveToAdd, employeeToAdd);
+
+            sudoHr.addEmployeeToLeave(leaveToAdd, employeeToAdd);
+        }
+
+        @Override
+        public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+            requireAllNonNull(leaveToDelete, employeeToDelete);
+
+            sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
+        }
+
+        // for this we do not modify the filtered list to facilitate testing
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+        }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            requireNonNull(id);
+            return sudoHr.checkEmployeeExists(id);
+        }
+
+
     }
 }

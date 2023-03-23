@@ -12,8 +12,8 @@ import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.model.leave.UniqueLeaveList;
 
 /**
@@ -338,7 +338,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * {@code date}
      * the sudohr book.
      */
-    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+    public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
             if (leave.getDate().equals(date) & leave.hasEmployee(employee)) {
