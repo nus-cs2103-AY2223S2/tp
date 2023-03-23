@@ -3,6 +3,7 @@ package seedu.modtrek.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
@@ -76,6 +77,21 @@ public class DegreeProgressionData {
                 .append(String.format("> Planned:   %1$d\n", plannedCredit))
                 .append(String.format("> Total:     %1$d\n", TOTALCREDIT));
         return details.toString();
+    }
+
+    public Map<String, Integer> getRequirementsPercentage() {
+        Map<String, Integer> result = completedRequirementCredits
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> {
+                    float percent = ((float) entry.getValue() / ValidTag.getTotalCredit(entry.getKey())) * 100;
+                    return percent > 100 ? 100 : (int) percent;
+                }));
+        return result;
+    }
+
+    public int getOverallPercentage() {
+        return  (int) ((float) completedCredit / TOTALCREDIT * 100);
     }
 
     private void computeModule(Module module) {
