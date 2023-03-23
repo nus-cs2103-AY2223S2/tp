@@ -343,7 +343,7 @@ The command you would like to enter into the command box would be:
 ```
 add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
 ```
-<br> <br>
+<br>
 
 Alternatively, executing these would do the same thing:
 
@@ -423,9 +423,9 @@ What you should expect to find:
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-* For each command, "Format" indicates the syntax of the command.
-* Square brackets indicates an optional [[ parameter ]].
-* In most commands, if the same parameter is repeated and only one is required, we take the last value provided. 
+<li> For each command, "Format" indicates the syntax of the command. </li>
+<li> Square brackets indicates an optional parameter. </li>
+<li> In most commands, if the same parameter is repeated and only one is required, we take the last value provided.</li>
 </div>
 
 ### 6.1 Applicant Commands
@@ -445,8 +445,8 @@ What you should expect to find:
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken. 
-</div>
+<li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+</li> </div>
 
 
 **Example:**
@@ -486,20 +486,20 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-<ul> You can use the [List Command](#List) in the next section to display all applicants again!
-</ul> </div>
+<li> You can use the [List Command](#List) in the next section to display all applicants again!
+</li> </div> 
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<ul> The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search
-  of part of the name, phone or both! </ul>
-<ul> This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero,
-  executing `Thomas` will find these two `Applicants`. </ul>
-<ul> This also means that if the `PHONE` `91918153` and `9191` is in HMHero, executing `91918153` will only find
-  `PHONE` `91918153`. </ul>
-<ul> If you try to find an `NAME` `Thomas` by executing the command `Thomas Lee`, it will still work! </ul>
-<ul> However, if you try to find an `PHONE` `91918153` by executing the command `919181532`, it will not work! </ul>
-<ul> If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually! </ul>
+<li> The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search
+  of part of the name, phone or both! </li>
+<li> This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero,
+  executing `Thomas` will find these two `Applicants`. </li>
+<li> This also means that if the `PHONE` `91918153` and `9191` is in HMHero, executing `91918153` will only find
+  `PHONE` `91918153`. </li>
+<li> If you try to find an `NAME` `Thomas` by executing the command `Thomas Lee`, it will still work! </li>
+<li> However, if you try to find an `PHONE` `91918153` by executing the command `919181532`, it will not work! </li>
+<li> If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually! </li>
 </div>
 
 **Example:**
@@ -559,7 +559,7 @@ list
 
 **Command Output Box:**
 ```
-- Listed all applicants
+Listed all applicants
 - Total Applicants: 4
 - Applied: 1
 - Shortlisted: 1
@@ -585,8 +585,8 @@ list
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-* The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified search.
-</div>
+<li> The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified search.
+</li> </div>
 
 
 **Example:**
@@ -628,22 +628,23 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<ul> The `advance` command only advances `Applicant` which has a name and phone that fully matches the specified search.
-</ul> 
-<ul> The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
-</ul> 
-<ul> However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED`
-  to `status` `ACCEPTED`. </ul>
-<ul> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
-<ul> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </ul>
-<ul> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively. 
-    For example, “05” would represent May. </ul>
-<ul> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </ul>
-<ul> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
-    For example, "15" would represent 15th hour of the day. </ul>
-<ul> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </ul> 
-</ul>
-</div>
+<li> The `advance` command only advances `Applicant` which has a name and phone that fully matches the specified search.
+</li> 
+<li> The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
+</li> 
+<li> However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED`
+to `status` `ACCEPTED`. </li>
+<li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
+</li> 
+<ul>
+<li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
+<li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively. 
+For example, “05” would represent May. </li>
+<li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
+<li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
+For example, "15" would represent 15th hour of the day. </li>
+<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </li>
+</ul> </div>
 
 
 **Example:**
@@ -685,10 +686,10 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<ul> The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified search.
-</ul> 
-<ul> The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
-  to `status` `REJECTED`. </ul> </div>
+<li> The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified search.
+</li> 
+<li> The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
+to `status` `REJECTED`. </li> </div>
 
 
 **Example:**
@@ -755,26 +756,26 @@ Listed all shortlisted applicants
 
 #### 6.1.8. Edit an existing applicant: `edit`
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/TAG]`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
 
 > Edits an existing applicant with the provided information
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `TAG` are provided, both parameter will be taken in.
+* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<ul> All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter. </ul>
-<ul> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
-<ul> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </ul>
-<ul> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
-For example, “05” would represent May. </ul>
-<ul> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </ul>
-<ul> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
-For example, "15" would represent 15th hour of the day. </ul>
-<ul> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </ul> 
-</ul>
-</div>
+< markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<li> All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter. </li>
+<li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM". </li>
+<ul> 
+<li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
+<li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
+For example, “05” would represent May. </li>
+<li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
+<li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
+For example, "15" would represent 15th hour of the day. </li>
+<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </li> 
+</ul>> </div>
 
 
 **Example:**
@@ -787,7 +788,7 @@ For example, "15" would represent 15th hour of the day. </ul>
   * Email: thomastan@gmail.com
   * Address: 7 Sims Drive (s)543212
   * Interview DateTime: 24-06-2023 15:15
-  * Tag: C
+  * Note: C
 
 
 **Command Input Box:**
@@ -799,7 +800,7 @@ edit 1 p/97833468 n/Tammy note/Python note/Java
 **Command Output Box:**
 ```
 Edited Person: Tammy; Phone: 97833468; Email: thomastan@gmail.com;
-Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]
+Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 ```
 
 ---
