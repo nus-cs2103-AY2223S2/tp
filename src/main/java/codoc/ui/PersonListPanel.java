@@ -32,7 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setOnMousePressed(event -> {
             System.out.println("hi");
             try {
-                Person person = personListView.getSelectionModel().getSelectedItem();
+                int index = personListView.getSelectionModel().getSelectedIndex();
                 // do something with selected person
             } catch (NullPointerException e) {
                 // do nothing
