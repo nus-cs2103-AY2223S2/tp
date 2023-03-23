@@ -10,7 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INTERVAL;
 
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindDateCommand;
 import seedu.address.logic.commands.FindStatusCommand;
@@ -112,6 +115,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 || isFindBeforeDateCommand(argMultimap)
                 || isFindAfterDateCommand(argMultimap)
                 || isFindBetweenDateCommand(argMultimap))) {
+            Logger logger = LogsCenter.getLogger(FindCommandParser.class);
+            logger.log(Level.INFO, "User used an invalid combination of prefixes");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         return true;
@@ -145,9 +150,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_STATUS, PREFIX_DATE_BEFORE, PREFIX_DATE_AFTER, PREFIX_DATE_FROM, PREFIX_DATE_TO);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_STATUS, PREFIX_DATE_BEFORE, PREFIX_DATE_AFTER, PREFIX_DATE_FROM, PREFIX_DATE_TO);
         verifyFindCommandOptions(argMultimap);
         if (isFindStatusCommand(argMultimap)) {
             InternshipStatus status = ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_STATUS).get());
