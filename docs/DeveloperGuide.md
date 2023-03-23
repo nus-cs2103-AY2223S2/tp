@@ -459,6 +459,45 @@ The following is a more detailed explanation on how `EditCommand` works.
 
 _{more aspects and alternatives to be added}_
 
+### Find feature
+
+#### Implementation
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following is a more detailed explanation on how 'FindCommand' works.
+
+1. If the name, role, status, date or tag fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
+2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
+3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
+
+### Design Considerations
+
+**Aspect: How find command uses user input:**
+
+* **Alternative 1 (current choice):** Find internship by exact match of user input and `Internship` object's corresponding attributes
+    * Pros:
+        * Instructions on how to use the find command will be clear and easily communicated to user
+    * Cons:
+        * Very restrictive for user (e.g. an internship with the name "Google Ltd" will not turn up for the find command "find n/Google")
+
+* **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
+    * Pros:
+        * Command is much more flexible (e.g. an internship with the name "Google" will turn up for the find command "find n/goo")
+    * Cons:
+        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs "find n/goo inc" for an `Internship` object named "Google Incorporated")
+
+* **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
+    * Pros:
+        * Command is much more flexible
+    * Cons:
+        * Command becomes too flexible (e.g. a find command like "find n/google ltd" will return `Internship` objects that not just has the word "Google", like "Google Ltd", in their names but "ltd" as well, like "Apple Ltd", "Meta Ltd" and more)
+
+
+_{more aspects and alternatives to be added}_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
