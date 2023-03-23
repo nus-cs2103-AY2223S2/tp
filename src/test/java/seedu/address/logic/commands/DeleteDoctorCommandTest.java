@@ -107,4 +107,3 @@ public class DeleteDoctorCommandTest {
         assertTrue(model.getFilteredDoctorList().isEmpty());
     }
 }
-

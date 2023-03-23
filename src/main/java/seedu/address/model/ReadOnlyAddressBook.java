@@ -17,13 +17,17 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
     /**
      * Returns an unmodifiable view of the doctors list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate doctors.
      */
     ObservableList<Doctor> getDoctorList();
     /**
      * Returns an unmodifiable view of the patients list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate patients.
      */
     ObservableList<Patient> getPatientList();
-
+    /**
+     * Returns an unmodifiable view of a list of unassigned patients.
+     * This list will not contain any duplicate patients.
+     */
+    ObservableList<Patient> getUnassignedPatientList();
 }

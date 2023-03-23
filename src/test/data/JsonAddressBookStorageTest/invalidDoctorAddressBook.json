@@ -10,7 +10,7 @@
       "name" : "John Doe",
       "phone" : "88887777",
       "email" : "prawn@gmail.com",
-      "height" : "1.7",
+      "height" : "1.70",
       "weight" : "63.4",
       "diagnosis" : "None",
       "status" : "Inpatient",
@@ -18,5 +18,6 @@
       "tagged" : [ "Friend", "College" ]
     } ]
   }
-  ]
+  ],
+  "unassignedPatients": []
 }

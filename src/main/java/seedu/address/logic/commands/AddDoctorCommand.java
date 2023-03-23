@@ -15,11 +15,11 @@ import seedu.address.model.person.doctor.Doctor;
 /**
  * Adds a doctor to the address book.
  */
-public class AddDoctorCommand extends AddCommand {
+public class AddDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "add-doc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a doctor to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -41,10 +41,9 @@ public class AddDoctorCommand extends AddCommand {
     private final Doctor toAdd;
 
     /**
-     * Creates an AddDoctorCommand to add the specified {@code Person}
+     * Creates an AddDoctorCommand to add the specified {@code Doctor}
      */
     public AddDoctorCommand(Doctor doctor) {
-        super(doctor);
         requireNonNull(doctor);
         toAdd = doctor;
     }

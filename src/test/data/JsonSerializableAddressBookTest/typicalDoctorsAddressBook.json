@@ -26,7 +26,7 @@
       "name" : "Zayden Lim",
       "phone" : "23456978",
       "email" : "zayden@gmail.com",
-      "height" : "1.6",
+      "height" : "1.60",
       "weight" : "64",
       "diagnosis" : "Asthma",
       "status" : "Inpatient",
@@ -42,5 +42,18 @@
     "tagged" : [ ],
     "patients" : [ ]
   }
+  ],
+  "unassignedPatients": [
+    {
+      "name" : "Rob Smith",
+      "phone" : "12346666",
+      "email" : "robbie@gmail.com",
+      "height" : "1.74",
+      "weight" : "63.4",
+      "diagnosis" : "None",
+      "status" : "Outpatient",
+      "remark" : "Non compliant",
+      "tagged" : [ ]
+    }
   ]
 }
