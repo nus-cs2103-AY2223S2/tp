@@ -11,11 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.student.Student;
 import seedu.address.ui.UiPart;
 
 /**
@@ -78,10 +76,11 @@ public class ParentCard extends UiPart<Region> {
                     students.add(new Label(Student.getIndexNumber().value), 7, rowCounter.get());
                     rowCounter.getAndIncrement();
                 });
-        String path = "src/main/resources/images/" + parent.getName() + ".png";
+        String path = "images/parent/" + parent.getName() + ".png";
         File file = new File(path);
         if (!file.exists()) {
-            circle.setFill(Color.TRANSPARENT);
+            Image defaultImage = new Image("images/defaultParent.png");
+            circle.setFill(new ImagePattern(defaultImage));
         } else {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));

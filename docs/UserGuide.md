@@ -21,8 +21,9 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
 3. [Viewing help: `help`](#help)
 4. [Exiting program: `exit`](#exit)
-5. [FAQ](#faq)
-6. [Command Summary](#summary)
+5. [Additional Features](#addfeatures)
+6. [FAQ](#faq)
+7. [Command Summary](#summary)
 
 <a name="quickstart"/>
 --------------------------------------------------------------------------------------------------------------------
@@ -391,6 +392,18 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+<a name = "addfeatures"/>
+
+### Additional Features
+
+### Images 
+
+In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
+
+Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+
+Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br>
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "faq" /></a>
