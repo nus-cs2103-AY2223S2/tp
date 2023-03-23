@@ -50,6 +50,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
     public static final String MESSAGE_PARSE_DURATION = "Please give both the starting and ending timings";
+    public static final String MESSAGE_PAST_APPOINTMENT = "The appointment has already passed";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -89,6 +90,11 @@ public class EditCommand extends Command {
         ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
         if (!vaccinationList.containsKey(editedAppointment.getVaccination().getName())) {
             throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
+        }
+
+        // Checks if the appointment to be edited has not passed
+        if (appointmentToEdit.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+            throw new CommandException(MESSAGE_PAST_APPOINTMENT);
         }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
