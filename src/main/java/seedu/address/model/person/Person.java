@@ -244,6 +244,10 @@ public class Person {
                 && !this.tagsContains(keywords.get(PersonContainsKeywordsPredicate.TAGKEY))) {
             return false;
         }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.FACULTYKEY)
+                && !this.facultyContains(keywords.get(PersonContainsKeywordsPredicate.FACULTYKEY))) {
+            return false;
+        }
 
         return true;
     }
@@ -337,6 +341,15 @@ public class Person {
     private boolean raceContains(Set<String> test) {
         for (String t: test) {
             if (this.race.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean facultyContains(Set<String> test) {
+        for (String t: test) {
+            if (this.faculty.contains(t)) {
                 return true;
             }
         }

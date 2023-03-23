@@ -22,6 +22,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     public static final String PHONEKEY = "phone";
     public static final String RACEKEY = "race";
     public static final String TAGKEY = "tag";
+    public static final String FACULTYKEY = "faculty";
 
     private final HashMap<String, Set<String>> keywords;
 
@@ -131,6 +132,16 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         return this;
     }
 
+    /**
+     * Stores the faculty in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withFaculty(Collection<String> faculties) {
+        if (!this.keywords.containsKey(FACULTYKEY)) {
+            this.keywords.put(FACULTYKEY, new HashSet<>());
+        }
+        this.keywords.get(FACULTYKEY).addAll(faculties);
+        return this;
+    }
     @Override
     public boolean test(Person person) {
         return person.contains(this.keywords);

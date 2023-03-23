@@ -49,4 +49,8 @@ public class Faculty {
     public int hashCode() {
         return this.faculty.hashCode();
     }
+
+    public boolean contains(String t) {
+        return this.faculty.toUpperCase().contains(t.toUpperCase());
+    }
 }
