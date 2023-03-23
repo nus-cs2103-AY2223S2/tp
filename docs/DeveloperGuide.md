@@ -143,7 +143,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/developerGuide/StorageClassDiagram.png" width="500" />
+<img src="images/developerGuide/StorageClassDiagram.png"/>
 
 The `Storage` component,
 * can save `Elderly`, `Volunteer`, `Pair` and `UserPrefs` data in JSON format, and read them back into corresponding objects.
