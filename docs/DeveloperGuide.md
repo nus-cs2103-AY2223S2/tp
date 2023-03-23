@@ -161,21 +161,21 @@ This section describes some noteworthy details on how certain features are imple
 The undo/redo mechanism is facilitated by `StackUndoRedo`. The implemented undo/redo feature would be best described as two stacks of commands that the user has performed:
 
 - `undoStack` serves to store a "history" of the commands they have performed.
-- `redoStack` is a collection of their commands that lead up to initial condition at which they started performing the undo.
+- `redoStack` is a collection of their commands that lead up to initial state at which they started performing the undo.
 
-The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure of the which is a linear data structure that is based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
+The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure which is a linear data structure based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
 
 Then, when the user performs an undo, the command is firstly popped from `undoStack` and used to restore previous state, and then we store that command onto `redoStack`.
 
 `StackUndoRedo` contains 2 stacks, `undoStack` and `redoStack`. The `undoStack` and `redoStack` contain commands that are of type `RedoableCommand`. `RedoableCommand` extends Command and has the following attributes and methods.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo0.png)
 
 When a `RedoableCommand` is being executed, the methods `saveAddressBookSnapshot(Model model)` will be called. This ensures that the current states are stored within the command.
 
 After a command is executed, it will be added into the `StackUndoRedo`. The specific process is explained in the activity diagram below.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo1.png)
 
 Next, when undo is being performed, `undoStack` will remove the first command in its stack and add it to `redoStack`. It will then call `RedoableCommand` `undo()` of the command that is removed. The `undo()` method will then set the model to the previous snapshot of `saveAddressBookSnapshot`.
 
@@ -185,36 +185,35 @@ Given below is an example of a usage scenario and how the undo/redo mechanism be
 
 Step 1. The user launches the application. The `StackUndoRedo` will be initialized.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo2.png)
 
 Step 2. The user executes delete command. The delete command will be pushed into the `StackUndoRedo`.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo3.png)
 
 Step 3. The user executes add customer command to add a new customer.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo4.png)
 
 Step 4. The user now decides that adding of customer was a mistake, and decides to undo that action by executing the undo command.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo5.png)
 
 
 > <b>Note:</b> undoCommand will check if there is any command that can be undone by calling `StackUndoRedo` canUndo() method.
 
 The following sequence diagram shows how the undo operation works:
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo6.png)
 
 > <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
 
 Step 5. The user executes clear. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` to be cleared.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo7.png)
 
-Step 6. User executes list command. Commands that are not undoable are not added into the `undoStack`.
+Step 6. User executes listcustomers command. Commands that are not undoable are not added into the `undoStack`.
 
-*UndoRedoImage to be added soon*
 
 #### Design considerations:
 
