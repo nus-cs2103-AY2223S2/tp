@@ -214,6 +214,10 @@ The following activity diagram summarises what happens when a user executes an e
   * Lesser commands for users to remember
 
 #### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
+* As editing for events require two index, `[INDEX_OF_PERSON]` and `[INDEX_OF_EVENT]`, it is different from the 
+existing command.
+* This significantly increases the chances of users inputting a wrong command
+* Hence, editing events using a separate command from the existing `EditCommand` is more convenient and appropriate.
 
 ### \[Proposed\] Undo/redo feature
 
