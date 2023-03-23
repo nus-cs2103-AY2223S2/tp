@@ -43,12 +43,12 @@ public class OrderTest {
         editedC = new OrderBuilder(ORDER_C).withQuantity(VALID_QUANTITY_B).build();
         assertFalse(ORDER_C.equals(editedC));
 
-        // different status -> returns false
-        editedC = new OrderBuilder(ORDER_C).withStatus(VALID_STATUS_B).build();
-        assertFalse(ORDER_C.equals(editedC));
-
         // different address -> returns false
         editedC = new OrderBuilder(ORDER_C).withAddress(VALID_ADDRESS_B).build();
+        assertFalse(ORDER_C.equals(editedC));
+
+        // different status -> returns false
+        editedC = new OrderBuilder(ORDER_C).withStatus(VALID_STATUS_B).build();
         assertFalse(ORDER_C.equals(editedC));
 
         // different created date -> returns false

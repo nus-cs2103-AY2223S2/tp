@@ -78,11 +78,11 @@ public class SetOrderNoteCommand extends Command {
         Customer customer = orderToEdit.getCustomer();
         Name name = orderToEdit.getName();
         Quantity quantity = orderToEdit.getQuantity();
-        Status status = orderToEdit.getStatus();
         Address address = orderToEdit.getAddress();
+        Status status = orderToEdit.getStatus();
         CreatedDate createdDate = orderToEdit.getCreatedDate();
 
-        return new Order(customer, name, quantity, status, address, createdDate, note);
+        return new Order(customer, name, quantity, address, status, createdDate, note);
     }
 
     @Override

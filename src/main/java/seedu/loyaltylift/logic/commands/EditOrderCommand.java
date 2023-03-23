@@ -88,14 +88,14 @@ public class EditOrderCommand extends Command {
 
         Customer currentCustomer = orderToEdit.getCustomer();
         Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
-        Status currentStatus = orderToEdit.getStatus();
         Quantity updatedQuantity = editOrderDescriptor.getQuantity().orElse(orderToEdit.getQuantity());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
+        Status currentStatus = orderToEdit.getStatus();
         CreatedDate createdDate = orderToEdit.getCreatedDate();
-        Note note = orderToEdit.getNote();
+        Note currentNote = orderToEdit.getNote();
 
-        return new Order(currentCustomer, updatedName, updatedQuantity, currentStatus, updatedAddress,
-                createdDate, note);
+        return new Order(currentCustomer, updatedName, updatedQuantity, updatedAddress,
+                currentStatus, createdDate, currentNote);
     }
 
     @Override

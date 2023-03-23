@@ -105,8 +105,8 @@
     "customerId": "No Such Customer",
     "name": "Strawberry Shortcake",
     "quantity": 5,
-    "status": "PENDING",
     "address": "10 Summer Drive, Singapore 3098812",
+    "status": "PENDING",
     "createdDate": "2023/01/09",
     "note": ""
   } ]
