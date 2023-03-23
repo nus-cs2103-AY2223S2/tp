@@ -7,6 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "10:30",
+    "endTime" : "12:30",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -16,6 +18,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "12:30",
+    "endTime" : "14:30",
     "remark" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -25,6 +29,8 @@
     "address" : "wall street",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "14:30",
+    "endTime" : "16:30",
     "remark" : "",
     "tagged" : [ ]
   }, {
@@ -34,6 +40,8 @@
     "address" : "10th street",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "16:30",
+    "endTime" : "18:30",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -43,6 +51,8 @@
     "address" : "michegan ave",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "18:30",
+    "endTime" : "20:30",
     "remark" : "",
     "tagged" : [ ]
   }, {
@@ -52,6 +62,8 @@
     "address" : "little tokyo",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "20:30",
+    "endTime" : "22:30",
     "remark" : "",
     "tagged" : [ ]
   }, {
@@ -61,6 +73,8 @@
     "address" : "4th street",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "08:30",
+    "endTime" : "10:30",
     "remark" : "",
     "tagged" : [ ]
   } ]

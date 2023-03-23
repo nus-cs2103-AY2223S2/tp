@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TuteeTestBuilder;
 
 public class TuteeManagingSystemTest {
 
@@ -46,7 +46,7 @@ public class TuteeManagingSystemTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two tutees with the same identity fields
-        Tutee editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Tutee> newTutees = Arrays.asList(ALICE, editedAlice);
         TuteeManagingSystemStub newData = new TuteeManagingSystemStub(newTutees);
@@ -73,7 +73,7 @@ public class TuteeManagingSystemTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         tuteeManagingSystem.addPerson(ALICE);
-        Tutee editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(tuteeManagingSystem.hasPerson(editedAlice));
     }

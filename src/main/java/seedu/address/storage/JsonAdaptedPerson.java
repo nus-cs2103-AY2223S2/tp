@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,36 +12,55 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tutee.*;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Remark;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
  * Jackson-friendly version of {@link Tutee}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutee's %s field is missing!";
 
+    private final String address;
+    private final String email;
+    private final String endTime;
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
     private final String remark;
-    private final String subject;
     private final String schedule;
     private final String startTime;
-    private final String endTime;
+    private final String subject;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<LocalDate> attendanceDates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutee details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark, @JsonProperty("subject") String subject,
-                             @JsonProperty("schedule") String schedule, @JsonProperty("startTime") String startTime,
-                             @JsonProperty("endTime") String endTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(
+        @JsonProperty("name") String name,
+        @JsonProperty("phone") String phone,
+        @JsonProperty("email") String email,
+        @JsonProperty("address") String address,
+        @JsonProperty("remark") String remark,
+        @JsonProperty("subject") String subject,
+        @JsonProperty("schedule") String schedule,
+        @JsonProperty("startTime") String startTime,
+        @JsonProperty("endTime") String endTime,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+        @JsonProperty("attendances") List<LocalDate> attendances
+    ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,24 +73,104 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (attendances != null) {
+            this.attendanceDates.addAll(attendances);
+        }
     }
 
     /**
      * Converts a given {@code Tutee} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Tutee source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        remark = source.getRemark().value;
-        subject = source.getSubject().subject;
-        schedule = source.getSchedule().schedule;
-        startTime = source.getStartTime().startTime;
-        endTime = source.getEndTime().endTime;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
+        remark = source.getRemark().toString();
+        subject = source.getSubject().toString();
+        schedule = source.getSchedule().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendanceDates.forEach(attendanceDates::add);
+    }
+
+    /**
+     * Call this method to parse the field from its string value. If the field has an
+     * invalid value determined by its `isValid` * check, then a
+     * {@link IllegalValueException} will be thrown.
+     *
+     * A {@link RuntimeException} may be thrown if the provided class does not have the requisite
+     * validation method, constraint message and constructor. If this is the case, you should modify your class
+     * appropriately. This exception should never be thrown when in production.
+     *
+     * @param <T> Type of the field. Its class must have a public string constant named MESSAGE_CONSTRAINTS and
+     *     a public static method called isValid + the name of the class, i.e. `isValidName(String arg)`
+     *     and takes in 1 string parameter, returning a boolean. It must also have a constructor that takes a
+     *     single string as a parameter.
+     * @param value String value to parse
+     * @param clazz Class of the field
+     *     false is returned
+     * @return Parsed field value
+     * @throws IllegalValueException
+     */
+    private static <T> T validateField(String value, Class<T> clazz) throws IllegalValueException {
+        String simpleName = clazz.getSimpleName();
+        try {
+            if (value == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, simpleName));
+            }
+
+            String constraintsMessage = (String) clazz.getField("MESSAGE_CONSTRAINTS").get(null);
+            boolean isValid = (boolean) clazz.getMethod("isValid" + simpleName, String.class).invoke(null, value);
+            if (!isValid) {
+                throw new IllegalValueException(constraintsMessage);
+            }
+
+            try {
+                return clazz.getConstructor(String.class).newInstance(value);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(String.format(
+                    "Could not find a constructor of the signature %s(String value)",
+                    simpleName
+                ));
+            }
+        } catch (final NoSuchFieldException e) {
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a field called MESSAGE_CONSTRAINTS",
+                simpleName
+            ));
+        } catch (final NoSuchMethodException e) {
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a method called isValid%s",
+                simpleName,
+                simpleName
+            ));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(String.format(
+                "Could not access the field MESSAGE_CONSTRAINTS or "
+                    + " the method isValid%s on class %s",
+                simpleName,
+                simpleName
+            ));
+        } catch (final InvocationTargetException e) {
+            throw new RuntimeException(String.format(
+                "MESSAGE_CONSTRAINTS and isValid%s must both be static",
+                simpleName
+            ));
+        } catch (final InstantiationException e) {
+            throw new RuntimeException(String.format(
+                "Could not find a constructor of the signature %s(String value)",
+                simpleName
+            ));
+        } catch (final ClassCastException e) {
+            throw new RuntimeException(String.format(
+                "Class %s: MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean",
+                simpleName
+            ));
+        }
     }
 
     /**
@@ -82,79 +183,21 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
-
-        if (subject == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
-        }
-        if (!Subject.isValidSubject(subject)) {
-            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
-        }
-        final Subject modelSubject = new Subject(subject);
-
-        if (schedule == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName()));
-        }
-        if (!Schedule.isValidSchedule(schedule)) {
-            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
-        }
-        final Schedule modelSchedule = new Schedule(schedule);
-
-        if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName()));
-        }
-        if (!StartTime.isValidStartTime(startTime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
-        }
-        final StartTime modelStartTime = new StartTime(startTime);
-
-        if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
-        }
-        if (!EndTime.isValidEndTime(endTime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
-        }
-        final EndTime modelEndTime = new EndTime(endTime);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Tutee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelSubject, modelSchedule,
-                modelStartTime, modelEndTime, modelTags);
-    }
 
+        TuteeBuilder builder = new TuteeBuilder();
+        builder.withName(validateField(name, Name.class))
+            .withPhone(validateField(phone, Phone.class))
+            .withEmail(validateField(email, Email.class))
+            .withAddress(validateField(address, Address.class))
+            .withAttendance(new Attendance(new HashSet<>(attendanceDates)))
+            .withRemark(validateField(remark, Remark.class))
+            .withSubject(validateField(subject, Subject.class))
+            .withSchedule(validateField(schedule, Schedule.class))
+            .withStartTime(validateField(startTime, StartTime.class))
+            .withEndTime(validateField(endTime, EndTime.class))
+            .withTags(modelTags);
+
+        return builder.build();
+    }
 }

@@ -21,7 +21,8 @@ public class PersonCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TuteeManagingSystem level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on
+     * TuteeManagingSystem level 4</a>
      */
 
     public final Tutee tutee;
@@ -58,15 +59,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.tutee = tutee;
         id.setText(displayedIndex + ". ");
-        name.setText("Name: " + tutee.getName().fullName);
-        phone.setText("Phone: " + tutee.getPhone().value);
-        address.setText("Address: " + tutee.getAddress().value);
-        email.setText("Email: " + tutee.getEmail().value);
-        subject.setText("Subject: " + tutee.getSubject().subject);
-        schedule.setText("Schedule: " + tutee.getSchedule().schedule);
-        startTime.setText("Start time: " + tutee.getStartTime().startTime);
-        endTime.setText("End time: " + tutee.getEndTime().endTime);
-        remark.setText("Remark: " + tutee.getRemark().value);
+        name.setText("Name: " + tutee.getName().toString());
+        phone.setText("Phone: " + tutee.getPhone().toString());
+        address.setText("Address: " + tutee.getAddress().toString());
+        email.setText("Email: " + tutee.getEmail().toString());
+        subject.setText("Subject: " + tutee.getSubject().toString());
+        schedule.setText("Schedule: " + tutee.getSchedule().toString());
+        startTime.setText("Start time: " + tutee.getStartTime().toString());
+        endTime.setText("End time: " + tutee.getEndTime().toString());
+        remark.setText("Remark: " + tutee.getRemark().toString());
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

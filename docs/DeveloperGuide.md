@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. User requests to list students. 
+1. User requests to list students.
 2. System shows a list of students.
 3. User requests to edit a specific student in the list.
 4. System prompts the user to choose an attribute to edit.
@@ -320,14 +320,14 @@ Extensions:
 1. Should be standalone on Windows, Linux, and OS-X platforms, requiring only Java '11' or above to be installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be usable without an installer. 
-5. GUI Should work well (i.e., should not cause any resolution-related inconveniences to the user) for 
-   1. standard screen resolutions 1920x1080 and higher, and, 
-   2. for screen scales 100% and 125%. 
-6. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for 
-   1. resolutions 1280x720 and higher, and, 
-   2. for screen scales 150%. 
-7. The application should be packed into a JAR file or include jar file and other files into one zip file. 
+4. Should be usable without an installer.
+5. GUI Should work well (i.e., should not cause any resolution-related inconveniences to the user) for
+   1. standard screen resolutions 1920x1080 and higher, and,
+   2. for screen scales 100% and 125%.
+6. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
+   1. resolutions 1280x720 and higher, and,
+   2. for screen scales 150%.
+7. The application should be packed into a JAR file or include jar file and other files into one zip file.
 8. The product size should not exceed 100MB.
 
 
@@ -336,8 +336,8 @@ Extensions:
 ### Glossary
 
 * **TMS**: Tutee managing system.
-* **CLI**: command line interface. 
-* **GUI**: graphical user interface. 
+* **CLI**: command line interface.
+* **GUI**: graphical user interface.
 * **JAR**: Java ARchive.
 
 

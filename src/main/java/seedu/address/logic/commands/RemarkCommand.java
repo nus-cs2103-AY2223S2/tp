@@ -3,15 +3,15 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTEES;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.model.tutee.Remark;
-
-import java.util.List;
-
+import seedu.address.model.tutee.TuteeBuilder;
+import seedu.address.model.tutee.fields.Remark;
 
 /**
  * Changes the remark of an existing tutee in the address book.
@@ -55,10 +55,8 @@ public class RemarkCommand extends Command {
         }
 
         Tutee tuteeToEdit = lastShownList.get(index.getZeroBased());
-        Tutee editedTutee = new Tutee(
-                        tuteeToEdit.getName(), tuteeToEdit.getPhone(), tuteeToEdit.getEmail(),
-                        tuteeToEdit.getAddress(), remark, tuteeToEdit.getSubject(),
-                tuteeToEdit.getSchedule(), tuteeToEdit.getStartTime(), tuteeToEdit.getEndTime(), tuteeToEdit.getTags());
+        TuteeBuilder builder = new TuteeBuilder(tuteeToEdit);
+        Tutee editedTutee = builder.withRemark(remark).build();
 
         model.setTutee(tuteeToEdit, editedTutee);
         model.updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);
@@ -72,7 +70,7 @@ public class RemarkCommand extends Command {
      * {@code tuteeToEdit}.
      */
     private String generateSuccessMessage(Tutee tuteeToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !remark.toString().isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, tuteeToEdit);
     }
 
