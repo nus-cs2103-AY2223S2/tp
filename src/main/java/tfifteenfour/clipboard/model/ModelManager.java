@@ -38,8 +38,8 @@ public class ModelManager implements Model {
 
         this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.roster.getStudentList());
-        viewedStudent = new FilteredList<>(this.roster.getStudentList());
+        filteredStudents = new FilteredList<>(this.roster.getUnmodifiableStudentList());
+        viewedStudent = new FilteredList<>(this.roster.getUnmodifiableStudentList());
     }
 
     public ModelManager() {
@@ -57,8 +57,8 @@ public class ModelManager implements Model {
         this.roster = roster;
         this.userPrefs = userPrefs;
         this.commandTextExecuted = commandTextExecuted;
-        this.filteredStudents = new FilteredList<>(roster.getStudentList());
-        viewedStudent = new FilteredList<>(roster.getStudentList());
+        this.filteredStudents = new FilteredList<>(roster.getUnmodifiableStudentList());
+        viewedStudent = new FilteredList<>(roster.getUnmodifiableStudentList());
     }
 
     @Override
@@ -159,8 +159,13 @@ public class ModelManager implements Model {
      * {@code versionedRoster}
      */
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
+    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<Student> getModifiableFilteredStudentList() {
+        return roster.getModifiableStudentList();
     }
 
     @Override

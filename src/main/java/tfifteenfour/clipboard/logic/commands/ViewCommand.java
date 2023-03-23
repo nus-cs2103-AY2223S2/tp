@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         // refresh list before viewing
-        List<Student> studentList = model.getFilteredStudentList();
+        List<Student> studentList = model.getUnmodifiableFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

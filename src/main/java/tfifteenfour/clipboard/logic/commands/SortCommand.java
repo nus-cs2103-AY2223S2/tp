@@ -10,10 +10,11 @@ import tfifteenfour.clipboard.model.student.Student;
 public class SortCommand extends Command {
 	public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all students by "
+            + "the specified category (case-insensitive).\n"
+            + "Parameters: CATEGORY\n"
+			+ "Possible categories: name, id\n"
+            + "Example: " + COMMAND_WORD + " id";
 
 	public static final String MESSAGE_SUCCESS = "Sorted by: %s";
 
@@ -34,7 +35,11 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-		model.getFilteredStudentList().sort(categoryComparator);
+		try {
+			model.getModifiableFilteredStudentList().sort(categoryComparator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
 
     }

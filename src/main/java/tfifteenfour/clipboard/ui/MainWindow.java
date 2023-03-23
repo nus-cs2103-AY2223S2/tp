@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(logic.getUnmodifiableFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -186,7 +186,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleUndo() {
-        studentListPanel.setPersonListView(logic.getFilteredStudentList());
+        studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
     }
 
     public StudentListPanel getStudentListPanel() {
