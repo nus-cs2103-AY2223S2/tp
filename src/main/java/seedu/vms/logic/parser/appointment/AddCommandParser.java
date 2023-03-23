@@ -41,7 +41,7 @@ public class AddCommandParser implements CommandParser {
         LocalDateTime endTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_ENDTIME).get());
         GroupName vaccine = ParserUtil.parseGroupName(argsMap.getValue(PREFIX_VACCINATION).get());
 
-        if (!Appointment.isValidAppointmentTime(startTime)) {
+        if (Appointment.isInvalidAppointmentTime(startTime)) {
             throw new ParseException(Appointment.MESSAGE_START_TIME_CONSTRAINTS);
         }
 

@@ -55,7 +55,7 @@ public class EditCommandParser implements CommandParser {
             LocalDateTime startTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_STARTTIME).get());
             LocalDateTime endTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_ENDTIME).get());
 
-            if (!Appointment.isValidAppointmentTime(startTime)) {
+            if (Appointment.isInvalidAppointmentTime(startTime)) {
                 throw new ParseException(Appointment.MESSAGE_START_TIME_CONSTRAINTS);
             }
 

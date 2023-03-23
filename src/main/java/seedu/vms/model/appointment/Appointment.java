@@ -90,8 +90,8 @@ public class Appointment implements Comparable<Appointment> {
         return new Appointment(patientId, startTime, endTime, vaccine, false);
     }
 
-    public static boolean isValidAppointmentTime(LocalDateTime startTime) {
-        return startTime.isAfter(LocalDateTime.now());
+    public static boolean isInvalidAppointmentTime(LocalDateTime startTime) {
+        return !startTime.isAfter(LocalDateTime.now());
     }
 
     public static boolean isValidDuration(LocalDateTime startTime, LocalDateTime endTime) {
