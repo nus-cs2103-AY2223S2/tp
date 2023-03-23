@@ -1,0 +1,29 @@
+@startuml
+ !include style.puml
+
+ start
+ :User executes AddXYZCommand;
+ :AddXYZCommandParser extracts the relevant information
+ from the input argument;
+
+ 'Since the beta syntax does not support placing the condition outside the
+ 'diamond we place it as the true branch instead.
+
+ if () then ([Invalid Input Argument])
+     :Display error message
+     on invalid command argument;
+     stop
+ else ([else])
+     :Create XYZ object;
+     if() then ([List has Item])
+        :Display error message
+         on duplicate item;
+         stop
+     else ([else])
+         :Add XYZ to XYZ XYZList;
+             : Update XYZ in FilteredXYZList;
+                :Save XYZ to local data with internal XYZList;
+         endif
+ : Success message is returned;
+ stop
+ @enduml
