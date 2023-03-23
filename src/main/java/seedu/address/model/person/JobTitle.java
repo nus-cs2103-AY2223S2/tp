@@ -21,18 +21,18 @@ public class JobTitle {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code JobTitle}.
      *
-     * @param name A valid name.
+     * @param jobTitle A valid jobTitle.
      */
-    public JobTitle(String name) {
-        requireNonNull(name);
-        checkArgument(isValidJobTitle(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public JobTitle(String jobTitle) {
+        requireNonNull(jobTitle);
+        checkArgument(isValidJobTitle(jobTitle), MESSAGE_CONSTRAINTS);
+        fullName = jobTitle;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid jobTitle.
      */
     public static boolean isValidJobTitle(String test) {
         return test.matches(VALIDATION_REGEX);
