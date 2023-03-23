@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,10 +21,6 @@ public class DeleteElderlyCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_elderly";
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
-
-    static {
-        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<nric>");
-    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the elderly identified by their NRIC.\n"

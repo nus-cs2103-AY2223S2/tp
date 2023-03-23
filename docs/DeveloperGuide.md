@@ -160,45 +160,58 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Logic Component
+### Command Autocompletion, Real-Time Input Validation and Recommendation
 
-### Storage component
+Autocompletion and Recommendation are features that can greatly enhance the user experience when using the application.
+To support this feature, we have implemented a `CommandRecommedationEngine` that aims to accurately predict the set of
+words that the user intends to type based off a preset of words. These words are the in-built commands and argument
+prefixes.
 
-<img src="images/developerGuide/StorageClassDiagram.png"/>
+In `CommandRecommendationEngine`, you can find three methods:
 
-The `Storage` component,
+1. `recommendCommand` -- recommends an appropriate command with respect to the user input.
+2. `autocompleteCommand` -- autocompletes the user input by replacing user input with the recommended command.
+3. `registerCommandInfo` -- registers the command, turning on command recommendation.
 
-- can save `Elderly`, `Volunteer`, `Pair` and `User Preference` data in JSON format, and read them back into
-  corresponding objects.
-- inherits from `ElderlyStorage`, `VolunteerStorage`, `PairStorage` and `UserPrefStorage`, which means it can be treated
-  as either one (if only the functionality of only one is needed).
-- depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
-  belong to the Model)
+#### Autocompletion
+
+An event handler is attached to `commandTextField` which listens for the `KEY_PRESSED` event and autocompletes the user
+input with the recommended values.
+
+#### Recommendation
+
+To predict the words, we made use of the longest prefix matching algorithm to first **identify** the related command,
+and then **verify** the arguments associated with it. The following activity diagram describes the activity flow:
+
+<img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
+
+**Terminology**:
+
+- Full attribute command -- indicates that all arguments of a command (including optional and compulsory) have been
+  specified.
+- Complete command -- indicates that command (for example, `add_elderly`) has been fully typed. Arguments may or may not
+  have been typed.
+
+#### Input validation
+
+Our implementation strategy involves utilizing an event listener to provide immediate feedback to the user regarding the
+correctness of the attributes specified, instead of depending on the parser for this purpose. For example, if the
+`AddElderlyCommand` does not accept any arguments without a prefix but user specifies anyways, a **warning** will
+be given.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about `Pairs` implementation:**<br>
+**:information_source: Notes:**<br>
 
-Pairs saved only contains the NRIC of the elderly and volunteer.
-
-Reasons
-
-* Reduce space needed to store pairs
-* Reduce chance of inconsistent data between a person and the corresponding pair,
-* Reduce number of files to amend manually when updating person information.
-
-Implications
-
-* A pair is reconstructed on startup by searching the model for the corresponding person.
-* Elderly and volunteer files need to be read into the model before pair files.
+* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
+  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an
+  error
+  will be thrown when the user confirms the command.
+* There is a known UI bug regarding the recommendation engine when the text in `commandTextField` overflows. To improve
+  user experience, the recommendation engine is disabled once overflow is detected.
 
 </div>
 
-### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
-## Implementation
 
 ### Add and Delete Elderly and Volunteer
 

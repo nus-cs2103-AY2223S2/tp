@@ -62,7 +62,8 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
      */
     public static boolean validate(ArgumentMultimap map) {
         return !(map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1);
+                || map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1
+                || map.getPreamble().split(" ").length > 0);
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -36,7 +37,6 @@ public class CommandRecommendationEngine {
             + " Please refer to our user guide for the list of valid commands.";
     private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
             + " Please refer to our user guide for the list of valid arguments.";
-
 
     static {
         registerCommandInfo(new CommandInfo(
@@ -120,7 +120,8 @@ public class CommandRecommendationEngine {
         String commandWord = userInputArray[0];
         CommandInfo commandInfo = findMatchingCommandInfo(commandWord);
 
-        if (commandInfo == null) {
+        if (commandInfo == null || (isCommandPrefixComplete(userInput, " ")
+                && !Objects.equals(commandWord, commandInfo.getCmdWord()))) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
         }
 
@@ -133,9 +134,11 @@ public class CommandRecommendationEngine {
 
         String recommendedArguments = generateArgumentRecommendation(commandInfo, userArgs);
         if (userInputArray.length > 1) { // command is specified
-            return userInput.stripTrailing() + recommendedArguments;
+            return userInput + recommendedArguments;
         } else {
-            return command + recommendedArguments;
+            return command.length() > userInput.length()
+                    ? command + recommendedArguments
+                    : userInput + recommendedArguments;
         }
     }
 
@@ -151,8 +154,11 @@ public class CommandRecommendationEngine {
         String suggestedCommand = recommendedCommand.substring(userInput.trim().length());
 
         // if command is complete, autocomplete the relevant arguments
-        int nextIdx = suggestedCommand.indexOf(isCommandPrefixComplete(userInput, " ") ? "/" : " ");
-        nextIdx = (nextIdx != -1) ? nextIdx + 1 : suggestedCommand.length();
+        boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
+        int nextIdx = suggestedCommand.indexOf(isCompleteCommand ? "/" : " ");
+        nextIdx = (nextIdx != -1)
+                ? nextIdx + 1
+                : suggestedCommand.length();
         userInput = userInput.trim() + suggestedCommand.substring(0, nextIdx);
 
         return userInput;

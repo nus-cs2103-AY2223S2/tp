@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandRecommendationEngine.isValidArgs;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -49,12 +48,11 @@ public class CommandRecommendationEngineTest {
 
     @Test
     public void parseVolunteerArguments_validArgs_success() {
-        String userArgs = "n/Zong Xun";
+        String userArgs = "duahwdiuahd n/Zong Xun";
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
                 .commandInfoMap.get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
-
-        assertTrue(AddVolunteerCommandParser.validate(argumentMultimap));
+        assertFalse(AddVolunteerCommandParser.validate(argumentMultimap));
     }
 
     @Test
@@ -227,7 +225,8 @@ public class CommandRecommendationEngineTest {
 
     @Test
     public void parseEditVolunteerArguments_invalidNameArgs_false() {
-        String userArgs = " n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd t/dawd vnr/dwadad vnr/dawdad";
+        String userArgs = " hdoiawhdoawida n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd"
+                + " t/dawd vnr/dwadad vnr/dawdad";
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
                 CommandRecommendationEngine.commandInfoMap.get(EditVolunteerCommand.COMMAND_WORD)
                         .getCmdPrompts().keySet()

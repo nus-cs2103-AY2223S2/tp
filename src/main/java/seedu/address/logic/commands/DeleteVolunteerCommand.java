@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -21,10 +20,6 @@ public class DeleteVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_volunteer";
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new HashMap<>();
-
-    static {
-        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<nric>");
-    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the volunteer identified by their NRIC.\n"

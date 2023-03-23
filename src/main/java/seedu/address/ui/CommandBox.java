@@ -41,10 +41,34 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty()
-                .addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        commandTextField.textProperty()
-                .addListener((observable, oldValue, newValue) -> autocompleteInputString(newValue));
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+                .addListener((observable, oldValue, newValue) -> {
+                    setStyleToDefault();
+                    setRecommendationsWithUserInput(newValue);
+                });
+
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (e) -> {
+            try {
+                if (isEmpty() || isOverflow()) {
+                    commandRecommendationTextField.setText("");
+                    return;
+                }
+                if (e.getCode() == KeyCode.TAB) {
+                    String userInput = commandTextField.getText();
+                    String commandRecommendation = commandRecommendationEngine.recommendCommand(userInput);
+                    String autocompletedCommand =
+                            commandRecommendationEngine.autocompleteCommand(userInput, commandRecommendation);
+                    if (!autocompletedCommand.equals("")) {
+                        commandTextField.setText(autocompletedCommand);
+                        commandTextField.end();
+                    }
+                    setRecommendationsWithUserInput(userInput);
+                    e.consume();
+                }
+            } catch (CommandException ce) {
+                setStyleToIndicateCommandFailure();
+                e.consume();
+            }
+        });
 
         commandRecommendationTextField.setEditable(false);
     }
@@ -101,49 +125,27 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Auto-completes user input when the user presses the Tab key.
-     */
-    public void handleKeyPressed(KeyEvent e) {
-        try {
-            String userInput = commandTextField.getText();
-            if (e.getCode() == KeyCode.TAB) {
-                String commandRecommendation = commandRecommendationEngine.recommendCommand(userInput);
-                String autocompletedCommand =
-                        commandRecommendationEngine.autocompleteCommand(userInput, commandRecommendation);
-                if (!autocompletedCommand.equals("")) {
-                    commandTextField.setText(autocompletedCommand);
-                    commandTextField.end();
-                }
-                autocompleteInputString(commandTextField.getText());
-                e.consume();
-            }
-        } catch (CommandException ce) {
-            setStyleToIndicateCommandFailure();
-            e.consume();
-        }
-    }
-
-    /**
      * Updates the command recommendation text field.
      */
-    private void autocompleteInputString(String commandText) {
+    private void setRecommendationsWithUserInput(String userInput) {
         if (isEmpty() || isOverflow()) {
             commandRecommendationTextField.setText("");
             return;
         }
         try {
-            commandRecommendationTextField.setText(commandRecommendationEngine.recommendCommand(commandText));
-            commandRecommendationTextField.positionCaret(commandTextField.getText().length());
+            commandRecommendationTextField.setText(commandRecommendationEngine.recommendCommand(userInput));
         } catch (CommandException e) {
-            commandRecommendationTextField.setText(commandText);
+            commandRecommendationTextField.setText(userInput);
             setStyleToIndicateCommandFailure();
         }
     }
 
+    //Solution adapted from ChatGPT with the following prompt:
+    //"How do I check if text is overflowing in a TextField in javafx"
     private boolean isOverflow() {
         Text text = new Text();
         text.setFont(commandTextField.getFont());
-        text.setText(commandTextField.getText() + "     "); // add buffer for overflow detection
+        text.setText(commandTextField.getText() + "      ");
         return commandTextField.getWidth() < text.getLayoutBounds().getWidth();
     }
 

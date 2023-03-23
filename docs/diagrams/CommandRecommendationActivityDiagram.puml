@@ -1,0 +1,30 @@
+@startuml
+start
+repeat :User inputs string;
+:Find best command match;
+if () then ([command found])
+    :Generate arguments recommendations;
+    if () then ([full attribute command])
+        :Return empty argument
+        recommendation;
+    else ([not full attribute command])
+        if () then ([not a complete command])
+            :Return full command
+            recommendation;
+        else ([complete command])
+            :Parse arguments multimap;
+            if () then ([Invalid arguments])
+                :Warning given;
+            else ([Valid arguments])
+                :Return remaining arguments
+                recommendation;
+            endif
+        endif
+    endif
+else ([command not found])
+    :Warning given;
+endif
+repeat while ()
+stop
+
+@enduml
