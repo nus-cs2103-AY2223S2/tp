@@ -116,7 +116,9 @@ public class Appointment {
             .append("; Description: ")
             .append(getDescription())
             .append("; Patient ID: ")
-            .append(getPatientId());
+            .append(getPatientId())
+            .append("; Appointment ID: ")
+            .append(getAppointmentId());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
