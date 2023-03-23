@@ -14,7 +14,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 
 /**
  * A class to access EduMate data stored as a json file on the hard disk.
@@ -75,10 +77,12 @@ public class EduMateStorageManager implements EduMateStorage {
     }
 
     @Override
-    public ArrayList<String> readEduMateHistory() throws IOException {
+    public Optional<ReadOnlyEduMateHistory> readEduMateHistory() throws IOException {
         requireNonNull(eduMateHistoryFilePath);
-        ArrayList<String> eduMateHistory = StringUtil.readStringFile(eduMateHistoryFilePath);
-        return eduMateHistory;
+        ArrayList<String> history = StringUtil.readStringFile(eduMateHistoryFilePath);
+        EduMateHistory eduMateHistory = new EduMateHistory();
+        eduMateHistory.setList(history);
+        return Optional.of(eduMateHistory);
     }
 
     @Override

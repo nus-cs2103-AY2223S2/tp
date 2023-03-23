@@ -49,6 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveEduMate(model.getEduMate());
             storage.saveEduMateHistory(commandText);
+            model.addEduMateHistory(commandText);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -59,6 +60,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyEduMate getEduMate() {
         return model.getEduMate();
+    }
+
+    @Override
+    public String getPreviousCommand(boolean isUp) {
+        return model.getEduMateHistory().getPreviousCommand(isUp);
     }
 
     @Override

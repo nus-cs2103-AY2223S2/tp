@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import seedu.address.commons.core.LogsCenter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,8 +12,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Helper functions for handling strings.
@@ -90,7 +89,14 @@ public class StringUtil {
         FileUtil.writeToFile(filePath, input, true);
     }
 
+    /**
+     * Reads the specified text file and saves it into an ArrayList.
+     * @param filePath cannot be null
+     * @return An arrayList of strings
+     * @throws IOException If there was an error during reading from the fille
+     */
     public static ArrayList<String> readStringFile(Path filePath) throws IOException {
+        requireNonNull(filePath);
         if (!Files.exists(filePath)) {
             logger.info("Command file " + filePath + " not found");
             return new ArrayList<String>(100);

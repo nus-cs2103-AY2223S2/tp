@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,8 +26,8 @@ class MeetCommandTest {
     private static final MeetCommand EAT_COMMAND =
             new MeetCommand(INDICES, LocationUtil.EAT_LOCATIONS, 3);
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
     public void execute() {

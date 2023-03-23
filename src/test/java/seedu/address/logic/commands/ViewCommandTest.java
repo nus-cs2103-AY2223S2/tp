@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalUser.LINUS;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,7 +24,7 @@ import seedu.address.model.person.ContactIndex;
 
 public class ViewCommandTest {
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
     public void execute_byIndex_correctPersonQueried() throws CommandException {

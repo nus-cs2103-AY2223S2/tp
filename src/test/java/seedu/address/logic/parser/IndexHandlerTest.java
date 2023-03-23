@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,7 +29,7 @@ class IndexHandlerTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         indexHandler = new IndexHandler(model);
     }
 
@@ -60,13 +61,13 @@ class IndexHandlerTest {
 
     @Test
     public void execute_consecutiveIndexPresent_assignLastIndex() {
-        model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         assertEquals(indexHandler.assignIndex(), new ContactIndex(16));
     }
 
     @Test
     public void execute_consecutiveIndexButRemoveLastAgain_assignLastIndex() throws CommandException {
-        model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         new DeleteCommand(new ContactIndex(15)).execute(model);
         indexHandler = new IndexHandler(model);
         assertEquals(indexHandler.assignIndex(), new ContactIndex(15));

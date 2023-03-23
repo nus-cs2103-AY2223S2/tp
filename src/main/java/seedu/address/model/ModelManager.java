@@ -21,24 +21,26 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final EduMate eduMate;
+    private final EduMateHistory eduMateHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given eduMate and userPrefs.
      */
-    public ModelManager(ReadOnlyEduMate eduMate, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEduMate eduMate, ReadOnlyUserPrefs userPrefs, ReadOnlyEduMateHistory eduMateHistory) {
         requireAllNonNull(eduMate, userPrefs);
 
         logger.fine("Initializing with address book: " + eduMate + " and user prefs " + userPrefs);
 
         this.eduMate = new EduMate(eduMate);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.eduMateHistory = new EduMateHistory(eduMateHistory);
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
     }
 
     public ModelManager() {
-        this(new EduMate(), new UserPrefs());
+        this(new EduMate(), new UserPrefs(), new EduMateHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -86,6 +88,16 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyEduMate getEduMate() {
         return eduMate;
+    }
+
+    @Override
+    public ReadOnlyEduMateHistory getEduMateHistory() {
+        return eduMateHistory;
+    }
+
+    @Override
+    public void addEduMateHistory(String command) {
+        eduMateHistory.addCommand(command);
     }
 
     @Override

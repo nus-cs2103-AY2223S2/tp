@@ -19,9 +19,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.EduMate;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
@@ -92,7 +94,7 @@ public class AddCommandTest {
 
     @Test
     public void checkAssignedIndex_gapsInContactIndexSequence_assignLowestAvailableIndex() throws CommandException {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         int[] indicesToDelete = new int[] {3, 6, 10};
         for (int idx : indicesToDelete) {
             new DeleteCommand(new ContactIndex(idx)).execute(model);
@@ -104,7 +106,7 @@ public class AddCommandTest {
 
     @Test
     public void checkAssignedIndex_consecutiveIndexPresent_assignLastIndex() throws CommandException {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         int size = model.getFilteredPersonList().size();
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
@@ -157,6 +159,16 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyEduMate getEduMate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEduMateHistory getEduMateHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEduMateHistory(String command) {
             throw new AssertionError("This method should not be called.");
         }
 

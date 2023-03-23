@@ -2,13 +2,13 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -66,7 +66,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public ArrayList<String> readEduMateHistory() throws IOException {
+    public Optional<ReadOnlyEduMateHistory> readEduMateHistory() throws IOException {
         return eduMateStorage.readEduMateHistory();
     }
 
