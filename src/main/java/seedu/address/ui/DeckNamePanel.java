@@ -10,7 +10,7 @@ import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Panel containing the statistics of the current review.
+ * Panel containing the deck name of the current review.
  */
 public class DeckNamePanel extends UiPart<Region> {
     private static final String FXML = "DeckNamePanel.fxml";
@@ -25,8 +25,6 @@ public class DeckNamePanel extends UiPart<Region> {
     public DeckNamePanel(ObservableList<Pair<String, String> > deckNameList) {
         super(FXML);
         deckNameView.setItems(deckNameList);
-        deckNameView.setStyle("-fx-background-color: #FFFFFF;"
-                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
     }
 
 }

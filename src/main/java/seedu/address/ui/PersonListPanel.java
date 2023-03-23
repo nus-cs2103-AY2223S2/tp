@@ -28,8 +28,6 @@ public class PersonListPanel extends UiPart<Region> {
 
         personListView.setItems(cardList);
         personListView.setCellFactory(listView -> new CardListViewCell());
-        personListView.setStyle("-fx-background-color: #ededed; "
-                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 5;");
     }
 
     public void toggleReview() {
@@ -54,7 +52,7 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new ReviewCard(card).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
-                        + "-fx-background-color:#ededed ");
+                        + "-fx-background-color:#e6eaeb ");
             }
         }
     }
@@ -73,7 +71,7 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new PersonCard(card, getIndex() + 1).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
-                        + "-fx-background-color:#ededed ");
+                        + "-fx-background-color:#e6eaeb ");
             }
         }
     }

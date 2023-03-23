@@ -27,8 +27,6 @@ public class ReviewStatsPanel extends UiPart<Region> {
         super(FXML);
         reviewStatsView.setItems(reviewStatsList);
         reviewStatsView.setCellFactory(listView -> new ReviewStatsPanel.ReviewStatsViewCell());
-        reviewStatsView.setStyle("-fx-background-color: #FFFFFF;"
-                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
     }
 
     class ReviewStatsViewCell extends ListCell<Pair<String, String>> {
