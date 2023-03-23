@@ -25,6 +25,12 @@
 !define MODEL_COLOR_T3 #7B000E
 !define MODEL_COLOR_T4 #51000A
 
+!define TASK_MODEL_COLOR #D60055
+!define TASK_MODEL_COLOR_T1 #FF0568
+!define TASK_MODEL_COLOR_T2 #FF247B
+!define TASK_MODEL_COLOR_T3 #FF75AC
+!define TASK_MODEL_COLOR_T4 #FFBDD7
+
 !define STORAGE_COLOR #A38300
 !define STORAGE_COLOR_T1 #FFE374
 !define STORAGE_COLOR_T2 #EDC520
@@ -38,6 +44,14 @@ skinparam BackgroundColor #FFFFFFF
 skinparam Shadowing false
 
 skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Enum {
     FontColor #FFFFFF
     BorderThickness 1
     BorderColor #FFFFFF
@@ -71,5 +85,5 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 hide footbox
-hide members
+hide empty members
 hide circle

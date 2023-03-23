@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor TASK_MODEL_COLOR
+skinparam classBackgroundColor TASK_MODEL_COLOR
+
+Class LocalDateTime
+Class Name
+Class Person
+Class TaskList
+Class Task
+
+Enum "<<enumeration>>\n TaskStatus" as TaskStatus {
+INPROGRESS
+LATE
+COMPLETE
+}
+
+Person *--> TaskList
+
+TaskList --> "~* " Task
+
+Task *--> "creationDate" LocalDateTime
+Task *--> Name
+Task *--> "1" TaskStatus
+
+@enduml

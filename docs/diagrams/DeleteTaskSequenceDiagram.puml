@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant "d:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("deleteTask 1 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deleteTask 1 2")
+activate AddressBookParser
+
+create DeleteTaskCommandParser
+AddressBookParser -> DeleteTaskCommandParser
+activate DeleteTaskCommandParser
+
+DeleteTaskCommandParser --> AddressBookParser
+deactivate DeleteTaskCommandParser
+
+AddressBookParser -> DeleteTaskCommandParser : parse("1 2")
+activate DeleteTaskCommandParser
+
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
+
+DeleteTaskCommand --> DeleteTaskCommandParser : d
+deactivate DeleteTaskCommand
+
+DeleteTaskCommandParser --> AddressBookParser : d
+deactivate DeleteTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTaskCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTaskCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
+
+LogicManager -[hidden]-> DeleteTaskCommand : execute()
+DeleteTaskCommand -[hidden]-> LogicManager : result
+LogicManager -[hidden]-> DeleteTaskCommand : execute()
+DeleteTaskCommand -[hidden]-> LogicManager : result
+
+DeleteTaskCommand --> LogicManager : result
+deactivate DeleteTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

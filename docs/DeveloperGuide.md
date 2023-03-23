@@ -26,6 +26,32 @@ title: Developer Guide
 ### Logic component
 
 ### Model component
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+<img src="images/ModelClassDiagram.png" width="450" />
+
+
+The `Model` component,
+
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+</div>
+
+#### Task model
+**API** : [`Task.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+
+<img src="images/TaskClassDiagram.png" width="280" />
+
+* A `Person` has a `TaskList` object which holds all their `Task` objects.
+* Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
+* The `creationDate` will be hidden from the user and only be used for sorting the `TaskList`.
 
 ### Storage component
 
@@ -68,7 +94,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* private math tuition teachers
+* Private math tuition teachers
 * has a need to manage a number of students' contacts and performance
 * prefer desktop apps over other types
 * prefers typing to mouse interactions
@@ -88,29 +114,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have                                    |
 | `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                         |
 | `* * *`  | user    | create my student contacts                                  | add new students into my contact list                                                    |
-| `* * *`  | user    | filter my student contacts                                  | look up on a single student/students of the same level instead of reading through a list |
 | `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                               |
 | `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                   |
 | `* * *`  | user    | use the help section                                        | learn the available commands in the application                                          |
 | `* * *`  | user    | import my data                                              | backup data and open in another device                                                   |
 | `* * *`  | user    | export my data                                              | load data into a new device                                                              |
-| `* * *`  | user    | have a secure delete of my data                             | prevent myself from accidentally deleting information                                    |
+| `* * *`  | user    | delete / mark student’s tasking(s)                          | identify what taskings are done/obsolete                                                 |
+| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                 |
+| `* * `   | user    | filter my student contacts                                  | look up on a single student/students of the same level instead of reading through a list |
+| `* * `   | user    | have a secure delete of my data                             | prevent myself from accidentally deleting information                                    |
 | `* * `   | user    | create a progress report                                    | keep track of the student's progress                                                     |
-| `* * `   | user    | check the student’s taskings                                | understand how good the student is doing                                                 |
 | `* * `   | user    | edit the student’s tasking                                  | edit the information of the student's tasking                                            |
-| `* * `   | user    | delete / mark student’s tasking(s)                          | identify what taskings are done/obsolete                                                 |
 | `* * `   | user    | see a calendar                                              | view on which day I have classes                                                         |
 | `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                 |
 | `* `     | user    | note down a more detailed class description                 | know what I need to do for a certain class                                               |
-|  `* `    | user    | filter the calendar                                         | see clearly how many classes I have within a period of time (week/month, etc.)           |
-|  `* `    | user    | be able to do a wildcard search                             | know what I can do on the app if I forgot the exact command I want to execute            |
-|  `* `    | user    | indicate whether a student has paid the tuition fee         | easily remember which student hasn't paid the tuition fee                                |
-|  `* `    | user    | export my data to the cloud                                 | save my data online                                                                      |
-|  `* `    | user    | export the calendar data                                    | backup the calendar data and import the data to a calendar application                                   |
-|  `* `    | user    | have a reminder                                             | remember what classes I have for tomorrow                                                |
-|  `* `    | user    | auto send an email to the student to confirm the attendance | know whether the student will attend the class or not and decide whether I should conduct the class     |
-|  `* `    | user    | indicate whether the student attends the class              | view the student's attendance record                                                     |
-|  `* `    | user    | auto send an email to remind the student about the tuition fee payment  | eliminate my task of manually reminding the student to pay the tuition fee                                                                |
+| `* `     | user    | filter the calendar                                         | see clearly how many classes I have within a period of time (week/month, etc.)           |
+| `* `     | user    | be able to do a wildcard search                             | know what I can do on the app if I forgot the exact command I want to execute            |
+| `* `     | user    | indicate whether a student has paid the tuition fee         | easily remember which student hasn't paid the tuition fee                                |
+| `* `     | user    | export my data to the cloud                                 | save my data online                                                                      |
+| `* `     | user    | export the calendar data                                    | backup the calendar data and import the data to a calendar application                                   |
+| `* `     | user    | have a reminder                                             | remember what classes I have for tomorrow                                                |
+| `* `     | user    | auto send an email to the student to confirm the attendance | know whether the student will attend the class or not and decide whether I should conduct the class     |
+| `* `     | user    | indicate whether the student attends the class              | view the student's attendance record                                                     |
+| `* `     | user    | auto send an email to remind the student about the tuition fee payment  | eliminate my task of manually reminding the student to pay the tuition fee                                                                |
 
 *{More to be added}*
 
