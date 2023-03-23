@@ -66,4 +66,12 @@ public class TestUtil {
         }
         return grpSet;
     }
+
+
+    /**
+     * Returns the command String to generate the given group set.
+     */
+    public static String toCommandString(HashSet<GroupName> groupSet) {
+        return groupSet.toString().replaceAll("[\\[\\]]", "");
+    }
 }
