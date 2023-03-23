@@ -28,8 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_PROGRESS_AMY = "11111111";
-    public static final String VALID_PROGRESS_BOB = "22222222";
+    public static final String VALID_PROGRESS_AMY = "1 32 7";
+    public static final String VALID_PROGRESS_BOB = "2 20 12";
     public static final String VALID_GENRE_AMY = "Amy";
     public static final String VALID_GENRE_BOB = "Bob";
     public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";

@@ -1,7 +1,11 @@
 {
   "bookmarks": [ {
     "title": "Hans Muster",
-    "progress": "9482424",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": " ",
     "author": "4th street"
   } ]

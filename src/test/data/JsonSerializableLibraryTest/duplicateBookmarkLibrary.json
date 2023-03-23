@@ -1,7 +1,11 @@
 {
   "bookmarks": [ {
     "title": "Alice Pauline",
-    "progress": "94351253",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
     "tagged": [ {
@@ -9,7 +13,11 @@
     } ]
   }, {
     "title": "Alice Pauline",
-    "progress": "94351253",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
     "genre": "pauline@example.com",
     "author": "4th street"
   } ]

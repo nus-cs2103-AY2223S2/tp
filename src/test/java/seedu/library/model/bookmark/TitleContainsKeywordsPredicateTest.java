@@ -43,13 +43,8 @@ public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
-<<<<<<< HEAD:src/test/java/seedu/library/model/bookmark/BookmarkContainsKeywordsPredicateTest.java
-        // One name keyword
-        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
-=======
         // One keyword
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
->>>>>>> parent of a2e0e8af (Update BookmarkContainsKeywordsPredicate name):src/test/java/seedu/library/model/bookmark/TitleContainsKeywordsPredicateTest.java
                 Collections.singletonList("Alice"), null, null, null
         );
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
@@ -76,5 +71,6 @@ public class TitleContainsKeywordsPredicateTest {
         predicate = new TitleContainsKeywordsPredicate(
                 Arrays.asList("Bob", "Carol"), null, null, null);
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
+
     }
 }
