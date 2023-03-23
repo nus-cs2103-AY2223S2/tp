@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_TASK;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -21,9 +23,41 @@ public class AddTaskCommand extends Command {
             + PREFIX_ADD_TASK + "Time to swim.";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "AddTask command not implemented yet";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Task: %2$s";
 
+    private final Index index;
+    private final String task;
+
+    /**
+     * @param index of the person in the filtered person list to edit the task
+     * @param task of the person to be updated to
+     */
+    public AddTaskCommand(Index index, String task) {
+        requireAllNonNull(index, task);
+
+        this.index = index;
+        this.task = task;
+    }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), task));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof RemarkCommand)) {
+            return false;
+        }
+
+        // state check
+        AddTaskCommand e = (AddTaskCommand) other;
+        return index.equals(e.index)
+                && task.equals(e.task);
     }
 }

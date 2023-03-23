@@ -55,6 +55,8 @@ public class CommandTestUtil {
 
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_TASK_AMY = "Cook dinner.";
+    public static final String VALID_TASK_BOB = "Eat dinner.";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
