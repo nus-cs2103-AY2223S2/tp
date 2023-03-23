@@ -180,7 +180,7 @@ The following details explain how it works:
       appointment date time are valid.
       * If the appointment date and time are valid, they are added to the appointment list, which is then sorted. 
       Otherwise, an error message is returned.
-     
+
 
    * Example Usage Scenario
 
@@ -188,8 +188,6 @@ The following details explain how it works:
        * The user launches the application for the first time.
        * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also 
        checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
-   
-
 
 
   * Design Considerations
@@ -198,7 +196,6 @@ The following details explain how it works:
     automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
       * pros: Users can easily distinguish between expired and non-expired appointment dates and times. 
       * cons: expired date time cannot be updated immediately unless the user reopen the application.
-
 
 ### Find feature
 
