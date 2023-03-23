@@ -119,7 +119,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     public void initDecks() {
         cards.asUnmodifiableObservableList().stream()
-                .map(card -> card.getDeck().get())
+                .map(Card::getDeck)
                 .distinct()
                 .forEach(this::addDeck);
     }

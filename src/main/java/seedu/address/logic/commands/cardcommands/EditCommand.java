@@ -90,8 +90,8 @@ public class EditCommand extends Command {
         Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(cardToEdit.getAnswer());
         Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(cardToEdit.getTags());
 
-        assert cardToEdit.getDeck().isPresent() : "The edited card must be inside a deck";
-        Deck updatedDeck = editCardDescriptor.getDeck().orElse(cardToEdit.getDeck().get());
+        assert cardToEdit.getDeck() != null : "The edited card must be inside a deck";
+        Deck updatedDeck = cardToEdit.getDeck();
 
         return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }

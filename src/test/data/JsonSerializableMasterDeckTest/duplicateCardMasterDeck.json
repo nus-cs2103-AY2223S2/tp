@@ -7,11 +7,9 @@
   }, {
     "question": "What is a loop",
     "answer": "A construct that repeats instructions until a condition is met",
-    "deck" : "Science"
+    "deck" : "Programming Concepts"
   } ],
   "decks" : [ {
-    "deckName" : "Science"
-  }, {
     "deckName" : "Programming Concepts"
   } ]
 }

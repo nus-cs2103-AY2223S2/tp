@@ -22,43 +22,38 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.cardcommands.AddCommand;
+import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
-import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.CardBuilder;
-
-
-
-
-
-
-
-
+import seedu.address.testutil.AddCardDescriptorBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Card expectedCard = new CardBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build();
+
+        AddCardDescriptor expectedCardDescriptor = new AddCardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build(); // No deck specified
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_PHOTOSYNTHESIS
-                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCard));
+                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCardDescriptor));
 
         // multiple question - last question accepted
         assertParseSuccess(parser, QUESTION_DESC_GRAVITY + QUESTION_DESC_PHOTOSYNTHESIS
-                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCard));
+                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCardDescriptor));
 
         // multiple answer - last answer accepted
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_GRAVITY
-                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCard));
+                + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_MEDIUM, new AddCommand(expectedCardDescriptor));
 
         // multiple tags - all accepted
-        Card expectedCardMultipleTags = new CardBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM, VALID_TAG_HARD).build();
+        AddCardDescriptor expectedCardMultipleTags = new AddCardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
+                .withTags(VALID_TAG_MEDIUM, VALID_TAG_HARD).build();
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS
                 + TAG_DESC_MEDIUM + TAG_DESC_HARD, new AddCommand(expectedCardMultipleTags));
     }
@@ -67,8 +62,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Card expectedCard = new CardBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build();
+        AddCardDescriptor expectedCard = new AddCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build(); // tags are optional
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 new AddCommand(expectedCard));
     }

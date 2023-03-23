@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.deck.Deck;
@@ -20,18 +19,18 @@ public class Card {
     // Identity fields
     private final Question question;
     private final Answer answer;
+    private final Deck deck;
 
 
     // Data fields
-    private Set<Tag> tags = new HashSet<>();
-    private Deck deck;
+    private final Set<Tag> tags = new HashSet<>();
     private boolean isFlipped = true;
 
     /**
      * Every field must be present and not null.
      */
     public Card(Question question, Answer answer, Set<Tag> tags, Deck deck) {
-        requireAllNonNull(question, answer, tags);
+        requireAllNonNull(question, answer, tags, deck);
         this.question = question;
         this.answer = answer;
         this.tags.addAll(tags);
@@ -54,14 +53,10 @@ public class Card {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Optional<Deck> getDeck() {
-        return Optional.of(deck);
+    public Deck getDeck() {
+        return deck;
     }
-
-    public void setDeck(Deck newDeck) {
-        this.deck = newDeck;
-    }
-    public void addTag(Tag tag) {
+    public void addTag(Tag tag) { // cannot modify directly!
         this.tags.add(tag);
     }
 
@@ -76,7 +71,8 @@ public class Card {
 
         return otherCard != null
                 && otherCard.getQuestion().equals(getQuestion())
-                && otherCard.getAnswer().equals(getAnswer());
+                && otherCard.getAnswer().equals(getAnswer())
+                && otherCard.getDeck().equals(getDeck());
     }
 
     /**
@@ -129,7 +125,8 @@ public class Card {
         Card otherCard = (Card) other;
         return otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getAnswer().equals(getAnswer())
-                && otherCard.getTags().equals(getTags());
+                && otherCard.getTags().equals(getTags())
+                && otherCard.getDeck().equals(getDeck());
     }
 
     @Override

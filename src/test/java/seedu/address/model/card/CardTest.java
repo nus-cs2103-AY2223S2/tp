@@ -3,7 +3,6 @@ package seedu.address.model.card;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,9 +30,8 @@ public class CardTest {
         // null -> returns false
         assertFalse(LOOP.isSameCard(null));
 
-        // same question and answer, all other attributes different -> returns true
-        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE)
-                .build();
+        // same question and answer and deck, all other attributes different -> returns true
+        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
         assertTrue(LOOP.isSameCard(editedLoop));
 
         // different question, all other attributes same -> returns false
