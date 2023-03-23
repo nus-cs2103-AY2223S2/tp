@@ -19,6 +19,7 @@ public class Appointment implements Comparable<Appointment> {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final GroupName vaccine;
+    private boolean isCompleted;
 
     /**
      * Every field must be present and not null.
@@ -31,6 +32,7 @@ public class Appointment implements Comparable<Appointment> {
         this.startTime = startTime;
         this.endTime = endTime;
         this.vaccine = vaccine;
+        isCompleted = false;
     }
 
     public LocalDateTime getAppointmentTime() {
@@ -47,6 +49,22 @@ public class Appointment implements Comparable<Appointment> {
 
     public Index getPatient() {
         return patientId;
+    }
+
+    public boolean getStatus() {
+        return isCompleted;
+    }
+
+    public void mark() {
+        assert !isCompleted;
+
+        isCompleted = true;
+    }
+
+    public void unmark() {
+        assert isCompleted;
+
+        isCompleted = false;
     }
 
     public static boolean isValidDuration(LocalDateTime startTime, LocalDateTime endTime) {
