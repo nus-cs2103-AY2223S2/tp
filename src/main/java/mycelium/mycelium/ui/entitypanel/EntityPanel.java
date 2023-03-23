@@ -64,6 +64,42 @@ public class EntityPanel extends UiPart<TabPane> {
     }
 
     /**
+     * Selects and scroll to the next item in the current tab.
+     * If there is no next item, it will select and scroll to the first item.
+     */
+    public void nextItem() {
+        Tab item = this.selectionModel.getSelectedItem();
+        switch (item.getText()) {
+        case "Projects":
+            this.projectListPanel.nextItem();
+            break;
+        case "Client":
+            this.clientListPanel.nextItem();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Selects and scroll to the previous item in the current tab.
+     * If there is no previous item, it will select and scroll to the last item.
+     */
+    public void prevItem() {
+        Tab item = this.selectionModel.getSelectedItem();
+        switch (item.getText()) {
+        case "Projects":
+            this.projectListPanel.prevItem();
+            break;
+        case "Client":
+            this.clientListPanel.prevItem();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
      * Sets the clients in the client list panel.
      */
     public void setClients(ObservableList<Client> list) {

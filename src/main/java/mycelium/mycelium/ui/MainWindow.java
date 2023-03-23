@@ -87,10 +87,14 @@ public class MainWindow extends UiPart<Stage> {
         return commandBox;
     }
 
+    public CommandLog getCommandLog() {
+        return commandLog;
+    }
+
     private void setEventHandlers() {
         getRoot().addEventFilter(
             UiEventManager.TYPE,
-            new UiEventManager(logic, this).getEventHandler());
+            new UiEventManager(this).getEventHandler());
     }
 
     /**

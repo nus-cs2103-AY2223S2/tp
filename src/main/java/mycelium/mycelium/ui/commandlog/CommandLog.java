@@ -26,4 +26,7 @@ public class CommandLog extends UiPart<Region> {
         resultDisplay.setText(feedbackToUser);
     }
 
+    public void clearFeedback() {
+        resultDisplay.clear();
+    }
 }

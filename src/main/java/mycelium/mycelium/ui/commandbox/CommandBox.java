@@ -42,6 +42,8 @@ public class CommandBox extends UiPart<Region> {
      */
     private Consumer<MainWindow> uponNotListening;
 
+    private String previousText;
+
     @FXML
     private TextField commandTextField;
 
@@ -67,6 +69,7 @@ public class CommandBox extends UiPart<Region> {
         this.uponNotListening = uponNotListening;
         this.mainWindow = mainWindow;
         this.isListening = false;
+        this.previousText = "";
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -139,6 +142,13 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(LISTENING_STYLE_CLASS);
     }
 
+    private void cacheAndReplaceText() {
+        String replacingText = previousText;
+        previousText = commandTextField.getText();
+        commandTextField.setText(replacingText);
+        commandTextField.positionCaret(replacingText.length());
+    }
+
     /**
      * Toggles listening mode.
      */
@@ -150,6 +160,14 @@ public class CommandBox extends UiPart<Region> {
             uponNotListening.accept(mainWindow);
         }
         setStyleToDefault();
+        cacheAndReplaceText();
+    }
+
+    public void requestFocus() {
+        commandTextField.requestFocus();
+    }
+
+    public void clearInput() {
         commandTextField.setText("");
     }
 

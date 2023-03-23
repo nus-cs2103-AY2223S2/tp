@@ -1,7 +1,6 @@
 package mycelium.mycelium.logic.uievent.key;
 
 import javafx.scene.input.KeyCombination;
-import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
@@ -11,7 +10,7 @@ public class FindKey extends Key {
     public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+F");
 
     @Override
-    public void execute(Logic logic, MainWindow mainWindow) {
+    public void execute(MainWindow mainWindow) {
         mainWindow.getCommandBox().toggleListening();
     }
 }
