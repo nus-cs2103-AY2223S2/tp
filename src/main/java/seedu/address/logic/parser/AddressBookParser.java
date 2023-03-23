@@ -8,14 +8,19 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditMeetingsCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportPersonsCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportPersonsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewMeetingsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,14 +81,59 @@ public class AddressBookParser {
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
 
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommandParser().parse(arguments);
+
         case ViewMeetingsCommand.COMMAND_WORD:
             return new ViewMeetingsCommand();
 
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().parse(arguments);
 
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommandParser().parse(arguments);
+        case ExportPersonsCommand.COMMAND_WORD:
+            return new ExportPersonsParser().parse(arguments);
+        case ImportPersonsCommand.COMMAND_WORD:
+            return new ImportPersonsParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for autocomplete suggestion.
+     *
+     * @param userInput full user input string
+     * @return the {@code AutocompleteResult} based on the user input
+     */
+    public AutocompleteResult getAutocompleteSuggestion(String userInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return new AutocompleteResult(null, false);
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+
+        switch (commandWord) {
+
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().getAutocompleteSuggestion(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().getAutocompleteSuggestion(arguments);
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().getAutocompleteSuggestion(arguments);
+
+        case EditMeetingsCommand.COMMAND_WORD:
+            return new EditMeetingParser().getAutocompleteSuggestion(arguments);
+        case ExportPersonsCommand.COMMAND_WORD:
+            return new ExportPersonsParser().getAutocompleteSuggestion(arguments);
+
+        default:
+            return new AutocompleteResult(null, false);
         }
     }
 

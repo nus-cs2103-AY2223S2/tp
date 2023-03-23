@@ -36,7 +36,7 @@ public class AddMeetingCommand extends Command {
         + PREFIX_PERSON + "NAME "
         + PREFIX_DATETIME + DATE_FORMAT + " " + TIME_FORMAT + " "
         + PREFIX_LOCATION + "LOCATION "
-        + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_DESCRIPTION + "DESCRIPTION\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_MEETING_TITLE + "Meeting with John "
         + PREFIX_PERSON + "John Doe "

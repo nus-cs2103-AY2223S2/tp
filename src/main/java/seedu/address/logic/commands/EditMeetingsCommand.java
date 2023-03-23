@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.HashSet;
@@ -37,7 +37,7 @@ public class EditMeetingsCommand extends Command {
             + "by the index number used in the displayed meetings list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_MEETING_TITLE + "TITLE] "
             + "[" + PREFIX_DATETIME + "TIMEDATE] "
             + "[" + PREFIX_PERSON + "ATTENDEES] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
@@ -90,16 +90,17 @@ public class EditMeetingsCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor, Model model) throws CommandException {
+    private static Meeting createEditedMeeting(
+                    Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor, Model model)
+                    throws CommandException {
         assert meetingToEdit != null;
-
         Optional<Set<Name>> updatedAttendees = editMeetingDescriptor.getAttendees();
         Set<Person> updatedPerson = meetingToEdit.getAttendees();
         Title updatedTitle = editMeetingDescriptor.getTitle().orElse(meetingToEdit.getTitle());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-        if(updatedAttendees.isPresent()) {
+        if (updatedAttendees.isPresent()) {
             Set<Name> gotUpdatedAttendees = updatedAttendees.get();
             Set<Person> attendees = new HashSet<>();
             for (Name name : gotUpdatedAttendees) {
@@ -111,7 +112,7 @@ public class EditMeetingsCommand extends Command {
             }
             return new Meeting(updatedTitle, updatedDateTime, attendees, updatedLocation, updatedDescription);
         }
-            return new Meeting(updatedTitle, updatedDateTime, updatedPerson, updatedLocation, updatedDescription);
+        return new Meeting(updatedTitle, updatedDateTime, updatedPerson, updatedLocation, updatedDescription);
     }
 
     @Override
@@ -122,7 +123,7 @@ public class EditMeetingsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMeetingsCommand)) {
             return false;
         }
 
@@ -137,9 +138,9 @@ public class EditMeetingsCommand extends Command {
      * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
-        private Set<Name> attendees;
         private Title title;
         private DateTime dateTime;
+        private Set<Name> attendees;
         private Location location;
         private Description description;
 
@@ -149,9 +150,9 @@ public class EditMeetingsCommand extends Command {
          * Copy constructor.
          */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
-            setAttendees(toCopy.attendees);
             setTitle(toCopy.title);
             setDateTime(toCopy.dateTime);
+            setAttendees(toCopy.attendees);
             setLocation(toCopy.location);
             setDescription(toCopy.description);
         }
@@ -160,7 +161,7 @@ public class EditMeetingsCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(attendees, title, dateTime, location, description);
+            return CollectionUtil.isAnyNonNull(title, dateTime, attendees, location, description);
         }
 
         public void setTitle(Title title) {

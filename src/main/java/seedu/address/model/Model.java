@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -77,6 +79,8 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    List<Person> getPersonsByIndexes(List<Index> indexList);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
@@ -132,7 +136,18 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    void removeMeeting(Meeting meeting);
+
+    /**
      * Returns an unmodifiable view of the meetings list
      */
     ObservableList<Meeting> getMeetingsList();
+
+    /**
+     * @return an unmodifiable view of the filtered list of meetings
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
 }
