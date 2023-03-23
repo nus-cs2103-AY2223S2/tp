@@ -141,6 +141,16 @@ The `Model` component,
 
 </div>
 
+### Appointment component
+**API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
+
+The `Appointment` component,
+
+* Contains the details of patients' appointment
+  * The patients' `Patient id`
+  * The duration of each appointment (Uses the `start time` and `end time`)
+  * The type and dose of `vaccine` to be administered
+  * The `status` of the appointment
 
 ### Storage component
 
@@ -536,10 +546,22 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should auto save to prevent data loss if application crashes.
-5. All functionalities should be accessible through CLI.
+2. Should be able to handle the following limits without any noticeable sluggishness in performance on typical usage:
+   1. 1000 patients.
+   2. 30 vaccination types, each with a limit of:
+      1. 10 groups
+      2. 30 ingredients
+      3. 300 requirements
+   3. 1000 appointments.
+3. On top of 2, should also be able to handle these names up to 30 characters without any noticeable sluggishness in performance on typical usage:
+   1. Allergy
+   2. Vaccination name
+   3. Vaccination group name
+   4. Vaccination ingredient name
+4. On top of 2, should also be able to handle requirement set of sizes up to 30.
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6. Should auto save to prevent data loss if application crashes.
+7. All functionalities should be accessible through CLI.
 
 ### Glossary
 

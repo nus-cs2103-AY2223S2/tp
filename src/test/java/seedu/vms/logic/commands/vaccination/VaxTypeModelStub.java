@@ -75,6 +75,16 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void markAppointment(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'markAppointment'");
+    }
+
+    @Override
+    public void unmarkAppointment(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'unmarkAppointment'");
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         throw new UnsupportedOperationException("Unimplemented method 'addPatient'");
     }

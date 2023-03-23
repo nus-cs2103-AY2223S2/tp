@@ -124,6 +124,7 @@ public interface Model {
      */
     void deleteAppointment(int id);
 
+
     /** Returns an unmodifiable view of the filtered keyword list */
     ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
 
@@ -144,6 +145,19 @@ public interface Model {
      * The keyword must exist in the keyword manager.
      */
     void deleteKeyword(int id);
+
+    /**
+     * Marks the given appointment as completed.
+     * The appointment must exist in the appointment manager.
+     */
+    void markAppointment(int id);
+
+    /**
+     * Unmarks the given appointment as completed.
+     * The appointment must exist in the appointment manager.
+     */
+    void unmarkAppointment(int id);
+
 
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();

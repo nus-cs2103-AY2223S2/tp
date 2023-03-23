@@ -74,14 +74,4 @@ public class VaxChecker {
         }
         return grpSets;
     }
-
-
-    private static boolean checkReq(List<Requirement> reqs, HashSet<GroupName> set) {
-        for (Requirement req : reqs) {
-            if (!req.check(set)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

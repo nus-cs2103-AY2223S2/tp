@@ -2,8 +2,8 @@ package seedu.vms.model.vaccination;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
+import seedu.vms.testutil.TestUtil;
 
 public class RequirementTest {
     private static final HashSet<GroupName> SET_1_A = new HashSet<>(List.of(
@@ -41,35 +42,34 @@ public class RequirementTest {
 
     @Test
     public void construction_nullReqType_exceptionThrown() {
-        try {
-            new Requirement(null, SET_1_A);
-        } catch (NullPointerException nullEx) {
-            // expected exception thrown
-            return;
-        }
-        fail("Exception not thrown");
+        assertThrows(NullPointerException.class,
+                () -> new Requirement(null, SET_1_A));
     }
 
 
     @Test
     public void construction_invalidReqSet_exceptionThrown() {
         // empty requirement set
-        try {
-            new Requirement(RequirementType.ALL, new HashSet<>());
-        } catch (IllegalArgumentException nullEx) {
-            // expected exception thrown
-            return;
-        }
-        fail("Exception not thrown");
+        assertThrows(IllegalArgumentException.class,
+                () -> new Requirement(RequirementType.ALL, new HashSet<>()));
 
         // null requirement set
-        try {
-            new Requirement(RequirementType.ALL, null);
-        } catch (NullPointerException nullEx) {
-            // expected exception thrown
-            return;
-        }
-        fail("Exception not thrown");
+        assertThrows(NullPointerException.class,
+                () -> new Requirement(RequirementType.ALL, null));
+
+        // requirement set over limit
+        assertThrows(IllegalArgumentException.class,
+                () -> new Requirement(
+                        RequirementType.ALL,
+                        TestUtil.generateGroupSet(Requirement.LIMIT + 1)));
+    }
+
+
+    @Test
+    void construction_validSet_requirementConstructed() {
+        // check if any exception is thrown
+        new Requirement(RequirementType.ALL, TestUtil.generateGroupSet(Requirement.LIMIT - 1));
+        new Requirement(RequirementType.ALL, TestUtil.generateGroupSet(Requirement.LIMIT));
     }
 
 
