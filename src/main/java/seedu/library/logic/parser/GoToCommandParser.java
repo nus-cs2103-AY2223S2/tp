@@ -27,3 +27,4 @@ public class GoToCommandParser implements Parser<GoToCommand> {
     }
 
 }
+
