@@ -17,4 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("/mod");
     public static final Prefix PREFIX_LECTURE = new Prefix("/lec");
     public static final Prefix PREFIX_VIDEO = new Prefix("/vid");
+
+    /*Flag definitions */
+    public static final Flag FLAG_TAG = new Flag("-t");
 }
