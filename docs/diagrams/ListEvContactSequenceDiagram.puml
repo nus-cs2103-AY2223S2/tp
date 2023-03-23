@@ -34,7 +34,7 @@ create ListEvContactCommand
 ListEvContactCommandParser -> ListEvContactCommand
 activate ListEvContactCommand
 
-ListEvContactCommand --> ListEvContactCommandParser : ec
+ListEvContactCommand --> ListEvContactCommandParser
 deactivate ListEvContactCommand
 
 ListEvContactCommandParser --> AddressBookParser : ec
