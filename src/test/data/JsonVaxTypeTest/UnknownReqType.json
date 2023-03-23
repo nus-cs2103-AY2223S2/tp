@@ -2,7 +2,7 @@
   "types": [
     {
       "name": "UNCHI",
-      "allergyReqs": [
+      "historyReqs": [
         {
           "reqType": "UNCHI",
           "reqSet": [

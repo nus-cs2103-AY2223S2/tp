@@ -1,11 +1,12 @@
 package seedu.vms.logic.commands.vaccination;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -44,16 +45,6 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         throw new UnsupportedOperationException("Unimplemented method 'setGuiSettings'");
-    }
-
-    @Override
-    public Path getPatientManagerFilePath() {
-        throw new UnsupportedOperationException("Unimplemented method 'getPatientManagerFilePath'");
-    }
-
-    @Override
-    public void setPatientManagerFilePath(Path patientManagerFilePath) {
-        throw new UnsupportedOperationException("Unimplemented method 'setPatientManagerFilePath'");
     }
 
     @Override
@@ -149,6 +140,24 @@ public class VaxTypeModelStub implements Model {
         return manager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
+    @Override
+    public ParseResult parseCommand(String userCommand) throws ParseException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
+    }
+
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+    }
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
     }
 
 }

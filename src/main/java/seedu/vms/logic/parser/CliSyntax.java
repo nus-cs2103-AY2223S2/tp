@@ -23,7 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_VAX_GROUPS = new Prefix("g");
     public static final Prefix PREFIX_MIN_AGE = new Prefix("lal");
     public static final Prefix PREFIX_MAX_AGE = new Prefix("ual");
-    public static final Prefix PREFIX_ALLERGY_REQ = new Prefix("a");
+    public static final Prefix PREFIX_INGREDIENTS = new Prefix("i");
     public static final Prefix PREFIX_HISTORY_REQ = new Prefix("h");
 
     /*

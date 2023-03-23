@@ -28,10 +28,20 @@ public class VaxChecker {
                 Age age, HashSet<GroupName> allergies, List<VaxType> takenTypes) {
         boolean isWithinAge = age.compareTo(vaxType.getMinAge()) * vaxType.getMaxAge().compareTo(age) >= 0;
 
-        boolean isAllergiesSatisfied = checkReq(vaxType.getAllergyReqs(), allergies);
+        boolean isAllergiesSatisfied = checkAllergies(allergies, vaxType.getIngredients());
         boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), takenTypes);
 
         return isWithinAge && isAllergiesSatisfied && isHistorySatisfied;
+    }
+
+
+    private static boolean checkAllergies(HashSet<GroupName> allergies, HashSet<GroupName> ingredients) {
+        for (GroupName allergy : allergies) {
+            if (ingredients.contains(allergy)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

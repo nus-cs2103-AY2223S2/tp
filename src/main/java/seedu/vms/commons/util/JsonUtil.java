@@ -66,7 +66,9 @@ public class JsonUtil {
         try (BufferedReader reader = FileUtil.getFileReader(path)) {
             return objectMapper.readValue(reader, valueType);
         } catch (JsonParseException | JsonMappingException jsonEx) {
-            throw new IOException(FORMAT_INVALID_JSON_FILE, jsonEx);
+            throw new IOException(
+                    String.format(FORMAT_INVALID_JSON_FILE, path),
+                    jsonEx);
         }
     }
 

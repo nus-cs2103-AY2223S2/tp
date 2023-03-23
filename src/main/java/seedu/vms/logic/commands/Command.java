@@ -2,6 +2,7 @@ package seedu.vms.logic.commands;
 
 import java.util.Optional;
 
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.Model;
 
@@ -17,7 +18,7 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
+    public abstract CommandMessage execute(Model model) throws CommandException;
 
 
     /**

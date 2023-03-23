@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -16,7 +15,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.CommandMessage;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -43,7 +44,7 @@ public class AddCommandTest {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandMessage commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getMessage());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
@@ -94,16 +95,6 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getPatientManagerFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPatientManagerFilePath(Path patientManagerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,6 +189,24 @@ public class AddCommandTest {
         public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
+        }
+
+        @Override
+        public void setVaxTypeManager(VaxTypeManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+        }
+
+        @Override
+        public void setAppointmentManager(AppointmentManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+        }
+
+        @Override
+        public ParseResult parseCommand(String userCommand) throws ParseException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
         }
     }
 

@@ -25,7 +25,7 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_1,
                 INVALID_MIN_AGE,
                 INVALID_MAX_AGE,
-                SampleVaxTypeData.ALLERGY_REQS_1,
+                SampleVaxTypeData.INGREDIENTS_1,
                 SampleVaxTypeData.HISTORY_REQS_1));
     }
 
@@ -39,14 +39,14 @@ public class VaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
         VaxType t2 = new VaxType(
                 new GroupName("Aa"),
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
         assertTrue(t1.compareTo(t2) > 0);
     }
@@ -59,7 +59,7 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         List<VaxType> vaxTypes = permutateVaxType();
 
@@ -89,49 +89,49 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t2 = new VaxType(
                 SampleVaxTypeData.NAME_1,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t3 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_1,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t4 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_1,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t5 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_1,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t6 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_1,
+                SampleVaxTypeData.INGREDIENTS_1,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t7 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_1);
         return List.of(t1, t2, t3, t4, t5, t6, t7);
     }

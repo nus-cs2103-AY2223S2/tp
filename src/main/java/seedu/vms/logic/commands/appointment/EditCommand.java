@@ -15,8 +15,8 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.CollectionUtil;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
@@ -68,7 +68,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
         Map<Integer, IdData<Appointment>> lastShownList = model.getAppointmentManager().getMapView();
 
@@ -98,8 +98,9 @@ public class EditCommand extends Command {
         }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
+
+        // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        return new CommandMessage(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 
     /**

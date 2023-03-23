@@ -10,20 +10,15 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -40,20 +35,15 @@
           "reqSet": ["DOSE 1", "Pfizer"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -70,20 +60,15 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -100,20 +85,15 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
 
@@ -129,21 +109,16 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -160,21 +135,16 @@
           "reqSet": ["DOSE 1", "Moderna"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -191,21 +161,16 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -222,21 +187,16 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
 
@@ -252,23 +212,18 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -285,23 +240,18 @@
           "reqSet": ["DOSE 1", "Novavax"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -318,23 +268,18 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -351,23 +296,18 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     }
   ]

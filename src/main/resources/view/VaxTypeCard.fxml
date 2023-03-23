@@ -25,8 +25,8 @@
       <Label fx:id="ageRangeLabel" maxWidth="-Infinity" minWidth="-Infinity" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label styleClass="card-attribute-label" text="Group" wrapText="true" GridPane.rowIndex="2" />
       <VBox fx:id="groupBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label minHeight="-Infinity" styleClass="card-attribute-label" text="Allergy requirements" wrapText="true" GridPane.rowIndex="3" />
-      <VBox fx:id="allergyBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label minHeight="-Infinity" styleClass="card-attribute-label" text="Ingredients" wrapText="true" GridPane.rowIndex="3" />
+      <VBox fx:id="ingredientBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label minHeight="-Infinity" styleClass="card-attribute-label" text="History requirements" wrapText="true" GridPane.rowIndex="4" />
       <VBox fx:id="historyBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>

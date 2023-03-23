@@ -11,8 +11,8 @@ import java.util.Map;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -59,7 +59,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
 
         // Checks if patient manager contains the given index
@@ -81,7 +81,7 @@ public class AddCommand extends Command {
         }
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

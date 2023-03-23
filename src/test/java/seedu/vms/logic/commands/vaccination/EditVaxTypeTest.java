@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.vaccination.EditVaxTypeParser;
 import seedu.vms.model.Age;
@@ -21,7 +23,7 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.GROUPS_REAL,
             ORIGINAL.getMinAge(),
             ORIGINAL.getMaxAge(),
-            ORIGINAL.getAllergyReqs(),
+            ORIGINAL.getIngredients(),
             ORIGINAL.getHistoryReqs());
     private static final VaxType EDITED_RENAME = SampleVaxTypeData.TYPE_REAL;
 
@@ -30,18 +32,18 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.CMD_GROUPS_REAL);
     private static final String CMD_VALID_RENAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_1,
-            "--" + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL,
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL,
             SampleVaxTypeData.CMD_GROUPS_REAL,
             SampleVaxTypeData.CMD_MIN_AGE_REAL,
-            "--" + CliSyntax.PREFIX_MAX_AGE + " " + Age.MAX_VALUE,
-            SampleVaxTypeData.CMD_ALLERGY_REQS_REAL,
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_MAX_AGE + " " + Age.MAX_VALUE,
+            SampleVaxTypeData.CMD_INGREDIENTS_REAL,
             SampleVaxTypeData.CMD_HISTORY_REQS_REAL);
     private static final String CMD_NON_EXISTENT_NAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_REAL,
             SampleVaxTypeData.CMD_GROUPS_REAL);
     private static final String CMD_EXISTING_RENAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_1,
-            "--" + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL);
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL);
 
     private VaxTypeModelStub model;
 
@@ -83,6 +85,7 @@ public class EditVaxTypeTest {
 
 
     private void attemptExecution(String command) throws Exception {
-        new EditVaxTypeParser().parse(command).execute(model);
+        ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(command);
+        new EditVaxTypeParser().parse(argsMap).execute(model);
     }
 }

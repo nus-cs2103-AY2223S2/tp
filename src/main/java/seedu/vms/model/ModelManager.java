@@ -3,7 +3,6 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +10,9 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.VmsParser;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
@@ -90,15 +92,12 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getPatientManagerFilePath() {
-        return userPrefs.getPatientManagerFilePath();
-    }
+    // =========== Parsing =======================================================================================
 
     @Override
-    public void setPatientManagerFilePath(Path patientManagerFilePath) {
-        requireNonNull(patientManagerFilePath);
-        userPrefs.setPatientManagerFilePath(patientManagerFilePath);
+    public ParseResult parseCommand(String userCommand) throws ParseException {
+        // TODO: Avoid creating a new parser everytime
+        return new VmsParser().parseCommand(userCommand);
     }
 
     // =========== PatientManager ================================================================================
@@ -156,6 +155,12 @@ public class ModelManager implements Model {
         appointmentManager.set(id, editedAppointment);
     }
 
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        appointmentManager.resetData(manager);
+    }
+
     // =========== VaxTypeManager ==============================================================================
 
     @Override
@@ -169,6 +174,12 @@ public class ModelManager implements Model {
         return vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
+
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        vaxTypeManager.resetData(manager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================

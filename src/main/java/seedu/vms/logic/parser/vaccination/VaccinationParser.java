@@ -2,6 +2,7 @@ package seedu.vms.logic.parser.vaccination;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.logic.commands.Command;
+import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.FeatureParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
@@ -14,7 +15,7 @@ public class VaccinationParser extends FeatureParser {
 
 
     @Override
-    public Command parseCommand(String commandWord, String arguments) throws ParseException {
+    public Command parseCommand(String commandWord, ArgumentMultimap arguments) throws ParseException {
         switch (commandWord) {
 
         case AddVaxTypeParser.COMMAND_WORD:

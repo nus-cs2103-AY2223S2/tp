@@ -5,7 +5,7 @@ import static seedu.vms.logic.commands.basic.ExitCommand.MESSAGE_EXIT_ACKNOWLEDG
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 
@@ -15,7 +15,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandMessage expectedCommandResult = new CommandMessage(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

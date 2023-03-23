@@ -1,11 +1,12 @@
 package seedu.vms.model;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
@@ -43,16 +44,6 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the user prefs' patient manager file path.
-     */
-    Path getPatientManagerFilePath();
-
-    /**
-     * Sets the user prefs' patient manager file path.
-     */
-    void setPatientManagerFilePath(Path patientManagerFilePath);
 
     /**
      * Replaces patient manager data with the data in {@code patientManager}.
@@ -138,4 +129,21 @@ public interface Model {
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
 
     VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+
+
+    /**
+     * Parses the specified user command.
+     *
+     * @param userCommand - the user command to parse.
+     * @return the {@code ParseResult} that results from the parsed user
+     *      command.
+     * @throws ParseException if the user command cannot be parsed.
+     */
+    ParseResult parseCommand(String userCommand) throws ParseException;
+
+
+    void setVaxTypeManager(VaxTypeManager manager);
+
+
+    void setAppointmentManager(AppointmentManager manager);
 }
