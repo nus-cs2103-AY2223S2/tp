@@ -31,6 +31,7 @@ public class SortMeetingCommand extends Command {
 
     public static Prefix sortByPrefix;
     public static String Prefix;
+    public static boolean isReverse;
     public static final String COMMAND_WORD = "sortm";
     public static final String MESSAGE_USAGE = "sortm";
     public static final String MESSAGE_SUCCESS = "Sorted by %1$s" ;
@@ -43,8 +44,9 @@ public class SortMeetingCommand extends Command {
      * Creates an SortMeetingCommand to get {@code ModelManage} class to sort with a specified attributes {@code Title},
      * {@code DateTime}, {@code Location}, {@code Description}
      */
-    public SortMeetingCommand(Prefix sortByPrefix) {
+    public SortMeetingCommand(Prefix sortByPrefix, boolean isReverse) {
         this.sortByPrefix = sortByPrefix;
+        this.isReverse = isReverse;
     }
 
 
@@ -53,16 +55,31 @@ public class SortMeetingCommand extends Command {
         Prefix = sortByPrefix.toString();
         switch (sortByPrefix.toString()) {
         case "m/":
-            model.sortFilteredMeetingList(titleComparator);
-            break;
+            if (isReverse) { 
+                model.sortFilteredMeetingList(titleComparator.reversed());
+            } else {
+                model.sortFilteredMeetingList(titleComparator);
+            }
         case "des/":
-            model.sortFilteredMeetingList(descriptorComparator);
+            if (isReverse) { 
+                model.sortFilteredMeetingList(descriptorComparator.reversed());
+            } else {
+                model.sortFilteredMeetingList(descriptorComparator);
+            }
             break;
         case "l/": 
-            model.sortFilteredMeetingList(locationComparator);
+            if (isReverse) { 
+                model.sortFilteredMeetingList(locationComparator.reversed());
+            } else {
+                model.sortFilteredMeetingList(locationComparator);
+            }
             break;
         case "dt":
-            model.sortFilteredMeetingList(dateTimeComparator);
+            if (isReverse) { 
+                model.sortFilteredMeetingList(dateTimeComparator.reversed());
+            } else {
+                model.sortFilteredMeetingList(dateTimeComparator);
+            }
             break;
         }              
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortByPrefix.toString()));

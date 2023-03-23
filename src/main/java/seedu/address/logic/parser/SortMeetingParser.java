@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 
 import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AutocompleteResult;
@@ -50,6 +51,17 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
         }
-        return new SortMeetingCommand(argMultimap.getFirstKey());
+
+        Prefix prefix = argMultimap.getFirstKey();
+        Optional<String> param = argMultimap.getValue(prefix);
+        System.out.println(param.get());
+        if(param.get().equals("r")) {
+                return new SortMeetingCommand(prefix, true);
+            } else if (param.get().equals("")){
+
+                return new SortMeetingCommand(prefix, false);
+            }
+            
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
     }
 }
