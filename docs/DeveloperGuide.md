@@ -182,6 +182,18 @@ Additionally, this operation involves searching through all `Person` objects in 
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
 
+### \[Implemented] List persons from an event feature
+
+#### Current Implementation
+
+Listing persons from an event is a feature that uses the command `listevcontact [EVENT_INDEX]`. The following sequence diagram shows how the listing of persons from an event works.
+
+![ListEvContactSequenceDiagram](images/ListEvContactSequenceDiagram.png)
+
+The `listevcontact` constructs an `EventSetContainsEventPredicate` object first, then executes `Model#updateFilteredPersonList(EventSetContainsEventPredicate)` to update the list according to the predicate to list of persons whose event set contain the specified event.
+
+The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
