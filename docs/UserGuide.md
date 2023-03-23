@@ -41,7 +41,7 @@ prioritise sales tasks
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com c/company X` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King i/food and beverage o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04` : Adds a contact named `Charlotte Oliveiro` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -92,15 +92,15 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG]`
+Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact must include name and phone number.
+A contact must include all fields except tag.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com c/company X`
-* `add n/Betsy Crowe p/62353535 t/friend`
+* `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King i/food and beverage o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04`
+* `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh i/automobile o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111 t/friend`
 
 ### Sorting all persons : `sort`
 
@@ -295,6 +295,7 @@ _Details coming soon ..._
 
 *italic* - optional
 
+
 | Action         | Format, Examples                                                                                                                                                                                                                                                                           |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh i/automobile o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
@@ -309,3 +310,4 @@ _Details coming soon ..._
 | **List**       | `list`                                                                                                                                                                                                                                                                                     |
 | **List Txn**   | `listtxn`                                                                                                                                                                                                                                                                                  |
 | **Help**       | `help`                                                                                                                                                                                                                                                                                     |
+
