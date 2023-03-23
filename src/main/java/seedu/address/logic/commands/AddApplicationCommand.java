@@ -49,7 +49,6 @@ public class AddApplicationCommand extends ApplicationCommand {
     @Override
     public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }

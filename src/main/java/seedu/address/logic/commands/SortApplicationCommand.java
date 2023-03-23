@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.Comparator;
 
@@ -10,6 +9,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.AlphabeticalComparator;
 import seedu.address.model.application.Application;
+import seedu.address.model.application.DeadlineComparator;
+import seedu.address.model.application.DefaultComparator;
 
 /**
  * Sorts applications in the order specified by user.
@@ -25,7 +26,7 @@ public class SortApplicationCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts applications in the order you prefer.\n"
+            + " Sorts applications in the order you prefer.\n"
             + COMMAND_WORD
             + " alphabetical: Sorts applications in alphabetical order.\n"
             + COMMAND_WORD
@@ -50,9 +51,14 @@ public class SortApplicationCommand extends ApplicationCommand {
         requireNonNull(userInputtedOrder);
         checkArgument(isValidSortingOrder(userInputtedOrder), MESSAGE_CONSTRAINTS);
         sortingOrder = SortApplicationCommand.SortingOrder.valueOf(userInputtedOrder.toUpperCase());
-        //if (sortingOrder == SortingOrder.ALPHABETICAL) {
-        comparator = new AlphabeticalComparator();
-        //}
+
+        if (sortingOrder == SortingOrder.ALPHABETICAL) {
+            comparator = new AlphabeticalComparator();
+        } else if (sortingOrder == SortingOrder.DEADLINE) {
+            comparator = new DeadlineComparator();
+        } else {
+            comparator = new DefaultComparator();
+        }
     }
 
     /**

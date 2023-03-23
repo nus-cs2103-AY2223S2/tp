@@ -12,6 +12,8 @@ public class SortApplicationCommandParser implements ApplicationParser<SortAppli
 
     private static final String SORT_BY_ALPHABETICAL_KEYWORD = "alphabetical";
 
+    private static final String SORT_BY_DEADLINE_KEYWORD = "deadline";
+
     /**
      * Parses the given {@code String} of arguments in the context of the SortApplicationCommand
      * and returns a SortApplicationCommand object for execution.
@@ -21,6 +23,8 @@ public class SortApplicationCommandParser implements ApplicationParser<SortAppli
         String trimmedArgs = args.trim();
         if (trimmedArgs.equals(SORT_BY_ALPHABETICAL_KEYWORD)) {
             return new SortApplicationCommand(SORT_BY_ALPHABETICAL_KEYWORD);
+        } else if (trimmedArgs.equals(SORT_BY_DEADLINE_KEYWORD)) {
+            return new SortApplicationCommand(SORT_BY_DEADLINE_KEYWORD);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortApplicationCommand.MESSAGE_USAGE));
