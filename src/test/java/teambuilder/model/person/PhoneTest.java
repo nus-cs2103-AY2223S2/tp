@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import teambuilder.logic.parser.exceptions.ParseException;
 
 public class PhoneTest {
 
@@ -18,7 +17,7 @@ public class PhoneTest {
     @Test
     public void constructor_emptyString_returnsEmptyPhone() {
         String invalidPhone = "";
-        assertThrows(ParseException.class, () -> Phone.of(invalidPhone));
+        assertEquals(Phone.getEmptyPhone(), Phone.of(invalidPhone));
     }
 
     @Test
@@ -27,8 +26,8 @@ public class PhoneTest {
         assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
 
         // invalid phone numbers
-        assertFalse(Phone.isValidPhone("")); // empty string
-        assertFalse(Phone.isValidPhone(" ")); // spaces only
+        assertTrue(Phone.isValidPhone("")); // empty string
+        assertTrue(Phone.isValidPhone(" ")); // spaces only
         assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits

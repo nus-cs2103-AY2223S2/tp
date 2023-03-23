@@ -53,6 +53,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        System.out.println(person.getPhone().isEmptyPhone());
         if (!person.getPhone().isEmptyPhone()) {
             phone.setText(person.getPhone().value);
         } else {
