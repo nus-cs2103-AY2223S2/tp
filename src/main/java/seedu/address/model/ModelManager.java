@@ -94,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatientNric(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatientNric(patient);
+    }
+
+    @Override
     public void deletePatient(Patient target) {
         addressBook.removePatient(target);
     }

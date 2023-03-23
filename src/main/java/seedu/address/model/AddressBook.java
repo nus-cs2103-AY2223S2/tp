@@ -72,6 +72,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a patient with the same NRIC as {@code patient} exists in
+     * the address book.
+     */
+    public boolean hasPatientNric(Patient patient) {
+        requireNonNull(patient);
+        return patients.containsNric(patient);
+    }
+
+    /**
      * Adds a patient to the address book.
      * The patient must not already exist in the address book.
      */

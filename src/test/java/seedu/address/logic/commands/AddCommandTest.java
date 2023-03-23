@@ -129,6 +129,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPatientNric(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePatient(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -165,6 +170,12 @@ public class AddCommandTest {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
+
+        @Override
+        public boolean hasPatientNric(Patient patient) {
+            requireNonNull(patient);
+            return this.patient.isSameNric(patient);
+        }
     }
 
     /**
@@ -177,6 +188,12 @@ public class AddCommandTest {
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return personsAdded.stream().anyMatch(patient::isSamePatient);
+        }
+
+        @Override
+        public boolean hasPatientNric(Patient patient) {
+            requireNonNull(patient);
+            return personsAdded.stream().anyMatch(patient::isSameNric);
         }
 
         @Override

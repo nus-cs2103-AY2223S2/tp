@@ -85,4 +85,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Returns true if a patient with the same NRIC as {@code patient} exists in the address book.
+     */
+    boolean hasPatientNric(Patient patient);
 }
