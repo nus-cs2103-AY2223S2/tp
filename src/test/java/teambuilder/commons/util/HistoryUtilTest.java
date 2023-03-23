@@ -3,9 +3,11 @@ package teambuilder.commons.util;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 
 public class HistoryUtilTest {
     /**
@@ -27,18 +29,11 @@ public class HistoryUtilTest {
     }
 
     @Test
-    public void getLastUndoDescription_noLastUndo_emptyStringReturned() {
-        HistoryUtil history = getFreshHistoryUtil();
-        assertTrue(history.getLastUndoDescription() == "");
-
-    }
-
-    @Test
     public void getLastUndoDescription_hasLastUndo_descriptReturned() {
         HistoryUtil history = getFreshHistoryUtil();
-        history.store(new FilledMomentoStub());
-        history.undo();
-        assertTrue(history.getLastUndoDescription() == FilledMomentoStub.DESC);
+        history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
+        Optional<String> description = history.undo();
+        assertTrue(description.get() == FilledMomentoStub.DESC);
     }
 
     @Test
@@ -46,7 +41,7 @@ public class HistoryUtilTest {
         HistoryUtil history = getFreshHistoryUtil();
         boolean isSuccessful = true;
         for (int i = 0; i < 100; i++) {
-            isSuccessful = history.undo();
+            isSuccessful = history.undo().isPresent();
             assertFalse(isSuccessful);
         }
         assertFalse(isSuccessful);
@@ -57,11 +52,11 @@ public class HistoryUtilTest {
         HistoryUtil history = getFreshHistoryUtil();
         boolean isSuccessful = true;
         for (int i = 0; i < 100; i++) {
-            isSuccessful = history.undo();
+            isSuccessful = history.undo().isPresent();
             assertFalse(isSuccessful);
         }
-        history.store(new FilledMomentoStub());
-        isSuccessful = history.undo();
+        history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
+        isSuccessful = history.undo().isPresent();
         assertTrue(isSuccessful);
     }
 
@@ -69,11 +64,11 @@ public class HistoryUtilTest {
     public void undo_nonMultipleStoreThenUndoAll_alwaysSuccess() {
         HistoryUtil history = getFreshHistoryUtil();
         for (int i = 0; i < 13; i++) {
-            history.store(new FilledMomentoStub());
+            history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
         }
         boolean isSuccessful = false;
         for (int i = 0; i < 10; i++) {
-            isSuccessful = history.undo();
+            isSuccessful = history.undo().isPresent();
             assertTrue(isSuccessful);
         }
         assertTrue(isSuccessful);
@@ -83,48 +78,44 @@ public class HistoryUtilTest {
     public void undo_afterStoringMaxPlusOneMemo_success() {
         HistoryUtil history = getFreshHistoryUtil();
         for (int i = 0; i < 11; i++) {
-            history.store(new FilledMomentoStub());
+            history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
         }
-        boolean isSuccessful = history.undo();
+        boolean isSuccessful = history.undo().isPresent();
         assertTrue(isSuccessful);
     }
 
     @Test
     public void undo_twiceWithOneMemo_successThenFailure() {
         HistoryUtil history = getFreshHistoryUtil();
-        history.store(new FilledMomentoStub());
+        history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
 
-        boolean isFirstSuccessful = history.undo();
+        boolean isFirstSuccessful = history.undo().isPresent();
         assertTrue(isFirstSuccessful);
-        boolean isSecondSuccessful = history.undo();
+        boolean isSecondSuccessful = history.undo().isPresent();
         assertFalse(isSecondSuccessful);
     }
-
 
     @Test
     public void store_infiniteStores_noExceptionThrown() {
         HistoryUtil history = getFreshHistoryUtil();
         for (int i = 0; i < 100; i++) {
-            history.store(new FilledMomentoStub());
+            history.storePast(new FilledMomentoStub(), FilledMomentoStub.DESC);
         }
     }
 
-
     private HistoryUtil getFreshHistoryUtil() {
         HistoryUtil history = HistoryUtil.getInstance();
-        while (history.undo()) {
+        while (history.undo().isPresent()) {
         }
         ;
-        history.store(new EmptyMomentoStub());
-        history.undo();
         return history;
     }
 
     /**
      * Momento that returns true on restore and also already has a description.
      */
-    private class FilledMomentoStub implements Momento {
-        private static final String DESC = "THIS IS TRUE";
+    private class FilledMomentoStub implements Memento {
+        private static final String DESC = "THIS SHOULD APPEAR!";
 
         @Override
         public boolean restore() {
@@ -132,35 +123,9 @@ public class HistoryUtilTest {
         }
 
         @Override
-        public void setDescription(String desc) {
-
+        public Memento getUpdatedMemento() {
+            return new FilledMomentoStub();
         }
 
-        @Override
-        public String toString() {
-            return DESC;
-        }
-    }
-
-    /**
-     * Momento that returns true on restore and but has a null description.
-     */
-    private class EmptyMomentoStub implements Momento {
-        private String desc = null;
-
-        @Override
-        public boolean restore() {
-            return true;
-        }
-
-        @Override
-        public void setDescription(String desc) {
-
-        }
-
-        @Override
-        public String toString() {
-            return desc;
-        }
     }
 }

@@ -129,6 +129,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Sorting persons: `sort`
+
+Sorts persons according to the specified order and sort by.
+
+Format: `sort ORDER SORT_BY`
+
+* The order and sort by are case-insensitive. e.g `tcount` will match `tCount`
+* The order can only be either ascending (`asc`) or descending (`desc`)
+* The following sort by are implemented:
+  * `tcount` Sorts by person's tag count
+
+Examples:
+* `sort desc tcount` returns the persons with highest tag counts to lowest
 ### Deleting a person : `delete`
 
 Deletes the specified person from the team builder.
@@ -148,6 +161,13 @@ Examples:
 Undo the latest command and restore the team builder before that command.
 
 Format: `undo`
+
+### Undoing a command : `redo`
+
+Revoke the latest undo command and restore the team builder before that command.
+Redo will not work if any non-undo commands are entered after the desired undo command to revoke.
+
+Format: `redo`
 
 ### List all persons in a team: `@TODO`
 
@@ -211,6 +231,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Sort** | `sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
 **List** | `list`
 **Undo** | `undo`
 **Help** | `help`

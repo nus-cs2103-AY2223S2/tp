@@ -26,8 +26,8 @@ Team Builder Installation:
 
 1. Download teambuilder.jar from the latest release
 2. Run Team Builder using method (A) or (B)
-   (A) Run teambuilder.jar from the command line using  
-`java -jar teambuilder.jar`  
+   (A) Run teambuilder.jar from the command line using\
+   `java -jar teambuilder.jar`\
    (B) Double click onto teambuilder.jar
 
 ## Usage

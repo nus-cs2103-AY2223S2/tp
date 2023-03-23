@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/swx0)] [[portfolio](team/swx0.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Developer guide, Documentation
 
 ### Chen Jiarui
 
@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/chen-jerry-junior)] [[portfolio](team/chen-jerry-junior.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: Data & UI
 
 ### William Chau Wei Xuan
 
