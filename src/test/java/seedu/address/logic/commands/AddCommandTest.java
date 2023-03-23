@@ -160,6 +160,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean canRedo() {
+            return false;
+        }
+
+        @Override
         public int getNumberOfClients() {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,31 +179,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean canRedo() {
-            return false;
-        }
 
         //todo
-        @Override
-        public void commit() {
+        public void redo() {
 
-        }
-
-        @Override
-        public boolean canUndo() {
-            return false;
         }
 
         //todo
         @Override
         public void undo() {
-
-        }
-
-        //todo
-        @Override
-        public void redo() {
 
         }
     }
