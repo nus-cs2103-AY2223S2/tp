@@ -90,9 +90,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ContainsKeywordsPredicate predicate = preparePredicate(" ", prefix);
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateObservablePersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getObservablePersonList());
     }
 
     @Test
@@ -134,9 +134,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, numOfPerson);
         ContainsKeywordsPredicate predicate = preparePredicate(userInput, prefix);
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateObservablePersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(expectedOutput, model.getFilteredPersonList());
+        assertEquals(expectedOutput, model.getObservablePersonList());
     }
 
     /**

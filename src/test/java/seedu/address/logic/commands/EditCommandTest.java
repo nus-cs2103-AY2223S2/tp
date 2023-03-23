@@ -23,7 +23,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.EduMate;
-import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -38,7 +37,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
     private static final EditPersonDescriptor EDIT_PERSON_DESCRIPTOR = new EditPersonDescriptor();
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -69,7 +68,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs(), new EduMateHistory());
+        Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -82,7 +81,7 @@ public class EditCommandTest {
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs(), new EduMateHistory());
+        Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
