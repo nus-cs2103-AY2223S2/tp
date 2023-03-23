@@ -235,10 +235,17 @@ The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and mo
 
 #### Usage
 
-The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command.
+The activity diagram below illustrates the workflow of patient `EditCommand` behaves when executed by a user when they enter `patient edit ` as a command.
 
 <img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+
+Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step. 
+
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
+
+Within the `EditCommandParser#parse`, the following methods in `ParserUtil` will be invoked to help with the parsing:
+`ID` of the Patient must be valid.
+ 
 
 ### Deleting a Patient
 
