@@ -521,7 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <b>Extensions:</b>
 * 2a. Index provided by user is not found in reminder list.
-    * 2a1. System will promopt user again.
+    * 2a1. System will prompt user again.
       Use case resumes from step 1.
 </pre>
 </details>
