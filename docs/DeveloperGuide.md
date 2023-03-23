@@ -42,7 +42,7 @@ title: Developer Guide
        * [Edit Command](#edit-command)
        * [Delete Command](#delete-command)
        * [Tag Command](#tag-command)
-       * [User Command](#user-command)
+       * [View Command](#view-command)
        * [Find Command](#find-command)
        * [Sort Command](#sort-command)
        * [List Command](#list-command)
@@ -429,6 +429,13 @@ The `add` command allows users to create a new person and insert them into the a
 | 1. Gwon Se Rang<br/>2. Lao Ming Da |         3         | 3 is the next number in the sequence.                       |
 | 1. Gwon Se Rang<br/>3. Lao Ming Da |         2         | 2 is the lowest number that is not already a contact index. |
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+
+The User has the default `ContactIndex` of 0.
+</div>
+
 In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
@@ -524,9 +531,45 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 {to be filled by Kenny}
 
-#### **User Command**
+#### **View Command**
 
-{to be filled by Russell}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ViewCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/ViewCommandParser.java)
+
+The view command allows users to view their information or their contact's information on the profile panel on the top right 
+of the application. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
+the contact's information adding their assigned `ContactIndex` or by adding `n/NAME` behind the `view` command.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+The User profile will be displayed on the profile panel should there be any exceptions thrown during the parsing process.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats** <br>
+- `view` : Displays user's profile on the display panel. <br>
+- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
+- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+</div>
+
+**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
+If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
+The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+
+Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
+
+<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+</div>
+<br>
+Below is an Activity Diagram for the execution of the `ViewCommand`.
+<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution <process></process>
+</div>
 
 #### **Find Command**
 
@@ -612,6 +655,29 @@ The `exit` command allows users to exit the EduMate Application via the command 
 </div>
 
 
+
+### **Meet Command**
+
+<div markdown="span" class="alert alert-warning">
+    :construction: Integration works in the process.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Sub-Commands** <br>
+The `meet` command has 3 different sub-commands : `eat`, `study` and generally `meet`.
+However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
+recommendations as certain locations are only appropriate for certain activities.
+</div>
+
+This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
+
+#### LocationUtil
+{to be filled by Hafeez}
+#### Scheduler
+{to be filled by Russell}
+
+###
 
 ### **Parsers**
 
@@ -750,6 +816,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 #### **Target user profile**
 
 * has a need to manage a significant number of contacts
+* frustrated in the struggle to find suitable meetup venues and timings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -764,16 +831,17 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                              |
-|----------|-----------|--------------------------------------------------------|----------------------------------------------|
-| `***`    | student   | view all my modules in one place                       | be more organised in my work                 |
-| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                      |
-| `***`    | user      | view my personal information                           | share it to whoever needs it                 |
-| `***`    | user      | update my profile                                      | personalise my experience                    |
-| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking     |
-| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
-| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
-| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
+| Priority | As a …​   | I want to …​                                           | So that I can…​                                             |
+|----------|-----------|--------------------------------------------------------|-------------------------------------------------------------|
+| `***`    | student   | view all my modules in one place                       | be more organised in my work                                |
+| `***`    | student   | decide a meeting place and time with my friends conveniently | plan meetups for social and academic purposes efficiently|
+| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                                     |
+| `***`    | user      | view my personal information                           | share it to whoever needs it                                |
+| `***`    | user      | update my profile                                      | personalise my experience                                   |
+| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking                    |
+| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules                |
+| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me                   |
+| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends                    |
 
 ### **Use Cases**
 
