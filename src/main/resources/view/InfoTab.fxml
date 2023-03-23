@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane fx:id="profilePic" maxHeight="50.0" maxWidth="340" minHeight="50.0" minWidth="340" />
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" styleClass="label-header" text="Label" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
