@@ -1,3 +1,5 @@
+# User Guide
+
 ---
 layout: page
 title: User Guide
@@ -14,7 +16,7 @@ management for airline managers.
 
 ## Modal Editing
 
-In Wingman, there are 5 different modes underwhich the app is operating:
+In Wingman, there are 5 different modes under which the app is operating:
 
 - `location` mode: the mode in which an airline manager manages the
   locations that the company is operating at.

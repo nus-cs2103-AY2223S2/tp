@@ -1,4 +1,130 @@
-## User Guide
+# Developer Guide
+
+## Table of Contents
+- **[Acknowledgements](#acknowledgements)**
+- **[Setting up, getting started](#setting-up-getting-started)**
+- **[Architecture](#architecture)**
+    * [UI Component](#ui-component)
+    * [Logic Component](#logic-component)
+    * [Model Component](#model-component)
+    * [Storage Component](#storage-component)
+- **[Implementation](#implementation)**
+    * [Adding locations](#adding-locations--seq-diagram-focussed-on-ui-layer----ai-bo)
+        * [Motivation](#motivation-for-unique-id)
+        * [Implementation](#implementation-of-unique-id)
+- **[Appendix: Requirements](#appendix--requirements)**
+
+## Acknowledgements
+Coming soon
+
+## Setting up, Getting started
+Coming soon
+
+## Architecture
+<img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
+
+Description coming soon
+
+
+### UI Component
+<img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Logic Component
+<img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Model Component
+<img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Storage Component
+<img src="images/WingmanStorageClassDiagram.png" width="616" alt="UI Class diagram">
+
+Description coming soon
+
+### Overall Sequence
+<img src="images/WingmanArchitectureSequenceDiagram.png" width="1005" alt="Architecture Sequence diagram">
+
+This sequence diagram provides an overview of the different layers involved in executing an example command.
+The example used here is the command to add a plane of the following specifications - (Model: A380, Age: 12).
+This sequence is similar for most commands and the subsequent descriptions of Wingman's features include more detailed
+diagrams to depict the processes at each layer in greater detail.
+
+### Example Activity Diagram
+<img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
+
+Description coming soon
+
+## Implementation
+
+### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
+
+### Deleting XYZ (seq. diagram focussed on Logic layer) - Celeste Cheah
+
+### Linking XYZ to a flight (seq. diagram focussed on Model layer) - Xiuxuan
+
+### Unlinking XYZ from a flight
+
+**How is this feature implemented?**
+
+This unlinking feature is implemented in the same way for unlinking crews, locations, pilots and planes from flights.
+Hence, in this description the general term XYZ is used instead.
+
+This feature is enabled by the following classes in particular:
+- `UnlinkXYZCommand` - The command that unlinks a crew from a flight
+- `UnlinkXYZCommandFactory` - The factory class that creates an {@code UnlinkCrewCommand}
+- `Link` - The class defining a link to a target
+- `Flight` - The class defining a flight object in Wingman
+
+When a user enters the command:
+> unlink /XYZprefix {XYZ identifier} /fl {flight identifier}
+
+this command is passed from the UI layer to the logic layer similar to the way described above, in the
+'Adding XYZ' section.
+
+At the logic layer, while the sequence of method calls is similar to what is described in the 'Deleting XYZ' section,
+the `UnlinkXYZCommand.execute(model)` method is called instead of the `DeleteXYZCommand.execute(model)` method.
+
+This method then calls the `flight.XYZLink.delete(entry.getKey(), entry.getValue())` method where `entry` refers to
+one key-value pairing in a mapping of FlightXYZType keys to XYZ values.
+At this point, the process is at the model layer and continues with method calls similar to the ones described in the
+'Linking XYZ to a flight' section until the control is passed back to the logic layer.
+
+Subsequently, the control is passed to the storage layer through the `logicManager.save()` method.
+This method calls `storage.saveXYZManager(model.getXYZManager())` and
+`storage.saveFlightManager(model.getFlightManager());`, to save the updated flight and XYZ objects in storage. Since
+these 2 method calls work in the same way, we shall focus on just the latter, to be succinct.
+
+<img src="images/WingmanUnlinkXYZDiagram.png" width="966" alt="Sequence diagram at Storage layer">
+
+After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the
+`saveFlightManager(flightManager, flightStorage.getPath())` method in the same class.
+`flightStorage` is an `ItemStorage<Flight>` object and flightManager is an `ReadOnlyItemManager<Flight>` object.
+This method call uses the imported json package to store 'JsonIdentifiableObject' versions of the flightManager
+which in turn contains the JsonAdaptedFlights, including the flight with the updated link represented as a
+`Map<FlightXYZType, Deque<String>>` object.
+
+**Why this way?**
+
+In this way, we are able to make the unlink feature work in a very similar way to the link feature, simply swapping
+some methods to perform the opposite operation (particularly the `execute` function of the `UnlinkXYZCommand` class).
+
+**Alternatives that were considered:**
+
+One alternative implementation that was considered was to set the link as an attribute in the flight class and update
+it directly with every change. However, this approach had a few limitations as discussed in the previous section.
+
+### Displaying flights across all modes (expand on UI implementation using UI class diagram)- Yuanyuan
+
+
+## Appendix: Requirements
 
 ### Product scope
 
