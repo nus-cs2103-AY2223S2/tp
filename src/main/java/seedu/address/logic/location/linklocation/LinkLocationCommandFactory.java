@@ -104,8 +104,10 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
         if (locationIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfLocation =
+                Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItem(locationIdOptional.get());
+                locationManagerLazy.get().getItemByIndex(indexOfLocation);
         if (locationOptional.isEmpty()) {
             return false;
         }
@@ -119,8 +121,9 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfLight = Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfLight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
