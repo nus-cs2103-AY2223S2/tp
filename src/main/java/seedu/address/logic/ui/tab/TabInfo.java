@@ -1,6 +1,7 @@
 package seedu.address.logic.ui.tab;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 
 /**
  * Represents the information associated with a UI tab.
@@ -14,6 +15,7 @@ public class TabInfo {
      * Creates a {@code TabInfo} with the given {@code index} and {@code title}.
      */
     public TabInfo(Index index, TabType tabType) {
+        CollectionUtil.requireAllNonNull(index, tabType);
         this.index = index;
         this.tabType = tabType;
     }

@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Race {
 
     public static final String MESSAGE_CONSTRAINTS = "Race should only contain alphabets and spaces";
-    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$";
     public final String race;
 
     /**

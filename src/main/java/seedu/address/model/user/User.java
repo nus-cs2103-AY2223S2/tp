@@ -11,6 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -34,8 +35,8 @@ public class User extends Person {
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
                 Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
-                Favorite favorite, List<Event> events) {
-        super(name, phone, email, address, gender, major, modules, race, tags, comms);
+                Favorite favorite, Faculty faculty, List<Event> events) {
+        super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         this.events = new UniqueEventList();
         this.events.setEvents(events);
     }
@@ -45,8 +46,8 @@ public class User extends Person {
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
                 Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
-                Favorite favorite, UniqueEventList events) {
-        super(name, phone, email, address, gender, major, modules, race, tags, comms);
+                Favorite favorite, Faculty faculty, UniqueEventList events) {
+        super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         Objects.requireNonNull(events);
         this.events = events;
     }

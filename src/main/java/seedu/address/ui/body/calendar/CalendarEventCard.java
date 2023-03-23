@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.fields.DateTime;
 import seedu.address.ui.UiPart;
 
 /**
@@ -39,13 +40,15 @@ public class CalendarEventCard extends UiPart<Region> {
 
         Index index = indexedEvent.getIndex();
         Event event = indexedEvent.getEvent();
+        DateTime effectiveStart = event.getEffectiveStartDateTime();
+        DateTime effectiveEnd = event.getEffectiveEndDateTime();
         description.setText(event.getDescription().getDescription());
-        startDateTime.setText(event.getStartDateTime().getDateTime().format(FORMATTER));
-        endDateTime.setText(event.getEndDateTime().getDateTime().format(FORMATTER));
+        startDateTime.setText(effectiveStart.toString(FORMATTER));
+        endDateTime.setText(effectiveEnd.toString(FORMATTER));
         recurrence.setText(event.getRecurrence().toString());
         indexTag.setText(String.format("Index %d", index.getOneBased()));
 
-        if (event.getEndDateTime().getDateTime().isBefore(LocalDateTime.now())) {
+        if (effectiveEnd.getDateTime().isBefore(LocalDateTime.now())) {
             getRoot().setOpacity(0.5);
         }
     }
