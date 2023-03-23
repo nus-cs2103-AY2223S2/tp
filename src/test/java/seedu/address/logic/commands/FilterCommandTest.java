@@ -79,7 +79,6 @@ public class FilterCommandTest {
     /**
      * Parses {@code userInput} into a {@code PersonContainsTagsPredicate}.
      */
-    
     private PersonContainsTagsPredicate preparePredicate(String userInput) {
         return new PersonContainsTagsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
