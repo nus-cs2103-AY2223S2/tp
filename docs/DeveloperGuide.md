@@ -464,6 +464,113 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
+_{Explain here how the data archiving feature will be implemented}_
+
+### Adding a task
+
+Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]` </br>
+Purpose: Allows users to add tasks into the OfficeConnectModel
+
+#### Implementation
+The implementation of this feature is supported by `AddTaskCommand` and `AddTaskCommandParser`.
+Below is a sequence diagram that illustrates how a user adds new tasks into the OfficeConnectModel. </br>
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: Format of inputs in Add Task Command**
+
+* **Alternative 1 (current choice):** Only title is required when creating a task. The other fields are optional.
+    * Pros: As users may not have a content or status in mind when creating new tasks, this alternative allows flexibility
+  in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not 
+  require content descriptions.
+    * Cons: More difficult to implement, more likely to cause bugs.
+
+* **Alternative 2:** Require all fields to be compulsory
+    * Pros: Easier to implement, fewer bugs may be generated.
+    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when 
+  creating tasks may be forced to key in random content to add tasks.
+
+#### Constraints:
+**Title must be unique:** </br>
+We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
+titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as 
+"Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be 
+able to clearly distinguish the purpose of each task just by looking at the title. </br>
+Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
+to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
+clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
+Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in 
+both the short and long term.
+
+### Deleting a task
+Syntax: `deletetask INDEX` </br>
+Purpose: Allows users to delete the task at the specified index in the OfficeConnectModel.
+
+#### Implementation
+The implementation of this feature is supported by `ListTaskCommand`, `DeleteTaskCommand` and `DeleteTaskCommandParser`.
+Below are the steps required to delete a task in the OfficeConnectModel. </br>
+
+Step 1: User keys in `listtask`, which will display the index of all tasks. 
+The user can thus obtain the index of the task that they want to delete.
+
+Step 2: User keys in `deletetask INDEX` to delete the task at the specified index. 
+If the index is invalid, an error will be thrown. 
+
+Below is an activity diagram showcasing the 2 steps: </br> 
+![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
+
+#### Design Considerations
+**Aspect: Implementation of Delete Task Command**
+
+* **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
+    * Pros: Increase convenience for users, as they do not have to remember the index of each task. Also easier to implement.
+    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
+  obtaining the index needed for `deletetask`.
+
+* **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can 
+use this index when deleting tasks
+    * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
+  troublesome for them to delete tasks as the number of steps required is reduced by one. 
+  Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
+    * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
+  If the user does not keep track of the indexes they have used for previous tasks, they may have to still 
+  call `listtask` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not 
+  give it an advantage over the first alternative. </br>
+  It would also be harder to keep track of invalid indexes. When tasks are deleted, their index should be invalid. Using
+  this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which 
+  would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e first task
+  has index 1, second task has index 2 etc) and thus the invalid indexes can be easily obtained.
+
+## Unassigning a Task from a Person
+
+**Syntax:** `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
+**Purpose:** Allows users to unassign a task from a person.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UnassignActivity.png" width="550" />
+
+Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
+
+![AddTaskSequenceDiagram](images/UnassignSequenceDiagram.png)
+### Implementation
+
+The implementation of this feature is supported by `UnassignTaskCommand` and `UnassignTaskCommandParser`.
+
+### Design Considerations
+
+**Aspect: Unassigning a task from a person**
+
+- **Alternative 1 (current choice):** Unassign tasks using the index of the person and the index of the task.
+    - Pros: Easier for users to locate the task and person they want to unassign, especially if the list of tasks or persons is long.
+    - Cons: Requires users to first obtain the index of the task and person by listing them, which might increase the steps required for the user.
+
+- **Alternative 2:** Unassign tasks using the task title and person name.
+    - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
+    - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Documentation, logging, testing, configuration, dev-ops
