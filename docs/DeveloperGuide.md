@@ -31,7 +31,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction 
+## 1. Introduction
 
 This Developer Guide details Clock-Work's design and implementation details.
 
@@ -335,14 +335,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Can accept multiple of same attribute search terms along with a flag to indicate type of searching.
 * e.g. `all/`
 
-Pros: Simple for users while still being flexible and powerful.  
+Pros: Simple for users while still being flexible and powerful.
 Cons: Cannot find by multiple attributes at a time for more powerful functionality.
 
 #### Option 2:
 * Allow mix-and-matching of attributes for searching
 * Can still have a flag to indicate any or all search term matching
 
-Pros: More powerful functionality  
+Pros: More powerful functionality
 Cons: More complicated to implement and unwieldy for users.
 
 ### 3.6 List Feature
@@ -404,7 +404,7 @@ Cons: Will have to scroll down to see the order for Events if there are too many
 Same as above, but:
 * Event is listed above SimpleTask and Deadline.
 * Deadline is  listed below Event and above SimpleTask.
-* SimpleTask is listed below Deadline and Event. 
+* SimpleTask is listed below Deadline and Event.
 
 
 Pros: Able to see the Events happening close to date.
