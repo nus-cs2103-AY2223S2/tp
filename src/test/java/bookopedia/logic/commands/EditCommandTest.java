@@ -19,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.EditCommand.EditPersonDescriptor;
+import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.AddressBook;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
@@ -34,8 +36,8 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
+        Person editedPerson = new PersonBuilder().withDeliveryStatus(DeliveryStatus.FAILED).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

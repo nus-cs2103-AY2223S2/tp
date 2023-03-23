@@ -14,6 +14,7 @@ import bookopedia.commons.core.index.Index;
 import bookopedia.commons.util.CollectionUtil;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.CliSyntax;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
@@ -94,9 +95,13 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Parcel> updatedParcels = editPersonDescriptor.getParcels().orElse(personToEdit.getParcels());
+        DeliveryStatus updatedDeliveryStatus = editPersonDescriptor.getDeliveryStatus()
+                .orElse(personToEdit.getDeliveryStatus());
+        int updatedNoOfDeliveryAttempts = editPersonDescriptor.getNoOfDeliveryAttempts()
+                .orElse(personToEdit.getNoOfDeliveryAttempts());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedParcels,
-                personToEdit.getDeliveryStatus(), personToEdit.getNoOfDeliveryAttempts());
+                updatedDeliveryStatus, updatedNoOfDeliveryAttempts);
     }
 
     @Override
@@ -127,6 +132,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Parcel> parcels;
+        private DeliveryStatus deliveryStatus;
+        private int noOfDeliveryAttempts;
 
         public EditPersonDescriptor() {}
 
@@ -140,6 +147,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setParcels(toCopy.parcels);
+            setDeliveryStatus(toCopy.deliveryStatus);
+            setNoOfDeliveryAttempts(toCopy.noOfDeliveryAttempts);
         }
 
         /**
@@ -179,6 +188,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+            this.deliveryStatus = deliveryStatus;
+        }
+
+        public Optional<DeliveryStatus> getDeliveryStatus() {
+            return Optional.ofNullable(deliveryStatus);
+        }
+
+        public void setNoOfDeliveryAttempts(int NoOfDeliveryAttempts) {
+            this.noOfDeliveryAttempts = NoOfDeliveryAttempts;
+        }
+
+        public Optional<Integer> getNoOfDeliveryAttempts() {
+            return Optional.ofNullable(noOfDeliveryAttempts);
         }
 
         /**
