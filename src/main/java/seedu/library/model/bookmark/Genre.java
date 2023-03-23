@@ -9,7 +9,9 @@ import static seedu.library.commons.util.AppUtil.checkArgument;
  */
 public class Genre {
 
-    public static final String MESSAGE_CONSTRAINTS = "Genre can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Genre can take on values in the pre-defined list, "
+            + "and it should not be blank\n"
+            + "View list of valid genres with the command: genre";
 
     /*
      * The first character of the genre must not be a whitespace,
