@@ -1,32 +1,32 @@
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #1C1D34; /* Used in the default.html file */
+    background-color: #252745; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Lucida Sans Unicode";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Lucida Sans Unicode";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Lucida Sans Unicode";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Lucida Sans Unicode";
 }
 
 .tab-pane {
@@ -37,6 +37,12 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+    -fx-background-color: #252745;
+    -fx-effect: null;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
 }
 
 .table-view {
@@ -350,3 +356,4 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+

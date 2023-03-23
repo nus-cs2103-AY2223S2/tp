@@ -81,4 +81,49 @@ public class SessionTest {
         assertEquals("01-01-2022 10:00 to 01-01-2022 12:00", session1.getCommand());
         assertEquals("02-01-2022 10:00 to 02-01-2022 11:00", session2.getCommand());
     }
+
+    @Test
+    public void isValidDateFormat_validInput_returnsTrue() {
+        assertTrue(Session.isValidDateFormat("01-01-2022"));
+    }
+
+    @Test
+    public void isValidDateFormat_invalidInput_returnsFalse() {
+        assertFalse(Session.isValidDateFormat("2022-01-01"));
+        assertFalse(Session.isValidDateFormat("01/01/2022"));
+        assertFalse(Session.isValidDateFormat("01-01-22"));
+    }
+
+    @Test
+    public void isValidTimeFormat_validInput_returnsTrue() {
+        assertTrue(Session.isValidTimeFormat("10:00"));
+    }
+
+    @Test
+    public void isValidTimeFormat_invalidInput_returnsFalse() {
+        assertFalse(Session.isValidTimeFormat("10"));
+        assertFalse(Session.isValidTimeFormat("10:60"));
+        assertFalse(Session.isValidTimeFormat("25:00"));
+    }
+
+    @Test
+    public void getDate_validInput_returnsDate() {
+        assertEquals("01-01-2022", session1.getDate());
+    }
+
+    @Test
+    public void getDay_validInput_returnsDay() {
+        assertEquals(1, session1.getDay());
+    }
+
+    @Test
+    public void getMonth_validInput_returnsMonth() {
+        assertEquals(1, session1.getMonth());
+    }
+
+    @Test
+    public void getYear_validInput_returnsYear() {
+        assertEquals(2022, session1.getYear());
+    }
+
 }

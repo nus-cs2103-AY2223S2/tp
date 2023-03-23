@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="popupContent" style="-fx-background-color: #5B5D88;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #5B5D88;">
+         <children>
+            <FlowPane fx:id="namePane" style="-fx-background-color: #5B5D88; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="studentLabel" style="-fx-text-fill: white;" />
+               </children>
+            </FlowPane>
+            <FlowPane fx:id="datePanel" style="-fx-background-color: #5B5D88; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="dateLabel" style="-fx-text-fill: white;">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/23Date.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </FlowPane>
+            <FlowPane fx:id="timePane" style="-fx-background-color: #5B5D88; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="durationLabel" style="-fx-text-fill: white;">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/23timer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </FlowPane>
+            <FlowPane fx:id="locationPane" style="-fx-background-color: #5B5D88; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="locationLabel" style="-fx-text-fill: white;" wrapText="true">
+                     <graphic>
+
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/23address.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </FlowPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

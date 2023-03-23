@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCalendarEvents.getTypicalCalendarEvents;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -14,10 +15,15 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -140,4 +146,82 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+
+    @Test
+    public void addTag_validTag_success() {
+        Tag tag = new Tag("friends");
+        modelManager.addTag(tag);
+        assertTrue(modelManager.hasTag(tag));
+    }
+
+    @Test
+    public void deletePerson_personExists_success() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+
+        modelManager.deletePerson(ALICE);
+        assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void setPerson_personExists_success() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+
+        Person editedAlice = new PersonBuilder(ALICE).withName("Edited Alice").build();
+        modelManager.setPerson(ALICE, editedAlice);
+        assertFalse(modelManager.hasPerson(ALICE));
+        assertTrue(modelManager.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void updateFilteredPersonList_predicate_success() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+
+        modelManager.updateFilteredPersonList(p -> p.getName().fullName.contains("Ben"));
+        assertEquals(1, modelManager.getFilteredPersonList().size());
+        assertTrue(modelManager.getFilteredPersonList().contains(BENSON));
+    }
+
+    // Test for getFilteredCalendarEventList() method
+    @Test
+    public void getFilteredCalendarEventList_success() {
+        // Set up a list of persons with calendar events
+        Person person1 = new PersonBuilder().withName("Amy Bee")
+                .withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo")
+                .withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
+
+        // Check that the filtered list contains only persons with calendar events
+        ObservableList<CalendarEvent> expectedCalendarEvents = getTypicalCalendarEvents();
+        ObservableList<CalendarEvent> actualCalendarEvents = modelManager.getFilteredCalendarEventList();
+        assertEquals(expectedCalendarEvents, actualCalendarEvents);
+    }
+
+    // Test for updateCalendarEventList() method
+    @Test
+    public void updateCalendarEventList_success() {
+        // Set up a list of persons with calendar events
+        Person person1 = new PersonBuilder().withName("Amy Bee")
+                .withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo")
+                .withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
+
+        // Filter the list to show only persons with calendar events
+        modelManager.updateFilteredPersonList(x -> !x.getCalendarEvents().isEmpty());
+
+        // Update the calendar event list
+        modelManager.updateCalendarEventList();
+
+        // Check that the filtered list contains only persons with calendar events
+        ObservableList<CalendarEvent> expectedCalendarEvents = getTypicalCalendarEvents();
+        ObservableList<CalendarEvent> actualCalendarEvents = modelManager.getFilteredCalendarEventList();
+        assertEquals(expectedCalendarEvents, actualCalendarEvents);
+    }
+
 }
