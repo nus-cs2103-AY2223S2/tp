@@ -10,7 +10,9 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 
-
+/**
+ * Lists leaves by a specified employee.
+ */
 public class ListLeavesByEmployeeCommand extends Command {
     public static final String COMMAND_WORD = "listEmployeeLeave";
 
@@ -21,8 +23,15 @@ public class ListLeavesByEmployeeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all leaves by employee %1$s";
 
+    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "No employee exists with the given employee id.";
+
     private final Id employeeId;
 
+    /**
+     * Creates a ListLeavesByEmployee to list all leaves by the
+     * specified {@code Employee}
+     * @param employeeId
+     */
     public ListLeavesByEmployeeCommand(Id employeeId) {
         requireNonNull(employeeId);
         this.employeeId = employeeId;
@@ -31,6 +40,11 @@ public class ListLeavesByEmployeeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Employee employee = model.getEmployee(employeeId);
+
+        if (employee == null) {
+            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+        }
+
         model.updateFilteredLeaveList(l -> l.hasEmployee(employee));
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, employeeId)
