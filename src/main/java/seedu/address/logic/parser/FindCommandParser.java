@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -13,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 
 
@@ -29,11 +31,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nrics;
         String[] names;
         String[] addresses;
+        String[] tags;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (allPrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS)) {
+        if (allPrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG)) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -55,6 +58,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             addresses = getKeywords(argMultimap.getValue(PREFIX_ADDRESS).get());
 
             return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addresses)));
+
+        } else if (isPrefixesPresent(argMultimap, PREFIX_TAG)
+                && argMultimap.getPreamble().isEmpty()) {
+            tags = getKeywords(argMultimap.getValue(PREFIX_TAG).get());
+
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(tags)));
+
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                         FindCommand.MESSAGE_USAGE));
