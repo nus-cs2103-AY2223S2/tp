@@ -156,6 +156,73 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+#### Implementation
+The following sequence diagram provides an overview on how the `add` operation works.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `add` operation.
+######  Step 1: Validate Input
+1. When the user enters an `add` command, the `AddCommandParser` parses the user's input.
+2. It checks for the following:
+- `n/` followed by the company's name [Compulsory]
+- `r/` followed by the role applied [Compulsory]
+- `s/` followed by the status of the internship application [Compulsory]
+- `d/` followed by the date associated with the entry [Compulsory]
+- `c/` followed by the comment for the entry [Optional]
+- `t/` followed by tags for the entry [Optional]
+3. If any of the compulsory fields is missing or any of the fields entered by the user
+   does not meet the parameter requirements, a `ParserException` will be thrown.
+4. An `Internship` will be created from the parsed user's input.
+
+###### Step 2: Adding the Internship
+5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
+   contains the `Internship` created in Step 4.
+6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
+7. Else if there is no duplicate `Internship`, the `Internship` created will be added into
+   the `Model` component.
+8. The currently selected `Internship` in the `Model` component will be updated to become
+   this new `Internship` such that the right UI panel displays the information for this new
+   `Internship`.
+
+#### Design Considerations
+
+###### Whether to make all fields in the `add` command compulsory
+1. **Alternative 1 (chosen): Make only essential fields compulsory**
+    * Pros: More user-centric as not all users want to enter the optional information,
+            which is not exactly critical in tracking internships.
+    * Cons: More work is to be done in code implementation. For example, the absence of optional
+            fields should not cause a `ParseException`, and there is a need to include a
+            default value of `NA` for input without any `Comment`.
+2. **Alternative 2: Make all fields compulsory**
+    * Pros: Easier to implement as there is no need to differentiate between compulsory
+            and optional fields during command parsing, and it is easier to compare between
+            different `Internship` since we just require an exact match of all fields.
+    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
+            are forced to input something for the `Add` command to work.
+
+###### Whether to update the right UI panel according to the `add` command
+
+1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
+    * Pros: Better visual indication that the `add` command has been successfully executed.
+      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
+      the new entry will be placed at the bottom of the left UI panel, which is not visible
+      if the user's scroll position is at the top of the left UI panel. Therefore, updating
+      the right panel enhances visual indication to the user that the `Internship` has been
+      successfully added.
+    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
+      to update the selected `Internship` in the `Model` component in order to update
+      the right panel.
+
+2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
+    * Pros: No additional code is required in the `execute` method of `AddCommand`.
+    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
+      UI panel may not be visible since it is added to the bottom. Without scrolling, users
+      have to rely on the Results Display box to determine if the `AddCommand` is successful.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
