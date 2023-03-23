@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":DeleteApplicationCommandParser" as DeleteApplicationCommandParser LOGIC_COLOR
+participant "d:DeleteApplicationCommand" as DeleteApplicationCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete-app 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> InternshipBookParser : parseCommand("delete-app 1")
+activate InternshipBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteApplicationCommandParser
+InternshipBookParser -> DeleteApplicationCommandParser
+activate DeleteApplicationCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeleteApplicationCommandParser --> InternshipBookParser
+deactivate DeleteApplicationCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+InternshipBookParser -> DeleteApplicationCommandParser : parse("1")
+activate DeleteApplicationCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteApplicationCommand
+DeleteApplicationCommandParser -> DeleteApplicationCommand
+activate DeleteApplicationCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteApplicationCommand --> DeleteApplicationCommandParser : d
+deactivate DeleteApplicationCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeleteApplicationCommandParser --> InternshipBookParser : d
+deactivate DeleteApplicationCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteApplicationCommandParser -[hidden]-> InternshipBookParser
+destroy DeleteApplicationCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+InternshipBookParser --> LogicManager : d
+deactivate InternshipBookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteApplicationCommand : execute()
+activate DeleteApplicationCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteApplicationCommand -> Model : deleteApplication(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteApplicationCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteApplicationCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteApplicationCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteApplicationCommand --> LogicManager : result
+deactivate DeleteApplicationCommand
 
 [<--LogicManager
 deactivate LogicManager
