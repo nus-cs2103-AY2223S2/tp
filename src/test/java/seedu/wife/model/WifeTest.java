@@ -20,8 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.exceptions.DuplicateFoodException;
-//import seedu.wife.model.person.Person;
-//import seedu.wife.model.person.exceptions.DuplicatePersonException;
+import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.FoodBuilder;
 //import seedu.wife.testutil.WifeBuilder;
 
@@ -48,7 +47,7 @@ public class WifeTest {
 
     @Test
     public void resetData_withDuplicateFood_throwsDuplicateFoodException() {
-        // Two persons with the same identity fields
+        // Two foods with the same identity fields
         Food editedMeiji = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_MEIJI).withTags(VALID_TAG_DAIRY)
                 .build();
         List<Food> newFood = Arrays.asList(MEIJI, editedMeiji);
@@ -87,10 +86,11 @@ public class WifeTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyWife whose foods list can violate interface constraints.
      */
     private static class WifeStub implements ReadOnlyWife {
         private final ObservableList<Food> foods = FXCollections.observableArrayList();
+        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
         WifeStub(Collection<Food> foods) {
             this.foods.setAll(foods);
@@ -99,6 +99,11 @@ public class WifeTest {
         @Override
         public ObservableList<Food> getFoodList() {
             return foods;
+        }
+
+        @Override
+        public ObservableList<Tag> getTagList() {
+            return tags;
         }
     }
 

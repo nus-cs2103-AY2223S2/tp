@@ -29,7 +29,7 @@ import seedu.wife.model.food.Unit;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing food item in WIFE.
  */
 public class EditCommand extends Command {
 
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + PREFIX_NAME + "Broccoli "
             + PREFIX_QUANTITY + "2";
 
-    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
+    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited food item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in WIFE.";
 
@@ -56,7 +56,7 @@ public class EditCommand extends Command {
     private final EditFoodDescriptor editFoodDescriptor;
 
     /**
-     * @param index of the food item in the filtered food list to edit
+     * @param index of the food in the filtered food list to edit
      * @param editFoodDescriptor details to edit the food item with
      */
     public EditCommand(Index index, EditFoodDescriptor editFoodDescriptor) {
@@ -89,7 +89,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Food} with the details of {@code foodToEdit}
+     * Creates and returns a {@code food} with the details of {@code foodToEdit}
      * edited with {@code editFoodDescriptor}.
      */
     private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
@@ -123,8 +123,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the food item with. Each non-empty field value will replace the
+     * corresponding field value of the food.
      */
     public static class EditFoodDescriptor {
         private Name name;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditFoodDescriptor(EditCommand.EditFoodDescriptor toCopy) {
+        public EditFoodDescriptor(EditFoodDescriptor toCopy) {
             setName(toCopy.name);
             setUnit(toCopy.unit);
             setQuantity(toCopy.quantity);
@@ -211,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditFoodDescriptor)) {
+            if (!(other instanceof EditFoodDescriptor)) {
                 return false;
             }
 
             // state check
-            EditCommand.EditFoodDescriptor e = (EditCommand.EditFoodDescriptor) other;
+            EditFoodDescriptor e = (EditFoodDescriptor) other;
 
             return getName().equals(e.getName())
                     && getUnit().equals(e.getUnit())

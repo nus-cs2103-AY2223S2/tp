@@ -7,23 +7,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.wife.logic.commands.Command;
-import seedu.wife.logic.commands.ListByTagCommand;
-import seedu.wife.logic.commands.deletecommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.foodcommands.AddCommand;
+import seedu.wife.logic.commands.foodcommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.FindCommand;
-import seedu.wife.logic.commands.foodcommands.IncreaseCommand;
 import seedu.wife.logic.commands.foodcommands.ListCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
 import seedu.wife.logic.commands.generalcommands.HelpCommand;
+import seedu.wife.logic.commands.tagcommands.CreateTagCommand;
+import seedu.wife.logic.commands.tagcommands.DeleteTagCommand;
+import seedu.wife.logic.commands.tagcommands.ListByTagCommand;
+import seedu.wife.logic.commands.tagcommands.ListTagCommand;
+import seedu.wife.logic.commands.tagcommands.TagFoodCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.DeleteByTagCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
-import seedu.wife.logic.parser.foodcommandparser.IncreaseCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.CreateTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.DeleteTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.ListByTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.TagFoodCommandParser;
 
 /**
  * Parses user input.
@@ -56,26 +63,32 @@ public class WifeParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case CreateTagCommand.COMMAND_WORD:
+            return new CreateTagCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         case DeleteByTagCommand.COMMAND_WORD:
             return new DeleteByTagCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case ListTagCommand.COMMAND_WORD:
+            return new ListTagCommand();
         case ListByTagCommand.COMMAND_WORD:
             return new ListByTagCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case TagFoodCommand.COMMAND_WORD:
+            return new TagFoodCommandParser().parse(arguments);
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case IncreaseCommand.COMMAND_WORD:
-            return new IncreaseCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
