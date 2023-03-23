@@ -16,7 +16,6 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
-import seedu.library.model.bookmark.Url;
 
 public class JsonAdaptedBookmarkTest {
     private static final String INVALID_TITLE = "R@chel";
@@ -43,7 +42,8 @@ public class JsonAdaptedBookmarkTest {
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedBookmark bookmark =
-                new JsonAdaptedBookmark(INVALID_TITLE, VALID_PROGRESS, VALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
+                new JsonAdaptedBookmark(INVALID_TITLE, VALID_PROGRESS,
+                        VALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
     }
@@ -59,7 +59,8 @@ public class JsonAdaptedBookmarkTest {
     @Test
     public void toModelType_invalidProgress_throwsIllegalValueException() {
         JsonAdaptedBookmark bookmark =
-                new JsonAdaptedBookmark(VALID_TITLE, INVALID_PROGRESS, VALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
+                new JsonAdaptedBookmark(VALID_TITLE, INVALID_PROGRESS,
+                        VALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
         String expectedMessage = Progress.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
     }
@@ -75,7 +76,8 @@ public class JsonAdaptedBookmarkTest {
     @Test
     public void toModelType_invalidGenre_throwsIllegalValueException() {
         JsonAdaptedBookmark bookmark =
-                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS, INVALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
+                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
+                        INVALID_GENRE, VALID_AUTHOR, VALID_URL, VALID_TAGS);
         String expectedMessage = Genre.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
     }
@@ -91,7 +93,8 @@ public class JsonAdaptedBookmarkTest {
     @Test
     public void toModelType_invalidAuthor_throwsIllegalValueException() {
         JsonAdaptedBookmark bookmark =
-                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS, VALID_GENRE, INVALID_AUTHOR, VALID_URL, VALID_TAGS);
+                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
+                        VALID_GENRE, INVALID_AUTHOR, VALID_URL, VALID_TAGS);
         String expectedMessage = Author.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
     }
@@ -109,7 +112,8 @@ public class JsonAdaptedBookmarkTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedBookmark bookmark =
-                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS, VALID_GENRE, VALID_AUTHOR, VALID_URL, invalidTags);
+                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
+                        VALID_GENRE, VALID_AUTHOR, VALID_URL, invalidTags);
         assertThrows(IllegalValueException.class, bookmark::toModelType);
     }
 

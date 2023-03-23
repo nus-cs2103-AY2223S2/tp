@@ -8,8 +8,8 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
-import seedu.library.model.tag.Tag;
 import seedu.library.model.bookmark.Url;
+import seedu.library.model.tag.Tag;
 import seedu.library.model.util.SampleDataUtil;
 
 /**
