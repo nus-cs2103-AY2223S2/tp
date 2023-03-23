@@ -234,7 +234,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Pair<String, String> > getDeckNameList() {
         ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
-        placeholder.add(new Pair("Current Deck:","No deck selected!"));
+        placeholder.add(new Pair("Current Deck:", "No deck selected!"));
         return Optional.ofNullable(selectedDeck)
                 .map(Deck::getDeckNameList)
                 .orElse(placeholder);

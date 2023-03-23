@@ -1,9 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Stack;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -136,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(title);
 
-        Pair<String, String> header = new Pair("Current Deck:","No deck selected!");
+        Pair<String, String> header = new Pair("Current Deck:", "No deck selected!");
         deckTitlePlaceholder.add(header);
         rightTitle = new DeckNamePanel(deckTitlePlaceholder);
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
@@ -226,6 +224,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.endReview();
     }
 
+    /**
+     * Shows the deck Title.
+     */
     public void handleSelectDeck() {
         rightPanelTitle.getChildren().removeAll();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
@@ -233,6 +234,9 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
+    /**
+     * Hides the deck Title.
+     */
     public void handleUnSelectDeck() {
         rightPanelTitle.getChildren().removeAll();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());

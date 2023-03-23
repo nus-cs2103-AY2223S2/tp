@@ -1,12 +1,15 @@
 package seedu.address.model.deck;
 
+import java.util.Objects;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Objects;
+
 
 /**
  * A group of cards
