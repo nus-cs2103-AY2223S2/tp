@@ -503,6 +503,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+- 3a. Video to mark is already marked as watched.
+
+    3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3b. Video to unmark is already unmarked.
+
+    3b1. LeTracker shows an error message.
+
+    Use case reumes at step 1.
+
+**Use case: Delete a Module**
+
+**MSS**
+
+1. User requests to list modules
+2. Le Tracker shows a list of modules
+3. User requests to delete a specific module in the list
+4. Le Tracker deletes the module
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. There are no modules.
+
+    Use case ends.
+
+- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+
+    4a1. Le Tracker shows an error message.
+
+    Use case resumes at step 1.
+
 **Use case: Delete a Lecture**
 
 **MSS**
