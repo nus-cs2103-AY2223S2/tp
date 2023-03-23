@@ -154,6 +154,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unmarkAppointment(int id) {
+        appointmentManager.unmark(id);
+    }
+
+    @Override
     public void setAppointment(int id, Appointment editedAppointment) {
         requireAllNonNull(editedAppointment);
 

@@ -23,9 +23,18 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     }
 
     /**
-     * Creates an AppointmentManager using the appointments in the {@code toBeCopied}
+     * Marks the appointment at the given id as completed.
+     * The appointment must exist in the appointment manager.
      */
     public void mark(int id) {
         this.getMapView().get(id).getValue().mark();
+    }
+
+    /**
+     * Unmarks the appointment at the given id as not completed.
+     * The appointment must exist in the appointment manager.
+     */
+    public void unmark(int id) {
+        this.getMapView().get(id).getValue().unmark();
     }
 }
