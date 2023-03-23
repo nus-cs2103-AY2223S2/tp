@@ -141,26 +141,25 @@ Below is the sequence diagram for Marking attendane of a student
 
 <img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
-**deleting student**
+**Adding a student**
 
-1. User requests to list all students in a class
-2. TAA shows a list of students
-3. User requests to delete a specific student in the list
-4. TAA deletes the student
+1. User requests to add a user with a specific name into one or more classes.
+2. TAA adds the student into the specified classes.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given student/class name is invalid.
+    * 1a1. TAA shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given index is invalid.
+* 1b. The given class(es) does not exist.
+  * 1b1. TAA creates a new class for each class that does not exist yet.
+   
+    Use case resumes from step 2.
 
-    * 3a1. TAA shows an error message.
-
-      Use case resumes at step 2.
 
 **list student**
 1. User requests to list all students in a class.
