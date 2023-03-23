@@ -433,18 +433,18 @@ public interface Model {
     void deleteFlight(Flight target);
 
     /**
-     * Deletes a flight by index.
-     *
-     * @param index the index of the flight to delete by order.
-     */
-    void deleteFlightByIndex(int index);
-
-    /**
      * Deletes the flight with the given id
      *
      * @param id identifier of flight to be deleted
      */
     void deleteFlight(String id);
+
+    /**
+     * Deletes a flight by index.
+     *
+     * @param index the index of the flight to delete by order.
+     */
+    void deleteFlightByIndex(int index);
 
     /**
      * Adds the given flight
