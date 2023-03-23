@@ -35,7 +35,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC_VOLUNTEER + "NRIC "
             + PREFIX_AGE + "AGE "
             + PREFIX_REGION + "REGION "
-            + "[" + PREFIX_MEDICAL_TAG + "MEDICAL TAG] "
+            + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
