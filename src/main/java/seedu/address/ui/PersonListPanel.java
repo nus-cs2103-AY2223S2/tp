@@ -10,6 +10,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import javafx.collections.ListChangeListener;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
+import seedu.address.logic.Logic;
 
 
 /**
@@ -24,16 +28,57 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private Label nameCard;
 
+    @FXML
+    private Label name;
+    @FXML
+    private Label id;
+    @FXML
+    private Label employeeId;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label email;
+    @FXML
+    private Label department;
+    @FXML
+    private FlowPane tags;
+
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Employee> employeeList) {
+    public PersonListPanel(ObservableList<Employee> employeeList, Logic logic) {
         super(FXML);
         personListView.setItems(employeeList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        nameCard.setText("Welcome to ExecutivePro v1.2");
-
+        //nameCard.setText("Welcome to ExecutivePro v1.2");
+        setClick();
+        logic.getFilteredEmployeeList().addListener(new ListChangeListener<Employee>() {
+            @Override
+            public void onChanged(Change<? extends Employee> change) {
+                Employee employee = personListView.getSelectionModel().getSelectedItem();
+                setInformation(employee);
+            }
+        });
     }
+    public void setClick() {
+        personListView.setOnMouseClicked(mouseEvent -> {
+            Employee person = personListView.getSelectionModel().getSelectedItem();
+            setInformation(person);
+        });
+    }
+    public void setInformation(Employee employee) {
+        name.setText("Name: " + employee.getName().fullName);
+        employeeId.setText("EmployeeId: " + employee.getEmployeeId().value);
+        phone.setText("Phone: " + employee.getPhone().value);
+        address.setText("Address: " + employee.getAddress().value);
+        email.setText("Email: " + employee.getEmail().value);
+        department.setText("Department: " + employee.getDepartment().value);
+    }
+
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.

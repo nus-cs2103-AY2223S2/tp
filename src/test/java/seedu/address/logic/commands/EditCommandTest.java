@@ -9,13 +9,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_ONE;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_TWO;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ExecutiveProDb;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,7 +29,7 @@ import seedu.address.testutil.EmployeeBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExecutiveProDb(), new UserPrefs());
 
     //    @Test
     //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -39,7 +39,7 @@ public class EditCommandTest {
     //
     //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
     //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //        Model expectedModel = new ModelManager(new ExecutiveProDb(model.getAddressBook()), new UserPrefs());
     //        expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
     //
     //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -60,7 +60,7 @@ public class EditCommandTest {
     //
     //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
     //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //        Model expectedModel = new ModelManager(new ExecutiveProDb(model.getAddressBook()), new UserPrefs());
     //        expectedModel.setEmployee(lastEmployee, editedEmployee);
     //
     //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -73,7 +73,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExecutiveProDb(model.getExecutiveProDb()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -87,7 +87,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExecutiveProDb(model.getExecutiveProDb()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

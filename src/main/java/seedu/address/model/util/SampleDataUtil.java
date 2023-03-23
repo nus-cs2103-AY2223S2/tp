@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ExecutiveProDb;
+import seedu.address.model.ReadOnlyExecutiveProDb;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
@@ -16,7 +16,7 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ExecutiveProDb} with sample data.
  */
 public class SampleDataUtil {
     public static Employee[] getSampleEmployees() {
@@ -48,12 +48,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyExecutiveProDb getSampleExecutiveProDb() {
+        ExecutiveProDb sampleExecutiveProDb = new ExecutiveProDb();
         for (Employee sampleEmployee : getSampleEmployees()) {
-            sampleAb.addEmployee(sampleEmployee);
+            sampleExecutiveProDb.addEmployee(sampleEmployee);
         }
-        return sampleAb;
+        return sampleExecutiveProDb;
     }
 
     /**
