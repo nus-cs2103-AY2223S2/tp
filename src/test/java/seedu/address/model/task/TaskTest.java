@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalTasks.VALID_COMPLETE_TASK;
 import static seedu.address.testutil.TypicalTasks.VALID_LATE_TASK;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
-import static seedu.address.testutil.TypicalTasks.VALID_TASK_3;
 
 import org.junit.jupiter.api.Test;
 
