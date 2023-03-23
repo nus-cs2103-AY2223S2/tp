@@ -7,11 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
+import seedu.loyaltylift.logic.commands.AddOrderCommand;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
+import seedu.loyaltylift.logic.commands.DeleteOrderCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditOrderCommand;
 import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
@@ -75,6 +78,15 @@ public class AddressBookParser {
 
         case ViewCustomerCommand.COMMAND_WORD:
             return new ViewCustomerCommandParser().parse(arguments);
+
+        case AddOrderCommand.COMMAND_WORD:
+            return new AddOrderCommandParser().parse(arguments);
+
+        case DeleteOrderCommand.COMMAND_WORD:
+            return new DeleteOrderCommandParser().parse(arguments);
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

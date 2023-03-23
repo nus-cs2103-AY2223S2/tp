@@ -15,6 +15,8 @@ import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
+import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.Status;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -35,6 +37,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String quantity} into an {@code Quantity} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified quantity is invalid (not positive integer).
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(Integer.parseInt(trimmedQuantity));
     }
 
     /**
@@ -136,6 +151,19 @@ public class ParserUtil {
             throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
         return type;
+    }
+    /**
+     * Parses {@code String status} into a {@code Status}.
+     */
+    public static Status parseStatus(String statusString) throws ParseException {
+        requireNonNull(statusString);
+        Status status;
+        try {
+            status = Status.fromString(statusString);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Status.MESSAGE_FAIL_CONVERSION);
+        }
+        return status;
     }
 
     /**

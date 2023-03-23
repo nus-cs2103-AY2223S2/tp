@@ -8,6 +8,8 @@ import static java.util.Objects.requireNonNull;
 public enum Status {
     PENDING, PAID, SHIPPED, COMPLETED, CANCELLED;
 
+    public static final String MESSAGE_FAIL_CONVERSION = "Unrecognised order type";
+
     /**
      * Returns a {@code Status} based on the given string.
      *
