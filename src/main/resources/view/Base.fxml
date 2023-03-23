@@ -87,7 +87,7 @@
                                              <Font name="SansSerif Bold" size="13.0" />
                                           </font>
                                        </Label>
-                                       <Label text="Quickly your recent clients, policies and workspaces" textFill="WHITE">
+                                       <Label text="Quickly access your recent clients and policies" textFill="WHITE">
                                           <padding>
                                              <Insets bottom="8.0" left="8.0" right="8.0" />
                                           </padding>
