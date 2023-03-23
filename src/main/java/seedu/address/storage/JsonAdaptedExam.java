@@ -15,7 +15,6 @@ public class JsonAdaptedExam {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final Double weightage;
-    private Exam.ExamStatus status;
     private Grade grade;
 
     /**
@@ -26,13 +25,11 @@ public class JsonAdaptedExam {
                            @JsonProperty("startTime") LocalDateTime startTime,
                            @JsonProperty("endTime") LocalDateTime endTime,
                            @JsonProperty("weightage") Double weightage,
-                           @JsonProperty("status") Exam.ExamStatus status,
                            @JsonProperty("grade") Grade grade) {
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.weightage = weightage;
-        this.status = status;
         this.grade = grade;
     }
     /**
@@ -43,7 +40,6 @@ public class JsonAdaptedExam {
         startTime = source.getStartTime();
         endTime = source.getEndTime();
         weightage = source.getWeightage();
-        status = source.getStatus();
         grade = source.getGrade();
     }
 
@@ -51,8 +47,7 @@ public class JsonAdaptedExam {
      * Converts this Jackson-friendly adapted homework object into the model's {@code exam} object.
      */
     public Exam toModelType() {
-        Exam exam = new Exam(description, startTime, endTime, weightage,
-                status, grade);
+        Exam exam = new Exam(description, startTime, endTime, weightage, grade);
         return exam;
     }
 }

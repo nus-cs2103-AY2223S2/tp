@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -351,7 +352,7 @@ public class Student {
 
         // filter exam list for pending exams
         for (Exam exam : examList) {
-            if (exam.getStatus().equals(Exam.ExamStatus.Upcoming)) {
+            if (exam.getStartTime().isAfter(LocalDateTime.now())) {
                 upcomingExamList.add(exam);
             }
         }
