@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -23,12 +22,7 @@ import seedu.address.testutil.TypicalModules;
  */
 public class AddLectureCommandIntegrationTest {
 
-    private Model model;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
-    }
+    private final Model model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
 
     @Test
     public void execute_newLecture_success() {
@@ -54,8 +48,7 @@ public class AddLectureCommandIntegrationTest {
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        Module module = TypicalModules.getCs2107();
-        ModuleCode moduleCode = module.getCode();
+        ModuleCode moduleCode = TypicalModules.getCs2107().getCode();
         Lecture validLecture = TypicalLectures.getCs2040sWeek1();
 
         assertCommandFailure(new AddLectureCommand(moduleCode, validLecture), model,

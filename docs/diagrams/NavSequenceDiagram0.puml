@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":NavCommandParser" as NavCommandParser LOGIC_COLOR
+participant "c:RelativeNavCommand" as RelativeNavCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("nav CS2040S")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand("nav CS2040S")
+activate TrackerParser
+
+create NavCommandParser
+TrackerParser -> NavCommandParser
+activate NavCommandParser
+
+NavCommandParser --> TrackerParser
+deactivate NavCommandParser
+
+TrackerParser -> NavCommandParser : parse("CS2040S")
+
+create RelativeNavCommand
+NavCommandParser -> RelativeNavCommand : RelativeNavCommand("CS2040S")
+activate RelativeNavCommand
+
+RelativeNavCommand --> NavCommandParser : c
+deactivate RelativeNavCommand
+
+NavCommandParser --> TrackerParser : c
+deactivate NavCommandParser
+
+NavCommandParser -[hidden]-> TrackerParser
+destroy NavCommandParser
+
+TrackerParser --> LogicManager : c
+deactivate TrackerParser
+
+LogicManager -> RelativeNavCommand : execute()
+activate RelativeNavCommand
+
+RelativeNavCommand -> Model : hasModule(m)
+activate Model
+
+Model --> RelativeNavCommand : true
+deactivate Model
+
+RelativeNavCommand -> Model : navigateToModFromRoot(m)
+activate Model
+
+Model --> RelativeNavCommand
+deactivate Model
+
+create CommandResult
+RelativeNavCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RelativeNavCommand
+deactivate CommandResult
+
+RelativeNavCommand --> LogicManager : result
+deactivate RelativeNavCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
