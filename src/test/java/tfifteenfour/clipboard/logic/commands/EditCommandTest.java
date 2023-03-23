@@ -85,7 +85,8 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student studentInFilteredList = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentInFilteredList = model.getUnmodifiableFilteredStudentList()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
