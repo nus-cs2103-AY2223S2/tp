@@ -15,10 +15,9 @@ class Command {
 
 class RedoableCommand
  {
-   - previousAddressBook: ReadOnlyAddressBook
-   - previousArchiveBook: ReadOnlyAddressBook
+   - previousAddressBook: ReadOnlyShop
    - isSwapped: boolean
-   - saveAddressBookSnapshot(): void
+   - saveShopSnapshot(): void
    # undo(): void
    # redo(): void
    + execute(): CommandResult
