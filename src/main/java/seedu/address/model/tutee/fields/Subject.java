@@ -12,10 +12,11 @@ import java.util.List;
  * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
  */
 public class Subject {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Subjects should only be: " + subjectsBuilder();
+
 
     public static final String[] SUBJECTS_OFFERED = {"Math", "Physics", "English"};
+    public static final String MESSAGE_CONSTRAINTS =
+            "Subjects should only be: " + subjectsBuilder();
     public static final List<String> SUBJECTS_OFFERED_LIST = Arrays.asList(SUBJECTS_OFFERED);
 
     /*
