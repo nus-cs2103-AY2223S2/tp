@@ -11,11 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.student.Student;
 import seedu.address.ui.UiPart;
 
 /**
