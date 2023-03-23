@@ -300,7 +300,6 @@ public class SudoHr implements ReadOnlySudoHr {
         }
     }
 
-
     // =========== Leave-Level Operations
     // ==========================================================================
 
@@ -314,8 +313,14 @@ public class SudoHr implements ReadOnlySudoHr {
         return leaves.getLeave(date);
     }
 
-    // add docs
-    public Leave getLeave(Leave leaveToAdd) {
+    /**
+     * Returns the leave object in SudoHr with the equivalent date if it exists or else, return
+     * the leave object provided as parameter.
+     *
+     * @param leaveToAdd the leave object to return if a leave object with the same date does not exist.
+     * @return The corresponding leave.
+     */
+    public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
             if (leave.isSameLeave(leaveToAdd)) {
@@ -413,7 +418,6 @@ public class SudoHr implements ReadOnlySudoHr {
     public ObservableList<Leave> getLeavesList() {
         return leaves.asUnmodifiableObservableList();
     }
-
 
     // ================================== Utils ==================================================
 
