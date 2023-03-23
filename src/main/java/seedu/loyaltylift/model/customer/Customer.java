@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -25,30 +26,29 @@ public class Customer {
 
     // Data fields
     private final Address address;
-    private final Marked marked;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Optional fields
     private final Points points;
+    private final Marked marked;
+    private final Note note;
+
     /**
-     * Every field must be present and not null.
+     * Every field except note must be present and not null.
      */
-    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(customerType, name, phone, email, address, tags);
-        this.customerType = customerType;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.points = new Points(0, 0);
-        this.marked = new Marked(false);
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email,
+            Address address, Set<Tag> tags) {
+        this(customerType, name, phone, email, address, tags,
+                new Points(0, 0),
+                new Marked(false),
+                new Note(""));
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                    Points points, Marked marked) {
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email,
+            Address address, Set<Tag> tags, Points points, Marked marked, Note note) {
         requireAllNonNull(name, phone, email, address, tags, points);
         this.customerType = customerType;
         this.name = name;
@@ -58,6 +58,7 @@ public class Customer {
         this.tags.addAll(tags);
         this.points = points;
         this.marked = marked;
+        this.note = note;
     }
 
     public CustomerType getCustomerType() {
@@ -94,6 +95,10 @@ public class Customer {
 
     public Points getPoints() {
         return points;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -139,7 +144,9 @@ public class Customer {
                 && otherCustomer.getAddress().equals(getAddress())
                 && otherCustomer.getTags().equals(getTags())
                 && otherCustomer.getCustomerType().equals(getCustomerType())
-                && otherCustomer.getPoints().equals(getPoints());
+                && otherCustomer.getPoints().equals(getPoints())
+                && otherCustomer.getMarked().equals(getMarked())
+                && otherCustomer.getNote().equals(getNote());
     }
 
     @Override

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_CREATED_DATE_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_B;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_QUANTITY_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_STATUS_B;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_B;
@@ -53,6 +54,10 @@ public class OrderTest {
         // different created date -> returns false
         editedC = new OrderBuilder(ORDER_C).withCreatedDate(VALID_CREATED_DATE_A).build();
         assertFalse(ORDER_C.equals(editedC));
+
+        // different note -> returns false
+        editedC = new OrderBuilder(ORDER_C).withNote(VALID_NOTE_A).build();
+        assertFalse(ORDER_C.equals(editedC));
     }
 
     @Test
@@ -91,6 +96,10 @@ public class OrderTest {
 
         // different created date -> returns false
         editedC = new OrderBuilder(ORDER_C).withCreatedDate(VALID_CREATED_DATE_A).build();
+        assertFalse(ORDER_C.equals(editedC));
+
+        // different note -> returns false
+        editedC = new OrderBuilder(ORDER_C).withNote(VALID_NOTE_A).build();
         assertFalse(ORDER_C.equals(editedC));
     }
 }

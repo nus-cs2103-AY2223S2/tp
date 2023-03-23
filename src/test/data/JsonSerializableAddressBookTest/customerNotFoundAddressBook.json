@@ -9,7 +9,8 @@
     "tagged" : [ "friends" ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Benson Meier",
@@ -19,7 +20,8 @@
     "tagged" : [ "owesMoney", "friends" ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": true,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Carl Kurz",
@@ -29,7 +31,8 @@
     "tagged" : [ ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Daniel Meier",
@@ -39,7 +42,8 @@
     "tagged" : [ "friends" ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Elle Meyer",
@@ -49,7 +53,8 @@
     "tagged" : [ ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Fiona Kunz",
@@ -59,7 +64,8 @@
     "tagged" : [ ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "George Best",
@@ -69,7 +75,8 @@
     "tagged" : [ ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "ENTERPRISE",
     "name" : "The Chocolate Factory",
@@ -79,7 +86,8 @@
     "tagged" : [ ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   },
   {
     "customerType": "ENTERPRISE",
@@ -90,7 +98,8 @@
     "tagged": [],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   } ],
   "orders": [ {
     "customerId": "No Such Customer",
@@ -98,6 +107,7 @@
     "quantity": 5,
     "status": "PENDING",
     "address": "10 Summer Drive, Singapore 3098812",
-    "createdDate": "2023/01/09"
+    "createdDate": "2023/01/09",
+    "note": ""
   } ]
 }

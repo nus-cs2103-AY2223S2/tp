@@ -12,6 +12,7 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
@@ -72,9 +73,10 @@ public class UnmarkCustomerCommand extends Command {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Marked marked = new Marked(false);
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
     }
 
     @Override

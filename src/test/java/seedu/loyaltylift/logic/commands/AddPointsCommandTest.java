@@ -6,8 +6,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_ADD;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_SUBTRACT;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,10 +33,10 @@ public class AddPointsCommandTest {
 
     @Test
     public void equals() {
-        final AddPointsCommand standardCommand = new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_ADD);
+        final AddPointsCommand standardCommand = new AddPointsCommand(INDEX_FIRST, VALID_POINTS_ADD);
 
         // same values -> returns true
-        AddPointsCommand commandWithSameValues = new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_ADD);
+        AddPointsCommand commandWithSameValues = new AddPointsCommand(INDEX_FIRST, VALID_POINTS_ADD);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -49,9 +49,9 @@ public class AddPointsCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_SECOND_CUSTOMER, VALID_POINTS_ADD)));
+        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_SECOND, VALID_POINTS_ADD)));
 
         // different AddPoints -> returns false
-        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_SUBTRACT)));
+        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_FIRST, VALID_POINTS_SUBTRACT)));
     }
 }

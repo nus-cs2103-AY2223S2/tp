@@ -6,8 +6,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFail
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +28,8 @@ public class ViewCustomerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Customer customerToView = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        ViewCustomerCommand viewCustomerCommand = new ViewCustomerCommand(INDEX_FIRST_CUSTOMER);
+        Customer customerToView = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        ViewCustomerCommand viewCustomerCommand = new ViewCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(ViewCustomerCommand.MESSAGE_VIEW_CUSTOMER_SUCCESS, customerToView);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, 0);
@@ -47,9 +47,9 @@ public class ViewCustomerCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
+        showCustomerAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
 
@@ -60,14 +60,14 @@ public class ViewCustomerCommandTest {
 
     @Test
     public void equals() {
-        ViewCustomerCommand viewFirstCommand = new ViewCustomerCommand(INDEX_FIRST_CUSTOMER);
-        ViewCustomerCommand viewSecondCommand = new ViewCustomerCommand(INDEX_SECOND_CUSTOMER);
+        ViewCustomerCommand viewFirstCommand = new ViewCustomerCommand(INDEX_FIRST);
+        ViewCustomerCommand viewSecondCommand = new ViewCustomerCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        ViewCustomerCommand viewFirstCommandCopy = new ViewCustomerCommand(INDEX_FIRST_CUSTOMER);
+        ViewCustomerCommand viewFirstCommandCopy = new ViewCustomerCommand(INDEX_FIRST);
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false

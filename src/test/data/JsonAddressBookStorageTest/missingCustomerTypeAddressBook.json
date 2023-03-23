@@ -9,7 +9,9 @@
         "friends"
       ],
       "points": 0,
-      "cumulativePoints": 0
+      "cumulativePoints": 0,
+      "marked": false,
+      "note": ""
     },
     {
       "name": "Benson Meier",
@@ -21,7 +23,9 @@
         "friends"
       ],
       "points": 0,
-      "cumulativePoints": 0
+      "cumulativePoints": 0,
+      "marked": false,
+      "note": ""
     }
   ]
 }

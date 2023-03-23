@@ -1,7 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
-import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
+import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
@@ -23,42 +23,40 @@ import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
- * Sets the reward points of a customer
+ * Overwrites the note of an existing customer in the address book.
  */
-public class SetPointsCommand extends Command {
+public class SetCustomerNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "setpoints";
+    public static final String COMMAND_WORD = "setnotec";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets points of the customer identified by the index number used in the displayed customer list. \n"
-            + "Parameters: "
-            + "INDEX (must be a positive integer) "
-            + PREFIX_POINTS + "[POINTS]\n"
-            + "Example: " + COMMAND_WORD
-            + " 1 "
-            + PREFIX_POINTS
-            + "100";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites the note of the customer identified "
+            + "by the index number used in the displayed customer list. "
+            + "Existing note will be overwritten by the input.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_NOTE + "NOTE\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_NOTE + "Example note";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Points: %2$s";
-
-    public static final String MESSAGE_SET_POINTS_SUCCESS = "Set points for Customer: %1$s";
+    public static final String MESSAGE_SET_NOTE_SUCCESS = "Set note for customer: \n%1$s";
 
     private final Index index;
-    private final Points points;
+    private final Note note;
 
     /**
-     * @param index of the customer in the filtered person list to set points
-     * @param points of the customer to be set
+     * @param index of the customer in the filtered customer list to edit
+     * @param note of the customer to be set
      */
-    public SetPointsCommand(Index index, Points points) {
-        requireAllNonNull(index, points);
+    public SetCustomerNoteCommand(Index index, Note note) {
+        requireNonNull(index);
+        requireNonNull(note);
 
         this.index = index;
-        this.points = points;
+        this.note = note;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -66,38 +64,30 @@ public class SetPointsCommand extends Command {
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
-        Customer editedCustomerWithPoints = createEditedCustomer(customerToEdit);
+        Customer editedCustomer = createEditedCustomer(customerToEdit, this.note);
 
-        model.setCustomer(customerToEdit, editedCustomerWithPoints);
+        model.setCustomer(customerToEdit, editedCustomer);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-
-        return new CommandResult(generateSuccessMessage(editedCustomerWithPoints));
+        return new CommandResult(String.format(MESSAGE_SET_NOTE_SUCCESS, editedCustomer));
     }
 
     /**
      * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
+     * with the edited {@code note}.
      */
-    private Customer createEditedCustomer(Customer customerToEdit) {
+    private static Customer createEditedCustomer(Customer customerToEdit, Note note) {
         assert customerToEdit != null;
-        CustomerType customerType = customerToEdit.getCustomerType();
+
         Name name = customerToEdit.getName();
         Phone phone = customerToEdit.getPhone();
         Email email = customerToEdit.getEmail();
         Address address = customerToEdit.getAddress();
         Set<Tag> tags = customerToEdit.getTags();
+        CustomerType customerType = customerToEdit.getCustomerType();
+        Points points = customerToEdit.getPoints();
         Marked marked = customerToEdit.getMarked();
-        Note note = customerToEdit.getNote();
 
-        return new Customer(customerType, name, phone, email, address, tags, this.points, marked, note);
-    }
-
-    /**
-     * Generates a command execution success message based on whether
-     * the points are set
-     */
-    private String generateSuccessMessage(Customer editedCustomer) {
-        String message = MESSAGE_SET_POINTS_SUCCESS;
-        return String.format(message, editedCustomer);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
     }
 
     @Override
@@ -108,13 +98,13 @@ public class SetPointsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SetPointsCommand)) {
+        if (!(other instanceof SetCustomerNoteCommand)) {
             return false;
         }
 
         // state check
-        SetPointsCommand e = (SetPointsCommand) other;
+        SetCustomerNoteCommand e = (SetCustomerNoteCommand) other;
         return index.equals(e.index)
-                && points.equals(e.points);
+                && note.equals(e.note);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
@@ -20,20 +21,23 @@ public class Order {
     private final Quantity quantity;
     private final Status status;
     private final Address address;
+
+    // Optional fields
     private final CreatedDate createdDate;
+    private final Note note;
 
     /**
      * Order constructor with created date set to today.
      */
     public Order(Customer customer, Name name, Quantity quantity, Status status, Address address) {
-        this(customer, name, quantity, status, address, new CreatedDate(LocalDate.now()));
+        this(customer, name, quantity, status, address, new CreatedDate(LocalDate.now()), new Note(""));
     }
 
     /**
      * Every field must be present and not null.
      */
     public Order(Customer customer, Name name, Quantity quantity, Status status, Address address,
-                 CreatedDate createdDate) {
+                 CreatedDate createdDate, Note note) {
         requireAllNonNull(customer, name, quantity, status, address, createdDate);
         this.customer = customer;
         this.name = name;
@@ -41,6 +45,7 @@ public class Order {
         this.status = status;
         this.address = address;
         this.createdDate = createdDate;
+        this.note = note;
     }
 
     public Customer getCustomer() {
@@ -67,13 +72,17 @@ public class Order {
         return createdDate;
     }
 
+    public Note getNote() {
+        return note;
+    }
+
     /**
      * Returns a new {@code Order} with its customer association to the specified customer.
      * @param customer The new customer associated to.
      * @return A new Order instance.
      */
     public Order newOrderWithCustomer(Customer customer) {
-        return new Order(customer, getName(), getQuantity(), getStatus(), getAddress(), getCreatedDate());
+        return new Order(customer, getName(), getQuantity(), getStatus(), getAddress(), getCreatedDate(), getNote());
     }
 
     /**
@@ -105,12 +114,12 @@ public class Order {
                 && otherOrder.getStatus().equals(getStatus())
                 && otherOrder.getAddress().equals(getAddress())
                 && otherOrder.getCreatedDate().equals(getCreatedDate())
-                && otherOrder.customer.equals(getCustomer());
+                && otherOrder.getNote().equals(getNote());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customer, name, quantity, status, address, createdDate);
+        return Objects.hash(customer, name, quantity, status, address, createdDate, note);
     }
 
     @Override

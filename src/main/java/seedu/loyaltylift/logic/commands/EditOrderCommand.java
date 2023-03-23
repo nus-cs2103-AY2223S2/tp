@@ -16,6 +16,7 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
@@ -91,8 +92,10 @@ public class EditOrderCommand extends Command {
         Quantity updatedQuantity = editOrderDescriptor.getQuantity().orElse(orderToEdit.getQuantity());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
         CreatedDate createdDate = orderToEdit.getCreatedDate();
+        Note note = orderToEdit.getNote();
 
-        return new Order(currentCustomer, updatedName, updatedQuantity, currentStatus, updatedAddress, createdDate);
+        return new Order(currentCustomer, updatedName, updatedQuantity, currentStatus, updatedAddress,
+                createdDate, note);
     }
 
     @Override

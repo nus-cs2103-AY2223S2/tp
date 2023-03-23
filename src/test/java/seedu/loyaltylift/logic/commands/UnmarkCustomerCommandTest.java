@@ -6,8 +6,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFail
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import java.util.Set;
 
@@ -20,6 +20,7 @@ import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
@@ -37,7 +38,7 @@ public class UnmarkCustomerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
@@ -45,9 +46,10 @@ public class UnmarkCustomerCommandTest {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(false));
-        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
+                new Marked(false), note);
+        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
 
@@ -67,9 +69,9 @@ public class UnmarkCustomerCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
+        showCustomerAtIndex(model, INDEX_FIRST);
 
-        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
@@ -77,9 +79,10 @@ public class UnmarkCustomerCommandTest {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(false));
-        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
+                new Marked(false), note);
+        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
 
@@ -91,9 +94,9 @@ public class UnmarkCustomerCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
+        showCustomerAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
 
@@ -104,14 +107,14 @@ public class UnmarkCustomerCommandTest {
 
     @Test
     public void equals() {
-        UnmarkCustomerCommand unmarkFirstCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
-        UnmarkCustomerCommand unmarkSecondCommand = new UnmarkCustomerCommand(INDEX_SECOND_CUSTOMER);
+        UnmarkCustomerCommand unmarkFirstCommand = new UnmarkCustomerCommand(INDEX_FIRST);
+        UnmarkCustomerCommand unmarkSecondCommand = new UnmarkCustomerCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(unmarkFirstCommand.equals(unmarkFirstCommand));
 
         // same values -> returns true
-        UnmarkCustomerCommand unmarkFirstCommandCopy = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
+        UnmarkCustomerCommand unmarkFirstCommandCopy = new UnmarkCustomerCommand(INDEX_FIRST);
         assertTrue(unmarkFirstCommand.equals(unmarkFirstCommandCopy));
 
         // different types -> returns false

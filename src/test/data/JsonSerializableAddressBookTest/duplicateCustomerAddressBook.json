@@ -8,7 +8,8 @@
     "tagged": [ "friends" ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   }, {
     "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
@@ -18,7 +19,8 @@
     "tagged": [ "friends" ],
     "points": 0,
     "cumulativePoints": 0,
-    "marked": false
+    "marked": false,
+    "note": ""
   } ],
   "orders": [ ]
 }

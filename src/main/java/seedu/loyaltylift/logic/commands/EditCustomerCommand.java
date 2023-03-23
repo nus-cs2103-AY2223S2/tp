@@ -21,10 +21,13 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -102,8 +105,12 @@ public class EditCustomerCommand extends Command {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         CustomerType updatedCustomerType =
                 editCustomerDescriptor.getCustomerType().orElse(customerToEdit.getCustomerType());
+        Points points = customerToEdit.getPoints();
+        Marked marked = customerToEdit.getMarked();
+        Note note = customerToEdit.getNote();
 
-        return new Customer(updatedCustomerType, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Customer(updatedCustomerType, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                points, marked, note);
     }
 
     @Override

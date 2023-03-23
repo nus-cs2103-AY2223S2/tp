@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
@@ -87,6 +88,10 @@ public class CustomerTest {
 
         // different tags -> returns false
         editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different note -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withNote(VALID_NOTE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different customer type -> returns false

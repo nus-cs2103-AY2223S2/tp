@@ -4,7 +4,7 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +20,9 @@ public class SetPointsCommandParserTest {
     @Test
     public void parse_indexSpecified_success() {
         // must have points, /pt with no integer afterwards will not be parsed successfully
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_POINTS + nonEmptyPoints;
-        SetPointsCommand expectedCommand = new SetPointsCommand(INDEX_FIRST_CUSTOMER,
+        SetPointsCommand expectedCommand = new SetPointsCommand(INDEX_FIRST,
                 new Points(nonEmptyPoints, nonEmptyPoints));
         assertParseSuccess(parser, userInput, expectedCommand);
     }

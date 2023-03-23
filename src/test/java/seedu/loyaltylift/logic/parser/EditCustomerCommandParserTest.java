@@ -29,9 +29,9 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_THIRD_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -110,7 +110,7 @@ public class EditCustomerCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_CUSTOMER;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + CUSTOMER_TYPE_DESC_ENTERPRISE;
 
@@ -126,7 +126,7 @@ public class EditCustomerCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
@@ -140,7 +140,7 @@ public class EditCustomerCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_CUSTOMER;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY).build();
@@ -180,7 +180,7 @@ public class EditCustomerCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + CUSTOMER_TYPE_DESC_INDIVIDUAL
@@ -198,7 +198,7 @@ public class EditCustomerCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditCustomerCommand expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
@@ -215,7 +215,7 @@ public class EditCustomerCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_CUSTOMER;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withTags().build();
