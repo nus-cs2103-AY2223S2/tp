@@ -87,7 +87,7 @@ public class EduMateStorageManager implements EduMateStorage {
 
     @Override
     public void saveEduMate(ReadOnlyEduMate eduMate) throws IOException {
-        FileUtil.createIfMissing(eduMateFilePath, false);
+        FileUtil.createIfMissing(eduMateFilePath);
         saveEduMate(eduMate, eduMateFilePath);
     }
 
@@ -100,13 +100,13 @@ public class EduMateStorageManager implements EduMateStorage {
         requireNonNull(eduMate);
         requireNonNull(filePath);
 
-        FileUtil.createIfMissing(filePath, false);
+        FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableEduMate(eduMate), filePath);
     }
 
     @Override
     public void saveEduMateHistory(String input) throws IOException {
-        FileUtil.createIfMissing(eduMateHistoryFilePath, true);
+        FileUtil.createIfMissing(eduMateHistoryFilePath);
         StringUtil.saveStringFile(input, eduMateHistoryFilePath);
     }
 
