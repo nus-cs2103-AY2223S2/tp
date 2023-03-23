@@ -17,11 +17,11 @@ Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
+package Model <<Rectangle>>{
 Class HiddenModel #FFFFFF
 }
 
-package Logic <<Rectangle>> {
+package Logic <<Rectangle>>{
 Class HiddenLogic #FFFFFF
 }
 
