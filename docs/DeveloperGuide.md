@@ -319,8 +319,7 @@ The logic of this class follows the sequence.
 
 ### Delete Policy feature
 
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client`
-object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
 
 These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature. 
 
@@ -339,8 +338,30 @@ The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
 **Alternatives Considered**:
-- We are considering if we could recieve the policies from the model instead of the client. 
+- We are considering if we could receive the policies from the model instead of the client. 
 - We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from. 
+
+### Edit Policy feature
+
+The edit policy mechanism is facilitated by `EditPolicyCommand` and `EditPolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client` object we will retrieve the policies associated to this `Client` and edit the policy based on the user input given.
+
+These classes are implemented this way because, like other commands, such as `EditCommand` we first have to retrieve the client list followed by executing the edit feature.
+
+`EditPolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class follows the sequence.
+
+1. Get the `Client` based on the most updated client list in the `Model`.
+2. Edit the`Policy` associated to the given `Policy` index from the `Client` given.
+3. The `Policy` is edited based on the prefixes given by the user input.
+
+Note that not all prefixes of the policy have to be stated.
+
+`EditPolicyCommandParser` implements `Parser<EditPolicyCommand>`. The logic of this class follows the sequence.
+
+1. Get the client index from the preamble of the input.
+2. Get the policy index from the prefix "pi/".
+3. Get the policy name from the prefix "pn/", policy start date from the prefix "pd/", policy premium from the prefix "pf/", policy frequency from the prefix "pf/"
+
+The sequence diagram for the edit policy operation works similarly to how the delete policy operation works over [here](#delete-policy-feature)
 ## Undo/redo feature
 
 ### Implementation
