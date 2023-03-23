@@ -1,6 +1,6 @@
 package seedu.address.storage.task.note;
 
-import static seedu.address.logic.commands.task.note.NoteCommand.MESSAGE_DUPLICATE_NOTE;
+import static seedu.address.logic.commands.task.note.AddNoteCommand.MESSAGE_DUPLICATE_NOTE;
 
 import java.util.ArrayList;
 import java.util.List;

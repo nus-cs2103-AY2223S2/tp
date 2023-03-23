@@ -96,6 +96,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getTodoListFilePath() {
+        return model.getTodoListFilePath();
+    }
+
+    @Override
+    public Path getNoteListFilePath() {
+        return model.getNoteListFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

@@ -24,7 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_JOB_TITLE + "Software Engineer ";
 
     public static final String MESSAGE_SUCCESS = "New internship application added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This internship application "
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship application "
                                                             + "already exists in the address book";
 
     private final InternshipApplication toAdd;
@@ -42,7 +42,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasApplication(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.addApplication(toAdd);

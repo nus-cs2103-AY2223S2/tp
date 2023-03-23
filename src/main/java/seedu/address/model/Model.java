@@ -65,6 +65,16 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' todo list file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Returns the user prefs' note list file path.
+     */
+    Path getNoteListFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -107,12 +117,6 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
 
     /**
      * Deletes the given internship application.
@@ -173,7 +177,7 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Replaces the given person {@code target} with {@code editedApplication}.
+     * Replaces the given internshipApplication {@code target} with {@code editedApplication}.
      * {@code target} must exist in the address book.
      * The application identity of {@code editedApplication} must not be the
      * same as another existing application in the address book.

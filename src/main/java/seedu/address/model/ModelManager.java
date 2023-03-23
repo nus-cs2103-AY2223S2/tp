@@ -88,6 +88,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getTodoListFilePath() {
+        return userPrefs.getTodoListFilePath();
+    }
+
+    @Override
+    public Path getNoteListFilePath() {
+        return userPrefs.getNoteListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -140,11 +150,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
     public void deleteInternship(InternshipApplication application) {
         addressBook.removeApplication(application);
     }
@@ -174,6 +179,7 @@ public class ModelManager implements Model {
         addressBook.addApplication(application);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
+
 
     @Override
     public void addTodo(InternshipTodo todo) {

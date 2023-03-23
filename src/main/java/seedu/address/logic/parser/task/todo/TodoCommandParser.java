@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.task.todo.TodoCommand;
+import seedu.address.logic.commands.task.todo.AddTodoCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -20,21 +20,21 @@ import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 
 /**
- * Parses input arguments and creates a new TodoCommand object
+ * Parses input arguments and creates a new AddTodoCommand object
  */
-public class TodoCommandParser implements Parser<TodoCommand> {
+public class TodoCommandParser implements Parser<AddTodoCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoCommand
-     * and returns an TodoCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTodoCommand
+     * and returns an AddTodoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public TodoCommand parse(String args) throws ParseException {
+    public AddTodoCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE, PREFIX_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
         }
 
         CompanyName companyName = ParserUtil.parseCompanyName(
@@ -47,7 +47,7 @@ public class TodoCommandParser implements Parser<TodoCommand> {
         InternshipTodo todo = new InternshipTodo(
                 companyName, jobTitle, deadline);
 
-        return new TodoCommand(todo);
+        return new AddTodoCommand(todo);
     }
 
     /**
