@@ -117,6 +117,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        foodListPanelPlaceholder.setBackground(new Background(new BackgroundFill(
+                Color.valueOf("D9D9D9"), new CornerRadii(5), null)));
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
