@@ -5,7 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant "u:UpcomingCommand" as UpcomingCommand LOGIC_COLOR
-participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -22,17 +21,17 @@ create UpcomingCommand
 InternBuddyParser -> UpcomingCommand
 activate UpcomingCommand
 
-UpcomingCommand -->InternBuddyParser : "u:UpcomingCommand"
+UpcomingCommand -->InternBuddyParser : u
 deactivate UpcomingCommand
 
-InternBuddyParser --> LogicManager : v
+InternBuddyParser --> LogicManager : u
 
 deactivate InternBuddyParser
 
 LogicManager -> UpcomingCommand : execute()
 activate UpcomingCommand
 
-UpcomingCommand -> Model : updateFilteredInternshipList(retrievedInternship)
+UpcomingCommand -> Model : updateFilteredInternshipList(predicate)
 activate Model
 
 Model --> UpcomingCommand
