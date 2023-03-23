@@ -8,9 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
-
-
-
 /**
  * A deck associated with a list of cards. Deck is guaranteed to be immutable.
  */
@@ -20,8 +17,6 @@ public final class Deck {
     private final String deckName;
     private final boolean isSelected;
 
-    private ObservableList<Pair<String, String>> deckNameList;
-
     /**
      * Constructing a deck.
      * Every field must be present and not null.
@@ -30,8 +25,6 @@ public final class Deck {
         requireAllNonNull(deckName);
         this.deckName = deckName;
         isSelected = false;
-        // initialise deckNameList
-        this.deckNameList = FXCollections.observableArrayList();
     }
 
     /**
@@ -66,10 +59,10 @@ public final class Deck {
      * @return deckNameList
      */
     public ObservableList<Pair<String, String>> getDeckNameList() {
-        this.deckNameList.clear();
+        ObservableList<Pair<String, String>> deckNameList = FXCollections.observableArrayList();
         Pair<String, String> header = new Pair<>("Current Deck:", this.deckName);
-        this.deckNameList.add(header);
-        return this.deckNameList;
+        deckNameList.add(header);
+        return deckNameList;
     }
 
     /**

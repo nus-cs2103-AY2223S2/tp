@@ -21,6 +21,7 @@ public class UnselectDeckCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.unselectDeck();
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false,
+                false, true);
     }
 }

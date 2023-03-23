@@ -222,6 +222,8 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
+        assert this.selectedDeck != null : "Can only unselectDeck when inside Deck mode";
+
         setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
