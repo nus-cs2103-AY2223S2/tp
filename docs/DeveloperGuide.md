@@ -31,7 +31,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction 
+## 1. Introduction
 
 This Developer Guide details Clock-Work's design and implementation details.
 
@@ -272,13 +272,13 @@ _{Explain here how the data archiving feature will be implemented}_
 Deletes a task based on index(es) of tasks from the list currently being shown to users. In the previous iteration of AB3,
 deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of
 the program. Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed
-to users should the input be invalid. 
+to users should the input be invalid.
 
 Multiple deletions within a single command must be done in the following manner:
 1. Indices must be separated by whitespace, such as `delete 1 2 3`
 2. Indices must be entered in ascending order
 
-In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed, 
+In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed,
 and users will be informed about the non-execution. This is to enforce atomicity and date safety, as deletion is irreversible,
 so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
 
@@ -341,14 +341,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Can accept multiple of same attribute search terms along with a flag to indicate type of searching.
 * e.g. `all/`
 
-Pros: Simple for users while still being flexible and powerful.  
+Pros: Simple for users while still being flexible and powerful.
 Cons: Cannot find by multiple attributes at a time for more powerful functionality.
 
 #### Option 2:
 * Allow mix-and-matching of attributes for searching
 * Can still have a flag to indicate any or all search term matching
 
-Pros: More powerful functionality  
+Pros: More powerful functionality
 Cons: More complicated to implement and unwieldy for users.
 
 ### 3.6 List Feature
@@ -356,9 +356,9 @@ Cons: More complicated to implement and unwieldy for users.
 ### 3.7 Help Feature
 
 ### 3.8 Stats Feature
-Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1
 view - categorise by tags. The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10
-tags. 
+tags.
 
 ### 3.9 Sort Feature
 
@@ -412,7 +412,7 @@ Cons: Will have to scroll down to see the order for Events if there are too many
 Same as above, but:
 * Event is listed above SimpleTask and Deadline.
 * Deadline is  listed below Event and above SimpleTask.
-* SimpleTask is listed below Deadline and Event. 
+* SimpleTask is listed below Deadline and Event.
 
 Pros: Able to see the Events happening close to date.
 Cons: Have to scroll down to see SimpleTasks.
