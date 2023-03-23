@@ -6,9 +6,12 @@ import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * Views a student in the student list.
@@ -34,7 +37,7 @@ public class SelectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
         requireNonNull(model);
 
         switch (currentSelected.getCurrenPage()) {
@@ -42,19 +45,24 @@ public class SelectCommand extends Command {
             List<Course> courseList = model.getUnmodifiableFilteredCourseList();
             Course selectedCourse = courseList.get(targetIndex.getZeroBased());
             currentSelected.setSelectedCourse(selectedCourse);
-            return new CommandResult(this, String.format("Viewing: %s", selectedCourse), willModifyState);
+            currentSelected.setCurrentPage(PageType.GROUP_PAGE);
+            return new CommandResult(this, String.format("Viewing Course: %s", selectedCourse), willModifyState);
         case GROUP_PAGE:
-            break;
+            List<Group> groupList = currentSelected.getSelectedCourse().getUnmodifiableGroupList();
+            Group selectedGroup = groupList.get(targetIndex.getZeroBased());
+            currentSelected.setSelectedGroup(selectedGroup);
+            currentSelected.setCurrentPage(PageType.STUDENT_PAGE);
+            return new CommandResult(this, String.format("Viewing Group: % (%s)", selectedGroup,
+                    currentSelected.getSelectedCourse()), willModifyState);
         case STUDENT_PAGE:
-            break;
-        case SESSION_PAGE:
-            break;
-        case SESSION_STUDENT_PAGE:
-            break;
+            List<Student> studentList = currentSelected.getSelectedGroup().getUnmodifiableStudentList();
+            Student selectedStudent = studentList.get(targetIndex.getZeroBased());
+            // end of navigation, no longer need to call setters of currentSelected
+
+            return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
         default:
-            break;
+            throw new CommandException("Unable to select");
         }
-        return new CommandResult(this, "Placeholder commandresult. Code should not reach this point." , willModifyState);
     }
 
     @Override

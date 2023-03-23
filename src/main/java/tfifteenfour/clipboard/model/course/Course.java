@@ -3,9 +3,7 @@ package tfifteenfour.clipboard.model.course;
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-
-import tfifteenfour.clipboard.model.student.Group;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Module in the CLIpboard.
@@ -17,7 +15,11 @@ public class Course {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String courseCode;
-	private ArrayList<Group> groups = new ArrayList<Group>();
+	private UniqueGroupsList groups;
+
+    {
+        groups = new UniqueGroupsList();
+    }
 
     /**
      * Constructs a {@code courseCode}.
@@ -35,6 +37,15 @@ public class Course {
      */
     public static boolean isValidModuleCode(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    public ObservableList<Group> getUnmodifiableGroupList() {
+        return groups.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Group> getModifiableGrouplist() {
+        return groups.asModifiableObservableList();
     }
 
     /**

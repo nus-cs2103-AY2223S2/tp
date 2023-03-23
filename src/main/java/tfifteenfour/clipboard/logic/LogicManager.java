@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         UndoCommand undoCmd = (UndoCommand) command;
 
         undoCmd.setStateHistoryBuffer(this.stateHistoryBuffer);
-        CommandResult commandResult = undoCmd.execute(model);
+        CommandResult commandResult = undoCmd.execute(model, currentSelected);
         model = undoCmd.getPrevModel();
 
         return commandResult;
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
             commandResult = handleUndoCommand(command);
         } else {
             Model modelCopy = model.copy();
-            commandResult = command.execute(model);
+            commandResult = command.execute(model, currentSelected);
             if (commandResult.isStateModified()) {
                 modelCopy.setCommandTextExecuted(commandText);
                 modelCopy.setCommandExecuted(command);

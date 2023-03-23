@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
+import tfifteenfour.clipboard.logic.CurrentSelected;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.model.Model;
@@ -37,7 +38,7 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CurrentSelected currentSelected) {
         requireNonNull(model);
         try {
             model.getModifiableFilteredStudentList().sort(categoryComparator);

@@ -1,7 +1,7 @@
 package tfifteenfour.clipboard.logic;
 
 import tfifteenfour.clipboard.model.course.Course;
-import tfifteenfour.clipboard.model.student.Group;
+import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Student;
 
 public class CurrentSelected {
@@ -32,4 +32,19 @@ public class CurrentSelected {
 		this.selectedStudent = student;
 	}
 
+	public void setCurrentPage(PageType newPage) {
+		this.currentPage = newPage;
+	}
+
+	public Course getSelectedCourse() {
+		return this.selectedCourse;
+	}
+
+	public Group getSelectedGroup() {
+		return this.selectedGroup;
+	}
+
+	public Student getSelectedStudent() {
+		return this.selectedStudent;
+	}
 }
