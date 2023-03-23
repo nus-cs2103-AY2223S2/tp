@@ -154,6 +154,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Remind Feature
+
+#### Current Implementation
+
+The remind mechanism is facilitated by the `Deadline`, `RemindCommand`,  classes. 
+The `Deadline` class has a `deadline` field which is of type `LocalDateTime`. Additionally, it also has a description of type `String`.
+
+'RemindCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
+
+Given below is an example usage scenario and how the set file mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
+
+Step 3. The user may exit and reopen Petpal at a future date. The user intends to see all deadlines that are due soon. The user executes `remind` command to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date. The `remind` command calls the `RemindCommand#execute()` method.
+
+Step 4. The `RemindCommand#execute()` method calls the `Model#updateFilteredPetList()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
+
+The following sequence diagram shows how the remind operation works:
+
+![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![RemindActivityDiagram](images/RemindActivityDiagram.png)
+
+#### Design Considerations:
+**Choice 1 (Current Choice) : Filter pet list upon command**
+* Pros:
+    * Use can easily find upcoming deadlines easily.
+* Cons:
+    * Counterintuitive since reminders shouldn't need user input to be shown.
+
+**Choice 2 : Alert users of upcoming deadlines upon startup**
+* Pros:
+    * User will be reminded of upcoming deadlines upon startup.
+* Cons:
+    * Might be annoying to users who don't want to be reminded of upcoming deadlines.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PetPalParser" as PetPalParser LOGIC_COLOR
+participant ":RemindCommand" as RemindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remind")
+activate LogicManager
+
+LogicManager -> PetPalParser : parseCommand("remind")
+activate PetPalParser
+
+create RemindCommand
+PetPalParser -> RemindCommand
+activate RemindCommand
+
+RemindCommand --> PetPalParser
+deactivate RemindCommand
+
+PetPalParser --> LogicManager : remind
+deactivate PetPalParser
+
+RemindCommand --> PetPalParser : d
+deactivate RemindCommand
+
+LogicManager -> RemindCommand : execute()
+activate RemindCommand
+
+RemindCommand -> Model : getFilteredPetList()
+activate Model
+
+Model --> RemindCommand : filteredPetList
+deactivate Model
+
+create CommandResult
+RemindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemindCommand
+deactivate CommandResult
+
+RemindCommand --> LogicManager : result
+deactivate RemindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

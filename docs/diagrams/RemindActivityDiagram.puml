@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes command;
+
+:Filter out pets with deadline not within 3 days;
+
+
+stop
+@enduml
