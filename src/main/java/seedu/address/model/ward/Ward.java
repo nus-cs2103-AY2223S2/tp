@@ -1,20 +1,19 @@
 package seedu.address.model.ward;
-import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.UniquePatientList;
-
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.List;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.UniquePatientList;
+
 /**
- * Represents a Patient's ward in MedInfo.
+ * Represents a ward which stores patients.
  */
-public class Ward implements ReadOnlyAddressBook{
+public class Ward {
 
     public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
         + "and it should not be blank";
@@ -25,10 +24,10 @@ public class Ward implements ReadOnlyAddressBook{
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final Name name;
-    public final Capacity capacity;
+    private final Name name;
+    private final Capacity capacity;
 
-    public UniquePatientList patients;
+    private UniquePatientList patients;
     /**
      * Constructs a {@code Ward}.
      *
@@ -119,7 +118,7 @@ public class Ward implements ReadOnlyAddressBook{
         return patients.asUnmodifiableObservableList().size() + " patients";
     }
 
-    @Override
+
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
     }
