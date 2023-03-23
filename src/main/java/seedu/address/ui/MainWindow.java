@@ -52,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label userName;
 
+    @FXML
+    private StackPane scheduledMeetsPlaceholder;
+
     public void setUserName(User user) {
         String name = String.valueOf(user.getName());
         userName.setText(name);
@@ -119,6 +122,17 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleShowUserProfile() {
+        updateUserProfilePanel(logic.getUser());
+    }
+
+    public void updateUserProfilePanel(Person person) {
+        userProfilePanel = new UserProfilePanel(person);
+        userProfilePlaceholder.getChildren().clear();
+        userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -150,13 +164,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            // For view command
             if (commandResult.isToShowNewPerson()) {
                 Person newPerson = commandResult.getDisplayPerson();
-                userProfilePanel = new UserProfilePanel(newPerson);
-                userProfilePlaceholder.getChildren().clear();
-                userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
-            }
+                updateUserProfilePanel(newPerson);
 
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
