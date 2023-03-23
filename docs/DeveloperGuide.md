@@ -292,9 +292,6 @@ The following sequence diagram shows how the copy operation works:
 In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
 
 
- 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
