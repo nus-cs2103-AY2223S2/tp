@@ -190,6 +190,23 @@ public class ParserUtil {
         return trimmedName;
     }
 
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseEventName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
+
     /**
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.

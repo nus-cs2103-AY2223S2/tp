@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.commands.AddRecurCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
@@ -43,27 +42,38 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddRecurCommand.MESSAGE_USAGE));
+                    AddRecurCommand.MESSAGE_USAGE_NO_STUDENT_PREFIX));
         }
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_RECUR) || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddRecurCommand.MESSAGE_USAGE));
+                    AddRecurCommand.MESSAGE_USAGE_MISSING_RECUR_PREFIX));
         }
 
-        String name = " " + ParserUtil.parseRecurName(argMultimap.getValue(PREFIX_RECUR).get());
+        String recurDetails = " " + ParserUtil.parseRecurName(argMultimap.getValue(PREFIX_RECUR).get());
 
-        if (!isLab(name) && !isTutorial(name) && !isConsultation(name)) {
+        return checkRecurDetails(recurDetails);
+    }
+
+    public AddRecurCommand checkRecurDetails(String recurDetails) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeFirstPrefix(recurDetails,
+                PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
+
+        if ((!(arePrefixesPresent(argMultimap, PREFIX_LAB)
+                || arePrefixesPresent(argMultimap, PREFIX_CONSULTATION)
+                || arePrefixesPresent(argMultimap, PREFIX_TUTORIAL))
+                || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddRecurCommand.MESSAGE_USAGE));
+                    AddRecurCommand.MESSAGE_USAGE_MISSING_EVENT_PREFIX));
         }
 
-        if (isLab(name)) {
-            return parseEvent(name, PREFIX_LAB);
-        } else if (isTutorial(name)){
-            return parseEvent(name, PREFIX_TUTORIAL);
+        if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            return parseEvent(recurDetails, PREFIX_TUTORIAL);
+        } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            return parseEvent(recurDetails, PREFIX_CONSULTATION);
         } else {
-            return parseEvent(name, PREFIX_CONSULTATION);
+            //If it is not tutorial and not a consultation, it has to be a lab
+            return parseEvent(recurDetails, PREFIX_LAB);
         }
     }
 
@@ -83,35 +93,20 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddRecurCommand.MESSAGE_USAGE));
+                    AddRecurCommand.MESSAGE_USAGE_NO_STUDENT_PREFIX));
         }
         int count = ParserUtil.parseRecurCount(argMultimap.getValue(PREFIX_COUNT).get());
-        String name = ParserUtil.parseLabName(argMultimap.getValue(prefix).get());
-        if (prefix.getPrefix().equals("Lab/")) {
+        String name = ParserUtil.parseEventName(argMultimap.getValue(prefix).get());
+        if (prefix.equals(PREFIX_LAB)) {
             Lab lab = new Lab(name);
             return new AddRecurCommand(lab, true, false, false, count);
-        } else if (prefix.getPrefix().equals("Tutorial/")){
+        } else if (prefix.equals(PREFIX_TUTORIAL)){
             Tutorial tutorial = new Tutorial(name);
             return new AddRecurCommand(tutorial, false, true, false, count);
         } else {
             Consultation consultation = new Consultation(name);
             return new AddRecurCommand(consultation, false, false, true, count);
         }
-    }
-
-    boolean isLab(String newArgs) {
-        System.out.println(newArgs.trim().split("/")[0].equals("Lab"));
-        return newArgs.trim().split("/")[0].equals("Lab");
-    }
-
-    boolean isTutorial(String newArgs) {
-        System.out.println(newArgs.trim().split("/")[0].equals("Tutorial"));
-        return newArgs.trim().split("/")[0].equals("Tutorial");
-    }
-
-    boolean isConsultation(String newArgs) {
-        System.out.println(newArgs.trim().split("/")[0].equals("Consultation"));
-        return newArgs.trim().split("/")[0].equals("Consultation");
     }
 
     /**
