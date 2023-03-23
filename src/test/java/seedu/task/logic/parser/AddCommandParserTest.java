@@ -135,7 +135,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parseSimpleTask_withDefaultFields_failure() {
+    public void parseSimpleTask_withCompulsoryFields_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
