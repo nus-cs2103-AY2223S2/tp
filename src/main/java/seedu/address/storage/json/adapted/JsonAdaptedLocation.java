@@ -36,8 +36,7 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
     /**
      * Linked crews, i.e., crews that reside in this location.
      */
-    public final Map<CrewLocationType, Deque<String>> crewLink;
-
+    private final Map<CrewLocationType, Deque<String>> crewLink;
 
     /**
      * Constructs a {@code JsonAdaptedLocation} with the given location details.
@@ -91,6 +90,12 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
                                 .map(Model::getCrewManager)
                 );
 
-        return new Location(id, name, linkCrew);
+        Location location = new Location(
+                id,
+                name,
+                linkCrew
+        );
+
+        return location;
     }
 }
