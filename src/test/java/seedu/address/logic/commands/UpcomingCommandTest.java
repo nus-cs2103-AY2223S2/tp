@@ -1,9 +1,14 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
-import static seedu.address.testutil.TypicalInternshipsVariableDates.*;
+import static seedu.address.testutil.TypicalInternships.FOODPANDA;
+import static seedu.address.testutil.TypicalInternships.GOLDMAN;
+import static seedu.address.testutil.TypicalInternships.SUPERCELLGAMES;
+import static seedu.address.testutil.TypicalInternshipsVariableDates.getTypicalInternBuddyVariableDates;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
