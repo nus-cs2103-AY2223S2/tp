@@ -227,7 +227,7 @@ The following activity diagram summarizes what happens when a user executes add-
       - Path is easily invalidated (e.g. user moves/deletes/renames the image)
 ## Delete Image Feature
 ### Delete Image Implementation
-The delete-image feature is facilitated by the classes `DeleteImageCommand`, 
+The delete-image feature is facilitated by the classes `DeleteImageCommand`,
 `DeleteImageCommandParser`, `ImageUtil`, and `ParserUtil`.
 The `DeleteImageCommandParser` first parses through the user command to obtain
 the desired index through using `ParserUtil#parseIndex`. Following which an
@@ -243,7 +243,7 @@ which have already had an image added.
 
 Step 2: The user decides that the image given to the contact at index 4 is not
 suitable, and wants to delete it. The user inputs `delete-image 4`.
-`DeleteImageCommandParser#parse` is then called to parse this input for the 
+`DeleteImageCommandParser#parse` is then called to parse this input for the
 desired index.
 
 > **Note**: If the user inputs an index of a contact which currently does not have
@@ -276,7 +276,7 @@ directory.
         - Ensures application does not consume excess storage
     - Cons:
         - Extra complexity in requiring file i/o operations
-    
+
 - **Alternative 2:** Disregard deleting the image file from program directory.
     - Pros:
         - Easier to implement
@@ -285,18 +285,18 @@ directory.
           its lifetime of usage
 ## Import Contacts Feature
 ### Import Contacts Implementation
-The import feature is facilitated by the classes `ImportCommand`, `ImportCommandParser`, 
+The import feature is facilitated by the classes `ImportCommand`, `ImportCommandParser`,
 `SocContacts` and `ChsContacts`. The `ImportCommandParser` first parses through the user
 command to obtain the desired faculty to be imported. An instance of
-a `ImportCommand` containing the desired faculty from either `SocContacts` or 
-`ChsContacts` is then returned. `ImportCommand#execute` is then called, 
+a `ImportCommand` containing the desired faculty from either `SocContacts` or
+`ChsContacts` is then returned. `ImportCommand#execute` is then called,
 which calls `Model#addPerson` to add the unique contacts into BookFace.
 
 Given below is an example usage scenario for how the import mechanism behaves.
 
-Step 1: User starts up the application and sees their list of contacts. 
+Step 1: User starts up the application and sees their list of contacts.
 
-Step 2: User decides to import contacts from faculty SOC and input 
+Step 2: User decides to import contacts from faculty SOC and input
 `import soc`. `ImportCommandParser#parse` is then called to parse
 this input for the desired faculty.
 
