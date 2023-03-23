@@ -95,7 +95,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Parcel> updatedParcels = editPersonDescriptor.getParcels().orElse(personToEdit.getParcels());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedParcels);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedParcels,
+                personToEdit.getDeliveryStatus(), personToEdit.getNoOfDeliveryAttempts());
     }
 
     @Override

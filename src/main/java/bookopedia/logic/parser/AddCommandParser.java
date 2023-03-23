@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import bookopedia.logic.commands.AddCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
@@ -54,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        Person person = new Person(name, phone, email, address, parcelList);
+        Person person = new Person(name, phone, email, address, parcelList, DeliveryStatus.PENDING, 0);
 
         return new AddCommand(person);
     }
