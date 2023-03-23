@@ -88,6 +88,7 @@ public class AddTaskCommand extends Command {
             return false;
         }
 
+        assert other instanceof AddTaskCommand;
         // state check
         AddTaskCommand e = (AddTaskCommand) other;
         return index.equals(e.index)
