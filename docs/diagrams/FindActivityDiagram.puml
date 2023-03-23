@@ -1,0 +1,21 @@
+@startuml
+start
+:User enters find command with keywords;
+:FindCommandParser extracts relevant information from the user input;
+if () then ([Invalid arguments])
+    :Error: Message usage;
+    stop
+else ([else])
+endif
+:Create ContainsKeywordPredicate;
+repeat;
+    :Check if Person matches ContainsKeywordPredicate;
+    if () then ([true])
+        :Keep Person in observable list;
+    else([false])
+    endif
+repeat while() is ([Have remaining Persons in list]) not ([else])
+:Observable list is added to EduMate;
+:Success message is returned;
+stop
+@enduml

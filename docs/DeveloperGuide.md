@@ -334,6 +334,15 @@ The `UI` component,
 
 {to be filled by Zichen}
 
+
+## **Key Mapping**
+
+The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
+
+<img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
+</div>
 ---
 
 ## **Model Component**
@@ -348,6 +357,7 @@ The `UI` component,
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the command history i.e., all command strings (which are contained in a `ArrayList<String>` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -596,6 +606,13 @@ For example, if the user wants to search for a person but does not know the full
 
 **Describing the find** - `ContainsKeywordPredicate` class which extends from `Predicate` handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
 
+In summary, the activity diagram is as such:
+
+<img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>find</code> command
+</div>
+
 
 #### **Sort Command**
 
@@ -714,7 +731,7 @@ How the parsing works:
 <br>
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both address book data and user preference data in json format, command history in text format, and read them back into corresponding objects.
 * inherits from both `EduMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
