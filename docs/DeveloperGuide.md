@@ -275,6 +275,40 @@ Given below is an updated `Model` component diagram.
       * This can have heavier consequences if much more data is added before the mistake is noticed.
 
 
+### Delete patient record by NRIC feature
+
+#### Implementation
+The implemented delete mechanism is facilitated by `DeleteCommandParser`. It extends `AddressBookParser` and implements
+the following operations:
+* `DeleteCommandParser#parse()` — Parses user input into `ArrayList<NRIC>` and creates a `DeleteCommand` object
+
+These operations are exposed in the Model interface as methods with the same name e.g. 
+`Model#deletePerson()`.
+
+Given below is an example usage scenario and how the delete command works at each step
+
+Step 1. The clinical/hospital administrator has been informed of a patient's death and the patient's NRIC, S1234567A
+
+Step 2. The administrator executes `delete i/S1234567A`. The `DeleteCommand` is executed and for each `NRIC`
+in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
+which deletes the record in the system with the specified `NRIC`.
+
+The following sequence diagram shows how the delete command works:
+
+#### Design considerations:
+
+**Aspect: Deletion criteria**
+
+* **Alternative 1 (current choice):** Deletion by `NRIC`.
+    * Pros: Very efficient as program will search for the record with specified `NRIC` and delete it.
+    * Cons: Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for
+            the top few records displayed.
+
+* **Alternative 2:** Deletion by INDEX.
+    * Pros: More convenient for clinical administrator to type out INDEX for the top few displayed records.
+    * Cons: If the record we are searching for does not appear in the top few records, we would have to execute a find
+            command and then get corresponding INDEX to carry out deletion.
+
 
 ### Light / Dark Theme
 

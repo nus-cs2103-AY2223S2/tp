@@ -19,6 +19,7 @@ Class Email
 Class Name
 Class Nric
 Class Phone
+Class DrugAllergy
 Class Tag
 
 }
@@ -42,6 +43,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> DrugAllergy
 Person *--> "*" Tag
 
 Nric -[hidden]right-> Name
