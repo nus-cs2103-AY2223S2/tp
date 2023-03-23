@@ -29,6 +29,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_RANGE = "Only one range is allowed.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -41,6 +42,41 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseIndexRange(String oneBasedIndexRange) throws ParseException {
+        String trimmedIndex = oneBasedIndexRange.trim();
+        String[] startEndRange = trimmedIndex.split("-");
+
+        if (startEndRange.length > 2) {
+            throw new ParseException(MESSAGE_INVALID_RANGE);
+        }
+
+        if (startEndRange.length == 1) {
+            Index fixedIndex = parseIndex(oneBasedIndexRange);
+            return new Index[]{fixedIndex, fixedIndex};
+        }
+
+        String startIndex = startEndRange[0];
+        startIndex = startIndex.trim();
+
+        String endIndex = startEndRange[1];
+        endIndex = endIndex.trim();
+
+        if (!StringUtil.isNonZeroUnsignedInteger(startIndex)
+                && !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        Index startOneBased = Index.fromOneBased(Integer.parseInt(startIndex));
+        Index endOneBased = Index.fromOneBased(Integer.parseInt(endIndex));
+
+        return new Index[]{startOneBased, endOneBased};
     }
 
     /**

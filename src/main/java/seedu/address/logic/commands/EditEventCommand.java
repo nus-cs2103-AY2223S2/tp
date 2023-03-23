@@ -53,6 +53,7 @@ public class EditEventCommand extends Command {
         this.isTutorial = isTutorial;
         this.isLab = isLab;
         this.isConsultation = isConsultation;
+        this.editEvent = editEvent;
     }
 
     /**
