@@ -168,9 +168,9 @@ The add-image mechanism is facilitated by `AddImageCommand`, `AddImageCommandPar
 - `AddImageCommand` extends `Command`
 - `AddImageCommandParser` extends `Parser`
 
-The `AddImageCommandParser` parses the user input into index of contact and path to an image. 
-It returns a `AddImageCommand` with the 2 information retrieved. 
-`AddImageCommand#execute` copies the image provided by the user via a path and replaces the current image with the new one. 
+The `AddImageCommandParser` parses the user input into index of contact and path to an image.
+It returns a `AddImageCommand` with the 2 information retrieved.
+`AddImageCommand#execute` copies the image provided by the user via a path and replaces the current image with the new one.
 It also saves the file name of the new image to the `model`.
 
 Given below is an example usage scenario and how the add-image mechanism behaves at each step.
@@ -181,8 +181,8 @@ Step 2. The `LogicManager` receives the command text from the user input and giv
 
 Step 3. The `AddImageCommandParser` retrieves the contact index as well as the image path and creates a `AddImageCommand`
 
-Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the "profile_pictures/" directory. 
-Once that is successful, `AddImageCommand#execute` proceeds to call `ImageUtil#deleteImage` to remove the current image. 
+Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the "profile_pictures/" directory.
+Once that is successful, `AddImageCommand#execute` proceeds to call `ImageUtil#deleteImage` to remove the current image.
 Finally `AddImageCommand#execute` updates the model provided in the arguments.
 
 > **Note**: If the path given is invalid or if the file at the given path is not a png/jpeg image, the command will not be completed.
@@ -207,53 +207,52 @@ The following activity diagram summarizes what happens when a user executes add-
       - Easy to save as only the Path as a string
    - Cons:
       - Path is easily invalidated (e.g. user moves/deletes/renames the image)
-    
 ## Delete Image Feature
 ### Delete Image Implementation
 The delete-image feature is facilitated by the classes `DeleteImageCommand`, 
-`DeleteImageCommandParser`, `ImageUtil`, and `ParserUtil`. 
-The `DeleteImageCommandParser` first parses through the user command to obtain 
-the desired index through using `ParserUtil#parseIndex`. Following which an 
-instance of a `DeleteImageCommand` containing the desired index is returned. 
-`DeleteImageCommand#execute` is then called, which sets the image of the contact 
-at the desired index to a default image, and deletes the existing image through 
+`DeleteImageCommandParser`, `ImageUtil`, and `ParserUtil`.
+The `DeleteImageCommandParser` first parses through the user command to obtain
+the desired index through using `ParserUtil#parseIndex`. Following which an
+instance of a `DeleteImageCommand` containing the desired index is returned.
+`DeleteImageCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image, and deletes the existing image through
 `ImageUtil#deleteImage`.
 
 Given below is an example usage scenario for how the delete-image mechanism behaves.
 
-Step 1: User starts up the application and sees their list of contacts. Some of 
-which have already had an image added. 
+Step 1: User starts up the application and sees their list of contacts. Some of
+which have already had an image added.
 
-Step 2: The user decides that the image given to the contact at index 4 is not 
-suitable, and wants to delete it. The user inputs `delete-image 4`. 
+Step 2: The user decides that the image given to the contact at index 4 is not
+suitable, and wants to delete it. The user inputs `delete-image 4`.
 `DeleteImageCommandParser#parse` is then called to parse this input for the 
-desired index. 
+desired index.
 
-> **Note**: If the user inputs an index of a contact which currently does not have 
-an image, or if the user inputs an invalid index, an error will be returned to 
+> **Note**: If the user inputs an index of a contact which currently does not have
+an image, or if the user inputs an invalid index, an error will be returned to
 the user
 
-Step 3: If the instruction was valid, `Model#deleteImage` is called to set the 
+Step 3: If the instruction was valid, `Model#deleteImage` is called to set the
 image of the contact to the default image.
 
-Step 4: `ImageUtil#deleteImage` is then called to delete the existing image 
-from the program directory. 
+Step 4: `ImageUtil#deleteImage` is then called to delete the existing image
+from the program directory.
 
 The following sequence diagram shows how the delete-image operation works.
 
 ![DeleteImageSequenceDiagram](images/DeleteImageSequenceDiagram.png)
 
-> **Note**: The lifeline of the `DeleteImageCommandParser` and `DeleteImageCommand` 
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the 
+> **Note**: The lifeline of the `DeleteImageCommandParser` and `DeleteImageCommand`
+> should end at the destroy marker (X) but due to the limitations of PlantUML, the
 > lifeline reaches the end of the diagram.
 
-The following activity diagram summarizes what happens when a user executes a 
+The following activity diagram summarizes what happens when a user executes a
 delete-image command:
 
 ![DeleteImageActivityDiagram](images/DeleteImageActivityDiagram.png)
 
 ### Design Considerations:
-- **Alternative 1 (current choice):** Delete the existing image file from program 
+- **Alternative 1 (current choice):** Delete the existing image file from program
 directory.
     - Pros:
         - Ensures application does not consume excess storage
@@ -264,5 +263,5 @@ directory.
     - Pros:
         - Easier to implement
     - Cons:
-        - Application will take up increasingly more unnecessary storage during 
+        - Application will take up increasingly more unnecessary storage during
           its lifetime of usage

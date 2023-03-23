@@ -39,7 +39,7 @@ Format: `delete-image INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 * A default image will be used after it is deleted
-  
+
 Example:
 * `delete-image 2` deletes the image of the 2nd person in the address book.
 
