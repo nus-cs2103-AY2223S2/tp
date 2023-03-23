@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddressBookTest {
+public class ExecutiveProDbTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ExecutiveProDb executiveProDb = new ExecutiveProDb();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
+        assertEquals(Collections.emptyList(), executiveProDb.getEmployeeList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> executiveProDb.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyExecutiveProDb_replacesData() {
+        ExecutiveProDb newData = getTypicalExecutiveProDb();
+        executiveProDb.resetData(newData);
+        assertEquals(newData, executiveProDb);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEmployees);
+        ExecutiveProDbStub newData = new ExecutiveProDbStub(newEmployees);
 
-        assertThrows(DuplicateEmployeeException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> executiveProDb.resetData(newData));
     }
 
     @Test
     public void hasEmployee_nullEmployee_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEmployee(null));
+        assertThrows(NullPointerException.class, () -> executiveProDb.hasEmployee(null));
     }
 
     @Test
-    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeNotInExecutiveProDb_returnsFalse() {
+        assertFalse(executiveProDb.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
-        assertTrue(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeInExecutiveProDb_returnsTrue() {
+        executiveProDb.addEmployee(ALICE);
+        assertTrue(executiveProDb.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
+    public void hasEmployee_employeeWithSameIdentityFieldsInExecutiveProDb_returnsTrue() {
+        executiveProDb.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEmployee(editedAlice));
+        assertTrue(executiveProDb.hasEmployee(editedAlice));
     }
 
     @Test
     public void getEmployeeList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEmployeeList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> executiveProDb.getEmployeeList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyExecutiveProDb whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ExecutiveProDbStub implements ReadOnlyExecutiveProDb {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Employee> employees) {
+        ExecutiveProDbStub(Collection<Employee> employees) {
             this.employees.setAll(employees);
         }
 

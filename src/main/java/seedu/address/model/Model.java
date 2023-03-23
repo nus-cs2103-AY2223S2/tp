@@ -36,22 +36,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ExecutivePro file path.
      */
-    Path getAddressBookFilePath();
+    Path getExecutiveProFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' ExecutivePro file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setExecutiveProFilePath(Path executiveProFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces ExecutivePro data with the data in {@code executiveProDb}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setExecutiveProDb(ReadOnlyExecutiveProDb executiveProDb);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ExecutiveProDb */
+    ReadOnlyExecutiveProDb getExecutiveProDb();
 
     /**
      * Returns true if an employee with the same identity as {@code employee} exists in the address book.

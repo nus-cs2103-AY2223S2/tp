@@ -30,9 +30,9 @@ import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
 
-public class AddressBookParserTest {
+public class ExecutiveProDbParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ExecutiveProParser parser = new ExecutiveProParser();
 
     @Test
     public void parseCommand_add() throws Exception {
