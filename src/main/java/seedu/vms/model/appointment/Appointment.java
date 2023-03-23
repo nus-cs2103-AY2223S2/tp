@@ -19,6 +19,7 @@ public class Appointment implements Comparable<Appointment> {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final GroupName vaccine;
+    private final boolean isCompleted;
 
     /**
      * Every field must be present and not null.
@@ -31,6 +32,22 @@ public class Appointment implements Comparable<Appointment> {
         this.startTime = startTime;
         this.endTime = endTime;
         this.vaccine = vaccine;
+        isCompleted = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine,
+                       Boolean isCompleted) {
+        requireAllNonNull(patientId, startTime, endTime, vaccine, isCompleted);
+        AppUtil.checkArgument(isValidDuration(startTime, endTime), MESSAGE_DURATION_CONSTRAINTS);
+
+        this.patientId = patientId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.vaccine = vaccine;
+        this.isCompleted = isCompleted;
     }
 
     public LocalDateTime getAppointmentTime() {
@@ -47,6 +64,28 @@ public class Appointment implements Comparable<Appointment> {
 
     public Index getPatient() {
         return patientId;
+    }
+
+    public boolean getStatus() {
+        return isCompleted;
+    }
+
+    /**
+     * Marks the appointment as completed.
+     */
+    public Appointment mark() {
+        assert !isCompleted;
+
+        return new Appointment(patientId, startTime, endTime, vaccine, true);
+    }
+
+    /**
+     * Unmarks the appointment as not completed.
+     */
+    public Appointment unmark() {
+        assert isCompleted;
+
+        return new Appointment(patientId, startTime, endTime, vaccine, false);
     }
 
     public static boolean isValidDuration(LocalDateTime startTime, LocalDateTime endTime) {
@@ -76,13 +115,14 @@ public class Appointment implements Comparable<Appointment> {
         return otherAppointment.getPatient() == (getPatient())
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
                 && otherAppointment.getAppointmentEndTime().equals(getAppointmentEndTime())
-                && otherAppointment.getVaccination().equals(getVaccination());
+                && otherAppointment.getVaccination().equals(getVaccination())
+                && (otherAppointment.isCompleted == isCompleted);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientId, startTime, endTime, vaccine);
+        return Objects.hash(patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     @Override

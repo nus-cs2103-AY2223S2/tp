@@ -119,6 +119,18 @@ public interface Model {
      */
     void deleteAppointment(int id);
 
+    /**
+     * Marks the given appointment as completed.
+     * The appointment must exist in the appointment manager.
+     */
+    void markAppointment(int id);
+
+    /**
+     * Unmarks the given appointment as completed.
+     * The appointment must exist in the appointment manager.
+     */
+    void unmarkAppointment(int id);
+
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 

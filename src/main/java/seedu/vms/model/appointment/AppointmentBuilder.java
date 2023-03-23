@@ -20,15 +20,17 @@ public class AppointmentBuilder {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final GroupName vaccine;
+    private final Boolean isCompleted;
 
 
     private AppointmentBuilder(Index refId, Index patientId, LocalDateTime startTime,
-                               LocalDateTime endTime, GroupName vaccine) {
+                               LocalDateTime endTime, GroupName vaccine, Boolean isCompleted) {
         this.refId = refId;
         this.patientId = patientId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.vaccine = vaccine;
+        this.isCompleted = isCompleted;
     }
 
 
@@ -41,7 +43,7 @@ public class AppointmentBuilder {
      */
     public static AppointmentBuilder of(Index refId, Index patientId) {
         return new AppointmentBuilder(refId, patientId,
-                null, null, null);
+                null, null, null, false);
     }
 
 
@@ -55,19 +57,23 @@ public class AppointmentBuilder {
     }
 
     public AppointmentBuilder setPatientId(Index patientId) {
-        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine);
+        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     public AppointmentBuilder setStartTime(LocalDateTime startTime) {
-        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine);
+        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     public AppointmentBuilder setEndTime(LocalDateTime endTime) {
-        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine);
+        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     public AppointmentBuilder setVaccine(GroupName vaccine) {
-        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine);
+        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine, isCompleted);
+    }
+
+    public AppointmentBuilder setStatus(Boolean isCompleted) {
+        return new AppointmentBuilder(refId, patientId, startTime, endTime, vaccine, isCompleted);
     }
 
 
@@ -105,7 +111,7 @@ public class AppointmentBuilder {
 
 
     private Appointment build(AppointmentManager manager) throws IllegalValueException {
-        Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine);
+        Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
         manager.add(appointment);
         return appointment;
     }

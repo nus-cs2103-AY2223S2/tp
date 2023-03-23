@@ -21,4 +21,22 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     public AppointmentManager(ReadOnlyAppointmentManager toBeCopied) {
         super(toBeCopied);
     }
+
+    /**
+     * Marks the appointment at the given id as completed.
+     * The appointment must exist in the appointment manager.
+     */
+    public void mark(int id) {
+        Appointment appointment = getMapView().get(id).getValue().mark();
+        set(id, appointment);
+    }
+
+    /**
+     * Unmarks the appointment at the given id as not completed.
+     * The appointment must exist in the appointment manager.
+     */
+    public void unmark(int id) {
+        Appointment appointment = getMapView().get(id).getValue().unmark();
+        set(id, appointment);
+    }
 }
