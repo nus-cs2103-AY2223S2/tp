@@ -2,12 +2,12 @@ package seedu.library.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Collection;
 import java.util.Collections;
