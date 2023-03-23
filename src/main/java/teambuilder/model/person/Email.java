@@ -51,7 +51,7 @@ public class Email {
     }
 
     /**
-     * Creates a email based on the given string.
+     * Creates an email based on the given string.
      * If the email is not blank, ensure that the email matches the regex pattern. Otherwise, if whitespaces or an emtpy
      * string is passed as the argument, return the default NO_EMAIL in the email class.
      *
