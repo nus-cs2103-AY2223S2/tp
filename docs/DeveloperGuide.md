@@ -240,7 +240,7 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Timetable feature
 #### Proposed Implementation
 
-The proposed timetable mechanism is facilitated by `VersionedDeliveryJobSystem`. It extends `DeliveryJobSystem` with a job list history. Additionally, it implements the following operations:
+Given below is an example usage scenario and how the timetable mechanism behaves at each step.
 
 * `DeliveryJobSystem#commit()` — Saves the current delivery job system state in its history.
 * `DeliveryJobSystem#timetable_date()` — Shows timetable of the specified week by user.
@@ -250,7 +250,7 @@ These operations are exposed in the `Model` and `Logic` interface as `Model#comm
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedDeliveryJobSystem` will be initialized with the initial delivery job system state.
+Step 1. The user launches the application for the first time. 
 
 Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the address book after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
 
