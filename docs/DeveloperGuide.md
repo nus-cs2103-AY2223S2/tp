@@ -164,6 +164,43 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### CRUD Operations of Meeting and Find Meeting
+#### Implementation
+##### Adding
+The `AddMeetingCommand` adds a meeting to the address book. The meeting is added by creating a `Meeting` object and 
+adding it to the `UniqueMeetingList` in the `Model` component. The `AddMeetingCommandParser` parses the user input and
+creates an `AddMeetingCommand` object. The `AddMeetingCommand` is executed and the meeting is added to the 
+address book's `UniqueMeetingList`. The input format is as follows: 
+```
+// a standard addMeeting command where all arguments are compulsory where Person is minimally 1
+addm t/TITLE d/DATE_TIME [p/PERSON...] l/LOCATION d/DESCRIPTION
+```
+The `AddMeetingCommand` throws a `CommandException` if any of the person's names is not found in the address book (i.e. 
+no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the 
+'CommandException' will be thrown.
+
+##### Editing
+
+##### Deleting
+
+##### Finding
+
+The `FindMeetingCommand` finds meetings in the address book. The meeting is found by creating a 
+`MeetingContainsNamesPredicate` object and passing it to the `updateFilteredMeetingList` method in the `Model` 
+component. The `FindMeetingCommandParser` takes in a list of names and creates a `FindMeetingCommand` object. 
+The `FindMeetingCommand` is executed and the `MeetingContainsNamesPredicate` is passed to the 
+`updateFilteredMeetingList` method. The input format is as follows:
+```
+// no arguments to list all meetings
+findm
+
+// arguments supplied to find meetings with matching names
+findm n/NAME [n/NAME]... 
+```
+The `FindMeetingCommand` throws a `CommandException` if no names are provided and there is trailing whitespace.
+The names no need to match exactly (**case-INsensitive**) but the Meetings are only filtered by one of the contact's names,
+as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
+
 ### Exporting and importing of contacts
 #### Implementation
 ##### Exporting
