@@ -42,12 +42,17 @@ by [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Design
+## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/tree/master/docs/diagrams) folder.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-1/tp/tree/master/docs/diagrams) folder.
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
@@ -62,14 +67,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### 2.1.1 Main components of the architecture
 
-**`Main`** has two classes called [`Main`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
-It is responsible for,
-
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
+It is responsible for, At app launch: Initializes the components in the correct sequence, and connects them up with each other. At shut down: Shuts down the components and invokes cleanup methods where necessary.
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
@@ -86,11 +86,7 @@ the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
-
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API
-* `interface` mentioned in the previous point.
+Each of the four main components (also shown in the diagram above), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
@@ -111,22 +107,15 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml`
-files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`]
-(https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`]
-(https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+executes user commands using the `Logic` component. listens for changes to `Model` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### 2.3 Logic component
 
-**API** : [`Logic.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -156,30 +145,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser`
-* (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown
-* above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser`
-* returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-* interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser`(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
 
-**API** : [`Model.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Model` component,
-
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
-* which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be
-* bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
-* `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain,
-* they should make sense on their own without depending on other components)
+The `Model` component, stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object). stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` objects. does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP)
 model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook`
@@ -191,23 +165,14 @@ to only require one `Tag` object per unique tag, instead of each `Person` needin
 
 ### 2.5 OfficeConnectModel component
 
-**API** : [`OfficeConnectModel.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
+**API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
 <img src="images/OfficeConnectModelClassDiagram.png" width="450" />
 
-* stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in
-* a `UniqueItemList` object).
-* stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query)
-* as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and
-* `ObservableList<AssignTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI
-* automatically updates when the data in the list change.
-* does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of
-* the domain, they should make sense on their own without depending on other components)
+Stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object). Stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### 2.6 Storage component
 
-**API** : [`Storage.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 Original AddressBook Storage Component
 
 <img src="images/StorageClassDiagram.png" width="550" />
@@ -222,14 +187,7 @@ This addition allows for increased extensibility and flexibility in the storage 
 
 The enhanced design is extendable and also capable of supporting the integration of additional databases into the
 application in the future if required.
-The `Storage` component,
-
-* can save address book data, task list data, task assignment data and user preference data in json format, and read
-* them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one
-* (if only the functionality of only one is needed).
-* depends on some classes in the `Model` and `OfficeConnectModel` component (because the `Storage` component's
-* job is to save/retrieve objects that belong to the `Model` and `OfficeConnectModel`)
+The `Storage` component, can save address book data, task list data, task assignment data and user preference data in json format, and read them back into corresponding objects. Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed). Depends on some classes in the `Model` and `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model` and `OfficeConnectModel`)
 
 ### 2.7 Common classes
 
@@ -522,19 +480,19 @@ _{more aspects and alternatives to be added}_
 ### 5.1 Product scope
 
 **Target user profile**:
-* holds a managerial role
-* has a need to manage a significant number of subordinates
-* has a need to assign large number of tasks to subordinates
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Holds a managerial role
+* Has a need to manage a significant number of subordinates
+* Has a need to assign large number of tasks to subordinates
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
-* manage tasks and contacts faster than a typical mouse/GUI driven app
-* able to view all upcoming tasks to be completed at one glance
-* allows efficient delegation of tasks to subordinates in an organised and centralised manner
+* Manage tasks and contacts faster than a typical mouse/GUI driven app
+* Able to view all upcoming tasks to be completed at one glance
+* Allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 ### 5.2 User stories
 
@@ -918,20 +876,21 @@ feature would work in practice.
 5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
 
-### 5.5 Glossary
+### Glossary
 
-#### *U*
-* **Unassign**: remove assignment of task from the person.
+1. Unassign: remove assignment of task from the person.
 
 #### *M*
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 #### *P*
+
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix: Instructions for manual testing
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
