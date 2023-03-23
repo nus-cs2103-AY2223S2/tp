@@ -1,19 +1,18 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.employee.Employee;
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
 import seedu.address.logic.Logic;
+import seedu.address.model.employee.Employee;
+
+import java.util.logging.Logger;
 
 
 /**
