@@ -1,33 +1,3 @@
-'@startuml
-' !include style.puml
-' skinparam arrowThickness 1.1
-' skinparam arrowColor MODEL_COLOR
-' skinparam classBackgroundColor MODEL_COLOR
-' skinparam groupInheritance 1
-'
-' Abstract Class "{abstract}\nItem" as Item
-'
-' together {
-' Class MenuItem
-' Class Quantity
-' Class Status
-' Class Deadline
-' Class Customer
-' }
-'
-' Class ItemList<T extends Item>
-' Class UniqueItemList<T>
-'
-' ItemList *--> "1" UniqueItemList
-' UniqueItemList --> Item
-'
-' Order *--> "1" MenuItem
-' Order *--> "1" Quantity
-' Order *--> "1" Customer
-' Order *--> "1" Deadline
-' Order *--> "1" Status
-' Order --u|> Item
-
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
@@ -54,7 +24,7 @@ Class UniqueOrderList extends UniqueItemList
 Class ItemList<T extends Item>
 
 
-ItemList *--r> "1 " UniqueItemList
+ItemList *--r> "1" UniqueItemList
 UniqueItemList -r>"*" Item
 
 OrderList *--r> "1 " UniqueOrderList

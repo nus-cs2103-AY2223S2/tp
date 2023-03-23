@@ -3,8 +3,36 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+**Table of Contents**
+
+<!-- TOC -->
+  * [**Introduction**](#introduction)
+  * [**Setting up, getting started**](#setting-up-getting-started)
+  * [**Design**](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+  * [**Implementation**](#implementation)
+    * [FindXYZCommand](#findxyzcommand)
+    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+      * [Proposed Implementation](#proposed-implementation)
+      * [Design considerations:](#design-considerations-)
+    * [\[Proposed\] Data archiving](#proposed-data-archiving)
+  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+  * [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,10 +182,11 @@ The `Model` component,
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
-  <img src="images/ItemClassDiagram.svg" width="350" />
+  <img src="images/ItemClassDiagram.svg" width="300" />
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+
 
 This is the class representation for the `Supplier` and `Customer` class.
 
@@ -199,7 +228,7 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-   <img src="images/OrderClassDiagram.svg" width="450" />
+   <img src="images/OrderClassDiagram.svg" width="550" />
  </p>
 
 Here is how `Order` works:
@@ -214,7 +243,7 @@ Here is how `Order` works:
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p align="center">
-  <img src="images/StorageClassDiagram.svg" width="550" />
+  <img src="images/StorageClassDiagram.svg" width="750" />
 </p>
 
 The `Storage` component,
@@ -231,7 +260,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the details on how the common commands are implemented.
+
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+
+### FindXYZCommand
+
+The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the same as those provided during the `add` and `edit` command.
+For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
+
+The parser for the `find` command would extract out the arguments corresponding to each particular field.
+
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
+
+The following activity diagram summarizes what happens when the user executes the `find` command.
+
+<p align="center">
+    <img src="images/FindCommandActivityDiagram.svg">
+</p>
 
 ### AddXYZCommand
 
@@ -254,9 +302,9 @@ The following activity diagram summarizes what happens when the user executes th
 
 The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedTrackr#commit()`— Saves the current trackr state in its history.
-* `VersionedTrackr#undo()`— Restores the previous trackr state from its history.
-* `VersionedTrackr#redo()`— Restores a previously undone trackr state from its history.
+* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
+* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
+* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
 
@@ -295,7 +343,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
+The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -352,12 +400,10 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Tech-savvy small businesses owners who:
-  * lists their products online or on their own website
-  * perform transactions manually without a Point-of-Sale (POS) system
-  * Lack manpower/ time to track orders and contacts manually
-  * Has < 5 employees
-  * Has < 200 customers per month
-  * Has a need to manage a significant number of contacts
+    * lists their products online or on their own website
+    * perform transactions manually without a Point-of-Sale (POS) system
+    * Lack manpower/ time to track orders and contacts manually
+    * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -366,121 +412,96 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 Our application:
-
 * allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
 * enables faster contact management compared to a typical mouse/_GUI_ driven app
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**High Priority (Must Have)**
 
-| Priority | As a / an …​                                                            | I want to …​                                                                          | So that I can…​                                              |
-|----------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                                | refer to the instructions when learning how to use the app   |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                    | easily find them in a single place                           |
-| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                       | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                             | keep track of my to-do list                                  |
-| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                                | ensure that the supplier contacts keyed in are correct       |
-| `* * *`  | familiar user                                                           | delete existing orders from my order list                                             | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                               | remove tasks that I no longer need to complete               |
-| `* * *`  | small business owner                                                    | add an new Item to my menu                                                            | keep reference to items that I am selling.                   |
-| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                         | don't have to keep a mental note of profit per item.         |
-| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                                | quickly create orders.                                       |
-| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                               |
-| `* *`    | familiar user                                                           | edit existing supplier information                                                    | keep my records accurate and up-to-date                      |
-| `* *`    | familiar user                                                           | edit existing information about orders                                                | keep my order details accurate and up-to-date                |
-| `* *`    | familiar user                                                           | edit existing task information                                                        | easily correct any wrong information keyed in                |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                            | have a clearer view of ‘who supplies what’ at a glance       |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details  | have a record of everything                                  |
-| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                          | keep track of my deadlines and plan my time well             |
-| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email         | quickly obtain the details of the contact when I forget them |
-| `* *`    | forgetful business owner                                                | look for task information using keywords like task name, task status or task deadline | quickly obtain the details of the task when I forget them    |
-| `*`      | expert user                                                             | sort my orders by the order of earliest deadline to latest deadline                   | easily see which orders are due first                        |
-| `*`      | expert user                                                             | sort my tasks by the order of earliest deadline to latest deadline                    | easily see which tasks are due first                         |
+| As a / an …​ | I want to …​                               | So that I can…​                                              |
+|--------------|--------------------------------------------|--------------------------------------------------------------|
+| user         | add new orders                             | have a consolidated place to keep track of my orders         |
+| user         | view all my orders                         | track my progress in deadling with the orders                |
+| user         | edit my orders                             | update my order status                                       |
+| user         | find my orders by keywords                 | get a specific order without manually searching for it       |
+| user         | delete my orders                           | remove unwanted old orders                                   |
+| user         | add new customers (suppliers or customers) | easily find them from a consolidated location                |
+| user         | find contacts by keywords                  | get the relevant contact information from a specific contact |
+| user         | edit my contacts                           | update past contacts with current information                |
+| user         | delete my contacts                         | remove contacts not used anymore                             |
+| user         | add new tasks                              | keep track of business tasks from the same application       |
+| user         | find tasks by keywords                     | get all relevant tasks that are related to plan my schedule  |
+| user         | edit my tasks                              | update my progress on the task                               |
+| user         | delete my tasks                            | remove old completed tasks                                   |
+| new user     | have an instruction guide                  | understand how to use the application                        |
 
-*{More to be added}*
+**Medium Priority (Nice to Have)**
+
+| As a / an …​   | I want to …​                | So that I can…​                                           |
+|----------------|-----------------------------|-----------------------------------------------------------|
+| business owner | add my menu items           | add orders based on my menu items                         |
+| business owner | edit my menu items          | update my price and cost based on current rates           |
+| business owner | delete menu items           | remove unpopular items that are not sold anymore          |
+| user           | have my orders sorted       | view my upcoming orders that are not done yet             |
+| user           | have my tasks sorted        | view the most pressing tasks at first glance              |
+| new user       | be able to import past data | use the application easily when transferring data         |
+| user           | be able to export data      | keep track of past orders without lagging the application |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
 
-**Use case: Add a new task**
+**Use case: UC01 - Add a new supplier**
 
 MSS
 
-1. Actor requests to add a new task.
-2. Actor enters an add task command with the required information.
-3. Trackr saves the new task to the system.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The Actor does not enter all required information.
-  Trackr shows an error message.
-
-  Use case ends without adding any task.
-
-**Use case: Add a new supplier**
-
-MSS
-
-1. Actor requests to add a new supplier information.
-2. Actor enters an add supplier command with the required information.
+1. Actor requests to add a new supplier.
+2. Actor enters a command to add a supplier with the required information.
 3. Trackr saves the new supplier to the system.
+4. Trackr shows the new supplier added to the list.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter all required information.
-  Trackr shows an error message.
 
-  Use case ends without adding any supplier.
+    * 2a1. Trackr shows an error message.
 
-**Use case: Add a new order**
+      Use case resumes at step 1.
 
-MSS
+* 2b. The Actor adds a supplier that already exists in the list.
 
-1. Actor requests to add a new order.
-2. Actor enters an add order command with the required information.
-3. Trackr saves the new order to the system.
+    * 2b1. Trackr shows an error message.
 
-   Use case ends.
+      Use case resumes at step 1.
 
-**Extensions**
+**Use case: UC11 - Add a new customer**
 
-* 2a. The Actor does not enter all required information.
-  Trackr shows an error message.
+(Similar to UC01)
 
-  Use case ends without adding any order.
+**Use case: UC21 - Add a new task**
 
-**Use case: Create a new menu item**
+(Similar to UC01)
 
-MSS
+**Use case: UC31 - Add a new order**
 
-1. Actor requests to create a new menu item.
-2. Actor enters an add menu item command with the required information.
-3. Trackr saves the new meni item to the system.
+(Similar to UC01)
 
-   Use case ends.
+**Use case: UC41 - Add a new menu item**
 
-**Extension**
+(Similar to UC01)
 
-* 2a. The Actor does not enter all required information.
-  Trackr shows an error message.
-
-  Use case ends without adding any new menu item.
-
-**Use case: Delete an order**
+**Use case: UC02 - Delete a contact**
 
 **MSS**
 
-1. Actor requests to list orders
-2. Trackr shows a list of orders
-3. Actor requests to delete a specific order in the list
-4. Trackr deletes the order
+1. Actor requests to list contacts.
+2. Trackr shows a list of contacts.
+3. Actor requests to delete a specific contact from the list.
+4. Trackr deletes the contact.
 
    Use case ends.
 
@@ -492,107 +513,32 @@ MSS
 
 * 3a. The given index is invalid.
 
-  * 3a1. Trackr shows an error message.
+    * 3a1. Trackr shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Delete a task in list**
+**Use case: UC22 - Delete a task**
 
-**MSS**
+(Similar to UC01)
 
-1. Actor requests to list todos
-2. Trackr shows a list of todos
-3. Actor requests to delete a specific todo in the list
-4. Trackr deletes the order
+**Use case: UC32 - Delete an order**
 
-   Use case ends.
+(Similar to UC01)
 
-**Extensions**
+**Use case: UC42 - Delete a menu item**
 
-* 2a. The list is empty.
+(Similar to UC01)
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-  * 3a1. Trackr shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Delete a supplier**
-
-**MSS**
-
-1. Actor requests to list suppliers
-2. Trackr shows a list of suppliers
-3. Actor requests to delete a specific supplier in the list
-4. Trackr deletes the person
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-  * 3a1. Trackr shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Edit an order**
+**Use case: UC03 - Edit a contact**
 
 MSS
 
-1. Actor requests to list orders
-2. Trackr shows a list of orders
-3. Actor enters an edit order command with the index of the order and the updated information
-4. Trackr updates the order details with the new information
+1. Actor requests to list contacts.
+2. Trackr shows a list of contacts.
+3. Actor enters an edit contact command for a specific contact and the updated information.
+4. Trackr updates the contact details with the new information.
 
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-  Use case ends.
-* 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
-
-  Use case ends.
-
-**Use case: Edit a supplier information**
-
-MSS
-
-1. Actor requests to list suppliers.
-2. Trackr shows a list of suppliers.
-3. Actor enters an edit supplier command with the index of the supplier and the updated information.
-4. Trackr updates the supplier details with the new information.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-* 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
-
-  Use case ends.
-
-**Use case: Edit a task information**
-
-MSS
-
-1. Actor requests to list tasks.
-2. Trackr shows a list of tasks.
-3. Actor enters an edit task command with the index of the task and the updated information.
-4. Trackr updates the task details with the new information.
-
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -601,126 +547,88 @@ MSS
   Use case ends.
 
 * 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
 
-  Use case ends.
+    * 3a1. Trackr displays an error message.
 
-**Use case: Edit a menu item**
+      Use case resumes at step 3.
 
-MSS
+* 3b. The Actor enters invalid information.
 
-1. Actor requests to list menu items.
-2. Trackr shows a list of menu items.
-3. Actor enters an edit menu item command with the index of the task and the updated information.
-4. Trackr updates the menu details with the new information.
+    * 3b1. Trackr displays an error message.
 
-   Use case ends.
+      Use case resumes at step 3.
 
-**Extensions**
+**Use case: UC23 - Edit a task**
 
-* 2a. The list is empty.
-  Use case ends.
+(Similar to UC01)
 
-* 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
+**Use case: UC33 - Edit an order**
 
-  Use case ends.
+(Similar to UC01)
 
-**Use case: Finding a task**
+**Use case: UC43 - Edit a menu item**
+
+(Similar to UC01)
+
+**Use case: UC04 - Finding a supplier**
 
 MSS
 
-1. Actor requests to find an order.
+1. Actor requests to find a supplier.
 2. Actor enters the command with the desired search criteria.
-3. Trackr searches for orders that match the given criteria.
-4. Trackr displays a list of orders that match the criteria.
+3. Trackr searches for suppliers that match the given criteria.
+4. Trackr displays a list of suppliers that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter any search criteria.
-  Trackr displays an error message.
-  Use case ends.
 
-* 4a. No order matches the given search criteria.
-  Trackr displays a message indicating no matching order is found.
+    * 2a1. Trackr displays an error message.
 
-  Use case ends.
+    * Use case resumes at step 2.
 
-**Use case: Finding a contact**
-
-MSS
-
-1. Actor requests to find a contact.
-2. Home bakery owner enters the command with the desired search criteria.
-3. Trackr searches for contacts that match the given criteria.
-4. Trackr displays a list of contacts that match the criteria.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The Actor does not enter any search criteria.
-  Trackr displays an error message.
+* 4a. No supplier matches the given search criteria.
 
   Use case ends.
 
-* 4a. No contacts matches the given search criteria.
-  Trackr displays a message indicating no matching contact is found.
+**Use case: UC14 - Find a customer**
 
-  Use case ends.
+(Similar to UC01)
 
-**Use case: Finding a task**
+**Use case: UC24 - Find a task**
 
-MSS
+(Similar to UC01)
 
-1. Actor requests to find a task.
-2. Actor enters the command with the desired search criteria.
-3. Trackr searches for tasks that match the given criteria.
-4. Trackr displays a list of tasks that match the criteria.
+**Use case: UC34 - Find an order**
 
-   Use case ends.
+(Similar to UC01)
 
-**Extensions**
+**Use case: UC44 - Find a menu item**
 
-* 2a. The Actor does not enter any search criteria.
-  Trackr displays an error message.
-  Use case ends.
+(Similar to UC01)
 
-* 4a. No task matches the given search criteria.
-  Trackr displays a message indicating no matching task is found.
-
-  Use case ends.
-
-**Use case: Switch to another tab**
+**Use case: UC50 - Switch to another tab**
 
 MSS
 
 1. Actor requests to switch to another tab.
-2. Actor enters the tab command with the target tab.
+2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 
    Use case ends.
 
-**Extensions**
-
-* 2a. The Actor enters an invalid target tab.
-  Trackr displays an error message.
-
-  Use case ends.
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for
+   typical usage.
 1. Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
-1. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should store data locally only.
 
 ### Glossary
 
@@ -750,9 +658,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 

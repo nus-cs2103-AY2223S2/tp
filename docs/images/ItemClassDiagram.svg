@@ -6,7 +6,7 @@
     <g><!--class ModelEnum-->
         <g id="elem_ModelEnum">
             <rect codeLine="7" fill="#9D0012" height="41.2813" id="ModelEnum" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="101" x="139" y="7"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="101" x="139" y="7"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="95" x="142"
                   y="24.6738">&#171;enumeration&#187;
             </text>
@@ -16,7 +16,7 @@
         </g><!--class Item-->
         <g id="elem_Item">
             <rect codeLine="13" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="37" y="7"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="37" y="7"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="40" y="24.6738">{abstract}
             </text>
@@ -26,11 +26,11 @@
         </g><!--class ItemList-->
         <g id="elem_ItemList">
             <rect codeLine="14" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="139" x="169" y="108"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="169" y="108"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="172"
                   y="125.6738">ItemList
             </text>
-            <rect fill="#FFFFFF" height="17.9609" style="stroke:#9D0012;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
                   width="83" x="228" y="105"/>
             <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
                   textLength="81" x="229" y="118.9492">T extends Item
@@ -38,7 +38,7 @@
         </g><!--class UniqueItemList-->
         <g id="elem_UniqueItemList">
             <rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="127" x="7" y="108"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="7" y="108"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="10"
                   y="125.6738">UniqueItemList&lt;T&gt;
             </text>
