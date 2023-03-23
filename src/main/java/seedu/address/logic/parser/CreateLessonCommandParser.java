@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,7 +20,7 @@ import seedu.address.model.student.NamePredicate;
  * Parses input arguments and creates a new CreateHomeworkCommand object
  */
 public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
-    private List<String> names;
+    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
      * and returns a CreateHomeworkCommand object for execution.

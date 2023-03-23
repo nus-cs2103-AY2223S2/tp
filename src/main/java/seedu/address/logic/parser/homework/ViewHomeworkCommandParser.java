@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -23,7 +24,7 @@ import seedu.address.model.student.Student;
  * Parses input arguments and creates a new ViewHomeworkCommand object
  */
 public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
-    private List<String> names;
+    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the ViewHomeworkCommand
      * and returns a ViewHomeworkCommand object for execution.
