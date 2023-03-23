@@ -30,6 +30,8 @@ public class GenreTest {
 
         // valid genre
         assertTrue(Genre.isValidGenre("Action"));
-        assertTrue(Genre.isValidGenre("-")); // one character
+
+        // invalid genre
+        assertFalse(Genre.isValidGenre("Research")); // one character
     }
 }
