@@ -156,6 +156,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public void commitAddressBook() {
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTag(Tag toAdd) {
             throw new AssertionError("This method should not be called.");
         }
