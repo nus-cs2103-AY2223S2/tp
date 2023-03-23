@@ -32,7 +32,8 @@ public class DeleteCommand extends Command {
             + COMMAND_WORD + ":  Deletes the drug identified by its trade name.\n"
             + "Parameters: "
             + PREFIX_TRADE_NAME + " TRADE NAME\n"
-            + "Example: " + COMMAND_WORD + " -tn Panadol";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TRADE_NAME + "Panadol";
 
     private Index targetIndex;
     private TradeName targetTradeName;

@@ -25,6 +25,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_STORAGE_COUNT = new Prefix("-sc");
     public static final Prefix PREFIX_TRADE_NAME = new Prefix("-tn");
     public static final Prefix PREFIX_INDEX = new Prefix("-i");
-    public static final Prefix PREFIX_UPDATE = new Prefix("-up");
+    public static final Prefix PREFIX_UPDATE = new Prefix("-val");
 
 }

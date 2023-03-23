@@ -19,6 +19,10 @@ import seedu.careflow.model.drug.TradeName;
  * Parses input arguments and creates a new UpdateCommand object
  */
 public class UpdateCommandParser implements Parser<UpdateCommand> {
+    public static final String INVALID_VALUE_MESSAGE = "Update value is invalid, Please enter only integer values with"
+            + " '+' or '-' prefixed.";
+    public static final String INVALID_UNKNOWN_SYMBOL_MESSAGE = "Unknown/missing symbol ('+' for addition and '-' "
+            + "for subtraction concatenated in front) for update value";
     private final char positive = '+';
     private final char negative = '-';
     @Override
@@ -26,23 +30,20 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TRADE_NAME, PREFIX_UPDATE);
         if (arePrefixesPresent(argumentMultimap, PREFIX_TRADE_NAME, PREFIX_UPDATE)) {
             TradeName tradeName = ParserUtil.parseTradeName(argumentMultimap.getValue(PREFIX_TRADE_NAME).get());
-            String update = argumentMultimap.getValue(PREFIX_UPDATE).get();
+            String update = argumentMultimap.getValue(PREFIX_UPDATE).get().trim();
             boolean add;
             if (update.charAt(0) == negative) {
                 add = false;
             } else if (update.charAt(0) == positive) {
                 add = true;
             } else {
-                throw new ParseException("Unknown/missing symbol"
-                        + " ('+' for addition and '-' for subtraction concatenated in front) "
-                        + "for update value");
+                throw new ParseException(INVALID_UNKNOWN_SYMBOL_MESSAGE);
             }
             try {
                 Integer value = Integer.parseInt(update.substring(1));
                 return new UpdateCommand(tradeName, value, add);
             } catch (NumberFormatException e) {
-                throw new ParseException("Update value is invalid, "
-                        + "Please enter only integer values with '+' or '-' prefixed.");
+                throw new ParseException(INVALID_VALUE_MESSAGE);
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
