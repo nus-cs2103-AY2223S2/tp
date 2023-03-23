@@ -27,7 +27,8 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
      * The appointment must exist in the appointment manager.
      */
     public void mark(int id) {
-        this.getMapView().get(id).getValue().mark();
+        Appointment appointment = getMapView().get(id).getValue().mark();
+        set(id, appointment);
     }
 
     /**
@@ -35,6 +36,7 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
      * The appointment must exist in the appointment manager.
      */
     public void unmark(int id) {
-        this.getMapView().get(id).getValue().unmark();
+        Appointment appointment = getMapView().get(id).getValue().unmark();
+        set(id, appointment);
     }
 }
