@@ -21,7 +21,7 @@ public class FishSortCommand extends FishCommand {
             + "Parameters: n/lfd/s/fi/tk (must be a valid fish parameter)\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " lfd";
 
-    public static final String MESSAGE_VIEW_FISH_SUCCESS = "Sorting Fish by: %1$s";
+    public static final String MESSAGE_VIEW_FISH_SUCCESS = "Showing sorted Fish";
 
     private final Comparator<Fish> fishComparator;
 
@@ -31,6 +31,7 @@ public class FishSortCommand extends FishCommand {
      * @param fishComparator The index of the {@code Fish} to view.
      */
     public FishSortCommand(Comparator<Fish> fishComparator) {
+        requireNonNull(fishComparator);
         this.fishComparator = fishComparator;
     }
 

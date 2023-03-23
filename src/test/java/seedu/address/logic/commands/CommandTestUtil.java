@@ -29,7 +29,14 @@ import seedu.address.testutil.EditFishDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    /* Tank additions*/
+    /* Sorting */
+    public static final String SORT_NAME = "n";
+    public static final String SORT_LAST_FED_DATE = "lfd";
+    public static final String SORT_SPECIES = "s";
+    public static final String SORT_FEEDING = "fi";
+    public static final String SORT_TANK = "tk";
+
+    /* Tank additions */
     public static final String VALID_TANK_INDEX = "1";
     public static final String TANK_DESC = " " + PREFIX_TANK + VALID_TANK_INDEX;
 

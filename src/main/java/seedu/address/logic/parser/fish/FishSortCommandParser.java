@@ -6,13 +6,33 @@ import java.util.Comparator;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.fish.FishSortCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Fish;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class FishSortCommandParser {
+public class FishSortCommandParser implements Parser<FishSortCommand> {
+    /* Compares names and sorts them lexicographically from small to large */
+    public static final Comparator<Fish> NAME_COMPARATOR = Comparator.comparing(f
+            -> f.getName().toString());
+    /* Compares last fed date and sorts them lexicographically from small to large */
+    public static final Comparator<Fish> LAST_FED_COMPARATOR = Comparator.comparing(f
+            -> f.getLastFedDate().getLocalDate());
+    /* Compares species and sorts them lexicographically from small to large */
+    public static final Comparator<Fish> SPECIES_COMPARATOR = Comparator.comparing(f
+            -> f.getSpecies().toString());
+    /* Compares feeding intervals and sorts them lexicographically from small to large */
+    public static final Comparator<Fish> FEEDING_COMPARATOR = (f1, f2) -> {
+        String c1 = f1.getFeedingInterval().days + f1.getFeedingInterval().hours;
+        String c2 = f2.getFeedingInterval().days + f2.getFeedingInterval().hours;
+        return c1.compareTo(c2);
+    };
+    /* Compares tank names and sorts them lexicographically from small to large */
+    public static final Comparator<Fish> TANK_COMPARATOR = Comparator.comparing(f
+            -> f.getTank().getTankName().toString());
+
     /**
      * Parses the given {@code String} of arguments in the context of the FishSortCommand
      * and returns an FishSortCommand object for execution.
@@ -24,52 +44,15 @@ public class FishSortCommandParser {
         }
         switch (args.trim().toLowerCase()) {
         case "n":
-            /* Compares names and sorts them lexicographically from small to large */
-            Comparator<Fish> nameComparator = new Comparator<Fish>() {
-                @Override
-                public int compare(Fish f1, Fish f2) {
-                    return f1.getName().toString().compareTo(f2.getName().toString());
-                }
-            };
-            return new FishSortCommand(nameComparator);
+            return new FishSortCommand(NAME_COMPARATOR);
         case "lfd":
-            /* Compares last fed date and sorts them lexicographically from small to large */
-            Comparator<Fish> lastFedComparator = new Comparator<Fish>() {
-                @Override
-                public int compare(Fish f1, Fish f2) {
-                    return f1.getLastFedDate().getLocalDate().compareTo(f2.getLastFedDate().getLocalDate());
-                }
-            };
-            return new FishSortCommand(lastFedComparator);
+            return new FishSortCommand(LAST_FED_COMPARATOR);
         case "s":
-            /* Compares species and sorts them lexicographically from small to large */
-            Comparator<Fish> speciesComparator = new Comparator<Fish>() {
-                @Override
-                public int compare(Fish f1, Fish f2) {
-                    return f1.getSpecies().toString().compareTo(f2.getSpecies().toString());
-                }
-            };
-            return new FishSortCommand(speciesComparator);
+            return new FishSortCommand(SPECIES_COMPARATOR);
         case "fi":
-            /* Compares feeding intervals and sorts them lexicographically from small to large */
-            Comparator<Fish> feedingComparator = new Comparator<Fish>() {
-                @Override
-                public int compare(Fish f1, Fish f2) {
-                    String c1 = f1.getFeedingInterval().days + f1.getFeedingInterval().hours;
-                    String c2 = f2.getFeedingInterval().days + f2.getFeedingInterval().hours;
-                    return c1.compareTo(c2);
-                }
-            };
-            return new FishSortCommand(feedingComparator);
+            return new FishSortCommand(FEEDING_COMPARATOR);
         case "tk":
-            /* Compares tank names and sorts them lexicographically from small to large */
-            Comparator<Fish> tankComparator = new Comparator<Fish>() {
-                @Override
-                public int compare(Fish f1, Fish f2) {
-                    return f1.getTank().getTankName().toString().compareTo(f2.getTank().getTankName().toString());
-                }
-            };
-            return new FishSortCommand(tankComparator);
+            return new FishSortCommand(TANK_COMPARATOR);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     FishSortCommand.MESSAGE_USAGE));
