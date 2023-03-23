@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCalendarEvents.getTypicalCalendarEvents;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -12,10 +13,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -179,6 +182,42 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(p -> p.getName().fullName.contains("Ben"));
         assertEquals(1, modelManager.getFilteredPersonList().size());
         assertTrue(modelManager.getFilteredPersonList().contains(BENSON));
+    }
+
+    // Test for getFilteredCalendarEventList() method
+    @Test
+    public void getFilteredCalendarEventList_success() {
+        // Set up a list of persons with calendar events
+        Person person1 = new PersonBuilder().withName("Amy Bee").withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo").withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
+
+        // Check that the filtered list contains only persons with calendar events
+        ObservableList<CalendarEvent> expectedCalendarEvents = getTypicalCalendarEvents();
+        ObservableList<CalendarEvent> actualCalendarEvents = modelManager.getFilteredCalendarEventList();
+        assertEquals(expectedCalendarEvents, actualCalendarEvents);
+    }
+
+    // Test for updateCalendarEventList() method
+    @Test
+    public void updateCalendarEventList_success() {
+        // Set up a list of persons with calendar events
+        Person person1 = new PersonBuilder().withName("Amy Bee").withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo").withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
+
+        // Filter the list to show only persons with calendar events
+        modelManager.updateFilteredPersonList(x -> !x.getCalendarEvents().isEmpty());
+
+        // Update the calendar event list
+        modelManager.updateCalendarEventList();
+
+        // Check that the filtered list contains only persons with calendar events
+        ObservableList<CalendarEvent> expectedCalendarEvents = getTypicalCalendarEvents();
+        ObservableList<CalendarEvent> actualCalendarEvents = modelManager.getFilteredCalendarEventList();
+        assertEquals(expectedCalendarEvents, actualCalendarEvents);
     }
 
 }
