@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="MediMeet" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -45,13 +46,24 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
+        <HBox VBox.vgrow="ALWAYS">
+          <children>
+            <VBox fx:id="patientList" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="patientListPanelPlaceholder" HBox.hgrow="SOMETIMES"/>
+            </VBox>
 
-        <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+            <VBox fx:id="appointmentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+          </children>
+        </HBox>
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

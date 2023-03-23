@@ -14,7 +14,7 @@ import seedu.address.model.patient.Patient;
  */
 public class PatientCard extends UiPart<Region> {
 
-    private static final String FXML = "PatientListCard.fxml";
+    private static final String FXML = "PatientCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

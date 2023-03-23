@@ -1,0 +1,72 @@
+package seedu.address.ui;
+
+import java.util.Comparator;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import seedu.address.model.ReadOnlyPatientList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Patient;
+
+public class AppointmentCard extends UiPart<Region> {
+    private static final String FXML = "AppointmentCard.fxml";
+    public final Appointment appointment;
+
+    @FXML
+    private HBox appointmentCardPane;
+    @FXML
+    private Label id;
+    @FXML
+    private Label patientName;
+
+    @FXML
+    private Label timeSlot;
+
+    @FXML
+    private Label description;
+
+    @FXML
+    private FlowPane tags;
+
+    public AppointmentCard(ReadOnlyPatientList patientList, Appointment appointment, int displayedIndex) {
+        super(FXML);
+        this.appointment = appointment;
+        System.out.println(appointment.toString());
+
+        patientList.getPatientList().forEach(patient -> System.out.println(patient.getId()));
+        id.setText(displayedIndex + ". ");
+//        Patient thisPatient = patientList
+//                .getPatientList()
+//                .stream()
+//                .filter(patient -> patient.getId().equals(appointment.getPatientId()))
+//                .findFirst().orElseThrow();
+        // temporary workaround for buggy id
+        patientName.setText("Dummy patient");
+        timeSlot.setText(appointment.getTimeslot().timeslotString);
+        description.setText(appointment.getDescription().description);
+        appointment.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PatientCard)) {
+            return false;
+        }
+
+        // state check
+        AppointmentCard card = (AppointmentCard) other;
+        return id.getText().equals(card.id.getText())
+                && appointment.equals(card.appointment);
+    }
+}
