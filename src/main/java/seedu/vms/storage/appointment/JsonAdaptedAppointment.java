@@ -21,6 +21,7 @@ public class JsonAdaptedAppointment {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final JsonAdaptedGroupName vaccine;
+    private final Boolean isCompleted;
 
 
     /** Constructs a {@code JsonAdaptedAppointment}. */
@@ -29,11 +30,13 @@ public class JsonAdaptedAppointment {
                 @JsonProperty("patientId") Integer patientId,
                 @JsonProperty("startTime") LocalDateTime startTime,
                 @JsonProperty("endTime") LocalDateTime endTime,
-                @JsonProperty("vaccine") JsonAdaptedGroupName vaccine) {
+                @JsonProperty("vaccine") JsonAdaptedGroupName vaccine,
+                @JsonProperty("isCompleted") Boolean isCompleted) {
         this.patientId = patientId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.vaccine = vaccine;
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -44,6 +47,7 @@ public class JsonAdaptedAppointment {
         this.startTime = appointment.getAppointmentTime();
         this.endTime = appointment.getAppointmentEndTime();
         this.vaccine = new JsonAdaptedGroupName(appointment.getVaccination().getName());
+        this.isCompleted = appointment.getStatus();
     }
 
 
@@ -73,6 +77,11 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "VACCINE"));
         }
         builder = builder.setVaccine(vaccine.toModelType());
+
+        if (isCompleted == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "IS_COMPLETED"));
+        }
+        builder = builder.setStatus(isCompleted);
 
         return builder.create(new AppointmentManager());
     }

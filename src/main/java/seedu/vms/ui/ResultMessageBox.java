@@ -1,8 +1,11 @@
 package seedu.vms.ui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.vms.logic.CommandMessage;
 
 
@@ -16,7 +19,7 @@ public class ResultMessageBox extends UiPart<Region> {
     private static final String STYLE_CLASS_INFO = "result-message-info-color";
 
     @FXML private Label stateLabel;
-    @FXML private Label messageLabel;
+    @FXML private TextArea messageArea;
 
 
     /**
@@ -24,10 +27,36 @@ public class ResultMessageBox extends UiPart<Region> {
      */
     public ResultMessageBox(CommandMessage result) {
         super(FXML_FILE);
-        stateLabel.setText(String.format("[%s]", result.getState().toString()));
-        messageLabel.setText(result.getMessage());
+        setStateLabel(result.getState().toString());
+        setMessage(result.getMessage());
+        setStyle(result.getState());
+    }
+
+
+    private void setStateLabel(String state) {
+        stateLabel.setText(String.format("[%s]", state));
+    }
+
+
+    private void setMessage(String message) {
+        // listener block adapted from https://stackoverflow.com/a/25643696
+        messageArea.textProperty().addListener((ob, oldText, newText) -> {
+            Platform.runLater(() -> {
+                Text text = new Text(newText);
+                text.setFont(messageArea.getFont());
+                double height = text.getLayoutBounds().getHeight()
+                        + messageArea.getPadding().getTop() + messageArea.getPadding().getBottom()
+                        + 16D;
+                messageArea.setPrefHeight(height);
+            });
+        });
+        messageArea.setText(message);
+    }
+
+
+    private void setStyle(CommandMessage.State state) {
         String colorStyleClass;
-        switch (result.getState()) {
+        switch (state) {
 
         case ERROR:
             colorStyleClass = STYLE_CLASS_ERROR;
@@ -47,6 +76,6 @@ public class ResultMessageBox extends UiPart<Region> {
 
         }
         stateLabel.getStyleClass().add(colorStyleClass);
-        messageLabel.getStyleClass().add(colorStyleClass);
+        messageArea.getStyleClass().add(colorStyleClass);
     }
 }

@@ -20,6 +20,7 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.testutil.SampleVaxTypeData;
+import seedu.vms.testutil.TestUtil;
 
 
 public class AddVaxTypeTest {
@@ -138,7 +139,7 @@ public class AddVaxTypeTest {
         // illegal characters
         checkExecutionEx("( ^)o(^ )b ", ParseException.class);
         // too long
-        checkExecutionEx("<15 characters><15 characters>a", ParseException.class);
+        checkExecutionEx("(15 characters)(15 characters)a", ParseException.class);
         // duplicate
         VaxTypeModelStub model = new VaxTypeModelStub();
         ArgumentMultimap argsMap1 = ArgumentTokenizer.tokenize(SampleVaxTypeData.CMD_NAME_1);
@@ -172,6 +173,42 @@ public class AddVaxTypeTest {
         checkExecutionEx(INVALID_REQ_CMD_SYNTAX, ParseException.class);
         checkExecutionEx(INVALID_REQ_CMD_TOO_FEW_PARTS, ParseException.class);
         checkExecutionEx(INVALID_REQ_CMD_TOO_MANY_PARTS, ParseException.class);
+    }
+
+
+    @Test
+    public void execute_groupOverLimit_exceptionThrown() {
+        HashSet<GroupName> overLimitSet = TestUtil.generateGroupSet(VaxType.LIMIT_GROUPS + 1);
+        String overLimitCmdPart = TestUtil.toCommandString(overLimitSet);
+        String overLimitCmd = String.format("UNCHI --%s %s",
+                CliSyntax.PREFIX_VAX_GROUPS,
+                overLimitCmdPart);
+        checkExecutionEx(overLimitCmd, CommandException.class);
+    }
+
+
+    @Test
+    public void execute_ingredientsOverLimit_exceptionThrown() {
+        HashSet<GroupName> overLimitSet = TestUtil.generateGroupSet(VaxType.LIMIT_INGREDIENTS + 1);
+        String overLimitCmdPart = TestUtil.toCommandString(overLimitSet);
+        String overLimitCmd = String.format("UNCHI --%s %s",
+                CliSyntax.PREFIX_INGREDIENTS,
+                overLimitCmdPart);
+        checkExecutionEx(overLimitCmd, CommandException.class);
+    }
+
+
+    @Test
+    public void execute_historyReqOverLimit_exceptionThrown() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < VaxType.LIMIT_HISTORY_REQ + 1; i++) {
+            builder.append(String.format("--%s %s :: %s",
+                    CliSyntax.PREFIX_HISTORY_REQ,
+                    Requirement.RequirementType.ANY.name(),
+                    String.valueOf(i)));
+        }
+        String command = String.format("UNCHI %s", builder.toString());
+        checkExecutionEx(command, CommandException.class);
     }
 
 
