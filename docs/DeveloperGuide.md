@@ -152,7 +152,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `InternBuddyParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -214,7 +214,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -337,37 +337,37 @@ The following gives a more detailed explanation of the `view` operation.
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInternBuddy`. It extends `InternBuddy` with an undo/redo history, stored internally as an `internBuddyStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInternBuddy#commit()` — Saves the current address book state in its history.
+* `VersionedInternBuddy#undo()` — Restores the previous address book state from its history.
+* `VersionedInternBuddy#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitInternBuddy()`, `Model#undoInternBuddy()` and `Model#redoInternBuddy()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedInternBuddy` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitInternBuddy()`, causing another modified address book state to be saved into the `internBuddyStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternBuddy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -380,17 +380,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest address book state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -494,6 +494,63 @@ The following is a more detailed explanation on how 'FindCommand' works.
         * Command is much more flexible
     * Cons:
         * Command becomes too flexible (e.g. a find command like "find n/google ltd" will return `Internship` objects that not just has the word "Google", like "Google Ltd", in their names but "ltd" as well, like "Apple Ltd", "Meta Ltd" and more)
+
+### Clear Feature
+
+#### Implementation
+The following sequence diagram provides an overview on how the `clear` operation works.
+
+![AddSequenceDiagram](images/ClearSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `clear` operation.
+
+1. When the user enters a `clear` command, the  `ClearCommandParser` parses the user's input.
+2. It checks for if the following optional arguments exist:
+  - `n/` followed by the company's name
+  - `r/` followed by the role applied
+  - `s/` followed by the status of the internship application
+  - `t/` followed by tags for the entry
+
+Note that all arguments are optional. An `InternshipContainsKeywordPredicate` is created. If there are no arguments,  `InternshipContainsKeywordPredicate` will return `True` if its `isEmpty()` method is called. Otherwise, it will return `False`. 
+
+Furthermore, the predicate tests if an internship matches all its conditions (cond1 AND cons2 AND...). There are 2 cases depending on whether the predicate is empty:
+
+#### Case 1: The predicate is empty
+1. A new `InterBuddy` object is created. This object contains all user data related to internship entires. It will replace the existing `InternBuddy` object in `ModelManager` using the method `ModelManager.setInternBuddy()`.
+
+#### Case 2: The predicate is not empy
+1. `ModelManager.deleteInternshipByPredicate(Predicate<Internship> predicate)` is called with the previously created `InternshipContainsKeywordPredicate` object as its argument. It will delelete all internships entries matching the predicate.
+
+
+### Design Considerations
+
+**Aspect: Whether to use an AND relationship or OR relationship for predicate matching**
+
+* **Alternative 1 (current choice):**  Use an AND relationship
+    * Pros:
+        * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
+    * Cons:
+        * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
+
+* **Alternative 2:** Use an OR relationship
+    * Pros:
+        * The current `clear` command takes in no arguments.
+    * Cons:
+        * Less fine-grained control over `clear`.
+
+**Aspect: Whether to add this enhancement to `clear` or `delete` command**
+
+* **Alternative 1 (current choice):**  Enhance the `clear` command
+    * Pros:
+        * The current `clear` command takes in no arguments, so it is much easier to implement.
+    * Cons:
+        * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
+
+* **Alternative 2:** Enhance the `delete` command
+    * Pros:
+        * Combine all delete features into one keyword.
+    * Cons:
+        * We need to manage boths indexes and keywords, and this may be a source of confusion. For example, in the command `delete 1 2 n/Google`, the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
 
 
 _{more aspects and alternatives to be added}_

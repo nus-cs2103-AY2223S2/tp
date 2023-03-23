@@ -50,6 +50,7 @@ public class DeleteCommand extends Command {
 
     private final List<Index> targetIndexes;
     private final InternshipContainsKeywordsPredicate predicate;
+    
 
 
     /**
@@ -87,7 +88,6 @@ public class DeleteCommand extends Command {
             internshipsToDelete = uniqueTargetIndexes.stream()
                     .map(index -> lastShownList.get(index.getZeroBased()))
                     .collect(Collectors.toList());
-        }
 
         if (!this.predicate.isEmpty()) {
             internshipsToDelete = internshipsToDelete.stream()

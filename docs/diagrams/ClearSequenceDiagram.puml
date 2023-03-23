@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
+participant "p:InternshipContainsKeywordPredicate" as InternshipContainsKeywordPredicate LOGIC_COLOR
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear n/google")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("clear n/google")
+activate InternBuddyParser
+
+create ClearCommandParser
+InternBuddyParser -> ClearCommandParser
+activate ClearCommandParser
+
+ClearCommandParser --> InternBuddyParser
+deactivate ClearCommandParser
+
+InternBuddyParser -> ClearCommandParser : parse("n/google")
+activate ClearCommandParser
+
+create InternshipContainsKeywordPredicate
+ClearCommandParser -> InternshipContainsKeywordPredicate : InternshipContainsKeywordPredicate()
+activate InternshipContainsKeywordPredicate
+
+InternshipContainsKeywordPredicate --> ClearCommandParser : p
+deactivate InternshipContainsKeywordPredicate
+
+create ClearCommand
+ClearCommandParser -> ClearCommand : ClearCommand(p)
+activate ClearCommand
+
+ClearCommand --> ClearCommandParser : c
+deactivate ClearCommand
+
+ClearCommandParser --> InternBuddyParser : c
+deactivate ClearCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCommandParser -[hidden]-> InternBuddyParser
+destroy ClearCommandParser
+
+InternBuddyParser --> LogicManager : c
+deactivate InternBuddyParser
+
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
+
+ClearCommand -> Model : deleteInternshipByPredicate(p)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearCommand : cr
+deactivate CommandResult
+
+ClearCommand --> LogicManager : cr
+deactivate ClearCommand
+ClearCommand -[hidden]-> LogicManager
+destroy ClearCommand
+
+destroy InternshipContainsKeywordPredicate
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

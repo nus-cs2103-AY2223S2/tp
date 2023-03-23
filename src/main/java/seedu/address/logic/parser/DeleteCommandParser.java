@@ -53,6 +53,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         try {
             List<Index> indexes = ParserUtil.parseIndexes(argMultimap.getPreamble());
+            assert indexes != null;
             return new DeleteCommand(indexes, newPredicate);
         } catch (ParseException pe) {
             throw new ParseException(
