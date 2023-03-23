@@ -287,6 +287,26 @@ The following sequence diagram shows how the `createtag` command.
 
 **insert sequence diagram
 
+
+#### Feature 2 - `deltag`:
+The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `DeleteTagCommand`. `DeleteTagCommandParser` is used to parse and check whether the user input is valid. After which a `DeleteTagCommand` object is created with the specified tag name. The second stage requires DeleteTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tag name(s) for the tag(s) to be deleted.
+2. If the tag name is empty, an error response is returned and users will be prompted to key in the command with the valid tag name.
+3. If all tag name(s) are invalid, an error response is returned and users will be prompted to key in the command with a valid tag name.
+4. If some tag name(s) are invalid, invalid tag names will be ignore and valid tag names will be processed.
+5. Completion of step 4 without any exceptions will result in successful deleteion of specified `Tag` in WIFE and `Food` with specified tag(s) will have that tag(s) removed
+
+The following sequence diagram shows how the `deltag` command.
+
+**insert sequence diagram
+
 ### \[Implementing\] Increase/Decrease quantity of a food item.
 
 #### Overview
