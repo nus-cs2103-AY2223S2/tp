@@ -39,6 +39,8 @@ public class ReviewStatsPanel extends UiPart<Region> {
 
             } else {
                 setGraphic(new ReviewStat(pair).getRoot());
+                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
+                        + "-fx-background-color:transparent ");
             }
         }
     }

@@ -69,6 +69,8 @@
 /* ============ SCROLL BAR ========== */
 .scroll-bar {
     -fx-background-color: derive(#f9f9f9, 20%);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
 }
 
 .scroll-bar .thumb {
@@ -136,7 +138,17 @@
 
 #deckNamePane #description {
     -fx-text-fill: black;
-    -fx-font-size: 40px;
+    -fx-font-size: 20px;
+}
+
+#deckNameView {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-background-color: white;
+}
+
+#rightPanelTitle {
+    -fx-padding: 0 0 10 0;
 }
 
 /* ============ TAGS ========== */
