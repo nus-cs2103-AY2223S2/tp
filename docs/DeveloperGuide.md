@@ -252,16 +252,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* Student chefs who favour their own collection of personal recipes rather than online recipes
 * Student chefs on a tight budget and schedule
 * Student chefs who have limited ingredients
-* Able to type fast
+* Student chefs who are capable in typing fast
 * Prefers typing to mouse interaction
-* Is reasonably comfortable using CLI apps
+* Is reasonably comfortable using CLI applications
 
 **Value proposition**:
 
 * Increase efficiency of preparing ingredients and cooking given limited time and resources
 * Provide convenience to student chefs with recipes catered to their needs
+* Ligh-weight and portable digital recipe vault for all their personal recipes
 * Easily plan out a week's worth of meals with grocery lists and meal plans
 
 
