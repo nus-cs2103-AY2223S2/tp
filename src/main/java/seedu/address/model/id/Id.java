@@ -19,6 +19,10 @@ public abstract class Id {
         this.id = id;
     }
 
+    public static String generateUniqueId() {
+        return "1";
+    }
+
     public String getId() {
         return id;
     }
