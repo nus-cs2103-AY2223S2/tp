@@ -15,6 +15,7 @@ import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.util.ComposedPredicate;
 
 /**
  * Represents the in-memory model of the Reroll data.
@@ -160,6 +161,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredActive.setPredicate(predicate);
     }
+
+    @Override
+    public void addFilteredEntityList(Predicate<Entity> predicate) {
+        requireNonNull(predicate);
+        filteredActive.setPredicate(new ComposedPredicate<>(filteredActive.getPredicate(), predicate));
+    }
+
+
 
     // Reset
     @Override
