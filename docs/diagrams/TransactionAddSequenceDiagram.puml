@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTxnTransaction" as AddTxnCommandParser LOGIC_COLOR
+participant "a:AddTxnCommand" as AddTxnCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+LogicManager -> AddressBookParser : execute("addtxn")
+
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class Person
+class LeadStatus
+enum "<<enumeration>>\nLeadStatusName" as LeadStatusName
+
+LeadStatusName <-- LeadStatus
+LeadStatus <-- Person
+
+class Person {
+}
+
+class LeadStatus {
+-lastUpdateTime:LocalDateTime
+
++update(LeadStatusName newStatus)
++getTimestamp()
+}
+
+enum LeadStatusName {
+UNCONTACTED
+WORKING
+QUALIFIED
+UNQUALIFIED
+
++SYMBOL_LEAD_STATUS_MAP:HashMap
++STRING_LEAD_STATUS_MAP:HashMap
+
++isValidStatusName(String)
++get(String)
+}
+
+@enduml

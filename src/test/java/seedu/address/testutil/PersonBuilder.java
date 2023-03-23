@@ -165,7 +165,6 @@ public class PersonBuilder {
         return this;
     }
 
-
     public Person build() {
         return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags);
     }

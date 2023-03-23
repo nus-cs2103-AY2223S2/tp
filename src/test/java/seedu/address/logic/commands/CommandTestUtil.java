@@ -105,6 +105,11 @@ public class CommandTestUtil {
     public static final LeadStatus VALID_LEAD_STATUS_LABEL_QUALIFIED; // for the lead status in line above
     public static final String INVALID_LEAD_STATUS_LABEL = " " + PREFIX_STATUS_ASSIGN + "Contacted"; // is not defined
 
+    public static final String VALID_TXN_DESC_COFFEE_MACHINES = "20 HotPot CoffeePots for The Pot Company";
+    public static final String VALID_TXN_VALUE_COFFEE_MACHINES = "6600";
+    public static final String VALID_TXN_OWNER_COFFEE_MACHINES = "Tom Petey";
+    public static final String VALID_TXN_STATUS_COFFEE_MACHINES = "closed";
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
@@ -176,4 +181,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    // requires implementation of TransactionDescContainsKeyword
+    //    public static void showTransactionAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredTransactionList().size());
+    //
+    //        Transaction txn = model.getFilteredTransactionList().get(targetIndex.getZeroBased());
+    //        final String[] splitDesc = txn.getDescription().value.split("\\s");
+    //        model.updateFilteredTransactionList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
+    //    }
 }

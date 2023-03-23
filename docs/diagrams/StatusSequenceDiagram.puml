@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+
+participant ":StatusCommand" as StatusCommand LOGIC_COLOR
+participant ":Model" as Model LOGIC_COLOR
+
+
+
+-> StatusCommand: execute()
+
+StatusCommand -> Model: getFilteredPersonList()
+Model --> StatusCommand: List<person> lastShownList
+
+alt index exceeds lastShownList.size()
+    <--- StatusCommand: CommandException
+end
+
+StatusCommand -> Model: getZeroBased(index)
+StatusCommand <-- Model: toBeUpdated:Person
+
+alt lead status is the same as\nlead status of toBeUpdated
+    <-- StatusCommand: CommandException
+end
+
+StatusCommand -> StatusCommand : createPersonWithNewStatus()\n return:updatedPerson
+
+StatusCommand -> Model : setPerson(updatedPerson)
+Model --> StatusCommand
+
+StatusCommand -> Model : updateFilteredPersonList()
+Model --> StatusCommand
+
+box
+@enduml

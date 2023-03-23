@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,6 +154,48 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort feature
+
+#### About
+
+The sort feature is an inbuilt element of `SalesPunch` where it allows the sales person to sort the address book according to a certain attribute.
+
+#### Implementation
+
+The sort mechanism is facilitated by `SortCommandParser` where it parses sort commands, triggering and associating the given attribute to a `SortCommand` class which extends `Command`. When `SortCommand` gets executed, `ModelManager#sortPersonList()` sorts the address book according to the given attribute.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the given input is not a valid attribute of a `Person` class, it will throw an error indicating invalid attribute.
+
+</div>
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+### Lead Status feature
+
+The Lead Status feature aims to provide information about the contact based on when the status was last set.
+It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and 
+`LocalDateTime` timestamp.
+
+Because we would like to limit the types of statuses a contact should have, for consistency's sake, each 
+type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for 
+abbreviations of each status type.
+
+![](images/PersonLeadStatusDiagram.png)
+
+The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
+The user is able to change the lead status of a contact to any other lead status. The timestamp is updated to the 
+`LocalDateTime.now()` of when the command is executed. If the lead status to change to is the same as the preexisting 
+one, the command returns and does not alter the previous lead status (and timestamp).
+
+![](images/StatusSequenceDiagram.png)
+(to update seq diagram to reflect timestamp implementation)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -224,19 +266,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### Add transaction feature
+
+#### Proposed Implementation
+
+The proposed add transaction mechanism is facilitated by `UniqueTransactionList`. It is similar to `UniquePersonList` which stores a list of unique transaction records.
+
+Given below is an example scenario and how to add transaction mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Storage` will check if there are existing transaction records in local storage. If transaction records are found, a `UniqueTransactionList` is created with existing transaction records. Else, an empty `UniqueTransactionList` is created in `AddressBook`.
+
+Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new transaction record. the `addtxn` command will be parsed by `AddTxnCommandParser` and a `AddTxnCommand` will be created. `AddTxnCommand#exexute()` add the input transaction record if it has a valid owner and it's not a duplicate of existing record, then it creates a `CommandResult` to provide feedback to the user.
+
+![AddTxnCommandSequenceDiagram](images/AddTxnCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How add transaction executes:**
+
+* **Alternative 1 (current choice):** Saves all transaction records in a separate list, each transaction has a non-null owner attribute indicates the other party involved in this transaction.
+    * Pros: Easy to implement, easy to search through all transaction records.
+    * Cons: May need long time to list down all transaction records under the save name.
+
+* **Alternative 2:** Each Person object has a transaction list attribute, to store transactions belong to him or her.
+    * Pros: Less time taken to identify transactions with the same person as no need to search through the whole transaction list.
+    * Cons: Difficult to carry out operations on all transactions.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -281,6 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | frantic salesperson                        | be warned when I make certain actions in my application | won’t jeopardise my work through carelessness            |
 | `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                   |
 | `*`      | new user                                   | import my current database                              |                                                          |
+| `*`      | salesperson                                | record down all transactions with clients               |                                                          |
 
 
 ### Use cases
@@ -299,10 +369,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. AddressBook detects an error in the entered data.
-   * 1a1. AddressBook requests for the correct data.
-   * 1a2. User enters new data.
-   * Steps 1a1-1a2 are repeated until the data entered is correct.
-   * Use case resumes from step 2.
+    * 1a1. AddressBook requests for the correct data.
+    * 1a2. User enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered is correct.
+    * Use case resumes from step 2.
 
   Use case ends.
 
@@ -324,10 +394,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. AddressBook detects an error in the entered data.
-   * 3a1. AddressBook requests for the correct data.
-   * 3a2. User enters new data.
-   * Steps 3a1-3a2 are repeated until the data entered is correct.
-   * Use case resumes from step 4.
+    * 3a1. AddressBook requests for the correct data.
+    * 3a2. User enters new data.
+    * Steps 3a1-3a2 are repeated until the data entered is correct.
+    * Use case resumes from step 4.
 
   Use case ends.
 
@@ -337,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list 
+3.  User requests to delete a specific person in the list
 4.  AddressBook displays a confirmation message
 5.  User confirms to delete the specific person in the list
 6.  AddressBook deletes the person
@@ -364,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user should be able to work with 20 tasks per client without having noticeable sluggishness in performance for typical usage.
-5.  If a user wishes to use the email templating feature, a default mail app on their system is required. 
+5.  If a user wishes to use the email templating feature, a default mail app on their system is required.
 
 ### Glossary
 
@@ -388,15 +458,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -405,16 +475,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -422,6 +492,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

@@ -1,10 +1,10 @@
 package seedu.address.model.transaction;
 
+
+//import javax.management.Descriptor;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.math.BigDecimal;
 import java.util.Objects;
-
 
 /**
  * Represents a Transaction in the sales book.
@@ -13,44 +13,41 @@ import java.util.Objects;
 
 public class Transaction {
 
-    private final String description;
-    private final BigDecimal value;
+    private final Description description;
+    private final Value value;
     private final TxnStatus status;
+    private final Owner owner;
 
     /**
-     * Constuctor
-     * @param description description for txn
-     * @param value txn amount
+     * Constructor
+     * @param description transaction descriptions
+     * @param value transaction amounts
+     * @param txnStatus transaction status
      */
-
-    public Transaction(String description, BigDecimal value) {
-        requireAllNonNull(description, value);
+    public Transaction(Description description, Value value, TxnStatus txnStatus, Owner owner) {
+        requireAllNonNull(description, value, txnStatus, owner);
         this.description = description;
         this.value = value;
-        this.status = new TxnStatus();
+        this.status = txnStatus;
+        this.owner = owner;
     }
 
-    /**
-     * Constructor with the additional specification of whether the transaction is closed.
-     */
-    private Transaction(String description, BigDecimal value, boolean isClosed) {
-        requireAllNonNull(description, value);
-        this.description = description;
-        this.value = value;
-        this.status = new TxnStatus(isClosed);
-    }
-
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 
-    public BigDecimal getValue() {
+    public Value getValue() {
         return value;
     }
 
     public TxnStatus getStatus() {
         return status;
     }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
 
     /**
      * Returns true if the other transaction has the same description and value.
@@ -62,7 +59,9 @@ public class Transaction {
 
         return other != null
                 && other.getDescription().equals(description)
-                && other.getValue().equals(value);
+                && other.getValue().equals(value)
+                && other.getStatus().equals(status)
+                && other.getOwner().equals(owner);
     }
 
     /**
@@ -82,12 +81,13 @@ public class Transaction {
         Transaction otherTransaction = (Transaction) other;
         return otherTransaction.getDescription().equals(getDescription())
                 && otherTransaction.getValue().equals(getValue())
-                && otherTransaction.getStatus().equals(getStatus());
+                && otherTransaction.getStatus().equals(getStatus())
+                && otherTransaction.getOwner().equals(getOwner());
     }
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, value, status);
+        return Objects.hash(description, value, status, owner);
     }
 
     @Override
@@ -98,7 +98,10 @@ public class Transaction {
                 .append("; Value: ")
                 .append(getValue())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Owner: ")
+                .append(getOwner());
+
         return builder.toString();
     }
 }
