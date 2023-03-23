@@ -21,3 +21,35 @@
 #exportMessageContainer {
     -fx-background-color: #605BF1;
 }
+
+.scroll-bar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color:#605BF1;
+    -fx-background-insets: 3;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color:transparent;
+    -fx-pref-width: 18;
+    -fx-padding: 0 2 0 2;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color:transparent;
+    -fx-pref-height: 18;
+    -fx-padding: 2 0 2 0;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color:transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}

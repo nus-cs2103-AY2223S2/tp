@@ -1,25 +1,22 @@
 package seedu.address.ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
-import com.aspose.pdf.Document;
-import com.aspose.pdf.Page;
-import com.aspose.pdf.TextFragment;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
-import javax.swing.*;
 
 /**
  * Controller for an export student's progress page
@@ -87,6 +84,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing export progress report page.");
+        logger.log(Level.INFO, "opening progress report page");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -112,30 +110,60 @@ public class ExportProgressWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    public void setCheckedPerson(Person person) {
+    public ExportProgressWindow setCheckedPerson(Person person) {
         this.person = person;
         exportMessage.setText("Export " + person.getName().fullName + "'s progress");
         saveAsButton.setDisable(false);
+        return this;
     }
 
     /**
      * Opens a directory chooser window.
      */
     @FXML
-    private void saveAs() {
+    private void saveAs() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         fileChooser.setInitialFileName(this.person.getName().fullName + "'s Progress Report");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
         File selectedFile = fileChooser.showSaveDialog(this.root);
+
         if (selectedFile != null) {
-            exportMessage.setText("Exporting " + this.person.getName().fullName + "'s progress");
-            Document document = new Document();
-            Page page = document.getPages().add();
-            page.getParagraphs().add(new TextFragment(this.person.getName().fullName));
-            document.save(selectedFile.getPath());
-            String EXPORT_DONE_MSG = this.person.getName().fullName + "'s progress exported!";
-            exportMessage.setText(EXPORT_DONE_MSG);
+            saveAsButton.setDisable(true);
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            PDFont boldFont = PDType1Font.HELVETICA_BOLD;
+            PDFont font = PDType1Font.HELVETICA;
+
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            String studentName = this.person.getName().fullName;
+            String[] studentNameSplit = studentName.split(" ");
+
+            contentStream.beginText();
+            contentStream.setFont(boldFont, 18);
+            contentStream.moveTextPositionByAmount( 100, 700);
+            contentStream.showText(this.person.getName().fullName);
+            contentStream.endText();
+
+            contentStream.beginText();
+            contentStream.setFont(font, 14);
+            contentStream.moveTextPositionByAmount(100, 600);
+            contentStream.showText("Task List");
+            contentStream.endText();
+
+            contentStream.close();
+
+            try {
+                document.save(selectedFile.getPath());
+            } catch (IOException e) {
+                logger.log(Level.INFO, "file is currently used by another process");
+            }
+            document.close();
+            saveAsButton.setDisable(false);
         }
     }
 }

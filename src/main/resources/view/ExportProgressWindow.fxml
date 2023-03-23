@@ -11,6 +11,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root resizable="false" title="Export Student's Progress" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/report_icon.png" />
@@ -20,8 +21,6 @@
       <stylesheets>
         <URL value="@ExportProgressWindow.css" />
       </stylesheets>
-      <HBox>
-        <GridPane HBox.hgrow="ALWAYS">
       <VBox alignment="CENTER" fx:id="exportMessageContainer">
         <children>
           <Label fx:id="exportMessage" text="Label" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -42,8 +41,6 @@
           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </padding>
       </VBox>
-        </GridPane>
-      </HBox>
     </Scene>
   </scene>
 </fx:root>

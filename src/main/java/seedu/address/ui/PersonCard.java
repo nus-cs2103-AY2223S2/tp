@@ -30,7 +30,7 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    private ExportProgressWindow exportProgressWindow;
     @FXML
     private HBox cardPane;
     @FXML
@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, ExportProgressWindow exportProgressWindow) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -80,6 +80,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         personCardImage(person);
+        this.exportProgressWindow = exportProgressWindow;
     }
 
     /**
@@ -117,7 +118,11 @@ public class PersonCard extends UiPart<Region> {
     }
 
     public void exportProgress() {
-        ExportProgressWindow exportProgressWindow = new ExportProgressWindow(this.person);
-        exportProgressWindow.show();
+        this.exportProgressWindow.setCheckedPerson(this.person);
+        if (!this.exportProgressWindow.isShowing()) {
+            exportProgressWindow.show();
+        } else {
+            exportProgressWindow.focus();
+        }
     }
 }
