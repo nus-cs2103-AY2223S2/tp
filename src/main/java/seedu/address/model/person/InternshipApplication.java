@@ -131,7 +131,7 @@ public class InternshipApplication {
                 .append("; Job Title: ")
                 .append(getJobTitle())
                 .append("; Status: ")
-                .append(getStatus());;
+                .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
