@@ -29,7 +29,6 @@ public class Remark {
                 || (other instanceof Remark // instanceof handles nulls
                 && value.equals(((Remark) other).value)); // state check
     }
-    
     @Override
     public int hashCode() {
         return value.hashCode();
