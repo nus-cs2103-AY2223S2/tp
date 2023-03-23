@@ -120,15 +120,6 @@ public class AddressBookParser {
 
         case RevertAllCommand.COMMAND_WORD:
             return new RevertAllCommand();
-            
-        case ArchiveCommand.COMMAND_WORD:
-            return new ArchiveCommandParser().parse(arguments);
-
-        case ListArchivedCommand.COMMAND_WORD:
-            return new ListArchivedCommand();
-
-        case AddInterviewDateCommand.COMMAND_WORD:
-            return new AddInterviewDateCommandParser().parse(arguments);
 
         case ListTaskCommand.COMMAND_WORD:
         case FindTaskCommand.COMMAND_WORD:
