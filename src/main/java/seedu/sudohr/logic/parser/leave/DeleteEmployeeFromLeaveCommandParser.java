@@ -9,17 +9,18 @@ import java.util.stream.Stream;
 import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.logic.parser.ArgumentMultimap;
 import seedu.sudohr.logic.parser.ArgumentTokenizer;
+import seedu.sudohr.logic.parser.Parser;
 import seedu.sudohr.logic.parser.ParserUtil;
 import seedu.sudohr.logic.parser.Prefix;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Parses input arguments and creates a new DeleteEmployeeFromLeaveCommandParser
  * object
  */
-public class DeleteEmployeeFromLeaveCommandParser {
+public class DeleteEmployeeFromLeaveCommandParser implements Parser<DeleteEmployeeFromLeaveCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteEmployeeFromLeaveCommand
@@ -38,7 +39,7 @@ public class DeleteEmployeeFromLeaveCommandParser {
                     DeleteEmployeeFromLeaveCommand.MESSAGE_USAGE));
         }
 
-        Date leaveDate = ParserUtil.parseLeaveDate(argMultimap.getValue(PREFIX_DATE).get());
+        LeaveDate leaveDate = ParserUtil.parseLeaveDate(argMultimap.getValue(PREFIX_DATE).get());
         Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_EMPLOYEE).get());
 
         return new DeleteEmployeeFromLeaveCommand(employeeId, leaveDate);

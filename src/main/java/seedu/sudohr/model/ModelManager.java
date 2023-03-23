@@ -15,8 +15,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -203,7 +203,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+    public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
         requireAllNonNull(date, employee);
         return sudoHr.hasEmployeeOnLeave(date, employee);
     }

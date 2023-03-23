@@ -15,36 +15,26 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
-import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.leave.Leave;
 
 /**
- * A utility class containing a list of {@code Employee} objects to be used in tests.
+ * A utility class containing a list of {@code Leave} objects to be used in tests.
  */
-public class TypicalDepartments {
-
-    public static final Department HUMAN_RESOURCES = new DepartmentBuilder().withDepartmentName("Human Resources")
+public class TypicalLeave {
+    public static final Leave LEAVE_TYPE_1 = new LeaveBuilder().withLeaveDate("2000-03-02")
             .withEmployees(ALICE, BENSON, CARL).build();
-    public static final Department ENGINEERING = new DepartmentBuilder().withDepartmentName("Engineering")
+    public static final Leave LEAVE_TYPE_2 = new LeaveBuilder().withLeaveDate("2005-04-03")
             .withEmployees(DANIEL, ELLE, FIONA).build();
-    public static final Department SALES = new DepartmentBuilder().withDepartmentName("Sales")
+    public static final Leave LEAVE_TYPE_3 = new LeaveBuilder().withLeaveDate("2002-03-04")
             .withEmployees(GEORGE, HOON, IDA).build();
-
-    public static final Department EMPTY_DEPARTMENT = new DepartmentBuilder()
-            .withDepartmentName("Empty Department").build();
-
-    public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES = HUMAN_RESOURCES.getEmployees()
-            .stream()
-            .findFirst()
-            .get();
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalDepartments() {} // prevents instantiation
+    private TypicalLeave() {} // prevents instantiation
 
     /**
-     * Returns an {@code SudoHr} with all the typical employees and departments.
+     * Returns an {@code SudoHr} with all the typical employees and leaves.
      */
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
@@ -52,13 +42,13 @@ public class TypicalDepartments {
             sh.addEmployee(employee);
         }
 
-        for (Department department : getTypicalDepartments()) {
-            sh.addDepartment(department);
+        for (Leave leave : getTypicalLeaves()) {
+            sh.addLeave(leave);
         }
         return sh;
     }
 
-    public static List<Department> getTypicalDepartments() {
-        return new ArrayList<>(Arrays.asList(HUMAN_RESOURCES, ENGINEERING, SALES, EMPTY_DEPARTMENT));
+    public static List<Leave> getTypicalLeaves() {
+        return new ArrayList<>(Arrays.asList(LEAVE_TYPE_1, LEAVE_TYPE_2, LEAVE_TYPE_3));
     }
 }
