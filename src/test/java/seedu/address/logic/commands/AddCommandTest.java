@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExecutiveProDb;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
@@ -128,6 +130,10 @@ public class AddCommandTest {
         public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public Optional<Employee> getEmployee(EmployeeId employeeId) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteEmployee(Employee target) {
@@ -136,6 +142,10 @@ public class AddCommandTest {
 
         @Override
         public void setEmployee(Employee target, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Employee> getFullEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
 

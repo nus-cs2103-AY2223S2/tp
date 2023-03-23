@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Employee> lastShownList = model.getFullEmployeeList();
         Employee employeeToDelete;
 
         for (Employee employee : lastShownList) {
