@@ -2,10 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,6 +41,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        List<String> tokens = Arrays.asList(oneBasedIndexes.split("\\s+"))
+                .stream()
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
+        List<Index> result = new ArrayList<>();
+        for (String index: tokens) {
+            result.add(parseIndex(index));
+        }
+
+        return result;
     }
 
     /**
