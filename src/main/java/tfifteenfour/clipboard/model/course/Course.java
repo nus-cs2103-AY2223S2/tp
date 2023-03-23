@@ -72,8 +72,18 @@ public class Course {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '{' + courseCode + '}';
+        return courseCode;
     }
+
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groups.contains(group);
+    }
+
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
 
     public boolean isSameCourse(Course otherCourse) {
         if (otherCourse == this) {

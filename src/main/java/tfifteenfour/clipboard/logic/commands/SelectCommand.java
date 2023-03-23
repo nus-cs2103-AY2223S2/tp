@@ -25,15 +25,13 @@ public class SelectCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index targetIndex;
-	private final CurrentSelected currentSelected;
 
     /**
      * Creates a SelectCommand to select a student at the specified index
      */
-    public SelectCommand(Index targetIndex, CurrentSelected currentSelected) {
+    public SelectCommand(Index targetIndex) {
         super(false);
         this.targetIndex = targetIndex;
-		this.currentSelected = currentSelected;
     }
 
     @Override

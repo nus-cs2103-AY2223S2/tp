@@ -19,6 +19,7 @@ import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -43,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         try {
             addCommandType = AddCommandType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Add type not found");
+            throw new ParseException("Add type missing");
         }
 
         switch (addCommandType) {
@@ -51,7 +52,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             Course course = parseCourseInfo(args);
             return new AddCourseCommand(course);
         case ADD_GROUP:
-            return new AddGroupCommand();
+            Group group = parseGroupInfo(args);
+            return new AddGroupCommand(group);
         case ADD_SESSION:
             return new AddSessionCommand();
         case ADD_STUDENT:
@@ -64,16 +66,23 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
     private Course parseCourseInfo(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-        ArgumentTokenizer.tokenizePrefixes(args, PREFIX_COURSE);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_COURSE)
-                || !AddCommandType.isValidAddType(argMultimap.getPreamble())) {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length > 3) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
         }
 
-        Course course = ParserUtil.parseModule(argMultimap.getValue(PREFIX_COURSE).get());
+        Course course = ParserUtil.parseCourse(tokens[2]);
         return course;
+    }
+
+    private Group parseGroupInfo(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length > 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
+        }
+
+        Group group = ParserUtil.parseGroup(tokens[2]);
+        return group;
     }
 
     private Student parseStudentInfo(String args) throws ParseException {
@@ -133,15 +142,12 @@ enum AddCommandType {
         throw new ParseException("Unrecognised category for add command: " + addType);
     }
 
-    public static boolean isValidAddType(String addType) {
-        boolean result = false;
-
+    public static boolean isValidAddType(String addType) throws ParseException {
         for (AddCommandType sc : AddCommandType.values()) {
             if (sc.getAddType().equalsIgnoreCase(addType)) {
-                result = true;
+                return true;
             }
         }
-        return result;
+        return false;
     }
-
 }

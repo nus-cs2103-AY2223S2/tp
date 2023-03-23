@@ -59,4 +59,9 @@ public class Group {
         return otherGroup != null
                 && otherGroup.getGroupName().equals(getGroupName());
     }
+
+	@Override
+	public String toString() {
+		return this.groupName;
+	}
 }

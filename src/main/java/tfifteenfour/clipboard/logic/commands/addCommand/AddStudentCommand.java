@@ -8,6 +8,7 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
+import tfifteenfour.clipboard.logic.CurrentSelected;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -43,7 +44,7 @@ public class AddStudentCommand extends AddCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {

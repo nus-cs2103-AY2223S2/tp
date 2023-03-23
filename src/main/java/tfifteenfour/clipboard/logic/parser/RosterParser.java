@@ -96,7 +96,7 @@ public class RosterParser {
             return new SortCommandParser().parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser(currentSelected).parse(arguments);
+            return new SelectCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
