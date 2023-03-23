@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import bookopedia.model.ReadOnlyAddressBook;
 import bookopedia.model.person.exceptions.DuplicatePersonException;
 import bookopedia.model.person.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;

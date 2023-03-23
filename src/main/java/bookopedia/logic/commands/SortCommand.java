@@ -1,8 +1,8 @@
 package bookopedia.logic.commands;
 
-import bookopedia.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import bookopedia.model.Model;
 
 /**
  * Sorts all deliveries in Bookopedia according to delivery status.
