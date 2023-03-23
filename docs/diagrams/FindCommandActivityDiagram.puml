@@ -13,7 +13,7 @@ if () then ([Invalid Input Argument])
     :Display error message
     on invalid command argument;
     stop
-else ()
+else ([else])
     :Create XYZContainsKeywordPredicate;
     repeat;
         :Check if current XYZ
