@@ -151,6 +151,14 @@ public abstract class Task implements Comparable<Task> {
         return false;
     }
 
+    /**
+     * Gets the size of the subtask list in this task
+     * @return An integer representing the subtask size
+     */
+    public int getSubtaskSize() {
+        return this.subtasks.size();
+    }
+
     public Effort getEffort() {
         return this.effort;
     }
