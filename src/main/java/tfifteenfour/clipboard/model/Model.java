@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -90,4 +91,16 @@ public interface Model {
     ObservableList<Student> getViewedStudent();
 
     void updateViewedStudent(Predicate<Student> predicate);
+    /**
+     * Makes a copy of the model
+     */
+    Model copy();
+
+    public void setCommandTextExecuted(String commandText);
+
+    public String getCommandTextExecuted();
+
+    public void setCommandExecuted(Command command);
+
+    public Command getCommandExecuted();
 }

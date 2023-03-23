@@ -40,6 +40,7 @@ public class RemarkCommand extends Command {
      * @param remark that will be added to the student
      */
     public RemarkCommand(Index index, Remark remark) {
+        super(true);
         requireAllNonNull(index, remark);
         this.index = index;
         this.remark = remark;
@@ -61,7 +62,7 @@ public class RemarkCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedStudent));
+        return new CommandResult(this, generateSuccessMessage(editedStudent), true);
     }
 
     /**

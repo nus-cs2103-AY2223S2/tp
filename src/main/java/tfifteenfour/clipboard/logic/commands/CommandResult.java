@@ -9,41 +9,28 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    private final Command command;
+
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
+    /** The roster state has been modified */
+    private final boolean hasChangedRosterState;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(Command command, String feedbackToUser, boolean hasChangedRosterState) {
+        this.command = command;
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this.hasChangedRosterState = hasChangedRosterState;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
+    public boolean isStateModified() {
+        return hasChangedRosterState;
     }
 
     @Override
@@ -59,13 +46,19 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && hasChangedRosterState == otherCommandResult.hasChangedRosterState
+                && (command == null || otherCommandResult.command == null
+                ? command == otherCommandResult.command
+                : command.getClass() == otherCommandResult.command.getClass());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(command, feedbackToUser, hasChangedRosterState);
+    }
+
+    public Command getCommand() {
+        return this.command;
     }
 
 }

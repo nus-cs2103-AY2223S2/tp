@@ -63,6 +63,7 @@ public class EditCommand extends Command {
      * @param editStudentDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+        super(true);
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
@@ -89,7 +90,7 @@ public class EditCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        return new CommandResult(this, String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), willModifyState);
     }
 
     /**

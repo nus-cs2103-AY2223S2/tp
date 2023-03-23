@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -23,6 +24,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
+
+    private String commandTextExecuted;
+    private Command commandExecuted;
 
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
@@ -40,6 +44,41 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new Roster(), new UserPrefs());
+    }
+
+    /**
+     * Constructs a ModelManager with the given roster, user preferences, and previous state modifying command.
+     *
+     * @param roster The roster to use in the ModelManager.
+     * @param userPrefs The user preferences to use in the ModelManager.
+     * @param commandTextExecuted The previous state modifying command to use in the ModelManager.
+     */
+    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted) {
+        this.roster = roster;
+        this.userPrefs = userPrefs;
+        this.commandTextExecuted = commandTextExecuted;
+        this.filteredStudents = new FilteredList<>(roster.getStudentList());
+        viewedStudent = new FilteredList<>(roster.getStudentList());
+    }
+
+    @Override
+    public void setCommandExecuted(Command command) {
+        this.commandExecuted = command;
+    }
+
+    @Override
+    public Command getCommandExecuted() {
+        return this.commandExecuted;
+    }
+
+    @Override
+    public void setCommandTextExecuted(String commandText) {
+        this.commandTextExecuted = commandText;
+    }
+
+    @Override
+    public String getCommandTextExecuted() {
+        return this.commandTextExecuted;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -131,6 +170,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Model copy() {
+        return new ModelManager(this.roster.copy(), this.userPrefs, commandTextExecuted);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -161,3 +205,4 @@ public class ModelManager implements Model {
         viewedStudent.setPredicate(predicate);
     }
 }
+

@@ -118,4 +118,16 @@ public class Roster implements ReadOnlyRoster {
     public int hashCode() {
         return students.hashCode();
     }
+
+
+    /**
+     * Copies this roster and its current state
+     * @return a copy of this roster
+     */
+    public Roster copy() {
+        Roster copy = new Roster();
+        copy.setStudents(students.asUnmodifiableObservableList());
+
+        return copy;
+    }
 }
