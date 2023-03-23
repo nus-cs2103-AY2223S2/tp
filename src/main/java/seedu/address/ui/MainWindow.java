@@ -32,6 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
+    private static final ObservableList<Pair<String, String>> EMPTY_TITLE =
+            FXCollections.observableArrayList(new Pair<>("", ""));
+
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -44,7 +47,6 @@ public class MainWindow extends UiPart<Stage> {
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private ObservableList<Pair<String, String>> deckTitlePlaceholder = FXCollections.observableArrayList();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane rightPanelPlaceholder;
 
     @FXML
-    private StackPane rightPanelTitle;
+    private StackPane rightPanelTitlePlaceholder;
 
     @FXML
     private StackPane leftPanelPlaceholder;
@@ -134,11 +136,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(MAIN_TITLE);
 
-        Pair<String, String> header = new Pair<>("Current Deck:", "No deck selected!");
-        deckTitlePlaceholder.add(header);
-
-        rightTitle = new DeckNamePanel(deckTitlePlaceholder);
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList());
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -200,8 +199,6 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        rightPanelTitle.getChildren().removeAll();
-
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
@@ -210,6 +207,10 @@ public class MainWindow extends UiPart<Stage> {
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
+
+        rightPanelTitlePlaceholder.getChildren().clear();
+        rightTitle = new DeckNamePanel(EMPTY_TITLE);
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
     }
 
     /**
@@ -219,7 +220,6 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
-
 
         personListPanel.endReview();
 
@@ -231,9 +231,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the deck Title.
      */
     public void handleSelectDeck() {
-        rightPanelTitle.getChildren().clear();
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
     }
 
@@ -241,9 +241,9 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the deck Title.
      */
     public void handleUnSelectDeck() {
-        rightPanelTitle.getChildren().clear();
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
     }
 
@@ -271,15 +271,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEndReview()) {
+                handleSelectDeck();
                 handleEndReview();
             }
 
-            if (commandResult.isSelectDeck()) {
+            if (commandResult.isSelectDeck() || commandResult.isUnselectDeck()) {
                 handleSelectDeck();
-            }
-
-            if (commandResult.isUnselectDeck()) {
-                handleUnSelectDeck();
             }
 
             return commandResult;

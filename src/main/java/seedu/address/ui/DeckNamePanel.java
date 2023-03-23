@@ -11,7 +11,7 @@ import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Panel containing the statistics of the current review.
+ * Panel containing the deck name of the current review.
  */
 public class DeckNamePanel extends UiPart<Region> {
     private static final String FXML = "DeckNamePanel.fxml";
@@ -27,7 +27,6 @@ public class DeckNamePanel extends UiPart<Region> {
         super(FXML);
         deckNameView.setItems(deckNameList);
         deckNameView.setCellFactory(listView -> new DeckNamePanel.DeckNameViewCell());
-        deckNameView.setStyle("-fx-background-color: transparent");
     }
 
     class DeckNameViewCell extends ListCell<Pair<String, String>> {
@@ -40,7 +39,7 @@ public class DeckNamePanel extends UiPart<Region> {
 
             } else {
                 setGraphic(new DeckName(pair).getRoot());
-                setStyle("fx-background-color:transparent");
+                setStyle("-fx-background-color: transparent");
             }
         }
     }

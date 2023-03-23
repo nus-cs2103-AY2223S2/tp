@@ -11,7 +11,7 @@
 
 <HBox fx:id="deckNamePane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS" alignment="CENTER">
-        <VBox alignment="CENTER" minHeight="50" GridPane.columnIndex="0">
+        <VBox alignment="CENTER" prefHeight="85" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
