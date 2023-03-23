@@ -12,21 +12,22 @@ import seedu.address.model.location.Location;
  * The command that deletes a pilot from Wingman.
  */
 public class DeleteLocationCommand implements Command {
-    private final String uuid;
+    private final String id;
     private Optional<Location> locationToDelete;
 
     /**
      * Creates a command that deletes the location from the list.
-     * @param uuid the uuid of the location to be deleted.
+     * @param id the uuid of the location to be deleted.
      */
-    public DeleteLocationCommand(String uuid) {
-        this.uuid = uuid;
+    public DeleteLocationCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        locationToDelete = model.getLocationManager().getItem(uuid);
-        model.deleteLocation(uuid);
-        return new CommandResult("Deleted location: " + uuid);
+        int index = Integer.parseInt(id);
+        locationToDelete = model.getLocationManager().getItemByIndex(index);
+        model.deleteLocationByIndex(index);
+        return new CommandResult("Deleted location: " + id);
     }
 }
