@@ -26,7 +26,7 @@ public class UnmarkCommand extends Command {
             + " completed.\nParameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Unmarked Appointment: %1$s";
+    public static final String MESSAGE_UNMARK_APPOINTMENT_SUCCESS = "Unmarked Appointment: %1$s";
 
     private final Index targetIndex;
 
@@ -43,9 +43,9 @@ public class UnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete = appointmentList.get(targetIndex.getZeroBased()).getValue();
+        Appointment appointmentToUnmark = appointmentList.get(targetIndex.getZeroBased()).getValue();
         model.unmarkAppointment(targetIndex.getZeroBased());
-        return new CommandMessage(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
+        return new CommandMessage(String.format(MESSAGE_UNMARK_APPOINTMENT_SUCCESS, appointmentToUnmark));
     }
 
     @Override

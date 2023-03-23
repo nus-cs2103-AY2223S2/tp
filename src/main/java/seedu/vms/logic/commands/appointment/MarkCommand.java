@@ -26,7 +26,7 @@ public class MarkCommand extends Command {
             + " completed.\nParameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Marked Appointment: %1$s";
+    public static final String MESSAGE_MARK_APPOINTMENT_SUCCESS = "Marked Appointment: %1$s";
 
     private final Index targetIndex;
 
@@ -43,9 +43,9 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete = appointmentList.get(targetIndex.getZeroBased()).getValue();
+        Appointment appointmentToMark = appointmentList.get(targetIndex.getZeroBased()).getValue();
         model.markAppointment(targetIndex.getZeroBased());
-        return new CommandMessage(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
+        return new CommandMessage(String.format(MESSAGE_MARK_APPOINTMENT_SUCCESS, appointmentToMark));
     }
 
     @Override
