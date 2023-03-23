@@ -12,7 +12,11 @@ import seedu.address.model.Model;
 public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
+    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
+            + "cannot be recognized!";
     public static final String TUTORIAL_STRING = "tutorial";
+    public static final String LAB_STRING = "lab";
+    public static final String CONSULTATION_STRING = "consultation";
     private final Index index;
     private final String eventName;
     private final String eventType;
@@ -35,11 +39,14 @@ public class AddStudentToEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //todo: fix case where event does not exist
         if (this.eventType.equals(TUTORIAL_STRING)) {
             model.addStudentToTutorial(this.index, this.eventName);
-        } else {
+        } else if (this.eventType.equals(LAB_STRING)) {
             model.addStudentToLab(this.index, this.eventName);
+        } else if (this.eventType.equals(CONSULTATION_STRING)) {
+            model.addStudentToConsultation(this.index, this.eventName);
+        } else {
+            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
