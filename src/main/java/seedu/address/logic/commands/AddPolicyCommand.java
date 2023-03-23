@@ -67,7 +67,7 @@ public class AddPolicyCommand extends Command {
         model.setClient(clientToAddPolicy, addedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage());
+        return new CommandResult(generateSuccessMessage(), addedPolicyClient, true, false, false);
     }
 
 
