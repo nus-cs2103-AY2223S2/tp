@@ -221,17 +221,20 @@ The following activity diagram summarizes what happens during the process:
 ![HighlightActivityDiagram](images/HighlightDiagram.png)
 
 ### Design Considerations:
-**Choice 1 (Current Choice) : Automatically execute the feature every certain period of time**
+**Aspect: How to reduce human error:**
+**Alternative 1 (Current Choice) : Automatically execute the feature every certain period of time**
 * Pros:
     * Shows real-time state.
+    * Will not show outdated list state.
 * Cons:
     * Use more memory executing the feature at every period of time.
 
-**Choice 2 : Provide Refresh button to update the pet list**
+**Alternative 2 : Provide Refresh button to update the pet list**
 * Pros:
     * Use less memory since it will be executed only when needed.
 * Cons:
     * Does not show a real-time state of the list.
+    * User might forget to refresh to the updated state.
 
 ### Undo Feature
 #### Current Implementation
