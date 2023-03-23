@@ -118,4 +118,8 @@ public class HelpWindow extends UiPart<Stage> {
             }
         }
     }
+
+    public ImageView getHelpImage() {
+        return this.helpImage;
+    }
 }

@@ -1,10 +1,18 @@
 package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.InternBuddy;
+import seedu.address.model.internship.Comment;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Status;
+import static seedu.address.model.util.SampleDataUtil.getTagSet;
 
 public class SampleDataUtilTest {
 
@@ -30,4 +38,14 @@ public class SampleDataUtilTest {
         //Check sixth internship
         assertEquals(sampleInternships[5].getCompanyName().toString(), "Facebook");
     }
+
+    @Test
+    public void getSampleInternBuddy_success() {
+        InternBuddy ib = (InternBuddy) SampleDataUtil.getSampleInternBuddy();
+        Internship internshipToCheck = new Internship(new CompanyName("Apple"), new Role("iOS Developer"),
+                new Status("applied"), new Date("2023-02-01"), new Comment("My dream company!"),
+                getTagSet("front"));
+        assertTrue(ib.hasInternship(internshipToCheck));
+    }
+
 }
