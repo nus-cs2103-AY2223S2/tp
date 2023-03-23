@@ -368,6 +368,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1a1. Ultron informs the user that no openings of that status exist
     Use case ends
 
+**Use case:  UC 6 - Sort openings by deadline**
+
+**MSS**
+
+1. User enters a command to sort all openings by deadline in ascending order
+2. Ultron shows the user a list of openings that contain deadlines, sorted by deadlines in ascending order
+   Use case ends.
 
 
 *{More to be added}*
