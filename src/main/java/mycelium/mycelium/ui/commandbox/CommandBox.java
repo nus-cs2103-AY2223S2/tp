@@ -11,12 +11,7 @@ import mycelium.mycelium.ui.commandbox.mode.Mode;
 import mycelium.mycelium.ui.commandbox.mode.Mode.ModeType;
 
 /**
- * The UI component that is responsible for receiving user command inputs. It can be in exactly one of two states:
- * listening or not listening. When not listening, it functions like a usual text field and handles user input via a
- * {@link CommandExecutor} upon pressing enter. When listening, it listens to every change in the text field and runs
- * a handler via {@link CommandInputListener} upon every change.
- * <p>
- * Both handlers can be set through the constructor.
+ * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
@@ -29,13 +24,7 @@ public class CommandBox extends UiPart<Region> {
     private TextField commandTextField;
 
     /**
-     * Creates a {@code CommandBox}.
-     *
-     * @param mainWindow           The main window of the application. Required as some actions modify the window.
-     * @param commandExecutor      Handler for executing user-entered commands.
-     * @param commandInputListener Handler for changes in the command input.
-     * @param uponListening        Action to be performed when the command box starts listening.
-     * @param uponNotListening     Action to be performed when the command box stops listening.
+     * Creates a {@code CommandBox} with an initial mode.
      */
     public CommandBox(Mode mode) {
         super(FXML);
