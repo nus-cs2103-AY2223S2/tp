@@ -28,16 +28,13 @@ public class TypicalDepartments {
     public static final Department ENGINEERING = new DepartmentBuilder().withDepartmentName("Engineering")
             .withEmployees(DANIEL, ELLE, FIONA).build();
     public static final Department SALES = new DepartmentBuilder().withDepartmentName("Sales")
-            .withEmployees(GEORGE, HOON, IDA).build();
+            .withEmployees(BENSON, GEORGE, HOON, IDA).build();
 
+    public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES = ALICE;
     public static final Department EMPTY_DEPARTMENT = new DepartmentBuilder()
             .withDepartmentName("Empty Department").build();
 
-    public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES = HUMAN_RESOURCES.getEmployees()
-            .stream()
-            .findFirst()
-            .get();
-
+    public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES = BENSON;
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -49,11 +46,11 @@ public class TypicalDepartments {
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
         for (Employee employee : TypicalEmployees.getTypicalEmployees()) {
-            sh.addEmployee(employee);
+            sh.addEmployee(new EmployeeBuilder(employee).build());
         }
 
         for (Department department : getTypicalDepartments()) {
-            sh.addDepartment(department);
+            sh.addDepartment(new DepartmentBuilder(department).build());
         }
         return sh;
     }

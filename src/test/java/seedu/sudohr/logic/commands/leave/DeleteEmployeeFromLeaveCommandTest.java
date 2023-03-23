@@ -96,7 +96,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of its methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -241,6 +241,21 @@ public class DeleteEmployeeFromLeaveCommandTest {
 
         @Override
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
             throw new AssertionError("This method should not be called.");
         }
 

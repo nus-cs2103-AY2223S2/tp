@@ -83,7 +83,7 @@ public class TypicalEmployees {
     public static SudoHr getTypicalSudoHr() {
         SudoHr sudoHr = new SudoHr();
         for (Employee employee : getTypicalEmployees()) {
-            sudoHr.addEmployee(employee);
+            sudoHr.addEmployee(new EmployeeBuilder(employee).build());
         }
         return sudoHr;
     }
