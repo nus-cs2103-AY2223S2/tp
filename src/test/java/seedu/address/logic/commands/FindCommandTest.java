@@ -5,22 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.*;
+import static seedu.address.testutil.TypicalPatients.ALEX;
+import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.CARL;
+import static seedu.address.testutil.TypicalPatients.DANIEL;
+import static seedu.address.testutil.TypicalPatients.ELLE;
+import static seedu.address.testutil.TypicalPatients.FIONA;
+import static seedu.address.testutil.TypicalPatients.GEORGE;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.NricContainsKeywordsPredicate;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.StatusContainsKeywordsPredicate;
-import seedu.address.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
