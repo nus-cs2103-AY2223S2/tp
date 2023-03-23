@@ -8,17 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
-
-
-
 /**
- * A group of cards
+ * A deck associated with a list of cards. Deck is guaranteed to be immutable.
  */
-public class Deck {
+public final class Deck {
     public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public final String deckName;
-    private ObservableList<Pair<String, String>> deckNameList;
+    private final String deckName;
+    private final boolean isSelected;
 
     /**
      * Constructing a deck.
@@ -27,8 +24,26 @@ public class Deck {
     public Deck(String deckName) {
         requireAllNonNull(deckName);
         this.deckName = deckName;
-        // initialise deckNameList
-        this.deckNameList = FXCollections.observableArrayList();
+        isSelected = false;
+    }
+
+    /**
+     * Private constructor called internally during deck selection. This is to keep deck immutable.
+     * @param deckName Name of the deck
+     * @param isSelected Boolean indicating if deck is selected.
+     */
+    private Deck(String deckName, boolean isSelected) {
+        requireAllNonNull(deckName);
+        this.deckName = deckName;
+        this.isSelected = isSelected;
+    }
+
+    public Deck buildSelectedDeck() {
+        return new Deck(deckName, true);
+    }
+
+    public Deck buildUnselectedDeck() {
+        return new Deck(deckName, false);
     }
 
     /**
@@ -40,14 +55,14 @@ public class Deck {
     }
 
     /**
-     * Returns a header consisting of the title and the deckname wrapped in an Observablelist
+     * Returns a header consisting of the title and the Deck Name wrapped in an ObservableList
      * @return deckNameList
      */
     public ObservableList<Pair<String, String>> getDeckNameList() {
-        this.deckNameList.clear();
-        Pair<String, String> header = new Pair("Current Deck:", this.deckName);
-        this.deckNameList.add(header);
-        return this.deckNameList;
+        ObservableList<Pair<String, String>> deckNameList = FXCollections.observableArrayList();
+        Pair<String, String> header = new Pair<>("Current Deck:", this.deckName);
+        deckNameList.add(header);
+        return deckNameList;
     }
 
     /**
@@ -68,6 +83,10 @@ public class Deck {
 
         return otherDeck != null
                 && otherDeck.getDeckName().equals(getDeckName());
+    }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
     /**

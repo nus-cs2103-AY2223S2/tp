@@ -23,7 +23,7 @@ public class DeckCard extends UiPart<Region> {
 
     public final Deck deck;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -39,6 +39,12 @@ public class DeckCard extends UiPart<Region> {
         this.deck = deck;
         id.setText(displayedIndex + ". ");
         name.setText(deck.getDeckName());
+
+        if (deck.isSelected()) {
+            this.getRoot().setStyle("-fx-background-color: #007aff");
+            this.id.setStyle("-fx-text-fill: white");
+            this.name.setStyle("-fx-text-fill: white");
+        }
     }
 
     @Override

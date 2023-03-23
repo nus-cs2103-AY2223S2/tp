@@ -208,13 +208,23 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        selectedDeck = filteredDecks.get(zeroBasesIdx);
-        assert selectedDeck != null : "selectedDeck cannot be null here";
+        Deck toSelect = filteredDecks.get(zeroBasesIdx);
+
+        if (selectedDeck != null) {
+            unselectDeck();
+        }
+
+        selectedDeck = toSelect.buildSelectedDeck();
+        setDeck(toSelect, selectedDeck); // update UniqueDeckList and GUI
+
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
     @Override
     public void unselectDeck() {
+        assert this.selectedDeck != null : "Can only unselectDeck when inside Deck mode";
+
+        setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }

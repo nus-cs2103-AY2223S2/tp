@@ -181,6 +181,7 @@ public class Review {
      */
     public void markCurrCardAsCorrect() {
         scoreList.set(currCardNum - 1, true);
+        updateReviewStatsList();
     }
 
     /**
@@ -189,6 +190,7 @@ public class Review {
      */
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
+        updateReviewStatsList();
     }
 
     public void unflipAllCards() {
@@ -221,7 +223,10 @@ public class Review {
                 String.format("%d/%d", currCardNum, totalNumCards));
         Pair<String, String> currentScore = new Pair<>("Current Score: ",
                  String.format("%d", getTotalScore()));
+        Pair<String, String> flip = new Pair<>("Press \\ to flip", "");
+        Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
+        Pair<String, String> mark = new Pair<>("Press ; to mark wrong, ' to mark correct", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, currentScore);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark);
     }
 }

@@ -49,5 +49,4 @@ public class DeckListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

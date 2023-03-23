@@ -3,28 +3,15 @@
     background-color: #f9f9f9; /* Used in the default.html file */
 }
 
+/* ===== status bar ====== */
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #f9f9f9;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
-
-.label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
-
-/* vertical gap between left and right panel */
+/* ===== vertical gap between left and right panel ==== */
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: transparent;
     -fx-padding: 10;
@@ -65,18 +52,6 @@
 .status-bar {
     -fx-background-color: #ffffff;
     -fx-text-fill: black;
-}
-
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: black;
-
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
 }
 
 /* ============ MENU BAR ========== */
@@ -150,6 +125,19 @@
     -fx-background-color: #e6eaeb;
 }
 
+#deckNamePane {
+    -fx-background-color:transparent;
+}
+
+#deckNamePane #title {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+#deckNamePane #description {
+    -fx-text-fill: black;
+    -fx-font-size: 40px;
+}
 
 /* ============ TAGS ========== */
 #tags {
@@ -204,6 +192,52 @@
     -fx-font-size: 20px;
 }
 
+#flippedReviewCardPane {
+    -fx-background-color: #6c68c3;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#flippedReviewCardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#flippedReviewCardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#flippedReviewCardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#unflippedReviewCardPane {
+    -fx-background-color: #524cd1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#unflippedReviewCardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#unflippedReviewCardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#unflippedReviewCardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
 /* ============ MODE TITLE ========== */
 #titlePanel{
     -fx-background-color: #f4f8f9;
@@ -222,6 +256,18 @@
 }
 
 /* ============ OUTPUT  BOX ========== */
+.result-display {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: black;
+
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
 #resultDisplay .content {
     -fx-background-color: #e6eaeb;
     -fx-border-color: #e6eaeb;
@@ -230,8 +276,7 @@
     -fx-border-width: 5;
 }
 
-
-/* unused styles */
+/* ==================== unused styles ==============================*/
 
 /*
  * Metro style Push Button
@@ -329,17 +374,36 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
+}
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
-    -fx-alignment: center-left;
     -fx-opacity: 1;
+}
+
+#panel{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #FFFFFF;
 }
 
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
-
 
 .list-cell .label {
     -fx-text-fill: white;
