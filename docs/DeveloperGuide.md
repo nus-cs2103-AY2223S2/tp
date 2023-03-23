@@ -386,6 +386,33 @@ Todo: add clean image of activity diagram
     * Pros: Will use less space and uses previously implemented code for abstraction.
     * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
 
+### \[Proposed\] Note feature
+
+#### Proposed Implementation
+
+The proposed CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `add note`, `list note`, `delete note`, and `edit note`. The Teaching Assistant (TA) using the application will be able to:
+
+* Add a new note to an event which will be saved in the corresponding event's current address book state in its history.
+* List all notes for an event which are saved in the corresponding event's current address book state in its history.
+* Delete a note for an event which is saved in the corresponding event's current address book state in its history.
+* Edit/Update a note for an event which is saved in the corresponding event's current address book state in its history.
+
+The following activity diagram summarizes what happens when a TA executes a note-related command.
+
+<img src="images/TrAcker-activity-diagrams/NoteActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How CRUD notes executes:**
+
+* **Alternative 1 (current choice):** Make note an attribute of event objects, and updates to notes are executed at the event level.
+    * Pros: Easier to manage a list of notes and design the GUI.
+    * Cons: Less flexible with individual note operation such as note merges.
+
+* **Alternative 2:** Make note object parallel with event and reference event from notes.
+    * Pros: Harder to manage a list objects and cause additional memory overhead.
+    * Cons: Easier to sort notes based on event dates.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
