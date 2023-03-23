@@ -223,15 +223,15 @@ Given below is an example usage of how Salary Command is being used in the follo
 
 2. The user can choose to use the `SalaryCommand` in asc or desc order.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
-      order. 
-   
+      order.
+
       <img src="images/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
       order.
-   
+
       <img src="images/SalaryCommand2.png" width="800" />
 
-The following sequence diagram shows how the Salary Command is being done: 
+The following sequence diagram shows how the Salary Command is being done:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
 
