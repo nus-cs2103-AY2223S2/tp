@@ -15,17 +15,20 @@ public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstKeywordList = Collections.singletonList("first");
-        List<String> secondKeywordList = Arrays.asList("first", "second");
+        List<String> firstTitleKeywordList = Collections.singletonList("first");
+        List<String> secondTitleKeywordList = Arrays.asList("first", "second");
 
-        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstKeywordList);
-        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondKeywordList);
+        TitleContainsKeywordsPredicate firstPredicate =
+                new TitleContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
+        TitleContainsKeywordsPredicate secondPredicate =
+                new TitleContainsKeywordsPredicate(secondTitleKeywordList, null, null, null);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(firstKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy =
+                new TitleContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,36 +45,32 @@ public class TitleContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
-                Collections.singletonList("Alice")
+                Collections.singletonList("Alice"), null, null, null
         );
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new TitleContainsKeywordsPredicate(
+                Arrays.asList("Alice", "Bob"), null, null, null);
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
-        // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
-
         // Mixed-case keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new TitleContainsKeywordsPredicate(
+                Arrays.asList("aLIce", "bOB"), null, null, null);
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").build()));
-
         // Non-matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
+        TitleContainsKeywordsPredicate predicate =
+                new TitleContainsKeywordsPredicate(Arrays.asList("Carol"), null, null, null);
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
-        // Keywords match progress, email and address, but does not match name
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").withProgress("1 3 2")
-                .withGenre("alice@email.com").withAuthor("Main Street").build()));
+        // Only one matching keyword
+        predicate = new TitleContainsKeywordsPredicate(
+                Arrays.asList("Bob", "Carol"), null, null, null);
+        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
+
     }
 }

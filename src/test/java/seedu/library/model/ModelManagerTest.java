@@ -119,7 +119,8 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getTitle().value.split("\\s+");
-        modelManager.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredBookmarkList(
+                new TitleContainsKeywordsPredicate(Arrays.asList(keywords), null, null, null));
         assertFalse(modelManager.equals(new ModelManager(library, userPrefs, tags)));
 
         // resets modelManager to initial state for upcoming tests

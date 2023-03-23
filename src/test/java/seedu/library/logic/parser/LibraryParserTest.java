@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.library.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.testutil.Assert.assertThrows;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
 
@@ -72,8 +73,10 @@ public class LibraryParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_TITLE + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(
+                new TitleContainsKeywordsPredicate(keywords, null, null, null)), command);
     }
 
     @Test
