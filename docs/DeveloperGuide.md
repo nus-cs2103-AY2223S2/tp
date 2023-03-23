@@ -154,6 +154,137 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### Advancing an Applicant
+
+##### Overview
+
+The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]()
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]()
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to 
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
+1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
+correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it exists. 
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
+the user is prompted to enter the command correctly via an error message.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in Accepted or
+Rejected status. This presents confusingly to the user, applicants ideally cannot be advanced with a rejected or 
+accepted status. For example, if an `Person` with the status `Accepted` or `Rejected`, then you cannot advance 
+an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to advance just by one stage. We thus decided to provide
+a default behaviour when advancing an applicant's status.
+
+
+#### Rejecting an Applicant
+
+##### Overview
+
+The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]()
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]()
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
+1. The applicant is cross-referenced in the `Model` to check if it exists.
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
+the user is prompted to enter the command correctly via an error message.
+2. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in 
+Rejected status. This presents confusingly to the user, applicants ideally cannot be rejected with a rejected
+status. For example, if an `Person` with the status `Rejected`, then you cannot reject an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
+a default behaviour when rejecting an applicant's status.
+
+
+#### Editing an Applicant
+
+##### Overview
+
+The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
+one-indexed `personList` presented to the user.
+
+The activity diagram is as such:
+[add in later]()
+
+Here is the activity diagram showing the process of the `edit` command:
+[add in later]()
+
+
+##### Feature Details
+
+1. The user specifies an item index that represents an `Person` to be edited.
+1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly 
+via an error message.
+1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
+command correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it already exists. If it already does, 
+then an error is raised to inform the user.
+1. Finally, if an index that is not in the valid range of the Person List is provided, an error is thrown 
+and the user is prompted to enter the command correctly via an error message.
+1. If step 4 completes without any exceptions, then the new `Person` is successfully edited.
+
+##### Feature Considerations
+
+Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the 
+`Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and 
+`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and 
+`91823452`.
+
+When providing multiple arguments with the same delimiter, 
+the last instance of the repeat delimiter is taken during the `parse` command.
+
+
+#### Displaying the list
+
+##### Overview
+The `list` command displays the full list by HMHero.
+
+##### Feature Details
+
+1. The user calls the `list` command.
+1. HMHero performs the necessary calculations to obtain the statistics. HMHero displays the result to the user.
+
+##### Feature Considerations
+
+The five statistics were chosen as a baseline and they are a good starting point for users to help 
+track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
+the total numbers of applicants for each status.
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
