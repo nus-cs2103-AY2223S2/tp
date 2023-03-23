@@ -1,6 +1,7 @@
 package seedu.fitbook.ui;
 
 import java.util.Comparator;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.fitbook.AppParameters;
+import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
 /**
@@ -17,6 +20,8 @@ import seedu.fitbook.model.client.Client;
 public class ClientCard extends UiPart<Region> {
 
     private static final String FXML = "ClientListCard.fxml";
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -68,6 +73,7 @@ public class ClientCard extends UiPart<Region> {
     private ImageView goalIcon;
     @FXML
     private ImageView caloriesIcon;
+
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -129,6 +135,7 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
+            logger.info("The calorie is invalid.");
             calorie.setText(client.getCalorie().value + " cal");
             caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
