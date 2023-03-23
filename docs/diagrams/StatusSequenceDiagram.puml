@@ -2,9 +2,9 @@
 'https://plantuml.com/sequence-diagram
 !include style.puml
 
-autonumber
-participant ":StatusCommand" as StatusCommand
-participant ":Model" as Model
+
+participant ":StatusCommand" as StatusCommand LOGIC_COLOR
+participant ":Model" as Model LOGIC_COLOR
 
 
 
@@ -24,7 +24,7 @@ alt lead status is the same as\nlead status of toBeUpdated
     <-- StatusCommand: CommandException
 end
 
-StatusCommand -> StatusCommand : createPersonWithNewStatus() \n return:updatedPerson
+StatusCommand -> StatusCommand : createPersonWithNewStatus()\n return:updatedPerson
 
 StatusCommand -> Model : setPerson(updatedPerson)
 Model --> StatusCommand
