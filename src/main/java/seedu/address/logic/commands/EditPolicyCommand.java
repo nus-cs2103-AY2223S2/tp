@@ -110,6 +110,22 @@ public class EditPolicyCommand extends Command {
         return new Policy(updatedPolicyName, updatedCustomDate, updatedPremium, updatedFrequency);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditPolicyCommand)) {
+            return false;
+        }
+
+        EditPolicyCommand e = (EditPolicyCommand) other;
+        return policyIndex.equals(e.policyIndex)
+                && clientIndex.equals(e.clientIndex)
+                && editPolicyDescriptor.equals(e.editPolicyDescriptor);
+    }
+
     /**
      * Stores the details to edit the policy with. Each non-empty value will replace the corresponding field value of
      * the client.
