@@ -34,7 +34,6 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        assert keywords.isEmpty() : "Should not be empty";
         String academicYear = "";
 
         for (String word : keywords) {
