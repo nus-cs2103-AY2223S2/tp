@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +39,9 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    /**
+     * Returns true if the person's appointment has clashes with at least one other patients.
+     */
     public boolean hasClash(Person person, Index index) {
         for (int i = 0; i < internalList.size(); i++) {
             if (i == index.getZeroBased() || !internalList.get(i).hasAppointment()) {
