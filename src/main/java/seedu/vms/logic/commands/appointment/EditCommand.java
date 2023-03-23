@@ -50,6 +50,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
+    public static final String MESSAGE_PARSE_DURATION = "Please give both the starting and ending timings";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
