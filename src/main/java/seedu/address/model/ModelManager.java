@@ -137,12 +137,13 @@ public class ModelManager implements Model {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
             if (order.toString().equals("asc")) {
-                System.out.println(s1);
                 return Integer.compare(s1, s2);
             } else {
                 return Integer.compare(s2, s1);
             }
         });
+        logger.info("AddressBook is sorted: " + this.addressBook);
+
         this.addressBook.setRoles(roles);
     }
 
