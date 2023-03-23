@@ -89,9 +89,14 @@ grade
 **Use case: Ungrade Student Submission of an Assignment**
 ungrade
 
+## **Mark/Unmark Attendance**
+
+Mark and Unmark is very similar in nature and their implementation. <br>
+
+Below is the main success scenario of Mark/Unmark
+
 **MSS**
 
-**Mark attendance**
 1.  User requests to list all students in a class
 2.  TAA shows a list of students
 3.  User requests to mark attendance of a specific student in the list for a specified week
@@ -110,6 +115,23 @@ ungrade
     * 3a1. TAA shows an error message.
 
       Use case resumes at step 2.
+* 3b. The given week's attendance is already marked
+
+    * 3a1. TAA shows message that attendance for that week is already marked.
+
+      Use case ends.
+
+The Mark/Unmark commands are similar, and explanation will be done for Mark command
+
+Mark command is facilitated by `MarkCommandParser`, `MarkAddressCommand` and `Model`
+
+* `MarkCommandParser`-- Parse the input of users
+* `MarkAttendanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the attendance of student
+
+Below is the sequence diagram for Marking attendane of a student
+
+<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
 **deleting student**
 1.  User requests to list all students in a class
