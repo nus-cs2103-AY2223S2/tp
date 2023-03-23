@@ -27,9 +27,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
 
-    private final Index targetIndex;
-
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
+    private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
