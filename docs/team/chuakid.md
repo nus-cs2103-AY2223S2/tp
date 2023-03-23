@@ -5,8 +5,6 @@ title: Kelvin Chua's Project Portfolio Page
 
 ### Project: QuickContacts
 
-To Be Added Soon
-
 Given below are my contributions to the project.
 
 ## Code contributed:
