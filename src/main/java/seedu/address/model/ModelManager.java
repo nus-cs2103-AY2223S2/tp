@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -123,6 +124,12 @@ public class ModelManager implements Model {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return addressBook.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasPatientId(PatientId patientId) {
+        requireNonNull(patientId);
+        return addressBook.getPatientList().stream().anyMatch(patient -> patient.getId().equals(patientId));
     }
 
     @Override

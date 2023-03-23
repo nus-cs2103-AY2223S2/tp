@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -61,6 +62,8 @@ public interface Model {
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
      */
     boolean hasPatient(Patient patient);
+
+    boolean hasPatientId(PatientId patientId);
 
     /**
      * Deletes the given patient.
