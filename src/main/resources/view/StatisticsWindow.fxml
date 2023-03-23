@@ -21,7 +21,6 @@
                 <URL value="@StatisticsWindow.css" />
                 <URL value="@DarkTheme.css" />
             </stylesheets>
-            <VBox>
                 <HBox alignment="CENTER" fx:id="statsMessageContainer">
                     <children>
                         <VBox>
@@ -45,16 +44,6 @@
                         <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                     </padding>
                 </HBox>
-
-                <VBox fx:id="personList" maxHeight="1.7976931348623157E308" styleClass="pane-with-border" VBox.vgrow="ALWAYS" alignment="BOTTOM_CENTER">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <children>
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder" maxHeight="1.7976931348623157E308" />
-                    </children>
-                </VBox>
-            </VBox>
         </Scene>
     </scene>
 </fx:root>
