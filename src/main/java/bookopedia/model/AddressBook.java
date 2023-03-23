@@ -56,6 +56,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
+    /**
+     * Replaces the current list with a sorted list based on delivery status in ascending order.
+     */
+    public void sort() {
+        persons.sort();
+    }
+
     //// person-level operations
 
     /**

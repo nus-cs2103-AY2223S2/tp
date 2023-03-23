@@ -17,6 +17,7 @@ import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.commands.HelpCommand;
 import bookopedia.logic.commands.ListCommand;
 import bookopedia.logic.commands.MarkCommand;
+import bookopedia.logic.commands.SortCommand;
 import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 
@@ -79,6 +80,9 @@ public class AddressBookParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

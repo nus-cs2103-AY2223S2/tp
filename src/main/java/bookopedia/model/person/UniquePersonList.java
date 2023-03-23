@@ -3,6 +3,7 @@ package bookopedia.model.person;
 import static bookopedia.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +96,18 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Replaces the current list with a sorted list based on delivery status in ascending order.
+     */
+    public void sort() {
+        internalList.sort(new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return p1.getDeliveryStatus().compareTo(p2.getDeliveryStatus());
+            }
+        });
     }
 
     /**
