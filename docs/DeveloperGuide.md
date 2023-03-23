@@ -16,12 +16,20 @@ title: Developer Guide
   - [Storage Component](#storage-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Person Class](#person-class)
-  - [Edit Command](#edit-command)
-  - [Find Command](#find-command)
+  - [Model](#model-implementation)
+    - [Person Class](#person-class)
+    - [Module Class](#module-class)
+    - [Course and CourseList Class](#course-and-courselist-class)
+  - [Logic](#logic-implementation)
+    - [Edit Command](#edit-command)
+    - [Find Command](#find-command)
+  - [UI](#ui-implementation)
+    - [Main Section](#main-section)
+    - [Info Panel](#info-panel)
+    - [Theme](#theme)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product Scope](#product-scope-%EF%B8%8F)
+  - [Product Scope](#product-scope-)
   - [User Stories](#user-stories-)
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
@@ -283,7 +291,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -306,9 +314,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CodocParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -369,9 +377,16 @@ Classes used by multiple components are in the `codoc.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+<br>
+
+## **Model Implementation**
+
+This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more 
+information about this package.
 
 ### **Person Class**
 Each `Person` in CoDoc is implemented in the following way:
@@ -401,6 +416,31 @@ We included the `Skills` attribute to remind the user to add in the person's ski
 
 <div style="page-break-after: always;"></div>
 
+[Scroll back to top](#table-of-contents)
+
+### **Module Class**
+Each module in CoDoc have a string representing its module.
+#### Regex and validation
+All module string should satisfy the following regex pattern,
+
+<code>
+^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*
+</code>
+
+For example, a valid Module string is "AY2223S1 CS1101S"
+
+Additionally, a final validation is required to ensure that the 4 digit after
+the "AY" is valid. 
+
+The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
+- 2223
+- 9900
+- 0102
+
+The following are invalid (the last 2 digit number is not an increment of the first)
+- 2224
+- 1111
+- 
 [Scroll back to top](#table-of-contents)
 
 ### **Course and CourseList Class**
@@ -449,7 +489,8 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 
 #### Implementation Flow
 
-Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the person.
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
+person.
 
 ![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
 
@@ -461,10 +502,19 @@ Given below is an activity diagram to illustrate the behaviour of editing Person
 
 #### Design Considerations
 
-Updating the `Skills` and `Modules` using old and new prefixes ensures the user does not update the skillsets and modules unneccessarily.
-Even though the behaviour is similar to simply deleting and adding new modules and skills, update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are stored in.
+Updating the `Skills` and `Modules` using old and new prefixes ensures the user does not update the skillsets and
+modules unneccessarily. Even though the behaviour is similar to simply deleting and adding new modules and skills,
+update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are
+stored in.
 
 [Scroll back to top](#table-of-contents)
+
+## **Logic Implementation**
+
+This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
+for more information about this package.
+
+<br>
 
 ### Find Command
 
@@ -620,6 +670,247 @@ _{Explain here how the data archiving feature will be implemented}_
 
 [Scroll back to top](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **UI Implementation**
+
+This section describes implementation of features within `ui` package.
+
+On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into two
+sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
+[Info Panel](#info-panel) which shows more details about a specific person.
+
+[Insert diagram that labels the sides]
+
+Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
+explained under [Theme](#theme) section.
+
+<br>
+
+Refer to [UI Component](#ui-component) for more information about this package.
+
+## **Main section**
+
+Main section consists of the following components:
+
+[Insert diagram that labels the components]
+
+* [CommandBox](#commandbox)
+* [ResultDisplay](#resultdisplay)
+* [PersonListPanel](#personlistpanel)
+* [StatusBarFooter](#statusbarfooter)
+
+### **CommandBox**
+
+**Main input for the UI.**
+
+[CommandBox Image]
+
+`CommandBox`'s constructor takes in a `CommandExecutor` that is passed by the `MainWindow`. This creates a single, 
+bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
+
+Users are able to write their commands into its text field and execute it by pressing `Enter` key.
+
+<br>
+
+#### Design considerations
+
+Commands may execute successfully or fail throwing exceptions. To increase usability of the `CommandBox`, following are
+implemented:
+* On succesful execution: text field is reset to be empty, ready to take in more commands.
+* On failed execution: command in text field is kept but shown in different color to indicate error, so that users can 
+modify the command without having to rewrite the whole command.
+
+<br>
+
+### **ResultDisplay**
+
+**Main output for the UI.**
+
+[Placeholder for ResultDisplay image]
+
+Even though the program supports GUI, main interaction between the user and the program happens through the CLI. This
+leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
+execution of commands.
+
+<br>
+
+#### Design considerations
+
+Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
+that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
+this update, adhering to the segregation of concerns principle.
+
+<br>
+
+### **PersonListPanel**
+
+Part of the main section that displays a list of person registered to the CoDoc database.
+
+The list is created as a ListView. More information about ListView
+[here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
+
+[Placeholder for picture]
+
+<br>
+
+#### Design considerations
+
+Since the list is updated constantly as program executes, ListView was chosen as the way to display the list since it
+is able to observe changes in its content (as long as it is an 
+[ObservableList](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html)) and reflect the
+change during execution without having the user to update what is shown on the program separately.
+
+To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
+class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
+in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
+
+<br>
+
+### **StatusBarFooter**
+
+Small section at the bottom of the program to show information about the status of the program.
+
+[Placeholder for image]
+
+Currently, it shows the path for CoDoc's database. Developers who are looking to show any other status to the user
+(such as internet connection availability, if required in future implementation) may use this to display such
+information.
+
+<br>
+
+## **Info Panel**
+
+Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
+which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
+
+Info Panel consists of the following components:
+
+[Insert diagram that labels the components]
+
+* [InfoTab](#infotab)
+* [DetailedInfo](#detailedinfo)
+  * [DetailedContact](#detailedcontact)
+  * [DetailedModule](#detailedmodule)
+  * [DetailedSkill](#detailedskill)
+
+### **InfoTab**
+
+Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
+**main controller** for the right section, Info Panel.
+
+[Placeholder for image]
+
+<br>
+
+#### Design considerations
+
+The Info Panel is implemented to show details of a person as [PersonListPanel](#personlistpanel) is unable to show all
+information about a person given limited space within each cell. This "staged" person is called internally code-wise as
+`protagonist` and shall be referred to as that.
+
+However, even by having a separate panel dedicated for showing such information, the set of modules or skills a person
+has may grow so large to show all of them in one section. Furthermore, user do not need to see all of them at once as
+for the moment there are no direct links between contacts, modules and skills information of a person.
+
+This led to the design which top part of `InfoTab` shows basic information about the `protagonist` (name, year, course
+of study) and bottom part shows whatever [DetailedInfo](#detailedinfo) user wish to display. Since the name or course of
+study could become very long, the containing `VBox` has been allowed to grow and the information containing `label` are
+set to wrap its text.
+
+[Placeholder for table of images used in PR - Name wrap]
+
+Note that there are no listeners that observes the changes made to the staged `progatonist`. This is to prevent
+over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
+creates a new `InfoTab` at the end of every execution by referring to the `protagonist` at given state.
+
+<br>
+
+### **DetailedInfo**
+
+Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
+`DetailedSkill`.
+
+<br>
+
+#### Design considerations
+
+`InfoTab` may create either of the children classes, depending on what the user has specified using the
+[ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
+generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlaceholder` StackPane within the `InfoTab`.
+
+<br>
+
+### **DetailedContact**
+
+Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
+as GitHub user ID, email address and LinkedIn profile URL.
+
+<br>
+
+### **DetailedModule**
+
+Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
+by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
+
+<br>
+
+#### Design considerations
+
+The ListView for list of modules are implemented in a similar manner to the one for [PersonListPanel](#personlistpanel).
+One major difference lies in the `prefHeight` attribute of the ListView set by the controller.
+
+The list of modules may grow or shrink as the program executes. Users may scroll down this list if it is unable to
+display all of its contents. However, we wanted to minimize GUI interaction since our primary users prefer a CLI. One
+could set the `VBox.vgrow` attribute of the container to "ALWAYS" and expand the table, but without limiting the
+`maxHeight` or `prefHeight` attribute for the ListView, it would grow all the way to the bottom of the panel showing
+too much of empty space in the ListView, negatively affecting its visuals.
+
+To get around this and make the height grow just enough to display all items in the list, controller will calculate
+the optimal height based on the number of entries and set it as the `prefHeight` of the ListView, minimizing the empty
+space.
+
+To let the users intuitively know that there are rooms for more modules to be added, ListView's `minHeight` has been set
+to `340` to reveal small amount of empty space. If the program window is resized too short, the ListView becomes a
+scrollable one.
+
+[Placeholder for table of images used in PR - Growling list]
+
+<br>
+
+### **DetailedSkill**
+
+Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
+by a person that is created as a ListView.
+
+The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
+information.
+
+<br>
+
+## **Theme**
+
+Most of the Java FXML components follow the style specified by the CSS file. Refer to this file under the `view` package
+within the `resources` folder when visual design changes are to be made.
+
+CSS file also contains colors shown in the program in RGB color codes, developers may refer to
+[this page](https://www.rapidtables.com/web/color/RGB_Color.html) to decipher them.
+
+Fonts used in this program but not part of system fonts are stored in the `resources` folder as well, under the `font`
+package. These are loaded by the `MainApp` class upon initialization of the program. Mainly used fonts are:
+1. **Roboto Mono Regular**: contents requiring mono-spacing for better alignment (such as list of skills/modules).
+2. **Roboto Bold and Regular**: most of the texts displayed on the program.
+3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
+[StatusBarFooter](#statusbarfooter)).
+
+<br>
+
+{More to be added}
+
+
+[Scroll back to UI Implementation](#ui-implementation)
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -843,18 +1134,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1.1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1.2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2.1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2.2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
 
@@ -862,18 +1153,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1.1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
+    1.2. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1.3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1.4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
 
@@ -881,9 +1172,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1.1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
 

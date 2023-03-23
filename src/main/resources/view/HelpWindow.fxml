@@ -19,14 +19,14 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css"/>
+        <URL value="@HelpWindow.css" />
       </stylesheets>
          <VBox>
             <children>
             <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="75.0" prefWidth="629.0">
               <children>
                 <Label fx:id="helpMessage" prefHeight="62.0" prefWidth="546.0" text="Label" />
-                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="25.0" prefWidth="70.0" text="Copy URL" />
+                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="25.0" prefWidth="125.0" text="Copy URL" />
               </children>
               <opaqueInsets>
                 <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />

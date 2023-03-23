@@ -164,22 +164,22 @@ public class ParserUtilTest {
 
     @Test
     public void parseSkills_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSkills(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSkillSet(null));
     }
 
     @Test
     public void parseSkills_collectionWithInvalidSkills_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSkills(Arrays.asList(VALID_SKILL_1, INVALID_SKILL)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseSkillSet(Arrays.asList(VALID_SKILL_1, INVALID_SKILL)));
     }
 
     @Test
     public void parseSkills_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseSkills(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseSkillSet(Collections.emptyList()).isEmpty());
     }
 
     @Test
     public void parseSkills_collectionWithValidSkills_returnsSkillSet() throws Exception {
-        Set<Skill> actualSkillSet = ParserUtil.parseSkills(Arrays.asList(VALID_SKILL_1, VALID_SKILL_2));
+        Set<Skill> actualSkillSet = ParserUtil.parseSkillSet(Arrays.asList(VALID_SKILL_1, VALID_SKILL_2));
         Set<Skill> expectedSkillSet = new HashSet<Skill>(Arrays.asList(new Skill(VALID_SKILL_1),
                 new Skill(VALID_SKILL_2)));
 
