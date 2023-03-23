@@ -109,20 +109,20 @@ Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…�
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, all existing tags of the case will be removed i.e adding of tags is not cumulative.
-* You can remove all the case’s tags by typing `v/` without
-    specifying any tags after it.
+* When editing dengue variants, all existing variants of the case will be removed i.e adding of variants is not cumulative.
+* You can remove all the case’s dengue variants by typing `v/` without
+    specifying any variants after it.
 
 Examples:
 * `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
 respectively.
-* `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all existing tags.
+* `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
 
 ### Locating cases by name: `find`
 
 Finds cases whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT_TAG`}
+Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT`}
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`

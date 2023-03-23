@@ -9,12 +9,12 @@ import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_POSTAL_DESC;
-import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_VARIANT_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_AMY;
@@ -22,9 +22,9 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -45,7 +45,7 @@ import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String VARIANT_EMPTY = " " + PREFIX_VARIANT;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS); // invalid postal
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_VARIANT_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid postal followed by valid date
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + DATE_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
@@ -96,9 +96,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_DENV2 + TAG_DESC_DENV1 + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_DENV2 + TAG_EMPTY + TAG_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_DENV2 + TAG_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1 + VARIANT_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_EMPTY + VARIANT_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_EMPTY + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATE_DESC
@@ -109,12 +109,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + TAG_DESC_DENV1
-                + DATE_DESC_AMY + AGE_DESC_AMY + NAME_DESC_AMY + TAG_DESC_DENV2;
+        String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + VARIANT_DESC_DENV1
+                + DATE_DESC_AMY + AGE_DESC_AMY + NAME_DESC_AMY + VARIANT_DESC_DENV2;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
-                .withTags(VALID_TAG_DENV1, VALID_TAG_DENV2).build();
+                .withTags(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -160,8 +160,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_DENV2;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_DENV2).build();
+        userInput = targetIndex.getOneBased() + VARIANT_DESC_DENV2;
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_VARIANT_DENV2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -170,12 +170,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + POSTAL_DESC_AMY + AGE_DESC_AMY + DATE_DESC_AMY
-                + TAG_DESC_DENV2 + POSTAL_DESC_AMY + AGE_DESC_AMY + DATE_DESC_AMY + TAG_DESC_DENV2
-                + POSTAL_DESC_BOB + AGE_DESC_BOB + DATE_DESC_BOB + TAG_DESC_DENV1;
+                + VARIANT_DESC_DENV2 + POSTAL_DESC_AMY + AGE_DESC_AMY + DATE_DESC_AMY + VARIANT_DESC_DENV2
+                + POSTAL_DESC_BOB + AGE_DESC_BOB + DATE_DESC_BOB + VARIANT_DESC_DENV1;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
-                .withTags(VALID_TAG_DENV2, VALID_TAG_DENV1)
+                .withTags(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -204,7 +204,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + VARIANT_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

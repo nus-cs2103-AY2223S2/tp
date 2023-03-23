@@ -25,14 +25,14 @@ public class ParserUtilTest {
     private static final String INVALID_POSTAL = "+651234";
     private static final String INVALID_AGE = " ";
     private static final String INVALID_DATE = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_VARIANT = "#DENV1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_POSTAL = "123456";
     private static final String VALID_AGE = "25";
     private static final String VALID_DATE = "2023-02-25";
-    private static final String VALID_TAG_1 = "DENV1";
-    private static final String VALID_TAG_2 = "DENV2";
+    private static final String VALID_VARIANT_1 = "DENV1";
+    private static final String VALID_VARIANT_2 = "DENV2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -155,19 +155,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_VARIANT));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+        Tag expectedTag = new Tag(VALID_VARIANT_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_VARIANT_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
+        String tagWithWhitespace = WHITESPACE + VALID_VARIANT_1 + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_VARIANT_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
@@ -178,7 +178,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_VARIANT_1, INVALID_VARIANT)));
     }
 
     @Test
@@ -188,8 +188,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_VARIANT_1, VALID_VARIANT_2));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_VARIANT_1), new Tag(VALID_VARIANT_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

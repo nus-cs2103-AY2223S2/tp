@@ -8,8 +8,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,9 +50,9 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPostal(VALID_POSTAL_AMY)
-            .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY).withTags(VALID_TAG_DENV2).build();
+            .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY).withTags(VALID_VARIANT_DENV2).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPostal(VALID_POSTAL_BOB)
-            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV1, VALID_TAG_DENV2)
+            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB).withTags(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

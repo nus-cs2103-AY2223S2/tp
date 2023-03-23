@@ -6,7 +6,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
 import static seedu.dengue.testutil.Assert.assertThrows;
 import static seedu.dengue.testutil.TypicalPersons.ALICE;
 import static seedu.dengue.testutil.TypicalPersons.BOB;
@@ -34,7 +34,7 @@ public class PersonTest {
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB)
-                .withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV2).build();
+                .withAge(VALID_AGE_BOB).withTags(VALID_VARIANT_DENV2).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -86,7 +86,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_DENV2).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_VARIANT_DENV2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

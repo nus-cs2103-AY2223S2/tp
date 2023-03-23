@@ -5,7 +5,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 import static seedu.dengue.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSTAL + "POSTAL] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_VARIANT + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_POSTAL + "91234567 "
             + PREFIX_DATE + "johndoe@example.com";

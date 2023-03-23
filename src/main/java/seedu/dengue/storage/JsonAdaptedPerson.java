@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String postal;
     private final String date;
     private final String age;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> variants = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,13 +37,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("postal") String postal,
             @JsonProperty("date") String date, @JsonProperty("age") String age,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("variants") List<JsonAdaptedTag> variants) {
         this.name = name;
         this.postal = postal;
         this.date = date;
         this.age = age;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (variants != null) {
+            this.variants.addAll(variants);
         }
     }
 
@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
         postal = source.getPostal().value;
         date = source.getDate().value.toString();
         age = source.getAge().value;
-        tagged.addAll(source.getTags().stream()
+        variants.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -66,9 +66,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Tag> personVariants = new ArrayList<>();
+        for (JsonAdaptedTag variant : variants) {
+            personVariants.add(variant.toModelType());
         }
 
         if (name == null) {
@@ -104,8 +104,7 @@ class JsonAdaptedPerson {
         }
         final Age modelAge = new Age(age);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPostal, modelDate, modelAge, modelTags);
+        final Set<Tag> modelVariants = new HashSet<>(personVariants);
+        return new Person(modelName, modelPostal, modelDate, modelAge, modelVariants);
     }
-
 }
