@@ -1,7 +1,9 @@
-package seedu.address.model.timetable;
+package seedu.address.model.scheduler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.model.commitment.Lesson;
 
 /**
  * Represents a module in NUS.

@@ -10,8 +10,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.ModuleTag;
-import seedu.address.model.timetable.Lesson;
 
 /**
  * This class was added to facilitate the Sort Command.
