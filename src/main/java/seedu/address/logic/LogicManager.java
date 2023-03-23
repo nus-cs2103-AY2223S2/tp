@@ -59,7 +59,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyExpenseTracker getAddressBook() {
+    public ReadOnlyExpenseTracker getExpenseTracker() {
         return dataModel.getExpenseTracker();
     }
 

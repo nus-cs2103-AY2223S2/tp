@@ -16,7 +16,6 @@ public class StatisticsPanel extends UiPart<Region> {
     private static final String FXML = "StatisticsPanel.fxml";
     private final AnalyticModel analyticModel;
 
-
     @FXML
     private Label monthlySpending;
     @FXML
@@ -42,61 +41,70 @@ public class StatisticsPanel extends UiPart<Region> {
     @FXML
     private HBox monthlyChangeBackground;
 
+    /**
+     * Creates a new StatisticsPanel object with the specified AnalyticModel object
+     * and binds all values to the statistics
+     * @param analyticModel the AnalyticModel object for data retrieval
+     */
     public StatisticsPanel(AnalyticModel analyticModel) {
         super(FXML);
         this.analyticModel = analyticModel;
         bindAllValuesToStatistics();
     }
 
+    /**
+     * Binds the given AnalyticsType value to the given Label object
+     * and formats the label text as a price or percentage
+     * @param analyticsType the AnalyticsType value to bind
+     * @param labelToBind   the Label object to bind the value to
+     * @param isPrice       true if the value should be formatted as a price, false if to be formatted as a percentage
+     */
     private void bindValueToStatistic(AnalyticsType analyticsType, Label labelToBind, boolean isPrice) {
         String formatString = isPrice ? "$%.2f" : "%.2f%%";
         labelToBind.textProperty().bind(analyticModel.getAnalyticsData(analyticsType).asString(formatString));
     }
 
-    private void bindValueToChangeIndicator(AnalyticsType analyticsType, Label labelToBind) {
-
+    /**
+     * Binds the given AnalyticsType value to the given Label object
+     * and updates the percentage change indicator style based on the value
+     * @param analyticsType the AnalyticsType value to bind
+     */
+    private void bindValueToChangeIndicator(AnalyticsType analyticsType) {
         DoubleProperty changeValue = analyticModel.getAnalyticsData(analyticsType);
-        labelToBind.textProperty().bind(changeValue.asString("%.2f%%"));
-
         if (analyticsType != AnalyticsType.WEEKLY_CHANGE && analyticsType != AnalyticsType.MONTHLY_CHANGE) {
             throw new IllegalArgumentException("The change indicator only accepts MONTHLY_CHANGE or WEEKLY_CHANGE!");
         }
-
-        updateChangeIndicatorStyles(analyticsType, labelToBind, changeValue.doubleValue());
-
-        changeValue.addListener((observable, oldValue, newValue) -> {
-            updateChangeIndicatorStyles(analyticsType, labelToBind, newValue.doubleValue());
-        });
-
+        // Updating weekly change indicator
+        if (analyticsType == AnalyticsType.WEEKLY_CHANGE) {
+            weeklyChange.textProperty().bind(changeValue.asString("%.2f%%"));
+            updateChangeIndicatorStyles(weeklyChange, weeklySign, weeklyChangeBackground, changeValue.doubleValue());
+            changeValue.addListener((observable, oldValue, newValue) -> {
+                updateChangeIndicatorStyles(weeklyChange, weeklySign, weeklyChangeBackground, newValue.doubleValue());
+            });
+        } else {
+            // Updating monthly change indicator
+            monthlyChange.textProperty().bind(changeValue.asString("%.2f%%"));
+            updateChangeIndicatorStyles(monthlyChange, monthlySign, monthlyChangeBackground, changeValue.doubleValue());
+            changeValue.addListener((observable, oldValue, newValue) -> {
+                updateChangeIndicatorStyles(monthlyChange, monthlySign, monthlyChangeBackground, newValue.doubleValue());
+            });
+        }
     }
 
-    private void updateChangeIndicatorStyles(AnalyticsType analyticsType, Label labelToUpdate, double value) {
+    private void updateChangeIndicatorStyles(Label labelToUpdate, Label signToUpdate, HBox backgroundToUpdate, double value) {
+        // Determine the CSS classes to apply based on the value of the change
+        String textColorClass = (value > 0) ? "negative_change_indicator" : "positive_change_indicator";
+        String backgroundColorClass = (value > 0) ? "change_indicator_background_negative" : "change_indicator_background_positive";
 
-        String textColorClass = (value >= 0) ? "negative_change_indicator" : "positive_change_indicator";
-        String backgroundColorClass = (value >= 0) ? "change_indicator_background_negative" : "change_indicator_background_positive";
+        // Add sign label with a plus if the value is positive
+        signToUpdate.setText((value >= 0) ? "+" : "");
 
-        if (analyticsType == AnalyticsType.WEEKLY_CHANGE) {
-            if (value >= 0) {
-                weeklySign.setText("+");
-            } else {
-                weeklySign.setText("");
-            }
-            weeklySign.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
-            weeklySign.getStyleClass().add(textColorClass);
-            weeklyChangeBackground.getStyleClass().removeAll("change_indicator_background_positive", "change_indicator_background_negative");
-            weeklyChangeBackground.getStyleClass().add(backgroundColorClass);
-        } else if (analyticsType == AnalyticsType.MONTHLY_CHANGE) {
-            if (value >= 0) {
-                monthlySign.setText("+");
-            } else {
-                monthlySign.setText("");
-            }
-            monthlySign.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
-            monthlySign.getStyleClass().add(textColorClass);
-            monthlyChangeBackground.getStyleClass().removeAll("change_indicator_background_positive", "change_indicator_background_negative");
-            monthlyChangeBackground.getStyleClass().add(backgroundColorClass);
-        }
-
+        // Update the style classes with new background
+        signToUpdate.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
+        signToUpdate.getStyleClass().add(textColorClass);
+        backgroundToUpdate.getStyleClass().removeAll("change_indicator_background_positive", "change_indicator_background_negative");
+        backgroundToUpdate.getStyleClass().add(backgroundColorClass);
+        // Update the main labels showing the values
         labelToUpdate.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
         labelToUpdate.getStyleClass().add(textColorClass);
     }
@@ -109,8 +117,8 @@ public class StatisticsPanel extends UiPart<Region> {
         bindValueToStatistic(AnalyticsType.WEEKLY_REMAINING, weeklyRemaining, true);
         bindValueToStatistic(AnalyticsType.TOTAL_SPENT, totalSpending, true);
         bindValueToStatistic(AnalyticsType.BUDGET_PERCENTAGE, budgetPercentage, false);
-        bindValueToChangeIndicator(AnalyticsType.WEEKLY_CHANGE, weeklyChange);
-        bindValueToChangeIndicator(AnalyticsType.MONTHLY_CHANGE, monthlyChange);
+        bindValueToChangeIndicator(AnalyticsType.WEEKLY_CHANGE);
+        bindValueToChangeIndicator(AnalyticsType.MONTHLY_CHANGE);
     }
 
     @Override

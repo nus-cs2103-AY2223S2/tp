@@ -12,19 +12,19 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.util.AnalyticsType;
 
 /**
- * Represents the in-memory model of user analytics from the expense tracker
+ * The AnalyticModelManager class represents the in-memory model of user analytics from the expense tracker.
+ * It provides various methods for calculating and retrieving statistics related to user expenses.
  */
 public class AnalyticModelManager implements AnalyticModel {
     private static final Logger logger = LogsCenter.getLogger(AnalyticModelManager.class);
 
-    private final ObservableList<Expense> filteredExpenses;
-    private final ObservableList<Category> filteredCategories;
+    private final ObservableList<Expense> allExpenses;
+    private final ObservableList<Category> allCategories;
 
     //TODO link this to Budget class
     private final double budget = 1000;
@@ -37,14 +37,18 @@ public class AnalyticModelManager implements AnalyticModel {
     private DoubleProperty weeklyChange;
     private DoubleProperty totalSpent;
     private DoubleProperty budgetPercentage;
+    private LocalDate currentDate;
 
     /**
-     * Initializes an AnalyticModelManager with the given expense list data.
+     * Initializes an AnalyticModelManager with the given expense tracker data
+     * and a given date which serves as a point of reference from which analytics
+     * are generated
      */
-    public AnalyticModelManager(Logic logic) {
-        requireNonNull(logic);
-        filteredExpenses = logic.getFilteredExpenseList();
-        filteredCategories = logic.getFilteredCategoryList();
+    public AnalyticModelManager(ReadOnlyExpenseTracker expenseTracker, LocalDate referenceDate) {
+        requireNonNull(expenseTracker);
+        requireNonNull(referenceDate);
+        allExpenses = expenseTracker.getExpenseList();
+        allCategories = expenseTracker.getCategoryList();
         monthlySpent = new SimpleDoubleProperty();
         monthlyRemaining = new SimpleDoubleProperty();
         weeklySpent = new SimpleDoubleProperty();
@@ -53,17 +57,31 @@ public class AnalyticModelManager implements AnalyticModel {
         monthlyChange = new SimpleDoubleProperty();
         totalSpent = new SimpleDoubleProperty();
         budgetPercentage = new SimpleDoubleProperty();
+        currentDate = referenceDate;
         updateAllStatistics();
-        filteredExpenses.addListener((ListChangeListener<Expense>) expenseChange -> {
+        allExpenses.addListener((ListChangeListener<Expense>) expenseChange -> {
             updateAllStatistics();
         });
-
     }
 
-    private DoubleProperty getMonthlySpent() {
+    /**
+     * Initializes an AnalyticModelManager with the given expense tracker data
+     * Date reference for analytics is taken to be the current date and time of construction
+     */
+    public AnalyticModelManager(ReadOnlyExpenseTracker expenseTracker) {
+        this(expenseTracker, LocalDate.now());
+    }
+
+    /**
+     * Calculates the total amount spent in the current month based
+     * on the filtered expenses list and updates the value of monthlySpent property
+     * @return DoubleProperty representing the monthly spent amount
+     */
+    @Override
+    public DoubleProperty getMonthlySpent() {
         double total = 0;
-        int currentMonth = LocalDate.now().getMonthValue();
-        for (Expense expense: filteredExpenses) {
+        int currentMonth = currentDate.getMonthValue();
+        for (Expense expense: allExpenses) {
             if (expense.getDate().getMonthValue() == currentMonth) {
                 total += expense.getAmount();
             }
@@ -72,18 +90,29 @@ public class AnalyticModelManager implements AnalyticModel {
         return monthlySpent;
     }
 
-    private DoubleProperty getMonthlyRemaining() {
+    /**
+     * Calculates remaining budget for the current month
+     * and updates the value of monthlyRemaining property
+     * @return DoubleProperty representing the remaining budget for the month
+     */
+    @Override
+    public DoubleProperty getMonthlyRemaining() {
         double remaining = budget - monthlySpent.get();
         monthlyRemaining.set(remaining);
         return monthlyRemaining;
     }
 
-    private DoubleProperty getWeeklySpent() {
+    /**
+     * Calculates total amount spent during the current week
+     * based on the filtered expenses list and updates the value of weeklySpent property
+     * @return DoubleProperty representing the total amount spent during the current week
+     */
+    @Override
+    public DoubleProperty getWeeklySpent() {
         double total = 0;
-        LocalDate today = LocalDate.now();
-        LocalDate weekStart = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate weekEnd = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-        for (Expense expense: filteredExpenses) {
+        LocalDate weekStart = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate weekEnd = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+        for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
             if (!expenseDate.isBefore(weekStart) && !expenseDate.isAfter(weekEnd)) {
                 total += expense.getAmount();
@@ -93,18 +122,30 @@ public class AnalyticModelManager implements AnalyticModel {
         return weeklySpent;
     }
 
-    private DoubleProperty getWeeklyRemaining() {
+    /**
+     * Calculates remaining budget for the current week
+     * and updates the value of weeklyRemaining property
+     * @return DoubleProperty representing the remaining budget for the week
+     */
+    @Override
+    public DoubleProperty getWeeklyRemaining() {
         double remaining = (budget / 4) - weeklySpent.get();
         weeklyRemaining.set(remaining);
         return weeklyRemaining;
     }
 
-    private DoubleProperty getWeeklyChange() {
+    /**
+     * Calculates percentage change in spending from the previous week
+     * to the current week and updates the value of weeklyChange property
+     * @return DoubleProperty representing the percentage change in
+     * spending from the previous week to the current week
+     */
+    @Override
+    public DoubleProperty getWeeklyChange() {
         double previousWeekTotal = 0;
-        LocalDate currentDate = LocalDate.now();
         LocalDate previousWeekStart = currentDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusWeeks(1);
         LocalDate previousWeekEnd = currentDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusDays(1);
-        for (Expense expense: filteredExpenses) {
+        for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
             if (!expenseDate.isBefore(previousWeekStart) && !expenseDate.isAfter(previousWeekEnd)) {
                 previousWeekTotal += expense.getAmount();
@@ -120,12 +161,18 @@ public class AnalyticModelManager implements AnalyticModel {
         return weeklyChange;
     }
 
-    private DoubleProperty getMonthlyChange() {
+    /**
+     * Calculates percentage change in spending from the previous month
+     * to the current month and updates the value of monthlyChange property
+     * @return DoubleProperty representing the percentage change in
+     * spending from the previous month to the current month
+     */
+    @Override
+    public DoubleProperty getMonthlyChange() {
         double previousMonthTotal = 0;
-        LocalDate currentDate = LocalDate.now();
         LocalDate previousMonthStart = currentDate.withDayOfMonth(1).minusMonths(1);
         LocalDate previousMonthEnd = previousMonthStart.with(TemporalAdjusters.lastDayOfMonth());
-        for (Expense expense: filteredExpenses) {
+        for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
             if (!expenseDate.isBefore(previousMonthStart) && !expenseDate.isAfter(previousMonthEnd)) {
                 previousMonthTotal += expense.getAmount();
@@ -141,14 +188,25 @@ public class AnalyticModelManager implements AnalyticModel {
         return monthlyChange;
     }
 
-    private DoubleProperty getTotalSpent() {
-        double amount = filteredExpenses.stream().mapToDouble(Expense::getAmount).sum();
+    /**
+     * Calculates the total amount of money spent on all expenses
+     * @return a DoubleProperty representing the total amount spent
+     */
+    @Override
+    public DoubleProperty getTotalSpent() {
+        double amount = allExpenses.stream().mapToDouble(Expense::getAmount).sum();
         totalSpent.set(amount);
         return totalSpent;
     }
 
-    private DoubleProperty getBudgetPercentage() {
-        double percentage = (totalSpent.get() / budget) * 100;
+    /**
+     * Calculates and returns the percentage of the monthly budget that has been spent so far
+     * The percentage is capped at 100% if it exceeds 100
+     * @return a DoubleProperty representing the percentage of budget spent
+     */
+    @Override
+    public DoubleProperty getBudgetPercentage() {
+        double percentage = (monthlySpent.get() / budget) * 100;
         if (percentage > 100) {
             percentage = 100;
         }
@@ -156,8 +214,14 @@ public class AnalyticModelManager implements AnalyticModel {
         return budgetPercentage;
     }
 
+    /**
+     * Returns a DoubleProperty representing analytics data for a given AnalyticsType.
+     * @param type an AnalyticsType enum that specifies which type of analytics data to return
+     * @return a DoubleProperty representing the requested analytics data
+     * @throws IllegalArgumentException if the given analytics type is not supported
+     */
     @Override
-    public DoubleProperty getAnalyticsData(AnalyticsType type) {
+    public DoubleProperty getAnalyticsData(AnalyticsType type) throws IllegalArgumentException {
         switch(type) {
             case MONTHLY_SPENT:
                 return getMonthlySpent();
@@ -180,8 +244,11 @@ public class AnalyticModelManager implements AnalyticModel {
         }
     }
 
-
-    private void updateAllStatistics() {
+    /**
+     * A convenience method to re-calculate and update all statistics
+     */
+    @Override
+    public void updateAllStatistics() {
         getMonthlySpent();
         getMonthlyRemaining();
         getWeeklySpent();
@@ -206,8 +273,9 @@ public class AnalyticModelManager implements AnalyticModel {
 
         // state check
         AnalyticModelManager other = (AnalyticModelManager) obj;
-        return  filteredExpenses.equals(other.filteredExpenses)
-                && filteredCategories.equals(other.filteredCategories);
+        return  allExpenses.equals(other.allExpenses)
+                && allCategories.equals(other.allCategories)
+                && currentDate.equals(other.currentDate);
     }
 }
 

@@ -91,8 +91,8 @@ public class ParserUtil {
      * @throws ParseException if the specified categoryName does not exist
      */
     public static Category parseCategory(String categoryName) throws ParseException {
-        String trimmedCategoryName = categoryName.trim().toLowerCase();
-        if (trimmedCategoryName.isEmpty()) {
+        String trimmedCategoryName = categoryName.trim();
+        if (trimmedCategoryName.isEmpty() || !Category.isValidCategoryName(trimmedCategoryName)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         if (categoryName.equals("miscellaneous")) {

@@ -129,17 +129,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Indicates if a category exists in the category list by name
-     * Used to determine if the category the user has specified already exists in the list,
-     * in order to reference that specific category
-     * @param categoryName the category name to check for
-     */
-    private boolean hasCategoryName(String categoryName) {
-        requireNonNull(categoryName);
-        return expenseTracker.hasCategoryName(categoryName);
-    }
-
-    /**
      * Indicates if a category exists in the category list
      * @param category the category to check for
      */
@@ -160,9 +149,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Category getCategoryInstance(String categoryName) {
-        if (hasCategoryName(categoryName)) {
-            return expenseTracker.getCategoryInstance(categoryName);
+    public Category getCategoryInstance(Category category) {
+        if (hasCategory(category)) {
+            return expenseTracker.getCategoryInstance(category);
         }
         return null;
     }

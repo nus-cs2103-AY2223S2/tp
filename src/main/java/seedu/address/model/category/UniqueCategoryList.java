@@ -24,7 +24,6 @@ public class UniqueCategoryList implements Iterable<Category> {
      */
     public boolean contains(Category toCheck) {
         requireNonNull(toCheck);
-
         return internalListOfCategories.stream().anyMatch(toCheck::isSameCategory);
     }
 

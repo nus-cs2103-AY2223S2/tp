@@ -29,7 +29,7 @@ public interface Logic {
      * Returns the ExpenseTracker.
      * @see Model#getExpenseTracker()
      */
-    ReadOnlyExpenseTracker getAddressBook();
+    ReadOnlyExpenseTracker getExpenseTracker();
 
     /** Returns an unmodifiable view of the list of categories */
     ObservableList<Category> getFilteredCategoryList();

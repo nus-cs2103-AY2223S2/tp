@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.category.Category;
+import seedu.address.model.util.UserInterfaceUtil;
 
 /**
  * A UI component that displays information of a {@code Category}.
@@ -32,7 +33,7 @@ public class CategoryCard extends UiPart<Region> {
         super(FXML);
         this.category = category;
         id.setText(displayedIndex + ". ");
-        categoryName.setText(category.getCategoryName());
+        categoryName.setText(UserInterfaceUtil.capitalizeFirstLetter(category.getCategoryName()));
         expenseCount.setText(String.valueOf(associatedExpenseCount));
     }
 

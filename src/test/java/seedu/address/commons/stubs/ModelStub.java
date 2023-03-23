@@ -16,11 +16,11 @@ import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
 
 /**
- * A default model stub that have some of the methods failing.
+ * A default model stub that have some methods failing.
  */
 public class ModelStub implements Model {
-    private ArrayList<Category> categories = new ArrayList<Category>();
-    private ArrayList<Expense> expenses = new ArrayList<Expense>();
+    private ArrayList<Category> categories = new ArrayList<>();
+    private ArrayList<Expense> expenses = new ArrayList<>();
 
     @Override
     public void addCategory(Category toAdd) {
@@ -141,12 +141,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public int getFilteredExpenseListCount() {
-        // get the size of the list
-        return expenses.size();
-    }
-
-    @Override
     public void updateFilteredExpensesList(Predicate<Expense> predicate) {
         // update the list
         expenses.removeIf(predicate);
@@ -189,13 +183,8 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Category getCategoryInstance(String categoryName) {
+    public Category getCategoryInstance(Category categoryName) {
         // get the category instance
-        for (Category category : categories) {
-            if (category.getCategoryName().equals(categoryName)) {
-                return category;
-            }
-        }
         return null;
     }
 

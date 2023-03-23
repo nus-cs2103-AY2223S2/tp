@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         resultsDetails = new ResultsDetails(logic.getFilteredExpenseList(), logic.getFilteredCategoryList());
         resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
 
-        statisticsPanel = new StatisticsPanel(new AnalyticModelManager(logic));
+        statisticsPanel = new StatisticsPanel(new AnalyticModelManager(logic.getExpenseTracker()));
         statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

@@ -127,8 +127,8 @@ public interface Model {
     /**
      * Returns a reference to the instance of category
      * matching the category name in the category list
-     * @param categoryName the category name to check for
+     * @param category the category to check for
      * @return the category instance if it exists, and null if it does not
      */
-    Category getCategoryInstance(String categoryName);
+    Category getCategoryInstance(Category category);
 }

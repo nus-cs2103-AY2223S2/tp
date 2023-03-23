@@ -93,7 +93,7 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualDataModel, String expectedMessage,
                                             Model expectedDataModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true);
         assertCommandSuccess(command, actualDataModel, expectedCommandResult, expectedDataModel);
     }
 
