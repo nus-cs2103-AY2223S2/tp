@@ -215,7 +215,7 @@ public interface Model {
      * @param elderlyNric Nric of the elderly of the pair to add.
      * @param volunteerNric Nric of the volunteer of the pair to add.
      */
-    boolean addPair(Nric elderlyNric, Nric volunteerNric);
+    void addPair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
@@ -296,4 +296,24 @@ public interface Model {
      */
     void updateFilteredPairList(Predicate<Pair> predicate);
 
+    /**
+     * Checks whether regions of an elderly and a volunteer are the same.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons belong in the same region, false otherwise.
+     */
+    boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric);
+
+    /**
+     * Checks whether there are suitable available dates between an elderly and a volunteer.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates, false otherwise.
+     */
+    boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric);
 }

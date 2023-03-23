@@ -16,8 +16,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
-import seedu.address.model.person.information.Region;
-
 
 /**
  * Wraps all data at the friendly-link level
@@ -291,42 +289,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
-    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
-        Elderly elderly = getElderly(elderlyNric);
-        Volunteer volunteer = getVolunteer(volunteerNric);
-
-        Region elderlyRegion = elderly.getRegion();
-        Region volunteerRegion = volunteer.getRegion();
-
-        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
-        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
-
-        // check if region match. If does not match, issue a warning in feedback
-        boolean issueWarning;
-        if (!elderlyRegion.isMatch(volunteerRegion)) {
-            issueWarning = true;
-        } else {
-            issueWarning = false;
-        }
-
-        // no restrictions
-        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
-            pairs.add(new Pair(elderly, volunteer));
-            return issueWarning;
-        }
-
-        // find first matching dates
-        for (AvailableDate date : elderlyAvailableDates) {
-            for (AvailableDate availableDate : volunteerAvailableDates) {
-                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
-                    pairs.add(new Pair(elderly, volunteer));
-                    return issueWarning;
-                }
-            }
-        }
-
-        throw new IllegalArgumentException("The elderly cannot be paired with the volunteer "
-                + "due to a clash in availability");
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
     }
 
     /**
@@ -385,6 +349,50 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     @Override
     public ObservableList<Pair> getPairList() {
         return pairs.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Checks whether regions of an elderly and a volunteer are the same.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons belong in the same region, false otherwise.
+     */
+    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+        return getElderly(elderlyNric).getRegion().equals(getVolunteer(volunteerNric).getRegion());
+    }
+
+    /**
+     * Checks whether there are suitable available dates between an elderly and a volunteer.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates, false otherwise.
+     */
+    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+        Elderly elderly = getElderly(elderlyNric);
+        Volunteer volunteer = getVolunteer(volunteerNric);
+        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
+        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
+
+        // no restrictions
+        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
+            pairs.add(new Pair(elderly, volunteer));
+            return true;
+        }
+
+        // find first matching dates
+        for (AvailableDate date : elderlyAvailableDates) {
+            for (AvailableDate availableDate : volunteerAvailableDates) {
+                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
