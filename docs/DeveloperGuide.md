@@ -307,13 +307,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The given details is of the wrong format.
-  
+* 2a. Person already exists in ModCheck
     * 2a1. ModCheck shows an error message.
     Use case continues at step 2.
-* 2b. Person already exists in ModCheck
+* 2b. Input does not follow the required format
     * 2b1. ModCheck shows an error message.
     Use case continues at step 2.
+* 2c. Input consists of missing details
+    * 2c1. ModCheck shows an error message.
+* 2d. Input contains incorrect details
+    * 2d1. ModCheck shows an error message.
 
 **Use case: Delete a person**
 
@@ -412,6 +415,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModCheck informs student that the given value for the specified field is invalid 
 
       Use case ends.
+
+#### Use case: Switch to light or dark mode
+
+**MSS**
+
+1. Student requests to change to light or dark mode based on their preferences
+2. ModCheck displays the selected outcome
+
+    Use case ends.
 
 *{More to be added}*
 
