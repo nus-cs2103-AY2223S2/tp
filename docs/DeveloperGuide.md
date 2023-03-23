@@ -177,13 +177,29 @@ Upon execution, it updates the department view.
 
 After that, it returns the command result.
 
-### Event-related features
+# Leave-related features
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
 The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
+
+## Adding an employee's leave on a specific day
+
+### AddEmployeeToLeave Command
+The AddEmployeeToLeave Command makes use of the following classes:
+
+* `AddEmployeeToLeaveCommand` - Adds the leave of an `Employee` to `SudoHr` on a specific day
+* `AddEmployeeToLeaveCommandParser` - Parses the argument provided by the user
+* `LeaveContainsEmployeePredicate` - Tests that an `Employee` has a `Leave` on the specific date
+
+`LeaveContainsEmployeePredicate` iterates through all employees and check if they are in the `Leave` object on a specific day.
+
+Given below is an example of how `AddEmployeeToLeaveCommand` works
+
+
+
 
 ### Cascading employee updates to department and event
 
