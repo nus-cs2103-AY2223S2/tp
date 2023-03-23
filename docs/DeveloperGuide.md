@@ -214,6 +214,55 @@ The following activity diagram shows what happens when a user executes an `add` 
 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
 
+### **Find module feature**
+
+#### About this feature
+
+The find module feature serves as a filtering tool that allows users to find a specific modules based on its code or according to a code prefix, credits, year-semester, grade, or tags.
+
+The command format is either `find (<moduleCode>)` or `find (/m <codePrefix>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tags>...)`
+
+#### How it is implemented
+The `find` command is facilitated by the `FindCommand` and the `FindCommandParser` classes.
+`FindCommandParser` makes use of the `ArgumentTokenizer::tokenize` method to extract out the relevant inputs of each field in the form of a String which will be used as arguments to make a new `ModuleCodePredicate` object. In the same `FindCommandParser` class, a new `FindCommand` object will be instantiated, with the `ModuleCodePredicate` object being passed as an argument. Finally, the `FindCommand` object will be executed by the `LogicManager`.
+
+#### Parsing user input
+1. The user inputs the `find` command with the relevant arguments. At least one argument needs to be provided.
+2. The `LogicManager` takes the input and passes it to the `ModtrekParser` which processes the input, recognises it as a find command and makes a new `AddCommandParser` object.
+3. The `FindCommandParser` then calls `ArgumentTokenizer::tokenize` to extract out the relevant inputs of each field. If no arguments are provided, or if prefixes are provided without the relevant details, a `ParseException` will be thrown.
+4. The `ParserUtil` will then check the validity of the input for `CodePrefix`, `Credit`, `SemYear`, `Grade` and `Set<Tag>`. If any of the inputs are invalid, a `ParseException` will be thrown as well.
+5. If the input is valid, `ModuleCodePredicate` object will be created, taking in the arguments `CodePrefix`, `Credit`, `SemYear`, `Grade` and `Set<Tag>`. Following which, a `FindCommand` object will be created.
+
+#### Command execution
+1. The `LogicManager` executes the `FindCommand`.
+2. `FindCommand` calls `ModelManager::updateFilteredModuleList` taking in the `ModuleCodePredicate` to update the `FilteredModuleList` formed from `UniqueModuleList` of `DegreeProgression`.
+
+#### Displaying of result
+1. `FindCommand` will create a new `CommandResult` object with a success message and return it back to `LogicManager`.
+2. The GUI will extract out the message from the `CommandResult` and display it to the user.
+
+#### Design considerations
+**Aspect: Command format**
+
+User may choose between the two formats for the FindCommand which function differently below:
+* **Format 1:** Finds a specific module.
+    * Format notation: `find <moduleCode>`
+    * Example: `find CS1101S`
+    * Reason for implementation: User may want to conveniently access a specific module which they have taken to check its details.
+
+* **Format 2:** Finds a set of modules by filters (single or multiple).
+    * Format notation: `find /m <codePrefix> /c <credits> /y <year-semester> /g <grade> /t <tags>...`
+    * Example: `find /m CS`
+    * Reason for implementation: User may want to filter modules by a certain category to review the modules which fulfill a condition.
+
+The following sequence diagram shows how the `find` command works:
+
+![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `find` command:
+
+![Activity diagram of find command](images/FindActivityDiagram.png)
+
 ### **Sort modules feature**
 
 #### About this feature
