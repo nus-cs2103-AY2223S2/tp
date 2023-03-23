@@ -71,15 +71,12 @@ and patient information respectively store the state of the application.
 <div markdown="span" class="alert alert-primary">
 These booleans should never contain the same value for the following reasons:
 1) If both booleans are `false`, then no information is displayed.
-2) If both booleans are `true`, then both doctor and patient information will be 
+2) If both booleans are `true`, then both doctor and patient information will be
 displayed over each other.
 </div>
 
 #### Alternatives considered
 *_This section is still in progress_*
-
-
-
 
 
 --------------------------------------------------------------------------------------------------------------------
