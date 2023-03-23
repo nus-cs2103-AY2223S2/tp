@@ -34,5 +34,3 @@ public class PlanCommand extends Command {
                 && (workload == (((PlanCommand) other).workload))); // state check
     }
 }
-
-HEAD

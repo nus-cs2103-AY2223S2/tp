@@ -140,7 +140,7 @@ Format: `list`
 
 ### 2.4 Editing a task : `edit`
 
-Edits an existing task in the address book. 
+Edits an existing task in the address book.
 
 One parameter field **must** be supplied in the argument.
 
@@ -268,7 +268,7 @@ Exits the program.
 
 Format: `exit`
 
-## 3. Storage 
+## 3. Storage
 
 ### 3.1 Saving the data
 

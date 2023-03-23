@@ -355,7 +355,7 @@ Cons: More complicated to implement and unwieldy for users.
 ### 3.7 Help Feature
 
 ### 3.8 Stats Feature
-Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags.
 The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10 tags.
 
 ### 3.9 Sort Feature
