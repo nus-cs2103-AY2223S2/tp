@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
-import static seedu.address.testutil.TypicalInternships.FOODPANDA;
-import static seedu.address.testutil.TypicalInternships.GOLDMAN;
-import static seedu.address.testutil.TypicalInternships.SUPERCELLGAMES;
+import static seedu.address.testutil.TypicalInternshipsVariableDates.FOODPANDA;
+import static seedu.address.testutil.TypicalInternshipsVariableDates.GOLDMAN;
+import static seedu.address.testutil.TypicalInternshipsVariableDates.SUPERCELLGAMES;
 import static seedu.address.testutil.TypicalInternshipsVariableDates.getTypicalInternBuddyVariableDates;
 
 import java.time.LocalDate;
