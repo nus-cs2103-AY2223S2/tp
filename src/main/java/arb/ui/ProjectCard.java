@@ -35,6 +35,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label status;
     @FXML
+    private Label price;
+    @FXML
     private Label id;
 
     /**
@@ -50,6 +52,11 @@ public class ProjectCard extends UiPart<Region> {
             deadline.setText(project.getDeadline().toString());
         } else {
             contentsPane.getChildren().remove(deadline);
+        }
+        if (project.isPricePresent()) {
+            price.setText(project.getPrice().toString());
+        } else {
+            contentsPane.getChildren().remove(price);
         }
 
         status.setText("Status: " + (project.isOverdue() ? "OVERDUE" : project.getStatus().toString()));
