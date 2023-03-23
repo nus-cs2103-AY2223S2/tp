@@ -156,7 +156,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <p align="center">
   <img src="images/ParserClasses.png" width="600"/>
-</p> 
+</p>
 
 How the parsing works:
 
