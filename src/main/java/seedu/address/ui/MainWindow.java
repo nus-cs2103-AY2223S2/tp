@@ -191,6 +191,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        quickstartWindow.hide();
+        assert (!(helpWindow.isShowing() && quickstartWindow.isShowing() && primaryStage.isShowing()));
     }
 
     /**
