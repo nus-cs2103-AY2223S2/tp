@@ -274,37 +274,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                       | So that I can…​                                                                             |
-|----------|---------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| `* * *`  | staff member  | add a patient by NRIC                              | record the information later (start with NRIC as primary key)                               |
-| `* * *`  | staff member  | add personal particulars to a patient              | record their name, address and contacts                                                     |
-| `* * *`  | staff member  | add medical records to a patient                   | record their medical history, medical cases and medication allergen                         |
-| `* * *`  | staff member  | add a discharge date to hospitalised patients      | keep track of discharge dates                                                               |
-| `* * *`  | staff member  | view the list of commands                          | use the system proficiently                                                                 |
-| `* * *`  | staff member  | search for patients by personal particulars        | do a basic search to find a certain patient                                                 |
-| `* * *`  | staff member  | search for patients by discharge date              | plan for future patient discharges                                                          |
-| `* * *`  | staff member  | update personal particulars of a patient           | keep the personal particulars of a patient up to date                                       |
-| `* * *`  | staff member  | update the medical records of a patient            | keep the medical records of a patient up to date                                            |
-| `* * *`  | staff member  | update the discharge date of hospitalised patients | change the discharge date of a hospitalised patient due to unexpected medical complications |
-| `* * *`  | staff member  | remove a patient by NRIC                           | put the patient on hold or remove duplicate entries                                         |
-| `* * *`  | staff member  | remove the medical records of a patient            | correct the mistakes in medical cases, allergies and medical conditions                     |
-| `* * *`  | staff member  | remove the discharge date of a patient             | put the patient's discharge date on hold while awaiting further assessment                  |
-| `* *`    | staff member  | add a patient ward number                          | locate the patient                                                                          |
-| `* *`    | staff member  | add patient priority level                         | categorize patients by severity of condition when in-processed                              |
-| `* *`    | staff member  | search for patients by medical records             | find patients with a certain medical condition                                              |
-| `* *`    | staff member  | view the list of patients sorted by discharge date | plan for future patient discharges                                                          |
-| `* *`    | staff member  | see patients with approaching discharge dates      | be aware of approaching discharge patients                                                  |
-| `* *`    | staff member  | view patients by department                        | find patients in a department and check the occupancy within certain departments            |
-| `* *`    | staff member  | view patients by priority levels                   | address higher priority patients more quickly                                               |
-| `* *`    | staff member  | update patient ward number                         | move patients to different wards                                                            |
-| `* *`    | staff member  | update the allocated department of a patient       | change the department in charge of the patient due to a developed medical condition         |
-| `* *`    | staff member  | confirm a deletion                                 | avoid any mistakes                                                                          |
-| `*`      | staff member  | add financial records to a patient                 | record their outstanding bills, billing history and insurance details                       |
-| `*`      | staff member  | add payment methods of a patient                   | record their payment methods                                                                |
-| `*`      | staff member  | search for patients by financial records           | find patients with outstanding bills                                                        |
-| `*`      | staff member  | view patients by a category                        | view patients by type of record (e.g. medical information, financial records, etc)          |
-| `*`      | staff member  | update the financial records of a patient          | keep the financial records of a patient up to date                                          |
-| `*`      | staff member  | remove the financial records of a patient          | correct any mistakes in the billing                                                         |
+| Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
+|----------|--------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | staff member | add a patient                                      | record more information later                                                               |
+| `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
+| `* * *`  | staff member | add current status of patient                      | keep track of patient status                                                                |
+| `* * *`  | staff member | add current ward of patient                        | keep track of patient location                                                              |
+| `* * *`  | staff member | add a discharge date to hospitalised patients      | keep track of discharge dates                                                               |
+| `* * *`  | staff member | view the list of commands                          | use the system proficiently                                                                 |
+| `* * *`  | staff member | search for patients by personal particulars        | do a basic search to find a certain patient                                                 |
+| `* * *`  | staff member | search for patients by discharge date              | plan for future patient discharges                                                          |
+| `* * *`  | staff member | update personal particulars of a patient           | keep the personal particulars of a patient up to date                                       |
+| `* * *`  | staff member | update patient ward                                | move patients to different wards                                                            |
+| `* * *`  | staff member | update the status of a patient                     | keep the status of a patient up to date                                                     |
+| `* * *`  | staff member | update the discharge date of hospitalised patients | change the discharge date of a hospitalised patient due to unexpected medical complications |
+| `* * *`  | staff member | remove a patient                                   | put the patient on hold or remove duplicate entries                                         |
+| `* * *`  | staff member | remove the discharge date of a patient             | put the patient's discharge date on hold while awaiting further assessment                  |
+| `* *`    | staff member | view the list of patients sorted by discharge date | plan for future patient discharges                                                          |
+| `* *`    | staff member | see patients with approaching discharge dates      | be aware of approaching discharge patients                                                  |
+| `* *`    | staff member | view patients by ward                              | find patients in a ward and check the occupancy within certain wards                        |
+| `* *`    | staff member | view patients by status                            | address higher priority patients more quickly                                               |
+| `* *`    | staff member | view list of wards                                 | see current wards in system at a glance                                                     |
+| `* *`    | staff member | view the current total occupancy                   | see the total number of patients currently admitted                                         |
+| `* *`    | staff member | confirm a deletion                                 | avoid any mistakes                                                                          |
 
 *{More to be added}*
 
