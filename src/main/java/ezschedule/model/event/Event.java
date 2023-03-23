@@ -36,10 +36,6 @@ public class Event implements Comparable<Event> {
         return endTime;
     }
 
-    public boolean isPastEvent() {
-        return endTime.isPastTime();
-    }
-
     public String getCompletedStatus() {
         return endTime.isPastTime() ? "Event completed" : "";
     }
