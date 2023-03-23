@@ -255,7 +255,10 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 #### Implementation
 
-The diaplay of the helpwindow is supported by blaba
+A HelpWindow will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar. Below details the workflow of a user who wishes to access the HelpWindow.
+
+Step 1. User either keys in `help`, or by clicking on "Help" button in the toolbar.
+Step 2. 
 
 #### Design Considerations
 
