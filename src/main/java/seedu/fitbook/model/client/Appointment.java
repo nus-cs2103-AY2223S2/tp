@@ -27,7 +27,6 @@ public class Appointment implements Comparable<Appointment> {
     public final String appointmentTime;
     public final LocalDateTime localDateTime;
 
-
     /**
      * Constructs an {@code Appoinment}.
      *
@@ -38,10 +37,8 @@ public class Appointment implements Comparable<Appointment> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
         checkArgument(isValidDate(appointment), MESSAGE_DATE_CONSTRAINTS);
         checkArgument(isValidAppointment(appointment), MESSAGE_CONSTRAINTS);
-
         appointmentTime = appointment;
         this.localDateTime = LocalDateTime.parse(appointment, formatter);
-
     }
 
     /**
@@ -67,7 +64,6 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public String toString() {
-        //return localDateTime.format(dateTimeFormatter);
         return "[" + localDateTime.format(dateTimeFormatter) + "] ";
     }
 
