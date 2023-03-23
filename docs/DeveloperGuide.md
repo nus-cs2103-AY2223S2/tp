@@ -182,9 +182,9 @@ The available categories are:
 - Credits
 
 #### How it is implemented
-User input command -> Get flag with ArgumentMultimap#preamble -> based on the flag, sort the list of
-modules into a treemap where the keys are the valid flag values and the values are list of sorted modules
--> Send to GUI to display sorted modules
+When the user inputs the `sort` command with the flag as parameter, the input will be parsed and the flag will be retrieved
+with `ArgumentMultimap#preamble()`. As the command is executed, the list will be sorted into a treemap according to the
+flag. Once sorted, the GUI is able to display the sorted modules.
 
 #### Parsing user input
 1. The user input `sort` command
@@ -203,11 +203,13 @@ sort by the corresponding category.
 1. The `SortCommand` creates a `CommandResult` with a success message and boolean to indicate which of the GUI screen
 to switch to.
 
-The following sequence diagram shows how `SortCommand` works during execution:
-<!--Diagram here-->
+The following sequence diagram shows how `SortCommand` works during execution for `sort /m`:
 
-The following activity diagram shows the logic flow as the user inputs the `sort` command:
-<!--Diagram here-->
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The following activity diagram shows the logic flow as the user inputs the `sort` command for `sort /m`:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
 
 #### Design considerations
 *Aspect: Command to sort the modules*
