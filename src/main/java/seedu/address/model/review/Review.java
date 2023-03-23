@@ -28,10 +28,11 @@ public class Review {
     private final List<Boolean> scoreList;
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
+    private boolean isFlipped;
 
     private final int totalNumCards;
     private List<Integer> orderOfCards;
-    private ObservableList<Pair<String, String> > reviewStatsList;
+    private ObservableList<Pair<String, String>> reviewStatsList;
 
     /**
      * Every field must be present and not null.
@@ -56,7 +57,7 @@ public class Review {
         Collections.fill(scoreList, false);
 
         // initialise reviewStats
-        reviewStatsList = FXCollections.observableArrayList();
+        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
     }
 
     /**
@@ -95,7 +96,7 @@ public class Review {
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
         Collections.fill(scoreList, false);
 
-        updateReviewStatsList();
+        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
     }
 
     public Card getCurrCard() {
@@ -205,16 +206,16 @@ public class Review {
     }
 
 
-    public ObservableList<Pair<String, String> > getReviewStatsList() {
+    public ObservableList<Pair<String, String>> getReviewStatsList() {
         updateReviewStatsList();
         return reviewStatsList;
     }
 
     private void updateReviewStatsList() {
-        Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
-        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:",
+        Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
+        Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
                 String.format("%d/%d", currCardNum, totalNumCards));
-        Pair<String, String> currentScore = new Pair<String, String>("Current Score: ",
+        Pair<String, String> currentScore = new Pair<>("Current Score: ",
                  String.format("%d", getTotalScore()));
         this.reviewStatsList.clear();
         this.reviewStatsList.addAll(title, cardsSeen, currentScore);
