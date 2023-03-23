@@ -2,10 +2,12 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
@@ -24,6 +26,7 @@ emails are sent during working hours, so that subordinates will not be disturbed
 OfficeConnect is a brownfield Java project based on
 the [AB3 project template](https://github.com/se-edu/addressbook-level3)
 by [se-education.org](https://se-education.org).
+
 * Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
 * [JUnit5](https://junit.org/junit5/)
 
@@ -59,6 +62,7 @@ Given below is a quick overview of main components and how they interact with ea
 (https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
 It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -70,7 +74,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
@@ -97,9 +100,8 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in 
+The **API** of this component is specified in
 [`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
-
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
@@ -129,6 +131,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
 2. executed by the `LogicManager`.
@@ -150,6 +153,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser`
 * (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown
 * above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser`
@@ -158,6 +162,7 @@ How the parsing works:
 * interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`]
 (https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -187,7 +192,6 @@ to only require one `Tag` object per unique tag, instead of each `Person` needin
 (https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
 <img src="images/OfficeConnectModelClassDiagram.png" width="450" />
 
-
 * stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in
 * a `UniqueItemList` object).
 * stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query)
@@ -216,7 +220,8 @@ This addition allows for increased extensibility and flexibility in the storage 
 The enhanced design is extendable and also capable of supporting the integration of additional databases into the
 application in the future if required.
 The `Storage` component,
-* can save address book data, task list data, task assignment data  and user preference data in json format, and read
+
+* can save address book data, task list data, task assignment data and user preference data in json format, and read
 * them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one
 * (if only the functionality of only one is needed).
@@ -241,9 +246,9 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
+* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and
 `Model#redoAddressBook()` respectively.
@@ -296,7 +301,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer`
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer`
 once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
@@ -328,13 +333,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -352,7 +357,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
@@ -370,17 +374,17 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
+
 * manage tasks and contacts faster than a typical mouse/GUI driven app
 * able to view all upcoming tasks to be completed at one glance
 * allows efficient delegation of tasks to subordinates in an organised and centralised manner
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                | So that I can…​                                                        |
-| -------- |--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
+|----------|--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                      | refer to instructions when I forget how to use the App                 |
 | `* * *`  | manager                                    | add tasks                                   |                                                                        |
 | `* * *`  | manager                                    | delete tasks                                | remove tasks that I no longer need                                     |
@@ -403,23 +407,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 > addtask s/Draft proposal c/Complete proposal by 1st March st/false
+
 - New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
 > listtask
+
 1. Finish report; Status: Undone; Content: Complete report for Mr Chan by 2nd March
 2. Send email to team; Status: Done; Content: Send an email regarding office hours
 
 > findtask report
+
 1. Finish report
 
 > deletetask 1
+
 - Deleted task: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
 > bye
+
 - Goodbye!
 
-
-In the example above, the user story is clearly defined at the top, followed by the acceptance criteria for the feature. Below that, we have a series of example usages, shown in a code editor block to provide clarity and context for how the feature would work in practice.
+In the example above, the user story is clearly defined at the top, followed by the acceptance criteria for the feature.
+Below that, we have a series of example usages, shown in a code editor block to provide clarity and context for how the
+feature would work in practice.
 
 *{More to be added}*
 
@@ -427,7 +437,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** For all use cases below, the **System** is the `OfficeConnect` and the 
+:information_source: **Note:** For all use cases below, the **System** is the `OfficeConnect` and the
 **Actor** is the `user`, unless specified otherwise.
 
 </div>
@@ -442,16 +452,17 @@ In the example above, the user story is clearly defined at the top, followed by 
 2. OfficeConnect adds the person to the contact list.
 
 3. OfficeConnect informs user has been successfully added.
-   
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. User enters incomplete or invalid data. 
+* 1a. User enters incomplete or invalid data.
 
-  * 1a1. OfficeConnect shows an error message.
+    * 1a1. OfficeConnect shows an error message.
 
-    Use case ends. 
+      Use case ends.
+
 ---
 **Use case 2: Delete a person**
 
@@ -465,19 +476,20 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 4. OfficeConnect deletes the person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 3a. The given index is invalid.
 
-  * 3a1. OfficeConnect shows an error message. 
-  
-    Use case resumes at step 2.
+    * 3a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+
 ---
 **Use case 3: Delete a task**
 
@@ -504,6 +516,7 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 3a1. OfficeConnect shows an error message.
 
       Use case resumes at step 2.
+
 ---
 **Use case 4: Assign a task to a person**
 
@@ -521,7 +534,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 6. OfficeConnect assigns the task to the person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -585,7 +598,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 2. OfficeConnect opens help interface with dedicated help instructions.
 
 3. User specifies command he wishes to get help on.
-   
+
 4. OfficeConnect displays how command works, along with format of queried command to user.
 
 5. User reads closes window after getting required info.
@@ -597,10 +610,11 @@ In the example above, the user story is clearly defined at the top, followed by 
 * 2a. User requests for more info on command.
 
     * 2a1. Help interface provides link to user guide.
-  
+
     * 2a2. User retrieves user guide providing more detail on command.
-  
+
       Use case resumes at step 5.
+
 ---
 **Use case 7: Add a task**
 
@@ -621,6 +635,7 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 1a1. OfficeConnect shows an error message.
 
       Use case ends.
+
 ---
 **Use case 8: List all tasks**
 
@@ -631,6 +646,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 2. OfficeConnect displays all tasks stored.
 
    Use case ends.
+
 ---
 **Use case 9: Mark a tasks**
 
@@ -643,8 +659,8 @@ In the example above, the user story is clearly defined at the top, followed by 
 3. User requests to mark a specific task.
 
 4. OfficeConnect marks the task as completed.
-   
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
@@ -655,14 +671,15 @@ In the example above, the user story is clearly defined at the top, followed by 
 * 3a. The given index is invalid.
 
     * 3a1. OfficeConnect shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3b. The task at the given index is already marked as completed.
 
     * 3b1. OfficeConnect shows an error message.
-        
+
       Use case ends.
+
 ---
 **Use case 10: Unmark a tasks**
 
@@ -695,6 +712,7 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 3b1. OfficeConnect shows an error message.
 
       Use case ends.
+
 ---
 **Use case 11: Review task assigned to an individual**
 
@@ -704,7 +722,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 2. OfficeConnect displays all the tasks assigned to the person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -730,21 +748,25 @@ In the example above, the user story is clearly defined at the top, followed by 
   Use case ends.
 
 ### Non-Functional Requirements
+
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
 2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation
-and modular architecture.
+   and modular architecture.
 3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux).
 4. Interoperability: The system shall be able to exchange data with other systems using standard formats and protocols.
-5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more than 2 hours for a new user.
-
+5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
+   than 2 hours for a new user.
 
 ### Glossary
+
 1. Unassign: remove assignment of task from the person.
 
 #### *M*
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 #### *P*
+
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -763,16 +785,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-   optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+       optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -781,17 +803,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-      Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -799,6 +821,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
