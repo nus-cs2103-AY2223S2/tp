@@ -59,6 +59,8 @@ public interface Model {
 
     ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum);
 
+    ReadOnlyItemList<? extends Item> sortItemList(ModelEnum modelEnum);
+
     <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
 
     <T extends Item> void deleteItem(T item, ModelEnum modelEnum);
