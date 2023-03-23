@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Well Informed Fridge Environment &lt;WIFE/&gt;
+title: Well Informed Fridge Environment <WIFE/>;
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T11-1/tp/actions)
