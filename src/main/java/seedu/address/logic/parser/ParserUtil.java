@@ -216,10 +216,6 @@ public class ParserUtil {
     public static String parseRecurName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        //Add custom regex
-//        if (!Name.isValidName(trimmedName)) {
-//            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-//        }
         return trimmedName;
     }
 
@@ -252,6 +248,9 @@ public class ParserUtil {
         File file = new File(trimmedFilePath);
         if (!file.exists()) {
             throw new ParseException("File not found!");
+        }
+        if (!trimmedFilePath.matches("^.*\\.pdf$")) {
+            throw new ParseException("Only pdf files are allowed!");
         }
         return file;
     }

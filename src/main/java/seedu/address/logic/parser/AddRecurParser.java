@@ -55,6 +55,12 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         return checkRecurDetails(recurDetails);
     }
 
+    /**
+     * Ensures the recur details are correct
+     * @param recurDetails
+     * @return AddRecurCommand
+     * @throws ParseException
+     */
     public AddRecurCommand checkRecurDetails(String recurDetails) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeFirstPrefix(recurDetails,
                 PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
@@ -100,7 +106,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         if (prefix.equals(PREFIX_LAB)) {
             Lab lab = new Lab(name);
             return new AddRecurCommand(lab, true, false, false, count);
-        } else if (prefix.equals(PREFIX_TUTORIAL)){
+        } else if (prefix.equals(PREFIX_TUTORIAL)) {
             Tutorial tutorial = new Tutorial(name);
             return new AddRecurCommand(tutorial, false, true, false, count);
         } else {
