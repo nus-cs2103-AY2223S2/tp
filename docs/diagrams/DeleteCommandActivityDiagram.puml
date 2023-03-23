@@ -1,0 +1,10 @@
+@startuml
+start
+
+:Delete command is detected;
+:Instantiate DeleteCommand with relevant indices;
+:Removes tasks from TaskBook and saves changes;
+:Removes task from UI;
+
+stop
+@enduml

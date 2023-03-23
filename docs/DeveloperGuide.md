@@ -282,6 +282,25 @@ In the event where one of the multiple indices entered is invalid, the entire co
 and users will be informed about the non-execution. This is to enforce atomicity and date safety, as deletion is irreversible,
 so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
 
+Given below is an example usage scenario and how `delete` is executed.
+
+Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls DeleteCommandParser.
+
+Step 2. The `DeleteCommandParser` interprets the indices and saves it as an IndexList.
+
+Step 3. `DeleteCommandParser` calls `DeleteCommand`.
+
+Step 4. `DeleteCommand` is executed and all relevant tasks are removed from TaskBook.
+
+Step 5. Results are shown immediately on UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![DeleteCommandSequenceDiagram](images/DeleteCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `delete` command:
+
+![DeleteCommandSequenceDiagram](images/DeleteCommandActivityDiagram.png)
 
 ### 3.4 Edit Feature
 
