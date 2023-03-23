@@ -24,8 +24,7 @@ public class PersonContainsTagsPredicate implements Predicate<Person> {
                     person.getTags()
                     .stream()
                     .map(tag -> tag.tagName)
-                    .collect(Collectors.joining(" "))
-                , keyword));
+                    .collect(Collectors.joining(" ")), keyword));
     }
 
     @Override
