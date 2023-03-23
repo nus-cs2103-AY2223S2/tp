@@ -236,7 +236,7 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-   <img src="images/OrderClassDiagram.svg" width="450" />
+   <img src="images/OrderClassDiagram.svg" width="500" />
  </p>
 
 Here is how `Order` works:
