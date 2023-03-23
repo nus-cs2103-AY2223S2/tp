@@ -23,16 +23,32 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(MainWindow mainWindow) {
         super(FXML);
+        ObservableList<Person> personList = mainWindow.getLogic().getFilteredPersonList();
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PersonListViewCell(mainWindow));
+        personListView.setSelectionModel(null);
+        personListView.setOnMousePressed(event -> {
+            System.out.println("hi");
+            try {
+                Person person = personListView.getSelectionModel().getSelectedItem();
+                // do something with selected person
+            } catch (NullPointerException e) {
+                // do nothing
+            }
+        });
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
+        private MainWindow mainWindow;
+        public PersonListViewCell(MainWindow mainWindow) {
+            this.mainWindow = mainWindow;
+        }
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,7 +57,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(mainWindow, person, getIndex() + 1).getRoot());
             }
         }
     }

@@ -45,17 +45,17 @@ public class DetailedSkill extends DetailedInfo {
 
     @FXML
     private void viewContactTab() throws CommandException, ParseException {
-        mainWindow.tabExecuteCommand("view c");
+        mainWindow.clickExecuteCommand("view c");
     }
 
     @FXML
     private void viewModulesTab() throws CommandException, ParseException {
-        mainWindow.tabExecuteCommand("view m");
+        mainWindow.clickExecuteCommand("view m");
     }
 
     @FXML
     private void viewSkillsTab() throws CommandException, ParseException {
-        mainWindow.tabExecuteCommand("view s");
+        mainWindow.clickExecuteCommand("view s");
     }
 
     /**

@@ -1,5 +1,7 @@
 package codoc.ui;
 
+import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,17 +38,28 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
 
+    private MainWindow mainWindow;
+
+    private int displayedIndex;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(MainWindow mainWindow, Person person, int displayedIndex) {
         super(FXML);
+        this.mainWindow = mainWindow;
         this.person = person;
+        this.displayedIndex = displayedIndex;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         year.setText("Year " + person.getYear().year);
         course.setText(person.getCourse().course);
         email.setText(person.getEmail().value);
+    }
+
+    @FXML
+    private void viewPerson() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view " + displayedIndex);
     }
 
     @Override
