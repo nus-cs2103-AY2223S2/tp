@@ -75,6 +75,11 @@ public class ModelManager implements Model {
         this(patientManager, new VaxTypeManager(), new AppointmentManager(), new KeywordManager(), userPrefs);
     }
 
+    /**
+     * Convenience constructor to construct a {@code ModelManager} with an
+     * empty {@code PatientManager}, {@code VaxTypeManager}, {@code AppointmentManager},
+     *       and {@code KeywordManager}.
+     */
     public ModelManager() {
         this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(),
                 new KeywordManager(), new UserPrefs());
