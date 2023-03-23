@@ -92,7 +92,7 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            
+
             historyStringOptional = storage.readHistoryString();
             if (!historyStringOptional.isPresent()) {
                 logger.info("History file not found. Will be starting with the default file");

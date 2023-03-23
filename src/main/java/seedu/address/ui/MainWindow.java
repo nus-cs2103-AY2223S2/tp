@@ -130,7 +130,9 @@ public class MainWindow extends UiPart<Stage> {
 
         historyDisplay = new HistoryDisplay();
         historyDisplayPlaceholder.getChildren().add(historyDisplay.getRoot());
-        historyDisplay.displayHistoryToUser(model.getHistory().getHistoryString());
+
+        String historyString = model.getHistory().getHistoryString();
+        historyDisplay.displayHistoryToUser(historyString);
     }
 
     /**

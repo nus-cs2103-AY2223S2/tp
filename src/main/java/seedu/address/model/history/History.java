@@ -1,15 +1,15 @@
 package seedu.address.model.history;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Encapsulates the executed input command that the user entered.
  */
 public class History {
-    private String historyString;
+    private String historyString = "";
     private Path historyStorageFilePath = Paths.get("data", "history.txt");
 
     public History() {}

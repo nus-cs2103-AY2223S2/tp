@@ -22,9 +22,15 @@ public class StorageManager implements Storage {
     private HistoryStorage historyStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage} and {@code HistoryStorage}.
+     * Creates a {@code StorageManager} with the given
+     * {@code AddressBookStorage}, {@code UserPrefStorage} and {@code HistoryStorage}.
+     *
+     * @param addressBookStorage An object represents storage of address book.
+     * @param userPrefsStorage An object represents storage of user preferences.
+     * @param historyStorage An object represents storage of executed commands.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, HistoryStorage historyStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+            UserPrefsStorage userPrefsStorage, HistoryStorage historyStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.historyStorage = historyStorage;
@@ -32,14 +38,16 @@ public class StorageManager implements Storage {
 
     /**
      * Creates a {@code StorageManager} with the given arguments.
-     * This constructors will initialize the {@code StorageManager} historyStorage with a {@code TxtHistoryStorage} with default history file Path.
-     * 
+     * This constructors will initialize the {@code StorageManager} historyStorage
+     * with a {@code TxtHistoryStorage} with default history file Path.
+     *
      * @param addressBookStorage An object represents storage of address book.
      * @param userPrefsStorage An object represents storage of user preferences.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this(addressBookStorage, userPrefsStorage, null);
-        this.historyStorage = new TxtHistoryStorage(getHistoryStoragePath());
+        this.addressBookStorage = addressBookStorage;
+        this.userPrefsStorage = userPrefsStorage;
+        this.historyStorage = new TxtHistoryStorage();
     }
 
     // ================ UserPrefs methods ==============================
@@ -98,7 +106,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<String> readHistoryString() throws IOException{ 
+    public Optional<String> readHistoryString() throws IOException {
         return readHistoryString(historyStorage.getHistoryStoragePath());
     }
 

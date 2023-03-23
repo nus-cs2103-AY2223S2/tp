@@ -4,14 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.TxtUtil;
 
+/**
+ * This class implements {@code HistoryStorage}, represent as a
+ * manager for the .txt file that storing executed commands.
+ */
 public class TxtHistoryStorage implements HistoryStorage {
 
-    private Path filePath;
+    private Path filePath = Paths.get("data", "history.txt");
+
+    public TxtHistoryStorage() {}
 
     public TxtHistoryStorage(Path filePath) {
         this.filePath = filePath;
@@ -40,7 +47,7 @@ public class TxtHistoryStorage implements HistoryStorage {
     }
 
     @Override
-    public void saveHistoryString(String historyString) throws IOException{
+    public void saveHistoryString(String historyString) throws IOException {
         saveHistoryString(historyString, filePath);
     }
 

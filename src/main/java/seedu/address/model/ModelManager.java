@@ -30,7 +30,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, History history) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, history);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -158,7 +158,7 @@ public class ModelManager implements Model {
     public void setHistory(History newHistory) {
         history.resetData(newHistory);
     }
-    
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

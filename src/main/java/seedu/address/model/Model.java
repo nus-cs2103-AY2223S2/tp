@@ -110,7 +110,7 @@ public interface Model {
      * @param tag The tag to delete.
      */
     void deleteTag(Person person, Tag tag);
-    
+
     /**
      * Returns the user prefs' history storage file path.
      */

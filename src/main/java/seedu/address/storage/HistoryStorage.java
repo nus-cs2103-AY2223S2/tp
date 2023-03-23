@@ -19,20 +19,20 @@ public interface HistoryStorage {
     /**
      * Returns history string.
      * Returns {@code Optional.empty()} if storage file is not found.
-     * 
+     *
      * @throws IOException if there was any problem when reading from the storage.
      */
     Optional<String> readHistoryString() throws IOException;
 
     /**
-     * @see #getHistoryStoragePath();
+     * @see #getHistoryStoragePath()
      */
     Optional<String> readHistoryString(Path filePath) throws IOException;
 
     /**
      * Replace the history txt file's content with the given string to the storage.
-     * 
-     * @param history cannot be null.
+     *
+     * @param historyString cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveHistoryString(String historyString) throws IOException;

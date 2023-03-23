@@ -169,7 +169,7 @@ public class AddCommandTest {
         public void deleteTag(Person person, Tag tag) {
             throw new AssertionError("This method should not be called");
         }
-        
+
         @Override
         public Path getHistoryStoragePath() {
             throw new AssertionError("This method should not be called");
@@ -179,12 +179,12 @@ public class AddCommandTest {
         public void setHistoryStoragePath(Path filePath) {
             throw new AssertionError("This method should not be called");
         }
-    
+
         @Override
         public void setHistory(History history) {
             throw new AssertionError("This method should not be called");
         }
-    
+
         @Override
         public History getHistory() {
             throw new AssertionError("This method should not be called");

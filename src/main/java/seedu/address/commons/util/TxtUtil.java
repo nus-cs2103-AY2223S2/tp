@@ -16,6 +16,12 @@ import seedu.address.commons.core.LogsCenter;
 public class TxtUtil {
     private static final Logger logger = LogsCenter.getLogger(TxtUtil.class);
 
+    /**
+     * Returns an {@code Optional<String>} after reading the .txt file from the given {@code Path} filePath.
+     *
+     * @param filePath The path to .txt file.
+     * @return An {@code Optional<String>} Object reading from the .txt file.
+     */
     public static Optional<String> readTxtFile(Path filePath) {
         requireNonNull(filePath);
 
@@ -35,10 +41,18 @@ public class TxtUtil {
         return Optional.of(historyString);
     }
 
-    public static void saveTxtFile(String historyString, Path filePath) throws IOException{
+    /**
+     * Saves the argument string to the file identified with the given {@code filePath}.
+     *
+     * @param string The string to replace content in .txt file.
+     * @param filePath The path to .txt file.
+     * @throws IOException If the writing process have errors.
+     */
+    public static void saveTxtFile(String string, Path filePath) throws IOException {
         requireNonNull(filePath);
-        requireNonNull(historyString);
+        requireNonNull(string);
 
-        FileUtil.writeToFile(filePath, historyString);
+        FileUtil.writeToFile(filePath, string);
     }
+
 }

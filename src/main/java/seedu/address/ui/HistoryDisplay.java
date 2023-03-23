@@ -5,13 +5,12 @@ import static java.util.Objects.requireNonNull;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import seedu.address.model.Model;
 
 /**
  * An ui for the history display.
  */
 public class HistoryDisplay extends UiPart<Region> {
-    
+
     private static final String FXML = "HistoryDisplay.fxml";
 
     @FXML
@@ -23,7 +22,7 @@ public class HistoryDisplay extends UiPart<Region> {
 
     /**
      * Sets the history string argument to the {@code TextArea} object.
-     * 
+     *
      * @param history the history string of executed user's commands.
      */
     public void displayHistoryToUser(String history) {
