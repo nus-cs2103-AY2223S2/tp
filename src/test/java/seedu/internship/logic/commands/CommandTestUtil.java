@@ -19,6 +19,7 @@ import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipByPositionCompanyPredicate;
+import seedu.internship.testutil.EditInternshipDescriptorBuilder;
 
 
 /**
@@ -77,6 +78,8 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_SD1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SD1;
     public static final String TAG_DESC_SD1 = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
 
+    public static final String TAG_DESC_FUN = " " + PREFIX_TAG + VALID_TAG_FUN;
+    public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
 
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "Engineer&";
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + ""; // company cannot be empty
@@ -85,6 +88,18 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditCommand.EditInternshipDescriptor DESC_ML1;
+    public static final EditCommand.EditInternshipDescriptor DESC_SE1;
+
+    static {
+        DESC_ML1 = new EditInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1)
+                .withCompany(VALID_COMPANY_ML1).withStatus(VALID_STATUS_ML1).withDescription(VALID_DESCRIPTION_ML1)
+                .withTags(VALID_TAG_IMPORTANT).build();
+        DESC_SE1 = new EditInternshipDescriptorBuilder().withPosition(VALID_POSITION_SE1)
+                .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
+                .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
