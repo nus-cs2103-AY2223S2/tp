@@ -86,7 +86,6 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample ExpenseTracker");
             }
             // TODO update sample data
-//            initialData = expenseTrackerOptional.get();
             initialData = expenseTrackerOptional.orElseGet(SampleExpenseTracker::getSampleExpenseTracker);
             // initialData =
             // addressBookOptional.orElseGet(SampleDataUtil::getSampleCategoryData);
