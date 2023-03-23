@@ -13,15 +13,13 @@ By centralizing all event-related information and tasks in one place, Paidlancer
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Feature**:​
   * `Link Contact` Added ability to link contacts to events. (Pull Request [#88](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/88))
       * What it does: Allows the user to link contacts to events.
       * Justification: This feature improves the product significantly because a user can keep track of all the contacts they have and link them to events. This is useful for users who want to keep track of all their contacts and link them to events.
       * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and the creation of new ones.
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=extrashotlatte&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
-
 
 * **Project management**:
     * Managed release of `v1.2.1` on GitHub.
@@ -31,14 +29,12 @@ Given below are my contributions to the project.
     * Smoke tested JAR trial release on Windows Operating System
     (Issue [#36](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/136)).
 
-
 * **Enhancements to existing features**:
   * Enhanced the comparisons of `event` class
   (Pull Request [#86](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/86)).
     * What it does: Enhanced comparison of `events` to account for different cases.
     * Justification: An event with the same name but of a different timing should not be equal to each other.
     Reason being that the same event can happen twice, both at different timings.
-
 
 * **Documentation**:
     * User Guide:
@@ -52,7 +48,6 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Added implementation details of the `linkcontact` feature
       (Pull Request [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137)). 
-
 
 * **Community**:
     * PRs reviewed and merged:
@@ -82,7 +77,6 @@ Given below are my contributions to the project.
 
     * Enhancement raised:
       * [#131](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/131)
-
 
 * **Tools**:
     * to be added soon
