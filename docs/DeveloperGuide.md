@@ -164,12 +164,12 @@ The main reason why we used `ApplicativeParser` is because it is easier to read 
 
 `ApplicativeParser` can be implemented as a wrapper around a function that accepts some input sequence, and returns an container that represents one of these possibilities:
 
-* The parser fails, and the container should be empty.
-* The parser succeeds, and the container should contain the remaining input sequence, togerther with the parsing result.
+* The parser fails, and the container is empty.
+* The parser succeeds, and the container contains the remaining input sequence, togerther with the parsing result.
 
 In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care.
 
-When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative, and is undersiable for some combinators, such as `ApplicativeParser#or()`, `ApplicativeParser#many()` and `ApplicativeParser#many1()`.
+When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative, and is undesirable for some combinators, such as `ApplicativeParser#or()`, `ApplicativeParser#many()` and `ApplicativeParser#many1()`.
 
 The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`. This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offsets stored in the `StringView`, instead of having to copy the entire substring into a new `String`.
 
