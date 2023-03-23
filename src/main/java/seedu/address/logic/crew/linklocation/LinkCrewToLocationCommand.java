@@ -58,7 +58,6 @@ public class LinkCrewToLocationCommand implements Command {
         try {
             for (Map.Entry<CrewLocationType, Crew> entry : crews.entrySet()) {
                 location.crewLink.putRevolve(entry.getKey(), entry.getValue());
-                entry.getValue().setUnavailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
