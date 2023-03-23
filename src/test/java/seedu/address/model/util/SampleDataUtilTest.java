@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.util.SampleDataUtil.getTagSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,6 @@ import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Status;
-import static seedu.address.model.util.SampleDataUtil.getTagSet;
 
 public class SampleDataUtilTest {
 
