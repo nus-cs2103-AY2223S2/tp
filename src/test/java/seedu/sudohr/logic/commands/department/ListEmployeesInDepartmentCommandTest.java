@@ -58,7 +58,8 @@ public class ListEmployeesInDepartmentCommandTest {
     public void execute_emptyDepartment_showsNothing() {
         Department department = EMPTY_DEPARTMENT;
         DepartmentName departmentName = EMPTY_DEPARTMENT_NAME;
-        String expectedMessage = String.format(ListEmployeesInDepartmentCommand.MESSAGE_SUCCESS_NO_EMPLOYEE, departmentName);
+        String expectedMessage =
+                String.format(ListEmployeesInDepartmentCommand.MESSAGE_SUCCESS_NO_EMPLOYEE, departmentName);
         // shows no employee
         expectedModel.updateFilteredEmployeeList(unused -> false);
         ListEmployeesInDepartmentCommand command = new ListEmployeesInDepartmentCommand(departmentName);
