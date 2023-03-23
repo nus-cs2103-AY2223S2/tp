@@ -7,6 +7,7 @@ src/main/resources/docs/
 /.idea/
 /out/
 /*.iml
+/*.bin
 
 # Storage/log files
 /data/
@@ -21,5 +22,6 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+*.class
 *.class
 *.class
