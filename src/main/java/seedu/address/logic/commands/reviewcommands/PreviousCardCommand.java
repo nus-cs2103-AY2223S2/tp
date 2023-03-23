@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  */
 public class PreviousCardCommand extends Command {
 
-    public static final String COMMAND_WORD = "]";
+    public static final String COMMAND_WORD = "[";
 
     public static final String MESSAGE_SUCCESS = "Went back to previous flashcard.";
     public static final String MESSAGE_NO_MORE_PREV_CARD = "This is the first card.";
