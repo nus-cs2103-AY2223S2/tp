@@ -219,6 +219,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+
 ### \[Implemented\] Tag-related Features
 
 #### Overview
@@ -287,6 +288,26 @@ The following sequence diagram shows how the `createtag` command.
 
 **insert sequence diagram
 
+
+#### Feature 2 - `deltag`:
+The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `DeleteTagCommand`. `DeleteTagCommandParser` is used to parse and check whether the user input is valid. After which a `DeleteTagCommand` object is created with the specified tag name. The second stage requires DeleteTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tag name(s) for the tag(s) to be deleted.
+2. If the tag name is empty, an error response is returned and users will be prompted to key in the command with the valid tag name.
+3. If all tag name(s) are invalid, an error response is returned and users will be prompted to key in the command with a valid tag name.
+4. If some tag name(s) are invalid, invalid tag names will be ignore and valid tag names will be processed.
+5. Completion of step 4 without any exceptions will result in successful deleteion of specified `Tag` in WIFE and `Food` with specified tag(s) will have that tag(s) removed
+
+The following sequence diagram shows how the `deltag` command.
+
+**insert sequence diagram
+
 ### \[Implementing\] Increase/Decrease quantity of a food item.
 
 #### Overview
@@ -347,7 +368,6 @@ The following activity diagram shows the usage of the `inc` command.
 
 **insert activity diagram
 
-
 ### \[Implementing\] View details of a food item.
 
 #### Overview
@@ -355,10 +375,7 @@ The view feature is meant to be a shorthand for users to view the details of a p
 Traditionally, to view the details of an item, the user would use the list command to view the details of a food item.
 The user can now specify `view` to view more details of the indexed food item.
 
-
 The following UML diagram shows `view` and its associated class.
-
-*** insert uml
 
 #### Design considerations:
 
@@ -377,7 +394,6 @@ The following UML diagram shows `view` and its associated class.
          * Difficulty in implementing the switcher.
          * Difficulty in implementing the different views.
 
-
 **Implementation** 
 The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
 to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
@@ -394,12 +410,55 @@ view from the list view to the details view.
 5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
    key in the command with a valid index.
 
-
 The following activity diagram shows the usage of the `view` command.
 
 **insert activity diagram
 
 
+### \[Implemented\] List Food by tag.
+
+#### Overview
+The List by tag feature is meant to be a list all the food by the specified tags.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
+#### Design considerations:
+
+* **Alternative 1:** The command parameter will be the tag name of the food to display
+    * Pros:
+        * Easily implemented. The command parameter will show the food with the specified tag name
+    * Cons:
+        * May not be convenient for the user, as the command allows only 1 tag name at a time.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to display.
+    * Pros:
+        * Convenient for the user to key in multiple tag names to display.
+    * Cons:
+        * Parameter for multiple tag names must be checked that it is not empty
+        * Users will have to use separate commands by `n/` which maybe a hassle
+
+_{more aspects and alternatives to be added}_
+
+**Implementation**
+The first stage of the implementation is parsing the user input to `ListByTagCommand`. `ListByTagCommandParser` is used
+to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
+tag name.
+
+The second stage requires ListByTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tags of the food item to be displayed.
+2. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
+3. If a valid tag is specified, the list indexed food item with the specified tags will be displayed.
+4. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
+   key in the command with a valid quantity.
+
+The following activity diagram shows the usage of the `listbytag` command.
+
+**insert activity diagram
 
 ### \[Implemented\] Dynamic Help
 
