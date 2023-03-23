@@ -31,6 +31,9 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
     private final Index taskIndex;
 
+    /**
+     * Creates an UnmarkCommand object to unmark the task at specified {@code Index}
+     */
     public UnmarkCommand(Index taskIndex) {
         requireNonNull(taskIndex);
         this.taskIndex = taskIndex;

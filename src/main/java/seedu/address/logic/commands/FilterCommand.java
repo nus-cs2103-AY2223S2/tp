@@ -34,6 +34,9 @@ public class FilterCommand extends Command {
 
     private final Tag tag;
 
+    /**
+     * Creates a FilterCommand object that filters persons according to the specified {@code Tag    }
+     */
     public FilterCommand(Tag tag) {
         requireNonNull(tag);
         this.tag = tag;
