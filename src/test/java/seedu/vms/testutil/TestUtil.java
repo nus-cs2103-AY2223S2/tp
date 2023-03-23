@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
 
@@ -51,5 +53,17 @@ public class TestUtil {
      */
     public static Patient getPatient(Model model, Index index) {
         return model.getFilteredPatientList().get(index.getZeroBased()).getValue();
+    }
+
+
+    /**
+     * Returns a set of {@code GroupName} of the specified size.
+     */
+    public static HashSet<GroupName> generateGroupSet(int size) {
+        HashSet<GroupName> grpSet = new HashSet<>();
+        for (int i = 0; i < size; i++) {
+            grpSet.add(new GroupName(String.valueOf(i)));
+        }
+        return grpSet;
     }
 }
