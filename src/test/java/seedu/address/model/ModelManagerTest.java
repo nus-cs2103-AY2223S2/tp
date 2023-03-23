@@ -13,9 +13,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.calendar.CalendarEvent;
@@ -188,8 +188,10 @@ public class ModelManagerTest {
     @Test
     public void getFilteredCalendarEventList_success() {
         // Set up a list of persons with calendar events
-        Person person1 = new PersonBuilder().withName("Amy Bee").withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
-        Person person2 = new PersonBuilder().withName("Bob Choo").withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        Person person1 = new PersonBuilder().withName("Amy Bee")
+                .withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo")
+                .withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
         modelManager.addPerson(person1);
         modelManager.addPerson(person2);
 
@@ -203,8 +205,10 @@ public class ModelManagerTest {
     @Test
     public void updateCalendarEventList_success() {
         // Set up a list of persons with calendar events
-        Person person1 = new PersonBuilder().withName("Amy Bee").withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
-        Person person2 = new PersonBuilder().withName("Bob Choo").withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
+        Person person1 = new PersonBuilder().withName("Amy Bee")
+                .withSession("01-01-2022 12:00", "01-01-2022 13:00").build();
+        Person person2 = new PersonBuilder().withName("Bob Choo")
+                .withSession("01-01-2022 10:00", "01-01-2022 11:00").build();
         modelManager.addPerson(person1);
         modelManager.addPerson(person2);
 
