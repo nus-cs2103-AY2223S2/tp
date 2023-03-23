@@ -14,7 +14,7 @@ import seedu.address.model.job.Role;
 /**
  * An UI component that displays information of a {@code Role}.
  */
-public class RoleCard extends UiPart<Region> {
+public class RoleDetails extends UiPart<Region> {
 
     private static final String FXML = "RoleListCard.fxml";
 
@@ -26,14 +26,9 @@ public class RoleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Role role;
-
-    @FXML
-    private HBox cardPane;
+    private final Role role;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -56,18 +51,17 @@ public class RoleCard extends UiPart<Region> {
     /**
      * Creates a {@code RoleCode} with the given {@code Role} and index to display.
      */
-    public RoleCard(Role role, int displayedIndex) {
+    public RoleDetails(Role role) {
         super(FXML);
         this.role = role;
-        id.setText(displayedIndex + ". ");
         name.setText(role.getName().fullName);
-//        phone.setText(role.getPhone().value);
+        phone.setText(role.getPhone().value);
         company.setText(role.getCompany().value);
-//        email.setText(role.getEmail().value);
+        email.setText(role.getEmail().value);
         role.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-//        website.setText(role.getWebsite().value);
+        website.setText(role.getWebsite().value);
         salary.setText("$" + role.getSalary().salary);
         LocalDate currDeadline = LocalDate.parse(role.getDeadline().deadline);
         if (currDeadline.isBefore(LocalDate.now())) {
@@ -76,7 +70,7 @@ public class RoleCard extends UiPart<Region> {
         } else {
             deadline.setText(role.getDeadline().deadline);
         }
-//        jobDescription.setText(role.getJobDescription().value);
+        jobDescription.setText(role.getJobDescription().value);
         experience.setText(role.getExperience().value);
     }
 
@@ -93,8 +87,7 @@ public class RoleCard extends UiPart<Region> {
         }
 
         // state check
-        RoleCard card = (RoleCard) other;
-        return id.getText().equals(card.id.getText())
-                && role.equals(card.role);
+        RoleDetails details = (RoleDetails) other;
+        return details.equals(this.role);
     }
 }

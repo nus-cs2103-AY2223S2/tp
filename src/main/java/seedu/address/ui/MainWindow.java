@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +17,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
+import seedu.address.ui.views.StringView;
+import seedu.address.ui.views.ViewManager;
+
+import javax.swing.text.View;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private RoleListPanel roleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewManager viewManager;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane roleListPanelPlaceholder;
+
+    @FXML
+    private StackPane detailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,8 +121,12 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         roleListPanel = new RoleListPanel(logic.getFilteredRoleList());
         roleListPanelPlaceholder.getChildren().add(roleListPanel.getRoot());
+        logger.info("roleListPanel initialized");
 
         resultDisplay = new ResultDisplay();
+        viewManager = new ViewManager(resultDisplay);
+        Node stringView = StringView.from("Welcome to TechTrack");
+        resultDisplay.place(stringView);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -176,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            viewManager.viewOf(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -189,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            viewManager.viewOf(e.getMessage());
             throw e;
         }
     }
