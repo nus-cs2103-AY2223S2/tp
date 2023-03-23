@@ -13,6 +13,8 @@ import seedu.address.model.transaction.Transaction;
 public class TransactionCard extends UiPart<Region> {
 
     private static final String FXML = "TransactionListCard.fxml";
+    private static final String TITLE_TEXT_VALUE = "Value: $";
+    private static final String TITLE_TEXT_OWNER = "Owner: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -45,9 +47,9 @@ public class TransactionCard extends UiPart<Region> {
         this.txn = txn;
         id.setText(displayedIndex + ". ");
         description.setText(txn.getDescription().toString());
-        value.setText(txn.getValue().toString());
         status.setText(txn.getStatus().value);
-        owner.setText(txn.getOwner().toString());
+        value.setText(TITLE_TEXT_VALUE + txn.getValue().toString());
+        owner.setText(TITLE_TEXT_OWNER + txn.getOwner().toString());
     }
 
     @Override
