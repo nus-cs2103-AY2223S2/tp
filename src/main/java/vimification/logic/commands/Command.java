@@ -15,6 +15,7 @@ public abstract class Command {
         this.isViewCommand = isViewCommand;
     }
 
+
     // /**
     // * Executes the command and returns the result message.
     // *

@@ -1,6 +1,7 @@
 package vimification.logic.commands.logicCommands;
 
 import vimification.logic.commands.Command;
+import vimification.logic.commands.CommandResult;
 import vimification.model.LogicTaskList;
 
 public abstract class LogicCommand extends Command {
