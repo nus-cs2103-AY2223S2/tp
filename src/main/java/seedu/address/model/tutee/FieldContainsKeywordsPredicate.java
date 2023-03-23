@@ -9,7 +9,7 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Tutee}'s {@code Name} matches any of the keywords given.
  */
 public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
-    private final List<String> nameKeywords;
+    private final String nameKeyword;
     private final String phoneKeyword;
     private final String emailKeyword;
     private final String addressKeyword;
@@ -17,12 +17,12 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
     private final String scheduleKeyword;
     private final String startTimeKeyword;
     private final String endTimeKeyword;
+    private final List<String> tagKeyword;
 
-
-    public FieldContainsKeywordsPredicate(List<String> nameKeywords, String phoneKeyword, String emailKeyword,
+    public FieldContainsKeywordsPredicate(String nameKeyword, String phoneKeyword, String emailKeyword,
                                           String addressKeyword, String subjectkeyword,String scheduleKeyword,
-                                          String startTimeKeyword, String endTimeKeyword) {
-        this.nameKeywords = nameKeywords;
+                                          String startTimeKeyword, String endTimeKeyword, List<String> tagKeyword) {
+        this.nameKeyword = nameKeyword;
         this.phoneKeyword = phoneKeyword;
         this.emailKeyword = emailKeyword;
         this.addressKeyword = addressKeyword;
@@ -30,12 +30,13 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
         this.scheduleKeyword = scheduleKeyword;
         this.startTimeKeyword = startTimeKeyword;
         this.endTimeKeyword = endTimeKeyword;
+        this.tagKeyword = tagKeyword;
     }
 
     @Override
     public boolean test(Tutee tutee) {
-        boolean containsName = nameKeywords.isEmpty() || nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutee.getName().fullName, keyword));
+        boolean containsName = nameKeyword.isEmpty() ||
+                StringUtil.containsWordIgnoreCase(tutee.getName().fullName, nameKeyword);
         boolean containsPhone = phoneKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getPhone().value, phoneKeyword);
         boolean containsEmail = emailKeyword.isEmpty() ||
@@ -50,23 +51,27 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
                 StringUtil.containsWordIgnoreCase(tutee.getStartTime().startTime, startTimeKeyword);
         boolean containsEndTime = endTimeKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getEndTime().endTime, endTimeKeyword);
+        boolean containsTag = tagKeyword.stream()
+                .allMatch(keyword -> tutee.getTags().stream().anyMatch(
+                        tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
 
         return containsName && containsPhone && containsEmail && containsAddress && containsSubject && containsSchedule
-                && containsStartTime && containsEndTime;
+                && containsStartTime && containsEndTime && containsTag;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FieldContainsKeywordsPredicate // instanceof handles nulls
-                && nameKeywords.equals(((FieldContainsKeywordsPredicate) other).nameKeywords)) // state check
+                && nameKeyword.equals(((FieldContainsKeywordsPredicate) other).nameKeyword)) // state check
                 && phoneKeyword.equals(((FieldContainsKeywordsPredicate) other).phoneKeyword)
                 && emailKeyword.equals(((FieldContainsKeywordsPredicate) other).emailKeyword)
                 && addressKeyword.equals(((FieldContainsKeywordsPredicate) other).addressKeyword)
                 && subjectkeyword.equals(((FieldContainsKeywordsPredicate) other).subjectkeyword)
                 && scheduleKeyword.equals(((FieldContainsKeywordsPredicate) other).scheduleKeyword)
                 && startTimeKeyword.equals(((FieldContainsKeywordsPredicate) other).startTimeKeyword)
-                && endTimeKeyword.equals(((FieldContainsKeywordsPredicate) other).endTimeKeyword);
+                && endTimeKeyword.equals(((FieldContainsKeywordsPredicate) other).endTimeKeyword)
+                && tagKeyword.equals(((FieldContainsKeywordsPredicate) other).tagKeyword);
     }
 
 }
