@@ -3,11 +3,11 @@ start
 
 :Delete command is detected;
 
-if (valid syntax) then ([parse data])
+if () then ([parse data])
     :Instantiate DeleteCommand with relevant indices;
     :Removes tasks from TaskBook and saves changes;
     :Removes task from UI;
-else ([prompt user about syntax])
+else ([else])
 endif
 stop
 @enduml
