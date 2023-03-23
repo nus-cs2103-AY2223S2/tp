@@ -20,7 +20,7 @@ activate DATE COL2
 
 DATE -> DATE : produceValidationFormat("20000101")
 activate DATE COL2
-DATE --> DATE : "yyyyMMdd"
+DATE --> DATE : yyyyMMdd
 deactivate DATE COL2
 DATE --> PU
 deactivate DATE COL2
@@ -33,7 +33,7 @@ D -> DATE : isValidDate("20000101")
 activate DATE COL2
 DATE -> DATE : produceValidationFormat("20000101")
 activate DATE COL2
-DATE --> DATE : "yyyyMMdd"
+DATE --> DATE : yyyyMMdd
 deactivate DATE COL2
 DATE --> D
 deactivate DATE
