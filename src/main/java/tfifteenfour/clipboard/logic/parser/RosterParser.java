@@ -6,6 +6,7 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_UNKNOWN_COMMA
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import tfifteenfour.clipboard.logic.Page;
 import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
@@ -40,7 +41,7 @@ public class RosterParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Command parseCommand(String userInput) throws ParseException {
+    public static Command parseCommand(String userInput, Page currentPage) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

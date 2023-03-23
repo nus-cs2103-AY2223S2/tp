@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
@@ -15,6 +16,7 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
 public class Roster implements ReadOnlyRoster {
 
     private final UniqueStudentList students;
+    private final ObservableList<Module> modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +27,10 @@ public class Roster implements ReadOnlyRoster {
      */
     {
         students = new UniqueStudentList();
+    }
+
+    {
+        modules = FXCollections.observableArrayList();
     }
 
     public Roster() {}
@@ -74,6 +80,10 @@ public class Roster implements ReadOnlyRoster {
         students.add(p);
     }
 
+    public void addModule(Module module) {
+        modules.add(module);
+    }
+
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
@@ -110,6 +120,10 @@ public class Roster implements ReadOnlyRoster {
     @Override
     public ObservableList<Student> getModifiableStudentList() {
         return students.asModifiableObservableList();
+    }
+
+    public ObservableList<Module> getModifiableModuleList() {
+        return modules;
     }
 
     @Override

@@ -30,6 +30,8 @@ public class LogicManager implements Logic {
     private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
 
+    private Page currentPage;
+
 
 
     /**
@@ -38,6 +40,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.currentPage = Page.MODULE_PAGE;
     }
 
     CommandResult handleUndoCommand(Command command) throws CommandException, ParseException {
@@ -55,7 +58,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = RosterParser.parseCommand(commandText);
+        Command command = RosterParser.parseCommand(commandText, currentPage);
 
         // Special case for UndoCommand because restoring the model to a previous state requires actions that are above
         // the model, as opposed to typical commands that behave within the model.
@@ -111,3 +114,5 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 }
+
+
