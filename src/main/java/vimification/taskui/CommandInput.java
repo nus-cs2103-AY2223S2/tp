@@ -99,7 +99,9 @@ public class CommandInput extends UiPart<TextField> {
     }
 
     private void checkIsExitCommand(String result) {
-        boolean isExit = result.equals("wq!");
+        boolean isExit =
+                result.equals("wq!") || result.equals("wq") || result.equals("q!") || result
+                        .equals("q");
         if (isExit) {
             Platform.exit();
         }
