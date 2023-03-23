@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("find n/ Aeron")
 activate LogicManager
 
-LogicManager -> DengueHotspotTrackerParser : parseCommand("find /a Aeron")
+LogicManager -> DengueHotspotTrackerParser : parseCommand("find n/ Aeron")
 activate DengueHotspotTrackerParser
 
 create FindCommandParser
