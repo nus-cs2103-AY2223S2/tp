@@ -17,7 +17,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -140,4 +143,42 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+
+    @Test
+    public void addTag_validTag_success() {
+        Tag tag = new Tag("friends");
+        modelManager.addTag(tag);
+        assertTrue(modelManager.hasTag(tag));
+    }
+
+    @Test
+    public void deletePerson_personExists_success() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+
+        modelManager.deletePerson(ALICE);
+        assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void setPerson_personExists_success() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+
+        Person editedAlice = new PersonBuilder(ALICE).withName("Edited Alice").build();
+        modelManager.setPerson(ALICE, editedAlice);
+        assertFalse(modelManager.hasPerson(ALICE));
+        assertTrue(modelManager.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void updateFilteredPersonList_predicate_success() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+
+        modelManager.updateFilteredPersonList(p -> p.getName().fullName.contains("Ben"));
+        assertEquals(1, modelManager.getFilteredPersonList().size());
+        assertTrue(modelManager.getFilteredPersonList().contains(BENSON));
+    }
+
 }

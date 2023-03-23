@@ -99,11 +99,11 @@ public class CalendarLogic {
         }
     }
 
-    String getDayName(int n) {
+    public String getDayName(int n) {
         return DAY_NAMES[n - 1];
     }
 
-    String getMonthName(int n) {
+    public String getMonthName(int n) {
         return MONTH_NAMES[n];
     }
 
