@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SortApplicationCommand;
+import seedu.address.logic.commands.SortApplicationCommand.SortingOrder;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
@@ -63,21 +65,6 @@ public class ApplicationParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code Status}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static Status parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
-        }
-        return new Status(status);
-    }
-
-    /**
      * Parses a {@code String companyEmail} into a {@code CompanyEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -90,6 +77,36 @@ public class ApplicationParserUtil {
             throw new ParseException(CompanyEmail.MESSAGE_CONSTRAINTS);
         }
         return new CompanyEmail(trimmedCompanyEmail);
+    }
+
+    /**
+     * Parses a {@code String status} into an {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String sortingOrder} into an {@code SortingOrder}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortingOrder} is invalid.
+     */
+    public static SortingOrder parseSortingOrder(String sortingOrder) throws ParseException {
+        requireNonNull(sortingOrder);
+        String trimmedSortingOrder = sortingOrder.trim();
+        if (!SortApplicationCommand.isValidSortingOrder(trimmedSortingOrder)) {
+            throw new ParseException((SortApplicationCommand.MESSAGE_CONSTRAINTS));
+        }
+        return SortingOrder.valueOf(sortingOrder.toUpperCase());
     }
 
     /**

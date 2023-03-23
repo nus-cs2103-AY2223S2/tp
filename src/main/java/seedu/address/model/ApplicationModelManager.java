@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.application.Application;
@@ -24,6 +26,7 @@ public class ApplicationModelManager implements ApplicationModel {
     private final InternshipBook internshipBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final SortedList<Application> sortedApplications;
 
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
@@ -36,6 +39,7 @@ public class ApplicationModelManager implements ApplicationModel {
         this.internshipBook = new InternshipBook(internshipBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = new FilteredList<>(this.internshipBook.getApplicationList());
+        sortedApplications = new SortedList<>(filteredApplications);
     }
 
     public ApplicationModelManager() {
@@ -109,7 +113,6 @@ public class ApplicationModelManager implements ApplicationModel {
     @Override
     public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
-
         internshipBook.setApplication(target, editedApplication);
     }
 
@@ -140,6 +143,21 @@ public class ApplicationModelManager implements ApplicationModel {
         filteredApplications.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Application} backed by the internal list of
+     * {@code versionedInternshipBook}
+     */
+    @Override
+    public ObservableList<Application> getSortedApplicationList() {
+        return sortedApplications;
+    }
+
+    @Override
+    public void updateSortedApplicationList(Comparator<Application> comparator) {
+        requireNonNull(comparator);
+        sortedApplications.setComparator(comparator);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -156,7 +174,7 @@ public class ApplicationModelManager implements ApplicationModel {
         ApplicationModelManager other = (ApplicationModelManager) obj;
         return internshipBook.equals(other.internshipBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredApplications.equals(other.filteredApplications);
+                && filteredApplications.equals(other.filteredApplications)
+                && sortedApplications.equals(other.sortedApplications);
     }
-
 }

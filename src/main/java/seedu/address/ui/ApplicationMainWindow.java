@@ -110,7 +110,7 @@ public class ApplicationMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        applicationListPanel = new ApplicationListPanel(logic.getFilteredApplicationList());
+        applicationListPanel = new ApplicationListPanel(logic.getSortedApplicationList());
         applicationListPanelPlaceholder.getChildren().add(applicationListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

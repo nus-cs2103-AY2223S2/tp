@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -86,6 +87,15 @@ public interface ApplicationModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /** Returns an unmodifiable view of the sorted application list */
+    ObservableList<Application> getSortedApplicationList();
+
+    /**
+     * Updates the sorting of the application list using the given comparator {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedApplicationList(Comparator<Application> comparator);
 
     /**
      * Checks if given application already has an existing task attached to it.

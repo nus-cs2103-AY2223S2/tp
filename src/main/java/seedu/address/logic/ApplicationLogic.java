@@ -33,6 +33,9 @@ public interface ApplicationLogic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Application> getFilteredApplicationList();
 
+    /** Returns an unmodifiable view of the sorted list of persons */
+    ObservableList<Application> getSortedApplicationList();
+
     /**
      * Returns the user prefs' internship book file path.
      */

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitSprintCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.SortApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,8 +51,21 @@ public class InternshipBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //=========== Application Commands ===========================================================================
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
+
+        case ClearApplicationCommand.COMMAND_WORD:
+            return new ClearApplicationCommand();
+
+        case DeleteApplicationCommand.COMMAND_WORD:
+            return new DeleteApplicationCommandParser().parse(arguments);
+
+        case EditApplicationCommand.COMMAND_WORD:
+            return new EditApplicationCommandParser().parse(arguments);
+
+        case ExitSprintCommand.COMMAND_WORD:
+            return new ExitSprintCommand();
 
         case FindApplicationCommand.COMMAND_WORD:
             return new FindApplicationCommandParser().parse(arguments);
@@ -62,15 +76,10 @@ public class InternshipBookParser {
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
 
-        case ExitSprintCommand.COMMAND_WORD:
-            return new ExitSprintCommand();
+        case SortApplicationCommand.COMMAND_WORD:
+            return new SortApplicationCommandParser().parse(arguments);
 
-        case EditApplicationCommand.COMMAND_WORD:
-            return new EditApplicationCommandParser().parse(arguments);
-
-        case DeleteApplicationCommand.COMMAND_WORD:
-            return new DeleteApplicationCommandParser().parse(arguments);
-
+        //=========== Task Commands ==================================================================================
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
 
@@ -79,10 +88,6 @@ public class InternshipBookParser {
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
-
-        case ClearApplicationCommand.COMMAND_WORD:
-            return new ClearApplicationCommand();
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

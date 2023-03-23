@@ -44,7 +44,7 @@ public class UniqueApplicationList implements Iterable<Application> {
         if (contains(toAdd)) {
             throw new DuplicateApplicationException();
         }
-        internalList.add(toAdd);
+        internalList.add(0, toAdd);
     }
 
     /**

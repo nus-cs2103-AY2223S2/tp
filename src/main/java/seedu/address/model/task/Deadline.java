@@ -46,11 +46,29 @@ public class Deadline {
 
     /**
      * Returns true if a given string is a valid deadline.
-     * A deadline is valid only if it is no earlier than today's date.
+     * A deadline is valid only if it is not earlier than today's date.
      */
     public static boolean isValidDeadline(String test) {
         LocalDate testDate = LocalDate.parse(test, INPUT_FORMAT);
         return testDate.compareTo(LocalDate.now()) >= 0;
+    }
+
+    /**
+     * Checks if this deadline is before another given deadline.
+     * @param otherDeadline the other deadline to compare to.
+     * @return true if the deadline is before another given deadline.
+     */
+    public boolean isBefore(Deadline otherDeadline) {
+        return this.deadline.isBefore(otherDeadline.deadline);
+    }
+
+    /**
+     * Checks if this deadline is after another given deadline.
+     * @param otherDeadline the other deadline to compare to.
+     * @return true if the deadline is after another given deadline.
+     */
+    public boolean isAfter(Deadline otherDeadline) {
+        return this.deadline.isAfter(otherDeadline.deadline);
     }
 
     public String toDisplayString() {

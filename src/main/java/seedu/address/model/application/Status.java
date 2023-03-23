@@ -17,14 +17,14 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Statuses should only be one of the following: interested, applied, offered or rejected, "
-                    + "and it should not be blank\"";
+                    + "and it should not be blank.";
 
     public final StatusType value;
 
     /**
      * Constructs a {@code Status}.
      *
-     * @param status A valid status.
+     * @param status A status inputted by user.
      */
     public Status(String status) {
         requireNonNull(status);
