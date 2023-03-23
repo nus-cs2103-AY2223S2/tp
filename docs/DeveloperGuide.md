@@ -122,8 +122,33 @@ One alternative implementation that was considered was to set the link as an att
 it directly with every change. However, this approach had a few limitations as discussed in the previous section.
 
 ### Displaying flights across all modes (expand on UI implementation using UI class diagram)- Yuanyuan
+Initially, there is only one ItemListPanel that displays an item list specific to each mode. 
+However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
+necessary for ease of selecting and linking to a specific flight.
 
+**Implementation of display of flight list**
+In the implementation as seen in the image below, the MainWindow can be filled by ItemListPanel as well as FlightListPanel:
+ItemListPanel: displays information about each Item using an ItemCard in a ListView.
+FlightListPanel: displays information about each flight using a FlightCard in a ListView.
 
+<img src="images/WingmanUI.png" width="200px">
+
+By having separate list panels, it will be easier to customise the display of different Item types if required by ui improvements.
+
+In each ItemCard as seen in the image below, the item’s name will be shown together with its id and respective attributes. 
+In each FlightCard, the structure is similar to that of ItemCard but specific to flight objects.
+
+By modifying the layout and dividing into a left section which shows the resources, and a right section which shows the flights, 
+we can keep the information displayed organised and clear to the user.
+
+**Alternatives considered for display of flights:**
+* Alternative 1 (current choice): Has two panels to display items and flights in one display window
+* Pros: Easy to implement and can view all the information simultaneously after a command is executed.
+    * Cons: Too cramped, which may lead to information overload.
+* Alternative 2: Has one display window for items and a separate display window for flights
+    * Pros: More organised and visually pleasant.
+    * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
+  
 ## Appendix: Requirements
 
 ### Product scope
