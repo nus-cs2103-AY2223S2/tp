@@ -35,12 +35,18 @@ public class InfoTab extends UiPart<Region> {
     public InfoTab(Person protagonist, String tab) {
 
         super(FXML);
+
+        logger.info("Setting up Info Panel...");
+
         if (tab != null) {
             if (tab.equals("c")) {
+                logger.info("[Info Panel]: Creating DetailedContact...");
                 detailedInfo = new DetailedContact(protagonist);
             } else if (tab.equals("m")) {
+                logger.info("[Info Panel]: Creating DetailedModule...");
                 detailedInfo = new DetailedModule(protagonist);
             } else {
+                logger.info("[Info Panel]: Creating DetailedSkill...");
                 detailedInfo = new DetailedSkill(protagonist);
             }
         }
@@ -54,6 +60,8 @@ public class InfoTab extends UiPart<Region> {
             sb.append(protagonist.getCourse().toString());
             identity.setText(sb.toString());
             detailedInfoPlaceholder.getChildren().add(detailedInfo.getRoot());
+        } else {
+            logger.info("[Info Panel]: Protagonist not found. Showing default placeholders");
         }
     }
 

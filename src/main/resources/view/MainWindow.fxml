@@ -16,7 +16,6 @@
     <Scene>
       <stylesheets>
         <URL value="@CodocTheme.css" />
-        <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
