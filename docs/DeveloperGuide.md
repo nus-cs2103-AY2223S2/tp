@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The **Adding a Patient** mechanism is facilitated by `VMS`. The Patient created is stored inside `PatientManager` object.
 
-#### Usage
+##### Usage
 
 The activity diagram below illustrates the workflow of patient `AddCommand` behaves when executed by a user when they enter `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command
 
@@ -193,7 +193,7 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
 
-#### Usage
+##### Usage
 
 The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command.
 
@@ -213,7 +213,7 @@ The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specif
 
 <!-- TODO describe the different search flags. That feature is still in progress -->
 
-#### Usage
+##### Usage
 
 The activity diagram below illustrates the workflow of patient `FindCommand` behaves when executed by a user when they enter `patient find --n` as a command.
 
@@ -233,7 +233,7 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
 
-#### Usage
+##### Usage
 
 The activity diagram below illustrates the workflow of patient `EditCommand` behaves when executed by a user when they enter `patient edit ` as a command.
 
@@ -249,7 +249,7 @@ Within the `EditCommandParser#parse`, the following methods in `ParserUtil` will
 
 ### Deleting a Patient
 
-#### Usage
+##### Usage
 
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
