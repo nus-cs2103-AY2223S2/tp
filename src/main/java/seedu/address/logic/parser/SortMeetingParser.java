@@ -51,7 +51,6 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
         }
-
         Prefix prefix = argMultimap.getFirstKey();
         Optional<String> param = argMultimap.getValue(prefix);
         System.out.println(param.get());

@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
@@ -16,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
@@ -48,7 +48,6 @@ public class SortMeetingCommand extends Command {
         this.sortByPrefix = sortByPrefix;
         this.isReverse = isReverse;
     }
-
 
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -83,6 +82,5 @@ public class SortMeetingCommand extends Command {
             break;
         }              
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortByPrefix.toString()));
-
     }
 }
