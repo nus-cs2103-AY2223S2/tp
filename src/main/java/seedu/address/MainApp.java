@@ -16,6 +16,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.jobs.CheckMeetingHasPassed;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -104,6 +105,7 @@ public class MainApp extends Application {
     private Cron initCron() {
         Cron cron = Cron.getInstance();
         logger.info("Initialised CRON engine");
+        cron.addTask(new CheckMeetingHasPassed(model), 1);
 
         return cron;
     }
