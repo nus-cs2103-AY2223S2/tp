@@ -260,6 +260,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add Task feature
+
+#### Description
+
+The `add-task` command allows users to add a task to an existing application in the internship book, specified by
+its index, with the parameters `description` and `deadline`. 
+
+#### Implementation
+
+The following sequence diagram illustrates how sprINT's internal components interact with one another in response 
+to the `add-task` command.
+
+<img src="images/AddTaskSequenceDiagram.png" />
+
+When a user enters the `add-task` command: 
+1. The `parse` method of `AddTaskCommandParser` is invoked.
+   1. The target application's `index`, along with the `deadline` and `description` fields for the new task,
+      are extracted from the command string. 
+   2. A new `EditApplicationDescriptor` object, which stores details about the new task for the target application,
+      is created. 
+   3. A new `AddTaskCommand` object containing the target application's `index` and the aforementioned `descriptor` 
+      is created.
+2. The newly created `AddTaskCommand` object is then executed. 
+   1. The `createEditedApplication` method of the `EditApplicationCommand` class is invoked to create a new 
+       application with the task added. This represents the edited application.
+   2. This `editedApplication` object replaces the existing `Application` object in the model. 
+
+#### Design Considerations
+
+**Aspect: How `add task` executes**
+  
+* **Option 1** (Current design): use existing logic from the `EditApplicationCommand` class (i.e. 
+  `createEditedApplication` and `EditApplicationDescriptor`)
+  * Pros:
+    * Reduces duplicate code (and thus code redundancy).
+    * Makes sense from a logical perspective: since `Task` is implemented as just another field in `Application`, 
+      _adding a task_ to an application is essentially just another interface for _editing_ the application.
+  * Cons:
+    * Increases coupling between `AddTaskCommand` and `EditApplicationCommand`.
+
+* **Option 2**: implement logic for `createEditedApplication` and `EditApplicationDescriptor` **within** the 
+    `AddTaskCommand` class
+    * Pros:
+      * Reduces coupling between `AddTaskCommand` and `EditApplicationCommand`.
+    * Cons:
+      * Increases code redundancy.
+      * Violates Single Responsibility Principle.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -456,6 +503,22 @@ upcoming tasks of closer deadlines being showed first.
 *{More to be added}*
 
 ### Glossary
+
+#### sprINT-specific Terminology
+
+* **Application**: Represents an internship application entry in the internship book. Each application contains a role,
+company name, company email and one of four possible statuses.
+
+* **Status**: Represents the current stage of the internship application. Can be one of 4 values:
+  * **Interested**: An internship that the user is interested in, but has yet to apply to. 
+  * **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.  
+  * **Offered**: An internship that the user has received an offer for. 
+  * **Rejected**: An internship that the user has been rejected for. 
+
+* **Task**: Represents additional requirements or milestones that are part of the internship application process.
+Examples include online assessment, technical interview, etc.
+
+#### Others
 
 * **GUI**: Graphical User Interface
 * **CLI**: Command Line Interface
