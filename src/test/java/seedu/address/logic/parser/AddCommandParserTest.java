@@ -5,9 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMPTY_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.EMPTY_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -22,9 +19,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_ADDRESS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_EMAIL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_PHONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -89,8 +83,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldAddressMissing_success() {
         // empty address
-        Person expectedPerson = new PersonBuilder(AMY).withAddress(VALID_EMPTY_ADDRESS).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + EMPTY_ADDRESS_DESC
+        Person expectedPerson = new PersonBuilder(AMY).withAddress(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
     }
@@ -98,8 +92,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldEmailMissing_success() {
         // empty email
-        Person expectedPerson = new PersonBuilder(AMY).withEmail(VALID_EMPTY_EMAIL).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMPTY_EMAIL_DESC + ADDRESS_DESC_AMY
+        Person expectedPerson = new PersonBuilder(AMY).withEmail(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
     }
@@ -107,8 +101,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldPhoneMissing_success() {
         // empty phone
-        Person expectedPerson = new PersonBuilder(AMY).withPhone(VALID_EMPTY_PHONE).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + EMPTY_PHONE_DESC + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+        Person expectedPerson = new PersonBuilder(AMY).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
     }
 
