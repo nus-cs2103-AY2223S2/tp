@@ -286,6 +286,7 @@ While designing the Quick Access Buttons on the Student Card, several alternativ
     * Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
     * Can require additional resources and time to design and implement compared to other alternatives.
 
+
 ### Create Lesson feature
 the `new-lesson` command adds a Lesson (specified with student name, lesson name, start time, and end time) to a particular Student. Given below is an example usage scenario and how the command works:
 
@@ -308,6 +309,26 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 The following activity diagram summarizes what happens when a user executes a CreateLessonCommand:
 
 <img src="images/CreateLessonAD.png" width="600" />
+
+
+### School and GradeLevel Fields
+
+#### v1.2 Implementation of School and GradeLevel Fields
+
+As of v1.2, School and GradeLevel fields are parsed via the `AddCommandParser` class. `AddCommandParser#parse` method 
+checks whether the prefixes for school and/or gradelevel are present, and if present, then adds it to 
+the new student as `Tags`. They are then treated throughout the program the same as other `Tags`.
+
+It has been implemented this way for its ease of implementation, and because it shows the School and GradeLevel 
+in the Students list view, without having to open up the student's profile.
+
+#### New Implementation of School and GradeLevel Fields in v1.3
+
+In v1.3, we are adding School and GradeLevel as separate fields in the Student's profile, instead of `Tags`. These will 
+show up in the Student Profile view.
+
+This is to reduce the number of Tags placed under each Student's name in the Students list view, making it look less 
+cluttered.
 
 
 ### \[Proposed\] Undo/redo feature
