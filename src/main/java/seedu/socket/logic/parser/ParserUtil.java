@@ -16,6 +16,12 @@ import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -164,5 +170,80 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code projectName} is invalid.
+     */
+    public static ProjectName parseProjectName(String projectName) throws ParseException {
+        requireNonNull(projectName);
+        String trimmedName = projectName.trim();
+        if (!ProjectName.isValidProjectName(trimmedName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectRepoHost}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code repoHost} is invalid.
+     */
+    public static ProjectRepoHost parseRepoHost(String repoHost) throws ParseException {
+        requireNonNull(repoHost);
+        String trimmedName = repoHost.trim();
+        if (!ProjectRepoHost.isValidProjectRepoHost(trimmedName)) {
+            throw new ParseException(ProjectRepoHost.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectRepoHost(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectRepoName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code repoName} is invalid.
+     */
+    public static ProjectRepoName parseRepoName(String repoName) throws ParseException {
+        requireNonNull(repoName);
+        String trimmedName = repoName.trim();
+        if (!ProjectRepoName.isValidProjectRepoName(trimmedName)) {
+            throw new ParseException(ProjectRepoName.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectRepoName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ProjectDeadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedName = deadline.trim();
+        if (!ProjectDeadline.isValidProjectDeadline(trimmedName)) {
+            throw new ParseException(ProjectDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectDeadline(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectMeeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static ProjectMeeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedName = meeting.trim();
+        if (!ProjectMeeting.isValidProjectMeeting(trimmedName)) {
+            throw new ParseException(ProjectMeeting.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectMeeting(trimmedName);
     }
 }

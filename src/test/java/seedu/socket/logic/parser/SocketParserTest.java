@@ -4,12 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.socket.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.socket.logic.commands.CommandTestUtil.DEADLINE_DESC_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.MEETING_DESC_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.REPO_HOST_DESC_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.REPO_NAME_DESC_ALPHA;
 import static seedu.socket.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_MEETING_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_HOST_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_NAME_ALPHA;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -36,6 +46,7 @@ import seedu.socket.logic.commands.DeleteCommand;
 import seedu.socket.logic.commands.DeleteProjectCommand;
 import seedu.socket.logic.commands.EditCommand;
 import seedu.socket.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.socket.logic.commands.EditProjectCommand;
 import seedu.socket.logic.commands.ExitCommand;
 import seedu.socket.logic.commands.FindCommand;
 import seedu.socket.logic.commands.HelpCommand;
@@ -50,9 +61,12 @@ import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
+import seedu.socket.model.project.Project;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
+import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
+import seedu.socket.testutil.ProjectBuilder;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 
 public class SocketParserTest {
@@ -101,7 +115,21 @@ public class SocketParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-
+    @Test
+    public void parseCommand_editpj() throws Exception {
+        Project project = new ProjectBuilder().withName(VALID_PROJECT_NAME_ALPHA)
+                .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                .withRepoName(VALID_PROJECT_REPO_NAME_ALPHA)
+                .withProjectDeadline(VALID_PROJECT_DEADLINE_ALPHA)
+                .withProjectMeeting(VALID_PROJECT_MEETING_ALPHA)
+                .build();
+        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
+        EditProjectCommand command = (EditProjectCommand) parser.parseCommand(EditProjectCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + PROJECT_NAME_DESC_ALPHA + REPO_NAME_DESC_ALPHA
+                + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
+        assertEquals(new EditProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
+    }
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
