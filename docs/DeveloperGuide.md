@@ -274,6 +274,7 @@ Given below is an updated `Model` component diagram.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
       * This can have heavier consequences if much more data is added before the mistake is noticed.
 
+
 ### Delete patient record by NRIC feature
 
 #### Implementation
