@@ -15,8 +15,8 @@ public class SalaryCommand extends Command {
     public static final String COMMAND_WORD = "salary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the salary in asc/desc order.\n"
-            + "Parameters: ORDER (must be either asc OR desc)\n"
+            + ": Sorts the salary in asc/desc order.\n \n"
+            + "Parameters: ORDER (must be either asc OR desc)\n \n"
             + "Example: " + COMMAND_WORD + " desc";
     public static final String MESSAGE_SUCCESS = "Salaries sorted in %1$s";
     private Order order;
