@@ -328,6 +328,47 @@ use this index when deleting tasks
   would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e first task
   has index 1, second task has index 2 etc) and thus the invalid indexes can be easily obtained.
 
+### Assigning a task to a person
+Syntax: `assign pi/INDEX ti/INDEX` </br>
+Purpose: Allows users to assign a person to a task
+
+#### Implementation
+The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`, 
+`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task 
+to a person in the OfficeConnectModel. </br>
+
+Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
+* Alternative steps to Step 1:
+  * Step 1.1: User executes `list` to list all persons or `find David` to search for David in the contact 
+  list. 
+  * Step 1.2: User executes `listtask` to list all the tasks or `findtask slides` to search for a task containing the 
+  word slides in its title.
+* After this step, the target task to assign and the target person to be assigned to said task will appear in the list
+of persons and tasks displayed.
+
+Step 2: User executes `assign pi/1 ti/1` to assign the first task on the list of tasks to the first person on the list
+of tasks. 
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![Assign Activity Diagram](images/AssignActivityDiagram.png)
+
+#### Design Considerations
+**Aspect: Steps Leading to Execution of Assign Command**
+
+* **Alternative 1 (current choice):** Users execute `list` or `find` to display a list of persons and `listtask` or 
+`findtask` to display a list of tasks on the application.
+  * Pros: Users can search for a specific person or task before assigning.
+  * Cons: If `list` and `listtask` are used, users may have to scroll through a long list to search for the desired 
+  person or task. The results of `find` and `findtask` cannot be displayed simultaneously. Thus, if `find` was executed
+  to search for a person, the user will then have to execute `listtask` to access the full list of tasks in order to 
+  identify the task that the user wants to be assigned to that person.
+
+* **Alternative 2 (proposed additional choice):** Users can execute a command to display a list tasks that have not been
+assigned to any person or to display a people that have not been assigned to that task.
+  * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
+  `findtask` to search for unassigned tasks one at a time.
+  * Cons: None, because this is an additional feature proposed that will complement Alternative.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -365,7 +406,7 @@ use this index when deleting tasks
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                | So that I can…​                                                        |
-| -------- |--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
+|----------|--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                      | refer to instructions when I forget how to use the App                 |
 | `* * *`  | manager                                    | add tasks                                   |                                                                        |
 | `* * *`  | manager                                    | delete tasks                                | remove tasks that I no longer need                                     |
