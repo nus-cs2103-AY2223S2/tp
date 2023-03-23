@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,6 +35,7 @@ public class FilterCommand extends Command {
     private final Tag tag;
 
     public FilterCommand(Tag tag) {
+        requireNonNull(tag);
         this.tag = tag;
     }
 

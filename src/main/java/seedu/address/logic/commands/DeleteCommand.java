@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model, officeConnectModel);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

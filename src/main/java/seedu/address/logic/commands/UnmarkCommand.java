@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class UnmarkCommand extends Command {
     private final Index taskIndex;
 
     public UnmarkCommand(Index taskIndex) {
+        requireNonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
 
