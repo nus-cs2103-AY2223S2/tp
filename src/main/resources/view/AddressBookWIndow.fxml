@@ -30,7 +30,7 @@
                      </Menu>
                   </menus>
                </MenuBar>
-               <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+               <StackPane fx:id="commandBoxPlaceholder" prefHeight="50.0" styleClass="pane-with-border" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                   <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
                   </padding>
