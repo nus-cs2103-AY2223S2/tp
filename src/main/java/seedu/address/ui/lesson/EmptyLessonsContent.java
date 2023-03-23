@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 import seedu.address.ui.UiUtil;
-import seedu.address.ui.detail.DetailedContent;
 
 /**
  * An empty UI component that is displayed when there is no lessons to be displayed.
