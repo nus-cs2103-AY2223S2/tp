@@ -98,15 +98,16 @@ Format: `help`
 ### 2.2 Adding a task: `add`
 
 :speech_balloon: PRO TIP: Parameters that comes after the command can be in any order!
+:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
 
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` date(s) are required.
 
-Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2--what-is-a-valid-date-br))
+Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
 
-By default, effort level is 24. ([What is an effort level?](#q3--what-is-an-effort-level-br))
+By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
-A Task must have a description.([What is a valid Description?](#q4--what-is-a-valid-description-br))
+A Task must have a description.([What is a valid Description?](#q4-what-is-a-valid-description))
 
 Format:
 
@@ -131,6 +132,7 @@ Examples:
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
 ### 2.3 Listing all tasks : `list`
+:speech_balloon: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 Shows a list of all tasks in the address book.
 
@@ -138,9 +140,11 @@ Format: `list`
 
 ### 2.4 Editing a task : `edit`
 
-Edits an existing task in the address book.
+Edits an existing task in the address book. 
 
-Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
+One parameter field **must** be supplied in the argument.
+
+Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -278,17 +282,17 @@ _Details coming soon ..._
 
 ## 4. FAQ
 
-### Q1: How do I transfer my data to another Computer?<br>
+### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-### Q2: What is a valid Date?<br>
+### Q2 What is a valid Date?
 **A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
-### Q3: What is an effort level?<br>
+### Q3 What is an effort level?
 **A**: [_More details to come_]
 
-### Q4: What is a valid Description?<br>
+### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
 
 
