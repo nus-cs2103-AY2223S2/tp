@@ -29,14 +29,6 @@ public class TaskCard extends UiPart<HBox> {
         // this.task = task;
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription());
-
-        // phone.setText(task.getPhone().value);
-        // address.setText(task.getAddress().value);
-        // email.setText(task.getEmail().value);
-
-        // task.getTags().stream()
-        // .sorted(Comparator.comparing(tag -> tag.tagName))
-        // .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
