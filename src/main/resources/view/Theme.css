@@ -375,7 +375,9 @@
 }
 
 #titlePanel{
-    -fx-font-size: 30px;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 25;
 }
 
 #panel{
