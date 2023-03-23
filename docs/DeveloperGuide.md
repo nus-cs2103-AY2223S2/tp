@@ -243,12 +243,12 @@ This section describes some noteworthy details on how certain features are imple
 The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList` and the internal `XYZList`, which stores all the `XYZ` objects, that matches the
 provided keywords.
 
-The arguments that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
-For example, `n/` would represent a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
 
 The parser for the `add` command would extract out the arguments corresponding to each particular field.
 
-The following activity diagram summarizes what happens when the user executes the `find` command.
+The following activity diagram summarizes what happens when the user executes the `add` command.
 
  <p align="center">
      <img src="images/AddCommandActivityDiagram.svg">
