@@ -42,11 +42,12 @@ public class ZoomView extends UiPart<Region> {
         viewTitle.setText("Title: " + bookmark.getTitle().value);
         authorView.setText("Author: " + bookmark.getAuthor().value);
         genreView.setText("Genre: " + bookmark.getGenre().value);
-        progressView.setText("Progress: " + bookmark.getProgress().value);
+        progressView.setText("Progress: " + bookmark.getProgress().toString());
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
 
     }
+
 
     /**
      * Method to hide the contents of ZoomView
@@ -58,7 +59,6 @@ public class ZoomView extends UiPart<Region> {
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
-
     }
 
 }

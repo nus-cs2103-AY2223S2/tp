@@ -20,17 +20,20 @@ import seedu.library.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Bookmark[] getSampleBookmarks() {
+        String[] sampleProgressA = {"1", "40", "~"};
+        String[] sampleProgressB = {"~", "2", "~"};
+        String[] sampleProgressC = {"~", "~", "50"};
         return new Bookmark[] {
-            new Bookmark(new Title("Rankers Guide"), new Progress("Chapter 40"),
+            new Bookmark(new Title("Rankers Guide"), new Progress(sampleProgressA),
                     new Genre("Modern Fantasy"), new Author("TeJe"),
                     getTagSet("Hunters")),
-            new Bookmark(new Title("Chainsaw Man"), new Progress("Not Started"), new Genre("Action"),
+            new Bookmark(new Title("Chainsaw Man"), new Progress(sampleProgressB), new Genre("Action"),
                     new Author("Tatsuki Fujimoto"),
                     getTagSet("Gore")),
-            new Bookmark(new Title("Solo Leveling"), new Progress("Chapter 120"), new Genre("Modern Fantasy"),
+            new Bookmark(new Title("Solo Leveling"), new Progress(sampleProgressC), new Genre("Modern Fantasy"),
                     new Author("Chugong"),
                     getTagSet("Hunters", "System", "Cheats")),
-            new Bookmark(new Title("Dungeon Defense"), new Progress("Chapter 40"), new Genre("Western Fantasy"),
+            new Bookmark(new Title("Dungeon Defense"), new Progress(sampleProgressA), new Genre("Western Fantasy"),
                     new Author("Yoo Heonhwa"),
                     getTagSet("Antihero"))
         };
