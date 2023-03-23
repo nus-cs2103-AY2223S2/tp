@@ -47,6 +47,7 @@ title: Developer Guide
        * [Sort Command](#sort-command)
        * [List Command](#list-command)
        * [Exit Command](#exit-command)
+       * [Meet Command](#meet-command)
    * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -541,7 +542,7 @@ The User profile will be displayed on the profile panel should there be any exce
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
-If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
+If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `n/`. If a name is not present, it will search for an index (of `int` type) instead. 
 The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
@@ -554,7 +555,7 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution <process></process>
+    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
 
 #### **Find Command**
