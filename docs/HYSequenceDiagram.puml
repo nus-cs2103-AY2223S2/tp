@@ -14,7 +14,7 @@ participant "<<class>>\nParserUtil" as PU COL4
 activate PU
 
 participant "<<class>>\nDate" as DATE COL2
-
+participant "<<class>>\nLocalDate" as LD COL5
 PU -> DATE : isValidDate(\n"20000101")
 activate DATE COL2
 
@@ -22,7 +22,17 @@ DATE -> DATE : produceValidationFormat("20000101")
 activate DATE COL2
 DATE --> DATE : yyyyMMdd
 deactivate DATE COL2
-DATE --> PU
+
+
+DATE -> LD : parse(test, yyyyMMdd)
+activate DATE COL2
+activate LD COL5
+LD --> DATE
+deactivate DATE
+deactivate LD
+
+
+DATE --> PU : true
 deactivate DATE COL2
 create ":Date" as D COL1
 
@@ -35,11 +45,23 @@ DATE -> DATE : produceValidationFormat("20000101")
 activate DATE COL2
 DATE --> DATE : yyyyMMdd
 deactivate DATE COL2
-DATE --> D
+DATE -> LD : parse(test, yyyyMMdd)
+activate DATE COL2
+activate LD COL5
+LD --> DATE
+deactivate DATE
+deactivate LD
+
+
+DATE --> D : true
 deactivate DATE
 
-participant "<<class>>\nLocalDate" as LD COL5
-D -> LD : parse("20000101", "yyyyMMdd")
+D -> DATE : produceValidationFormat("20000101")
+activate DATE COL2
+DATE --> D : yyyyMMdd
+deactivate DATE
+
+D -> LD : parse("20000101", yyyyMMdd)
 activate LD COL5
 
 LD --> D : LocalDate 2000-01-01
