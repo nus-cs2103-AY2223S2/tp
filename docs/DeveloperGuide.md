@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to add a new patient to the system.
+1. User requests to add a new patient to the system.
 2. The user enters patient details.
    1. The following are required information:
          - Patient name
@@ -445,34 +445,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to add a new drug to the system
-2. The user enters drug details
-   1. The following are required information:
+1. User requests to add a new drug to the system.
+2. The user enters drug details.
+   1. The following are the required information:
          - Trade name
          - Active ingredients
          - Direction
          - Purpose
          - Side effect
          - Storage count
-3. The system creates the new drug entry
-4. The system show the new created drug in the drug list
+3. The system creates the new drug entry.
+4. The system show the new created drug in the drug list and the drug inventory analysis pie chart displays the updated percentages of each drug within storage.
 
     Use case ends.
 
 **Extensions**
 * 2a. If any of the required fields are not completed
 
-    * 2a1. the user is informed of this and show the correct format for the command
+    * 2a1. the user is informed of this and show the correct format for the command.
 
  Use case resume at step 2.
 
-* 2b. If the trade name is already in use
+* 2b. If the trade name is already in use.
 
-    * 2b1. the user is informed that he or she must choose a different name
+    * 2b1. the user is informed that he or she must choose a different name.
 
  Use case resume at step 2.
 
-* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
+* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed.
 
     * 2c1. If the length of tradeName exceed 50 character, the user is informed of this, and correct format for the command is displayed.
 
@@ -497,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User <ins>lists all drugs(UC06).</ins>
 3.  User enters drug's trade name or index to delete a specific drug in the list.
 4.  System deletes the drug from the system.
-5.  System show the updated drug list.
+5.  System shows the updated drug list and the drug inventory analysis pie chart displays the updated percentages of each drug within storage.
 
     Use case ends.
 
@@ -526,7 +526,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all drugs
-2.  System shows a list of drugs
+2.  System shows a list of drugs with the most displays the latest drug inventory analysis pie chart.
 
     Use case ends.
 
@@ -589,17 +589,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a patient record
 
-1. Deleting a person while all persons are being shown
+1. Deleting a patient record while all patients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `p list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `p delete 1`<br>
+      Expected: First patient record is deleted from the list. Details of the deleted patient shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `p delete 0`<br>
+      Expected: No patient is deleted. Error details shown in the status box.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
