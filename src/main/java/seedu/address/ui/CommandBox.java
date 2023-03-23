@@ -47,21 +47,21 @@ public class CommandBox extends UiPart<Region> {
                 });
 
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (e) -> {
+            String userInput = commandTextField.getText();
             try {
                 if (isEmpty() || isOverflow()) {
                     commandRecommendationTextField.setText("");
                     return;
                 }
                 if (e.getCode() == KeyCode.TAB) {
-                    String userInput = commandTextField.getText();
                     String commandRecommendation = commandRecommendationEngine.recommendCommand(userInput);
                     String autocompletedCommand =
                             commandRecommendationEngine.autocompleteCommand(userInput, commandRecommendation);
-                    if (!autocompletedCommand.equals("")) {
+                    if (!autocompletedCommand.isEmpty()) {
                         commandTextField.setText(autocompletedCommand);
                         commandTextField.end();
                     }
-                    setRecommendationsWithUserInput(userInput);
+                    setRecommendationsWithUserInput(commandTextField.getText());
                     e.consume();
                 }
             } catch (CommandException ce) {
@@ -133,15 +133,14 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
         try {
-            commandRecommendationTextField.setText(commandRecommendationEngine.recommendCommand(userInput));
+            String recommendedText = commandRecommendationEngine.recommendCommand(userInput);
+            commandRecommendationTextField.setText(recommendedText);
         } catch (CommandException e) {
-            commandRecommendationTextField.setText(userInput);
             setStyleToIndicateCommandFailure();
+            commandRecommendationTextField.setText("");
         }
     }
 
-    //Solution adapted from ChatGPT with the following prompt:
-    //"How do I check if text is overflowing in a TextField in javafx"
     private boolean isOverflow() {
         Text text = new Text();
         text.setFont(commandTextField.getFont());

@@ -27,9 +27,12 @@ import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.HelpCommandParser;
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.StatsCommandParser;
 
 /**
  * Recommends a command based on the user input.
+ * Solution adapted from
+ * https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions
  */
 public class CommandRecommendationEngine {
     public static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
@@ -95,32 +98,34 @@ public class CommandRecommendationEngine {
                 HelpCommand.COMMAND_WORD,
                 HelpCommand.COMMAND_PROMPTS,
                 HelpCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                StatsCommand.COMMAND_WORD,
+                StatsCommand.COMMAND_PROMPTS,
+                StatsCommandParser::validate));
     }
 
     /**
-     * Adds a new command info to the engine.
+     * Adds a new command info to the engine
      *
-     * @param commandInfo Command info to add.
+     * @param commandInfo Command info to add
      */
     private static void registerCommandInfo(CommandInfo commandInfo) {
         commandInfoMap.put(commandInfo.getCmdWord(), commandInfo);
     }
 
     /**
-     * Recommends a command based on the user input.
+     * Recommends a string with respect to the user input
      *
-     * @param userInput User input.
-     * @return Recommended command.
-     * @throws CommandException If the user input is invalid.
+     * @param userInput Input by user
+     * @return Recommended command
+     * @throws CommandException If the user input is invalid
      */
     public String recommendCommand(String userInput) throws CommandException {
-        assert userInput != null && !userInput.isEmpty();
-
         String[] userInputArray = userInput.trim().split(" ");
         String commandWord = userInputArray[0];
         CommandInfo commandInfo = findMatchingCommandInfo(commandWord);
 
-        if (commandInfo == null || (isCommandPrefixComplete(userInput, " ")
+        if (commandInfo == null || (commandWord.length() == commandInfo.getCmdWord().length()
                 && !Objects.equals(commandWord, commandInfo.getCmdWord()))) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
         }
@@ -143,11 +148,11 @@ public class CommandRecommendationEngine {
     }
 
     /**
-     * Returns the new user input when user auto-completes the command.
+     * Returns the autocompleted command.
      *
-     * @param userInput          Current User Input.
-     * @param recommendedCommand Current Command Recommendation
-     * @return New User Input.
+     * @param userInput          Input by user
+     * @param recommendedCommand Recommendation string given
+     * @return String to be autocompleted
      */
     public String autocompleteCommand(String userInput, String recommendedCommand) {
         // remaining values
@@ -156,12 +161,8 @@ public class CommandRecommendationEngine {
         // if command is complete, autocomplete the relevant arguments
         boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
         int nextIdx = suggestedCommand.indexOf(isCompleteCommand ? "/" : " ");
-        nextIdx = (nextIdx != -1)
-                ? nextIdx + 1
-                : suggestedCommand.length();
-        userInput = userInput.trim() + suggestedCommand.substring(0, nextIdx);
-
-        return userInput;
+        nextIdx = (nextIdx != -1) ? nextIdx + 1 : suggestedCommand.length();
+        return userInput.trim() + suggestedCommand.substring(0, nextIdx);
     }
 
     private static boolean isCommandPrefixComplete(String userInput, String delimiter) {

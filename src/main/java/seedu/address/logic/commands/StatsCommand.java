@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.Summary;
 import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.logic.aggregatefunction.MaxCount;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -26,6 +29,7 @@ public class StatsCommand extends Command {
     public static final String MAX_ELDERLY_PER_VOLUNTEER = "Maximum number of elderly paired to a volunteer";
     public static final String MAX_VOLUNTEER_PER_ELDERLY = "Maximum number of volunteers paired to an elderly";
 
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
     private final Summary summary = new Summary();
 
     @Override

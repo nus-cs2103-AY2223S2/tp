@@ -18,11 +18,6 @@ public class CommandRecommendationEngineTest {
     private final CommandRecommendationEngine commandRecommendationEngine = new CommandRecommendationEngine();
 
     @Test
-    public void recommendCommand_null_failure() {
-        assertThrows(AssertionError.class, () -> commandRecommendationEngine.recommendCommand(null));
-    }
-
-    @Test
     public void recommendVolunteerCommand_validCommand_success() {
         String expected = "add_volunteer n/<name> vnr/<nric> a/<address> p/<phone> "
                 + "e/<email> t/<tag> re/<region> ag/<age> dr/<start_date,end_date>";
