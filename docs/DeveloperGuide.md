@@ -22,6 +22,7 @@ title: Developer Guide
      * [Main Components of the Architecture](#main-components-of-the-architecture)
      * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
    * [UI Component](#ui-component)
+   * [Key_Mapping](#key-mapping)
    * [Model Component](#model-component)
    * [Person](#person)
        * [Name](#name)
