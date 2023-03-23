@@ -8,29 +8,29 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
-import seedu.address.model.patient.exceptions.PatientNotFoundException;
+import seedu.address.model.ward.exceptions.DuplicateWardException;
+import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
- * A list of patients that enforces uniqueness between its elements and does not
+ * A list of wards that enforces uniqueness between its elements and does not
  * allow nulls.
- * A patient is considered unique by comparing using
- * {@code Patient#isSamePatient(Patient)}. As such, adding and updating of
- * patients uses Patient#isSamePatient(Patient) for equality so as to ensure that
- * the patient being added or updated is
- * unique in terms of identity in the UniquePatientList. However, the removal of
- * a patient uses Patient#equals(Object) so
- * as to ensure that the patient with exactly the same fields will be removed.
+ * A ward is considered unique by comparing using
+ * {@code Ward#isSameWard(Ward)}. As such, adding and updating of
+ * wards uses Ward#isSameWard(Ward) for equality so as to ensure that
+ * the ward being added or updated is
+ * unique in terms of identity in the UniqueWardList. However, the removal of
+ * a ward uses Ward#equals(Object) so
+ * as to ensure that the ward with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Patient#isSamePatient(Patient)
+ * @see Ward#isSameWard(Ward)
  */
-public class UniqueWardList implements Iterable<Patient> {
+public class UniqueWardList implements Iterable<Ward> {
 
-    private final ObservableList<Patient> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Patient> internalUnmodifiableList = FXCollections
+    private final ObservableList<Ward> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
 
@@ -42,94 +42,85 @@ public class UniqueWardList implements Iterable<Patient> {
     }
 
     /**
-     * Returns true if the list contains an equivalent patient as the given
+     * Returns true if the list contains an equivalent ward as the given
      * argument.
      */
-    public boolean contains(Patient toCheck) {
+    public boolean contains(Ward toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePatient);
+        return internalList.stream().anyMatch(toCheck::isSameWard);
     }
 
     /**
-     * Returns true if the list contains a patient with equivalent NRIC as the given
-     * argument.
+     * Adds a ward to the list.
+     * The ward must not already exist in the list.
      */
-    public boolean containsNric(Patient toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameNric);
-    }
-
-    /**
-     * Adds a patient to the list.
-     * The patient must not already exist in the list.
-     */
-    public void add(Patient toAdd) {
+    public void add(Ward toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePatientException();
+            throw new DuplicateWardException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the patient {@code target} in the list with {@code editedPatient}.
+     * Replaces the ward {@code target} in the list with {@code editedWard}.
      * {@code target} must exist in the list.
-     * The patient identity of {@code editedPatient} must not be the same as another
-     * existing patient in the list.
+     * The ward identity of {@code editedWard} must not be the same as another
+     * existing ward in the list.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
-        requireAllNonNull(target, editedPatient);
+    public void setWard(Ward target, Ward editedWard) {
+        requireAllNonNull(target, editedWard);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PatientNotFoundException();
+            throw new WardNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
+        if (!target.isSameWard(editedWard) && contains(editedWard)) {
             throw new DuplicatePatientException();
         }
 
-        internalList.set(index, editedPatient);
+        internalList.set(index, editedWard);
     }
 
     /**
-     * Removes the equivalent patient from the list.
-     * The patient must exist in the list.
+     * Removes the equivalent ward from the list.
+     * The ward must exist in the list.
      */
-    public void remove(Patient toRemove) {
+    public void remove(Ward toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PatientNotFoundException();
+            throw new WardNotFoundException();
         }
     }
 
-    public void setPatients(UniqueWardList replacement) {
+    public void setWards(UniqueWardList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code patients}.
-     * {@code patients} must not contain duplicate patients.
+     * Replaces the contents of this list with {@code wards}.
+     * {@code wards} must not contain duplicate wards.
      */
-    public void setPatients(List<Patient> patients) {
-        requireAllNonNull(patients);
-        if (!patientsAreUnique(patients)) {
-            throw new DuplicatePatientException();
+    public void setWards(List<Ward> wards) {
+        requireAllNonNull(wards);
+        if (!wardsAreUnique(wards)) {
+            throw new DuplicateWardException();
         }
 
-        internalList.setAll(patients);
+        internalList.setAll(wards);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Patient> asUnmodifiableObservableList() {
+    public ObservableList<Ward> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Patient> iterator() {
+    public Iterator<Ward> iterator() {
         return internalList.iterator();
     }
 
@@ -148,10 +139,10 @@ public class UniqueWardList implements Iterable<Patient> {
     /**
      * Returns true if {@code patients} contains only unique patients.
      */
-    private boolean patientsAreUnique(List<Patient> patients) {
-        for (int i = 0; i < patients.size() - 1; i++) {
-            for (int j = i + 1; j < patients.size(); j++) {
-                if (patients.get(i).isSamePatient(patients.get(j))) {
+    private boolean wardsAreUnique(List<Ward> wards) {
+        for (int i = 0; i < wards.size() - 1; i++) {
+            for (int j = i + 1; j < wards.size(); j++) {
+                if (wards.get(i).isSameWard(wards.get(j))) {
                     return false;
                 }
             }

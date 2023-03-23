@@ -52,6 +52,10 @@ public class Ward {
         return name.toString();
     }
 
+    public boolean isSameWard(Ward other) {
+        return this.equals(other);
+    }
+
     //// list overwrite operations
 
     /**
@@ -134,4 +138,6 @@ public class Ward {
     public int hashCode() {
         return patients.hashCode();
     }
+
+
 }
