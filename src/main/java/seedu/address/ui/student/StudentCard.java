@@ -157,11 +157,12 @@ public class StudentCard extends UiPart<Region> {
      * Updates the image of the student.
      */
     public void updateImage() {
-        String path = "src/main/resources/images/" + student.getName()
+        String path = "images/student/" + student.getName()
                 + student.getStudentClass().getClassName() + ".png";
         File file = new File(path);
         if (!file.exists()) {
-            circle.setFill(Color.TRANSPARENT);
+            Image defaultImage = new Image("images/defaultStudent.png");
+            circle.setFill(new ImagePattern(defaultImage));
         } else {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
