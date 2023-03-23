@@ -23,6 +23,11 @@ import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.sudohr.testutil.TypicalLeave.EMPLOYEE_ON_LEAVE_TYPE_1;
+import static seedu.sudohr.testutil.TypicalLeave.EMPLOYEE_ON_LEAVE_TYPE_2_AND_3;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_1;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_2;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_3;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +46,8 @@ import seedu.sudohr.testutil.EditEmployeeDescriptorBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
 import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalEmployees;
+import seedu.sudohr.testutil.TypicalLeave;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -49,6 +56,7 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(TypicalEmployees.getTypicalSudoHr(), new UserPrefs());
     private Model modelWithDepts = new ModelManager(TypicalDepartments.getTypicalSudoHr(), new UserPrefs());
+    private Model modelWithLeaves = new ModelManager(TypicalLeave.getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -265,6 +273,70 @@ public class EditCommandTest {
         assertTrue(modelWithDepts.getDepartment(SALES.getName())
                 .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
         assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName())
+                .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
+    }
+
+    @Test
+    public void execute_cascadeUpdateEmployeeInLeave_success() {
+        Employee employeeToEdit = EMPLOYEE_ON_LEAVE_TYPE_1;
+        assertTrue(employeeToEdit != null);
+        // ensure employee exists in the list of employee on leave that day
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_1.getDate()).hasEmployee(employeeToEdit));
+
+        Employee editedEmployee = new EmployeeBuilder(EMPLOYEE_ON_LEAVE_TYPE_1).withId(VALID_ID_AMY).build();
+        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(EMPLOYEE_ON_LEAVE_TYPE_1)
+                .withId(VALID_ID_AMY)
+                .build();
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
+        expectedModel.setEmployee(employeeToEdit, editedEmployee);
+
+        // check edit command
+        EditCommand editCommand = new EditCommand(employeeToEdit.getId(), descriptor);
+        assertCommandSuccess(editCommand, modelWithLeaves, expectedMessage, expectedModel);
+
+        // check cascaded to leave level, since employee is identified by id, old employee object
+        // should not be found in list whereas new employee object should be found.
+        assertTrue(!modelWithLeaves.getLeave(LEAVE_TYPE_1.getDate()).hasEmployee(employeeToEdit));
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_1.getDate()).hasEmployee(editedEmployee));
+        // check all other fields remain the same
+        Employee extractFromLeave = modelWithLeaves
+                .getLeave(LEAVE_TYPE_1.getDate())
+                .getEmployee(new Id(VALID_ID_AMY));
+        assertTrue(extractFromLeave.getName().equals(employeeToEdit.getName()));
+        assertTrue(extractFromLeave.getPhone().equals(employeeToEdit.getPhone()));
+        assertTrue(extractFromLeave.getEmail().equals(employeeToEdit.getEmail()));
+        assertTrue(extractFromLeave.getTags().equals(employeeToEdit.getTags()));
+        assertTrue(extractFromLeave.getAddress().equals(employeeToEdit.getAddress()));
+    }
+
+    @Test
+    public void execute_cascadeUpdateEmployeeInTwoLeaves_success() {
+        Employee employeeToEdit = EMPLOYEE_ON_LEAVE_TYPE_2_AND_3;
+        assertTrue(employeeToEdit != null);
+        // ensure employee exists in the respective list of employees for each leave
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_2.getDate()).hasEmployee(employeeToEdit));
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_3.getDate()).hasEmployee(employeeToEdit));
+
+        Employee editedEmployee = new EmployeeBuilder(EMPLOYEE_ON_LEAVE_TYPE_2_AND_3).withEmail(VALID_EMAIL_AMY)
+                .build();
+        EditCommand.EditEmployeeDescriptor descriptor =
+                new EditEmployeeDescriptorBuilder(EMPLOYEE_ON_LEAVE_TYPE_2_AND_3).withEmail(VALID_EMAIL_AMY)
+                        .build();
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
+        expectedModel.setEmployee(employeeToEdit, editedEmployee);
+
+        // check edit command
+        EditCommand editCommand = new EditCommand(employeeToEdit.getId(), descriptor);
+        assertCommandSuccess(editCommand, modelWithLeaves, expectedMessage, expectedModel);
+
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_2.getDate()).hasEmployee(editedEmployee));
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_3.getDate()).hasEmployee(editedEmployee));
+        // check employee name field in employee list of each leave object has been updated
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_2.getDate())
+                .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_3.getDate())
                 .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
     }
 

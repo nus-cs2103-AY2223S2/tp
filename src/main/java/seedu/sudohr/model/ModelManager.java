@@ -181,6 +181,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Leave getLeave(LeaveDate date) {
+        return sudoHr.getLeave(date);
+    }
+
+    @Override
     public boolean hasLeave(Leave leave) {
         requireNonNull(leave);
         return sudoHr.hasLeave(leave);

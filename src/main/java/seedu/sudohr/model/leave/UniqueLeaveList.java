@@ -55,6 +55,20 @@ public class UniqueLeaveList implements Iterable<Leave> {
     }
 
     /**
+     *
+     * @param date
+     * @return
+     */
+    public Leave getLeave(LeaveDate date) {
+        for (Leave leave : internalList) {
+            if (leave.getDate().equals(date)) {
+                return leave;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Replaces the leave {@code target} in the list with {@code editedLeave}.
      * {@code target} must exist in the list.
      * The leave identity of {@code editedEmployee} must not be the same as another

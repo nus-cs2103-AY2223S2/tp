@@ -298,6 +298,16 @@ public class SudoHr implements ReadOnlySudoHr {
     // ==========================================================================
 
     /**
+     * Returns the leave object with the given date.
+     *
+     * @param date The date of leave.
+     * @return The corresponding leave.
+     */
+    public Leave getLeave(LeaveDate date) {
+        return leaves.getLeave(date);
+    }
+
+    /**
      * Adds a leave to the address book.
      * The leave must not already exist in the address book.
      */

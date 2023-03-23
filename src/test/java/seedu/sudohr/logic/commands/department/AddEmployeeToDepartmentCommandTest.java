@@ -271,6 +271,11 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'addLeave'");

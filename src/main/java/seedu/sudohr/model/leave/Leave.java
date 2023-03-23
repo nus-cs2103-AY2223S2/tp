@@ -7,10 +7,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Leave in the sudohr book.
+ * Represents a Leave in SudoHR.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Leave {
@@ -47,6 +48,16 @@ public class Leave {
         return date;
     }
 
+    /**
+     * Get an employee by ID
+     */
+    public Employee getEmployee(Id id) {
+        return employees.get(id);
+    }
+
+    /**
+     * Returns unmodifiable set of employees.
+     */
     public List<Employee> getEmployees() {
         return employees.asUnmodifiableObservableList();
     }

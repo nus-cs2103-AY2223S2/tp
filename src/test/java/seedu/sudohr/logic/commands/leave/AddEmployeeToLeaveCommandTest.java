@@ -277,6 +277,11 @@ public class AddEmployeeToLeaveCommandTest {
         }
 
         @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             throw new AssertionError("This method should not be called.");
         }

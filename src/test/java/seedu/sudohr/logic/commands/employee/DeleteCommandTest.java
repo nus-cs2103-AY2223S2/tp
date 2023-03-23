@@ -12,6 +12,11 @@ import static seedu.sudohr.testutil.TypicalDepartments.SALES;
 import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.sudohr.testutil.TypicalLeave.EMPLOYEE_ON_LEAVE_TYPE_1;
+import static seedu.sudohr.testutil.TypicalLeave.EMPLOYEE_ON_LEAVE_TYPE_2_AND_3;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_1;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_2;
+import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_3;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +27,7 @@ import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalEmployees;
+import seedu.sudohr.testutil.TypicalLeave;
 
 
 /**
@@ -32,6 +38,7 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(TypicalEmployees.getTypicalSudoHr(), new UserPrefs());
     private Model modelWithDepts = new ModelManager(TypicalDepartments.getTypicalSudoHr(), new UserPrefs());
+    private Model modelWithLeaves = new ModelManager(TypicalLeave.getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_validIdUnfilteredList_success() {
@@ -74,6 +81,7 @@ public class DeleteCommandTest {
         Employee employeeToDelete = EMPLOYEE_IN_HUMAN_RESOURCES;
         assertTrue(employeeToDelete != null);
         // ensure employee exists in HUMAN_RESOURCES
+        // Note: Access a department through the model since each model clones the department to allow for re-use
         assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
@@ -107,6 +115,46 @@ public class DeleteCommandTest {
         // check cascaded to department level
         assertTrue(!modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
         assertTrue(!modelWithDepts.getDepartment(SALES.getName()).hasEmployee(employeeToDelete));
+    }
+
+    @Test
+    public void execute_validIdCascadeInLeave_success() {
+        Employee employeeToDelete = EMPLOYEE_ON_LEAVE_TYPE_1;
+        assertTrue(employeeToDelete != null);
+        /// ensure employee exists in the list of employee on leave that day
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_1.getDate()).hasEmployee(employeeToDelete));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
+
+        Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
+        expectedModel.deleteEmployee(employeeToDelete);
+
+        // check deletion command
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
+        assertCommandSuccess(deleteCommand, modelWithLeaves, expectedMessage, expectedModel);
+
+        // check cascaded to leave level
+        assertTrue(!modelWithLeaves.getLeave(LEAVE_TYPE_1.getDate()).hasEmployee(employeeToDelete));
+    }
+
+    @Test
+    public void execute_cascadeDeleteEmployeeInTwoLeaves_success() {
+        Employee employeeToDelete = EMPLOYEE_ON_LEAVE_TYPE_2_AND_3;
+        assertTrue(employeeToDelete != null);
+        // ensure employee exists in the respective list of employees for each leave
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_2.getDate()).hasEmployee(employeeToDelete));
+        assertTrue(modelWithLeaves.getLeave(LEAVE_TYPE_3.getDate()).hasEmployee(employeeToDelete));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
+
+        Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
+        expectedModel.deleteEmployee(employeeToDelete);
+
+        // check deletion command
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
+        assertCommandSuccess(deleteCommand, modelWithLeaves, expectedMessage, expectedModel);
+
+        // check cascaded to leave level
+        assertTrue(!modelWithLeaves.getLeave(LEAVE_TYPE_2.getDate()).hasEmployee(employeeToDelete));
+        assertTrue(!modelWithLeaves.getLeave(LEAVE_TYPE_3.getDate()).hasEmployee(employeeToDelete));
     }
 
     @Test

@@ -255,6 +255,11 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasLeave(Leave leave) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'hasLeave'");

@@ -205,6 +205,8 @@ public interface Model {
 
     //=========== Leave-Level Operations ==========================================================================
 
+    Leave getLeave(LeaveDate date);
+
     /**
      * Adds the given leave.
      * {@code leave} must not already exist in the sudohr book.
