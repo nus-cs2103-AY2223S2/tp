@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.library.logic.commands.FindCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
-import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 import seedu.library.model.bookmark.Genre;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -61,7 +61,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
 
-        return new FindCommand(new BookmarkContainsKeywordsPredicate(
+        return new FindCommand(new TitleContainsKeywordsPredicate(
                 titleKeywords, genreKeywords, tagKeywords, authorKeywords));
     }
 

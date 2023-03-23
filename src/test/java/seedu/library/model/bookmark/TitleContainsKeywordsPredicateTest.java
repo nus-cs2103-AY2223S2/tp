@@ -11,24 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.testutil.BookmarkBuilder;
 
-public class BookmarkContainsKeywordsPredicateTest {
+public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstTitleKeywordList = Collections.singletonList("first");
         List<String> secondTitleKeywordList = Arrays.asList("first", "second");
 
-        BookmarkContainsKeywordsPredicate firstPredicate =
-                new BookmarkContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
-        BookmarkContainsKeywordsPredicate secondPredicate =
-                new BookmarkContainsKeywordsPredicate(secondTitleKeywordList, null, null, null);
+        TitleContainsKeywordsPredicate firstPredicate =
+                new TitleContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
+        TitleContainsKeywordsPredicate secondPredicate =
+                new TitleContainsKeywordsPredicate(secondTitleKeywordList, null, null, null);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        BookmarkContainsKeywordsPredicate firstPredicateCopy =
-                new BookmarkContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
+        TitleContainsKeywordsPredicate firstPredicateCopy =
+                new TitleContainsKeywordsPredicate(firstTitleKeywordList, null, null, null);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,19 +43,24 @@ public class BookmarkContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
+<<<<<<< HEAD:src/test/java/seedu/library/model/bookmark/BookmarkContainsKeywordsPredicateTest.java
         // One name keyword
         BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+=======
+        // One keyword
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
+>>>>>>> parent of a2e0e8af (Update BookmarkContainsKeywordsPredicate name):src/test/java/seedu/library/model/bookmark/TitleContainsKeywordsPredicateTest.java
                 Collections.singletonList("Alice"), null, null, null
         );
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new BookmarkContainsKeywordsPredicate(
+        predicate = new TitleContainsKeywordsPredicate(
                 Arrays.asList("Alice", "Bob"), null, null, null);
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Mixed-case keywords
-        predicate = new BookmarkContainsKeywordsPredicate(
+        predicate = new TitleContainsKeywordsPredicate(
                 Arrays.asList("aLIce", "bOB"), null, null, null);
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
     }
@@ -63,12 +68,12 @@ public class BookmarkContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        BookmarkContainsKeywordsPredicate predicate =
-                new BookmarkContainsKeywordsPredicate(Arrays.asList("Carol"), null, null, null);
+        TitleContainsKeywordsPredicate predicate =
+                new TitleContainsKeywordsPredicate(Arrays.asList("Carol"), null, null, null);
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new BookmarkContainsKeywordsPredicate(
+        predicate = new TitleContainsKeywordsPredicate(
                 Arrays.asList("Bob", "Carol"), null, null, null);
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
     }

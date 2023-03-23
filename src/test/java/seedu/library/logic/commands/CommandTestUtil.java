@@ -18,7 +18,7 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**
@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Bookmark bookmark = model.getFilteredBookmarkList().get(targetIndex.getZeroBased());
         final String[] splitName = bookmark.getTitle().value.split("\\s+");
-        model.updateFilteredBookmarkList(new BookmarkContainsKeywordsPredicate(
+        model.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(
                 Arrays.asList(splitName[0]), null, null, null));
 
         assertEquals(1, model.getFilteredBookmarkList().size());

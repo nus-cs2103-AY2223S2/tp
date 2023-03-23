@@ -25,7 +25,7 @@ import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 import seedu.library.testutil.BookmarkBuilder;
 import seedu.library.testutil.BookmarkUtil;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
@@ -76,7 +76,7 @@ public class LibraryParserTest {
                 FindCommand.COMMAND_WORD + " " + PREFIX_TITLE + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(
-                new BookmarkContainsKeywordsPredicate(keywords, null, null, null)), command);
+                new TitleContainsKeywordsPredicate(keywords, null, null, null)), command);
     }
 
     @Test
