@@ -72,4 +72,13 @@ public class UpdateCommand extends Command {
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, toUpdate.getTradeName(), toUpdate.getStorageCount()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof UpdateCommand // instanceof handles nulls
+                && tradeName.equals(((UpdateCommand) other).tradeName) // state check
+                && add == (((UpdateCommand) other).add)
+                && value.equals(((UpdateCommand) other).value);
+    }
 }
