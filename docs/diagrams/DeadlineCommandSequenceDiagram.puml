@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeadlineCommandParser" as DeadlineCommandParser LOGIC_COLOR
+participant "s:DeadlineCommand" as DeadlineCommand LOGIC_COLOR
+participant "o:Order" as Order LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deadline asc")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deadline asc")
+activate AddressBookParser
+
+create DeadlineCommandParser
+AddressBookParser -> DeadlineCommandParser
+activate DeadlineCommandParser
+
+DeadlineCommandParser --> AddressBookParser
+deactivate DeadlineCommandParser
+
+AddressBookParser -> DeadlineCommandParser : parse("asc")
+activate DeadlineCommandParser
+
+create DeadlineCommand
+DeadlineCommandParser -> DeadlineCommand
+activate DeadlineCommand
+
+DeadlineCommand --> DeadlineCommandParser : s
+deactivate DeadlineCommand
+
+create Order
+DeadlineCommand -> Order
+activate Order
+
+Order --> DeadlineCommand : o
+deactivate Order
+
+
+DeadlineCommandParser --> AddressBookParser : s
+deactivate DeadlineCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeadlineCommandParser -[hidden]-> AddressBookParser
+destroy DeadlineCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+
+LogicManager -> DeadlineCommand : execute()
+activate DeadlineCommand
+
+
+DeadlineCommand -> Model : displaySortedDeadlineList()
+activate Model
+
+Model --> DeadlineCommand
+deactivate Model
+
+create CommandResult
+DeadlineCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeadlineCommand
+deactivate CommandResult
+
+DeadlineCommand --> LogicManager : result
+deactivate DeadlineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
