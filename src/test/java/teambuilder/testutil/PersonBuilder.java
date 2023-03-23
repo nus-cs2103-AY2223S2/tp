@@ -114,6 +114,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building to be an emptyPhone.
+     */
+    public PersonBuilder withoutPhone() {
+        this.phone = Phone.getEmptyPhone();
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, major, tags, teams);
     }
