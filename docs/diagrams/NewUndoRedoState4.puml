@@ -3,29 +3,25 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Initial State of HistoryUtil
+title After command "list"
 
-class State0 as "Out of bounds"
 package undoHistory {
-    class State1 as "__null:Memento__"
+    class State1 as "__<color:blue>m0:Memento</color>__"
     class State2 as "__null:Memento__"
     class State3 as "__null:Memento__"
 }
-State0 -[hidden]right-> State1
+
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
-class State4 as "Out of bounds"
-hide State4
 package redoFuture {
     class State5 as "__null:Memento__"
-    class State6 as "__null:Memento__"
+    class State6 as "__<color:blue>m1:Memento</color>__"
     class State7 as "__null:Memento__"
 }
-State4 -[hidden]right-> State5
 State5 -[hidden]right-> State6
 State6 -[hidden]right-> State7
 
 class Pointer as "currentNum"
-Pointer -up-> State0
-Pointer -[hidden]down-> State4
+Pointer -up-> State1
+Pointer -[hidden]down->State5

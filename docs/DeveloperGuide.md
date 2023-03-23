@@ -1,7 +1,16 @@
 ---
 layout: page
 title: Developer Guide
+
 ---
+<style>
+   img.center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+   }
+</style>
+
 * Table of Contents
 {:toc}
 
@@ -154,85 +163,104 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/Redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `undo`/`redo` mechanism is based on the memento design pattern. Within the memento design pattern, there are three main classes:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+1. `Originator` - The object that becomes modified and requires to be restored using `undo`/`redo`.
+2. `Memento` - The wrapper of a saved state of an `Originator` that is used to restore the `Originator`.
+3. `Caretaker` - The aggregator of `Memento` that controls the sequence of `Memento`s for `undo`/`redo`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+![Memento Design Pattern](images/MementoDesignPatternDiagram.png){:.center}
+
+While the Memento Design Pattern is mostly used for `Undo`, we can extend its functionality to include `Redo`.
+
+Implementing this design pattern results in the following:
+
+- `Model` inferface extends the `Originator` interface, resulting in a concrete `Originator` in `ModelManger`.
+- `TeamBuilderMemento` implements the `Memento` interface and acts as a saved state of `ModelManager`
+- `HistoryUtil` replaces the `Caretaker` and tracks the timeline and order of `Memento`
+- Any modifying `Command` will call `HistoryUtil#storePast` with `Model#save()` and their `COMMAND_WORD`.\
+(`AddCommand` is given as an example.)
+
+![Implemented Memento Design](images/ImplementedMementoDesignDiagram.png){:.center}
+
+As we want `undo`/`redo` to provide feedback to the user, the `Commands` must provide context to `HistoryUtil`
+
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 1.**
+The user launches the application for the first time. The `HistoryUtil` will be initialized with two empty `Memento` arrays, one for `undo` and another for `redo`. The array counter will be `-1` indicating totally empty arrays.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/NewUndoRedoState0.png){:.center}
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Step 2.**
+The user executes `delete 5` command to delete the 5th person in the team builder. The `delete` command calls `Model#save()` before any actions, causing the initial state of the team builder to be saved as a `Memento`. The `delete` command provides the resutling `Memeto` and the context of the change (deleting 5) to `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the array counter increases to `0`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/NewUndoRedoState1.png){:.center}
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#save()` before any actions, saving another `Memento`. The `Memento` and description (add n/david ...) is stored through `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the array counter increases to `1`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/NewUndoRedoState2.png){:.center}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info ">:information_source:**Note:** If a command fails its execution, it will not call `Model#save()`, so the `Memento` is not stored in `HistoryUtil`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryUtil#undo`, which will call `Memento#restore()` on `undoHistory[currentNum]`. `Memento#restore()` will be called and state before the `add` command is restored. `HistoryUtil#undo` also moves the `Memento` into `redoFuture` and outputs an `Optional<String> description` to the `undo` command. The `undo` command then feedbacks to the user that the undo has occured successfully.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/NewUndoRedoState3.png){:.center}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentNum` is at index -1, then there are no previous TeamBuilder states to restore. In this case, `HistoryUtil#undo` returns `Optional.empty()`.
+As `undo` command uses `Optional::isPresent` to check if undo is successful, it will then return an error message to the user.
 
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/NewUndoSequenceDiagram.png){:.center}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source:**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The `redo` command does the opposite — it calls `HistoryUtil#redo()`, which checks the `redoFuture` for any `Memento` to restore at `counterNum`. If present, the `Memento` is restored and a `Optional<String>` containing the description of the `Memento` is given to the `redo` command. The restored `Memento` is moved to `undoHistory` and removed from `redoFuture`. The `redo` command feedbacks the output to the user.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `counterNum` is at an index where `redoFuture` is null, then there are no undone `Memento` to restore. The `redo` command uses the `Optional<String>` output `Optional::isPresent` to check if this is the case. If so, it will return an error message the user.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+</div>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#Save()`, `HistroyUtil#storePast` , `HistroyUtil#undo`, `HistoryUtil#redo`. Thus, the `Model` remains unchanged.
+
+![UndoRedoState4](images/NewUndoRedoState4.png){:.center}
+
+Step 6. The user executes `clear`, which calls `Model#Save` and stores the resulting `Memento` and description (clear) into `HistoryUtil#storePast`. Since there is a new `Memento` for `undoHistory` that is not from `redoFuture`, all `Memento` in `redoFuture` are purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/NewUndoRedoState5.png){:.center}
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img class="center" src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Saves the state of the team builder found in ModelManager (Current choice).
+  * Pros: Easy to implement, easy to extend, easy to modify of "state" saved.
+  * Cons: May have performance issues in terms of memory usage if state saved is too large.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 3:** Save the entire team builder inside VersionedTeamBuilder, replacing TeamBuilder (Original AB-3 Choice)
+  * Pros: Easy to implement.
+  * Cons: Difficult to extend. Performance issues in terms of memeory usage. Undo/Redo timeline tied to TeamBuilder. No user feedback on what command was undone/redone.
 
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -341,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. 
+
 
 *{More to be added}*
 
