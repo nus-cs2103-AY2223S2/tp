@@ -29,6 +29,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 public class AddDeckCommandTest {
 
@@ -274,6 +275,10 @@ public class AddDeckCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void tagCurrentCardInReview(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -28,6 +28,7 @@ import seedu.address.logic.commands.reviewcommands.NextCardCommand;
 import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
 import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -178,6 +179,9 @@ public class MasterDeckParser {
 
         case MarkWrongCommand.COMMAND_WORD:
             return new MarkWrongCommand();
+
+        case TagCardDuringReviewCommand.COMMAND_WORD:
+            return new TagCardDuringReviewCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

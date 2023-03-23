@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -157,6 +158,12 @@ public interface Model {
      * Returns the state of the model
      */
     ModelState getState();
+
+    /**
+     * Tag
+     * @param tag
+     */
+    void tagCurrentCardInReview(Tag tag);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
 }
