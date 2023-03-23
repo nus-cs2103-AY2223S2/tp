@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -151,6 +152,10 @@ public class InternshipDetailsCard extends UiPart<Region> {
             return "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are"
                     + " part of the journey. Continue your search and you will eventually a suitable internship."
                     + " Fighting!";
+        case ACCEPTED:
+            return "Congratulations! This is a chance to build new skills, make connections, and explore your "
+                    + "interests in a real-world setting. Embrace every moment of this journey and "
+                    + "don't be afraid to ask questions, seek guidance, and take risks.";
         default:
             return "If possible, try to apply early because once companies receive applications, they would start"
                     + " screening for potential candidates. Also, remember to do a thorough check of your resume"

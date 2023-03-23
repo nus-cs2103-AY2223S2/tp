@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -142,6 +143,14 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
                 "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are"
                         + " part of the journey. Continue your search and you will eventually a suitable internship."
                         + " Fighting!");
+
+        // Test Accepted
+        internship = new InternshipBuilder().withStatus(ACCEPTED).build();
+        internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
+        assertEquals(internshipDetailsCard.getTips(),
+                "Congratulations! This is a chance to build new skills, make connections, and explore your "
+                        + "interests in a real-world setting. Embrace every moment of this journey and "
+                        + "don't be afraid to ask questions, seek guidance, and take risks.");
 
     }
 
