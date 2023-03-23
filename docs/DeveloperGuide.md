@@ -345,8 +345,6 @@ _{Explain here how the data archiving feature will be implemented}_
   * lists their products online or on their own website
   * perform transactions manually without a Point-of-Sale (POS) system
   * Lack manpower/ time to track orders and contacts manually
-  * Has < 5 employees
-  * Has < 200 customers per month
   * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
 * Can type fast
@@ -356,39 +354,41 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 Our application:
-* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
-* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
-* enables faster contact management compared to a typical mouse/_GUI_ driven app
+* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them.
+* serves as a user-friendly alternative to free applications such as Microsoft Excel by providing a standard format.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**High Priority (Must Have)**
 
-| Priority | As a / an …​                                                            | I want to …​                                                                          | So that I can…​                                              |
-|----------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                                | refer to the instructions when learning how to use the app   |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                    | easily find them in a single place                           |
-| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                       | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                             | keep track of my to-do list                                  |
-| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                                | ensure that the supplier contacts keyed in are correct       |
-| `* * *`  | familiar user                                                           | delete existing orders from my order list                                             | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                               | remove tasks that I no longer need to complete               |
-| `* * *`  | small business owner                                                    | add an new Item to my menu                                                            | keep reference to items that I am selling.                   |
-| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                         | don't have to keep a mental note of profit per item.         |
-| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                                | quickly create orders.                                       |
-| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                               |
-| `* *`    | familiar user                                                           | edit existing supplier information                                                    | keep my records accurate and up-to-date                      |
-| `* *`    | familiar user                                                           | edit existing information about orders                                                | keep my order details accurate and up-to-date                |
-| `* *`    | familiar user                                                           | edit existing task information                                                        | easily correct any wrong information keyed in                |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                            | have a clearer view of ‘who supplies what’ at a glance       |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details  | have a record of everything                                  |
-| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                          | keep track of my deadlines and plan my time well             |
-| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email         | quickly obtain the details of the contact when I forget them |
-| `* *`    | forgetful business owner                                                | look for task information using keywords like task name, task status or task deadline | quickly obtain the details of the task when I forget them    |
-| `*`      | expert user                                                             | sort my orders by the order of earliest deadline to latest deadline                   | easily see which orders are due first                        |
-| `*`      | expert user                                                             | sort my tasks by the order of earliest deadline to latest deadline                    | easily see which tasks are due first                         |
+| As a / an …​  | I want to …​                            | So that I can…​                                           |
+|------------------|--------------------------------------------|--------------------------------------------------------------|
+| user             | add new orders                             | have a consolidated place to keep track of my orders         |
+| user             | view all my orders                         | track my progress in deadling with the orders                |
+| user             | edit my orders                             | update my order status                                       |
+| user             | find my orders by keywords                 | get a specific order without manually searching for it       |
+| user             | delete my orders                           | remove unwanted old orders                                   |
+| user             | add new customers (suppliers or customers) | easily find them from a consolidated location                |
+| user             | find contacts by keywords                  | get the relevant contact information from a specific contact |
+| user             | edit my contacts                           | update past contacts with current information                |
+| user             | delete my contacts                         | remove contacts not used anymore                             |
+| user             | add new tasks                              | keep track of business tasks from the same application       |
+| user             | find tasks by keywords                     | get all relevant tasks that are related to plan my schedule  |
+| user             | edit my tasks                              | update my progress on the task                               |
+| user             | delete my tasks                            | remove old completed tasks                                   |
+| new user         | have an instruction guide                  | understand how to use the application                        |
 
-*{More to be added}*
+**Medium Priority (Nice to Have)**
+
+| As a / an …​  | I want to …​             | So that I can…​                                        |
+|------------------|-----------------------------|-----------------------------------------------------------|
+| business owner   | add my menu items           | add orders based on my menu items                         |
+| business owner   | edit my menu items          | update my price and cost based on current rates           |
+| business owner   | delete menu items           | remove unpopular items that are not sold anymore          |
+| user             | have my orders sorted       | view my upcoming orders that are not done yet             |
+| user             | have my tasks sorted        | view the most pressing tasks at first glance              |
+| new user         | be able to import past data | use the application easily when transferring data         |
+| user             | be able to export data      | keep track of past orders without lagging the application |
 
 ### Use cases
 
@@ -704,10 +704,11 @@ Trackr displays an error message.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for typical usage.
 1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should store data locally only.
 
 *{More to be added}*
 
