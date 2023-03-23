@@ -276,12 +276,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean markWrong() {
+        public void markWrong() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean markCorrect() {
+        public void markCorrect() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -302,6 +302,11 @@ public class AddCommandTest {
 
         @Override
         public void tagCurrentCardInReview(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isReviewCardFlipped() {
             throw new AssertionError("This method should not be called.");
         }
     }

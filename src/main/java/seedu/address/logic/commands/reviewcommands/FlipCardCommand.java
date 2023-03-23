@@ -13,14 +13,20 @@ public class FlipCardCommand extends Command {
 
     public static final String COMMAND_WORD = "[";
 
-    public static final String MESSAGE_SUCCESS = "Flashcard is flipped! Showing answer."
+    public static final String MESSAGE_FLIP_SUCCESS = "Flashcard is flipped! Showing answer."
+            + "\nTo mark correct enter '"
+            + "\nTo mark wrong enter ;";
+
+    public static final String MESSAGE_UNFLIP_SUCCESS = "Flashcard is unflipped! Showing only the question."
             + "\nTo mark correct enter '"
             + "\nTo mark wrong enter ;";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.flipCard(); // Todo: any possible exception here?
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.flipCard();
+        return model.isReviewCardFlipped()
+                ? new CommandResult(MESSAGE_FLIP_SUCCESS)
+                : new CommandResult(MESSAGE_UNFLIP_SUCCESS);
     }
 }
