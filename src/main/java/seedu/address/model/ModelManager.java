@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -180,7 +180,7 @@ public class ModelManager implements Model {
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
         ObservableList<Person> lastShownList = this.filteredPersons;
         ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
-        return calendarEventList;    }
+        return calendarEventList; }
 
     private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
         calendarEventList.clear();

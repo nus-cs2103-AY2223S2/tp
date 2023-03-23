@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Session in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Session implements Comparable<Session>{
+public class Session implements Comparable<Session> {
 
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -32,7 +32,7 @@ public class Session implements Comparable<Session>{
     public Session(String startDateTime, String endDateTime) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        if(!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)){
+        if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
         if (!this.isValidSession()) {

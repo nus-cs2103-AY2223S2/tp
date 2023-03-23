@@ -4,7 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -102,7 +106,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (calendarTab.isSelected() && !commandTextField.isFocused() /*&& !calendarDisplay.isJumpBoxFocused()*/) {
+            if (calendarTab.isSelected() && !commandTextField.isFocused()) {
                 calendarDisplay.handleKeyPressed(event);
             }
         });
