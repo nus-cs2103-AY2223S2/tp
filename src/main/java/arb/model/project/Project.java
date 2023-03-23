@@ -2,8 +2,12 @@ package arb.model.project;
 
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.logging.Logger;
+
+import arb.commons.core.LogsCenter;
 
 /**
  * Represents a Project in the address book.
@@ -11,19 +15,23 @@ import java.util.Optional;
  */
 public class Project {
 
+    private static final Logger logger = LogsCenter.getLogger(Project.class);
+
     // Details fields. Deadline is optional.
     private final Title title;
     private final Optional<Deadline> deadline;
+    private final Optional<Price> price;
     private final Status status;
 
     /**
      * Constructs a {@code Project}.
      * Title must be present and not null.
      */
-    public Project(Title title, Deadline deadline) {
+    public Project(Title title, Deadline deadline, Price price) {
         requireAllNonNull(title);
         this.title = title;
         this.deadline = Optional.ofNullable(deadline);
+        this.price = Optional.ofNullable(price);
         status = new Status();
     }
 
@@ -37,13 +45,32 @@ public class Project {
     public boolean isDeadlinePresent() {
         return deadline.isPresent();
     }
+    public boolean isPricePresent() {
+        return price.isPresent();
+    }
 
     public Deadline getDeadline() {
         return deadline.orElse(null);
     }
 
+    /**
+     * Returns true if this project has is overdue
+     */
+    public boolean isOverdue() {
+        LocalDate currentDate = LocalDate.now();
+        logger.info(currentDate.toString());
+        Deadline currentDateAsDeadline = new Deadline(currentDate.toString());
+        logger.info(currentDateAsDeadline.toString());
+        logger.info(Integer.toString(this.getDeadline().compareTo(currentDateAsDeadline)));
+        return this.getDeadline().compareTo(currentDateAsDeadline) < 0 && !this.status.getStatus();
+    }
+
     public Status getStatus() {
         return status;
+    }
+
+    public Price getPrice() {
+        return price.orElse(null);
     }
 
     public void markAsDone() {
@@ -74,6 +101,10 @@ public class Project {
 
         if (isDeadlinePresent()) {
             builder.append(", due by: ").append(getDeadline());
+        }
+
+        if (isPricePresent()) {
+            builder.append(", ").append(getPrice());
         }
 
         return builder.toString();

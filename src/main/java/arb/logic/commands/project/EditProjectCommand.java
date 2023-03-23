@@ -2,6 +2,7 @@ package arb.logic.commands.project;
 
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
@@ -22,6 +23,7 @@ import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 
@@ -45,9 +47,11 @@ public class EditProjectCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_PRICE + "PRICE] "
             + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sunset painting "
-            + PREFIX_DEADLINE + "2023-07-05";
+            + PREFIX_DEADLINE + "2023-07-05 "
+            + PREFIX_PRICE + "2.07";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;
@@ -100,8 +104,8 @@ public class EditProjectCommand extends Command {
 
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
-
-        return new Project(updatedTitle, updatedDeadline);
+        Price updatedPrice = editProjectDescriptor.getPrice().orElse(projectToEdit.getPrice());
+        return new Project(updatedTitle, updatedDeadline, updatedPrice);
     }
 
     @Override
@@ -138,6 +142,8 @@ public class EditProjectCommand extends Command {
         private Title title;
         private Deadline deadline;
 
+        private Price price;
+
 
         public EditProjectDescriptor() {}
 
@@ -147,13 +153,14 @@ public class EditProjectCommand extends Command {
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
+            setPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline);
+            return CollectionUtil.isAnyNonNull(title, deadline, price);
         }
 
         public void setTitle(Title title) {
@@ -164,12 +171,20 @@ public class EditProjectCommand extends Command {
             this.deadline = deadline;
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
         }
 
         @Override
@@ -188,7 +203,8 @@ public class EditProjectCommand extends Command {
             EditProjectDescriptor e = (EditProjectDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDeadline().equals(e.getDeadline());
+                    && getDeadline().equals(e.getDeadline())
+                    && getPrice().equals(e.getPrice());
         }
     }
 }
