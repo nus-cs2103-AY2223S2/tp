@@ -7,7 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -42,11 +46,17 @@ public class DeleteCommand extends Command {
             + PREFIX_COMPANY_NAME + "google ";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internships have been deleted!";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     private final List<Index> targetIndexes;
     private final InternshipContainsKeywordsPredicate predicate;
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    /**
+     * Create a DeleteCommand object from the list of user supplied indexes and a predicate
+     * @param targetIndexes A list of {@code Index} that refers to the index of internship entries in list.
+     * @param predicate A user supplied predicate to filter internships.
+     */
     public DeleteCommand(List<Index> targetIndexes, InternshipContainsKeywordsPredicate predicate) {
         this.targetIndexes = targetIndexes;
         this.predicate = predicate;
@@ -62,7 +72,6 @@ public class DeleteCommand extends Command {
         // Remove duplicates
         List<Index> uniqueTargetIndexes = new ArrayList<>(new HashSet<>(this.targetIndexes));
 
-        logger.info(String.format("Indexes to delete: %s", Arrays.toString(uniqueTargetIndexes.stream().map(i -> Integer.toString(i.getZeroBased())).toArray())));
 
         // Sort list
         Collections.sort(uniqueTargetIndexes);

@@ -1,9 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_INDEXLIST;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PREDICATE;
+import static seedu.address.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
+import static seedu.address.logic.commands.CommandTestUtil.NON_EMPTY_PREDICATE;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRONT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +30,30 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_INTERNSHIP));
+    public void parse_indexAndPredicateNonEmpty_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1 " + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new DeleteCommand(NON_EMPTY_INDEXLIST, NON_EMPTY_PREDICATE));
+    }
+
+    @Test
+    public void parse_indexEmptyAndPredicateNonEmpty_returnsDeleteCommand() {
+        assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new DeleteCommand(EMPTY_INDEXLIST, NON_EMPTY_PREDICATE));
+    }
+
+    @Test
+    public void parse_indexNonEmptyAndPredicateEmpty_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1", new DeleteCommand(NON_EMPTY_INDEXLIST, EMPTY_PREDICATE));
+    }
+
+    @Test
+    public void parse_indexEmptyAndPredicateEmpty_throwsParseException() {
+        assertParseFailure(parser, "", String.format(MESSAGE_MISSING_ARGUMENTS, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE));
     }
 }

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,6 +71,17 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final InternshipContainsKeywordsPredicate EMPTY_PREDICATE =
+            new InternshipContainsKeywordsPredicate(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                    new ArrayList<>(), new ArrayList<>());
+
+    public static final InternshipContainsKeywordsPredicate NON_EMPTY_PREDICATE =
+            new InternshipContainsKeywordsPredicate(Arrays.asList("Google"), Arrays.asList("Software Developer"),
+                    Arrays.asList("applied"), Arrays.asList("2023-02-03"), Arrays.asList("frontend"));
+
+    public static final List<Index> NON_EMPTY_INDEXLIST = new ArrayList<>(Arrays.asList(INDEX_FIRST_INTERNSHIP));
+    public static final List<Index> EMPTY_INDEXLIST = new ArrayList<>();
 
     public static final EditCommand.EditInternshipDescriptor DESC_APPLE;
     public static final EditCommand.EditInternshipDescriptor DESC_GOOGLE;

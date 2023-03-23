@@ -2,27 +2,25 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
-
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -54,10 +52,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
 
         try {
-            logger.info(String.format("%s", argMultimap.getPreamble()));
             List<Index> indexes = ParserUtil.parseIndexes(argMultimap.getPreamble());
-            logger.info("Indexes done");
-            logger.info(String.format("Indexes: %s, %s", Arrays.toString(indexes.stream().map(i -> Integer.toString(i.getZeroBased())).toArray()), newPredicate));
             return new DeleteCommand(indexes, newPredicate);
         } catch (ParseException pe) {
             throw new ParseException(
