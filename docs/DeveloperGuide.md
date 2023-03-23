@@ -680,7 +680,7 @@ On program initialization, `UiManager` creates `MainWindow` as a primary stage w
 sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
 [Info Panel](#info-panel) which shows more details about a specific person.
 
-[Insert diagram that labels the sides]
+![ui-main-sections](images/ui-diagrams/ui-main-sections.PNG)
 
 Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
 explained under [Theme](#theme) section.
@@ -693,18 +693,16 @@ Refer to [UI Component](#ui-component) for more information about this package.
 
 Main section consists of the following components:
 
-[Insert diagram that labels the components]
-
 * [CommandBox](#commandbox)
 * [ResultDisplay](#resultdisplay)
 * [PersonListPanel](#personlistpanel)
 * [StatusBarFooter](#statusbarfooter)
 
+![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.PNG)
+
 ### **CommandBox**
 
 **Main input for the UI.**
-
-[CommandBox Image]
 
 `CommandBox`'s constructor takes in a `CommandExecutor` that is passed by the `MainWindow`. This creates a single, 
 bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
@@ -727,8 +725,6 @@ modify the command without having to rewrite the whole command.
 
 **Main output for the UI.**
 
-[Placeholder for ResultDisplay image]
-
 Even though the program supports GUI, main interaction between the user and the program happens through the CLI. This
 leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
 execution of commands.
@@ -750,8 +746,6 @@ Part of the main section that displays a list of person registered to the CoDoc 
 The list is created as a ListView. More information about ListView
 [here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
 
-[Placeholder for picture]
-
 <br>
 
 #### Design considerations
@@ -771,8 +765,6 @@ in changing how the cells within the ListView look should look into `PersonCard`
 
 Small section at the bottom of the program to show information about the status of the program.
 
-[Placeholder for image]
-
 Currently, it shows the path for CoDoc's database. Developers who are looking to show any other status to the user
 (such as internet connection availability, if required in future implementation) may use this to display such
 information.
@@ -786,20 +778,22 @@ which shows more information about a person on the top half, and loads up `Detai
 
 Info Panel consists of the following components:
 
-[Insert diagram that labels the components]
-
 * [InfoTab](#infotab)
 * [DetailedInfo](#detailedinfo)
   * [DetailedContact](#detailedcontact)
   * [DetailedModule](#detailedmodule)
   * [DetailedSkill](#detailedskill)
 
+| InfoTab with DetailedContact                                           | InfoTab with DetailedModule                                          | InfoTab with DetailedSkill                                         |
+|------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|
+| ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.PNG) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.PNG) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.PNG) |
+
 ### **InfoTab**
 
 Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
 **main controller** for the right section, Info Panel.
 
-[Placeholder for image]
+![info-tab-sequence-diagram](images/InfoTabSequenceDiagram.png)
 
 <br>
 
@@ -817,8 +811,6 @@ This led to the design which top part of `InfoTab` shows basic information about
 of study) and bottom part shows whatever [DetailedInfo](#detailedinfo) user wish to display. Since the name or course of
 study could become very long, the containing `VBox` has been allowed to grow and the information containing `label` are
 set to wrap its text.
-
-[Placeholder for table of images used in PR - Name wrap]
 
 Note that there are no listeners that observes the changes made to the staged `progatonist`. This is to prevent
 over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
@@ -874,7 +866,19 @@ To let the users intuitively know that there are rooms for more modules to be ad
 to `340` to reveal small amount of empty space. If the program window is resized too short, the ListView becomes a
 scrollable one.
 
-[Placeholder for table of images used in PR - Growling list]
+| ListView with long list of modules                                    | ListView with short list of modules                                    | ListView with list extending beyond window                                                   |
+|-----------------------------------------------------------------------|:-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| ![ui-listview-longlist](images/ui-diagrams/ui-listview-longlist.PNG)  | ![ui-listview-shortlist](images/ui-diagrams/ui-listview-shortlist.PNG) | ![ui-listview-longlist-shortwindow](images/ui-diagrams/ui-listview-longlist-shortwindow.PNG) |
+
+
+Here is a code snippet in `DetailedModule.java` responsible for this calculation:
+
+```java
+moduleListView.setPrefHeight((52 * modules.size()) + 2);
+```
+Note that value 52 is used because each ModuleListCard has a height of 50, with top and bottom borders of thickness 1.
+The addition of 2 at the back is a buffer. As you can tell, the values are hard coded and should be changed to take
+reference off the ModuleListCard directly, which would be fixed in upcoming updates.
 
 <br>
 
@@ -890,11 +894,16 @@ information.
 
 ## **Theme**
 
-Most of the Java FXML components follow the style specified by the CSS file. Refer to this file under the `view` package
-within the `resources` folder when visual design changes are to be made.
+Most of the Java FXML components follow the style specified by the CSS file `CodocTheme.css`. Refer to this file under
+the `view` package within the `resources` folder when visual design changes are to be made.
 
 CSS file also contains colors shown in the program in RGB color codes, developers may refer to
 [this page](https://www.rapidtables.com/web/color/RGB_Color.html) to decipher them.
+
+Commonly used colors are:
+1. **#bfbfbf**: Dark gray color for borders.
+2. **#808080**: Even darker gray for most of the texts shown on the program.
+3. **#ffffff**: White color used for most of the backgrounds existing.
 
 Fonts used in this program but not part of system fonts are stored in the `resources` folder as well, under the `font`
 package. These are loaded by the `MainApp` class upon initialization of the program. Mainly used fonts are:
