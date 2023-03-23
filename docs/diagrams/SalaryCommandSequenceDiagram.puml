@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SalaryCommandParser" as SalaryCommandParser LOGIC_COLOR
+participant "s:SalaryCommand" as SalaryCommand LOGIC_COLOR
+participant "o:Order" as Order LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("salary asc")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("salary asc")
+activate AddressBookParser
+
+create SalaryCommandParser
+AddressBookParser -> SalaryCommandParser
+activate SalaryCommandParser
+
+SalaryCommandParser --> AddressBookParser
+deactivate SalaryCommandParser
+
+AddressBookParser -> SalaryCommandParser : parse("asc")
+activate SalaryCommandParser
+
+create SalaryCommand
+SalaryCommandParser -> SalaryCommand
+activate SalaryCommand
+
+SalaryCommand --> SalaryCommandParser : s
+deactivate SalaryCommand
+
+create Order
+SalaryCommand -> Order
+activate Order
+
+Order --> SalaryCommand : o
+deactivate Order
+
+
+SalaryCommandParser --> AddressBookParser : s
+deactivate SalaryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SalaryCommandParser -[hidden]-> AddressBookParser
+destroy SalaryCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+
+LogicManager -> SalaryCommand : execute()
+activate SalaryCommand
+
+
+SalaryCommand -> Model : displaySortedSalaryList()
+activate Model
+
+Model --> SalaryCommand
+deactivate Model
+
+create CommandResult
+SalaryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SalaryCommand
+deactivate CommandResult
+
+SalaryCommand --> LogicManager : result
+deactivate SalaryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
