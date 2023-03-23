@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalClients.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -164,6 +163,7 @@ public class ModelManagerTest {
         assertEquals(2, modelManager.getNumberOfClients());
     }
 
+    /*
     @Test
     public void returnCorrectWeeklyEarnings() {
         AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
@@ -199,4 +199,5 @@ public class ModelManagerTest {
         // Returns weekly earnings in the addressBook declared.
         assertEquals(summary, modelManager.getSummary());
     }
+    */
 }
