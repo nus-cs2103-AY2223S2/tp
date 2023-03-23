@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.commons.exceptions.DataConversionException;
@@ -86,23 +88,24 @@ public class JsonRosterStorage implements RosterStorage {
         FileUtil.createIfMissing(filePath);
         //JsonUtil.saveJsonFile(new JsonSerializableRoster(roster), filePath);
 
-        try {;
-             rosterToJson(roster);
-        } catch (Exception e) {
+        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        String rosterJson = rosterToJson(mapper, roster);
+        writeJsonToFile(rosterJson, filePath);
 
-        }
 
     }
 
-    private void rosterToJson(ReadOnlyRoster roster) {
-        ObjectMapper mapper = new ObjectMapper();
+    private String rosterToJson(ObjectMapper mapper, ReadOnlyRoster roster) throws IOException {
         SerializedRoster wrapper = new SerializedRoster(roster);
-        try {
-            String json = mapper.writeValueAsString(wrapper);
-            System.out.println(json);
-        } catch (Exception e) {
+        String rosterJson = mapper.writeValueAsString(wrapper);
 
-        }
+        return rosterJson;
+    }
+
+    private void writeJsonToFile(String json, Path filePath) throws IOException {
+        FileWriter fileWriter = new FileWriter(filePath.toString());
+        fileWriter.write(json);
+        fileWriter.close();
     }
 
 }
