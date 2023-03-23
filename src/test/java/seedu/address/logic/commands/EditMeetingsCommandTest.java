@@ -31,7 +31,7 @@ import seedu.address.testutil.MeetingBuilder;
  */
 public class EditMeetingsCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

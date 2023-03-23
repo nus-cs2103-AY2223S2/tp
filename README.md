@@ -1,6 +1,6 @@
 ![Ui](docs/images/ui_main.png)
 
-<p align="center">
+<p >
   <a href="https://github.com/AY2223S2-CS2103T-T11-2/tp/actions">
     <img src="https://github.com/AY2223S2-CS2103T-T11-2/tp/workflows/Java%20CI/badge.svg" alt="CI Status">
   </a>
