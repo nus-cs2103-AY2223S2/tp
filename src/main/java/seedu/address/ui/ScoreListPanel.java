@@ -3,6 +3,9 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -25,6 +28,12 @@ public class ScoreListPanel extends UiPart<Region> {
     private Label name;
     @FXML
     private Label nameChart;
+    @FXML
+    private LineChart scoreChart;
+    @FXML
+    private Axis xAxis;
+    @FXML
+    private Axis yAxis;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
@@ -44,6 +53,17 @@ public class ScoreListPanel extends UiPart<Region> {
             if (person.getScoreList().getInternalList().size() != 0) {
                 name.setText("Score history for " + person.getName().fullName);
                 nameChart.setText("Chart for " + person.getName().fullName);
+                scoreChart.setVisible(true);
+                xAxis.setLabel("Date");
+                yAxis.setLabel("Score");
+                XYChart.Series series = new XYChart.Series();
+                for (int i = 0; i < person.getScoreList().getInternalList().size() && i < 5; i++) {
+                    //String label = person.getScoreList().getInternalList().get(i).getLabel().toString();
+                    String date = person.getScoreList().getInternalList().get(i).getDate().toString();
+                    Double value = person.getScoreList().getInternalList().get(i).getValue().value;
+                    series.getData().add(new XYChart.Data<>(date, value));
+                }
+                scoreChart.getData().add(series);
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
                 nameChart.setText("No score chart for " + person.getName().fullName);
