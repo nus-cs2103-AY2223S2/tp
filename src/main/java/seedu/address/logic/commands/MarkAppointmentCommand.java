@@ -22,29 +22,20 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds an appointment to a person.
+ * Marks an appointment to a person.
  */
-// notice that add appointment is essentially edit a person!
-public class AddAppointmentCommand extends MakeAppointmentCommand {
+public class MarkAppointmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "makeApp";
-    public static final String MESSAGE_SUCCESS = "Appointment successfully made";
-    public static final String APPOINTMENT_CLASH = "This appointment has clash with existing arranged appointments";
+    public static final String COMMAND_WORD = "markApp";
+    public static final String MESSAGE_SUCCESS = "Appointment successfully marked";
+    public static final String NO_APPOINTMENT = "This patient does not have appointment yet";
 
     private final Index index;
-    private Appointment appointmentToAdd;
 
-    /**
-     * Creates an AddAppointmentCommand to add the specified {@code Appointment}
-     */
-    public AddAppointmentCommand(Index index, Appointment appointmentToAdd) {
-        requireNonNull(index);
-        requireNonNull(appointmentToAdd);
+    public MarkAppointmentCommand(Index index) {
         this.index = index;
-        this.appointmentToAdd = appointmentToAdd;
     }
 
-    // should check for possible clashes with other appointments
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -55,15 +46,16 @@ public class AddAppointmentCommand extends MakeAppointmentCommand {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, appointmentToAdd);
+        Person editedPerson = createEditedPerson(personToEdit, null);
 
-        if (model.hasClash(editedPerson, index)) {
-            throw new CommandException(APPOINTMENT_CLASH);
+        if (!personToEdit.hasAppointment()) {
+            throw new CommandException(NO_APPOINTMENT);
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
+
     }
 
     private static Person createEditedPerson(Person personToEdit, Appointment appointmentToAdd) {

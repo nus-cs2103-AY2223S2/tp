@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.files.FilesManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TimeComparator;
@@ -101,6 +102,14 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasClash(Person person, Index index) {
+        requireNonNull(person);
+        // check if person's appointment has clashes with appointments except for person with index
+        // should check with Json file or lowest-level personlist
+        return addressBook.hasClash(person, index);
     }
 
     @Override

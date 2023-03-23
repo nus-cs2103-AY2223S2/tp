@@ -317,6 +317,10 @@ public class Person {
         return appointment != null;
     }
 
+    public void markAppointment() {
+        appointment = null;
+    }
+
     // notice: after adding Appoinment, time attribute in person becomes invalid
     // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
@@ -329,6 +333,10 @@ public class Person {
 
     public boolean hasMedicalCondition() {
         return this.medicalCondition.getValue() != "";
+    }
+
+    public boolean hasClash(Person person) {
+        return appointment.hasClash(person.getAppointment());
     }
 
     public Age getAge() {
