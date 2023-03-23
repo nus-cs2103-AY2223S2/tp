@@ -25,9 +25,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`: Navigates directly to the specified module or lecture context
   - `navb`: Navigates to the parent context of the current context
 - List
-  - `list`: Lists the names of all the recorded modules
-  - `list [/mod {module_code}]`: Lists all the lectures in the specified module
-  - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in the specified module and lecture
+  - `list`: Lists all modules/lectures/videos based on context
+  - `list [/mod {module_code}]`: Lists all the lectures in a specified module
+  - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in a specified module and lecture
 - Add
   - `add {module_code} [/name {module_name}]`: Adds a module to Le Tracker
   - `add {lecture_name} [/mod {module_code}]`: Adds a lecture to a module
@@ -45,17 +45,21 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
 - Tag
   - `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
-  - `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from 
-    a module 
-  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: 
+  - `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from
+    a module
+  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
     Tags a video from a lecture
-  - `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module 
+  - `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module
     from Le Tracker
-  - `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the 
-    specified tags from a lecture 
+  - `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the
+    specified tags from a lecture
   - `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
-       Removes the specified tags of a video
-  
+    Removes the specified tags of a video
+- Find
+  - `find {keyword}`: Find all modules/lectures/videos based on context associated to keyword(s)
+  - `find {keyword} /mod {module_code}`: Find all lectures in a specified module associated to keyword(s)
+  - `find {keyword} /mod {module_code} /lec {lecture_name}`: Find all videos in a specified lecture in specified module associated to keyword(s)
+
 Refer to the [Features](#features) below for details of each command.
 
 ---
@@ -271,6 +275,7 @@ Format: `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 - `tag_1, tag_2, ...` must be of correct format
 
 Example:
+
 - `tag EG2310 /tags fun, hard` tags the module `EG2310` with the tags `fun` and `hard`
 
 ### Tag a lecture
@@ -285,7 +290,8 @@ Format: `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_
 - `tag_1, tag_2, ...` must be of correct format
 
 Examples:
-- `tag Lecture_1 /mod CS2040 /tags Yay` tags the lecture `Lecture_1` in the module `CS2040` with the tag 
+
+- `tag Lecture_1 /mod CS2040 /tags Yay` tags the lecture `Lecture_1` in the module `CS2040` with the tag
   `Yay`
 
 ### Tag a video
@@ -302,7 +308,8 @@ Format: `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_
 - `tag_1, tag_2, ...` must be of correct format
 
 Examples:
-- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` tags the video `Video_1` in the lecture `Lecture_1` of 
+
+- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` tags the video `Video_1` in the lecture `Lecture_1` of
   the module `CS2040` with the tag `Yay`
 
 ### Untag a module
@@ -315,6 +322,7 @@ Format: `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 - `tag_1, tag_2, ...` must belong to existing tags of the specified module
 
 Example:
+
 - `untag EG2310 /tags fun, hard` removes the tags `fun` and `hard` from the module `EG2310`
 
 ### Untag a lecture
@@ -329,6 +337,7 @@ Format: `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {ta
 - `tag_1, tag_2, ...` must belong to existing tags of the specified lecture
 
 Examples:
+
 - `untag Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` from the lecture `Lecture_1` in the module `CS2040`
 
 ### Untag a video
@@ -345,7 +354,8 @@ Format: `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {ta
 - `tag_1, tag_2, ...` must belong to existing tags of the specified video
 
 Examples:
-- `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the 
+
+- `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the
   lecture `Lecture_1` that belongs to the module `CS2040`
 
 ### Progress
@@ -387,6 +397,39 @@ Format: `list [/mod {module_code} /lec {lecture_name}]`
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
 
 Examples: `list /mod CS2040 /lect wk1` lists videos belongs to lecture wk1 of module CS2040S
+
+### Find Modules/Lectures/Videos
+
+Find all modules/lectures/videos based on context associated to keyword(s)
+
+Format: `find {keyword}`
+
+Examples:
+
+- In root level, `find CS2040S` searches for module `CS2040S` from the module list.
+- In module level within `CS2040S`, `find week1 week2` searches for lectures `week1` or `week2` from the lecture list of module `CS2040S`.
+- In lecture level within `week2` of `CS2040S`, `find vid1 vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
+
+### Find Lectures in a Module
+
+Find all lectures in a specified module associated to keyword(s)
+
+Format: `find {keyword} /mod {module_code}`
+
+- `module_code` must belong to an existing module
+
+Examples: `find week1 week2 /mod CS2040S` searches for lectures `week1` or `week2` from the lecture list of module `CS2040S`.
+
+### Find Videos in a Lecture
+
+Find all videos in a specified lecture in specified module associated to keyword(s)
+
+Format: `find {keyword} /mod {module_code} /lec {lecture_name}`
+
+- `module_code` must belong to an existing module
+- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+
+Examples: `find vid1 vid2 /mod CS2040S /lec week2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`
 
 ### Saving the data
 
