@@ -142,16 +142,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MATHTUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
+(For all use cases below, the **System** is the `MATHUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
 
 **Use case: Delete a student**
 
 **MSS**
 
 1.  Tutor requests to list students.
-2.  MATHTUTORING shows a list of students.
+2.  MATHUTORING shows a list of students.
 3.  Tutor requests to delete a specific student in the list.
-4.  MATHTUTORING deletes the student.
+4.  MATHUTORING deletes the student.
 
     Use case ends.
 
@@ -163,12 +163,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. MATHTUTORING shows an error message.
+    * 3a1. MATHUTORING shows an error message.
 
       Use case resumes at step 2.
       
 * 3b. The given command argument(s) are invalid.
-    * 3b1. MATHTUTORING shows an error message.
+    * 3b1. MATHUTORING shows an error message.
 
       Use case resumes at step 2.
 
@@ -177,9 +177,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Tutor requests to list students.
-2.  MATHTUTORING shows a list of students.
+2.  MATHUTORING shows a list of students.
 3.  Tutor requests to edit a specific student in the list.
-4.  MATHTUTORING edits the student.
+4.  MATHUTORING edits the student.
 
     Use case ends.
 
@@ -191,13 +191,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. MATHTUTORING shows an error message.
+    * 3a1. MATHUTORING shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The given command argument(s) are invalid.
 
-    * 3b1. MATHTUTORING shows an error message.
+    * 3b1. MATHUTORING shows an error message.
 
       Use case resumes at step 2.
 
@@ -234,28 +234,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor requests to add a score.
-2. MATHTUTORING creates the score with score label, score value and score date.
-3. MATHTUTORING stores the score to the score list storage. 
+2. MATHUTORING creates the score with score label, score value and score date.
+3. MATHUTORING stores the score to the score list storage. 
 
     Use case ends.
 
 **Extensions**
 
-* 1a. MATHTUTORING detects that the score label, score value or score date is missing.
+* 1a. MATHUTORING detects that the score label, score value or score date is missing.
 
-    * 1a1. MATHTUTORING informs the tutor that there is missing element.
+    * 1a1. MATHUTORING informs the tutor that there is missing element.
 
       Use case resumes at step 2.
   
-* 1b. MATHTUTORING detects that score label, score value or score date has an invalid format.
+* 1b. MATHUTORING detects that score label, score value or score date has an invalid format.
 
-  * 1b1. MATHTUTORING informs the tutor that the form of new score is invalid.
+  * 1b1. MATHUTORING informs the tutor that the form of new score is invalid.
 
     Use case ends.
 
-* 1c. MATHTUTORING detects that the score has already exited.
+* 1c. MATHUTORING detects that the score has already exited.
 
-    * 1c1. MATHTUTORING informs the tutor that the score has already exited.
+    * 1c1. MATHUTORING informs the tutor that the score has already exited.
 
       Use case ends.
 
@@ -264,11 +264,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor requests to list students.
-2. MATHTUTORING shows a list of students.
+2. MATHUTORING shows a list of students.
 3. Tutor requests to check specific student.
-4. MATHTUTORING shows a list of scores for that student.
+4. MATHUTORING shows a list of scores for that student.
 5. Tutor requests to delete a specific score of a specific student.
-6. MATHTUTORING deletes the score.
+6. MATHUTORING deletes the score.
 
    Use case ends.
 
@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given student's index is invalid.
 
-    * 3a1. MATHTUTORING informs the tutor that the index is invalid.
+    * 3a1. MATHUTORING informs the tutor that the index is invalid.
 
       Use case resumes at step 2.
 
@@ -290,13 +290,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 5a. The given student's index is invalid.
 
-    * 5a1. MATHTUTORING informs the tutor that the index is invalid.
+    * 5a1. MATHUTORING informs the tutor that the index is invalid.
 
       Use case resumes at step 1.
 
 * 5b. The given score's index is invalid.
 
-    * 5b1.  MATHTUTORING informs the tutor that the index is invalid.
+    * 5b1.  MATHUTORING informs the tutor that the index is invalid.
       
       Use case resumes at step 3.
 
