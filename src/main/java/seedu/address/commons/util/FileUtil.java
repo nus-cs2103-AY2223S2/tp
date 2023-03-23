@@ -7,10 +7,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.PosixFilePermission;
-import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Writes and reads files
@@ -43,29 +40,20 @@ public class FileUtil {
      */
     public static void createIfMissing(Path file, boolean isHidden) throws IOException {
         if (!isFileExists(file)) {
-            createFile(file, isHidden);
+            createFile(file);
         }
     }
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
      */
-    public static void createFile(Path file, boolean isHidden) throws IOException {
+    public static void createFile(Path file) throws IOException {
         if (Files.exists(file)) {
             return;
         }
 
         createParentDirsOfFile(file);
-
-
-        if (isHidden) {
-            Set<PosixFilePermission> permissions =
-                    PosixFilePermissions.fromString("rw-------");
-            Files.createFile(file, PosixFilePermissions.asFileAttribute(permissions));
-        } else {
-            Files.createFile(file);
-
-        }
+        Files.createFile(file);
     }
 
     /**
