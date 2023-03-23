@@ -225,6 +225,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePilotByIndex(int index) {
+        pilotManager.removeItemByIndex(index);
+    }
+
+    @Override
     public void addPilot(Pilot pilot) {
         requireNonNull(pilot);
         pilotManager.addItem(pilot);
@@ -303,6 +308,7 @@ public class ModelManager implements Model {
         return locationManager.hasItem(location);
     }
 
+    @Override
     public void deleteLocation(Location location) {
         locationManager.removeItem(location);
     }
@@ -310,6 +316,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteLocation(String id) {
         locationManager.removeItem(id);
+    }
+
+    @Override
+    public void deleteLocationByIndex(int index) {
+        locationManager.removeItemByIndex(index);
     }
 
     @Override
@@ -389,6 +400,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCrew(int index) {
+        crewManager.removeItemByIndex(index);
+    }
+
+    @Override
+    public void deleteCrewByIndex(int index) {
+        crewManager.removeItemByIndex(index);
+    }
+
+    @Override
     public void setCrew(Crew target, Crew editedCrew) {
         requireAllNonNull(target, editedCrew);
         crewManager.setItem(target, editedCrew);
@@ -444,6 +465,11 @@ public class ModelManager implements Model {
     @Override
     public void deletePlane(String id) {
         planeManager.removeItem(id);
+    }
+
+    @Override
+    public void deletePlaneByIndex(int index) {
+        planeManager.removeItemByIndex(index);
     }
 
     @Override
@@ -529,15 +555,23 @@ public class ModelManager implements Model {
     public void deleteFlight(Flight target) {
         flightManager.removeItem(target);
     };
+
     @Override
     public void deleteFlight(String id) {
         flightManager.removeItem(id);
     };
+
+    @Override
+    public void deleteFlightByIndex(int index) {
+        flightManager.removeItemByIndex(index);
+    }
+
     @Override
     public void addFlight(Flight flight) {
         requireNonNull(flight);
         flightManager.addItem(flight);
     };
+
     @Override
     public void setFlight(Flight target, Flight editedFlight) {
         requireAllNonNull(target, editedFlight);
@@ -548,6 +582,7 @@ public class ModelManager implements Model {
     public ObservableList<Flight> getFilteredFlightList() {
         return filteredFlights;
     };
+
     @Override
     public void updateFilteredFlightList(Predicate<Flight> predicate) {
         requireNonNull(predicate);

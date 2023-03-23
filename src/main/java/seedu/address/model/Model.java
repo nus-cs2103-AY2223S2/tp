@@ -123,6 +123,15 @@ public interface Model {
     void deletePilot(String id);
 
     /**
+     * Deletes a pilot by index.
+     *
+     * @param index the index of the pilot to delete, which
+     *              should be the order of the object in the
+     *              list.
+     */
+    void deletePilotByIndex(int index);
+
+    /**
      * Adds the given pilot.
      *
      * @param pilot the pilot to add.
@@ -184,6 +193,24 @@ public interface Model {
      * @param uuid the id of the location to be deleted
      */
     void deleteLocation(String uuid);
+
+    /**
+     * Deletes the given location from the
+     * location list.
+     *
+     * @param location the location object to
+     *                 delete.
+     */
+    void deleteLocation(Location location);
+
+    /**
+     * Deletes a location by index.
+     *
+     * @param index the index of the location, which
+     *              should indicate its order in the
+     *              location list
+     */
+    void deleteLocationByIndex(int index);
 
     /**
      * Add a location to the location list
@@ -257,6 +284,22 @@ public interface Model {
      */
     void deleteCrew(String id);
 
+    /**
+     * Deletes a crew by index.
+     *
+     * @param index the id of the crew to delete, and the id
+     *              should be assigned by the order of the
+     *              crew in the list.
+     */
+    void deleteCrew(int index);
+
+    /**
+     * Deletes a crew by index, and the index is given by order.
+     *
+     * @param index the index of the crew to delete.
+     */
+    void deleteCrewByIndex(int index);
+
     void setCrew(Crew target, Crew editedCrew);
 
     /**
@@ -283,6 +326,13 @@ public interface Model {
     void deletePlane(Plane plane);
 
     void deletePlane(String id);
+
+    /**
+     * Deletes a plane by order index.
+     *
+     * @param index the index of the plane to delete, by order
+     */
+    void deletePlaneByIndex(int index);
 
     boolean hasPlane(Plane plane);
 
@@ -355,6 +405,13 @@ public interface Model {
      * @param target flight to be deleted
      */
     void deleteFlight(Flight target);
+
+    /**
+     * Deletes a flight by index.
+     *
+     * @param index the index of the flight to delete by order.
+     */
+    void deleteFlightByIndex(int index);
 
     /**
      * Deletes the flight with the given id
