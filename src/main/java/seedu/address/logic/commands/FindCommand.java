@@ -76,7 +76,7 @@ public class FindCommand extends Command {
         this.flagTag = flag;
     }
 
-	/**
+    /**
      * Creates a FindCommand to search for videos from lecture context
      * @param keywords
      * @param moduleCode

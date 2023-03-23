@@ -18,7 +18,9 @@ public class ModuleTagContainsKeywordsPredicate implements Predicate<ReadOnlyMod
     @Override
     public boolean test(ReadOnlyModule module) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(StringUtil.joinTagsAsString(module.getTags()), keyword));
+                .anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(
+                        StringUtil.joinTagsAsString(module.getTags()), keyword));
     }
 
     @Override

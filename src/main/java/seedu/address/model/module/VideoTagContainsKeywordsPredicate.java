@@ -19,7 +19,9 @@ public class VideoTagContainsKeywordsPredicate implements Predicate<Video> {
     @Override
     public boolean test(Video video) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(StringUtil.joinTagsAsString(video.getTags()), keyword));
+                .anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(
+                        StringUtil.joinTagsAsString(video.getTags()), keyword));
     }
 
     @Override

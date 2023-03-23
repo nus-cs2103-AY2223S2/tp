@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Flag;
@@ -86,7 +87,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
-        ModuleCodeContainsKeywordsPredicate predicate = (ModuleCodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, null);
+        ModuleCodeContainsKeywordsPredicate predicate =
+            (ModuleCodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, null);
         FindCommand command = new FindCommand(Collections.emptyList(), null);
         expectedModel.updateFilteredModuleList(predicate);
 
@@ -96,8 +98,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noModulesFoundByTag() {
-        String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
-        ModuleTagContainsKeywordsPredicate predicate = (ModuleTagContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, flagTag);
+        String expectedMessage = String.format(
+            Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
+        ModuleTagContainsKeywordsPredicate predicate =
+            (ModuleTagContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, flagTag);
         FindCommand command = new FindCommand(Collections.emptyList(), flagTag);
         expectedModel.updateFilteredModuleList(predicate);
 
