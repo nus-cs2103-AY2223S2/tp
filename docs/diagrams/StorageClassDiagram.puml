@@ -19,7 +19,7 @@ Class "<<interface>>\nDengueHotspotTrackerStorage" as DengueHotspotTrackerStorag
 Class JsonDengueHotspotTrackerStorage
 Class JsonSerializableDengueHotspotTracker
 Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdaptedVariant
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonDengueHotspotTrackerStorage .up.|> DengueHotspotTrackerStorage
 JsonDengueHotspotTrackerStorage ..> JsonSerializableDengueHotspotTracker
 JsonSerializableDengueHotspotTracker --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedVariant
 
 @enduml

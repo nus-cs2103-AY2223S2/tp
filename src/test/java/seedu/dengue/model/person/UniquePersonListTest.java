@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
 import static seedu.dengue.testutil.Assert.assertThrows;
 import static seedu.dengue.testutil.TypicalPersons.ALICE;
 import static seedu.dengue.testutil.TypicalPersons.BOB;
@@ -42,7 +42,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV1)
+        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV1)
+        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

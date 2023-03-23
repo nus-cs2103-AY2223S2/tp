@@ -53,13 +53,13 @@ open the help window.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [v/VARIANT]` can be used as `n/John Doe v/DENV1` or as `n/John Doe`.
 
 * Items in curly brackets are features that are currently work in progress. <br>
   e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[v/VARIANT]…​` can be used as ` ` (i.e. 0 times), `v/DENV1`, `v/DENV1 v/DENV2` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/POSTAL_CODE`, `p/POSTAL_CODE n/NAME` is also acceptable.
@@ -87,10 +87,10 @@ Format: `help`
 
 Adds a dengue patient to the dengue hotspot tracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [t/DENGUE_VARIANT_TAG]…​`
+Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 t/DENV1`
+* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
 ### Listing all cases : `list`
@@ -103,26 +103,26 @@ Format: `list`
 
 Edits an existing case in the Dengue Hotspot Tracker.
 
-Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/DENGUE_VARIANT_TAG]…​`
+Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`
 
 * Edits the case at the specified `INDEX`. The index refers to the index number shown in the displayed case list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, all existing tags of the case will be removed i.e adding of tags is not cumulative.
-* You can remove all the case’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing dengue variants, all existing variants of the case will be removed i.e adding of variants is not cumulative.
+* You can remove all the case’s dengue variants by typing `v/` without
+    specifying any variants after it.
 
 Examples:
 * `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
 respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd case to be `Betsy Crower` and clears all existing tags.
+* `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
 
 ### Locating cases by name: `find`
 
 Finds cases whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT_TAG`}
+Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT`}
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -198,12 +198,12 @@ the data of your previous DengueHotspotTracker home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                     |
-|------------|----------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, t/URGENT` |
-| **Clear**  | `clear`                                                                                                              |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                  |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`          |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                           |
-| **List**   | `list`                                                                                                               |
-| **Help**   | `help`                                                                                                               |
+| Action     | Format, Examples                                                                                                               |
+|------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
+| **Clear**  | `clear`                                                                                                                        |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
+| **List**   | `list`                                                                                                                         |
+| **Help**   | `help`                                                                                                                         |
