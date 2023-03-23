@@ -104,7 +104,7 @@ Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2--w
 
 By default, effort level is 24. ([What is an effort level?](#q3--what-is-an-effort-level-br))
 
-A Task must have a description.([What is a valid Description?])
+A Task must have a description.([What is a valid Description?](#q4--what-is-a-valid-description-br))
 
 Format:
 
