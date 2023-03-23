@@ -143,7 +143,7 @@ To be filled
 ---
 
 ## **Core Technologies**
-To be filled
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html).
 
 ---
 
@@ -339,12 +339,12 @@ The `UI` component,
 
 ## **Key Mapping**
 
-The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
-
 <img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
 </div>
+
+The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
 ---
 
 ## **Model Component**
@@ -741,11 +741,11 @@ How the parsing works:
 
 #### **Argument Multimap**
 
-{to be filled}
+The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of arguments from the user, mapped to the `Prefix` that precedes the arguments.
 
 #### **Prefix**
 
-{to be filled}
+The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
 ---
 
