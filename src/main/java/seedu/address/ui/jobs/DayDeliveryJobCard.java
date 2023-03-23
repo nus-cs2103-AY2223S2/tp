@@ -51,7 +51,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         this.job = job;
         id.setText(displayedIndex + ". ");
         label.setText(job.getJobId());
-        receipient.setText(job.getRecepientId());
+        receipient.setText(job.getRecipientId());
         address.setText("Refine later");
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
@@ -66,7 +66,12 @@ public class DayDeliveryJobCard extends UiPart<Region> {
             deliveryTimeSlot.setText("N.A");
         });
 
-        earning.setText(job.getEarning().value);
+        job.getEarning().ifPresentOrElse(val -> {
+            earning.setText(val.value);
+        }, () -> {
+            earning.setText("N.A");
+        });
+
         completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
     }
 
@@ -78,7 +83,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeliveryJobCard)) {
+        if (!(other instanceof DayDeliveryJobCard)) {
             return false;
         }
 
