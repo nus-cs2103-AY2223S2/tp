@@ -6,45 +6,67 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nModel" as model
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
 Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueStudentList
+Class Student
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class Homework
+Class Exam
+Class Lesson
+
+
+Class UniqueHomeworkList
+Class UniqueLessonsList
+Class UniqueExamList
 
 }
-
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside .down.|> model
 
+ModelManager .up.|> model
 AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+model .right.> ReadOnlyUserPrefs
+model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+
+
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> "1" Name
+Student *--> "1" Phone
+Student *--> "1" Email
+Student *--> "1" Address
+Student *--> "*" Tag
+
+Student *--> "1" UniqueHomeworkList
+UniqueHomeworkList *--> "*" Homework
+
+Student *--> "1" UniqueLessonsList
+UniqueLessonsList *--> "*" Lesson
+
+Student *--> "1" UniqueExamList
+UniqueExamList *--> "*" Exam
+
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Student
+
+
 @enduml
+
+
