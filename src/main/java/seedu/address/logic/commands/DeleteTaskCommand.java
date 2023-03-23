@@ -11,7 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Deletes a task identified using it's displayed index from a specified person's task list.
@@ -51,7 +50,7 @@ public class DeleteTaskCommand extends Command {
         }
 
         Person personToDeleteTask = lastShownList.get(studentIndex.getZeroBased());
-        TaskList personTaskList = personToDeleteTask.getTaskList();
+        List<Task> personTaskList = personToDeleteTask.getFilteredTaskList();
 
         if (taskIndex.getZeroBased() >= personTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

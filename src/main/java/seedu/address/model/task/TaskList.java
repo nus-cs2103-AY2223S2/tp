@@ -97,14 +97,6 @@ public class TaskList implements Iterable<Task> {
         internalList.setAll(tasks);
     }
 
-    public int size() {
-        return internalList.size();
-    }
-
-    public Task get(int index) {
-        return internalList.get(index);
-    }
-
     /**
      * Gets the internal list for task list panel to get all tasks for a specific student.
      *
@@ -150,16 +142,5 @@ public class TaskList implements Iterable<Task> {
             }
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-
-        if (!internalList.isEmpty()) {
-            internalList.forEach(builder::append);
-        }
-
-        return builder.toString();
     }
 }

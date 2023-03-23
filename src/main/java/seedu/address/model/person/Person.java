@@ -192,12 +192,19 @@ public class Person {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Score} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Score}
      */
     public ObservableList<Score> getFilteredScoreList() {
         FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
         return filteredScores;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    public ObservableList<Task> getFilteredTaskList() {
+        FilteredList<Task> filteredTasks = new FilteredList<>(this.getTaskListAsObservableList());
+        return filteredTasks;
     }
 
     /**

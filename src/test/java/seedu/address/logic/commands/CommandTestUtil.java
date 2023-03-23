@@ -39,7 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_PARENT_PHONE_AMY = "33333333";
     public static final String VALID_PARENT_PHONE_BOB = "44444444";
-    public static final String VALID_TASK_NAME = "Complete E Math Paper 1";
+    public static final String VALID_TASK_NAME_1 = "Complete E Math Paper 1";
+    public static final String VALID_TASK_NAME_2 = "Do Math Exercise 2";
     public static final String VALID_SCORE_LABEL = "Test 1";
     public static final String VALID_SCORE_VALUE = "100";
     public static final String VALID_SCORE_DATE = "2023-03-09";

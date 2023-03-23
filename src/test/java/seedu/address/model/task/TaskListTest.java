@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
+import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,6 +53,22 @@ public class TaskListTest {
     }
 
     @Test
+    public void setTask_editedTaskHasDifferentName_success() {
+        taskList.add(VALID_TASK_1);
+        taskList.setTask(VALID_TASK_1, VALID_TASK_2);
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.add(VALID_TASK_2);
+        assertEquals(expectedTaskList, taskList);
+    }
+
+    @Test
+    public void setTask_editedTaskHasNonUniqueName_throwsDuplicateTaskException() {
+        taskList.add(VALID_TASK_1);
+        taskList.add(VALID_TASK_2);
+        assertThrows(DuplicateTaskException.class, () -> taskList.setTask(VALID_TASK_1, VALID_TASK_2));
+    }
+
+    @Test
     public void remove_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskList.remove(null));
     }
@@ -68,12 +87,43 @@ public class TaskListTest {
     }
 
     @Test
+    public void setTasks_nullTaskList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskList.setTasks((TaskList) null));
+    }
+
+    @Test
+    public void setTasks_uniqueTaskList_replacesOwnListWithProvidedTaskList() {
+        taskList.add(VALID_TASK_1);
+        TaskList expectedUniqueTaskList = new TaskList();
+        expectedUniqueTaskList.add(VALID_TASK_2);
+        taskList.setTasks(expectedUniqueTaskList);
+        assertEquals(expectedUniqueTaskList, taskList);
+    }
+
+    @Test
     public void setTasks_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskList.setTasks((List<Task>) null));
     }
 
     @Test
-    public void setPersons_nullTaskList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskList.setTasks((TaskList) null));
+    public void setTasks_list_replacesOwnListWithProvidedList() {
+        taskList.add(VALID_TASK_1);
+        List<Task> tasks = Collections.singletonList(VALID_TASK_2);
+        taskList.setTasks(tasks);
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.add(VALID_TASK_2);
+        assertEquals(expectedTaskList, taskList);
+    }
+
+    @Test
+    public void setTasks_listWithDuplicateTasks_throwsDuplicateTaskException() {
+        List<Task> listWithDuplicateTasks = Arrays.asList(VALID_TASK_1, VALID_TASK_1);
+        assertThrows(DuplicateTaskException.class, () -> taskList.setTasks(listWithDuplicateTasks));
+    }
+
+    @Test
+    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> taskList.asUnmodifiableObservableList().remove(0));
     }
 }

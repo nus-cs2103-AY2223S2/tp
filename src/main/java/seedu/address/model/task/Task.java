@@ -39,6 +39,12 @@ public class Task implements Comparable<Task> {
         this.creationDate = LocalDateTime.now();
     }
 
+    public Task(Name taskName, TaskStatus status) {
+        this.taskName = taskName;
+        this.status = status;
+        this.creationDate = LocalDateTime.now();
+    }
+
     /**
      * Marks the task as completed.
      */
@@ -118,5 +124,4 @@ public class Task implements Comparable<Task> {
 
         return builder.toString();
     }
-
 }
