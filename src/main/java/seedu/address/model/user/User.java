@@ -30,6 +30,25 @@ public class User extends Person {
     private final UniqueEventList events;
 
     /**
+     * Creates a new User by copying the fields of the Person passed in
+     */
+    public User(Person user, UniqueEventList events) {
+        super(user.getName(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getAddress(),
+                user.getGender(),
+                user.getMajor(),
+                user.getModules(),
+                user.getRace(),
+                user.getTags(),
+                user.getComms(),
+                user.getIsFavorite(),
+                user.getFaculty());
+        this.events = events;
+    }
+
+    /**
      * Every field must be present and not null. This constructor accepts a List of events.
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
