@@ -28,8 +28,6 @@ public class Opening {
      */
     public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Date> dates) {
         requireAllNonNull(position, company, email, status, dates);
-        System.out.println("Creating opening");
-        System.out.println(toString());
         this.position = position;
         this.company = company;
         this.email = email;
@@ -118,11 +116,12 @@ public class Opening {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Status: ")
-                .append(getStatus())
-                .append(" Remark: ")
-                .append(getRemark())
-                .append(" Dates: ");
+                .append(getStatus());
 
+        if (getRemark() != null) {
+            builder.append(" Remark: ")
+                    .append(getRemark());
+        }
 
         Set<Date> dates = getDates();
         if (!dates.isEmpty()) {
