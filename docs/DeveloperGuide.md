@@ -14,6 +14,7 @@ students are more familiar with and used to using CLI.
     5. [Sort by Salary: `salary`](#sortsalary)
     6. [Sort by deadline: `deadline`](#sortdeadline)
     7. [Find by Companies: `company`](#findcompanies)
+    8. [View more details: `view`](#view)
 3. [Viewing help: `help`](#help)
 4. [Exiting program: `exit`](#exit)
 5. [FAQ](#faq)

@@ -4,6 +4,21 @@ TechTrack is a powerful internship/job tracking application that combines the fl
 
 Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
 
+1. [Quick Start](#quickstart)
+2. [Features](#features)
+   1. [Add Roles: `add`](#addrole)
+   2. [Delete Role: `delete`](#deleterole)
+   3. [Edit Role: `edit`](#editrole)
+   4. [Find Role: `find`](#findrole)
+   5. [Sort by Salary: `salary`](#sortsalary)
+   6. [Sort by deadline: `deadline`](#sortdeadline)
+   7. [Find by Companies: `company`](#findcompanies)
+   8. [View more details: `view`](#view)
+3. [Viewing help: `help`](#help)
+4. [Exiting program: `exit`](#exit)
+5. [FAQ](#faq)
+6. [Command Summary](#summary)
+
 # Quick Start
 Ensure you have Java `11` or above installed in your Computer.
 Download the latest `TechTrack.jar` from here.
