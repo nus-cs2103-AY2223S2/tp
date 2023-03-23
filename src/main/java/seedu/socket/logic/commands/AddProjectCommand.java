@@ -27,7 +27,7 @@ public class AddProjectCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Project 1 "
             + PREFIX_REPO_HOST + "project-1 "
-            + PREFIX_REPO_NAME + "https://github.com/AY2223S2-CS2103T-T12-4/tp "
+            + PREFIX_REPO_NAME + "ProjectOne"
             + PREFIX_DEADLINE + "29/04/22-0900 "
             + PREFIX_MEETING + "24/03/22-1400";
 
