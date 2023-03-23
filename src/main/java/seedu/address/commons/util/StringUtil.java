@@ -54,6 +54,7 @@ public class StringUtil {
         requireNonNull(target);
 
         checkArgument(!target.isEmpty(), "Target cannot be empty!");
+        assert(!target.isEmpty());
 
         return target.equalsIgnoreCase(input);
     }
