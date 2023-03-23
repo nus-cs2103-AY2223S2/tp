@@ -379,9 +379,6 @@ The following UML diagram shows `view` and its associated class.
 
 
 **Implementation** 
-<div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
-new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
-
 The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
 to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
 view from the list view to the details view.
