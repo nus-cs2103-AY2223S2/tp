@@ -16,12 +16,12 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag";
+    public static final List<String> COMMAND_WORDS = List.of(new String[]{"tag", "t"});
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Tags the person identified by the index used in the displayed person list.\n"
-            + "Parameters: Index(must be positive number) \n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: Index (must be positive number) \n"
+            + "Example: " + COMMAND_WORDS + " 1";
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
@@ -50,7 +50,7 @@ public class TagCommand extends Command {
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
         model.addTag(personToTag, tagToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToTag));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToTag), true, true);
     }
 
     @Override

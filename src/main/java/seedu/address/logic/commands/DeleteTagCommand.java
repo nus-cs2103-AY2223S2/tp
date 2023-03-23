@@ -16,12 +16,12 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete_tag";
+    public static final List<String> COMMAND_WORDS = List.of(new String[]{"delete_tag", "dt"});
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Delete tag from the person identified by the index used in the displayed person list.\n"
-            + "Parameters: Index(must be positive number), Tag Name\n"
-            + "Example: " + COMMAND_WORD + " 1 teacher";
+            + "Parameters: Index (must be positive number), Tag Name\n"
+            + "Example: " + COMMAND_WORDS + " 1 teacher";
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
@@ -51,11 +51,11 @@ public class DeleteTagCommand extends Command {
         Person deleteFromPerson = lastShownList.get(targetIndex.getZeroBased());
         //check if the tag with the given name exist
         if (!deleteFromPerson.getTags().contains(tagToDelete)) {
-            throw new CommandException(Messages.MESSAGE_UNEXISTING_TAG);
+            throw new CommandException(Messages.MESSAGE_NONEXISTENT_TAG);
         }
 
         model.deleteTag(deleteFromPerson, tagToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson), true, true);
     }
 
     @Override

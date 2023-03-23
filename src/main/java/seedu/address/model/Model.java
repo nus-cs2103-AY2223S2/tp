@@ -85,11 +85,20 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<? super Person> predicate);
+
+    Predicate<? super Person> getPredicate();
 
     /**
-     * Adds the given tag to the person
-     * Person must already exist in the address book
+     * Returns a state-detached copy of this Model.
+     * The copy (and its composition-descendant Objects) shall not be affected
+     * by {@code Commands} applied to this Model Object.
+     */
+    Model stateDetachedCopy();
+
+    /**
+     * Adds the given tag to the person.
+     * {@code person} must already exist in the address book
      */
     void addTag(Person person, Tag tag);
 

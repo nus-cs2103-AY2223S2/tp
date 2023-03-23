@@ -7,32 +7,35 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.DeepCopyable;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
-public class Person {
+public class Person implements DeepCopyable<Person> {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-
+    private final Income income;
     // Data fields
     private final Address address;
-    private Set<Tag> tags = new HashSet<>();
+    private HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Income income, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.income = income;
         this.tags.addAll(tags);
     }
 
@@ -52,9 +55,13 @@ public class Person {
         return address;
     }
 
+    public Income getIncome() {
+        return income;
+    }
+
     /**
-    * Adds a tag to the person
-    */
+     * Adds a tag to the person
+     */
     public void addTag(Tag toAdd) {
         tags.add(toAdd);
     }
@@ -69,7 +76,8 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -87,6 +95,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public Person deepCopy() {
+        return new Person(name, phone, email, address, income, tags);
     }
 
     /**
@@ -108,13 +120,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getIncome().equals(getIncome())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email, address, income);
     }
 
     @Override
@@ -126,7 +139,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Income: ")
+                .append(getIncome());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

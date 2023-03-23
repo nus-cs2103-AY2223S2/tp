@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -33,6 +34,22 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseCommandCount(String count) throws ParseException {
+        String trimmedCount = count.trim();
+        if (trimmedCount.isBlank()) {
+            return 1;
+        }
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedCount)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedCount);
     }
 
     /**
@@ -129,6 +146,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String Income} into an {@code Income}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Income} is invalid.
+     */
+    public static Income parseIncome(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!Income.isValidIncome(trimmedIncome)) {
+            throw new ParseException(Income.MESSAGE_CONSTRAINTS);
+        }
+        return new Income(trimmedIncome);
     }
 
     /**

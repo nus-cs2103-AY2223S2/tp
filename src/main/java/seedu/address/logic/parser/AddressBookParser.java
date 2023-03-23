@@ -17,8 +17,11 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -46,47 +49,40 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        // if the user's command fits a keyword for a command, create a parser
+        if (AddCommand.COMMAND_WORDS.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
+        } else if (EditCommand.COMMAND_WORDS.contains(commandWord)) {
             return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
+        } else if (DeleteCommand.COMMAND_WORDS.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case TagCommand.COMMAND_WORD:
-            return new TagCommandParser().parse(arguments);
-
-        case DeleteTagCommand.COMMAND_WORD:
+        } else if (DeleteTagCommand.COMMAND_WORDS.contains(commandWord)) {
             return new DeleteTagCommandParser().parse(arguments);
-
-        case ExportCommand.COMMAND_WORD:
-            return new ExportCommand();
-
-        case FilterCommand.COMMAND_WORD:
+        } else if (ClearCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ClearCommand();
+        } else if (FilterCommand.COMMAND_WORDS.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
-
-        default:
+        } else if (UndoCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new UndoCommandParser().parse(arguments);
+        } else if (RedoCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new RedoCommandParser().parse(arguments);
+        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
+            return new FindCommandParser().parse(arguments);
+        } else if (ListCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ListCommand();
+        } else if (ExitCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ExitCommand();
+        } else if (HelpCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new HelpCommand();
+        } else if (TagCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new TagCommandParser().parse(arguments);
+        } else if (ExportCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ExportCommand();
+        } else if (ImportCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ImportCommand();
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

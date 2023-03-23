@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.history = new History(history);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -81,6 +82,13 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public ModelManager stateDetachedCopy() {
+        ModelManager copy = new ModelManager(addressBook.deepCopy(), userPrefs);
+        copy.updateFilteredPersonList(filteredPersons.getPredicate());
+        return copy;
     }
 
     //=========== AddressBook ================================================================================
@@ -150,7 +158,7 @@ public class ModelManager implements Model {
     public void setHistory(History newHistory) {
         history.resetData(newHistory);
     }
-
+    
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -163,9 +171,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<? super Person> getPredicate() {
+        return filteredPersons.getPredicate();
     }
 
     @Override
