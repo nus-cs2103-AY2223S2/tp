@@ -1,5 +1,7 @@
 package seedu.socket.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -7,8 +9,6 @@ import javafx.scene.layout.Region;
 import seedu.socket.commons.core.LogsCenter;
 import seedu.socket.logic.Logic;
 import seedu.socket.model.project.Project;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of tasks.

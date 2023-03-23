@@ -1,5 +1,7 @@
 package seedu.socket.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -7,8 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.socket.model.project.Project;
 
-import java.util.Comparator;
-
+/**
+ * A UI component that displays brief information of a {@code Project}.
+ */
 public class ProjectCard extends UiPart<Region> {
     private static final String FXML = "ProjectListCard.fxml";
     private final Project project;
