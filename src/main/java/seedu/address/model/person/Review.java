@@ -9,10 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Review {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Reviews can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the review must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -20,14 +20,14 @@ public class Review {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code Review}.
      *
-     * @param address A valid address.
+     * @param review A valid review.
      */
-    public Review(String address) {
-        requireNonNull(address);
-        checkArgument(isValidReview(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Review(String review) {
+        requireNonNull(review);
+        checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
+        value = review;
     }
 
     /**
