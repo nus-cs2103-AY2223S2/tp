@@ -248,6 +248,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Help Sheet
+
+Syntax: ```help```
+Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
+
+#### Design Considerations
+
+#### Aspect: How the help sheet will be viewed
+**Alternative 1 (Current choice)** Display as a separate window, with concise details included in the sheet.
+* Pros: Serves as a quick reference for the user, without having to go online to view the full comprehensive User Guide.
+* Cons: Major updates in command implementations will have to be updated in the help sheet too, in addition to the online User Guide.
+
+**Alternative 2** Provide the user with the link to access the online User Guide.
+* Pros: More comprehensive, able to give user the complete detailing of each command.
+* Cons: Troublesome, requires user to go online to view the User Guide. User may also be overwhelmed by length of guide.
+
+<br>
+
+#### Aspect: How different methods are viewed by user.
+**Alternative 1 (Current choice)** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.      
+* Pros: Providing a hierarchical structure to the list of commands available. This provides users with more ease of visualising the various methods as different groups of commands.
+* Cons: More complex structures to be used when implementing the Ui of the help sheet. Restructuring of tree also may be necessary when big changes are made to structure of commands.
+
+**Alternative 2** Display all executable commands in a list.
+* Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
+* Cons: User may need to eyeball through all the commands in order to find what he/she is looking for.
+
+<br>
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
