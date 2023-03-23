@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
-        Student studentInList = model.getRoster().getStudentList().get(0);
+        Student studentInList = model.getRoster().getUnmodifiableStudentList().get(0);
         assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

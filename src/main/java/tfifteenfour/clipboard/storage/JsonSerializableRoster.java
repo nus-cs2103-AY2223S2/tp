@@ -37,7 +37,8 @@ class JsonSerializableRoster {
      * @param source future changes to this will not affect the created {@code JsonSerializableRoster}.
      */
     public JsonSerializableRoster(ReadOnlyRoster source) {
-        persons.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        persons.addAll(source.getUnmodifiableStudentList()
+                .stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**

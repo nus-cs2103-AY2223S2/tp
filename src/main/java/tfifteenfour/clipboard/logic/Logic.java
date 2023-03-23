@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlyRoster getRoster();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredStudentList();
+    ObservableList<Student> getUnmodifiableFilteredStudentList();
 
     ObservableList<Student> getViewedStudent();
 

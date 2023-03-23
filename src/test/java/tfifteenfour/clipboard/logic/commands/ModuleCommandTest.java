@@ -27,7 +27,7 @@ public class ModuleCommandTest {
         ModuleCommand command = new ModuleCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+        assertEquals(Collections.emptyList(), model.getUnmodifiableFilteredStudentList());
     }
 
     private StudentTakingModulePredicate preparePredicate(String userInput) {
