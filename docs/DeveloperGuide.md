@@ -274,7 +274,7 @@ With a similar fields to the [Add feature](#add-feature), `edit` has an addition
 * Prefix `\a` followed by the student's address.
 * Prefix `\edu` followed by the student's education level.
 * Prefix `\s` followed by the subject name.
-* Prefix `\r` followed by the remarks/notes on the student.
+* \[To be implemented\] Prefix `\r` followed by the remarks/notes on the student.
 
 Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
 
@@ -333,6 +333,39 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
     * Adds complexity to the implementation as more error checking of the inputs is required.
   
 _{more aspects to be added}_
+
+### Remark feature
+
+#### Feature Implementation Details
+The current implementation provides users with two different methods of entering a remark for a student.
+1. `remark INDEX r/REMARK` where `INDEX` is the `Student` entry in the list, and `REMARK` is the remark to be added.
+2. Adding the remark through the [add feature](#Add-feature)
+
+#### Proposed Implementation
+
+The proposed remark mechanism will be facilitated by a pop-up text box. This will allows users to format their remarks however they like, 
+rather than being restricted to a single line in the command line (current implementation).
+
+### General Design Considerations
+In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs). <br>
+Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
+
+**Aspect: Command input format**
+* **Alternative 1: (Current implementation)** Adding the `remark` through the command line.
+  * Pros:
+    * Easier to implement
+  * Cons:
+    * Restricts users to a single line or continuous paragraph of remark.
+    * Limits formatting options for remark.
+* **Alternative 2: (Future implementation)** Adding remark through a pop-up text window
+  * Pros:
+    * Provides users flexibility in the format of their remarks.
+    * Remarks are not restricted to a single line or continuous paragraph.
+  * Cons:
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `AddressBook` without any formatting erros.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
