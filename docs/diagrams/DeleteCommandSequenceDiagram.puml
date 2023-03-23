@@ -7,7 +7,7 @@ participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Commons COMMONS_COLOR_T1
@@ -86,10 +86,10 @@ create CommandResult
 DeleteCommand -> CommandResult : CommandResult(successMessage)
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : result
 deactivate CommandResult
 
-DeleteCommand --> LogicManager
+DeleteCommand --> LogicManager : result
 deactivate LogicManager
 
 [<--LogicManager
