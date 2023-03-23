@@ -188,7 +188,7 @@ The `Model` component,
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
-  <img src="images/ItemClassDiagram.svg" width="350" />
+  <img src="images/ItemClassDiagram.svg" width="250" />
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model
@@ -253,7 +253,7 @@ Here is how `Order` works:
 ** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p align="center">
-  <img src="images/StorageClassDiagram.svg" width="650" />
+  <img src="images/StorageClassDiagram.svg" width="750" />
 </p>
 
 The `Storage` component,
