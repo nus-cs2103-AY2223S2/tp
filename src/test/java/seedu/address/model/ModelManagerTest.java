@@ -169,7 +169,7 @@ public class ModelManagerTest {
         AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
         UserPrefs userPrefs = new UserPrefs();
         modelManager = new ModelManager(addressBook, userPrefs);
-
+        System.out.println(addressBook.getClientList().toString());
 
         double aliceWeeklyEarnings = (1000 / 4.0) + (2000 / 36.0);
         double bensonWeeklyEarnings = 1000;

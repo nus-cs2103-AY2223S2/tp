@@ -202,10 +202,10 @@ public class ModelManager implements Model {
                 Policy policy = policyList.get(j);
                 Frequency freq = policy.getFrequency();
                 if (freq.toString() == "monthly") {
-                    double earnings = Double.valueOf(policy.getPremium().toString()) / 4;
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 4.0;
                     totalEarnings = totalEarnings + earnings;
                 } else if (freq.toString() == "yearly") {
-                    double earnings = Double.valueOf(policy.getPremium().toString()) / 36;
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 36.0;
                     totalEarnings = totalEarnings + earnings;
                 } else {
                     double earnings = Double.valueOf(policy.getPremium().toString());
