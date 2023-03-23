@@ -236,7 +236,7 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-   <img src="images/OrderClassDiagram.svg" width="500" />
+   <img src="images/OrderClassDiagram.svg" width="550" />
  </p>
 
 Here is how `Order` works:
@@ -253,7 +253,7 @@ Here is how `Order` works:
 ** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p align="center">
-  <img src="images/StorageClassDiagram.svg" width="550" />
+  <img src="images/StorageClassDiagram.svg" width="650" />
 </p>
 
 The `Storage` component,
