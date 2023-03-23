@@ -109,7 +109,11 @@ class JsonAdaptedBookmark {
         if (url == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Url.class.getSimpleName()));
         }
+        if (!Url.isValidUrlLink(url)) {
+            throw new IllegalValueException(Url.MESSAGE_CONSTRAINTS);
+        }
         final Url modelUrl = new Url(url);
+
 
         final Set<Tag> modelTags = new HashSet<>(bookmarkTags);
         return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelUrl, modelTags);
