@@ -7,26 +7,26 @@ while still having the benefits of a Graphical User Interface (GUI). If you can 
 management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  * Quick start
-  * Features
-    * General Management
-      * Viewing help : `help`
-      * Undo previous operation : `undo`
-      * Redo previous operation : `redo`
-      * Exiting the program : `exit`
-      * Saving the data
-      * Editing the data file
-    * Client Management
-      * Adding a client: `add`
-      * Listing all clients : `list`
-      * Editing a client : `edit`
-      * Locating clients by name: `find`
-      * Deleting a client : `delete`
-      * Policy Management
-      * Adding a policy: `addPolicy`
-      * Deleting a policy : `deletePolicy`
-    * FAQ
-    * Command summary
+    * Quick start
+    * Features
+        * General Management
+            * Viewing help : `help`
+            * Undo previous operation : `undo`
+            * Redo previous operation : `redo`
+            * Exiting the program : `exit`
+            * Saving the data
+            * Editing the data file
+        * Client Management
+            * Adding a client: `add`
+            * Listing all clients : `list`
+            * Editing a client : `edit`
+            * Locating clients by name: `find`
+            * Deleting a client : `delete`
+            * Policy Management
+            * Adding a policy: `addPolicy`
+            * Deleting a policy : `deletePolicy`
+        * FAQ
+        * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +53,6 @@ management tasks done faster than traditional GUI apps.
       to the Address Book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-
 
     * `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
 
@@ -267,7 +266,8 @@ Format: `undo`
 
 * Restore the specific address book before the command took place
 * `Undo Success` will be shown in the display
-* If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to remind of undo failure
+* If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
+  remind of undo failure
 
 ### Redo previous command : `redo`
 
@@ -277,7 +277,8 @@ Format: `redo`
 
 * Restore the specific address book before the undo command took place
 * `Redo Success` will be shown in the display
-* If current address book is **already the latest**, `There is no more operations to redo!` will be shown in display to remind of redo failure
+* If current address book is **already the latest**, `There is no more operations to redo!` will be shown in display to
+  remind of redo failure
 
 ### Clearing all entries : `clear`
 
@@ -315,9 +316,19 @@ _Details coming soon ..._
 
 Adds a policy to a specific client
 
+Do note that the Policy Name should be from the following list:
+- Health Insurance
+- Life Insurance
+- Medical Insurance
+- Fire Insurance
+- Car Insurance
+- Travel Insurance
+
+The frequency should be one of the following: `weekly`, `monthly`,`yearly` 
+
 Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
 
-Examples: `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`
+Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
 ### Listing all policies.
 
@@ -356,16 +367,17 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Undo** | `undo`
-**Redo** | `redo`
-**Help** | `help`
-**Add a Policy** | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`
-**Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`
+ Action              | Format, Examples                                                                                                                                                      
+---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
+ **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                  
+ **Clear**           | `clear`                                                                                                                                                               
+ **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
+ **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
+ **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
+ **List**            | `list`                                                                                                                                                                
+ **Undo**            | `undo`                                                                                                                                                                
+ **Redo**            | `redo`                                                                                                                                                                
+ **Help**            | `help`                                                                                                                                                                
+ **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`                         
+ **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    

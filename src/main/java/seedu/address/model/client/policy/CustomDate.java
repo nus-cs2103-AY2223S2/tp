@@ -34,6 +34,7 @@ public class CustomDate {
     /**
      * Converts a string into a LocalDate object.
      * String has to be in the format of dd.MM.yyyy.
+     *
      * @param date String to be converted into LocalDate object.
      * @return LocalDate object.
      */
@@ -54,6 +55,11 @@ public class CustomDate {
             valid = false;
         }
         return (date.matches(VALIDATION_REGEX) && valid);
+    }
+
+    public String getDisplayString() {
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return outputFormat.format(date);
     }
 
     @Override

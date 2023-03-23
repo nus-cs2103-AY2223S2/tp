@@ -108,4 +108,14 @@ public class ClientTest {
         Client client = new ClientBuilder(ALICE).build();
         assertEquals(client.hashCode(), ALICE.hashCode());
     }
+
+    @Test
+    void testClone() {
+        Client clientBeforeClone = new ClientBuilder(BOB).build();
+        Client clientAfterClone = clientBeforeClone.cloneClient();
+        assertTrue(clientBeforeClone.isSameClient(clientAfterClone));
+        assertEquals(clientBeforeClone, clientAfterClone);
+        assertFalse(clientBeforeClone == clientAfterClone);
+    }
+
 }

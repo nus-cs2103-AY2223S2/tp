@@ -44,7 +44,7 @@ public class PolicyCard extends UiPart<Region> {
         this.policy = policy;
         id.setText(displayedIndex + ". ");
         name.setText(policy.getPolicyName().policyName);
-        startdate.setText("Start Date:  " + policy.getStartDate().toString());
+        startdate.setText("Date:  " + policy.getStartDate().getDisplayString());
         premium.setText("SGD$" + policy.getPremium().value);
         frequency.setText(policy.getFrequency().frequency);
     }

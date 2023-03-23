@@ -165,6 +165,15 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean canUndo() {
+            return false;
+        }
+
+        @Override
+        public void commit() {
+
+        }
+
         public int getNumberOfClients() {
             throw new AssertionError("This method should not be called.");
         }

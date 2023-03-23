@@ -121,25 +121,26 @@ public class Client {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        return this.getName().toString();
+    }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        if (!policyList.isEmpty()) {
-            builder.append("; Policies: ");
-            policyList.forEach(builder::append);
-        }
-        return builder.toString();
+    /**
+     * Clone a {@code Client} with the details of {@code clientToEdit}
+     * Make sure it is pass by value not by reference
+     * @return
+     */
+    public Client cloneClient() {
+        assert this != null;
+
+        Name updatedName = this.getName();
+        Phone updatedPhone = this.getPhone();
+        Email updatedEmail = this.getEmail();
+        Address updatedAddress = this.getAddress();
+        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = this.getTags();
+
+        UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
     }
 
 }

@@ -15,8 +15,8 @@ import seedu.address.model.client.exceptions.PolicyNotFoundException;
 
 class UniquePolicyListTest {
 
-    private PolicyName name = new PolicyName("Health");
-    private PolicyName name1 = new PolicyName("Life");
+    private PolicyName name = new PolicyName("Health Insurance");
+    private PolicyName name1 = new PolicyName("Life Insurance");
     private CustomDate date = new CustomDate("01.02.2023");
     private Premium premium = new Premium("200");
     private Frequency frequency = new Frequency("weekly");
@@ -83,4 +83,41 @@ class UniquePolicyListTest {
         assertFalse(list.equals(null));
         assertFalse(list.equals(4));
     }
+
+    @Test
+    void testCloneAddPolicy() {
+        UniquePolicyList listAfterCloneOne = list.clone();
+        assertFalse(list == listAfterCloneOne);
+        assertTrue(list.equals(listAfterCloneOne));
+
+        list.add(policy);
+        assertFalse(list.equals(listAfterCloneOne));
+
+        UniquePolicyList listAfterCloneTwo = list.clone();
+        assertFalse(list == listAfterCloneTwo);
+        assertTrue(list.equals(listAfterCloneTwo));
+
+        listAfterCloneTwo.add(policy1);
+        assertFalse(list.equals(listAfterCloneTwo));
+    }
+
+    @Test
+    void testCloneDeletePolicy() {
+        list.add(policy);
+        list.add(policy1);
+        UniquePolicyList listAfterCloneOne = list.clone();
+        assertFalse(list == listAfterCloneOne);
+        assertTrue(list.equals(listAfterCloneOne));
+
+        list.remove(policy);
+        assertFalse(list.equals(listAfterCloneOne));
+
+        UniquePolicyList listAfterCloneTwo = list.clone();
+        assertFalse(list == listAfterCloneTwo);
+        assertTrue(list.equals(listAfterCloneTwo));
+
+        listAfterCloneTwo.remove(policy1);
+        assertFalse(list.equals(listAfterCloneTwo));
+    }
+
 }

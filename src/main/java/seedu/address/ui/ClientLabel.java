@@ -42,7 +42,7 @@ public class ClientLabel extends UiPart<Region> {
     public ClientLabel(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        id.setText(displayedIndex + ". ");
+        id.setText("#" + String.format("%04d", displayedIndex));
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);

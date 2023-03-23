@@ -4,16 +4,18 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
+package UI <<Rectangle>> {
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class ClientListPanel
+Class ClientCard
+Class ClientLabel
+Class PolicyListPanel
+Class PolicyCard
 Class CommandBox
 }
 
@@ -32,29 +34,37 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" ClientListPanel
+MainWindow *-down-> "1" PolicyListPanel
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "0..1" ClientLabel
 
-PersonListPanel -down-> "*" PersonCard
+ClientListPanel -down-> "*" ClientCard
+PolicyListPanel -down-> "*" PolicyCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+ClientListPanel --|> UiPart
+ClientCard --|> UiPart
+PolicyListPanel --|> UiPart
+PolicyCard --|> UiPart
+ClientLabel --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+ClientCard ..> Model
+PolicyCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ClientListPanel -[hidden]left- HelpWindow
+ClientCard -[hidden]left- PolicyCard
+PolicyListPanel -[hidden]left- HelpWindow
+PolicyCard -[hidden]left- ClientCard
 HelpWindow -[hidden]left- CommandBox
+ClientLabel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
