@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + PREFIX_NAME + "Broccoli "
             + PREFIX_QUANTITY + "2";
 
-    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in WIFE.";
 
@@ -56,8 +56,8 @@ public class EditCommand extends Command {
     private final EditFoodDescriptor editFoodDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editFoodDescriptor details to edit the person with
+     * @param index of the food item in the filtered food list to edit
+     * @param editFoodDescriptor details to edit the food item with
      */
     public EditCommand(Index index, EditFoodDescriptor editFoodDescriptor) {
         requireNonNull(index);
@@ -89,8 +89,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Food} with the details of {@code foodToEdit}
+     * edited with {@code editFoodDescriptor}.
      */
     private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
         assert foodToEdit != null;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditFoodDescriptor(EditFoodDescriptor toCopy) {
+        public EditFoodDescriptor(EditCommand.EditFoodDescriptor toCopy) {
             setName(toCopy.name);
             setUnit(toCopy.unit);
             setQuantity(toCopy.quantity);
@@ -211,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditFoodDescriptor)) {
+            if (!(other instanceof EditCommand.EditFoodDescriptor)) {
                 return false;
             }
 
             // state check
-            EditFoodDescriptor e = (EditFoodDescriptor) other;
+            EditCommand.EditFoodDescriptor e = (EditCommand.EditFoodDescriptor) other;
 
             return getName().equals(e.getName())
                     && getUnit().equals(e.getUnit())

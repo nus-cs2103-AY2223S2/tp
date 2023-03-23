@@ -7,6 +7,8 @@ import static seedu.wife.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 //import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
 //import static seedu.wife.testutil.TypicalFood.MEIJI;
+import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
+import static seedu.wife.testutil.TypicalFood.MEIJI;
 import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import java.util.Arrays;
@@ -73,7 +75,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(MEIJI, CHOCOLATE), model.getFilteredFoodList());
     }
-    */
+     */
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.

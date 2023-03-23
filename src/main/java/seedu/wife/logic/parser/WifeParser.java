@@ -13,6 +13,7 @@ import seedu.wife.logic.commands.foodcommands.AddCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.FindCommand;
+import seedu.wife.logic.commands.foodcommands.IncreaseCommand;
 import seedu.wife.logic.commands.foodcommands.ListCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
@@ -22,6 +23,8 @@ import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.IncreaseCommandParser;
+
 /**
  * Parses user input.
  */
@@ -71,6 +74,8 @@ public class WifeParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case IncreaseCommand.COMMAND_WORD:
+            return new IncreaseCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
