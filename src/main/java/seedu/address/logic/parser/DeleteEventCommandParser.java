@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERFORMANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -11,8 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 
 import java.util.stream.Stream;
 
@@ -43,10 +43,10 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
                     DeleteEventCommand.MESSAGE_USAGE));
         }
 
-        if ((!(arePrefixesPresent(argMultimap, PREFIX_LAB)  ||
-                arePrefixesPresent(argMultimap, PREFIX_CONSULTATION) ||
-                arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)) ||
-                !argMultimap.getPreamble().isEmpty())) {
+        if ((!(arePrefixesPresent(argMultimap, PREFIX_LAB)
+                || arePrefixesPresent(argMultimap, PREFIX_CONSULTATION)
+                || arePrefixesPresent(argMultimap, PREFIX_TUTORIAL))
+                || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddLabCommand.MESSAGE_USAGE));
         }

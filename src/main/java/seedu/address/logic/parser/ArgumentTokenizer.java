@@ -38,7 +38,7 @@ public class ArgumentTokenizer {
      */
     public static ArgumentMultimap tokenizeFirstPrefix(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        positions.sort((prefixPos1, prefixPos2)->(prefixPos1.startPosition < prefixPos2.startPosition)?1:-1);
+        positions.sort((prefixPos1, prefixPos2) -> (prefixPos1.startPosition < prefixPos2.startPosition) ? 1 : -1);
         if (positions.size() > 0) {
             positions.subList(1, positions.size()).clear();
             return extractArguments(argsString, positions);

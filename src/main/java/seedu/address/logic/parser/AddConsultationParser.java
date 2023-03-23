@@ -10,12 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddConsultationCommand;
-import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
 
@@ -34,7 +32,6 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
         String newArgs = args.trim().replaceFirst("Consultation", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONSULTATION);
-        System.out.println("newArgs" + args);
         //Make the user not create lab and students with the same command
         if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
@@ -42,7 +39,8 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultationCommand.MESSAGE_USAGE));
         }
-        if ((!arePrefixesPresent(argMultimap, PREFIX_CONSULTATION)  || !argMultimap.getPreamble().isEmpty())) {
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_CONSULTATION) || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultationCommand.MESSAGE_USAGE));
         }

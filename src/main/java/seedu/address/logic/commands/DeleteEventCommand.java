@@ -32,6 +32,11 @@ public class DeleteEventCommand extends Command {
     private boolean isLab;
     private boolean isConsultation;
 
+    /**
+     * Sets all the boolean flags (isTutorial, isLab, and isConsultation) to false
+     *
+     * @param targetIndex
+     */
     public DeleteEventCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         isTutorial = false;
@@ -39,13 +44,18 @@ public class DeleteEventCommand extends Command {
         isConsultation = false;
     }
 
+    /**
+     * Marks the tutorial as true and the rest as false
+     */
     public void markTutorial() {
         isTutorial = true;
-        //ensures no mishandling of cases
         isLab = false;
         isConsultation = false;
     }
 
+    /**
+     * Marks the lab as true and the rest as false
+     */
     public void markLab() {
         isLab = true;
         //ensures no mishandling of cases
@@ -53,6 +63,9 @@ public class DeleteEventCommand extends Command {
         isConsultation = false;
     }
 
+    /**
+     * Marks the consultation as true and the rest as false
+     */
     public void markConsultation() {
         isConsultation = true;
         //ensures no mishandling of cases
@@ -60,6 +73,13 @@ public class DeleteEventCommand extends Command {
         isTutorial = false;
     }
 
+    /**
+     * Executes the deletion based on whether it is a tutorial, lab or a consultation
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException if the command is invalid
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -72,6 +92,13 @@ public class DeleteEventCommand extends Command {
         }
     }
 
+    /**
+     * Deletes the index from the list of most recent filtered tutorial list
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException if the command is invalid
+     */
     public CommandResult executeTutorial(Model model) throws CommandException {
 
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
@@ -85,7 +112,13 @@ public class DeleteEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete));
     }
 
-
+    /**
+     * Deletes the index from the list of most recent filtered lab list
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException if the command is invalid
+     */
     public CommandResult executeLab(Model model) throws CommandException {
 
         List<Lab> lastShownList = model.getFilteredLabList();
@@ -99,6 +132,13 @@ public class DeleteEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete));
     }
 
+    /**
+     * Deletes the index from the list of most recent filtered consultation list
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException if the command is invalid
+     */
     public CommandResult executeConsultation(Model model) throws CommandException {
 
         List<Consultation> lastShownList = model.getFilteredConsultationList();

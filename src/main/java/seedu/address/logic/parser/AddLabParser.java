@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Lab;
@@ -42,7 +40,8 @@ public class AddLabParser implements Parser<AddLabCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddLabCommand.MESSAGE_USAGE));
         }
-        if ((!arePrefixesPresent(argMultimap, PREFIX_LAB)  || !argMultimap.getPreamble().isEmpty())) {
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_LAB) || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddLabCommand.MESSAGE_USAGE));
         }
