@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -24,12 +25,14 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "ROLE "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_DATE + "DATE "
+            + "[" + PREFIX_COMMENT + "COMMENT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "Google "
             + PREFIX_ROLE + "Software Engineer "
             + PREFIX_STATUS + "applied "
             + PREFIX_DATE + "2023-02-01 "
+            + PREFIX_COMMENT + "I like the company culture "
             + PREFIX_TAG + "Go "
             + PREFIX_TAG + "Java";
 
@@ -54,7 +57,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
+        //Add internship
         model.addInternship(toAdd);
+        //Update right panel
+        model.updateSelectedInternship(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

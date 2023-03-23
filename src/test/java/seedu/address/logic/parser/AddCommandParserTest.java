@@ -1,10 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
@@ -32,6 +35,7 @@ import static seedu.address.testutil.TypicalInternships.GOOGLE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -49,37 +53,55 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
 
         // multiple company names - last company name accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
 
         // multiple roles - last role accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_APPLE + ROLE_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
 
         // multiple statuses - last status accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_APPLE
-                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
 
         // multiple dates - last date accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_APPLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + DATE_DESC_APPLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
+
+        // multiple comments - last comment accepted
+        assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                + DATE_DESC_GOOGLE + COMMENT_DESC_APPLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                new AddCommand(expectedInternship));
+
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(GOOGLE)
                 .withTags(VALID_TAG_FRONT, VALID_TAG_BACK).build();
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, new AddCommand(expectedInternshipMultipleTags));
+                + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT,
+                new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Internship expectedInternship = new InternshipBuilder(APPLE).withTags().build();
+        //zero comments
+        Internship expectedInternship = new InternshipBuilder(APPLE).withComment("NA").build();
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + ROLE_DESC_APPLE + STATUS_DESC_APPLE
-                        + DATE_DESC_APPLE, new AddCommand(expectedInternship));
+                + DATE_DESC_APPLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+
+        //zero tags
+        expectedInternship = new InternshipBuilder(APPLE).withTags().build();
+        assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + ROLE_DESC_APPLE + STATUS_DESC_APPLE
+                        + DATE_DESC_APPLE + COMMENT_DESC_APPLE, new AddCommand(expectedInternship));
+
     }
 
     @Test
@@ -111,23 +133,29 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid company name
         assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, CompanyName.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT,
+                CompanyName.MESSAGE_CONSTRAINTS);
 
         // invalid role
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + INVALID_ROLE_DESC + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, Role.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, Role.MESSAGE_CONSTRAINTS);
 
         // invalid status
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + INVALID_STATUS_DESC
-                + DATE_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, Status.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, Status.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + INVALID_DATE_DESC + TAG_DESC_BACK + TAG_DESC_FRONT, Date.MESSAGE_CONSTRAINTS);
+                + INVALID_DATE_DESC + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT, Date.MESSAGE_CONSTRAINTS);
+
+        // invalid comment
+        assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                + DATE_DESC_GOOGLE + INVALID_COMMENT_DESC + TAG_DESC_BACK + TAG_DESC_FRONT,
+                Comment.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
@@ -135,7 +163,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE
-                        + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT,
+                        + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + COMMENT_DESC_GOOGLE + TAG_DESC_BACK + TAG_DESC_FRONT,
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

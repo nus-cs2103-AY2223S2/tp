@@ -132,4 +132,15 @@ public class ModelManagerTest {
         differentUserPrefs.setInternBuddyFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(internBuddy, differentUserPrefs)));
     }
+
+    @Test
+    public void getSelectedInternship_null_success() {
+        assertEquals(modelManager.getSelectedInternship(), null);
+    }
+
+    @Test
+    public void getUpdatedInternship_success() {
+        modelManager.updateSelectedInternship(APPLE);
+        assertEquals(modelManager.getSelectedInternship(), APPLE);
+    }
 }

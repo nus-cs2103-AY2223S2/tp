@@ -59,9 +59,15 @@ public interface Model {
 
     /**
      * Deletes the given internship.
-     * The internship must exist in the address book.
+     * The internship must exist in InternBuddy.
      */
     void deleteInternship(Internship target);
+
+    /**
+     * Views the given internship.
+     * The {@code internship} must exist in InternBuddy.
+     */
+    void viewInternship(Internship target);
 
     /**
      * Adds the given internship.
@@ -88,4 +94,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    /**
+     * Gets the internship that is currently being selected for viewing
+     *
+     * @return the currently selected internship
+     */
+    Internship getSelectedInternship();
+
+
+    /**
+     * Updates the internship that is currently being selected for viewing
+     *
+     * @param target The internship that is selected for viewing
+     */
+    void updateSelectedInternship(Internship target);
 }

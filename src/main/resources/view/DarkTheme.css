@@ -354,3 +354,31 @@
 #statusLabel {
     -fx-font-size: 14;
 }
+
+.whiteCompanyNameLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+}
+
+.whiteLabel {
+    -fx-text-fill: white;
+}
+
+.whiteText {
+    -fx-text-fill: white;
+}
+
+.tipsTitle {
+    -fx-text-fill: black;
+    -fx-font-size: 16;
+}
+
+.tipsText {
+    -fx-font-size: 14;
+}
+
+.commentField {
+    -fx-text-fill: blue;
+}
+
+
