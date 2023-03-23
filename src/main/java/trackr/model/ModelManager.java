@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
-import trackr.logic.commands.SortItemListCommand;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
 import trackr.model.order.Order;
@@ -128,16 +127,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyItemList<? extends Item> sortItemList(ModelEnum modelEnum) {
-        switch (modelEnum) {
-        case TASK:
-            taskList.sort();
-        default:
-            return null;
-        }
-    }
-
-    @Override
     public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
         requireNonNull(item);
         switch (modelEnum) {
@@ -246,7 +235,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Supplier List - Supplier ==============================================================================
+    //=========== AddressBook - Supplier ==============================================================================
 
     @Override
     public ReadOnlySupplierList getSupplierList() {

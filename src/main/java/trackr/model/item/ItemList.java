@@ -91,13 +91,6 @@ public class ItemList<T extends Item> implements ReadOnlyItemList<T> {
         items.remove(key);
     }
 
-    /**
-     * Sorts items in this {@code ItemList}.
-     */
-    public void sortItem(T key) {
-        items.sortItems();
-    }
-
     //// util methods
 
     @Override

@@ -106,14 +106,6 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     }
 
     /**
-     * Sorts items in the list using status and deadline.
-     * 
-     */
-    public void sortItems() {
-
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<T> asUnmodifiableObservableList() {
