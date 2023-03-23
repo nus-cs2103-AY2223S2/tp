@@ -2,11 +2,10 @@ package seedu.library.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.IOException;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
-
 
 import seedu.library.commons.core.Messages;
 import seedu.library.commons.core.index.Index;
