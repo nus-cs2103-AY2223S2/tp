@@ -46,8 +46,6 @@ public class Person {
         return name;
     }
 
-    
-
     public Phone getPhone() {
         return phone;
     }
