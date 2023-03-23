@@ -15,6 +15,7 @@ import seedu.library.logic.commands.DeleteTagCommand;
 import seedu.library.logic.commands.EditCommand;
 import seedu.library.logic.commands.ExitCommand;
 import seedu.library.logic.commands.FindCommand;
+import seedu.library.logic.commands.GenreCommand;
 import seedu.library.logic.commands.GoToCommand;
 import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
@@ -82,6 +83,9 @@ public class LibraryParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case GenreCommand.COMMAND_WORD:
+            return new GenreCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
