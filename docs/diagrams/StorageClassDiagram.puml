@@ -29,8 +29,8 @@ Class JsonAdaptedModule
 
 HiddenOutside .down.> StorageFacade
 
-StorageFacade -left-|> CodocStorage
-StorageFacade -right-|> UserPrefsStorage
+StorageFacade -left-|> CodocStorage : \t\t\t
+StorageFacade -right-|> UserPrefsStorage : \t
 
 StorageManager .up.|> StorageFacade
 StorageManager -up-> "1" UserPrefsStorage
