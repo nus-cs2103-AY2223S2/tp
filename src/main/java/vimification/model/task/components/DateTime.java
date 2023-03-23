@@ -1,9 +1,7 @@
 package vimification.model.task.components;
 
 import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

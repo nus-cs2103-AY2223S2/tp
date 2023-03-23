@@ -1,7 +1,6 @@
 package vimification.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.AppUtil.checkArgument;
 
 
 public class Status {
@@ -42,6 +41,6 @@ public class Status {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Status // instanceof handles nulls
-                && done == ((Status) other).done); // state check
+                        && done == ((Status) other).done); // state check
     }
 }
