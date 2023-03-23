@@ -4,18 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -26,6 +30,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -36,6 +43,7 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.exceptions.DuplicateParentException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
@@ -98,7 +106,6 @@ public class StudentEditCommand extends StudentCommand {
     private IndexNumber newIndexNumber;
     private Class studentClass;
     private Class newStudentClass;
-    private Name newStudentName;
     private Age newAge;
     private Image newImage;
     private Cca newCca;
@@ -121,7 +128,7 @@ public class StudentEditCommand extends StudentCommand {
     /**
      * @param indexNumber of the person in the filtered person list to edit
      */
-    public StudentEditCommand(Name name, Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
+    public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
                               Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
                               Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
@@ -149,7 +156,7 @@ public class StudentEditCommand extends StudentCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Student> students = model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
         for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
@@ -217,6 +224,7 @@ public class StudentEditCommand extends StudentCommand {
                         this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
                         newHomework, this.newTest, this.newTagList, this.newComment);
 
+                newStudent.setParent(student.getParent());
                 model.setStudent(student, editStudent(model, student, newStudent));
                 model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
                 return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, newStudent));
@@ -233,8 +241,61 @@ public class StudentEditCommand extends StudentCommand {
      * @param newStudent Edited Parent object.
      * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
-    private Student editStudent(Model model, Student studentToEdit, Student newStudent) {
+    private Student editStudent(Model model, Student studentToEdit, Student newStudent) throws ParseException {
 
+        ObservableList<Parent> parents = model.getFilteredParentList();
+        ObservableList<Student> students = model.getFilteredStudentList();
+        Parent originalParent = null;
+        Parent editedParent = null;
+        for (Parent parent : parents) {
+            if (parent.getPhone().equals(studentToEdit.getParentNumber())) {
+                originalParent = parent;
+            }
+            if (parent.getPhone().equals(newStudent.getParentNumber())) {
+                editedParent = parent;
+            }
+        }
+        if (editedParent == null) {
+            Name parentName = newStudent.getParentName();
+            Phone parentNumber = newStudent.getParentNumber();
+            ArgumentMultimap argMultimap = new ArgumentMultimap();
+            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
+            Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
+            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            Parent newParent = new Parent(parentName, age, image, email, parentNumber,
+                    address, tagList); //create new parent as there isnt any matching parent
+            newParent.addStudent(newStudent); //bind student to parent
+            if (model.hasParent(newParent)) {
+                throw new DuplicateParentException();
+            }
+            model.addParent(newParent);
+        }
+        assert editedParent != null : "This should not ever happen";
+        assert originalParent != null : "This should not ever happen";
+        if (studentToEdit.getParentNumber().equals(newStudent.getParentNumber())) {
+            // in case Parent change Name, need to update ALL STUDENTS to the Parent
+            for (Student student : students) {
+                if (student.getParentNumber().equals(studentToEdit.getParentNumber())) {
+                    Student editStudent = student;
+                    editStudent.setParent(newStudent.getParent());
+                    model.setStudent(student, editStudent);
+                }
+            }
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+            model.updateFilteredParentList(PREDICATE_SHOW_ALL_PARENTS);
+        }
+        Parent newOriginalParent = originalParent;
+        newOriginalParent.removeStudent(studentToEdit);
+        Parent newEditedParent = editedParent;
+        newEditedParent.addStudent(newStudent);
+        model.setParent(originalParent, newOriginalParent);
+        if (!originalParent.equals(editedParent)) {
+            model.setParent(editedParent, newEditedParent);
+        }
+        return newStudent;
+        /*
         Phone oldParentNumber = studentToEdit.getParentNumber();
 
 
@@ -263,5 +324,6 @@ public class StudentEditCommand extends StudentCommand {
             model.updateFilteredParentList(PREDICATE_SHOW_ALL_PARENTS);
         }
         return newStudent;
+        */
     }
 }
