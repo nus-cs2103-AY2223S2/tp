@@ -5,15 +5,15 @@
     <defs/>
     <g><!--cluster Model -->
         <g id="cluster_Model ">
-            <rect fill="none" height="475" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="498" x="7"
-                  y="80"/>
+            <rect fill="#F97181" height="475" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="498"
+                  x="7" y="80"/>
             <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
                   textLength="44" x="232" y="97.1074">Model
             </text>
         </g><!--class ReadOnlyXYZList-->
         <g id="elem_ReadOnlyXYZList">
             <rect codeLine="9" fill="#9D0012" height="41.2813" id="ReadOnlyXYZList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="116" x="94" y="117"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="116" x="94" y="117"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="116.5"
                   y="134.6738">&#171;interface&#187;
             </text>
@@ -23,7 +23,7 @@
         </g><!--class ReadOnlyUserPrefs-->
         <g id="elem_ReadOnlyUserPrefs">
             <rect codeLine="10" fill="#9D0012" height="41.2813" id="ReadOnlyUserPrefs" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="131" x="357.5" y="117"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="131" x="357.5" y="117"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="387.5"
                   y="134.6738">&#171;interface&#187;
             </text>
@@ -33,7 +33,7 @@
         </g><!--class Model-->
         <g id="elem_Model">
             <rect codeLine="11" fill="#9D0012" height="41.2813" id="Model" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="77" x="245.5" y="117"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="245.5" y="117"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="248.5"
                   y="134.6738">&#171;interface&#187;
             </text>
@@ -43,42 +43,42 @@
         </g><!--class XYZList-->
         <g id="elem_XYZList">
             <rect codeLine="12" fill="#9D0012" height="25.6406" id="XYZList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="53" x="197.5" y="219"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="53" x="197.5" y="219"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="47" x="200.5"
                   y="236.6738">XYZList
             </text>
         </g><!--class ModelManager-->
         <g id="elem_ModelManager">
             <rect codeLine="13" fill="#9D0012" height="25.6406" id="ModelManager" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="286" y="219"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="100" x="286" y="219"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="289"
                   y="236.6738">ModelManager
             </text>
         </g><!--class UserPrefs-->
         <g id="elem_UserPrefs">
             <rect codeLine="14" fill="#9D0012" height="25.6406" id="UserPrefs" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="68" x="421" y="219"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="68" x="421" y="219"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="424"
                   y="236.6738">UserPrefs
             </text>
         </g><!--class UniqueXYZList-->
         <g id="elem_UniqueXYZList">
             <rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueXYZList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="97" x="187.5" y="306"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="97" x="187.5" y="306"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="91" x="190.5"
                   y="323.6738">UniqueXYZList
             </text>
         </g><!--class XYZ-->
         <g id="elem_XYZ">
             <rect codeLine="16" fill="#9D0012" height="25.6406" id="XYZ" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="194" y="513"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="194" y="513"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="206.5"
                   y="530.6738">XYZ
             </text>
         </g><!--class Item-->
         <g id="elem_Item">
             <rect codeLine="17" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="69.5" y="362"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="69.5" y="362"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="72.5"
                   y="379.6738">{abstract}
             </text>
@@ -88,11 +88,11 @@
         </g><!--class ItemList-->
         <g id="elem_ItemList">
             <rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="139" x="23.5" y="219"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="23.5" y="219"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="26.5"
                   y="236.6738">ItemList
             </text>
-            <rect fill="#FFFFFF" height="17.9609" style="stroke:#FFFFFF;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
                   width="83" x="82.5" y="216"/>
             <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
                   textLength="81" x="83.5" y="229.9492">T extends Item
@@ -100,14 +100,14 @@
         </g><!--class UniqueItemList-->
         <g id="elem_UniqueItemList">
             <rect codeLine="19" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="127" x="25.5" y="306"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="25.5" y="306"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="28.5"
                   y="323.6738">UniqueItemList&lt;T&gt;
             </text>
         </g><!--class HiddenOutside-->
         <g id="elem_HiddenOutside">
             <rect codeLine="22" fill="#FFFFFF" height="25.6406" id="HiddenOutside" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="99" x="234.5" y="7"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="99" x="234.5" y="7"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="237.5"
                   y="24.6738">HiddenOutside
             </text>
@@ -253,6 +253,6 @@
                   id="Item-backto-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
             <polygon fill="none" points="127.6,424.55,120.33,404.64,138.43,415.67,127.6,424.55"
                      style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--SRC=[XLBHJi8m57tlLrpd6ycMxDMGFOWQJI0p118r9gQi5smexMoxA47-tQviG0V4FRNdddFkkRkzuh8G5KCmTYqmAQkL86R9PKarNG7LMdrFFdcnb6WCf4dQBGwKK1f6-Ttzy6EG3_Fn4Q4Gr9XRMYmNMbMIdLA9LILO1JDbhLe1uneBovKaf7Ggka28HegXW0WsP52xGTJlSsbHpsc1MVOknqXPBiNwvVLjo8sDW1heOFyefmRriyQv2RHxz8BQv_8AVsfOOKTV6L7f1j4DrBMTIlvLOIXpjxRfXiwCrRImstVvP77b6zQ7Xb0VQsL_0lXZKR8TbBNwdVs1bO5t266o9Gt_aJE6Cg-iuUv5N3_uZuHeacJDoEHuFeTNlsrbjxGaqTcP_zaMHNQogC0mZaKTDutWGjcvHwbZ7AptfphDkTwaiMhITlktrLuSixft-xaCuQA2culYo3sV4swWKD9IBWrG8I0ZtTGNo7CktEj2LYlQnRWSh9qnt5XuXJ2j_rm7_qvEeWetTySjB1x3Hz0V]-->
+        </g><!--SRC=[XLBHQi8m57tFLznrRuA5lWxfmzp61ag7A6n3aDXSNJ0cBadPnFdlIsEhJLNMf-JSSyuzjpStNEQYO0Z6RWN6cs8jY5bnkQ6Qhe5ghRx7dpnVIJG6aZXf5_jAA0t3xE5nCEjdWspK8EI26dDFyzLIgqAoSognQWDMmLnPgzR0kCRSSYK9sJWLNI94GyLGGDIKpSO9x4Y_D8Uer-FIebxG7DDqAaT8MIR5zktzOy2DZO0QQ67_A2S6zQl6XGcqH_IAsiVq2d-gM657NnbIwURI5TIsdKZ-LM0eSxUwwOxEZTKqj_kfVB6uzWtBGqKeZwMoDmRyiIZP0Kfh_S7-n4h1EuGmsPEA_ymPGvaLrd3tG6wV_4T2D8xJQcJIdC_XnMzTEUmmZdLwuN_MHP6UBIemx7P56JU9u4hPkKU9OvoiZwSopQNUfBAgqhRxrzLEjylAtlNdCeIB2cukYYDtV4wuWrn9IxaqG8M0bBHJNo4lk72l2rcfg1VZSh1wnd1ZuHN2jFvp7VmxEOigtDmjjx3OX1lG7m00]-->
     </g>
 </svg>
