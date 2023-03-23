@@ -14,8 +14,9 @@ import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
-import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.person.Person;
+
 
 public class ClearCommandTest {
     @Test
