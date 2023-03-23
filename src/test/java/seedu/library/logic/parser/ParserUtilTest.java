@@ -28,7 +28,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_PROGRESS = "123456";
+    private static final String VALID_PROGRESS_INPUT = "1 57 25";
+    private static final String[] VALID_PROGRESS_ARRAY = new String[]{"1", "57", "25"};
     private static final String VALID_AUTHOR = "123 Main Street #0505";
     private static final String VALID_GENRE = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -91,14 +92,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseProgress_validValueWithoutWhitespace_returnsProgress() throws Exception {
-        Progress expectedProgress = new Progress(VALID_PROGRESS);
-        assertEquals(expectedProgress, ParserUtil.parseProgress(VALID_PROGRESS));
+        Progress expectedProgress = new Progress(VALID_PROGRESS_ARRAY);
+        assertEquals(expectedProgress, ParserUtil.parseProgress(VALID_PROGRESS_INPUT));
     }
 
     @Test
     public void parseProgress_validValueWithWhitespace_returnsTrimmedProgress() throws Exception {
-        String progressWithWhitespace = WHITESPACE + VALID_PROGRESS + WHITESPACE;
-        Progress expectedProgress = new Progress(VALID_PROGRESS);
+        String progressWithWhitespace = WHITESPACE + VALID_PROGRESS_INPUT + WHITESPACE;
+        Progress expectedProgress = new Progress(VALID_PROGRESS_ARRAY);
         assertEquals(expectedProgress, ParserUtil.parseProgress(progressWithWhitespace));
     }
 

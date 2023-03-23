@@ -20,13 +20,13 @@ import seedu.library.model.bookmark.Url;
 
 public class JsonAdaptedBookmarkTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_PROGRESS = "Finished@15";
+    private static final JsonAdaptedProgress INVALID_PROGRESS = new JsonAdaptedProgress("a", "b", "c");
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
-    private static final String VALID_PROGRESS = BENSON.getProgress().toString();
+    private static final JsonAdaptedProgress VALID_PROGRESS = new JsonAdaptedProgress(BENSON.getProgress());
     private static final String VALID_GENRE = BENSON.getGenre().toString();
     private static final String VALID_AUTHOR = BENSON.getAuthor().toString();
     private static final String VALID_URL = BENSON.getUrl().toString();

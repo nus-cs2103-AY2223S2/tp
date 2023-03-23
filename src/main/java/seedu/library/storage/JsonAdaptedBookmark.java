@@ -26,7 +26,7 @@ class JsonAdaptedBookmark {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Bookmark's %s field is missing!";
 
     private final String title;
-    private final String progress;
+    private final JsonAdaptedProgress progress;
     private final String genre;
     private final String author;
     private final String url;
@@ -36,7 +36,8 @@ class JsonAdaptedBookmark {
      * Constructs a {@code JsonAdaptedBookmark} with the given bookmark details.
      */
     @JsonCreator
-    public JsonAdaptedBookmark(@JsonProperty("title") String title, @JsonProperty("progress") String progress,
+    public JsonAdaptedBookmark(@JsonProperty("title") String title,
+                               @JsonProperty("progress") JsonAdaptedProgress progress,
                                @JsonProperty("genre") String genre, @JsonProperty("author") String author,
                                @JsonProperty("url") String url,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -55,7 +56,7 @@ class JsonAdaptedBookmark {
      */
     public JsonAdaptedBookmark(Bookmark source) {
         title = source.getTitle().value;
-        progress = source.getProgress().value;
+        progress = new JsonAdaptedProgress(source.getProgress());
         genre = source.getGenre().value;
         author = source.getAuthor().value;
         url = source.getUrl().value;
@@ -87,10 +88,8 @@ class JsonAdaptedBookmark {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Progress.class.getSimpleName()));
         }
-        if (!Progress.isValidProgress(progress)) {
-            throw new IllegalValueException(Progress.MESSAGE_CONSTRAINTS);
-        }
-        final Progress modelProgress = new Progress(progress);
+
+        final Progress modelProgress = progress.toModelType();
 
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));

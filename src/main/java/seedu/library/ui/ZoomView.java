@@ -15,12 +15,14 @@ import seedu.library.model.bookmark.Bookmark;
 public class ZoomView extends UiPart<Region> {
     private static final String FXML = "ZoomView.fxml";
     private Bookmark bookmark;
+
     @FXML
-    private Label view_Title;
+    private Label viewTitle;
     @FXML
     private Label authorView;
     @FXML
-    private Label GenreView;
+    private Label genreView;
+
     @FXML
     private FlowPane tagsView;
     @FXML
@@ -30,6 +32,7 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label urlView;
 
+
     /**
      * Constructs a ZoomView that displays the details of the provided bookmark.
      *
@@ -38,28 +41,29 @@ public class ZoomView extends UiPart<Region> {
     public ZoomView(Bookmark bookmark) {
         super(FXML);
         this.bookmark = bookmark;
-        view_Title.setText("Title: " + bookmark.getTitle().value);
+        viewTitle.setText("Title: " + bookmark.getTitle().value);
         authorView.setText("Author: " + bookmark.getAuthor().value);
-        GenreView.setText("Genre: " + bookmark.getGenre().value);
-        progressView.setText("Progress: " + bookmark.getProgress().value);
+        genreView.setText("Genre: " + bookmark.getGenre().value);
+        progressView.setText("Progress: " + bookmark.getProgress().toString());
         urlView.setText("Url: " + bookmark.getUrl().value);
+        genreView.setText("Genre: " + bookmark.getGenre().value);
+        progressView.setText("Progress: " + bookmark.getProgress().toString());
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
 
     }
 
+
     /**
-     * method to hide the contents on zoomvie
-     *
+     * Method to hide the contents of ZoomView
      */
     public void hideFields() {
-        view_Title.setVisible(false);
+        viewTitle.setVisible(false);
         authorView.setVisible(false);
-        GenreView.setVisible(false);
+        genreView.setVisible(false);
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
-        urlView.setVisible(false);
 
     }
 

@@ -71,7 +71,7 @@ public class TitleContainsKeywordsPredicateTest {
 
         // Keywords match progress, email and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").withProgress("12345")
+        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").withProgress("1 3 2")
                 .withGenre("alice@email.com").withAuthor("Main Street").build()));
     }
 }
