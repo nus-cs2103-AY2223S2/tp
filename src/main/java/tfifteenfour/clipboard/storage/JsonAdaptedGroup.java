@@ -20,12 +20,11 @@ class JsonAdaptedGroup {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     @JsonCreator
-    public JsonAdaptedGroup(String groupName, @JsonProperty("students") List<JsonAdaptedStudent> students) {
+    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName, @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.groupName = groupName;
         if (students != null) {
             this.students.addAll(students);
         }
-        this.students.addAll(students);
     }
 
     public JsonAdaptedGroup(Group source) {
