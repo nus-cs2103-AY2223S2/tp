@@ -1,31 +1,34 @@
 {
   "categories" : [ {
-    "categoryName" : "food",
-    "summary" : "summary"
+    "categoryName" : "a",
+    "summary" : ""
+  }, {
+    "categoryName" : "b",
+    "summary" : ""
   } ],
   "expenses" : [ {
     "name" : "apple",
-    "amount" : "1.5",
-    "date" : "2023-03-16",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "a",
+      "summary" : ""
     }
   }, {
     "name" : "orange",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "b",
+      "summary" : ""
     }
   }, {
-    "name" : "Fuji Apple",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
+    "name" : "hello",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "a",
+      "summary" : ""
     }
   } ]
 }
