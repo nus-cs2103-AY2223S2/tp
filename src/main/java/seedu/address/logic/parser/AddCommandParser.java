@@ -4,9 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
@@ -18,6 +20,7 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
@@ -33,7 +36,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TAG, PREFIX_WATCH);
 
         if (isAddModule(argMultimap)) {
             return parseAddModuleCommand(argMultimap);
@@ -55,11 +59,13 @@ public class AddCommandParser implements Parser<AddCommand> {
     private AddCommand parseAddModuleCommand(ArgumentMultimap argMultimap) throws ParseException {
         String moduleCodeStr = argMultimap.getPreamble();
         String moduleNameStr = argMultimap.getValue(PREFIX_NAME).orElse("");
+        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         ModuleName moduleName = ParserUtil.parseModuleName(moduleNameStr);
+        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
 
-        Module module = new Module(moduleCode, moduleName, new HashSet<>(), new ArrayList<>());
+        Module module = new Module(moduleCode, moduleName, tags, new ArrayList<>());
 
         return new AddModuleCommand(module);
     }
@@ -73,11 +79,13 @@ public class AddCommandParser implements Parser<AddCommand> {
     private AddCommand parseAddLectureCommand(ArgumentMultimap argMultimap) throws ParseException {
         String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
         String lectureNameStr = argMultimap.getPreamble();
+        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
+        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
 
-        Lecture lecture = new Lecture(lectureName, new HashSet<>(), new ArrayList<>());
+        Lecture lecture = new Lecture(lectureName, tags, new ArrayList<>());
 
         return new AddLectureCommand(moduleCode, lecture);
     }
@@ -92,13 +100,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
         String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
         String videoNameStr = argMultimap.getPreamble();
+        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
         VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
+        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
 
-        Video video = new Video(videoName, false, new HashSet<>());
+        boolean hasWatched = argMultimap.getValue(PREFIX_WATCH).isPresent();
 
+        Video video = new Video(videoName, hasWatched, tags);
         return new AddVideoCommand(moduleCode, lectureName, video);
     }
 
