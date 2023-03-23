@@ -97,6 +97,8 @@ Format: `help`
 
 ### 2.2 Adding a task: `add`
 
+:speech_balloon: PRO TIP: Parameters that comes after the command can be in any order!
+
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` date(s) are required.
 
@@ -108,11 +110,11 @@ A Task must have a description.([What is a valid Description?](#q4--what-is-a-va
 
 Format:
 
-* SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]`
+* SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]…​`
 
-* Deadline: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] D/DEADLINE`
+* Deadline: `add n/TASKNAME d/DESCRIPTION D/DEADLINE [t/TAGS]…​ [E/EFFORT]…​`
 
-* Event: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] F/FROMDATE T/TODATE`
+* Event: `add n/TASKNAME d/DESCRIPTION F/FROMDATE T/TODATE [t/TAGS]…​ [E/EFFORT]…​`
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
