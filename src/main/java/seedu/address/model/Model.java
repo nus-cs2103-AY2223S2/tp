@@ -69,6 +69,8 @@ public interface Model {
      */
     void addPet(Pet pet);
 
+    void undo();
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.

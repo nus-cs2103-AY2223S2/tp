@@ -20,6 +20,8 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final PetPal petPal;
+    private PetPal petPalCache;
+
     private final PetPal petPalArchive;
     private final UserPrefs userPrefs;
     private final FilteredList<Pet> filteredPets;
@@ -32,6 +34,7 @@ public class ModelManager implements Model {
 
         logger.info("Initializing with PetPal: " + petPal + " and user prefs " + userPrefs);
 
+        this.petPalCache = new PetPal(petPal);
         this.petPal = new PetPal(petPal);
         this.petPalArchive = new PetPal(petPalArchive);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -110,15 +113,22 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePet(Pet target) {
+        this.petPalCache = new PetPal(petPal);
         petPal.removePet(target);
     }
 
     @Override
     public void addPet(Pet pet) {
+        this.petPalCache = new PetPal(petPal);
         petPal.addPet(pet);
         updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 
+    @Override
+    public void undo() {
+        PetPal temp = new PetPal(petPalCache);
+        petPal.setPets(temp.getPetList());
+    }
     @Override
     public void setPet(Pet target, Pet editedPet) {
         requireAllNonNull(target, editedPet);
