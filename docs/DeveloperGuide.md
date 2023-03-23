@@ -235,10 +235,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Projects
+
+#### Implementation
+There is a new type of data that can be stored in the application: Projects. These are implemented as a model class, similar to `Client`. They contain information about the project's `Title`, `Status`, `Deadline` (optional), and `Price`(optional), each of which are implemented as separate classes.
+
+A new project can be created using the `add-project`/`ap` command by providing necessary and, optionally, optional details of the project. The project can also be edited for any fields, which will create a new project with the updated details to replace the current one. This also means that project details are guaranteed to be immutable.
+
+Each of the project detail classes have their own validation check that is run upon construction of the object, which is done in the parser (specifically, the `arb.logic.parser.project.AddProjectCommandParser`).
+
 ### Sorting
 
 #### Implementation
-Sorting is facilitated by JavaFX's [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+Sorting is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
 
 The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
 
