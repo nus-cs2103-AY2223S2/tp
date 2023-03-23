@@ -20,6 +20,7 @@ import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyListingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.Listing;
 import seedu.address.testutil.ListingBuilder;
 
@@ -137,12 +138,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Listing> getFilteredListingList() {
+        public ObservableList<Listing> getDisplayedListingBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredListingList(Predicate<Listing> predicate) {
+        public void updateFilteredListingBook(Predicate<Listing> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedListingBook(ListingComparator comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
