@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddExpenseCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCategory;
 import seedu.address.logic.commands.DeleteExpenseCommand;
+import seedu.address.logic.commands.EditCategory;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -76,6 +77,9 @@ public class ExpenseTrackerParser {
 
         case DeleteCategory.COMMAND_WORD:
             return new DeleteCategoryParser().parse(arguments);
+
+        case EditCategory.COMMAND_WORD:
+            return new EditCategoryParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
