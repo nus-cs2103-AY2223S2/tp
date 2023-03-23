@@ -119,9 +119,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentInternBuddy, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = APPLE.getCompanyName().fullCompanyName.split("\\s+");
-        modelManager.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(Arrays.asList(keywords),
-                Collections.emptyList(), Collections.emptyList(), Collections.emptyList()));
+        String keyword = APPLE.getCompanyName().fullCompanyName;
+        modelManager.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(Arrays.asList(keyword),
+                Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList()));
         assertFalse(modelManager.equals(new ModelManager(internBuddy, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

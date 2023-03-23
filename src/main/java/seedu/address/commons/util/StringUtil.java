@@ -39,6 +39,26 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code input} equals the {@code target}.
+     *   Ignores case but both strings must match.
+     *   <br>examples:<pre>
+     *       matchingStringIgnoreCase("abc def", "abc def") == true
+     *       matchingStringIgnoreCase("ABc dEf", "abc DEF") == true
+     *       matchingStringIgnoreCase("ABc def", "AB") == false //not a full string match
+     *       </pre>
+     * @param input cannot be null
+     * @param target cannot be null, cannot be empty
+     */
+    public static boolean matchingStringIgnoreCase(String input, String target) {
+        requireNonNull(input);
+        requireNonNull(target);
+
+        checkArgument(!target.isEmpty(), "Target cannot be empty!");
+
+        return target.equalsIgnoreCase(input);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

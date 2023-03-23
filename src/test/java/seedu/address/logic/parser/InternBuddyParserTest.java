@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -75,18 +76,32 @@ public class InternBuddyParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
-        List<String> roleKeywords = Arrays.asList("blah", "haha");
-        List<String> statusKeywords = Arrays.asList("new");
-        List<String> tagKeywords = Arrays.asList("boo");
+        List<String> nameKeywords = Arrays.asList("bar bar", "baz", "foo foo");
+        List<String> roleKeywords = Arrays.asList("ha ha ha", "blah");
+        List<String> statusKeywords = Arrays.asList("new", "rejected");
+        List<String> keyDate = Arrays.asList("2023-02-02", "2023-02-01");
+        List<String> tagKeywords = Arrays.asList("boo", "blah blah");
+        // Note: Elements in the lists must be ordered this way as this is how HashSet orders them.
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD
-                        + " " + PREFIX_COMPANY_NAME + nameKeywords.stream().collect(Collectors.joining(" "))
-                        + " " + PREFIX_ROLE + roleKeywords.stream().collect(Collectors.joining(" "))
-                        + " " + PREFIX_STATUS + statusKeywords.stream().collect(Collectors.joining(" "))
-                        + " " + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
+                        + nameKeywords.stream()
+                            .map(name -> " " + PREFIX_COMPANY_NAME + name)
+                            .collect(Collectors.joining(""))
+                        + roleKeywords.stream()
+                            .map(role -> " " + PREFIX_ROLE + role)
+                            .collect(Collectors.joining(" "))
+                        + statusKeywords.stream()
+                            .map(status -> " " + PREFIX_STATUS + status)
+                            .collect(Collectors.joining(""))
+                        + keyDate.stream()
+                            .map(date -> " " + PREFIX_DATE + date)
+                            .collect(Collectors.joining(""))
+                        + tagKeywords.stream()
+                            .map(tag -> " " + PREFIX_TAG + tag)
+                            .collect(Collectors.joining("")));
         assertEquals(new FindCommand(
-                new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords, tagKeywords)),
+                new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords, keyDate,
+                        tagKeywords)),
                 command);
     }
 

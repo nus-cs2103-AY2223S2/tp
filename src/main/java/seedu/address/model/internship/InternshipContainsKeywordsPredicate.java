@@ -12,6 +12,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private final List<String> nameKeywords;
     private final List<String> roleKeywords;
     private final List<String> statusKeywords;
+    private final List<String> keyDates;
     private final List<String> tagKeywords;
 
     /**
@@ -20,10 +21,12 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
      * @param nameKeywords The keywords to check for in the Internship's company name.
      */
     public InternshipContainsKeywordsPredicate(List<String> nameKeywords, List<String> roleKeywords,
-                                               List<String> statusKeywords, List<String> tagKeywords) {
+                                               List<String> statusKeywords, List<String> keyDates,
+                                               List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
         this.roleKeywords = roleKeywords;
         this.statusKeywords = statusKeywords;
+        this.keyDates = keyDates;
         this.tagKeywords = tagKeywords;
     }
 
@@ -38,43 +41,64 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
         boolean noNameKeywords = this.nameKeywords.isEmpty();
         boolean noRoleKeywords = this.roleKeywords.isEmpty();
         boolean noStatusKeywords = this.statusKeywords.isEmpty();
+        boolean noKeyDates = this.keyDates.isEmpty();
         boolean noTagKeywords = this.tagKeywords.isEmpty();
 
-        if (noNameKeywords && noRoleKeywords && noStatusKeywords && noTagKeywords) {
+        if (noNameKeywords && noRoleKeywords && noStatusKeywords && noKeyDates && noTagKeywords) {
             return false;
         }
 
-        boolean nameCheck = true;
-        boolean roleCheck = true;
-        boolean statusCheck = true;
-        boolean tagCheck = true;
+        return this.checkName(noNameKeywords, internship)
+                && this.checkRole(noRoleKeywords, internship)
+                && this.checkStatus(noStatusKeywords, internship)
+                && this.checkDate(noKeyDates, internship)
+                && this.checkTags(noTagKeywords, internship);
+    }
 
+    private boolean checkName(boolean noNameKeywords, Internship internship) {
         if (!noNameKeywords) {
-            nameCheck = this.nameKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+            return this.nameKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getCompanyName().fullCompanyName, keyword));
         }
+        return true;
+    }
 
+    private boolean checkRole(boolean noRoleKeywords, Internship internship) {
         if (!noRoleKeywords) {
-            roleCheck = this.roleKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+            return this.roleKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getRole().fullRole, keyword));
         }
+        return true;
+    }
 
+    private boolean checkStatus(boolean noStatusKeywords, Internship internship) {
         if (!noStatusKeywords) {
-            statusCheck = this.statusKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+            return this.statusKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getStatus().fullStatus, keyword));
         }
+        return true;
+    }
 
+    private boolean checkDate(boolean noKeyDates, Internship internship) {
+        if (!noKeyDates) {
+            return this.keyDates.stream()
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
+                            internship.getDate().fullDate, keyword));
+        }
+        return true;
+    }
+
+    private boolean checkTags(boolean noTagKeywords, Internship internship) {
         if (!noTagKeywords) {
-            tagCheck = this.tagKeywords.stream()
+            return this.tagKeywords.stream()
                     .anyMatch(keyword -> internship.getTags().stream()
                             .map(tag -> tag.tagName)
-                            .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(keyword, tagName)));
+                            .anyMatch(tagName -> StringUtil.matchingStringIgnoreCase(tagName, keyword)));
         }
-
-        return nameCheck && roleCheck && statusCheck && tagCheck;
+        return true;
     }
 
     /**
@@ -89,7 +113,9 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
         return other == this // short circuit if same object
                 || (other instanceof InternshipContainsKeywordsPredicate // instanceof handles nulls
                 && nameKeywords.equals(((InternshipContainsKeywordsPredicate) other).nameKeywords) // state check
+                && roleKeywords.equals(((InternshipContainsKeywordsPredicate) other).roleKeywords)
                 && statusKeywords.equals(((InternshipContainsKeywordsPredicate) other).statusKeywords)
+                && keyDates.equals(((InternshipContainsKeywordsPredicate) other).keyDates)
                 && tagKeywords.equals(((InternshipContainsKeywordsPredicate) other).tagKeywords));
     }
 
