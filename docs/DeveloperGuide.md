@@ -183,7 +183,7 @@ Given below is the partial class diagram of `Ui` component related to Profile Co
 
 Given below is the sequence diagram showing how the action of clicking the `ProfileButton` of a `Student` creates a new `ProfileContent` for that particular student
 
-<img src="images/ProfileClickSequenceDiagram.png \" width="1200" height="600" />
+<img src="images/ProfileClickSequenceDiagram.png" width="1200" height="600" />
 
 **How the Profile Section is created when Profile Button is Clicked**
 
@@ -207,7 +207,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `HomeworkButton` of a `Student` creates a new `HomeworkContent` for that particular student
 
-  <img src="images/HomeworkClickSequenceDiagram.png \" width="1200" height="600" />
+  <img src="images/HomeworkClickSequenceDiagram.png" width="1200" height="600" />
 
   **How the Filled Homework Section is created when Homework Button is Clicked**
 
@@ -230,7 +230,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `LessonsButton` of a `Student` creates a new `LessonsContent` for that particular student
 
-  <img src="images/LessonsClickSequenceDiagram.png \" width="1200" height="600" />
+  <img src="images/LessonsClickSequenceDiagram.png" width="1200" height="600" />
 
   **How the Filled Lessons Section is created when Lessons Button is Clicked**
 
@@ -253,7 +253,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `ExamsButton` of a `Student` creates a new `ExamsContent` for that particular student
 
-  <img src="images/ExamsClickSequenceDiagram.png \" width="1200" height="600" />
+  <img src="images/ExamsClickSequenceDiagram.png" width="1200" height="600" />
 
   **How the Filled Exams Section is created when Exams Button is Clicked**
 
@@ -268,7 +268,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
 The following activity diagram summarises how the UI responds to an click button command.
 
-<img src="images/ClickButtonActivityDiagram.png \" height="600" width="1000"/>
+<img src="images/ClickButtonActivityDiagram.png" height="600" width="1000"/>
 
 ####  Alternatives considered for Quick Access Buttons
 

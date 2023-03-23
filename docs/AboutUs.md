@@ -22,7 +22,7 @@ You can reach us at these emails :
 [[portfolio](team/yufannnn.md)]
 
 * Role: UI Design, Task Manager
-* Responsibilities: Design UI, manage and distribute tasks, implementation
+* Responsibilities: manage and distribute tasks, design UI,  implementation, Developer Guide, UML Diagrams
 
 ### Niu Boqian
 
