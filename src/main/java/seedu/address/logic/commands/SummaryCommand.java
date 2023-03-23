@@ -17,7 +17,13 @@ import seedu.address.model.person.Person;
 public class SummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
     public static final String MESSAGE_SUCCESS_FORMAT =
-            "Plotted summary of time to interview for applicants\n%.2f days";
+            "Here are some summary statistics for your hiring cycle\n"
+            + "Average time-to-interview: %.2f days\n"
+            + "Percentage of applicants with interview: %.1f";
+
+    public static final String MESSAGE_NO_INTERVIEW =
+            "No applicant is scheduled for an interview at the moment";
+
 
     /**
      * Returns the average 'time to interview' for applicants in HMHero.
@@ -26,32 +32,37 @@ public class SummaryCommand extends Command {
     public String getSuccessMessage(Model model) {
         model.sortFilteredPersonList((p1, p2) -> 0); //revert back to original ordering
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        // get average time to interview for applicants
-        return String.format(MESSAGE_SUCCESS_FORMAT, getAverageTimeToInterview(model));
+        float[] values = getAverageTimeToInterview(model);
+        if (values[0] == 0) {
+            return MESSAGE_NO_INTERVIEW;
+        }
+        return String.format(MESSAGE_SUCCESS_FORMAT, values[0], values[1]) + "%";
     }
 
     /**
-     * Returns the average `time to interview` for applicants that got an interview.
-     * Unit of time is `Days`
+     * Returns the mean `time-to-interview` and percentage of applicants that got an interview.
      * @param model model of all applicants.
      */
-    public float getAverageTimeToInterview(Model model) {
+    public float[] getAverageTimeToInterview(Model model) {
         ObservableList<Person> applicants = model.getFilteredPersonList();
-        long averageTimeToInterview = 0;
+        long sumTimeTaken = 0;
         int numApplicantsWithInterview = 0;
+        int size = applicants.size();
         for (Person applicant : applicants) {
             if (applicant.getInterviewDateTime().isEmpty() != true) {
                 LocalDateTime interviewDateTime = applicant.getInterviewDateTime().get().getDateTime();
                 Duration duration = Duration.between(interviewDateTime,
                         applicant.getApplicationDateTime().getApplicationDateTime());
-                averageTimeToInterview += duration.toDays();
+                sumTimeTaken += duration.toDays();
                 numApplicantsWithInterview++;
             }
         }
         if (numApplicantsWithInterview == 0) {
-            return 0;
+            return new float[] {0, 0};
         }
-        return averageTimeToInterview / numApplicantsWithInterview;
+        float averageTimeTaken = sumTimeTaken / numApplicantsWithInterview;
+        float percentageApplicantsGotInterview = (numApplicantsWithInterview / (float) size) * 100;
+        return new float[] {averageTimeTaken, percentageApplicantsGotInterview};
     }
 
     @Override
