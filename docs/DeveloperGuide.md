@@ -170,7 +170,11 @@ The sort mechanism is facilitated by `SortCommandParser` where it parses sort co
 
 The following sequence diagram shows how the sort operation works:
 
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
 The following activity diagram summarizes what happens when a user executes a sort command:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
