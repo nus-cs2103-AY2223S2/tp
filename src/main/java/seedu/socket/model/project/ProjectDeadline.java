@@ -46,6 +46,15 @@ public class ProjectDeadline {
     }
 
     /**
+     * Returns true if deadline is empty.
+     *
+     * @return {@code true} if deadline is empty.
+     */
+    public boolean isEmptyDeadline() {
+        return deadline.equals("");
+    }
+
+    /**
      * Returns a {@code LocalDateTime} object if {@code deadline} is not empty.
      *
      * @return {@code LocalDateTime} object parsed from the stored {@code String deadline}.

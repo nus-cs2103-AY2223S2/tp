@@ -46,6 +46,14 @@ public class ProjectMeeting {
     }
 
     /**
+     * Returns true if meeting is empty.
+     *
+     * @return {@code true} if meeting is empty.
+     */
+    public boolean isEmptyMeeting() {
+        return meeting.equals("");
+    }
+    /**
      * Returns a {@code LocalDateTime} object if {@code meeting} is not empty.
      *
      * @return {@code LocalDateTime} object parsed from the stored {@code String meeting}.
