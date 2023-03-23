@@ -195,6 +195,29 @@ The mark feature mechanism is implemented by having the Event class keep track o
 
 **Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
 
+### Unmark feature
+
+The `unmark` feature allows for unmarking of the 'Mark' attribute in events should there be an accidental marking of an event.
+
+#### Implementation
+
+The `unmark` feature is implemented with the following considerations:
+
+- A valid `index` will be taken in as a parameter to facilitate unmarking of the correct event.
+- The unmark feature builds alongside the existing implementation of the 'Mark' class.
+- Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
+- Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
+
+#### Design considerations:  
+
+* **Alternative 1 (current choice): Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false** 
+  * Pros: Easier to implement.
+  * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
+
+* **Alternative 2: Replace current instance of specified event with a new unmarked event instance**
+  * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
+  * Cons: May have performance issues in terms of memory usage and runtime.
+
 ### Reminder feature
 
 #### Implementation
