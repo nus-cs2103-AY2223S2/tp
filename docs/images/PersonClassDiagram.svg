@@ -6,7 +6,7 @@
     <g><!--class Item-->
         <g id="elem_Item">
             <rect codeLine="7" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="228.5" y="182"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="228.5" y="182"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="231.5" y="199.6738">{abstract}
             </text>
@@ -16,7 +16,7 @@
         </g><!--class Person-->
         <g id="elem_Person">
             <rect codeLine="8" fill="#9D0012" height="41.2813" id="Person" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="228.5" y="283"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="228.5" y="283"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="231.5" y="300.6738">{abstract}
             </text>
@@ -26,21 +26,21 @@
         </g><!--class Supplier-->
         <g id="elem_Supplier">
             <rect codeLine="9" fill="#9D0012" height="25.6406" id="Supplier" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="58" x="362" y="189.5"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="58" x="362" y="189.5"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="52" x="365"
                   y="207.1738">Supplier
             </text>
         </g><!--class Customer-->
         <g id="elem_Customer">
             <rect codeLine="10" fill="#9D0012" height="25.6406" id="Customer" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="95.5" y="189.5"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="95.5" y="189.5"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="98.5"
                   y="207.1738">Customer
             </text>
         </g><!--class Name-->
         <g id="elem_Name">
             <rect codeLine="11" fill="#9D0012" height="41.2813" id="Name" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="487.5" y="470"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="487.5" y="470"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="490.5" y="487.6738">{abstract}
             </text>
@@ -50,46 +50,46 @@
         </g><!--class PersonName-->
         <g id="elem_PersonName">
             <rect codeLine="14" fill="#9D0012" height="25.6406" id="PersonName" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="87" x="477.5" y="384"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="87" x="477.5" y="384"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="81" x="480.5"
                   y="401.6738">PersonName
             </text>
         </g><!--class PersonAddress-->
         <g id="elem_PersonAddress">
             <rect codeLine="15" fill="#9D0012" height="25.6406" id="PersonAddress" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="103" x="339.5" y="384"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="103" x="339.5" y="384"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="97" x="342.5"
                   y="401.6738">PersonAddress
             </text>
         </g><!--class PersonEmail-->
         <g id="elem_PersonEmail">
             <rect codeLine="16" fill="#9D0012" height="25.6406" id="PersonEmail" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="85" x="219.5" y="384"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="85" x="219.5" y="384"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="79" x="222.5"
                   y="401.6738">PersonEmail
             </text>
         </g><!--class PersonPhone-->
         <g id="elem_PersonPhone">
             <rect codeLine="17" fill="#9D0012" height="25.6406" id="PersonPhone" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="92" x="92" y="384"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="92" x="92" y="384"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="86" x="95"
                   y="401.6738">PersonPhone
             </text>
         </g><!--class Tag-->
         <g id="elem_Tag">
             <rect codeLine="18" fill="#9D0012" height="25.6406" id="Tag" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="50" x="7" y="384"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="7" y="384"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="19.5"
                   y="401.6738">Tag
             </text>
         </g><!--class ItemList-->
         <g id="elem_ItemList">
             <rect codeLine="21" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="139" x="192.5" y="10"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="192.5" y="10"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="195.5"
                   y="27.6738">ItemList
             </text>
-            <rect fill="#FFFFFF" height="17.9609" style="stroke:#9D0012;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
                   width="83" x="251.5" y="7"/>
             <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
                   textLength="81" x="252.5" y="20.9492">T extends Item
@@ -97,35 +97,35 @@
         </g><!--class UniqueItemList-->
         <g id="elem_UniqueItemList">
             <rect codeLine="22" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="127" x="198.5" y="96"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="198.5" y="96"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="201.5"
                   y="113.6738">UniqueItemList&lt;T&gt;
             </text>
         </g><!--class SupplierList-->
         <g id="elem_SupplierList">
             <rect fill="#9D0012" height="25.6406" id="SupplierList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="80" x="375" y="10"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="80" x="375" y="10"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="378"
                   y="27.6738">SupplierList
             </text>
         </g><!--class UniqueSupplierList-->
         <g id="elem_UniqueSupplierList">
             <rect fill="#9D0012" height="25.6406" id="UniqueSupplierList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="124" x="361" y="96"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="124" x="361" y="96"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="118" x="364"
                   y="113.6738">UniqueSupplierList
             </text>
         </g><!--class CustomerList-->
         <g id="elem_CustomerList">
             <rect fill="#9D0012" height="25.6406" id="CustomerList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="89" x="60.5" y="10"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="89" x="60.5" y="10"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="83" x="63.5"
                   y="27.6738">CustomerList
             </text>
         </g><!--class UniqueCustomerList-->
         <g id="elem_UniqueCustomerList">
             <rect fill="#9D0012" height="25.6406" id="UniqueCustomerList" rx="2.5" ry="2.5"
-                  style="stroke:#9D0012;stroke-width:1.0;" width="133" x="30.5" y="96"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="133" x="30.5" y="96"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="127" x="33.5"
                   y="113.6738">UniqueCustomerList
             </text>

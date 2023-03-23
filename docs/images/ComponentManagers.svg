@@ -27,7 +27,7 @@
         </g><!--class Logic-->
         <g id="elem_Logic">
             <rect codeLine="5" fill="#3333C4" height="41.2813" id="Logic" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="77" x="111.5" y="93"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="111.5" y="93"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="114.5"
                   y="110.6738">&#171;interface&#187;
             </text>
@@ -37,14 +37,14 @@
         </g><!--class LogicManager-->
         <g id="elem_LogicManager">
             <rect codeLine="6" fill="#3333C4" height="25.6406" id="LogicManager" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="96" x="102" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="96" x="102" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="90" x="105"
                   y="211.6738">LogicManager
             </text>
         </g><!--class Model-->
         <g id="elem_Model">
             <rect codeLine="10" fill="#9D0012" height="41.2813" id="Model" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="77" x="39.5" y="297"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="39.5" y="297"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="42.5"
                   y="314.6738">&#171;interface&#187;
             </text>
@@ -54,14 +54,14 @@
         </g><!--class ModelManager-->
         <g id="elem_ModelManager">
             <rect codeLine="11" fill="#9D0012" height="25.6406" id="ModelManager" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="23" y="398"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="100" x="23" y="398"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="26"
                   y="415.6738">ModelManager
             </text>
         </g><!--class Storage-->
         <g id="elem_Storage">
             <rect codeLine="15" fill="#A38300" height="41.2813" id="Storage" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="77" x="187.5" y="297"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="187.5" y="297"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="190.5"
                   y="314.6738">&#171;interface&#187;
             </text>
@@ -71,14 +71,14 @@
         </g><!--class StorageManager-->
         <g id="elem_StorageManager">
             <rect codeLine="16" fill="#A38300" height="25.6406" id="StorageManager" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="112" x="179" y="398"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="112" x="179" y="398"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="106" x="182"
                   y="415.6738">StorageManager
             </text>
         </g><!--class HiddenOutside-->
         <g id="elem_HiddenOutside">
             <rect codeLine="19" fill="#FFFFFF" height="25.6406" id="HiddenOutside" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="99" x="100.5" y="7"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="99" x="100.5" y="7"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="103.5"
                   y="24.6738">HiddenOutside
             </text>

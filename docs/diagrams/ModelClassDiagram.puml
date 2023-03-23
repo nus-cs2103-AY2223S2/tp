@@ -6,7 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 top to bottom direction
 
-package "Model " {
+package "Model " MODEL_COLOR_T1 {
 Class "<<interface>>\nReadOnlyXYZList" as ReadOnlyXYZList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model

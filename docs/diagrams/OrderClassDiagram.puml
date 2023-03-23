@@ -24,7 +24,7 @@ Class UniqueOrderList extends UniqueItemList
 Class ItemList<T extends Item>
 
 
-ItemList *--r> "1 " UniqueItemList
+ItemList *--r> "1" UniqueItemList
 UniqueItemList -r>"*" Item
 
 OrderList *--r> "1 " UniqueOrderList

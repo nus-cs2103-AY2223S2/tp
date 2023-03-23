@@ -6,7 +6,7 @@
     <g><!--class Item-->
         <g id="elem_Item">
             <rect codeLine="9" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="343" y="7"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="346" y="24.6738">{abstract}
             </text>
@@ -16,7 +16,7 @@
         </g><!--class Deadline-->
         <g id="elem_Deadline">
             <rect codeLine="10" fill="#9D0012" height="41.2813" id="Deadline" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="566" y="280"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="566" y="280"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="569" y="297.6738">{abstract}
             </text>
@@ -26,7 +26,7 @@
         </g><!--class Status-->
         <g id="elem_Status">
             <rect codeLine="11" fill="#9D0012" height="41.2813" id="Status" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="440" y="280"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="440" y="280"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
                   textLength="61" x="443" y="297.6738">{abstract}
             </text>
@@ -36,18 +36,18 @@
         </g><!--class UniqueItemList-->
         <g id="elem_UniqueItemList">
             <rect codeLine="12" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="127" x="181" y="14.5"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="14.5"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184"
                   y="32.1738">UniqueItemList&lt;T&gt;
             </text>
         </g><!--class ItemList-->
         <g id="elem_ItemList">
             <rect codeLine="23" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="139" x="7" y="14.5"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="14.5"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
                   y="32.1738">ItemList
             </text>
-            <rect fill="#FFFFFF" height="17.9609" style="stroke:#FFFFFF;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
                   width="83" x="66" y="11.5"/>
             <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
                   textLength="81" x="67" y="25.4492">T extends Item
@@ -55,56 +55,56 @@
         </g><!--class Order-->
         <g id="elem_Order">
             <rect codeLine="15" fill="#9D0012" height="25.6406" id="Order" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="342.5" y="108"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="342.5" y="108"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="349"
                   y="125.6738">Order
             </text>
         </g><!--class MenuItem-->
         <g id="elem_MenuItem">
             <rect codeLine="16" fill="#9D0012" height="25.6406" id="MenuItem" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="134" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="134" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="137"
                   y="211.6738">MenuItem
             </text>
         </g><!--class Customer-->
         <g id="elem_Customer">
             <rect codeLine="17" fill="#9D0012" height="25.6406" id="Customer" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="67" x="236" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="236" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="239"
                   y="211.6738">Customer
             </text>
         </g><!--class Quantity-->
         <g id="elem_Quantity">
             <rect codeLine="18" fill="#9D0012" height="25.6406" id="Quantity" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="59" x="338" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="59" x="338" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="53" x="341"
                   y="211.6738">Quantity
             </text>
         </g><!--class OrderStatus-->
         <g id="elem_OrderStatus">
             <rect codeLine="19" fill="#9D0012" height="25.6406" id="OrderStatus" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="83" x="432" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="83" x="432" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="77" x="435"
                   y="211.6738">OrderStatus
             </text>
         </g><!--class OrderDeadline-->
         <g id="elem_OrderDeadline">
             <rect codeLine="20" fill="#9D0012" height="25.6406" id="OrderDeadline" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="99" x="550" y="194"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="99" x="550" y="194"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="553"
                   y="211.6738">OrderDeadline
             </text>
         </g><!--class OrderList-->
         <g id="elem_OrderList">
             <rect codeLine="21" fill="#9D0012" height="25.6406" id="OrderList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="65" x="67" y="108"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="65" x="67" y="108"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="70"
                   y="125.6738">OrderList
             </text>
         </g><!--class UniqueOrderList-->
         <g id="elem_UniqueOrderList">
             <rect codeLine="22" fill="#9D0012" height="25.6406" id="UniqueOrderList" rx="2.5" ry="2.5"
-                  style="stroke:#FFFFFF;stroke-width:1.0;" width="109" x="190" y="108"/>
+                  style="stroke:#181818;stroke-width:0.0;" width="109" x="190" y="108"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="193"
                   y="125.6738">UniqueOrderList
             </text>
@@ -130,7 +130,7 @@
                      style="stroke:#9D0012;stroke-width:1.1;"/>
             <line style="stroke:#9D0012;stroke-width:1.1;" x1="174.37" x2="166.37" y1="27.5" y2="27.5"/>
             <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="161.888" y="23.5831">1
+                  x="166.1193" y="23.5831">1
             </text>
         </g><!--link UniqueItemList to Item-->
         <g id="link_UniqueItemList_Item">
@@ -248,6 +248,6 @@
                   id="OrderStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/>
             <polygon fill="none" points="480.5,258.15,473.5,278.15,466.5,258.15,480.5,258.15"
                      style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--SRC=[bL71QiCm3BtxAxGS2odaFWfRkaEX9MphReFXEc8rJUpCbjdAjdzV7ATfd49X5oFfFVb9JpTIYSgL29QE5SuRLrVC7gHgkE4rS6FqvtOlnK6XjP3DiocOwqeRs1JBX_LRNgoBfn51LDpQUouExqOxLLwZUaQpKdiqahWI21bZf1iW3JjDf6iefK51KYl6xdQM31S4kHU0v9ltXTzNjIAi4-0MV72LkKHULb9XnpubLpkUYPEp7J-4h2UzAFdXq2kkfQNRxG8wKbpkoMSMu1UXAaDfmNgyC2MQFjwWSjqU8SsTRPqOq4V75KawZXkZkRhAiDcevlKZzT5yOUXBsZ-NOIS8PcbgMaEorfF97t4ABIsP9U5mx3p0HVy0iUciQVT1SB1xVRFlJSvMJkgnHn48IUJf51kkCGM6kmGWTJ-ByL8dCKZJ5eYbWrH0Uja_]-->
+        </g><!--SRC=[bL5TIyCm57tFhxZcSL2XxpBGpeV1Hb7dco1P6bnOczJa1XtgVxTDsgw9CF0bt7lEkJdtuqegNhjAWCLJBQvRrzJ47gLgcM4DC6Fqn-uW-L49Qo6_pbEoqBKsi2rNzvlNejoKZpC1hvcrTumVtunsgheaxHNjMXs4aSWK5v0JWhe5rB3NYBg1IXh1KMf5oEtUec4SeUWDW7wn0VXvKMiK3GLceGykAbU2LRLKmgl7v6B54p9qrkj3I0RHivBlJlIE6sdnPhS4BuhXGNnMWVX4eQe0BSd0bwOIPeYtGZa_HqWBPxjDJEo3OmebdkQ5KLyUcIQRORr_v3xhBpJzL_RFOSX8mIBBJBUGdAPVn2bqAhgWuMxax3-M0qrR8schcVyWBD2_VN6mdZQPuF6A8X9ejDAKcuwH4jDP0f6vx-LygD4CigmZOkjW5PZ1zXS0]-->
     </g>
 </svg>
