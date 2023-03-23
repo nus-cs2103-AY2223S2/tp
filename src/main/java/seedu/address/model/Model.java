@@ -144,9 +144,9 @@ public interface Model {
 
     void flipCard();
 
-    boolean markWrong();
+    void markWrong();
 
-    boolean markCorrect();
+    void markCorrect();
 
     boolean goToPrevCard();
 
@@ -159,6 +159,8 @@ public interface Model {
      */
     ModelState getState();
 
+    boolean isReviewCardFlipped();
+
     /**
      * Tag
      * @param tag
@@ -166,4 +168,8 @@ public interface Model {
     void tagCurrentCardInReview(Tag tag);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
+
+    ObservableList<Pair<String, String>> getDeckNameList();
+
+    ObservableList<Pair<String, String>> getReviewDeckNameList();
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.deckcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,11 +16,12 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.deckcommands.AddDeckCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelState;
@@ -172,6 +173,13 @@ public class AddDeckCommandTest {
         }
 
         @Override
+        public ObservableList<Pair<String, String>> getDeckNameList() {
+            ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
+            placeholder.add(new Pair("Current Deck:", "No deck selected!"));
+            return placeholder;
+        }
+
+        @Override
         public void addDeck(Deck deck) {
             throw new AssertionError("This method should not be called.");
         }
@@ -246,17 +254,23 @@ public class AddDeckCommandTest {
         }
 
         @Override
+        public ObservableList<Pair<String, String> > getReviewDeckNameList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
         public void flipCard() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean markWrong() {
+        public void markWrong() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean markCorrect() {
+        public void markCorrect() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -277,6 +291,11 @@ public class AddDeckCommandTest {
 
         @Override
         public void tagCurrentCardInReview(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isReviewCardFlipped() {
             throw new AssertionError("This method should not be called.");
         }
     }

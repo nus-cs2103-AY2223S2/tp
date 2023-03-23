@@ -31,7 +31,7 @@ public class Review {
 
     private final int totalNumCards;
     private List<Integer> orderOfCards;
-    private ObservableList<Pair<String, String> > reviewStatsList;
+    private ObservableList<Pair<String, String>> reviewStatsList;
 
     /**
      * Every field must be present and not null.
@@ -56,7 +56,7 @@ public class Review {
         Collections.fill(scoreList, false);
 
         // initialise reviewStats
-        reviewStatsList = FXCollections.observableArrayList();
+        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
     }
 
     /**
@@ -95,7 +95,7 @@ public class Review {
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
         Collections.fill(scoreList, false);
 
-        updateReviewStatsList();
+        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
     }
 
     public Card getCurrCard() {
@@ -110,16 +110,19 @@ public class Review {
         return deck.getDeckName();
     }
 
-    public void flipCard() {
-        currCard.setAsFlipped();
-    }
-
-    public void unflipCard() {
-        currCard.setAsUnflipped();
-    } // can remove?
-
     public boolean isFlipped() {
         return currCard.isFlipped();
+    }
+
+    /**
+     * Flips the current card under review.
+     */
+    public void flipCard() {
+        if (isFlipped()) {
+            currCard.setAsUnflipped();
+        } else {
+            currCard.setAsFlipped();
+        }
     }
 
     /**
@@ -178,6 +181,7 @@ public class Review {
      */
     public void markCurrCardAsCorrect() {
         scoreList.set(currCardNum - 1, true);
+        updateReviewStatsList();
     }
 
     /**
@@ -186,6 +190,7 @@ public class Review {
      */
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
+        updateReviewStatsList();
     }
 
     public void unflipAllCards() {
@@ -205,18 +210,23 @@ public class Review {
     }
 
 
-    public ObservableList<Pair<String, String> > getReviewStatsList() {
+    public ObservableList<Pair<String, String>> getReviewStatsList() {
         updateReviewStatsList();
         return reviewStatsList;
     }
-
+    public ObservableList<Pair<String, String> > getReviewDeckNameList() {
+        return deck.getDeckNameList();
+    }
     private void updateReviewStatsList() {
-        Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
-        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:",
+        Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
+        Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
                 String.format("%d/%d", currCardNum, totalNumCards));
-        Pair<String, String> currentScore = new Pair<String, String>("Current Score: ",
+        Pair<String, String> currentScore = new Pair<>("Current Score: ",
                  String.format("%d", getTotalScore()));
+        Pair<String, String> flip = new Pair<>("Press \\ to flip", "");
+        Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
+        Pair<String, String> mark = new Pair<>("Press ; to mark wrong, ' to mark correct", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, currentScore);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark);
     }
 }
