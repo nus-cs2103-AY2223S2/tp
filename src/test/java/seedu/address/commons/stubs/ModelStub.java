@@ -119,6 +119,8 @@ public class ModelStub implements Model {
         throw new UnsupportedOperationException("Unimplemented method 'getExpenseTracker'");
     }
 
+
+
     @Override
     public void deleteExpense(Expense expense) {
         // Delete the expense from the list
