@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.tag.Tag;
 
 /**

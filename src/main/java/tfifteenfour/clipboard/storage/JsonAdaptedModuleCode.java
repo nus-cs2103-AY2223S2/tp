@@ -4,33 +4,33 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 
 /**
  * Jackson-friendly version of {@link Course}.
  */
 class JsonAdaptedModuleCode {
 
-    private final String moduleCode;
+    private final String courseCode;
 
     /**
-     * Constructs a {@code JsonAdaptedModuleCode} with the given {@code moduleCode}.
+     * Constructs a {@code JsonAdaptedModuleCode} with the given {@code courseCode}.
      */
     @JsonCreator
-    public JsonAdaptedModuleCode(String moduleCode) {
-        this.moduleCode = moduleCode;
+    public JsonAdaptedModuleCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     /**
      * Converts a given {@code ModuleCode} into this class for Jackson use.
      */
     public JsonAdaptedModuleCode(Course source) {
-        moduleCode = source.moduleCode;
+        courseCode = source.courseCode;
     }
 
     @JsonValue
     public String getModuleCode() {
-        return moduleCode;
+        return courseCode;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedModuleCode {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module code.
      */
     public Course toModelType() throws IllegalValueException {
-        if (!Course.isValidModuleCode(moduleCode)) {
+        if (!Course.isValidModuleCode(courseCode)) {
             throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);
         }
-        return new Course(moduleCode);
+        return new Course(courseCode);
     }
 
 }

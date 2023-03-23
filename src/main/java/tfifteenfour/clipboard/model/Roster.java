@@ -4,8 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.UniqueCoursesList;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
@@ -16,7 +17,7 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
 public class Roster implements ReadOnlyRoster {
 
     private final UniqueStudentList students;
-    private final ObservableList<Module> modules;
+    private final UniqueCoursesList courses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,7 +31,7 @@ public class Roster implements ReadOnlyRoster {
     }
 
     {
-        modules = FXCollections.observableArrayList();
+        courses = new UniqueCoursesList();
     }
 
     public Roster() {}
@@ -72,6 +73,11 @@ public class Roster implements ReadOnlyRoster {
         return students.contains(student);
     }
 
+    public boolean hasCourse(Course course) {
+        requireNonNull(course);
+        return courses.contains(course);
+    }
+
     /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
@@ -80,8 +86,8 @@ public class Roster implements ReadOnlyRoster {
         students.add(p);
     }
 
-    public void addModule(Module module) {
-        modules.add(module);
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 
     /**
@@ -122,8 +128,8 @@ public class Roster implements ReadOnlyRoster {
         return students.asModifiableObservableList();
     }
 
-    public ObservableList<Module> getModifiableModuleList() {
-        return modules;
+    public ObservableList<Course> getModifiableCourseList() {
+        return courses.asModifiableObservableList();
     }
 
     @Override

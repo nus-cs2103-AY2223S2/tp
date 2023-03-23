@@ -29,7 +29,7 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDEN
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_TAG_TEAM1;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_TAG_TEAM2;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 import static tfifteenfour.clipboard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tfifteenfour.clipboard.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -40,9 +40,9 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -53,7 +53,7 @@ import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
-    private static final String MODULE_EMPTY = " " + PREFIX_MODULE;
+    private static final String MODULE_EMPTY = " " + PREFIX_COURSE;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);

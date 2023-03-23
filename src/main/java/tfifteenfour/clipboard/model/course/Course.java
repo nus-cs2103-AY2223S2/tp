@@ -1,7 +1,11 @@
-package tfifteenfour.clipboard.model.student;
+package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
+
+import java.util.ArrayList;
+
+import tfifteenfour.clipboard.model.student.Group;
 
 /**
  * Represents a Module in the CLIpboard.
@@ -12,17 +16,18 @@ public class Course {
     public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String moduleCode;
+    public final String courseCode;
+	private ArrayList<Group> groups = new ArrayList<Group>();
 
     /**
-     * Constructs a {@code moduleCode}.
+     * Constructs a {@code courseCode}.
      *
-     * @param moduleCode A valid module code.
+     * @param courseCode A valid module code.
      */
-    public Course(String moduleCode) {
-        requireNonNull(moduleCode);
-        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        this.moduleCode = moduleCode;
+    public Course(String courseCode) {
+        requireNonNull(courseCode);
+        checkArgument(isValidModuleCode(courseCode), MESSAGE_CONSTRAINTS);
+        this.courseCode = courseCode;
     }
 
     /**
@@ -33,29 +38,38 @@ public class Course {
     }
 
     /**
-     * Returns module code
-     * @return String module code
+     * Returns course code
+     * @return string course code
      */
-    public String getModule() {
-        return this.moduleCode;
+    public String getCourseCode() {
+        return this.courseCode;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Course // instanceof handles nulls
-                && moduleCode.equals(((Course) other).moduleCode)); // state check
+                && courseCode.equals(((Course) other).courseCode)); // state check
     }
 
     @Override
     public int hashCode() {
-        return moduleCode.hashCode();
+        return courseCode.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '{' + moduleCode + '}';
+        return '{' + courseCode + '}';
+    }
+
+    public boolean isSameCourse(Course otherCourse) {
+        if (otherCourse == this) {
+            return true;
+        }
+
+        return otherCourse != null
+                && otherCourse.getCourseCode().equals(getCourseCode());
     }
 }

@@ -1,8 +1,8 @@
 package tfifteenfour.clipboard.logic.commands.addCommand;
 
 import static java.util.Objects.requireNonNull;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -20,14 +20,14 @@ public class AddStudentCommand extends AddCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STUDENTID + "STUDENTID "
-            + PREFIX_MODULE + "MODULECODE... "
+            + PREFIX_COURSE + "MODULECODE... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_STUDENTID + "A1234567X "
-            + PREFIX_MODULE + "CS2103T ";
+            + PREFIX_COURSE + "CS2103T ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";

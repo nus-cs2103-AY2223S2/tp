@@ -9,7 +9,7 @@ import java.util.Set;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;

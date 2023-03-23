@@ -1,8 +1,8 @@
 package tfifteenfour.clipboard.logic.parser;
 
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -13,12 +13,12 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddCourseCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddGroupCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddModuleCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -46,17 +46,42 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException("Add type not found");
         }
 
+        switch (addCommandType) {
+        case ADD_MODULE:
+            Course course = parseCourseInfo(args);
+            return new AddCourseCommand(course);
+        case ADD_GROUP:
+            return new AddGroupCommand();
+        case ADD_SESSION:
+            return new AddSessionCommand();
+        case ADD_STUDENT:
+            Student student = parseStudentInfo(args);
+            return new AddStudentCommand(student);
+        default:
+            throw new ParseException("Invalid argument for add command");
+        }
+    }
+
+
+    private Course parseCourseInfo(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+        ArgumentTokenizer.tokenizePrefixes(args, PREFIX_COURSE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_COURSE)
+                || !AddCommandType.isValidAddType(argMultimap.getPreamble())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
+        }
+
+        Course course = ParserUtil.parseModule(argMultimap.getValue(PREFIX_COURSE).get());
+        return course;
+    }
+
+    private Student parseStudentInfo(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
-                        PREFIX_MODULE, PREFIX_REMARK, PREFIX_TAG);
+                        PREFIX_COURSE, PREFIX_REMARK, PREFIX_TAG);
 
-
-        System.out.println(arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE));
-        System.out.println(argMultimap.getPreamble().isEmpty());
-        System.out.println(argMultimap.getPreamble());
-        System.out.println("#######");
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COURSE)
                 || !AddCommandType.isValidAddType(argMultimap.getPreamble())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
@@ -65,25 +90,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
-        Set<Course> modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
+        Set<Course> modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_COURSE));
         Remark remark = new Remark("");
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Student student = new Student(name, phone, email, studentId, modules, remark, tags);
 
-        switch (addCommandType) {
-        case ADD_MODULE:
-            return new AddModuleCommand();
-        case ADD_GROUP:
-            return new AddGroupCommand();
-        case ADD_SESSION:
-            return new AddSessionCommand();
-        case ADD_STUDENT:
-            return new AddStudentCommand(student);
-        default:
-            throw new ParseException("Invalid argument for add command");
-        }
+        return student;
     }
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -95,7 +108,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 }
 
 enum AddCommandType {
-    ADD_MODULE("module"),
+    ADD_MODULE("course"),
     ADD_GROUP("group"),
     ADD_SESSION("session"),
     ADD_STUDENT("student");

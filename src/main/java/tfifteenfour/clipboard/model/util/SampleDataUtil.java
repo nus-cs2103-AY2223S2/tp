@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;

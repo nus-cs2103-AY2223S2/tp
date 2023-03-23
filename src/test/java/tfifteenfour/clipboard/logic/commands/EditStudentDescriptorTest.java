@@ -12,7 +12,7 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDEN
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {

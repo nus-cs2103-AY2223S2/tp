@@ -2,6 +2,8 @@ package tfifteenfour.clipboard.model.student;
 
 import java.util.function.Predicate;
 
+import tfifteenfour.clipboard.model.course.Course;
+
 
 /**
  * Tests that a {@code Student}'s {@code modules} contain module code given.
@@ -16,7 +18,7 @@ public class StudentTakingModulePredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         for (Course module : student.getModules()) {
-            String moduleString = module.getModule();
+            String moduleString = module.getCourseCode();
             if (moduleString.equals(moduleToCheck)) {
                 return true;
             }

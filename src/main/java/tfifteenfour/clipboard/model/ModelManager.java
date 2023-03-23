@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -25,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
 
-    private final FilteredList<Module> filteredModules;
+    private final FilteredList<Course> filteredCourses;
 
     private String commandTextExecuted;
     private Command commandExecuted;
@@ -43,7 +44,7 @@ public class ModelManager implements Model {
         filteredStudents = new FilteredList<>(this.roster.getUnmodifiableStudentList());
         viewedStudent = new FilteredList<>(this.roster.getUnmodifiableStudentList());
 
-        filteredModules = new FilteredList<>(this.roster.getModifiableModuleList());
+        filteredCourses = new FilteredList<>(this.roster.getModifiableCourseList());
     }
 
     public ModelManager() {
@@ -64,7 +65,7 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(roster.getUnmodifiableStudentList());
         viewedStudent = new FilteredList<>(roster.getUnmodifiableStudentList());
 
-        filteredModules = new FilteredList<>(roster.getModifiableModuleList());
+        filteredCourses = new FilteredList<>(roster.getModifiableCourseList());
 
     }
 
@@ -142,6 +143,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCourse(Course course) {
+        requireNonNull(course);
+        return roster.hasCourse(course);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         roster.removeStudent(target);
     }
@@ -150,6 +157,11 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         roster.addStudent(student);
         //updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addCourse(Course course) {
+        roster.addCourse(course);
     }
 
     @Override
@@ -175,8 +187,9 @@ public class ModelManager implements Model {
         return roster.getModifiableStudentList();
     }
 
-    public ObservableList<Module> getModifiableFilteredModuleList() {
-        return roster.getModifiableModuleList();
+    @Override
+    public ObservableList<Course> getModifiableFilteredCourseList() {
+        return roster.getModifiableCourseList();
     }
 
     @Override
