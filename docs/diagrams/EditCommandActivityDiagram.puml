@@ -8,16 +8,13 @@ if() then ([valid syntax])
 
     if() then ([valid arguments])
         :Edit person in addressBook;
-        :Save addressBook in storage;
-        :Display success message in UI;
-        stop
 
     else([else])
         endif
 
 else([else])
     endif
-    :Display error to user;
+
 stop
 
 @enduml
