@@ -290,7 +290,7 @@ The following activity diagram summarizes what happens when a user tries to add 
 
 ### View Delivery feature
 #### Implementation Details
-The feature is implemented by making use of the `Index` class to select a recipient of choice from the list of person that is part of the `Model` component
+The feature is implemented by making use of the `Index` class to select a recipient of choice from the list of person that is part of the `Model` component.
 
 The `ViewCommand` will display all the delivery details (i.e. parcels, address, contact information, etc.) of the selected recipient under the `CommandResult` class.
 
@@ -306,6 +306,38 @@ The following partial sequence diagram will show how the view delivery feature i
 * **Alternative 2:** Use the name of the recipient to select
     * Pros: Physical parcels have the names of recipient on it, making it easy to locate the delivery details of said person
     * Cons: Names may not be unique, it is possible to obtain the wrong delivery details
+
+### Sort feature
+#### Implementation Details
+The sort feature has been implemented to enable users to organize and arrange the delivery list ordered by `Delivery Status`.
+
+The `SortCommand` invokes a sorting on the current list of deliveries and subsequently displays the newly sorted list. 
+
+The following partial sequence diagram will show how the view delivery feature is implemented
+
+<img src="images/SortCommandSequenceDiagram.png">
+
+The implementation of the sort feature involves the following steps:
+1. **Identify the data:**
+   * The data to be sorted is the list of persons that is part of the `Model` component.
+2. **Sorting criteria:**
+   * The list is sorted according to the Delivery Status of each entry in ascending order.
+   * Ordering: `PENDING` < `OTW` < `DONE` < `FAILED`
+   * Entries with the same Delivery Status are sorted in ascending alphabetical order of name.
+3. **Invoke sort:**
+   * The list being stored in the `Model` component is sorted and replaces the previous list.
+4. **Displaying the sorted data:**
+   * As the sort command automatically replaces the previous list with the newly sorted list,
+   the address book being shown to the User is always updated.
+
+#### Design Considerations:
+**Aspect: How to specify sorting criteria**
+* **Alternative 1 (current choice):** Predefines the sorting criteria to Delivery Status
+    * Pros: Easy to implement, there is already a defined ordering for Delivery Status
+    * Cons: Limits functionality of the sort command
+* **Alternative 2:** User specifies sorting criteria when typing the command
+    * Pros: Gives the user higher functionality by allowing the user to sort the list of deliveries in various orderings.
+    * Cons: Parsing the user specified sorting criteria is difficult to implement and unnecessarily complicates the logic.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -480,6 +512,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends
 
+**Use Case: UC7 - Sort Deliveries**
+
+**Guarantees:** Delivery List will be sorted according to Delivery Status of each entry in ascending order.
+
+**MSS:**
+1. User request to sort list
+2. System sorts list
+3. System displays sorted list
+
+    Use Case ends
 
 ### Non-Functional Requirements
 
