@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="315px" preserveAspectRatio="none" style="width:621px;height:315px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 621 315" width="621px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--class EduMate-->
+        <g id="elem_EduMate">
+            <rect fill="#D42E12" height="29.0679" id="EduMate" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="66" x="7" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="60" x="10"
+                  y="32.9736">EduMate
+            </text>
+        </g><!--class UniquePersonList-->
+        <g id="elem_UniquePersonList">
+            <rect fill="#D42E12" height="29.0679" id="UniquePersonList" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="124" x="71" y="102.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="118" x="74"
+                  y="121.9736">UniquePersonList
+            </text>
+        </g><!--class User-->
+        <g id="elem_User">
+            <rect fill="#D42E12" height="29.0679" id="User" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;"
+                  width="50" x="108" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="31" x="117.5"
+                  y="32.9736">User
+            </text>
+        </g><!--class Person-->
+        <g id="elem_Person">
+            <rect fill="#D42E12" height="29.0679" id="Person" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;"
+                  width="52" x="303" y="102.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="46" x="306"
+                  y="121.9736">Person
+            </text>
+        </g><!--class GroupTagSet-->
+        <g id="elem_GroupTagSet">
+            <rect fill="#D42E12" height="29.0679" id="GroupTagSet" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="94" x="215" y="191.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="88" x="218"
+                  y="210.9736">GroupTagSet
+            </text>
+        </g><!--class GroupTag-->
+        <g id="elem_GroupTag">
+            <rect fill="#D42E12" height="29.0679" id="GroupTag" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="73" x="225.5" y="280.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="67" x="228.5"
+                  y="299.9736">GroupTag
+            </text>
+        </g><!--class ModuleTagSet-->
+        <g id="elem_ModuleTagSet">
+            <rect fill="#D42E12" height="29.0679" id="ModuleTagSet" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="103" x="344.5" y="191.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="97" x="347.5"
+                  y="210.9736">ModuleTagSet
+            </text>
+        </g><!--class ModuleTag-->
+        <g id="elem_ModuleTag">
+            <rect fill="#D42E12" height="29.0679" id="ModuleTag" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="82" x="355" y="280.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="76" x="358"
+                  y="299.9736">ModuleTag
+            </text>
+        </g><!--class Name-->
+        <g id="elem_Name">
+            <rect fill="#D42E12" height="29.0679" id="Name" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;"
+                  width="50" x="565" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="40" x="570"
+                  y="32.9736">Name
+            </text>
+        </g><!--class Phone-->
+        <g id="elem_Phone">
+            <rect fill="#D42E12" height="29.0679" id="Phone" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;"
+                  width="50" x="480" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="42" x="484"
+                  y="32.9736">Phone
+            </text>
+        </g><!--class Email-->
+        <g id="elem_Email">
+            <rect fill="#D42E12" height="29.0679" id="Email" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;"
+                  width="50" x="395" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="401.5"
+                  y="32.9736">Email
+            </text>
+        </g><!--class Address-->
+        <g id="elem_Address">
+            <rect fill="#D42E12" height="29.0679" id="Address" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="61" x="298.5" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="55" x="301.5"
+                  y="32.9736">Address
+            </text>
+        </g><!--class Telegram-->
+        <g id="elem_Telegram">
+            <rect fill="#D42E12" height="29.0679" id="Telegram" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="70" x="193" y="13.0076"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="64" x="196"
+                  y="32.9736">Telegram
+            </text>
+        </g><!--link EduMate to UniquePersonList-->
+        <g id="link_EduMate_UniquePersonList">
+            <path codeLine="6" d="M65.24,52.1276 C78.46,64.4876 94.6,79.5876 107.82,91.9476 " fill="none"
+                  id="EduMate-UniquePersonList" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="56.05,43.5176,57.6995,50.5375,64.8139,51.7148,63.1643,44.6949,56.05,43.5176"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="116.99,100.5276,113.149,91.4586,113.3382,97.1123,107.6845,97.3015,116.99,100.5276"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="113.3382" x2="107.495" y1="97.1123" y2="91.6476"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="104.545" y="90.2278">1
+            </text>
+        </g><!--link EduMate to User-->
+        <g id="link_EduMate_User">
+            <path codeLine="7" d="M87.68,27.5076 C89.58,27.5076 91.47,27.5076 93.36,27.5076 " fill="none"
+                  id="EduMate-User" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="74.94,27.5076,80.94,31.5076,86.94,27.5076,80.94,23.5076,74.94,27.5076"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="106.35,27.5076,97.35,23.5076,101.35,27.5076,97.35,31.5076,106.35,27.5076"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="101.35" x2="93.35" y1="27.5076" y2="27.5076"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="93.1757" y="22.206">1
+            </text>
+        </g><!--link User to UniquePersonList--><!--link User to Person-->
+        <g id="link_User_Person">
+            <path codeLine="10" d="M158.22,39.7076 C189.7,53.6776 244.13,77.8376 283.08,95.1276 " fill="none"
+                  id="User-to-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="none" points="285.8,88.6776,301.24,103.1876,280.12,101.4676,285.8,88.6776"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link UniquePersonList to Person-->
+        <g id="link_UniquePersonList_Person">
+            <path codeLine="12" d="M195.4,116.5076 C229.05,116.5076 262.71,116.5076 296.36,116.5076 " fill="none"
+                  id="UniquePersonList-to-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="301.13,116.5076,292.13,112.5076,296.13,116.5076,292.13,120.5076,301.13,116.5076"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link Person to GroupTagSet-->
+        <g id="link_Person_GroupTagSet">
+            <path codeLine="14" d="M318.24,131.4876 C306.9,146.1976 289,169.4476 276.45,185.7476 " fill="none"
+                  id="Person-to-GroupTagSet" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="273.66,189.3676,282.3171,184.6714,276.7079,185.404,275.9752,179.7948,273.66,189.3676"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link GroupTagSet to GroupTag-->
+        <g id="link_GroupTagSet_GroupTag">
+            <path codeLine="15" d="M262,220.4876 C262,234.8176 262,257.2476 262,273.4676 " fill="none"
+                  id="GroupTagSet-to-GroupTag" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="262,278.0476,266,269.0476,262,273.0476,258,269.0476,262,278.0476"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="253.7531" y="268.2278">*
+            </text>
+        </g><!--link Person to ModuleTagSet-->
+        <g id="link_Person_ModuleTagSet">
+            <path codeLine="16" d="M339.76,131.4876 C351.1,146.1976 369,169.4476 381.55,185.7476 " fill="none"
+                  id="Person-to-ModuleTagSet" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="384.34,189.3676,382.0248,179.7948,381.2921,185.404,375.6829,184.6714,384.34,189.3676"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link ModuleTagSet to ModuleTag-->
+        <g id="link_ModuleTagSet_ModuleTag">
+            <path codeLine="17" d="M396,220.4876 C396,234.8176 396,257.2476 396,273.4676 " fill="none"
+                  id="ModuleTagSet-to-ModuleTag" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="396,278.0476,400,269.0476,396,273.0476,392,269.0476,396,278.0476"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="387.7531" y="268.2278">*
+            </text>
+        </g><!--link Name to Person-->
+        <g id="link_Name_Person">
+            <path codeLine="19" d="M551.33,41.3976 C502.44,57.6976 418.68,85.6176 369.11,102.1376 " fill="none"
+                  id="Name-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="563.54,37.3276,553.7376,36.3721,558.7955,38.9055,556.2621,43.9634,563.54,37.3276"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="558.7955" x2="551.205" y1="38.9055" y2="41.4426"/>
+            <polygon fill="#D42E12"
+                     points="356.93,106.1976,363.8877,108.0926,368.3129,102.3989,361.3552,100.504,356.93,106.1976"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link Phone to Person-->
+        <g id="link_Phone_Person">
+            <path codeLine="20" d="M467.22,47.1876 C437.98,61.6376 397.62,81.5876 368.06,96.1976 " fill="none"
+                  id="Phone-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="478.43,41.6476,468.5892,42.0465,473.9469,43.8617,472.1317,49.2194,478.43,41.6476"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="473.9469" x2="466.775" y1="43.8617" y2="47.4076"/>
+            <polygon fill="#D42E12"
+                     points="356.68,101.8276,363.8318,102.7502,367.4341,96.5033,360.2823,95.5807,356.68,101.8276"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link Email to Person-->
+        <g id="link_Email_Person">
+            <path codeLine="21" d="M395.3,52.1276 C382.49,64.3676 366.89,79.2876 354.03,91.5776 " fill="none"
+                  id="Email-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="404.29,43.5276,395.0203,46.8552,400.6757,46.9826,400.5483,52.638,404.29,43.5276"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="400.6757" x2="394.885" y1="46.9826" y2="52.5176"/>
+            <polygon fill="#D42E12"
+                     points="344.68,100.5176,351.7811,99.2631,353.3543,92.2257,346.2531,93.4802,344.68,100.5176"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link Address to Person-->
+        <g id="link_Address_Person">
+            <path codeLine="22" d="M329,56.7576 C329,66.4876 329,77.3776 329,87.1076 " fill="none" id="Address-Person"
+                  style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12" points="329,43.9976,325,52.9976,329,48.9976,333,52.9976,329,43.9976"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="329" x2="329" y1="48.9976" y2="56.9976"/>
+            <polygon fill="#D42E12" points="329,100.0476,333,94.0476,329,88.0476,325,94.0476,329,100.0476"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--link Telegram to Person-->
+        <g id="link_Telegram_Person">
+            <path codeLine="23" d="M255.15,51.8976 C269.68,64.4176 287.52,79.7776 302.02,92.2676 " fill="none"
+                  id="Telegram-Person" style="stroke:#D42E12;stroke-width:1.1;"/>
+            <polygon fill="#D42E12"
+                     points="245.37,43.4776,249.5811,52.3808,249.1593,46.7397,254.8004,46.318,245.37,43.4776"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+            <line style="stroke:#D42E12;stroke-width:1.1;" x1="249.1593" x2="255.22" y1="46.7397" y2="51.9576"/>
+            <polygon fill="#D42E12"
+                     points="311.67,100.5776,309.7375,93.6303,302.5813,92.7421,304.5138,99.6894,311.67,100.5776"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--SRC=[TP7DIiGm54RtVOfhbuKCz0KAEXOtxNJGkX8PGdDfGzEavYQ8uCCRdPbGChZ9p_dEbmHo9_MWl40WzwLmj_f5PJHBlNBB5-3Mciz-aiEiaGZANPc6UwECXRPxh9lJlckwvuqmA4xqm8TvjCPhSQjcjV0jTmW5itAS7AiWBtDurVB3un4j6Tr8SlzfX3Rx7O2zJL88rEyYH3VjYyE-ApZJG187ui5Nupo7LWLFuVLhpySNTDbc_PVbHHxpRQSrmYkybBQRs8emtbKmluRmm1TCq74oEcNrmgLAsBqGDlnJGdjKE8R_-040]-->
+    </g>
+</svg>

@@ -42,11 +42,12 @@ title: Developer Guide
        * [Edit Command](#edit-command)
        * [Delete Command](#delete-command)
        * [Tag Command](#tag-command)
-       * [User Command](#user-command)
+       * [View Command](#view-command)
        * [Find Command](#find-command)
        * [Sort Command](#sort-command)
        * [List Command](#list-command)
        * [Exit Command](#exit-command)
+       * [Meet Command](#meet-command)
    * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -260,7 +261,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-<img src="images/ArchitectureDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
@@ -288,7 +289,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/ArchitectureSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
@@ -301,7 +302,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" style="width:70%;margin:0 15%">
+<img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
@@ -315,7 +316,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.2.1</b> Class Diagram for UI Components
 </div>
@@ -340,7 +341,7 @@ The `UI` component,
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.1</b> Class Diagram for Model Components
 </div>
@@ -356,7 +357,7 @@ The `Model` component,
 
 **API** : [`Person.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
-<img src="images/PersonClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.2</b> Class Diagram for Person Components
 </div>
@@ -384,7 +385,7 @@ The `Model` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.1</b> Class Diagram for Logic Components
 </div>
@@ -429,9 +430,16 @@ The `add` command allows users to create a new person and insert them into the a
 | 1. Gwon Se Rang<br/>2. Lao Ming Da |         3         | 3 is the next number in the sequence.                       |
 | 1. Gwon Se Rang<br/>3. Lao Ming Da |         2         | 2 is the lowest number that is not already a contact index. |
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+
+The User has the default `ContactIndex` of 0.
+</div>
+
 In summary, the activity diagram is as such:
 
-<img src="images/AddActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.2a</b> Activity Diagram for a typical <code>add</code> command
 </div>
@@ -485,7 +493,7 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 In summary, the activity diagram is as such:
 
-<img src="images/EditActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>edit</code> command
 </div>
@@ -494,7 +502,7 @@ In summary, the activity diagram is as such:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<img src="images/DeleteSequenceDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
@@ -508,11 +516,63 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 #### **Tag Command**
 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
+
+The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
+
+:information_source: **Command Formats**:
+
+* `tag m/MODULE`: Tags a module to user.
+* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+
+**Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
+
 {to be filled by Kenny}
 
-#### **User Command**
+#### **View Command**
 
-{to be filled by Russell}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ViewCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/ViewCommandParser.java)
+
+The view command allows users to view their information or their contact's information on the profile panel on the top right 
+of the application. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
+the contact's information adding their assigned `ContactIndex` or by adding `n/NAME` behind the `view` command.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+The User profile will be displayed on the profile panel should there be any exceptions thrown during the parsing process.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats** <br>
+- `view` : Displays user's profile on the display panel. <br>
+- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
+- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+</div>
+
+**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
+- If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
+
+    The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+
+Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
+
+<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+</div>
+<br>
+Below is an Activity Diagram for the execution of the `ViewCommand`.
+<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
+</div>
 
 #### **Find Command**
 
@@ -576,7 +636,16 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 #### **List Command**
 
-{to be filled}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
+
+The `list` command will allow users to view all the contacts saved in `EduMate`.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `list`: lists all contacts in the EduMate Application.
+
+</div>
 
 #### **Exit Command**
 
@@ -599,11 +668,50 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 
 
+### **Meet Command**
+
+<div markdown="span" class="alert alert-warning">
+    :construction: Integration works in the process.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Sub-Commands** <br>
+The `meet` command has 3 different sub-commands : `eat`, `study` and generally `meet`.
+However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
+recommendations as certain locations are only appropriate for certain activities.
+</div>
+
+This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
+
+#### LocationUtil
+{to be filled by Hafeez}
+#### Scheduler
+The Scheduler uses the participants' schedule to find common time periods that everyone
+would be free so that a meetup could be scheduled.
+
+The scheduler will always recommend timeslots and rank them in descending time duration that
+the participants could meet up.
+
+##### What needs to be fixed:
+Integration with the `LocationUtil` so that we can find the exact location of every participant
+before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
+
+### **Organise Command**
+
+<div markdown="span" class="alert alert-warning">
+    :construction: Slated for release in v1.3b.
+</div>
+
+The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+
+The `Scheduler` will check if the timing is a suitable for every participant to meet.
+
 ### **Parsers**
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" style="width:80%;margin:0 10%">
+<img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.x</b> Class Diagram for Parser Components
 </div>
@@ -627,7 +735,7 @@ How the parsing works:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.5.1</b> Class Diagram for Storage Components
 </div>
@@ -736,6 +844,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 #### **Target user profile**
 
 * has a need to manage a significant number of contacts
+* frustrated in the struggle to find suitable meetup venues and timings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -750,16 +859,17 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                              |
-|----------|-----------|--------------------------------------------------------|----------------------------------------------|
-| `***`    | student   | view all my modules in one place                       | be more organised in my work                 |
-| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                      |
-| `***`    | user      | view my personal information                           | share it to whoever needs it                 |
-| `***`    | user      | update my profile                                      | personalise my experience                    |
-| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking     |
-| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
-| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
-| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
+| Priority | As a …​   | I want to …​                                           | So that I can…​                                             |
+|----------|-----------|--------------------------------------------------------|-------------------------------------------------------------|
+| `***`    | student   | view all my modules in one place                       | be more organised in my work                                |
+| `***`    | student   | decide a meeting place and time with my friends conveniently | plan meetups for social and academic purposes efficiently|
+| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                                     |
+| `***`    | user      | view my personal information                           | share it to whoever needs it                                |
+| `***`    | user      | update my profile                                      | personalise my experience                                   |
+| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking                    |
+| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules                |
+| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me                   |
+| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends                    |
 
 ### **Use Cases**
 

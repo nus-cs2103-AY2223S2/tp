@@ -1,13 +1,29 @@
 @startuml
 start
-:User enters delete command;
-if () then ([Invalid argument])
-    :Error: Message usage;
-    stop
-elseif () then ([Invalid index])
-    :Error: Invalid person index;
-    stop
-else ()
+:User enters view command
+with optional arguments;
+if () then ([contact index present])
+    : Find Person in Model;
+    if () then ([Person exists])
+    : Retrieve Person
+        from Model;
+    else ([else])
+    : No Person Found
+        feedback to User;
+        stop;
+    endif
+elseif () then ([has Name argument])
+    : Find Person in Model;
+    if () then ([Person exists])
+    : Retrieve Person
+        from Model;
+    else ([else])
+    : Retrieve User
+       from Model;
+    endif
+else ([else])
+    :Retrieve User
+     from Model;
 endif
 :Person appears on view window;
 stop

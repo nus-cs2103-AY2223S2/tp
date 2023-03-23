@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="516px" preserveAspectRatio="none" style="width:640px;height:516px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 640 516" width="640px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster Parser classes-->
+        <g id="cluster_Parser classes">
+            <rect fill="none" height="427" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="490" x="7"
+                  y="83"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="96" x="204" y="99.9659">Parser classes
+            </text>
+        </g><!--class Parser-->
+        <g id="elem_Parser">
+            <rect codeLine="10" fill="#005EC4" height="48.1358" id="Parser" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="256" y="121"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="259"
+                  y="140.9659">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="43" x="274.5"
+                  y="160.0339">Parser
+            </text>
+        </g><!--class EduMateParser-->
+        <g id="elem_EduMateParser">
+            <rect codeLine="11" fill="#005EC4" height="29.0679" id="EduMateParser" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="109" x="371.5" y="130.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="374.5"
+                  y="150.4659">EduMateParser
+            </text>
+        </g><!--class XYZCommandParser-->
+        <g id="elem_XYZCommandParser">
+            <rect codeLine="12" fill="#005EC4" height="29.0679" id="XYZCommandParser" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="142" x="337" y="257.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="136" x="340"
+                  y="277.4659">XYZCommandParser
+            </text>
+        </g><!--class ParserUtil-->
+        <g id="elem_ParserUtil">
+            <rect codeLine="13" fill="#005EC4" height="29.0679" id="ParserUtil" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="72" x="372" y="375"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="66" x="375"
+                  y="394.9659">ParserUtil
+            </text>
+        </g><!--class ArgumentMultimap-->
+        <g id="elem_ArgumentMultimap">
+            <rect codeLine="14" fill="#005EC4" height="29.0679" id="ArgumentMultimap" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="139" x="23.5" y="375"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="133" x="26.5"
+                  y="394.9659">ArgumentMultimap
+            </text>
+        </g><!--class ArgumentTokenizer-->
+        <g id="elem_ArgumentTokenizer">
+            <rect codeLine="15" fill="#005EC4" height="29.0679" id="ArgumentTokenizer" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="139" x="197.5" y="375"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="133" x="200.5"
+                  y="394.9659">ArgumentTokenizer
+            </text>
+        </g><!--class Prefix-->
+        <g id="elem_Prefix">
+            <rect codeLine="16" fill="#005EC4" height="29.0679" id="Prefix" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="383" y="465"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="389"
+                  y="484.9659">Prefix
+            </text>
+        </g><!--class Command-->
+        <g id="elem_Command">
+            <rect codeLine="6" fill="#005EC4" height="48.1358" id="Command" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="75" x="544.5" y="248"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="549.5"
+                  y="267.9659">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="69" x="547.5"
+                  y="287.0339">Command
+            </text>
+        </g><!--class XYZCommand-->
+        <g id="elem_XYZCommand">
+            <rect codeLine="7" fill="#005EC4" height="29.0679" id="XYZCommand" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="99" x="534.5" y="375"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="537.5"
+                  y="394.9659">XYZCommand
+            </text>
+        </g><!--class HiddenOutside-->
+        <g id="elem_HiddenOutside">
+            <rect codeLine="19" fill="#FFFFFF" height="29.0679" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="108" x="372" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="102" x="375"
+                  y="26.9659">HiddenOutside
+            </text>
+        </g><!--link HiddenOutside to EduMateParser-->
+        <g id="link_HiddenOutside_EduMateParser">
+            <path codeLine="20" d="M426,36.44 C426,57.86 426,98.99 426,123.72 " fill="none"
+                  id="HiddenOutside-to-EduMateParser"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="426,128.71,430,119.71,426,123.71,422,119.71,426,128.71"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link EduMateParser to XYZCommandParser-->
+        <g id="link_EduMateParser_XYZCommandParser">
+            <path codeLine="22" d="M424,159.85 C420.83,181.91 414.61,225.12 410.93,250.68 " fill="none"
+                  id="EduMateParser-to-XYZCommandParser"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="410.22,255.59,415.4661,247.2546,410.9351,250.6414,407.5483,246.1104,410.22,255.59"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="422.2879,213.802,426.4851,205.2677,420.6672,204.4306,422.2879,213.802"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43" x="432"
+                  y="213.897">creates
+            </text>
+        </g><!--link XYZCommandParser to XYZCommand-->
+        <g id="link_XYZCommandParser_XYZCommand">
+            <path codeLine="24"
+                  d="M428.63,286.92 C450.31,301.51 485.44,325.04 516,345 C529.45,353.78 544.49,363.42 557,371.39 "
+                  fill="none" id="XYZCommandParser-to-XYZCommand"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="560.91,373.88,555.4699,365.6699,556.6935,371.1928,551.1705,372.4164,560.91,373.88"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="525.1768,338.6015,519.2364,331.1744,516.0054,336.0846,525.1768,338.6015"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43" x="530"
+                  y="340.897">creates
+            </text>
+        </g><!--link EduMateParser to Command-->
+        <g id="link_EduMateParser_Command">
+            <path codeLine="25" d="M443.29,159.85 C468.37,179.95 515.35,217.59 547.63,243.46 " fill="none"
+                  id="EduMateParser-to-Command" style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="551.5,246.56,546.9827,237.8082,547.5998,243.4313,541.9768,244.0485,551.5,246.56"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="521.9018,211.9796,516.6811,204.0301,513.0056,208.617,521.9018,211.9796"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="44" x="527"
+                  y="213.897">returns
+            </text>
+        </g><!--reverse link Parser to XYZCommandParser-->
+        <g id="link_Parser_XYZCommandParser">
+            <path codeLine="26" d="M331.05,185.11 C353.08,209.71 380.18,239.95 395.63,257.19 " fill="none"
+                  id="Parser-backto-XYZCommandParser"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="325.95,189.91,317.81,170.35,336.37,180.57,325.95,189.91"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link XYZCommandParser to ArgumentMultimap-->
+        <g id="link_XYZCommandParser_ArgumentMultimap">
+            <path codeLine="27" d="M370,286.93 C311.35,308.44 199.06,349.61 136.98,372.37 " fill="none"
+                  id="XYZCommandParser-to-ArgumentMultimap"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="132.55,374,142.3775,374.6476,137.2427,372.2741,139.6161,367.1393,132.55,374"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link XYZCommandParser to ArgumentTokenizer-->
+        <g id="link_XYZCommandParser_ArgumentTokenizer">
+            <path codeLine="28" d="M390.99,286.93 C365.48,307.83 317.29,347.3 289.09,370.4 " fill="none"
+                  id="XYZCommandParser-to-ArgumentTokenizer"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="285.24,373.56,294.7323,370.9338,289.1021,370.3845,289.6514,364.7543,285.24,373.56"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--reverse link ArgumentMultimap to ArgumentTokenizer-->
+        <g id="link_ArgumentMultimap_ArgumentTokenizer">
+            <path codeLine="29" d="M169.16,389.5 C178.55,389.5 187.93,389.5 197.31,389.5 " fill="none"
+                  id="ArgumentMultimap-backto-ArgumentTokenizer"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="164.18,389.5,173.18,393.5,169.18,389.5,173.18,385.5,164.18,389.5"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link XYZCommandParser to Prefix-->
+        <g id="link_XYZCommandParser_Prefix">
+            <path codeLine="30"
+                  d="M420.75,286.88 C440.84,310.51 476.19,360.24 462,404 C455,425.57 439.16,446.13 426.44,460.16 "
+                  fill="none" id="XYZCommandParser-to-Prefix"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="423.29,463.55,432.3476,459.6821,426.6944,459.8881,426.4885,454.235,423.29,463.55"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link XYZCommandParser to ParserUtil-->
+        <g id="link_XYZCommandParser_ParserUtil">
+            <path codeLine="31" d="M408,286.7 C408,306.93 408,344.92 408,368.34 " fill="none"
+                  id="XYZCommandParser-to-ParserUtil"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="408,373.3,412,364.3,408,368.3,404,364.3,408,373.3"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link ParserUtil to Prefix-->
+        <g id="link_ParserUtil_Prefix">
+            <path codeLine="32" d="M408,404.25 C408,418.76 408,441.78 408,458.34 " fill="none" id="ParserUtil-to-Prefix"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="408,463.04,412,454.04,408,458.04,404,454.04,408,463.04"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link ArgumentTokenizer to Prefix-->
+        <g id="link_ArgumentTokenizer_Prefix">
+            <path codeLine="33" d="M289.34,404.44 C313.99,419.83 353.68,444.6 380.29,461.21 " fill="none"
+                  id="ArgumentTokenizer-to-Prefix" style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="384.48,463.82,378.9557,455.6664,380.236,461.1764,374.7259,462.4568,384.48,463.82"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--reverse link Command to XYZCommand-->
+        <g id="link_Command_XYZCommand">
+            <path codeLine="34" d="M582.77,317.72 C583.13,337.99 583.52,360.51 583.76,374.59 " fill="none"
+                  id="Command-backto-XYZCommand" style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="none" points="575.78,318,582.43,297.89,589.78,317.76,575.78,318"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--SRC=[ZP5TQy8m58Rlyokoxjg0jqCAhljaIeSus8OWMNfqeMbIye7RrF- -QblJ3ndhrSbxdhpdzCq5bqou1B2ntm98xZA1JCfbJZNDCDLQRUQVdAKIZC53Ckms8oMKnfFu_Z5QHl4adYrlnhEd1iK4DUQQidIjbPD9ZqSeEX0usD8FOpLbTh-GaSeoAfC0KuEhki9Utzvh0UM5Arq33fwfDg3BKM02lAqzHoCkBUWLPH262rboHzUohBZRn4sfXPRc1xNayl1YkQY4iLwx3AITEc5vHlEEF5SfIFxZxsjOyI-qht_xWIS9oDXPmuj7kBmxVgYj4X9sLaIj8oQ9siW2wkvyXPc60ZCuHAZRFDfw4JVXZdq1Uag3TLeUgBwZoyakhBCzEx0Nrv-KJw-dO29WPV_jMEL-lkVVr9UdKAkRPnPe0uqe1ouVx4wP_G80]-->
+    </g>
+</svg>
