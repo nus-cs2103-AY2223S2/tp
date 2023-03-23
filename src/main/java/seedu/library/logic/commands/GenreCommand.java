@@ -17,7 +17,7 @@ public class GenreCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<String> validGenres = getValidGenres();
-        String genresString = String.join(" ", validGenres);
+        String genresString = String.join(", ", validGenres);
         return new CommandResult("Valid genres: " + genresString);
     }
 }
