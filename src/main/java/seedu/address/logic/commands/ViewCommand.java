@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_VIEW_ROLE_SUCCESS = "Displayed details for: %1$s";
+    public static final String MESSAGE_VIEW_ROLE_SUCCESS = "Displayed details for: %1$s \n";
     private final Index index;
 
     /**

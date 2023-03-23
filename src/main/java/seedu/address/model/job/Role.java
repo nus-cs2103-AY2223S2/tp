@@ -147,7 +147,7 @@ public class Role {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Role: ").append(getName())
                 .append("\n")
                 .append("Company: ")
                 .append(getCompany())
