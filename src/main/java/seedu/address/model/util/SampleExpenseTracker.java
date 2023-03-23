@@ -8,6 +8,9 @@ import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.expense.Expense;
 
+/**
+ * Class containing sample data for ExpenseTracker to initialize if needed.
+ */
 public class SampleExpenseTracker {
     /**
      * Sample data for categories
