@@ -13,20 +13,21 @@ public class CheckPilotCommand implements Command {
     /**
      * The UUID of the pilot whose availability is to be checked.
      */
-    private final String uuid;
+    private final String id;
 
     /**
      * Creates a command that, when executed, checks the availability of the pilot with the given UUID.
      *
-     * @param uuid the UUID of the pilot to be checked.
+     * @param id the UUID of the pilot to be checked.
      */
-    public CheckPilotCommand(String uuid) {
-        this.uuid = uuid;
+    public CheckPilotCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        boolean isAvailable = model.checkPilot(this.uuid);
+        int index = Integer.parseInt(id);
+        boolean isAvailable = model.checkPilotByIndex(index);
         if (isAvailable) {
             return new CommandResult("This pilot is available.");
         } else {
