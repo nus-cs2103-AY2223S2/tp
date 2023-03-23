@@ -3,6 +3,7 @@ package arb.logic.parser.project;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static java.util.Objects.requireNonNull;
 
 import arb.commons.core.index.Index;
@@ -27,7 +28,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     public EditProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRICE);
         Index index;
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
@@ -43,6 +44,10 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (argumentMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argumentMultimap.getValue(PREFIX_DEADLINE)
                                                                                         .get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editProjectDescriptor.setPrice(ParserUtil.parsePrice(argumentMultimap.getValue(PREFIX_PRICE)
+                    .get()));
         }
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);

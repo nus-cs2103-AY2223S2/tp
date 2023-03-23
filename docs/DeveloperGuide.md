@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project utilises the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,11 +235,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Sorting
+
+#### Implementation
+Sorting is facilitated by JavaFX's [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+
+The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
+
+For the client list, it is only sorted with a `Comparator` that compares the names of the clients.
+
+For the project list, it can be sorted either by deadline or name. When the user executes a `sort` command, they can input which option they wish to sort by, which is parsed by `SortProjectCommandParser`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Overdue Status
 
+### Implementation
+The displaying of the "OVERDUE" status is facilitated by the isOverdue method 
+in the Project class. The isOverdue method returns a boolean after using the 
+compareTo method in the Deadline class which checks the current date 
+against the deadline date of the project, i.e. check if a project's deadline 
+is past the current date.
+
+The Overdue status is highlighted in the UI when any project is past its deadline. 
+The ProjectCard class has been updated to run the aforementioned isOverdue 
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE. 
+The OVERDUE status is shown for existing projects in the list that are overdue, and 
+if a user adds a project with a deadline with a data that has already past.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
