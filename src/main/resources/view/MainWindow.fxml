@@ -42,7 +42,7 @@
             </VBox>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
-                <StackPane prefHeight="50.0" prefWidth="50.0" fx:id="rightPanelTitle" />
+                <StackPane prefHeight="110" prefWidth="50.0" fx:id="rightPanelTitle" />
                 <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>

@@ -136,6 +136,7 @@ public class MainWindow extends UiPart<Stage> {
 
         Pair<String, String> header = new Pair<>("Current Deck:", "No deck selected!");
         deckTitlePlaceholder.add(header);
+
         rightTitle = new DeckNamePanel(deckTitlePlaceholder);
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
@@ -199,8 +200,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        rightTitle = new DeckNamePanel(logic.getReviewDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+        rightPanelTitle.getChildren().removeAll();
 
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
@@ -220,9 +220,6 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        rightPanelTitle.getChildren().removeAll();
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
         personListPanel.endReview();
 

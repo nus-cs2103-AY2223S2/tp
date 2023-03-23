@@ -361,6 +361,20 @@
     -fx-text-fill: black;
 }
 
+#deckNamePane {
+    -fx-background-color:transparent;
+}
+
+#deckNamePane #title {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+#deckNamePane #description {
+    -fx-text-fill: black;
+    -fx-font-size: 40px;
+}
+
 #reviewStatsPane {
     -fx-background-color:white;
 }
