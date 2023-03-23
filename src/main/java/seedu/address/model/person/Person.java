@@ -22,7 +22,7 @@ public class Person {
     private final TelegramHandle telegramHandle;
 
     // Indexing fields
-    private ContactIndex contactIndex;
+    private final ContactIndex contactIndex;
 
     // Data fields
     private final Address address;
@@ -114,8 +114,12 @@ public class Person {
         moduleTags.setCommonModules(userModules);
     }
 
-    public void setContactIndex(ContactIndex contactIndex) {
-        this.contactIndex = contactIndex;
+    /**
+     * Creates a new person and sets the contact index.
+     */
+    public Person setContactIndex(ContactIndex contactIndex) {
+        return new Person(name, phone, email, address, telegramHandle,
+                contactIndex, groupTags.getImmutableGroups(), moduleTags.getImmutableModules());
     }
 
     /**
@@ -177,9 +181,15 @@ public class Person {
                 .append("\nGroups: ")
                 .append(getImmutableGroupTags())
                 .append("\nModules: ")
-                .append(getImmutableModuleTags());
+                .append(getImmutableModuleTags())
+                .append("\nLessons: ")
+                .append(getLessonsAsStr());
 
         return builder.toString();
+    }
+
+    public String getLessonsAsStr() {
+        return this.moduleTags.lessonsAsStr();
     }
 
 }

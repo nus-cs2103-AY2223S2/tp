@@ -87,7 +87,7 @@ public class SortCommandParserTest {
         SortCommandParser parser = new SortCommandParser();
         parser.parse(String.format(" %s", Prefix.NAME.getPrefix()))
                 .execute(model);
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
         List<ContactIndex> contactIndexSortedByName = personList.stream()
                 .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         List<ContactIndex> sortedIndexSorted = personList.stream()
