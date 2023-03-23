@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.category.Category;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
+import seedu.address.model.expense.ExpenseInTimespanPredicate;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -36,11 +36,23 @@ public class ListCommandParser implements Parser<ListCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        Optional<String> categoryStringArg = argMultimap.getValue(PREFIX_CATEGORY);
+        Optional<String> timespanStringArg = argMultimap.getValue(PREFIX_TIMESPAN);
+
+        ExpenseInCategoryPredicate categoryPredicate = null;
+        ExpenseInTimespanPredicate timespanPredicate = null;
+
+        if (categoryStringArg.isPresent()) {
+            categoryPredicate = new ExpenseInCategoryPredicate(ParserUtil.parseCategory(categoryStringArg.get()));
+        }
+        if (timespanStringArg.isPresent()) {
+            timespanPredicate = new ExpenseInTimespanPredicate(ParserUtil.parseTimespan(timespanStringArg.get()));
+        }
 
 
         return new ListCommand(
-                Optional.ofNullable(new ExpenseInCategoryPredicate(category)), Optional.ofNullable(null));
+                Optional.ofNullable(categoryPredicate),
+                Optional.ofNullable(timespanPredicate));
     }
 
     /**
