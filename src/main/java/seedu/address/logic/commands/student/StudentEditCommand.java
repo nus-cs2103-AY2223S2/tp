@@ -4,23 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -30,8 +25,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -43,7 +36,6 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
-import seedu.address.model.person.exceptions.DuplicateParentException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
@@ -224,8 +216,9 @@ public class StudentEditCommand extends StudentCommand {
                         this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
                         newHomework, this.newTest, this.newTagList, this.newComment);
 
-                newStudent.setParent(student.getParent());
-                model.setStudent(student, editStudent(model, student, newStudent));
+                ObservableList<Parent> parents = model.getFilteredParentList();
+                setParent(parents, newStudent, model, student);
+                model.setStudent(student, newStudent);
                 model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
                 return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, newStudent));
             }
@@ -233,7 +226,7 @@ public class StudentEditCommand extends StudentCommand {
 
         throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED);
     }
-
+    /*
     /**
      * Method that helps transfer and update all students in the original Parent object to the new EDITED Parent object.
      *
@@ -241,6 +234,7 @@ public class StudentEditCommand extends StudentCommand {
      * @param newStudent Edited Parent object.
      * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
+    /*
     private Student editStudent(Model model, Student studentToEdit, Student newStudent) throws ParseException {
 
         ObservableList<Parent> parents = model.getFilteredParentList();
@@ -324,6 +318,68 @@ public class StudentEditCommand extends StudentCommand {
             model.updateFilteredParentList(PREDICATE_SHOW_ALL_PARENTS);
         }
         return newStudent;
-        */
+
+    }
+
+     */
+
+    /**
+     * A method that binds the Student's Parent / NOK to the Student
+     *
+     * @param parents List of existing Parents / NOK.
+     * @param student Student that needs the binding of Parent/NOK to.
+     * @param model {@code Model} which the command should operate on.
+     */
+    public void setParent(ObservableList<Parent> parents, Student student, Model model, Student oldStudent)
+            throws ParseException {
+        if (student.getParentNumber() != oldStudent.getParentNumber()
+                || !student.getParentName().equals(oldStudent.getParentName())) {
+            for (Parent p : parents) {
+                if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
+                        oldStudent.getParentName()))) {
+                    model.deleteParent(p);
+                    Address address = p.getAddress();
+                    Image image = p.getImage();
+                    Age age = p.getAge();
+                    Email email = p.getEmail();
+                    Set<Tag> tagList = p.getTags();
+                    Parent newParent = new Parent(student.getParentName(), age, image, email, student.getParentNumber(),
+                            address, tagList);
+                    student.setParent(newParent);
+                    newParent.addStudent(student); //bind student to parent
+                    model.addParent(newParent); //update parent in parents
+                    return;
+                }
+            }
+        }
+        Phone parentNumber = student.getParentNumber();
+        Name parentName = student.getParentName();
+        for (Parent p : parents) {
+            if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
+                student.setParent(p);
+                Parent newParent = p;
+                newParent.addStudent(student); //bind student to parent
+                newParent.removeStudent(oldStudent);
+                model.setParent(p, newParent); //update parent in parents
+                return;
+            }
+        }
+        /*
+        ArgumentMultimap argMultimap = new ArgumentMultimap();
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
+        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Parent newParent = new Parent(parentName, age, image, email, parentNumber,
+                address, tagList); //create new parent as there isnt any matching parent
+        newParent.addStudent(student); //bind student to parent
+        if (model.hasParent(newParent)) {
+            throw new DuplicateParentException();
+        }
+        model.addParent(newParent);
+        student.setParent(newParent);
+
+         */
     }
 }
