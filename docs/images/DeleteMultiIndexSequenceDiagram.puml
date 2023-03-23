@@ -1,5 +1,5 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+hide footbox
 
 !define LOGIC_COLOR #3333C4
 !define LOGIC_COLOR_T1 #7777DB
@@ -46,7 +46,6 @@ deactivate DeleteCommand
 
 DeleteCommandParser --> DengueHotspotTrackerParser : List<Index>
 deactivate DeleteCommandParser
-destroy DeleteCommandParser
 
 DengueHotspotTrackerParser --> LogicManager : List<Index>
 deactivate DengueHotspotTrackerParser
