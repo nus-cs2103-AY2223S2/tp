@@ -17,6 +17,7 @@ public class AlertWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AlertWindow.class);
     private static final String FXML = "AlertWindow.fxml";
     private static final String ALERT_MESSAGE = "Here are the alerts due";
+    private static final String EMPTY_ALERT_MESSSAGE = "There are no alerts due";
     private Logic logic;
     private TaskListPanel taskListPanel;
 
@@ -84,6 +85,9 @@ public class AlertWindow extends UiPart<Stage> {
     }
 
     void fillInnerParts() {
+        if (logic.getAlertTaskList().isEmpty()) {
+            alertMessage.setText(EMPTY_ALERT_MESSSAGE);
+        }
         taskListPanel = new TaskListPanel(logic.getAlertTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
