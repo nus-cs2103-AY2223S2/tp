@@ -217,20 +217,19 @@ The feature uses operations in the `Model` interface as `Model#displaySortedSala
 Given below is an example usage of how Salary Command is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the current address
-   book from the storage and loads it. 
-   <img src="images/SalaryCommand0.png" width="800" />
+   book from the storage and loads it. &nbsp; <img src="images/SalaryCommand0.png" width="800" />
 
 2. The user can choose to use the `SalaryCommand` in asc or desc order.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
-      order. <img src="images/SalaryCommand1.png" width="800" />
+      order. &nbsp; <img src="images/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
-      order. <img src="images/SalaryCommand2.png" width="800" />
+      order. &nbsp; <img src="images/SalaryCommand2.png" width="800" />
 
-The following sequence diagram shows how the Salary Command is being done:
+The following sequence diagram shows how the Salary Command is being done: &nbsp;
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command: &nbsp;
 
 <img src="images/CommitActivityDiagram.png" width="300" />
 
