@@ -188,7 +188,7 @@ The `Model` component,
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
-  <img src="images/ItemClassDiagram.svg" width="250" />
+  <img src="images/ItemClassDiagram.svg" width="300" />
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model
