@@ -372,6 +372,35 @@ use this index when deleting tasks
   would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e first task
   has index 1, second task has index 2 etc) and thus the invalid indexes can be easily obtained.
 
+## Unassigning a Task from a Person
+
+**Syntax:** `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
+**Purpose:** Allows users to unassign a task from a person.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UnassignActivity.png" width="550" />
+
+Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
+
+![AddTaskSequenceDiagram](images/UnassignSequenceDiagram.png)
+### Implementation
+
+The implementation of this feature is supported by `UnassignTaskCommand` and `UnassignTaskCommandParser`.
+
+### Design Considerations
+
+**Aspect: Unassigning a task from a person**
+
+- **Alternative 1 (current choice):** Unassign tasks using the index of the person and the index of the task.
+    - Pros: Easier for users to locate the task and person they want to unassign, especially if the list of tasks or persons is long.
+    - Cons: Requires users to first obtain the index of the task and person by listing them, which might increase the steps required for the user.
+
+- **Alternative 2:** Unassign tasks using the task title and person name.
+    - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
+    - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
