@@ -5,7 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -65,4 +70,18 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Combine a set of tag and form it as a string.
+     * @param tags
+     * @return A sentence of each tags separated by a space.
+     */
+    public static String joinTagsAsString(Set<Tag> tags) {
+        List<String> tagList = new ArrayList<>();
+        for (Tag t: tags) {
+            tagList.add(t.toString());
+        }
+        return String.join(" ", tagList);
+    }
+
 }

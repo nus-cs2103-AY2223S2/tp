@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TAG;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -156,4 +157,23 @@ public class ParserUtil {
         }
         return new VideoName(trimmedVideoName);
     }
+
+    /**
+     * Parses a {@code String args} into a {@code Flag} if any.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Flag parseFlag(String args) {
+        requireNonNull(args);
+        String trimmedArgs = args.trim();
+        String[] argsArr = trimmedArgs.split(" ");
+        if (hasFlag(argsArr)) {
+            return new Flag(argsArr[argsArr.length - 1]);
+        }
+        return null;
+    }
+
+    private static boolean hasFlag(String[] argsArr) {
+        return new Flag(argsArr[argsArr.length - 1]).equals(FLAG_TAG);
+    }
+
 }
