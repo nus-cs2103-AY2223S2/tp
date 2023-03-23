@@ -51,7 +51,8 @@ public class EditBookmarkDescriptorBuilder {
      * Sets the {@code Progress} of the {@code EditBookmarkDescriptor} that we are building.
      */
     public EditBookmarkDescriptorBuilder withProgress(String progress) {
-        descriptor.setProgress(new Progress(progress));
+        String[] splitProgress = progress.split(" ");
+        descriptor.setProgress(new Progress(splitProgress));
         return this;
     }
 

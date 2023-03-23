@@ -45,8 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Bookmark bookmark = new Bookmark(title, progress, genre, author, url, tagList);
-
-        return new AddCommand(bookmark);
+        boolean hasTags = arePrefixesPresent(argMultimap, PREFIX_TAG);
+        return new AddCommand(bookmark, hasTags);
     }
 
     /**

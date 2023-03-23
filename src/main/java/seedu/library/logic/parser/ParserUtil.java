@@ -60,10 +60,11 @@ public class ParserUtil {
     public static Progress parseProgress(String progress) throws ParseException {
         requireNonNull(progress);
         String trimmedProgress = progress.trim();
-        if (!Progress.isValidProgress(trimmedProgress)) {
+        String[] splitProgress = trimmedProgress.split(" ");
+        if (!Progress.isValidProgress(splitProgress)) {
             throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
         }
-        return new Progress(trimmedProgress);
+        return new Progress(splitProgress);
     }
 
     /**

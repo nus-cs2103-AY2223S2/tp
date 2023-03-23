@@ -98,10 +98,11 @@ public class ModelManagerTest {
         Library library = new LibraryBuilder().withBookmark(ALICE).withBookmark(BENSON).build();
         Library differentLibrary = new Library();
         UserPrefs userPrefs = new UserPrefs();
+        Tags tags = new Tags();
 
         // same values -> returns true
-        modelManager = new ModelManager(library, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(library, userPrefs);
+        modelManager = new ModelManager(library, userPrefs, tags);
+        ModelManager modelManagerCopy = new ModelManager(library, userPrefs, tags);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +115,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different Library -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentLibrary, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentLibrary, userPrefs, tags)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getTitle().value.split("\\s+");
         modelManager.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(library, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(library, userPrefs, tags)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredBookmarkList(PREDICATE_SHOW_ALL_BOOKMARKS);
@@ -127,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setLibraryFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(library, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(library, differentUserPrefs, tags)));
     }
 }

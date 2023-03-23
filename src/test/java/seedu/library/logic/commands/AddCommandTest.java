@@ -9,6 +9,7 @@ import static seedu.library.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,10 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.ReadOnlyLibrary;
+import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.ReadOnlyUserPrefs;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.tag.Tag;
 import seedu.library.testutil.BookmarkBuilder;
 
 public class AddCommandTest {
@@ -136,6 +139,36 @@ public class AddCommandTest {
 
         @Override
         public void setBookmark(Bookmark target, Bookmark editedBookmark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTags getTags() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String tagListToString() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Set<Tag> tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Tag tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTags(Set<Tag> tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tags) {
             throw new AssertionError("This method should not be called.");
         }
 
