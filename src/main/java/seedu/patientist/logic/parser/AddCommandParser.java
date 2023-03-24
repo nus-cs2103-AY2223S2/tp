@@ -61,11 +61,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                     ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
             Patient patient = new Patient(idNumber, name, phone, email, address, patientStatusDetails, tagList);
 
-            return new AddCommand(ward, patient);
+            return new AddCommand(ward.getWardName(), patient);
         }
 
         Patient patient = new Patient(email, name, phone, idNumber, address, tagList);
-        return new AddCommand(ward, patient);
+        return new AddCommand(ward.getWardName(), patient);
     }
 
     /**

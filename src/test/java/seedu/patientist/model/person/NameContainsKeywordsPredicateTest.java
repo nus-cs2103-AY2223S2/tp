@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.testutil.PatientBuilder;
 import seedu.patientist.testutil.StaffBuilder;
 
