@@ -14,7 +14,7 @@ import seedu.sudohr.model.employee.Id;
  * Lists leaves by a specified employee.
  */
 public class ListLeavesByEmployeeCommand extends Command {
-    public static final String COMMAND_WORD = "listEmployeeLeave";
+    public static final String COMMAND_WORD = "llbe";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists the leaves taken by the specified employee"
