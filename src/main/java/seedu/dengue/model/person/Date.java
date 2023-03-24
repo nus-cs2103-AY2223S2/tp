@@ -41,7 +41,7 @@ public class Date {
     public final String value;
 
     /**
-     * Constructs an {@code Date}.
+     * Constructs a {@code Date}.
      *
      * @param date A Date.
      */
