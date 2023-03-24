@@ -6,6 +6,7 @@ import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
+import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.FROM_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_FROM_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -133,7 +134,6 @@ public class AddCommandParserTest {
 
         // no description
         expectedTask = new SimpleTaskBuilder(AMY).withTags().withDescription().build();
-        System.out.println(expectedTask.getDescription());
         assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_DEFAULT,
                 new AddCommand(expectedTask));
     }
