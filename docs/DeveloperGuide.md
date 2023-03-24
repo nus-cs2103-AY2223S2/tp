@@ -437,6 +437,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case:  Upload reports for a patient**
+
+**MSS**
+
+1. User requests to upload reports for given patient.
+2. Medimate allows user to choose files.
+3. User upload those selected files.
+4. Medimate store the uploaded files at patient's directory.
+
+    Use Case ends.
+
+**Extensions**
+
+* 1a. User input format is wrong.
+    * 1a1.  Medimate asks User for another correct input upload.
+    * 1a2. User inputs a new line of upload format.
+
+      Use Case resumes at step 2.
+
+**Use case:  Generate MCs for given patient**
+
+**MSS**
+
+1. User requests to generate MC for given patients.
+2. Medimate generated MC with user desired informations and stored at patient directory.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
