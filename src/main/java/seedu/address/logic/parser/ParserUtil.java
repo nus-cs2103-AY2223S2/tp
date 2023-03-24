@@ -9,7 +9,7 @@ import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
-import seedu.address.model.patient.Ward;
+import seedu.address.model.ward.Ward;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -86,13 +86,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ward} is invalid.
      */
-    public static Ward parseWard(String ward) throws ParseException {
+    public static String parseWard(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
         if (!Ward.isValidWard(trimmedWard)) {
             throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
         }
-        return new Ward(trimmedWard);
+        return trimmedWard;
     }
 
     /**

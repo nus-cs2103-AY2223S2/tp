@@ -1,5 +1,7 @@
 package seedu.address.model.patient;
 
+import seedu.address.model.ward.Ward;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -17,7 +19,7 @@ public class Patient {
 
     // Data fields
     private Status status = new Status("GRAY");
-    private Ward ward = new Ward("Waiting Room");
+    private String ward = "Waiting Room";
     private Discharge discharge = new Discharge("To Be Confirmed");
 
     /**
@@ -56,7 +58,7 @@ public class Patient {
      * @param ward Patient ward
      *             Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, Ward ward) {
+    public Patient(Nric nric, Name name, String ward) {
         requireAllNonNull(nric, name, ward);
         this.nric = nric;
         this.name = name;
@@ -72,7 +74,7 @@ public class Patient {
      * @param ward   Patient ward
      *               Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, Status status, Ward ward) {
+    public Patient(Nric nric, Name name, Status status, String ward) {
         requireAllNonNull(nric, name, status, ward);
         this.nric = nric;
         this.name = name;
@@ -90,7 +92,7 @@ public class Patient {
      * @param discharge   Patient discharge
      *               Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, Status status, Ward ward, Discharge discharge) {
+    public Patient(Nric nric, Name name, Status status, String ward, Discharge discharge) {
         requireAllNonNull(nric, name, status, ward, discharge);
         this.nric = nric;
         this.name = name;
@@ -114,7 +116,7 @@ public class Patient {
         return status.getDesc();
     }
 
-    public Ward getWard() {
+    public String getWard() {
         return ward;
     }
     public Discharge getDischarge() {
@@ -126,7 +128,7 @@ public class Patient {
         status = newStatus;
     }
 
-    public void setWard(Ward newWard) {
+    public void setWard(String newWard) {
         requireAllNonNull(newWard);
         ward = newWard;
     }
