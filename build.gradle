@@ -73,4 +73,8 @@ shadowJar {
     archiveFileName = 'wife.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
