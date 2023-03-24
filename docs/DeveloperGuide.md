@@ -225,19 +225,19 @@ Below is a sequence diagram that illustrates how a user adds new tasks into the 
 
 * **Alternative 2:** Require all fields to be compulsory
     * Pros: Easier to implement, fewer bugs may be generated.
-    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when 
+    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when
   creating tasks may be forced to key in random content to add tasks.
 
 #### 3.1.3 Constraints:
 **Title must be unique:** </br>
-We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
+We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique
 titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title. </br>
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
 to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
-Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in 
+Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
 
 ### 3.2 Deleting a task
@@ -262,13 +262,13 @@ Below is an activity diagram showcasing the 2 steps: </br>
 
 * **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
     * Pros: Increase convenience for users, as they do not have to remember the index of each task while being easier to implement.
-    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
+    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of
   obtaining the index needed for `deletetask`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
 use this index when deleting tasks
     * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
-  troublesome for them to delete tasks as the number of steps required is reduced by one. 
+  troublesome for them to delete tasks as the number of steps required is reduced by one.
   Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
     * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
   If the user does not keep track of the indexes they have used for previous tasks, they may have to still
@@ -322,13 +322,54 @@ Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 #### 3.5.1 Implementation
 The implementation of this feature is supported by `EditTaskCommand` and `EditTaskCommandParser`.
 
-### 3.6 Help Window
+### 3.6 Assign a Task
+Syntax: `assign pi/INDEX ti/INDEX` </br>
+Purpose: Allows users to assign a person to a task
+
+#### 3.6.1 Implementation
+The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`,
+`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task
+to a person in the OfficeConnectModel. </br>
+
+Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
+* Alternative steps to Step 1:
+  * Step 1.1: User executes `list` to list all persons or `find David` to search for David in the contact
+    list.
+  * Step 1.2: User executes `listtask` to list all the tasks or `findtask slides` to search for a task containing the
+    word slides in its title.
+* After this step, the target task to assign and the target person to be assigned to said task will appear in the list
+  of persons and tasks displayed.
+
+Step 2: User executes `assign pi/1 ti/1` to assign the first task on the list of tasks to the first person on the list
+of tasks.
+
+The following activity diagram summarizes what happens when a user wants to execute an `assign` command:
+![Assign Activity Diagram](images/AssignActivityDiagram.png)
+
+#### 3.6.2 Design Considerations
+**Aspect: Steps Leading to Execution of Assign Command**
+
+* **Alternative 1 (current choice):** Users execute `list` or `find` to display a list of persons and `listtask` or
+  `findtask` to display a list of tasks on the application.
+  * Pros: Users can search for a specific person or task before assigning.
+  * Cons: If `list` and `listtask` are used, users may have to scroll through a long list to search for the desired
+    person or task. The results of `find` and `findtask` cannot be displayed simultaneously. Thus, if `find` was executed
+    to search for a person, the user will then have to execute `listtask` to access the full list of tasks in order to
+    identify the task that the user wants to be assigned to that person.
+
+* **Alternative 2 (proposed additional choice):** Users can execute a command to display a list tasks that have not been
+  assigned to any person or to display a people that have not been assigned to that task.
+  * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
+    `findtask` to search for unassigned tasks one at a time.
+  * Cons: None, because this is an additional feature proposed that will complement Alternative.
+
+### 3.7 Help Window
 
 Syntax: ```help```
 <br>
 Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
 
-#### 3.6.1 Implementation
+#### 3.7.1 Implementation
 
 A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
@@ -336,7 +377,7 @@ information, the user can choose to view the comprehensive User Guide instead.
 
 <img src="images/HelpActivityDiagram.png" width="330" />
 
-#### 3.6.2 Design Considerations
+#### 3.7.2 Design Considerations
 
 **Aspect: Contents of help window**
 
@@ -777,7 +818,7 @@ feature would work in practice.
 
     * 5a1. OfficeConnect shows an error message.
 
-      Use case resumes at step 2. 
+      Use case resumes at step 2.
 
 ---
 #### 5.4.5 Use case 5: Remove assignment of task from a person
@@ -1013,13 +1054,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder 
+   1. Download the jar file and copy into an empty folder
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
       optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
@@ -1029,12 +1070,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
    2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-      Timestamp in the status bar is updated. 
+      Timestamp in the status bar is updated.
    3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same. 
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
