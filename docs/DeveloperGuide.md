@@ -219,25 +219,93 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+### \[Implemented\] Tag-related Features
+
+#### Overview
+The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will 
+modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item within 
+WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will 
+add/remove the corresponding `Tag` object to/from the `Set<Tag>` stored within `Food` This allows for efficient tagging and 
+organization of items across multiple lists.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How to store the tags for WIFE and each food item. **
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Store `Tag` in `UniqueTagList` and each `Food` stores its own set of associated
+    `Tag` objects.
+    * Pros: 
+      * Easy to implement.
+      * Users are able to create and reuse the same `Tag` that may be extensible for editing to suit their own use
+        case instead of providing a preset list of tags that cannot be extended for other food items in the list.
+    * Cons: 
+      * May have performance issues in terms of memory usage as additional storage is used.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
+* **Alternative 2:** Instantiates `Tag` with a specified name and stores all food classified by the tag in the 
+    instantiated class.
+    * Pros:
+        * Saves space. There is no need to store the set of associated `Tag`, `Set<Tag>` in `Food`. The association
+          of `Food` to `Tag` is represented by `List<Food>` in `Tag` object.
+        * Easily extensible. Creating a new `Tag` can be done by simply instantiating a new `Tag` object.
+    * Cons:
+        * May be more complicated in terms of implementation as compared to alternative 1.
+        * Approach is not as intuitive as compared to alternative 1 (simpler to add each `Tag` to the `Food`)
+      
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+#### Feature 1 - `createtag`:
+The `createtag` command creates a new tag in WIFE which can be used to create a new tag that can be used to classify 
+food items in food lists. Once the tag is created using this command, the tag can be applied to food items using the 
+`tag` command.
 
-_{Explain here how the data archiving feature will be implemented}_
+**Implementation**
 
+The first stage of the implementation is parsing the user input to `CreateTagCommand`. `CreateTagCommandParser` is used 
+to parse and check whether the user input is valid. After which a `CreateTagCommand` object is created with the specified
+tag name. 
+The second stage requires CreateTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies a tag name for the new tag when creating a new tag.
+2. If the tag name is empty, an error response is returned and users will be prompted to key in the command with the valid
+   tag name.
+3. If the tag name is invalid, an error response is returned and users will be prompted to key in the command with a valid
+   tag name.
+4. If the tag name inserted by the user has the same tag name as another tag in the `Model`, an error is returned to
+   inform the user that there is already a duplicated copy of tag in the `UniqueTagList`.
+5. If the tag storage of WIFE is full, an error response is returned to inform that the user has reached the maximum
+   capacity of the tag storage and will not be able to insert additional tag.
+6. Completion of step 5 without any exceptions will result in successful creation of a new `Tag` in WIFE and stored in
+   `UniqueTagList`
+
+The following sequence diagram shows how the `createtag` command.
+
+**insert sequence diagram
+
+### \[Implemented\] Dynamic Help
+
+The dynamic help mechanism allows the user to receive help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only receive general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
+
+HelpMenu#getGeneralHelp() — Retrieves a general help message if the user inputs `help`.
+HelpMenu#getCommandHelp() — Retrieves the command specific help message.
+HelpMenu#parseCommand() — Parses the command input in `help COMMAND` to ensure it is a valid command.
+
+These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#getGeneralHelp() or HelpMenu#getCommandHelp() depending on the help command input after parsing the input with HelpMenu#parseCommand(). 
+
+#### The help message is sent to the UI as follows:
+
+<div/>
+
+Step 1. After successful retrieval of the help message, the message is passed to the `HelpCommand` object returned by `HelpCommandParser`.
+
+Step 2. The `LogicManager` executes the `HelpCommand` object which generates a  containing a parameter for the help message.
+
+Step 3. MainWindow#executeCommand() extracts the help message from the `CommandResult` and sends it to `HelpWindow` as the text to be set in the FXML `label`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -291,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-### **Use case UC01: Add a new item**
+### **Use case UC01: Add a new food item**
 **MSS**
 1. User add item by giving WIFE the name of the item.
 2. User confirms.
@@ -347,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
+1.  User requests to list the food items stored in WIFE.
 2.  WIFE shows the full list of food items.
 3.  User tag food item at specified index with tags pre-defined by WIFE.
 4.  WIFE tagged the food item with the chosen tag.
@@ -356,11 +424,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty. </br>
+* 2a. The list is empty. Wife informs the user that the list is empty.</br>
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. WIFE shows an error message. </br>
+    * 3a1. WIFE displays an error message to inform the user that the index
+    * inserted is invalid. </br>
       Use case resumes at step 2.
 
 * 4a. Chosen tag is not in the pre-defined list of tags.
@@ -389,6 +458,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
+### **Use case UC07: Add a Pre-defined tag**
+
+**MSS**
+
+1. User adds a new tag by giving WIFE the name of the tag.
+2. User confirms.
+3. WIFE adds the tag to the list and displays all current tags in the fridge.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User keyed in an invalid tag name.
+    * 1a1. WIFE displays a message that tells the User that there the tag name keyed in by
+    * the user is invalid.
+
+      Use case ends.
+  
+* 1b. Tag already exists in WIFE's list of pre-defined tags.
+    * 1a1. WIFE displays a message that tells the User that there are already similar tags
+    * in the list, hence, no action will be carried out.
+
+      Use case ends.
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
