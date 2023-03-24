@@ -24,9 +24,10 @@ public class CopyCommandParser implements Parser<CopyCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CopyCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT, PREFIX_SCHEDULE,
-                        PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+                        PREFIX_STARTTIME, PREFIX_ENDTIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_STARTTIME, PREFIX_ENDTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,15 +42,27 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
+        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
+            editPersonDescriptor.setSubject(ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
+            editPersonDescriptor.setSchedule(ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get()));
+        }
 
-        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-        Schedule schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
-        StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get());
-        EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(), argMultimap.getValue(PREFIX_STARTTIME).get());
+        if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
+            editPersonDescriptor.setSchedule(ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_STARTTIME).get()));
+        }
 
-        Tutee tutee = new Tutee(name, phone, email, address, remark, subject, schedule, startTime, endTime, tagList);
+        if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
+            editPersonDescriptor.setSchedule(ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_ENDTIME).get()));
+        }
 
-        return new CopyCommand(index, tutee);
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new CopyCommand(index, editPersonDescriptor);
     }
 
     /**

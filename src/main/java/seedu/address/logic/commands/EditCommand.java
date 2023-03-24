@@ -89,7 +89,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Tutee} with the details of {@code tuteeToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
+    static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert tuteeToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(tuteeToEdit.getName());

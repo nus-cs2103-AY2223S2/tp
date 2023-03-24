@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.EditCommand.createEditedPerson;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
@@ -34,33 +35,39 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This tutee already has such lessons in the address book";
 
     private final Index targetIndex;
-
-    private final Tutee toCopy;
+    private final EditCommand.EditPersonDescriptor editPersonDescriptor;
 
     /**
      * Creates a CopyCommand to copy the specified {@code Tutee}
      */
-    public CopyCommand(Index targetIndex, Tutee tutee) {
-        requireNonNull(tutee);
-        this.toCopy = tutee;
+    public CopyCommand(Index targetIndex, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(targetIndex);
+        requireNonNull(editPersonDescriptor);
+
         this.targetIndex = targetIndex;
+        this.editPersonDescriptor = new EditCommand.EditPersonDescriptor(editPersonDescriptor);
     }
+
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException{
         requireNonNull(model);
-        if (model.hasTutee(toCopy)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
         List<Tutee> lastShownList = model.getFilteredTuteeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Tutee tuteeToCopy = lastShownList.get(targetIndex.getZeroBased());
+        Tutee copiedTutee = createEditedPerson(tuteeToCopy, editPersonDescriptor);
 
-        model.addTutee(tuteeToCopy);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toCopy));
+        if (!tuteeToCopy.isSamePerson(copiedTutee) && model.hasTutee(copiedTutee)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.addTutee(copiedTutee);
+        model.updateFilteredTuteeList(Model.PREDICATE_SHOW_ALL_TUTEES);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, copiedTutee));
     }
 
     @Override
@@ -69,4 +76,6 @@ public class CopyCommand extends Command {
                 || (other instanceof CopyCommand // instanceof handles nulls
                 && targetIndex.equals(((CopyCommand) other).targetIndex)); // state check
     }
+
+
 }
