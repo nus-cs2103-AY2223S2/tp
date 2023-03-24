@@ -26,7 +26,7 @@ Book *--> Title
 Book *--> Author
 Book *--> Isbn
 
-UniqueBookList -[hidden]right-> UniquePersonList 
+UniqueBookList -[hidden]right-> UniquePersonList
 Person -[hidden]up-> UniqueTagList
 Book -[hidden]up-> HiddenClass
 @enduml
