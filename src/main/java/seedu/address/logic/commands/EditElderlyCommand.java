@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
@@ -92,7 +94,15 @@ public class EditElderlyCommand extends Command {
 
         model.setElderly(elderlyToEdit, editedElderly);
         model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
-        return new CommandResult(String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
+
+        String finalMessage = String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly);
+        if (!model.checkIsSameRegion(editedElderly.getNric(), null)) {
+            finalMessage += MESSAGE_WARNING_REGION;
+        }
+        if (!model.checkHasSuitableAvailableDates(editedElderly.getNric(), null)) {
+            finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
+        }
+        return new CommandResult(finalMessage);
     }
 
 

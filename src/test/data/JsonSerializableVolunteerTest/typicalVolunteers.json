@@ -48,7 +48,7 @@
     "address" : "10th street",
     "nric" : "S0203151E",
     "age" : "25",
-    "region": "NORTH",
+    "region": "CENTRAL",
     "tagged" : [ "friends" ],
     "medicalTags" : [ ]
   }, {
@@ -58,7 +58,7 @@
     "address" : "michegan ave",
     "nric" : "S7238791J",
     "age" : "28",
-    "region": "NORTHEAST",
+    "region": "NORTH",
     "tagged" : [ ],
     "medicalTags" : [ ],
     "availableDates": ["2023-05-11 to 2023-05-12"]

@@ -2,7 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiFunction;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
@@ -351,29 +354,99 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Checks whether regions of an elderly and a volunteer are the same.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
      * The elderly and volunteer with the given Nric must exist in FriendlyLink.
      *
      * @param elderlyNric Nric of the elderly.
      * @param volunteerNric Nric of the volunteer.
-     * @return True if both persons belong in the same region, false otherwise.
+     * @return True if both persons of all involved pairs belong in the same region, false otherwise.
      */
     public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
-        return getElderly(elderlyNric).isSameRegion(getVolunteer(volunteerNric));
+        return checkPairs(elderlyNric,
+                volunteerNric, (elderly, volunteer) -> elderly.isSameRegion(volunteer));
     }
 
     /**
      * Checks whether there are suitable available dates between an elderly and a volunteer.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
      * The elderly and volunteer with the given Nric must exist in FriendlyLink.
      *
      * @param elderlyNric Nric of the elderly.
      * @param volunteerNric Nric of the volunteer.
      * @return True if both persons share common available dates or at least one person
-     *     has no specified available dates, false otherwise.
+     *     has no specified available dates for all involved pairs, false otherwise.
      */
     public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
-        Elderly elderly = getElderly(elderlyNric);
-        Volunteer volunteer = getVolunteer(volunteerNric);
-        return elderly.hasSuitableAvailableDates(volunteer);
+        return checkPairs(elderlyNric,
+                volunteerNric, (elderly, volunteer) -> elderly.hasSuitableAvailableDates(volunteer));
+    }
+
+    /**
+     * Checks whether pairs with specified elderly and volunteer satisfies a given predicate.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @param predicate Predicate to check pairs.
+     * @return True if all involved pairs satisfies the given predicate, false otherwise.
+     */
+    private boolean checkPairs(Nric elderlyNric, Nric volunteerNric,
+            BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        List<Elderly> elderlyToCheck = elderlyNric == null
+                ? getPairedElderly(volunteerNric)
+                : new ArrayList<>(Arrays.asList(getElderly(elderlyNric)));
+        List<Volunteer> volunteerToCheck = volunteerNric == null
+                ? getPairedVolunteers(elderlyNric)
+                : new ArrayList<>(Arrays.asList(getVolunteer(volunteerNric)));
+        for (Elderly elderly : elderlyToCheck) {
+            for (Volunteer volunteer : volunteerToCheck) {
+                if (!predicate.apply(elderly, volunteer)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Gets list of volunteers paired with a specified elderly.
+     * Returns the full list of volunteers if {@code elderlyNric} is null.
+     *
+     * @param elderlyNric Nric of the specified elderly
+     * @return List of volunteers paired with the specified elderly.
+     */
+    private List<Volunteer> getPairedVolunteers(Nric elderlyNric) {
+        ArrayList<Volunteer> volunteers = new ArrayList<>();
+        if (elderlyNric != null) {
+            Elderly elderly = getElderly(elderlyNric);
+            for (Pair pair : pairs) {
+                if (pair.getElderly().equals(elderly)) {
+                    volunteers.add(pair.getVolunteer());
+                }
+            }
+        }
+        return volunteers;
+    }
+
+    /**
+     * Gets list of elderly paired with a specified volunteer.
+     * Returns the full list of elderly if {@code volunteerNric} is null.
+     *
+     * @param volunteerNric Nric of the specified volunteer
+     * @return List of elderly paired with the specified volunteer.
+     */
+    private List<Elderly> getPairedElderly(Nric volunteerNric) {
+        ArrayList<Elderly> elderly = new ArrayList<>();
+        if (volunteerNric != null) {
+            Volunteer volunteer = getVolunteer(volunteerNric);
+            for (Pair pair : pairs) {
+                if (pair.getVolunteer().equals(volunteer)) {
+                    elderly.add(pair.getElderly());
+                }
+            }
+        }
+        return elderly;
     }
 
     @Override

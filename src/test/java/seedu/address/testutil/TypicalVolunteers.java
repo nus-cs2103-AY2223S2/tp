@@ -50,11 +50,11 @@ public class TypicalVolunteers {
             .withMedicalTags("BLS INTERMEDIATE", "AED BASIC").withNric("S3634466J").build();
     public static final Volunteer DANIEL = new VolunteerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withTags("friends").withAge("25").withRegion("NORTH")
+            .withTags("friends").withAge("25").withRegion("CENTRAL")
             .withNric("S0203151E").build();
     public static final Volunteer ELLE = new VolunteerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withAge("28")
-            .withAvailableDates("2023-05-11", "2023-05-12").withRegion("NORTHEAST")
+            .withAvailableDates("2023-05-11", "2023-05-12").withRegion("NORTH")
             .withNric("S7238791J").build();
     public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
