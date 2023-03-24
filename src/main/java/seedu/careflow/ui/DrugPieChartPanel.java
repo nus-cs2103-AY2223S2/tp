@@ -19,8 +19,8 @@ import seedu.careflow.model.drug.Drug;
  */
 public class DrugPieChartPanel extends UiPart<Region> {
     private static final String FXML = "DrugPieChartPanel.fxml";
-    private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     private static final Logger logger = LogsCenter.getLogger(DrugPieChartPanel.class);
+    private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     @FXML
     private PieChart drugPieChart;
 

@@ -22,8 +22,8 @@ import seedu.careflow.model.drug.Drug;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD + ": Adds a drug to the drug " +
-            "inventory.\n"
+    public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD + ": Adds a drug to the drug "
+            + "inventory.\n"
             + "Parameters: "
             + PREFIX_TRADE_NAME + " TRADE NAME "
             + PREFIX_ACTIVE_INGREDIENT + " ACTIVE INGREDIENT "
