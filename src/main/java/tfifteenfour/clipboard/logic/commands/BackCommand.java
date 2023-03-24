@@ -15,12 +15,18 @@ public class BackCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the selected item at the index number in the current displayed list.\n"
             + "Example: " + COMMAND_WORD;
+    private CurrentSelection currentSelection;
 
     /**
      * Creates a BackCommand to select a student at the specified index
      */
-    public BackCommand() {
+    public BackCommand(CurrentSelection currentSelection) {
         super(false);
+        this.currentSelection = currentSelection;
+    }
+
+    public CurrentSelection getPreviousSelection() {
+        return currentSelection;
     }
 
     @Override

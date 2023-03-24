@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
-
     private final FilteredList<Course> filteredCourses;
 
     private String commandTextExecuted;
