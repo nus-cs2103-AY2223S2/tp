@@ -18,7 +18,7 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.ui.appointment.AppointmentCard;
 import seedu.vms.ui.patient.PatientCard;
-import seedu.vms.ui.vaccination.VaxTypeCard;
+import seedu.vms.ui.vaccination.SimplifiedVaxTypeCard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -125,7 +125,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
 
         vaxTypeListPanel = new ListViewPanel<>(
                 logic.getFilteredVaxTypeMap(),
-                vaxType -> new VaxTypeCard(vaxType).getRoot());
+                (index, vaxType) -> new SimplifiedVaxTypeCard(index, vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
 
         appointmentListPanel = new ListViewPanel<>(

@@ -2,6 +2,7 @@ package seedu.vms.ui;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import javafx.beans.property.ObjectProperty;
@@ -15,7 +16,7 @@ import javafx.scene.control.ListView;
 
 /** An extension of {@link ListView} to display the values of a map. */
 public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implements Refreshable {
-    private final Function<T, Node> displayFunction;
+    private final BiFunction<Integer, T, Node> displayFunction;
     private final ObjectProperty<Comparator<T>> comparatorProperty =
             new SimpleObjectProperty<>(Comparator.naturalOrder());
 
@@ -32,6 +33,11 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implemen
      * @param <T> - the type of data being displayed.
      */
     public ListViewPanel(ObservableMap<?, T> dataMap, Function<T, Node> displayFunction) {
+        this(dataMap, (index, data) -> displayFunction.apply(data));
+    }
+
+
+    public ListViewPanel(ObservableMap<?, T> dataMap, BiFunction<Integer, T, Node> displayFunction) {
         this.displayFunction = displayFunction;
         setCellFactory(listView -> new DisplayCell());
         dataMap.addListener(this::handleChange);
@@ -80,7 +86,7 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implemen
                 setText(null);
                 setGraphic(null);
             } else {
-                setGraphic(displayFunction.apply(data));
+                setGraphic(displayFunction.apply(getIndex() + 1, data));
             }
         }
     }
