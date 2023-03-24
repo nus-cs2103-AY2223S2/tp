@@ -93,17 +93,3 @@ public class Timetable {
 
 }
 
-/**
- * Recommender() <--
- *
- * class Recommender {
- *     LocationRecommender lr = ...
- *     Scheduler sc = ...
- *
- *     recommend(List<CI> ci) {
- *          sc.addParticipants(ci)
- *          ArrayList<Timetable> at = sc.getSchedules();
- *          lr.match(at) -> [timing, location]
- *     }
- * }
- */
