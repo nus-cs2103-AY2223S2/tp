@@ -115,7 +115,7 @@ class JsonAdaptedTask {
         }
         final Name modelName = new Name(name);
 
-        if (description == null) {
+        if (description == null || hasDescription.equals("null")) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }

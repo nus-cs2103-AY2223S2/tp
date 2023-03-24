@@ -1,11 +1,11 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_DEFAULT;
-import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -154,7 +154,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DESCRIPTION_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + BLANK_DESCRIPTION_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
@@ -162,7 +162,7 @@ public class AddCommandParserTest {
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + BLANK_DESCRIPTION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
