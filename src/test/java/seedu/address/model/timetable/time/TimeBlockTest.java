@@ -25,10 +25,10 @@ import static seedu.address.model.timetable.util.TypicalTime.TWO_PM;
 import org.joda.time.Hours;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.time.Day;
-import seedu.address.model.time.HourBlock;
-import seedu.address.model.time.TimeBlock;
-import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.scheduler.time.TimeBlock;
+import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 
 class TimeBlockTest {
 

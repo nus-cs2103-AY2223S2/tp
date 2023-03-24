@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.time.HourBlock;
+import seedu.address.model.scheduler.time.HourBlock;
 
 class TimetableTest {
 

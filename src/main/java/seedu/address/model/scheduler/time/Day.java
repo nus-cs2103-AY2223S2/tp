@@ -1,4 +1,4 @@
-package seedu.address.model.time;
+package seedu.address.model.scheduler.time;
 
 /**
  * Represents a weekday with school.

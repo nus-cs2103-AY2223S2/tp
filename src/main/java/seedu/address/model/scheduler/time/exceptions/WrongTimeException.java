@@ -1,4 +1,4 @@
-package seedu.address.model.time.exceptions;
+package seedu.address.model.scheduler.time.exceptions;
 
 /**
  * Represents a timing error.

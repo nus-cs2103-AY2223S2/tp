@@ -7,8 +7,8 @@ import org.joda.time.LocalTime;
 
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.time.Day;
-import seedu.address.model.time.HourBlock;
+import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.scheduler.time.HourBlock;
 
 /**
  * Represents a timetable for a person.
@@ -92,3 +92,4 @@ public class Timetable {
     }
 
 }
+
