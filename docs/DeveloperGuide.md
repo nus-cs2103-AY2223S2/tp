@@ -269,7 +269,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * Better communication between healthcare providers and patients
 * Increased efficiency in tracking patient’s health records and personal information
 * Addresses the needs and pain points of GPs who do not have a centralized system for tracking patients and drugs/inventory
-
+* Increased availability of service as CareFlow is not dependent on any internet access
+* No hidden costs or subscriptions required
+* Potential to serve as a backup system if clinic systems are temporarily unable to access the internet
+* Live percentage analysis of drug inventory
+* Simple to use with no lengthy onboarding process required
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
