@@ -15,4 +15,6 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_SUBMISSION_MARK = new Prefix("m/");
 
+    public static final Prefix PREFIX_LATE = new Prefix("late/");
+
 }

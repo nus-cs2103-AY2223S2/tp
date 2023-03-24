@@ -47,13 +47,14 @@ public class AssignmentList {
      * @param assignmentName
      * @param student
      * @param marks
+     * @param isLateSubmission
      */
-    public void grade(String assignmentName, Student student, int marks) throws AssignmentNotFoundException,
+    public void grade(String assignmentName, Student student, int marks, boolean isLateSubmission) throws AssignmentNotFoundException,
             SubmissiontNotFoundException, InvalidGradeException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {
-            assignmentMap.get(assignmentName).gradeSubmission(student, marks);
+            assignmentMap.get(assignmentName).gradeSubmission(student, marks, isLateSubmission);
         }
     }
 

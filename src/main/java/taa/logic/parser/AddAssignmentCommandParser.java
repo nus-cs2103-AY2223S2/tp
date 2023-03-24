@@ -33,7 +33,7 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        return new AddAssignmentCommand(name.toString());
+        return new AddAssignmentCommand(name.toString(), );
     }
 
     /**

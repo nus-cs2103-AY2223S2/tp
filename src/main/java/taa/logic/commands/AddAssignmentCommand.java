@@ -11,18 +11,18 @@ import taa.model.Model;
 public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_asgn";
-
     public static final String MESSAGE_SUCCESS = "Assignment %s added.";
-
-    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name}";
+    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name} (optional: m/{marks})";
     private final String toAdd;
+    private final int marks;
 
     /**
      * @param assignmentName
      */
-    public AddAssignmentCommand(String assignmentName) {
+    public AddAssignmentCommand(String assignmentName, int marks) {
         requireNonNull(assignmentName);
         toAdd = assignmentName;
+        this.marks = marks;
     }
 
     @Override

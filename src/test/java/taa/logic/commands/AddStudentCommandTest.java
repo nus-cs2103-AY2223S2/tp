@@ -198,7 +198,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void grade(String assignmentName, int studentId, int marks) {
+        public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) {
             throw new AssertionError("This method should not be called.");
         }
 

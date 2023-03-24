@@ -28,11 +28,10 @@ public class Submission implements Comparable<Submission> {
 
     /**
      * Grades a students submission.
-     *
      * @param marks
      * @throws InvalidGradeException when marks is out of range 0-totalMarks.
      */
-    public void grade(int marks) throws InvalidGradeException {
+    public void grade(int marks, boolean isLateSubmission) throws InvalidGradeException {
         if (marks < 0) {
             throw new InvalidGradeException("Student marks is less than 0");
         }
@@ -42,18 +41,7 @@ public class Submission implements Comparable<Submission> {
         }
         isGraded = true;
         this.marks = marks;
-        this.timeCreated = new Date();
-    }
-
-    /**
-     * Grades a late submission.
-     *
-     * @param marks
-     * @throws InvalidGradeException
-     */
-    public void gradeLateSubmission(int marks) throws InvalidGradeException {
-        grade(marks);
-        this.isLateSubmission = true;
+        this.isLateSubmission = isLateSubmission;
     }
 
     /**
@@ -70,13 +58,15 @@ public class Submission implements Comparable<Submission> {
      */
     public String describeSubmission() {
         String gradeStatus = this.isGraded ? Integer.toString(marks) : "Ungraded";
-        return String.format("%s (Grade: %s)", this.assignment.toString(), gradeStatus);
+        String late = this.isLateSubmission ? "(*Late Submission*)" : "";
+        return String.format("%s (Grade: %s) %s", this.assignment.toString(), gradeStatus, late);
     }
 
     @Override
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
-        return String.format("[%c] %s: %d marks.", gradeChar, student.getName().fullName, marks);
+        String late = this.isLateSubmission ? "(*Late Submission*)" : "";
+        return String.format("[%c] %s: %d marks. %s", gradeChar, student.getName().fullName, marks, late);
     }
 
     @Override

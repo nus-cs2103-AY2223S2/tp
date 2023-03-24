@@ -234,9 +234,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
+    public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws CommandException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
-        assignmentList.grade(assignmentName, student, marks);
+        assignmentList.grade(assignmentName, student, marks, isLateSubmission);
         updateStudent(student);
     }
 
