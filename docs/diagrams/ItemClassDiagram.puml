@@ -13,7 +13,7 @@ CUSTOMER
 }
 Abstract Class "{abstract}\nItem" as Item
 Class ItemList<T extends Item>
-Class UniqueItemList<T>
+Class "UniqueItemList<T> " as UniqueItemList
 
 
 Item -right-> "1 " ModelEnum

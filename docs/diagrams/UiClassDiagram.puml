@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
+package UI <<Rectangle>> UI_COLOR_T1 {
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
@@ -12,7 +12,7 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class TabPanel
-Class XYZListView
+Class XYZListPanel
 Class XYZCard
 Class HomeView
 Class FinanceCard
@@ -20,12 +20,12 @@ Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+package Model <<Rectangle>> MODEL_COLOR_T1 {
+Class "                                " as HiddenModel MODEL_COLOR_T1
 }
 
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+package Logic <<Rectangle>> LOGIC_COLOR_T1 {
+Class "                                " as HiddenLogic LOGIC_COLOR_T1
 }
 
 Class HiddenOutside #FFFFFF
@@ -40,11 +40,11 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 TabPanel -down-> "1" HomeView
-TabPanel -down-> "1" XYZListView
+TabPanel -down-> "*" XYZListPanel
 
-XYZListView -down-> "*" XYZCard
+XYZListPanel -down-> "*" XYZCard
 
-HomeView -down-> "*" XYZCard
+HomeView -down-> "*" XYZListPanel
 HomeView -down-> "1" FinanceCard
 
 ResultDisplay --|> UiPart
@@ -61,9 +61,9 @@ FinanceCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-HomeView -[hidden]right- XYZListView
+HomeView -[hidden]right- XYZListPanel
 
-note right of XYZListView: XYZListView = TaskListView, \n OrderListView, MenuItemListView etc.
+note right of XYZListPanel: XYZListPanel = TaskListView, \n OrderListView, MenuItemListView etc.
 note right of XYZCard: XYZCard = TaskCard, OrderCard, \n MenuItemCard etc.
 
 TabPanel -[hidden]left- CommandBox

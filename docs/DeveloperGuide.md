@@ -2,12 +2,45 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+**Table of Contents**
+
+<!-- TOC -->
+  * [**Introduction**](#introduction)
+  * [**Setting up, getting started**](#setting-up-getting-started)
+  * [**Design**](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+  * [**Implementation**](#implementation)
+    * [FindXYZCommand](#findxyzcommand)
+    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+      * [Proposed Implementation](#proposed-implementation)
+      * [Design considerations:](#design-considerations-)
+    * [\[Proposed\] Data archiving](#proposed-data-archiving)
+  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+  * [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Introduction**
+
+Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the benefits of a Graphical User Interface (GUI).
+
+**Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
@@ -24,12 +57,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center">
+  <img src="images/ArchitectureDiagram.svg" width="280" />
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -38,6 +74,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -50,12 +87,13 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+  <img src="images/ArchitectureSequenceDiagram.svg" width="650" />
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -64,7 +102,9 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+  <img src="images/ComponentManagers.svg" width="300" />
+</p>
 
 The sections below give more details of each component.
 
@@ -72,7 +112,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.svg)
+<p align="center">
+  <img src="images/UiClassDiagram.svg" />
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -91,9 +133,12 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+  <img src="images/LogicClassDiagram.png" width="550"/>
+</p>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -103,22 +148,28 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+  :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+  <img src="images/ParserClasses.png" width="600"/>
+</p>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<p align="center">
+  <img src="images/ModelClassDiagram.svg" width="450" />
+</p>
 
 The `Model` component,
 
@@ -128,17 +179,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-
 Here is the `Item` class that is what all model objects depend on.
 
-<img src="images/ItemClassDiagram.png" width="450" />
-
+<p align="center">
+  <img src="images/ItemClassDiagram.svg" width="300" />
+</p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
+
 This is the class representation for the `Supplier` and `Customer` class.
 
-<img src="images/PersonClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/PersonClassDiagram.svg" width="500" />
+</p>
 
 Here is how `Supplier` and `Customer` works:
 
@@ -146,32 +200,56 @@ Here is how `Supplier` and `Customer` works:
 * Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
 
-
 This is the class representation for the `Task` class.
 
-<img src="images/TaskClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/TaskClassDiagram.svg" width="450" />
+</p>
 
 Here is how `Task` works:
 
 * Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
-* Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
+* Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
 
+This is the class representation for the `Menu` class.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<p align ="center">
+   <img src="images/MenuClassDiagram.svg" width="450" />
+ </p>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+Here is how `Menu` works:
 
-</div>
+* Each `Menu` contains non-negative and non-zero number of `MenuItem`.
+* Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
+* The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
+* The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
+* The `MenuItem` is an attribute of `Order`
 
+This is the class representation for the `Order` class.
+
+<p align ="center">
+   <img src="images/OrderClassDiagram.svg" width="550" />
+ </p>
+
+Here is how `Order` works:
+
+* Each `OrderList` contains non-negative and non-zero number of `Order`.
+* Each `Order` contains a menu item, customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
+* The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
+* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
+* The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.svg" width="550" />
+<p align="center">
+  <img src="images/StorageClassDiagram.svg" width="750" />
+</p>
 
 The `Storage` component,
+
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
@@ -184,7 +262,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the details on how the common commands are implemented.
+
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+
+### FindXYZCommand
+
+The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the same as those provided during the `add` and `edit` command.
+For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
+
+The parser for the `find` command would extract out the arguments corresponding to each particular field.
+
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
+
+The following activity diagram summarizes what happens when the user executes the `find` command.
+
+<p align="center">
+    <img src="images/FindCommandActivityDiagram.svg">
+</p>
+
+### AddXYZCommand
+
+The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`.It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+
+The parser for the `add` command would extract out the arguments corresponding to each particular field.
+
+The following activity diagram summarizes what happens when the user executes the `add` command.
+
+ <p align="center">
+     <img src="images/AddCommandActivityDiagram.svg">
+ </p>
+
+### DeleteXYZCommand
+
+The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
+
+The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `FilteredXYZList` that the user wishes to delete using a one-based index.
+
+The parser for `delete` command extracts the index found in the arguments. If the argument is valid, then zero-based index is used to remove `XYZ` from the `XYZList`.
+
+The following activity diagram summarizes what happens when the user executes the `delete` command.
+
+ <p align="center">
+     <img src="images/DeleteCommandActivityDiagram.svg">
+ </p>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -290,12 +416,10 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Tech-savvy small businesses owners who:
-  * lists their products online or on their own website
-  * perform transactions manually without a Point-of-Sale (POS) system
-  * Lack manpower/ time to track orders and contacts manually
-  * Has < 5 employees
-  * Has < 200 customers per month
-  * Has a need to manage a significant number of contacts
+    * lists their products online or on their own website
+    * perform transactions manually without a Point-of-Sale (POS) system
+    * Lack manpower/ time to track orders and contacts manually
+    * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -310,116 +434,92 @@ Our application:
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**High Priority (Must Have)**
 
-| Priority | As a / an …​                                                            | I want to …​                                                                          | So that I can…​                                              |
-|----------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                                | refer to the instructions when learning how to use the app   |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                    | easily find them in a single place                           |
-| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                       | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                             | keep track of my to-do list                                  |
-| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                                | ensure that the supplier contacts keyed in are correct       |
-| `* * *`  | familiar user                                                           | delete existing orders from my order list                                             | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                               | remove tasks that I no longer need to complete               |
-| `* * *`  | small business owner                                                    | add an new Item to my menu                                                            | keep reference to items that I am selling.                   |
-| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                         | don't have to keep a mental note of profit per item.         |
-| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                                | quickly create orders.                                       |
-| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                               |
-| `* *`    | familiar user                                                           | edit existing supplier information                                                    | keep my records accurate and up-to-date                      |
-| `* *`    | familiar user                                                           | edit existing information about orders                                                | keep my order details accurate and up-to-date                |
-| `* *`    | familiar user                                                           | edit existing task information                                                        | easily correct any wrong information keyed in                |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                            | have a clearer view of ‘who supplies what’ at a glance       |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details  | have a record of everything                                  |
-| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                          | keep track of my deadlines and plan my time well             |
-| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email         | quickly obtain the details of the contact when I forget them |
-| `* *`    | forgetful business owner                                                | look for task information using keywords like task name, task status or task deadline | quickly obtain the details of the task when I forget them    |
-| `*`      | expert user                                                             | sort my orders by the order of earliest deadline to latest deadline                   | easily see which orders are due first                        |
-| `*`      | expert user                                                             | sort my tasks by the order of earliest deadline to latest deadline                    | easily see which tasks are due first                         |
+| As a / an …​ | I want to …​                               | So that I can…​                                              |
+|--------------|--------------------------------------------|--------------------------------------------------------------|
+| user         | add new orders                             | have a consolidated place to keep track of my orders         |
+| user         | view all my orders                         | track my progress in deadling with the orders                |
+| user         | edit my orders                             | update my order status                                       |
+| user         | find my orders by keywords                 | get a specific order without manually searching for it       |
+| user         | delete my orders                           | remove unwanted old orders                                   |
+| user         | add new customers (suppliers or customers) | easily find them from a consolidated location                |
+| user         | find contacts by keywords                  | get the relevant contact information from a specific contact |
+| user         | edit my contacts                           | update past contacts with current information                |
+| user         | delete my contacts                         | remove contacts not used anymore                             |
+| user         | add new tasks                              | keep track of business tasks from the same application       |
+| user         | find tasks by keywords                     | get all relevant tasks that are related to plan my schedule  |
+| user         | edit my tasks                              | update my progress on the task                               |
+| user         | delete my tasks                            | remove old completed tasks                                   |
+| new user     | have an instruction guide                  | understand how to use the application                        |
 
-*{More to be added}*
+**Medium Priority (Nice to Have)**
+
+| As a / an …​   | I want to …​                | So that I can…​                                           |
+|----------------|-----------------------------|-----------------------------------------------------------|
+| business owner | add my menu items           | add orders based on my menu items                         |
+| business owner | edit my menu items          | update my price and cost based on current rates           |
+| business owner | delete menu items           | remove unpopular items that are not sold anymore          |
+| user           | have my orders sorted       | view my upcoming orders that are not done yet             |
+| user           | have my tasks sorted        | view the most pressing tasks at first glance              |
+| new user       | be able to import past data | use the application easily when transferring data         |
+| user           | be able to export data      | keep track of past orders without lagging the application |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
 
-
-**Use case: Add a new task**
-
-MSS
-
-1. Actor requests to add a new task.
-2. Actor enters an add task command with the required information.
-3. Trackr saves the new task to the system.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The Actor does not enter all required information.
-  Trackr shows an error message.
-
-  Use case ends without adding any task.
-
-**Use case: Add a new supplier**
+**Use case: UC01 - Add a new supplier**
 
 MSS
 
-1. Actor requests to add a new supplier information.
-2. Actor enters an add supplier command with the required information.
+1. Actor requests to add a new supplier.
+2. Actor enters a command to add a supplier with the required information.
 3. Trackr saves the new supplier to the system.
+4. Trackr shows the new supplier added to the list.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter all required information.
-Trackr shows an error message.
 
-  Use case ends without adding any supplier.
+    * 2a1. Trackr shows an error message.
 
-**Use case: Add a new order**
+      Use case resumes at step 1.
 
-MSS
+* 2b. The Actor adds a supplier that already exists in the list.
 
-1. Actor requests to add a new order.
-2. Actor enters an add order command with the required information.
-3. Trackr saves the new order to the system.
+    * 2b1. Trackr shows an error message.
 
-    Use case ends.
+      Use case resumes at step 1.
 
-**Extensions**
+**Use case: UC11 - Add a new customer**
 
-* 2a. The Actor does not enter all required information.
-Trackr shows an error message.
+(Similar to UC01)
 
-    Use case ends without adding any order.
+**Use case: UC21 - Add a new task**
 
-**Use case: Create a new menu item**
+(Similar to UC01)
 
-MSS
+**Use case: UC31 - Add a new order**
 
-1. Actor requests to create a new menu item.
-2. Actor enters an add menu item command with the required information.
-3. Trackr saves the new meni item to the system.
+(Similar to UC01)
 
-    Use case ends.
+**Use case: UC41 - Add a new menu item**
 
-**Extension**
-* 2a. The Actor does not enter all required information.
-Trackr shows an error message.
+(Similar to UC01)
 
-    Use case ends without adding any new menu item.
-
-**Use case: Delete an order**
+**Use case: UC02 - Delete a contact**
 
 **MSS**
 
-1.  Actor requests to list orders
-2.  Trackr shows a list of orders
-3.  Actor requests to delete a specific order in the list
-4.  Trackr deletes the order
+1. Actor requests to list contacts.
+2. Trackr shows a list of contacts.
+3. Actor requests to delete a specific contact from the list.
+4. Trackr deletes the contact.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -431,105 +531,30 @@ Trackr shows an error message.
 
     * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Delete a task in list**
+**Use case: UC22 - Delete a task**
 
-**MSS**
+(Similar to UC01)
 
-1.  Actor requests to list todos
-2.  Trackr shows a list of todos
-3.  Actor requests to delete a specific todo in the list
-4.  Trackr deletes the order
+**Use case: UC32 - Delete an order**
 
-    Use case ends.
+(Similar to UC01)
 
-**Extensions**
+**Use case: UC42 - Delete a menu item**
 
-* 2a. The list is empty.
+(Similar to UC01)
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Trackr shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Delete a supplier**
-
-**MSS**
-
-1.  Actor requests to list suppliers
-2.  Trackr shows a list of suppliers
-3.  Actor requests to delete a specific supplier in the list
-4.  Trackr deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Trackr shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Edit an order**
+**Use case: UC03 - Edit a contact**
 
 MSS
 
-1. Actor requests to list orders
-2. Trackr shows a list of orders
-3. Actor enters an edit order command with the index of the order and the updated information
-4. Trackr updates the order details with the new information
+1. Actor requests to list contacts.
+2. Trackr shows a list of contacts.
+3. Actor enters an edit contact command for a specific contact and the updated information.
+4. Trackr updates the contact details with the new information.
 
     Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-Use case ends.
-* 3a. The Actor enters an invalid index.
-Trackr displays an error message.
-
-    Use case ends.
-
-**Use case: Edit a supplier information**
-
-MSS
-
-1. Actor requests to list suppliers.
-2. Trackr shows a list of suppliers.
-3. Actor enters an edit supplier command with the index of the supplier and the updated information.
-4. Trackr updates the supplier details with the new information.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    Use case ends.
-* 3a. The Actor enters an invalid index.
-Trackr displays an error message.
-
-    Use case ends.
-
-**Use case: Edit a task information**
-
-MSS
-
-1. Actor requests to list tasks.
-2. Trackr shows a list of tasks.
-3. Actor enters an edit task command with the index of the task and the updated information.
-4. Trackr updates the task details with the new information.
-
-   Use case ends.
 
 **Extensions**
 
@@ -538,126 +563,88 @@ MSS
   Use case ends.
 
 * 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
 
-  Use case ends.
+    * 3a1. Trackr displays an error message.
 
-**Use case: Edit a menu item**
+      Use case resumes at step 3.
 
-MSS
+* 3b. The Actor enters invalid information.
 
-1. Actor requests to list menu items.
-2. Trackr shows a list of menu items.
-3. Actor enters an edit menu item command with the index of the task and the updated information.
-4. Trackr updates the menu details with the new information.
+    * 3b1. Trackr displays an error message.
 
-    Use case ends.
+      Use case resumes at step 3.
 
-**Extensions**
+**Use case: UC23 - Edit a task**
 
-* 2a. The list is empty.
-  Use case ends.
+(Similar to UC01)
 
-* 3a. The Actor enters an invalid index.
-  Trackr displays an error message.
+**Use case: UC33 - Edit an order**
 
-  Use case ends.
+(Similar to UC01)
 
-**Use case: Finding a task**
+**Use case: UC43 - Edit a menu item**
+
+(Similar to UC01)
+
+**Use case: UC04 - Finding a supplier**
 
 MSS
 
-1. Actor requests to find an order.
+1. Actor requests to find a supplier.
 2. Actor enters the command with the desired search criteria.
-3. Trackr searches for orders that match the given criteria.
-4. Trackr displays a list of orders that match the criteria.
+3. Trackr searches for suppliers that match the given criteria.
+4. Trackr displays a list of suppliers that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter any search criteria.
-  Trackr displays an error message.
-  Use case ends.
 
-* 4a. No order matches the given search criteria.
-  Trackr displays a message indicating no matching order is found.
+    * 2a1. Trackr displays an error message.
 
-  Use case ends.
+    * Use case resumes at step 2.
 
-**Use case: Finding a contact**
-
-MSS
-
-1. Actor requests to find a contact.
-2. Home bakery owner enters the command with the desired search criteria.
-3. Trackr searches for contacts that match the given criteria.
-4. Trackr displays a list of contacts that match the criteria.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The Actor does not enter any search criteria.
-  Trackr displays an error message.
+* 4a. No supplier matches the given search criteria.
 
   Use case ends.
 
-* 4a. No contacts matches the given search criteria.
-  Trackr displays a message indicating no matching contact is found.
+**Use case: UC14 - Find a customer**
 
-  Use case ends.
+(Similar to UC01)
 
-**Use case: Finding a task**
+**Use case: UC24 - Find a task**
 
-MSS
+(Similar to UC01)
 
-1. Actor requests to find a task.
-2. Actor enters the command with the desired search criteria.
-3. Trackr searches for tasks that match the given criteria.
-4. Trackr displays a list of tasks that match the criteria.
+**Use case: UC34 - Find an order**
 
-    Use case ends.
+(Similar to UC01)
 
-**Extensions**
+**Use case: UC44 - Find a menu item**
 
-* 2a. The Actor does not enter any search criteria.
-Trackr displays an error message.
-Use case ends.
+(Similar to UC01)
 
-* 4a. No task matches the given search criteria.
-Trackr displays a message indicating no matching task is found.
-
-  Use case ends.
-
-**Use case: Switch to another tab**
+**Use case: UC50 - Switch to another tab**
 
 MSS
 
 1. Actor requests to switch to another tab.
-2. Actor enters the tab command with the target tab.
+2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The Actor enters an invalid target tab.
-Trackr displays an error message.
-
-    Use case ends.
-
-*{More to be added}*
+   Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for
+   typical usage.
+1. Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should store data locally only.
 
 ### Glossary
 
@@ -693,10 +680,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -704,16 +691,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -721,6 +708,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
