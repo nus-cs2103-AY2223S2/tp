@@ -89,7 +89,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), personIndex -> {
             try {
-                executeCommand(DeleteCommand.COMMAND_WORD + " " + personIndex.getOneBased());
+                logic.execute(new DeleteCommand(personIndex));
             } catch (ParseException | CommandException e) {
                 logger.warning(e.getMessage());
             }
