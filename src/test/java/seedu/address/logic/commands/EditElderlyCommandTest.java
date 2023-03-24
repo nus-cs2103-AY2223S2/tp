@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
@@ -22,10 +22,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
-import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
 
@@ -39,7 +39,7 @@ public class EditElderlyCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredElderlyList_success() {
         Elderly editedElderly = new ElderlyBuilder().build();
-        EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder(editedElderly).build();
+        EditDescriptor descriptor = new EditDescriptorBuilder(editedElderly).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
@@ -62,7 +62,7 @@ public class EditElderlyCommandTest {
         Elderly editedElderly = elderlyInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_SINGLE).build();
 
-        EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditDescriptor descriptor = new EditDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE).build();
@@ -82,7 +82,7 @@ public class EditElderlyCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredElderlyList_failure() {
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
-                new EditElderlyDescriptor());
+                new EditDescriptor());
 
         String expectedMessage = MESSAGE_NOT_EDITED;
 
@@ -97,7 +97,7 @@ public class EditElderlyCommandTest {
                 .get(INDEX_FIRST_PERSON.getZeroBased());
         Elderly editedElderly = new ElderlyBuilder(elderlyInFilteredList).withName(VALID_NAME_BOB).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
-                new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
                 editedElderly);
@@ -113,7 +113,7 @@ public class EditElderlyCommandTest {
     @Test
     public void execute_duplicateElderlyUnfilteredElderlyList_failure() {
         Elderly firstElderly = model.getFilteredElderlyList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder(firstElderly).build();
+        EditDescriptor descriptor = new EditDescriptorBuilder(firstElderly).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_ELDERLY);
@@ -123,11 +123,11 @@ public class EditElderlyCommandTest {
     public void execute_duplicateElderlyFilteredElderlyList_failure() {
         showElderlyAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit elderly in filtered list into a duplicate in address book
+        // edit elderly in filtered list into a duplicate in FriendlyLink
         Elderly elderlyInList = model.getFriendlyLink().getElderlyList()
                 .get(INDEX_SECOND_PERSON.getZeroBased());
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
-                new EditElderlyDescriptorBuilder(elderlyInList).build());
+                new EditDescriptorBuilder(elderlyInList).build());
 
         assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_ELDERLY);
     }
@@ -135,7 +135,7 @@ public class EditElderlyCommandTest {
     @Test
     public void execute_invalidElderlyIndexUnfilteredElderlyList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredElderlyList().size() + 1);
-        EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder()
+        EditDescriptor descriptor = new EditDescriptorBuilder()
                 .withName(VALID_NAME_BOB).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(outOfBoundIndex,
                 descriptor);
@@ -155,17 +155,17 @@ public class EditElderlyCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFriendlyLink().getElderlyList().size());
 
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(outOfBoundIndex,
-                new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editElderlyCommand, model, MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditElderlyCommand standardCommand = new EditElderlyCommand(INDEX_FIRST_PERSON, DESC_ELDERLY_AMY);
+        final EditElderlyCommand standardCommand = new EditElderlyCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditElderlyDescriptor copyDescriptor = new EditElderlyDescriptor(DESC_ELDERLY_AMY);
+        EditDescriptor copyDescriptor = new EditDescriptor(DESC_AMY);
         EditElderlyCommand commandWithSameValues = new EditElderlyCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -179,10 +179,10 @@ public class EditElderlyCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditElderlyCommand(INDEX_SECOND_PERSON, DESC_ELDERLY_AMY));
+        assertNotEquals(standardCommand, new EditElderlyCommand(INDEX_SECOND_PERSON, DESC_AMY));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditElderlyCommand(INDEX_FIRST_PERSON, DESC_ELDERLY_BOB));
+        assertNotEquals(standardCommand, new EditElderlyCommand(INDEX_FIRST_PERSON, DESC_BOB));
     }
 
 }

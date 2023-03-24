@@ -5,9 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -15,7 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,7 +36,7 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG);
+                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG, PREFIX_AVAILABILITY);
 
         Index index;
 
@@ -46,47 +47,50 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
                     EditElderlyCommand.MESSAGE_USAGE), pe);
         }
 
-        EditElderlyDescriptor editElderlyDescriptor = new EditElderlyDescriptor();
+        EditDescriptor editDescriptor = new EditDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editElderlyDescriptor.setName(
+            editDescriptor.setName(
                     ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editElderlyDescriptor.setPhone(
+            editDescriptor.setPhone(
                     ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editElderlyDescriptor.setEmail(
+            editDescriptor.setEmail(
                     ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editElderlyDescriptor.setAddress(
+            editDescriptor.setAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_NRIC_ELDERLY).isPresent()) {
-            editElderlyDescriptor.setNric(
-                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get()));
+        if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
+            editDescriptor.setNric(
+                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
-            editElderlyDescriptor.setAge(
+            editDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
         if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
-            editElderlyDescriptor.setRegion(
+            editDescriptor.setRegion(
                     ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
         }
         if (argMultimap.getValue(PREFIX_RISK).isPresent()) {
-            editElderlyDescriptor.setRiskLevel(
+            editDescriptor.setRiskLevel(
                     ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get()));
         }
-        EditCommandParser.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
-                .ifPresent(editElderlyDescriptor::setTags);
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_TAG), ParserUtil::parseTags)
+                .ifPresent(editDescriptor::setTags);
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_AVAILABILITY),
+                        ParserUtil::parseDateRanges)
+                .ifPresent(editDescriptor::setAvailableDates);
 
-        if (!editElderlyDescriptor.isAnyFieldEdited()) {
+        if (!editDescriptor.isAnyFieldEdited()) {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        return new EditElderlyCommand(index, editElderlyDescriptor);
+        return new EditElderlyCommand(index, editDescriptor);
     }
 
 }
