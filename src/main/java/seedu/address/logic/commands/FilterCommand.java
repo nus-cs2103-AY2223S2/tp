@@ -4,26 +4,23 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.PersonContainsTagsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Filters and lists all persons in address book whose tag contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FilterCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " lifeInsurance";
+    private final PersonContainsTagsPredicate predicate;
 
-    // private final NameContainsKeywordsPredicate predicate;
-    private final PersonContainsKeywordsPredicate predicate;
-
-
-    public FindCommand(PersonContainsKeywordsPredicate predicate) {
+    public FilterCommand(PersonContainsTagsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,7 +35,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FilterCommand // instanceof handles nulls
+                && predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 }

@@ -282,6 +282,50 @@ This also allows user to access their summary easily as the summary tab will be 
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Filter by tag feature
+
+#### Proposed Implementation
+The proposed feature will allow users to filter persons by the tags they possess.
+
+The implementation is as follows:
+1) User inputs command `filter`, followed by a list of arguments representing the tag names
+   1) example `carInsurance`
+2) The command "filter" will be parsed, creating a Filter command which is executable
+3) On execution of the filter command, the filter checks and returns a list of all persons which match exactly the tags specified
+4) For example, `filter car insurance` returns a list of persons which have both `car` and `insurance` as tags, any person with only one of the two tags will not be included
+
+#### Design considerations:
+
+1. Users would like to be able to filter which category of leads they would like to view
+2. Users would like to be able to specify multiple tags to narrow down their search on relevant contacts
+3. Users would also be able to edit their clients/persons category
+
+{more to be elaborated in the future}
+
+
+#### Why this implementation 
+
+
+### \[Proposed\] Lead Receptivity feature
+
+#### Proposed Implementation
+The proposed feature will be added as an additional field in the person class.
+
+#### Design considerations:
+
+1. Users would like to be able to sort by which leads are the most promising
+2. Users would also be able to edit how their leads receptivity have changed over time
+
+{more to be elaborated in the future}
+
+
+#### Why this implementation
+This feature will be implemented as an additional field to the contact that can be added.
+This feature will allow users to sort by which leads they believe are the most promising and thus focus their
+attention on them accordingly
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -434,6 +478,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. NextBigFish shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Filter people by tag names**
+
+**MSS**
+
+1.  User requests to filter people by tags.
+2.  NextBigFish shows a list of persons who possess all the tags.
+
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 
 *{More to be added}*
 
