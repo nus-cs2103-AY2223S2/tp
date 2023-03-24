@@ -184,6 +184,12 @@ public class ModelManager implements Model {
         patientist.setWard(target, editedWard);
     }
 
+    @Override
+    public Ward getWard(String wardName) {
+        requireAllNonNull(wardName);
+        return this.patientist.getWard(wardName);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
