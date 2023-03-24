@@ -45,8 +45,6 @@ public class DeleteCommand extends Command {
             output = output + "\n" + taskToDelete;
         }
 
-        System.out.println(output);
-
         return new CommandResult(output);
     }
 
