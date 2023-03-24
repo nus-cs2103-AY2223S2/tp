@@ -76,35 +76,4 @@ public class Item extends Entity {
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(
-                getName(),
-                getCost(),
-                getWeight(),
-                getTags()
-        );
-    }
-
-    @Override
-    public String toString() {
-        String characterDetails = String.format(
-                "Name: %s | Cost: %d | Weight: %.2f",
-                getName(),
-                getCost(),
-                getWeight()
-        );
-
-        final StringBuilder builder = new StringBuilder(characterDetails);
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append(" | Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
-    }
-
 }

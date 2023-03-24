@@ -74,40 +74,4 @@ public class Mob extends Entity {
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(
-                getName(),
-                stats.getStrength(),
-                stats.getDexterity(),
-                stats.getIntelligence(),
-                getChallengeRating(),
-                getLegendaryStatus(),
-                getTags()
-        );
-    }
-
-    @Override
-    public String toString() {
-        String characterDetails = String.format(
-                "Name: %s | Str: %d | Dex: %d | Int: %d | CR: %.1f | Legendary: %b",
-                getName(),
-                stats.getStrength(),
-                stats.getDexterity(),
-                stats.getIntelligence(),
-                getChallengeRating(),
-                getLegendaryStatus()
-        );
-
-        final StringBuilder builder = new StringBuilder(characterDetails);
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append(" | Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
-    }
 }

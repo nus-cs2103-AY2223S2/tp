@@ -1,7 +1,5 @@
 package seedu.address.model.entity;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -14,10 +12,10 @@ import seedu.address.model.tag.Tag;
  */
 public class Character extends Entity {
 
-    private Stats stats;
-    private int level;
+    private final Stats stats;
+    private final int level;
     // Represents the amount of experience points (xp) needed for the next level-up
-    private int xp;
+    private final int xp;
 
     /**
      * Every field should be present and non-null.
@@ -74,41 +72,5 @@ public class Character extends Entity {
                 new Pair<>("XP", String.valueOf(getXP())),
                 new Pair<>("Tags", serializedTags.toString())
         );
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(
-            getName(),
-            stats.getStrength(),
-            stats.getDexterity(),
-            stats.getIntelligence(),
-            getLevel(),
-            getXP(),
-            getTags()
-        );
-    }
-
-    @Override
-    public String toString() {
-        String characterDetails = String.format(
-            "Name: %s | Str: %d | Dex: %d | Int: %d | Level: %d | XP: %d",
-            getName(),
-            stats.getStrength(),
-            stats.getDexterity(),
-            stats.getIntelligence(),
-            getLevel(),
-            getXP()
-        );
-
-        final StringBuilder builder = new StringBuilder(characterDetails);
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append(" | Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
     }
 }
