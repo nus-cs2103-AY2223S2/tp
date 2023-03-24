@@ -232,6 +232,8 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+- Currently, we are not doing data archiving, however that will be in consideration for your future iteration v1.3
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -263,8 +265,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * Increase efficiency of preparing ingredients and cooking given limited time and resources
 * Provide convenience to student chefs with recipes catered to their needs
-* Ligh-weight and portable digital recipe vault for all their personal recipes
 * Easily plan out a week's worth of meals with grocery lists and meal plans
+* Helps student chefs easily access their personal vault of recipes instead of using a recipe notebook
+* Easy customisation of personal recipes without wasting space (cancelling on the notebook or writing on a new page)
+* Quick access to recipes while on the go
 
 
 ### User stories
