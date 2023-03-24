@@ -171,6 +171,109 @@ Classes used by multiple components are in the `seedu.elister.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Undo/Redo
+
+The `undo` command supports:
+
+* Reverting the most recent `Command` that affected the `Model` state (by changing a `Person` within it
+or its list of displayed `Persons`).
+* Reverting a specified number of such `Commands` at once.
+
+The `redo` command supports:
+
+* Reinstating any undone `Command`, or a specified number of such `Commands`.
+
+#### Implementation
+
+Both commands operate using the `StateHistory` class, which is a container
+that records - and can ultimately reconstruct - previous `Model` states.
+
+Externally, `StateHistory` listens to the `CommandResult` of each executing command.
+It also requires commands to declare two new fields in `CommandResult`:
+
+* `undoable`  —  Whether the `Command` should be reverted upon an `Undo`.
+This is to be `true` if the command modifies `Model` by modifying a person or its list of displayed people.
+* `deterministic`  —  Whether the modification to `Model` that was just made by `Command`
+was the sole possible outcome of its execution.
+
+By default, `StateHistory` points to the latest version of `Model` and offers a copy of its state.
+This pointer can be moved backward or forward to retrieve copies of past states, or copies of undone future states:
+
+* `StateHistory#undo(int n)` — Moves the pointer _n_ commands backward.
+* `StateHistory#redo(int n)` — Moves the pointer _n_ commands forward.
+* `StateHistory#presentModel()` — Retrieves a copy of the pointer's `Model` state.
+
+The `Model` objects produced by `StateHistory#presentModel()` are state-detached copies of the originals -
+fields related to containing or displaying `Persons` are deep copies, whereas fields involving UI preferences
+reuse the original objects (thus including any mutations done later).
+
+`StateHistory` listens for `CommandResults` like so:
+
+![StateHistorySequenceDiagram](images/StateHistorySequenceDiagram.png)
+
+In turn, the sequence diagram of `UndoCommand` is:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+#### Design considerations:
+
+Given the [proposed] inclusion of `import` and `export` commands, implementing a specific
+reversal for each individual command was deemed impractical. Instead, the approach chosen was
+to store previous `Model` states in their entirety.
+
+However, to avoid excessive memory usage, only select seed copies of `Model` are actually stored.
+Instead, previous `Commands` are also kept, and most `Model` states
+are recreated by applying the relevant commands to seed states.
+
+Seed states are captured
+
+* upon program startup
+* after a non-`deterministic` command
+* every 10 commands, to avoid rerunning too many commands
+
+These details are handled transparently by `StateHistory`.
+
+### Displaying history of executed commands feature.
+
+This is a new nice-to-have feature, it helps the users to manage their workflow with E-Lister more efficiently by allowing them to see all the commands they keyed in that were successfully executed.
+
+#### Implementation
+
+The feature implementation involves in almost all high-level components which are `UI`, `Model`, `Storage` and `Commons`:
+
+* `HistoryDisplay` class in the `UI` encapsulates the visual display of the saved data onto the GUI.
+* `History` class in the `Model` represents the list of executed commands.
+* `TxtHistoryStorage` and `HistoryStorage` from the `Storage` represents the `.txt` file and the action of reading/writing from/to that file.
+
+1. Initially, when E-Lister is run, a new `TxtHistoryStorage` will be initialized along with other parts of high-level components.
+2. Then, the history will be read from the file after the `AddressBook` is read.
+3. It will then be passed to `Logic` where the users' command in `String` type is going to be execute and write the commands into the file if the commands are succesfully executed.
+4. After the execution, the new `String` from `.txt` file will be read and display the updated history list to the users.
+
+Below is the diagram showing the process [*To-be-add*]
+
+### Design Consideration:
+1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a seperate `.txt` file to store the commands, it would be much more convenient and less methods invoking among high-level components because:
+    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file. 
+    * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
+```
+   historyStringOptional = storage.readHistoryString();
+   if (!historyStringOptional.isPresent()) {
+       logger.info("History file not found. Will be starting with the default file");
+   }
+   initialHistory = new History(historyStringOptional.orElse(""));
+```
+2. Inspired by the `Optional<ReadOnlyAdressBook` from the read and write process to the `.json` file, I also implement the read/write process of history such that the content will be encapsulated with an `Optional<String>` instead of `String`. This is useful since `Optional<T>` helps to avoid `NullPointException` and also lead to cleaner codes.
+```markdown
+    /**
+     * Returns history string.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws IOException if there was any problem when reading from the storage.
+     */
+    Optional<String> readHistoryString() throws IOException;
+```
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -264,8 +367,55 @@ Step 3. The `ShortcutCommand` object is executed by `MainWindow#executeCommand`,
 The following activity diagram summarizes what happens when a user executes this command:
 
 
+### Importing and Exporting CSV Files
 
+This is a useful feature which allows users to export all contact details in a CSV File of their choice, or import an existing dataset.
 
+#### Implementation
+
+The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `JFileChooser` is displayed to the user. This file chooser has a `FileNameExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extensions is an array containing only the String "csv".
+
+Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, a prompt is displayed to inform the user and the `JFileChooser` reappears to allow the user to select a new file. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
+
+Beyond the UI level, the commands operate using the `CsvAddressBookStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableAddressBook` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
+
+##### Import
+
+##### Export
+
+### Design Considerations
+
+Given the complexity of the CSV file format, it was deemed impractical to support every single valid expression or notation which CSV allows. Instead, only two expressions were considered: the `,` and `"` symbols. Since CSV is comma-delimited, the following special considerations were made to handle these characters when converting from E-Lister to CSV-friendly format.
+
+* If any number of `,` appears in a field, the field must be wrapped with quotation marks `""`.
+* If a field is wrapped in quotation marks `""` (such as due to the previous rule), any existing `"` within the field is converted to `""`.
+
+The `CsvUtil` class provides a method to handle these rules:
+=======
+```java
+public static String toCsvField(String str) {
+   if (str.contains(",")) {
+      str = str.replaceAll("\"", "\"\"");
+      str = "\"" + str + "\"";
+   }
+   return str;
+}
+```
+### \[Proposed\] Tag feature
+
+#### Proposed Implementation
+
+The proposed Tag mechanism is facilitated by `ELister`. It extends `ELister` with an Tag , stored internally as an `Tag` and  Additionally, it implements the following operations:
+
+* `ELister#Tag()` — Adds a Tag to the person based on the index in the list.
+
+These operations are exposed in the `Model` interface as `Model#addTag()`
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `Tag 5 good` command to Tag the 5th person in the address book with a new Tag `good`. The `Tag` command calls `Model#addTag()`, causing the modified state of the address book after the `Tag 5 good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

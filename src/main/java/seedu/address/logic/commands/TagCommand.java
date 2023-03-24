@@ -50,7 +50,7 @@ public class TagCommand extends Command {
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
         model.addTag(personToTag, tagToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToTag));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToTag), true, true);
     }
 
     @Override

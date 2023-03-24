@@ -66,6 +66,12 @@ public class ShortcutCommand extends Command {
             FindCommand.COMMAND_WORDS.add(this.shortForm);
         } else if (command instanceof HelpCommand) {
             HelpCommand.COMMAND_WORDS.add(this.shortForm);
+        } else if (command instanceof ImportCommand) {
+            ImportCommand.COMMAND_WORDS.add(this.shortForm);
+        } else if (command instanceof RedoCommand) {
+            RedoCommand.COMMAND_WORDS.add(this.shortForm);
+        } else if (command instanceof UndoCommand) {
+            UndoCommand.COMMAND_WORDS.add(this.shortForm);
         } else if (command instanceof ListCommand) {
             ListCommand.COMMAND_WORDS.add(this.shortForm);
         } else if (command instanceof ShortcutCommand) {
@@ -74,7 +80,7 @@ public class ShortcutCommand extends Command {
             TagCommand.COMMAND_WORDS.add(this.shortForm);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), true, true);
     }
 
     @Override

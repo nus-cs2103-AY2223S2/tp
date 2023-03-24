@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -84,20 +85,47 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<? super Person> predicate);
+
+    Predicate<? super Person> getPredicate();
 
     /**
-     * Adds the given tag to the person
-     * Person must already exist in the address book
+     * Returns a state-detached copy of this Model.
+     * The copy (and its composition-descendant Objects) shall not be affected
+     * by {@code Commands} applied to this Model Object.
+     */
+    Model stateDetachedCopy();
+
+    /**
+     * Adds the given tag to the person.
+     * {@code person} must already exist in the address book
      */
     void addTag(Person person, Tag tag);
 
     /**
-     * Delete the tag with the given name from the person
+     * Deletes the tag with the given name from the person
      * specified by input index according to the address book list.
      *
      * @param person The person to delete tag from.
      * @param tag The tag to delete.
      */
     void deleteTag(Person person, Tag tag);
+
+    /**
+     * Returns the user prefs' history storage file path.
+     */
+    Path getHistoryStoragePath();
+
+    /**
+     * Sets the user prefs' history storage file path.
+     */
+    void setHistoryStoragePath(Path filePath);
+
+    /**
+     * Sets new {@code History} object to the model.
+     */
+    void setHistory(History history);
+
+    /** Returns the {@code History}*/
+    History getHistory();
 }

@@ -22,27 +22,32 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Exports data into a csv file at "
             + "a location of your choice.";
 
-    private static final String FILE_EXTENSION = "csv";
+    public static final String FILE_DESCRIPTION = "CSV Files";
+
+    public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
 
     @Override
     public CommandResult execute(Model model) {
         JFrame parentComponent = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(FILE_DESCRIPTION, FILE_EXTENSIONS);
         fileChooser.setFileFilter(filter);
-        int returnVal = fileChooser.showOpenDialog(parentComponent);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = FileUtil.getSelectedFileWithExtension(fileChooser);
-            try {
-                AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
-                addressBookStorage.saveAddressBook(model.getAddressBook());
-                JOptionPane.showMessageDialog(null, "Exported to " + fileToSave);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
+        int returnVal = fileChooser.showSaveDialog(parentComponent);
+
+        if (returnVal != JFileChooser.APPROVE_OPTION) {
+            return new CommandResult("FileChooser closed", false, false);
         }
 
-        return new CommandResult("Exported to file");
+        File fileToSave = FileUtil.getSelectedFileWithExtension(fileChooser);
+        try {
+            AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
+            addressBookStorage.saveAddressBook(model.getAddressBook());
+            JOptionPane.showMessageDialog(null, "Exported to " + fileToSave);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return new CommandResult("Exported to file", false, false);
     }
 
 

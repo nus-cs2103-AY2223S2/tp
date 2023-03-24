@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CsvUtil;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -15,6 +19,8 @@ import seedu.address.model.ReadOnlyAddressBook;
  * A class to access or store AddressBook data stored as a csv file on the hard disk.
  */
 public class CsvAddressBookStorage implements AddressBookStorage {
+
+    private static final Logger logger = LogsCenter.getLogger(CsvAddressBookStorage.class);
 
     private Path filePath;
 
@@ -29,14 +35,27 @@ public class CsvAddressBookStorage implements AddressBookStorage {
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        // To be completed in a later version
-        return Optional.empty();
+        return readAddressBook(filePath);
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        // To be completed in a later version
-        return Optional.empty();
+        requireNonNull(filePath);
+
+        Optional<List<List<String>>> csvData = CsvUtil.readCsvFile(
+                filePath);
+        if (!csvData.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            List<List<String>> data = csvData.get();
+            CsvSerializableAddressBook csvAddressBook = new CsvSerializableAddressBook(data);
+            return Optional.of(csvAddressBook.toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override

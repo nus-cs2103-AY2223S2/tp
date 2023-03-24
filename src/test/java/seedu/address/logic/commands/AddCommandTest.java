@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -140,12 +141,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public Model stateDetachedCopy() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<? super Person> getPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<? super Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,6 +169,27 @@ public class AddCommandTest {
         public void deleteTag(Person person, Tag tag) {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public Path getHistoryStoragePath() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setHistoryStoragePath(Path filePath) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setHistory(History history) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public History getHistory() {
+            throw new AssertionError("This method should not be called");
+        }
+
     }
 
     /**

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.DeepCopyable;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
  */
-public class Person {
+public class Person implements DeepCopyable<Person> {
 
     // Identity fields
     private final Name name;
@@ -23,7 +24,7 @@ public class Person {
     private final Income income;
     // Data fields
     private final Address address;
-    private Set<Tag> tags = new HashSet<>();
+    private HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -94,6 +95,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public Person deepCopy() {
+        return new Person(name, phone, email, address, income, tags);
     }
 
     /**

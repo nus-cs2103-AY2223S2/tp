@@ -17,9 +17,12 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ShortcutCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,6 +64,10 @@ public class AddressBookParser {
             return new ClearCommand();
         } else if (FilterCommand.COMMAND_WORDS.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
+        } else if (UndoCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new UndoCommandParser().parse(arguments);
+        } else if (RedoCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new RedoCommandParser().parse(arguments);
         } else if (FindCommand.COMMAND_WORDS.contains(commandWord)) {
             return new FindCommandParser().parse(arguments);
         } else if (ListCommand.COMMAND_WORDS.contains(commandWord)) {
@@ -75,6 +82,8 @@ public class AddressBookParser {
             return new ExportCommand();
         } else if (ShortcutCommand.COMMAND_WORDS.contains(commandWord)) {
             return new ShortcutCommandParser().parse(arguments);
+        } else if (ImportCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ImportCommand();
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

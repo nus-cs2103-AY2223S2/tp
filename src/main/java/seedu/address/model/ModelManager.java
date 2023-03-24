@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -22,23 +23,30 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final History history;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, History history) {
+        requireAllNonNull(addressBook, userPrefs, history);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.history = new History(history);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new History());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new History());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,6 +82,13 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public ModelManager stateDetachedCopy() {
+        ModelManager copy = new ModelManager(addressBook.deepCopy(), userPrefs);
+        copy.updateFilteredPersonList(filteredPersons.getPredicate());
+        return copy;
     }
 
     //=========== AddressBook ================================================================================
@@ -122,6 +137,28 @@ public class ModelManager implements Model {
         addressBook.deleteTag(person, tag);
     }
 
+    //=========== History ================================================================================
+
+    @Override
+    public Path getHistoryStoragePath() {
+        return history.getHistoryStoragePath();
+    }
+
+    @Override
+    public void setHistoryStoragePath(Path newPath) {
+        history.setHistoryStoragePath(newPath);
+    }
+
+    @Override
+    public History getHistory() {
+        return history;
+    }
+
+    @Override
+    public void setHistory(History newHistory) {
+        history.resetData(newHistory);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -134,9 +171,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<? super Person> getPredicate() {
+        return filteredPersons.getPredicate();
     }
 
     @Override
