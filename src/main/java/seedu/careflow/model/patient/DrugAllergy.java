@@ -10,9 +10,8 @@ public class DrugAllergy {
     public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric "
             + "and less than 500 characters long";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}-]{0,499}+";
-    private final String drugAllergy;
-
     public final String value;
+    private final String drugAllergy;
 
     /**
      * Constructs a {@code DrugAllergy}.
