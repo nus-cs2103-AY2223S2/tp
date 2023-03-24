@@ -80,10 +80,10 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     public JsonAdaptedFlight(Flight flight) {
         this.id = flight.getId();
         this.code = flight.getCode();
-        this.pilotLink = flight.pilotLink.getCopiedContents();
-        this.crewLink = flight.crewLink.getCopiedContents();
-        this.planeLink = flight.planeLink.getCopiedContents();
-        this.locationLink = flight.locationLink.getCopiedContents();
+        this.pilotLink = flight.getPilotLink().getCopiedContents();
+        this.crewLink = flight.getCrewLink().getCopiedContents();
+        this.planeLink = flight.getPlaneLink().getCopiedContents();
+        this.locationLink = flight.getLocationLink().getCopiedContents();
     }
 
     @Override

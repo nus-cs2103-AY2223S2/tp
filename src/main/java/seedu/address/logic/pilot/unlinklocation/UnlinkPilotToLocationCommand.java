@@ -61,7 +61,7 @@ public class UnlinkPilotToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PilotLocationType, Pilot> entry : pilot.entrySet()) {
-                location.pilotLink.delete(entry.getKey(), entry.getValue());
+                location.getPilotLink().delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

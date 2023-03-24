@@ -85,9 +85,9 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
     public JsonAdaptedLocation(Location location) {
         this.id = location.getId();
         this.name = location.getName();
-        this.crewLink = location.crewLink.getCopiedContents();
-        this.pilotLink = location.pilotLink.getCopiedContents();
-        this.planeLink = location.planeLink.getCopiedContents();
+        this.crewLink = location.getCrewLink().getCopiedContents();
+        this.pilotLink = location.getPilotLink().getCopiedContents();
+        this.planeLink = location.getPlaneLink().getCopiedContents();
     }
 
     @Override

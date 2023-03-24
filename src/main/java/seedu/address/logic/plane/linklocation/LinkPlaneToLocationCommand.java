@@ -56,7 +56,7 @@ public class LinkPlaneToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PlaneLocationType, Plane> entry : plane.entrySet()) {
-                location.planeLink.putRevolve(entry.getKey(), entry.getValue());
+                location.getPlaneLink().putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

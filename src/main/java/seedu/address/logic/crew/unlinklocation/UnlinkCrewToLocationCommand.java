@@ -61,7 +61,7 @@ public class UnlinkCrewToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<CrewLocationType, Crew> entry : crews.entrySet()) {
-                location.crewLink.delete(entry.getKey(), entry.getValue());
+                location.getCrewLink().delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

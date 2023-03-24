@@ -57,7 +57,7 @@ public class LinkPilotToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PilotLocationType, Pilot> entry : pilot.entrySet()) {
-                location.pilotLink.putRevolve(entry.getKey(), entry.getValue());
+                location.getPilotLink().putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

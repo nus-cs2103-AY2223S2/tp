@@ -57,7 +57,7 @@ public class LinkCrewToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<CrewLocationType, Crew> entry : crews.entrySet()) {
-                location.crewLink.putRevolve(entry.getKey(), entry.getValue());
+                location.getCrewLink().putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

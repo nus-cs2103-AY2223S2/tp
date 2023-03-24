@@ -28,9 +28,9 @@ public class Location implements Item {
             );
     private static final String NAME_STRING = "Name";
     private static final String ID_STRING = "ID";
-    public final Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink;
-    public final Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
-    public final Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> planeLink;
+    private final Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink;
+    private final Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
+    private final Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> planeLink;
     private final String name;
     private final String id;
 
@@ -107,6 +107,33 @@ public class Location implements Item {
         return List.of(
                 String.format("%s: %s", NAME_STRING, name),
                 String.format("%s: %s", ID_STRING, id));
+    }
+
+    /**
+     * Returns the crew link.
+     *
+     * @return the link to the crew
+     */
+    public Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> getCrewLink() {
+        return crewLink;
+    }
+
+    /**
+     * Returns the pilot link.
+     *
+     * @return the link to the pilot
+     */
+    public Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> getPilotLink() {
+        return pilotLink;
+    }
+
+    /**
+     * Returns the plane link.
+     *
+     * @return the link to the plane
+     */
+    public Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> getPlaneLink() {
+        return planeLink;
     }
 
     /**
