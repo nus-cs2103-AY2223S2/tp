@@ -16,12 +16,11 @@ import seedu.address.model.meeting.Meeting;
 public class SortMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "sortm";
-    public static final String MESSAGE_USAGE = "sort the meeting list by tags. sort by \n"
-            + " datetime, location, description, title \n"
-            + "like: \n"
-            + "sortm dt/ \n"
-            + "if you want to sort in reverse add an r after the tag"
-            + "\n like this: sortm dt/r";
+    public static final String MESSAGE_USAGE = "Sort meetings by their attributes: "
+            + "title (m/), dateTime (dt/), location (l/), description (des/). \n"
+            + "Example: `sortm m/`.i \n"
+            + "For reverse sorting, append an `r` after the prefix.\n"
+            + "Example: `sortm m/r`";
     private static Prefix sortByPrefix;
     private static String prefix;
     private static boolean isReverse;
@@ -45,38 +44,35 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         prefix = sortByPrefix.toString();
-        switch (sortByPrefix.toString()) {
+        String prefixName ="";
+        switch (prefix) {
         case "m/":
-            if (isReverse) {
-                model.sortFilteredMeetingList(titleComparator.reversed());
-            } else {
-                model.sortFilteredMeetingList(titleComparator);
-            }
+            reverseSort(model, titleComparator, isReverse);
+            prefixName = "Meeting Title";
             break;
         case "des/":
-            if (isReverse) {
-                model.sortFilteredMeetingList(descriptorComparator.reversed());
-            } else {
-                model.sortFilteredMeetingList(descriptorComparator);
-            }
+            reverseSort(model, descriptorComparator, isReverse);
+            prefixName = "Meeting Description";
             break;
         case "l/":
-            if (isReverse) {
-                model.sortFilteredMeetingList(locationComparator.reversed());
-            } else {
-                model.sortFilteredMeetingList(locationComparator);
-            }
+            reverseSort(model, locationComparator, isReverse);
+            prefixName = "Meeting Location";
             break;
         case "dt/":
-            if (isReverse) {
-                model.sortFilteredMeetingList(dateTimeComparator.reversed());
-            } else {
-                model.sortFilteredMeetingList(dateTimeComparator);
-            }
+            reverseSort(model, dateTimeComparator, isReverse);
+            prefixName = "Meeting DateTime";
             break;
         default:
             throw new CommandException("Something went wrong");
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sortByPrefix.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prefixName));
+    }
+    
+    private void reverseSort(Model model, Comparator comparator, boolean isReverse) {
+            if (isReverse) {
+                model.sortFilteredMeetingList(comparator.reversed());
+            } else {
+                model.sortFilteredMeetingList(comparator);
+            }
     }
 }
