@@ -1,61 +1,39 @@
 package seedu.internship.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
-import static java.util.Objects.requireNonNull;
-
-public class End {
+/**
+ * Represents an Event's end timing (time and date).
+ */
+public class End extends TimeParser {
     public static final String MESSAGE_CONSTRAINTS =
             "Date needs to be of the format DD/MM/YYYY HHMM";
 
-    private static final String DATE_TIME_PATTERN = "E,dd'%s' MMMM,yyyy ha";
-    private static final String DATE_PARSE_FORMAT = "d/M/y";
-    private static final String TIME_PARSE_FORMAT = "HHMM";
+    public static final String END_DATE_TIME_PATTERN = "E,dd'%s' MMMM,yyyy ha";
+    public static final String END_DATE_PARSE_FORMAT = "d/M/y";
+    public static final String END_TIME_PARSE_FORMAT = "HHMM";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\p{Digit}/\\p{Digit}/\\p{Digit} \\p{Digit}";
-
-    private final String endDateTime;
-
-    public static final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
+    public final String endDateTime;
 
     /**
-     * Constructs a {@code Position}.
+     * Constructs a {@code End}.
      *
-     * @param endDateTime A valid input string for EndDateTime
+     * @param endDateTime A valid endDateTime for an End.
      */
     public End(String endDateTime) {
+        super(END_DATE_TIME_PATTERN, END_DATE_PARSE_FORMAT, END_TIME_PARSE_FORMAT);
         requireNonNull(endDateTime);
         this.endDateTime = endDateTime;
-        this.tp.parse(endDateTime);
+        this.parse(endDateTime);
         checkArgument(isValidEnd(), MESSAGE_CONSTRAINTS);
-    }
-
-    public int compareStart(Start start) {
-        return this.tp.compareTo(start.tp);
     }
 
     /**
      * Returns true if a given string is a valid endDateTime.
      */
     public boolean isValidEnd() {
-        return this.tp.isValidTimeParser();
-    }
-
-
-    @Override
-    public String toString() {
-        return tp.toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof End // instanceof handles nulls
-                && this.tp.equals(((End) other).tp)); // state check
+        return this.isValidTimeParser();
     }
 
     @Override

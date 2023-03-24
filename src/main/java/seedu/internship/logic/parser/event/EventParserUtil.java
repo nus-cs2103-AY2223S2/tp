@@ -7,10 +7,13 @@ import seedu.internship.commons.util.StringUtil;
 import seedu.internship.logic.parser.ParserUtil;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.event.End;
+import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-import seedu.internship.model.event.Description;
 
+/**
+ * Contains utility methods used for parsing strings in the various EventParser classes.
+ */
 public class EventParserUtil extends ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
@@ -36,7 +39,7 @@ public class EventParserUtil extends ParserUtil {
     public static Name parseEventName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedStart = name.trim();
-        Name n =  new Name(trimmedStart);
+        Name n = new Name(trimmedStart);
         if (!n.isValidName(name)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -52,7 +55,7 @@ public class EventParserUtil extends ParserUtil {
     public static Start parseEventStart(String start) throws ParseException {
         requireNonNull(start);
         String trimmedStart = start.trim();
-        Start s =  new Start(trimmedStart);
+        Start s = new Start(trimmedStart);
         if (!s.isValidStart()) {
             throw new ParseException(Start.MESSAGE_CONSTRAINTS);
         }
@@ -69,7 +72,7 @@ public class EventParserUtil extends ParserUtil {
     public static End parseEventEnd(String end) throws ParseException {
         requireNonNull(end);
         String trimmedEnd = end.trim();
-        End e =  new End(trimmedEnd);
+        End e = new End(trimmedEnd);
         if (!e.isValidEnd()) {
             throw new ParseException(End.MESSAGE_CONSTRAINTS);
         }
@@ -82,13 +85,13 @@ public class EventParserUtil extends ParserUtil {
      *
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseEventDescription(String description) throws ParseException {
+    public static EventDescription parseEventDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         // No need ot check valid descripiton , as anything an be in description
         // if (!Description.isValidDescription(trimmedDescription)) {
         //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         // }
-        return new Description(trimmedDescription);
+        return new EventDescription(trimmedDescription);
     }
 }

@@ -1,24 +1,29 @@
 package seedu.internship.model.event;
 
-
-
-import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.exceptions.DuplicateEventException;
 import seedu.internship.model.event.exceptions.EventNotFoundException;
 
-
+/**
+ * A list of events that enforces uniqueness between its elements and does not allow nulls.
+ * An event is considered unique by comparing using {@code Event#isSameEvent(Event)}.
+ * Supports a minimal set of list operations.
+ *
+ * @see Event#isSameEvent(Event)
+ */
 public class UniqueEventList implements Iterable<Event> {
+    public static final ObservableList<Event> EMPTY_UNIQUE_EVENTS_LIST = FXCollections.observableArrayList();
+
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    public static final ObservableList<Event> EMPTY_UNIQUE_EVENTS_LIST = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -110,7 +115,7 @@ public class UniqueEventList implements Iterable<Event> {
 
         if (other instanceof UniqueEventList) {
             UniqueEventList otherList = (UniqueEventList) other;
-            if (this == EMPTY_UNIQUE_EVENTS_LIST || otherList == EMPTY_UNIQUE_EVENTS_LIST ) {
+            if (this == EMPTY_UNIQUE_EVENTS_LIST || otherList == EMPTY_UNIQUE_EVENTS_LIST) {
                 return false;
             }
             return this.internalList.equals(otherList.internalList);
