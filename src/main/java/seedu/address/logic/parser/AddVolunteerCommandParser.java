@@ -75,4 +75,14 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
 
         return new AddVolunteerCommand(volunteer);
     }
+
+    /**
+     * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
+     *
+     * @param map the ArgumentMultimap to be validated.
+     * @return true if the ArgumentMultimap is valid, false otherwise.
+     */
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getPreamble().length() > 0);
+    }
 }

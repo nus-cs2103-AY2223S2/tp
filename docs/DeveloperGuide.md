@@ -157,9 +157,58 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Logic
+### Command Autocompletion, Real-Time Input Validation and Recommendation
 
-#### Add and Delete Elderly and Volunteer
+Autocompletion and Recommendation are features that can greatly enhance the user experience when using the application.
+To support this feature, we have implemented a `CommandRecommendationEngine` that aims to accurately predict the set of
+words that the user intends to type based off a preset of words. These words are the in-built commands and argument
+prefixes.
+
+In `CommandRecommendationEngine`, you can find three methods:
+
+1. `recommendCommand` -- recommends an appropriate command with respect to the user input.
+2. `autocompleteCommand` -- autocompletes the user input by replacing user input with the recommended command.
+3. `registerCommandInfo` -- registers the command, turning on command recommendation.
+
+#### Autocompletion
+
+An event handler is attached to `commandTextField` which listens for the `KEY_PRESSED` event and autocompletes the user
+input with the recommended values.
+
+#### Recommendation
+
+To predict the words, we made use of the longest prefix matching algorithm to first **identify** the related command,
+and then **verify** the arguments associated with it. The following activity diagram describes the activity flow:
+
+<img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
+
+**Terminology**:
+
+- Full attribute command -- indicates that all arguments of a command (including optional and compulsory) have been
+  specified.
+- Complete command -- indicates that command (for example, `add_elderly`) has been fully typed. Arguments may or may not
+  have been typed.
+
+#### Input validation
+
+Our implementation strategy involves utilizing an event listener to provide immediate feedback to the user regarding the
+correctness of the attributes specified, instead of depending on the parser for this purpose. For example, if the
+`AddElderlyCommand` does not accept any arguments without a prefix but the user specifies anyhow, a **warning** will
+be given.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
+  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an error will be thrown when the user confirms the command.
+* There is a known UI bug regarding the recommendation engine when the text in `commandTextField` overflows. To improve
+  user experience, the recommendation engine is disabled once overflow is detected.
+
+</div>
+
+
+### Add and Delete Elderly and Volunteer
 
 In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
 
@@ -171,7 +220,7 @@ Some prefixes, such as `availableDates`, `tags`, are optional.
 * The unspecified optional fields will return `null` value.
 * The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
 * When the `add` command format is invalid, or the user tries to add a duplicated person,
-the add operation will be aborted.
+  the add operation will be aborted.
 
 The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
 
@@ -191,7 +240,7 @@ pairs will be automatically removed as well.
 
 <img src="images/developerGuide/PersonAndPair.png" width="500" />
 
-#### Edit by index & NRIC
+### Edit by index & NRIC
 
 In FriendlyLink, there are 2 methods to  choose which elderly/volunteer to edit:
 - via **index** using the `edit_elderly` and `edit_volunteer` commands
@@ -231,7 +280,7 @@ the NRIC `S1234567I` belongs to an existing **volunteer**:
 
 :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-#### Find by keyword
+### Find by keyword
 
 The ```find``` command allows users to easily filter and locate the relevant elderly and volunteers, together with their related parings.
 The results of the ```find``` command are displayed as the filtered version of the elderly, volunteers and pairs lists, 
@@ -265,12 +314,13 @@ Design decisions:
 - Related pairings are also shown during the search.
   - Provides a comprehensive search results where all information related to the people found are shown.
 
-#### Pairing and unpairing of elderly and volunteers
+### Pairing and unpairing of elderly and volunteers
 
 Pairs are implemented as a class with 2 referenced attributes, `Elderly` and `Volunteer`.
 * This allows the NRIC of a person in the pair to be automatically updated when the person is updated.
 
 The pairs are stored in a list similar to persons.
+
 * Allows for filtering to display a subset of pairs in the UI.
 * Allows for identifying a pair by index.
 
