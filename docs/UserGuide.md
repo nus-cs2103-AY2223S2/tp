@@ -271,11 +271,18 @@ Updates the Patient using it's PATIENT_ID.
 ##### Syntax
 
 <pre>
-patient edit <PATIENT_ID> --name <string> --phone <phone-number> --d <date> \
-    --bloodtype <string> --a <group-name> --v <group-name>
-patient edit <PATIENT_ID> --name <string> --phone <phone-number> --d <date> \
-    --bloodtype <string>
+patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+    --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
+patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+    --b <var>BLOODTYPE</var>
 </pre>
+
+* <code><var>PATIENT_NAME</var></code> : `<name>`
+* <code><var>PHONE</var></code> : `<phone>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<dob>`
+* <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* <code><var>ALLERGIES</var></code> : `<group-name>`
+* <code><var>VACCINES</var></code> : `<group-name>`
 
 ##### Example
 
