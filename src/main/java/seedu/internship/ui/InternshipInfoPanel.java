@@ -1,7 +1,5 @@
 package seedu.internship.ui;
 
-import static java.util.Objects.isNull;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.logging.Logger;
@@ -120,7 +118,7 @@ public class InternshipInfoPanel extends UiPart<Region> {
                 .collect(Collectors.toList()));
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName));
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //.forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     /**
