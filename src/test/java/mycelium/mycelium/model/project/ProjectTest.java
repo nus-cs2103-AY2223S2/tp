@@ -23,7 +23,7 @@ public class ProjectTest {
 
         Map<String, Pair<Project, Project>> sameCases = Map.ofEntries(
             Map.entry("same reference", Pair.of(defaultProject, defaultProject)),
-            Map.entry("same name", Pair.of(defaultProject, new ProjectBuilder().withName("Default Project").build())),
+            Map.entry("same name", Pair.of(defaultProject, new ProjectBuilder().withName(defaultProject.getName()).build())),
             Map.entry("same name with diff status",
                 Pair.of(defaultProject, new ProjectBuilder().withStatus(ProjectStatus.IN_PROGRESS).build())),
             Map.entry("same name with diff client email",
@@ -91,11 +91,17 @@ public class ProjectTest {
 
     @Test
     public void constructor_minimalFields_isOk() {
-        Project project = new Project(NonEmptyString.of("my awesome project"), new Email("chungus@chungus.org"));
-        assertEquals(project.getName(), NonEmptyString.of("my awesome project"));
-        assertEquals(project.getClientEmail(), new Email("chungus@chungus.org"));
+        // Create a project with minimal fields.
+        NonEmptyString name = NonEmptyString.of("my awesome project");
+        Email clientEmail = new Email("jamal@awesome.co");
+        Project project = new Project(name, clientEmail);
+
+        // Check that the fields are set correctly.
+        assertEquals(project.getName(), name);
+        assertEquals(project.getClientEmail(), clientEmail);
         assertEquals(project.getSource(), Optional.empty());
         assertEquals(project.getDescription(), Optional.empty());
+        // NOTE(jy): I guess this would fail if we ran the tests at like 23:59:59. For now, it's fine.
         assertEquals(project.getAcceptedOn(), LocalDate.now());
         assertEquals(project.getDeadline(), Optional.empty());
     }

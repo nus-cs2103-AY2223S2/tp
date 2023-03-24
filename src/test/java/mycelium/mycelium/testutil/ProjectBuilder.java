@@ -15,9 +15,9 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * not set.
  */
 public class ProjectBuilder {
-    public static final String DEFAULT_NAME = "Default Project";
+    public static final String DEFAULT_NAME = "Clash of Clans";
     public static final ProjectStatus DEFAULT_STATUS = ProjectStatus.NOT_STARTED;
-    public static final Email DEFAULT_CLIENT_EMAIL = new Email("ruido@gossum.co");
+    public static final Email DEFAULT_CLIENT_EMAIL = new Email("jamal@supercell.com");
     public static final String DEFAULT_SOURCE = "fiverr";
     public static final String DEFAULT_DESCRIPTION = "Do this, and then that, and finally those.";
     public static final LocalDate DEFAULT_ACCEPTED_ON = LocalDate.of(1970, 1, 1);
