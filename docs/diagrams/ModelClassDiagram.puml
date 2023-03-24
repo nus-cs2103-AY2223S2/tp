@@ -47,5 +47,7 @@ Card -up-> "1" Deck
 
 
 ModelManager --->"~* filtered" Card
+ModelManager --> "0..1 selected" Deck
 ModelManager -->"~* filtered" Deck
+
 @enduml
