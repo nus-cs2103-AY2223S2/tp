@@ -137,16 +137,21 @@ The `Model` component,
 
 ![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
 
-The `Model` box is the central component of the Mycelium's data. 
-It contains the entities `Client` and `Project` which are used to store the data of each entity. 
+The `Model` box is the central component of the Mycelium's data. It contains
+the entities `Client` and `Project` which are used to store the data of each
+entity. 
 
-The `Client` class contains the attributes for a client's `Name`, `Email`, `YearOfBirth`, source and `Phone` number,
-where the name and email are compulsory fields. The rest of the attributes are optional, and hence stored in `Optional` objects.
-The source attribute is a `String`.
+The `Client` class contains the attributes for a client's `Name`, `Email`,
+`YearOfBirth`, source and `Phone` number, where the name and email are
+compulsory fields. The rest of the attributes are optional, and hence stored in
+`Optional` objects. The source attribute is a `String`.
 
-The `Project` class contains the attributes for a project's `Name`, `ProjectStatus`, `Email`, source, description, acceptedOn and deadline,
-where the project name and email are compulsory fields. The rest of the attributes are optional, where source, description and deadline are wrapped in `Optional` objects.
-These optional attributes are typed:
+The `Project` class contains the attributes for a project's `Name`,
+`ProjectStatus`, `Email`, source, description, acceptedOn and deadline, where
+the project name and email are compulsory fields. The rest of the attributes
+are optional, where source, description and deadline are wrapped in `Optional`
+objects. These optional attributes are typed:
+
 - source: String
 - projectStatus: `ProjectStatus`
 - description: String
@@ -386,10 +391,12 @@ then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
 
 ### UiEvents
-UiEvents is an abstraction of Keyboard events that can trigger some changes in 
+
+UiEvents is an abstraction of Keyboard events that can trigger some changes in
 user interface and its behaviour. The `UiEventManager` class is responsible of
-bundling all UiEvents that can occur. The following is the class diagram of the 
+bundling all UiEvents that can occur. The following is the class diagram of the
 `UiEventManager` class.
+
 ![UiEventManager class diagram](images/UiEventManager.png)
 
 There are currently 3 registered event handlers, namely:
