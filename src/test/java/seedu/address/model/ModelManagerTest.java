@@ -89,6 +89,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void size_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.size() == 1);
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
