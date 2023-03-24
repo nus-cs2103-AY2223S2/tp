@@ -2,14 +2,18 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+## **Table of Contents**
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -226,13 +230,28 @@ When adding a student entry, these were the alternatives considered.
 The `delete` implementation is identical to the implementation in AB3's codebase.
 
 ### Proposed Implementation
-The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` 
-> Assuming the indexes are valid.
+The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). 
+However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
 
-// TODO sequence diagram
 
 ### Design Considerations
-// TODO
+Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, 
+we believe that if a single invalid `INDEX` is given, the system should generate an error message  
+
+**Aspect: Handling invalid indexes in delete** <br>
+* **Alternative 1: (Current choice)** Delete none of the given `Student` entries, even if they are valid.
+  * Pros:
+    * Potentially save the user time they may have had to spend re-adding their `Student` entries
+    * Allows user the opportunity to edit the command input without having to re-type the entire command again
+  * Cons:
+    * May be cumbersome for users to find the invalid index and correc it.
+* **Alternative 2:** Delete all valid `Student` entries out of the given indexes.
+  * Pros:
+    * Potentially save the user time editing their command if there was only a minor typo.
+  * Cons:
+    * Harder to implement as we have to keep track of the valid indexes to be deleted.
+    * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is 
+    needed to re-enter the entry or `undo` the command.
 
 ## Edit Feature
 
@@ -357,7 +376,7 @@ The proposed `sort` implementation will sort the `UniquePersonList` object, henc
 An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
 > `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
 
-#### Exepected execution:
+**Exepected execution:**
 1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
 2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
 
@@ -537,10 +556,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -603,9 +618,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise.
 
-#### Use case: Delete a student
+**Use case UC1: Add a student**
+
+**MSS**
+
+1.  User request to add a new student's name and particulars.
+
+2.  System adds new student and their particulars as a new entry in the list
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The given name/particulars is invalid
+
+    * 1a1. System shows an error message
+
+      Use case resumes from step 1.
+
+* 1b. The compulsory name field is missing
+
+    * 1a1. System shows an error message
+
+      Use case resumes from step 1.
+
+* 1c. A student entry with the same name exists in the list
+
+    * 1c1. System shows an error message
+
+      Use case resumes from step 1.
+
+* 1d. Some optional particulars are missing
+
+    * 1d1. System adds new student, leaving their particulars blank
+
+      Use case ends
+  
+**Use case UC2: Delete a student**
 
 **MSS**
 
@@ -631,7 +682,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
-#### Use case: UC02 - Update remarks
+**Use case UC3: List student(s)**
+
+**MSS**
+1. User requests to list all the students.
+2. System shows the list of all students.
+
+Use case ends.
+
+**Extensions**
+* 1a. Additional parameters are added behind `list`.
+  * 1a1. System shows an error message.
+
+  Use case ends.
+
+**Use case UC4: Update remarks**
 
 **MSS**
 1. User requests to list students
@@ -657,42 +722,6 @@ Use case ends
 
 *{More to be added}*
 
-#### Use case: Add a new student
-
-**MSS**
-
-1.  User request to add a new student's name and particulars
-
-2.  System adds new student and their particulars as a new entry in the list
-
-    Use case ends
-
-**Extensions**
-
-* 1a. The given name/particulars is invalid
-
-  * 1a1. System shows an error message
-
-    Use case resumes from the start
-
-* 1b. The compulsory name field is missing
-
-  * 1a1. System shows an error message
-
-    Use case resumes from the start
-
-* 1c. A student entry with the same name exists in the list
-
-  * 1c1. System shows an error message
-
-    Use case resumes from the start
-
-* 1d. Some optional particulars are missing
-
-  * 1d1. System adds new student, leaving their particulars blank
-
-    Use case ends
-
 ### Non-Functional Requirements
 
 1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
@@ -700,7 +729,7 @@ Use case ends
 3. All systems must be able to access the _save file_ ie. Save file should be independent of the OS.
 4. Any information displayed should be concise and structured in a logical manner such that it is easily understandable.
 5. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+6. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
@@ -728,17 +757,13 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -746,21 +771,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   
