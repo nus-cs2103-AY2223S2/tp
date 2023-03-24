@@ -25,10 +25,7 @@ The documentation for Design is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Implementation
-### Add Features
-
----
+## **Implementation**
 
 ### Add Doctor Feature
 
@@ -78,6 +75,39 @@ The following sequence diagram illustrates how the add doctor operation works:
 
 ![](images/AddPatientSequenceDiagram.png)
 
+### Edit Doctor Feature
+
+### What it does
+
+Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be 
+updated to the input values and all other values will remain the same. The doctor to be edited can be specified through
+the doctor's index.
+
+Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
+
+### Implementation
+
+Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
+the abstract `Command` class and implements the `execute()` method. The `EditDoctorDescriptor` is created with the arguments given
+by the user. A new `Doctor` object is created with the new arguments, with the attributes of the old `Doctor` object copied over
+if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`. 
+The `EditDoctorCommand` is created using the `EditDoctorDescriptor`. Upon execution of `EditDoctorCommand`, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
+
+The following activity diagram illustrates the user flow for editing a doctor:
+
+![](images/EditDoctorActivityDiagram.png)
+
+Given below is an example usage scenario of how the add doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `edit-doc n/Simon` to edit a doctor.
+
+Step 3. The doctor is edited and saved to the model’s list of doctors if valid.
+
+The following sequence diagram illustrates how the edit doctor operation works:
+
+![](images/EditDoctorSequenceDiagram.png)
 
 ### Delete Features
 
