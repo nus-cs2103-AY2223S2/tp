@@ -20,9 +20,16 @@ public class MedicalCondition {
     }
     @Override
     public boolean equals(Object obj) {
-        return obj == this || (obj instanceof MedicalCondition
-                && obj.equals(((MedicalCondition) obj).value));
+        if (obj == this) { // short circuit if same object
+            return true;
+        }
+        if (!(obj instanceof MedicalCondition)) { // instanceof handles nulls and other classes
+            return false;
+        }
+        MedicalCondition other = (MedicalCondition) obj; // cast to the same class
+        return ((MedicalCondition) obj).value == this.value;
     }
+
 
     @Override
     public String toString() {
