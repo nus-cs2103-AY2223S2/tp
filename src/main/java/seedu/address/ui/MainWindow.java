@@ -8,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -39,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -132,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        initCustomerListPanel();
+         initCustomerListPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -142,6 +144,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
     }
 
     /**
@@ -199,21 +202,21 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            listPanelPlaceholder.getChildren().clear();
+//            listPanelPlaceholder.getChildren().clear();
 
             // Handle UI Updates
-            switch (commandResult.getType()) {
-            case LISTED_CUSTOMERS:
-                initCustomerListPanel();
-                break;
-            case LISTED_VEHICLES:
-                initVehicleListPanel();
-                break;
-            case LISTED_SERVICES:
-                initServiceListPanel();
-                break;
-            default:
-            }
+//            switch (commandResult.getType()) {
+//            case LISTED_CUSTOMERS:
+//                initCustomerListPanel();
+//                break;
+//            case LISTED_VEHICLES:
+//                initVehicleListPanel();
+//                break;
+//            case LISTED_SERVICES:
+//                initServiceListPanel();
+//                break;
+//            default:
+//            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
