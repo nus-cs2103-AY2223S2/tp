@@ -425,6 +425,36 @@ Use case resume at step 2.
 
       Use case resumes at step 2.
 
+**Use case: UC04 - Find a patient**
+
+**MSS**
+
+1.  User requests to find specific patients by either NRIC or Name or Status
+2.  MedInfo shows a list of patients
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The requested patient's NRIC does not exist in the system.
+
+    - 1a1. MedInfo does not list any patients.
+
+      Use case ends.
+
+- 1b. The requested patient's Name does not exist in the system.
+
+    - 1b1. MedInfo does not list any patients.
+
+      Use case ends.
+
+- 1c. The requested patient's Status does not exist in the system.
+
+    - 1c1. MedInfo does not list any patients.
+
+      Use case ends.
+
+
 _{More to be added}_
 
 ### Non-Functional Requirements
