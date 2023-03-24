@@ -22,6 +22,7 @@ public class EndTime {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     private final LocalTime time;
+    public String endTime;
 
     /**
      * Constructs an {@code EndTime} with the specified end time.

@@ -61,15 +61,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.tutee = tutee;
         id.setText(displayedIndex + ". ");
-        name.setText(tutee.getName().toString());
-        phone.setText(tutee.getPhone().toString());
-        address.setText(tutee.getAddress().toString());
-        email.setText(tutee.getEmail().toString());
-        subject.setText(tutee.getSubject().toString());
-        schedule.setText(tutee.getSchedule().toString());
-        startTime.setText(tutee.getStartTime().toString());
-        endTime.setText(tutee.getEndTime().toString());
-        remark.setText(tutee.getRemark().toString());
+        name.setText("Name: " + tutee.getName().toString());
+        phone.setText("Phone: " + tutee.getPhone().toString());
+        address.setText("Address: " + tutee.getAddress().toString());
+        email.setText("Email: " + tutee.getEmail().toString());
+        subject.setText("Subject: " + tutee.getSubject().toString());
+        schedule.setText("Schedule: " + tutee.getSchedule().toString());
+        startTime.setText("Start time: " + tutee.getStartTime().toString());
+        endTime.setText("End time: " + tutee.getEndTime().toString());
+        remark.setText("Remark: " + tutee.getRemark().toString());
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

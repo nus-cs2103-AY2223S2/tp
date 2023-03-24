@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTuteeManagingSystem;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -23,14 +23,14 @@ import seedu.address.testutil.TuteeTestBuilder;
 public class UnmarkCommandTest {
     @Test
     public void execute_withGivenDate() throws ParseException {
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
         expectedModel.addTutee(AMY);
 
         Tutee amy = new TuteeTestBuilder(AMY)
             .withAttendance(new Attendance(Set.of(LocalDate.of(2020, 03, 04))))
             .build();
 
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
         model.addTutee(amy);
 
         UnmarkCommandParser parser = new UnmarkCommandParser();
@@ -46,10 +46,10 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_withGivenDateAndTuteeAlreadyAbsent() throws ParseException {
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
         expectedModel.addTutee(AMY);
 
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
         model.addTutee(AMY);
 
         UnmarkCommandParser parser = new UnmarkCommandParser();

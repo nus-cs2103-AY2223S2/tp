@@ -7,6 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
+    public static final String MESSAGE_CONSTRAINTS = "";
+
     private final String value;
 
 
@@ -16,6 +18,10 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    public static boolean isValidRemark(String str) {
+        return true;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Schedule {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private final String schedule;
+    public final String schedule;
 
     /**
      * Constructs a {@code Schedule}.

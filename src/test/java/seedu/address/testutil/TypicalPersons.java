@@ -96,7 +96,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code TuteeManagingSystem} with all the typical persons.
      */
-    public static TuteeManagingSystem getTypicalAddressBook() {
+    public static TuteeManagingSystem getTypicalTuteeManagingSystem() {
         TuteeManagingSystem ab = new TuteeManagingSystem();
         for (Tutee tutee : getTypicalPersons()) {
             ab.addPerson(tutee);
