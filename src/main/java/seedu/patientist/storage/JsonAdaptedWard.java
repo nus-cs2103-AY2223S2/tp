@@ -64,7 +64,7 @@ public class JsonAdaptedWard {
             wardPatients.add((Patient) patient.toModelType());
         }
 
-        for (JsonAdaptedPerson staff : patients) {
+        for (JsonAdaptedPerson staff : staffs) {
             wardStaffs.add((Staff) staff.toModelType());
         }
 
