@@ -11,15 +11,16 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Description must contain at least one character";
+    public static final String DEFAULT_VALUE = "No Description";
     public final String value;
-    public final String defaultValue = "No Description";
+
     private boolean hasDescription = false;
 
     /**
      * Constructs a {@code Description} with default description.
      */
     public Description() {
-        value = defaultValue;
+        value = DEFAULT_VALUE;
     }
 
     /**

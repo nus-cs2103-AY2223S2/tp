@@ -44,6 +44,10 @@ public abstract class Task implements Comparable<Task> {
         return name;
     }
 
+    public boolean hasDescription() {
+        return description.getHasDescription();
+    }
+
     public Description getDescription() {
         return description;
     }

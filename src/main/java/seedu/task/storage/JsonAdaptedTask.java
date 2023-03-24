@@ -80,7 +80,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
         description = source.getDescription().value;
-        hasDescription = String.valueOf(source.getDescription().getHasDescription());
+        hasDescription = String.valueOf(source.hasDescription());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
