@@ -67,7 +67,7 @@ Description coming soon
 
 ### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
 In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and users can add new objects 
-into the database via `add` command. 
+into the database via `add` command.
 
 This feature is enabled by the following classes:
 * `LinkXYZCommand` - the command that can be executed and adds a new entity
