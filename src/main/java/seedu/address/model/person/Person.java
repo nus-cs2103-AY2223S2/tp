@@ -127,6 +127,7 @@ public class Person {
      * The task must not already exist in the list.
      */
     public void addTask(Task t) {
+        requireNonNull(t);
         taskList.add(t);
     }
 
@@ -136,7 +137,7 @@ public class Person {
      * The task identity of {@code editedTask} must not be the same as another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
+        requireAllNonNull(target, editedTask);
 
         taskList.setTask(target, editedTask);
     }
@@ -146,6 +147,7 @@ public class Person {
      * {@code key} must exist in the list.
      */
     public void removeTask(Task key) {
+        requireNonNull(key);
         taskList.remove(key);
     }
 
