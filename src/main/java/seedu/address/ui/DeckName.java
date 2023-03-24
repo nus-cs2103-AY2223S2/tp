@@ -21,9 +21,8 @@ public class DeckName extends UiPart<Region> {
      */
     public DeckName(String name) {
         super(FXML);
-        title.setText(name.equals(EMPTY_STRING)? EMPTY_STRING : "Selected deck:");
+        title.setText(name.equals(EMPTY_STRING) ? EMPTY_STRING : "Selected deck:");
         description.setText(name);
     }
 
 }
-
