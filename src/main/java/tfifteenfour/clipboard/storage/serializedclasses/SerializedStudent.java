@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.storage.serializedClasses;
+package tfifteenfour.clipboard.storage.serializedclasses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

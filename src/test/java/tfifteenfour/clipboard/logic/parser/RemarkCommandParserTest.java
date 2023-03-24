@@ -9,7 +9,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.studentCommands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.model.student.Remark;
 
 class RemarkCommandParserTest {

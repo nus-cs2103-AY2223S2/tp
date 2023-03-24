@@ -15,12 +15,12 @@ import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.FindCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.RemarkCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.SortCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**

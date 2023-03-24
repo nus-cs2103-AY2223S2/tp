@@ -16,7 +16,6 @@ public class Student {
     private final Email email;
 
     // Data fields
-
     private final Remark remark;
     private final StudentId studentId;
     // private final Set<Tag> tags = new HashSet<>();
@@ -56,7 +55,7 @@ public class Student {
         return remark;
     }
 
-    /**
+    /*
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -64,7 +63,7 @@ public class Student {
     //     return Collections.unmodifiableSet(tags);
     // }
 
-    /**
+    /*
      * Returns an immutable module set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -105,7 +104,7 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getStudentId().equals(getStudentId());
-                // && otherStudent.getTags().equals(getTags());
+        // && otherStudent.getTags().equals(getTags());
     }
 
     @Override

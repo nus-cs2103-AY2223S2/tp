@@ -35,17 +35,17 @@ public class BackCommand extends Command {
 
         switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE: // back not possible
-			throw new CommandException("Cannot go back any further");
+            throw new CommandException("Cannot go back any further");
 
         case GROUP_PAGE:
             // if you are on group page now, go back to course page
-			currentSelection.navigateBackFromGroupPage();
+            currentSelection.navigateBackFromGroupPage();
             return new CommandResult(this, String.format("Back to course page"), willModifyState);
 
         case STUDENT_PAGE:
             currentSelection.navigateBackFromStudentPage();
             return new CommandResult(this, String.format("Back to group page of %s",
-					currentSelection.getSelectedCourse()), willModifyState);
+                    currentSelection.getSelectedCourse()), willModifyState);
         default:
             throw new CommandException("Unable to select");
         }

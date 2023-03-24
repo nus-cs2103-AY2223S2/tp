@@ -15,7 +15,7 @@ public class Course {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String courseCode;
-	private UniqueGroupsList groups;
+    private UniqueGroupsList groups;
 
     {
         groups = new UniqueGroupsList();

@@ -18,7 +18,7 @@ import tfifteenfour.clipboard.commons.exceptions.DataConversionException;
 import tfifteenfour.clipboard.commons.util.FileUtil;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
-import tfifteenfour.clipboard.storage.serializedClasses.SerializedRoster;
+import tfifteenfour.clipboard.storage.serializedclasses.SerializedRoster;
 
 /**
  * A class to access Roster data stored as a json file on the hard disk.
@@ -39,13 +39,9 @@ public class JsonRosterStorage implements RosterStorage {
     }
 
     @Override
-    public Optional<ReadOnlyRoster> readRoster() throws DataConversionException, IOException{
+    public Optional<ReadOnlyRoster> readRoster() throws DataConversionException, IOException {
         return readRoster(filePath);
     }
-
-
-
-
 
     /**
      * Similar to {@link #readRoster()}.
@@ -67,7 +63,7 @@ public class JsonRosterStorage implements RosterStorage {
             Roster roster = jsonToRoster(jsonRoster);
 
             return Optional.of(roster);
-        } catch (JsonParseException e){
+        } catch (JsonParseException e) {
             throw new DataConversionException(e);
         } catch (IOException e) {
             e.printStackTrace();

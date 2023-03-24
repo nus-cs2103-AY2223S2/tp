@@ -4,7 +4,7 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMA
 
 import java.util.Arrays;
 
-import tfifteenfour.clipboard.logic.commands.studentCommands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 

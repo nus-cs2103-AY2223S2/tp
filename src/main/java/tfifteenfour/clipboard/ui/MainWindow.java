@@ -178,9 +178,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /**
-     * Refreshes view pane.
-     */
     //public void refreshViewPane() {
     //    studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
     //    studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());

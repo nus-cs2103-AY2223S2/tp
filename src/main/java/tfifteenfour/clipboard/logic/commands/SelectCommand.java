@@ -44,7 +44,8 @@ public class SelectCommand extends Command {
         case COURSE_PAGE:
             // if you are on course page now, means you can only select a course
             Course selectedCourse = handleSelectCourse(model, currentSelection);
-            return new CommandResult(this, String.format("[GROUP PAGE]\nViewing Course: %s", selectedCourse), willModifyState);
+            return new CommandResult(this,
+                    String.format("[GROUP PAGE]\nViewing Course: %s", selectedCourse), willModifyState);
 
         case GROUP_PAGE:
             // if you are on group page now, means you can only select a group

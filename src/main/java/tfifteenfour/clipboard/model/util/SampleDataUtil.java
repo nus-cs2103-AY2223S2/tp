@@ -64,7 +64,7 @@ public class SampleDataUtil {
             //     new StudentId("A0123456A"), getModuleSet("CS2105"), EMPTY_REMARK, getTagSet("Team2")),
             // new Student(new Name("Lim Yi Ling"), new Phone("97536128"), new Email("yilinglim@example.com"),
             //     new StudentId("A1234567B"), getModuleSet("CS2105"), EMPTY_REMARK, getTagSet("Team2")),
-            // new Student(new Name("Muhammad Azmi Hamzah"), new Phone("91234567"), new Email("azmi.hamzah@example.com"),
+            // new Student(new Name("Muhammad Azmi Hamzah"), new Phone("91234567"), new Email("azmi.hzah@example.com"),
             //     new StudentId("A2345678C"), getModuleSet("CS2105"), EMPTY_REMARK, getTagSet("Team1")),
             // new Student(new Name("Nurul Izzah Yusoff"), new Phone("94321876"), new Email("nurul.izzah@example.com"),
             //     new StudentId("A3456789D"), getModuleSet("CS2105"), EMPTY_REMARK, getTagSet("Team1"))

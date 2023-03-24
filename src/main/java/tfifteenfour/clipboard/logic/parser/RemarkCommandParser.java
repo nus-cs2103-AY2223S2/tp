@@ -6,7 +6,7 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
-import tfifteenfour.clipboard.logic.commands.studentCommands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Remark;
 

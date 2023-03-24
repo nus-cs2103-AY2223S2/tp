@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteStudentCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
 import tfifteenfour.clipboard.model.UserPrefs;
