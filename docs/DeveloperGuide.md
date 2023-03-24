@@ -395,10 +395,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Student requests to list contacts
-2.  ModCheck shows a list of contacts
-3.  Student requests to view a specific contact in the list
-4.  ModCheck displays the person's contact details
+1.  Student requests to list contacts.
+2.  ModCheck shows a list of contacts.
+3.  Student requests to view a specific contact in the list.
+4.  ModCheck displays the person's contact details.
 
     Use case ends.
 
@@ -414,14 +414,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
   
-* 3b.  User requests to view multiple people in the list
+* 3b.  User requests to view multiple people in the list.
 
-    * 3b1. ModCheck validates indexes given is correct.
-    * 3b2. ModCheck displays all person's contact details
+    * 3b1. ModCheck validates indexes given is correct. 
+    * 3b2. ModCheck displays all person's contact details. 
 
       Use case ends.
   
-      * 3b1a. ModCheck validates indexes given is incorrect
+      * 3b1a. ModCheck validates indexes given is incorrect.
       * 3b1b. ModChecks shows an error message.
 
 
