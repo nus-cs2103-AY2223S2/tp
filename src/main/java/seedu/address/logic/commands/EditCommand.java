@@ -11,11 +11,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -72,19 +70,15 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (!EmployeeId.isValidEmployeeId(employeeId.toString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        List<Employee> filteredList = lastShownList.filtered(employee -> employee.getEmployeeId().equals(employeeId));
+        Optional<Employee> optionalEmployee = model.getEmployee(employeeId);
+        Employee employeeToEdit = optionalEmployee.orElseThrow(() -> new
+                CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX));
 
-        if (filteredList.size() != 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-        }
-
-        Employee employeeToEdit = filteredList.get(0);
 
         Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
