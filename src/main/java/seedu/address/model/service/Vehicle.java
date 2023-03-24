@@ -168,11 +168,22 @@ public class Vehicle {
 
     /**
      * This method returns the services that is needed to be done to this vehicle.
+     * In a List.
      *
      * @return List of services
      */
     public List<Integer> getServiceIds() {
         return new ArrayList<>(this.serviceIds);
+    }
+
+    /**
+     * This method returns the services that is needed to be done to this vehicle.
+     * In a Set.
+     *
+     * @return Set of services
+     */
+    public Set<Integer> getServiceIdsSet() {
+        return this.serviceIds;
     }
 
     /**

@@ -47,6 +47,8 @@ public class EditCustomerCommand extends RedoableCommand {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
+
+    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "This customer does not exist.";
     private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
     private final EditCustomerDescriptor editPersonDescriptor;
 
@@ -68,6 +70,10 @@ public class EditCustomerCommand extends RedoableCommand {
         Customer personToEdit = lastShownList.stream().filter(person ->
                         editPersonDescriptor.getId() == person.getId()).findAny()
                 .orElse(CUSTOMER_DOES_NOT_EXIST);
+
+        if (personToEdit == null) {
+            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        }
 
         Customer editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 

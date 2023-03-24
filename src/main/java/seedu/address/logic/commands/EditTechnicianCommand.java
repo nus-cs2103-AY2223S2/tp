@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TECHNICIANS;
 
 import java.util.Collections;
@@ -19,7 +18,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entity.person.Address;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
@@ -86,7 +84,8 @@ public class EditTechnicianCommand extends RedoableCommand {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Technician createEditedPerson(Technician personToEdit, EditTechnicianDescriptor editPersonDescriptor) {
+    private static Technician createEditedPerson(Technician personToEdit,
+                                                 EditTechnicianDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         int id = personToEdit.getId();

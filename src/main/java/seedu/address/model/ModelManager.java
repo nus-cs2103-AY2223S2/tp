@@ -244,6 +244,12 @@ public class ModelManager implements Model {
         this.shop.removeVehicle(target);
     }
 
+    @Override
+    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+        requireAllNonNull(target, editedVehicle);
+        this.shop.setVehicle(target, editedVehicle);
+    }
+
     // ==== For Services ==
     @Override
     public ObservableList<Service> getFilteredServiceList() {

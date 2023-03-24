@@ -209,6 +209,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addService(int vehicleId, Service service) {
             throw new AssertionError("This method should not be called.");
         }

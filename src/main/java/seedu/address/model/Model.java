@@ -175,6 +175,8 @@ public interface Model {
 
     void deleteVehicle(Vehicle target);
 
+    void setVehicle(Vehicle target, Vehicle editedVehicle);
+
     // ==== For Services ==
 
     /**
