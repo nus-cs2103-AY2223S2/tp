@@ -367,7 +367,28 @@ Step 3. The `ShortcutCommand` object is executed by `MainWindow#executeCommand`,
 The following activity diagram summarizes what happens when a user executes this command:
 
 
+### Importing and Exporting CSV Files
 
+This is a useful feature which allows users to export all contact details in a CSV File of their choice, or import an existing dataset.
+
+#### Implementation
+
+The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `JFileChooser` is displayed to the user. This file chooser has a `FileNameExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extensions is an array containing only the String "csv".
+
+Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, a prompt is displayed to inform the user and the `JFileChooser` reappears to allow the user to select a new file. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
+
+Beyond the UI level, the commands operate using the `CsvAddressBookStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableAddressBook` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
+
+##### Import
+
+##### Export
+
+### Design Considerations
+
+Given the complexity of the CSV file format, it was deemed impractical to support every single valid expression or notation which CSV allows. Instead, only two expressions were considered: the `,` and `"` symbols. Since CSV is comma-delimited, the following special considerations were made to handle these characters when converting from E-Lister to CSV-friendly format.
+
+* If any number of `,` appears in a field, the field must be wrapped with quotation marks `""`.
+* If a field is wrapped in quotation marks `""` (such as due to the previous rule), any existing `"` within the field is converted to `""`.
 
 --------------------------------------------------------------------------------------------------------------------
 
