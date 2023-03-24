@@ -12,7 +12,7 @@ import seedu.address.model.service.PartMap;
 /**
  * Finds and returns the part details of the provided id.
  */
-public class ViewPartCommand extends RedoableCommand {
+public class ViewPartCommand extends Command {
 
     public static final String COMMAND_WORD = "viewpart";
 
@@ -28,7 +28,7 @@ public class ViewPartCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         PartMap pm = model.getPartMap(); // TODO: the function here should return something to GUI.
 

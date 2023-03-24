@@ -1,0 +1,8 @@
+@startuml
+object "__:StackUndoRedo__" as s1
+object "__undoStack:Stack__" as s2
+object "__redoStack:Stack__" as s3
+
+s1 *--> s2
+s1 *--> s3
+@enduml

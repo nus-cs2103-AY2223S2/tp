@@ -4,40 +4,59 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
+package "Storage" as Storage1{
+
 
 package "UserPrefs Storage" #F4F6F6{
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
 Class StorageManager
+Class "<<interface>>\nStorage" as Storage2
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+
+package "Shop Storage" #F4F6F6{
+Class "<<interface>>\nShopStorage" as ShopStorage
+Class JsonShopStorage
+Class JsonSerializableShop
 Class JsonAdaptedPerson
+Class JsonAdaptedCustomer
 Class JsonAdaptedTag
+Class JsonAdaptedVehicle
+Class JsonAdaptedService
+Class JsonAdaptedPart
+Class JsonAdaptedAppointment
+Class JsonAdaptedTechnician
 }
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storage2
 
-StorageManager .up.|> Storage
+Storage2 -left-|> UserPrefsStorage
+Storage2 -right-|> ShopStorage
+
+StorageManager .up.|> Storage2
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+StorageManager -up-> "1" ShopStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonShopStorage .up.|> ShopStorage
+JsonShopStorage ..> JsonSerializableShop
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedCustomer -up-|> JsonAdaptedPerson
+JsonSerializableShop --> "*" JsonAdaptedCustomer
+JsonSerializableShop ---> "*" JsonAdaptedVehicle
+JsonSerializableShop ---> "*" JsonAdaptedService
+JsonAdaptedService --> "*" JsonAdaptedPart
+JsonSerializableShop ---> "*" JsonAdaptedPart
+JsonSerializableShop --> "*" JsonAdaptedAppointment
+JsonSerializableShop ---> "*" JsonAdaptedTechnician
+
+'Layout adjustments
+JsonAdaptedCustomer -right[hidden]- JsonAdaptedVehicle
+
 
 @enduml

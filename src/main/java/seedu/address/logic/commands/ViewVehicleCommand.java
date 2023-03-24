@@ -11,7 +11,7 @@ import seedu.address.model.service.VehicleIdPredicate;
 /**
  * Finds and returns the vehicle details of the provided id.
  */
-public class ViewVehicleCommand extends RedoableCommand {
+public class ViewVehicleCommand extends Command {
 
     public static final String COMMAND_WORD = "viewvehicle";
 
@@ -27,7 +27,7 @@ public class ViewVehicleCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredVehicleList(predicate);
         Vehicle current = model.getFilteredVehicleList().get(0);

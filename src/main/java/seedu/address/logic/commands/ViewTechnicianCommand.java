@@ -9,7 +9,7 @@ import seedu.address.model.entity.person.TechnicianIdPredicate;
 /**
  * Finds and returns the customer details of the provided id.
  */
-public class ViewTechnicianCommand extends RedoableCommand {
+public class ViewTechnicianCommand extends Command {
 
     public static final String COMMAND_WORD = "viewtechnician";
 
@@ -24,7 +24,7 @@ public class ViewTechnicianCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTechnicianList(predicate);
         return new CommandResult(
