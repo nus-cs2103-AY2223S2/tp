@@ -151,7 +151,8 @@ Use case ends.
 **Extensions**
 
 - 2a. The list is empty.
-Use case ends.
+- 
+    Use case ends.
 
 
 ### **Use case: Add a new job listing**
@@ -189,8 +190,6 @@ Use case ends.
 
         Use case resumes at step 1.
 
-
-
 ### **Use case: Update a job listing**
 
 **MSS**
@@ -199,15 +198,19 @@ Use case ends.
 2. ListingBook shows a list of job listings
 3. The recruiter requests to update a specific listing from the list
 4. ListingBook updates the job listing
-Use case ends.
 
-**Extensions**
+    Use case ends.
+
+********************Extensions********************
 
 - 2a. The list is empty.
-Use case ends.
+- 
+    Use case ends.
+    
 - 3a. The given index is invalid.
     - 3a1. ListingBook shows an error message.
     Use case resumes at step 2.
+    
 - 3b. The placeholders used are invalid
     - 3b1. ListingBook shows an error message.
 
@@ -246,7 +249,8 @@ Use case ends.
 **Extensions**
 
 - 2a. No job listings match the keyword.
-Use case ends.
+    Use case ends.
+
 - 2b. The list is empty.
 
     Use case ends.
@@ -259,14 +263,28 @@ Use case ends.
 1. Recruiter requests to sort job listings
 2. ListingBook sorts the job listings according to the selected option
 3. ListingBook displays the sorted list of job listings
-Use case ends.
+
+    Use case ends.
 
 ********************Extensions********************
 
 - 2a. The list is empty.
 
     Use case ends.
+    
+### **Use case: Undo**
 
+**MSS**
+1. Recruiter requests for an undo
+2. ListingBook reverses the last command.
+3. ListingBook displays reversed list of job listings
+
+    Use case ends.
+    
+********************Extensions********************
+- 2a. Previous command does not change the ListingBook
+Use case ends.
+    Use case ends.
 
 ### **Use case: Filter job listings**
 
@@ -277,10 +295,10 @@ Use case ends.
 3. ListingBook displays the filtered list of job listings
 Use case ends.
 
-**Extensions**
+********************Extensions********************
 
 - 4a. No job listings match the filter criteria.
-Use case ends.
+    Use case ends.
 - 4b. The list is empty.
 
     Use case ends.
