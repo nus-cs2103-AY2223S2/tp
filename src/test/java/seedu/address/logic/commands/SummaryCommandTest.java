@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.SummaryCommand.SHOWING_SUMMARY_MESSAGE;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.SummaryCommand.SHOWING_SUMMARY_MESSAGE;
 
 public class SummaryCommandTest {
     private Model model = new ModelManager();
