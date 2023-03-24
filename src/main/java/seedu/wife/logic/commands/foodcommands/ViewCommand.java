@@ -12,7 +12,10 @@ import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 
-public class ViewCommand extends Command{
+/**
+ * Views the food identified by the index number used in the displayed food list.
+ */
+public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 

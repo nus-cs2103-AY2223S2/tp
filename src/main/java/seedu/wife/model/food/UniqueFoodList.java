@@ -79,6 +79,10 @@ public class UniqueFoodList implements Iterable<Food> {
         }
     }
 
+    /**
+     * Views the equivalent food from the list.
+     * The food must exist in the list.
+     */
     public void view(Food toView) {
         requireNonNull(toView);
         if (!internalList.contains(toView)) {
