@@ -175,9 +175,21 @@ Format: `exit`
 
 ### Sorting the contact list : `sort`
 
-Sorts all entries in the address book.
+Sorts all entries in the address book according to provided attribute.
 
-Format: `sort`
+Format: `sort ATTRIBUTE ORDER`
+
+* Sorts the person according to specified attribute `ATTRIBUTE` and in specified `ORDER`.
+* Attributes:
+  * 1 - Name
+  * 2 - Pay Rate
+  * 3 - Date
+* Order:
+  * 1 - Ascending
+  * 2 - Descending
+
+Examples:
+* `sort 1 0` sorts the address book according to pay rate, from cheapest to most expensive.
 
 ### Creating/Deleting a group : `group`
 

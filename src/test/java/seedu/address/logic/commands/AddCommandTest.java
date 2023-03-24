@@ -151,7 +151,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortAddressBook() {
+        public void sortAddressBook(int attribute) {
             throw new AssertionError("This method should not be called.");
         }
 

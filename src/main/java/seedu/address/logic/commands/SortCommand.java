@@ -11,13 +11,23 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts list by given attribute\n"
+            + "Parameters: ATTRIBUTE (1, 2 or 3)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS = "Sorted all persons according to given attribute.\n";
+
+    private final int attribute;
+
+    public SortCommand(int attribute) {
+        this.attribute = attribute;
+    }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortAddressBook();
+        model.sortAddressBook(attribute);
         model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
