@@ -31,6 +31,10 @@ public class PatientListPanel extends UiPart<Region> {
     private Label selectedGender;
     @FXML
     private Label selectedIc;
+    @FXML
+    private Label selectedDrugAllergy;
+    @FXML
+    private Label selectedEmergencyContact;
 
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
@@ -65,6 +69,16 @@ public class PatientListPanel extends UiPart<Region> {
         selectedBirthDate.setText("Date of Birth: " + selectedPatient.getBirthDate().value);
         selectedGender.setText("Gender: " + selectedPatient.getGender().value);
         selectedIc.setText("Ic: " + selectedPatient.getIc().value);
+        if (selectedPatient.getDrugAllergy() == null) {
+            selectedDrugAllergy.setText("Drug Allergy: - ");
+        } else {
+            selectedDrugAllergy.setText("Drug Allergy: " + selectedPatient.getDrugAllergy().value);
+        }
+        if (selectedPatient.getEmergencyContact() == null) {
+            selectedEmergencyContact.setText("Emergency Contact: - ");
+        } else {
+            selectedEmergencyContact.setText("Emergency Contact: " + selectedPatient.getEmergencyContact().value);
+        }
     }
 
     /**
