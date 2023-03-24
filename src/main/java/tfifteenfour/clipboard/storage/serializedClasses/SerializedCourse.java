@@ -12,6 +12,10 @@ public class SerializedCourse {
     private String courseCode;
     private List<SerializedGroup> groups = new ArrayList<>();
 
+    /**
+     * Serializes a course into json format
+     * @param course
+     */
     public SerializedCourse(Course course) {
         this.courseCode = course.getCourseCode();
         this.groups = course.getUnmodifiableGroupList().stream()
@@ -21,11 +25,14 @@ public class SerializedCourse {
 
     public SerializedCourse() {}
 
+
+    // json property acts like a field name
     @JsonProperty("courseCode")
     public String getCourseCode() {
         return courseCode;
     }
 
+    // Jackson (the library that manages json) automatically converts lists into array format in json
     @JsonProperty("groups")
     public List<SerializedGroup> getStudents() {
         return groups;
