@@ -14,7 +14,7 @@
                <children>
                   <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79addc" height="30.0" onMouseClicked="#contactListner" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="100.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79addc" height="30.0" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="100.0" />
                         <Label contentDisplay="CENTER" text="Contact" textAlignment="CENTER" />
                      </children>
                   </StackPane>
