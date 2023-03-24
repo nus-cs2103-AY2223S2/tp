@@ -7,13 +7,13 @@ import seedu.address.model.video.Video;
  */
 public class TypicalVideos {
 
-    public static final Video CONTENT_VIDEO = new VideoBuilder().withName("Vid1")
+    public static final Video CONTENT_VIDEO = new VideoBuilder().withName("Vid 1")
             .withHasWatched(true).withTags("Content").build();
-    public static final Video ANALYSIS_VIDEO = new VideoBuilder().withName("Vid2")
+    public static final Video ANALYSIS_VIDEO = new VideoBuilder().withName("Vid 2")
             .withHasWatched(true).withTags("Analysis", "MathHeavy").build();
-    public static final Video INTRO_VIDEO = new VideoBuilder().withName("Vid3")
+    public static final Video INTRO_VIDEO = new VideoBuilder().withName("Vid 3")
             .withHasWatched(false).withTags("Intro").build();
-    public static final Video REVISION_VIDEO = new VideoBuilder().withName("Vid4")
+    public static final Video REVISION_VIDEO = new VideoBuilder().withName("Vid 4")
             .withHasWatched(false).withTags("Revision").build();
 
 }

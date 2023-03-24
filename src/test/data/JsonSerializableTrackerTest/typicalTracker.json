@@ -5,10 +5,10 @@
       "name": "Data Structures and Algorithms",
       "lectures": [
         {
-          "name": "Week1",
+          "name": "Week 1",
           "videos": [
             {
-              "name": "Vid3",
+              "name": "Vid 3",
               "hasWatched": false,
               "tagged": ["Intro"]
             }
@@ -16,15 +16,15 @@
           "tagged": ["Intro"]
         },
         {
-          "name": "Week2",
+          "name": "Week 2",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             },
             {
-              "name": "Vid2",
+              "name": "Vid 2",
               "hasWatched": true,
               "tagged": ["Analysis", "MathHeavy"]
             }
@@ -32,15 +32,15 @@
           "tagged": ["Arrays", "LinkedList"]
         },
         {
-          "name": "Week3",
+          "name": "Week 3",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             },
             {
-              "name": "Vid2",
+              "name": "Vid 2",
               "hasWatched": true,
               "tagged": ["Analysis", "MathHeavy"]
             }
@@ -48,15 +48,15 @@
           "tagged": ["Sorting"]
         },
         {
-          "name": "Week4",
+          "name": "Week 4",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             },
             {
-              "name": "Vid2",
+              "name": "Vid 2",
               "hasWatched": true,
               "tagged": ["Analysis", "MathHeavy"]
             }
@@ -64,15 +64,15 @@
           "tagged": ["Arrays", "LinkedList"]
         },
         {
-          "name": "Week5",
+          "name": "Week 5",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             },
             {
-              "name": "Vid2",
+              "name": "Vid 2",
               "hasWatched": true,
               "tagged": ["Analysis", "MathHeavy"]
             }
@@ -80,15 +80,15 @@
           "tagged": ["Hashing"]
         },
         {
-          "name": "Week6",
+          "name": "Week 6",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             },
             {
-              "name": "Vid2",
+              "name": "Vid 2",
               "hasWatched": true,
               "tagged": ["Analysis", "MathHeavy"]
             }
@@ -96,10 +96,10 @@
           "tagged": ["BloomFilter"]
         },
         {
-          "name": "Week7",
+          "name": "Week 7",
           "videos": [
             {
-              "name": "Vid4",
+              "name": "Vid 4",
               "hasWatched": false,
               "tagged": ["Revision"]
             }
@@ -114,10 +114,10 @@
       "name": "Probability and Statistics",
       "lectures": [
         {
-          "name": "Topic1",
+          "name": "Topic 1",
           "videos": [
             {
-              "name": "Vid3",
+              "name": "Vid 3",
               "hasWatched": false,
               "tagged": ["Intro"]
             }
@@ -125,10 +125,10 @@
           "tagged": ["Intro"]
         },
         {
-          "name": "Topic2",
+          "name": "Topic 2",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             }
@@ -136,10 +136,10 @@
           "tagged": ["Probability"]
         },
         {
-          "name": "Topic3",
+          "name": "Topic 3",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             }
@@ -147,10 +147,10 @@
           "tagged": ["RandomVariables"]
         },
         {
-          "name": "Topic4",
+          "name": "Topic 4",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             }
@@ -158,10 +158,10 @@
           "tagged": ["JointDistributions"]
         },
         {
-          "name": "Topic5",
+          "name": "Topic 5",
           "videos": [
             {
-              "name": "Vid1",
+              "name": "Vid 1",
               "hasWatched": true,
               "tagged": ["Content"]
             }
