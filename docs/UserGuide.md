@@ -18,6 +18,8 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`delete`](#deleting-a-person--delete)
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
+    - [`addm`](#adding-a-meeting--addm)
+    - [`findm`](#finding-meetings-by-name--findm)
     - [`export`](#exporting-of-contact--export)
     - [`import`](#importing-of-contacts--import)
     - [`exportm`](#export-meetings--exportm)
@@ -176,6 +178,32 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Adding a Meeting: `addm`
+
+Adds a meeting to the address book.
+
+Format: `addm m/TITLE [p/PERSON]... dt/DATE_TIME l/LOCATION des/DESCRIPTION`
+
+Examples:
+* `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
+* `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
+
+### Finding Meetings by name: `findm`
+
+Find meetings whose names contain any of the given keywords.
+
+Format: `findm KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* Space is delimiter, so if you search `John Doe` it will list all people with either `John` or `Doe` in their name.
+* Only the name of attendees in meeting are searched
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Meetings matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `John Doe` will return Meetings that contain either `John Doe`, or `Doe John`
+
+Examples:
+* `findm John` returns `Meeting` that contains `attendees` whose Name contains `John`
+* `findm John Mary` returns `Meeting` that contains `attendees` whose Name contains `John` or `Mary`
 
 ### Saving the data
 
