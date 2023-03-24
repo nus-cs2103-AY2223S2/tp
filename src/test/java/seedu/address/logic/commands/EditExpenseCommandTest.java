@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -65,4 +66,5 @@ public class EditExpenseCommandTest {
                 null);
         assertThrows(CommandException.class, () -> editExpenseCommand.execute(model));
     }
+
 }
