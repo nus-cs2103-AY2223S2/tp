@@ -160,6 +160,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete/deletetask feature
+
+#### Implementation
+
+The implementation of the delete/deletetask function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being either `delete` or `deletetask`, depending on whether the user wants to delete a person or task respectively. The second argument is an index, denoting the index of the person or task the user wishes to delete.
+
+The format is as follows:
+- `delete {Person_ID}`
+- `deletetask {TASK_ID}`
+
+Given below is an example scenario and how the delete function woks at each step.
+
+Step 1. The user executes `delete 1` command to delete the 5th task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
+
+Step 4. A `DeleteCommandParser` is created, which generated a new `DeleteCommand`.
+
+Step 5. `LogicManager` then calls `execute` in `DeleteCommand`, which carries out the deletion if the task exists. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the deletion has taken place.
+
+**Note:** The command can only work if there is at least 1 person or task present in Pied Piper, and the specified index must not be greater than the index of the last item on the list.
+
+**Note:** The same sequence applies to the deletion of tasks, but the following classes are different:
+1. `DeleteCommandParser` &rarr; `DeleteTaskCommandParser`
+2. `DeleteCommand` &rarr; `DeleteTaskCommand`
+
+The following sequence diagram shows how the delete operation works:
+
+<img src="images/DeleteCommandUML.png"/>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
