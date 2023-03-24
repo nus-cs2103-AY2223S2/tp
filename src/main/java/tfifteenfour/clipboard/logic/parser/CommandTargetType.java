@@ -25,7 +25,7 @@ public enum CommandTargetType {
             }
         }
 
-        throw new ParseException("Unrecognised category for add command: " + type);
+        throw new ParseException("Unrecognised category for command: " + type);
     }
 
     public static boolean isValidAddType(String type) throws ParseException {

@@ -10,12 +10,14 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
+import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCourseCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddGroupCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCourseCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -46,13 +48,21 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException("Delete type missing");
         }
 
+        Index index;
+        try {
+            index = parseDeleteCommandIndex(args);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        }
+
         switch (deleteCommandType) {
         case MODULE:
             Course course = parseCourseInfo(args);
-            return new DeleteCourseCommand(course);
+            return new DeleteCourseCommand(index);
         case GROUP:
             Group group = parseGroupInfo(args);
-            return new AddGroupCommand(group);
+            return new AddGroupCommand(index);
         case SESSION:
             return new AddSessionCommand();
         case STUDENT:
@@ -112,4 +122,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    private Index parseDeleteCommandIndex(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length != 3) {
+            throw new ParseException("Invalid number of arguments");
+        }
+        return ParserUtil.parseIndex(tokens[2]);
+    }
 }
