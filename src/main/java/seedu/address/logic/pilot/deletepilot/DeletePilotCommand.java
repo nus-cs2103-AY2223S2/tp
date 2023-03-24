@@ -6,6 +6,7 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.pilot.Pilot;
 
 /**
@@ -15,7 +16,7 @@ public class DeletePilotCommand implements Command {
     /**
      * The UUID of the pilot to be deleted.
      */
-    private final String uuid;
+    private final String id;
 
     /**
      * This can be used to undo the deletion.
@@ -26,16 +27,23 @@ public class DeletePilotCommand implements Command {
      * Creates a command that, when executed, deletes the pilot with the
      * given uuid.
      *
-     * @param uuid The index of the pilot to be deleted.
+     * @param id The index of the pilot to be deleted.
      */
-    public DeletePilotCommand(String uuid) {
-        this.uuid = uuid;
+    public DeletePilotCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        pilotToDelete = model.getPilotManager().getItem(uuid);
-        model.deletePilot(uuid);
-        return new CommandResult("Deleted pilot: " + uuid);
+        int index = Integer.parseInt(id);
+        try {
+            pilotToDelete = model.getPilotManager().getItemByIndex(index);
+            model.deleteLocationByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
+        return new CommandResult("Deleted pilot: " + id);
     }
 }

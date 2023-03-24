@@ -123,6 +123,15 @@ public interface Model {
     void deletePilot(String id);
 
     /**
+     * Deletes a pilot by index.
+     *
+     * @param index the index of the pilot to delete, which
+     *              should be the order of the object in the
+     *              list.
+     */
+    void deletePilotByIndex(int index);
+
+    /**
      * Adds the given pilot.
      *
      * @param pilot the pilot to add.
@@ -146,6 +155,14 @@ public interface Model {
      * @return   the availability of the pilot.
      */
     boolean checkPilot(String id);
+
+    /**
+     * Checks the availability of a pilot.
+     *
+     * @param index the index of the pilot in the list
+     * @return the availability of the pilot
+     */
+    boolean checkPilotByIndex(int index);
 
     /**
      * Returns an unmodifiable view of the filtered pilot list
@@ -184,6 +201,24 @@ public interface Model {
      * @param uuid the id of the location to be deleted
      */
     void deleteLocation(String uuid);
+
+    /**
+     * Deletes the given location from the
+     * location list.
+     *
+     * @param location the location object to
+     *                 delete.
+     */
+    void deleteLocation(Location location);
+
+    /**
+     * Deletes a location by index.
+     *
+     * @param index the index of the location, which
+     *              should indicate its order in the
+     *              location list
+     */
+    void deleteLocationByIndex(int index);
 
     /**
      * Add a location to the location list
@@ -257,6 +292,22 @@ public interface Model {
      */
     void deleteCrew(String id);
 
+    /**
+     * Deletes a crew by index.
+     *
+     * @param index the id of the crew to delete, and the id
+     *              should be assigned by the order of the
+     *              crew in the list.
+     */
+    void deleteCrew(int index);
+
+    /**
+     * Deletes a crew by index, and the index is given by order.
+     *
+     * @param index the index of the crew to delete.
+     */
+    void deleteCrewByIndex(int index);
+
     void setCrew(Crew target, Crew editedCrew);
 
     /**
@@ -266,6 +317,15 @@ public interface Model {
      * @return   the availability of the crew.
      */
     boolean checkCrew(String id);
+
+    /**
+     * Checks the availability of the crew
+     * by order index.
+     *
+     * @param index the index of the crew, by order
+     * @return whether the crew is available
+     */
+    boolean checkCrewByIndex(int index);
 
     void updateFilteredCrewList(Predicate<Crew> predicate);
 
@@ -284,6 +344,13 @@ public interface Model {
 
     void deletePlane(String id);
 
+    /**
+     * Deletes a plane by order index.
+     *
+     * @param index the index of the plane to delete, by order
+     */
+    void deletePlaneByIndex(int index);
+
     boolean hasPlane(Plane plane);
 
     boolean hasPlane(String id);
@@ -297,6 +364,15 @@ public interface Model {
      * @return   the availability of the plane.
      */
     boolean checkPlane(String id);
+
+    /**
+     * Checks the availability of the plane by index, where
+     * the index should be based on the order in the list.
+     *
+     * @param index the index of the plane to check
+     * @return the availability of the plane
+     */
+    boolean checkPlaneByIndex(int index);
 
     ObservableList<Plane> getFilteredPlaneList();
 
@@ -362,6 +438,13 @@ public interface Model {
      * @param id identifier of flight to be deleted
      */
     void deleteFlight(String id);
+
+    /**
+     * Deletes a flight by index.
+     *
+     * @param index the index of the flight to delete by order.
+     */
+    void deleteFlightByIndex(int index);
 
     /**
      * Adds the given flight
