@@ -133,8 +133,8 @@ public class BookTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(BELOVED, BELOVED);
-        assertNotEquals(BELOVED, DUNE);
+        assertEquals(BELOVED.hashCode(), BELOVED.hashCode());
+        assertNotEquals(BELOVED.hashCode(), DUNE.hashCode());
     }
 
     @Test

@@ -6,7 +6,9 @@ import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import expresslibrary.logic.commands.AddPersonCommand;
+import expresslibrary.logic.commands.BorrowCommand;
 import expresslibrary.logic.commands.ClearCommand;
 import expresslibrary.logic.commands.Command;
 import expresslibrary.logic.commands.DeletePersonCommand;
@@ -65,6 +67,9 @@ public class ExpressLibraryParser {
 
         case ListBookCommand.COMMAND_WORD:
             return new ListBookCommand();
+
+        case BorrowCommand.COMMAND_WORD:
+            return new BorrowCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
