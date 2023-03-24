@@ -275,8 +275,7 @@ Given below is a scenario of how the add command is used and behaves.
 
 Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
 
-Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are
-simple tasks. The tasks will have the same description but different names
+Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
 
 Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
 
