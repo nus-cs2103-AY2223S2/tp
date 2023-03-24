@@ -390,6 +390,18 @@ Given the complexity of the CSV file format, it was deemed impractical to suppor
 * If any number of `,` appears in a field, the field must be wrapped with quotation marks `""`.
 * If a field is wrapped in quotation marks `""` (such as due to the previous rule), any existing `"` within the field is converted to `""`.
 
+The `CsvUtil` class provides a method to handle these rules:
+
+```java
+public static String toCsvField(String str) {
+   if (str.contains(",")) {
+      str = str.replaceAll("\"", "\"\"");
+      str = "\"" + str + "\"";
+   }
+   return str;
+}
+```
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
