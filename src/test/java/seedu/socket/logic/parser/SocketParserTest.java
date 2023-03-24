@@ -14,6 +14,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_ALPHA;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_MEETING_ALPHA;
@@ -57,9 +58,11 @@ import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.socket.logic.commands.RemoveProjectCommand;
 import seedu.socket.logic.commands.SortCommand;
 import seedu.socket.logic.commands.SortProjectCommand;
+import seedu.socket.logic.commands.UnassignCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
+import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 import seedu.socket.model.project.Project;
@@ -292,6 +295,14 @@ public class SocketParserTest {
                 + INDEX_FIRST_PROJECT.getOneBased() + " " + REPO_NAME_DESC_ALPHA
                 + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
         assertEquals(new RemoveProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        Name name = new Name(VALID_NAME_AMY);
+        UnassignCommand command = (UnassignCommand) parser.parseCommand(UnassignCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_NAME + VALID_NAME_AMY);
+        assertEquals(new UnassignCommand(INDEX_FIRST_PROJECT, name), command);
     }
 
     @Test
