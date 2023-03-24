@@ -309,6 +309,15 @@ Finally, `FilterCommand` will execute which will call the method `model.updateFi
 `FieldContainsKeywordPredicate` object as the predicate. The feature will filter and display the tutees which have fields 
 that are equal to what the user has provided. 
 
+### Copy feature
+
+#### Copy Implementation
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in 
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in 
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including: 
+`subject`, `schedule`, `start time`, `end time` of a tutee. 
+All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

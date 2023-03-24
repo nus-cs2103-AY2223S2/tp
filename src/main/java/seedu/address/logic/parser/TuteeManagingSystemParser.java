@@ -33,6 +33,7 @@ public class TuteeManagingSystemParser {
         Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
         Map.entry(QueryCommand.COMMAND_WORD, new QueryCommandParser()),
         Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
+        Map.entry(CopyCommand.COMMAND_WORD, new CopyCommandParser()),
             Map.entry(LearnCommand.COMMAND_WORD, new LearnCommandParser()),
             Map.entry(UnlearnCommand.COMMAND_WORD, new UnlearnCommandParser()),
         Map.entry(UnmarkCommand.COMMAND_WORD, new UnmarkCommandParser())
