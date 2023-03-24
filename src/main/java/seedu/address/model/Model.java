@@ -86,4 +86,6 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     boolean hasDuplicateName(String name);
+
+    boolean noSuchStudent(String name);
 }
