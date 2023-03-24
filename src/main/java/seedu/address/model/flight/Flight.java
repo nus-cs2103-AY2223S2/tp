@@ -87,6 +87,42 @@ public class Flight implements Item {
         return this.code;
     }
 
+    /**
+     * Returns the pilot link of the flight.
+     *
+     * @return the link to pilots
+     */
+    public Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> getPilotLink() {
+        return pilotLink;
+    }
+
+    /**
+     * Returns the crew link of the flight.
+     *
+     * @return the link to crews
+     */
+    public Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> getCrewLink() {
+        return crewLink;
+    }
+
+    /**
+     * Returns the plane link of the flight.
+     *
+     * @return the link to planes
+     */
+    public Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> getPlaneLink() {
+        return planeLink;
+    }
+
+    /**
+     * Returns the location link of the flight.
+     *
+     * @return the link to locations
+     */
+    public Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> getLocationLink() {
+        return locationLink;
+    }
+
     @Override
     public List<String> getDisplayList() {
         return List.of(
@@ -103,5 +139,4 @@ public class Flight implements Item {
     public String getId() {
         return this.id;
     }
-
 }
