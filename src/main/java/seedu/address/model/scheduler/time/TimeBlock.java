@@ -1,10 +1,10 @@
-package seedu.address.model.time;
+package seedu.address.model.scheduler.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.time.exceptions.WrongTimeException;
-import seedu.address.model.time.util.TimeUtils;
+import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
+import seedu.address.model.scheduler.time.util.TimeUtil;
 
 /**
  * Represents a time period of a variable amount.
@@ -50,7 +50,7 @@ public class TimeBlock extends TimePeriod {
     @Override
     public String toString() {
         return String.format("[%s, %s]",
-            TimeUtils.formatLocalTime(getStartTime()),
-            TimeUtils.formatLocalTime(getEndTime()));
+            TimeUtil.formatLocalTime(getStartTime()),
+            TimeUtil.formatLocalTime(getEndTime()));
     }
 }

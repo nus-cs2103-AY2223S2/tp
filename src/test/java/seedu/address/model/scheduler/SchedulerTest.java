@@ -28,8 +28,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.time.Day;
-import seedu.address.model.time.TimePeriod;
+import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.scheduler.time.TimePeriod;
 
 class SchedulerTest {
 

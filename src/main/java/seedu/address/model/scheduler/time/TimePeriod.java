@@ -1,9 +1,9 @@
-package seedu.address.model.time;
+package seedu.address.model.scheduler.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 
 
 /**

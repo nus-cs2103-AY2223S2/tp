@@ -16,8 +16,8 @@ import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.scheduler.Scheduler;
 import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.time.TimePeriod;
-import seedu.address.model.time.util.TimeUtils;
+import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.scheduler.time.util.TimeUtil;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.
@@ -86,8 +86,8 @@ public class MeetCommand extends Command {
         recommendedTimings.forEach(timings -> sb.append("\n").append(timings.getSchoolDay())
             .append("\n")
             .append(String.format("Start: %s  End: %s\n",
-                TimeUtils.formatLocalTime(timings.getStartTime()),
-                TimeUtils.formatLocalTime(timings.getEndTime()))));
+                TimeUtil.formatLocalTime(timings.getStartTime()),
+                TimeUtil.formatLocalTime(timings.getEndTime()))));
         recommendations.forEach(location -> sb.append("\n").append(location.getName()));
 
         return new CommandResult(sb.toString());

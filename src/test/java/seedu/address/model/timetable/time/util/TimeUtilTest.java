@@ -32,20 +32,20 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.time.Day;
-import seedu.address.model.time.HourBlock;
-import seedu.address.model.time.TimeBlock;
-import seedu.address.model.time.TimePeriod;
-import seedu.address.model.time.util.TimeUtils;
+import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.scheduler.time.TimeBlock;
+import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.scheduler.time.util.TimeUtil;
 
 
-class TimeUtilsTest {
+class TimeUtilTest {
 
     @Test
     public void getCommonIntervals_twoTimetablesMonday_oneTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.MONDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.MONDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(1, mergedIntervals.size());
         // expecting 12pm - 10pm
@@ -55,8 +55,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_twoTimetablesTuesday_success() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.TUESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.TUESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 8-10am, 12-4pm, 5pm - 10pm
         assertEquals(3, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[]{new TimeBlock(EIGHT_AM, TEN_AM, Day.TUESDAY),
@@ -67,8 +67,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_twoTimetablesWednesday_success() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 8am-6pm, 7-10pm
         assertEquals(2, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[] { new TimeBlock(EIGHT_AM, SIX_PM, Day.WEDNESDAY),
@@ -78,8 +78,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_twoTimetablesThursday_success() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.THURSDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.THURSDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 8-4pm, 9-10pm
         assertEquals(2, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[] { new TimeBlock(EIGHT_AM, FOUR_PM, Day.THURSDAY),
@@ -89,8 +89,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_twoTimetablesFriday_success() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.FRIDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.FRIDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 11am-7pm
         assertEquals(1, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[] { new TimeBlock(ELEVEN_AM, SEVEN_PM, Day.FRIDAY)},
@@ -100,9 +100,9 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_noCommonSlotAvailable_success() {
         List<Timetable> timetables = List.of(FULL_CONFLICT_TIMETABLE_A, FULL_CONFLICT_TIMETABLE_B);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.THURSDAY, timetables);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.THURSDAY, timetables);
         assertEquals(0, intervals.size());
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 11am-7pm
         assertEquals(0, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[]{}, mergedIntervals.toArray());
@@ -112,9 +112,9 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_emptyList_success() {
         List<Timetable> timetables = List.of();
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.THURSDAY, timetables);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.THURSDAY, timetables);
         assertEquals(0, intervals.size());
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         //expecting 11am-7pm
         assertEquals(0, mergedIntervals.size());
         assertArrayEquals(new TimeBlock[]{}, mergedIntervals.toArray());
@@ -124,8 +124,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_threeTimetablesMonday_oneTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B, TIMETABLE_C);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.MONDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.MONDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(1, mergedIntervals.size());
         // expecting 12pm - 10pm
@@ -135,8 +135,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_threeTimetablesWednesday_oneTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B, TIMETABLE_C);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
         // expecting 8am-10am, 1pm-6pm, 7-10pm
@@ -149,8 +149,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant2Monday_oneTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_C, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.MONDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.MONDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(1, mergedIntervals.size());
         // expecting 12noon-2pm
@@ -162,8 +162,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant2Tuesday_twoTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_D, TIMETABLE_C, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.TUESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.TUESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(2, mergedIntervals.size());
         // expecting 12noon-2am, 5-10pm
@@ -176,8 +176,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant2Wednesday_oneTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_C, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
         // expecting 8am-10am, 1pm-4pm, 5pm-10pm
@@ -191,8 +191,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant2Thursday_twoTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_C, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.THURSDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.THURSDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(2, mergedIntervals.size());
         // expecting 8am-11am, 1pm-10pm
@@ -205,8 +205,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant2Friday_twoTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_C, TIMETABLE_E, TIMETABLE_D);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.FRIDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.FRIDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(2, mergedIntervals.size());
         // expecting 8am-9am, 11am-7pm
@@ -219,8 +219,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant3Monday_twoTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_B, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.MONDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.MONDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(2, mergedIntervals.size());
         // expecting 8-10am, 12-10pm
@@ -233,8 +233,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant3Tuesday_threeTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_D, TIMETABLE_B, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.TUESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.TUESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
         // expecting 8-10am, 12-2pm, 5-10pm
@@ -248,8 +248,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant3Wednesday_threeTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_B, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.WEDNESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
         // expecting 8am-4pm, 5pm-6pm, 7pm-10pm
@@ -263,8 +263,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant3Thursday_threeTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_B, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.THURSDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.THURSDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
         // expecting 8am-11am, 1pm-5pm, 9-10pm
@@ -278,8 +278,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_timetablesVariant3Friday_twoTimeBlock() {
         List<Timetable> timetables = List.of(TIMETABLE_B, TIMETABLE_E, TIMETABLE_D);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.FRIDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.FRIDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(2, mergedIntervals.size());
         // expecting 8am-9am, 11am-7pm
@@ -292,8 +292,8 @@ class TimeUtilsTest {
     @Test
     public void getCommonIntervals_fiveTimeTablesTuesday_success() {
         List<Timetable> timetables = List.of(TIMETABLE_A, TIMETABLE_B, TIMETABLE_C, TIMETABLE_D, TIMETABLE_E);
-        List<HourBlock> intervals = TimeUtils.getFreeCommonIntervals(Day.TUESDAY, timetables);
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(intervals);
+        List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.TUESDAY, timetables);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
         //expecting 12-2pm, 5pm - 10pm
         assertEquals(2, mergedIntervals.size());
@@ -310,7 +310,7 @@ class TimeUtilsTest {
             new HourBlock(NINE_AM, schoolDay), new HourBlock(ONE_PM, schoolDay), new HourBlock(TWO_PM, schoolDay),
             new HourBlock(THREE_PM, schoolDay), new HourBlock(FIVE_PM, schoolDay), new HourBlock(SIX_PM, schoolDay),
             new HourBlock(SEVEN_PM, schoolDay), new HourBlock(EIGHT_PM, schoolDay));
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(hourBlocks);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(hourBlocks);
         //expecting 8am-10am, 1pm-4pm, 5pm-9pm
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(3, mergedIntervals.size());
@@ -329,7 +329,7 @@ class TimeUtilsTest {
             new HourBlock(THREE_PM, day), new HourBlock(FOUR_PM, day),
             new HourBlock(FIVE_PM, day), new HourBlock(SIX_PM, day),
             new HourBlock(SEVEN_PM, day), new HourBlock(EIGHT_PM, day));
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(hourBlocks);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(hourBlocks);
         //expecting 8am-9pm
         assertFalse(mergedIntervals.isEmpty());
         assertEquals(1, mergedIntervals.size());
@@ -340,26 +340,26 @@ class TimeUtilsTest {
     @Test
     public void testIntervals_emptyTimeSlots_emptyMerge() {
         List<HourBlock> hourBlocks = List.of();
-        List<TimePeriod> mergedIntervals = TimeUtils.mergeTimeSlots(hourBlocks);
+        List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(hourBlocks);
         assertTrue(mergedIntervals.isEmpty());
     }
 
     @Test
     public void testFormating_success() {
-        assertEquals("8 AM", TimeUtils.formatLocalTime(EIGHT_AM));
-        assertEquals("9 AM", TimeUtils.formatLocalTime(NINE_AM));
-        assertEquals("10 AM", TimeUtils.formatLocalTime(TEN_AM));
-        assertEquals("11 AM", TimeUtils.formatLocalTime(ELEVEN_AM));
-        assertEquals("12 PM", TimeUtils.formatLocalTime(TWELVE_PM));
-        assertEquals("1 PM", TimeUtils.formatLocalTime(ONE_PM));
-        assertEquals("2 PM", TimeUtils.formatLocalTime(TWO_PM));
-        assertEquals("3 PM", TimeUtils.formatLocalTime(THREE_PM));
-        assertEquals("4 PM", TimeUtils.formatLocalTime(FOUR_PM));
-        assertEquals("5 PM", TimeUtils.formatLocalTime(FIVE_PM));
-        assertEquals("6 PM", TimeUtils.formatLocalTime(SIX_PM));
-        assertEquals("7 PM", TimeUtils.formatLocalTime(SEVEN_PM));
-        assertEquals("8 PM", TimeUtils.formatLocalTime(EIGHT_PM));
-        assertEquals("9 PM", TimeUtils.formatLocalTime(NINE_PM));
-        assertEquals("10 PM", TimeUtils.formatLocalTime(TEN_PM));
+        assertEquals("8 AM", TimeUtil.formatLocalTime(EIGHT_AM));
+        assertEquals("9 AM", TimeUtil.formatLocalTime(NINE_AM));
+        assertEquals("10 AM", TimeUtil.formatLocalTime(TEN_AM));
+        assertEquals("11 AM", TimeUtil.formatLocalTime(ELEVEN_AM));
+        assertEquals("12 PM", TimeUtil.formatLocalTime(TWELVE_PM));
+        assertEquals("1 PM", TimeUtil.formatLocalTime(ONE_PM));
+        assertEquals("2 PM", TimeUtil.formatLocalTime(TWO_PM));
+        assertEquals("3 PM", TimeUtil.formatLocalTime(THREE_PM));
+        assertEquals("4 PM", TimeUtil.formatLocalTime(FOUR_PM));
+        assertEquals("5 PM", TimeUtil.formatLocalTime(FIVE_PM));
+        assertEquals("6 PM", TimeUtil.formatLocalTime(SIX_PM));
+        assertEquals("7 PM", TimeUtil.formatLocalTime(SEVEN_PM));
+        assertEquals("8 PM", TimeUtil.formatLocalTime(EIGHT_PM));
+        assertEquals("9 PM", TimeUtil.formatLocalTime(NINE_PM));
+        assertEquals("10 PM", TimeUtil.formatLocalTime(TEN_PM));
     }
 }
