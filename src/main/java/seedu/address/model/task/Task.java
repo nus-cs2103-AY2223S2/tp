@@ -52,6 +52,16 @@ public class Task implements Comparable<Task> {
     }
 
     /**
+     * Every field must be present and not null.
+     */
+    public Task(Name taskName, TaskStatus status, LocalDateTime creationDate) {
+        requireAllNonNull(taskName, status, creationDate);
+        this.taskName = taskName;
+        this.status = status;
+        this.creationDate = creationDate;
+    }
+
+    /**
      * Marks the task as completed.
      */
     public void markTaskAsComplete() {
@@ -78,6 +88,10 @@ public class Task implements Comparable<Task> {
 
     public TaskStatus getStatus() {
         return status;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
     /**
