@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MasterDeckParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelState;
 import seedu.address.model.ReadOnlyMasterDeck;
@@ -121,5 +122,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Pair<String, String>> getReviewDeckNameList() {
         return model.getReviewDeckNameList();
+    }
+
+    @Override
+    public void factoryReset() {
+        model.setMasterDeck(new MasterDeck());
     }
 }

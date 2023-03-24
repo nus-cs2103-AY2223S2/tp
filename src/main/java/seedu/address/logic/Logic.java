@@ -66,4 +66,9 @@ public interface Logic {
     ObservableList<Pair<String, String>> getDeckNameList();
 
     ObservableList<Pair<String, String>> getReviewDeckNameList();
+
+    /**
+     * Removes all the card and deck data of users.
+     */
+    void factoryReset();
 }
