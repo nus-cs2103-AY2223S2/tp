@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.meeting.exceptions.InvalidDateTimeFormatException;
 
@@ -55,12 +56,7 @@ public class DateTime implements Comparable<DateTime> {
     private static final String HHMM_AM_PM_TEMPLATE = "h" + SEPARATOR_PLACEHOLDER + "mma";
 
     private final LocalDate meetingDate;
-
-    /**
-     * If meetingTime is not specified in the input, {@code meetingTime} will
-     * be set to {@code LocalTime.MAX}.
-     */
-    private final LocalTime meetingTime;
+    private final Optional<LocalTime> meetingTime;
 
     /**
      * This is used only for inputs that include specific durations.
@@ -85,9 +81,9 @@ public class DateTime implements Comparable<DateTime> {
 
         if (dtSplit.length == 2) {
             String timePortion = dtSplit[1];
-            meetingTime = stringToLocalTime(timePortion);
+            meetingTime = Optional.of(stringToLocalTime(timePortion));
         } else {
-            meetingTime = LocalTime.MAX;
+            meetingTime = Optional.empty();
         }
 
         meetingDuration = Duration.ZERO;
@@ -114,16 +110,16 @@ public class DateTime implements Comparable<DateTime> {
         if (startDtSplit.length == 2 && endDtSplit.length == 2) {
             String startTimePortion = startDtSplit[1];
             String endTimePortion = endDtSplit[1];
-            meetingTime = stringToLocalTime(startTimePortion);
+            meetingTime = Optional.of(stringToLocalTime(startTimePortion));
 
-            LocalDateTime startDT = LocalDateTime.of(meetingDate, meetingTime);
+            LocalDateTime startDT = LocalDateTime.of(meetingDate, meetingTime.get());
             LocalDateTime endDT = LocalDateTime.of(stringToLocalDate(endDatePortion),
                     stringToLocalTime(endTimePortion));
 
             checkArgument(isValidDuration(startDT, endDT));
             meetingDuration = Duration.between(startDT, endDT);
         } else {
-            meetingTime = LocalTime.MAX;
+            meetingTime = Optional.empty();
             meetingDuration = Duration.between(meetingDate, stringToLocalDate(endDatePortion));
         }
     }
@@ -133,13 +129,11 @@ public class DateTime implements Comparable<DateTime> {
      * in this class.
      */
     public String getDateTime() {
-        if (meetingTime != LocalTime.MAX) {
-            return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
-                    + " "
-                    + meetingTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
-        }
+        String timePortion = meetingTime
+                .map(localTime -> " " + localTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT)))
+                .orElse("");
 
-        return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + timePortion;
     }
 
     /**
@@ -289,24 +283,19 @@ public class DateTime implements Comparable<DateTime> {
      * @return {@code LocalDateTime} representation of the DateTime stored.
      */
     public LocalDateTime get() {
-        if (meetingTime == LocalTime.MAX) {
-            return LocalDateTime.of(meetingDate, LocalTime.of(0, 0));
-        }
-
-        return LocalDateTime.of(meetingDate, meetingTime);
+        return LocalDateTime.of(meetingDate, meetingTime.orElse(LocalTime.of(0, 0)));
     }
 
     @Override
     public String toString() {
-        String end = meetingDuration != null && !meetingDuration.isZero()
-                ? LocalDateTime.of(meetingDate, meetingTime).plus(meetingDuration).format(
-                DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
-                : "";
-
-        if (!end.isEmpty()) {
+        if (meetingDuration != null && !meetingDuration.isZero()) {
+            String start = meetingTime.orElse(LocalTime.of(0, 0))
+                    .format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+            String end = LocalDateTime.of(meetingDate, meetingTime.orElse(LocalTime.of(0, 0))).plus(meetingDuration)
+                    .format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT));
             return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
                     + " "
-                    + meetingTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
+                    + start
                     + " to "
                     + end;
         }
@@ -331,6 +320,12 @@ public class DateTime implements Comparable<DateTime> {
 
     @Override
     public int compareTo(DateTime o) {
-        return this.meetingDate.compareTo(o.meetingDate);
+        if (meetingDate.isEqual(o.meetingDate)) {
+            return this.meetingTime
+                    .orElse(LocalTime.of(0, 0))
+                    .compareTo(o.meetingTime
+                            .orElse(LocalTime.of(0, 0)));
+        }
+        return meetingDate.compareTo(o.meetingDate);
     }
 }
