@@ -1,13 +1,16 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_LATE;
+import static taa.logic.parser.CliSyntax.PREFIX_MARK;
+import static taa.logic.parser.CliSyntax.PREFIX_NAME;
+import static taa.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+
 import java.util.stream.Stream;
 
 import taa.commons.core.Messages;
 import taa.logic.commands.GradeCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
-
-import static taa.logic.parser.CliSyntax.*;
 
 /**
  * Parser for grading command.

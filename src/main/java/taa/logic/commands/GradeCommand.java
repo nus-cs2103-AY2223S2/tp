@@ -12,7 +12,8 @@ public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_USAGE = "Format: grade n/{assignmentName} i/{studentId} m/{marks} (optional: late/)";
+    public static final String MESSAGE_USAGE = "Format: grade n/{assignmentName} i/{studentId}"
+            + " m/{marks} (optional: late/)";
 
     public static final String MESSAGE_SUCCESS = "Assignment %s, submission from student %d graded: %d mark(s) %s";
     private final String assignmentName;

@@ -40,7 +40,8 @@ public class Assignment {
      * @param marks
      * @param isLateSubmission
      */
-    public void gradeSubmission(Student student, int marks, boolean isLateSubmission) throws SubmissiontNotFoundException, InvalidGradeException {
+    public void gradeSubmission(Student student, int marks, boolean isLateSubmission)
+            throws SubmissiontNotFoundException, InvalidGradeException {
         if (submissionMap.containsKey(student)) {
             submissionMap.get(student).grade(marks, isLateSubmission);
         } else {

@@ -1,5 +1,9 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_MARK;
+import static taa.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.stream.Stream;
 
 import taa.commons.core.Messages;
@@ -7,7 +11,6 @@ import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
 
-import static taa.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddStudentCommand object
