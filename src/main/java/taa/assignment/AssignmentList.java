@@ -20,11 +20,11 @@ public class AssignmentList {
      * @param assignmentName
      * @param sl
      */
-    public void add(String assignmentName, FilteredList<Student> sl) throws AssignmentNotFoundException {
+    public void add(String assignmentName, FilteredList<Student> sl, int totalMarks) throws AssignmentNotFoundException {
         if (assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Duplicate assignment name: " + assignmentName);
         } else {
-            Assignment a = new Assignment(assignmentName, sl);
+            Assignment a = new Assignment(assignmentName, sl, totalMarks);
             assignments.add(a);
             assignmentMap.put(assignmentName, a);
         }

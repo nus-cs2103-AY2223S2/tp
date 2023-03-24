@@ -13,7 +13,7 @@ import taa.model.student.Student;
  */
 public class Assignment {
     private final String name;
-    private final int totalMarks = 100;
+    private final int totalMarks;
     private final ArrayList<Submission> submissions = new ArrayList<>();
     private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
@@ -22,8 +22,9 @@ public class Assignment {
      * @param name name of the assignment
      * @param sl   the list of students from classlist.
      */
-    public Assignment(String name, FilteredList<Student> sl) {
+    public Assignment(String name, FilteredList<Student> sl, int totalMarks) {
         this.name = name;
+        this.totalMarks = totalMarks;
         for (Student stu : sl) {
             Submission sub = new Submission(stu, this);
             submissions.add(sub);

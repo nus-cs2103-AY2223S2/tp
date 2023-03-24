@@ -57,7 +57,7 @@ public class Submission implements Comparable<Submission> {
      * Describes the assignment this submission belongs to, along with details of this submission.
      */
     public String describeSubmission() {
-        String gradeStatus = this.isGraded ? Integer.toString(marks) : "Ungraded";
+        String gradeStatus = this.isGraded ? marks + "/" + assignment.getTotalMarks() : "Ungraded";
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
         return String.format("%s (Grade: %s) %s", this.assignment.toString(), gradeStatus, late);
     }
@@ -66,7 +66,8 @@ public class Submission implements Comparable<Submission> {
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
-        return String.format("[%c] %s: %d marks. %s", gradeChar, student.getName().fullName, marks, late);
+        return String.format("[%c] %s: %d/%d marks. %s", gradeChar, student.getName().fullName,
+                marks, assignment.getTotalMarks(), late);
     }
 
     @Override

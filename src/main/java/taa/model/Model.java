@@ -113,7 +113,7 @@ public interface Model {
      */
     void addStudentToTaggedClasses(Student student);
 
-    void addAssignment(String assignmentName) throws CommandException;
+    void addAssignment(String assignmentName, int totalMarks) throws CommandException;
 
     void deleteAssignment(String assignmentName) throws CommandException;
 
