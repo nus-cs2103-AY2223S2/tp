@@ -57,7 +57,7 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        // resource.setText("Resource: " + module.getResource().value);
+        resource.setText("Resource: " + module.getResource().value);
         address.setText("Venue: " + module.getAddress().value);
         timeSlot.setText("Time: " + module.getTimeSlot().value);
         remark.setText("Remark: " + module.getRemark().value);
