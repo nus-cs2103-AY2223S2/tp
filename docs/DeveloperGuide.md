@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a student**
+#### Use case: Delete a student
 
 **MSS**
 
@@ -316,6 +316,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message
 
       Use case resumes at step 2
+
+#### Use case: UC02 - Update remarks
+
+**MSS**
+1. User requests to list students
+2. System shows a list of students
+3. User requests to edit a student's remarks of a specific student in the list by their index from the list
+4. Program allows multi-line input of remarks
+5. User enters remarks
+6. User can exit writing the remarks at any time
+7. System saves the remarks
+
+Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
+Use case ends
+
+* 3a. The given index is invalid
+    * 3a1. System shows an error message
+
+  Use case resumes at step 2
 
 *{More to be added}*
 
