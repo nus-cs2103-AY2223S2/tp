@@ -30,7 +30,11 @@ public class Weight {
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
         LocalDate today = LocalDate.now();
         value = weight;
-        weightHistory = new WeightHistory(new Pair<>(weight, today.toString()));
+        weightHistory = new WeightHistory(new Pair<>(today.toString(), weight));
+    }
+
+    public WeightHistory getWeightHistory() {
+        return weightHistory;
     }
 
     /**

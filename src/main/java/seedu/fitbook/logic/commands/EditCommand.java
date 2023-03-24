@@ -24,16 +24,7 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.CollectionUtil;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.Address;
-import seedu.fitbook.model.client.Appointment;
-import seedu.fitbook.model.client.Calorie;
-import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.Email;
-import seedu.fitbook.model.client.Gender;
-import seedu.fitbook.model.client.Goal;
-import seedu.fitbook.model.client.Name;
-import seedu.fitbook.model.client.Phone;
-import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.*;
 import seedu.fitbook.model.tag.Tag;
 
 
@@ -156,6 +147,7 @@ public class EditCommand extends Command {
         private Goal goal;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
+        private WeightHistory weightHistory;
 
         public EditClientDescriptor() {}
 
@@ -174,6 +166,7 @@ public class EditCommand extends Command {
             setGoal(toCopy.goal);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
+            setWeightHistory(toCopy.weightHistory);
         }
 
         /**
@@ -234,6 +227,12 @@ public class EditCommand extends Command {
         }
         public Optional<Goal> getGoal() {
             return Optional.ofNullable(goal);
+        }
+        public void setWeightHistory(WeightHistory weightHistory) {
+            this.weightHistory = weightHistory;
+        }
+        public Optional<WeightHistory> getWeightHistory() {
+            return Optional.ofNullable(weightHistory);
         }
 
         /**

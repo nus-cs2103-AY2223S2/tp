@@ -2,11 +2,9 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import javafx.util.Pair;
 import seedu.fitbook.model.tag.Tag;
 
 /**
@@ -27,6 +25,7 @@ public class Client {
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
+    private WeightHistory weightHistory;
 
     /**
      * Every field must be present and not null.
@@ -76,6 +75,14 @@ public class Client {
 
     public Goal getGoal() {
         return goal;
+    }
+
+    public WeightHistory getWeightHistory() {
+        return weightHistory;
+    }
+
+    public void setWeightHistory(WeightHistory weightHistory) {
+        this.weightHistory = weightHistory;
     }
 
     public boolean isAppointmentEmpty() {

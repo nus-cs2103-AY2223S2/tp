@@ -37,8 +37,8 @@ public class WeightHistory {
      * @param weight The weight to add.
      * @param date The date to associate with the weight.
      */
-    public void addWeight(String weight, String date) {
-        Pair<String, String> weightPair = new Pair<>(weight, date);
+    public void addWeight(String date, String weight) {
+        Pair<String, String> weightPair = new Pair<>(date, weight);
         weights.add(weightPair);
     }
 

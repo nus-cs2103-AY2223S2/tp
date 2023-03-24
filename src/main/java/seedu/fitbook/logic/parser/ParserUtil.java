@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.StringUtil;
+import seedu.fitbook.logic.commands.AddWeightCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Address;
 import seedu.fitbook.model.client.Appointment;
@@ -261,5 +262,20 @@ public class ParserUtil {
             exerciseList.add(parseExercise(exerciseName));
         }
         return exerciseList;
+    }
+
+    /**
+     * Parses a {@code String Weight} into an {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
+     */
+    public static Weight parseAddedWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        return new Weight(trimmedWeight);
     }
 }
