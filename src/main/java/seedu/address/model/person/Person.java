@@ -2,21 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.location.Location;
 import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 

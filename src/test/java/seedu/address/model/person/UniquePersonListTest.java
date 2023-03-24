@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.recommender.exceptions.DuplicateRecommendationException;
+import seedu.address.model.recommender.exceptions.RecommendationNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -57,7 +57,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALBERT);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALBERT));
+        assertThrows(DuplicateRecommendationException.class, () -> uniquePersonList.add(ALBERT));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALBERT, ALBERT));
+        assertThrows(RecommendationNotFoundException.class, () -> uniquePersonList.setPerson(ALBERT, ALBERT));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALBERT);
         uniquePersonList.add(BEN);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALBERT, BEN));
+        assertThrows(DuplicateRecommendationException.class, () -> uniquePersonList.setPerson(ALBERT, BEN));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALBERT));
+        assertThrows(RecommendationNotFoundException.class, () -> uniquePersonList.remove(ALBERT));
     }
 
     @Test
@@ -161,7 +161,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALBERT, ALBERT);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+        assertThrows(DuplicateRecommendationException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
 
     @Test

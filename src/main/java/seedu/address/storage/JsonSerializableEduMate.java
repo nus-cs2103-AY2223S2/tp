@@ -26,13 +26,16 @@ class JsonSerializableEduMate {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final JsonAdaptedUser user;
+    private final List<JsonAdaptedRecommendation> recommendations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableEduMate} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableEduMate(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("user") JsonAdaptedUser user) {
+    public JsonSerializableEduMate(
+            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("user") JsonAdaptedUser user,
+            @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations) {
         this.persons.addAll(persons);
         this.user = user;
     }

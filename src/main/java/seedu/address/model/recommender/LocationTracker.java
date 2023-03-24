@@ -31,7 +31,6 @@ public class LocationTracker {
         locations = new HashMap<>();
         initialiseWithEmptyLocations();
         initialiseWithSchedule();
-        System.out.println(this);
         fillUnknown();
     }
 
@@ -108,7 +107,6 @@ public class LocationTracker {
             currLocationIndex = locationIndex;
         }
         fillUnknownWithStartEnd(currLocationIndex, endPair, dayLocations);
-
     }
 
     private void fillUnknownWithStartEnd(
@@ -121,7 +119,7 @@ public class LocationTracker {
         Location endLocation = endLocationIndex.getKey();
 
         // number of unknown hours between the two known locations
-        int n = startIndex - endIndex - 1;
+        int n = endIndex - startIndex - 1;
 
         // we don't do anything if there are no unknown hours in between
         if (n < 1) {
@@ -129,12 +127,12 @@ public class LocationTracker {
         }
 
         List<Location> fillLocations = DistanceUtil.getApproximateLocations(startLocation, endLocation, n);
-        fillWithApproximateLocations(dayLocations, fillLocations, startIndex + 1);
+        fillWithApproximateLocations(dayLocations, fillLocations, startIndex);
     }
 
     private void fillWithApproximateLocations(List<Optional<Location>> dayLocations, List<Location> fillLocations, int startIndex) {
         for (int i = 0; i < fillLocations.size(); i++) {
-            int indexToFill = i + startIndex;
+            int indexToFill = i + startIndex + 1;
             assert dayLocations.get(indexToFill).isEmpty();
 
             dayLocations.set(indexToFill, Optional.of(fillLocations.get(i)));

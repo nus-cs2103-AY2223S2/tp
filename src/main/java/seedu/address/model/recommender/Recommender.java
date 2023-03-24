@@ -10,6 +10,7 @@ import seedu.address.model.scheduler.Scheduler;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -55,7 +56,9 @@ public class Recommender {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        return recommendations.stream()
+        List<Recommendation> filteredRecommendations = filterRecommendations(recommendations);
+
+        return filteredRecommendations.stream()
                 .sorted().limit(RECOMMENDATION_LIMIT)
                 .collect(Collectors.toList());
     }
@@ -81,5 +84,27 @@ public class Recommender {
         return locations.stream()
                 .map(l -> new Recommendation(l, hourBlock))
                 .collect(Collectors.toList());
+    }
+
+    private List<Recommendation> filterRecommendations(List<Recommendation> recommendations) {
+        Set<TimePeriod> timePeriods = new HashSet<>();
+        Set<Location> locations = new HashSet<>();
+
+        List<Recommendation> filteredRecommendations = new ArrayList<>();
+
+        for (Recommendation recommendation : recommendations) {
+            TimePeriod timePeriod = recommendation.getTimePeriod();
+            Location location = recommendation.getLocation();
+
+            if (timePeriods.contains(timePeriod) || locations.contains(location)) {
+                continue;
+            }
+
+            filteredRecommendations.add(recommendation);
+            timePeriods.add(timePeriod);
+            locations.add(location);
+        }
+
+        return filteredRecommendations;
     }
 }

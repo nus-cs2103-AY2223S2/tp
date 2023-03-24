@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.recommender;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -13,34 +13,34 @@ import seedu.address.model.recommender.exceptions.RecommendationNotFoundExceptio
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A person is considered unique by comparing using {@code Recommendation#isSameRecommendation(Recommendation)}. As such, adding and updating of
+ * persons uses Recommendation#isSameRecommendation(Recommendation) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniqueRecommendationList. However, the removal of a person uses Recommendation#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Recommendation#isSameRecommendation(Recommendation)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniqueRecommendationList implements Iterable<Recommendation> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
+    private final ObservableList<Recommendation> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Recommendation> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean contains(Recommendation toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameRecommendation);
     }
 
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void add(Recommendation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateRecommendationException();
@@ -49,37 +49,37 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the person {@code target} in the list with {@code editedRecommendation}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedRecommendation} must not be the same as another existing person in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
+        requireAllNonNull(target, editedRecommendation);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new RecommendationNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameRecommendation(editedRecommendation) && contains(editedRecommendation)) {
             throw new DuplicateRecommendationException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedRecommendation);
     }
 
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Recommendation toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new RecommendationNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setRecommendations(UniqueRecommendationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniquePersonList implements Iterable<Person> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setRecommendations(List<Recommendation> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+        if (!recommendationsAreUnique(persons)) {
             throw new DuplicateRecommendationException();
         }
 
@@ -100,20 +100,20 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Person> asUnmodifiableObservableList() {
+    public ObservableList<Recommendation> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Recommendation> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueRecommendationList // instanceof handles nulls
+                && internalList.equals(((UniqueRecommendationList) other).internalList));
     }
 
     @Override
@@ -124,10 +124,10 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean recommendationsAreUnique(List<Recommendation> recommendations) {
+        for (int i = 0; i < recommendations.size() - 1; i++) {
+            for (int j = i + 1; j < recommendations.size(); j++) {
+                if (recommendations.get(i).isSameRecommendation(recommendations.get(j))) {
                     return false;
                 }
             }

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommender.Recommendation;
 
 /**
  * The API of the Model component.
@@ -17,7 +18,14 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Comparator} that sorts by contact index */
-    Comparator<Person> COMPARATOR_CONTACT_INDEX = Comparator.comparing(Person::getContactIndex);
+    Comparator<Person> COMPARATOR_CONTACT_INDEX_PERSON = Comparator.comparing(Person::getContactIndex);
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Recommendation> PREDICATE_SHOW_ALL_RECOMMENDATIONS = unused -> true;
+
+    /** {@code Comparator} that sorts by contact index */
+    Comparator<Recommendation> COMPARATOR_CONTACT_INDEX_RECOMMENDATION =
+            Comparator.comparing(Recommendation::getContactIndex);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -92,6 +100,38 @@ public interface Model {
     void resetPersons();
 
     /**
+     * Returns true if a recommendation with the same identity as
+     * {@code recommendation} exists in the address book.
+     */
+    boolean hasRecommendation(Recommendation recommendation);
+
+    /**
+     * Deletes the given recommendation.
+     * The recommendation must exist in the address book.
+     */
+    void deleteRecommendation(Recommendation target);
+
+    /**
+     * Adds the given recommendation.
+     * {@code recommendation} must not already exist in the address book.
+     */
+    Recommendation addRecommendation(Recommendation recommendation);
+
+    /**
+     * Replaces the given recommendation {@code target} with {@code editedRecommendation}.
+     * {@code target} must exist in the address book.
+     * The recommendation identity of {@code editedRecommendation}
+     * must not be the same as another existing recommendation in the address book.
+     */
+    void setRecommendation(Recommendation target, Recommendation editedRecommendation);
+
+    /**
+     * Clears the person list.
+     * Used for sorting the list, as the list needs to be cleared before it can be sorted.
+     */
+    void resetRecommendations();
+
+    /**
      * Returns the user object.
      * User will not be null.
      */
@@ -123,4 +163,27 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateObservablePersonList();
+
+    /** Returns an unmodifiable view of the filtered recommendation list */
+    ObservableList<Recommendation> getObservableRecommendationList();
+
+    /**
+     * Updates the filter of the observable recommendation list to
+     * filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateObservableRecommendationList(Predicate<Recommendation> predicate);
+
+    /**
+     * Updates the sort comparator of the observable recommendation list to
+     * sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateObservableRecommendationList(Comparator<Recommendation> comparator);
+
+    /**
+     * Updates the sort and filter of the observable recommendation list to default.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateObservableRecommendationList();
 }
