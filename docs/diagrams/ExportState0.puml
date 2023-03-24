@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class FitBookParser
+Class ExportCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic1
+Class LogicManager
+}
+
+package FitBookModel{
+Class HiddenFitBookModel #FFFFFF
+}
+
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic1
+LogicManager -right->"1" FitBookParser
+FitBookParser ..> ExportCommand : creates >
+
+ExportCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+
+
+Command .right.> FitBookModel
+
+Logic1 ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
+@enduml

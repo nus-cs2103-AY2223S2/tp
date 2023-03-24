@@ -259,6 +259,90 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+### Delete Routine feature
+
+#### Implementation
+
+The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#deleteRoutine()` — Deletes the routine in the routline list in 'FitBookExerciseRoutine'.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#deleteRoutine()`
+
+Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
+
+![DeleteRoutineState0](images/DeleteRoutineState0.png)
+
+Step 2. The user executes `deleteRoutine 1` command to delete the corresponding index specified in the Routine list of the `FitBookExerciseRoutine`. The `deleteRoutine`
+command calls `DeleteRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command
+which thereafter calls `DeleteRoutineCommand#execute()` which calls `FitBookModel#deleteRoutine()` to delete the routine in `FitBookExerciseRoutine`.
+
+Step 2.5. These commands will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages.
+![DeleteRoutineState1](images/DeleteRoutineState1.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+</div>
+
+The following sequence diagram shows how the find operation works:
+
+![DeleteRoutineSeqDiagram](images/DeleteRoutineSeqDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Delete the Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
+    * Pros: Easy to implement.
+    * Cons: Might cause performance issues in terms of memory usage and speed.
+
+* **Alternative 2:** Keep track of the update list without saving the entire model into FitBookExerciseRoutine after each deleteRoutine command.
+    * Pros: Might be faster.
+    * Cons: Will be risky as it does not maintain accuracy of data in the model.
+
+### Export client/routine list
+
+#### Implementation
+This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis. 
+`Fitbook` creates a new CSV file and write data to it. 
+
+The proposed export mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#getFilteredClientList` — Retrieves the client list.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#getFilteredClientList()`
+
+Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly
+
+![ExportState0](images/ExportState0.png)
+
+Step 2. The user executes `export` command to export the client list of `FitBook`. The `FitBookParser` calls the `ExportCommand()`
+command which calls `ExportCommand#writeToCsvFile(model)`, to write the client details into a csv file with the client list obtained from `model`.
+The `ExportCommand#writeToCsvFile(model)` calls `ExportCommand#writeHeaderRow(pw)` and `ExportCommand#writeClientRows(PrintWriter pw, List<Client> clients)` which uses 
+the input parameter printwriter to write the header row and client rows respectively into the csv file
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+</div>
+
+The following sequence diagram shows how the find operation works:
+
+![ExportSeqDiagram](images/ExportSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
 
 ### \[Proposed\] Undo/redo feature
 
