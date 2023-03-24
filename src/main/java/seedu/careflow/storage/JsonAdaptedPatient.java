@@ -62,7 +62,7 @@ public class JsonAdaptedPatient {
         gender = source.getGender().value;
         ic = source.getIc().value;
         if (source.getDrugAllergy() != null) {
-            drugAllergy = source.getDrugAllergy().toString();
+            drugAllergy = source.getDrugAllergy().value;
         } else {
             drugAllergy = null;
         }

@@ -25,6 +25,8 @@
                 <Label fx:id="selectedBirthDate" maxHeight="Infinity"  wrapText="true" styleClass="cell_small_label"/>
                 <Label fx:id="selectedGender"  wrapText="true" styleClass="cell_small_label" />
                 <Label fx:id="selectedIc"  wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedDrugAllergy"  wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedEmergencyContact"  wrapText="true" styleClass="cell_small_label"/>
             </VBox>
         </content>
     </ScrollPane>
