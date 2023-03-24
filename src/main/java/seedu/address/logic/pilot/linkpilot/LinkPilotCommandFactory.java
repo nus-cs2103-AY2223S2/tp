@@ -12,6 +12,7 @@ import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
@@ -106,8 +107,9 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
+        int index = Integer.parseInt(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItem(pilotIdOptional.get());
+                pilotManagerLazy.get().getItemByIndex(index);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -121,8 +123,9 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int index = Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(index);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
@@ -131,7 +134,7 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
 
 
     @Override
-    public LinkPilotCommand createCommand(CommandParam param) throws ParseException {
+    public LinkPilotCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> pilotFlyingIdOptional =
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =

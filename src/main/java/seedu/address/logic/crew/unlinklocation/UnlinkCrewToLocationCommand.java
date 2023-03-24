@@ -1,4 +1,4 @@
-package seedu.address.logic.crew.linkcrew;
+package seedu.address.logic.crew.unlinklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,41 +8,41 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.crew.Crew;
-import seedu.address.model.crew.FlightCrewType;
-import seedu.address.model.exception.IndexOutOfBoundException;
-import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
+import seedu.address.model.location.CrewLocationType;
+import seedu.address.model.location.Location;
 
 /**
- * The command that links a crew to a flight
+ * The command class that unlinks crews to
+ * locations, where they reside.
  */
-public class LinkCrewCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with id %s is not found.";
+public class UnlinkCrewToLocationCommand implements Command {
     private static final String CREW_NOT_FOUND_EXCEPTION =
             "Crew with id %s is not found.";
+    private static final String LOCATION_NOT_FOUND_EXCEPTION =
+            "Location with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Unlinked crew %s from location %s.";
 
     /**
      * The id of the crews
      */
-    private final Map<FlightCrewType, Crew> crews;
+    private final Map<CrewLocationType, Crew> crews;
 
     /**
-     * The id of the flight
+     * The id of the location
      */
-    private final Flight flight;
+    private final Location location;
 
     /**
      * Creates a new link command.
      *
      * @param crews the id of the crews.
-     * @param flight the id of the flight.
+     * @param location the id of the location.
      */
-    public LinkCrewCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
+    public UnlinkCrewToLocationCommand(Map<CrewLocationType, Crew> crews, Location location) {
         this.crews = crews;
-        this.flight = flight;
+        this.location = location;
     }
 
     @Override
@@ -54,22 +54,17 @@ public class LinkCrewCommand implements Command {
                         entry.getKey(),
                         entry.getValue().getName()))
                 .collect(Collectors.joining(","));
-        return String.format(DISPLAY_MESSAGE, result, flight.getCode());
+        return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
-                flight.crewLink.putRevolve(entry.getKey(), entry.getValue());
-                entry.getValue().setUnavailable();
+            for (Map.Entry<CrewLocationType, Crew> entry : crews.entrySet()) {
+                location.getCrewLink().delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
-        } catch (IndexOutOfBoundException e) {
-            return new CommandResult(
-                    String.format("Error: %s", e.getMessage())
-            );
         }
         return new CommandResult(this.toString());
     }

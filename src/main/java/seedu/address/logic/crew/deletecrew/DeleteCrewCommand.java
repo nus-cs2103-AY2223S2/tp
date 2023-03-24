@@ -7,15 +7,18 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.exception.IndexOutOfBoundException;
+
 
 /**
  * The command that deletes a crew from the address book.
+ *
  */
 public class DeleteCrewCommand implements Command {
     /**
-     * The UUID of the crew to be deleted.
+     * The id of the crew to be deleted.
      */
-    private final String uuid;
+    private final String id;
 
     /**
      * This can be used to undo the deletion.
@@ -24,18 +27,25 @@ public class DeleteCrewCommand implements Command {
 
     /**
      * Creates a command that, when executed, deletes the pilot with the
-     * given uuid.
+     * given id.
      *
      * @param uuid The index of the pilot to be deleted.
      */
-    public DeleteCrewCommand(String uuid) {
-        this.uuid = uuid;
+    public DeleteCrewCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        crewToDelete = model.getCrewManager().getItem(uuid);
-        model.deleteCrew(uuid);
-        return new CommandResult("Deleted crew: " + uuid);
+        int index = Integer.parseInt(id);
+        try {
+            crewToDelete = model.getCrewManager().getItemByIndex(index);
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
+        }
+        model.deleteCrewByIndex(index);
+        return new CommandResult("Deleted crew: " + id);
     }
 }

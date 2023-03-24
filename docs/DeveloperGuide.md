@@ -64,9 +64,48 @@ Description coming soon
 
 ## Implementation
 
-### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
+### Adding XYZ (seq. diagram focused on UI layer) - Ai Bo
 
-### Deleting XYZ (seq. diagram focussed on Logic layer) - Celeste Cheah
+### Deleting XYZ (seq. diagram focused on Logic layer)
+**How is this feature implemented?**
+
+The deleting feature is implemented in the same way for deleting crews, flights, locations, pilots, and planes from the
+Wingman app. Hence, in this description, the general term XYZ is used instead to refer to all for simplicity.
+
+This feature is enabled by the following classes in particular:
+- `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
+- `DeleteXYZCommandFactory` - The factory class that creates a {@code DeleteXYZCommand}
+
+When a user enters the command:
+> delete {XYZ identifier}
+
+the input goes through the UI layer where `logic.execute(input)` is called which passes control to the logic layer.
+
+At the logic layer, `execute(input)` first parses the input using the WingmanParser's `parse` function. The aim of 
+parsing is to determine what type of command the user's input is and determine which mode - Crew, Flight, Location,
+Pilot, or Plane - should handle the execution of said command.
+
+The WingmanParser separates the input into tokens, determines what mode the command is from, and then returns the 
+desired command type. In this case, the input allows the WingmanParser to recognize it is a `DeleteXYZCommand` and as a 
+result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
+
+The `DeleteXYZCommand` is executed using the corresponding `XYZManager`. Firstly, the `XYZManager` uses `getItem(id)` 
+to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls the `deleteXYZ(id)` method. The 
+`deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove the desired XYZ from the Wingman app.
+
+Finally, the `CommandResult` is returned which is the message the user will see indicating a successful deletion.
+
+<img src="images/WingmanDeleteXYZSequenceDiagram.png" width="966">
+
+**Why was it implemented this way?**
+
+For the parsing logic in the Wingman app, the commands were split based on their related "mode." This implementation 
+decision was made so that parsing would be more simple across the five modes. To elaborate, each mode would handle their
+related commands only.
+
+**Alternatives considered for deleting XYZ:**
+
+Description coming soon
 
 ### Linking XYZ to a flight (seq. diagram focussed on Model layer) 
 
@@ -175,7 +214,7 @@ This method calls `storage.saveXYZManager(model.getXYZManager())` and
 `storage.saveFlightManager(model.getFlightManager());`, to save the updated flight and XYZ objects in storage. Since
 these 2 method calls work in the same way, we shall focus on just the latter, to be succinct.
 
-<img src="images/WingmanUnlinkXYZDiagram.png" width="966" alt="Sequence diagram at Storage layer">
+<img src="images/WingmanUnlinkXYZSequenceDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
 After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the
 `saveFlightManager(flightManager, flightStorage.getPath())` method in the same class.
@@ -184,12 +223,12 @@ This method call uses the imported json package to store 'JsonIdentifiableObject
 which in turn contains the JsonAdaptedFlights, including the flight with the updated link represented as a
 `Map<FlightXYZType, Deque<String>>` object.
 
-**Why this way?**
+**Why was it implemented this way?**
 
 In this way, we are able to make the unlink feature work in a very similar way to the link feature, simply swapping
 some methods to perform the opposite operation (particularly the `execute` function of the `UnlinkXYZCommand` class).
 
-**Alternatives that were considered:**
+**Alternatives considered for unlinking XYZ from a flight:**
 
 One alternative implementation that was considered was to set the link as an attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations as discussed in the previous section.

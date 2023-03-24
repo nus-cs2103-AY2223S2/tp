@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 
 
@@ -108,12 +109,14 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
             Optional<String> crewIdOptional,
             FlightCrewType type,
             Map<FlightCrewType, Crew> target
-    ) {
+    ) throws IndexOutOfBoundException {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfCrew =
+                Integer.parseInt(crewIdOptional.get());
         Optional<Crew> crewOptional =
-                crewManagerLazy.get().getItem(crewIdOptional.get());
+                crewManagerLazy.get().getItemByIndex(indexOfCrew);
         if (crewOptional.isEmpty()) {
             return false;
         }
@@ -123,21 +126,25 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException {
+    ) throws ParseException, IndexOutOfBoundException, NumberFormatException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfFlight =
+                Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
 
     @Override
-    public UnlinkCrewCommand createCommand(CommandParam param) throws ParseException {
+    public UnlinkCrewCommand createCommand(CommandParam param) throws ParseException,
+            IndexOutOfBoundException, NumberFormatException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =
