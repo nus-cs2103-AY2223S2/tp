@@ -399,6 +399,9 @@ The following is a description of the code execution flow:
 5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
    or video.
 
+### Edit tag feature
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
