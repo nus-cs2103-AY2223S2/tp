@@ -9,6 +9,7 @@ import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.scheduler.time.util.TimeUtil;
 
 /**
  * Represents a timetable for a person.
@@ -48,6 +49,24 @@ public class Timetable {
                 availableSlots.get(i).setLesson(lesson);
             }
         }
+    }
+
+    /**
+     * Merges another timetable together
+     */
+    public void mergeTimetable(Timetable other) {
+        assert(!TimeUtil.hasConflict(this, other));
+        HashMap<Day, ArrayList<HourBlock>> schedule = other.getSchedule();
+        for (Day day : Day.values()) {
+            ArrayList<HourBlock> dayEvents = schedule.get(day);
+            for (int i = 0; i < schedule.size(); i++) {
+                if (dayEvents.get(i).getLesson().isPresent()) {
+                    Lesson lesson = dayEvents.get(i).getLesson().get();
+                    this.schedule.get(day).get(i).setLesson(lesson);
+                }
+            }
+        }
+        //TODO: Find a cleaner implementation.
     }
 
     @Override

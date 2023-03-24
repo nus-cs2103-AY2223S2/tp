@@ -45,6 +45,18 @@ public abstract class TimePeriod {
     }
 
     /**
+     * Checks if another TimePeriod has clashes.
+     */
+    public boolean hasClash(TimePeriod other) {
+        if (other.getSchoolDay().equals(this.schoolDay)) {
+            return (startTime.isBefore(other.getEndTime()) && endTime.isAfter(other.getEndTime()))
+                || (startTime.isBefore(other.getStartTime()) && endTime.isAfter(other.getStartTime()))
+                || (startTime.isAfter(other.getStartTime())) && endTime.isBefore(other.getEndTime());
+        }
+        return false;
+    }
+
+    /**
      * Checks if current time period is right before the other.
      */
     public boolean isStraightBefore(TimePeriod otherTimePeriod) {
