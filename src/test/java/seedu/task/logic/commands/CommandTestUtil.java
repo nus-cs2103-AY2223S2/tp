@@ -3,8 +3,10 @@ package seedu.task.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.task.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,10 +30,11 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "Amy's description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
-
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_FROM_DATE = "2023-01-01 1800";
+    public static final String VALID_TO_DATE = "2023-01-02 1800";
 
 
 
@@ -42,10 +45,14 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_BOTH = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOTH;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String FROM_DESC_DEFAULT = " " + PREFIX_FROM + VALID_FROM_DATE;
+    public static final String TO_DESC_DEFAULT = " " + PREFIX_TO + VALID_TO_DATE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + ""; // description cannot be empty
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + VALID_TO_DATE;
+    public static final String INVALID_TO_DESC = " " + PREFIX_TO + VALID_FROM_DATE;
     public static final long VALID_EFFORT = 3;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
