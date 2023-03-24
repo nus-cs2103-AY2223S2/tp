@@ -154,6 +154,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Make entity feature
+#### Design considerations
+In Reroll, there are 3 different entity classes (`Character`, `Mob`, `Item`) that users can keep track of. Each class
+has a set of unique fields to keep track of, resulting in a combined number of ~15 fields to keep track of. 
+Thus, it is important to minimize mental load on the user during the creation of new entities.
+#### Alternative approaches
+1. **Current design**: Minimal make command with new syntax \
+   Sample command: `make char King Arthur` - makes a new Character that has the name _King Arthur_ \
+   This approach only allows users to create an entity with a given name, all other fields can only be
+   filled in using the `edit` command. This allows users to create entities quickly 
+   by eliminating the need to input prefixes.
+2. Alternative: Reuse AB3 syntax, allow user to enter all fields at once \
+   Sample command: `make char n/King Arthur str/10 dex/5 int/3 ...` - makes a new Character with all the 
+   specified fields\
+   This approach allows users to create detailed entities with just one command. However, usage of prefixes such 
+   as `n/` increases the mental load on the user to keep track of all the different prefixes,
+   and increases their chance of making mistakes while inputting commands.
+
+
+
+#### [Proposed extension]
+Allow short-form syntax like `m c King Arthur`
+
+#### To add: UML Diagrams
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
