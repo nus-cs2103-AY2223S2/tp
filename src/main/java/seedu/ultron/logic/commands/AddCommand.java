@@ -32,7 +32,8 @@ public class AddCommand extends Command {
             + PREFIX_COMPANY + "Shopee "
             + PREFIX_EMAIL + "hr@shopee.com "
             + PREFIX_STATUS + "APPLIED "
-            + PREFIX_REMARK + "3 rounds of interviews ";
+            + PREFIX_REMARK + "3 rounds of interviews "
+            + PREFIX_KEYDATE + "Online Assessment@2023-10-10";
 
     public static final String MESSAGE_SUCCESS = "New opening added: %1$s";
     public static final String MESSAGE_DUPLICATE_OPENING = "This opening already exists in Ultron";
