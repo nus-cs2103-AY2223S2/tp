@@ -164,6 +164,7 @@ The `Deadline` class has a `deadline` field which is of type `LocalDateTime`. Ad
 'RemindCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
 
 Given below is an example usage scenario and how the set file mechanism behaves at each step.
+Given below is an example usage scenario and how the remind mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
@@ -187,7 +188,7 @@ The calculator mechanism is facilitated by the `AddCommand` class.
 The calculator  calculates the amount of money owed by pet owners to the daycare owners,
 based on an initial timestamp of type java `LocalDateTime` that is required to be non-null when
 entering the `Add` command.
-##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
+##### Given below is an example usage scenario and how the calculator mechanism behaves at each step:
 Step 1. The user launches the application for the first time.
 
 Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
@@ -204,6 +205,7 @@ The archive mechanism is facilitated by the `ArchiveCommand` class.
 The `ArchiveCommand#execute()` adds the provided `Pet` into an archive list and deletes the `Pet` from the pet list,
 the `Pet` must exist in the pet list.
 
+<<<<<<< .merge_file_a15996
 ##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
 ```text
 Step 1. The user launches the application for the first time
@@ -233,6 +235,46 @@ to application readable json data.
   the data into json format and refreshes the database.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
+=======
+### Highlight Feature
+#### Current Implementation
+The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
+This feature highlight pets that have not been marked and have a deadline within a day in the GUI.
+The highlight feature will be executed automatically every certain time window without user input to support real-time state.
+
+#### Given below is an example usage scenario and how the highlight mechanism behaves at each step:
+Step 1. The user launches the application.
+
+Step 2. The user decides to add two pet to the pet list with a deadline due three days later.
+
+Step 3. The given pet will not be highlighted at this moment.
+
+Step 4. The user decides to mark the first pet as done.
+
+Step 5. The user exit the application and decided to reopen it two days later.
+
+Step 6. The second pet that have not been marked will be highlighted while the first pet will not be highlighted since it was already marked.
+
+The following activity diagram summarizes what happens during the process:
+
+![HighlightActivityDiagram](images/HighlightDiagram.png)
+
+### Design Considerations:
+**Aspect: How to reduce human error:**
+
+**Alternative 1 (Current Choice) : Automatically execute the feature every certain period of time**
+* Pros:
+    * Shows real-time state.
+    * Will not show outdated list state.
+* Cons:
+    * Use more memory executing the feature at every period of time.
+
+**Alternative 2 : Provide Refresh button to update the pet list**
+* Pros:
+    * Use less memory since it will be executed only when needed.
+* Cons:
+    * User might forget to refresh to the updated state and shows the outdated instead.
+>>>>>>> .merge_file_a32984
 
 ### Undo Feature
 #### Current Implementation
@@ -240,7 +282,7 @@ The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes
 The `ModelManager` class is implemented by PetPal and has a `petPalCache` field which is of type`PetPal`.
 
 'UndoCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
-##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
+##### Given below is an example usage scenario and how the undo mechanism behaves at each step:
 <pre>
 Step 1. The user launches the application for the first time.
 
