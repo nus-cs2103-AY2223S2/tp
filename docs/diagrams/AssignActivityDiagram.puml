@@ -1,0 +1,14 @@
+@startuml
+start
+if() then ([looking for specific person])
+    :Search for specific person;
+    :List all tasks;
+else if() then ([looking for specific task])
+    :Search for specific task;
+    :List all persons;
+else([else])
+    :List all persons and task;
+endif
+:Assign task to person;
+stop
+@enduml
