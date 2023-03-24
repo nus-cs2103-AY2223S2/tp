@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
+participant "r:RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remark 1 Immunocompromised")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remark 1 Immunocompromised")
+activate AddressBookParser
+
+create RemarkCommandParser
+AddressBookParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+AddressBookParser -> RemarkCommandParser : parse("1 Immunocompromised")
+activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommandParser : r
+deactivate RemarkCommand
+
+RemarkCommandParser --> AddressBookParser : r
+deactivate RemarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemarkCommandParser -[hidden]-> AddressBookParser
+destroy RemarkCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+RemarkCommand -> Model : editPatient(1, "Immunocompromised")
+activate Model
+
+Model --> RemarkCommand
+deactivate Model
+
+create CommandResult
+RemarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemarkCommand
+deactivate CommandResult
+
+RemarkCommand --> LogicManager : result
+deactivate RemarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
