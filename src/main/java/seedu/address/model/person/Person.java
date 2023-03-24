@@ -200,6 +200,15 @@ public class Person {
         return filteredScores;
     }
 
+    public ObservableList<Score> getSortedScoreList() {
+        ObservableList<Score> sortedScoreList = this.scoreList.getSortedScoreList();
+        return sortedScoreList;
+    }
+
+    public ObservableList<Score> getRecentScoreList() {
+        ObservableList<Score> recentScoreList = this.scoreList.getRecentScoreList();
+        return recentScoreList;
+    }
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

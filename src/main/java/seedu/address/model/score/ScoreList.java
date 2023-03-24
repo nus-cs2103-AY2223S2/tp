@@ -3,6 +3,7 @@ package seedu.address.model.score;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -112,6 +113,24 @@ public class ScoreList implements Iterable<Score> {
      */
     public ObservableList<Score> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Gets the first 5 recent scores.
+     * @return First 5 recent scores in list.
+     */
+    public ObservableList<Score> getSortedScoreList() {
+        internalList.sort(Comparator.comparing(Score::getLocalDate).reversed());
+        return internalList;
+    }
+
+    public ObservableList<Score> getRecentScoreList() {
+        ObservableList<Score> sortedScoreList = getSortedScoreList();
+        ObservableList<Score> recentScoreList = null;
+        for (int i = 0; i < 5; i++) {
+            recentScoreList.add(sortedScoreList.get(i));
+        }
+        return recentScoreList;
     }
 
     @Override

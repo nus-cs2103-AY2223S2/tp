@@ -28,6 +28,10 @@ public class Date {
         this.date = LocalDate.parse(date);
     }
 
+    public LocalDate getDate() {
+        return this.date;
+    }
+
     /**
      * Returns true if the date is a valid date.
      */
@@ -39,6 +43,8 @@ public class Date {
             return false;
         }
     }
+
+
 
     @Override
     public boolean equals(Object other) {
