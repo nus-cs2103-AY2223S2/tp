@@ -6,7 +6,7 @@ title: User Guide
 NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <<<<<<< HEAD
-### Viewing help : 'help'
+### Viewing help : `help`
 =======
 * Table of Contents
 {:toc}
@@ -90,21 +90,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank t/criminal`
 
-<<<<<<< HEAD
-### Listing all persons : 'list'
-=======
-### Listing all persons : `list` [coming soon]
->>>>>>> v1.2-help,edit
+
+### Listing all persons : `list`
+
 
 Shows a list of all persons in the contact list.
 
 Format: list
 
-<<<<<<< HEAD
-### Editing a person : 'edit'
-=======
+
 ### Editing a person : `edit` [coming soon]
->>>>>>> v1.2-help,edit
+
 
 Edits an existing person in the contact list.
 
@@ -121,27 +117,26 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
-### Filtering contacts : `filter` [coming soon]
+### Filtering contacts : `filter`
 
-Filters the contact list.
+Filters the contact list by tags.
 
-Format: `filter [s/BUSINESS\_SIZE] [c/COMPANY\_NAME] [d/DEADLINE] [t/TAG]`
+Format: `filter [t/TAG]`
 
-- The filter keyword must be followed by one of these: `[s/BUSINESS\_SIZE] [c/COMPANY\_NAME] [d/DEADLINE] [t/TAG]`
+- The filter keyword must be followed by arguments specifying which tags to filter the contact list by: `[t/TAG]`.
+- It outputs contacts which fully match all tags, i.e have all the tags specified.
 
 Examples:
 
-- `filter` followed by `s/\>5000` retrieves contacts with BUSINESS\_SIZE more than 5000.
-- `filter` followed by `c/Maybank` retrieves contacts working in Maybank.
-- `filter` followed by `t/criminal` retrieves contacts that are criminal.
+- `filter` followed by `friend client` retrieves contacts that are both tagged friend and client.
 
 ### Marking contacts : `mark` [coming soon]
 
-Marks the contact at specified index as requiring follow up action.
+Marks the contact at specified index as requiring follow-up action.
 
 Format : `mark INDEX x/ACTION d/DEADLINE`
 
-- Marks a particular contact as requiring follow up action
+- Marks a particular contact as requiring follow-up action
 - This action can be specified by a String of arbitrary length
 
 Examples :
@@ -150,7 +145,7 @@ Examples :
 
 ### Marking as done : `markDone` [coming soon]
 
-Marks the contact with specified index as having completed the follow up action.
+Marks the contact with specified index as having completed the follow-up action.
 
 Format : `markDone` INDEX
 
@@ -171,11 +166,10 @@ Examples:
 
 - `unMark 3` unmarks the contact at index 3 as not requiring any further follow up action.
 
-<<<<<<< HEAD
-### Deleting a person : 'delete'
-=======
-### Deleting a person : `delete` [coming soon]
->>>>>>> v1.2-help,edit
+
+### Deleting a person : `delete`
+
+
 
 Deletes the specified person from the contact list.
 
@@ -190,11 +184,7 @@ Examples:
 - `delete 2` deletes the 2nd person in the address book.
 - find Betsy followed by `delete 1` deletes the 1st person in the results of the find command.
 
-<<<<<<< HEAD
-### Finding via keywords : 'find'
-=======
-### Finding via keywords : `find` [coming soon]
->>>>>>> v1.2-help,edit
+### Finding via keywords : `find`
 
 Finds the entries with the relevant keywords
 
@@ -207,21 +197,16 @@ Examples:
 - 'find' followed by `KEYWORD1 KEYWORD2 …` returns all the
 - 'find Betsy' followed by delete 1 deletes the 1st person in the results of the find command.
 
-<<<<<<< HEAD
-### Clearing all entries : 'clear'
-=======
-### Clearing all entries : `clear` [coming soon]
->>>>>>> v1.2-help,edit
+
+### Clearing all entries : `clear`
+
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-<<<<<<< HEAD
-### Exiting the program : 'exit'
-=======
-### Exiting the program : `exit` [coming soon]
->>>>>>> v1.2-help,edit
+
+### Exiting the program : `exit`
 
 Exits the program.
 
@@ -249,5 +234,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter TAG [MORE_TAGS]`<br> e.g., `filter friends clients insurance`
+**Sort by potential sale or business size Ascending** | `sortAsc`
+**Sort by potential sale or business size Descending** | `sortDesc`
+**Sort by name in alphabetical order** | `sortName`
 **List** | `list`
 **Help** | `help`

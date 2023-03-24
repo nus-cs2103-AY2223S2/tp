@@ -285,14 +285,22 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Filter by tag feature
 
 #### Proposed Implementation
-The proposed feature will allow users to filter persons by the tags they possess.
+The proposed feature will allow users to filter persons by the tags they possess. 
+It is implemented similar to the `FindCommand`, extending `CommandParser` with a new command to parse.
 
-The implementation is as follows:
-1) User inputs command `filter`, followed by a list of arguments representing the tag names
-   1) example `carInsurance`
-2) The command "filter" will be parsed, creating a Filter command which is executable
-3) On execution of the filter command, the filter checks and returns a list of all persons which match exactly the tags specified
-4) For example, `filter car insurance` returns a list of persons which have both `car` and `insurance` as tags, any person with only one of the two tags will not be included
+Given below is an example usage scenario and how the `Filter` mechanism behaves at each step.
+
+Step 1. User inputs command `filter`, followed by a list of arguments representing the tag names
+example `carInsurance`
+
+Step 2. The command "filter" will be parsed, creating a Filter command which is executable 
+
+Step 3. On execution of the filter command, the filter checks and returns a list of all persons which match exactly the tags specified
+
+Step 4. For example, `filter car insurance` returns a list of persons which have both `car` and `insurance` as tags, any person with only one of the two tags will not be included
+
+The following sequence diagram shows how the filter operation works:
+![FilterSequenceDiagram](images/FilterSeqDiag.png)
 
 #### Design considerations:
 
@@ -300,10 +308,53 @@ The implementation is as follows:
 2. Users would like to be able to specify multiple tags to narrow down their search on relevant contacts
 3. Users would also be able to edit their clients/persons category
 
-{more to be elaborated in the future}
+**Aspect: How filter decides on output:**
 
+* **Alternative 1 (current choice):** Only output persons which contain all tags.
+    * Pros: Allow user to narrow down search quicker.
+    * Cons: Lesser contacts are displayed to user.
+
+* **Alternative 2:** Output persons which have at least 1 of the specified tags.
+
+    * Pros: Broad search of all tags.
+    * Cons: Too much information, might be harder to narrow down search.
+
+#### Why this implementation 
+We would like users to be able to narrow down search by filtering more and more categories,
+hence we allow multiple arguments input and require that all arguments are satisfied
+
+
+
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+The proposed feature will allow users to sort persons 3 ways:
+1. Ascending Business Size `sortAsc`
+2. Descending Business Size `sortDesc`
+3. Name in alphabetical order `sortName`
+
+
+Given below is an example usage scenario and how the `sort` mechanism behaves at each step.
+
+Step 1. User inputs command `sort[Asc | Desc | name]`
+
+Step 2. The respective sort command will be parsed, creating a sort command which is executable
+
+Step 3. On execution of the sort command, the database of contacts is sorted accordingly and the new list is displayed.
+
+
+
+
+#### Design considerations:
+
+1. Users would like to be able to sort by the size of leads
+   1. ascending order - to allow salesman to focus on improving weak leads
+   2. descending order - to allow salesman to focus on capitalising on the best opportunities
+   3. Name - for admin purposes
+2. Users would also be able to edit their clients/persons lead size
 
 #### Why this implementation
+
 
 
 ### \[Proposed\] Lead Receptivity feature

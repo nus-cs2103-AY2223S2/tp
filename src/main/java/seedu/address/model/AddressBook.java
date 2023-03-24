@@ -2,6 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -56,6 +59,37 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
     }
+
+    /**
+     * Sets current list to be sorted list of its current data
+     * Sorting is done by comparing business sizes, larger business sizes near the top
+     */
+    public void sortPersonsDescending() {
+        List<Person> sortedOldList = this.getPersonList().sorted();
+        this.setPersons(sortedOldList);
+    }
+
+    /**
+     * Sets current list to be sorted list of its current data
+     * Sorting is done by comparing business sizes, larger business sizes near the bottom
+     */
+    public void sortPersonsAscending() {
+        List<Person> sortedOldList = this.getPersonList()
+                .sorted(Comparator.comparing(Person::getBusinessSizeInt));
+        this.setPersons(sortedOldList);
+    }
+
+    /**
+     * Sets current list to be sorted list of its current data
+     * Sorting is done by comparing Names in alphabetical order
+     */
+    public void sortPersonsName() {
+        List<Person> sortedOldList = this.getPersonList()
+                .sorted(Comparator.comparing(Person::getNameString));
+        this.setPersons(sortedOldList);
+    }
+
+
 
     //// person-level operations
 
