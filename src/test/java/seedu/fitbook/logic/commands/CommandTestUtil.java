@@ -130,6 +130,7 @@ public class CommandTestUtil {
             " " + PREFIX_EXERCISE + "Situps@"; // '@' not allowed in exercise.
     public static final String INVALID_EXERCISE_INDEX_DESC =
             " " + PREFIX_EXERCISE_NUMBER + "3@"; // '@' not allowed in exercise.
+    public static final String INVALID_INDEX = "@"; // '@' not allowed as index.
 
     public static final EditRoutineCommand.EditRoutineDescriptor DESC_CARDIO;
     public static final EditRoutineCommand.EditRoutineDescriptor DESC_STRENGTH;

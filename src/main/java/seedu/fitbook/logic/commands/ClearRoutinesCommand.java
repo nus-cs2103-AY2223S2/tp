@@ -13,7 +13,6 @@ public class ClearRoutinesCommand extends Command {
     public static final String COMMAND_WORD = "clearRoutines";
     public static final String MESSAGE_SUCCESS = "Routines in FitBook has been cleared!";
 
-
     @Override
     public CommandResult execute(FitBookModel model) {
         requireNonNull(model);
