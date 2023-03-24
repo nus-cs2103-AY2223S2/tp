@@ -50,6 +50,10 @@ public class StringUtil {
             return true;
         }
 
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+
         String textLowerCase = text.toLowerCase();
         String keywordLowerCase = keyword.toLowerCase();
 

@@ -13,5 +13,18 @@ public class CliSyntax {
     public static final Prefix PREFIX_EDUCATION = new Prefix("edu/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ADDRESS,
+            PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG};
+
+    public static boolean isPrefix(Prefix prefix) {
+        boolean isPrefix = false;
+        for (Prefix curr : prefixList) {
+            if (curr.equals(prefix)) {
+                isPrefix = true;
+                break;
+            }
+        }
+        return isPrefix;
+    }
 
 }
