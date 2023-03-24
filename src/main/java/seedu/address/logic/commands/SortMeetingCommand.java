@@ -44,7 +44,7 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         prefix = sortByPrefix.toString();
-        String prefixName ="";
+        String prefixName = "";
         switch (prefix) {
         case "m/":
             reverseSort(model, titleComparator, isReverse);
@@ -67,12 +67,11 @@ public class SortMeetingCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, prefixName));
     }
-    
     private void reverseSort(Model model, Comparator comparator, boolean isReverse) {
-            if (isReverse) {
-                model.sortFilteredMeetingList(comparator.reversed());
-            } else {
-                model.sortFilteredMeetingList(comparator);
-            }
+        if (isReverse) {
+            model.sortFilteredMeetingList(comparator.reversed());
+        } else {
+            model.sortFilteredMeetingList(comparator);
+        }
     }
 }

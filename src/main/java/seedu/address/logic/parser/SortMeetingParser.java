@@ -25,7 +25,7 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
         if (argumentMultimap.getLength() != 2) {
             return false;
         }
-            return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     @Override
