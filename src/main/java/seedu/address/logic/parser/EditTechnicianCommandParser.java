@@ -14,22 +14,22 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.EditCustomerCommand;
-import seedu.address.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
+import seedu.address.logic.commands.EditTechnicianCommand;
+import seedu.address.logic.commands.EditTechnicianCommand.EditTechnicianDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCustomerParser implements Parser<EditCustomerCommand> {
+public class EditTechnicianCommandParser implements Parser<EditTechnicianCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCustomerCommand parse(String args) throws ParseException {
+    public EditTechnicianCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_INTERNAL_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
@@ -37,32 +37,32 @@ public class EditCustomerParser implements Parser<EditCustomerCommand> {
         // If no id present, don't know what to edit, throw error.
         if (!argMultimap.getValue(PREFIX_INTERNAL_ID).isPresent()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCustomerCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTechnicianCommand.MESSAGE_USAGE));
         }
 
-        EditCustomerDescriptor editCustomerDescriptor = new EditCustomerDescriptor();
+        EditTechnicianDescriptor editPersonDescriptor = new EditTechnicianDescriptor();
 
-        editCustomerDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
+        editPersonDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editCustomerDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editCustomerDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editCustomerDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editCustomerDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCustomerDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        if (!editCustomerDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCustomerCommand.MESSAGE_NOT_EDITED);
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditTechnicianCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCustomerCommand(editCustomerDescriptor);
+        return new EditTechnicianCommand(editPersonDescriptor);
     }
 
     /**

@@ -19,14 +19,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
+public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
     public static final String MESSAGE_MISSING_DATE_OR_TIME = "Both Date and Time must be specified when attempting to"
             + "edit either";
@@ -70,12 +69,12 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
 
         }
 
-        // Leaving this commented for reference if in future EditAppointmentParser also handles setStaffIds
+        // Leaving this commented for reference if in future EditAppointmentCommandParser also handles setStaffIds
         // Set<Integer> staffIds
         //        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditAppointmentCommand(editAppointmentDescriptor);

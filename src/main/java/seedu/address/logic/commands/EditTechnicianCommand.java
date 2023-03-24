@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TECHNICIANS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,17 +23,18 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCustomerCommand extends RedoableCommand {
+public class EditTechnicianCommand extends RedoableCommand {
 
-    public static final String COMMAND_WORD = "editcustomer";
+    public static final String COMMAND_WORD = "edittechnician";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
-            + "by the id number displayed by listcustomer. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the technician identified "
+            + "by the id number. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -44,39 +46,39 @@ public class EditCustomerCommand extends RedoableCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited customer: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited technician: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
-    private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
-    private final EditCustomerDescriptor editPersonDescriptor;
+    public static final String MESSAGE_DUPLICATE_TECHNICIAN = "This technician already registered";
+    private static final Technician TECHNICIAN_DOES_NOT_EXIST = null;
+    private final EditTechnicianDescriptor editTechnicianDescriptor;
 
 
     /**
-     * @param editPersonDescriptor details to edit the person with
+     * @param editTechnicianDescriptor details to edit the person with
      */
-    public EditCustomerCommand(EditCustomerDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
-        this.editPersonDescriptor = new EditCustomerDescriptor(editPersonDescriptor);
+    public EditTechnicianCommand(EditTechnicianDescriptor editTechnicianDescriptor) {
+        requireNonNull(editTechnicianDescriptor);
+        this.editTechnicianDescriptor = new EditTechnicianDescriptor(editTechnicianDescriptor);
     }
 
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        List<Customer> lastShownList = model.getFilteredCustomerList();
+        List<Technician> lastShownList = model.getFilteredTechnicianList();
 
         // Locate entry containing id. By right each ID is unique.
-        Customer personToEdit = lastShownList.stream().filter(person ->
-                        editPersonDescriptor.getId() == person.getId()).findAny()
-                .orElse(CUSTOMER_DOES_NOT_EXIST);
+        Technician personToEdit = lastShownList.stream().filter(person ->
+                        editTechnicianDescriptor.getId() == person.getId()).findAny()
+                .orElse(TECHNICIAN_DOES_NOT_EXIST);
 
-        Customer editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Technician editedPerson = createEditedPerson(personToEdit, editTechnicianDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
+            throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -84,7 +86,7 @@ public class EditCustomerCommand extends RedoableCommand {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Customer createEditedPerson(Customer personToEdit, EditCustomerDescriptor editPersonDescriptor) {
+    private static Technician createEditedPerson(Technician personToEdit, EditTechnicianDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         int id = personToEdit.getId();
@@ -95,7 +97,7 @@ public class EditCustomerCommand extends RedoableCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Customer(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Technician(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -106,20 +108,20 @@ public class EditCustomerCommand extends RedoableCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCustomerCommand)) {
+        if (!(other instanceof EditTechnicianCommand)) {
             return false;
         }
 
         // state check
-        EditCustomerCommand e = (EditCustomerCommand) other;
-        return editPersonDescriptor.equals(e.editPersonDescriptor);
+        EditTechnicianCommand e = (EditTechnicianCommand) other;
+        return editTechnicianDescriptor.equals(e.editTechnicianDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditCustomerDescriptor {
+    public static class EditTechnicianDescriptor {
 
         private int id;
         private Name name;
@@ -128,13 +130,13 @@ public class EditCustomerCommand extends RedoableCommand {
         private Address address;
         private Set<Tag> tags;
 
-        public EditCustomerDescriptor() {}
+        public EditTechnicianDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditCustomerDescriptor(EditCustomerDescriptor toCopy) {
+        public EditTechnicianDescriptor(EditTechnicianDescriptor toCopy) {
             setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
@@ -215,12 +217,12 @@ public class EditCustomerCommand extends RedoableCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCustomerDescriptor)) {
+            if (!(other instanceof EditTechnicianDescriptor)) {
                 return false;
             }
 
             // state check
-            EditCustomerDescriptor e = (EditCustomerDescriptor) other;
+            EditTechnicianDescriptor e = (EditTechnicianDescriptor) other;
 
             return getId() == e.getId() //not sure if need this id checking
                     && getName().equals(e.getName())

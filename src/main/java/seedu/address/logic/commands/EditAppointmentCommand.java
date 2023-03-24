@@ -16,6 +16,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.appointment.Appointment;
 
 
@@ -44,7 +45,11 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in AutoM8";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not in AutoM8";
 
+    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not in AutoM8";
+
     private static final Appointment APPOINTMENT_DOES_NOT_EXIST = null;
+
+    private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
 
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
@@ -74,6 +79,16 @@ public class EditAppointmentCommand extends RedoableCommand {
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        // Locate Customer containing id. By right each ID is unique.
+        Customer customer = model.getFilteredCustomerList().stream().filter(person ->
+                        editedAppointment.getCustomerId() == person.getId()).findAny()
+                .orElse(CUSTOMER_DOES_NOT_EXIST);
+
+        // If customer doesn't exist
+        if (customer == null) {
+            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        }
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
