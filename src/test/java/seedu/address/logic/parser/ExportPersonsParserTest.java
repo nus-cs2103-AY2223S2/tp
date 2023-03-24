@@ -26,10 +26,4 @@ public class ExportPersonsParserTest {
         assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportPersonsCommand.MESSAGE_USAGE));
     }
-
-    @Test
-    public void parse_invalidIndex_failure() {
-        assertParseFailure(parser, "", ExportPersonsCommand.INDEX_NOT_FOUND);
-    }
-
 }

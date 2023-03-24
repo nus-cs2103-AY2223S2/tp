@@ -16,9 +16,9 @@ import seedu.address.logic.commands.ImportPersonsCommand;
 import seedu.address.testutil.TypicalPersons;
 
 public class ImportPersonsParserTest {
-    private final ImportPersonsParser parser = new ImportPersonsParser();
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "ImportExportPersonsTest");
     private static final Path VALID_PERSONS_FILE = TEST_DATA_FOLDER.resolve("validPersons.json");
+    private final ImportPersonsParser parser = new ImportPersonsParser();
 
     @Test
     public void parse_success() {

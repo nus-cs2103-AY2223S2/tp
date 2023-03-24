@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -53,7 +51,7 @@ public class ImportPersonsCommand extends Command {
             }
             return new CommandResult(SUCCESS);
         } catch (DuplicatePersonException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DUPLICATE_PERSON));
+            throw new CommandException(DUPLICATE_PERSON);
         }
     }
 
