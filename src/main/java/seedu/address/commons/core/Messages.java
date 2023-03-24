@@ -10,5 +10,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_CARD_DISPLAYED_INDEX = "The card index provided is invalid";
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "The deck index provided is invalid";
     public static final String MESSAGE_CARDS_LISTED_OVERVIEW = "%1$d cards listed!";
-
+    public static final String MESSAGE_DECKS_LISTED_OVERVIEW = "%1$d decks listed!";
 }

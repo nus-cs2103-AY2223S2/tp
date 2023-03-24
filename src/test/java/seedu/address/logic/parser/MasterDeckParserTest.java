@@ -18,7 +18,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.card.QuestionContainsKeywordsPredicate;
 
 public class MasterDeckParserTest {
 
@@ -67,7 +66,7 @@ public class MasterDeckParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommandInMainMode(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new QuestionContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(keywords), command);
     }
 
     @Test
