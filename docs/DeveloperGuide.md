@@ -65,6 +65,23 @@ Description coming soon
 ## Implementation
 
 ### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
+In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and users can add new objects 
+into the database via `add` command. 
+
+This feature is enabled by the following classes:
+* `LinkXYZCommand` - the command that can be executed and adds a new entity
+* into the system
+* `LinkXYZCommandFactory` - The factory class that creates `LinkXYZCommand`
+
+When a user enters the command
+```agsl
+add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
+```
+this command is passed from the UI layer to the logic layer.
+
+<img src="images/WingmanUnlinkXYZDiagram.png" width="966" alt="Sequence diagram at Storage layer">
+Description coming soon. 
+
 
 ### Deleting XYZ (seq. diagram focussed on Logic layer) - Celeste Cheah
 
