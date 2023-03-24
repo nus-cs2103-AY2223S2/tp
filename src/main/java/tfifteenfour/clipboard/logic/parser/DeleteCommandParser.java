@@ -17,6 +17,7 @@ import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCourseCommand;
+import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteGroupCommand;
 import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
@@ -58,11 +59,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         switch (deleteCommandType) {
         case MODULE:
-            Course course = parseCourseInfo(args);
             return new DeleteCourseCommand(index);
         case GROUP:
-            Group group = parseGroupInfo(args);
-            return new AddGroupCommand(index);
+            return new DeleteGroupCommand(index);
         case SESSION:
             return new AddSessionCommand();
         case STUDENT:

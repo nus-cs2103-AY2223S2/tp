@@ -9,13 +9,12 @@ import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 
-public class DeleteGroupCommand extends AddCommand {
+public class DeleteGroupCommand extends DeleteCommand {
 	public static final String COMMAND_TYPE_WORD = "group";
 	public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
 			+ ": Deletes a specified group and all its students."
