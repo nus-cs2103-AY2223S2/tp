@@ -44,6 +44,13 @@ public class Date implements Comparable<Date> {
     }
 
     /**
+     * Returns true if date entered is a valid end date for this event's start date
+     */
+    public boolean isValidEvent(Date test) {
+        return this.value.isBefore(test.value) || this.value.equals(test.value);
+    }
+
+    /**
      * Formats the String to be a parse-able String for LocalDateTime.
      * Only the first 4 numbers of the input String is parsed for time.
      *

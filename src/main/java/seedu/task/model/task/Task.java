@@ -44,6 +44,10 @@ public abstract class Task implements Comparable<Task> {
         return name;
     }
 
+    public boolean hasDescription() {
+        return description.getHasDescription();
+    }
+
     public Description getDescription() {
         return description;
     }
@@ -82,7 +86,7 @@ public abstract class Task implements Comparable<Task> {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && this.name.hasSameName(otherTask.name);
     }
 
     public abstract boolean isSimpleTask();

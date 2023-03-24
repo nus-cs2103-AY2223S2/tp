@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "l:TaskList" as TaskList LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Add n/CS210ST n/CS2109S d/homework")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("Add n/CS210ST n/CS2109S d/homework")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser ->AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse(n/CS210ST n/CS2109S d/homework)
+activate AddCommandParser
+
+create TaskList
+
+AddCommandParser -> TaskList
+activate TaskList
+TaskList --> AddCommandParser: l
+deactivate TaskList
+
+create AddCommand
+AddCommandParser -> AddCommand: l
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+
+
+loop until list size is 0
+        AddCommand -> Model: addTask()
+        activate Model
+        Model --> AddCommand
+        deactivate Model
+
+    end
+
+
+
+
+
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -35,7 +35,9 @@ public class SampleDataUtil {
             new SimpleTask(new Name("Task I"), new Description("I's description"),
                 getTagSet("CS2103T"), new Effort(10)),
             new SimpleTask(new Name("Task R"), new Description("R's description"),
-                getTagSet("CS2101"), new Effort(2))
+                getTagSet("CS2101"), new Effort(2)),
+            new SimpleTask(new Name("Task Z"), new Description(),
+                getTagSet("NoDescription"), new Effort(2))
         };
     }
 
