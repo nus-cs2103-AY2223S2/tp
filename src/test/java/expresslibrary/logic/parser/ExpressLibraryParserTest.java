@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Test;
 
 //import expresslibrary.logic.commands.AddCommand;
 import expresslibrary.logic.commands.ClearCommand;
-import expresslibrary.logic.commands.DeleteCommand;
-import expresslibrary.logic.commands.EditCommand;
-import expresslibrary.logic.commands.EditCommand.EditPersonDescriptor;
+import expresslibrary.logic.commands.DeletePersonCommand;
+import expresslibrary.logic.commands.EditPersonCommand;
+import expresslibrary.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import expresslibrary.logic.commands.ExitCommand;
-import expresslibrary.logic.commands.FindCommand;
+import expresslibrary.logic.commands.FindPersonCommand;
 import expresslibrary.logic.commands.HelpCommand;
-import expresslibrary.logic.commands.ListCommand;
+import expresslibrary.logic.commands.ListPersonCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.person.NameContainsKeywordsPredicate;
 import expresslibrary.model.person.Person;
@@ -49,18 +49,18 @@ public class ExpressLibraryParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -72,9 +72,9 @@ public class ExpressLibraryParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindPersonCommand command = (FindPersonCommand) parser.parseCommand(
+                FindPersonCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPersonCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -85,8 +85,8 @@ public class ExpressLibraryParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD) instanceof ListPersonCommand);
+        assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD + " 3") instanceof ListPersonCommand);
     }
 
     @Test
