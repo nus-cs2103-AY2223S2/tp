@@ -1,9 +1,9 @@
 package seedu.recipe.testutil;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
 import seedu.recipe.model.RecipeBook;
@@ -199,27 +199,16 @@ public class TypicalRecipes {
                             + "if you want heat."),
                     new Step("Assemble together and enjoy!"))).build();
 
+    private static final BinaryOperator<String> combiner = (leftString, rightString) -> leftString + rightString;
+    private static final BiFunction<String, Object, String> tagAccumulator = (s, o) -> s + o.toString();
+    private static final BiFunction<String, Object, String> ingredientAccumulator = (s, o) -> s + o.toString() + ",\n";
+
     public static final String CACIO_STRING = String.format(
             "%s;\nPortion: %s;\nDuration: %s;\nTags: %s;\n"
                     + "Ingredients: %s;\nSteps: %s",
-            CACIO_NAME, CACIO_PORTION, CACIO_DURATION, (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                ArrayList<Tag> tags = new ArrayList<>(CACIO_TAGS);
-                tags.sort(Comparator.comparing(tag -> tag.tagName));
-                for (Tag tag : tags) {
-                    out.append(tag.toString());
-                }
-                return out.toString();
-            }).get(), (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                for (IngredientBuilder i : CACIO_INGREDIENTS) {
-                    out.append(i.toString())
-                            .append(",\n");
-                }
-                return out.toString();
-            }).get(), (
+            CACIO_NAME, CACIO_PORTION, CACIO_DURATION,
+            CACIO_TAGS.stream().reduce("", tagAccumulator, combiner),
+            CACIO_INGREDIENTS.stream().reduce("", ingredientAccumulator, combiner), (
             (Supplier<String>) () -> {
                 StringBuilder out = new StringBuilder();
                 for (int i = 0; i < CACIO_STEPS.size(); i++) {
