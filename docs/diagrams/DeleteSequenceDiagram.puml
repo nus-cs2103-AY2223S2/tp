@@ -45,24 +45,24 @@ destroy DeleteOrderCommandParser
 TrackrParser --> LogicManager : d
 deactivate TrackrParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteOrderCommand : execute()
+activate DeleteOrderCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteOrderCommand -> Model : deleteItem(1, ModelEnum.ORDER)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteOrderCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteOrderCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteOrderCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteOrderCommand --> LogicManager : result
+deactivate DeleteOrderCommand
 
 [<--LogicManager
 deactivate LogicManager
