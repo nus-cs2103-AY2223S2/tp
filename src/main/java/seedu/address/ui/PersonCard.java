@@ -76,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
         lessons.getChildren().add(new Label("Lessons: "));
         tutee.getLessons().stream()
                 .forEach(lesson -> lessons.getChildren().add(new Label(lesson)));
-        lessons.setHgap(10);    
+        lessons.setHgap(10);
         lessons.setVgap(10);
     }
 

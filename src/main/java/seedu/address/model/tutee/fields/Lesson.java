@@ -43,13 +43,12 @@ public class Lesson implements Iterable<String> {
      * @throws NoSuchElementException If the lesson have not been learned
      *     remove it will throw a {@link NoSuchElementException}
      */
-    public Lesson notlearn(String lesson) {
-        Set<String> copy = Set.copyOf(lessons);
-        if (!copy.remove(lesson)) {
+    public Lesson unlearn(String lesson) {
+        if (!lessons.remove(lesson)) {
             throw new NoSuchElementException();
         }
 
-        return new Lesson(copy);
+        return this;
     }
 
     /**
