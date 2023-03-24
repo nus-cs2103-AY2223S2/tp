@@ -185,7 +185,7 @@ The following is a description of the code execution flow:
 1. `AddCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
 
 | Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
-| ------------ | ------------------- | ------------------- | ----------- | --------------------- |
+| ------------ |---------------------| ------------------- | ----------- | --------------------- |
 | Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
 | Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
 | Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
@@ -201,6 +201,83 @@ The following is a description of the code execution flow:
    - The `Lecture` which a `Video` is being added to does not exist
 
 5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
+
+### Delete command feature
+
+The proposed delete command supports:
+
+1. Deleting a single specified module.
+2. Deleting a single specified lecture under a specified module context.
+3. Deleting a single specified video under a specified module and specified lecture context.
+4. Deleting multiple specified modules / lectures / videos under the respective specified contexts mentioned in the above points.
+
+    - E.g.: User wishes to delete a module CS2040S.
+         Executing `delete CS2040S` would allow the user to do so, unless the module does not exist, in which case, Le Tracker will throw an error.
+    - E.g.: User wishes to delete multiple modules CS2107, ST2334 AND CS3230
+         Executing `delete CS2107, ST2334, CS3230` will allow the user to do so. If either module does not exist, nothing is deleted and Le Tracker will throw an error.
+
+This feature's behaviour is dependent on the arguments provided by the user, as well as by the state of Le Tracker.
+
+#### Implementation Details
+
+The feature utilises the following classes:
+   - `DeleteCommandParser`: parses the arguments appropriately for the appropriate `DeleteCommand` to be returned to be executed
+   - `DeleteCommand`: Abstract class extending from `Commands` for commands that delete a specified entity from the tracker
+   - `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
+   - `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
+   - `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
+   - `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
+   - `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
+   - `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
+   - `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+
+The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
+
+![DeleteCommandClassDiagram](images/delete/deleteCommandClass.png)
+
+The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
+
+![DeleteMultpleModulesCommandSequential](images/delete/deleteCommandSequenceDiagram.png)
+
+The following is a description of the code execution flow
+1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
+The following table below depicts the consideration of inputs  against the user's argument:
+
+| Has Preamble | has `\mod` argument | has 'lec agrgument | Intent |
+| --- | --- | --- | --- |
+| Yes | No | No | Delete Module |
+| Yes | Yes | No | DeleteLecture |
+| Yes | Yes | Yes | DeleteVideo |
+|-----|-----|-----|-------------|
+
+2. The argument values are then checked on as such:
+      - ModuleCode: valid mod code start with CS
+      - LectureName: valid lecture name that does not contain symbols
+      - VideoName: valid lecture name that does not contain symbols
+
+3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
+
+4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module/lecture/video from itself
+
+#### Reasons for such implementation:
+
+   1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
+   2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
+
+#### Alternatives considered:
+
+   1. Combine all featured classes into one large single class
+      Pros:
+      - all file content in one single place
+      - easily adheres to DRY since there would be no need to repeat information across multiple files
+      Cons:
+      - violates Open-Close Principle
+      - creates a large file that needs to be edited. Hard to search through
+
+#### Possible further implementation
+    - Create parser for `preamble` of deleting multiple of a specified entity
+
+### Mark / UnMARK
 
 ### Find command feature
 
@@ -228,6 +305,102 @@ The proposed find command supports:
 Below is an activity diagram that showcase the event that occurs when find command is executed.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
+
+### Navigation feature
+
+> The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
+
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for commands related to the current context.
+
+Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
+
+#### Usage scenario
+Given below is an example usage scenario and how the navigation system behaves at each step.
+
+Step 1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+
+Step 2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
+
+![FindActivityDiagram](images/NavSequenceDiagram0.png)
+
+Step 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+
+Step 4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
+
+### Tag module, lecture, and video feature
+
+The `tag` command supports:
+- Tagging a module in the tracker
+- Tagging a lecture of a module in the tracker
+- Tagging a video of a lecture which belongs to a module in the tracker 
+
+The `tag` behaviour is dependent on the arguments provided by the user. Modules, lectures, and videos can have 
+multiple, unique tags. If a command contains new tags and tags that were already added to modules, lectures, or 
+videos, only the new tags will be added. 
+
+The feature utilises the following classes:
+- `TagCommandParser` – Creates the appropriate `TagCommand` subclass object based on the user's input
+- `TagCommand` – Execute the command to add tags to a module, lecture, or video based on the user's input
+
+The following is a description of the code execution flow:
+1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module, 
+   a lecture, or a video based on the appropriate prefixes included in the user's input. 
+2. The user input is then checked to determine whether it contains the required prefixes according to the table 
+   below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error. 
+   A `ParseException` will be thrown, and the command will not be executed.
+
+| Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
+|-------------|-------------------|-------------------|-------------------|--------------------|
+| Tag Module  | No                | No                | No                | Yes                |
+| Tag Lecture | Optional          | No                | No                | Yes                |
+| Tag Video   | Optional          | Optional          | No                | Yes                |
+
+
+3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an 
+   appropriate `TagCommand` object and returns it to the called.
+4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by 
+   `TagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were 
+   provided, or if the tracker doesn't contain the specified module, lecture, or video.
+5. If no errors occur (no exceptions are thrown), the command succeeds in tagging the module, lecture, or video.
+
+### Untag module, lecture, and video feature
+The `untag` command supports:
+- Removing tags from a module in the tracker
+- Removing tags from a lecture of a module in the tracker
+- Removing tags from a video of a lecture which belongs to a module in the tracker
+
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple tags can be deleted in a single 
+command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
+videos, a `CommandException` will be thrown.
+
+The feature utilises the following classes:
+- `UntagCommandParser` – Creates the appropriate `UntagCommand` subclass object based on the user's input
+- `UntagCommand` – Execute the command to remove tags from a module, lecture, or video based on the user's input
+
+The following is a description of the code execution flow:
+1. `UntagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to untag a module,
+   a lecture, or a video based on the appropriate prefixes included in the user's input.
+2. The user input is then checked to determine whether it contains the required prefixes according to the table
+   below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
+   A `ParseException` will be thrown, and the command will not be executed.
+
+| Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
+|---------------|-------------------|-------------------|-------------------|--------------------|
+| Untag Module  | No                | No                | No                | Yes                |
+| Untag Lecture | Optional          | No                | No                | Yes                |
+| Untag Video   | Optional          | Optional          | No                | Yes                |
+
+3. A set of tags to remove is then determined from the user's input. Afterwards, The command creates an
+   appropriate `UntagCommand` object and returns it to the called.
+4. `LogicManager` calls the `Command#execute(Model)` method of the `UntagCommand` object returned by
+   `UntagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
+   provided, if the tracker doesn't contain the specified module, lecture, or video, or if there are tags from the 
+   user input that doesn't exist in the module, lecture, or video. 
+5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
+   or video.
+
+### Edit tag feature
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -312,9 +485,20 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Proposed Implementation
+- The proposed undo/redo mechanism is facilitated
 
----
+#### Reasons for such implementation:
+- The user need to save storage space after finished studying a module. The UI will also be less packed
+
+### \[Proposed\] Import archived data
+
+#### Reasons for such implementation:
+- The user need to retrieved data when the user wants to review the concepts taught in a module, 
+  lecture, or video
+
+### \[Proposed\] Add Video's timestamp comment
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -500,6 +684,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2c. Video index does not exist.
 
   - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3a. Video to mark is already marked as watched.
+
+    3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3b. Video to unmark is already unmarked.
+
+    3b1. LeTracker shows an error message.
+
+    Use case reumes at step 1.
+
+**Use case: Delete a Module**
+
+**MSS**
+
+1. User requests to list modules
+2. Le Tracker shows a list of modules
+3. User requests to delete a specific module in the list
+4. Le Tracker deletes the module
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. There are no modules.
+
+    Use case ends.
+
+- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+
+    4a1. Le Tracker shows an error message.
 
     Use case resumes at step 1.
 
