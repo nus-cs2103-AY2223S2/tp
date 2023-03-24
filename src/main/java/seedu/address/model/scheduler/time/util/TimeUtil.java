@@ -1,8 +1,10 @@
 package seedu.address.model.scheduler.time.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.joda.time.LocalTime;
 
@@ -89,4 +91,39 @@ public class TimeUtil {
             return String.format("%d PM", hourOfDay % 12);
         }
     }
+
+    /**
+     * Checks that amongst these timeperiods, if there are any clashes based on timing
+     * and not activity.
+     */
+    public static boolean hasAnyClash(List<TimePeriod> timePeriods) {
+        List<TimePeriod> second = List.copyOf(timePeriods);
+        TimePeriod[][] allTimePeriodPairs = timePeriods.stream()
+            .flatMap(ai -> second.stream().map(bi -> new TimePeriod[] {ai, bi}))
+            .toArray(TimePeriod[][]::new);
+        Stream<TimePeriod[]> cartesianProductTimePeriodStream = Arrays.stream(allTimePeriodPairs)
+            .filter(pair -> pair[0].equals(pair[1])) // exclude <A,A>
+            .filter(pair -> pair[0].hasClash(pair[1]));
+        return cartesianProductTimePeriodStream.findAny().isPresent();
+    }
+
+    /**
+     * Checks if there are any conflicts in these 2 timetables
+     */
+    public static boolean hasConflict(Timetable timetable, Timetable other) {
+        boolean hasClashSoFar = false;
+        for (Day day : Day.values()) {
+            List<HourBlock> tp = timetable.getSchedule().get(day);
+            List<HourBlock> tp2 = other.getSchedule().get(day);
+            for (int i = 0; i < tp.size(); i++) {
+                hasClashSoFar |= !tp.get(i).isFree() && !tp2.get(i).isFree();
+            }
+            if (hasClashSoFar) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

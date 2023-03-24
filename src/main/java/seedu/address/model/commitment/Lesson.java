@@ -14,7 +14,7 @@ import seedu.address.model.scheduler.time.HourBlock;
 /**
  * Represents a typical NUS lesson.
  */
-public class Lesson {
+public class Lesson extends Commitment {
 
     private final Day day;
     private final LocalTime startTime;
