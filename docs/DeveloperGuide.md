@@ -281,19 +281,39 @@ When editing a student entry, whether a new `Student` object should be created.
 
 ### Implementation Details
 
-The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate` and `NameContainsKeywordsPredicate`. <br>
+The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`. <br>
 
 Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
+The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
+
 
 Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
 // TODO sequence diagram
 
 ### Feature details
-Our implementation extends from the `find` implementation in AB3 by accommodating `find PARTIAL_KEYWORD` on top of the current `find KEYWORD`.
-> An example of `PARTIAL_KEYWORD` is "Ye" while `KEYWORD` would be "Yeoh". <br>
+Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
+> Take a person's name to be `Michelle Yeoh`. <br>
+> An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh". <br>
+
+Furthermore, users are also allowed to specify the field that they want to find in by using the default prefixes given to them. 
+> The prefixes refer to those that the user input in the `Add` command, eg.
+> ```
+> add n/Bob p/98712345 edu/P5
+> ```
+> In the `find` command, users are then allowed to input their prefix of choice, eg.
+> ```
+> find n/ bo
+> find p/ 9871
+> find edu/ p5
+> ```
+
+
+This allows the user to narrow down their `find` results even more.
 
 ### General Design Considerations
-THe implementation of `find` is built on top of the original AB3 codebase's `find` command. <br>
+The implementation of `find` is built on top of the original AB3 codebase's `find` command.
+We felt that the default `find` feature was too restrictive, after considering the fields in an entry our users might be more interested in
+ ie. `Education` or `Address`.<br>
 
 Our implementation has some additions such as:
 1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
@@ -304,6 +324,7 @@ Our implementation has some additions such as:
   * Pros:
     * Improves user convenience by giving them flexibility in the completeness of their desired find keyword.
     * Extensible across other attributes.
+    * Narrows down the list to be very succinct and specific to the desired keyword.
   * Cons:
     * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
     * Might be slightly challenging for new users to enter the `PREFIX`.
@@ -311,9 +332,11 @@ Our implementation has some additions such as:
   * Pros:
     * Easier to implement as there is lesser validating done by the app.
     * Provides the user flexibility in searching across all attributes by default.
+    * Less syntax to input and learn by the users.
   * Cons:
     * The filtered list may not be what was desired as short partial keywords like `a` is unlikely to result in a succinct list.
     * Users will not be able to search keywords for a particular attribute.
+    * The resulting filtered list will span across multiple different fields, where all attributes in all fields containing the specified keyword will be displayed.
 
 ## List feature
 
