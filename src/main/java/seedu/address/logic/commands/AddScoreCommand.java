@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.AppParameters;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,6 +37,7 @@ public class AddScoreCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Added score to Student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This score already exists in this student's score list";
 
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index index;
     private final Score toAdd;
 
@@ -53,12 +57,14 @@ public class AddScoreCommand extends Command {
 
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         if (personToEdit.hasScore(toAdd)) {
+            logger.info(MESSAGE_DUPLICATE_PERSON);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
