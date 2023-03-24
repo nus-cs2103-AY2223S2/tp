@@ -318,10 +318,25 @@ The following sequence diagram shows how the statistics operation works:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Update job feature
 
-_{Explain here how the data archiving feature will be implemented}_
+Given below is an example usage scenario and how the statistics mechanism behaves at each step.
 
+Step 1. The user launches the application for the first time.
+Step 2. The user selects a job to be updated.
+Step 3. The user edits preexisting inputs to update the job.
+
+The following sequence diagram shows how the update operation works:
+
+//to be added
+
+The following sequence diagram shows how the update operation works:
+
+//to be added
+
+#### Design considerations:
+
+//to be added
 
 --------------------------------------------------------------------------------------------------------------------
 
