@@ -1,9 +1,11 @@
 package ezschedule.model.event;
 
 import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
-import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_A;
+
 import static ezschedule.testutil.TypicalEvents.ART;
 import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static ezschedule.testutil.TypicalEvents.EVENT_B;
@@ -81,11 +83,21 @@ public class EventTest {
     }
 
     @Test
-    public void getCompletedStatus() {
-        Event pastEvent = new EventBuilder(ART).withDate("2020-01-01").build();
-        Event futureEvent = new EventBuilder(ART).withDate("3000-01-01").build();
+    public void compareToItself() {
+        Event event = new EventBuilder(ART).build();
+        assertEquals(0, event.compareTo(event));
+    }
 
-        assertEquals("Event completed", pastEvent.getCompletedStatus());
-        assertEquals("", futureEvent.getCompletedStatus());
+    @Test
+    public void getCompletedStatus() {
+        Event pastEventMorningTime = new EventBuilder(ART).withDate("2020-01-01").withEndTime("00:00").build();
+        Event pastEventNightTime = new EventBuilder(ART).withDate("2020-01-01").withEndTime("23:59").build();
+        Event futureEventMorningTime = new EventBuilder(ART).withDate("3000-01-01").withEndTime("00:00").build();
+        Event futureEventNightTime = new EventBuilder(ART).withDate("3000-01-01").withEndTime("23:59").build();
+
+        assertEquals("Event completed", pastEventMorningTime.getCompletedStatus());
+        assertEquals("Event completed", pastEventNightTime.getCompletedStatus());
+        assertEquals("", futureEventMorningTime.getCompletedStatus());
+        assertEquals("", futureEventNightTime.getCompletedStatus());
     }
 }
