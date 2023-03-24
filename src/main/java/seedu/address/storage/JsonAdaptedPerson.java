@@ -19,6 +19,7 @@ import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Remark;
@@ -43,6 +44,7 @@ class JsonAdaptedPerson {
     private final String subject;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<LocalDate> attendanceDates = new ArrayList<>();
+    private final List<String> lessons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutee details.
@@ -59,7 +61,8 @@ class JsonAdaptedPerson {
         @JsonProperty("startTime") String startTime,
         @JsonProperty("endTime") String endTime,
         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-        @JsonProperty("attendances") List<LocalDate> attendances
+        @JsonProperty("attendances") List<LocalDate> attendances,
+        @JsonProperty("lessons") List<String> lessons
     ) {
         this.name = name;
         this.phone = phone;
@@ -75,6 +78,9 @@ class JsonAdaptedPerson {
         }
         if (attendances != null) {
             this.attendanceDates.addAll(attendances);
+        }
+        if (lessons != null) {
+            this.lessons.addAll(lessons);
         }
     }
 
@@ -95,6 +101,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         attendanceDates.forEach(attendanceDates::add);
+        lessons.addAll(source.getLessons().list());
     }
 
     /**
@@ -196,7 +203,8 @@ class JsonAdaptedPerson {
             .withSchedule(validateField(schedule, Schedule.class))
             .withStartTime(validateField(startTime, StartTime.class))
             .withEndTime(validateField(endTime, EndTime.class))
-            .withTags(modelTags);
+            .withTags(modelTags)
+            .withLessons(new Lesson(new HashSet<>(lessons)));
 
         return builder.build();
     }

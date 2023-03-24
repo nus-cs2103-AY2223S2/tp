@@ -11,6 +11,7 @@ public class Remark {
 
     private final String value;
 
+
     /**
      * Create a {@link Remark} with the given string value
      */
