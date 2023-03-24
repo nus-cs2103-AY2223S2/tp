@@ -361,11 +361,33 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+<br>
 
-The `Storage` component,
+The `Storage` component, 
 * can save both CoDoc data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being
+  * ReadOnlyUserPrefs: to obtain gui settings and file path of data
+  * ReadOnlyReadOnlyCodoc: contains an unmodifiable view of the persons list
+  * Person
+  * Module
+  * Skill
+
+<br>
+
+#### How data is saved
+<img src="images/SaveSequenceDiagram.png" width="550" />
+<br>
+<br>
+
+#### How data is retrieved
+<img src="images/ReadStorageSequenceDiagram.png" width="550" />
+<br>
+<br>
+
+#### Additional Information
+* The sequence for user preference save and retrieval is similar to data
+* The location in which both files are save are specified in commons/core/config
 
 [Scroll back to top](#table-of-contents)
 
