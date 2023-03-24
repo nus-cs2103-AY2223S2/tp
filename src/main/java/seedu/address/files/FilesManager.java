@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -23,6 +24,8 @@ public class FilesManager {
     private FileStorage store;
     private FileGenerator create;
     private String path;
+    private List<Path> files;
+    private List<String> fileNames;
 
     /**
      * Instantiates a new Files manager.
@@ -35,6 +38,8 @@ public class FilesManager {
         create = new FileGenerator(person,
                 "Handsome", "description", 20);
         path = "reports/" + person.getName().fullName;
+        setAllFiles();
+        setFileNames();
     }
 
     public void initFile() {
@@ -43,6 +48,16 @@ public class FilesManager {
 
     public void deleteAll() {
         FileStorage.deleteDrc(path);
+    }
+
+    /**
+     * Delete file.
+     *
+     * @param fileName the file name
+     */
+    public void deleteFile(String fileName) {
+        String uri = path + "/" + fileName;
+        FileStorage.deleteFile(uri);
     }
 
     public void addFile() {
@@ -58,8 +73,6 @@ public class FilesManager {
         create.createMcForm(Integer.toString(numberOfFiles(path2)));
     }
 
-
-
     public List<Path> getAllDirectories() {
         List<Path> directories = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(reportsDir)) {
@@ -71,34 +84,31 @@ public class FilesManager {
         return directories;
     }
 
-    public List<Path> getAllFiles(Path directory) {
-        List<Path> files = new ArrayList<>();
+    private void setAllFiles() {
+        Path directory = Paths.get(path);
+        files = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(directory)) {
             stream.filter(Files::isRegularFile)
                     .forEach(files::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return files;
     }
+
+    private void setFileNames() {
+        fileNames = files.stream()
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getFileNames() {
+        return fileNames;
+    }
+
+
     public int numberOfFiles(Path drc) {
-        return getAllFiles(drc).size();
-    }
-    /**
-     * @param fileName
-     * @return
-     */
-    public boolean fileExists(String fileName) {
-        List<Path> directories = getAllDirectories();
-        for (Path directory : directories) {
-            List<Path> files = getAllFiles(directory);
-            for (Path file : files) {
-                if (file.getFileName().toString().equals(fileName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return files.size();
     }
 
     /**

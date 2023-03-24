@@ -124,9 +124,6 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
         FilesManager filesManager = new FilesManager(person);
         filesManager.initFile();
-        //Path path = Paths.get("reports/" + person.getName().fullName + "/mc.pdf");
-        //PdfReader reader = new PdfReader(path);
-        //reader.displayPdf();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
