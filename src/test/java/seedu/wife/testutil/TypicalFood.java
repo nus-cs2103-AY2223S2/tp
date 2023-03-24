@@ -54,4 +54,8 @@ public class TypicalFood {
     public static List<Food> getTypicalFoodWithoutTag() {
         return new ArrayList<>(Arrays.asList(MEIJI_WITHOUT_TAG, CHOCOLATE_WITHOUT_TAG));
     }
+
+    public static List<Food> getTypicalFoodCombination() {
+        return new ArrayList<>(Arrays.asList(MEIJI, CHOCOLATE_WITHOUT_TAG));
+    }
 }
