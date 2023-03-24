@@ -482,9 +482,20 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Proposed Implementation
+- The proposed undo/redo mechanism is facilitated
 
----
+#### Reasons for such implementation:
+- The user need to save storage space after finished studying a module. The UI will also be less packed
+
+### \[Proposed\] Import archived data
+
+#### Reasons for such implementation:
+- The user need to retrieved data when the user wants to review the concepts taught in a module, 
+  lecture, or video
+
+### \[Proposed\] Add Video's timestamp comment
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
