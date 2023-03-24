@@ -10,6 +10,7 @@ public class DrugAllergy {
     public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric "
             + "and less than 500 characters long";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}-]{0,499}+";
+    public final String value;
     private final String drugAllergy;
 
     /**
@@ -21,6 +22,7 @@ public class DrugAllergy {
         requireNonNull(drugAllergy);
         checkArgument(isValidDrugAllergy(drugAllergy), MESSAGE_CONSTRAINTS);
         this.drugAllergy = drugAllergy;
+        value = drugAllergy;
     }
 
     /**
