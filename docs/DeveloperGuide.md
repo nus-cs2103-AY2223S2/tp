@@ -182,12 +182,30 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![RemindActivityDiagram](images/RemindActivityDiagram.png)
 
+
+#### Design Considerations:
+**Choice 1 (Current Choice) : Filter pet list upon command**
+* Pros:
+    * User can easily find upcoming deadlines easily.
+* Cons:
+    * Counterintuitive since reminders shouldn't need user input to be shown.
+
+**Choice 2 : Alert users of upcoming deadlines upon startup**
+* Pros:
+    * User will be reminded of upcoming deadlines upon startup.
+* Cons:
+    * Might be annoying to users who don't want to be reminded of upcoming deadlines.
+
+
+    
 ### Calculator Feature
+
 #### Current Implementation
 The calculator mechanism is facilitated by the `AddCommand` class.
 The calculator  calculates the amount of money owed by pet owners to the daycare owners,
 based on an initial timestamp of type java `LocalDateTime` that is required to be non-null when
 entering the `Add` command.
+
 ##### Given below is an example usage scenario and how the calculator mechanism behaves at each step:
 Step 1. The user launches the application for the first time.
 
@@ -311,20 +329,6 @@ The following sequence diagram shows how the undo operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![UndoActivityDiagram](images/UndoActivityDiagram.png)
-
-#### Design Considerations:
-**Choice 1 (Current Choice) : Filter pet list upon command**
-* Pros:
-    * User can easily find upcoming deadlines easily.
-* Cons:
-    * Counterintuitive since reminders shouldn't need user input to be shown.
-
-**Choice 2 : Alert users of upcoming deadlines upon startup**
-* Pros:
-    * User will be reminded of upcoming deadlines upon startup.
-* Cons:
-    * Might be annoying to users who don't want to be reminded of upcoming deadlines.
-
 
 ### \[Proposed\] Undo/redo feature
 
