@@ -75,3 +75,4 @@ deactivate EditMeetingCommand
 deactivate LogicManager
 
 @enduml
+

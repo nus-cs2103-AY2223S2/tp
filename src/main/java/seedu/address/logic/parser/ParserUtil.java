@@ -137,15 +137,16 @@ public class ParserUtil {
      *
      * @throws ParseException if start time given is after the end time given
      */
-    public static Meeting parseMeeting(String meeting) {
-        requireNonNull(meeting);
-        String trimmedMeeting = meeting.trim();
+    public static Meeting parseMeeting(String desc, String start, String end) {
+        requireNonNull(desc);
+        requireNonNull(start);
+        requireNonNull(end);
+        String trimmedDesc = desc.trim();
 
-        LocalDateTime[] dateTimes = parseDateTime(trimmedMeeting);
-        LocalDateTime start = dateTimes[0];
-        LocalDateTime end = dateTimes[1];
+        LocalDateTime parsedStart = parseStart(start.trim());
+        LocalDateTime parsedEnd = parseEnd(start.trim(), end.trim());
 
-        return new Meeting(start, end);
+        return new Meeting(trimmedDesc, parsedStart, parsedEnd);
     }
 
     /**
@@ -153,7 +154,14 @@ public class ParserUtil {
      * {@code LocalDateTime} objects
      */
     public static LocalDateTime[] parseDateTime(String dateTime) {
-        String[] dateTimeStrings = dateTime.split(" ");
+        String[] dateTimeStrings = dateTime.trim().split(" ");
+
+        return new LocalDateTime[]{
+            parseStart(dateTimeStrings[0] + " " + dateTimeStrings[1]),
+            parseEnd(dateTimeStrings[0] + " " + dateTimeStrings[1],
+                dateTimeStrings[2] + " " + dateTimeStrings[3])
+        };
+        /*
         String[] dateString = dateTimeStrings[0].split("-");
         String[] startTimeString = dateTimeStrings[1].split(":");
         String[] endTimeString = dateTimeStrings[2].split(":");
@@ -170,6 +178,7 @@ public class ParserUtil {
             LocalDateTime.of(year, month, day, startHour, startMinute),
             LocalDateTime.of(year, month, day, endHour, endMinute)
         };
+         */
     }
 
     /**
@@ -185,5 +194,45 @@ public class ParserUtil {
             }
         }
         throw new ParseException(Region.MESSAGE_CONSTRAINTS);
+    }
+
+    public static String parseMeetingDescription(String desc) {
+        return desc.trim();
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     * @param start String of meeting start
+     * @return meeting start parsed to LocalDateTime
+     */
+    public static LocalDateTime parseStart(String start) {
+        String[] dateTime = start.split(" ");
+        String[] date = dateTime[0].split("-");
+        String[] time = dateTime[1].split(":");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        int startHour = Integer.parseInt(time[0]);
+        int startMinute = Integer.parseInt(time[1]);
+        return LocalDateTime.of(year, month, day, startHour, startMinute);
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     * @param start String of meeting start
+     * @param end String of meeting end
+     * @return meeting end parsed to LocalDateTime
+     */
+    public static LocalDateTime parseEnd(String start, String end) {
+        LocalDateTime startTime = parseStart(start);
+        String[] endTimes = end.split(":");
+        int endHour = Integer.parseInt(endTimes[0]);
+        int endMin = Integer.parseInt(endTimes[1]);
+        if (endHour - startTime.getHour() < 0) {
+            LocalDateTime endTime = startTime.plusDays(1).withHour(endHour).withMinute(endMin);
+            return endTime;
+        }
+        LocalDateTime endTime = startTime.withHour(endHour).withMinute(endMin);
+        return endTime;
     }
 }
