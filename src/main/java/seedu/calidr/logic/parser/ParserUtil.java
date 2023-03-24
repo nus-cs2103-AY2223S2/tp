@@ -23,6 +23,7 @@ import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Phone;
 import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
@@ -170,6 +171,21 @@ public class ParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**
