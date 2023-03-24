@@ -189,6 +189,26 @@ Step 4.
 
 Step 5.
 
+### Adding an appointment
+
+The add appointment mechanism is facilitated by `MediConnect`. 
+
+Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `appointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to add an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `appointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `appointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+### \[Proposed\] Deleting an appointment
+
+The delete appointment mechanism is facilitated by `MediConnect`.
+
+Given below is an example usage scenario and how the delete appointment mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
