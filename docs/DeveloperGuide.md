@@ -285,7 +285,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 ### AddXYZCommand
 
-The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList` and the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`.It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
 The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
 For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
