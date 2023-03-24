@@ -197,7 +197,6 @@ public class EditElderlyCommandTest {
 
     }
 
-
     @Test
     public void execute_duplicateElderlyUnfilteredElderlyList_failure() {
         Elderly firstElderly = model.getFilteredElderlyList().get(INDEX_FIRST_PERSON.getZeroBased());
