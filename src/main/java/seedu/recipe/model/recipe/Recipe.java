@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.recipe.model.tag.Tag;
+
+
+
 /**
  * Represents a Recipe in the recipe book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -19,16 +23,19 @@ public class Recipe {
     // Data fields
     private final Set<Ingredient> ingredients;
     private final List<Step> steps;
+    private final Set<Tag> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps) {
-        requireAllNonNull(title, desc, ingredients, steps);
+    public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
+                  Set<Tag> tags) {
+        requireAllNonNull(title, desc, ingredients, steps, tags);
         this.title = title;
         this.desc = desc;
         this.ingredients = ingredients;
         this.steps = steps;
+        this.tags = tags;
     }
 
     public Title getTitle() {
@@ -44,6 +51,10 @@ public class Recipe {
     }
     public List<Step> getSteps() {
         return this.steps;
+    }
+
+    public Set<Tag> getTags() {
+        return this.tags;
     }
 
     /**
@@ -77,13 +88,14 @@ public class Recipe {
         return otherRecipe.getTitle().equals(getTitle())
                 && otherRecipe.getDesc().equals(getDesc())
                 && otherRecipe.getIngredients().equals(getIngredients())
-                && otherRecipe.getSteps().equals(getSteps());
+                && otherRecipe.getSteps().equals(getSteps())
+                && otherRecipe.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, desc, ingredients, steps);
+        return Objects.hash(title, desc, ingredients, steps, tags);
     }
 
     @Override
@@ -103,6 +115,12 @@ public class Recipe {
         if (!steps.isEmpty()) {
             builder.append("; Steps: ");
             steps.forEach(builder::append);
+        }
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
         return builder.toString();
     }

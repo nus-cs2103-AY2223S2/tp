@@ -11,6 +11,7 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * A utility class to help with building EditRecipeDescriptor objects.
@@ -36,6 +37,7 @@ public class EditRecipeDescriptorBuilder {
         descriptor.setDesc(recipe.getDesc());
         descriptor.setIngredients(recipe.getIngredients());
         descriptor.setSteps(recipe.getSteps());
+        descriptor.setTags(recipe.getTags());
     }
 
     /**
@@ -73,6 +75,17 @@ public class EditRecipeDescriptorBuilder {
         descriptor.setSteps(stepList);
         return this;
     }
+
+    /**
+     * Parses the {@code ingredients} into a {@code Set<Ingredient>} and set it to the {@code EditRecipeDescriptor}
+     * that we are building.
+     */
+    public EditRecipeDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
+        return this;
+    }
+
 
     public EditRecipeDescriptor build() {
         return descriptor;

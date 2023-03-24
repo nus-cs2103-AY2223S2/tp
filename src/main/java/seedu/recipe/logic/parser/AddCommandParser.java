@@ -4,6 +4,7 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 
 /**
@@ -31,9 +33,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE, PREFIX_STEP);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
+                        PREFIX_STEP, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE, PREFIX_STEP)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
+                PREFIX_STEP, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -42,8 +46,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Ingredient> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Recipe recipe = new Recipe(title, description, ingredients, steps);
+        Recipe recipe = new Recipe(title, description, ingredients, steps, tags);
 
         return new AddCommand(recipe);
     }
