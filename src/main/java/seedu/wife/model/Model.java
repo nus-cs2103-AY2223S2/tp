@@ -79,6 +79,7 @@ public interface Model {
      * The tag of {@code editedTag} must not be the same as another existing tag in WIFE.
      */
     void setTag(Tag target, Tag editedTag);
+    
 
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getFilteredTagList();
@@ -127,4 +128,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate);
+
+
+    /**
+     * Returns a unmodifiable view of the food description if {@code target} exists in the Wife.
+     */
+    void viewFood(Food target);
 }
