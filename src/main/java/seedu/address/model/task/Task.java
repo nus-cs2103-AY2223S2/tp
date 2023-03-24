@@ -46,7 +46,8 @@ public class Task {
 
     public boolean hasPriority() {
         return this.hasPriority;
-
+    }
+    
     public boolean getIsReminder() {
         return this.isReminder;
 
