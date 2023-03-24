@@ -2,64 +2,66 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
@@ -110,28 +113,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -140,15 +143,16 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -160,9 +164,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -223,14 +227,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -238,18 +243,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -257,85 +261,171 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of patients coming into an A&E in a private hospital 
-* can type fast
-* prefers typing to execute commands and allocating patients by their status to their respective wards
-* is reasonably comfortable using CLI apps
+- has a need to manage a significant number of patients coming into an A&E in a private hospital
+- can type fast
+- prefers typing to execute commands and allocating patients by their status to their respective wards
+- is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
-* solve the problem of slow and multiple step process of allocating patients to their respective wards in an A&E
-* provide faster access to a particular patient’s details for hospital admin staff
-* provide a more efficient process of managing patients by their status to cater to patients who are in urgent need of care, which in turn provides a better quality of service
-* provide a simple system to keep track and update a patient's discharge date 
-
+- solve the problem of slow and multiple step process of allocating patients to their respective wards in an A&E
+- provide faster access to a particular patient’s details for hospital admin staff
+- provide a more efficient process of managing patients by their status to cater to patients who are in urgent need of care, which in turn provides a better quality of service
+- provide a simple system to keep track and update a patient's discharge date
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                       | So that I can…​                                                                             |
-|----------|---------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| `* * *`  | staff member  | add a patient by NRIC                              | record the information later (start with NRIC as primary key)                               |
-| `* * *`  | staff member  | add personal particulars to a patient              | record their name, address and contacts                                                     |
-| `* * *`  | staff member  | add medical records to a patient                   | record their medical history, medical cases and medication allergen                         |
-| `* * *`  | staff member  | add a discharge date to hospitalised patients      | keep track of discharge dates                                                               |
-| `* * *`  | staff member  | view the list of commands                          | use the system proficiently                                                                 |
-| `* * *`  | staff member  | search for patients by personal particulars        | do a basic search to find a certain patient                                                 |
-| `* * *`  | staff member  | search for patients by discharge date              | plan for future patient discharges                                                          |
-| `* * *`  | staff member  | update personal particulars of a patient           | keep the personal particulars of a patient up to date                                       |
-| `* * *`  | staff member  | update the medical records of a patient            | keep the medical records of a patient up to date                                            |
-| `* * *`  | staff member  | update the discharge date of hospitalised patients | change the discharge date of a hospitalised patient due to unexpected medical complications |
-| `* * *`  | staff member  | remove a patient by NRIC                           | put the patient on hold or remove duplicate entries                                         |
-| `* * *`  | staff member  | remove the medical records of a patient            | correct the mistakes in medical cases, allergies and medical conditions                     |
-| `* * *`  | staff member  | remove the discharge date of a patient             | put the patient's discharge date on hold while awaiting further assessment                  |
-| `* *`    | staff member  | add a patient ward number                          | locate the patient                                                                          |
-| `* *`    | staff member  | add patient priority level                         | categorize patients by severity of condition when in-processed                              |
-| `* *`    | staff member  | search for patients by medical records             | find patients with a certain medical condition                                              |
-| `* *`    | staff member  | view the list of patients sorted by discharge date | plan for future patient discharges                                                          |
-| `* *`    | staff member  | see patients with approaching discharge dates      | be aware of approaching discharge patients                                                  |
-| `* *`    | staff member  | view patients by department                        | find patients in a department and check the occupancy within certain departments            |
-| `* *`    | staff member  | view patients by priority levels                   | address higher priority patients more quickly                                               |
-| `* *`    | staff member  | update patient ward number                         | move patients to different wards                                                            |
-| `* *`    | staff member  | update the allocated department of a patient       | change the department in charge of the patient due to a developed medical condition         |
-| `* *`    | staff member  | confirm a deletion                                 | avoid any mistakes                                                                          |
-| `*`      | staff member  | add financial records to a patient                 | record their outstanding bills, billing history and insurance details                       |
-| `*`      | staff member  | add payment methods of a patient                   | record their payment methods                                                                |
-| `*`      | staff member  | search for patients by financial records           | find patients with outstanding bills                                                        |
-| `*`      | staff member  | view patients by a category                        | view patients by type of record (e.g. medical information, financial records, etc)          |
-| `*`      | staff member  | update the financial records of a patient          | keep the financial records of a patient up to date                                          |
-| `*`      | staff member  | remove the financial records of a patient          | correct any mistakes in the billing                                                         |
+| Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
+| -------- | ------------ |----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | staff member | add a patient                                      | record more information later                                                               |
+| `* * *`  | staff member | add a ward                                         | assign patients to the ward later                                                           |
+| `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
+| `* * *`  | staff member | add current status of patient                      | keep track of patient status                                                                |
+| `* * *`  | staff member | add current ward of patient                        | keep track of patient location                                                              |
+| `* * *`  | staff member | add a discharge date to hospitalised patients      | keep track of discharge dates                                                               |
+| `* * *`  | staff member | view the list of commands                          | use the system proficiently                                                                 |
+| `* * *`  | staff member | search for patients by personal particulars        | do a basic search to find a certain patient                                                 |
+| `* * *`  | staff member | search for patients by discharge date              | plan for future patient discharges                                                          |
+| `* * *`  | staff member | update personal particulars of a patient           | keep the personal particulars of a patient up to date                                       |
+| `* * *`  | staff member | update patient ward                                | move patients to different wards                                                            |
+| `* * *`  | staff member | update the status of a patient                     | keep the status of a patient up to date                                                     |
+| `* * *`  | staff member | update the discharge date of hospitalised patients | change the discharge date of a hospitalised patient due to unexpected medical complications |
+| `* * *`  | staff member | remove a patient                                   | put the patient on hold or remove duplicate entries                                         |
+| `* * *`  | staff member | remove the discharge date of a patient             | put the patient's discharge date on hold while awaiting further assessment                  |
+| `* *`    | staff member | view the list of patients sorted by discharge date | plan for future patient discharges                                                          |
+| `* *`    | staff member | see patients with approaching discharge dates      | be aware of approaching discharge patients                                                  |
+| `* *`    | staff member | view patients by ward                              | find patients in a ward and check the occupancy within certain wards                        |
+| `* *`    | staff member | view patients by status                            | address higher priority patients more quickly                                               |
+| `* *`    | staff member | view list of wards                                 | see current wards in system at a glance                                                     |
+| `* *`    | staff member | view list of patients                              | see current patients in system at a glance                                                  |
+| `* *`    | staff member | update the name of a ward                          | keep the name of a ward up to date                                                          |
+| `* *`    | staff member | update the capacity of a ward                      | keep the maximum number of patients in a ward up to date                                    |
+| `* *`    | staff member | view the current total occupancy                   | see the total number of patients currently admitted                                         |
+| `* *`    | staff member | view the total capacity of a ward                  | see the maximum number of patients I can admit to this ward                                 |
+| `* *`    | staff member | view the current occupancy of a ward               | see the number of patients currently admitted to a ward, and to know if a ward is full      |
+| `* *`    | staff member | confirm a deletion of a patient                    | avoid accidentally deleting a patient, which cannot be undone                               |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
 (For all use cases below, the **System** is the `MedInfo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: UC01 - Add a patient**
+
+**MSS**
+
+1. User requests to add a new patient to MedInfo.
+2. The user enters patient details.
+    1. The following are required information:
+        - Name
+        - NRIC
+    2. The following are non-required information:
+        - Status
+        - Ward
+3. The system adds the user into the MedInfo system.
+4. The system shows the new created user in the patient list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. If any of the required fields are not completed.
+
+    * 2a1. the user is informed of this and show the correct format for the command
+
+Use case resume at step 2.
+
+* 2b. If the entered NRIC is already present in another record in the system.
+
+    * 2b1. the user is informed that the NRIC is already present in the system.
+
+  Use case resume at step 2.
+
+* 2c. If the input field is invalid.
+
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
+
+    Use case resume at step 2.
+
+* 2d. If the entered ward is not present in the system.
+
+    * 2d1. the user is informed that the ward does not exist in the system.
+
+    Use case resume at step 2.
+
+
+**Use case: UC02 - Delete a patient**
 
 **MSS**
 
 1.  User requests to list patients
 2.  MedInfo shows a list of patients
-3.  User requests to delete a specific patient in the list
+3.  User requests to delete a specific patient in the list by NRIC
 4.  MedInfo deletes the patient
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given NRIC is invalid.
+- 3a. The requested patient's NRIC is invalid.
 
-    * 3a1. MedInfo shows an error message.
+  - 3a1. MedInfo shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. The requested patient's NRIC does not exist in the system.
+
+    - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC03 - Edit a patient**
+
+**MSS**
+
+1.  User requests to list patients
+2.  MedInfo shows a list of patients
+3.  User requests to edit a specific patient in the list by NRIC
+    1. The following can be edited:
+       - Status
+       - Ward
+    2. The following cannot be edited:
+       - Name
+       - NRIC
+4.  MedInfo edits the patient
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+- 3a. The requested patient's NRIC is invalid.
+
+    - 3a1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. The requested patient's NRIC does not exist in the system.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3c. User tries to edit a non-editable field (Name/NRIC).
+
+    - 3c1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -345,17 +435,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Should mask the NRIC of patients when listing (e.g. XXXXX264G).
 5.  The product is not required to validate the medical records.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
-* **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
+- **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
 
-*{More to be added}*
+_{More to be added}_
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -379,7 +469,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

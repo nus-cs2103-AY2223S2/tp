@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.ward.Ward;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Ward> filteredWards;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredWards = new FilteredList<>(this.addressBook.getWardList());
     }
 
     public ModelManager() {
@@ -87,6 +90,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //// Patient methods =====================================================================================
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -117,6 +121,31 @@ public class ModelManager implements Model {
         addressBook.setPatient(target, editedPatient);
     }
 
+    //// Ward methods =====================================================================================
+    @Override
+    public boolean hasWard(Ward ward) {
+        requireNonNull(ward);
+        return addressBook.hasWard(ward);
+    }
+
+    @Override
+    public void deleteWard(Ward target) {
+        addressBook.removeWard(target);
+    }
+
+    @Override
+    public void addWard(Ward ward) {
+        addressBook.addWard(ward);
+        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
+    }
+
+    @Override
+    public void setWard(Ward target, Ward editedWard) {
+        requireAllNonNull(target, editedWard);
+
+        addressBook.setWard(target, editedWard);
+    }
+
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
@@ -132,6 +161,23 @@ public class ModelManager implements Model {
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Ward List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ward} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Ward> getFilteredWardList() {
+        return filteredWards;
+    }
+
+    @Override
+    public void updateFilteredWardList(Predicate<Ward> predicate) {
+        requireNonNull(predicate);
+        filteredWards.setPredicate(predicate);
     }
 
     @Override

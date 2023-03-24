@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
+import seedu.address.model.ward.Ward;
 import seedu.address.testutil.PatientBuilder;
 
 public class AddressBookTest {
@@ -86,6 +87,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
+        private final ObservableList<Ward> wards = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
@@ -94,6 +96,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Patient> getPatientList() {
             return patients;
+        }
+
+        @Override
+        public ObservableList<Ward> getWardList() {
+            return wards;
         }
     }
 
