@@ -14,7 +14,7 @@ public class ImportMeetingsCommand extends Command {
     public static final String COMMAND_WORD = "importm";
     static final String DUPLICATE_MEETING = "Duplicate meeting found";
     static final String SUCCESS = "Meetings imported";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports meetings in JSON format\n" + "Parameters: `-f "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports meetings in JSON format\n" + "Parameters: -f "
             + " to force imports regardless of duplicates";
     private final List<Meeting> meetings;
     private final boolean isForced;
