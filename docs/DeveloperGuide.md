@@ -16,6 +16,8 @@ title: Developer Guide
   - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed Implementation](#proposed-implementation)
     - [Design considerations](#design-considerations)
+  - [Filter feature](#filter-feature)
+    - [Current Implementation](#current-filter-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -277,7 +279,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Filter feature
 
-#### Current Implementation
+#### Current Filter Implementation
 
 The current filter feature is facilitated by `FilterCommand` which extends `Command`. The `FilterCommand`
 has a constructor that requires a non-null `FilterDescriptor`, which is an inner class of `FilterCommand`. 

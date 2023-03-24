@@ -102,6 +102,9 @@ deactivate CommandResult
 
 FilterCommand --> LogicManager : result
 deactivate FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommand -[hidden]-> LogicManager
+destroy FilterCommand
 
 [<--LogicManager
 deactivate LogicManager
