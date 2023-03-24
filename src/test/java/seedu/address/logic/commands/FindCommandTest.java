@@ -264,8 +264,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleVideosFoundByTag() {
-        String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 2);
+    public void execute_multipleKeywords_singleVideoFoundByTag() {
+        String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 1);
         String input = "content, analysis";
         boolean hasByTag = true;
         VideoTagContainsKeywordsPredicate predicate =
@@ -277,7 +277,7 @@ public class FindCommandTest {
             module.getCode(), lecture.getName(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(vid1, vid2), model.getFilteredVideoList());
+        assertEquals(Arrays.asList(vid2), model.getFilteredVideoList());
     }
 
     /**

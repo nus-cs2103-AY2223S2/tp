@@ -21,7 +21,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             },
             {
               "name": "Vid 2",
@@ -37,7 +37,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             },
             {
               "name": "Vid 2",
@@ -53,7 +53,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             },
             {
               "name": "Vid 2",
@@ -69,7 +69,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             },
             {
               "name": "Vid 2",
@@ -85,7 +85,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             },
             {
               "name": "Vid 2",
@@ -130,7 +130,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             }
           ],
           "tagged": ["Probability"]
@@ -141,7 +141,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             }
           ],
           "tagged": ["RandomVariables"]
@@ -152,7 +152,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             }
           ],
           "tagged": ["JointDistributions"]
@@ -163,7 +163,7 @@
             {
               "name": "Vid 1",
               "hasWatched": true,
-              "tagged": ["Content"]
+              "tagged": []
             }
           ],
           "tagged": ["Sampling"]

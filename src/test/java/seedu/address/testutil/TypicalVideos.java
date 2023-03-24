@@ -8,7 +8,7 @@ import seedu.address.model.video.Video;
 public class TypicalVideos {
 
     public static final Video CONTENT_VIDEO = new VideoBuilder().withName("Vid 1")
-            .withHasWatched(true).withTags("Content").build();
+            .withHasWatched(true).build();
     public static final Video ANALYSIS_VIDEO = new VideoBuilder().withName("Vid 2")
             .withHasWatched(true).withTags("Analysis", "MathHeavy").build();
     public static final Video INTRO_VIDEO = new VideoBuilder().withName("Vid 3")
