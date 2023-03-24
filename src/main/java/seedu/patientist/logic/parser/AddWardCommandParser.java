@@ -28,9 +28,8 @@ public class AddWardCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWardCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
 
-        Ward ward = new Ward(name.fullName);
         return new AddWardCommand(ward);
     }
 
