@@ -4,7 +4,6 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -267,6 +266,65 @@ Step 2b. The user uses the `list t/(week/month/year)` command.
 The following sequence diagram shows the order of operations of the ListCommand command:
 
 // Insert sequence diagram of how listcommand works.
+
+### \[Implemented\] Expense Statistics Feature
+FastTrack allows the user to view a summary of their expense statistics for both the current week and month.
+These statistics are displayed on the expense summary screen on the right window of the application and are updated automatically everytime the user adds, edits or deletes an expense from FastTrack.
+
+The following statistics are calculated and displayed to the user. In FastTrack, the user is allowed to set only a monthly budget. A weekly budget is then defined as the value of the monthly budget divided by four (weeks).
+
+1. `Weekly Spending` - Total amount spent for the current week
+2. `Monthly Spending` - Total amount spent for the current month
+3. `Weekly Remaining` - Amount of weekly budget remaining for the current week
+4. `Monthly Remaining` - Amount of monthly budget remaining for the current month
+5. `Weekly % Change` - Percentage increase/decrease of weekly spending relative to the previous week
+6. `Monthly % Change` - Percentage increase/decrease of monthly spending relative to the previous month
+7. `Total Spent` - The total amount the user has spent to-date
+8. `Budget Utilised` - The percentage of monthly budget that the user has utilised this month
+
+#### Implementation Details
+The current implementation of the expense summary feature requires consistent calculations of the user's expense statistics. As such, an `AnalyticModelManager`, which implements the `AnalyticModel` interface is used to keep track of all of these statistics.
+It contains fields which keep track of each individual statistic as mentioned in the above list, as well as specific methods to perform new calculations and updates to each of these fields.
+
+The following Class Diagram describes the structure of the `AnalyticModelManager`.
+
+// class diagram for AnalyticModelManager
+
+`AnalyticModelManager` requires an instance of `ExpenseTracker` to read and obtain the following unmodifiable, `ObservableList` objects containing data from FastTrack:
+1. `allExpenses`: an `ObservableList` of Expense objects representing all expenses in the expense tracker
+2. `allCategories`: an `ObservableList` of Category objects representing all expense categories in the expense tracker
+
+The fields contained within `AnalyticModelManager` are of type `DoubleProperty` which implement the `Observable` interface. This allows the `UI` to establish bindings to each property.
+A binding is a mechanism of JavaFX allows for the establishment of relationships between variables. The `UI` observes each `DoubleProperty` for changes, and then updates the GUI automatically when it detects that the `DoubleProperty` has changed.
+
+Each `DoubleProperty` is updated using the respective calculation method, e.g. `AnalyticModelManager#getWeeklySpent()` for the `weeklySpent` property. A listener listens for changes in the `ObservableList` objects, `allExpenses` and `allCategories`.
+Each time a change is detected, for example, when the user has deleted an expense or changed the amount of an expense, for each expense statistic, its corresponding calculation method is called, causing the corresponding property to be updated. This notifies the `UI` to update and display the new calculated expense statistics on the GUI.
+
+This method of implementation closely follows the _Observer Pattern_, which promotes loose coupling between the `UI` and the `AnalyticModelManager`. Bindings can also be added or removed dynamically, making any changes to the expense summary statistics more flexible and adaptable.
+
+#### Design Considerations
+
+**Aspect: Separation of Analytics and App Data**:
+
+* **Alternative 1 (Current choice):** Create two separate `ModelManager` components, one for managing analytics and another for managing app data.
+    * Pros: As analytics functions are read-only and do not require modifying the internal data of FastTrack, keeping the expense summary statistics in a separate component is ideal as it abides by the _Separation of Concerns_ principle.
+    * Cons: Less convenient to implement as a new class would be created.
+* **Alternative 2 :** Store fields and methods for calculating expense summary statistics inside the existing `ModelManager` component.
+    * Pros: Easier to implement as the class already exists, there is no need to instantiate another `AnalyticModelManager` class.
+      * Cons: Will result in the current `ModelManager` being cluttered due to the presence of many differing getter and setter methods. Violates the _Separation of Concerns_ principle since the process of calculating statistics does not involve modifying the data within FastTrack, i.e. is purely read-only.
+
+**Alternative 1** was chosen as it would be more ideal to abide by the principle of _Separation of Concerns_. Moreover, as many developers were working on features that require direct modification of the `ModelManager` component, separating analytics into another `AnalyticModelManager` eliminates the possibility of merge conflicts.
+
+**Aspect: GUI update when user updates expenses in FastTrack**:
+
+* **Alternative 1:** Call methods to calculate and refresh the summary statistics after every user command.
+    * Pros: More convenient to implement since it is easy to ensure the GUI is always updated whenever the user enters a command
+    * Cons: Inefficient, as this would require tearing down and creating a new instance of each `UI` component in order to display the updated data. Redundant calculations would also need to be performed every single time the user enters a command that does not change the underlying expense data.
+* **Alternative 2 (Current choice):** Use the _Observer Pattern_ to allow `UI` to update whenever the underlying data of FastTrack changes
+    * Pros: More efficient, since no redundant calculations are performed. The `AnalyticModelManager` also does not need a reference to the `UI` component to perform an update, which reduces the coupling between these classes.
+    * Cons: Was more time-consuming to implement, due to the need to learn about mechanisms like bindings and change listeners in JavaFX.
+
+**Alternative 2** was chosen as it was neater to implement and performs statistic calculations only when absolutely necessary, this preventing unnecessary wastage of computational resources.
 
 ### \[Proposed\] Undo/redo feature
 
