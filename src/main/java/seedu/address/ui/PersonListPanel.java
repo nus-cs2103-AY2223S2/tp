@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.*;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -8,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
@@ -44,6 +47,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
+    private ImageView imageView;
+    @FXML
     private FlowPane tags;
 
 
@@ -60,6 +65,7 @@ public class PersonListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Employee> change) {
                 Employee employee = personListView.getSelectionModel().getSelectedItem();
+                System.out.println("abcde");
                 setInformation(employee);
             }
         });
@@ -77,6 +83,28 @@ public class PersonListPanel extends UiPart<Region> {
         address.setText("Address: " + employee.getAddress().value);
         email.setText("Email: " + employee.getEmail().value);
         department.setText("Department: " + employee.getDepartment().value);
+        if (employee.getPicturePath() == null) {
+            Image image = new Image("images/fail.png");
+            imageView.setImage(null);
+            imageView.setImage(image);
+        } else {
+            // shortPath = employee.getPicturePath();
+            //Image image = new Image(shortPath);
+            //imageView.setImage(null);
+            //imageView.setImage(image);
+
+            File img = new File(employee.getPicturePath().toUri());
+            InputStream isImage = null;
+            try {
+                isImage = (InputStream) new FileInputStream(img);
+                imageView.setImage(new Image(isImage));
+                isImage.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -94,6 +122,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(employee, getIndex() + 1).getRoot());
+                setInformation(employee);
             }
         }
     }

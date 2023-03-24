@@ -2,6 +2,7 @@ package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,6 +25,7 @@ public class Employee {
     // Data fields
     private final Address address;
     private final Department department;
+    private Path picturePath;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -38,6 +40,7 @@ public class Employee {
         this.email = email;
         this.address = address;
         this.department = department;
+        this.picturePath = null;
         this.tags.addAll(tags);
     }
 
@@ -63,6 +66,14 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public Path getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(Path path) {
+        this.picturePath = path;
     }
 
     /**
