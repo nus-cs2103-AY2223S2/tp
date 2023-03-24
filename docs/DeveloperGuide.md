@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 1.1 Implementation
 
-The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`. 
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `AddMeetingCommandParser#parse()` is called, which returns an `AddMeetingCommand` object.
 
 - Checks that the command contains `AddMeetingCommand.COMMAND_WORD`
@@ -185,7 +185,6 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 - `RemoveMeetingCommand` - Represents remove meeting command executed by FAid
 
     - Takes in 2 `Index` objects:
-      
       - Index of person to find
       - Index of meeting to find
 
