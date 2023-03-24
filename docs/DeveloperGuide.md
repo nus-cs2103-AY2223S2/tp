@@ -279,13 +279,13 @@ Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exer
 The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
 which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
 
-![DeleteRoutineState1](images/AddExerciseState1.png)
+![AddExerciseState1](images/AddExerciseState1.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddExerciseCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
 
 
 The following sequence diagram shows how the add exercise operation works:
 
-![FindSequenceDiagram](images/AddExerciseSequenceDiagram.png)
+![AddExerciseSequenceDiagram](images/AddExerciseSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddExerciseCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
