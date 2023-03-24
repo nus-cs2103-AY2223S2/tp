@@ -193,6 +193,14 @@ for the specified person. The following sequence diagram illustrates the descrip
 
 ![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
 
+### 3. Region
+
+Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
+When an `Address` object is created, the `Region` class processes the address and allocates a `Regions` Enum to the `Address` object.
+Internally, the `Region` class has a list of all major town names in Singapore, and attempts to match one of them to the actual address string.
+
+![RegionSequenceDiagram](images/RegionSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
