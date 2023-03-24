@@ -20,7 +20,8 @@ public class ImportPersonsCommandTest {
     public void success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
         ImportPersonsCommand command = new ImportPersonsCommand(TypicalPersons.getTypicalPersons(), false);
-        Model expectedModel = new ModelManager(TypicalAddressBooks.getTypicalAddressBookPersonsOnly(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalAddressBooks.getTypicalAddressBookPersonsOnly(),
+                new UserPrefs());
         assertCommandSuccess(command, model, ImportPersonsCommand.SUCCESS, expectedModel);
     }
 
@@ -33,7 +34,8 @@ public class ImportPersonsCommandTest {
                 TypicalPersons.getTypicalPersons().get(1));
         model.deletePerson(TypicalPersons.getTypicalPersons().get(1));
         ImportPersonsCommand command = new ImportPersonsCommand(peopleToImport, true);
-        Model expectedModel = new ModelManager(TypicalAddressBooks.getTypicalAddressBookPersonsOnly(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalAddressBooks.getTypicalAddressBookPersonsOnly(),
+                new UserPrefs());
         expectedModel.deletePerson(TypicalPersons.getTypicalPersons().get(1));
         expectedModel.addPerson(TypicalPersons.getTypicalPersons().get(1));
         assertCommandSuccess(command, model, ImportPersonsCommand.SUCCESS, expectedModel);
