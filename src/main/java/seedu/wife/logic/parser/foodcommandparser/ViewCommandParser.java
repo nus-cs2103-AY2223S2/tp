@@ -13,7 +13,7 @@ import seedu.wife.logic.parser.exceptions.ParseException;
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
 
-    /*
+    /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
      */
     public ViewCommand parse(String args) throws ParseException {
