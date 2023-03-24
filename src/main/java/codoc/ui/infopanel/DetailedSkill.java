@@ -2,14 +2,16 @@ package codoc.ui.infopanel;
 
 import java.util.Comparator;
 
+import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
+import codoc.ui.MainWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-
 
 
 /**
@@ -22,11 +24,16 @@ public class DetailedSkill extends DetailedInfo {
     @FXML
     private ListView<Skill> skillListView;
 
+    private MainWindow mainWindow;
+
+
     /**
      * Creates a {@code DetailedSkill} tab with the given {@code protagonist}.
      */
-    public DetailedSkill(Person protagonist) {
+    public DetailedSkill(MainWindow mainWindow) {
         super(FXML);
+        this.mainWindow = mainWindow;
+        Person protagonist = mainWindow.getLogic().getProtagonist();
         ObservableList<Skill> skills = FXCollections.observableArrayList();
         protagonist.getSkills().stream()
                 .sorted(Comparator.comparing((Skill skill) -> skill.skillName))
@@ -34,6 +41,21 @@ public class DetailedSkill extends DetailedInfo {
         skillListView.setItems(skills);
         skillListView.setCellFactory(listView -> new SkillListViewCell());
         skillListView.setPrefHeight((52 * skills.size()) + 2);
+    }
+
+    @FXML
+    private void viewContactTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view c");
+    }
+
+    @FXML
+    private void viewModulesTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view m");
+    }
+
+    @FXML
+    private void viewSkillsTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view s");
     }
 
     /**

@@ -18,6 +18,7 @@ import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 
 public class JsonAdaptedPersonTest {
+    private static final String INVALID_PROFILE_PICTURE = "Some random txt";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_COURSE = "123123";
     private static final String INVALID_YEAR = "ASDASD";
@@ -26,6 +27,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MODULE = "CS!!0!S";
     private static final String INVALID_SKILL = "Àpython";
+    private static final String VALID_PROFILE_PICTURE = BENSON.getProfilePicture().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_COURSE = BENSON.getCourse().toString();
     private static final String VALID_YEAR = BENSON.getYear().toString();
@@ -49,6 +51,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
+                        VALID_PROFILE_PICTURE,
                         INVALID_NAME, INVALID_COURSE,
                         INVALID_YEAR, VALID_GITHUB,
                         VALID_EMAIL, VALID_LINKEDIN,
@@ -60,6 +63,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_PROFILE_PICTURE,
                 null, VALID_GITHUB,
                 VALID_COURSE, VALID_YEAR,
                 VALID_EMAIL, VALID_LINKEDIN,
@@ -73,6 +77,7 @@ public class JsonAdaptedPersonTest {
         String course = VALID_COURSE;
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
+                        VALID_PROFILE_PICTURE,
                         VALID_NAME,
                         VALID_COURSE, VALID_YEAR,
                         INVALID_GITHUB,
@@ -86,6 +91,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
+                        VALID_PROFILE_PICTURE,
                         VALID_NAME, VALID_GITHUB,
                         VALID_COURSE, VALID_YEAR,
                         INVALID_EMAIL, VALID_LINKEDIN,
@@ -97,6 +103,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_PROFILE_PICTURE,
                 VALID_NAME, VALID_GITHUB,
                 VALID_COURSE, VALID_YEAR,
                 null, VALID_LINKEDIN,
@@ -107,9 +114,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidLinkedin_throwsIllegalValueException() {
-        System.out.println(VALID_COURSE);
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
+                        VALID_PROFILE_PICTURE,
                         VALID_NAME,
                         VALID_COURSE, VALID_YEAR,
                         VALID_GITHUB,
@@ -127,6 +134,7 @@ public class JsonAdaptedPersonTest {
         invalidMods.add(new JsonAdaptedModule(INVALID_MODULE));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
+                        VALID_PROFILE_PICTURE,
                         VALID_NAME, VALID_GITHUB,
                         VALID_COURSE, VALID_YEAR,
                         VALID_EMAIL, VALID_LINKEDIN,

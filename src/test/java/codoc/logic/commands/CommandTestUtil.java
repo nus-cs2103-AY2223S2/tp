@@ -33,6 +33,8 @@ import codoc.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_PROFILE_PICTURE_AMY = "src/main/resources/images/avataricons/001-bear.png";
+    public static final String VALID_PROFILE_PICTURE_BOB = "src/main/resources/images/avataricons/002-rabbit.png";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_COURSE_AMY = "1";
     public static final String VALID_YEAR_AMY = "2";
@@ -45,11 +47,10 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_LINKEDIN_AMY = "linkedin.com/in/4my";
     public static final String VALID_LINKEDIN_BOB = "linkedin.com/in/b0b";
-    public static final String VALID_SKILL_C = "C";
-    public static final String VALID_SKILL_JAVA = "java";
-    public static final String VALID_SKILL_CSHARP = "C#";
-    public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
-
+    public static final String VALID_SKILL_AMY = "java";
+    public static final String VALID_SKILL_BOB = "C#";
+    public static final String VALID_MODULE_AMY = "AY2223S2 CS2103T";
+    public static final String VALID_MODULE_BOB = "AY2223S2 CS2109S";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String COURSE_DESC_AMY = " " + PREFIX_COURSE + VALID_COURSE_AMY;
@@ -62,24 +63,17 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String LINKEDIN_DESC_AMY = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_AMY;
     public static final String LINKEDIN_DESC_BOB = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_BOB;
+    public static final String SKILL_DESC_AMY = " " + PREFIX_SKILL + VALID_SKILL_AMY;
+    public static final String SKILL_DESC_BOB = " " + PREFIX_SKILL + VALID_SKILL_BOB;
+    public static final String SKILL_ADD_DESC_AMY = " " + PREFIX_SKILL_ADD + VALID_SKILL_AMY;
+    public static final String SKILL_ADD_DESC_BOB = " " + PREFIX_SKILL_ADD + VALID_SKILL_BOB;
+    public static final String SKILL_REMOVE_DESC_AMY = " " + PREFIX_SKILL_DELETE + VALID_SKILL_AMY;
+    public static final String SKILL_REMOVE_DESC_BOB = " " + PREFIX_SKILL_DELETE + VALID_SKILL_BOB;
 
-    public static final String SKILL_DESC_CSHARP = " " + PREFIX_SKILL + VALID_SKILL_CSHARP;
-    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
-    public static final String SKILL_ADD_DESC_CSHARP = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
-    public static final String SKILL_ADD_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
-    public static final String SKILL_REMOVE_DESC_C = " " + PREFIX_SKILL_DELETE + VALID_SKILL_C;
-    // public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
-    // public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
-
-    public static final String MOD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD + VALID_MODULE_AY2223S2_CS2103T;
-    public static final String MOD_ADD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_ADD + VALID_MODULE_AY2223S2_CS2103T;
-    public static final String MOD_REMOVE_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_DELETE
-            + VALID_MODULE_AY2223S2_CS2103T;
-    // public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
-    // public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
-
-
-
+    public static final String MOD_DESC_AMY = " " + PREFIX_MOD + VALID_MODULE_AMY;
+    public static final String MOD_DESC_BOB = " " + PREFIX_MOD + VALID_MODULE_BOB;
+    public static final String MOD_ADD_DESC_BOB = " " + PREFIX_MOD_ADD + VALID_MODULE_BOB;
+    public static final String MOD_REMOVE_DESC_BOB = " " + PREFIX_MOD_DELETE + VALID_MODULE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "-bob"; // GitHub usernames cannot start
     // with '-'
@@ -107,10 +101,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP).build();
+                .withSkills(VALID_SKILL_BOB).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB).withLinkedin(VALID_LINKEDIN_BOB)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CSHARP).build();
+                .withSkills(VALID_SKILL_AMY, VALID_SKILL_BOB).build();
     }
 
     /**
@@ -140,8 +134,8 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br> - a {@code CommandException} is thrown <br> - the
-     * CommandException message matches {@code expectedMessage} <br> - CoDoc, filtered person list and
-     * selected person in {@code actualModel} remain unchanged
+     * CommandException message matches {@code expectedMessage} <br> - CoDoc, filtered person list and selected person
+     * in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can

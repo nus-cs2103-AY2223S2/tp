@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <HBox alignment="CENTER_LEFT" minHeight="40.0" onMouseClicked="#viewPerson" spacing="5.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+             <Label fx:id="id" maxWidth="-Infinity" prefWidth="30.0" styleClass="cell_big_label" text="\$id">
+                 <minWidth>
+                     <!-- Ensures that the label text is never truncated -->
+                     <Region fx:constant="USE_PREF_SIZE" />
+                 </minWidth>
+            <HBox.margin>
+               <Insets left="5.0" />
+            </HBox.margin>
+             </Label>
+            <ImageView fx:id="profilePicture" fitHeight="50.0" fitWidth="50.0">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin></ImageView>
+            <VBox alignment="CENTER_LEFT" spacing="3.0">
+                <Label fx:id="name" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="cell_big_label" text="\$name" />
+               <Label fx:id="course" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="cell_small_label" text="\$course">
+                   <VBox.margin>
+                       <Insets />
+                   </VBox.margin>
+               </Label>
+            </VBox>
+             <Label fx:id="year" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" styleClass="cell_small_label" text="\$year" />
+             <Label fx:id="email" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" styleClass="cell_small_label" text="\$email">
+                 <HBox.margin>
+                     <Insets left="20.0" />
+                 </HBox.margin>
+             </Label>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </HBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

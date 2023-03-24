@@ -17,6 +17,7 @@ import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.ProfilePicture;
 import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String profilePicturePath;
     private final String name;
     private final String course;
     private final String year;
@@ -43,6 +45,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(
+            @JsonProperty("profilePicturePath") String profilePicturePath,
             @JsonProperty("name") String name,
             @JsonProperty("course") String course,
             @JsonProperty("year") String year,
@@ -52,6 +55,7 @@ class JsonAdaptedPerson {
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
             @JsonProperty("modules") List<JsonAdaptedModule> modules
     ) {
+        this.profilePicturePath = profilePicturePath;
         this.name = name;
         this.course = course;
         this.year = year;
@@ -70,6 +74,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        profilePicturePath = source.getProfilePicture().profilePicturePath;
         name = source.getName().fullName;
         course = source.getCourse().course;
         year = source.getYear().year;
@@ -98,6 +103,12 @@ class JsonAdaptedPerson {
         for (JsonAdaptedModule module : modules) {
             personModules.add(module.toModelType());
         }
+        if (profilePicturePath == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProfilePicture.class.getSimpleName()));
+        }
+        final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicturePath);
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -137,6 +148,7 @@ class JsonAdaptedPerson {
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
         final Set<Module> modelModules = new HashSet<>(personModules);
         return new Person(
+                modelProfilePicture,
                 modelName,
                 modelCourse,
                 modelYear,

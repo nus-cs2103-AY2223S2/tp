@@ -47,7 +47,7 @@ public class CodocTest {
         // Two persons with the same identity fields
         Person editedAlice =
                 new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
-                        CommandTestUtil.VALID_SKILL_JAVA)
+                        CommandTestUtil.VALID_SKILL_AMY)
                         .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         CodocStub newData = new CodocStub(newPersons);
@@ -76,7 +76,7 @@ public class CodocTest {
         codoc.addPerson(ALICE);
         Person editedAlice =
                 new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
-                        CommandTestUtil.VALID_SKILL_JAVA)
+                        CommandTestUtil.VALID_SKILL_AMY)
                         .build();
         assertTrue(codoc.hasPerson(editedAlice));
     }

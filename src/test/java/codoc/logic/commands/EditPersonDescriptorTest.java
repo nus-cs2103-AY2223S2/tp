@@ -6,7 +6,7 @@ import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_AMY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -52,7 +52,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different skills -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSkills(VALID_SKILL_JAVA).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSkills(VALID_SKILL_AMY).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

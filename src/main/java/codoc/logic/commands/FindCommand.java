@@ -10,7 +10,7 @@ import codoc.model.person.Person;
 
 /**
  * Finds and lists all persons in CoDoc whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case- * insensitive.
  */
 public class FindCommand extends Command {
 

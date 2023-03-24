@@ -4,7 +4,7 @@ import static codoc.logic.commands.CommandTestUtil.DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.DESC_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_AMY;
 import static codoc.logic.commands.CommandTestUtil.assertCommandFailure;
 import static codoc.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static codoc.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -49,10 +49,10 @@ public class EditCommandTest {
         Person lastPerson = model.getProtagonist();
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withGithub(VALID_GITHUB_BOB)
-                .withSkills(VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_AMY).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withGithub(VALID_GITHUB_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withGithub(VALID_GITHUB_BOB).withSkills(VALID_SKILL_AMY).build();
         EditCommand editCommand = new EditCommand(descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -64,8 +64,8 @@ public class EditCommandTest {
     }
 
     /**
-     * If the EditPersonDescriptor has only null fields, edit command should not change anything in the data
-     * and should throw a duplicate person error.
+     * If the EditPersonDescriptor has only null fields, edit command should not change anything in the data and should
+     * throw a duplicate person error.
      */
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
@@ -79,7 +79,8 @@ public class EditCommandTest {
 
         Person personInFilteredList = model.getProtagonist();
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        EditCommand editCommand = new EditCommand(new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -97,7 +98,6 @@ public class EditCommandTest {
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
-
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
 

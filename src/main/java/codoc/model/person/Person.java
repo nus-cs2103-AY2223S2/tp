@@ -12,12 +12,12 @@ import codoc.model.module.Module;
 import codoc.model.skill.Skill;
 
 /**
- * Represents a Person in CoDoc.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Person in CoDoc. Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
+    private final ProfilePicture profilePicture;
     private final Name name;
     private final Github github;
     private final Email email;
@@ -34,6 +34,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(
+            ProfilePicture profilePicture,
             Name name,
             Course course,
             Year year,
@@ -43,7 +44,8 @@ public class Person {
             Set<Skill> skills,
             Set<Module> modules
     ) {
-        requireAllNonNull(name, github, email, linkedin, skills, modules, course, year);
+        requireAllNonNull(profilePicture, name, github, email, linkedin, skills, modules, course, year);
+        this.profilePicture = profilePicture;
         this.name = name;
         this.github = github;
         this.email = email;
@@ -52,6 +54,10 @@ public class Person {
         this.year = year;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
+    }
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
     public Name getName() {
@@ -65,6 +71,7 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
     public Course getCourse() {
         return course;
     }
@@ -72,28 +79,28 @@ public class Person {
     public Year getYear() {
         return year;
     }
+
     public Linkedin getLinkedin() {
         return linkedin;
     }
 
     /**
-     * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable skill set, which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
+
     /**
-     * Returns an immutable Module List, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable Module List, which throws {@code UnsupportedOperationException} if modification is
+     * attempted.
      */
     public Set<Module> getModules() {
         return Collections.unmodifiableSet(modules);
     }
 
     /**
-     * Returns true if both persons have the same email.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same email. This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -105,8 +112,8 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
+     * between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -148,7 +155,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Linkedin: ")
-                .append(getLinkedin());
+                .append(getLinkedin())
+                .append("; Profile picture path: ")
+                .append(getProfilePicture());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {

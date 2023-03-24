@@ -1,8 +1,12 @@
 package codoc.ui;
 
+import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -11,7 +15,7 @@ import javafx.scene.layout.Region;
  */
 public class PersonCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PersonCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -30,23 +34,39 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private ImageView profilePicture;
+    @FXML
     private Label course;
     @FXML
     private Label year;
     @FXML
     private Label email;
 
+    private MainWindow mainWindow;
+
+    private int displayedIndex;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(MainWindow mainWindow, Person person, int displayedIndex) {
         super(FXML);
+        this.mainWindow = mainWindow;
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        this.displayedIndex = displayedIndex;
+        id.setText(displayedIndex + "");
+        String profilePicturePath = person.getProfilePicture().profilePicturePath;
+        Image image = new Image("file:" + profilePicturePath);
+        profilePicture.setImage(image);
         name.setText(person.getName().fullName);
         year.setText("Year " + person.getYear().year);
         course.setText(person.getCourse().course);
         email.setText(person.getEmail().value);
+    }
+
+    @FXML
+    private void viewPerson() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view " + displayedIndex);
     }
 
     @Override
