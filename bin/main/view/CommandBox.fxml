@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="29.0" prefWidth="600.0" promptText="Enter command here..." stylesheets="@DarkTheme.css">
+<StackPane minHeight="-Infinity" prefHeight="25.0" styleClass="stack-pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="25.0" prefWidth="600.0" promptText="Enter command here..." stylesheets="@DarkTheme.css">
       <font>
          <Font name="Courier New" size="16.0" />
       </font>

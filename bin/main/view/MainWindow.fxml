@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root alwaysOnTop="true" minHeight="300.0" minWidth="480.0" onCloseRequest="#handleExit" title="WIFE" type="javafx.stage.Stage" width="680.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alwaysOnTop="true" maxHeight="900.0" maxWidth="1200.0" minHeight="650.0" minWidth="700.0" onCloseRequest="#handleExit" title="WIFE" type="javafx.stage.Stage" width="680.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -33,43 +33,39 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" minWidth="680.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" minWidth="680.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-              <VBox fx:id="foodList" minWidth="340" prefWidth="340.0" styleClass="pane-with-border">
+              <VBox fx:id="foodList" minWidth="400.0" prefWidth="400.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-              <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" minWidth="280.0" prefWidth="280.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
                <children>
-                <StackPane fx:id="commandBoxPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" styleClass="pane-with-border">
+                <StackPane fx:id="commandBoxPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="550.0" prefHeight="33.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                   <padding>
-                    <Insets bottom="5" left="10" right="10" top="5" />
+                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                   </padding>
                 </StackPane>
 
-                <Button fx:id="addFoodButton" alignment="TOP_RIGHT" mnemonicParsing="false" stylesheets="@DarkTheme.css" text="Enter" />
+                <Button fx:id="addFoodButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" styleClass="enterButton" stylesheets="@DarkTheme.css" text="Enter" HBox.hgrow="ALWAYS" />
 
                </children>
-            </HBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-            <VBox fx:id="foodList1" alignment="BOTTOM_CENTER" minWidth="340" prefHeight="0.0" prefWidth="682.0" styleClass="pane-with-border">
                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                </padding>
-               <children>
-                  <StackPane fx:id="foodListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
+            </HBox>
       </VBox>
     </Scene>
   </scene>
