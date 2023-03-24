@@ -11,6 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -94,6 +98,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatientByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasPersonByNric(nric);
+    }
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return addressBook.hasDoctor(doctor);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -101,6 +123,18 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addPatient(Patient patient) {
+        addressBook.addPatient(patient);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addDoctor(Doctor doctor) {
+        addressBook.addDoctor(doctor);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -145,6 +179,18 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void bookAppointment(Appointment appointment) {
+        addressBook.bookAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
 }

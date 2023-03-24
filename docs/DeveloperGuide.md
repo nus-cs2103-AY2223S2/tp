@@ -154,6 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a Person
+
+The add mechanism is facilitated by `MediConnect`. 
+
+It allows the user to add new a person (Patient/Doctor) to the `list` using `addPatient` or `addDoctor`
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application. The list of existing patients and doctors is shown.
+
+Step 2. The user inputs the appropriate command (either addPatient or addDoctor), followed by the required input fields as shown below: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician`
+
+Step 3. The `addDoctor` command will check whether all the required fields are correct and if the person does not already exist in the doctors' list.
+
+Step 4. call Model...
+
+Step 5. create new Doctor object and add to list...
+
+### Deleting a Person
+
+The delete mechanism is facilitated by `MediConnect`. The deleted Person is removed from the `list`,
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K`  in the MediConnect. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+Step 3. The user 
+
+Step 4.
+
+Step 5.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

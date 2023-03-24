@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -72,4 +74,18 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
+
+    //@@author chatGPT-reused
+    // Reused from chatGPT
+    // with minor modifications
+    @Test
+    public void testToString() {
+        List<String> keywords = Arrays.asList("Alice", "John", "Nick");
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
+        String expectedString = keywords.toString();
+        String actualString = predicate.toString();
+        assertEquals(expectedString, actualString);
+    }
+
+
 }
