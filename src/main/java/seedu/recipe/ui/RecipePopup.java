@@ -2,9 +2,9 @@ package seedu.recipe.ui;
 
 import java.util.Comparator;
 import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
@@ -13,7 +13,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import seedu.recipe.model.recipe.Recipe;
 
 /**

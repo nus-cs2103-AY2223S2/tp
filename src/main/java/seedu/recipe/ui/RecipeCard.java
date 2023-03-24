@@ -9,12 +9,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
 /**
- * An UI component that displays information of a {@code Recipe}.
+ * A UI component that displays information of a {@code Recipe}.
  */
 public class RecipeCard extends UiPart<Region> {
 
@@ -62,8 +61,7 @@ public class RecipeCard extends UiPart<Region> {
     private FlowPane steps;
 
     /**
-     * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
-     * 
+     * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
      * @param recipe the {@code Recipe} to display
      * @param displayedIndex the index of the {@code Recipe} in the list
      */
@@ -75,14 +73,14 @@ public class RecipeCard extends UiPart<Region> {
         name.setText(recipe.getName().recipeName);
 
         //Duration
-        duration.setText("Duration: " +
-                Optional.ofNullable(recipe.getDurationNullable())
+        duration.setText("Duration: "
+                + Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
                         .orElse("Duration was not added."));
 
         //Portion
-        portion.setText("Portion: " +
-                Optional.ofNullable(recipe.getPortionNullable())
+        portion.setText("Portion: "
+                + Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
                         .orElse("Portion was not added."));
 
@@ -118,9 +116,9 @@ public class RecipeCard extends UiPart<Region> {
         cardPane.setOnKeyPressed(event -> {
             cardPane.requestFocus();
             KeyCode input = event.getCode();
-            if (input == KeyCode.DELETE ||
-                input == KeyCode.D ||
-                input == KeyCode.BACK_SPACE) {
+            if (input == KeyCode.DELETE
+                    || input == KeyCode.D
+                    || input == KeyCode.BACK_SPACE) {
                 DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
                 cardPane.fireEvent(deleteEvent);
             } else if (event.getCode() == KeyCode.P) {

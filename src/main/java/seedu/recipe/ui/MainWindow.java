@@ -21,7 +21,11 @@ import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
-
+/**
+ * Represents the main window of the application. This class is responsible for
+ * initializing and configuring the UI components and managing the primary stage.
+ * It also contains methods for handling UI events, such as deleting or editing recipes.
+ */
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
@@ -217,7 +221,6 @@ public class MainWindow extends UiPart<Stage> {
     void show() {
         primaryStage.show();
     }
-
     /**
      * Closes the application.
      */
