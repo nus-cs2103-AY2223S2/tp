@@ -73,7 +73,7 @@ public class UniquePersonList implements Iterable<Person> {
      *
      */
     public int size() {
-        return 1;//internalList.size();
+        return internalList.size();
     }
 
     /**

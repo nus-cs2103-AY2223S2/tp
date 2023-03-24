@@ -113,7 +113,8 @@ public class ModelManager implements Model {
 
     @Override
     public int size() {
-        return 1;//addressBook.size();
+        System.out.println(addressBook.size());
+        return addressBook.size();
     }
 
     //=========== Filtered Person List Accessors =============================================================

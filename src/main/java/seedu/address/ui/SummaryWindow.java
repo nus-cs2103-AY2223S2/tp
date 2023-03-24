@@ -25,6 +25,8 @@ public class SummaryWindow extends UiPart<Stage> {
     @FXML
     private Label tagMessage;
 
+    private static int SIZE;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -32,8 +34,13 @@ public class SummaryWindow extends UiPart<Stage> {
      */
     public SummaryWindow(Stage root) {
         super(FXML, root);
-        countMessage.setText(COUNT_MESSAGE + SummaryCommand.SIZE);
-        tagMessage.setText(TAG_MESSAGE + SummaryCommand.SIZE);
+        countMessage.setText(COUNT_MESSAGE + String.valueOf(SummaryWindow.SIZE));
+        tagMessage.setText(TAG_MESSAGE + String.valueOf(SummaryWindow.SIZE));
+    }
+
+    public static void setSize(int size) {
+        System.out.println(size);
+        SummaryWindow.SIZE = size;
     }
 
     /**
@@ -63,6 +70,8 @@ public class SummaryWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing summary page of the application.");
+        countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
+        tagMessage.setText(TAG_MESSAGE + SummaryWindow.SIZE);
         getRoot().show();
         getRoot().centerOnScreen();
     }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.ui.SummaryWindow;
 
 /**
  * Format full summary view for display.
@@ -17,7 +18,8 @@ public class SummaryCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        this.SIZE = model.size();
+        this.SIZE = model.getAddressBook().size();
+        SummaryWindow.setSize(this.SIZE);
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
     }
 }

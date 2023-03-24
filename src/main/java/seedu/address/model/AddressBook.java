@@ -98,7 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      */
     public int size() {
-        return 1;//persons.size();
+        return persons.size();
     }
 
     //// util methods
