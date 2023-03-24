@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `FitBookModel` when it is executed (e.g. to add a client).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `FitBookModel` when it is executed (e.g. to add a client).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -153,6 +153,49 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit appointments feature
+#### Implementation
+The edit appointments feature allows users to view appointments in the upcoming dates.
+
+This feature is implemented using a panel on the main window with a list of clients names 
+that is updated with every command that may affect appointment set.
+
+One situation that trigger the edit appointments feature is when a suer edits an appointment.
+The following details explain how it works:
+
+   *  What it does:
+      * When an appointment is edited in the clients list, it is automatically added to the
+      list of appointments.
+      * The list is automatically sorted in increasing order of the appointment data time.
+      
+
+   * Details:
+      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment* 
+      class.
+      * In the *EditCommand* class, the data entered by user is parsed.
+      * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
+      * This function, in turn, calls editCommand() function in FitBook.
+      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the 
+      appointment date time are valid.
+      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted. 
+      Otherwise, an error message is returned.
+
+
+   * Example Usage Scenario
+
+     Below is an example usage scenario of how the appointment list mechanism behaves at each step:
+       * The user launches the application for the first time.
+       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also 
+       checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
+
+
+  * Design Considerations
+
+    One important design consideration is how to handle expired appointment dates and times. The current choice is to 
+    automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
+      * pros: Users can easily distinguish between expired and non-expired appointment dates and times. 
+      * cons: expired date time cannot be updated immediately unless the user reopen the application.
 
 ### Find feature
 
@@ -761,7 +804,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. FitBook shows an error for incorrect format.
 
       Use case ends.
-    
+
 *{More to be added}
 
 ---
@@ -803,54 +846,54 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   A. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   B. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   A. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a client
 
 1. Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+   A. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
+   B. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   C. Test case: `delete 0`<br>
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   D. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Deleting an exercise
 1. Deleting an exercise while all routines are being shown
 
-    1. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
 
-    1. Test case: `deleteExercise 1 2`<br>
+   B. Test case: `deleteExercise 1 2`<br>
        Expected: Second exercise from the first routine is deleted from the list. Details of the deleted exercise shown in the status message.
 
-    1. Test case: `deleteExercise 0 0`<br>
+   C. Test case: `deleteExercise 0 0`<br>
        Expected: No exercise is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
+   D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
    
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   A. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
