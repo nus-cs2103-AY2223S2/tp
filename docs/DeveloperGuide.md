@@ -154,6 +154,53 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 1. Add Meeting Feature
+
+#### 1.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`AddMeetingCommandParser#parse()` is called, which returns an `AddMeetingCommand` object.
+
+- Checks that the command contains `AddMeetingCommand.COMMAND_WORD`
+- `AddMeetingCommand` - Represents add meeting command executed by FAid
+
+  - Takes in an `Index` object to assign a meeting to a person at the specified index.
+  - Takes in a `Meeting` object to assign to the specified person.
+  - `AddMeetingCommand#execute()` ensures that the index specified is valid and does not add meeting if it clashes with existing meetings scheduled
+  for the day specified
+
+After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
+The following sequence diagram illustrates the description for adding meeting:
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
+
+### 2. Remove Meeting Feature
+
+#### 2.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`RemoveMeetingCommandParser#parse()` is called, which returns an `RemoveMeetingCommand` object.
+
+- Checks that the command contains `RemoveMeetingCommand.COMMAND_WORD`
+- `RemoveMeetingCommand` - Represents remove meeting command executed by FAid
+
+    - Takes in 2 `Index` objects:
+      - Index of person to find
+      - Index of meeting to find
+
+After being parsed, the `RemoveMeetingCommand#execute()` method is called, remove a meeting at the specified index
+for the specified person. The following sequence diagram illustrates the description for removing meeting:
+
+![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
+
+### 3. Region
+
+Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
+When an `Address` object is created, the `Region` class processes the address and allocates a `Regions` Enum to the `Address` object.
+Internally, the `Region` class has a list of all major town names in Singapore, and attempts to match one of them to the actual address string.
+
+![RegionSequenceDiagram](images/RegionSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -237,29 +284,25 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
 ### Update Meeting Feature
 
-The update meeting feature is handled by the following classes:
-* `UpdateMeetingCommandParser` - Checks that the command is in the right format, then
-parses the input to extract PersonID, MeetingID and updated Meeting details.
-  * After doing so, an `editMeetingDescriptor` object is created. The `editMeetingDescriptor` object
-  stores the details to edit the Meeting's description, start or end with.
-  * Thereafter, `UpdateMeetingCommandParser#parse()` is called and returns an
-  `UpdateMeetingCommand` object with the extracted PersonID, MeetingID and `editMeetingDescriptor`
-* `UpdateMeetingCommand` - The update Meeting command that will be executed by FAid
-  * The `UpdateMeetingCommand` extends the `Command` interface and implements the `Command#execute()`  
-  method.
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
 
-Just like other commands, the `Command#execute()` method of `UpdateMeetingCommand` is handled by
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
 `Logic` component. Please refer to the 'Logic component' under 'Design' for more
 information on how the `Logic` component handles a command.
 
-The parsing and execution of updateMeeting command can be shown with the following
+The parsing and execution of FindMeeting command can be shown with the following
 sequence diagram:
 
-![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
-
-
+![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

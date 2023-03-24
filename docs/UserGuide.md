@@ -145,37 +145,37 @@ Examples:
 
 
 
-### Add meeting : `meeting add`
+### Add meeting : `meetingAdd`
 
 Add a meeting to the address book
 
-Format: `meeting add DATE START END PERSON_INDEX`
+Format: `meetingAdd PERSON_INDEX DATE START END`
 
 Required Information:
-* Date (dd/mm/yyyy)
+* Date (dd-mm-yyyy)
 * Start and end time in 24HR format (HH:mm)
 * Index of a person in address book
 
 Examples:
-* `meeting add 2/12/2023 1240 2359 3` adds a meeting on 2nd December 2023 from 12.40pm to 11.59pm, with John (index 3)
+* `meetingAdd 3 02-12-2023 1240 2359` adds a meeting on 2nd December 2023 from 12.40pm to 11.59pm, with John (index 3)
 
 Notes:
 * Meeting must not conflict in timing with a previous meeting
 * Index must be a positive integer (1,2,3,...)
 
-### Remove meeting : `meeting delete`
+### Remove meeting : `meetingRemove`
 
 Removes meeting from the address book
 
-Format: `meeting delete PERSON_INDEX MEETING_INDEX`
+Format: `meetingRemove PERSON_INDEX MEETING_INDEX`
 
 Required Information:
 * Index of a person already in address book
 * Meeting ID
 
 Examples:
-* `meeting delete 3 2` Deletes a meeting with index 2 from a person with index 3
-* `meeting delete 20 6` Deletes a meeting with index 6 from a person with index 20
+* `meetingRemove 3 2` Deletes a meeting with index 2 from a person with index 3
+* `meetingRemove 20 6` Deletes a meeting with index 6 from a person with index 20
 
 ### Updating a meeting : `meetingUpdate`
 
@@ -196,9 +196,6 @@ Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
 ### Find meeting : `meeting find`
 
 Gets meetings from the address book
