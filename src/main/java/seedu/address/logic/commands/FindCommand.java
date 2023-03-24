@@ -101,6 +101,33 @@ public class FindCommand extends Command {
         return filterByModuleList(model);
     }
 
+    private CommandResult filterByVideoList(Model model) {
+        Predicate<Video> videoPredicate = hasByTag
+            ? new VideoTagContainsKeywordsPredicate(keywords)
+            : new VideoNameContainsKeywordsPredicate(keywords);
+        model.updateFilteredVideoList(videoPredicate, model.getLecture(moduleCode, lectureName));
+        return new CommandResult(
+            String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, model.getFilteredVideoList().size()));
+    }
+
+    private CommandResult filterByLectureList(Model model) {
+        Predicate<ReadOnlyLecture> lecturePredicate = hasByTag
+            ? new LectureTagContainsKeywordsPredicate(keywords)
+            : new LectureNameContainsKeywordsPredicate(keywords);
+        model.updateFilteredLectureList(lecturePredicate, model.getModule(moduleCode));
+        return new CommandResult(
+            String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, model.getFilteredLectureList().size()));
+    }
+
+    private CommandResult filterByModuleList(Model model) {
+        Predicate<ReadOnlyModule> modulePredicate = hasByTag
+            ? new ModuleTagContainsKeywordsPredicate(keywords)
+            : new ModuleCodeContainsKeywordsPredicate(keywords);
+        model.updateFilteredModuleList(modulePredicate);
+        return new CommandResult(
+            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -113,32 +140,4 @@ public class FindCommand extends Command {
         }
         return false;
     }
-
-    private CommandResult filterByVideoList(Model model) {
-        Predicate<Video> videoPredicate = hasByTag
-            ? new VideoNameContainsKeywordsPredicate(keywords)
-            : new VideoTagContainsKeywordsPredicate(keywords);
-        model.updateFilteredVideoList(videoPredicate, model.getLecture(moduleCode, lectureName));
-        return new CommandResult(
-            String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, model.getFilteredVideoList().size()));
-    }
-
-    private CommandResult filterByLectureList(Model model) {
-        Predicate<ReadOnlyLecture> lecturePredicate = hasByTag
-            ? new LectureNameContainsKeywordsPredicate(keywords)
-            : new LectureTagContainsKeywordsPredicate(keywords);
-        model.updateFilteredLectureList(lecturePredicate, model.getModule(moduleCode));
-        return new CommandResult(
-            String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, model.getFilteredLectureList().size()));
-    }
-
-    private CommandResult filterByModuleList(Model model) {
-        Predicate<ReadOnlyModule> modulePredicate = hasByTag
-            ? new ModuleCodeContainsKeywordsPredicate(keywords)
-            : new ModuleTagContainsKeywordsPredicate(keywords);
-        model.updateFilteredModuleList(modulePredicate);
-        return new CommandResult(
-            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
-    }
-
 }

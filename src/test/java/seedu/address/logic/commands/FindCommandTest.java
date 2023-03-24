@@ -267,16 +267,16 @@ public class FindCommandTest {
         List<String> keywords = Arrays.asList(userInput.split("\\s+"));
         if (level == Level.MODULE) {
             return hasByTag
-                ? new ModuleCodeContainsKeywordsPredicate(keywords)
-                : new ModuleTagContainsKeywordsPredicate(keywords);
+                ? new ModuleTagContainsKeywordsPredicate(keywords)
+                : new ModuleCodeContainsKeywordsPredicate(keywords);
         }
         if (level == Level.LECTURE) {
             return hasByTag
-                ? new LectureNameContainsKeywordsPredicate(keywords)
-                : new LectureTagContainsKeywordsPredicate(keywords);
+                ? new LectureTagContainsKeywordsPredicate(keywords)
+                : new LectureNameContainsKeywordsPredicate(keywords);
         }
         return hasByTag
-            ? new VideoNameContainsKeywordsPredicate(keywords)
-            : new VideoTagContainsKeywordsPredicate(keywords);
+            ? new VideoTagContainsKeywordsPredicate(keywords)
+            : new VideoNameContainsKeywordsPredicate(keywords);
     }
 }
