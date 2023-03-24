@@ -3,6 +3,7 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -42,6 +43,8 @@ public class ModelManager implements Model {
 
     private final VmsParser vmsParser;
 
+    private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
+
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
@@ -61,6 +64,7 @@ public class ModelManager implements Model {
         filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
 
         this.vaxTypeManager = vaxTypeManager;
+        filteredVaxTypeMap = new FilteredMapView<>(this.vaxTypeManager.asUnmodifiableObservableMap());
 
         this.userPrefs = new UserPrefs(userPrefs);
 
@@ -253,7 +257,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
-        return vaxTypeManager.asUnmodifiableObservableMap();
+        return filteredVaxTypeMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
+        filteredVaxTypeMap.setFilters(filters);
     }
 
     @Override

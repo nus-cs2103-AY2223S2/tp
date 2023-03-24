@@ -44,15 +44,14 @@ public abstract class FeatureParser {
 
     private Optional<CommandMessage> formParseMessage(ArgumentMultimap args) {
         List<Map.Entry<Prefix, List<String>>> unusedArgs = args.getUnusedArgs();
-        if (unusedArgs.isEmpty()) {
-            return Optional.empty();
-        }
 
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<Prefix, List<String>> entry : unusedArgs) {
             Prefix prefix = entry.getKey();
-            System.out.println(prefix);
             for (String arg : entry.getValue()) {
+                if (prefix.equals(new Prefix("")) && arg.isBlank()) {
+                    continue;
+                }
                 builder.append(String.format("\n%s%s %s",
                         CliSyntax.DELIMITER,
                         prefix.toString(),
@@ -60,7 +59,11 @@ public abstract class FeatureParser {
             }
         }
 
-        String message = String.format("The following arguments are unused:%s", builder.toString());
+        String messageContent = builder.toString();
+        if (messageContent.isBlank()) {
+            return Optional.empty();
+        }
+        String message = String.format("The following arguments are unused:%s", messageContent);
         return Optional.ofNullable(new CommandMessage(message, CommandMessage.State.WARNING));
     }
 

@@ -35,6 +35,8 @@ public class Keyword {
      *      {@code false} otherwise.
      */
     public static boolean isValidMainKeyword(String word) {
+        assert word != null;
+
         switch (word) {
         case (MAIN_PATIENT_STRING):
             return true;
