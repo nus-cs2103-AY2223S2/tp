@@ -463,9 +463,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with 3 components: A calendar of the month of present time, 
-      an input bar for user commands, a container showing the next upcoming event. The window size may not be 
-      optimum.
+   1. Double-click the jar file Expected: Shows the GUI with 3 components (The window size may not be
+      optimum):
+      1. A calendar of the month of present time 
+      2. An input bar for user commands
+      3. A container showing the next upcoming event.
 
 2. Saving window preferences
 
