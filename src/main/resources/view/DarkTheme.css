@@ -124,7 +124,6 @@
 .list-cell {
     -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
-    -fx-font-weight: 10;
 }
 
 .list-cell:filled:even {
