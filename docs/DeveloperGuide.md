@@ -107,18 +107,91 @@ related commands only.
 
 Description coming soon
 
-### Linking XYZ to a flight (seq. diagram focused on Model layer) - Xiuxuan
+### Linking XYZ to a flight (seq. diagram focussed on Model layer) 
+
+**Rationale**
+
+The rationale behind creating a `Link` class is that only such affords us 
+the ability to describe a relationship between two objects in away that's safe. 
+
+**How is this feature implemented?**
+
+This linking feature is implemented in a similar way to the unlinking 
+feature for crews, locations, pilots, and planes to flights.
+
+Hence, in this description the general term XYZ is used instead.
+
+This feature is enabled by the following classes in particular:
+
+- `LinkXYZCommand` - The command that links a crew to a flight
+- `LinkXYZCommandFactory` - The factory class that creates an {@code 
+  LinkCrewCommand}
+- `Link` - The class defining a link to a target
+- `Flight` - The class defining a flight object in Wingman
+
+- When a user enters the command:
+
+```
+link /XYZprefix {XYZ identifier} /fl {flight identifier}
+```
+
+this command is passed from the UI layer to the logic layer similar to the 
+way described above, in the 'Unlinking XYZ' section.
+
+At the logic layer, while the sequence of method calls is similar to what is 
+described in the 'Adding XYZ' section, the `LinkXYZCommand.execute(model)`
+method is called instead of the `UnlinkXYZCommand.execute(model)` method.
+
+This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue
+())` method where entry refers to one key-value pairing in a mapping of 
+`FlightXYZType` keys to `XYZ` values. At this point, the process is at the 
+model layer and continues with method calls similar to the ones described in 
+the 'Unlinking XYZ from a flight' section until the control is passed back 
+to the logic layer.
+
+Subsequently, the control is passed to the storage layer through the 
+`logicManager.save()` method.
+This method calls `storage.saveXYZManager(model.getXYZManager())` and
+`storage.saveFlightManager(model.getFlightManager())`;, to save the updated 
+flight and XYZ objects in storage. Since
+these 2 method calls work in the same way, we shall focus on just the latter,
+to be succinct.
+
+After `model.getFlightManager()` returns the model, the saveFlightManager 
+method calls the `saveFlightManager(flightManager, flightStorage.getPath())`
+method in the same class. flightStorage is an ItemStorage<Flight> object 
+and flightManager is an `ReadOnlyItemManager<Flight>` object.  This method 
+ call uses the imported json package to store `JsonIdentifiableObject`
+versions of the flightManager  which in turn contains the `JsonAdaptedFlights`,
+including the flight with the updated link represented as a
+`Map<FlightXYZType, Deque<String>>` object.
+
+**Why this way?**
+
+In this way, we are able to make the link feature work in a very similar way 
+to the unlink feature, simply swapping
+some methods to perform the opposite operation (particularly the execute 
+function of the LinkXYZCommand class).
+
+**Alternatives that were considered:**
+
+One alternative implementation that was considered was to set the link as an 
+attribute in the flight class and update
+it directly with every change. However, this approach had a few limitations 
+as discussed in the previous section.
 
 ### Unlinking XYZ from a flight
 
 **How is this feature implemented?**
 
-This unlinking feature is implemented in the same way for unlinking crews, locations, pilots and planes from flights.
+This unlinking feature is implemented in the same way for unlinking crews, 
+locations, pilots and planes from flights.
 Hence, in this description the general term XYZ is used instead.
 
 This feature is enabled by the following classes in particular:
 - `UnlinkXYZCommand` - The command that unlinks a crew from a flight
-- `UnlinkXYZCommandFactory` - The factory class that creates an {@code UnlinkCrewCommand}
+- `UnlinkXYZCommandFactory` - The factory class that creates an {@code 
+  UnlinkCrewCommand}
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
@@ -191,7 +264,7 @@ we can keep the information displayed organised and clear to the user.
 * Alternative 2: Has one display window for items and a separate display window for flights
     * Pros: More organised and visually pleasant.
     * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
-  
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -382,5 +455,4 @@ is the `user`, unless specified otherwise)
 * **Pilot**: Someone that is certified to fly an aircraft.
 * **Plane**: A unit plane which can be assigned to flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes and crew can be assigned.
-
 
