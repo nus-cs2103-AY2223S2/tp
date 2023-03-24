@@ -2,9 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -16,14 +13,13 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
-
-import java.util.List;
-
 
 /**
  * Parses input arguments and creates a new TagCommand object
@@ -32,16 +28,12 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
     private static final int COMMAND_INDEX = 0;
     private static final int SHORT_FORM_INDEX = 1;
 
-    public enum CommandType {
-        ADD, CLEAR, DELETE, DELETE_TAG, EDIT, EXIT, EXPORT, FILTER, FIND, HELP, LIST, SHORTCUT, TAG
-    }
-
     /**
-     * Parses the given {@code String} of arguments in the context of the TagCommand
-     * and returns a TagCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ShortcutCommand
+     * and returns a ShortcutCommand object for execution.
      *
-     * @param args The arguments to the TagCommand
-     * @return The parsed TagCommand
+     * @param args The arguments to the ShortcutCommand
+     * @return The parsed ShortcutCommand
      * @throws ParseException if {@code args} does not conform the expected format
      */
     public ShortcutCommand parse(String args) throws ParseException {
@@ -74,14 +66,22 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
             commandToChange = new ExportCommand();
         } else if (commandWord.equals(FilterCommand.COMMAND_WORDS.get(0))) {
             commandToChange = new FilterCommand(null);
+        } else if (commandWord.equals(FindCommand.COMMAND_WORDS.get(0))) {
+            commandToChange = new FindCommand(null);
         } else if (commandWord.equals(HelpCommand.COMMAND_WORDS.get(0))) {
             commandToChange = new HelpCommand();
+        } else if (commandWord.equals(ImportCommand.COMMAND_WORDS.get(0))) {
+            commandToChange = new ImportCommand();
         } else if (commandWord.equals(ListCommand.COMMAND_WORDS.get(0))) {
             commandToChange = new ListCommand();
+        } else if (commandWord.equals(RedoCommand.COMMAND_WORDS.get(0))) {
+            commandToChange = new RedoCommand(0);
         } else if (commandWord.equals(ShortcutCommand.COMMAND_WORDS.get(0))) {
             commandToChange = new ShortcutCommand(null, null);
         } else if (commandWord.equals(TagCommand.COMMAND_WORDS.get(0))) {
             commandToChange = new TagCommand(null, null);
+        } else if (commandWord.equals(UndoCommand.COMMAND_WORDS.get(0))) {
+            commandToChange = new UndoCommand(0);
         } else {
             throw new ParseException(ShortcutCommand.MESSAGE_INVALID_SHORTCUT);
         }
