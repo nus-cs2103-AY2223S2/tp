@@ -21,7 +21,7 @@ public class EventBuilder {
     public static final String DEFAULT_DESCRIPTION = "Amy's description";
     public static final String DEFAULT_START = "2023-01-01 1800";
     public static final String DEFAULT_END = "2023-01-02 1800";
-    public static final long DEFAULT_EFFORT = 2;
+    public static final long DEFAULT_EFFORT = 24;
     private Name name;
     private Description description;
     private Set<Tag> tags;
