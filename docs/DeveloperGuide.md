@@ -53,6 +53,64 @@ Below is a sequence diagram of the `updateCalendar(taskList)` operation:
 
 <img src="./images/CalendarViewSequenceDiagram.png" width="100%"/>
 
+### Add ToDo Feature
+This feature enables the user to add a to-do to the list of tasks. It is implemented in a way that mirrors the _**Add Person**_ feature in AB3.
+
+The following class diagram shows the classes that help achieve this functionality.
+<img src="./images/AddTodoClassDiagram.png" width="100%"/>
+
+The `AddTodoCommandParser` parses the required details, to create the `ToDo` to be added, and returns an `AddTodoCommand`, that is executed.
+
+The execution of an `AddTodoCommand` makes use of the following functions provided by the `Model`:
+- `Model#hasTask` - to prevent duplication of a to-do
+- `Model#addTask` - to add the `ToDo` to the `UniqueTaskList`
+
+The following sequence diagram shows how the _**Add ToDo**_ feature works.
+
+<img src="./images/AddTodoSequenceDiagram.png" width="100%"/>
+
+#### Design Considerations
+The _**Add ToDo**_ feature is implemented in this way so as to make it similar to the analogous _**Add Person**_ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
+
+### Add Event Feature
+This feature enables the user to add an event to the list of tasks. It is implemented in a way that mirrors the _**Add Person**_ feature in AB3.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/AddEventClassDiagram.png" width="100%"/>
+
+The `AddEventCommandParser` parses the required details, to create the `Event` to be added, and returns an `AddEventCommand`, that is executed.
+
+The execution of an `AddEventCommand` makes use of the following functions provided by the `Model`:
+- `Model#hasTask` - to prevent duplication of an event
+- `Model#addTask` - to add the `Event` to the `UniqueTaskList`
+
+The following sequence diagram shows how the _**Add Event**_ feature works.
+
+<img src="./images/AddEventSequenceDiagram.png" width="100%"/>
+
+#### Design Considerations
+The _**Add Event**_ feature is implemented in this way so as to make it similar to the analogous _**Add Person**_ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
+
+### Delete Task Feature
+This feature enables the user to delete a task from the list of tasks. It is implemented in a way that mirrors the _**Delete Person**_ feature in AB3.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/DeleteTaskClassDiagram.png" width="100%"/>
+
+The `DeleteTaskCommandParser` parses the required details, to find the `Task` to be deleted, and returns a `DeleteTaskCommand`, that is executed.
+
+The execution of an `DeleteTaskCommand` makes use of the following functions provided by the `Model`:
+- `Model#getFilteredTaskList` - to access the list of tasks, to find the task to be deleted
+- `Model#deleteTask` - to delete the `Task` from the `UniqueTaskList`
+
+The following sequence diagram shows how the _**Delete Task**_ feature works.
+
+<img src="./images/DeleteTaskSequenceDiagram.png" width="100%"/>
+
+#### Design Considerations
+The _**Delete Task**_ feature is implemented in this way so as to make it similar to the analogous _**Delete Person**_ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
 
 ### Edit task feature
 
@@ -156,6 +214,6 @@ Use case resumes at step 2.
 ### Glossary
 
 1. **Mainstream OS**: Windows, Linux, Unix, OS-X
-1. **Items**: Elements on a calendar.
+1. **Tasks**: Elements on a calendar.
     a. **ToDos**: Items with a single associated date-time (e.g. a due date) and status (done or not done).
     b. **Events**: Items with two associated date-times.
