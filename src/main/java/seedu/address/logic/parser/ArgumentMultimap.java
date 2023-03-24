@@ -66,8 +66,8 @@ public class ArgumentMultimap {
     }
 
     /**
-    * Returns the number of entries in this ArgumentMultimap.
-    */
+     * Returns the number of entries in this ArgumentMultimap.
+     */
     public Prefix getFirstKey() {
         Set<Prefix> keySet = argMultimap.keySet();
         Prefix[] keyArray = keySet.toArray(new Prefix[keySet.size()]);
