@@ -251,9 +251,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Creating shortcuts using the command `shortcut`
 
-_{Explain here how the data archiving feature will be implemented}_
+`shortcut` can be used to create user-defined shortcuts in order to input commands more quickly. This section will describe the implementation of this command, if the user enters `shortcut edit e` as an example.
+
+Step 1. The user enters the command `shortcut edit e` and presses the Enter key. `AddressBookParser` parses the user's command and returns a `ShortcutCommandParser`.
+
+Step 2. `ShortcutCommandParser` parses the user's command, picking out the command that is to be shortened, and the shortcut to be added. A `ShortcutCommand` object is then added.
+
+Step 3. The `ShortcutCommand` object is executed by `MainWindow#executeCommand`, returning a `CommandResult`. This signifies the completion of execution.
+
+The following activity diagram summarizes what happens when a user executes this command:
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
