@@ -42,7 +42,7 @@
                </Label>
             </VBox>
              <Label fx:id="year" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" styleClass="cell_small_label" text="\$year" />
-             <Label fx:id="email" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" styleClass="cell_small_label" text="\$email">
+             <Label fx:id="email" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0" styleClass="cell_small_label" text="\$email">
                  <HBox.margin>
                      <Insets left="20.0" />
                  </HBox.margin>
