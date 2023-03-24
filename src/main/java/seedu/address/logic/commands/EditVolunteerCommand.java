@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
@@ -93,7 +95,15 @@ public class EditVolunteerCommand extends Command {
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
         model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
-        return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
+
+        String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
+        if (!model.checkIsSameRegion(null, editedVolunteer.getNric())) {
+            finalMessage += MESSAGE_WARNING_REGION;
+        }
+        if (!model.checkHasSuitableAvailableDates(null, editedVolunteer.getNric())) {
+            finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
+        }
+        return new CommandResult(finalMessage);
     }
 
     @Override

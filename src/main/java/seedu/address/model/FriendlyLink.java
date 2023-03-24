@@ -3,7 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
@@ -363,7 +364,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
         return checkPairs(elderlyNric,
-                volunteerNric, (elderly, volunteer) -> elderly.isSameRegion(volunteer));
+                volunteerNric, Person::isSameRegion);
     }
 
     /**
@@ -378,7 +379,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
         return checkPairs(elderlyNric,
-                volunteerNric, (elderly, volunteer) -> elderly.hasSuitableAvailableDates(volunteer));
+                volunteerNric, Person::hasSuitableAvailableDates);
     }
 
     /**
@@ -395,10 +396,10 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
             BiFunction<Elderly, Volunteer, Boolean> predicate) {
         List<Elderly> elderlyToCheck = elderlyNric == null
                 ? getPairedElderly(volunteerNric)
-                : new ArrayList<>(Arrays.asList(getElderly(elderlyNric)));
+                : new ArrayList<>(Collections.singletonList(getElderly(elderlyNric)));
         List<Volunteer> volunteerToCheck = volunteerNric == null
                 ? getPairedVolunteers(elderlyNric)
-                : new ArrayList<>(Arrays.asList(getVolunteer(volunteerNric)));
+                : new ArrayList<>(Collections.singletonList(getVolunteer(volunteerNric)));
         for (Elderly elderly : elderlyToCheck) {
             for (Volunteer volunteer : volunteerToCheck) {
                 if (!predicate.apply(elderly, volunteer)) {

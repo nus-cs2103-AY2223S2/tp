@@ -83,10 +83,7 @@ public class EditElderlyCommandTest {
     public void execute_noFieldSpecifiedUnfilteredElderlyList_failure() {
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
                 new EditElderlyDescriptor());
-
-        String expectedMessage = MESSAGE_NOT_EDITED;
-
-        assertCommandFailure(editElderlyCommand, model, expectedMessage);
+        assertCommandFailure(editElderlyCommand, model, MESSAGE_NOT_EDITED);
     }
 
     @Test
