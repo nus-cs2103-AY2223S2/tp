@@ -5,16 +5,16 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if (input contains Deadline)
+if ()  then ([input contains Deadline])
      :Creates a Deadline;
      :Save the Deadline to the taskbook;
 
-elseif (input contains event duration)
+elseif () then ([input contains event duration])
 
     :Creates an Event;
     :Save the Event to the taskbook;
 
-else ()
+else ([else])
 
     :Creates a Simple Task;
     :Save the Simple Task to taskbook;
