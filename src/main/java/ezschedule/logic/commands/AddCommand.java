@@ -14,13 +14,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the scheduler. "
-        + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the scheduler."
+        + "\nParameters: "
         + CliSyntax.PREFIX_NAME + "NAME "
         + CliSyntax.PREFIX_DATE + "DATE "
         + CliSyntax.PREFIX_START + "START TIME "
         + CliSyntax.PREFIX_END + "END TIME "
-        + "Example: " + COMMAND_WORD + " "
+        + "\nExample: " + COMMAND_WORD + " "
         + CliSyntax.PREFIX_NAME + "Tennis "
         + CliSyntax.PREFIX_DATE + "2023-12-20 "
         + CliSyntax.PREFIX_START + "18:00 "

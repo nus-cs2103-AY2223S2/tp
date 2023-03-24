@@ -1,5 +1,8 @@
 package ezschedule.model.event;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+import static java.time.temporal.ChronoUnit.MONTHS;
+import static java.time.temporal.ChronoUnit.YEARS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -30,6 +33,18 @@ public class Date implements Comparable<Date> {
         AppUtil.checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.date = LocalDate.parse(date, formatter);
+    }
+
+    public long getDaysBetween(LocalDate comparingDate) {
+        return DAYS.between(date, comparingDate);
+    }
+
+    public long getMonthsBetween(LocalDate comparingDate) {
+        return MONTHS.between(date, comparingDate);
+    }
+
+    public long getYearsBetween(LocalDate comparingDate) {
+        return YEARS.between(date, comparingDate);
     }
 
     /**

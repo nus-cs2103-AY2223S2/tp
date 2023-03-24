@@ -13,6 +13,7 @@ import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.commands.RecurCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +66,9 @@ public class SchedulerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RecurCommand.COMMAND_WORD:
+            return new RecurCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
