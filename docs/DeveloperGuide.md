@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 The edit appointments feature allows users to view appointments in the upcoming dates.
 
-This feature is implemented using a panel on the main window with a list of clients names 
+This feature is implemented using a panel on the main window with a list of clients names
 that is updated with every command that may affect appointment set.
 
 One situation that trigger the edit appointments feature is when a suer edits an appointment.
@@ -168,7 +168,7 @@ The following details explain how it works:
       * When an appointment is edited in the clients list, it is automatically added to the
       list of appointments.
       * The list is automatically sorted in increasing order of the appointment data time.
-      
+
 
    * Details:
       * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment* 
@@ -176,9 +176,9 @@ The following details explain how it works:
       * In the *EditCommand* class, the data entered by user is parsed.
       * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
       * This function, in turn, calls editCommand() function in FitBook.
-      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the 
+      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
       appointment date time are valid.
-      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted. 
+      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
 
 
@@ -186,15 +186,15 @@ The following details explain how it works:
 
      Below is an example usage scenario of how the appointment list mechanism behaves at each step:
        * The user launches the application for the first time.
-       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also 
+       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
        checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
 
 
   * Design Considerations
 
-    One important design consideration is how to handle expired appointment dates and times. The current choice is to 
+    One important design consideration is how to handle expired appointment dates and times. The current choice is to
     automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-      * pros: Users can easily distinguish between expired and non-expired appointment dates and times. 
+      * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
       * cons: expired date time cannot be updated immediately unless the user reopen the application.
 
 ### Find feature
@@ -309,7 +309,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### Export client/routine list
 
 #### Implementation
-This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis. 
+This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
 `Fitbook` creates a new CSV file and write data to it. 
 
 The proposed export mechanism is facilitated by `FitBook`. It implements the following operations:
@@ -326,7 +326,7 @@ Step 1. The user launches the application for the first time. The `FitBook` will
 
 Step 2. The user executes `export` command to export the client list of `FitBook`. The `FitBookParser` calls the `ExportCommand()`
 command which calls `ExportCommand#writeToCsvFile(model)`, to write the client details into a csv file with the client list obtained from `model`.
-The `ExportCommand#writeToCsvFile(model)` calls `ExportCommand#writeHeaderRow(pw)` and `ExportCommand#writeClientRows(PrintWriter pw, List<Client> clients)` which uses 
+The `ExportCommand#writeToCsvFile(model)` calls `ExportCommand#writeHeaderRow(pw)` and `ExportCommand#writeClientRows(PrintWriter pw, List<Client> clients)` which uses
 the input parameter printwriter to write the header row and client rows respectively into the csv file
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
@@ -550,9 +550,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-       
+
        Use case ends.
-    
+
 >**Use case: UC03 - List clients**
 
 **MSS**
@@ -722,11 +722,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
-  
+
   3b. The given exercise index is invalid.
 
     * 3b1. FitBook shows an error message.
-    
+ 
       Use case resumes at step 2.
 
 > **Use case: UC11 - Find Routine**
@@ -751,14 +751,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User request to export Client List.
 2. FitBook exports the Client List to csv format.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The Client csv file is opened in the background
-    * 1a1. FitBook shows an error message.  
-      
+    * 1a1. FitBook shows an error message.
+
       Use case ends.
 
 > **Use case: UC14 - Export Routine List**
@@ -790,7 +790,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User request have missing routine name field.
     * 1a1. FitBook shows an error for missing routine name.
-      
+
       Use case ends.
 
 * 1b. User request have missing exercise field.
@@ -917,7 +917,7 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
-   
+
 2. _{ more test cases …​ }_
 
 ### Saving data
