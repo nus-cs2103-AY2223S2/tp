@@ -23,7 +23,7 @@ import seedu.address.model.scheduler.time.util.TimeUtil;
  */
 public class Scheduler {
 
-    public static final Logger logger = LogsCenter.getLogger(Scheduler.class);
+    private static final Logger logger = LogsCenter.getLogger(Scheduler.class);
 
     private List<Timetable> schedules;
     private Model model;
