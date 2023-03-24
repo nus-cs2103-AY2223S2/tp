@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
@@ -14,7 +13,6 @@ import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
-import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -360,7 +358,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @return True if both persons belong in the same region, false otherwise.
      */
     public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
-        return getElderly(elderlyNric).getRegion().equals(getVolunteer(volunteerNric).getRegion());
+        return getElderly(elderlyNric).isSameRegion(getVolunteer(volunteerNric));
     }
 
     /**
@@ -375,24 +373,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
         Elderly elderly = getElderly(elderlyNric);
         Volunteer volunteer = getVolunteer(volunteerNric);
-        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
-        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
-
-        // no restrictions
-        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
-            pairs.add(new Pair(elderly, volunteer));
-            return true;
-        }
-
-        // find first matching dates
-        for (AvailableDate date : elderlyAvailableDates) {
-            for (AvailableDate availableDate : volunteerAvailableDates) {
-                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return elderly.hasSuitableAvailableDates(volunteer);
     }
 
     @Override
