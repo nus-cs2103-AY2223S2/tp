@@ -295,6 +295,67 @@ sequence diagram:
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
 
+### Find Application feature
+
+#### About
+The "find" command is a tool that enables users to search for a specific application within the internship book.
+Users can locate the application by providing its index and optionally using the parameters "r/", "c/", and "s/" to 
+refine their search. These parameters correspond to the role, company, and status fields in the internship book
+, allowing for customized searches. Without any of the required prefixes, it will do a global search for the search
+keyword in all fields of the applications.
+
+#### Usage
+To find an application in sprINT, simply issue the command in the following format:
+
+find [r/role] [c/companyName] [s/status]
+
+Here's a breakdown of what each prefix means:
+
+- `r/` - this prefix is used to find role or position in the internship application.
+- `c/` - this prefix is used to find the company name in the internship.
+- `s/` - this prefix is used to find the status of your application, such as "interested", "applied", "rejected", or "offered".
+
+#### [Work in Progress] Implementation
+The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for a specific purpose of
+   parsing user commands for adding applications.
+5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
+6. The `FindApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
+the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
+must provide in the input when using the add application feature.
+
+</div>   
+
+7. These fields will then be used to create an `Application` instance.
+8. The newly created `Application` instance will then be used to create an `FindApplicationCommand`. This command instances
+   is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
+   the logic behind adding the associated application instance to the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
+application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+exception that was thrown and the error message will be displayed to the user.
+
+</div> 
+
+For a more graphical illustration of how an add application command is processed, please refer to the following
+sequence diagram:
+
+![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
+
+
 ### \[In Progress\] Sort feature
 
 #### About
