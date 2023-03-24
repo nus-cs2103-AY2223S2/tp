@@ -86,19 +86,19 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`CareFlowLogic.java`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/logic/CareFlowLogic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a (partial) class diagram of the `CareFlowLogic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+How the `CareFlowLogic` component works:
+1. When `CareFlowLogic` is called upon to execute a command, it uses the `CareFlowParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `CareFlowLogicManager`.
+1. The command can communicate with the `CareFlowModel` when it is executed (e.g. to add a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `CareFlowLogic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `CareFlowLogic` component for the `execute("p delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
