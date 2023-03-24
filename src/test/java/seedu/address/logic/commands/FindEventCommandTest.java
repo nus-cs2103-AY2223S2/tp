@@ -24,7 +24,7 @@ import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindEventCommand}.
  */
-public class FindEventTest {
+public class FindEventCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

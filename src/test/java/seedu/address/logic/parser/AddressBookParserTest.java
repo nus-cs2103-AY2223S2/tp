@@ -31,6 +31,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEvContactCommand;
 import seedu.address.logic.commands.ListEventCommand;
+import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -41,6 +42,7 @@ import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TypicalSortEventTypes;
 
 public class AddressBookParserTest {
 
@@ -137,6 +139,13 @@ public class AddressBookParserTest {
         ListEvContactCommand command = (ListEvContactCommand) parser.parseCommand(
                 ListEvContactCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
         assertEquals(new ListEvContactCommand(INDEX_FIRST_EVENT), command);
+    }
+
+    @Test
+    public void parseCommand_sortEvent() throws Exception {
+        SortEventCommand command = (SortEventCommand) parser.parseCommand(
+                SortEventCommand.COMMAND_WORD + " " + TypicalSortEventTypes.SORT_BY_START_DATE_TIME);
+        assertEquals(new SortEventCommand(SortEventType.SORT_BY_START_DATE_TIME), command);
     }
 
     @Test
