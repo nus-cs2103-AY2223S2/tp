@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import mycelium.mycelium.commons.core.LogsCenter;
@@ -21,6 +22,7 @@ import mycelium.mycelium.ui.entitypanel.EntityList;
 public class StatisticsBox extends UiPart<Region> {
     private static final String FXML = "StatisticsBox.fxml";
     private EntityList<Project> dueProjectPanel;
+    private EntityList<Project> overdueProjectPanel;
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     private Logger logger = LogsCenter.getLogger(getClass());
 
@@ -28,8 +30,19 @@ public class StatisticsBox extends UiPart<Region> {
     private StackPane pies;
     @FXML
     private StackPane listView;
+
     @FXML
-    private PieChart deadlinePieChart;
+    private StackPane overdueListView;
+    @FXML
+    private PieChart progressOverview;
+    @FXML
+    private StackPane messageBox;
+    @FXML
+    private StackPane overdueMessageBox;
+    @FXML
+    private Label noDueProjectLabel = new Label("No due projects");
+    @FXML
+    private Label noOverdueProjectLabel = new Label("No overdue projects");
 
 
     /**
@@ -44,24 +57,49 @@ public class StatisticsBox extends UiPart<Region> {
 
 
     private void loadDataOnBox(Logic logic) {
-        ObservableList<Project> lst = logic.getFilteredProjectList();
+        // To do: change variable name
+        ObservableList<Project> filteredProjectList = logic.getFilteredProjectList();
 
-        lst.addListener(new ListChangeListener<Project>() {
+        filteredProjectList.addListener(new ListChangeListener<Project>() {
             @Override
             public void onChanged(Change<? extends Project> c) {
                 addPieChartData(logic);
-                dueProjectPanel.setItems(logic.getDueProjectList());
+                addProjectData(logic.getDueProjectList(), messageBox, noDueProjectLabel, listView,
+                        dueProjectPanel, true);
+                addProjectData(logic.getOverdueProjectList(), overdueMessageBox, noOverdueProjectLabel, overdueListView,
+                        overdueProjectPanel, true);
             }
         });
 
         addPieChartData(logic);
-        deadlinePieChart.setData(pieChartData);
+        progressOverview.setData(pieChartData);
 
-        dueProjectPanel = new EntityList<Project>(logic.getDueProjectList(), DueProjectEntity::new);
-        listView.getChildren().addAll(dueProjectPanel.getRoot());
-        logger.fine("Initialised list view panel with " + logic.getDueProjectList().size() + " items");
+        addProjectData(logic.getDueProjectList(), messageBox, noDueProjectLabel, listView,
+                dueProjectPanel, false);
+
+        addProjectData(logic.getOverdueProjectList(), overdueMessageBox, noOverdueProjectLabel, overdueListView,
+                overdueProjectPanel, false);
     }
 
+    private void addProjectData(ObservableList<Project> projects, StackPane displayBox, Label message,
+                                StackPane view, EntityList<Project> panel, boolean wasLoaded) {
+        if (!wasLoaded) {
+            displayBox.getChildren().add(message);
+
+            panel = new EntityList<Project>(projects, SpecialProjectEntity::new);
+            view.getChildren().addAll(panel.getRoot());
+            logger.fine("Initialised list view panel with " + projects.size() + " items");
+        } else {
+            panel.setItems(projects);
+            logger.fine("Modified list view panel with " + projects.size() + " items");
+        }
+
+        if (projects.size() == 0) {
+            message.setVisible(true);
+        } else {
+            message.setVisible(false);
+        }
+    }
 
     private void addPieChartData(Logic logic) {
         pieChartData.clear();

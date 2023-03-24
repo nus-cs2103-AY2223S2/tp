@@ -55,6 +55,13 @@ public interface ProjectModel {
     ObservableList<Project> getDueProjectList();
 
     /**
+     * Retrieves a list of all overdue projects in Mycelium.
+     *
+     * @return The list of all overdue projects
+     */
+    ObservableList<Project> getOverdueProjectList();
+
+    /**
      * Retrieves a hash map of status name and corresponding count of projects with that status.
      *
      * @return The hashmap of status name with corresponding project counts

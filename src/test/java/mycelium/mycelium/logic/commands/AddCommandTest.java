@@ -204,6 +204,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Project> getOverdueProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public HashMap<String, Long> getProjectStatistics() {
             throw new AssertionError("This method should not be called.");
         }

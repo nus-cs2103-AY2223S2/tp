@@ -12,7 +12,7 @@ import mycelium.mycelium.ui.UiPart;
 /**
  * An UI component that displays information of a {@code Due Project}.
  */
-public class DueProjectEntity extends UiPart<Region> {
+public class SpecialProjectEntity extends UiPart<Region> {
     private static final String FXML = "DueProjectEntity.fxml";
     public final Project project;
 
@@ -40,7 +40,7 @@ public class DueProjectEntity extends UiPart<Region> {
     /**
      * Creates a {@code DueProjectCode} with the given {@code Project} and index to display.
      */
-    public DueProjectEntity(Project p, int displayedIndex) {
+    public SpecialProjectEntity(Project p, int displayedIndex) {
         super(FXML);
         project = p;
         id.setText(displayedIndex + ". ");
@@ -59,12 +59,12 @@ public class DueProjectEntity extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DueProjectEntity)) {
+        if (!(other instanceof SpecialProjectEntity)) {
             return false;
         }
 
         // state check
-        DueProjectEntity card = (DueProjectEntity) other;
+        SpecialProjectEntity card = (SpecialProjectEntity) other;
         return id.getText().equals(card.id.getText())
                 && project.equals(card.project);
     }

@@ -33,3 +33,12 @@
 .data2.chart-pie {
     -fx-pie-color: #E5BF00;
 }
+
+.no-due-project {
+  -fx-text-fill: #FFFFFF;
+  -fx-font-size: 1em;
+}
+
+.message-box-bg {
+   -fx-background-color:  #dddddd;
+}

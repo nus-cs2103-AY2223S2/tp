@@ -44,7 +44,19 @@ public interface Logic {
      */
     ObservableList<Project> getFilteredProjectList();
 
+    /**
+     * Returns an unmodifiable view of at most three due projects in a week
+     */
     ObservableList<Project> getDueProjectList();
+
+    /**
+     * Returns an unmodifiable view of all overdue projects
+     */
+    ObservableList<Project> getOverdueProjectList();
+
+    /**
+     * Retrieves a hash map of status name and corresponding count of projects with that status.
+     */
     HashMap<String, Long> getProjectStatistics();
 
     /**

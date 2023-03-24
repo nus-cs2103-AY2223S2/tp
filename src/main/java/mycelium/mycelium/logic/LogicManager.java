@@ -77,6 +77,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Project> getOverdueProjectList() {
+        return model.getOverdueProjectList();
+    }
+
+    @Override
     public HashMap<String, Long> getProjectStatistics() {
         return model.getProjectStatistics();
     }
