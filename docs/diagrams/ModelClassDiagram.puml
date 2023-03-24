@@ -5,28 +5,34 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyExpressLibrary" as ReadOnlyExpressLibrary
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class ExpressLibrary
-Class ModelManager
-Class UserPrefs
+    Class "<<interface>>\nReadOnlyExpressLibrary" as ReadOnlyExpressLibrary
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nModel" as Model
+    Class ExpressLibrary
+    Class ModelManager
+    Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+    Class UniquePersonList
+    Class Person
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
 
+    Class UniqueBookList
+    Class Book
+    Class Author
+    Class Title
+    Class Isbn
 }
 
-Class HiddenOutside #FFFFFF
+class HiddenOutside #FFFFFF
+class HiddenField #FFFFFF
+
 HiddenOutside ..> Model
 
 ExpressLibrary .up.|> ReadOnlyExpressLibrary
-
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyExpressLibrary
@@ -35,16 +41,29 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ExpressLibrary *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+ExpressLibrary *--> "1" UniqueBookList
+UniqueBookList ---> "~*" Book
+
+Person *----> Book
+Book *----> "0..1" Person
+Book *--> Title
+Book *--> Author
+Book *--> Isbn
+
+
+Person -[hidden]left---> Book
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Book
+
 @enduml

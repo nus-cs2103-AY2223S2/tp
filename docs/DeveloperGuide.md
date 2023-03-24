@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `BookListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/java/expresslibrary/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` or `Book` object residing in the `Model`.
 
 ### Logic component
 
@@ -120,12 +120,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the ExpressLibrary data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Book` objects (which are contained in a `UniqueBookList`).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. Similar process for `Book` objects as well.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExpressLibrary`, which `Person` references. This allows `ExpressLibrary` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExpressLibrary`, which `Person` references. This allows `ExpressLibrary` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -139,7 +141,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both express library data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `ExpressLibraryStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -159,31 +161,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedExpressLibrary`. It extends `ExpressLibrary` with an undo/redo history, stored internally as an `ExpressLibraryStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedExpressLibrary#commit()` — Saves the current address book state in its history.
-* `VersionedExpressLibrary#undo()` — Restores the previous address book state from its history.
-* `VersionedExpressLibrary#redo()` — Restores a previously undone address book state from its history.
+* `VersionedExpressLibrary#commit()` — Saves the current express library state in its history.
+* `VersionedExpressLibrary#undo()` — Restores the previous express library state from its history.
+* `VersionedExpressLibrary#redo()` — Restores a previously undone express library state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitExpressLibrary()`, `Model#undoExpressLibrary()` and `Model#redoExpressLibrary()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedExpressLibrary` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedExpressLibrary` will be initialized with the initial express library state, and the `currentStatePointer` pointing to that single express library state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitExpressLibrary()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `expressLibraryStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the express library. The `delete` command calls `Model#commitExpressLibrary()`, causing the modified state of the express library after the `delete 5` command executes to be saved in the `expressLibraryStateList`, and the `currentStatePointer` is shifted to the newly inserted express library state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExpressLibrary()`, causing another modified address book state to be saved into the `expressLibraryStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExpressLibrary()`, causing another modified express library state to be saved into the `expressLibraryStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExpressLibrary()`, so the address book state will not be saved into the `expressLibraryStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExpressLibrary()`, so the express library state will not be saved into the `expressLibraryStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExpressLibrary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExpressLibrary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous express library state, and restores the express library to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -200,17 +202,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoExpressLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoExpressLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the express library to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `expressLibraryStateList.size() - 1`, pointing to the latest address book state, then there are no undone ExpressLibrary states to restore. The `redo` command uses `Model#canRedoExpressLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `expressLibraryStateList.size() - 1`, pointing to the latest express library state, then there are no undone ExpressLibrary states to restore. The `redo` command uses `Model#canRedoExpressLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitExpressLibrary()`, `Model#undoExpressLibrary()` or `Model#redoExpressLibrary()`. Thus, the `expressLibraryStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the express library, such as `list`, will usually not call `Model#commitExpressLibrary()`, `Model#undoExpressLibrary()` or `Model#redoExpressLibrary()`. Thus, the `expressLibraryStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitExpressLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `expressLibraryStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitExpressLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `expressLibraryStateList`, all express library states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 

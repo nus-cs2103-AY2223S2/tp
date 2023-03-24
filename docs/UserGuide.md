@@ -27,7 +27,8 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
    * `list` : Lists all contacts.
 
-   * `add i/A0123456M n/Bob Tan p/97450597 e/btan@mail.com b/Book1` : Adds a contact named `Bob Tan` to records
+   * `add 1 n/Bob Tan p/97450597 e/btan@mail.com`: 
+   Adds a contact named `Bob Tan` to records
 
    * `delete 3` : Deletes the 3rd user shown in the current list.
 
@@ -65,6 +66,8 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 </div>
 
+### Person Commands
+
 ### Adding a user: `add`
 
 Adds a user to the records
@@ -97,15 +100,8 @@ Shows a list of all users in the user records.
 
 Format: `list`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 ### Editing a person : `edit`
 
-_Details coming soon ..._
 
 [//]: # (Edits an existing person in the address book.)
 
@@ -162,6 +158,16 @@ _Details coming soon ..._
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
+### Book Commands
+
+### Listing all books : `listBook`
+
+Shows a list of all books in the user records.
+
+Format: `listBook`
+
+### Common Functions
+
 ### Clearing all entries : `clear`
 
 _Details coming soon ..._
@@ -170,37 +176,42 @@ _Details coming soon ..._
 
 [//]: # (Format: `clear`)
 
-### Saving the data
-_Details coming soon ..._
+### Exiting the program : `exit`
 
-[//]: # (AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.)
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+ExpressLibrary data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
 _Details coming soon ..._
 
-[//]: # (AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.)
+ExpressLibrary data are saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
 
-[//]: # (<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**)
+<div markdown="span" class="alert alert-warning">
 
-[//]: # (If your changes to the data file makes its format invalid, ExpressLibrary will discard all data and start with an empty data file at the next run.)
+:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, ExpressLibrary will discard all data and start with an empty data file at the next run.
 
-[//]: # (</div>)
+</div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ExpressLibrary home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+#### Person
 
 Action | Format, Examples
 --------|------------------
@@ -211,3 +222,8 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+#### Book
+Action | Format, Examples
+--------|------------------
+**List**| `listBook`
