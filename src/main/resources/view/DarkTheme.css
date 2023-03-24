@@ -380,4 +380,11 @@
    -fx-text-fill: black;
    -fx-opacity: 0.9
 }
+.students {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+    -fx-font-weight: bold;
+}
 
