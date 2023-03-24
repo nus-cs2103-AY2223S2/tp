@@ -28,6 +28,9 @@ public class ViewCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a ViewCommand to view the specified {@code targetIndex}
+     */
     public ViewCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
@@ -46,7 +49,6 @@ public class ViewCommand extends Command {
         model.viewFood(foodToView);
         return new CommandResult(String.format(MESSAGE_VIEW_FOOD_SUCCESS, foodToView));
     }
-
 
     @Override
     public boolean equals(Object other) {
