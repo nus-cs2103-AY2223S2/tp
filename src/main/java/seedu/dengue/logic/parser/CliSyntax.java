@@ -13,6 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_AGE = new Prefix("a/");
     public static final Prefix PREFIX_STARTAGE = new Prefix("sa/");
     public static final Prefix PREFIX_ENDAGE = new Prefix("ea/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_VARIANT = new Prefix("v/");
 
 }
