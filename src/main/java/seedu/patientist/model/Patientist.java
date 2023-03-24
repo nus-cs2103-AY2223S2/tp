@@ -241,6 +241,10 @@ public class Patientist implements ReadOnlyPatientist {
         wards.setWard(target, edited);
     }
 
+    public Ward getWard(String wardName) {
+        return this.wards.get(wardName);
+    }
+
     //// util methods
 
     @Override
@@ -262,6 +266,16 @@ public class Patientist implements ReadOnlyPatientist {
     @Override
     public ObservableList<Ward> getWardList() {
         return wards.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getPatientListInWard(Ward ward) {
+        return ward.getPatientsAsUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getStaffListInWard(Ward ward) {
+        return ward.getStaffsAsUnmodifiableObservableList();
     }
 
     @Override
