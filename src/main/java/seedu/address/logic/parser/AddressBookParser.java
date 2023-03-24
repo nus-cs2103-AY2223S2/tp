@@ -6,9 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCommands;
 import seedu.address.logic.commands.EditCommand;
@@ -18,7 +20,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListByNameCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTime;
+import seedu.address.logic.commands.MarkAppointmentCommand;
+import seedu.address.logic.commands.SearchAppointmentCommand;
 import seedu.address.logic.commands.ShowDetailCommand;
+import seedu.address.logic.commands.UploadFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -61,6 +66,12 @@ public class AddressBookParser {
         case DeleteCommands.COMMAND_WORD:
             return new DeleteCommandsParser().parse(arguments);
 
+        case UploadFileCommand.COMMAND_WORD:
+            return new UploadFileCommandParser().parse(arguments);
+
+        case CreateCommand.COMMAND_WORD:
+            return new CreateCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -84,6 +95,15 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SearchAppointmentCommand.COMMAND_WORD:
+            return new SearchAppointmentCommandParser().parse(arguments);
+
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
+        case MarkAppointmentCommand.COMMAND_WORD:
+            return new MarkAppointmentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

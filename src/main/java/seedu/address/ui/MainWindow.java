@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private DetailDisplay detailDisplay;
+    private FileList fileList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -127,8 +128,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        //fileList = new FileList(logic.getFilteredPersonList(), this);
         detailDisplay = new DetailDisplay();
         detailDisplayPlaceholder.getChildren().add(detailDisplay.getRoot());
+
     }
 
     /**
@@ -190,12 +193,18 @@ public class MainWindow extends UiPart<Stage> {
             // with minor modifications
             detailDisplay.clearDetailDisplay();
             detailDisplay.hideAppointmentButton();
+            detailDisplay.hideUploadButton();
+            detailDisplay.hideGenerateButton();
+            detailDisplay.hideViewDisplay();
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
-                detailDisplay.setInfo(personToShow);
+                detailDisplay.setInfo(personToShow, new ObservableFile().getObservableFileList());
                 detailDisplay.showAppointmentButton();
+                detailDisplay.showGenerateButton();
+                detailDisplay.showUploadButton();
+                detailDisplay.showViewDisplay();
             }
             //@@author
 

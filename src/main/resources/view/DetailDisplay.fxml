@@ -58,11 +58,18 @@
         </Label>
       <HBox alignment="BOTTOM_CENTER" prefHeight="44.0" prefWidth="420.0">
          <children>
-            <Button mnemonicParsing="false" text="generate" />
+            <Button fx:id="generateButton" mnemonicParsing="false" text="generate" />
             <Button fx:id="appointmentButton" mnemonicParsing="false" text="Appointment" />
-            <Button mnemonicParsing="false" text="upload" />
+            <Button fx:id="uploadButton" mnemonicParsing="false" text="upload" />
          </children>
       </HBox>
-      <ListView prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="viewDisplay" prefHeight="261.0" prefWidth="210.0" style="-fx-background-color: grey;">
+         <VBox.margin>
+            <Insets right="8.0" top="20.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets right="10.0" />
+         </opaqueInsets>
+      </ListView>
     </VBox>
 </StackPane>

@@ -437,6 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 **Use case:  Display the detailed information of the patient**
 
 **MSS**
@@ -453,6 +454,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a2.  User inputs a new valid index.
 
     Use Case resumes at step 2.
+
+
+**Use case: Make appointment with specified patient**
+
+**MSS**
+1. User search for all appointments on a specified date
+2. Mediate displays all patients with appointment all that date with time sorted.
+3. User make appointment with specified patient using CommandLine
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+* 2a.
+  * 2a1. User's input is invalid
+  * 2a2. wait to be modified
+
 
 ### Non-Functional Requirements
 
