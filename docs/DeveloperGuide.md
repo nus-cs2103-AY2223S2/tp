@@ -305,16 +305,17 @@ Edit supplier, edit order and edit task features are implemented using the same 
 
 The `EditXYZCommandParser#parse()` is used to parse the given command.
 
-If the given command is valid, an `EditXYZCommand` and `EditXYZCommand#execute()` will then be called.
+If the given command is valid, an `EditXYZCommand` will be returned and `EditXYZCommand#execute()` will then be called.
 
 `EditXYZCommand#execute()` will first retrieve that latest filtered XYZ list from the model and check if the index given is valid.
 
-If the given index is valid, item at given index will be retrieved. A copy of the item will be made and edited accordingly.
+If the given index is valid, item at given index will be retrieved. A copy of the item retrieved will be made and edited accordingly.
 
 If changes to the original item is made and edited item is not the same as another existing item in the list,
 the edited item is saved to the filtered list and `EditXYZCommand#execute()` will return the `CommandResult`
 
 Lastly, Changes made are saved to local data and success message will be shown.
+
  <p align="center">
     <img src="images/EditCommandActivityDiagram.svg" width="900" />
 </p>
