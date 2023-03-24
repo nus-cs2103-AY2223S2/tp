@@ -7,7 +7,7 @@ import java.time.LocalDate;
 /**
  * Represents a Leave's date in the sudohr book.
  */
-public class LeaveDate {
+public class LeaveDate implements Comparable<LeaveDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should only be of the form YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -46,6 +46,11 @@ public class LeaveDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(LeaveDate o) {
+        return this.value.compareTo(o.value);
     }
 
 }
