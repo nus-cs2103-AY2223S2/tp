@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
@@ -14,7 +13,7 @@ import tfifteenfour.clipboard.model.student.Student;
 /**
  * An UI component that displays information of a {@code Student}.
  */
-public class StudentCard extends UiPart<Region> {
+public class StudentListCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
@@ -37,27 +36,16 @@ public class StudentCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label studentId;
-    @FXML
-    private FlowPane modules;
-    @FXML
-    private FlowPane tags;
-
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentListCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        //studentId.setText(student.getStudentId().value);
-        // student.getModules().stream()
-        //         .sorted(Comparator.comparing(module -> module.courseCode))
-        //         .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
-        // student.getTags().stream()
-        //         .sorted(Comparator.comparing(tag -> tag.tagName))
-        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        studentId.setText(student.getStudentId().value);
     }
 
     @Override
@@ -68,12 +56,12 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof StudentListCard)) {
             return false;
         }
 
         // state check
-        StudentCard card = (StudentCard) other;
+        StudentListCard card = (StudentListCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

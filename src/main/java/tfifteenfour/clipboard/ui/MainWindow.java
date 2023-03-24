@@ -14,14 +14,16 @@ import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.BackCommand;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
-import tfifteenfour.clipboard.logic.commands.UndoCommand;
-import tfifteenfour.clipboard.logic.commands.UploadCommand;
+import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,8 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
-    private StudentViewPanel studentViewPanel;
+    private CourseListPanel courseListPanel;
+    //private StudentViewPanel studentViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,7 +51,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane leftPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,8 +125,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getUnmodifiableFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -176,34 +178,85 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    //public void refreshViewPane() {
+    //    studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
+    //    studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
+    //}
+
+    //@FXML
+    //private void handleUndo() {
+    //    studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
+    //}
+
     /**
-     * Refreshes view pane.
+     * Shows course pane.
      */
-    public void refreshViewPane() {
-        studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
-        studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
+    private void showCoursePane() {
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
-    @FXML
-    private void handleUndo() {
-        studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
+    /**
+     * Show group pane.
+     * @param course that groups belong to.
+     */
+    private void showGroupPane(Course course) {
+        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableGroupList());
+        leftPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+    /**
+     * Show student pane.
+     * @param group that students belong to.
+     */
+    private void showStudentPane(Group group) {
+        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableStudentList());
+        leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    /**
+     * Handles UI for select command.
+     */
+    private void handleSelectCommand() {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            showGroupPane(logic.getCurrentSelection().getSelectedCourse());
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+        }
+    }
+
+    /**
+     * Handles UI for back command.
+     * @param backCommand
+     */
+    private void handleBackCommand(BackCommand backCommand) {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.COURSE_PAGE)) {
+            showCoursePane();
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+        }
     }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
         if (commandResult.getCommand() instanceof HelpCommand) {
             handleHelp();
-        } else if (commandResult.getCommand() instanceof UndoCommand) {
-            handleUndo();
-        } else if (commandResult.getCommand() instanceof ViewCommand
-                || (commandResult.getCommand() instanceof UploadCommand && studentViewPanel != null)) {
-            refreshViewPane();
+
+        } else if (commandResult.getCommand() instanceof SelectCommand) {
+            handleSelectCommand();
+
+        } else if (commandResult.getCommand() instanceof BackCommand) {
+            handleBackCommand((BackCommand) commandResult.getCommand());
+
         } else if (commandResult.getCommand() instanceof ExitCommand) {
             handleExit();
         }
+
+        //} else if (commandResult.getCommand() instanceof ViewCommand
+        //        || (commandResult.getCommand() instanceof UploadCommand && studentViewPanel != null)) {
+        //    refreshViewPane();
+
+        //} else if (commandResult.getCommand() instanceof UndoCommand) {
+        //handleUndo();
     }
 
     /**

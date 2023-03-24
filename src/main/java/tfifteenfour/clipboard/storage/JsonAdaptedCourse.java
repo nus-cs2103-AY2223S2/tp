@@ -24,7 +24,8 @@ class JsonAdaptedCourse {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedCourse(@JsonProperty("courseCode") String courseCode, @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+    public JsonAdaptedCourse(@JsonProperty("courseCode") String courseCode,
+                             @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.courseCode = courseCode;
         if (groups != null) {
             this.groups.addAll(groups);

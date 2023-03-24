@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.deleteCommand;
+package tfifteenfour.clipboard.logic.commands.deletecommand;
 
 import tfifteenfour.clipboard.logic.commands.Command;
 

@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.addCommand;
+package tfifteenfour.clipboard.logic.commands.addcommand;
 
 import tfifteenfour.clipboard.logic.commands.Command;
 

@@ -10,11 +10,11 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCourseCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddGroupCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddCourseCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddGroupCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddSessionCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -84,7 +84,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     private Student parseStudentInfo(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
+                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL)
                 || !CommandTargetType.isValidAddType(argMultimap.getPreamble())) {

@@ -2,7 +2,7 @@ package tfifteenfour.clipboard.logic.parser;
 
 import java.util.Comparator;
 
-import tfifteenfour.clipboard.logic.commands.studentCommands.SortCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Student;
 

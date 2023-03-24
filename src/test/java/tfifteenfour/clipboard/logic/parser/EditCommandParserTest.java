@@ -40,8 +40,8 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;

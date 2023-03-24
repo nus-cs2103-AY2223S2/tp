@@ -15,8 +15,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.tag.Tag;

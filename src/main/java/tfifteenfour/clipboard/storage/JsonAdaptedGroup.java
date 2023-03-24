@@ -20,7 +20,8 @@ class JsonAdaptedGroup {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     @JsonCreator
-    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName, @JsonProperty("students") List<JsonAdaptedStudent> students) {
+    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName,
+                            @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.groupName = groupName;
         if (students != null) {
             this.students.addAll(students);
@@ -28,7 +29,7 @@ class JsonAdaptedGroup {
     }
 
     public JsonAdaptedGroup(Group source) {
-        this.groupName = source.groupName;
+        this.groupName = source.getGroupName();
         this.students.addAll(source.getUnmodifiableStudentList()
                 .stream().map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));

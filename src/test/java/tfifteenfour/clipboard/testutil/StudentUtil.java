@@ -9,8 +9,8 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.tag.Tag;

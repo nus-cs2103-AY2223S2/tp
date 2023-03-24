@@ -30,7 +30,7 @@ public class StudentViewPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentListCard}.
      */
     class StudentViewCell extends ListCell<Student> {
         @Override
