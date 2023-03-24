@@ -5,6 +5,8 @@ import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -32,6 +34,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private ImageView profilePicture;
+    @FXML
     private Label course;
     @FXML
     private Label year;
@@ -50,7 +54,10 @@ public class PersonCard extends UiPart<Region> {
         this.mainWindow = mainWindow;
         this.person = person;
         this.displayedIndex = displayedIndex;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + "");
+        String imagePath = person.getProfilePicture().imagePath;
+        Image image = new Image("file:" + imagePath);
+        profilePicture.setImage(image);
         name.setText(person.getName().fullName);
         year.setText("Year " + person.getYear().year);
         course.setText(person.getCourse().course);
