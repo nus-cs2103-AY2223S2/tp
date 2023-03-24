@@ -31,7 +31,7 @@ public class SortStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateSortAllPersonList(this.metric, this.increasingOrder);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
