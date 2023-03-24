@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -120,6 +124,27 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public void sortPersonList(String type) {
+        assert Objects.equals(type, "asc")
+                || Objects.equals(type, "des")
+                || Objects.equals(type, "name");
+        switch (type) {
+            case "asc":
+                addressBook.sortPersonsAscending();
+                break;
+            case "des":
+                addressBook.sortPersonsDescending();
+                break;
+            case "name":
+                addressBook.sortPersonsName();
+            default:
+                addressBook.sortPersonsName();
+        }
+
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override

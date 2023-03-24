@@ -30,6 +30,18 @@ public class BusinessSize {
         return String.valueOf(value);
     }
 
+    /**
+     * Returns integer representation of business size value
+     * @return Integer
+     */
+    public Integer getIntValue() {
+        try {
+            return Integer.valueOf(this.value);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

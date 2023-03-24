@@ -143,6 +143,14 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns an unmodifiable view of the person list, sorted by business size
+         */
+        @Override
+        public void sortPersonList(String type) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
