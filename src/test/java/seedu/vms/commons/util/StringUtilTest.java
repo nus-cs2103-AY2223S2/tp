@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 
 public class StringUtilTest {
+
+    //---------------- Tests for isMatching --------------------------------------
+
     @Test
     public void isMatching() {
         String text = "John Doe John Alex UNCHI[]{}()<a>&&&\\=:";
