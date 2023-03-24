@@ -6,19 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.commands.QueryCommand;
-import seedu.address.logic.commands.RemarkCommand;
-import seedu.address.logic.commands.UnmarkCommand;
+
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,6 +25,7 @@ public class TuteeManagingSystemParser {
         Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
         Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
         Map.entry(EditCommand.COMMAND_WORD, new EditCommandParser()),
+        Map.entry(FilterCommand.COMMAND_WORD, new FilterCommandParser()),
         Map.entry(FindCommand.COMMAND_WORD, new FindCommandParser()),
         Map.entry(ExitCommand.COMMAND_WORD, args -> new ExitCommand()),
         Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
