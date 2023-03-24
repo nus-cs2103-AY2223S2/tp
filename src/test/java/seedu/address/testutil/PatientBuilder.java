@@ -5,7 +5,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
-import seedu.address.model.ward.Ward;
 
 /**
  * A utility class to help with building Patient objects.

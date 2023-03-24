@@ -1,7 +1,5 @@
 package seedu.address.model.patient;
 
-import seedu.address.model.ward.Ward;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;

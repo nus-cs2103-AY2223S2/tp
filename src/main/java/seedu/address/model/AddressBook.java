@@ -88,13 +88,15 @@ public class AddressBook implements ReadOnlyAddressBook {
                         ward.addPatient(patient);
                     }
                     break;
-                } else if (ward.hasPatient(patient)){
+                } else if (ward.hasPatient(patient)) {
                     ward.removePatient(patient);
                     break;
                 }
             }
             if (!wardExists) {
-                wards.add(new Ward(wardName));
+                Ward newWard = new Ward(wardName);
+                newWard.addPatient(patient);
+                wards.add(newWard);
             }
         }
     }
