@@ -11,7 +11,6 @@ if () then ([Invalid command format])
   stop
 else ([else])
 :EditXYZCommandParser parses input
-and returns an EditXYZCommand;
 :Check if index given is valid;
 
 if () then ([Index is out of bounds])
