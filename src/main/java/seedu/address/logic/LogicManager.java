@@ -127,5 +127,10 @@ public class LogicManager implements Logic {
     @Override
     public void factoryReset() {
         model.setMasterDeck(new MasterDeck());
+        try {
+            storage.saveMasterDeck(model.getMasterDeck());
+        } catch (IOException ioe) {
+            logger.info("Something went wrong while resetting data.");
+        }
     }
 }
