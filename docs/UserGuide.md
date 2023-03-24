@@ -491,7 +491,7 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 <li> You can use the [List Command](#List) in the next section to display all applicants again!
 </li> </div> 
-
+<br>
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <li> The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search
@@ -767,7 +767,7 @@ Listed all shortlisted applicants
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 * However, if two or more values of `NOTE` are provided, both parameter will be taken in.
 
-< markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <li> All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter. </li>
 <li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM". </li>
 <ul> 
