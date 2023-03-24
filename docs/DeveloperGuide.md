@@ -5,13 +5,8 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 * [Acknowledgements](#Acknowledgements)
-
-* [Setting up, getting started](#Setting up, getting started)
-
 * [Design](#Design)
 * [Implementation](#Implementation)
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
