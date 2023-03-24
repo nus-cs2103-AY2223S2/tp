@@ -99,7 +99,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public int size() {return persons.size();}
+        public int size() { return persons.size(); }
     }
 
 }
