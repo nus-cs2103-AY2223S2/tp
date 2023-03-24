@@ -126,8 +126,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getProfilePicture().equals(getProfilePicture())
-                && otherPerson.getName().equals(getName())
+        return otherPerson.getName().equals(getName())
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getLinkedin().equals(getLinkedin())
@@ -156,7 +155,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Linkedin: ")
-                .append(getLinkedin());
+                .append(getLinkedin())
+                .append("; Profile picture path: ")
+                .append(getProfilePicture());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {

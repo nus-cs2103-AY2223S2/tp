@@ -62,7 +62,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         );
     }
     private Predicate<Person> addNamePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
-        String nameArgs = argMultimap.getValue(PREFIX_NAME).orElseGet(() -> "").trim();
+        String nameArgs = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
         if (!nameArgs.isEmpty()) {
             String[] nameKeywords = nameArgs.split("\\s+");
             Predicate<Person> namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
@@ -72,7 +72,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private Predicate<Person> addYearPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
-        String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElseGet(() -> "").trim();
+        String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElse("").trim();
         if (!yearArgs.isEmpty()) {
             String[]yearKeywords = yearArgs.split("\\s+");
             Predicate<Person> yearPredicate = new YearContainsKeywordsPredicate(Arrays.asList(yearKeywords));
@@ -82,7 +82,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private Predicate<Person> addCoursePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
-        String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElseGet(() -> "").trim();
+        String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElse("").trim();
         if (!courseArgs.isEmpty()) {
             String[] courseKeywords = courseArgs.split("\\s+");
             Predicate<Person> coursePredicate = new CourseContainsKeywordsPredicate(Arrays.asList(courseKeywords));
@@ -92,7 +92,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private Predicate<Person> addModulePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
-        String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
+        String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElse("").trim();
         if (!moduleArgs.isEmpty()) {
             String[] moduleKeywords = moduleArgs.split("\\s+");
             Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
@@ -102,7 +102,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private Predicate<Person> addSkillPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
-        String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
+        String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElse("").trim();
         if (!skillArgs.isEmpty()) {
             String[] skillKeywords = skillArgs.split("\\s+");
             Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));

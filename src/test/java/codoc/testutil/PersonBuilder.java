@@ -1,7 +1,7 @@
 package codoc.testutil;
 
-import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
+import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_BOB;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,8 +32,8 @@ public class PersonBuilder {
     public static final String DEFAULT_GITHUB = "amy-123";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_LINKEDIN = "linkedin.com/in/4my";
-    public static final Skill DEFAULT_SKILL = new Skill(VALID_SKILL_CSHARP);
-    public static final Module DEFAULT_MODULE = new Module(VALID_MODULE_AY2223S2_CS2103T);
+    public static final Skill DEFAULT_SKILL = new Skill(VALID_SKILL_BOB);
+    public static final Module DEFAULT_MODULE = new Module(VALID_MODULE_BOB);
 
 
 

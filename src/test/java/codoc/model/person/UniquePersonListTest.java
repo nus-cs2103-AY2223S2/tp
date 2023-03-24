@@ -2,7 +2,7 @@ package codoc.model.person;
 
 import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_AMY;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.ALICE;
 import static codoc.testutil.TypicalPersons.BOB;
@@ -45,7 +45,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(BOB);
         Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withLinkedin(VALID_LINKEDIN_BOB)
-                .withSkills(VALID_SKILL_JAVA)
+                .withSkills(VALID_SKILL_AMY)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -88,7 +88,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_JAVA)
+        Person editedAlice = new PersonBuilder(ALICE).withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_AMY)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

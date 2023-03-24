@@ -1,6 +1,7 @@
 {
   "_comment": "Codoc save file which contains the same Person values as in TypicalPersons#getTypicalCodoc()",
   "persons" : [ {
+    "profilePicturePath" : "src/main/resources/images/avataricons/001-bear.png",
     "name" : "Alice Pauline",
     "course": "Computer Science",
     "year": "1",
@@ -10,6 +11,7 @@
     "skills" : [ "python" ],
     "modules" : [ ]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/002-rabbit.png",
     "name" : "Benson Meier",
     "course": "Computer Science",
     "year": "1",
@@ -19,6 +21,7 @@
     "skills" : [ "java", "python" ],
     "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/003-panda.png",
     "name" : "Carl Kurz",
     "course": "Computer Science",
     "year": "1",
@@ -28,6 +31,7 @@
     "skills" : [ ],
     "modules" : [ ]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/004-sloth.png",
     "name" : "Daniel Meier",
     "course": "Computer Science",
     "year": "1",
@@ -37,6 +41,7 @@
     "skills" : [ "python" ],
     "modules" : [ "AY2223S2 CS2109S" ]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/005-hen.png",
     "name" : "Elle Meyer",
     "course": "Computer Science",
     "year": "1",
@@ -46,6 +51,7 @@
     "skills" : [ ],
     "modules" : [ ]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/006-puffer-fish.png",
     "name" : "Fiona Kunz",
     "course": "Computer Science",
     "year": "1",
@@ -55,6 +61,7 @@
     "skills" : [ ],
     "modules" : [ ]
   }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/007-beaver.png",
     "name" : "George Best",
     "course": "Computer Science",
     "year": "1",

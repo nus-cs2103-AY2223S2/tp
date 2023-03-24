@@ -30,7 +30,6 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell(mainWindow));
         personListView.setSelectionModel(null);
         personListView.setOnMousePressed(event -> {
-            System.out.println("hi");
             try {
                 int index = personListView.getSelectionModel().getSelectedIndex();
                 // do something with selected person

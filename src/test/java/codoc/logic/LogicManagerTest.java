@@ -2,7 +2,14 @@ package codoc.logic;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static codoc.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static codoc.testutil.Assert.assertThrows;
+import static codoc.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -12,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import codoc.logic.commands.AddCommand;
 import codoc.logic.commands.CommandResult;
 import codoc.logic.commands.ListCommand;
 import codoc.logic.commands.exceptions.CommandException;
@@ -20,9 +28,11 @@ import codoc.model.Model;
 import codoc.model.ModelManager;
 import codoc.model.ReadOnlyCodoc;
 import codoc.model.UserPrefs;
+import codoc.model.person.Person;
 import codoc.storage.JsonCodocStorage;
 import codoc.storage.JsonUserPrefsStorage;
 import codoc.storage.StorageManager;
+import codoc.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -60,31 +70,31 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //    @Test // Broken
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonCodocIoExceptionThrowingStub
-    //        JsonCodocStorage codocStorage =
-    //                new JsonCodocIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCodoc.json"));
-    //        JsonUserPrefsStorage userPrefsStorage =
-    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(codocStorage, userPrefsStorage);
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Execute add command
-    //        String addCommand =
-    //                AddCommand.COMMAND_WORD + NAME_DESC_AMY
-    //                        + COURSE_DESC_AMY + YEAR_DESC_AMY
-    //                        + GITHUB_DESC_AMY + EMAIL_DESC_AMY
-    //                + LINKEDIN_DESC_AMY;
-    //        //make sure expected person and add command results in the same person
-    //        Person expectedPerson = new PersonBuilder(AMY)
-    //                .withSkills().withModules().build();
-    //        ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addPerson(expectedPerson);
-    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonCodocIoExceptionThrowingStub
+        JsonCodocStorage codocStorage =
+                new JsonCodocIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCodoc.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(codocStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand =
+                AddCommand.COMMAND_WORD + NAME_DESC_AMY
+                        + COURSE_DESC_AMY + YEAR_DESC_AMY
+                        + GITHUB_DESC_AMY + EMAIL_DESC_AMY
+                        + LINKEDIN_DESC_AMY;
+        //make sure expected person and add command results in the same person
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withSkills().withModules().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addPerson(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {

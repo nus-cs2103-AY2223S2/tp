@@ -1,5 +1,6 @@
 package codoc.storage;
 
+import static codoc.testutil.TypicalPersons.getTypicalCodoc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import codoc.commons.core.GuiSettings;
+import codoc.model.Codoc;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -44,18 +47,18 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    //    @Test // Broken
-    //    public void codocReadSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonCodocStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonCodocStorageTest} class.
-    //         */
-    //        Codoc original = getTypicalCodoc();
-    //        storageManager.saveCodoc(original);
-    //        ReadOnlyCodoc retrieved = storageManager.readCodoc().get();
-    //        assertEquals(original, new Codoc(retrieved));
-    //    }
+    @Test
+    public void codocReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonCodocStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonCodocStorageTest} class.
+         */
+        Codoc original = getTypicalCodoc();
+        storageManager.saveCodoc(original);
+        ReadOnlyCodoc retrieved = storageManager.readCodoc().get();
+        assertEquals(original, new Codoc(retrieved));
+    }
 
     @Test
     public void getCodocFilePath() {
