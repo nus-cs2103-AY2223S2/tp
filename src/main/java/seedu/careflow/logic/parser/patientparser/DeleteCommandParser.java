@@ -1,7 +1,9 @@
 package seedu.careflow.logic.parser.patientparser;
 
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.careflow.logic.commands.patientcommands.DeleteCommand.MESSAGE_USAGE;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.stream.Stream;
 
@@ -35,16 +37,21 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 } else {
                     throw new ParseException(String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.careflow.logic.commands.patientcommands.DeleteCommand.MESSAGE_USAGE));
+                            MESSAGE_USAGE));
                 }
             } else {
-                Index index = ParserUtil.parseIndex(userInput);
-                return new DeleteCommand(index);
+                ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+                if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+                    Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+                    return new DeleteCommand(index);
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                }
             }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.careflow.logic.commands.patientcommands.DeleteCommand.MESSAGE_USAGE), pe);
+                            MESSAGE_USAGE), pe);
         }
     }
 
