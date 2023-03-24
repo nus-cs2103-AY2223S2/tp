@@ -1,5 +1,7 @@
 package mycelium.mycelium.ui.commandbox.mode;
 
+import java.util.Optional;
+
 /**
  * Represents a mode that the command box can be in.
  */
@@ -27,17 +29,18 @@ public abstract class Mode {
 
     /**
      * Called when the input is submitted.
+     * Returns the mode to switch to, if any.
+     * Note that the teardownMode() method will be called before switching modes.
      *
      * @param input The input from the command box
+     * @return the mode to switch to, if any
      */
-    public abstract void onInputSubmit(String input);
+    public abstract Optional<Mode> onInputSubmit(String input);
 
     /**
      * Tears down the mode.
-     *
-     * @return the input to be displayed in the command box
      */
-    public abstract String teardownMode();
+    public abstract void teardownMode();
 
     /**
      * Represents the type of mode.

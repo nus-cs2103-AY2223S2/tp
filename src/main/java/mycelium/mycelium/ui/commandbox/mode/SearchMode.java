@@ -1,5 +1,6 @@
 package mycelium.mycelium.ui.commandbox.mode;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import mycelium.mycelium.commons.core.LogsCenter;
@@ -16,6 +17,7 @@ public class SearchMode extends Mode {
     private final MainWindow mainWindow;
     private final Logic logic;
     private String cachedInput;
+    private Optional<String> additive;
 
     /**
      * Creates a new SearchMode.
@@ -26,11 +28,12 @@ public class SearchMode extends Mode {
     public SearchMode(MainWindow mainWindow, Logic logic) {
         this.mainWindow = mainWindow;
         this.logic = logic;
+        this.additive = Optional.empty();
     }
 
     @Override
     public void setupMode(String prevInput) {
-        logger.info("Setting up search mode");
+        logger.info("Setting up search mode, caching input: " + prevInput);
         cachedInput = prevInput;
         mainWindow.setCommandBoxStyleListening();
     }
@@ -42,17 +45,21 @@ public class SearchMode extends Mode {
     }
 
     @Override
-    public void onInputSubmit(String input) {
-        // Do Nothing
+    public Optional<Mode> onInputSubmit(String input) {
+        additive = mainWindow.getSelectedEntityIdentifier();
+        return Optional.of(new CommandMode(mainWindow));
     }
 
     @Override
-    public String teardownMode() {
-        logger.info("Tearing down search mode");
+    public void teardownMode() {
+        logger.info("Tearing down search mode: restoring input: " + cachedInput);
         mainWindow.setClients(logic.getFilteredClientList());
         mainWindow.setProjects(logic.getFilteredProjectList());
         mainWindow.setCommandBoxStyleDefault();
-        return cachedInput;
+        mainWindow.setCommandBoxInput(cachedInput);
+        if (additive.isPresent()) {
+            mainWindow.appendCommandBoxHighlighted(additive.get());
+        }
     }
 
     @Override

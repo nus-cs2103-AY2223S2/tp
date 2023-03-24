@@ -2,6 +2,8 @@ package mycelium.mycelium.ui.commandbox;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -36,7 +38,10 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        mode.onInputSubmit(commandTextField.getText());
+        Optional<Mode> nextMode = mode.onInputSubmit(commandTextField.getText());
+        if (nextMode.isPresent()) {
+            setMode(nextMode.get());
+        }
     }
 
     @FXML
@@ -78,21 +83,76 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(LISTENING_STYLE_CLASS);
     }
 
-    public void setInput(String input) {
-        commandTextField.setText(input);
-        commandTextField.positionCaret(input.length());
+    /**
+     * Requests focus on the command box.
+     */
+    public void requestFocus() {
+        commandTextField.requestFocus();
     }
 
+    /**
+     * Moves the cursor to the end of the command box.
+     */
+    public void moveToEndOfLine() {
+        commandTextField.positionCaret(commandTextField.getLength());
+    }
+
+    /**
+     * Moves the cursor to the start of the command box.
+     */
+    public void moveToStartOfLine() {
+        commandTextField.positionCaret(0);
+    }
+
+    /**
+     * Sets the input of the command box.
+     *
+     * @param input the input to set
+     */
+    public void setInput(String input) {
+        commandTextField.setText(input);
+        moveToEndOfLine();
+    }
+
+    /**
+     * Appends the given string to the end of the command box.
+     * The appended string is also selected.
+     *
+     * @param additive the string to append
+     */
+    public void appendHighlighted(String additive) {
+        int start = commandTextField.getLength();
+        commandTextField.setText(commandTextField.getText() + additive);
+        commandTextField.positionCaret(start);
+        commandTextField.selectEnd();
+    }
+
+    /**
+     * Gets the input of the command box.
+     *
+     * @return the input of the command box
+     */
     public String getInput() {
         return commandTextField.getText();
     }
 
+    /**
+     * Sets the mode of the command box.
+     *
+     * @param mode the mode to set
+     */
     public void setMode(Mode mode) {
+        String prevInput = getInput();
         this.mode.teardownMode();
         this.mode = mode;
-        this.mode.setupMode(getInput());
+        this.mode.setupMode(prevInput);
     }
 
+    /**
+     * Gets the mode type of the command box.
+     *
+     * @return the mode type of the command box
+     */
     public ModeType getModeType() {
         return mode.getModeType();
     }

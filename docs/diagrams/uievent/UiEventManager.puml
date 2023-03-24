@@ -1,0 +1,21 @@
+@startuml
+Class UiEventManager
+Class HelpKey
+Class FindKey
+Class SwitchKey
+Class Logic
+Class MainWindow
+
+UiEventManager .d.> HelpKey
+UiEventManager .d.> FindKey
+UiEventManager .d.> SwitchKey
+MainWindow -r-> Logic
+MainWindow --> UiEventManager
+HelpKey .d.> MainWindow
+FindKey .d.> MainWindow
+SwitchKey .d.> MainWindow
+HelpKey ...> Logic
+FindKey ...> Logic
+SwitchKey ...> Logic
+@enduml
+

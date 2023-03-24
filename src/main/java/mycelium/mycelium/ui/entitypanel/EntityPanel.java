@@ -1,5 +1,6 @@
 package mycelium.mycelium.ui.entitypanel;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -8,7 +9,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 
 /**
@@ -64,6 +67,42 @@ public class EntityPanel extends UiPart<TabPane> {
     }
 
     /**
+     * Selects and scroll to the next item in the current tab.
+     * If there is no next item, it will select and scroll to the first item.
+     */
+    public void nextItem() {
+        Tab item = this.selectionModel.getSelectedItem();
+        switch (item.getText()) {
+        case "Projects":
+            this.projectListPanel.nextItem();
+            break;
+        case "Client":
+            this.clientListPanel.nextItem();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Selects and scroll to the previous item in the current tab.
+     * If there is no previous item, it will select and scroll to the last item.
+     */
+    public void prevItem() {
+        Tab tab = this.selectionModel.getSelectedItem();
+        switch (tab.getText()) {
+        case "Projects":
+            this.projectListPanel.prevItem();
+            break;
+        case "Client":
+            this.clientListPanel.prevItem();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
      * Sets the clients in the client list panel.
      */
     public void setClients(ObservableList<Client> list) {
@@ -75,5 +114,30 @@ public class EntityPanel extends UiPart<TabPane> {
      */
     public void setProjects(ObservableList<Project> list) {
         projectListPanel.setItems(list);
+    }
+
+
+    /**
+     * Returns the selected entity identifier.
+     * If there is no selected entity, it will return an empty optional.
+     * The identifier for projects witll be the project name.
+     * The identifier for clients will be the client email.
+     *
+     * @return the selected entity identifier.
+     */
+    public Optional<String> getSelectedEntityIdentifier() {
+        Tab tab = this.selectionModel.getSelectedItem();
+        switch (tab.getText()) {
+        case "Projects":
+            return Optional.ofNullable(this.projectListPanel.getSelectedItem())
+                .map(Project::getName)
+                .map(NonEmptyString::toString);
+        case "Client":
+            return Optional.ofNullable(this.clientListPanel.getSelectedItem())
+                .map(Client::getEmail)
+                .map(Email::toString);
+        default:
+            return Optional.empty();
+        }
     }
 }

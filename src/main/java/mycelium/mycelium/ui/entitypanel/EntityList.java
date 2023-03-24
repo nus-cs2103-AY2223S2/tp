@@ -63,6 +63,35 @@ public class EntityList<T> extends UiPart<Region> {
     }
 
     /**
+     * Selects and scrolls to the next item in the list.
+     */
+    public void nextItem() {
+        int size = listView.getItems().size();
+        int nextIndex = (listView.getSelectionModel().getSelectedIndex() + 1) % size;
+        listView.getSelectionModel().select(nextIndex);
+        listView.scrollTo(listView.getSelectionModel().getSelectedItem());
+    }
+
+    /**
+     * Selects and scrolls to the previous item in the list.
+     */
+    public void prevItem() {
+        int size = listView.getItems().size();
+        int prevIndex = (listView.getSelectionModel().getSelectedIndex() - 1 + size) % size;
+        listView.getSelectionModel().select(prevIndex);
+        listView.scrollTo(listView.getSelectionModel().getSelectedItem());
+    }
+
+    /**
+     * Returns the selected item in the list.
+     *
+     * @return The selected item in the list.
+     */
+    public T getSelectedItem() {
+        return listView.getSelectionModel().getSelectedItem();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code T}.
      */
     class ListViewCell extends ListCell<T> {

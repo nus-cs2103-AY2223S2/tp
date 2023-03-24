@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
-import mycelium.mycelium.logic.uiaction.TabSwitch;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
@@ -59,13 +58,13 @@ public class AddClientCommand extends Command {
         if (model.hasClient(toAdd)) {
             throw new CommandException(
                 MESSAGE_DUPLICATE_CLIENT_NAME,
-                new TabSwitchAction(TabSwitch.CLIENT));
+                new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
         }
 
         model.addClient(toAdd);
         return new CommandResult(
             String.format(MESSAGE_SUCCESS, toAdd),
-            new TabSwitchAction(TabSwitch.CLIENT));
+            new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
     }
 
     @Override
