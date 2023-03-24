@@ -5,18 +5,17 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.event.EventAddCommand;
-import seedu.internship.logic.parser.AddCommandParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses and Execute Event Commands
+ */
 public class EventCatalogueParser {
 
-
-    /**
-     * Parses and Execute Event Commands
-     */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**

@@ -1,11 +1,11 @@
 package seedu.internship.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
-import static java.util.Objects.requireNonNull;
-
-
-
+/**
+ * Represents an Event's name.
+ */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Name should not be blank";
@@ -27,8 +27,8 @@ public class Name {
      * Returns true if a given string is a valid Name.
      */
     public static boolean isValidName(String test) {
-        // Anything can be a valid Name , So it return True
-        if (test == ""){
+        // Anything can be a valid Name, so return True
+        if (test.equals("")) {
             // An Empty String Cannot Be Valid
             return false;
         }

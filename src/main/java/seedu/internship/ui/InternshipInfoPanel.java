@@ -1,7 +1,5 @@
 package seedu.internship.ui;
 
-import static java.util.Objects.isNull;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.logging.Logger;
@@ -80,7 +78,8 @@ public class InternshipInfoPanel extends UiPart<Region> {
      * Displays a message in the titleSegment of the InternshipInfoPanel.
      */
     public void displayDefaultMessage() {
-        position.setText("Run 'view' command to view some internships.");
+        position.setText("Run 'add' command to add some new entries, "
+                + "or 'select' command to select an existing internship.");
         position.setStyle("-fx-font-size: 14pt");
     }
 
@@ -120,7 +119,7 @@ public class InternshipInfoPanel extends UiPart<Region> {
                 .collect(Collectors.toList()));
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName));
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //.forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     /**
