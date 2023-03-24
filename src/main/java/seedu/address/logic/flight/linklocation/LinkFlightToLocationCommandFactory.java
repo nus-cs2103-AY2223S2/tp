@@ -1,4 +1,4 @@
-package seedu.address.logic.location.linklocation;
+package seedu.address.logic.flight.linklocation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import seedu.address.model.location.Location;
 /**
  * The factory that creates {@code LinkLocationCommand}.
  */
-public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCommand> {
+public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFlightToLocationCommand> {
     public static final String COMMAND_WORD = "link";
     public static final String FLIGHT_PREFIX = "/flight";
     public static final String LOCATION_DEPARTURE_PREFIX = "/from";
@@ -38,7 +38,7 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
     /**
      * Creates a new link command factory with the model registered.
      */
-    public LinkLocationCommandFactory() {
+    public LinkFlightToLocationCommandFactory() {
         this(GetUtil.getLazy(Model.class));
     }
 
@@ -47,7 +47,7 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
      *
      * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public LinkLocationCommandFactory(Lazy<Model> modelLazy) {
+    public LinkFlightToLocationCommandFactory(Lazy<Model> modelLazy) {
         this(
                 modelLazy.map(Model::getLocationManager),
                 modelLazy.map(Model::getFlightManager)
@@ -61,7 +61,7 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
      * @param locationManagerLazy  the lazy instance of the location manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
      */
-    public LinkLocationCommandFactory(
+    public LinkFlightToLocationCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
     ) {
@@ -76,7 +76,7 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
      * @param locationManager  the location manager.
      * @param flightManager the flight manager.
      */
-    public LinkLocationCommandFactory(
+    public LinkFlightToLocationCommandFactory(
             ReadOnlyItemManager<Location> locationManager,
             ReadOnlyItemManager<Flight> flightManager
     ) {
@@ -133,7 +133,7 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
 
 
     @Override
-    public LinkLocationCommand createCommand(CommandParam param) throws ParseException {
+    public LinkFlightToLocationCommand createCommand(CommandParam param) throws ParseException {
         Optional<String> locationDepartureIdOptional =
                 param.getNamedValues(LOCATION_DEPARTURE_PREFIX);
         Optional<String> locationArrivalIdOptional =
@@ -155,6 +155,6 @@ public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCo
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkLocationCommand(locations, flight);
+        return new LinkFlightToLocationCommand(locations, flight);
     }
 }

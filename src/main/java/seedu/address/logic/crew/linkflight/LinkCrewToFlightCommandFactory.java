@@ -1,4 +1,4 @@
-package seedu.address.logic.crew.linkcrew;
+package seedu.address.logic.crew.linkflight;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import seedu.address.model.flight.Flight;
 /**
  * The factory that creates {@code LinkCrewCommand}.
  */
-public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
+public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewToFlightCommand> {
     private static final String COMMAND_WORD = "link";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
@@ -41,7 +41,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
     /**
      * Creates a new link command factory with the model registered.
      */
-    public LinkCrewCommandFactory() {
+    public LinkCrewToFlightCommandFactory() {
         this(GetUtil.getLazy(Model.class));
     }
 
@@ -50,7 +50,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
      *
      * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public LinkCrewCommandFactory(Lazy<Model> modelLazy) {
+    public LinkCrewToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
                 modelLazy.map(Model::getCrewManager),
                 modelLazy.map(Model::getFlightManager)
@@ -64,7 +64,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
      * @param crewManagerLazy  the lazy instance of the crew manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
      */
-    public LinkCrewCommandFactory(
+    public LinkCrewToFlightCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
     ) {
@@ -79,7 +79,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
      * @param crewManager  the crew manager.
      * @param flightManager the flight manager.
      */
-    public LinkCrewCommandFactory(
+    public LinkCrewToFlightCommandFactory(
             ReadOnlyItemManager<Crew> crewManager,
             ReadOnlyItemManager<Flight> flightManager
     ) {
@@ -139,7 +139,7 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
     }
 
     @Override
-    public LinkCrewCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public LinkCrewToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =
@@ -173,6 +173,6 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkCrewCommand(crews, flight);
+        return new LinkCrewToFlightCommand(crews, flight);
     }
 }

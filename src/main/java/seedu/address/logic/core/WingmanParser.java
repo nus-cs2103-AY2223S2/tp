@@ -10,30 +10,30 @@ import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.logic.crew.addcrew.AddCrewCommandFactory;
 import seedu.address.logic.crew.checkcrew.CheckCrewCommandFactory;
 import seedu.address.logic.crew.deletecrew.DeleteCrewCommandFactory;
-import seedu.address.logic.crew.linkcrew.LinkCrewCommandFactory;
+import seedu.address.logic.crew.linkflight.LinkCrewToFlightCommandFactory;
 import seedu.address.logic.crew.linklocation.LinkCrewToLocationCommandFactory;
-import seedu.address.logic.crew.unlinkcrew.UnlinkCrewCommandFactory;
+import seedu.address.logic.crew.unlinkflight.UnlinkCrewToFlightCommandFactory;
 import seedu.address.logic.crew.unlinklocation.UnlinkCrewToLocationCommandFactory;
 import seedu.address.logic.flight.addflight.AddFlightCommandFactory;
 import seedu.address.logic.flight.deleteflight.DeleteFlightCommandFactory;
+import seedu.address.logic.flight.linklocation.LinkFlightToLocationCommandFactory;
+import seedu.address.logic.flight.unlinklocation.UnlinkFlightToLocationCommandFactory;
 import seedu.address.logic.location.addlocation.AddLocationCommandFactory;
 import seedu.address.logic.location.deletelocation.DeleteLocationCommandFactory;
-import seedu.address.logic.location.linklocation.LinkLocationCommandFactory;
-import seedu.address.logic.location.unlinklocation.UnlinkLocationCommandFactory;
 import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
 import seedu.address.logic.pilot.checkpilot.CheckPilotCommandFactory;
 import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
 import seedu.address.logic.pilot.linklocation.LinkPilotToLocationCommandFactory;
-import seedu.address.logic.pilot.linkpilot.LinkPilotCommandFactory;
+import seedu.address.logic.pilot.linkflight.LinkPilotToFlightCommandFactory;
 import seedu.address.logic.pilot.unlinklocation.UnlinkPilotToLocationCommandFactory;
-import seedu.address.logic.pilot.unlinkpilot.UnlinkPilotCommandFactory;
+import seedu.address.logic.pilot.unlinkpilot.UnlinkPilotToFlightCommandFactory;
 import seedu.address.logic.plane.addplane.AddPlaneCommandFactory;
 import seedu.address.logic.plane.checkplane.CheckPlaneCommandFactory;
 import seedu.address.logic.plane.deleteplane.DeletePlaneCommandFactory;
 import seedu.address.logic.plane.linklocation.LinkPlaneToLocationCommandFactory;
-import seedu.address.logic.plane.linkplane.LinkPlaneCommandFactory;
+import seedu.address.logic.plane.linkflight.LinkPlaneToFlightCommandFactory;
 import seedu.address.logic.plane.unlinklocation.UnlinkPlaneToLocationCommandFactory;
-import seedu.address.logic.plane.unlinkplane.UnlinkPlaneCommandFactory;
+import seedu.address.logic.plane.unlinkflight.UnlinkPlaneToFlightCommandFactory;
 import seedu.address.logic.toplevel.changemode.ChangeModeCommandFactory;
 import seedu.address.model.OperationMode;
 
@@ -49,8 +49,8 @@ public class WingmanParser extends FactoryParser {
         new CommandGroup(OperationMode.PILOT, List.of(
             new AddPilotCommandFactory(),
             new DeletePilotCommandFactory(),
-            new LinkPilotCommandFactory(),
-            new UnlinkPilotCommandFactory(),
+            new LinkPilotToFlightCommandFactory(),
+            new UnlinkPilotToFlightCommandFactory(),
             new CheckPilotCommandFactory(),
             new LinkPilotToLocationCommandFactory(),
             new UnlinkPilotToLocationCommandFactory()
@@ -58,8 +58,8 @@ public class WingmanParser extends FactoryParser {
         new CommandGroup(OperationMode.CREW, List.of(
             new AddCrewCommandFactory(),
             new DeleteCrewCommandFactory(),
-            new LinkCrewCommandFactory(),
-            new UnlinkCrewCommandFactory(),
+            new LinkCrewToFlightCommandFactory(),
+            new UnlinkCrewToFlightCommandFactory(),
             new CheckCrewCommandFactory(),
             new LinkCrewToLocationCommandFactory(),
             new UnlinkCrewToLocationCommandFactory()
@@ -67,21 +67,21 @@ public class WingmanParser extends FactoryParser {
         new CommandGroup(OperationMode.PLANE, List.of(
             new AddPlaneCommandFactory(),
             new DeletePlaneCommandFactory(),
-            new LinkPlaneCommandFactory(),
-            new UnlinkPlaneCommandFactory(),
+            new LinkPlaneToFlightCommandFactory(),
+            new UnlinkPlaneToFlightCommandFactory(),
             new CheckPlaneCommandFactory(),
             new LinkPlaneToLocationCommandFactory(),
             new UnlinkPlaneToLocationCommandFactory()
         )),
         new CommandGroup(OperationMode.LOCATION, List.of(
             new AddLocationCommandFactory(),
-            new DeleteLocationCommandFactory(),
-            new LinkLocationCommandFactory(),
-            new UnlinkLocationCommandFactory()
+            new DeleteLocationCommandFactory()
         )),
         new CommandGroup(OperationMode.FLIGHT, List.of(
             new AddFlightCommandFactory(),
-            new DeleteFlightCommandFactory()
+            new DeleteFlightCommandFactory(),
+            new LinkFlightToLocationCommandFactory(),
+            new UnlinkFlightToLocationCommandFactory()
         ))
     );
 

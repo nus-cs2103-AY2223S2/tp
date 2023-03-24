@@ -1,4 +1,4 @@
-package seedu.address.logic.plane.unlinkplane;
+package seedu.address.logic.plane.linkflight;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,37 +17,35 @@ import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
-
-
 /**
- * The factory that creates {@code UnlinkPlaneCommand}.
+ * The factory that creates {@code LinkPlaneCommand}.
  */
-public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneCommand> {
-    private static final String COMMAND_WORD = "unlink";
+public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlaneToFlightCommand> {
+    private static final String COMMAND_WORD = "link";
     private static final String PLANE_USING_PREFIX = "/pu";
     private static final String FLIGHT_PREFIX = "/fl";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being unlinked.";
+            "No plane has been entered. Please enter /pu for the plane being used in this link.";
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight to be unlinked.";
+            "No flight has been entered. Please enter /fl for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
-     * Creates a new unlink command factory with the model registered.
+     * Creates a new link command factory with the model registered.
      */
-    public UnlinkPlaneCommandFactory() {
+    public LinkPlaneToFlightCommandFactory() {
         this(GetUtil.getLazy(Model.class));
     }
 
     /**
-     * Creates a new unlink command factory with the given modelLazy.
+     * Creates a new link command factory with the given modelLazy.
      *
-     * @param modelLazy the modelLazy used for the creation of the unlink command factory.
+     * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public UnlinkPlaneCommandFactory(Lazy<Model> modelLazy) {
+    public LinkPlaneToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
                 modelLazy.map(Model::getPlaneManager),
                 modelLazy.map(Model::getFlightManager)
@@ -55,13 +53,13 @@ public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneComm
     }
 
     /**
-     * Creates a new unlink plane command factory with the given plane manager
+     * Creates a new link plane command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
      * @param planeManagerLazy  the lazy instance of the plane manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
      */
-    public UnlinkPlaneCommandFactory(
+    public LinkPlaneToFlightCommandFactory(
             Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
     ) {
@@ -70,13 +68,13 @@ public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneComm
     }
 
     /**
-     * Creates a new unlink plane command factory with the given plane manager
+     * Creates a new link plane command factory with the given plane manager
      * and the flight manager.
      *
      * @param planeManager  the plane manager.
      * @param flightManager the flight manager.
      */
-    public UnlinkPlaneCommandFactory(
+    public LinkPlaneToFlightCommandFactory(
             ReadOnlyItemManager<Plane> planeManager,
             ReadOnlyItemManager<Flight> flightManager
     ) {
@@ -134,7 +132,7 @@ public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneComm
 
 
     @Override
-    public UnlinkPlaneCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public LinkPlaneToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
         Map<FlightPlaneType, Plane> planes = new HashMap<>();
@@ -150,6 +148,6 @@ public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneComm
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkPlaneCommand(planes, flight);
+        return new LinkPlaneToFlightCommand(planes, flight);
     }
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.location.linklocation;
+package seedu.address.logic.flight.linklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ import seedu.address.model.location.Location;
 /**
  * The command that links locations to a flight.
  */
-public class LinkLocationCommand implements Command {
+public class LinkFlightToLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
@@ -39,7 +39,7 @@ public class LinkLocationCommand implements Command {
      * @param locations the id of the locations.
      * @param flight the id of the flight.
      */
-    public LinkLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
+    public LinkFlightToLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
         this.locations = locations;
         this.flight = flight;
     }
