@@ -154,6 +154,53 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Field Validation
+Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
+when loading from a JSON file field validation is performed automatically.\
+The automatic validation of a tutee field requires the following three elements to be defined,
+an example implementation of a tutee field is shown below:
+```java
+public class Phone {
+   // Need at least one constructor with this signature
+   public Phone(String value) {
+      // ...
+   }
+
+   // Message to display to the user if the stored JSON data is invalid for the given field
+   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!"
+
+   // Validation method that will return true if the value is valid for the field, false otherwise
+   // If your field is named differently this method is named differently too, e.g. isValidRemark
+   public static boolean isValidPhone(String value) {
+      // ... details
+   }
+}
+```
+This automatic validation relies on Java reflection and will raise `RuntimeExceptions` if the automatic validation fails
+for reasons other than the user input being invalid. The process is as follows:
+1. The JSON file is read
+1. The `isValid` method is called with the given input
+1. If `isValid` returns false, the `MESSAGE_CONSTRAINT` is displayed to the user
+1. Otherwise, the input is passed to the constructor to create an instance of the field
+
+### Attendance Management
+#### The Attendance Field
+The `Attendance` field uses a hashset internally to store all the dates on which the tutee was present. The field is designed to be
+immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
+
+#### Mark and Unmark Command
+The mark and unmark commands are implemented similarly: both follow the format of `<mark|unmark> <index> [date]`. The
+user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
+are passed to the command.\
+If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add that
+date to the attendance field, thereby marking them as present on that date. Unmark will remove it, thereby marking them as absent on that date.\
+If tutee has already been marked present or absent on the specified date, the commands will have no effect.
+
+#### Query Command
+The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
+`didAttend()` method on the attendance field.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
