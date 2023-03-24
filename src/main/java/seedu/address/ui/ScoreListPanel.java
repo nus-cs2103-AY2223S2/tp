@@ -66,7 +66,7 @@ public class ScoreListPanel extends UiPart<Region> {
 
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
-        nameChart.setText("Chart for " + person.getName().fullName);
+        nameChart.setText("Recent 5 scores for " + person.getName().fullName);
         xAxis.setLabel("Date");
         yAxis.setLabel("Score");
         scoreChart.setVisible(true);
@@ -117,15 +117,16 @@ public class ScoreListPanel extends UiPart<Region> {
 
         private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
             final Label label = new Label(examLabel + ": " + scoreValue);
-            label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
-            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-font-family: \"SansSerif\";");
+            label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
+            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: white; "
+                    + "-fx-border-color: #605BF1; -fx-border-width: 2; ");
 
             if (scoreValue >= 80) {
-                label.setTextFill(Color.GREEN);
+                label.setTextFill(Color.rgb(126, 190, 97));
             } else if (50 <= scoreValue && scoreValue < 80) {
-                label.setTextFill(Color.YELLOW);
+                label.setTextFill(Color.rgb(244, 181, 55));
             } else {
-                label.setTextFill(Color.RED);
+                label.setTextFill(Color.rgb(194, 47, 40));
             }
 
             label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
