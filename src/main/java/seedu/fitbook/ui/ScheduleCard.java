@@ -60,7 +60,7 @@ public class ScheduleCard extends UiPart<Region> {
         }
 
         //Display the appointments
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
         StringBuilder sb = new StringBuilder();
         for (LocalDateTime dateTime : dateTimeList) {
             sb.append(dateTime.format(f));

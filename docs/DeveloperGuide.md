@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `FitBookModel` when it is executed (e.g. to add a client).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `FitBookModel` when it is executed (e.g. to add a client).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -153,6 +153,112 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit appointments feature
+#### Implementation
+The edit appointments feature allows users to view appointments in the upcoming dates.
+
+This feature is implemented using a panel on the main window with a list of clients names 
+that is updated with every command that may affect appointment set.
+
+One situation that trigger the edit appointments feature is when a suer edits an appointment.
+The following details explain how it works:
+
+   *  What it does:
+      * When an appointment is edited in the clients list, it is automatically added to the
+      list of appointments.
+      * The list is automatically sorted in increasing order of the appointment data time.
+      
+
+   * Details:
+      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment* 
+      class.
+      * In the *EditCommand* class, the data entered by user is parsed.
+      * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
+      * This function, in turn, calls editCommand() function in FitBook.
+      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the 
+      appointment date time are valid.
+      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted. 
+      Otherwise, an error message is returned.
+
+
+   * Example Usage Scenario
+
+     Below is an example usage scenario of how the appointment list mechanism behaves at each step:
+       * The user launches the application for the first time.
+       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also 
+       checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
+
+
+  * Design Considerations
+
+    One important design consideration is how to handle expired appointment dates and times. The current choice is to 
+    automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
+      * pros: Users can easily distinguish between expired and non-expired appointment dates and times. 
+      * cons: expired date time cannot be updated immediately unless the user reopen the application.
+
+### Find feature
+
+#### Implementation
+
+The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#getFilteredClientList()` — Retrieves the client list.
+* `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the given predicate.
+
+These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
+FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+
+![FindState0](images/FindState0.png)
+
+Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
+FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
+modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
+`currentStatePointer` is shifted to the newly inserted FitBook state.
+
+![FindState1](images/FindState1.png)
+
+Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
+`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
+`fitBookStateList`.
+
+![FindState2](images/FindState2.png)
+
+![FindState3](images/FindState3.png)
+
+Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
+the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
+
+![FindState3](images/FindState4.png)
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How find executes more than once:**
+
+* **Alternative 1 (current choice):** Finds from the entire FitBook.
+    * Pros: Easy to implement.
+    * Cons: Lower performance as every command will have to filter the entire FitBook.
+
+* **Alternative 2:** Finds from an already filtered list.
+    * Pros: Better performance.
+    * Cons: May result in high memory usage as each new state has to be saved.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -347,7 +453,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
-
    Use case ends.
 
 **Extensions**
@@ -361,14 +466,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-
-
-      Use case ends.
-
-
-
-**Use case: UC03 - List clients**
-
+       
+       Use case ends.
+    
+>**Use case: UC03 - List clients**
 
 **MSS**
 
@@ -416,7 +517,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
 **Extensions**
 
 * 1a. The list is empty in the database.
@@ -457,6 +557,197 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The find command has incorrect format.
     * 3a1. FitBook displays an error that the find format is wrong.
+
+      Use case ends.
+
+> **Use case: UC08 - List Routines**
+
+ **MSS**
+
+1. User requests to list routines.
+2. FitBook displays a list of routines.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Routine list is empty use case.
+
+  Use case ends.
+
+> **Use case: UC09 - Clear Routines**
+
+**MSS**
+
+1. User requests to clear the list of routines.
+2. FitBook clears the list and database of routines.
+3. FitBook displays that the routine list is cleared.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The routine list is empty in the database.
+
+    * 1a1. FitBook displays that the routine list is cleared.
+
+      Use case ends.
+
+> **Use case: UC09 - Delete Routine**
+
+**MSS**
+
+1.  User requests to list routines
+2.  FitBook shows a list of routines
+3.  User requests to delete a specific routine in the list
+4.  FitBook deletes the routine
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The routine list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FitBook shows an error message.
+
+      Use case resumes at step 2.
+
+> **Use case: UC10 - Delete Exercise**
+
+**MSS**
+
+1.  User requests to list routines
+2.  FitBook shows a list of routines
+3.  User requests to delete an exercise from a specific routine in the list
+4.  FitBook deletes the exercise from the specific routine in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The routine list is empty.
+
+  Use case ends.
+
+* 3a. The given routine index is invalid.
+
+    * 3a1. FitBook shows an error message.
+
+      Use case resumes at step 2.
+  
+  3b. The given exercise index is invalid.
+
+    * 3b1. FitBook shows an error message.
+    
+      Use case resumes at step 2.
+
+> **Use case: UC11 - Find Routine**
+
+**MSS**
+
+1. User requests to find a routine by name.
+2. FitBook displays the list of matching clients.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty in the database.
+    * 1a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+> **Use case: UC13 - Export Client List**
+
+**MSS**
+
+1. User request to export Client List.
+2. FitBook exports the Client List to csv format.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. The Client csv file is opened in the background
+    * 1a1. FitBook shows an error message.  
+      
+      Use case ends.
+
+> **Use case: UC14 - Export Routine List**
+
+**MSS**
+
+1. User request to export Routine List.
+2. FitBook exports the Routine List to csv format.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The Routine csv file is opened in the background
+    * 1a1. FitBook shows an error message.
+
+      Use case ends.
+
+> **Use case: UC15 - Add routine**
+
+**MSS**
+
+1. User request to add a routine.
+2. FitBook adds the routine to its routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing routine name field.
+    * 1a1. FitBook shows an error for missing routine name.
+      
+      Use case ends.
+
+* 1b. User request have missing exercise field.
+  * 1b1. FitBook adds a routine with no exercise. (Only routine itself)
+
+    Use case ends.
+
+* 1c. User request have all missing fields.
+  * 1c1. FitBook shows an error for missing fields.
+
+    Use case ends.
+
+> **Use case: UC16 - Edit routine or exercise in routine**
+
+**MSS**
+
+1. User request to edit a routine.
+2. User either edit by target routine's name or one of the target routine's exercise.
+3. FitBook edits that routine in its routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User request have mix fields which is not allowed.
+    * 2a1. FitBook shows an error for incorrect command format.
+
+      Use case ends.
+
+* 2b. User request have all missing field.
+    * 2b1. FitBook shows an error for missing fields
+
+      Use case ends.
+
+* 2c. User request have only target routine field.
+    * 2c1. FitBook shows an error for missing field.
+
+      Use case ends.
+
+* 2d. User request for changing exercise only has one field. (Changing exercise requires two fields)
+    * 2d1. FitBook shows an error for incorrect format.
 
       Use case ends.
 
@@ -501,40 +792,54 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   A. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   B. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   A. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a client
 
 1. Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+   A. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
+   B. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   C. Test case: `delete 0`<br>
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   D. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting an exercise
+1. Deleting an exercise while all routines are being shown
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `deleteExercise 1 2`<br>
+       Expected: Second exercise from the first routine is deleted from the list. Details of the deleted exercise shown in the status message.
+
+   C. Test case: `deleteExercise 0 0`<br>
+       Expected: No exercise is deleted. Error details shown in the status message.
+
+   D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
+       Expected: Similar to previous.
+   
+2. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   A. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
