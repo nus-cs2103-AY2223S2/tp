@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -90,11 +91,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered fish list */
     ObservableList<Fish> getFilteredFishList();
 
+    /** Returns an unmodifiable view of the sorted fish list */
+    ObservableList<Fish> getSortedFishList();
+
     /**
      * Updates the filter of the filtered fish list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFishList(Predicate<Fish> predicate);
+
+    /**
+     * Sorts the filtered fish list by the given {@code comparator}.
+     */
+    void sortFilteredFishList(Comparator<Fish> comparator);
 
     //=========== TaskList =============================================================
     void setTaskList(ReadOnlyTaskList taskList);

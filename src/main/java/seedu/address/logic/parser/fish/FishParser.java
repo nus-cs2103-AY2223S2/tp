@@ -8,6 +8,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.fish.FishAddCommand;
 import seedu.address.logic.commands.fish.FishCommand;
 import seedu.address.logic.commands.fish.FishDeleteCommand;
+import seedu.address.logic.commands.fish.FishSortCommand;
 import seedu.address.logic.commands.fish.FishViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -43,6 +44,8 @@ public class FishParser {
             return new FishDeleteCommandParser().parse(arguments);
         case FishViewCommand.FISH_COMMAND_WORD:
             return new FishViewCommandParser().parse(arguments);
+        case FishSortCommand.FISH_COMMAND_WORD:
+            return new FishSortCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         FishCommand.MESSAGE_USAGE));

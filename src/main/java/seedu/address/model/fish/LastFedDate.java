@@ -40,8 +40,13 @@ public class LastFedDate {
         return test.matches(VALIDATION_REGEX);
     }
 
+
     public String getAlphaNumericDate() {
         return this.alphaNumericDate;
+    }
+
+    public LocalDate getLocalDate() {
+        return this.localDate;
     }
 
     @Override
