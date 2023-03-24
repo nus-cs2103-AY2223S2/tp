@@ -306,38 +306,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC3 - Create a project**
+**Use case: UC3 - List Employees in department**
 
 **MSS:**
-1. User requests to create a project.
-2. SudoHR creates the project.
+1. User requests to list the employees in a specified department. 
+2. SudoHr lists all the employees in the department.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department is invalid.
 
     * 1a1. SudoHR shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC4 - Update a project**
+**Use case: UC4 - List Employees in a department present on a given day.**
 
 **MSS:**
-1. User lists all existing projects.
-2. User requests to update a project.
-3. SudoHR updates the project.
+1. User requests to list all employees in a given department who are present.
+2. SudoHR lists the employees.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department does not exist.
 
     * 1a1. SudoHR shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: UC5 - Delete a project**
 
