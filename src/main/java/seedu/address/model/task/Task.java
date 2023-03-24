@@ -9,6 +9,8 @@ import seedu.address.model.task.exceptions.TaskHasNoTankException;
  *  Represents a Task of the user
  */
 public class Task {
+    protected boolean isReminder;
+
     private final Description description;
     private final boolean isTankRelatedTask;
     private Tank tank;
@@ -22,10 +24,15 @@ public class Task {
         this.description = description;
         this.tank = tank;
         this.isTankRelatedTask = this.tank != null;
+        this.isReminder = false;
     }
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public boolean getIsReminder() {
+        return this.isReminder;
     }
 
     public Tank getTank() {

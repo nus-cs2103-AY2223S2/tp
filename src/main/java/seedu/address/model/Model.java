@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -9,6 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * The API of the Model component.
@@ -88,11 +91,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered fish list */
     ObservableList<Fish> getFilteredFishList();
 
+    /** Returns an unmodifiable view of the sorted fish list */
+    ObservableList<Fish> getSortedFishList();
+
     /**
      * Updates the filter of the filtered fish list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFishList(Predicate<Fish> predicate);
+
+    /**
+     * Sorts the filtered fish list by the given {@code comparator}.
+     */
+    void sortFilteredFishList(Comparator<Fish> comparator);
 
     //=========== TaskList =============================================================
     void setTaskList(ReadOnlyTaskList taskList);
@@ -159,6 +170,12 @@ public interface Model {
     ObservableList<Tank> getFilteredTankList();
 
     void updateFilteredTankList(Predicate<Tank> predicate);
-
+    
     void setLastFedDateFishes(Tank tankToFeed, String formattedDate);
+
+    /**
+     * Executes the auto feeding reminder feature for Model
+     */
+    public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel();
+
 }
