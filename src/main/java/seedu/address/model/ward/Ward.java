@@ -72,7 +72,7 @@ public class Ward {
     }
 
     public boolean isFull() {
-        return getOccupancy() == capacity.getValue();
+        return getOccupancy() >= capacity.getValue();
     }
 
     public String getNameString() {
