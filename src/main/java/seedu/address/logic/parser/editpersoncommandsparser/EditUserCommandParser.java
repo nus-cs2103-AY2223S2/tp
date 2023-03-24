@@ -21,7 +21,7 @@ public class EditUserCommandParser extends EditPersonCommandParser implements Pa
      */
     public EditUserCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        EditPersonDescriptor editPersonDescriptor = this.parseForTags(args);
+        PersonDescriptor editPersonDescriptor = this.parseForTags(args);
 
         return new EditUserCommand(editPersonDescriptor);
     }

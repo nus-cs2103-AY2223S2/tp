@@ -43,7 +43,7 @@ public abstract class EditPersonCommandParser {
      * and returns an EditPersonDescriptor for edit commands to use.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditPersonDescriptor parseForTags(String args) throws ParseException {
+    public PersonDescriptor parseForTags(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
@@ -51,7 +51,7 @@ public abstract class EditPersonCommandParser {
                         PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS, PREFIX_FACULTY);
 
         Optional<Index> index;
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        PersonDescriptor editPersonDescriptor = new PersonDescriptor();
 
         try {
             index = this.parseIndex(argMultimap.getPreamble());

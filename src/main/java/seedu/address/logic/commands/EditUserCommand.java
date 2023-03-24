@@ -12,7 +12,7 @@ import java.util.Set;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.fields.Address;
@@ -50,14 +50,14 @@ public class EditUserCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    private final EditPersonDescriptor editUserDescriptor;
+    private final PersonDescriptor editUserDescriptor;
 
     /**
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditUserCommand(EditPersonDescriptor editPersonDescriptor) {
+    public EditUserCommand(PersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
-        this.editUserDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editUserDescriptor = new PersonDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EditUserCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static User createEditedUser(User user, EditPersonDescriptor editPersonDescriptor) {
+    private static User createEditedUser(User user, PersonDescriptor editPersonDescriptor) {
         assert user != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(user.getName());
@@ -100,7 +100,7 @@ public class EditUserCommand extends Command {
                 updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite, updatedFaculty, currentEvents);
     }
 
-    public EditPersonDescriptor getEditUserDescriptor() {
+    public PersonDescriptor getEditUserDescriptor() {
         return this.editUserDescriptor;
     }
 
