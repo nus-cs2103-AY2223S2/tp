@@ -23,11 +23,13 @@ public class RecipeBook implements ReadOnlyRecipeBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         recipes = new UniqueRecipeList();
     }
 
-    public RecipeBook() {}
+    public RecipeBook() {
+    }
 
     /**
      * Creates a RecipeBook using the Recipes in the {@code toBeCopied}
@@ -115,7 +117,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
             return true;
         }
         ObservableList<Recipe> r = ((RecipeBook) other).getRecipeList();
-        for (Recipe recipe: r) {
+        for (Recipe recipe : r) {
             if (!this.hasRecipe(recipe)) {
                 return false;
             }

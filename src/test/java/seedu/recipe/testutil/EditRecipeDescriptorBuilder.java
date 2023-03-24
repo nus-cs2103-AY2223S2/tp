@@ -5,9 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
@@ -20,21 +19,21 @@ import seedu.recipe.model.tag.Tag;
  */
 public class EditRecipeDescriptorBuilder {
 
-    private EditCommand.EditRecipeDescriptor descriptor;
+    private RecipeDescriptor descriptor;
 
     public EditRecipeDescriptorBuilder() {
-        descriptor = new EditCommand.EditRecipeDescriptor();
+        descriptor = new RecipeDescriptor();
     }
 
-    public EditRecipeDescriptorBuilder(EditCommand.EditRecipeDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditRecipeDescriptor(descriptor);
+    public EditRecipeDescriptorBuilder(RecipeDescriptor descriptor) {
+        this.descriptor = new RecipeDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditRecipeDescriptor} with fields containing {@code recipe}'s details
      */
     public EditRecipeDescriptorBuilder(Recipe recipe) {
-        descriptor = new EditRecipeDescriptor();
+        descriptor = new RecipeDescriptor();
         descriptor.setName(recipe.getName());
         descriptor.setPortion(recipe.getPortion());
         descriptor.setDuration(recipe.getDuration());
@@ -81,7 +80,9 @@ public class EditRecipeDescriptorBuilder {
      * Sets the {@code Ingredients} of the {@code EditRecipeDescriptor} that we are building.
      */
     public EditRecipeDescriptorBuilder withIngredients(String... ingredients) {
-        List<Ingredient> ingredientList = Stream.of(ingredients).map(Ingredient::new).collect(Collectors.toList());
+        List<IngredientBuilder> ingredientList = Stream.of(ingredients)
+                .map(IngredientBuilder::new)
+                .collect(Collectors.toList());
         descriptor.setIngredients(ingredientList);
         return this;
     }
@@ -96,7 +97,7 @@ public class EditRecipeDescriptorBuilder {
     }
 
 
-    public EditCommand.EditRecipeDescriptor build() {
+    public RecipeDescriptor build() {
         return descriptor;
     }
 }

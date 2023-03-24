@@ -82,19 +82,15 @@ public class RecipeDurationTest {
     @Test
     public void testFactory() {
         //Too few arguments
-        assertThrows(RecipeDurationInvalidArgumentLengthException.class, (
-            ) -> RecipeDuration.of(NO_WHITESPACE)
-        );
+        assertThrows(RecipeDurationInvalidArgumentLengthException.class, () -> RecipeDuration.of(NO_WHITESPACE));
         //Too many arguments
-        assertThrows(RecipeDurationInvalidArgumentLengthException.class, (
-            ) -> RecipeDuration.of("13 days in the winter")
-        );
+        assertThrows(
+            RecipeDurationInvalidArgumentLengthException.class, (
+            ) -> RecipeDuration.of("13 days in the winter"));
         //Invalid duration
-        assertThrows(RecipeDurationInvalidDurationException.class, (
-            ) -> RecipeDuration.of(INVALID_FRACTION));
-        assertEquals(
-                RecipeDuration.of(VALID_PLURAL).toString(),
-                new RecipeDuration(2, new TimeUnit("hours")).toString());
+        assertThrows(RecipeDurationInvalidDurationException.class, () -> RecipeDuration.of(INVALID_FRACTION));
+        assertEquals(RecipeDuration.of(VALID_PLURAL).toString(),
+                     new RecipeDuration(2, new TimeUnit("hours")).toString());
     }
 
     @Test

@@ -48,7 +48,8 @@ public class RecipePopup extends UiPart<Region> {
 
     /**
      * Generates and returns the UI instance for this Recipe card.
-     * @param recipe The recipe details to display in the card.
+     *
+     * @param recipe         The recipe details to display in the card.
      * @param displayedIndex The index number to display in the card.
      */
     public RecipePopup(Recipe recipe, int displayedIndex) {
@@ -61,15 +62,13 @@ public class RecipePopup extends UiPart<Region> {
         duration.setText(
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
-                        .orElse("Duration was not added.")
-        );
+                        .orElse("Duration was not added."));
 
         //Portion
         portion.setText(
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
-                        .orElse("Portion was not added.")
-        );
+                        .orElse("Portion was not added."));
 
         //Tags
         recipe.getTags().stream()

@@ -39,11 +39,12 @@ public class NameContainsKeywordsPredicateTest {
         // different recipe -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
+
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
+            new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
         assertTrue(predicate.test(new Recipe(new Name("Lasagna"))));
 
         // Multiple keywords
@@ -75,7 +76,11 @@ public class NameContainsKeywordsPredicateTest {
         r.setPortion(RecipePortion.of("1 serving"));
         r.setDuration(RecipeDuration.of("2 h"));
         r.setTags(new Tag("Mediterranean"));
-        r.setIngredients(new Ingredient("Butter"), new Ingredient("Onions"), new Ingredient("Halibut"));
+        r.setIngredients(
+            new IngredientBuilder("-n Butter"),
+            new IngredientBuilder("-n Onions"),
+            new IngredientBuilder("-n Halibut")
+        );
         r.setSteps(new Step("Descale the fish with a paring knife."));
         assertFalse(predicate.test(r));
     }

@@ -16,14 +16,15 @@ public class RecipeDuration {
             "A Recipe Duration should consist of a numeric/decimal section and an alphanumeric time unit";
     private static final String VALIDATION_REGEX =
             "^(([2-9]\\d{0,2}|1\\d{1,2})(\\.\\d{1,3})?|[01]\\.\\d{0,2}[1-9])\\s+((hour|minute|second|day)s|min|h)$|"
-            + "^(1|1.0)\\s+(hour|minute|day|second|min|h)$";
+                    + "^(1|1.0)\\s+(hour|minute|day|second|min|h)$";
 
     private final double time;
     private final TimeUnit timeUnit;
 
     /**
      * Generates and returns an instance of a RecipeDuration object, if the provided parameters are valid.
-     * @param time The non-negative time amount
+     *
+     * @param time     The non-negative time amount
      * @param timeUnit The time unit instance
      */
     public RecipeDuration(double time, TimeUnit timeUnit) {
@@ -34,6 +35,7 @@ public class RecipeDuration {
 
     /**
      * Returns whether a given String is a valid RecipeDuration.
+     *
      * @param test the string to test.
      * @return true if the String is a valid RecipeDuration in accordance to the regex, false otherwise.
      */
@@ -43,6 +45,7 @@ public class RecipeDuration {
 
     /**
      * Generates an instance of a RecipeDuration Object, provided the parameter string is formatted correctly.
+     *
      * @param duration The parameter string to input the time and unit into this factory.
      * @return The generated RecipeDuration instance, if the parameter is valid.
      */

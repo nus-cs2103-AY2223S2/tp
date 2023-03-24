@@ -11,18 +11,20 @@ import seedu.recipe.model.recipe.Recipe;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPE = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPE = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -45,12 +47,14 @@ public interface Model {
     void setRecipeBookFilePath(Path recipeBookFilePath);
 
     /**
+     * Returns the RecipeBook
+     */
+    ReadOnlyRecipeBook getRecipeBook();
+
+    /**
      * Replaces recipe book data with the data in {@code recipeBook}.
      */
     void setRecipeBook(ReadOnlyRecipeBook recipeBook);
-
-    /** Returns the RecipeBook */
-    ReadOnlyRecipeBook getRecipeBook();
 
     /**
      * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe book.
@@ -76,11 +80,14 @@ public interface Model {
      */
     void setRecipe(Recipe target, Recipe editedRecipe);
 
-    /** Returns an unmodifiable view of the filtered recipe list */
+    /**
+     * Returns an unmodifiable view of the filtered recipe list
+     */
     ObservableList<Recipe> getFilteredRecipeList();
 
     /**
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecipeList(Predicate<Recipe> predicate);
