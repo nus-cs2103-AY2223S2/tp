@@ -156,31 +156,31 @@ public class Recipe {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getName());
 
-        portion.ifPresent(p -> builder.append(";\nPortion: ").append(p));
+        portion.ifPresent(p -> stringBuilder.append(";\nPortion: ").append(p));
 
-        duration.ifPresent(d -> builder.append(";\nDuration: ").append(d));
+        duration.ifPresent(d -> stringBuilder.append(";\nDuration: ").append(d));
 
         if (!tags.isEmpty()) {
-            builder.append(";\nTags: ");
+            stringBuilder.append(";\nTags: ");
             ArrayList<Tag> tags = new ArrayList<>(this.tags);
             tags.sort(Comparator.comparing(t -> t.tagName));
-            tags.forEach(builder::append);
+            tags.forEach(stringBuilder::append);
         }
 
         if (!ingredients.isEmpty()) {
-            builder.append(";\nIngredients: ");
-            ingredients.forEach(i -> builder.append(i).append(",\n"));
+            stringBuilder.append(";\nIngredients: ");
+            ingredients.forEach(i -> stringBuilder.append(i).append(",\n"));
         }
 
         if (!steps.isEmpty()) {
-            builder.append(";\nSteps: ");
+            stringBuilder.append(";\nSteps: ");
             for (int i = 0; i < steps.size(); i++) {
-                builder.append(String.format("%s. %s,\n", i + 1, steps.get(i)));
+                stringBuilder.append(String.format("%s. %s,\n", i + 1, steps.get(i)));
             }
         }
-        return builder.toString();
+        return stringBuilder.toString();
     }
 }
