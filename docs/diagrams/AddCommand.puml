@@ -61,7 +61,7 @@ activate AddCommand
 
 
 
-loop 2 times
+loop until list size is 0
         AddCommand -> Model: addTask()
         activate Model
         Model --> AddCommand
