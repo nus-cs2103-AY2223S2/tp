@@ -18,7 +18,6 @@ public class ClearCommand extends Command {
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
     public static final String MESSAGE_SUCCESS = "Application data has been cleared!";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

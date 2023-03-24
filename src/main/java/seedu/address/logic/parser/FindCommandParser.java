@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -148,14 +147,6 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_RISK).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_NRIC).orElse(List.of()).size() > 1);
+        return true;
     }
 }

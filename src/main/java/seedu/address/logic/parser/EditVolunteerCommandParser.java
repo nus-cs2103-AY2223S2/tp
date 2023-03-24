@@ -14,9 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -101,14 +100,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1);
+        return map.getPreamble().length() == 1 && StringUtil.isNonZeroUnsignedInteger(map.getPreamble());
     }
 }
 

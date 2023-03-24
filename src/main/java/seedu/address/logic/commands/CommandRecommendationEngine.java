@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -31,7 +29,7 @@ import seedu.address.logic.parser.StatsCommandParser;
 
 /**
  * Recommends a command based on the user input.
- * Solution adapted from
+ * Implementation adapted from
  * https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions
  */
 public class CommandRecommendationEngine {
@@ -121,30 +119,30 @@ public class CommandRecommendationEngine {
      * @throws CommandException If the user input is invalid
      */
     public String recommendCommand(String userInput) throws CommandException {
-        String[] userInputArray = userInput.trim().split(" ");
-        String commandWord = userInputArray[0];
-        CommandInfo commandInfo = findMatchingCommandInfo(commandWord);
+        // find entered command
+        int commandIndex = userInput.indexOf(" ");
+        String commandWord, commandArgs;
+        CommandInfo commandInfo;
 
-        if (commandInfo == null || (commandWord.length() == commandInfo.getCmdWord().length()
-                && !Objects.equals(commandWord, commandInfo.getCmdWord()))) {
+        // not a complete command
+        if (commandIndex == -1) {
+            commandInfo = findMatchingCommandInfo(userInput);
+            if (commandInfo == null) throw new CommandException(INVALID_COMMAND_MESSAGE);
+            return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null);
+        }
+
+        // complete command
+        commandWord = userInput.substring(0, commandIndex);
+        String parsedArgs = userInput.substring(commandIndex);
+        commandInfo = findMatchingCommandInfo(commandWord);
+
+        if (commandInfo == null || !commandWord.equals(commandInfo.getCmdWord())) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
         }
 
-        String command = commandInfo.getCmdWord();
-        String userArgs = null;
-        if (userInputArray.length > 1) {
-            String[] userArgsArray = Arrays.copyOfRange(userInputArray, 1, userInputArray.length);
-            userArgs = Arrays.stream(userArgsArray).reduce("", ((a, b) -> a + " " + b));
-        }
-
-        String recommendedArguments = generateArgumentRecommendation(commandInfo, userArgs);
-        if (userInputArray.length > 1) { // command is specified
-            return userInput + recommendedArguments;
-        } else {
-            return command.length() > userInput.length()
-                    ? command + recommendedArguments
-                    : userInput + recommendedArguments;
-        }
+        commandArgs = parsedArgs.isBlank() ? null : parsedArgs;
+        String recommendedArguments = generateArgumentRecommendation(commandInfo, commandArgs);
+        return userInput + recommendedArguments;
     }
 
     /**
@@ -155,14 +153,18 @@ public class CommandRecommendationEngine {
      * @return String to be autocompleted
      */
     public String autocompleteCommand(String userInput, String recommendedCommand) {
-        // remaining values
-        String suggestedCommand = recommendedCommand.substring(userInput.trim().length());
-
-        // if command is complete, autocomplete the relevant arguments
+        String suggestedCommand = recommendedCommand.substring(userInput.length());
         boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
-        int nextIdx = suggestedCommand.indexOf(isCompleteCommand ? "/" : " ");
-        nextIdx = (nextIdx != -1) ? nextIdx + 1 : suggestedCommand.length();
-        return userInput.trim() + suggestedCommand.substring(0, nextIdx);
+        int commandIdx = recommendedCommand.indexOf(" ");
+        String command = recommendedCommand.substring(0, commandIdx == -1
+                ? recommendedCommand.length()
+                : commandIdx);
+        if (!isCompleteCommand && !userInput.equals(command)) {
+            return command;
+        } else {
+            int nextIdx = suggestedCommand.indexOf("/") + 1;
+            return userInput.trim() + suggestedCommand.substring(0, nextIdx);
+        }
     }
 
     private static boolean isCommandPrefixComplete(String userInput, String delimiter) {
@@ -199,13 +201,11 @@ public class CommandRecommendationEngine {
 
         HashMap<Prefix, String> cmdPrompt = commandInfo.getCmdPrompts();
         String command = commandInfo.getCmdWord();
-
         StringBuilder argumentRecommendation = new StringBuilder();
         if (userArgs == null) {
             getRemainingArguments(cmdPrompt,
                     key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
                     unused -> true);
-
             return argumentRecommendation.toString();
         }
 
@@ -240,7 +240,6 @@ public class CommandRecommendationEngine {
         getRemainingArguments(cmdPrompt,
                 key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
                 key -> argumentMultimap.getValue(key).isEmpty());
-
         return argumentRecommendation.toString();
     }
 

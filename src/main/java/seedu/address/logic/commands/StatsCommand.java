@@ -12,6 +12,7 @@ import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.logic.aggregatefunction.MaxCount;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 
@@ -46,7 +47,7 @@ public class StatsCommand extends Command {
         summary.describe(new Count<>(model.getFilteredElderlyList(), ELDERLY_COUNT));
 
         List<Elderly> pairElderly = model.getFilteredPairList().stream()
-                .map(pair -> pair.getElderly()).collect(Collectors.toList());
+                .map(Pair::getElderly).collect(Collectors.toList());
         summary.describe(new Count<>(model.getFilteredElderlyList(), UNPAIRED_ELDERLY_COUNT)
                 .with(elderly -> !pairElderly.contains(elderly)));
     }
@@ -55,7 +56,7 @@ public class StatsCommand extends Command {
         summary.describe(new Count<>(model.getFilteredVolunteerList(), VOLUNTEER_COUNT));
 
         List<Volunteer> pairVolunteers = model.getFilteredPairList().stream()
-                .map(pair -> pair.getVolunteer()).collect(Collectors.toList());
+                .map(Pair::getVolunteer).collect(Collectors.toList());
         summary.describe(new Count<>(model.getFilteredVolunteerList(), UNPAIRED_VOLUNTEER_COUNT)
                 .with(volunteer -> !pairVolunteers.contains(volunteer)));
 
@@ -64,8 +65,8 @@ public class StatsCommand extends Command {
     private void summarisePairStatistics(Model model) {
         summary.describe(new Count<>(model.getFilteredPairList(), PAIR_COUNT));
         summary.describe(new MaxCount<>(model.getFilteredPairList(),
-                MAX_VOLUNTEER_PER_ELDERLY, pair -> pair.getElderly()));
+                MAX_VOLUNTEER_PER_ELDERLY, Pair::getElderly));
         summary.describe(new MaxCount<>(model.getFilteredPairList(),
-                MAX_ELDERLY_PER_VOLUNTEER, pair -> pair.getVolunteer()));
+                MAX_ELDERLY_PER_VOLUNTEER, Pair::getVolunteer));
     }
 }

@@ -20,7 +20,6 @@ import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -136,13 +135,6 @@ public class EditCommandParser implements Parser <EditCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_NRIC).orElse(List.of()).size() > 1);
+        return !(map.getPreamble().split(" ").length > 1);
     }
 }

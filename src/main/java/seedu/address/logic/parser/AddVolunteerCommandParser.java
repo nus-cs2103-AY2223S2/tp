@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
@@ -84,8 +83,6 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
-                || map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1
-                || map.getPreamble().length() > 0);
+        return !(map.getPreamble().length() > 0);
     }
 }
