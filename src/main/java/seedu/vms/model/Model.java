@@ -1,10 +1,12 @@
 package seedu.vms.model;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -222,4 +224,52 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered appointment map. */
     ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
+
+
+    /**
+     * Validates if a patient change will result in appointments to be deleted.
+     * Returns a list of messages of the deletion change that will happen if
+     * the specified change were to occur. If no deletion change in appointment
+     * will happen, an empty {@code List} will be returned.
+     *
+     * @param change - the change in state of a patient to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
+     */
+    List<String> validatePatientChange(ValueChange<Patient> change);
+
+
+    /**
+     * Handles the specified change in state of a patient. Returns a list of
+     * messages describing the changes in appointment that has ocurred.
+     *
+     * @param change - the change to handle.
+     * @return a list of messages describing the changes in appointment that
+     *      has ocurred.
+     */
+    List<String> handlePatientChange(ValueChange<Patient> change);
+
+
+    /**
+     * Validates if a vaccination change will result in appointments to be
+     * deleted. Returns a list of messages of the deletion change that will
+     * happen if the specified change where to occur. If no deletion change in
+     * appointment will happen, an empty {@code List} will be returned.
+     *
+     * @param change - the change in state of vaccination to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
+     */
+    List<String> validateVaccinationChange(ValueChange<VaxType> change);
+
+
+    /**
+     * Handles the specified change in state of a vaccination. Returns a list
+     * of messages describing the changes in appointment that has ocurred.
+     *
+     * @param change - the change to handle.
+     * @return a list of messages describing the changes in appointment that
+     *      has ocurred.
+     */
+    List<String> handleVaccinationChange(ValueChange<VaxType> change);
 }
