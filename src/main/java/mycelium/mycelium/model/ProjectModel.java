@@ -48,9 +48,9 @@ public interface ProjectModel {
     ObservableList<Project> getFilteredProjectList();
 
     /**
-     * Retrieves a list of three due soon projects in Mycelium.
+     * Retrieves a list of all due projects within this or next week in Mycelium.
      *
-     * @return The list of three due soon projects
+     * @return The list of all due projects within this or next week
      */
     ObservableList<Project> getDueProjectList();
 

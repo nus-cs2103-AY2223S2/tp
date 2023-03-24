@@ -45,7 +45,7 @@ public interface Logic {
     ObservableList<Project> getFilteredProjectList();
 
     /**
-     * Returns an unmodifiable view of at most three due projects in a week
+     * Returns an unmodifiable view of all due projects within this or next week
      */
     ObservableList<Project> getDueProjectList();
 

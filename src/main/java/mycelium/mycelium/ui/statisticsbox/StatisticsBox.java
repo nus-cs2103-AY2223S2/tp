@@ -64,10 +64,6 @@ public class StatisticsBox extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Project> c) {
                 addPieChartData(logic);
-                addProjectData(logic.getDueProjectList(), messageBox, noDueProjectLabel, listView,
-                        dueProjectPanel, true);
-                addProjectData(logic.getOverdueProjectList(), overdueMessageBox, noOverdueProjectLabel, overdueListView,
-                        overdueProjectPanel, true);
             }
         });
 

@@ -2,7 +2,7 @@ package mycelium.mycelium.model;
 
 import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
-import static mycelium.mycelium.commons.util.DateUtil.isOverdue;
+import static mycelium.mycelium.commons.util.DateUtil.isBeforeToday;
 import static mycelium.mycelium.commons.util.DateUtil.isWithinThisAndNextWeek;
 
 import java.nio.file.Path;
@@ -14,7 +14,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
@@ -246,18 +245,16 @@ public class ModelManager implements Model {
         ObservableList<Project> sortedProjectList;
         sortedProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
                 && p.getStatus() != ProjectStatus.DONE && isWithinThisAndNextWeek(p.getDeadline().get())
-                && !isOverdue(p.getDeadline().get())).sorted((p1, p2) -> p1.compareToWithDeadline(p2));
+                && !isBeforeToday(p.getDeadline().get())).sorted((p1, p2) -> p1.compareToWithDeadline(p2));
 
-
-        return FXCollections.observableList(sortedProjectList.subList(0,
-                sortedProjectList.size() >= 3 ? 3 : sortedProjectList.size()));
+        return sortedProjectList;
     }
 
     @Override
     public ObservableList<Project> getOverdueProjectList() {
         ObservableList<Project> overdueProjectList;
         overdueProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
-                && p.getStatus() != ProjectStatus.DONE && isOverdue(p.getDeadline().get()))
+                && p.getStatus() != ProjectStatus.DONE && isBeforeToday(p.getDeadline().get()))
                 .sorted((p1, p2) -> p1.compareToWithDeadline(p2));
 
         return overdueProjectList;

@@ -35,7 +35,7 @@ public class DateUtil {
      * @return true if {@code date} is before current time.
      *          false otherwise.
      */
-    public static boolean isOverdue(LocalDate date) {
+    public static boolean isBeforeToday(LocalDate date) {
         LocalDate currentDate = LocalDate.now();
 
         return date.isBefore(currentDate);
