@@ -1,6 +1,8 @@
 package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.wife.commons.core.Messages.MESSAGE_DUPLICATE_TAG;
+import static seedu.wife.commons.core.Messages.MESSAGE_TAG_CREATE_SUCCESS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,8 +24,7 @@ public class CreateTagCommand extends Command {
             + "Example: "
             + COMMAND_WORD + " n/vegetable\n"
             + COMMAND_WORD + " n/vegetable n/dairy n/grains\n";
-    public static final String MESSAGE_TAG_CREATE_SUCCESS = "Tag(s) successfully created:";
-    public static final String MESSAGE_DUPLICATE_TAG = "The tag you are trying to create has been created before.";
+
     private Set<Tag> toCreate;
 
     /**
@@ -48,8 +49,8 @@ public class CreateTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         String messageString = MESSAGE_TAG_CREATE_SUCCESS;
+
         for (Tag tag: this.toCreate) {
             if (model.hasTag(tag)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);

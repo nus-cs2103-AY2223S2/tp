@@ -44,7 +44,6 @@ public class Quantity {
 
     /**
      * Updates the quantity to another valid integer.
-     *
      * @param newQuantity Value of new quantity.
      */
     public void updateQuantity(String newQuantity) {
@@ -52,6 +51,9 @@ public class Quantity {
         this.quantity = Integer.parseInt(newQuantity);
     }
 
+    public Quantity increaseQuantity(Quantity increasedQuantity) {
+        return new Quantity(String.valueOf(this.quantity + increasedQuantity.getValue()));
+    }
     @Override
     public String toString() {
         return this.quantity.toString();

@@ -43,7 +43,7 @@ public class TagFoodCommand extends Command {
 
         if (foodTags.contains(tag)) {
             throw new CommandException(String.format(Messages.MESSAGE_DOUBLE_TAG,
-                    foodToTag.toString(), tag.getTagName()));
+                    foodToTag.getName(), tag.getTagName()));
         }
 
         foodTags.add(tag);
@@ -51,7 +51,15 @@ public class TagFoodCommand extends Command {
         model.setFood(foodToTag, editedFood);
 
         return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFUL_FOOD_TAG,
-                editedFood.toString(), tag.getTagName()));
+                editedFood.getName(), tag.getTagName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagFoodCommand // instanceof handles nulls
+                && tag.equals(((TagFoodCommand) other).tag))
+                && index.equals(((TagFoodCommand) other).index); // state check
     }
 
     // Tag utils
