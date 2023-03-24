@@ -166,6 +166,7 @@ to only require one `Tag` object per unique tag, instead of each `Person` needin
 ### 2.5 OfficeConnectModel component
 
 **API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
+
 <img src="images/OfficeConnectModelClassDiagram.png" width="450" />
 
 Stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object). Stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -173,12 +174,15 @@ Stores the task list data and taskAssignment data i.e., all `task` and `assignTa
 ### 2.6 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
 Original AddressBook Storage Component
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 OfficeConnect Storage Component
+
 <img src="images/OfficeStorageClassDiagram.png" width="550" />
+
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
 
