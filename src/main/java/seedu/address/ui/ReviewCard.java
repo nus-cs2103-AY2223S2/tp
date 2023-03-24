@@ -44,7 +44,7 @@ public class ReviewCard extends UiPart<Region> {
 
         question.setText(card.getQuestion().question);
 
-        answer.setText(card.getAnswer().answer);
+        answer.setText(EMPTY_STRING);
 
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -52,6 +52,7 @@ public class ReviewCard extends UiPart<Region> {
 
         if (card.isFlipped()) {
             this.getRoot().setStyle("-fx-background-color: #6c68c3;");
+            answer.setText(card.getAnswer().answer);
         }
     }
 
