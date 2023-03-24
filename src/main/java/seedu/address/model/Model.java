@@ -143,4 +143,6 @@ public interface Model {
     void deleteRecurringEvent(Person personToEdit, RecurringEvent event);
 
     void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent);
+
+
 }
