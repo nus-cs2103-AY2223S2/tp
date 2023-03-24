@@ -4,10 +4,10 @@ import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
-import static ezschedule.testutil.TypicalEvents.EVENT_A;
-import static ezschedule.testutil.TypicalEvents.EVENT_B;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static ezschedule.testutil.TypicalEvents.*;
+import static ezschedule.testutil.TypicalEvents.ART;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -76,5 +76,14 @@ public class EventTest {
         // different end time -> returns false
         editedA = new EventBuilder(EVENT_A).withEndTime(VALID_END_TIME_B).build();
         Assertions.assertFalse(EVENT_A.equals(editedA));
+    }
+
+    @Test
+    public void getCompletedStatus() {
+        Event pastEvent = new EventBuilder(ART).withDate("2020-01-01").build();
+        Event futureEvent = new EventBuilder(ART).withDate("3000-01-01").build();
+
+        assertEquals("Event completed", pastEvent.getCompletedStatus());
+        assertEquals("", futureEvent.getCompletedStatus());
     }
 }
