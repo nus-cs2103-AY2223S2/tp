@@ -202,6 +202,83 @@ The following is a description of the code execution flow:
 
 5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
 
+### Delete command feature
+
+The proposed delete command supports:
+
+1. Deleting a single specified module.
+2. Deleting a single specified lecture under a specified module context.
+3. Deleting a single specified video under a specified module and specified lecture context.
+4. Deleting multiple specified modules / lectures / videos under the respective specified contexts mentioned in the above points.
+
+    - E.g.: User wishes to delete a module CS2040S.
+         Executing `delete CS2040S` would allow the user to do so, unless the module does not exist, in which case, Le Tracker will throw an error.
+    - E.g.: User wishes to delete multiple modules CS2107, ST2334 AND CS3230
+         Executing `delete CS2107, ST2334, CS3230` will allow the user to do so. If either module does not exist, nothing is deleted and Le Tracker will throw an error.
+
+This feature's behaviour is dependent on the arguments provided by the user, as well as by the state of Le Tracker.
+
+#### Implementation Details
+
+The feature utilises the following classes:
+   - `DeleteCommandParser`: parses the arguments appropriately for the appropriate `DeleteCommand` to be returned to be executed
+   - `DeleteCommand`: Abstract class extending from `Commands` for commands that delete a specified entity from the tracker
+   - `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
+   - `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
+   - `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
+   - `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
+   - `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
+   - `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
+   - `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+
+The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
+
+![DeleteCommandClassDiagram](images/delete/deleteCommandClass.png)
+
+The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
+
+![DeleteMultpleModulesCommandSequential](images/delete/deleteCommandSequenceDiagram.png)
+
+The following is a description of the code execution flow
+1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
+The following table below depicts the consideration of inputs  against the user's argument:
+
+| Has Preamble | has `\mod` argument | has 'lec agrgument | Intent |
+| --- | --- | --- | --- |
+| Yes | No | No | Delete Module |
+| Yes | Yes | No | DeleteLecture |
+| Yes | Yes | Yes | DeleteVideo |
+|-----|-----|-----|-------------|
+
+2. The argument values are then checked on as such:
+      - ModuleCode: valid mod code start with CS
+      - LectureName: valid lecture name that does not contain symbols
+      - VideoName: valid lecture name that does not contain symbols
+
+3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
+
+4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module/lecture/video from itself
+
+#### Reasons for such implementation:
+
+   1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
+   2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
+
+#### Alternatives considered:
+
+   1. Combine all featured classes into one large single class
+      Pros:
+      - all file content in one single place
+      - easily adheres to DRY since there would be no need to repeat information across multiple files
+      Cons:
+      - violates Open-Close Principle
+      - creates a large file that needs to be edited. Hard to search through
+
+#### Possible further implementation
+    - Create parser for `preamble` of deleting multiple of a specified entity
+
+### Mark / UnMARK
+
 ### Find command feature
 
 The proposed find command supports:
@@ -521,6 +598,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2c. Video index does not exist.
 
   - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3a. Video to mark is already marked as watched.
+
+    3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3b. Video to unmark is already unmarked.
+
+    3b1. LeTracker shows an error message.
+
+    Use case reumes at step 1.
+
+**Use case: Delete a Module**
+
+**MSS**
+
+1. User requests to list modules
+2. Le Tracker shows a list of modules
+3. User requests to delete a specific module in the list
+4. Le Tracker deletes the module
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. There are no modules.
+
+    Use case ends.
+
+- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+
+    4a1. Le Tracker shows an error message.
 
     Use case resumes at step 1.
 
