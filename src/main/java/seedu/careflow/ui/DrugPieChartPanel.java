@@ -47,7 +47,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
     }
 
     private void updatePieChartSegments(ObservableList<Drug> drugList) {
-        setPieChartData(drugList);
+        setupPieChartData(drugList);
         logger.info("Updating drug inventory analysis pie chart!");
         // set the percentage label format
         DecimalFormat df = new DecimalFormat("#.##");
@@ -56,8 +56,6 @@ public class DrugPieChartPanel extends UiPart<Region> {
             data.setName(data.getName() + " ("
                     + df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
         });
-
-
         // add drug names and percentage values to the pie chart
         for (PieChart.Data data : drugPieChart.getData()) {
             Text text = new Text(data.getName());
@@ -66,7 +64,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
         }
     }
 
-    private void setPieChartData(ObservableList<Drug> drugList) {
+    private void setupPieChartData(ObservableList<Drug> drugList) {
         pieChartData.clear();
         for (int i = 0; i < drugList.size(); i++) {
             Drug drug = drugList.get(i);
