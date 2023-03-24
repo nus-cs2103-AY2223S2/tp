@@ -80,7 +80,7 @@ public class DeliveryJob {
     }
 
     public String getJobId() {
-        return jobId.toUpperCase();
+        return jobId;
     }
 
     public String getRecipientId() {
@@ -148,17 +148,17 @@ public class DeliveryJob {
                 + "deliver date: %s\n"
                 + "deliver slot: %s\n"
                 + "earn: $%s\n"
-                + "status: $%s\n";
+                + "status: %s\n";
 
         builder.append(
                 String.format(outString,
-                        jobId,
+                        getJobId(),
                         getRecipientId(),
                         getSenderId(),
                         getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
                         getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
-                        getEarning(),
-                        getDeliveredStatus()));
+                        getEarning().isPresent() ? getEarning().get() : "",
+                        getDeliveredStatus() ? "Delivered" : "Pending"));
 
         return builder.toString();
     }

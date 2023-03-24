@@ -110,4 +110,10 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * @return the number of item in listview.
+     */
+    public int size() {
+        return deliveryJobListView.getItems().size();
+    }
 }

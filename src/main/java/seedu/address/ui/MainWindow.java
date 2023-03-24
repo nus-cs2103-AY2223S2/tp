@@ -2,10 +2,9 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -19,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.jobs.DeliveryJobDetailPane;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
@@ -71,6 +71,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane deliveryJobListPanelPlaceholder;
 
     @FXML
+    private StackPane emptyDeliveryJobListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -96,6 +99,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -137,20 +141,31 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    void refreshDeliveryJobListView() {
+        logger.info("[JobListView] Refresh: " + deliveryJobListPanel.size());
+        if (deliveryJobListPanel.size() > 0) {
+            emptyDeliveryJobListPanelPlaceholder.setVisible(false);
+            deliveryJobListPanel.selectItem(0);
+        } else {
+            deliveryJobDetailPlaceholder.getChildren().clear();
+            emptyDeliveryJobListPanelPlaceholder.setVisible(true);
+        }
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Append views
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
+            logger.info("[JobListView] select: " + idx);
             deliveryJobDetailPlaceholder.getChildren().clear();
             if (idx >= 0) {
                 DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
                 detailPane.fillInnerParts(logic.getAddressBook());
                 deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
             } else {
-                Label emptyLabel = new Label("No job found, create one now!");
-                emptyLabel.setAlignment(Pos.CENTER);
-                deliveryJobDetailPlaceholder.getChildren().add(emptyLabel);
+                emptyDeliveryJobListPanelPlaceholder.setVisible(true);
             }
         }, job -> {
             try {
@@ -171,6 +186,14 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // Attach listeners
+        logic.getFilteredDeliveryJobList().addListener(new ListChangeListener<DeliveryJob>() {
+            @Override
+            public void onChanged(Change<? extends DeliveryJob> c) {
+                refreshDeliveryJobListView();
+            }
+        });
     }
 
     /**

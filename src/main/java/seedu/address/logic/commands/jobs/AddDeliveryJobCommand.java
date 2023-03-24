@@ -29,7 +29,10 @@ public class AddDeliveryJobCommand extends Command {
             + PREFIX_EARNING + "Earning ";
 
     public static final String MESSAGE_SUCCESS = "New job added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This job already exists in the delivery job system";
+    public static final String MESSAGE_DUPLICATE_JOB = "This job already exists in the delivery job system";
+    public static final String MESSAGE_INVALID_SENDER = "Sender not found.";
+    public static final String MESSAGE_INVALID_RECIPIENT = "Recipient not found.";
+    public static final String MESSAGE_SAME_SENDER_RECIPIENT = "Sender and Recipient cannot be the same.";
 
     private final DeliveryJob toAdd;
 
@@ -44,6 +47,26 @@ public class AddDeliveryJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (toAdd.getRecipientId().isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_RECIPIENT);
+        }
+
+        if (model.getPersonById(toAdd.getRecipientId()).isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_RECIPIENT);
+        }
+
+        if (toAdd.getSenderId().isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_SENDER);
+        }
+
+        if (model.getPersonById(toAdd.getSenderId()).isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_SENDER);
+        }
+
+        if (toAdd.getSenderId().equals(toAdd.getRecipientId())) {
+            throw new CommandException(MESSAGE_SAME_SENDER_RECIPIENT);
+        }
 
         model.addDeliveryJob(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

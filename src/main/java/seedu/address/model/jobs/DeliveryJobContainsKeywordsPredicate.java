@@ -14,20 +14,22 @@ public class DeliveryJobContainsKeywordsPredicate implements Predicate<DeliveryJ
 
     @Override
     public boolean test(DeliveryJob job) {
-        if (job.getJobId().equals(toFind.getJobId())) {
-            return true;
+        if (toFind.getJobId() != null) {
+            if (job.getJobId().toUpperCase().contains(toFind.getJobId().toUpperCase())) {
+                return true;
+            }
         }
 
-        if (job.getRecipientId().equals(toFind.getRecipientId())) {
-            return true;
+        if (toFind.getRecipientId() != null) {
+            if (job.getRecipientId().contains(toFind.getRecipientId())) {
+                return true;
+            }
         }
 
-        if (job.getSenderId().equals(toFind.getSenderId())) {
-            return true;
-        }
-
-        if (job.getEarning().equals(toFind.getEarning())) {
-            return true;
+        if (toFind.getSenderId() != null) {
+            if (job.getSenderId().contains(toFind.getSenderId())) {
+                return true;
+            }
         }
 
         if (toFind.getDeliveryDate().isPresent()) {
