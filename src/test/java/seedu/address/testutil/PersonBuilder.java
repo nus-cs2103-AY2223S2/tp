@@ -113,9 +113,11 @@ public class PersonBuilder {
         if (dateTime.isEmpty()) {
             this.meetings.add(new Meeting());
         } else {
-            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
-            Meeting meetingToAdd;
-            meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+            String[] args = dateTime.trim().split(" ", 1);
+            String desc = args[0];
+            String dateTimeString = args[1];
+            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTimeString);
+            Meeting meetingToAdd = new Meeting(desc, dateTimes[0], dateTimes[1]);
             this.meetings.add(meetingToAdd);
         }
 

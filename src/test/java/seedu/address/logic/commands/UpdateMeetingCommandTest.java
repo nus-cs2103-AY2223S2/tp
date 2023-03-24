@@ -30,9 +30,9 @@ public class UpdateMeetingCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().withMeetings("23-10-2000 14:00 15:00").build();
+        Person editedPerson = new PersonBuilder().withMeetings("Test 23-10-2000 14:00 23-10-2000 15:00").build();
         Meeting m = new Meeting()
-        editedPerson.getMeetings().add()
+        editedPerson.getMeetings().add(m);
         UpdateMeetingCommand.EditMeetingDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         UpdateMeetingCommand editCommand = new UpdateMeetingCommand(INDEX_FIRST_PERSON, descriptor);
 
