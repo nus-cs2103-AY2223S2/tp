@@ -114,21 +114,33 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/careflow/model/CareFlowModel.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
-
-* stores the address book data i.e., all `Paient` objects (which are contained in a `UniquePaientList` object).
-* stores the currently 'selected' `Paient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Paient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* The Model Component is an essential part of the system that deals with patient, drug, and hospital data. This guide will provide you with a detailed overview of the three sub-components - Patient, Drug, and Hospital, and their functionalities. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Paient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Paient` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+* 'Patient'
+<img src="images/PatientModelClassDiagram.png" width="450" />
+* The Patient sub-component is responsible for recording patient information i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
+* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+
+* 'Drug'
+<img src="images/DrugModelClassDiagram.png" width="450" />
+* The Drug sub-component is similar to the patient except that all the 'Drug' objects are contained in a 'UniqueDrugList' pbject.
+
+
+* 'Hospital'
+<img src="images/HospitalModelClassDiagram.png" width="450" />
+* stores the Hospital information i.e., all `Hospital` objects (which are contained in a `UniqueHospitalList` object).
+<div markdown="span" class="alert alert-info">:information_source: **Note:**The hospital data is predefined and not editable by users, as it is hard-coded in our system<br>
+
+* 'UserPref'
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 </div>
 

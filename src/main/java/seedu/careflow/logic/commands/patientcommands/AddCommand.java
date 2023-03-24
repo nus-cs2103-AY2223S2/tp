@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + " 84356788 "
             + PREFIX_EMAIL + " tsmith@gmail.com "
             + PREFIX_ADDRESS + " 969 Lock Street #04-32 "
-            + PREFIX_DOB + " 2001-05-28 "
+            + PREFIX_DOB + " 28-05-2001 "
             + PREFIX_GENDER + " MALE "
             + PREFIX_IC + " T0278234M "
             + PREFIX_DRUG_ALLERGY + " Aspirin "
