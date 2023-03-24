@@ -17,6 +17,7 @@ import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.ui.appointment.AppointmentCard;
+import seedu.vms.ui.patient.PatientCard;
 import seedu.vms.ui.vaccination.VaxTypeCard;
 
 /**
