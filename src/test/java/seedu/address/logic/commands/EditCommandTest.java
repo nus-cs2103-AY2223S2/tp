@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -36,7 +37,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person personToBeEdited = model.getFilteredPersonList().get(0);
+        String remarkStr = personToBeEdited.getOptionalRemark().map(Remark::toString).orElse(null);
+
+        // Remark stays the same, as it cannot be edited via 'edit' command.
+        Person editedPerson = new PersonBuilder().withRemark(remarkStr).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

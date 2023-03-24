@@ -154,6 +154,286 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Add Feature
+
+### Implementation Details
+
+The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`. <br>
+
+Given below is a class diagram on the `Student` class and the classes related to its attributes: <br>
+
+![student_diagram](images/StudentClassDiagram.png) 
+
+The `Student` object is composed of attributes:
+
+* `Name`: The name of the student.
+* `Phone`: The phone number of the student.
+* `Email`: The email address of the student.
+* `Address`: The address of the student.
+* `Education`: The education level of the student.
+* `Subject`: The subjects the tutor is teaching the student.
+* `Remark`: Remarks/notes the tutor has about the student.
+
+### Proposed Implementation
+The `add` command has the following fields:
+> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
+> Unless stated as`[COMPULSORY]`, the field is optional.
+* Prefix `\n` followed by the name of the student `[COMPULSORY]`.
+* Prefix `\p` followed by the phone number of the student.
+* Prefix `\e` followed by the student's email.
+* Prefix `\a` followed by the student's address.
+* Prefix `\edu` followed by the student's education level.
+* Prefix `\s` followed by the subject name.
+* Prefix `\r` followed by the remarks/notes on the student.
+
+Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.: <br>
+
+![add_sequence](images/AddSequenceDiagram.png)
+
+### Feature details
+1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
+2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
+3. If the input passes the validation check, a new `Student` entry is created and stored in the `AddressBook`.
+
+### General Design Considerations
+
+The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. 
+Hence, resulting in a similar implementation of the `add` feature. </br>
+
+Some additions made were the `Education`, `Subject` and `Remark` attributes. </br>
+1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
+2. `Subject` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate subject names that are more than one word long as in real life.
+3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
+    * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
+
+When adding a student entry, these were the alternatives considered.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes `Optional<>`.
+    * Pros:
+        * Improves user convenience by allowing them to add a `Student` entry even with limited knowledge about their details.
+    * Cons:
+        * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
+* **Alternative 2:** All parameters have to be filled in
+    * Pros:
+        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs
+    * Cons:
+        * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
+        * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
+
+## Delete feature
+
+### Implementation Details
+
+The `delete` implementation is identical to the implementation in AB3's codebase.
+
+### Proposed Implementation
+The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` 
+> Assuming the indexes are valid.
+
+// TODO sequence diagram
+
+### Design Considerations
+// TODO
+
+## Edit Feature
+
+### Implementation Details
+
+The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
+This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
+
+With a similar fields to the [Add feature](#add-feature), `edit` has an additional `INDEX` parameter. </br>
+> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
+> Unless stated as`[COMPULSORY]`, the field is optional.
+* `INDEX` which represents the index number of the student to be edited in the list.
+* Prefix `\n` followed by the name of the student.
+* Prefix `\p` followed by the phone number of the student.
+* Prefix `\e` followed by the student's email.
+* Prefix `\a` followed by the student's address.
+* Prefix `\edu` followed by the student's education level.
+* Prefix `\s` followed by the subject name.
+* \[To be implemented\] Prefix `\r` followed by the remarks/notes on the student.
+
+Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
+
+![edit_sequence](images/EditSequenceDiagram.png)
+
+### Feature details
+1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
+2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
+3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
+
+### General Design Considerations
+When editing a student entry, whether a new `Student` object should be created.
+* **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
+    * Pros:
+        * Meets the expectations of the immutable `Student` class.
+    * Cons:
+        * Inefficient as an entire `Student` object is created even if only one field is changed. </br>
+
+* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object directly.
+    * Pros:
+        * More timely option and space efficient.
+    * Cons:
+        * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
+
+
+## Find feature
+
+### Implementation Details
+
+The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate` and `NameContainsKeywordsPredicate`. <br>
+
+Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
+
+Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
+// TODO sequence diagram
+
+### Feature details
+Our implementation extends from the `find` implementation in AB3 by accommodating `find PARTIAL_KEYWORD` on top of the current `find KEYWORD`.
+> An example of `PARTIAL_KEYWORD` is "Ye" while `KEYWORD` would be "Yeoh". <br>
+
+### General Design Considerations
+THe implementation of `find` is built on top of the original AB3 codebase's `find` command. <br>
+
+Our implementation has some additions such as:
+1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
+2. `find PREFIX` across the various attributes of a `Student` other than their `Name`
+
+**Aspect: Command format:**
+* **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
+  * Pros:
+    * Improves user convenience by giving them flexibility in the completeness of their desired find keyword.
+    * Extensible across other attributes.
+  * Cons:
+    * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
+    * Might be slightly challenging for new users to enter the `PREFIX`.
+* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD`
+  * Pros:
+    * Easier to implement as there is lesser validating done by the app.
+    * Provides the user flexibility in searching across all attributes by default.
+  * Cons:
+    * The filtered list may not be what was desired as short partial keywords like `a` is unlikely to result in a succinct list.
+    * Users will not be able to search keywords for a particular attribute.
+
+## List feature
+
+### Implementation Details
+The `list` implementation is identical to the implementation in AB3's codebase.
+// TODO sequence diagram
+### Design Consideration
+// TODO
+### \[Proposed\] Sort feature
+
+### Proposed Implementation
+
+The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
+* `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
+  * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
+* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders. <br>
+
+An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
+> `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
+
+#### Exepected execution:
+1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
+2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
+
+### Design Considerations:
+**Aspect: Command format:**
+* **Alternative 1:** `sort`
+  * Pros:
+    * Simpler command for users to execute
+  * Cons:
+      * Less flexible as users cannot decide which attribute to sort by.
+      * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
+      * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
+* **Alternative 2 (Current choice):** `sort ORDER`
+  * Pros:
+    * Provides extensibility of sort (eg. future implementation of `sort edu ORDER` to sort by education level)
+    * Allows users to choose the order they would like to sort the list by
+    * Gives flexibility and convenience to users.
+  * Cons:
+    * Adds complexity to the implementation as more error checking of the inputs is required.
+  
+_{more aspects to be added}_
+
+## Remark feature
+
+#### Feature Implementation Details
+The current implementation provides users with two different methods of entering a remark for a student.
+1. `remark INDEX r/REMARK` where `INDEX` is the `Student` entry in the list, and `REMARK` is the remark to be added.
+2. Adding the remark through the [add feature](#Add-feature)
+
+#### Proposed Implementation
+
+The proposed remark mechanism will be facilitated by a pop-up text box. This will allows users to format their remarks however they like, 
+rather than being restricted to a single line in the command line (current implementation).
+
+### General Design Considerations
+In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs). <br>
+Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
+
+**Aspect: Command input format**
+* **Alternative 1: (Current implementation)** Adding the `remark` through the command line.
+  * Pros:
+    * Easier to implement
+  * Cons:
+    * Restricts users to a single line or continuous paragraph of remark.
+    * Limits formatting options for remark.
+* **Alternative 2: (Future implementation)** Adding remark through a pop-up text window
+  * Pros:
+    * Provides users flexibility in the format of their remarks.
+    * Remarks are not restricted to a single line or continuous paragraph.
+  * Cons:
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `AddressBook` without any formatting erros.
+
+**Aspect: Remark display**
+* **Alternative 1: (Current choice)** Preview the first line of a student's remarks under all the other attributes
+  * Pros:
+    * Short remarks are instantly visible to users.
+    * Easy to implement.
+  * Cons:
+    * Remarks are limited to a single line as long as the width of the window.
+    * Formatting of remarks are not visible.
+* **Alternative 2: (Future implementation)** If a remark is present, simply display an indicator in `PersonCard`
+  * Pros:
+    * Easy to implement.
+    * Viewing the remark in `ResultDisplay` is supported by the [show](#show-feature) command.
+    * Supports formatting of `remark` since it is not restricted to the `PersonCard` view.
+  * Cons:
+    * An extra step for users may be inconvenient
+* **Alternative 3:** Show the full remark in `PersonCard` beside all the other attributes
+  * Pros:
+    * Remark is directly visible from the list.
+    * Supports formatting in `remark`.
+  * Cons:
+    * Remarks are limited to the view of `PersonCard` and size of the window.
+    * Remarks that are too long will be cut off and not visible.
+
+### Show feature
+
+### Implementation Details
+The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature. <br>
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` 
+will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
+
+### General Design Considerations
+**Aspect: Display output**
+* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
+  * Pros:
+    * Allows users to view the student details and remarks all at once.
+    * Supports the `remark` feature as intended
+  * Cons:
+    * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
+    * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
+  
+* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
+  * Pros:
+    * Supports the `remark` feature as intended since scrolling is possible.
+    * Allows users to view the student details and remarks all at once.
+  * Cons:
+    * Harder to implement
+  
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -257,41 +537,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* works as a private academic tutor, with 10 students
-* is not tech-savvy but has basic data entry skills to use programs like Excel to track his students
-* doesn’t know how to use the analytics functions of Excel and needs a simple interface to generate analytics
+* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably are proficient typers.
 
 **Value proposition**: 
 
-* keep track of students, their progress, and any student-specific info (like their weak subject)
-* has simpler interface than Excel
-* handles errors such as wrong data inputs in a user-friendly manner. (guides users / gives suggestions)
+* TeachMeSenpai acts as an optimised app for tutors to manage their students' data, obtain insights on their students' data.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                                                            | So that I can…​                                                |
-| -------- | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `* * *`  | new user                  | open the app                                                                           | begin using the app                                           |
-| `* * *`  | new user                  | close the app                                                                          | leave the app                                                 |
-| `* * *`  | new user                  | add a student's name                                                                   | track a student's progress by their name                      |
-| `* * *`  | new user                  | include student's education level when adding the student (eg. P6)                     | keep track of a student's education level                     |
-| `* * *`  | new user                  | include student's phone number when adding the student (eg. 94206942)                  | keep track of a student's phone number                        |
-| `* * *`  | new user                  | include student's email when adding the student (eg. iloveanimegirls@gmail.com)        | keep track of a student's email                               |
-| `* * *`  | new user                  | include student's address when adding the student (eg. Block 69 S642069)               | keep track of a student's address and go to the place easily  |
-| `* * *`  | new user                  | include optional student-specific notes when adding the student (eg. Good in Japanese) | store additional student's descriptive information            |
-| `* * *`  | user with some experience | delete a student entry from my list (by index)                                         | remove all details related to a certain student               |
-| `* * *`  | new user                  | have my changes autosave                                                               | be sure that I won't lose my changes if I crash/close the app |
-| `* * *`  | new user                  | view my list of students                                                               | keep track of who I'm currently teaching                      |
-| `* * *`  | new user                  | View the address of a student                                                          | know where to go if I need to provide tuition at their house  |
-| `* * *`  | new user                  | have my data persist between use sessions                                              | continue my session where I left off                          |
+| Priority | As a …​ | I want to …​                                                                                                | So that I can…​                                                             |
+|----------|---------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | tutor   | open the app                                                                                                | begin using the app                                                         |
+| `* * *`  | tutor   | close the app                                                                                               | leave the app                                                               |
+| `* * *`  | tutor   | add a student's name                                                                                        | track a student's progress by their name                                    |
+| `* * *`  | tutor   | include student's education level when adding the student (eg. P6)                                          | keep track of a student's education level                                   |
+| `* * *`  | tutor   | include student's phone number when adding the student (eg. 94206942)                                       | keep track of a student's phone number                                      |
+| `* * *`  | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                             | keep track of a student's email                                             |
+| `* * *`  | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                    | keep track of a student's address and go to the place easily                |
+| `* * *`  | tutor   | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                       | keep track of what subjects I'm teaching the student                        |
+| `* * *`  | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                      | store information for a particular student such as notes and remarks        |
+| `* * *`  | tutor   | delete a student entry from my list (by index)                                                              | remove all details related to a certain student                             |
+| `* * *`  | tutor   | have my changes saved automatically                                                                         | be sure that I won't lose my changes if I crash/close the app               |
+| `* * *`  | tutor   | view my list of students                                                                                    | keep track of who I'm currently teaching                                    |
+| `* * *`  | tutor   | View the address of a student                                                                               | know where to go if I need to provide tuition at their house                |
+| `* * *`  | tutor   | have my data persist between use sessions                                                                   | continue my session where I left off                                        |
+| `* * *`  | tutor   | find my students by searching their names                                                                   | quickly view that student's details                                         |
+| `* *`    | tutor   | filter my students by education level (eg. all P6 students)                                                 | view my students of the same education level                                |
+| `* * *`  | tutor   | edit a student's name                                                                                       | correct a student's name                                                    |
+| `* * *`  | tutor   | edit the subjects I'm teaching a particular student                                                         | update or correct a student's records                                       |
+| `* * *`  | tutor   | edit a student's education level                                                                            | update or correct a student's records                                       |
+| `* *`    | tutor   | filter my students by subjects                                                                              | view all the student's I'm teaching a particular subject to                 |
+| `* *`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                              | view all the students who live in a particular area                         |
+| `* *`    | tutor   | filter my students by email (eg. @gmail)                                                                    | view all the students with similar emails                                   |
+| `* *`    | tutor   | sort my students by their names                                                                             | view my students in a systematic manner                                     |
+| `* *`    | tutor   | sort my students by their education level                                                                   | view my students according to their education level                         | 
+| `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| `* * *`  | new user | be able to ask for help                                                                                     | learn how to use the app                                                    |
+
+
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a student**
+#### Use case: Delete a student
 
 **MSS**
 
@@ -316,6 +607,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message
 
       Use case resumes at step 2
+
+#### Use case: UC02 - Update remarks
+
+**MSS**
+1. User requests to list students
+2. System shows a list of students
+3. User requests to edit a student's remarks of a specific student in the list by their index from the list
+4. Program allows multi-line input of remarks
+5. User enters remarks
+6. User can exit writing the remarks at any time
+7. System saves the remarks
+
+Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
+Use case ends
+
+* 3a. The given index is invalid
+    * 3a1. System shows an error message
+
+  Use case resumes at step 2
 
 *{More to be added}*
 
