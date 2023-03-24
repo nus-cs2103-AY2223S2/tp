@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -46,7 +45,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void add(ModuleTag moduleTag) {
         String tagName = moduleTag.tagName;
-        if (!modules.containsKey(tagName)) {
+        if (!containsKey(tagName)) {
             modules.put(tagName, moduleTag);
             return;
         }
@@ -71,7 +70,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void remove(ModuleTag moduleTag) {
         String tagName = moduleTag.tagName;
-        if (!modules.containsKey(tagName)) {
+        if (!containsKey(tagName)) {
             return;
         }
 
@@ -113,11 +112,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     public void setCommonModules(Set<ModuleTag> userModuleTags) {
         requireNonNull(userModuleTags);
 
-        // we make a copy so that retainAll does not destroy this set
-        commonModules = new HashSet<>(modules.values());
-
-        // finds the intersection between user modules and person modules
-        commonModules.retainAll(userModuleTags);
+        commonModules = userModuleTags.stream()
+                .filter(mt -> containsKey(mt.tagName))
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -144,9 +141,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public Set<ModuleTag> getUncommonModuleTags() {
         // finds modules that are not in common with the user.
-        Set<ModuleTag> uncommonModuleTags = new HashSet<>(modules.values());
-        uncommonModuleTags.removeAll(commonModules);
-        return uncommonModuleTags;
+        return modules.values().stream()
+                .filter(mt -> !containsKey(mt.tagName))
+                .collect(Collectors.toSet());
     }
 
     /**

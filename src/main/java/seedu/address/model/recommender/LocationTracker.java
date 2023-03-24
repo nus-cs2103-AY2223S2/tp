@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javafx.util.Pair;
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.person.Person;
@@ -23,39 +24,46 @@ public class LocationTracker {
     private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
     private static final int NUMBER_OF_HOURS = START_TIMINGS.length;
     private final Person person;
-    private final HashMap<Day, List<Optional<Location>>> locations;
+    private final HashMap<Day, ArrayList<Optional<Location>>> locations;
 
     public LocationTracker(Person person) {
         this.person = person;
         locations = new HashMap<>();
         initialiseWithEmptyLocations();
         initialiseWithSchedule();
+        System.out.println(this);
         fillUnknown();
     }
 
     private void initialiseWithEmptyLocations() {
         for (Day day : Day.values()) {
-            locations.put(day, Collections.nCopies(NUMBER_OF_HOURS, Optional.empty()));
+            locations.put(day, new ArrayList<>(Collections.nCopies(NUMBER_OF_HOURS, Optional.empty())));
         }
     }
 
     private void initialiseWithSchedule() {
         for (Map.Entry<Day, ArrayList<HourBlock>> entry : person.getTimetable().getSchedule().entrySet()) {
-            List<Optional<Location>> locationMap = locations.get(entry.getKey());
+            ArrayList<Optional<Location>> dayLocations = locations.get(entry.getKey());
+
             entry.getValue().stream()
                     .filter(hourBlock -> hourBlock.getLesson().isPresent())
-                    .forEach(hourBlock -> setHourBlock(locationMap, hourBlock));
+                    .forEach(hourBlock -> setHourBlock(dayLocations, hourBlock));
         };
     }
 
-    private void setHourBlock(List<Optional<Location>> locationMap, HourBlock hourBlock) {
-        locationMap.set(hourBlock.getStartTime().getHourOfDay(),
-                getLocationFromHourBlock(hourBlock));
+    private int getIndexFromHourBlock(HourBlock hourBlock) {
+        return hourBlock.getStartTime().getHourOfDay() - EARLIEST_TIMING;
+    }
+
+    private void setHourBlock(ArrayList<Optional<Location>> dayLocations, HourBlock hourBlock) {
+        int indexOfHourBlock = getIndexFromHourBlock(hourBlock);
+        assert indexOfHourBlock >= 0 && indexOfHourBlock < NUMBER_OF_HOURS;
+
+        dayLocations.set(indexOfHourBlock, getLocationFromHourBlock(hourBlock));
     }
 
     private Optional<Location> getLocationFromHourBlock(HourBlock hourBlock) {
-        assert hourBlock.getLesson().isPresent();
-        return Optional.of(hourBlock.getLesson().get().getLocation());
+        return hourBlock.getLesson().map(Commitment::getLocation);
     }
 
     public Optional<Location> getLocation(HourBlock hourBlock) {
@@ -131,5 +139,18 @@ public class LocationTracker {
 
             dayLocations.set(indexToFill, Optional.of(fillLocations.get(i)));
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Day day : Day.values()) {
+            sb.append(locations.get(day).stream()
+                    .map(lc -> lc.orElse(Location.NUS))
+                    .map(Location::toString)
+                    .collect(Collectors.joining(", ")));
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

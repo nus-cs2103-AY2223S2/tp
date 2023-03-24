@@ -2,6 +2,7 @@ package seedu.address.model.scheduler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.joda.time.LocalTime;
 
@@ -55,17 +56,13 @@ public class Timetable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Classes: \n");
         for (Day day : Day.values()) {
-            sb.append(day).append("\n");
-            ArrayList<HourBlock> dayTime = schedule.get(day);
-            for (HourBlock hourBlock : dayTime) {
-                if (!hourBlock.isFree()) {
-                    sb.append(hourBlock).append("\n");
-                }
-            }
+            sb.append(schedule.get(day).stream()
+                    .map(HourBlock::getLesson)
+                    .map(commitment -> commitment.map(v -> "X"))
+                    .map(c -> c.orElse(" ")));
+            sb.append("\n");
         }
-        sb.append("\n");
         return sb.toString();
     }
 

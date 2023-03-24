@@ -1,5 +1,6 @@
 package seedu.address.model.recommender;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
@@ -14,9 +15,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Recommender {
+
+    private static final Logger logger = LogsCenter.getLogger(Recommender.class);
     private static final int RECOMMENDATION_LIMIT = 20;
     private final LocationRecommender lr;
     private final Scheduler sc;
@@ -36,6 +40,8 @@ public class Recommender {
                 .stream().map(TimePeriod::fragmentIntoHourBlocks)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
+
+        logger.info(String.format("%d timings recommended", timingRecommendations.size()));
 
         List<List<Location>> locationRecommendations = timingRecommendations.stream()
                 .map(this::getLocationsFromHourBlock)
@@ -60,6 +66,7 @@ public class Recommender {
         locationTrackers = sc.getParticipants().stream()
                 .map(LocationTracker::new)
                 .collect(Collectors.toSet());
+//        System.out.println(locationTrackers.toString());
     }
 
     private Set<Location> getLocationsFromHourBlock(HourBlock hourBlock) {

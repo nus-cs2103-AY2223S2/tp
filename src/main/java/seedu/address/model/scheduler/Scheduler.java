@@ -5,12 +5,15 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
+import seedu.address.model.recommender.Recommender;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
@@ -20,6 +23,7 @@ import seedu.address.model.scheduler.time.util.TimeUtil;
  * Represents an automatic scheduler.
  */
 public class Scheduler {
+    private static final Logger logger = LogsCenter.getLogger(Scheduler.class);
     private List<Timetable> schedules;
     private Model model;
     private List<Person> participants;
@@ -57,11 +61,10 @@ public class Scheduler {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(this.participants::add);
-        // Append timetables for each participant
-        // Wait for @kennycjy to handle his Module Tag + Lesson integration
-        // planned implementation:
-        // for each participant : (1) build (2) add their timetable
-        // to be handled in a separate method.
+
+        this.participants.stream()
+                .map(Person::getTimetable)
+                .forEach(this.schedules::add);
     }
 
     /**
@@ -101,6 +104,7 @@ public class Scheduler {
             List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(day, schedules);
             periods.addAll(TimeUtil.mergeTimeSlots(availableHourBlocks));
         }
+        logger.info(String.format("%d possible timings", periods.size()));
         return periods;
     }
 
