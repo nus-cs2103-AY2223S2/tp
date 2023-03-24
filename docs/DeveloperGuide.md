@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: <strong>Tip:</strong> The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -44,15 +44,15 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
+* [**`UI`**](#ui-component): Manage the HMHero application User Interface
+* [**`Logic`**](#logic-component): Manage the execution of commands.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete n/Alex p/91234567`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -154,6 +154,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### Adding an Applicant
+
+#### Overview
+
+The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
+
+The activity diagram is as such:
+
+[Add in later]()
+
+The sequence diagram to show the interactions between different components during an `add` command is as such:
+
+[Add in later]()
+
+#### Feature Details
+
+1. The user specifies Applicants details to create. Compulsory fields are name, phone, address, and email. Optional
+fields include application date time and notes about the applicant.
+1. If any of the compulsory fields are not provided, or the provided inputs are in the wrong format, an error message
+   will be displayed. The user will be prompted to enter the command correctly via the error message.
+1. All applicants added will start at the Applied Status.
+1. If application date time was not provided, HMHero would assume the application date time of the Applicant to be now
+   (the current time on the user's computer)
+1. The applicant is cross-referenced in the `Model` to check if it already exists. If it does, an error is raised
+to inform the user.
+1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
+
+#### Feature Considerations
+
+
+
 #### Advancing an Applicant
 
 ##### Overview
@@ -226,6 +257,12 @@ status. For example, if an `Person` with the status `Rejected`, then you cannot 
 
 When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
 a default behaviour when rejecting an applicant's status.
+
+#### Finding an Applicant
+
+#### Overview
+
+#### Feature Details
 
 
 #### Editing an Applicant
@@ -388,32 +425,48 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of applicants
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of applicants who applied to their department
+* Is a Hiring Manager
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Prefers using CLI to GUI to increase productivity
 
-**Value proposition**: In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
+**Value proposition**: 
+* Users can track and monitor the progress of each applicant in the application cycle very easily.
+* Users can quickly search applicants with particular skill-sets.
+* Users can obtain insights on their hiring practices to look for areas for improvement.
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+The following legend describes the symbols used in this section:
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| ------ | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | Hiring Manager | list out all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
-| `* * *` | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
-| `* * *` | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
-| `* * *` | Hiring Manager | add applicants into HMHero | I can quickly add the user to the tracking system |
-| `* * *` | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
-| `* * *` | Busy Hiring Manager | search for applicants  | I can view details of specific applicants |
-| `* * ` | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
-| `* * ` | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
-| `* `  | Clumsy Hiring Manager | get a confirmation message when deleting an applicant | prevent accidental deletions of applicants |
+| Priority | Symbol  | Meaning          | 
+|----------|---------|------------------|
+| High     | `* * *` | Must have        | 
+| Medium   | `* *`   | Nice to have     | 
+| Low      | `*`     | Unlikely to have | 
 
-*{More to be added}*
+
+| Priority | As a …                                | I want to …                                                       | So that …                                                                            |
+|----------|---------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | Hiring Manager                        | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
+| `* * *`  | Hiring Manager                        | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager                        | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the department.                          |
+| `* * *`  | Hiring Manager                        | Delete single applicant                                           | I can delete applicants that I do not wish to track in the application anymore.      |
+| `* * *`  | Busy Hiring Manager                   | Search for applicants                                             | I can view details of specific applicants                                            |
+| `* * * ` | Senior Hiring Manager                 | Identify duplicate applications from the same applicant           | I can prevent applicants from sending multiple applications                          |
+| `* * `   | Busy Hiring Manager                   | View the dates of interviews for all shortlisted applicants       | I can better schedule future working days                                            |
+| `* * `   | Hiring Manager                        | Take down some additional notes for each applicant                | I can note down additional details of an applicant, for future reference             |
+| `* * `   | Forgetful Hiring Manager              | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
+| `* * `   | Clumsy Hiring Manager                 | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
+| `* `     | Clumsy Hiring Manager                 | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
+| `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
+| `* `     | Careless Hiring Manager               | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
+| `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                 | I can keep track of skill-sets needed for each job to match applicants               |
 
 ### Use cases
 
@@ -431,20 +484,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The given details is insufficient.
+* 1a. Compulsory fields (name, phone, email, address) are not given.
 
-    * 2a1. HMHero shows an error message.
+    * 1a1. HMHero shows an error message.
 
-      Use case ends.
+      Use case resumes at step 1.
+  
 
+
+* 1b. If a duplicate applicant already exists in HMHero.
+    * 1b1. HMHero shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete an applicant**
 
 **MSS**
 
-1.  User requests to list applicants
+1.  User requests to list all applicants
 2.  HMHero shows a list of applicants
-3.  User requests to delete a specific applicant in the list
+3.  User enters the command to delete a specific applicant in the list
 4.  HMHero deletes the applicant
 
     Use case ends.
@@ -455,11 +514,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+
+
+* 3b. The given applicant's phone number does not exist.
+
+    * 3b1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+* 3c. The given applicant's name and corresponding phone number combination does not exist.
+
+    * 3c1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 **Use case: Advance an applicant’s status**
 
@@ -467,7 +540,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list applicants
 2.  HMHero shows a list of applicants
-3.  User requests to advance the status of a specific applicant in the list
+3.  User enters the command to advance the status of a specific applicant in the list
 4.  HMHero advances the applicant’s status.
 
     Use case ends.
@@ -476,25 +549,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-* 4a. The given applicant’s status is already “Accepted”.
 
-    * 4a1. HMHero shows an error message.
+* 3b. The given applicant's phone number does not exist.
 
-      Use case ends.
+    * 3b1. HMHero shows an error message.
 
-* 4b. The given applicant’s status is already “Rejected”.
+      Use case resumes at step 3.
 
-    * 4b1. HMHero shows an error message.
 
-      Use case ends.
+* 3c. The given applicant’s current status is `APPLIED` but no interview date and time was given. 
+
+    * 3c1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3d. The given applicant’s current status is not `APPLIED` but an interview date and time was given.
+
+    * 3d1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3e. The given interview date time is of invalid formatting.
+
+    * 3e1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3f. The given applicant’s current status is already `REJECTED` or `ACCEPTED`.
+
+    * 3f1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 
 **Use case: Reject an applicant’s status**
@@ -503,8 +600,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list applicants
 2.  HMHero shows a list of applicants
-3.  User requests to reject a specific applicant in the list
-4.  HMHero sets the applicant’s status as “rejected”.
+3.  User enters the command to reject a specific applicant in the list
+4.  HMHero sets the applicant’s status as `REJECTED`.
 
     Use case ends.
 
@@ -515,56 +612,115 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given applicant is invalid.
+
+* 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-* 3b. The given applicant is already accepted
+
+* 3b. The given applicant's phone number does not exist.
 
     * 3b1. HMHero shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+
+
+* 3c. The given applicant's current status is already `REJECTED`.
+
+    * 3c1. HMHero shows an error message.
+
+      Use case resumes at step 3.
 
 
 **Use case: Viewing help**
 
 **MSS**
 
-1.  User requests to show for the commands available.
+1.  User enters the command to show for the commands available.
 2.  HMHero shows the table of commands.
 
     Use case ends.
 
 
-*{More to be added}*
+**Use case: Remind upcoming interviews**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User enters the command to remind himself/herself of the upcoming interviews
+4.  HMHero shows all applicants with interview dates within the next three days.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. There are no `SHORTLISTED` applicants
+
+  Use case ends.
+
+
+* 3b. There are no interview dates within the next three days.
+    
+  Use case ends.
+
+
+**Use case: View all interview dates**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
+4.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. There are no `SHORTLISTED` applicants
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should respond within 1 second for any command.
+4.  Should not require any internet connection.
 5.  Should be usable by a novice who has never used managed applicants on HMHero before.
-6.  HMHero does not prompt user for upcoming interview dates
-7.  HMHero does not sync applicants data across the team.
+6.  Should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
+7.  The data of the application is stored locally.
+8.  No database management system should be used.
+9.  The product is not required to handle the screening of resume for each applicant.
 
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Applicant status**:
-    1. Applied (default)
+* **Applicant**: An applicant is a person who applied to the user's department in the company.
+* **Application stage**:
+    1. Applied (default, when applicant is added into HMHero)
     2. Shortlisted
     3. Accepted
     4. Rejected
-* **Application stage**:
+* **Application cycle**:
     * All applicants added are at the Applied status by default. From there, hiring managers can advance their
     application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
-![Application Stage](images/application_stage.png)
+![Application Cycle](images/application_stage.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -572,9 +728,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div> markdown="span" class="alert alert-info">:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
