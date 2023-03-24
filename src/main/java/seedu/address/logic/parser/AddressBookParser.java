@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LearnCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.RemarkCommand;
@@ -32,17 +33,18 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     private static final Map<String, CommandSupplier> commandMap = Map.ofEntries(
-        Map.entry(AddCommand.COMMAND_WORD, new AddCommandParser()),
-        Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
-        Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
-        Map.entry(EditCommand.COMMAND_WORD, new EditCommandParser()),
-        Map.entry(FindCommand.COMMAND_WORD, new FindCommandParser()),
-        Map.entry(ExitCommand.COMMAND_WORD, args -> new ExitCommand()),
-        Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
-        Map.entry(ListCommand.COMMAND_WORD, args -> new ListCommand()),
-        Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
-        Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
-        Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser())
+            Map.entry(AddCommand.COMMAND_WORD, new AddCommandParser()),
+            Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
+            Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
+            Map.entry(EditCommand.COMMAND_WORD, new EditCommandParser()),
+            Map.entry(FindCommand.COMMAND_WORD, new FindCommandParser()),
+            Map.entry(ExitCommand.COMMAND_WORD, args -> new ExitCommand()),
+            Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
+            Map.entry(ListCommand.COMMAND_WORD, args -> new ListCommand()),
+            Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
+            Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
+            Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser()),
+            Map.entry(LearnCommand.COMMAND_WORD, new LearnCommandParser())
     );
 
     /**

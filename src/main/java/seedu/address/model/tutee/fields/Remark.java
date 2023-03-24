@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Remark {
     private final String value;
 
+
     /**
      * Create a {@link Remark} with the given string value
      */
@@ -33,4 +34,6 @@ public class Remark {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public static final boolean isValidRemark(String value) { return true; }
 }

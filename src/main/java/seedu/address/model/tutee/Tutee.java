@@ -12,6 +12,7 @@ import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Remark;
@@ -39,15 +40,16 @@ public class Tutee {
     private final StartTime startTime;
     private final EndTime endTime;
     private final Set<Tag> tags = new HashSet<>();
+    private final Lesson lessons;
 
     /**
      * Every field must be present and not null.
      */
     public Tutee(Name name, Phone phone, Email email, Address address,
         Attendance attendance, Remark remark, Subject subject, Schedule schedule,
-        StartTime startTime, EndTime endTime, Set<Tag> tags
+        StartTime startTime, EndTime endTime, Set<Tag> tags, Lesson lessons
     ) {
-        requireAllNonNull(name, phone, email, attendance, address, remark, subject, schedule, startTime, endTime, tags);
+        requireAllNonNull(name, phone, email, attendance, address, remark, subject, schedule, startTime, endTime, tags, lessons);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +61,7 @@ public class Tutee {
         this.startTime = startTime;
         this.endTime = endTime;
         this.tags.addAll(tags);
+        this.lessons = lessons;
     }
 
 
@@ -102,6 +105,10 @@ public class Tutee {
         return endTime;
     }
 
+    public Lesson getLessons() {
+        return lessons;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@link UnsupportedOperationException}
      *     if modification is attempted.
@@ -143,6 +150,7 @@ public class Tutee {
                 && otherTutee.getEmail().equals(getEmail())
                 && otherTutee.getAddress().equals(getAddress())
                 && otherTutee.getSubject().equals(getSubject())
+                && otherTutee.getLessons().equals(getLessons())
                 && otherTutee.getTags().equals(getTags());
     }
 
@@ -171,7 +179,9 @@ public class Tutee {
                 .append("; EndTime: ")
                 .append(getEndTime())
                 .append(" Remark: ")
-                .append(getRemark());
+                .append(getRemark())
+                .append(" Lessons: ")
+                .append(getLessons());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

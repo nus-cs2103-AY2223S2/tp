@@ -8,6 +8,7 @@ import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Remark;
@@ -33,6 +34,7 @@ public class TuteeBuilder {
     private StartTime startTime;
     private EndTime endTime;
     private Set<Tag> tags = new HashSet<>();
+    private Lesson lessons;
 
     public TuteeBuilder() {}
 
@@ -51,6 +53,7 @@ public class TuteeBuilder {
         this.schedule = existing.getSchedule();
         this.startTime = existing.getStartTime();
         this.endTime = existing.getEndTime();
+        this.lessons = existing.getLessons();
         // Need to copy, otherwise modifications to 1 tutee's tags
         // could affect the another's
         this.tags = Set.copyOf(existing.getTags());
@@ -153,11 +156,19 @@ public class TuteeBuilder {
     }
 
     /**
+     * Change the stored lessons in the builder
+     */
+    public TuteeBuilder withLessons(Lesson lessons) {
+        this.lessons = lessons;
+        return this;
+    }
+
+    /**
      * Build the new {@link Tutee} instance. If any one of the fields is missing, a
      * {@link NullPointerException} will be thrown
      * @return A new tutee instance with the given fields
      */
     public Tutee build() {
-        return new Tutee(name, phone, email, address, attendance, remark, subject, schedule, startTime, endTime, tags);
+        return new Tutee(name, phone, email, address, attendance, remark, subject, schedule, startTime, endTime, tags, lessons);
     }
 }

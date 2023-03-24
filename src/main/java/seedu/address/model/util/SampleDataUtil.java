@@ -12,6 +12,7 @@ import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Remark;
@@ -39,7 +40,8 @@ public class SampleDataUtil {
                 new Schedule("monday"),
                 new StartTime("08:30"),
                 new EndTime("09:30"),
-                getTagSet("friends")
+                getTagSet("friends"),
+                new Lesson()
             ),
             new Tutee(
                 new Name("Bernice Yu"),
@@ -52,7 +54,8 @@ public class SampleDataUtil {
                 new Schedule("monday"),
                 new StartTime("08:30"),
                 new EndTime("11:30"),
-                getTagSet("colleagues", "friends")
+                getTagSet("colleagues", "friends"),
+                new Lesson()
             ),
             new Tutee(
                 new Name("Charlotte Oliveiro"),
@@ -65,7 +68,8 @@ public class SampleDataUtil {
                 new Schedule("friday"),
                 new StartTime("08:00"),
                 new EndTime("10:30"),
-                getTagSet("neighbours")
+                getTagSet("neighbours"),
+                new Lesson()
             ),
             new Tutee(
                 new Name("David Li"),
@@ -78,7 +82,8 @@ public class SampleDataUtil {
                 new Schedule("thursday"),
                 new StartTime("08:00"),
                 new EndTime("09:30"),
-                getTagSet("family")
+                getTagSet("family"),
+                new Lesson()
             ),
             new Tutee(
                 new Name("Irfan Ibrahim"),
@@ -91,7 +96,8 @@ public class SampleDataUtil {
                 new Schedule("wednesday"),
                 new StartTime("09:30"),
                 new EndTime("11:30"),
-                getTagSet("classmates")
+                getTagSet("classmates"),
+                new Lesson()
             ),
             new Tutee(
                 new Name("Roy Balakrishnan"),
@@ -104,7 +110,8 @@ public class SampleDataUtil {
                 new Schedule("tuesday"),
                 new StartTime("10:30"),
                 new EndTime("12:30"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"),
+                new Lesson())
         };
     }
 
