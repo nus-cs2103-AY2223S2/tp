@@ -120,15 +120,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 **MSS**
 
 1. Recruiter requests to list listings.
-2. ListingHub shows a list of listings.
+2. ListingBook shows a list of listings.
 3. The recruiter requests to delete a specific listing from the list.
-4. ListingHub deletes the listing.
-Use case ends.
+4. ListingBook deletes the listing.
+
+    Use case ends.
 
 
 **Extensions**
 
 - 2a. The list is empty.
+
     Use case ends.
 
 - 3a. The given index is invalid.
@@ -143,11 +145,13 @@ Use case ends.
 
 1. Recruiter requests to list job listings.
 2. ListingBook shows a list of job listings.
-Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
 - 2a. The list is empty.
+
     Use case ends.
 
 
@@ -157,7 +161,8 @@ Use case ends.
 
 1. The recruiter requests to add a new job listing.
 2. ListingBook adds the job listing to the list of job listings.
-Use case ends.
+
+    Use case ends.
 
 ********************Extensions********************
 
@@ -189,11 +194,13 @@ Use case ends.
 2. ListingBook shows a list of job listings.
 3. The recruiter requests to update a specific listing from the list.
 4. ListingBook updates the job listing.
-Use case ends.
+
+    Use case ends.
 
 ********************Extensions********************
 
 - 2a. The list is empty.
+
     Use case ends.
     
 - 3a. The given index is invalid.
@@ -228,13 +235,16 @@ Use case ends.
 
 1. Recruiter requests to find a job listing by keyword(s).
 2. ListingBook displays a list of job listings that match the keyword.
-Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
 - 2a. No job listings match the keyword.
+
     Use case ends.
 - 2b. The list is empty.
+
     Use case ends.
 
 
@@ -245,11 +255,13 @@ Use case ends.
 1. Recruiter requests to sort job listings.
 2. ListingBook sorts the job listings according to the selected option.
 3. ListingBook displays the sorted list of job listings.
-Use case ends.
+
+    Use case ends.
 
 ********************Extensions********************
 
 - 2a. The list is empty.
+
     Use case ends.
     
 ### **Use case: Undo**
@@ -258,10 +270,12 @@ Use case ends.
 1. Recruiter requests for an undo.
 2. ListingBook reverses the last command.
 3. ListingBook displays reversed list of job listings.
-Use case ends.
+
+    Use case ends.
     
 ********************Extensions********************
 - 2a. Previous command does not change the ListingBook.
+
     Use case ends.
 
 ### **Use case: Filter job listings**
@@ -271,13 +285,16 @@ Use case ends.
 1. Recruiter requests to filter job listings.
 2. ListingBook filters the job listings according to the selected option.
 3. ListingBook displays the filtered list of job listings.
-Use case ends.
+
+    Use case ends.
 
 ********************Extensions********************
 
 - 4a. No job listings match the filter criteria.
+
     Use case ends.
 - 4b. The list is empty.
+
     Use case ends.
     
 ### **Use case: Delete an applicant from a job listing**
@@ -292,14 +309,40 @@ Use case ends.
 ********************Extensions********************
 
 - 1a. Specified job listing not found.
+
     Use case ends.
 - 1b. Specified applicant not found in the job listing.
+
     Use case ends.
 - 1c. There are two or more applicants that match the keywords.
   - 1c1. ListingBook requests user to provide a more specific keyword.
   - 1c2. User enters new request.
   - Steps 1c1-1c2 are repeated until the data entered are correct.
   - Use case resumes from step 2.
+
+### **Use case: Edit an applicant from a job listing**
+
+**MSS**
+
+1. Recruiter requests to edit an applicant from a job listing.
+2. ListingBook changes the details of the existing applicant from the job listing.
+3. ListingBook displays the job listings with the edited applicant from the specified listing.
+
+    Use case ends.
+
+********************Extensions********************
+
+- 1a. Specified job listing not found.
+
+    Use case ends.
+- 1b. Specified applicant not found in the job listing.
+
+    Use case ends.
+- 1c. There are two or more applicants that match the keywords.
+    - 1c1. ListingBook requests user to provide a more specific keyword.
+    - 1c2. User enters new request.
+    - Steps 1c1-1c2 are repeated until the data entered are correct.
+    - Use case resumes from step 2.
 
 ## Non-Functional Requirements
 
