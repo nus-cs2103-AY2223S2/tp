@@ -81,22 +81,10 @@ public class PersonCard extends UiPart<Region> {
             .forEach(this::createLabel);
     }
 
-    private String setColorType(String tagType) {
-        String str = "";
-
-        switch (tagType.split("XXXXX")[0]) {
-        case "Module":
-            str = "#006400";
-            break;
-        case "Commitment":
-            str = "#f88379";
-            break;
-        default:
-            str = "#3e7b91";
-        }
-        return str;
-    }
-
+    /**
+     * @param tagLabel shows the tag name
+     * @return the input string with the front indicator removed
+     */
     private String setLabel(String tagLabel) {
         String[] parts = tagLabel.split("XXXXX");
         String str = "";
@@ -111,16 +99,15 @@ public class PersonCard extends UiPart<Region> {
         return str;
     }
 
-
+    /**
+     * Creates labels based on the types to be displayed.
+     *
+     * @param tag takes in a tag type to extract information from within
+     */
     private void createLabel(Tag tag) {
         Label label = new Label(setLabel(tag.tagName));
-        String colour = setColorType(tag.tagName);
-        label.setStyle("-fx-text-fill: white;\n"
-            + "-fx-padding: 1 3 1 3;\n"
-            + "-fx-border-radius: 2;\n"
-            + "-fx-background-radius: 2;\n"
-            + "-fx-font-size: 11;\n"
-            + "-fx-background-color: " + colour + ";");
+        String colour = tag.tagColor();
+        label.setStyle("-fx-background-color: " + colour + ";");
         tags.getChildren().add(label);
     }
 

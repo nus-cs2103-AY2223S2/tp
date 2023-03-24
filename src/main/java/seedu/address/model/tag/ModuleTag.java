@@ -16,6 +16,14 @@ public class ModuleTag extends Tag {
             && tagName.equals(((ModuleTag) other).tagName));
     }
 
+    /**
+     * @return the corresponding color code for css
+     */
+    @Override
+    public String tagColor() {
+        return "#006400";
+    }
+
     @Override
     public String toString() {
         return " [Module: " + tagName.split("XXXXX")[1] + "] ";

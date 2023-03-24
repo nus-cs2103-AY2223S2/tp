@@ -9,6 +9,14 @@ public class CommitmentTag extends Tag {
         super(tagName);
     }
 
+    /**
+     * @return the corresponding color code for css
+     */
+    @Override
+    public String tagColor() {
+        return "#f88379";
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this

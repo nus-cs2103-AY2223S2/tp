@@ -32,11 +32,18 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * @return the corresponding color code for css
+     */
+    public String tagColor() {
+        return "#3e7b91";
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+            || (other instanceof Tag // instanceof handles nulls
+            && tagName.equals(((Tag) other).tagName)); // state check
     }
 
     @Override
