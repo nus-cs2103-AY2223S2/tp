@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 

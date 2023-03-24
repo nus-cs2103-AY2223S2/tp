@@ -7,9 +7,12 @@ import static seedu.wife.logic.commands.foodcommands.AddCommandTest.ModelStub;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.wife.logic.commands.CommandResult;
+import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
 import seedu.wife.model.tag.Tag;
@@ -19,34 +22,34 @@ import seedu.wife.testutil.TagBuilder;
  * A class to test the NewTagCommand.
  */
 public class CreateTagCommandTest {
-    private static final String EXPECTED_ERROR_DUPLICATE = "The tag you try to add is already in the tag list.";
-    private static final String EXPECTED_SUCCESS_MESSAGE = "Tag successfully added: %s";
+    private static final String EXPECTED_ERROR_DUPLICATE = "The tag you are trying to create has been created before.";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Tag(s) successfully created:\n%s";
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CreateTagCommand((Tag) null));
     }
 
-    // @Test
-    // public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
-    //     ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
-    //     Tag validTag = new TagBuilder().build();
+    @Test
+    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+        Tag validTag = new TagBuilder().build();
 
-    //     CommandResult commandResult = new CreateTagCommand(validTag).execute(modelStub);
-    //     String expectedOutput = String.format(EXPECTED_SUCCESS_MESSAGE, validTag.getTagName());
-    //     assertEquals(expectedOutput, commandResult.getFeedbackToUser());
-    //     assertEquals(List.of(validTag), modelStub.tagsAdded);
-    // }
+        CommandResult commandResult = new CreateTagCommand(validTag).execute(modelStub);
+        String expectedOutput = String.format(EXPECTED_SUCCESS_MESSAGE, validTag.getTagName());
+        assertEquals(expectedOutput, commandResult.getFeedbackToUser());
+        assertEquals(List.of(validTag), modelStub.tagsAdded);
+    }
 
-    // @Test
-    // public void execute_duplicateItem_throwsCommandException() {
-    //     Tag validTag = new TagBuilder().build();
-    //     CreateTagCommand newTagCommand = new CreateTagCommand(validTag);
-    //     ModelStub modelStub = new ModelStubWithTag(validTag);
+    @Test
+    public void execute_duplicateItem_throwsCommandException() {
+        Tag validTag = new TagBuilder().build();
+        CreateTagCommand newTagCommand = new CreateTagCommand(validTag);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
 
-    //     assertThrows(CommandException.class,
-    //             EXPECTED_ERROR_DUPLICATE, () -> newTagCommand.execute(modelStub));
-    // }
+        assertThrows(CommandException.class,
+                EXPECTED_ERROR_DUPLICATE, () -> newTagCommand.execute(modelStub));
+    }
 
     @Test
     public void equals() {

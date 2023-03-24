@@ -60,7 +60,7 @@ public class Food {
     }
 
     /**
-     * Returns an new tag set for edit, which throws {@code UnsupportedOperationException}
+     * Returns a new tag set for edit, which throws {@code UnsupportedOperationException}
      */
     public Set<Tag> getCurrentTags() {
         return new HashSet<Tag>(this.tags);
