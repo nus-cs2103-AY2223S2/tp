@@ -97,8 +97,11 @@ public class UniqueFishList implements Iterable<Fish> {
         internalList.setAll(fish);
     }
 
+    /**
+     * Sets the lastFedDate field of all fishes in this {@code internalList} list with new LastFedDate object with {@code newDate}.
+     */
     public void setLastFedDateFishes(String newDate) {
-        requireAllNonNull(newDate);
+        requireNonNull(newDate);
         internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));
     }
 

@@ -5,6 +5,9 @@ import java.util.Objects;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Fish;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  *  Represents a Tank of the user that contains fish.
  */
@@ -38,7 +41,12 @@ public class Tank {
         fishList.addFish(fish);
     }
 
+    /**
+     * Sets the lastFedDate field of all fishes in this Tank's {@code fishList} list with new LastFedDate object with {@code newDate}.
+     */
     public void setLastFedDateFishes(String newDate) {
+        requireNonNull(newDate);
+
         fishList.setLastFedDateFishes(newDate);
     }
 
