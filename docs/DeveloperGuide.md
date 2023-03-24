@@ -333,6 +333,38 @@ A considered alternative is to simply leave empty fields as an empty string `""`
 then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
 prefixes to differentiate them, but parsing becomes more complex.
 
+### Find Feature
+
+#### Implementation
+
+The `FindCommand` allows user to find an existing bookmark by searching for a specific `Title`, `Genre`, `Tag`, and/or 
+`Author`.
+
+User can use the `find` command followed by optional prefixes of the field they want to search by and the word they 
+want to search for. The prefixes are `n/` for `Title`, `g/` for `Genre`, `t/` for `Tag`, and `a/` for `Author`. 
+An example of a user input would be: `find g/ Fantasy`. User inputs are parsed in `FindCommandParser` which will 
+split the input based on the prefixes. 
+
+Some limitations of the user input includes:
+1. There must be at least 1 prefix provided
+   * User cannot use `find` without specifying a field that they want to search for
+2. The `genre` and `tag` provided must be valid
+   * User can only search for `genre` and `tags` that already exist in the list of `Genre` and `Tag`
+   * Searching for invalid `genre`/`tag` would give an error message informing the user that the `genre`/`tag` does not
+     exist
+
+#### Design considerations:
+
+**Aspect: Which fields of bookmark can `find` searched for?:**
+
+Currently, `find` allows user to search by `title`, `genre`, `tag` and `author`.
+
+The main reason is that it is intuitive to use these fields to identify one bookmark from another.
+
+A considered field to be included in `find` is the `progress` field. However, it seems counter-intuitive to search a 
+bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
+unlikely to search for a bookmark using `progress`.
+
 ### [Proposed] Rating Field
 #### Implementation
 The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
