@@ -312,6 +312,44 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `MedInfo` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: UC01 - Add a patient**
+
+**MSS**
+
+1. User request to add a new patient to the system.
+2. The user enters patient details.
+    1. The following are required information:
+        - Patient name
+        - Patient NRIC
+    2. The following are non-required information:
+        - Patient status
+3. The system adds the user into the MedInfo system.
+4. The system show the new created user in the patient list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. If any of the required fields are not completed
+
+    * 2a1. the user is informed of this and show the correct format for the command
+
+Use case resume at step 2.
+
+* 2b. If the patient NRIC is duplicate when compared to the records in the system
+
+    * 2b1. the user is informed that he or she must have a different NRIC
+
+Use case resume at step 2.
+
+* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
+
+    * 2c1. If the NRIC is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c2. If the status is invalid, the user is informed of this, and correct format for the command is displayed.
+
+Use case resume at step 2.
+
+
 **Use case: Delete a patient**
 
 **MSS**

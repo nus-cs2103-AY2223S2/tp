@@ -36,7 +36,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-
         if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
             String trimmedNames = argMultimap.getValue(PREFIX_NAME).get();
             checkArgsEmpty(trimmedNames);
