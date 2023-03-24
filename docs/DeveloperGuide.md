@@ -259,6 +259,27 @@ sequence diagram:
 
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
 
+### Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()`  
+      method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
+![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
