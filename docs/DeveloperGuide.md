@@ -244,7 +244,7 @@ The following is a description of the code execution flow
 The following table below depicts the consideration of inputs  against the user's argument:
 
 | Has Preamble | has `\mod` argument | has 'lec agrgument | Intent |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | Yes | No | No | Delete Module |
 | Yes | Yes | No | DeleteLecture |
 | Yes | Yes | Yes | DeleteVideo |
@@ -276,6 +276,8 @@ The following table below depicts the consideration of inputs  against the user'
 
 #### Possible further implementation
     - Create parser for `preamble` of deleting multiple of a specified entity
+
+### Mark / UnMARK
 
 ### Find command feature
 
