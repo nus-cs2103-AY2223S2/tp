@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CalidrParser" as CalidrParser LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant ":DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T2
+end box
+
+[-> LogicManager : execute("<command to delete a task>")
+activate LogicManager
+
+LogicManager -> CalidrParser : parseCommand("<command to delete a task>")
+activate CalidrParser
+
+create DeleteTaskCommandParser
+CalidrParser -> DeleteTaskCommandParser
+activate DeleteTaskCommandParser
+DeleteTaskCommandParser --> CalidrParser
+deactivate DeleteTaskCommandParser
+
+CalidrParser -> DeleteTaskCommandParser : parse("<command to delete a task>")
+activate DeleteTaskCommandParser
+
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
+DeleteTaskCommand --> DeleteTaskCommandParser
+deactivate DeleteTaskCommand
+
+DeleteTaskCommandParser --> CalidrParser : command to delete the task
+deactivate DeleteTaskCommandParser
+
+CalidrParser --> LogicManager : command to delete the task
+deactivate CalidrParser
+
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
+
+DeleteTaskCommand -> Model : getFilteredTaskList()
+activate Model
+Model --> DeleteTaskCommand
+deactivate Model
+
+DeleteTaskCommand -> Model : deleteTask()
+activate Model
+deactivate Model
+
+create CommandResult
+DeleteTaskCommand -> CommandResult
+activate CommandResult
+CommandResult --> DeleteTaskCommand
+deactivate CommandResult
+
+DeleteTaskCommand --> LogicManager : result
+deactivate DeleteTaskCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
