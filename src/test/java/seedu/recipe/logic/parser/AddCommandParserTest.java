@@ -37,9 +37,9 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-    //     Recipe expectedRecipe = new RecipeBuilder(AMY).withTags().build();
-    //     assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-    //             new AddCommand(expectedRecipe));
+        //     Recipe expectedRecipe = new RecipeBuilder(AMY).withTags().build();
+        //     assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        //             new AddCommand(expectedRecipe));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddCommandParserTest {
         //             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
         //     // invalid phone
         //     assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-        //             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Ingredient.MESSAGE_CONSTRAINTS);
+        //             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IngredientBuilder.MESSAGE_CONSTRAINTS);
         //     // invalid email
         //     assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
         //             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);

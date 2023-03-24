@@ -10,6 +10,7 @@ public abstract class Unit {
 
     /**
      * Generates and returns a Unit instance around the provided String unit parameter.
+     *
      * @param unit The String representing the unit around which to construct this Unit instance.
      */
     public Unit(String unit) {

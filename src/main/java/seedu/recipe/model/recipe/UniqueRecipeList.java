@@ -112,7 +112,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueRecipeList // instanceof handles nulls
-                        && internalList.equals(((UniqueRecipeList) other).internalList));
+                && internalList.equals(((UniqueRecipeList) other).internalList));
     }
 
     @Override

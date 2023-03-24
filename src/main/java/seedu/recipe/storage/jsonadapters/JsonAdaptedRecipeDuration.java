@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -14,7 +14,7 @@ import seedu.recipe.model.recipe.RecipeDuration;
  * Jackson-friendly version of {@link Name}.
  */
 @JsonInclude(Include.NON_NULL)
-class JsonAdaptedRecipeDuration {
+public class JsonAdaptedRecipeDuration {
 
 
     private final double time;

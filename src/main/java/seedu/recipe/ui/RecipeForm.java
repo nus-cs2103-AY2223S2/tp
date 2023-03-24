@@ -16,13 +16,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.ui.events.EditRecipeEvent;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
-
-public class RecipeForm extends UiPart<Region> {
+/**
+ * Represents the form element for users to edit {@code Recipe}s
+ */public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
 
     @FXML
@@ -82,6 +81,7 @@ public class RecipeForm extends UiPart<Region> {
         if (recipe != null) {
             populateFields();
         }
+        assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
         saveButton.setOnAction(event -> EditRecipeEvent());
 
@@ -161,7 +161,7 @@ public class RecipeForm extends UiPart<Region> {
 
         storeInitialValues();
     }
-    
+
     /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
@@ -176,28 +176,28 @@ public class RecipeForm extends UiPart<Region> {
             String currentValue = null;
 
             switch (key) {
-                case "name":
-                    currentValue = nameField.getText();
-                    break;
-                case "duration":
-                    currentValue = durationField.getText();
-                    break;
-                case "portion":
-                    currentValue = portionField.getText();
-                    break;
-                case "ingredients":
-                    currentValue = ingredientsBox.getChildren().stream()
-                        .map(node -> ((TextField) node).getText())
-                        .collect(Collectors.joining(", "));
-                    break;
-                case "steps":
-                    currentValue = stepsBox.getChildren().stream()
-                        .map(node -> ((TextField) node).getText())
-                        .collect(Collectors.joining(", "));
-                    break;
-                case "tags":
-                    currentValue = tagsField.getText();
-                    break;
+            case "name":
+                currentValue = nameField.getText();
+                break;
+            case "duration":
+                currentValue = durationField.getText();
+                break;
+            case "portion":
+                currentValue = portionField.getText();
+                break;
+            case "ingredients":
+                currentValue = ingredientsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "steps":
+                currentValue = stepsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "tags":
+                currentValue = tagsField.getText();
+                break;
             }
 
             if (!initialValue.equals(currentValue)) {

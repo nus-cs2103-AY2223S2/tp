@@ -43,14 +43,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -78,13 +78,13 @@ public class ModelManager implements Model {
     //=========== RecipeBook ================================================================================
 
     @Override
-    public void setRecipeBook(ReadOnlyRecipeBook recipeBook) {
-        this.recipeBook.resetData(recipeBook);
+    public ReadOnlyRecipeBook getRecipeBook() {
+        return recipeBook;
     }
 
     @Override
-    public ReadOnlyRecipeBook getRecipeBook() {
-        return recipeBook;
+    public void setRecipeBook(ReadOnlyRecipeBook recipeBook) {
+        this.recipeBook.resetData(recipeBook);
     }
 
     @Override

@@ -67,13 +67,8 @@ public class RecipePortionTest {
     @Test
     public void testToString() {
         assertEquals(
-                new RecipePortion(1, -1, new PortionUnit("portion")).toString(),
-                "1 portion"
-        );
-        assertEquals(
-                new RecipePortion(1, 3, new PortionUnit("portions")).toString(),
-                "1 - 3 portions"
-        );
+            new RecipePortion(1, -1, new PortionUnit("portion")).toString(), "1 portion");
+        assertEquals(new RecipePortion(1, 3, new PortionUnit("portions")).toString(), "1 - 3 portions");
     }
 
     @Test

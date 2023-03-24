@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,7 +12,7 @@ import seedu.recipe.model.recipe.Name;
  * Jackson-friendly version of {@link Name}.
  */
 @JsonInclude(Include.NON_NULL)
-class JsonAdaptedName {
+public class JsonAdaptedName {
 
     private final String name;
 
