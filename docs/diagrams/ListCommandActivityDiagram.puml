@@ -4,6 +4,7 @@
  start
  :User executes ListXYZCommand;
  :Retrieve FilteredXYZList;
+ :FilteredList is updated to have all XYZ objects and it is shown to the users;
  :Success message is returned;
  stop
  @enduml
