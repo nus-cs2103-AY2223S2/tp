@@ -35,12 +35,6 @@ else ([else])
 :Item in XYZ List is edited and Filtered XYZ List is updated;
 :EditXYZCommand returns CommandResult;
 :Changes made are saved to local data;
-
-if () then ([Changes cannot be saved])
-:CommandException is thrown;
-:File Ops error message is shown;
-stop
-else ([else])
 :Edit Success Message is shown;
 stop
 

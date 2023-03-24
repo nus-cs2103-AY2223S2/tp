@@ -11,7 +11,7 @@ Class Supplier
 Class Customer
 Abstract Class "{abstract}\nName" as Name
 
-together{
+together {
 Class PersonName
 Class PersonAddress
 Class PersonEmail
@@ -20,17 +20,17 @@ Class Tag
 }
 
 Class ItemList<T extends Item>
-Class UniqueItemList<T>
+Class "UniqueItemList<T> " as UniqueItemList
 
 ItemList *--> "1" UniqueItemList
-UniqueItemList --> Item
+UniqueItemList --> "*" Item
 
 SupplierList *--> "1" UniqueSupplierList
-UniqueSupplierList --> Supplier
+UniqueSupplierList --> "*" Supplier
 SupplierList --l|> ItemList
 UniqueSupplierList --l|> UniqueItemList
 CustomerList *--d> "1" UniqueCustomerList
-UniqueCustomerList --d> Customer
+UniqueCustomerList --d> "             *" Customer
 CustomerList --r|> ItemList
 UniqueCustomerList --r|> UniqueItemList
 

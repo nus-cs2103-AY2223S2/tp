@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+start
+:User executes FindXYZCommand;
+:FindXYZCommandParser extracts the relevant information
+from the input argument;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Invalid Input Argument])
+    :Display error message
+    on invalid command argument;
+    stop
+else ([else])
+    :Create XYZContainsKeywordPredicate;
+    repeat;
+        :Check if current XYZ
+        matches predicate;
+        if () then ([true])
+            : Keep XYZ in filtered list;
+        else ([false])
+
+        endif
+    repeat while () is ([Have remaining XYZ in XYZList]) not ([else])
+: Show all filtered XYZ in FilteredXYZList;
+: Success message is returned;
+stop
+@enduml
