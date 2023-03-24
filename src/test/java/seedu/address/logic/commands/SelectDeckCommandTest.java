@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

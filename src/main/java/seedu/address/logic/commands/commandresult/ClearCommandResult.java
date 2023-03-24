@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.commandresult;
 
 /**
  * Represents the result of a Clear command execution.
