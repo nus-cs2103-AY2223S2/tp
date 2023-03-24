@@ -15,7 +15,6 @@ public class NoteList {
      * @param notes A list of {@code Note} objects
      */
     public NoteList(List<Note> notes) {
-        assert notes.size() < 20 : "upper limit is 20";
         this.notes.addAll(notes);
     }
 
@@ -66,6 +65,7 @@ public class NoteList {
      * @param noteList The {@code NoteList} to add
      */
     public void addAll(NoteList noteList) {
+        assert len() + noteList.len() <= 20 : "upper limit of adding notes is 20";
         getNotes().addAll(noteList.getNotes());
     }
 
