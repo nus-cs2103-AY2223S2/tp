@@ -62,6 +62,8 @@ public class DeleteSubtaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+        if (subtaskIndex.getZeroBased() < 0 
+            || subtaskIndex.getZeroBased() taskToEdit.getSubtasks())
         Subtask taskToDelete = taskToEdit.getSubtasks().get(subtaskIndex.getZeroBased());
         Task newTask = createNewTask(taskToEdit, subtaskIndex);
 
