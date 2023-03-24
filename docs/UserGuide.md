@@ -33,7 +33,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
    * `list` : Lists all contacts.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
-   
+
    * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.

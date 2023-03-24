@@ -1,0 +1,20 @@
+@startuml
+hide footbox
+participant ":LogicManager" as LogicManager
+participant ":AddressBookParser" as AddressBookParser
+participant ":FindTaskCommandParser" as FindTaskCommandParser
+participant ":FindTaskCommand" as FindTaskCommand
+participant ":Model" as Model
+participant ":OfficeConnectModel" as OfficeConnectModel
+-> LogicManager: execute(commandText)
+LogicManager -> AddressBookParser : parseCommand(userInput)
+AddressBookParser -> FindTaskCommandParser : FindTaskCommandParser(args)
+FindTaskCommandParser -> FindTaskCommandParser: parse(args)
+FindTaskCommandParser --> LogicManager : FindTaskCommand(predicate)
+LogicManager -> FindTaskCommand: execute(model, officeConnectModel)
+FindTaskCommand -> OfficeConnectModel: filterItemList(predicate)
+OfficeConnectModel --> FindTaskCommand: ObservableList<AssignTask>
+FindTaskCommand -> Model: updateFilteredPersonList(predicate)
+FindTaskCommand -> OfficeConnectModel: updateFilteredItemList(predicate)
+FindTaskCommand --> LogicManager: CommandResult(successful message)
+@enduml

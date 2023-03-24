@@ -1,0 +1,16 @@
+@startuml
+start
+:User inputs 'list';
+:All person with index is shown;
+:User inputs 'listtask';
+:All tasks with index is shown;
+
+: User inputs 'Unssign pi/ PERSON_INDEX ti/ TASK_INDEX';
+if() then ([PERSON_INDEX and TASK_INDEX is valid])
+    : Task at TASK_INDEX is unassign from person at PERSON_INDEX;
+else ([else])
+    : OfficeConnect throws an error;
+endif
+
+stop
+@enduml
