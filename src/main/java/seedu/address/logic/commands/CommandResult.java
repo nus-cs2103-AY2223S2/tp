@@ -83,6 +83,10 @@ public class CommandResult {
         return unselectDeck;
     }
 
+    public boolean isClear() {
+        return false;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
