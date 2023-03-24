@@ -14,12 +14,12 @@ public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Marks a task in your task list as 'done'"
+            COMMAND_WORD + ": Marks a task in your task list as 'done'\n"
                     + "Parameters: INDEX (must be a positive integer) "
                     + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Task marked as done: %1$s";
-    
+
     private final Index index;
 
     public MarkTaskCommand(Index index) {

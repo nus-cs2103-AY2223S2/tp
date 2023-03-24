@@ -14,7 +14,7 @@ public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Marks a task in your task list as 'not done'"
+            COMMAND_WORD + ": Marks a task in your task list as 'not done'\n"
                     + "Parameters: INDEX (must be a positive integer) "
                     + "Example: " + COMMAND_WORD + " 2";
 
