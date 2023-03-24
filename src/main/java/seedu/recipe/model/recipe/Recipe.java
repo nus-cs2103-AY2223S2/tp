@@ -5,7 +5,6 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -55,9 +54,11 @@ public class Recipe {
 
     public void setIngredients(IngredientBuilder... ingredients) {
         for (IngredientBuilder ingredientBuilder: ingredients) {
-            HashMap<Ingredient, IngredientQuantifier> map = ingredientBuilder.build();
-            ingredientTable.putAll(map);
+            ingredientTable.putAll(
+                ingredientBuilder.build()
+            );
         }
+        // To be deprecated
         this.ingredients.addAll(List.of(ingredients));
     }
 

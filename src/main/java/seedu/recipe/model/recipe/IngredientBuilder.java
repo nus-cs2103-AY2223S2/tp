@@ -81,6 +81,7 @@ public class IngredientBuilder {
         }
         if (arguments.containsKey(COMMON_NAME_PREFIX)) { //First common name
             commonName = arguments.get(COMMON_NAME_PREFIX).get(0);
+            mainIngredient.setCommonName(commonName);
         }
         if (arguments.containsKey(REMARK_PREFIX)) {
             //Invalid remarks will fail silently, and not get added.
@@ -101,7 +102,6 @@ public class IngredientBuilder {
         out.put(mainIngredient,
             new IngredientQuantifier(
                 quantity,
-                commonName,
                 estimatedQuantity,
                 remarks.toArray(String[]::new),
                 substitutes.toArray(Ingredient[]::new)

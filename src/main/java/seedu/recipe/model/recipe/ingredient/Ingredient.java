@@ -12,6 +12,7 @@ public class Ingredient {
     private static final String WORD_GROUP = "[A-Za-z]+(\\-[A-Za-z]+)?";
     public static final String VALIDATION_REGEX = String.format("^%s(\\s+%s)*$", WORD_GROUP, WORD_GROUP);
     private final String name;
+    private String commonName = "";
 
     private Ingredient(String name) {
         this.name = name;
@@ -24,8 +25,19 @@ public class Ingredient {
      * @return The generated Ingredient instance.
      */
     public static Ingredient of(String s) {
+        assert s != null;
         checkArgument(isValidIngredientName(s), MESSAGE);
         return new Ingredient(s);
+    }
+
+    /**
+     * Set the common name of this Ingredient.
+     * @param s The common name to be set.
+     */
+    public void setCommonName(String s) {
+        assert s != null;
+        checkArgument(isValidIngredientName(s), MESSAGE);
+        this.commonName = s;
     }
 
     /**
@@ -45,6 +57,9 @@ public class Ingredient {
 
     @Override
     public String toString() {
+        if (commonName.length() > 0) {
+            return String.format("%s (aka %s)", name, commonName);
+        }
         return name;
     }
 }
