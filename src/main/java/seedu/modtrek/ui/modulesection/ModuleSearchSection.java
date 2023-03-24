@@ -16,7 +16,10 @@ public class ModuleSearchSection extends ModuleSection {
      * @param modules The modules to display in the section.
      */
     public ModuleSearchSection(ObservableList<Module> modules) {
-        super(modules);
+        super();
+
+        ModuleList moduleList = new ModuleList(modules, true);
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
 
         ModuleSectionFindNav nav = new ModuleSectionFindNav();
         moduleSectionNav.getChildren().add(nav.getRoot());

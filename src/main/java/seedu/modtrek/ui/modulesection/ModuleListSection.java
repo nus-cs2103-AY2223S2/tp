@@ -15,7 +15,10 @@ public class ModuleListSection extends ModuleSection {
      * @param modules The modules to display in the section.
      */
     public ModuleListSection(ObservableList<Module> modules) {
-        super(modules);
+        super();
+
+        ModuleList moduleList = new ModuleList(modules, false);
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
 
         ModuleSectionSortNav nav = new ModuleSectionSortNav();
         moduleSectionNav.getChildren().add(nav.getRoot());

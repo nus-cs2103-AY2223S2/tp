@@ -40,7 +40,7 @@ public enum ValidTag {
     /**
      * Retrieves short form version of the requirement.
      *
-     * @param tagName
+     * @param tagName the long-form version of the requirement
      * @return ValidTag as the short-form
      */
     public static ValidTag getShortForm(String tagName) {
@@ -65,7 +65,7 @@ public enum ValidTag {
     }
 
     /**
-     * Retrieves long form version of the requirement.
+     * Retrieves total credit per requirement.
      *
      * @param tagName the short-form version of the requirement
      * @return ValidTag as the long-form

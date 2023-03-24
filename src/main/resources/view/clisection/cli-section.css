@@ -5,7 +5,8 @@
     -fx-pref-width: 480;
     -fx-padding: 0 30;
 
-    -fx-font-family: 'Courier Prime Bold';
+    -fx-font-family: 'Courier Prime Bold', sans-serif;
+    -fx-font-weight: 600;
     -fx-font-size: 14;
     -fx-text-fill: -white;
 }

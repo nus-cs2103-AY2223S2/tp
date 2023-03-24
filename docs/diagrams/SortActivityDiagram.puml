@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes sort command;
+
+if () then ([flag is valid])
+    if () then ([flag is "/m"])
+        :Create treemap with Module Prefix as keys;
+    else if () then ([flag is "/g"])
+        :Create treemap with Grades as keys;
+    else if () then ([flag is "/y"])
+        :Create treemap with Semester Year as keys;
+    else if () then ([flag is "/c"])
+        :Create treemap with Credits as keys;
+    else if () then ([flag is "/t"])
+        :Create treemap with Tags as keys;
+    endif
+    :Display modules in GUI;
+else ([else])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

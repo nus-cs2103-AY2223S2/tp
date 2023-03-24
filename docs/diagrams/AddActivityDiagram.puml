@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([module is missing])
+    :Show require non-null
+    module error message;
+
+else ([else])
+    if () then ([module already exist])
+    :Show invalid name
+    error message;
+
+    else ([else])
+        if () then ([position is invalid])
+            :Show duplicate module
+            error message;
+
+        else ([else])
+        :Add new internship to list of
+        internship applications;
+        endif
+    endif
+endif
+stop
+@enduml
