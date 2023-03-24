@@ -38,18 +38,17 @@ public class MainWindow extends UiPart<Stage> {
     private static final ObservableList<Pair<String, String>> EMPTY_TITLE =
             FXCollections.observableArrayList(new Pair<>("", ""));
 
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private UiPart<Region> leftPanel;
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -170,6 +169,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    void show() {
+        primaryStage.show();
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -182,10 +185,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
-        primaryStage.show();
-    }
-
     /**
      * Closes the application.
      */
@@ -196,6 +195,25 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Creates a confirmation pop-up
+     */
+    public void handleClear() {
+        /* Creates a confirmation alert */
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Are you sure you want to clear all data?");
+
+        /* Creates buttons */
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        /* Checks user's answer */
+        Optional<ButtonType> answer = alert.showAndWait();
+        answer.filter(response -> response == buttonYes).ifPresent(unused -> logic.factoryReset());
     }
 
     /**
@@ -220,6 +238,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the deck list panel.
      */
     public void handleEndReview() {
+        updateDeckTitle();
+
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
@@ -238,26 +258,6 @@ public class MainWindow extends UiPart<Stage> {
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
     }
-
-    /**
-     * Creates a confirmation pop-up
-     */
-    public void handleClear() {
-        /* Creates a confirmation alert */
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Are you sure you want to clear all data?");
-
-        /* Creates buttons */
-        ButtonType buttonYes = new ButtonType("Yes");
-        ButtonType buttonNo = new ButtonType("No");
-        alert.getButtonTypes().setAll(buttonYes, buttonNo);
-
-        /* Checks user's answer */
-        Optional<ButtonType> answer = alert.showAndWait();
-        answer.filter(response -> response == buttonYes).ifPresent(unused -> logic.factoryReset());
-    }
-
 
     /**
      * Executes the command and returns the result.
@@ -287,7 +287,6 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEndReview()) {
-                updateDeckTitle();
                 handleEndReview();
             }
 
