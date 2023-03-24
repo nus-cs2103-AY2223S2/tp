@@ -133,7 +133,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/FishTankTaskClassDiagram.png" />
 
 
 The `Model` component,
@@ -255,8 +255,23 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### `Fish`, `Tank` and `Task` tracking
+### Automatic Feeding Reminders
 #### Implementation
+
+The entrypoint of this feature is in the `start()` method of MainApp, which is automatically called when the user opens
+Fish Ahoy!. We then access the `Logic` component to access the `Model` component to find out which `Tank` have unfed
+`Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
+`TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
+each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
+if the various lists. 
+
+![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
+
+#### Design considerations:
+* Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
+  * Pros: user can update Reminders without opening the app
+  * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
+command, the reminders likely do not need to be updated.
 
 
 --------------------------------------------------------------------------------------------------------------------
