@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PrescribeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Medication;
+import seedu.address.model.person.Nric;
 
 /**
  * Parses input arguments and creates a new PrescribeCommand object
@@ -24,18 +24,16 @@ public class PrescribeCommandParser implements Parser<PrescribeCommand> {
      */
     public PrescribeCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEDICATION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_MEDICATION);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        if (!argMultimap.getValue(PREFIX_NRIC).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrescribeCommand.MESSAGE_USAGE));
         }
 
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
 
-        return new PrescribeCommand(index, medication);
+        return new PrescribeCommand(nric, medication);
     }
     //@@author Jeffry Lum
 }
