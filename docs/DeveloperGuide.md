@@ -17,9 +17,9 @@ title: Developer Guide
     - [Proposed Implementation](#proposed-implementation)
     - [Design considerations](#design-considerations)
   - [Filter feature](#filter-feature)
-    - [Current Implementation](#current-filter-implementation)
+    - [Current Filter Implementation](#current-filter-implementation)
   - [Copy feature](#copy-feature)
-    - [Current Implementation](#current-copy-implementation)
+    - [Current Copy Implementation](#current-copy-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -306,7 +306,7 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 ### Copy feature
 
-#### Current Filter Implementation
+#### Current Copy Implementation
 
 The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`.
 Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
