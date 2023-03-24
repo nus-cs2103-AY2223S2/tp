@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ONGOING_APPLICATIONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,6 +16,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Unarchives an internship application identified using it's displayed index from the list of internship applications.
@@ -70,11 +72,12 @@ public class UnarchiveCommand extends Command {
 
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
+        Set<Review> reviews = internshipApplication.getReviews();
         Contact contact = internshipApplication.getContact();
         InternshipStatus status = internshipApplication.getStatus();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status,
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status,
                 false, interviewDate);
     }
 

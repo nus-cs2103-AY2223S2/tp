@@ -17,6 +17,7 @@ public class AfterDatePredicate extends DatePredicate {
 
     @Override
     public boolean test(InternshipApplication internshipApplication) {
+        assert internshipApplication != null : "internshipApplication should not be null";
         return internshipApplication.getInterviewDate() != null
                 && internshipApplication.getInterviewDate().isAfterInclusive(afterDate);
     }

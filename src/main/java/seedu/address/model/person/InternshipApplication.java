@@ -18,6 +18,7 @@ public class InternshipApplication {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
+    private final Set<Review> reviews = new HashSet<>();
     private final InterviewDate interviewDate;
     private final InternshipStatus status;
     private final boolean isArchived;
@@ -30,10 +31,11 @@ public class InternshipApplication {
     /**
      * Every field must be present and not null.
      */
-    public InternshipApplication(CompanyName name, JobTitle job) {
+    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews) {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
+        this.reviews.addAll(reviews);
         this.contact = null;
         this.status = InternshipStatus.NA;
         this.isArchived = false;
@@ -43,11 +45,12 @@ public class InternshipApplication {
     /**
      * The company name and job title field must be present and not null.
      */
-    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status,
-                                 boolean isArchived, InterviewDate interviewDate) {
-        requireAllNonNull(name, job);
-        this.companyName = name;
+    public InternshipApplication(CompanyName companyName, JobTitle job, Set<Review> reviews,
+                            Contact contact, InternshipStatus status, boolean isArchived, InterviewDate interviewDate) {
+        requireAllNonNull(companyName, job);
+        this.companyName = companyName;
         this.jobTitle = job;
+        this.reviews.addAll(reviews);
         this.contact = contact;
         this.status = status;
         this.isArchived = isArchived;
@@ -59,6 +62,9 @@ public class InternshipApplication {
     }
     public JobTitle getJobTitle() {
         return jobTitle;
+    }
+    public Set<Review> getReviews() {
+        return Collections.unmodifiableSet(reviews);
     }
 
     public InternshipStatus getStatus() {
@@ -140,6 +146,11 @@ public class InternshipApplication {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        if (!reviews.isEmpty()) {
+            builder.append("; Review: ");
+            reviews.forEach(builder::append);
         }
 
         if (contact != null) {
