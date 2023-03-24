@@ -444,3 +444,22 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Clearing people data
+
+1. Clearing data of all people while list of all people is being shown
+    1. Prerequisites: List all persons using the `list` command.
+
+    1. Test case: `clear`<br>
+       Expected: Every person is removed. Status message is displayed.
+
+### Editing a person
+
+1. Editing details of person
+    1. Prerequisites: List all persons using the `list` command. Multiple persons on the list. 
+
+    1. Test case: `edit 1 n/James Lee e/jameslee@example.com`<br>
+       Expected: Person name and email is updated. Status message is shown.
+
+    1. Test case: `edit 0 n/John Doe p/22224444`<br>
+       Expected: No person is edited. Error details are shown in the status message.
