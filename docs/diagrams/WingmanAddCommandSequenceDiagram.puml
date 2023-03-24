@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WingmanParser" as WingmanParser LOGIC_COLOR
+participant "command:AddXYZCommand" as AddXYZCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":XYZManager" as XYZManager MODEL_COLOR
+end box
+
+LogicManager -> WingmanParser : parse(getOperationMode(), "add/name CA")
+activate LogicManager
+activate WingmanParser
+
+create AddXYZCommand
+WingmanParser -> AddXYZCommand
+activate AddXYZCommand
+AddXYZCommand --> WingmanParser
+deactivate AddXYZCommand
+
+WingmanParser --> LogicManager : command
+deactivate WingmanParser
+
+LogicManager -> AddXYZCommand : execute()
+activate AddXYZCommand
+
+AddXYZCommand -> ModelManager : addLocation(CA)
+activate ModelManager
+
+ModelManager -> XYZManager : addItem(CA)
+activate XYZManager
+
+ModelManager --> AddXYZCommand
+XYZManager --> ModelManager
+deactivate ModelManager
+deactivate XYZManager
+
+AddXYZCommand --> LogicManager : commandResult
+deactivate AddXYZCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+@enduml
