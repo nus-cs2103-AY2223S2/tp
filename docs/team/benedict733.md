@@ -1,6 +1,6 @@
 ---
 layout: page
-title: benedicy733's Project Portfolio Page
+title: benedict733's Project Portfolio Page
 ---
 
 ### Project: SalesPUNCH
