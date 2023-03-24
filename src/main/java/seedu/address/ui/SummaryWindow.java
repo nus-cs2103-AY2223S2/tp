@@ -24,7 +24,6 @@ public class SummaryWindow extends UiPart<Stage> {
 
     @FXML
     private Label tagMessage;
-    
     /**
      * Creates a new HelpWindow.
      *
