@@ -10,15 +10,15 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.scheduler.Module;
 import seedu.address.model.tag.ModuleTag;
-import seedu.address.model.timetable.Lesson;
-import seedu.address.model.timetable.Module;
-import seedu.address.model.timetable.time.SchoolDay;
+import seedu.address.model.time.Day;
 
 /**
  * Removes modules from an existing person in the address book.
@@ -149,7 +149,7 @@ public class UntagCommand extends Command {
             LocalTime start = new LocalTime(startHour, 0);
             LocalTime end = new LocalTime(endHour, 0);
 
-            SchoolDay schoolDay = SchoolDay.valueOf(day.toUpperCase());
+            Day schoolDay = Day.valueOf(day.toUpperCase());
 
             Lesson lesson = new Lesson(mod, start, end, schoolDay, Location.NUS);
 

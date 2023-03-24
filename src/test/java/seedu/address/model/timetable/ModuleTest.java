@@ -13,6 +13,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.scheduler.Module;
+
 class ModuleTest {
     @Test
     public void initialise_onlyModuleCode_success() {

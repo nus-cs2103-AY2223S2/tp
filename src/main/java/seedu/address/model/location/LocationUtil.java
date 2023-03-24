@@ -1,7 +1,6 @@
 package seedu.address.model.location;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -44,22 +43,21 @@ public class LocationUtil {
      */
     private static Set<Location> readLocationData(String fileName) {
         HashSet<Location> locationSet = new HashSet<>();
-        String fullFileName = String.format("src/main/java/seedu/address/model/location/data/%s.txt", fileName);
-        File file = new File(fullFileName);
+        String fullFileName = String.format("data/%s.txt", fileName);
+        InputStreamReader file =
+                new InputStreamReader(
+                        LocationUtil.class.getClassLoader().getResourceAsStream(fullFileName));
 
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String nextLine = scanner.nextLine();
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
 
-                // Tries to parse the line, and just ignores if it throws an error
-                getLocationFromData(nextLine)
-                        .ifPresentOrElse(locationSet::add, () -> logger.warning("Invalid information in: " + nextLine));
-            }
-        } catch (FileNotFoundException fnfe) {
-            assert logger != null;
-            logger.info("Location Data not found: " + fnfe.getMessage());
+            // Tries to parse the line, and just ignores if it throws an error
+            getLocationFromData(nextLine)
+                    .ifPresentOrElse(locationSet::add, () -> logger.warning("Invalid information in: " + nextLine));
         }
+
+
 
         return locationSet;
     }

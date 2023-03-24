@@ -14,8 +14,10 @@ import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_10AM_2HR_
 import org.joda.time.LocalTime;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.timetable.time.SchoolDay;
+import seedu.address.model.scheduler.Module;
+import seedu.address.model.time.Day;
 
 class LessonTest {
 
@@ -59,7 +61,7 @@ class LessonTest {
         Lesson anotherLesson = new Lesson(new Module("MA2104"),
                 new LocalTime(8, 0),
                 new LocalTime(9, 0),
-                SchoolDay.FRIDAY,
+                Day.FRIDAY,
                 new Location("NUS", 1.34, 103.7));
         assertEquals(FRIDAY_8AM_1HR_LESSON, anotherLesson);
     }

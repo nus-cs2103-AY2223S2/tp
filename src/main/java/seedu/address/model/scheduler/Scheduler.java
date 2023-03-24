@@ -11,11 +11,10 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.timetable.Timetable;
-import seedu.address.model.timetable.time.SchoolDay;
-import seedu.address.model.timetable.time.TimePeriod;
-import seedu.address.model.timetable.time.TimeSlot;
-import seedu.address.model.timetable.time.util.TimeUtils;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtils;
 
 /**
  * Represents an automatic scheduler.
@@ -98,9 +97,9 @@ public class Scheduler {
      */
     public List<TimePeriod> getAllTimings() {
         List<TimePeriod> periods = new ArrayList<>();
-        for (SchoolDay day : SchoolDay.values()) {
-            List<TimeSlot> availableTimeSlots = TimeUtils.getFreeCommonIntervals(day, schedules);
-            periods.addAll(TimeUtils.mergeTimeSlots(availableTimeSlots));
+        for (Day day : Day.values()) {
+            List<HourBlock> availableHourBlocks = TimeUtils.getFreeCommonIntervals(day, schedules);
+            periods.addAll(TimeUtils.mergeTimeSlots(availableHourBlocks));
         }
         return periods;
     }
@@ -108,9 +107,9 @@ public class Scheduler {
     /**
      * Get all Time Periods that everyone is free on that school day.
      */
-    public List<TimePeriod> getAllTimings(SchoolDay schoolDay) {
-        List<TimeSlot> availableTimeSlots = TimeUtils.getFreeCommonIntervals(schoolDay, schedules);
-        return new ArrayList<>(TimeUtils.mergeTimeSlots(availableTimeSlots));
+    public List<TimePeriod> getAllTimings(Day schoolDay) {
+        List<HourBlock> availableHourBlocks = TimeUtils.getFreeCommonIntervals(schoolDay, schedules);
+        return new ArrayList<>(TimeUtils.mergeTimeSlots(availableHourBlocks));
     }
 
     public List<Timetable> getSchedules() {

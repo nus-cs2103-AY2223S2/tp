@@ -1,4 +1,4 @@
-package seedu.address.model.timetable.time.util;
+package seedu.address.model.time.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import org.joda.time.LocalTime;
 
-import seedu.address.model.timetable.Timetable;
-import seedu.address.model.timetable.time.SchoolDay;
-import seedu.address.model.timetable.time.TimeBlock;
-import seedu.address.model.timetable.time.TimePeriod;
-import seedu.address.model.timetable.time.TimeSlot;
+import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
 
 
 /**
@@ -20,30 +20,30 @@ public class TimeUtils {
     /**
      * Gets a list of free intervals for which a participant is free for the specific school day.
      */
-    public static List<TimeSlot> getFreeCommonIntervals(SchoolDay schoolDay, List<Timetable> schedules) {
-        List<ArrayList<TimeSlot>> daySchedules = obtainAllSchedulesForDay(schoolDay, schedules);
+    public static List<HourBlock> getFreeCommonIntervals(Day schoolDay, List<Timetable> schedules) {
+        List<ArrayList<HourBlock>> daySchedules = obtainAllSchedulesForDay(schoolDay, schedules);
         if (daySchedules.isEmpty()) {
             return new ArrayList<>();
         }
-        List<TimeSlot> commonFreeTimeSlots = new ArrayList<>();
+        List<HourBlock> commonFreeHourBlocks = new ArrayList<>();
         int numberOfTimeSlots = daySchedules.get(0).size();
         for (int i = 0; i < numberOfTimeSlots; i++) {
             boolean isFreeForAll = true;
-            for (ArrayList<TimeSlot> daySchedule : daySchedules) {
+            for (ArrayList<HourBlock> daySchedule : daySchedules) {
                 isFreeForAll &= daySchedule.get(i).isFree();
             }
             if (isFreeForAll) {
-                TimeSlot sampleSlot = daySchedules.get(daySchedules.size() - 1).get(i);
-                commonFreeTimeSlots.add(new TimeSlot(sampleSlot));
+                HourBlock sampleSlot = daySchedules.get(daySchedules.size() - 1).get(i);
+                commonFreeHourBlocks.add(new HourBlock(sampleSlot));
             }
         }
-        return commonFreeTimeSlots;
+        return commonFreeHourBlocks;
     }
 
     /**
      * Retrieves all row schedules from all timetables for a specific day
      */
-    public static List<ArrayList<TimeSlot>> obtainAllSchedulesForDay(SchoolDay schoolDay, List<Timetable> schedules) {
+    public static List<ArrayList<HourBlock>> obtainAllSchedulesForDay(Day schoolDay, List<Timetable> schedules) {
         return schedules.stream()
                 .map(timetable -> timetable.getSchedule().get(schoolDay))
                 .collect(Collectors.toList());
@@ -52,21 +52,21 @@ public class TimeUtils {
     /**
      * Reduces the number of TimePeriods by merging consecutive time slots.
      */
-    public static List<TimePeriod> mergeTimeSlots(List<TimeSlot> timeSlots) {
-        if (timeSlots.isEmpty()) {
+    public static List<TimePeriod> mergeTimeSlots(List<HourBlock> hourBlocks) {
+        if (hourBlocks.isEmpty()) {
             return new ArrayList<>();
         }
         TimePeriod block = null;
         List<TimePeriod> timePeriods = new ArrayList<>();
-        for (int i = 0; i < timeSlots.size(); i++) {
-            TimeSlot timeSlot = timeSlots.get(i);
+        for (int i = 0; i < hourBlocks.size(); i++) {
+            HourBlock hourBlock = hourBlocks.get(i);
             if (i == 0) {
-                block = timeSlot;
-            } else if (timeSlot.isConsecutiveWith(block)) {
-                block = block.merge(timeSlot);
+                block = hourBlock;
+            } else if (hourBlock.isConsecutiveWith(block)) {
+                block = block.merge(hourBlock);
             } else {
                 timePeriods.add(new TimeBlock(block));
-                block = timeSlot;
+                block = hourBlock;
             }
         }
         if (block != null) {

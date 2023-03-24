@@ -1,9 +1,9 @@
-package seedu.address.model.timetable.time;
+package seedu.address.model.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.timetable.exceptions.WrongTimeException;
+import seedu.address.model.time.exceptions.WrongTimeException;
 
 
 /**
@@ -13,12 +13,12 @@ public abstract class TimePeriod {
 
     private final LocalTime startTime;
     private final LocalTime endTime;
-    private final SchoolDay schoolDay;
+    private final Day schoolDay;
 
     /**
      * Constructs a period in time.
      */
-    public TimePeriod(LocalTime startTime, LocalTime endTime, SchoolDay schoolDay) {
+    public TimePeriod(LocalTime startTime, LocalTime endTime, Day schoolDay) {
         if (startTime.isAfter(endTime)) {
             throw new WrongTimeException("Start Time Cannot be after End Time!");
         }
@@ -67,7 +67,7 @@ public abstract class TimePeriod {
 
     public abstract Hours getHoursBetween();
 
-    public SchoolDay getSchoolDay() {
+    public Day getSchoolDay() {
         return schoolDay;
     }
 
