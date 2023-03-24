@@ -14,4 +14,14 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns size of the persons list.
+     */
+    int size();
+
+    /**
+     * Returns the sum of the potential earnings
+     */
+    int getPotentialEarnings();
+
 }

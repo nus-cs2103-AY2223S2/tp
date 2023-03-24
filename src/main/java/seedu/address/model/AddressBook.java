@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -124,6 +126,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Return the size of the list.
+     *
+     */
+    @Override
+    public int size() {
+        return persons.size();
+    }
+
+    // function to sum the total value of all the business size in the people
+
+    /**
+     * Gets the sum of the user's potential earnings.
+     *
+     * @return The sum of the user's potential earnings.
+     */
+    @Override
+    public int getPotentialEarnings() {
+        Iterator<Person> iterator = persons.iterator();
+        int totalValue = 0;
+        while (iterator.hasNext()) {
+            totalValue += iterator.next().getBusinessSize().getNumericValue();
+        }
+        return totalValue;
     }
 
     //// util methods

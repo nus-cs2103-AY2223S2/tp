@@ -276,7 +276,7 @@ This also allows user to access their summary easily as the summary tab will be 
     * Cons: Slight revamp of UI is needed.
 
 * **Alternative 2:** Display in the main page.
-  
+
     * Pros: East to implement.
     * Cons: Information will be cramped together.
 
@@ -319,10 +319,11 @@ The following sequence diagram shows how the filter operation works:
     * Pros: Broad search of all tags.
     * Cons: Too much information, might be harder to narrow down search.
 
-
 #### Why this implementation 
 We would like users to be able to narrow down search by filtering more and more categories,
 hence we allow multiple arguments input and require that all arguments are satisfied
+
+
 
 ### \[Proposed\] Sort feature
 
@@ -352,8 +353,7 @@ Step 3. On execution of the sort command, the database of contacts is sorted acc
    3. Name - for admin purposes
 2. Users would also be able to edit their clients/persons lead size
 
-
-
+#### Why this implementation
 
 
 

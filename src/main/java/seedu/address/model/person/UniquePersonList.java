@@ -69,6 +69,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Return the size of the list.
+     *
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
