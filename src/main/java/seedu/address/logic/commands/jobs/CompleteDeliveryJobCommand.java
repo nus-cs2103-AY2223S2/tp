@@ -23,7 +23,7 @@ public class CompleteDeliveryJobCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Sets the delivered status as not/complete.\n"
             + "Parameters: KEYWORD [JOB ID]...\n"
-            + "Example: " + COMMAND_WORD_MARK + "|" + COMMAND_WORD_UNMARK + " ji/ <job_id>";
+            + "Example: " + COMMAND_WORD_MARK + "|" + COMMAND_WORD_UNMARK + " <job_id>";
 
     private final String jobId;
     private final Boolean setDelivered;
