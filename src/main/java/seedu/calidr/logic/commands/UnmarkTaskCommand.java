@@ -10,19 +10,19 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.task.Task;
 
-public class MarkTaskCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
+public class UnmarkTaskCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Marks a task in your task list as 'done'"
+            COMMAND_WORD + ": Marks a task in your task list as 'not done'"
                     + "Parameters: INDEX (must be a positive integer) "
-                    + "Example: " + COMMAND_WORD + " 1";
+                    + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Task marked as done: %1$s";
-    
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Task marked as not done: %1$s";
+
     private final Index index;
 
-    public MarkTaskCommand(Index index) {
+    public UnmarkTaskCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
@@ -36,10 +36,10 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = readOnlyTaskList.get(index.getZeroBased());
+        Task taskToUnmark = readOnlyTaskList.get(index.getZeroBased());
 
-        model.markTask(taskToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
+        model.unmarkTask(taskToUnmark);
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 
 }
