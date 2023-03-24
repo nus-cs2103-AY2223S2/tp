@@ -22,6 +22,7 @@ class DeleteMultipleIndexCommandTest {
     void execute_deleteMultipleValidIndex_success() {
         List<Person> list = model.getFilteredPersonList();
         int size = list.size();
+        System.out.println(size);
         ArrayList<Index> indexes = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             indexes.add(Index.fromZeroBased(i));

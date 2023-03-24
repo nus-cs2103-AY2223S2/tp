@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2d. Input contains incorrect details
     * 2d1. ModCheck shows an error message.
 
-**Use case: Delete a person**
+**Use case: Delete a single person**
 
 **MSS**
 
@@ -342,6 +342,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
+
+    * 3a1. ModCheck shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete multiple persons**
+
+**MSS**
+
+1.  Student requests to list persons
+2.  ModCheck shows a list of persons
+3.  Student requests to delete multiple people in the list
+4.  ModCheck deletes the people
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. A given index is invalid.
 
     * 3a1. ModCheck shows an error message.
 
