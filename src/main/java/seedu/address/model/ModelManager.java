@@ -157,4 +157,14 @@ public class ModelManager implements Model {
         }
         return count >= 2;
     }
+
+    @Override
+    public boolean noSuchStudent(String name) {
+        for (Student s : filteredPersons) {
+            if (s.getName().toString().contains(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
