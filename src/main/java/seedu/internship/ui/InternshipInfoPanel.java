@@ -78,8 +78,8 @@ public class InternshipInfoPanel extends UiPart<Region> {
      * Displays a message in the titleSegment of the InternshipInfoPanel.
      */
     public void displayDefaultMessage() {
-        position.setText("Run 'add' command to add some new entries, " +
-                "or 'select' command to select an existing internship.");
+        position.setText("Run 'add' command to add some new entries, " 
+                + "or 'select' command to select an existing internship.");
         position.setStyle("-fx-font-size: 14pt");
     }
 
