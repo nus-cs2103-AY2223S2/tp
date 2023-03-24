@@ -5,6 +5,7 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Set;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
@@ -31,7 +33,7 @@ public class Recipe {
     private final Set<Tag> tags = new HashSet<>();
     private final List<IngredientBuilder> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<Ingredient, IngredientQuantity> ingredientTable = new Hashtable<>();
+    private final Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
@@ -54,7 +56,12 @@ public class Recipe {
     }
 
     public void setIngredients(IngredientBuilder... ingredients) {
+        for (IngredientBuilder b: ingredients) {
+            HashMap<Ingredient, IngredientQuantifier> map = b.build();
+            ingredientTable.putAll(map);
+        }
         this.ingredients.addAll(List.of(ingredients));
+        System.out.println(ingredientTable);
     }
 
     public RecipePortion getPortion() {

@@ -147,9 +147,9 @@ public class SampleDataUtil {
             RecipeDuration.of("4 min"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
             List.of(new IngredientBuilder("-a 2 thick slices -n white bread"),
-                    new IngredientBuilder("-a wedge -e 85g/3oz -n camembert -s brie"),
-                    new IngredientBuilder("-a a spoonful -n cranberry sauce"),
-                    new IngredientBuilder("-a few drops -n balsamic vinegar"),
+                    new IngredientBuilder("-a a wedge -e 85g/3oz -n camembert -s brie"),
+                    new IngredientBuilder("-a 1 tbsp -n cranberry sauce"),
+                    new IngredientBuilder("-a a few drops -n balsamic vinegar"),
                     new IngredientBuilder("-n butter")),
             List.of(
                     new Step("Butter the bread. Put a wedge of camembert or brie on the unbuttered side of "
