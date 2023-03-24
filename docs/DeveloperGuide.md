@@ -168,7 +168,7 @@ Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call.
 
-<img src="images/AddXCommandSequenceDiag.png"/>
+<img src="images/AddXSequenceDiag.png"/>
 
 The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
 
