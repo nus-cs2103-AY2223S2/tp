@@ -58,11 +58,12 @@ public class DoughnutChart extends PieChart {
         ObservableList<PieChart.Data> doughnutData = FXCollections.observableArrayList();
 
         Map<String, Integer> completeCreditsMap = degreeProgressionData.getCompletedRequirementCredits();
+        Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
 
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
-            int completeCredits = completeCreditsMap.get(tag);
-            int incompleteCredits = ValidTag.getTotalCredit(tag) - completeCredits;
+            int completeCredits = completeCreditsMap.get(ValidTag.getShortForm(tag).toString());
+            int incompleteCredits = totalCreditsMap.get(tag) - completeCredits;
             doughnutData.add(new PieChart.Data(tag, completeCredits));
             doughnutData.add(new PieChart.Data(tag, incompleteCredits));
         }
@@ -106,13 +107,13 @@ public class DoughnutChart extends PieChart {
         innerCircle.setStyle("-fx-fill: -black");
 
         float percentCompleted = (float) degreeProgressionData.getCompletedCredit()
-                / degreeProgressionData.TOTALCREDIT * 100;
+                / DegreeProgressionData.TOTALCREDIT * 100;
         Text percent = new Text(Math.round(percentCompleted) + "% completed");
         percent.setStyle("-fx-fill: -teal;");
         percent.getStyleClass().add("h2");
 
         Text totalMc = new Text(degreeProgressionData.getCompletedCredit() + "/"
-                + degreeProgressionData.TOTALCREDIT + " MCs");
+                + DegreeProgressionData.TOTALCREDIT + " MCs");
         totalMc.setStyle("-fx-fill: -white;");
         totalMc.getStyleClass().add("h3");
 
@@ -307,6 +308,8 @@ public class DoughnutChart extends PieChart {
 
         double fullAngle = 2 * Math.PI;
 
+        Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
+
         ObservableList<Data> doughnutData = getData();
         assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
@@ -314,7 +317,7 @@ public class DoughnutChart extends PieChart {
 
             String tag = ValidTag.getShortForm(completeData.getName()).toString();
 
-            double totalCredits = ValidTag.getTotalCredit(tag);
+            double totalCredits = totalCreditsMap.get(tag);
 
             double offset = totalCredits / 2;
             offset += accCredits;
@@ -340,6 +343,8 @@ public class DoughnutChart extends PieChart {
 
         Map<String, String> texts = new HashMap<>();
 
+        Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
+
         ObservableList<Data> doughnutData = getData();
         assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
@@ -348,7 +353,7 @@ public class DoughnutChart extends PieChart {
             String tag = ValidTag.getShortForm(completeData.getName()).toString();
 
             double completeCredits = completeData.getPieValue();
-            double totalCredits = ValidTag.getTotalCredit(tag);
+            double totalCredits = totalCreditsMap.get(tag);
             long percentCompleted = Math.round(completeCredits / totalCredits * 100);
 
             String text = tagLongDisplay.get(tag) + "\n" + percentCompleted + "%";

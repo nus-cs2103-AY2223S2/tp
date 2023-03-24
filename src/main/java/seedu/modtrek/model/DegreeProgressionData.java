@@ -3,6 +3,7 @@ package seedu.modtrek.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
@@ -15,11 +16,21 @@ public class DegreeProgressionData {
 
     // Currently for cohort 2122
     public static final int TOTALCREDIT = 160;
+    private Map<String, Integer> totalRequirementCredits = Map.of(
+                "ULR", 16,
+                "CSF", 36,
+                "CSBD", 40,
+                "ITP", 12,
+                "MS", 16,
+                "UE", 40);
+
+    // User's calculated data
     private int completedCredit = 0;
     private int plannedCredit = 0; // Includes Incomplete Modules
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
     private float cumulativePoints = 0;
     private float gpa = 5.00f;
+    private int duplicatedCredits = 0;
 
     private DegreeProgressionData() {}
 
@@ -36,8 +47,13 @@ public class DegreeProgressionData {
         modList.forEach((module) -> {
             data.computeModule(module);
         });
+        data.totalRequirementCredits.merge("UE", data.duplicatedCredits, (x, y) -> x + y);
         data.computeGpa();
         return data;
+    }
+
+    public Map<String, Integer> getTotalRequirementCredits() {
+        return totalRequirementCredits;
     }
 
     public int getCompletedCredit() {
@@ -61,27 +77,39 @@ public class DegreeProgressionData {
         return (double) Math.round(gpa * 100) / 100;
     }
 
-    public String getFullDetails() {
-        StringBuilder details = new StringBuilder();
-        details.append("Requirement: completed/total\n");
-        for (String tag : ValidTag.getTags()) {
-            details.append(String.format("%1$s: %2$d / %3$d\n",
-                    tag.replace("_", " "),
-                    completedRequirementCredits.getOrDefault(ValidTag.getShortForm(tag).toString(), 0),
-                    ValidTag.getTotalCredit(tag)));
-        }
-        details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))
-                .append("OVERALL PROGRESS\n")
-                .append(String.format("> Completed: %1$d\n", completedCredit))
-                .append(String.format("> Planned:   %1$d\n", plannedCredit))
-                .append(String.format("> Total:     %1$d\n", TOTALCREDIT));
-        return details.toString();
+    public Map<String, Integer> getRequirementsPercentage() {
+        Map<String, Integer> result = completedRequirementCredits
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> {
+                    float percent = ((float) entry.getValue() / totalRequirementCredits.get(entry.getKey())) * 100;
+                    return percent > 100 ? 100 : (int) percent;
+                }));
+        return result;
+    }
+
+    /**
+     * Returns Overall Percentage, computed by considering all the requirements fulfillment.
+     *
+     * @return Overall percentage as whole number
+     */
+    public int getOverallPercentage() {
+        float totalRequirementCompletion = completedRequirementCredits
+                .values()
+                .stream()
+                .reduce(0, (current, cumulative) -> {
+                    return current + cumulative;
+                });
+        totalRequirementCompletion -= duplicatedCredits;
+        return (int) (totalRequirementCompletion / TOTALCREDIT * 100);
     }
 
     private void computeModule(Module module) {
         int credit = Integer.valueOf(module.getCredit().toString());
         if (module.isComplete() && module.isGradeable()) {
+            duplicatedCredits -= credit;
             module.getTags().forEach((tag) -> {
+                duplicatedCredits += credit;
                 completedRequirementCredits.merge(tag.tagName,
                         credit, (oldValue, newValue) -> {
                             return oldValue + newValue;
@@ -107,4 +135,24 @@ public class DegreeProgressionData {
             completedRequirementCredits.put(ValidTag.getShortForm(tag).toString(), 0);
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder details = new StringBuilder();
+        details.append("Requirement: completed/total\n");
+        for (String tag : ValidTag.getTags()) {
+            int tagTotal = totalRequirementCredits.get(tag);
+            details.append(String.format("%1$s: %2$d / %3$d\n",
+                    tag.replace("_", " "),
+                    completedRequirementCredits.get(ValidTag.getShortForm(tag).toString()),
+                    tag.equals("UE") ? tagTotal + duplicatedCredits : tagTotal));
+        }
+        details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))
+                .append("OVERALL PROGRESS\n")
+                .append(String.format("> Completed: %1$d\n", completedCredit))
+                .append(String.format("> Planned:   %1$d\n", plannedCredit))
+                .append(String.format("> Total:     %1$d\n", TOTALCREDIT));
+        return details.toString();
+    }
+
 }

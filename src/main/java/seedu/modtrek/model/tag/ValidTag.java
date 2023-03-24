@@ -65,21 +65,30 @@ public enum ValidTag {
     }
 
     /**
-     * Retrieves total credit per requirement.
+     * Retrieves long form version of the requirement.
      *
-     * @param tagName
-     * @return Total credit
+     * @param tagName the short-form version of the requirement
+     * @return ValidTag as the long-form
      */
-    public static int getTotalCredit(String tagName) {
-        Map<ValidTag, Integer> mappedCredits = Map.of(
-                ULR, 16,
-                CSF, 36,
-                CSBD, 40,
-                ITP, 12,
-                MS, 16,
-                UE, 40);
-        ValidTag tag = ValidTag.getShortForm(tagName);
-        return mappedCredits.get(tag);
+    public static ValidTag getLongForm(String tagName) {
+        tagName = tagName.replace(" ", "_").toUpperCase();
+        ValidTag tag = ValidTag.valueOf(tagName);
+        switch (tag) {
+        case ULR:
+            return UNIVERSITY_LEVEL_REQUIREMENTS;
+        case CSF:
+            return COMPUTER_SCIENCE_FOUNDATION;
+        case CSBD:
+            return COMPUTER_SCIENCE_BREADTH_AND_DEPTH;
+        case ITP:
+            return IT_PROFESSIONALISM;
+        case MS:
+            return MATHEMATICS_AND_SCIENCES;
+        case UE:
+            return UNRESTRICTED_ELECTIVES;
+        default:
+            return tag;
+        }
     }
 
     /**
