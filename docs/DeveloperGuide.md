@@ -335,6 +335,20 @@ The following activity diagram summarizes what happens when the user executes th
     <img src="images/FindCommandActivityDiagram.svg">
 </p>
 
+### ListXYZCommand
+
+The `list` command lists all the `XYZ` objects in the internal `FilteredXYZList`.
+
+The command retrieves all the `XYZ` objects from the `XYZList` and places them in the `FilteredXYZList`.
+
+The `FilteredXYZList` is then updated to have all `XYZ` objects, it will then to shown to the user.
+
+The following activity diagram summarizes what happens when the user executes the `list` command.
+
+<p align="center">
+    <img src="images/ListCommandActivityDiagram.svg">
+</p>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
