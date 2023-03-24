@@ -3,14 +3,13 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 skinparam ClassBackgroundColor #fefece
-skinparam NoteBackgroundColor #yellow
 
-title After command "clear"
+title After command "undo" again
 
 package States <<rectangle>> {
     class State1 as "__ab0:AddressBook__"
     class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab3:AddressBook__"
+    class State3 as "__ab2:AddressBook__"
 }
 
 State1 -[hidden]right-> State2
@@ -18,6 +17,5 @@ State2 -[hidden]right-> State3
 
 class Pointer as "Current State" #FFFFFF
 
-Pointer -up[#a80036]-> State3
-note right on link: State ab2 deleted.
+Pointer -up[#a80036]-> State1
 @end

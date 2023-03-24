@@ -276,7 +276,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoState5_2](images/UndoState5_2.png)
+   ![UndoState5](images/UndoState5.png)
 
    <figcaption>Figure 6: State of the address book history after calling <code>undo</code> again</figcaption>
 
