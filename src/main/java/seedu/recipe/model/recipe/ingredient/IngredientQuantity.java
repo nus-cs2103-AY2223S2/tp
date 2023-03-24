@@ -7,17 +7,16 @@ import seedu.recipe.model.recipe.exceptions.RecipeQuantityInvalidArgumentExcepti
  */
 public class IngredientQuantity {
     public static final String MESSAGE_CONSTRAINTS =
-            "The quantity for a Recipe IngredientBuilder should consist of this format:\n"
+            "The quantity field for a Recipe Ingredient should consist of this format: "
             + "`{amount} {unit}`, and the unit should comprise of alphabetic characters, "
             + "where the amount can either be a non-zero decimal, `A/a`, or `One/one`."
             + "i.e. `1 gram`, `1.5 L`, `A pinch of`, `One oz.`";
 
     private static final String ALPHA_AMOUNT_REGEX = "[aA]|[Oo]ne";
     private static final String RANGE_REGEX = "\\d+\\s*(\\-|to)\\s*\\d+";
-    private static final String FRACTION_REGEX = "\\d+/\\d+";
     private static final String AMOUNT_REGEX = String.format(
-            "([0-9]+([\\./][0-9]*[1-9])?|%s)", ALPHA_AMOUNT_REGEX);
-    private static final String VALIDATION_REGEX = String.format("^%s(\\s+\\S+)*", AMOUNT_REGEX);
+            "([1-9][0-9]*|[0-9]+[\\./][0-9]*[1-9]|%s|%s)", ALPHA_AMOUNT_REGEX, RANGE_REGEX);
+    private static final String VALIDATION_REGEX = String.format("^%s(\\s+[A-Za-z]+\\.?)*", AMOUNT_REGEX);
 
     private final String amount;
 
@@ -29,31 +28,20 @@ public class IngredientQuantity {
         if (!candidate.matches(VALIDATION_REGEX)) {
             return false;
         }
+        //Validate amount strings, only if it is a range.
         String[] tokens = candidate.split("\\s+", 2);
-        double amount;
-        if (tokens[0].matches(ALPHA_AMOUNT_REGEX)) {
-            amount = 1;
-        } else if (tokens[0].matches(FRACTION_REGEX)) {
-            String[] fractionComponents = tokens[0].split("/");
-            double numerator = Integer.parseInt(fractionComponents[0]);
-            double denominator = Integer.parseInt(fractionComponents[1]);
-            if (denominator == 0) {
-                return false;
-            }
-            amount = numerator;
-
-        } else if (tokens[0].matches(RANGE_REGEX)) {
+        if (tokens[0].matches(RANGE_REGEX)) {
             String[] rangeComponents = tokens[0].split("-|to");
             double lowerRange = Integer.parseInt(rangeComponents[0]);
             double upperRange = Integer.parseInt(rangeComponents[1]);
-            amount = lowerRange;
-            if (lowerRange >= upperRange) {
-                return false;
-            }
-        } else {
-            amount = Double.parseDouble(tokens[0]);
+            return lowerRange < upperRange;
         }
-        return amount != 0;
+        //Else, using regex, it is of 1 of these three formats:
+        //1) "A quart of", "One gallon" - Alphabetic amount quantifiers, for singular amounts
+        //2) "1 liter" - Non-zero integer amounts
+        //3) "1/3 cup" - One fraction amounts -> By regex, this will be a valid fraction
+        //4) "1.5L" - One decimal amount -> By regex, this will be a valid decimal
+        return true;
     }
 
     /**

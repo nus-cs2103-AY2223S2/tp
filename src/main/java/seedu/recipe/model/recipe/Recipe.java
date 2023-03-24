@@ -55,8 +55,8 @@ public class Recipe {
     }
 
     public void setIngredients(IngredientBuilder... ingredients) {
-        for (IngredientBuilder b: ingredients) {
-            HashMap<Ingredient, IngredientQuantifier> map = b.build();
+        for (IngredientBuilder ingredientBuilder: ingredients) {
+            HashMap<Ingredient, IngredientQuantifier> map = ingredientBuilder.build();
             ingredientTable.putAll(map);
         }
         this.ingredients.addAll(List.of(ingredients));

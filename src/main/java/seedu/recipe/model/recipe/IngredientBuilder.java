@@ -32,8 +32,6 @@ public class IngredientBuilder {
             + "`[-a AMOUNT] [-e ESTIMATED AMOUNT] -n NAME `"
             + "`[-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...\n"
             + "i.e. `-a 1 oz. -n butter -r cubed -s margarine`";
-    public static final String VALIDATION_REGEX =
-            "^(([1-9][0-9]*|(([0-9]|[1-9][0-9]+)[./][0-9]+))([a-z.-]+)?|[A-Za-z().,/-]+)(\\s+[0-9A-Za-z().,+-/:;]+)*$";
 
     public final String name;
 
