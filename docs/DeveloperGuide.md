@@ -153,6 +153,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
+* Currently, we are not doing undo/redo mechanism
 The proposed undo/redo mechanism is facilitated by `VersionedCookHub`. It extends `CookHub` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedCookHub#commit()` — Saves the current address book state in its history.
