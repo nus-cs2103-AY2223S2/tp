@@ -37,7 +37,7 @@ public class TypicalEntities {
         .withSource("www.futanariinflation.com")
         .withMobileNumber("99923442").build();
     public static final Client WEST = new ClientBuilder().withName("Kanye West")
-        .withEmail("alice@example.com")
+        .withEmail("kanye@kardashians.org")
         .withYearOfBirth("2000")
         .withSource("www.kanyewest.com")
         .withMobileNumber("99923444").build();
