@@ -49,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private FindCommand parseFindLectureCommand(List<String> keywordList,
-        Optional<String> moduleCodeOpt, boolean hasByTag) throws ParseException {
+            Optional<String> moduleCodeOpt, boolean hasByTag) throws ParseException {
 
         if (!moduleCodeOpt.isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -66,7 +66,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private FindCommand parseFindVideoCommand(List<String> keywordList,
-        Optional<String> lectureNameOpt, Optional<String> moduleCodeOpt,
+            Optional<String> lectureNameOpt, Optional<String> moduleCodeOpt,
             boolean hasByTag) throws ParseException {
 
         if (!moduleCodeOpt.isPresent() || !lectureNameOpt.isPresent()) {

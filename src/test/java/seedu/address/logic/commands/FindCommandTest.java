@@ -91,7 +91,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
         boolean hasByTag = false;
         ModuleCodeContainsKeywordsPredicate predicate =
-            (ModuleCodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
+                (ModuleCodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(Collections.emptyList(), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
 
@@ -102,10 +102,10 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noModulesFoundByTag() {
         String expectedMessage = String.format(
-            Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
+                Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
         boolean hasByTag = true;
         ModuleTagContainsKeywordsPredicate predicate =
-            (ModuleTagContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
+                (ModuleTagContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(Collections.emptyList(), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
 
@@ -118,7 +118,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 0);
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
-            (LectureNameContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE, hasByTag);
+                (LectureNameContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
@@ -132,7 +132,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 0);
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
-            (LectureTagContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE, hasByTag);
+                (LectureTagContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
@@ -146,7 +146,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 0);
         boolean hasByTag = false;
         VideoNameContainsKeywordsPredicate predicate =
-            (VideoNameContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO, hasByTag);
+                (VideoNameContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ReadOnlyLecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
@@ -161,7 +161,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 0);
         boolean hasByTag = true;
         VideoTagContainsKeywordsPredicate predicate =
-            (VideoTagContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO, hasByTag);
+                (VideoTagContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ReadOnlyLecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
@@ -177,7 +177,7 @@ public class FindCommandTest {
         String input = "CS2040S, ST2334";
         boolean hasByTag = false;
         ModuleCodeContainsKeywordsPredicate predicate =
-            (ModuleCodeContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
+                (ModuleCodeContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -190,7 +190,7 @@ public class FindCommandTest {
         String input = "heavy, math";
         boolean hasByTag = true;
         ModuleTagContainsKeywordsPredicate predicate =
-            (ModuleTagContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
+                (ModuleTagContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -203,7 +203,7 @@ public class FindCommandTest {
         String input = "week 1, week 2, week 3";
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
-            (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
+                (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
@@ -219,15 +219,15 @@ public class FindCommandTest {
         String input = "week";
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
-            (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
+                (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         expectedModel.updateFilteredLectureList(predicate, CS2040S);
         FindCommand command =
-            new FindCommand(
+                new FindCommand(
                 StringUtil.commaDelimitedStringsToList(input), CS2040S.getCode(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(week1, week2, week3, week4, week5, week6, week7),
-            model.getFilteredLectureList());
+                model.getFilteredLectureList());
     }
 
     @Test
@@ -236,7 +236,7 @@ public class FindCommandTest {
         String input = "intro, arrays, sorting";
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
-            (LectureTagContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
+                (LectureTagContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
@@ -252,12 +252,12 @@ public class FindCommandTest {
         String input = "vid 1, vid 2";
         boolean hasByTag = false;
         VideoNameContainsKeywordsPredicate predicate =
-            (VideoNameContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
+                (VideoNameContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input),
-            module.getCode(), lecture.getName(), hasByTag);
+                module.getCode(), lecture.getName(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(vid1, vid2), model.getFilteredVideoList());
@@ -269,12 +269,12 @@ public class FindCommandTest {
         String input = "content, analysis";
         boolean hasByTag = true;
         VideoTagContainsKeywordsPredicate predicate =
-            (VideoTagContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
+                (VideoTagContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input),
-            module.getCode(), lecture.getName(), hasByTag);
+                module.getCode(), lecture.getName(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(vid2), model.getFilteredVideoList());

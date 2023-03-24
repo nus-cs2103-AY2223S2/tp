@@ -69,7 +69,7 @@ public class AddLectureCommandTest {
 
         assertThrows(CommandException.class,
                 String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), ()
-                -> command.execute(modelStub));
+                        -> command.execute(modelStub));
     }
 
     @Test

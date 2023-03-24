@@ -45,12 +45,12 @@ public class FindCommandParserTest {
 
         // Find by valid tag
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", modA, modB, VALID_TAG),
+                String.format("%s, %s, %s", modA, modB, VALID_TAG),
                 new FindCommand(Arrays.asList(modA, modB), true));
 
         // Find by invalid tag: Treated as a keyword
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", modA, modB, INVALID_TAG),
+                String.format("%s, %s, %s", modA, modB, INVALID_TAG),
                 new FindCommand(Arrays.asList(modA, modB, INVALID_TAG), false));
     }
 
@@ -61,17 +61,17 @@ public class FindCommandParserTest {
 
         // Find by lecture name
         assertParseSuccess(parser,
-            String.format("%s, %s", lecA, lecB) + MODULE_CODE_DESC_2103,
+                String.format("%s, %s", lecA, lecB) + MODULE_CODE_DESC_2103,
                 new FindCommand(Arrays.asList(lecA, lecB), false));
 
         // Find by valid tag
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", lecA, lecB, VALID_TAG) + MODULE_CODE_DESC_2103,
+                String.format("%s, %s, %s", lecA, lecB, VALID_TAG) + MODULE_CODE_DESC_2103,
                 new FindCommand(Arrays.asList(lecA, lecB), true));
 
         // Find by invalid tag
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", lecA, lecB, INVALID_TAG) + MODULE_CODE_DESC_2103,
+                String.format("%s, %s, %s", lecA, lecB, INVALID_TAG) + MODULE_CODE_DESC_2103,
                 new FindCommand(Arrays.asList(lecA, lecB, INVALID_TAG), false));
     }
 
@@ -82,19 +82,19 @@ public class FindCommandParserTest {
 
         // Find by video name
         assertParseSuccess(parser,
-            String.format("%s, %s", vidA, vidB)
+                String.format("%s, %s", vidA, vidB)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
                     new FindCommand(Arrays.asList(vidA, vidB), false));
 
         // Find by valid tag
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", vidA, vidB, VALID_TAG)
+                String.format("%s, %s, %s", vidA, vidB, VALID_TAG)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
                     new FindCommand(Arrays.asList(vidA, vidB), true));
 
         // Find by invalid tag
         assertParseSuccess(parser,
-            String.format("%s, %s, %s", vidA, vidB, INVALID_TAG)
+                String.format("%s, %s, %s", vidA, vidB, INVALID_TAG)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
                     new FindCommand(Arrays.asList(vidA, vidB, INVALID_TAG), false));
     }
@@ -114,7 +114,7 @@ public class FindCommandParserTest {
 
         // Keyword present, valid module code present but invalid lecture name format
         assertParseFailure(parser,
-            PREAMBLE_NON_EMPTY + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC,
+                PREAMBLE_NON_EMPTY + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC,
                 LectureName.MESSAGE_CONSTRAINTS);
     }
 }
