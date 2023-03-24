@@ -51,4 +51,11 @@ public class ListLeavesByEmployeeCommand extends Command {
         );
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListLeavesByEmployeeCommand // instanceof handles nulls
+                && employeeId.equals(((ListLeavesByEmployeeCommand) other).employeeId));
+    }
+
 }
