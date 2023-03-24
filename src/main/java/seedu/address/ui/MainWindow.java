@@ -85,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         userProfilePanel = new UserProfilePanel(logic);

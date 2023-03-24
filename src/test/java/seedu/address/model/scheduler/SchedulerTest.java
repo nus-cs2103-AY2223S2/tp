@@ -23,6 +23,7 @@ import org.joda.time.Hours;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -36,7 +37,7 @@ class SchedulerTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
     }
 
     @Test

@@ -16,14 +16,16 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.EduMate;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.EduMateStorage;
-import seedu.address.storage.JsonEduMateStorage;
+import seedu.address.storage.EduMateStorageManager;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -56,7 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        EduMateStorage eduMateStorage = new JsonEduMateStorage(userPrefs.getEduMateFilePath());
+        EduMateStorage eduMateStorage = new EduMateStorageManager(
+                userPrefs.getEduMateFilePath(), userPrefs.getEduMateHistoryFilePath());
         storage = new StorageManager(eduMateStorage, userPrefsStorage);
 
         initLogging(config);
@@ -76,6 +79,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEduMate> eduMateOptional;
         ReadOnlyEduMate initialData;
+        Optional<ReadOnlyEduMateHistory> eduMateHistoryOptional;
+        ReadOnlyEduMateHistory eduMateHistory;
         try {
             eduMateOptional = storage.readEduMate();
             if (!eduMateOptional.isPresent()) {
@@ -90,7 +95,18 @@ public class MainApp extends Application {
             initialData = new EduMate();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            eduMateHistoryOptional = storage.readEduMateHistory();
+            if (!eduMateHistoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with an empty EduMateHistory");
+            }
+            eduMateHistory = eduMateHistoryOptional.orElseGet(EduMateHistory::new);
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty EduMateHistory");
+            eduMateHistory = new EduMateHistory();
+        }
+
+        return new ModelManager(initialData, userPrefs, eduMateHistory);
     }
 
     private void initLogging(Config config) {

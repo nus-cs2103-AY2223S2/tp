@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -83,7 +84,7 @@ public class SortCommandParserTest {
 
     @Test
     public void execute_sortIndexCommand_success() throws ParseException {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         SortCommandParser parser = new SortCommandParser();
         parser.parse(String.format(" %s", Prefix.NAME.getPrefix()))
                 .execute(model);

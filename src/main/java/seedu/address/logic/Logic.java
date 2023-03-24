@@ -31,6 +31,8 @@ public interface Logic {
      */
     ReadOnlyEduMate getEduMate();
 
+    String getPreviousCommand(boolean isUp);
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getObservablePersonList();
 

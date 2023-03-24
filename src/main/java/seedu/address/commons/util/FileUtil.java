@@ -1,10 +1,13 @@
 package seedu.address.commons.util;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 /**
  * Writes and reads files
@@ -50,7 +53,6 @@ public class FileUtil {
         }
 
         createParentDirsOfFile(file);
-
         Files.createFile(file);
     }
 
@@ -76,8 +78,19 @@ public class FileUtil {
      * Writes given string to a file.
      * Will create the file if it does not exist yet.
      */
-    public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
+    public static void writeToFile(Path file, String content, boolean isReverseOrder) throws IOException {
+        if (isReverseOrder) {
+            List<String> lines = Files.readAllLines(file, Charset.forName(CHARSET));
+            if (lines.size() >= 100) {
+                lines.remove(lines.size() - 1);
+            }
+            lines.add(0, content);
+            Files.write(file, lines, Charset.forName(CHARSET),
+                    StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE,
+                    StandardOpenOption.CREATE);
+        } else {
+            Files.write(file, content.getBytes(CHARSET));
+        }
     }
 
 }

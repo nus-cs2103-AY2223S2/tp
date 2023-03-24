@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,8 +36,8 @@ public class SortCommandTest {
             Comparator.comparing(Person::getModuleTags);
     private static final SortCommand SORT_COMMAND =
             new SortCommand(NAME_COMPARATOR, "Name: Ascending");
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
     public void equals_sameObject_true() {

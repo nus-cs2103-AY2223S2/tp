@@ -57,6 +57,10 @@ public interface Model {
     /** Returns the EduMate */
     ReadOnlyEduMate getEduMate();
 
+    ReadOnlyEduMateHistory getEduMateHistory();
+
+    void addEduMateHistory(String command);
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */

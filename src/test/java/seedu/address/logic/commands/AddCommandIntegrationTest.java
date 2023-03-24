@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.IndexHandler;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,7 +24,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
     }
 
     @Test
@@ -32,8 +33,9 @@ public class AddCommandIntegrationTest {
         IndexHandler indexHandler = new IndexHandler(model);
         validPerson.setContactIndex(indexHandler.assignIndex());
 
-        Model expectedModel = new ModelManager(model.getEduMate(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getEduMate(), new UserPrefs(), new EduMateHistory());
         Person indexedPerson = expectedModel.addPerson(validPerson);
+
 
         assertCommandSuccess(new AddCommand(validPerson), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, indexedPerson), expectedModel);
