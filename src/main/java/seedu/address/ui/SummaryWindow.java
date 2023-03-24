@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.SummaryCommand;
 
 /**
  * Controller for a help page
@@ -19,15 +18,13 @@ public class SummaryWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(SummaryWindow.class);
     private static final String FXML = "SummaryWindow.fxml";
-
+    private static int SIZE;
     @FXML
     private Label countMessage;
 
     @FXML
     private Label tagMessage;
-
-    private static int SIZE;
-
+    
     /**
      * Creates a new HelpWindow.
      *

@@ -14,12 +14,11 @@ public class SummaryCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_SUMMARY_MESSAGE = "Opened summary window.";
-    public static int SIZE;
 
     @Override
     public CommandResult execute(Model model) {
-        this.SIZE = model.getAddressBook().size();
-        SummaryWindow.setSize(this.SIZE);
+        int size = model.getAddressBook().size();
+        SummaryWindow.setSize(size);
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
     }
 }
