@@ -56,7 +56,7 @@ public class Review {
         Collections.fill(scoreList, false);
 
         // initialise reviewStats
-        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
+        reviewStatsList = FXCollections.observableList(new ArrayList<>());
     }
 
     /**
@@ -135,7 +135,7 @@ public class Review {
 
     /**
      * Move to the next card to be under review.
-     * @return
+     * @return boolean indicating if card is the last card
      */
     public boolean goToNextCard() {
         boolean priorStateIsFlipped = currCard.isFlipped();
@@ -227,6 +227,6 @@ public class Review {
         Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
         Pair<String, String> mark = new Pair<>("Press ; to mark wrong, ' to mark correct", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark); // warning being called here
     }
 }

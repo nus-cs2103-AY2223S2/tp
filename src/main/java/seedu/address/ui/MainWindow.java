@@ -228,23 +228,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the deck Title.
+     * Updates the deck Title.
      */
-    public void handleSelectDeck() {
+    public void updateDeckTitle() {
         rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
-
-    }
-
-    /**
-     * Hides the deck Title.
-     */
-    public void handleUnSelectDeck() {
-        rightPanelTitlePlaceholder.getChildren().clear();
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
-
     }
 
     /**
@@ -271,12 +260,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEndReview()) {
-                handleSelectDeck();
+                updateDeckTitle();
                 handleEndReview();
             }
 
             if (commandResult.isSelectDeck() || commandResult.isUnselectDeck()) {
-                handleSelectDeck();
+                updateDeckTitle();
             }
 
             return commandResult;

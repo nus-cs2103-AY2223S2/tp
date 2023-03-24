@@ -196,6 +196,7 @@
     -fx-border-radius: 15;
     -fx-background-color: transparent;
 }
+
 #reviewStatsPane #title {
     -fx-text-fill: black;
     -fx-underline: true;
@@ -206,47 +207,24 @@
     -fx-font-size: 20px;
 }
 
-#flippedReviewCardPane {
-    -fx-background-color: #6c68c3;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-#flippedReviewCardPane .label{
-    -fx-font-size: 20px;
-    -fx-text-fill: white;
-    -fx-padding: 5;
-}
-
-#flippedReviewCardPane #question {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-}
-
-#flippedReviewCardPane #id {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-}
-
-#unflippedReviewCardPane {
+#ReviewCardPane {
     -fx-background-color: #524cd1;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-#unflippedReviewCardPane .label{
+#ReviewCardPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: white;
     -fx-padding: 5;
 }
 
-#unflippedReviewCardPane #question {
+#ReviewCardPane #question {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
     -fx-font-family: "Arial";
 }
 
-#unflippedReviewCardPane #id {
+#ReviewCardPane #id {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
     -fx-font-family: "Arial";
@@ -327,7 +305,6 @@
     -fx-background-color: -fx-focus-color;
     -fx-text-fill: #ffffff;
 }
-
 
 .dialog-pane {
     -fx-background-color: #1d1d1d;
