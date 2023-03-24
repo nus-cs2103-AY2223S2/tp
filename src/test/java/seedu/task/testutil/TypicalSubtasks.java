@@ -11,4 +11,8 @@ public class TypicalSubtasks {
         .withDescription("lecture 1")
         .build();
 
+    public static final Subtask AMY_LAB = new SubtaskBuilder().withName("Lab")
+        .withDescription("lecture 2")
+        .build();
+
 }

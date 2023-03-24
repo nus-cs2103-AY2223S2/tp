@@ -37,8 +37,8 @@ public class JsonAdaptedSubtask {
      * Converts a given {@code Homework} into this class for Jackson use.
      */
     public JsonAdaptedSubtask(Subtask source) {
-        name = source.getName().fullName;
-        description = source.getDescription().value;
+        this.name = source.getName().fullName;
+        this.description = source.getDescription().value;
 
     }
 
@@ -75,12 +75,9 @@ public class JsonAdaptedSubtask {
         }
         final Description modelDescription = new Description(description);
 
+
         Subtask subtask = new Subtask(modelName, modelDescription);
         return subtask;
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode() + description.hashCode();
-    }
 }

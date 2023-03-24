@@ -60,11 +60,11 @@ public class Subtask {
             return true;
         }
 
-        if (!(other instanceof Task)) {
+        if (!(other instanceof Subtask)) {
             return false;
         }
 
-        Task otherTask = (Task) other;
+        Subtask otherTask = (Subtask) other;
         return otherTask.getName().equals(getName())
             && otherTask.getDescription().equals(getDescription());
     }

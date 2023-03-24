@@ -27,7 +27,6 @@ public class SimpleTaskBuilder {
     private Effort effort;
     private Set<Tag> tags;
     private Duration alertWindow;
-
     private UniqueSubtaskList subtasks;
 
     /**
@@ -103,7 +102,7 @@ public class SimpleTaskBuilder {
     }
 
     public Task build() {
-        return new SimpleTask(name, description, tags, effort);
+        return new SimpleTask(name, description, tags, effort, subtasks.asInternalList());
     }
 
     public Task buildDefault() {

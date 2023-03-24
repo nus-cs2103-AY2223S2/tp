@@ -6,6 +6,7 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Adds a task to the task book.
@@ -81,7 +83,7 @@ public class AddSubtaskCommand extends Command {
      * @param subtask The modified task after adding the subtask inside
      * @return A {@code Task}
      */
-    public Task createNewTask(Task task, Subtask subtask) {
+    public Task createNewTask(Task task, Subtask subtask) throws CommandException {
         Name name = task.getName();
         Description description = task.getDescription();
         Set<Tag> tags = task.getTags();
@@ -89,20 +91,33 @@ public class AddSubtaskCommand extends Command {
         List<Subtask> subtasks = task.getSubtasks();
         if (task instanceof SimpleTask) {
             SimpleTask newSimpleTask = new SimpleTask(name, description, tags, effort, subtasks);
-            newSimpleTask.addSubtask(subtask);
+            try {
+                newSimpleTask.addSubtask(subtask);
+            } catch(DuplicateTaskException e) {
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            }
             return newSimpleTask;
         } else if (task instanceof Event) {
             Event event = (Event) task;
             Date from = event.getFrom();
             Date to = event.getTo();
             Event newEvent = new Event(name, description, tags, from, to, effort, subtasks);
-            newEvent.addSubtask(subtask);
+            try {
+                newEvent.addSubtask(subtask);
+            } catch(DuplicateTaskException e) {
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            }
             return newEvent;
+
         } else {
             Deadline deadline = (Deadline) task;
             Date deadlineDate = deadline.getDeadline();
             Deadline newDeadline = new Deadline(name, description, tags, deadlineDate, effort, subtasks);
-            newDeadline.addSubtask(subtask);
+            try {
+                newDeadline.addSubtask(subtask);
+            } catch (DuplicateTaskException e) {
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            }
             return newDeadline;
         }
     }

@@ -86,6 +86,9 @@ public class UniqueSubtaskList implements Iterable<Subtask> {
         return internalUnmodifiableList;
     }
 
+    public ObservableList<Subtask> asInternalList() {
+        return uniqueList;
+    }
     /**
      * Hash the list
      * @return A hash value
