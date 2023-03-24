@@ -36,13 +36,18 @@ public class UniquePersonList implements Iterable<Tutee> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    public boolean containsExactly(Tutee toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
     /**
      * Adds a tutee to the list.
      * The tutee must not already exist in the list.
      */
     public void add(Tutee toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsExactly(toAdd)) {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
@@ -62,6 +67,7 @@ public class UniquePersonList implements Iterable<Tutee> {
         }
 
         if (!target.isSamePerson(editedTutee) && contains(editedTutee)) {
+            System.out.println(2);
             throw new DuplicatePersonException();
         }
 
@@ -91,6 +97,7 @@ public class UniquePersonList implements Iterable<Tutee> {
     public void setPersons(List<Tutee> tutees) {
         requireAllNonNull(tutees);
         if (!personsAreUnique(tutees)) {
+            System.out.println(3);
             throw new DuplicatePersonException();
         }
 
