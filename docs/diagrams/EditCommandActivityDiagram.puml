@@ -19,7 +19,7 @@ if () then ([Index is out of bounds])
     :Invalid Item Index error message is shown;
     stop
 else ([else])
-:Item XYZ at given index will be retrieved from its filtered XYZ List;
+:Item XYZ at given index retrieved from its filtered XYZ List;
 :Copy of the item XYZ is made and edited;
 
 if () then ([Edited item is the same as other items in the list
