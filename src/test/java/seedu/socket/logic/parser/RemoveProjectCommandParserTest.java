@@ -32,7 +32,8 @@ import seedu.socket.model.project.ProjectRepoHost;
 import seedu.socket.model.project.ProjectRepoName;
 import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 
-public class RemoveProjectCommandParserTest {private static final String MESSAGE_INVALID_FORMAT =
+public class RemoveProjectCommandParserTest {
+    private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectCommand.MESSAGE_USAGE);
 
     private RemoveProjectCommandParser parser = new RemoveProjectCommandParser();
@@ -66,9 +67,13 @@ public class RemoveProjectCommandParserTest {private static final String MESSAGE
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_REPO_HOST_DESC, ProjectRepoHost.MESSAGE_CONSTRAINTS); // invalid profile
-        assertParseFailure(parser, "1" + INVALID_REPO_NAME_DESC, ProjectRepoName.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, ProjectDeadline.MESSAGE_CONSTRAINTS); // invalid email
+        // invalid repo host
+        assertParseFailure(parser, "1" + INVALID_REPO_HOST_DESC, ProjectRepoHost.MESSAGE_CONSTRAINTS);
+        // invalid repo name
+        assertParseFailure(parser, "1" + INVALID_REPO_NAME_DESC, ProjectRepoName.MESSAGE_CONSTRAINTS);
+        // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, ProjectDeadline.MESSAGE_CONSTRAINTS);
+        // invalid meeting
         assertParseFailure(parser, "1" + INVALID_MEETING_DESC, ProjectMeeting.MESSAGE_CONSTRAINTS);
     }
 
