@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,14 +13,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
- */
-public class RecipeForm extends UiPart<Region> {
+ */public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
 
     @FXML
@@ -62,7 +62,7 @@ public class RecipeForm extends UiPart<Region> {
 
     @FXML
     private Button cancelButton;
-
+    
     private int displayedIndex;
     private Map<String, String> initialValues;
     private Recipe recipe;
@@ -83,7 +83,13 @@ public class RecipeForm extends UiPart<Region> {
         }
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
+        saveButton.setOnAction(event -> EditRecipeEvent());
+
         cancelButton.setOnAction(event -> closeForm());
+    }
+
+    private Object EditRecipeEvent() {
+        return null;
     }
 
     /**
@@ -118,14 +124,14 @@ public class RecipeForm extends UiPart<Region> {
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
                         .orElse("Duration was not added.")
-        );
+        );        
         //Portion
         portionField.setText(
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
                         .orElse("Portion was not added.")
-        );
-        /*
+        );        
+        /* 
         //Ingredients
         ingredientsField.setText(recipe.getIngredients().stream()
                 .map(Ingredient::toString)
@@ -192,15 +198,13 @@ public class RecipeForm extends UiPart<Region> {
             case "tags":
                 currentValue = tagsField.getText();
                 break;
-            default:
-                return;
             }
 
             if (!initialValue.equals(currentValue)) {
                 changedValues.put(key, currentValue);
             }
         }
-        /*
+        /* 
         ...
         model.saveRecipe(recipe);
         EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
@@ -226,6 +230,8 @@ public class RecipeForm extends UiPart<Region> {
      */
     public void display() {
         Stage window = new Stage();
+        // Ensures users do not exit the view by clicking outside
+        window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
         window.setMinWidth(500);
         window.setMinHeight(700);

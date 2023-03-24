@@ -21,7 +21,11 @@ import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
-
+/**
+ * Represents the main window of the application. This class is responsible for
+ * initializing and configuring the UI components and managing the primary stage.
+ * It also contains methods for handling UI events, such as deleting or editing recipes.
+ */
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
@@ -63,6 +67,9 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        assert primaryStage != null : "Primary stage cannot be null";
+        assert logic != null : "Logic cannot be null";
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
@@ -98,22 +105,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
@@ -147,6 +138,7 @@ public class MainWindow extends UiPart<Stage> {
      *              and a map of the changed values.
      */
     private void handleEditRecipeEvent(EditRecipeEvent event) {
+        assert event != null : "EditRecipeEvent cannot be null";    
         int recipeIndex = event.getRecipeIndex();
         Map<String, String> changedValues = event.getChangedValues();
         try {
@@ -180,6 +172,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Assertions to check if placeholders are not null
+        assert recipeListPanelPlaceholder != null : "RecipeListPanel placeholder cannot be null";
+        assert resultDisplayPlaceholder != null : "ResultDisplay placeholder cannot be null";
+        assert statusbarPlaceholder != null : "Status bar placeholder cannot be null";
+        assert commandBoxPlaceholder != null : "Command box placeholder cannot be null";
+
         recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
 
@@ -223,7 +221,6 @@ public class MainWindow extends UiPart<Stage> {
     void show() {
         primaryStage.show();
     }
-
     /**
      * Closes the application.
      */
