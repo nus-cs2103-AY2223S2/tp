@@ -1,10 +1,14 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -25,6 +29,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private ArrayList<Meeting> meetings;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        meetings = new ArrayList<>();
         tags = new HashSet<>();
     }
 
@@ -46,6 +52,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        meetings = personToCopy.getMeetings();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -60,7 +67,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +96,32 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeeting(ArrayList<Meeting> meetings) {
+        this.meetings = meetings;
+        return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building
+     * using String inputs
+     */
+    public PersonBuilder withMeetings(String dateTime) {
+        if (dateTime.isEmpty()) {
+            this.meetings.add(new Meeting());
+        } else {
+            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
+            Meeting meetingToAdd;
+            meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+            this.meetings.add(meetingToAdd);
+        }
+
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags, meetings);
+    }
 }

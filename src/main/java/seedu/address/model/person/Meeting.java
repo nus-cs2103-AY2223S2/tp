@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Person's meetings in the address book.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
     protected LocalDateTime start;
     protected LocalDateTime end;
 
@@ -14,14 +14,19 @@ public class Meeting {
      * Constructor for Meeting
      *
      * @param start start date and time of meeting
-     * @param end   end date and time of meeting. Must be after start
+     * @param end   end date and time of meeting
      */
-    public Meeting(LocalDateTime start, LocalDateTime end) throws Exception {
-        if (end.isBefore(start)) {
-            throw new Exception("End time is after start!");
-        }
+    public Meeting(LocalDateTime start, LocalDateTime end) {
         this.start = start;
         this.end = end;
+    }
+
+    /**
+     * Default Constructor that generates an empty meeting
+     */
+    public Meeting() {
+        this.start = LocalDateTime.MAX;
+        this.end = LocalDateTime.MAX;
     }
 
     /**
@@ -32,11 +37,11 @@ public class Meeting {
      */
     public boolean checkTimeClash(Meeting m) {
         //if m starts and end at the same time
-        if (m.start.equals(this.start) && m.end.equals(this.end)) {
+        if (m.start.isEqual(this.start) && m.end.isEqual(this.end)) {
             return true;
         }
         //if m ends at this.start
-        if (m.end.equals(this.start)) {
+        if (m.end.isEqual(this.start)) {
             return true;
         }
         //if m ends in between
@@ -44,7 +49,7 @@ public class Meeting {
             return true;
         }
         //if m starts at the same time
-        if (m.start.equals(this.start)) {
+        if (m.start.isEqual(this.start)) {
             return true;
         }
         //if m starts in between
@@ -52,10 +57,21 @@ public class Meeting {
             return true;
         }
         //if m starts at the end
-        if (m.start.equals(this.end)) {
+        if (m.start.isEqual(this.end)) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Meeting otherMeeting) {
+        if (this.start.isBefore(otherMeeting.start)) {
+            return -1;
+        } else if (this.start.equals(otherMeeting.start)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     @Override
@@ -72,9 +88,31 @@ public class Meeting {
 
     @Override
     public String toString() {
+        if (isEmpty()) {
+            return "No Meeting!";
+        }
+
         DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
         String startDnT = start.format(customFormat);
         String endDnT = end.format(customFormat);
+
         return "(Starts at: " + startDnT + " Ends at: " + endDnT + ")";
+    }
+
+    public boolean isEmpty() {
+        return this.start.isEqual(LocalDateTime.MAX)
+            && this.end.isEqual(LocalDateTime.MAX);
+    }
+
+    public boolean isCorrectPeriod() {
+        return end.isBefore(start);
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
     }
 }
