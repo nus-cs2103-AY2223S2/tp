@@ -1,5 +1,6 @@
 package seedu.careflow.ui;
 import java.text.DecimalFormat;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import seedu.careflow.commons.core.LogsCenter;
 import seedu.careflow.logic.CareFlowLogic;
 import seedu.careflow.model.drug.Drug;
 
@@ -18,7 +20,7 @@ import seedu.careflow.model.drug.Drug;
 public class DrugPieChartPanel extends UiPart<Region> {
     private static final String FXML = "DrugPieChartPanel.fxml";
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-
+    private static final Logger logger = LogsCenter.getLogger(DrugPieChartPanel.class);
     @FXML
     private PieChart drugPieChart;
 
@@ -46,6 +48,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
 
     private void updatePieChartSegments(ObservableList<Drug> drugList) {
         setPieChartData(drugList);
+        logger.info("Updating drug inventory analysis pie chart!");
         // set the percentage label format
         DecimalFormat df = new DecimalFormat("#.##");
         drugPieChart.setData(pieChartData);
