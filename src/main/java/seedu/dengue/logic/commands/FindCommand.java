@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.dengue.commons.core.Messages;
 import seedu.dengue.model.Model;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.predicate.PersonContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in Dengue Hotspot Tracker whose name contains any of the argument keywords.
@@ -19,9 +19,10 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final FilterPredicate predicate;
+    // TODO: change to accept any predicate
+    private final PersonContainsKeywordsPredicate predicate;
 
-    public FindCommand(FilterPredicate predicate) {
+    public FindCommand(PersonContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

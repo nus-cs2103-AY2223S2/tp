@@ -15,7 +15,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.core.GuiSettings;
-import seedu.dengue.model.person.FilterPredicate;
 import seedu.dengue.testutil.DengueHotspotTrackerBuilder;
 
 public class ModelManagerTest {
@@ -119,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new FilterPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new PersonContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(dengueHotspotTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -1,17 +1,18 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.dengue.commons.util.StringUtil;
+import seedu.dengue.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class FilterPredicate implements Predicate<Person> {
+public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public FilterPredicate(List<String> keywords) {
+    public PersonContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -34,7 +35,7 @@ public class FilterPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterPredicate // instanceof handles nulls
-                && keywords.equals(((FilterPredicate) other).keywords)); // state check
+                || (other instanceof PersonContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((PersonContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

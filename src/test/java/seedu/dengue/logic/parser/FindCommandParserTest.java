@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.commands.FindCommand;
-import seedu.dengue.model.person.FilterPredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +23,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new FilterPredicate(Arrays.asList("Alice", "Bob")));
+                new FindCommand(new PersonContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
