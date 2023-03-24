@@ -22,7 +22,6 @@ public class TypicalFood {
             .withExpiryDate("13-11-2024")
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Food MEIJI = new FoodBuilder()
             .withName(VALID_NAME_MEIJI)
             .withUnit(VALID_UNIT_MEIJI)
@@ -37,7 +36,6 @@ public class TypicalFood {
             .withExpiryDate("13-11-2024")
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Food MEIJI_WITHOUT_TAG = new FoodBuilder()
             .withName(VALID_NAME_MEIJI)
             .withUnit(VALID_UNIT_MEIJI)
