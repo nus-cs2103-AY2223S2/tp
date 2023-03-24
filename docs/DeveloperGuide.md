@@ -186,6 +186,39 @@ Classes used by multiple components are in the `trackr.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit feature
+
+Edit supplier, edit order and edit task features are implemented using the same edit mechanism as described in this section.
+
+The edit mechanism follows a workflow similar to the Logic component.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user keys in the edit XYZ command. The MainWindow will call upon `LogicManager#execute()` to execute this command.
+
+Step 2. LogicManager will use the `EditXYZCommandParser#parse()` to parse the given command.
+
+Step 3. If the given command is invalid (missing fields, invalid command format, etc.), the parser will throw a `ParseException` which will be caught by `MainWindow` which will in turn display the error message.
+Otherwise, Step 4 will take place.
+
+Step 4. An `EditXYZCommand` will be returned by EditXYZCommandParser to the LogicManager. The `EditXYZCommand#execute()` will then be called.
+
+Step 5. `EditXYZCommand#execute()` will first retrieve that latest filtered XYZ list from the model and check if the index given is valid.
+
+Step 6. If the given index is out of bounds (i.e., a negative number or number is more than number of items in the list), a `CommandException` will be thrown which will be caught by `MainWindow`. An error message will then be displayed.
+Otherwise, Step 7 will take place.
+
+Step 7. Item at given index will be retrieved. A copy of the item will be made and edited accordingly.
+
+Step 8. If nothing is edited or edited item is the same as another existing item in the list, a `CommandException` will be thrown. An error message will then be displayed.
+Otherwise, Step 9 will take place.
+
+Step 9. The edited item is saved to the filtered list and `EditXYZCommand#execute()` will return the `CommandResult`
+
+Step 10. Changes made are saved to local data and success message is shown.
+
+<img src="images/EditCommandActivityDiagram.svg" width="900" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -249,7 +282,7 @@ Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.svg" width="250" />
 
 #### Design considerations:
 
