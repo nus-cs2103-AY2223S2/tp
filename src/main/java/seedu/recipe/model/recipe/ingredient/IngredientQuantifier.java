@@ -1,10 +1,7 @@
 package seedu.recipe.model.recipe.ingredient;
 
-import javafx.scene.media.SubtitleTrack;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -12,8 +9,8 @@ import java.util.Optional;
  * within a Recipe instance.
  */
 public class IngredientQuantifier {
-    private final Optional<IngredientQuantity> quantity;
-    private final Optional<String> commonName;
+    private final Optional<IngredientQuantity> quantityContainer;
+    private final Optional<String> commonNameContainer;
     private final List<String> estimatedQuantity = new ArrayList<>();
     private final List<String> remarks = new ArrayList<>();
     private final List<Ingredient> substitutions = new ArrayList<>();
@@ -36,8 +33,8 @@ public class IngredientQuantifier {
             String[] remarks,
             Ingredient[] substitutions
     ) {
-        this.quantity = Optional.ofNullable(quantity);
-        this.commonName = Optional.ofNullable(commonName);
+        this.quantityContainer = Optional.ofNullable(quantity);
+        this.commonNameContainer = Optional.ofNullable(commonName);
         estimatedQuantity.addAll(List.of(estimatedQuantities));
         this.remarks.addAll(List.of(remarks));
         this.substitutions.addAll(List.of(substitutions));
@@ -46,8 +43,8 @@ public class IngredientQuantifier {
     @Override
     public String toString() {
         return "{"
-            + quantity.map(v -> "Q: " + v).orElse("Q: []") + "; "
-            + commonName.map(v -> "CN: " + v).orElse("CN: []") + "; "
+            + quantityContainer.map(v -> "Q: " + v).orElse("Q: []") + "; "
+            + commonNameContainer.map(v -> "CN: " + v).orElse("CN: []") + "; "
             + "E: " + estimatedQuantity + "; "
             + "S: " + substitutions + "; "
             + "R: " + remarks + "}\n";

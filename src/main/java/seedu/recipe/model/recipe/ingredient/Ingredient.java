@@ -6,7 +6,8 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  * Represents an ingredient that is used in a {@code Recipe}.
  */
 public class Ingredient {
-    public static final String MESSAGE = "";
+    public static final String MESSAGE = "An ingredient should be made up of one or more groups of"
+            + "whitespace separated non-whitespace characters.";
     public static final String VALIDATION_REGEX = "\\S+(\\s+\\S+)*";
     private final String name;
 

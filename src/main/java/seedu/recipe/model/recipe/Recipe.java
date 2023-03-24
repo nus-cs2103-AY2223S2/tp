@@ -17,7 +17,6 @@ import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -61,7 +60,6 @@ public class Recipe {
             ingredientTable.putAll(map);
         }
         this.ingredients.addAll(List.of(ingredients));
-        System.out.println(ingredientTable);
     }
 
     public RecipePortion getPortion() {
@@ -114,7 +112,6 @@ public class Recipe {
         this.steps.addAll(List.of(steps));
     }
 
-
     /**
      * Returns true if both recipes have the same name.
      * This defines a weaker notion of equality between two recipes.
@@ -162,13 +159,9 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        portion.ifPresent(p -> {
-            builder.append(";\nPortion: ").append(p);
-        });
+        portion.ifPresent(p -> builder.append(";\nPortion: ").append(p));
 
-        duration.ifPresent(d -> {
-            builder.append(";\nDuration: ").append(d);
-        });
+        duration.ifPresent(d -> builder.append(";\nDuration: ").append(d));
 
         if (!tags.isEmpty()) {
             builder.append(";\nTags: ");

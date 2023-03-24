@@ -54,7 +54,7 @@
       "timeUnit" : "min"
     },
     "tags" : [ "English", "Comfort food" ],
-    "ingredients" : [ "-a 2 thick slices -n white bread", "-a wedge -e 85g/3oz -n camembert -s brie", "-a a spoonful -n cranberry sauce", "-a few drops -n balsamic vinegar", "-n butter" ],
+    "ingredients" : [ "-a 2 thick slices -n white bread", "-a a wedge -e 85g/3oz -n camembert -s brie", "-a a spoonful -n cranberry sauce", "-a a few drops -n balsamic vinegar", "-n butter" ],
     "steps" : [ "Butter the bread. Put a wedge of camembert or brie on the unbuttered side of one slice of bread. Top with a spoonful of cranberry sauce. Drizzle with a few drops of balsamic vinegar, if you have some.", "Put the second slice of bread on top, buttered side out. Fry in a hot non-stick pan, pressing down with a fish slice, for a minute or two on each side, until golden brown and melting. Cut in half and eat straightaway." ]
   }, {
     "name" : "Classic Masala Dosa",

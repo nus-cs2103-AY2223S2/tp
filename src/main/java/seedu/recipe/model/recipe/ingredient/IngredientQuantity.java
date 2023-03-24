@@ -1,10 +1,6 @@
 package seedu.recipe.model.recipe.ingredient;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 import seedu.recipe.model.recipe.exceptions.RecipeQuantityInvalidArgumentException;
-import seedu.recipe.model.recipe.unit.RecipeIngredientQuantityUnit;
 
 /**
  * Represents the Quantity field associated with a {@code IngredientBuilder}.
@@ -34,8 +30,7 @@ public class IngredientQuantity {
             return false;
         }
         String[] tokens = candidate.split("\\s+", 2);
-        double amount = 0;
-        double upperLimit = -1;
+        double amount;
         if (tokens[0].matches(ALPHA_AMOUNT_REGEX)) {
             amount = 1;
         } else if (tokens[0].matches(FRACTION_REGEX)) {
@@ -46,14 +41,12 @@ public class IngredientQuantity {
                 return false;
             }
             amount = numerator;
-            upperLimit = denominator;
 
         } else if (tokens[0].matches(RANGE_REGEX)) {
             String[] rangeComponents = tokens[0].split("-|to");
             double lowerRange = Integer.parseInt(rangeComponents[0]);
             double upperRange = Integer.parseInt(rangeComponents[1]);
             amount = lowerRange;
-            upperLimit = upperRange;
             if (lowerRange >= upperRange) {
                 return false;
             }

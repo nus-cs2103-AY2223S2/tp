@@ -23,7 +23,7 @@ public class TypicalRecipes {
     public static final Name CACIO_NAME = new Name("Cacio e Pepe");
     public static final RecipePortion CACIO_PORTION = RecipePortion.of("1 - 2 servings");
     public static final RecipeDuration CACIO_DURATION = RecipeDuration.of("15 minutes");
-    public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Fusion"), new Tag("Italian"));
+    public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Italian"));
     public static final List<IngredientBuilder> CACIO_INGREDIENTS = List.of(
             new IngredientBuilder("-n Kosher salt"),
             new IngredientBuilder("-a 6 oz -n egg tagliolini -s bucatini -s spaghetti"),
@@ -45,39 +45,6 @@ public class TypicalRecipes {
                     + "Pecorino, stirring and tossing until cheese melts, sauce coats the pasta, "
                     + "and pasta is al dente. (Add more pasta water if sauce seems dry.) Transfer "
                     + "pasta to warm bowls and serve."));
-
-    public static final String CACIO_STRING = String.format(
-            "%s;\nPortion: %s;\nDuration: %s;\nTags: %s;\n"
-                    + "Ingredients: %s;\nSteps: %s",
-            CACIO_NAME, CACIO_PORTION, CACIO_DURATION, (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                ArrayList<Tag> tags = new ArrayList<>(CACIO_TAGS);
-                tags.sort(Comparator.comparing(tag -> tag.tagName));
-                for (Tag tag : tags) {
-                    out.append(tag.toString());
-                }
-                return out.toString();
-            }).get(), (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                for (IngredientBuilder i : CACIO_INGREDIENTS) {
-                    out.append(i.toString())
-                            .append(",\n");
-                }
-                return out.toString();
-            }).get(), (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                for (int i = 0; i < CACIO_STEPS.size(); i++) {
-                    out.append(i + 1)
-                            .append(". ")
-                            .append(CACIO_STEPS.get(i).toString())
-                            .append(",\n");
-                }
-                return out.toString();
-            }).get()
-    );
 
     public static final Recipe CACIO_E_PEPE = new RecipeBuilder(
             CACIO_NAME, CACIO_PORTION, CACIO_DURATION, CACIO_TAGS,
@@ -117,17 +84,17 @@ public class TypicalRecipes {
             RecipeDuration.of("1 hour"),
             Set.of(new Tag("Indian")),
             List.of(new IngredientBuilder("-a 2 cups -n short-grain rice"),
-                    new IngredientBuilder("-a 0.5 cup -n urad dal -cn split husked black lentils"),
+                    new IngredientBuilder("-a 1/2 cup -n urad dal -cn split husked black lentils"),
                     new IngredientBuilder("-a 1 teaspoon -n fenugreek seeds"),
-                    new IngredientBuilder("-a 0.5 teaspoon -n salt"),
+                    new IngredientBuilder("-a 1/2 teaspoon -n salt"),
                     new IngredientBuilder("-n Vegetable oil -r for frying"),
                     new IngredientBuilder("-a 3 tablespoons -n ghee -s vegetable oil"),
                     new IngredientBuilder("-a 1 teaspoon -n mustard seeds"),
-                    new IngredientBuilder("-a 0.5 teaspoon -n cumin seeds"),
+                    new IngredientBuilder("-a 1/2 teaspoon -n cumin seeds"),
                     new IngredientBuilder("-a 2 -n red peppers -r small -r dried -r hot"),
                     new IngredientBuilder("-a 1 -n onion -r medium -r diced"),
-                    new IngredientBuilder("-a 0.5 teaspoon -n salt"),
-                    new IngredientBuilder("-a 0.5 teaspoon -n turmeric"),
+                    new IngredientBuilder("-a 1/2 teaspoon -n salt"),
+                    new IngredientBuilder("-a 1/2 teaspoon -n turmeric"),
                     new IngredientBuilder("-a a pinch -n asafetida"),
                     new IngredientBuilder("-a 1 tablespoon -n ginger -r grated"),
                     new IngredientBuilder("-a 6 to 8 -n curry leaves"),
@@ -135,7 +102,7 @@ public class TypicalRecipes {
                     new IngredientBuilder("-a 2 -n small green chilli -r finely chopped"),
                     new IngredientBuilder("-a 1.5 pounds -n Yukon Gold potatoes "
                             + "-s yellow-fleshed potatoes -r boiled -r peeled -r cubed"),
-                    new IngredientBuilder("-a 0.5 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
+                    new IngredientBuilder("-a 1/2 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
             List.of(
                     new Step("Make the dosa batter: Put rice in a bowl, rinse well and cover with "
                             + "4 cups cold water. Put urad dal and fenugreek seeds in a small bowl, rinse "
@@ -179,9 +146,9 @@ public class TypicalRecipes {
             RecipeDuration.of("4 min"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
             List.of(new IngredientBuilder("-a 2 thick slices -n white bread"),
-                    new IngredientBuilder("-a wedge -e 85g/3oz -n camembert -s brie"),
-                    new IngredientBuilder("-a a spoonful -n cranberry sauce"),
-                    new IngredientBuilder("-a few drops -n balsamic vinegar"),
+                    new IngredientBuilder("-a a wedge -e 85g/3oz -n camembert -s brie"),
+                    new IngredientBuilder("-a 1 tbsp -n cranberry sauce"),
+                    new IngredientBuilder("-a a few drops -n balsamic vinegar"),
                     new IngredientBuilder("-n butter")),
             List.of(
                     new Step("Butter the bread. Put a wedge of camembert or brie on the unbuttered side of "
@@ -208,7 +175,7 @@ public class TypicalRecipes {
                     new IngredientBuilder("-a 1 Tablespoon -n Gherkins -r chopped"),
                     new IngredientBuilder("-a 50 Grams -n Creme Fraiche"),
                     new IngredientBuilder("-a 200 Grams -n Mayonnaise"),
-                    new IngredientBuilder("-a 0.75 -n Shallot -r Diced"),
+                    new IngredientBuilder("-a 3/4 -n Shallot -r Diced"),
                     new IngredientBuilder("-a 1 tsp -n Lemon Juice"),
                     new IngredientBuilder("-n Hot Sauce -r Optional")),
             List.of(
@@ -231,6 +198,39 @@ public class TypicalRecipes {
                     new Step("Add all Tartar ingredients together and mix. Add salt to taste and hot sauce "
                             + "if you want heat."),
                     new Step("Assemble together and enjoy!"))).build();
+
+    public static final String CACIO_STRING = String.format(
+            "%s;\nPortion: %s;\nDuration: %s;\nTags: %s;\n"
+                    + "Ingredients: %s;\nSteps: %s",
+            CACIO_NAME, CACIO_PORTION, CACIO_DURATION, (
+            (Supplier<String>) () -> {
+                StringBuilder out = new StringBuilder();
+                ArrayList<Tag> tags = new ArrayList<>(CACIO_TAGS);
+                tags.sort(Comparator.comparing(tag -> tag.tagName));
+                for (Tag tag : tags) {
+                    out.append(tag.toString());
+                }
+                return out.toString();
+            }).get(), (
+            (Supplier<String>) () -> {
+                StringBuilder out = new StringBuilder();
+                for (IngredientBuilder i : CACIO_INGREDIENTS) {
+                    out.append(i.toString())
+                            .append(",\n");
+                }
+                return out.toString();
+            }).get(), (
+            (Supplier<String>) () -> {
+                StringBuilder out = new StringBuilder();
+                for (int i = 0; i < CACIO_STEPS.size(); i++) {
+                    out.append(i + 1)
+                            .append(". ")
+                            .append(CACIO_STEPS.get(i).toString())
+                            .append(",\n");
+                }
+                return out.toString();
+            }).get()
+    );
 
     private TypicalRecipes() {
     } // prevents instantiation
