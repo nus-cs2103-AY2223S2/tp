@@ -34,7 +34,7 @@ public class ProjectMeeting {
      * @return true if {@code String} is of valid DateTime format, else false.
      */
     public static Boolean isValidProjectMeeting(String test) {
-        if (test == "") {
+        if (test.equals("")) {
             return true;
         }
         try {

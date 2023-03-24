@@ -2,8 +2,6 @@ package seedu.socket.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.socket.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.socket.logic.parser.CliSyntax.PREFIX_LANGUAGE;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_REPO_HOST;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_REPO_NAME;
@@ -41,8 +39,8 @@ public class RemoveProjectCommand extends Command {
             + "[" + PREFIX_DEADLINE + "[DEADLINE]] "
             + "[" + PREFIX_MEETING + "[MEETING]]\n "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LANGUAGE + " "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DEADLINE + " "
+            + PREFIX_MEETING + "01/01/2023-2359";
 
     public static final String MESSAGE_REMOVE_FIELD_SUCCESS = "Remove field: %1$s";
 
@@ -60,7 +58,6 @@ public class RemoveProjectCommand extends Command {
      */
     public RemoveProjectCommand(Index index, RemoveProjectDescriptor removeProjectDescriptor) {
         requireNonNull(index);
-        System.out.println("hellotest");
         this.index = index;
         this.removeProjectDescriptor = new RemoveProjectDescriptor(removeProjectDescriptor);
     }
@@ -71,7 +68,7 @@ public class RemoveProjectCommand extends Command {
         ObservableList<Project> lastShownList = model.getFilteredProjectList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         Project projectFieldToRemove = lastShownList.get(index.getZeroBased());
@@ -87,7 +84,7 @@ public class RemoveProjectCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldProject));
     }
     private static Project createRemoveFieldProject(Project projectToRemoveField,
-                                                  RemoveProjectCommand.RemoveProjectDescriptor removeProjectDescriptor) {
+                     RemoveProjectCommand.RemoveProjectDescriptor removeProjectDescriptor) {
         assert projectToRemoveField != null;
 
         removeProjectDescriptor.setProject(projectToRemoveField);
@@ -124,7 +121,7 @@ public class RemoveProjectCommand extends Command {
 
     /**
      * Stores the details to remove the project with. Each non-empty field value will remove the
-     * corresponding field value of the person.
+     * corresponding field value of the project.
      */
     public static class RemoveProjectDescriptor {
         private ProjectRepoHost repoHost;
@@ -138,7 +135,6 @@ public class RemoveProjectCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code languages} and {@code tags} is used internally.
          */
         public RemoveProjectDescriptor(RemoveProjectCommand.RemoveProjectDescriptor toCopy) {
             setRepoHost(toCopy.repoHost);
@@ -156,7 +152,6 @@ public class RemoveProjectCommand extends Command {
         }
 
         public void setRepoHost(ProjectRepoHost repoHost) {
-            System.out.println(repoHost);
             this.repoHost = repoHost;
         }
 
@@ -191,7 +186,6 @@ public class RemoveProjectCommand extends Command {
         }
 
         public void setDeadline(ProjectDeadline deadline) {
-            System.out.println(deadline);
             this.deadline = deadline;
         }
 

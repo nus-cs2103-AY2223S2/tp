@@ -54,6 +54,7 @@ import seedu.socket.logic.commands.ListCommand;
 import seedu.socket.logic.commands.RedoCommand;
 import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
+import seedu.socket.logic.commands.RemoveProjectCommand;
 import seedu.socket.logic.commands.SortCommand;
 import seedu.socket.logic.commands.SortProjectCommand;
 import seedu.socket.logic.commands.UndoCommand;
@@ -68,6 +69,7 @@ import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
 import seedu.socket.testutil.ProjectBuilder;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
+import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 
 public class SocketParserTest {
 
@@ -275,6 +277,21 @@ public class SocketParserTest {
         RemoveCommand command = (RemoveCommand) parser.parseCommand(RemoveCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getRemovePersonDescriptorDetails(descriptor));
         assertEquals(new RemoveCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+    @Test
+    public void parseCommand_removepj() throws Exception {
+        Project project = new ProjectBuilder().withName(VALID_PROJECT_NAME_ALPHA)
+                .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                .withRepoName(VALID_PROJECT_REPO_NAME_ALPHA)
+                .withProjectDeadline(VALID_PROJECT_DEADLINE_ALPHA)
+                .withProjectMeeting(VALID_PROJECT_MEETING_ALPHA)
+                .build();
+        RemoveProjectCommand.RemoveProjectDescriptor descriptor = new RemoveProjectDescriptorBuilder(project).build();
+        RemoveProjectCommand command = (RemoveProjectCommand) parser.parseCommand(RemoveProjectCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + REPO_NAME_DESC_ALPHA
+                + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
+        assertEquals(new RemoveProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
     @Test

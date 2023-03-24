@@ -51,7 +51,7 @@ public class RemoveProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code repoName} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code repoName} of the {@code RemoveProjectDescriptor} that we are building.
      */
     public RemoveProjectDescriptorBuilder withRepoName(String repoName) {
         descriptor.setRepoName(new ProjectRepoName(repoName));
@@ -59,7 +59,7 @@ public class RemoveProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code deadline} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code deadline} of the {@code RemoveProjectDescriptor} that we are building.
      */
     public RemoveProjectDescriptorBuilder withDeadline(String deadline) {
         descriptor.setDeadline(new ProjectDeadline(deadline));
@@ -67,7 +67,7 @@ public class RemoveProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code meeting} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code meeting} of the {@code RemoveProjectDescriptor} that we are building.
      */
     public RemoveProjectDescriptorBuilder withMeeting(String meeting) {
         descriptor.setMeeting(new ProjectMeeting(meeting));
