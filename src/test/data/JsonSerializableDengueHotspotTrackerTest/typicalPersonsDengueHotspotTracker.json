@@ -5,42 +5,42 @@
     "postal" : "943512",
     "date" : "2023-03-05",
     "age" : "21",
-    "tagged" : [ "DENV1" ]
+    "variants" : [ "DENV1" ]
   }, {
     "name" : "Benson Meier",
     "postal" : "987654",
     "date" : "2022-03-05",
     "age" : "85",
-    "tagged" : [ "DENV2", "DENV4" ]
+    "variants" : [ "DENV2", "DENV4" ]
   }, {
     "name" : "Carl Kurz",
     "postal" : "953525",
     "date" : "2023-02-02",
     "age" : "35",
-    "tagged" : [ ]
+    "variants": [ ]
   }, {
     "name" : "Daniel Meier",
     "postal" : "876525",
     "date" : "2023-01-01",
     "age" : "143",
-    "tagged" : [ "DENV3" ]
+    "variants": [ "DENV3" ]
   }, {
     "name" : "Elle Meyer",
     "postal" : "948222",
     "date" : "2022-12-31",
     "age" : "65",
-    "tagged" : [ ]
+    "variants": [ ]
   }, {
     "name" : "Fiona Kunz",
     "postal" : "948247",
     "date" : "2022-01-05",
     "age" : "5",
-    "tagged" : [ ]
+    "variants": [ ]
   }, {
     "name" : "George Best",
     "postal" : "948244",
     "date" : "2023-01-05",
     "age" : "12",
-    "tagged" : [ ]
+    "variants": [ ]
   } ]
 }

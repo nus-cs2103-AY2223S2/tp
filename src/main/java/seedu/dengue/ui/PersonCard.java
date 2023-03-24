@@ -43,7 +43,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private FlowPane tags;
+    private FlowPane variants;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,9 +56,9 @@ public class PersonCard extends UiPart<Region> {
         age.setText(String.format(AGE_FORMAT, person.getAge().value));
         postal.setText(String.format(POSTAL_FORMAT, person.getPostal().value));
         date.setText(String.format(DATE_FORMAT, person.getDate().value));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.toString())));
+        person.getVariants().stream()
+                .sorted(Comparator.comparing(variant -> variant.variantName))
+                .forEach(variant -> variants.getChildren().add(new Label(variant.variantName.toString())));
     }
 
     @Override

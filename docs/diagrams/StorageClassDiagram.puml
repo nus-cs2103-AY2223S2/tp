@@ -8,7 +8,7 @@ package Storage{
 
 package "UserPrefs Storage" #F4F6F6{
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
+Class CsvUserPrefsStorage
 }
 
 Class "<<interface>>\nStorage" as Storage
@@ -16,10 +16,10 @@ Class StorageManager
 
 package "DengueHotspotTracker Storage" #F4F6F6{
 Class "<<interface>>\nDengueHotspotTrackerStorage" as DengueHotspotTrackerStorage
-Class JsonDengueHotspotTrackerStorage
-Class JsonSerializableDengueHotspotTracker
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class CsvDengueHotspotTrackerStorage
+Class CsvSerializableDengueHotspotTracker
+Class CsvAdaptedPerson
+Class CsvAdaptedVariant
 }
 
 }
@@ -34,10 +34,10 @@ StorageManager -up-> "1" DengueHotspotTrackerStorage
 Storage -left-|> UserPrefsStorage
 Storage -right-|> DengueHotspotTrackerStorage
 
-JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonDengueHotspotTrackerStorage .up.|> DengueHotspotTrackerStorage
-JsonDengueHotspotTrackerStorage ..> JsonSerializableDengueHotspotTracker
-JsonSerializableDengueHotspotTracker --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+CsvUserPrefsStorage .up.|> UserPrefsStorage
+CsvDengueHotspotTrackerStorage .up.|> DengueHotspotTrackerStorage
+CsvDengueHotspotTrackerStorage ..> CsvSerializableDengueHotspotTracker
+CsvSerializableDengueHotspotTracker --> "*" CsvAdaptedPerson
+CsvAdaptedPerson --> "*" CsvAdaptedVariant
 
 @enduml

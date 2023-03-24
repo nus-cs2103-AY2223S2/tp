@@ -8,8 +8,8 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.tag.Tag;
 import seedu.dengue.model.util.SampleDataUtil;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * A utility class to help with building Person objects.
@@ -25,7 +25,7 @@ public class PersonBuilder {
     private Postal postal;
     private Date date;
     private Age age;
-    private Set<Tag> tags;
+    private Set<Variant> variants;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +35,7 @@ public class PersonBuilder {
         this.postal = new Postal(DEFAULT_POSTAL);
         this.date = new Date(DEFAULT_DATE);
         this.age = new Age(DEFAULT_AGE);
-        this.tags = new HashSet<>();
+        this.variants = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         postal = personToCopy.getPostal();
         date = personToCopy.getDate();
         age = personToCopy.getAge();
-        tags = new HashSet<>(personToCopy.getTags());
+        variants = new HashSet<>(personToCopy.getVariants());
     }
 
     /**
@@ -58,10 +58,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code variants} into a {@code Set<Variant>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withVariants(String ... variants) {
+        this.variants = SampleDataUtil.getVariantSet(variants);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, postal, date, age, tags);
+        return new Person(name, postal, date, age, variants);
     }
 
 }

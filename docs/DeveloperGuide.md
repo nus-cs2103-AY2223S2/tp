@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,7 +140,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both Dengue Hotspot Tracker data and user preference data in json format, and read them back into corresponding objects.
+* can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -176,7 +176,8 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the Den
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitDengueHotspotTracker()`, causing another modified Dengue Hotspot Tracker state to be saved into the `dengueHotspotTrackerStateList`.
+Step 3. The user executes `add n/David d/2000 31 Jan...` to add a new person. The `add` command also calls `Model#commitDengueHotspotTracker()`, causing another modified Dengue Hotspot Tracker state to be saved into the `dengueHotspotTrackerStateList`.
+
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -287,7 +288,41 @@ what they keyed in.
 may be unintended.
   * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
 
+### \[Proposed\] Multi-index delete feature
 
+#### Proposed Implementation
+
+The proposed multi-index delete mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
+
+Given below is an example usage scenario and how the multi-index delete mechanism behaves at each step.
+
+Step 1. The user launches the application and uses the `find` command to filter the list of cases. The `ModelManager`’s `FilteredList<Person>` is updated.
+
+Step 2. The user executes the `delete 1 3` command to delete the first and third persons in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `1 3` to the `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser#parse()` is called. A list of valid indexes `List<Index>` is returned, and a `DeleteCommand` is constructed, taking in this list of indexes as an attribute.
+
+Step 4. `DeleteCommand#execute()` will get the most updated list of filtered persons and loop through the list of indexes to delete their associated cases using `Model#deletePerson()`. Users will be notified with a message upon successful deletion of all relevant persons.
+
+The following sequence diagram shows how the multi-index delete operation works:
+
+![DeleteMultiIndexSequenceDiagram](images/DeleteMultiIndexSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a multi-index delete command:
+
+![DeleteMultiIndexActivityDiagram](images/DeleteMultiIndexActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How multi-index delete indicates successful execution:**
+
+* **Alternative 1 (current choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
+    * Pros: Short and succinct, without taking up too much space on the GUI.
+    * Cons: Does not show exactly which cases were deleted.
+
+* **Alternative 2:** Display a message indicating successful deletion for each individual deleted case, along with the details of the deleted case.
+    * Pros: Shows exactly which cases were deleted for easy validation.
+    * Cons: Unnecessarily lengthy; may take up too much space if many cases were deleted at once.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,14 +352,14 @@ may be unintended.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                 | So that I can…​                                                      |
-| -------- |----------|------------------------------|----------------------------------------------------------------------|
-| `* * *`  | new user | easily view a help page                  | know how to use the app                                              |
-| `* * *`  | user     | add a new dengue case                    | keep track of the dengue cases in Singapore                          |
-| `* * *`  | user     | delete cases from the dengue case list by case ID              | remove entries that I no longer need                                 |
-| `* * *`  | user     | find dengue cases whose postal codes start with any of the input numbers                    | locate details of cases without having to go through the entire list |
-| `* *`    | user     | export the data from the dengue case list from a database in a json file             | analyse them outside of the app              |
-| `*`      | new user | clear all entries                     | start over with an empty data set                                               |
+| Priority | As a …​  | I want to …​                                                             | So that I can…​                                                      |
+| -------- |----------|--------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | new user | easily view a help page                                                  | know how to use the app                                              |
+| `* * *`  | user     | add a new dengue case                                                    | keep track of the dengue cases in Singapore                          |
+| `* * *`  | user     | delete cases from the dengue case list by case ID                        | remove entries that I no longer need                                 |
+| `* * *`  | user     | find dengue cases whose postal codes start with any of the input numbers | locate details of cases without having to go through the entire list |
+| `* *`    | user     | export the data from the dengue case list from a database in a csv file  | analyse them outside of the app              |
+| `*`      | new user | clear all entries                                                        | start over with an empty data set                                               |
 
 *{More to be added}*
 

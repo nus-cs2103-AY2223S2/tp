@@ -5,7 +5,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
@@ -24,13 +24,13 @@ public class AddCommand extends Command {
             + PREFIX_POSTAL + "POSTAL "
             + PREFIX_DATE + "DATE "
             + PREFIX_AGE + "AGE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_VARIANT + "VARIANT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_POSTAL + "611321 "
             + PREFIX_DATE + "2001-10-10 "
             + PREFIX_AGE + "48 "
-            + PREFIX_TAG + "DENV1 ";
+            + PREFIX_VARIANT + "DENV1 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Dengue Hotspot Tracker";
@@ -48,7 +48,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

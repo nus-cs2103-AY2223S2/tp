@@ -6,7 +6,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
 import static seedu.dengue.testutil.Assert.assertThrows;
 import static seedu.dengue.testutil.TypicalPersons.ALICE;
 import static seedu.dengue.testutil.TypicalPersons.BOB;
@@ -20,7 +20,7 @@ public class PersonTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getVariants().remove(0));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class PersonTest {
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB)
-                .withAge(VALID_AGE_BOB).withTags(VALID_TAG_DENV2).build();
+                .withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV2).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,8 +85,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_DENV2).build();
+        // different variants -> returns false
+        editedAlice = new PersonBuilder(ALICE).withVariants(VALID_VARIANT_DENV2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

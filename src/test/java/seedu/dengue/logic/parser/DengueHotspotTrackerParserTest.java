@@ -23,8 +23,8 @@ import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
+import seedu.dengue.model.person.FilterPredicate;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 import seedu.dengue.testutil.PersonBuilder;
 import seedu.dengue.testutil.PersonUtil;
@@ -73,7 +73,7 @@ public class DengueHotspotTrackerParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new FilterPredicate(keywords)), command);
     }
 
     @Test

@@ -5,14 +5,14 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 DengueHotspotTracker *-right-> "1" UniquePersonList
-DengueHotspotTracker *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+DengueHotspotTracker *-right-> "1" UniqueVariantList
+UniqueVariantList -[hidden]down- UniquePersonList
+UniqueVariantList -[hidden]down- UniquePersonList
 
-UniqueTagList -right-> "*" Tag
+UniqueVariantList -right-> "*" Variant
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+Person -up-> "*" Variant
 
 Person *--> Name
 Person *--> Postal

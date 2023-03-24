@@ -6,7 +6,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.EditCommand;
 import seedu.dengue.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.tag.Tag;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -33,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL,
-                        PREFIX_DATE, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_DATE, PREFIX_AGE, PREFIX_VARIANT);
 
         Index index;
 
@@ -56,7 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editPersonDescriptor.setAge(ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseVariantsForEdit(argMultimap.getAllValues(PREFIX_VARIANT)).ifPresent(editPersonDescriptor::setVariants);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -66,18 +66,20 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> variants} into a {@code Set<Variant>} if {@code variants} is non-empty.
+     * If {@code variants} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Variant>} containing zero variants.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Variant>> parseVariantsForEdit(Collection<String> variants) throws ParseException {
+        assert variants != null;
 
-        if (tags.isEmpty()) {
+        if (variants.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> variantSet = variants.size() == 1 && variants.contains("")
+                ? Collections.emptySet()
+                : variants;
+        return Optional.of(ParserUtil.parseVariants(variantSet));
     }
 
 }
