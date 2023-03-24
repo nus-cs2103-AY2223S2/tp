@@ -21,7 +21,7 @@ public class FuzzyManager {
         if (query.isEmpty()) {
             return items;
         }
-        logger.info("Received fuzzy match request for items with query = " + query);
+        logger.fine("Received fuzzy match request for items with query = " + query);
         return items.filtered(item -> item.fuzzyCompareTo(query) > 0.0)
             .sorted((item1, item2) -> Double.compare(item2.fuzzyCompareTo(query), item1.fuzzyCompareTo(query)));
     }

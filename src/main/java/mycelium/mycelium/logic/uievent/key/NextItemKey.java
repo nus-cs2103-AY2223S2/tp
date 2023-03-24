@@ -5,13 +5,13 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
- * SwitchKey is the key combination to switch between the entity panel tabs.
+ * NextItemKey is a key combination that selects the next item in the current tab.
  */
-public class SwitchKey extends Key {
-    public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+L");
+public class NextItemKey extends Key {
+    public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+J");
 
     @Override
     public void execute(Logic logic, MainWindow mainWindow) {
-        mainWindow.nextTab();
+        mainWindow.nextItem();
     }
 }

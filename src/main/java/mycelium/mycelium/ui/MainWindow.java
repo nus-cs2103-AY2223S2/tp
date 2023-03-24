@@ -1,5 +1,6 @@
 package mycelium.mycelium.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -77,6 +78,11 @@ public class MainWindow extends UiPart<Stage> {
         setEventHandlers();
     }
 
+    /**
+     * Return the primary stage of the application.
+     *
+     * @return the primary stage of the application.
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -174,53 +180,187 @@ public class MainWindow extends UiPart<Stage> {
 
 
     // CommandBox methods ======================================================
+
+    /**
+     * Returns the current mode type of the command box.
+     *
+     * @return the current mode type of the command box.
+     * @see CommandBox#getModeType()
+     */
     public ModeType getCommandBoxModeType() {
         return commandBox.getModeType();
     }
 
+    /**
+     * Sets the mode of the command box.
+     *
+     * @param mode the mode to set the command box to.
+     * @see CommandBox#setMode(Mode)
+     */
     public void setCommandBoxMode(Mode mode) {
         commandBox.setMode(mode);
     }
 
+    /**
+     * Sets the input of the command box.
+     *
+     * @param string the input to set the command box to.
+     * @see CommandBox#setInput(String)
+     */
     public void setCommandBoxInput(String string) {
         commandBox.setInput(string);
     }
 
+    /**
+     * Appends the input of the command box.
+     *
+     * @param string the input to append to the command box.
+     * @see CommandBox#appendInput(String)
+     */
+    public void appendCommandBoxHighlighted(String string) {
+        commandBox.appendHighlighted(string);
+    }
+
+    /**
+     * Moves the cursor of the command box to the end of the line.
+     *
+     * @see CommandBox#moveToEndOfLine()
+     */
+    public void moveCommandBoxToEndOfLine() {
+        commandBox.moveToEndOfLine();
+    }
+
+    /**
+     * Moves the cursor of the command box to the start of the line.
+     *
+     * @see CommandBox#moveToStartOfLine()
+     */
+    public void moveCommandBoxToStartOfLine() {
+        commandBox.moveToStartOfLine();
+    }
+
+    /**
+     * Sets the style of the command box to error.
+     *
+     * @see CommandBox#setStyleError()
+     */
     public void setCommandBoxStyleError() {
         commandBox.setStyleError();
     }
 
+    /**
+     * Sets the style of the command box to default.
+     *
+     * @see CommandBox#setStyleDefault()
+     */
     public void setCommandBoxStyleDefault() {
         commandBox.setStyleDefault();
     }
 
+    /**
+     * Sets the style of the command box to listening.
+     *
+     * @see CommandBox#setStyleListening()
+     */
     public void setCommandBoxStyleListening() {
         commandBox.setStyleListening();
     }
 
+    /**
+     * Sets the style of the command box to listening.
+     *
+     * @see CommandBox#setStyleListening()
+     */
+    public void focusCommandBox() {
+        commandBox.requestFocus();
+    }
+
     // CommandLog methods ======================================================
+    /**
+     * Sets the feedback to the user.
+     *
+     * @param feedback the feedback to set.
+     * @see CommandLog#setFeedbackToUser(String)
+     */
     public void setFeedbackToUser(String feedback) {
         commandLog.setFeedbackToUser(feedback);
     }
 
     // EntityPanel methods =====================================================
+    /**
+     * Sets the entity panel to the next tab.
+     *
+     * @see EntityPanel#nextTab()
+     */
     public void nextTab() {
         entityPanel.nextTab();
     }
 
+    /**
+     * Selects the client tab.
+     *
+     * @see EntityPanel#selectClientTab()
+     */
     public void selectClientTab() {
         entityPanel.selectClientTab();
     }
 
+    /**
+     * Selects the project tab.
+     *
+     * @see EntityPanel#selectProjectTab()
+     */
     public void selectProjectTab() {
         entityPanel.selectProjectTab();
     }
 
+
+    /**
+     * Sets the projects to be displayed in the entity panel.
+     *
+     * @param projectList the list of projects to be displayed.
+     * @see EntityPanel#setProjects(ObservableList)
+     */
     public void setProjects(ObservableList<Project> projectList) {
         entityPanel.setProjects(projectList);
     }
 
+    /**
+     * Sets the clients to be displayed in the entity panel.
+     *
+     * @param clientList the list of clients to be displayed.
+     * @see EntityPanel#setClients(ObservableList)
+     */
     public void setClients(ObservableList<Client> clientList) {
         entityPanel.setClients(clientList);
+    }
+
+    /**
+     * Selects the next item in the current entity panel.
+     *
+     * @see EntityPanel#nextItem()
+     */
+    public void nextItem() {
+        entityPanel.nextItem();
+    }
+
+    /**
+     * Selects the previous item in the current entity panel.
+     *
+     * @see EntityPanel#prevItem()
+     */
+    public void prevItem() {
+        entityPanel.prevItem();
+    }
+
+    /**
+     * Returns the identifier of the currently selected entity.
+     * Entity refers to either project or client.
+     *
+     * @return the identifier of the currently selected entity.
+     * @see EntityPanel#getSelectedEntityIdentifier()
+     */
+    public Optional<String> getSelectedEntityIdentifier() {
+        return entityPanel.getSelectedEntityIdentifier();
     }
 }

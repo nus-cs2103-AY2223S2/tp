@@ -54,4 +54,11 @@ public class TabSwitchAction extends UiAction {
     public int hashCode() {
         return Objects.hash(tabSwitch);
     }
+
+    /**
+     * Represents the tab to switch to.
+     */
+    public enum TabSwitch {
+        PROJECT, CLIENT
+    }
 }
