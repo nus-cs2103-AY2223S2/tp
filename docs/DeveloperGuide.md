@@ -240,7 +240,7 @@ Here is how `Order` works:
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/storage/Storage.java)
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
@@ -254,7 +254,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `trackr.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,23 +263,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes the details on how the common commands are implemented.
 
 The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
-
-### FindXYZCommand
-
-The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
-
-The keywords that can be provided are the same as those provided during the `add` and `edit` command.
-For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
-
-The parser for the `find` command would extract out the arguments corresponding to each particular field.
-
-A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
-
-The following activity diagram summarizes what happens when the user executes the `find` command.
-
-<p align="center">
-    <img src="images/FindCommandActivityDiagram.svg">
-</p>
 
 ### AddXYZCommand
 
@@ -309,6 +292,48 @@ The following activity diagram summarizes what happens when the user executes th
  <p align="center">
      <img src="images/DeleteCommandActivityDiagram.svg">
  </p>
+
+### Edit feature
+
+The `edit` command edits item `XYZ` from the internal `XYZList`.
+
+This command requires user to key in the index of the item they wish to edit.
+
+Edit supplier, edit order and edit task features are implemented using the same edit mechanism as described in this section.
+
+The `EditXYZCommandParser#parse()` is used to parse the given command.
+
+If the given command is valid, an `EditXYZCommand` will be returned and `EditXYZCommand#execute()` will then be called.
+
+`EditXYZCommand#execute()` will first retrieve that latest filtered XYZ list from the model and check if the index given is valid.
+
+If the given index is valid, item at given index will be retrieved. A copy of the item retrieved will be made and edited accordingly.
+
+If changes to the original item is made and edited item is not the same as another existing item in the list,
+the edited item is saved to the filtered list and `EditXYZCommand#execute()` will return the `CommandResult`
+
+Lastly, Changes made are saved to local data and success message will be shown.
+
+ <p align="center">
+    <img src="images/EditCommandActivityDiagram.svg" width="900" />
+</p>
+
+### FindXYZCommand
+
+The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the same as those provided during the `add` and `edit` command.
+For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
+
+The parser for the `find` command would extract out the arguments corresponding to each particular field.
+
+A `XYZContainsKeywordPredicate` is built upon these fields, which is used to test each `XYZ` object in the `XYZList` on whether they match the keywords provided.
+
+The following activity diagram summarizes what happens when the user executes the `find` command.
+
+<p align="center">
+    <img src="images/FindCommandActivityDiagram.svg">
+</p>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -373,7 +398,7 @@ Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.svg" width="250" />
 
 #### Design considerations:
 
