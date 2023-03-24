@@ -154,85 +154,91 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `UndoManager` and an `Undoable` interface. The `UndoManager` is 
+responsible for saving the version history of a ModelManager. The `Undoable` interface is implemented by a 
+`Model` to indicate that it has support for undo and redo functionality. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `Undoable` interface requires the implementation of the following functions:
+* `Undoable#hasUndoableCommand()`: To allow the user of the `Undoable` object to check if a command exists that can 
+  be undone
+* `Undoable#hasRedoableCommand()`: To allow the user of the `Undoable` object to check if a command exists that can
+  be redone
+* `Undoable#executeUndo()`: To allow the user of the `Undoable` object to undo to a previous saved state
+* `Undoable#executeRedo()`: To allow the user of the `Undoable` object to redo to a later saved state
+
+The `ModelManager` object implements the `Undoable` interface. It has an `UndoManager` object to manage the 
+implementation in the various required undo and redo functionality. The `UndoManager` object is responsible for 
+saving previous versions of `AddressBook`, keeping track of which version is currently shown to the user, and 
+yielding saved versions of `AddressBook` objects whenever requested.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `UndoManager` will be initialized with 
+`addressBookHistory` containing only the current addressBook state. The `versionTracker` variable is initialized to 
+0, indicating 0 undos have been executed so far, and the version of ModCheck shown is the most recent version.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/UndoRedoState0new.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. 
+The `delete` command calls `UndoManager#addToHistory()`, causing the modified state of the address book after the 
+`delete 5` command executes to be saved in `addressBookHistory`. The `versionTracker` variable stays at 0 as the 
+addressBook state after deleting is still the most recent version.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/UndoRedoState1new.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. 
+The `add` command also calls `UndoManager#addToHistory()`, causing another modified address book state to be saved into 
+the `addressBookHistory`. Similarly, `versionTracker` remains at 0.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/UndoRedoState2new.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it 
+will not call `UndoManager#addToHistory()`, so the address book state will not be saved into the `addressBookHistory`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the 
+`undo` command. The `undo` command will call `UndoManager#getPreviousHistory()`. This method increases the 
+`versionTracker` variable by 1. Internally, the UndoManager will find the first most recent saved history, and 
+returns a copy of the addressBook representing that. 
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/UndoRedoState3new.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `versionHistory` is equal to the 
+number of number of saved histories, there is no more saved history to undo. The `undo` command uses 
+`Model#hasUndoableCommand()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
 
-The following sequence diagram shows how the undo operation works:
+The `redo` command does the opposite — it calls `Undoable#getNextHistory()`, which decreases the `versionTracker` by 
+1, and returns a copy of the addressBook representing the state of the addressBook after redoing.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `versionTracker` is 0, pointing 
+to the latest address book state, then there are no undone AddressBook states to restore. The 
+`redo` command uses `Undoable#hasRedoableCommand()` to check if this is the case. If so, it will return an error to the 
+user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as 
+`list`, will usually not call `UndoManager#addToHistory()`. Thus, the `addressBookHistory` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/UndoRedoState4new.png) 
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `UndoManager#addToHistory()`. Since the `versionTracker` is not 
+0, all address book states from index 0 to one before the current version will be purged, and the versionTracker 
+will be reset to 0. Reason: It no longer makes sense to redo the "untracked heads". This is the behavior that most 
+modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/UndoRedoState5new.png) 
 
-The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -271,23 +277,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                                        | So that I can…​                                                        |
-|----------|-----------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | Student                                       | see usage instructions                              | refer to instructions when I forget how to use the App                 |
-| `* * *`  | Student                                       | add a new contact                                   |                                                                        |
-| `* * *`  | Student                                       | delete a contact                                    | remove a contact that I no longer need                                 |
-| `* * *`  | Student                                       | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
-| `* * *`  | Student                                       | find a contact by name                              | locate details of persons without having to go through the entire list |
-| `* * *`  | Student                                       | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
-| `* * *`  | Student                                       | edit a contact                                      | update the contact details of my contacts when they change             |
-| `* * *`  | Student                                       | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
-| `* * *`  | Student                                       | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
-| `* *`    | Student                                       | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
-| `* *`    | Student                                       | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
-| `* *`    | Student                                       | hide private contact details                        | minimize chance of someone else seeing them by accident                |
-| `* *`    | Student                                       | delete all contacts                                 | remove all contacts for a fresh start                                  |
-| `*`      | Student with many contacts | sort contacts by name                                | locate a contact easily                                                 |
-| `*`      | Student                                       | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
+| Priority | As a …​                    | I want to …​                                        | So that I can…​                                                        |
+|----------|----------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                    | see usage instructions                              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                    | add a new contact                                   |                                                                        |
+| `* * *`  | Student                    | delete a contact                                    | remove a contact that I no longer need                                 |
+| `* * *`  | Student                    | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
+| `* * *`  | Student                    | find a contact by name                              | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                    | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
+| `* * *`  | Student                    | edit a contact                                      | update the contact details of my contacts when they change             |
+| `* * *`  | Student                    | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
+| `* * *`  | Student                    | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
+| `* *`    | Student                    | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
+| `* *`    | Student                    | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
+| `* *`    | Student                    | hide private contact details                        | minimize chance of someone else seeing them by accident                |
+| `* *`    | Student                    | delete all contacts                                 | remove all contacts for a fresh start                                  |
+| `*`      | Student with many contacts | sort contacts by name                               | locate a contact easily                                                |
+| `*`      | Student                    | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
 
 *{More to be added}*
 
