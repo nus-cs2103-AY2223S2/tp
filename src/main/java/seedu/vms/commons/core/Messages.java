@@ -12,4 +12,7 @@ public class Messages {
             + "invalid";
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_INVALID_KEYWORD_DISPLAYED_INDEX = "The keyword index provided is invalid";
+
+    public static final String MESSAGE_VACCINATION_LISTED_OVERVIEW = "Filter(s) applied %d vaccinations listed";
+    public static final String MESSAGE_VACCINATION_FILTER_CLEAR = "Filter(s) cleared %d vaccinations listed";
 }

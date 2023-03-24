@@ -6,11 +6,63 @@ import static seedu.vms.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
+    /**
+     * Checks if the given text contains all the character sequence in the
+     * given list of patterns. The order of the pattern given is also checked
+     * for but the case does not matter.
+     *
+     * @param text - the text to test.
+     * @param patterns - the patterns to search for.
+     * @return {@code true} if the given text matches the given list of
+     *      patterns and {@code false} otherwise.
+     */
+    public static boolean isMatching(String text, Collection<String> patterns) {
+        return text.toUpperCase().matches(compilePattern(patterns));
+    }
+
+
+    private static String compilePattern(Collection<String> patterns) {
+        StringBuilder builder = new StringBuilder();
+        for (String pattern : patterns) {
+            builder.append(".*");
+            builder.append(convertRegexChars(pattern));
+        }
+        builder.append(".*");
+        return builder.toString();
+    }
+
+
+    private static String convertRegexChars(String pattern) {
+        return pattern
+                .toUpperCase()
+                .replaceAll("\\\\", "\\\\\\\\")
+                .replaceAll("\\[", "\\\\[")
+                .replaceAll("\\]", "\\\\]")
+                .replaceAll("\\(", "\\\\(")
+                .replaceAll("\\)", "\\\\)")
+                .replaceAll("\\{", "\\\\{")
+                .replaceAll("\\}", "\\\\}")
+                .replaceAll("\\<", "\\\\<")
+                .replaceAll("\\>", "\\\\>")
+                .replaceAll("\\+", "\\\\+")
+                .replaceAll("\\-", "\\\\-")
+                .replaceAll("\\|", "\\\\|")
+                .replaceAll("\\?", "\\\\?")
+                .replaceAll("\\*", "\\\\*")
+                .replaceAll("\\.", "\\\\.")
+                .replaceAll("\\^", "\\\\^")
+                .replaceAll("\\$", "\\\\$")
+                .replaceAll("\\&", "\\\\&")
+                .replaceAll("\\!", "\\\\!")
+                .replaceAll("\\=", "\\\\=")
+                .replaceAll("\\:", "\\\\:");
+    }
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.

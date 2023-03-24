@@ -1,5 +1,6 @@
 package seedu.vms.logic.commands.vaccination;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
@@ -7,6 +8,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.FilteredMapView;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -28,6 +30,8 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 public class VaxTypeModelStub implements Model {
 
     public final VaxTypeManager manager = new VaxTypeManager();
+    public final FilteredMapView<String, VaxType> filteredMapView =
+            new FilteredMapView<>(manager.asUnmodifiableObservableMap());
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -106,7 +110,7 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
-        throw new UnsupportedOperationException("Unimplemented method 'getFilteredVaxTypeMap'");
+        return filteredMapView.asUnmodifiableObservableMap();
     }
 
     @Override
@@ -201,6 +205,11 @@ public class VaxTypeModelStub implements Model {
     public void setKeywordManager(KeywordManager manager) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
+    }
+
+    @Override
+    public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
+        filteredMapView.setFilters(filters);
     }
 
 }

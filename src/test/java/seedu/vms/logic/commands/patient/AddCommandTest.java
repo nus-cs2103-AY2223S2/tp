@@ -8,6 +8,7 @@ import static seedu.vms.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -252,6 +253,12 @@ public class AddCommandTest {
         public ParseResult parseCommand(String userCommand) throws ParseException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
+        }
+
+        @Override
+        public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
         }
     }
 
