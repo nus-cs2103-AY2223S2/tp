@@ -22,6 +22,7 @@ public class SummaryWindow extends UiPart<Stage> {
 
     @FXML
     private Label countMessage;
+
     @FXML
     private Label tagMessage;
 

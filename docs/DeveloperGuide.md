@@ -276,7 +276,7 @@ This also allows user to access their summary easily as the summary tab will be 
     * Cons: Slight revamp of UI is needed.
 
 * **Alternative 2:** Display in the main page.
-  
+
     * Pros: East to implement.
     * Cons: Information will be cramped together.
 
@@ -303,7 +303,7 @@ The implementation is as follows:
 {more to be elaborated in the future}
 
 
-#### Why this implementation 
+#### Why this implementation
 
 
 ### \[Proposed\] Lead Receptivity feature
