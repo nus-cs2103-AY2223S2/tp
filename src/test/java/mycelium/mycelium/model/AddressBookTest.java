@@ -4,6 +4,7 @@ import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB
 import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
+import static mycelium.mycelium.testutil.TypicalEntities.BARD;
 import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,8 +71,8 @@ public class AddressBookTest {
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
         List<Client> newClients = List.of(
-                new ClientBuilder().build(),
-                new ClientBuilder().build()
+            new ClientBuilder().build(),
+            new ClientBuilder().build()
         );
         AddressBookStub newData = new AddressBookStub(List.of(), newClients, List.of());
 
@@ -87,6 +88,7 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(List.of(), List.of(), newProjects);
         assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
     }
+
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
@@ -107,7 +109,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -132,14 +134,14 @@ public class AddressBookTest {
         addressBook.addClient(john);
         assertTrue(addressBook.hasClient(john));
     }
-    // Should this be included?
-    //    @Test
-    //    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-    //        addressBook.addClient(new ClientBuilder.build());
-    //        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-    //                .build();
-    //        assertTrue(addressBook.hasPerson(editedAlice));
-    //    }
+
+    @Test
+    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addClient(WEST);
+        Client alsoWest = new ClientBuilder(WEST).withName("Kim Kardashian").build();
+        assertTrue(addressBook.hasClient(alsoWest));
+    }
+
     @Test
     public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
@@ -152,33 +154,31 @@ public class AddressBookTest {
 
     @Test
     public void hasProject_projectNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasProject(new ProjectBuilder().build()));
+        assertFalse(addressBook.hasProject(BARD));
     }
 
     @Test
     public void hasProject_projectInAddressBook_returnsTrue() {
-        Project project = new ProjectBuilder().build();
-        addressBook.addProject(project);
-        assertTrue(addressBook.hasProject(project));
+        addressBook.addProject(BARD);
+        assertTrue(addressBook.hasProject(BARD));
     }
 
     @Test
     public void hasProject_projectWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        Project project = new ProjectBuilder().build();
-        addressBook.addProject(project);
-        Project editedProject = new ProjectBuilder(project).withClientEmail("chungus@chungus.org").build();
-        assertTrue(addressBook.hasProject(editedProject));
+        addressBook.addProject(BARD);
+        Project alsoBard = new ProjectBuilder(BARD).withClientEmail("chungus@chungus.org").build();
+        assertTrue(addressBook.hasProject(alsoBard));
     }
 
     @Test
     public void getProjectList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
     }
+
     @Test
     public void equalsAndHashCode() {
-        Project project = new ProjectBuilder().build();
-        AddressBook abA = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(project).build();
-        AddressBook abB = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(project).build();
+        AddressBook abA = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(BARD).build();
+        AddressBook abB = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(BARD).build();
         // address books have same contents -> returns true
         // Note: assertEquals calls the object's equals() method
         assertEquals(abA, abB);
@@ -198,7 +198,6 @@ public class AddressBookTest {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        // TODO update the constructor here to take in a list of projects too
         AddressBookStub(Collection<Person> persons, Collection<Client> clients, Collection<Project> projects) {
             this.persons.setAll(persons);
             this.clients.setAll(clients);

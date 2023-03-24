@@ -3,9 +3,9 @@ package mycelium.mycelium.logic.commands;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static mycelium.mycelium.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static mycelium.mycelium.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

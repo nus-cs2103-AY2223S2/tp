@@ -17,7 +17,7 @@ import mycelium.mycelium.model.util.NonEmptyString;
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Clash of Clans";
     public static final ProjectStatus DEFAULT_STATUS = ProjectStatus.NOT_STARTED;
-    public static final Email DEFAULT_CLIENT_EMAIL = new Email("jamal@supercell.com");
+    public static final String DEFAULT_CLIENT_EMAIL = "jamal@supercell.com";
     public static final String DEFAULT_SOURCE = "fiverr";
     public static final String DEFAULT_DESCRIPTION = "Do this, and then that, and finally those.";
     public static final LocalDate DEFAULT_ACCEPTED_ON = LocalDate.of(1970, 1, 1);
@@ -25,7 +25,7 @@ public class ProjectBuilder {
     /* Initialize our builder with the defaults. */
     private String name = DEFAULT_NAME;
     private ProjectStatus status = DEFAULT_STATUS;
-    private Email clientEmail = DEFAULT_CLIENT_EMAIL;
+    private String clientEmail = DEFAULT_CLIENT_EMAIL;
     private String source = DEFAULT_SOURCE;
     private String description = DEFAULT_DESCRIPTION;
     private LocalDate acceptedOn = DEFAULT_ACCEPTED_ON;
@@ -43,7 +43,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project project) {
         this.name = project.getName().toString();
         this.status = project.getStatus();
-        this.clientEmail = project.getClientEmail();
+        this.clientEmail = project.getClientEmail().toString();
         this.source = project.getSource().map(NonEmptyString::getValue).orElse(null);
         this.description = project.getDescription().orElse(null);
         this.acceptedOn = project.getAcceptedOn();
@@ -80,7 +80,7 @@ public class ProjectBuilder {
      * Sets the project's client email.
      */
     public ProjectBuilder withClientEmail(Email email) {
-        this.clientEmail = email;
+        this.clientEmail = email.toString();
         return this;
     }
 
@@ -88,7 +88,8 @@ public class ProjectBuilder {
      * Sets the project's client email.
      */
     public ProjectBuilder withClientEmail(String email) {
-        this.clientEmail = new Email(email);
+        // NOTE: validation will be done when the project is built
+        this.clientEmail = email;
         return this;
     }
 
@@ -146,7 +147,7 @@ public class ProjectBuilder {
     public Project build() {
         return new Project(NonEmptyString.of(name),
             status,
-            clientEmail,
+            new Email(clientEmail),
             NonEmptyString.ofOptional(source),
             Optional.ofNullable(description),
             acceptedOn,
