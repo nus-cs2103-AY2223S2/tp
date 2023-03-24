@@ -231,6 +231,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+ 
+### List Feature 
+The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
+The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
+`ListCommand` extends `Command` and implements the following operation: 
+* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields. 
+
+The `ListCommandParser` class is used to parse and verify the user input to create the list command. 
+Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person. 
+
+The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate. 
+Otherwise, this list of Predicate classes include: 
+* `ListCommandLanguagePredicate`
+* `ListCommandTagPredicate`
+
+This Predicate class will return True as long as any of the Predicate classes inside it returns True.
+The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
+
+### Design considerations:
+**Filtering by other fields** 
+* Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
+  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
+  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
 
 ### Sort Feature
 The sort feature allows users to sort the list of persons and projects in the application. 
@@ -250,7 +273,7 @@ The `sort` makes use of a comparator that sorts the persons or projects by the c
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
 `FindCommand` extends `Command` and implements the following operation:
-* `FindCommand#execute()` — Finds and displats the list of persons in the application that contains the given keyword of each respective fields.
+* `FindCommand#execute()` — Finds and displays the list of persons in the application that contains the given keyword of each respective fields.
 
 The `FindCommandParser` class is used to parse & verify the user input to create the find command.
 Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
