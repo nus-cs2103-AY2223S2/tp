@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+/**
+ * Enum of all possible classifications of entities.
+ */
 public enum ClassificationTerms {
     //For future use if ever needed
     CHAR("char"),

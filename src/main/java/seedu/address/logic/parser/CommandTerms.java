@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+/**
+ * Enum of all possible commands that could be made.
+ */
 public enum CommandTerms {
     MAKE("make"),
     EDIT("edit"),
