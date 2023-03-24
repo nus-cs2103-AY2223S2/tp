@@ -75,7 +75,7 @@ public class SortMeetingCommand extends Command {
             }
             break;
         default:
-            throw new CommandException("something went wrong");
+            throw new CommandException("Something went wrong");
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortByPrefix.toString()));
     }
