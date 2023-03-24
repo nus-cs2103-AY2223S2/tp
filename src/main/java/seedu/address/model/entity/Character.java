@@ -1,7 +1,6 @@
 package seedu.address.model.entity;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import javafx.util.Pair;
