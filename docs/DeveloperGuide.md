@@ -278,7 +278,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
-| -------- | ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| -------- | ------------ |----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | staff member | add a patient                                      | record more information later                                                               |
 | `* * *`  | staff member | add a ward                                         | assign patients to the ward later                                                           |
 | `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
@@ -299,6 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | staff member | view patients by ward                              | find patients in a ward and check the occupancy within certain wards                        |
 | `* *`    | staff member | view patients by status                            | address higher priority patients more quickly                                               |
 | `* *`    | staff member | view list of wards                                 | see current wards in system at a glance                                                     |
+| `* *`    | staff member | view list of patients                              | see current patients in system at a glance                                                  |
 | `* *`    | staff member | update the name of a ward                          | keep the name of a ward up to date                                                          |
 | `* *`    | staff member | update the capacity of a ward                      | keep the maximum number of patients in a ward up to date                                    |
 | `* *`    | staff member | view the current total occupancy                   | see the total number of patients currently admitted                                         |
@@ -316,47 +317,52 @@ _{More to be added}_
 
 **MSS**
 
-1. User request to add a new patient to the system.
+1. User requests to add a new patient to MedInfo.
 2. The user enters patient details.
     1. The following are required information:
-        - Patient name
-        - Patient NRIC
+        - Name
+        - NRIC
     2. The following are non-required information:
-        - Patient status
+        - Status
+        - Ward
 3. The system adds the user into the MedInfo system.
-4. The system show the new created user in the patient list.
+4. The system shows the new created user in the patient list.
 
    Use case ends.
 
 **Extensions**
-* 2a. If any of the required fields are not completed
+* 2a. If any of the required fields are not completed.
 
     * 2a1. the user is informed of this and show the correct format for the command
 
 Use case resume at step 2.
 
-* 2b. If the patient NRIC is duplicate when compared to the records in the system
+* 2b. If the entered NRIC is already present in another record in the system.
 
-    * 2b1. the user is informed that he or she must have a different NRIC
+    * 2b1. the user is informed that the NRIC is already present in the system.
 
-Use case resume at step 2.
+  Use case resume at step 2.
 
-* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
+* 2c. If the input field is invalid.
 
-    * 2c1. If the NRIC is invalid, the user is informed of this, and correct format for the command is displayed.
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
 
-    * 2c2. If the status is invalid, the user is informed of this, and correct format for the command is displayed.
+    Use case resume at step 2.
 
-Use case resume at step 2.
+* 2d. If the entered ward is not present in the system.
+
+    * 2d1. the user is informed that the ward does not exist in the system.
+
+    Use case resume at step 2.
 
 
-**Use case: Delete a patient**
+**Use case: UC02 - Delete a patient**
 
 **MSS**
 
 1.  User requests to list patients
 2.  MedInfo shows a list of patients
-3.  User requests to delete a specific patient in the list
+3.  User requests to delete a specific patient in the list by NRIC
 4.  MedInfo deletes the patient
 
     Use case ends.
@@ -367,11 +373,57 @@ Use case resume at step 2.
 
   Use case ends.
 
-- 3a. The given NRIC is invalid.
+- 3a. The requested patient's NRIC is invalid.
 
   - 3a1. MedInfo shows an error message.
 
     Use case resumes at step 2.
+
+- 3b. The requested patient's NRIC does not exist in the system.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - Edit a patient**
+
+**MSS**
+
+1.  User requests to list patients
+2.  MedInfo shows a list of patients
+3.  User requests to edit a specific patient in the list by NRIC
+    1. The following can be edited:
+       - Status
+       - Ward
+    2. The following cannot be edited:
+       - Name
+       - NRIC
+4.  MedInfo edits the patient
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+- 3a. The requested patient's NRIC is invalid.
+
+    - 3a1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. The requested patient's NRIC does not exist in the system.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3c. User tries to edit a non-editable field (Name/NRIC).
+
+    - 3c1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
 
 _{More to be added}_
 
