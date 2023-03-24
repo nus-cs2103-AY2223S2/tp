@@ -39,6 +39,10 @@ public class Date implements Comparable<Date> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isPastDate() {
+        return date.isBefore(LocalDate.now());
+    }
+
     @Override
     public int compareTo(Date otherDate) {
         return date.compareTo(otherDate.date);
