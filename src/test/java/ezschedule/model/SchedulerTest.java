@@ -1,7 +1,6 @@
 package ezschedule.model;
 
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_A;
-import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
 import static ezschedule.testutil.Assert.assertThrows;
 import static ezschedule.testutil.TypicalEvents.ART;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
@@ -46,8 +45,10 @@ public class SchedulerTest {
     @Test
     public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
         // Two events with the same identity fields
-        Event editedA = new EventBuilder(ART).withStartTime(VALID_START_TIME_B).build();
-        List<Event> newEvents = Arrays.asList(ART, editedA);
+        Event editedA = new EventBuilder(ART).build();
+        Event editedB = new EventBuilder(ART).build();
+
+        List<Event> newEvents = Arrays.asList(editedA, editedB);
         SchedulerStub newData = new SchedulerStub(newEvents);
 
         assertThrows(DuplicateEventException.class, () -> scheduler.resetData(newData));
