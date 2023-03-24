@@ -83,8 +83,6 @@ Examples:
 ![add message](images/UIscreenshots/patientSS/patientAddresult.png)
 ![add message](images/UIscreenshots/patientSS/patientAdd.png)
 
-
-
 [Back to top](#top)
 
 ### List all Patient records : `p list`
@@ -159,9 +157,14 @@ Edits an existing patient in the careflow.
 Format: `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`
 
 Example:
-* p update John -ph 91234567 -em johndoe@example.com -ec 81234567 Edits the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 81234567 respectively.
-* p update Bety -n Betsy Crower -da Aspirin Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
+* `p update John Doe -ph 91234567 -em johndoe@example.com -ec 98765432`
+* Edits the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 98765432 respectively.
+* `p update Bety -n Betsy Crower -da Aspirin`
+* Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
+![](images/UIscreenshots/patientSS/pupdate.png)
+![](images/UIscreenshots/patientSS/pIC.png)
+![](images/UIscreenshots/patientSS/pupdateres.png)
 
 [Back to top](#top)
 
@@ -303,7 +306,7 @@ _Details coming soon ..._
 | Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                      | `g help`                                                                                                                                                                                                                                                                                        |
-| **Add patient**               | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <br> e.g., `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` |                                           |                                        |
+| **Add patient**               | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <br> e.g., `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` |
 | **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
 | **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
