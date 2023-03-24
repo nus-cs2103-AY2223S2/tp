@@ -41,14 +41,14 @@ If this is the first time you are using this user guide, we highly recommend you
         5. [**Add a label to a contact `tag`**](#add-a-label-to-a-contact-tag)
         6. [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
     4. [**Advanced Commands**](#advanced-commands)
-       1. [**Search Commands**](#search-commands)
-          1. [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
-          2. [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
-       2. [**Storage Commands**](#storage-commands)
-          1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
-          2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
-       3. [**Meet Commands**](#meet-commands)
-          1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
+        1. [**Search Commands**](#search-commands)
+            1. [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
+            2. [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
+        2. [**Storage Commands**](#storage-commands)
+            1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
+            2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
+        3. [**Meet Commands**](#meet-commands)
+            1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
     5. [**Other Commands**](#other-commands)
         1. [**Exit the application**](#exit-the-application)
 7. [**FAQ**](#faq)
@@ -312,7 +312,7 @@ What you should see:<br>
 
 Examples:
 * `view 5`: Views the profile of the fifth contact in EduMate.
-* `view n/Wen Li`: Views Wen Li's profile. 
+* `view n/Wen Li`: Views Wen Li's profile.
 
 ### Edit a contact's details `edit`
 
@@ -437,12 +437,13 @@ The search commands allow you to easily navigate and manage your EduMate. Instea
 
 #### Filter contacts by keywords `find`
 
-Finds persons whose specified fields contain any of the given keywords.
+Finds persons whose specified fields contain any of the given keywords limited to only one attribute.
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: You can use this command if:
-* {fill in}
+* you want to find a specific person and know specific informataion about that person
+* you want to obtain a list of people that you want to use the other commands on
 
 </div>
 
@@ -560,7 +561,7 @@ Edits the profile of a contact.
 <div markdown="block" class="alert alert-info">
 
 You can use this command if:
-* 
+*
 
 </div>
 
