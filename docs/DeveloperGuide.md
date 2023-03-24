@@ -239,6 +239,55 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Prefix find Feature
+
+#### Proposed Implementation
+
+The proposed Prefix find feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+`FindCommandParser#parse()`, `ArgumentTokenizer#Tokenize()`, `ArgumentMultimap#getValue()`, and `FindCommand#execute()`
+ methods.
+
+Given below is an example usage scenario and how the Prefix find mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes the `find a/ 13 n/ Thomas p/ 612` command to filter the list of cases which contain a dengue
+ case associated with the name Thomas, who is of the age 13 and has a postal code beginning with 612.
+
+Step 3. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `find` command word,
+ passes the argument `a/ 13 n/ Thomas p/ 612` to the `FindCommandParser`.
+
+Step 4. `FindCommandParser#parse()` will call on `ArgumentTokenizer#Tokenize()` and subsequently gets the values of
+ each individual Prefix using `ArgumentMultimap#getValue()`.
+
+Step 5. `FindCommand#execute()` will get the most updated list of filtered Persons based on the values given from
+`ArgumentMultimap#getValue()` and shows it on the User Interface.
+
+The following sequence diagram summarises what happens when a user executes a Prefix find operation:
+
+![PrefixFindSequenceDiagram](images/PrefixFindSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a Prefix find operation:
+
+![PrefixFindActivityDiagram](images/PrefixFindActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How Prefix find handle input that does not make sense (Numerics in names, non-existent postal codes
+or age past 200)**
+
+* **Alternative 1 (current choice):** Accepts the user input and executes the find command as per usual.
+  * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
+would not have to change if new postal codes were to be implemented.
+  * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
+what they keyed in.
+
+
+* **Alternative 2:** Displays a message indicating that the input may be erroneous for each of the available prefix.
+  * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their input
+may be unintended.
+  * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
+
 ### \[Proposed\] Multi-index delete feature
 
 #### Proposed Implementation
