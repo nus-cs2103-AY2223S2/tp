@@ -66,5 +66,4 @@ public class EditExpenseCommandTest {
                 null);
         assertThrows(CommandException.class, () -> editExpenseCommand.execute(model));
     }
-
 }
