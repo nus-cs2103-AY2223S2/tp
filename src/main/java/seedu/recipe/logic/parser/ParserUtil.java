@@ -75,7 +75,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code step} is invalid.
      */
     public static Step parseStepHelper(String step) throws ParseException {
-        requireNonNull(step);
+
+        // requireNonNull(step);
         String trimmedStep = step.trim();
         if (!Step.isValidStep(trimmedStep)) {
             throw new ParseException(Step.MESSAGE_CONSTRAINTS);
