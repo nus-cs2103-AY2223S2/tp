@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleExpenseTracker;
 import seedu.address.storage.ExpenseTrackerStorage;
 import seedu.address.storage.JsonExpenseTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -35,7 +36,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -85,7 +86,7 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample ExpenseTracker");
             }
             // TODO update sample data
-            initialData = expenseTrackerOptional.get();
+            initialData = expenseTrackerOptional.orElseGet(SampleExpenseTracker::getSampleExpenseTracker);
             // initialData =
             // addressBookOptional.orElseGet(SampleDataUtil::getSampleCategoryData);
             // initialData =
