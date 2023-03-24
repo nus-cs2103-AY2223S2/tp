@@ -23,9 +23,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
-import seedu.address.logic.commands.util.EditPersonDescriptor;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
@@ -72,25 +70,25 @@ public class EditCommand extends Command {
             + PREFIX_AGE + "73 ";
 
     private final Nric nric;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditDescriptor editDescriptor;
 
     /**
      * Creates an {@code EditCommand} to edit a person.
      *
      * @param nric Of the person in volunteer or elderly list to edit.
-     * @param editPersonDescriptor Details to edit the person with.
+     * @param editDescriptor Details to edit the person with.
      */
-    public EditCommand(Nric nric, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Nric nric, EditDescriptor editDescriptor) {
         requireNonNull(nric);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editDescriptor);
 
         this.nric = nric;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
         requireNonNull(model);
@@ -106,14 +104,13 @@ public class EditCommand extends Command {
 
     private CommandResult editElderly(Model model) throws CommandException {
         Elderly elderlyToEdit = model.getElderly(nric);
-        Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
-                elderlyToEdit, editPersonDescriptor);
+        Elderly editedElderly = EditDescriptor.createEditedElderly(
+                elderlyToEdit, editDescriptor);
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
             throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
-
         @SuppressWarnings("unchecked")
         Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
         model.updateFilteredElderlyList(predicate);
@@ -123,12 +120,11 @@ public class EditCommand extends Command {
 
     private CommandResult editVolunteer(Model model) throws CommandException {
         Volunteer volunteerToEdit = model.getVolunteer(nric);
-        Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
-                volunteerToEdit, editPersonDescriptor);
+        Volunteer editedVolunteer = EditDescriptor.createEditedVolunteer(
+                volunteerToEdit, editDescriptor);
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
             throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
-
         model.setVolunteer(volunteerToEdit, editedVolunteer);
         @SuppressWarnings("unchecked")
         Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
@@ -152,11 +148,11 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return nric.equals(e.nric)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editDescriptor.equals(e.editDescriptor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nric, editPersonDescriptor);
+        return Objects.hash(nric, editDescriptor);
     }
 }

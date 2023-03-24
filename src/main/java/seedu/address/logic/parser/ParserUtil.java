@@ -26,6 +26,16 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    /**
+     * Defines the functional interface that the argument parsers should follow.
+     *
+     * @param <R> The return type.
+     */
+    @FunctionalInterface
+    public interface ArgumentParser<String, R> {
+        R apply(String t) throws ParseException;
+    }
+
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**

@@ -146,6 +146,15 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Set<AvailableDate> getAvailableDateSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(s -> {
+                    String[] parts = s.split(",");
+                    return new AvailableDate(parts[0], parts[1]);
+                })
+                .collect(Collectors.toSet());
+    }
+
     public static AvailableDate getAvailableDate(String startDate, String endDate) {
         return new AvailableDate(startDate, endDate);
     }

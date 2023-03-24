@@ -94,7 +94,6 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
-** TODO: Update image **
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FriendlyLinkParser` class to parse the user command.
@@ -102,18 +101,16 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a pair).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_elderly S1234567I")` API call.
 
-![Interactions Inside the Logic Component for the `delete_elderly S1234567A` Command](images/DeleteSequenceDiagram.png)
-** TODO: update image **
+![Interactions Inside the Logic Component for the `delete_elderly S1234567I` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteElderlyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
-** TODO: Update image **
 
 How the parsing works:
 * When called upon to parse a user command, the `FriendlyLinkParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPairCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPairCommand`) which the `FriendlyLinkParser` returns back as a `Command` object.
@@ -280,6 +277,8 @@ of `Model` respectively.
 As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
 the NRIC `S1234567I` belongs to an existing **volunteer**:
 ![](images/developerGuide/EditSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### Find by keyword
 
