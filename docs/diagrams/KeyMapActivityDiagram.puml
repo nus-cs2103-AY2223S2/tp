@@ -1,0 +1,25 @@
+@startuml
+start
+:User presses a key;
+if () then ([UP key pressed])
+    :Checks for existing previous command;
+    if () then ([Previous command exists])
+    :Sets text to textfield;
+
+    elseif () then ([Reached oldest command])
+    :Text in textfield remains
+    as the oldest command;
+
+    else ([else])
+    endif
+elseif() then ([DOWN key pressed])
+    :Checks for history;
+    if () then ([Newer command exists])
+    :Sets text to textfield;
+    else ([else])
+    endif
+else([else])
+endif
+stop
+@enduml
+

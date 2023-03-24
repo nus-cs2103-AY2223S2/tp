@@ -1,218 +1,215 @@
 <?xml version="1.0" encoding="us-ascii" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
-     height="945px" preserveAspectRatio="none" style="width:844px;height:944px;background:#FFFFFF;" version="1.1"
-     viewBox="0 0 844 944" width="844.2px" zoomAndPan="magnify">
+     height="675px" preserveAspectRatio="none" style="width:613px;height:675px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 613 675" width="613px" zoomAndPan="magnify">
     <defs/>
     <g><!--cluster Storage-->
         <g id="cluster_Storage">
-            <rect fill="none" height="863.8" rx="3.5" ry="3.5" style="stroke:#000000;stroke-width:2.0999999999999996;"
-                  width="826" x="9.8" y="72.8"/>
-            <text fill="#000000" font-family="sans-serif" font-size="19.6" font-weight="bold" lengthAdjust="spacing"
-                  textLength="75.6" x="385" y="96.5523">Storage
+            <rect fill="none" height="617" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="600" x="7"
+                  y="52"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="54" x="280" y="68.9659">Storage
             </text>
         </g><!--cluster UserPrefs Storage-->
         <g id="cluster_UserPrefs Storage">
-            <rect fill="#F1F3F1" height="267.4" rx="3.5" ry="3.5"
-                  style="stroke:#000000;stroke-width:2.0999999999999996;" width="257.6" x="544.6" y="137.2"/>
-            <text fill="#000000" font-family="sans-serif" font-size="19.6" font-weight="bold" lengthAdjust="spacing"
-                  textLength="175" x="585.9" y="160.9523">UserPrefs Storage
+            <rect fill="#F1F3F1" height="191" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="184"
+                  x="399" y="98"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="125" x="428.5" y="114.9659">UserPrefs Storage
             </text>
         </g><!--cluster EduMate Storage-->
         <g id="cluster_EduMate Storage">
-            <rect fill="#F1F3F1" height="765.8" rx="3.5" ry="3.5"
-                  style="stroke:#000000;stroke-width:2.0999999999999996;" width="285.6" x="43.4" y="137.2"/>
-            <text fill="#000000" font-family="sans-serif" font-size="19.6" font-weight="bold" lengthAdjust="spacing"
-                  textLength="166.6" x="102.9" y="160.9523">EduMate Storage
+            <rect fill="#F1F3F1" height="547" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="212"
+                  x="31" y="98"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="119" x="77.5" y="114.9659">EduMate Storage
             </text>
         </g><!--class Storage1-->
         <g id="elem_Storage1">
-            <rect codeLine="13" fill="#FA9E0D" height="67.3902" id="Storage1" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="112" x="379.4" y="190.4"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="103.6"
-                  x="383.6" y="218.3523">&#171;interface&#187;
+            <rect codeLine="13" fill="#FA9E0D" height="48.1358" id="Storage1" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="281" y="136"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="284"
+                  y="155.9659">&#171;interface&#187;
             </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="72.8" x="399"
-                  y="245.0474">Storage
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="52" x="295"
+                  y="175.0339">Storage
             </text>
         </g><!--class StorageManager-->
         <g id="elem_StorageManager">
-            <rect codeLine="14" fill="#FA9E0D" height="40.6951" id="StorageManager" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="166.6" x="352.1" y="341.6"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="158.2"
-                  x="356.3" y="369.5523">StorageManager
+            <rect codeLine="14" fill="#FA9E0D" height="29.0679" id="StorageManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="119" x="261.5" y="244"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="113" x="264.5"
+                  y="263.9659">StorageManager
             </text>
         </g><!--class UserPrefsStorage-->
         <g id="elem_UserPrefsStorage">
-            <rect codeLine="9" fill="#FA9E0D" height="67.3902" id="UserPrefsStorage" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="172.2" x="567.7" y="190.4"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="103.6" x="602"
-                  y="218.3523">&#171;interface&#187;
+            <rect codeLine="9" fill="#FA9E0D" height="48.1358" id="UserPrefsStorage" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="123" x="415.5" y="136"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="440"
+                  y="155.9659">&#171;interface&#187;
             </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="163.8"
-                  x="571.9" y="245.0474">UserPrefsStorage
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="418.5"
+                  y="175.0339">UserPrefsStorage
             </text>
         </g><!--class JsonUserPrefsStorage-->
         <g id="elem_JsonUserPrefsStorage">
-            <rect codeLine="10" fill="#FA9E0D" height="40.6951" id="JsonUserPrefsStorage" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="211.4" x="567.7" y="341.6"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="203" x="571.9"
-                  y="369.5523">JsonUserPrefsStorage
+            <rect codeLine="10" fill="#FA9E0D" height="29.0679" id="JsonUserPrefsStorage" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="151" x="415.5" y="244"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="145" x="418.5"
+                  y="263.9659">JsonUserPrefsStorage
             </text>
         </g><!--class EduMateStorage-->
         <g id="elem_EduMateStorage">
-            <rect codeLine="17" fill="#FA9E0D" height="67.3902" id="EduMateStorage" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="165.2" x="141.4" y="190.4"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="103.6"
-                  x="172.2" y="218.3523">&#171;interface&#187;
+            <rect codeLine="17" fill="#FA9E0D" height="48.1358" id="EduMateStorage" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="118" x="109" y="136"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="131"
+                  y="155.9659">&#171;interface&#187;
             </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="156.8"
-                  x="145.6" y="245.0474">EduMateStorage
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="112" x="112"
+                  y="175.0339">EduMateStorage
             </text>
-        </g><!--class JsonEduMateStorage-->
-        <g id="elem_JsonEduMateStorage">
-            <rect codeLine="18" fill="#FA9E0D" height="40.6951" id="JsonEduMateStorage" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="204.4" x="91" y="341.6"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="196" x="95.2"
-                  y="369.5523">JsonEduMateStorage
+        </g><!--class EduMateStorageManager-->
+        <g id="elem_EduMateStorageManager">
+            <rect codeLine="18" fill="#FA9E0D" height="29.0679" id="EduMateStorageManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="179" x="47.5" y="244"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="173" x="50.5"
+                  y="263.9659">EduMateStorageManager
             </text>
         </g><!--class JsonSerializableEduMate-->
         <g id="elem_JsonSerializableEduMate">
-            <rect codeLine="19" fill="#FA9E0D" height="40.6951" id="JsonSerializableEduMate" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="240.8" x="65.8" y="466.2"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="232.4" x="70"
-                  y="494.1523">JsonSerializableEduMate
+            <rect codeLine="19" fill="#FA9E0D" height="29.0679" id="JsonSerializableEduMate" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="172" x="51" y="333"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="166" x="54"
+                  y="352.9659">JsonSerializableEduMate
             </text>
         </g><!--class JsonAdaptedPerson-->
         <g id="elem_JsonAdaptedPerson">
-            <rect codeLine="20" fill="#FA9E0D" height="40.6951" id="JsonAdaptedPerson" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="191.8" x="90.3" y="715.4"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="183.4" x="94.5"
-                  y="743.3523">JsonAdaptedPerson
+            <rect codeLine="20" fill="#FA9E0D" height="29.0679" id="JsonAdaptedPerson" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="137" x="66.5" y="511"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="131" x="69.5"
+                  y="530.9659">JsonAdaptedPerson
             </text>
         </g><!--class JsonAdaptedUser-->
         <g id="elem_JsonAdaptedUser">
-            <rect codeLine="21" fill="#FA9E0D" height="40.6951" id="JsonAdaptedUser" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="170.8" x="126" y="590.8"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="162.4"
-                  x="130.2" y="618.7523">JsonAdaptedUser
+            <rect codeLine="21" fill="#FA9E0D" height="29.0679" id="JsonAdaptedUser" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="122" x="94" y="422"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="116" x="97"
+                  y="441.9659">JsonAdaptedUser
             </text>
         </g><!--class JsonAdaptedTag-->
         <g id="elem_JsonAdaptedTag">
-            <rect codeLine="22" fill="#FA9E0D" height="40.6951" id="JsonAdaptedTag" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="162.4" x="105" y="840"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="154" x="109.2"
-                  y="867.9523">JsonAdaptedTag
+            <rect codeLine="22" fill="#FA9E0D" height="29.0679" id="JsonAdaptedTag" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="116" x="77" y="600"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="110" x="80"
+                  y="619.9659">JsonAdaptedTag
             </text>
         </g><!--class HiddenOutside-->
         <g id="elem_HiddenOutside">
-            <rect codeLine="27" fill="#FFFFFF" height="40.6951" id="HiddenOutside" rx="3.5" ry="3.5"
-                  style="stroke:#FFFFFF;stroke-width:1.3999999999999997;" width="151.2" x="359.8" y="9.8"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="19.6" lengthAdjust="spacing" textLength="142.8" x="364"
-                  y="37.7523">HiddenOutside
+            <rect codeLine="27" fill="#FFFFFF" height="29.0679" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="108" x="267" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="102" x="270"
+                  y="26.9659">HiddenOutside
             </text>
         </g><!--link HiddenOutside to Storage1-->
         <g id="link_HiddenOutside_Storage1">
-            <path codeLine="28" d="M435.4,50.876 C435.4,81.228 435.4,140.658 435.4,181.006 " fill="none"
-                  id="HiddenOutside-to-Storage1"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;stroke-dasharray:7.0,7.0;"/>
-            <polygon fill="#FA9E0D" points="435.4,187.684,441,175.084,435.4,180.684,429.8,175.084,435.4,187.684"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="28" d="M321,36.34 C321,58.02 321,100.47 321,129.29 " fill="none"
+                  id="HiddenOutside-to-Storage1" style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FA9E0D" points="321,134.06,325,125.06,321,129.06,317,125.06,321,134.06"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--reverse link Storage1 to StorageManager-->
         <g id="link_Storage1_StorageManager">
-            <path codeLine="30" d="M435.4,287.938 C435.4,307.202 435.4,326.998 435.4,341.04 " fill="none"
+            <path codeLine="30" d="M321,205.67 C321,219.43 321,233.57 321,243.6 " fill="none"
                   id="Storage1-backto-StorageManager"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;stroke-dasharray:7.0,7.0;"/>
-            <polygon fill="none" points="425.6,288.218,435.4,260.218,445.2,288.218,425.6,288.218"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+                  style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="314,205.87,321,185.87,328,205.87,314,205.87"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--reverse link UserPrefsStorage to StorageManager-->
         <g id="link_UserPrefsStorage_StorageManager">
-            <path codeLine="31" d="M593.418,262.752 C552.398,288.12 499.814,320.656 466.858,341.04 " fill="none"
-                  id="UserPrefsStorage-backto-StorageManager" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="31" d="M433.87,187.68 C404.57,205.8 367.01,229.04 343.47,243.6 " fill="none"
+                  id="UserPrefsStorage-backto-StorageManager" style="stroke:#FA9E0D;stroke-width:1.1;"/>
             <polygon fill="#FA9E0D"
-                     points="599.13,259.224,585.4697,261.0993,593.1794,262.9106,591.3682,270.6203,599.13,259.224"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="9.8"
-                  x="577.7781" y="288.2905">1
+                     points="437.95,185.16,428.1927,186.4995,433.6996,187.7933,432.4059,193.3002,437.95,185.16"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="422.6986" y="205.9218">1
             </text>
         </g><!--reverse link EduMateStorage to StorageManager-->
         <g id="link_EduMateStorage_StorageManager">
-            <path codeLine="32" d="M282.45,262.752 C322.154,288.12 373.058,320.656 404.95,341.04 " fill="none"
-                  id="EduMateStorage-backto-StorageManager" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="32" d="M210.3,187.68 C239.04,205.8 275.88,229.04 298.97,243.6 " fill="none"
+                  id="EduMateStorage-backto-StorageManager" style="stroke:#FA9E0D;stroke-width:1.1;"/>
             <polygon fill="#FA9E0D"
-                     points="276.962,259.252,284.5781,270.7461,282.8652,263.014,290.5973,261.3011,276.962,259.252"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="9.8"
-                  x="276.0699" y="288.2905">1
+                     points="206.32,185.17,211.7924,193.3586,210.5471,187.8405,216.0652,186.5952,206.32,185.17"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="205.7961" y="205.9218">1
             </text>
         </g><!--reverse link UserPrefsStorage to Storage1-->
         <g id="link_UserPrefsStorage_Storage1">
-            <path codeLine="34" d="M537.026,224 C521.92,224 506.814,224 491.708,224 " fill="none"
-                  id="UserPrefsStorage-backto-Storage1" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <polygon fill="none" points="536.942,214.2,564.942,224,536.942,233.8,536.942,214.2"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="34" d="M393.59,160 C382.8,160 372.01,160 361.22,160 " fill="none"
+                  id="UserPrefsStorage-backto-Storage1" style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <polygon fill="none" points="393.53,153,413.53,160,393.53,167,393.53,153"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--link Storage1 to EduMateStorage-->
         <g id="link_Storage1_EduMateStorage">
-            <path codeLine="35" d="M378.714,224 C364.714,224 350.7,224 336.686,224 " fill="none"
-                  id="Storage1-to-EduMateStorage" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <polygon fill="none" points="337.106,233.8,309.106,224,337.106,214.2,337.106,233.8"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="35" d="M280.81,160 C270.11,160 259.42,160 248.72,160 " fill="none"
+                  id="Storage1-to-EduMateStorage" style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <polygon fill="none" points="248.98,167,228.98,160,248.98,153,248.98,167"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--reverse link UserPrefsStorage to JsonUserPrefsStorage-->
         <g id="link_UserPrefsStorage_JsonUserPrefsStorage">
-            <path codeLine="37" d="M662.774,287.238 C665.602,306.726 668.514,326.83 670.572,341.04 " fill="none"
+            <path codeLine="37" d="M483.41,205.17 C485.43,219.09 487.51,233.45 488.98,243.6 " fill="none"
                   id="UserPrefsStorage-backto-JsonUserPrefsStorage"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;stroke-dasharray:7.0,7.0;"/>
-            <polygon fill="none" points="653.17,289.324,658.854,260.204,672.574,286.51,653.17,289.324"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-        </g><!--reverse link EduMateStorage to JsonEduMateStorage-->
-        <g id="link_EduMateStorage_JsonEduMateStorage">
-            <path codeLine="38" d="M209.902,287.238 C205.464,306.726 200.872,326.83 197.638,341.04 " fill="none"
-                  id="EduMateStorage-backto-JsonEduMateStorage"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;stroke-dasharray:7.0,7.0;"/>
-            <polygon fill="none" points="200.298,285.292,216.076,260.176,219.408,289.646,200.298,285.292"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-        </g><!--link JsonEduMateStorage to JsonSerializableEduMate-->
-        <g id="link_JsonEduMateStorage_JsonSerializableEduMate">
-            <path codeLine="39" d="M192.08,382.872 C190.918,402.934 189.112,434.336 187.81,457.044 " fill="none"
-                  id="JsonEduMateStorage-to-JsonSerializableEduMate"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;stroke-dasharray:7.0,7.0;"/>
-            <polygon fill="#FA9E0D"
-                     points="187.446,463.47,193.7577,451.211,187.8465,456.4815,182.5761,450.5702,187.446,463.47"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+                  style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="476.55,206.66,480.61,185.86,490.41,204.65,476.55,206.66"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+        </g><!--reverse link EduMateStorage to EduMateStorageManager-->
+        <g id="link_EduMateStorage_EduMateStorageManager">
+            <path codeLine="38" d="M153.97,204.68 C149.45,218.74 144.76,233.33 141.46,243.6 " fill="none"
+                  id="EduMateStorage-backto-EduMateStorageManager"
+                  style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="147.25,202.7,160.03,185.8,160.58,206.98,147.25,202.7"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+        </g><!--link EduMateStorageManager to JsonSerializableEduMate-->
+        <g id="link_EduMateStorageManager_JsonSerializableEduMate">
+            <path codeLine="39" d="M137,273.48 C137,287.81 137,310.24 137,326.46 " fill="none"
+                  id="EduMateStorageManager-to-JsonSerializableEduMate"
+                  style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FA9E0D" points="137,331.04,141,322.04,137,326.04,133,322.04,137,331.04"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--link JsonSerializableEduMate to JsonAdaptedPerson-->
         <g id="link_JsonSerializableEduMate_JsonAdaptedPerson">
             <path codeLine="40"
-                  d="M162.918,507.15 C142.114,525.98 113.092,556.738 100.8,590.8 C84.7,635.418 124.068,681.618 154.574,709.156 "
+                  d="M120.37,362.25 C105.51,375.7 84.78,397.67 76,422 C64.59,453.6 91.87,486.68 113.04,506.44 "
                   fill="none" id="JsonSerializableEduMate-to-JsonAdaptedPerson"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+                  style="stroke:#FA9E0D;stroke-width:1.1;"/>
             <polygon fill="#FA9E0D"
-                     points="159.726,713.678,153.9547,701.1555,154.4666,709.0586,146.5636,709.5705,159.726,713.678"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="9.8"
-                  x="140.5414" y="698.906">*
+                     points="116.6,509.67,112.6416,500.6516,112.9042,506.3024,107.2534,506.5649,116.6,509.67"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="103.0574" y="499.1091">*
             </text>
         </g><!--link JsonSerializableEduMate to JsonAdaptedUser-->
         <g id="link_JsonSerializableEduMate_JsonAdaptedUser">
-            <path codeLine="41" d="M190.246,507.472 C194.404,527.534 200.9,558.936 205.59,581.644 " fill="none"
-                  id="JsonSerializableEduMate-to-JsonAdaptedUser"
-                  style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+            <path codeLine="41" d="M139.89,362.48 C142.86,376.81 147.5,399.24 150.85,415.46 " fill="none"
+                  id="JsonSerializableEduMate-to-JsonAdaptedUser" style="stroke:#FA9E0D;stroke-width:1.1;"/>
             <polygon fill="#FA9E0D"
-                     points="206.934,588.098,209.8637,574.6244,205.5151,581.2433,198.8962,576.8947,206.934,588.098"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
+                     points="151.81,420.07,153.9027,410.446,150.7965,415.1738,146.0687,412.0676,151.81,420.07"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
         </g><!--link JsonAdaptedPerson to JsonAdaptedTag-->
         <g id="link_JsonAdaptedPerson_JsonAdaptedTag">
-            <path codeLine="42" d="M186.2,756.672 C186.2,776.734 186.2,808.136 186.2,830.844 " fill="none"
-                  id="JsonAdaptedPerson-to-JsonAdaptedTag" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <polygon fill="#FA9E0D" points="186.2,837.256,191.8,824.656,186.2,830.256,180.6,824.656,186.2,837.256"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="9.8"
-                  x="174.6544" y="823.5082">*
+            <path codeLine="42" d="M135,540.48 C135,554.81 135,577.24 135,593.46 " fill="none"
+                  id="JsonAdaptedPerson-to-JsonAdaptedTag" style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <polygon fill="#FA9E0D" points="135,598.04,139,589.04,135,593.04,131,589.04,135,598.04"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="126.7531" y="588.2202">*
             </text>
         </g><!--link JsonAdaptedUser to JsonAdaptedPerson-->
         <g id="link_JsonAdaptedUser_JsonAdaptedPerson">
-            <path codeLine="43" d="M207.354,632.072 C204.372,646.45 200.2,666.666 196.336,685.314 " fill="none"
-                  id="JsonAdaptedUser-to-JsonAdaptedPerson" style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-            <polygon fill="none" points="205.94,687.274,190.666,712.698,186.746,683.298,205.94,687.274"
-                     style="stroke:#FA9E0D;stroke-width:1.5399999999999998;"/>
-        </g><!--SRC=[dLB9ReCm4Btp5IwzLGA9UuH4Q9fk2L6MMwJ8XGcnuXZaHLNRzDzhKaY83JsK0ykyPPWtlY4ifIe39EG71RzK1-g8FM4bvlY0CEV5-t97qZq38L3W1oOO5xJWQB5Cvj5uj8cJrsJUegGK2p74wJxdXM9P5zafDOnpG0jPyEhvTIcvAm5ync4h6jH5a-Xf-YlT3AFuPJnFLjDxBOghLiWT30YJmBSuXJ1SixF1MOy5CekrzbaK5j_vTdgSsuRrUr1Jwyy9PlhEM-ECCZN14luxJ2rlTxukjGRf1HR02QRa4xzHg4ajDCfmAI6R0TSVThsAnwukSLxbT8xgaMGPi4H9GVJ1kdquNSvrrVV3IspETMB8LwL_RE46xAdI2v4RkFOcUvb67WqnG1w5hVHqjpulJU4atvqufalNaMd-tlAprz9G3TikeewhRtizTUHLez-v7NlzIs5ksr9t-LOdm11gsZ7iwFq3]-->
+            <path codeLine="43" d="M151.79,451.48 C149.4,461.88 146.02,476.54 142.93,490 " fill="none"
+                  id="JsonAdaptedUser-to-JsonAdaptedPerson" style="stroke:#FA9E0D;stroke-width:1.1;"/>
+            <polygon fill="none" points="149.85,491.16,138.54,509.08,136.2,488.02,149.85,491.16"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+        </g><!--SRC=[dLBBReCm4Bpp5IwzLGA9UuH4Q9g-4g8alLMANDWGAuv1VgXgc_vxJMeICD13EG2UdPcrPtr5M4fL1aZ83mf-gGxK4Nl2Iipn0M7EY_VrZgHx1aAWm0_iObpGWgFLEbb6qyacJfwJPOEIKYp46AVxd1UAPNrafzHbd0DQoO9NtwyBvBu8u0iEMr5NNJIB7kQ_qiquYf-co-HbVgj5STKAkQCHOHBu5gSGXg_iR73MOu5iq6WVHT7XEz_EW7FJqFm7XcgMCypqcpUECydK34luxs6ClDcv3HbT6wotSJda2ZZ1b7pYDmg6swX66IubP0lWUj75guIww1hdLLJdjEv9bW5Bb1H4twthkzFZj57V3o_9EUtT8b-L_h5HjygUAhqGkO7R7UOWqygg9WR8ex2LdkusvAKfdEIx4yTswRirzUuxVhsJgTcMym1NXpOqmm4SULK0DsxFTFzIs3FlgFjygtjW2JNj6FRq_W40]-->
     </g>
 </svg>

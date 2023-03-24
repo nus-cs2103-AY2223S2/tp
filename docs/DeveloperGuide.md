@@ -22,6 +22,7 @@ title: Developer Guide
      * [Main Components of the Architecture](#main-components-of-the-architecture)
      * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
    * [UI Component](#ui-component)
+   * [Key_Mapping](#key-mapping)
    * [Model Component](#model-component)
    * [Person](#person)
        * [Name](#name)
@@ -142,7 +143,7 @@ To be filled
 ---
 
 ## **Core Technologies**
-To be filled
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html).
 
 ---
 
@@ -335,6 +336,15 @@ The `UI` component,
 
 {to be filled by Zichen}
 
+
+## **Key Mapping**
+
+<img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
+</div>
+
+The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
 ---
 
 ## **Model Component**
@@ -349,6 +359,7 @@ The `UI` component,
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the command history i.e., all command strings (which are contained in a `ArrayList<String>` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -599,6 +610,13 @@ For example, if the user wants to search for a person but does not know the full
 
 **Describing the find** - `ContainsKeywordPredicate` class which extends from `Predicate` handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
 
+In summary, the activity diagram is as such:
+
+<img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>find</code> command
+</div>
+
 
 #### **Sort Command**
 
@@ -723,11 +741,11 @@ How the parsing works:
 
 #### **Argument Multimap**
 
-{to be filled}
+The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of arguments from the user, mapped to the `Prefix` that precedes the arguments.
 
 #### **Prefix**
 
-{to be filled}
+The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
 ---
 
@@ -742,7 +760,7 @@ How the parsing works:
 <br>
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both address book data and user preference data in json format, command history in text format, and read them back into corresponding objects.
 * inherits from both `EduMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 

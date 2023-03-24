@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="849px" preserveAspectRatio="none" style="width:435px;height:849px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 435 849" width="435px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="217.5" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="251"
+              x="92" y="50"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="231" x="102"
+              y="72.8281">User enters find command with keywords
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="413"
+              x="11" y="106.3441"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="393" x="21"
+              y="129.1722">FindCommandParser extracts relevant information from the user input
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="143"
+              x="146" y="212.1792"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="123" x="156"
+              y="235.0073">Error: Message usage
+        </text>
+        <ellipse cx="217.5" cy="286.8512" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="217.5" cy="286.8512" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <polygon fill="#F1F1F1"
+                 points="217.5,162.6882,217.5,162.6882,229.5,174.6882,217.5,186.6882,217.5,186.6882,205.5,174.6882,217.5,162.6882"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="221.5"
+              y="198.4471">[Invalid arguments]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="28" x="229.5"
+              y="171.4653">[else]
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="211"
+              x="112" y="339.8512"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="191" x="122"
+              y="362.6793">Create ContainsKeywordPredicate
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="310"
+              x="62.5" y="440.1953"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="290" x="72.5"
+              y="463.0234">Check if Person matches ContainsKeywordPredicate
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="187"
+              x="124" y="546.0304"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="167" x="134"
+              y="568.8585">Keep Person in observable list
+        </text>
+        <polygon fill="#F1F1F1"
+                 points="217.5,496.5395,217.5,496.5395,229.5,508.5395,217.5,520.5395,217.5,520.5395,205.5,508.5395,217.5,496.5395"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="30" x="221.5"
+              y="532.2984">[true]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="229.5"
+              y="505.3165">[false]
+        </text>
+        <polygon fill="#F1F1F1" points="217.5,602.3745,229.5,614.3745,217.5,626.3745,205.5,614.3745,217.5,602.3745"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#F1F1F1" points="217.5,396.1953,229.5,408.1953,217.5,420.1953,205.5,408.1953,217.5,396.1953"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#F1F1F1"
+                 points="217.5,646.3745,217.5,646.3745,229.5,658.3745,217.5,670.3745,217.5,670.3745,205.5,658.3745,217.5,646.3745"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="28" x="221.5"
+              y="682.1334">[else]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="167" x="229.5"
+              y="655.1515">[Have remaining Persons in list]
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="220"
+              x="107.5" y="703.6334"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="200" x="117.5"
+              y="726.4615">Observable list is added to EduMate
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="183"
+              x="126" y="759.9775"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="163" x="136"
+              y="782.8056">Success message is returned
+        </text>
+        <ellipse cx="217.5" cy="827.3217" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="217.5" cy="827.3217" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="30" y2="50"/>
+        <polygon fill="#181818" points="213.5,40,217.5,50,221.5,40,217.5,44" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="86.3441" y2="106.3441"/>
+        <polygon fill="#181818" points="213.5,96.3441,217.5,106.3441,221.5,96.3441,217.5,100.3441"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="248.5233" y2="275.8512"/>
+        <polygon fill="#181818" points="213.5,265.8512,217.5,275.8512,221.5,265.8512,217.5,269.8512"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="186.6882" y2="212.1792"/>
+        <polygon fill="#181818" points="213.5,202.1792,217.5,212.1792,221.5,202.1792,217.5,206.1792"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="229.5" x2="299" y1="174.6882" y2="174.6882"/>
+        <polygon fill="#181818" points="295,245.8512,299,255.8512,303,245.8512,299,249.8512"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="299" x2="299" y1="174.6882" y2="319.8512"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="299" x2="217.5" y1="319.8512" y2="319.8512"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="319.8512" y2="339.8512"/>
+        <polygon fill="#181818" points="213.5,329.8512,217.5,339.8512,221.5,329.8512,217.5,333.8512"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="142.6882" y2="162.6882"/>
+        <polygon fill="#181818" points="213.5,152.6882,217.5,162.6882,221.5,152.6882,217.5,156.6882"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="520.5395" y2="546.0304"/>
+        <polygon fill="#181818" points="213.5,536.0304,217.5,546.0304,221.5,536.0304,217.5,540.0304"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="229.5" x2="321" y1="508.5395" y2="508.5395"/>
+        <polygon fill="#181818" points="317,554.2025,321,564.2025,325,554.2025,321,558.2025"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="321" x2="321" y1="508.5395" y2="614.3745"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="321" x2="229.5" y1="614.3745" y2="614.3745"/>
+        <polygon fill="#181818" points="239.5,610.3745,229.5,614.3745,239.5,618.3745,235.5,614.3745"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="582.3745" y2="602.3745"/>
+        <polygon fill="#181818" points="213.5,592.3745,217.5,602.3745,221.5,592.3745,217.5,596.3745"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="476.5395" y2="496.5395"/>
+        <polygon fill="#181818" points="213.5,486.5395,217.5,496.5395,221.5,486.5395,217.5,490.5395"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="420.1953" y2="440.1953"/>
+        <polygon fill="#181818" points="213.5,430.1953,217.5,440.1953,221.5,430.1953,217.5,434.1953"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="229.5" x2="384.5" y1="658.3745" y2="658.3745"/>
+        <polygon fill="#181818" points="380.5,538.5304,384.5,528.5304,388.5,538.5304,384.5,534.5304"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="384.5" x2="384.5" y1="408.1953" y2="658.3745"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="384.5" x2="229.5" y1="408.1953" y2="408.1953"/>
+        <polygon fill="#181818" points="239.5,404.1953,229.5,408.1953,239.5,412.1953,235.5,408.1953"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="626.3745" y2="646.3745"/>
+        <polygon fill="#181818" points="213.5,636.3745,217.5,646.3745,221.5,636.3745,217.5,640.3745"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="376.1953" y2="396.1953"/>
+        <polygon fill="#181818" points="213.5,386.1953,217.5,396.1953,221.5,386.1953,217.5,390.1953"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="670.3745" y2="703.6334"/>
+        <polygon fill="#181818" points="213.5,693.6334,217.5,703.6334,221.5,693.6334,217.5,697.6334"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="739.9775" y2="759.9775"/>
+        <polygon fill="#181818" points="213.5,749.9775,217.5,759.9775,221.5,749.9775,217.5,753.9775"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="217.5" x2="217.5" y1="796.3217" y2="816.3217"/>
+        <polygon fill="#181818" points="213.5,806.3217,217.5,816.3217,221.5,806.3217,217.5,810.3217"
+                 style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[VP71QiCm38RlVWeTsrTmZgLZevGLnawb1pLM6j743hAIRcy_ESaOlSm76op_lpxzpegYpdzc4g2e91aQZW7grFTevuErXJjzFvA4N3d_OiNTKZkXpAel5QmrWr174qO5ZasI7fLJX4PI3zeIZEKjns7Kod43cssvZR0vlyK9Emw0SXjxGyYNhGDRVY-InCEHSiPRCR2zcajPq-2eosJoSfY2Ok36-PqGAi4kHKME-R20duG2rrQedD1WBnORlskfleFHd6nkWpNckgNyZxp8dkXLHbg1Pyi3qV1hnn7IrSQUyDeHT9pNlWLvSsvm8PzlPlg53HujTsGTE9l_AqvaoVQ6m_6sEkTYNVmkMuX9_rBmxy_zYWU6G04qmJwCnta8_p7MjQKA_Hejby_JKIA5ofLmVm00]-->
+    </g>
+</svg>
