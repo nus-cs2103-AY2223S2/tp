@@ -279,13 +279,13 @@ Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exer
 The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
 which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
 
-![DeleteRoutineState1](images/DeleteRoutineState1.png)
+![DeleteRoutineState1](images/AddExercuseState1.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
 
 
-The following sequence diagram shows how the find operation works:
+The following sequence diagram shows how the add exercise operation works:
 
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
+![FindSequenceDiagram](images/AddExerciseSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -297,15 +297,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design considerations:
 
-**Aspect: How find executes more than once:**
-
-* **Alternative 1 (current choice):** Finds from the entire FitBook.
+* **Alternative 1 (current choice):** Adds the exercise into the specific Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
     * Pros: Easy to implement.
-    * Cons: Lower performance as every command will have to filter the entire FitBook.
+    * Cons: Might cause performance issues in terms of memory usage and speed.
 
-* **Alternative 2:** Finds from an already filtered list.
-    * Pros: Better performance.
-    * Cons: May result in high memory usage as each new state has to be saved.
+* **Alternative 2:** Keep track of the update list without saving the entire model into FitBookExerciseRoutine after each addExercise command.
+    * Pros: Might be faster.
+    * Cons: Will be risky as it does not maintain accuracy of data in the model.
+    * 
 ### Delete Routine feature
 
 #### Implementation
@@ -332,7 +331,7 @@ Step 2.5. These commands will therefore go through updates for the FitBookModel 
 
 </div>
 
-The following sequence diagram shows how the find operation works:
+The following sequence diagram shows how the delete routine operation works:
 
 ![DeleteRoutineSeqDiagram](images/DeleteRoutineSeqDiagram.png)
 
