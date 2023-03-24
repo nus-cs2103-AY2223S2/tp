@@ -2,30 +2,47 @@
 layout: page
 title: Developer Guide
 ---
+<img src="./images/sprINT.png" />
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Introduction**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+### 1.1 About sprINT 
+
+**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. 
+
+Students often face a great administrative burden in keeping track of the high volume of job or internship 
+applications. With sprINT, students can easily manage details of their internship applications, including the company, 
+contacts, status and task deadlines.
+
+### 1.2 About this guide
+
+This developer guide details the high-level software architecture and design decisions for the implementation of sprINT.
+It is intended for:
+
+* Advanced users who wish to get a better understanding of sprINT's features
+* Present and future developers, designers and testers of sprINT 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Acknowledgements**
+
+sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
+project created by the SE-EDU initative. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
+## **4. Design**
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -52,7 +69,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-app 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,13 +86,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicationListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,23 +103,24 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it uses the `InternshipBookParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddApplicationCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-app 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-app 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,38 +128,31 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `InternshipBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddApplicationCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddApplicationCommand`) which the `InternshipBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
+* stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both internship book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `InternshipBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +164,197 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Application feature
+
+#### About
+The add application command is a core feature of sprINT, allowing users to easily keep track of their internship
+applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
+including the role, company, email, and status.
+
+With the add application command, users no longer have to rely on memory or scattered notes to keep track of their
+applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
+time to monitor their progress.
+
+#### Usage
+To use the add application command in sprINT, simply issue the command in the following format:
+
+add r/[role] c/[company name] e/[company email] s/[status]
+
+Here's a breakdown of what each prefix means:
+
+- `r/` - this prefix is used to indicate the role or position you're applying for in the internship application.
+- `c/` - this prefix is used to indicate the name of the company you're applying to for the internship.
+- `e/` - this prefix is used to indicate the email address of the company or the contact person you're communicating with regarding the application.
+- `s/` - this prefix is used to indicate the status of your application, such as "interested", "applied", "rejected", or "offered".
+- `t/` - this prefix is used to indicate the tags that you want to associate with your application.
+
+#### Implementation
+The add application mechanism is facilitated by the Ui, Logic and Model components of sprINT. 
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for a specific purpose of 
+parsing user commands for adding applications.
+5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
+6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
+the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
+must provide in the input when using the add application feature.
+
+</div>   
+
+7. These fields will then be used to create an `Application` instance.
+8. The newly created `Application` instance will then be used to create an `AddApplicationCommand`. This command instances
+is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `AddApplicationCommand`. This initializes the execution
+the logic behind adding the associated application instance to the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+the execution of the command. 
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
+application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+exception that was thrown and the error message will be displayed to the user.
+
+</div> 
+
+For a more graphical illustration of how an add application command is processed, please refer to the following
+sequence diagram:
+
+![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
+
+
+### Edit Application feature
+
+#### About
+The edit application command is another core feature of sprINT, similar to add. User can edit existing application to reflect their latest status of the application, or to rectify input errors.
+Old values will be changed to the new input values.
+
+
+#### Usage
+To use the edit application command in sprINT, simply issue the command in the following format:
+
+edit INDEX r/[role] c/[company name] e/[company email] s/[status]
+
+Apart from INDEX, all fields are optional. However, at least one of the optional fields must be provided.
+
+Here's a breakdown of what each prefix means:
+
+- `INDEX`  The index refers to the index number shown in the displayed application list. The index must be a positive integer 1, 2, 3, …​
+- `r/` - this prefix is used to indicate the role or position you're applying for in the internship application.
+- `c/` - this prefix is used to indicate the name of the company you're applying to for the internship.
+- `e/` - this prefix is used to indicate the email address of the company or the contact person you're communicating with regarding the application.
+- `s/` - this prefix is used to indicate the status of your application, such as "interested", "applied", "rejected", or "offered".
+- `t/` - this prefix is used to indicate the tags that you want to associate with your application.
+
+#### Implementation
+The edit application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid edit
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `EditApplicationCommandParser` that is responsible for the specific purpose of
+   parsing user commands for editing applications.
+5. The `InternshipBookParser` then passes the string input to the `EditApplicationCommandParser` via the `parse()` method.
+6. The `EditApplicationCommandParser` then identifies the input prefixes in the string and edits the fields for the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
+the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
+must provide in the input when using the add application feature.
+
+</div>   
+
+7. These fields will then be used to create an edited `Application` instance through `createEditedApplication` method.
+8. The newly created `Application` instance will then be used to create an `EditApplicationCommand`. This command instances
+   is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `EditApplicationCommand`. This initializes the execution
+   the logic behind adding the associated application instance to the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
+application list to the User, should the edit command execute successfully. If an error occurred during execution, the corresponding
+exception that was thrown and the error message will be displayed to the user.
+
+</div> 
+
+For a more graphical illustration of how an edit application command is processed, please refer to the following
+sequence diagram:
+
+
+![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
+
+
+### Find Application feature
+
+#### About
+The "find" command is a tool that enables users to search for a specific application within the internship book.
+Users can locate the application by providing its index and optionally using the parameters "r/", "c/", and "s/" to 
+refine their search. These parameters correspond to the role, company, and status fields in the internship book
+, allowing for customized searches. Without any of the required prefixes, it will do a global search for the search
+keyword in all fields of the applications.
+
+#### Usage
+To find an application in sprINT, simply issue the command in the following format:
+
+find [r/role] [c/companyName] [s/status]
+
+Here's a breakdown of what each prefix means:
+
+- `r/` - this prefix is used to find role or position in the internship application.
+- `c/` - this prefix is used to find the company name in the internship.
+- `s/` - this prefix is used to find the status of your application, such as "interested", "applied", "rejected", or "offered".
+
+#### [Work in Progress] Implementation
+The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for a specific purpose of
+   parsing user commands for adding applications.
+5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
+6. The `FindApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
+the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
+must provide in the input when using the add application feature.
+
+</div>   
+
+7. These fields will then be used to create an `Application` instance.
+8. The newly created `Application` instance will then be used to create an `FindApplicationCommand`. This command instances
+   is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
+   the logic behind adding the associated application instance to the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
+application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+exception that was thrown and the error message will be displayed to the user.
+
+</div> 
+
+For a more graphical illustration of how an add application command is processed, please refer to the following
+sequence diagram:
+
+![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
+
 
 ### \[In Progress\] Sort feature
 
@@ -249,6 +451,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add Task feature
+
+#### Description
+
+The `add-task` command allows users to add a task to an existing application in the internship book, specified by
+its index, with the parameters `description` and `deadline`. 
+
+#### Implementation
+
+The following sequence diagram illustrates how sprINT's internal components interact with one another in response 
+to the `add-task` command.
+
+<img src="images/AddTaskSequenceDiagram.png" />
+
+When a user enters the `add-task` command: 
+1. The `parse` method of `AddTaskCommandParser` is invoked.
+   1. The target application's `index`, along with the `deadline` and `description` fields for the new task,
+      are extracted from the command string. 
+   2. A new `EditApplicationDescriptor` object, which stores details about the new task for the target application,
+      is created. 
+   3. A new `AddTaskCommand` object containing the target application's `index` and the aforementioned `descriptor` 
+      is created.
+2. The newly created `AddTaskCommand` object is then executed. 
+   1. The `createEditedApplication` method of the `EditApplicationCommand` class is invoked to create a new 
+       application with the task added. This represents the edited application.
+   2. This `editedApplication` object replaces the existing `Application` object in the model. 
+
+#### Design Considerations
+
+**Aspect: How `add task` executes**
+  
+* **Option 1** (Current design): use existing logic from the `EditApplicationCommand` class (i.e. 
+  `createEditedApplication` and `EditApplicationDescriptor`)
+  * Pros:
+    * Reduces duplicate code (and thus code redundancy).
+    * Makes sense from a logical perspective: since `Task` is implemented as just another field in `Application`, 
+      _adding a task_ to an application is essentially just another interface for _editing_ the application.
+  * Cons:
+    * Increases coupling between `AddTaskCommand` and `EditApplicationCommand`.
+
+* **Option 2**: implement logic for `createEditedApplication` and `EditApplicationDescriptor` **within** the 
+    `AddTaskCommand` class
+    * Pros:
+      * Reduces coupling between `AddTaskCommand` and `EditApplicationCommand`.
+    * Cons:
+      * Increases code redundancy.
+      * Violates Single Responsibility Principle.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -445,6 +694,22 @@ upcoming tasks of closer deadlines being showed first.
 *{More to be added}*
 
 ### Glossary
+
+#### sprINT-specific Terminology
+
+* **Application**: Represents an internship application entry in the internship book. Each application contains a role,
+company name, company email and one of four possible statuses.
+
+* **Status**: Represents the current stage of the internship application. Can be one of 4 values:
+  * **Interested**: An internship that the user is interested in, but has yet to apply to. 
+  * **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.  
+  * **Offered**: An internship that the user has received an offer for. 
+  * **Rejected**: An internship that the user has been rejected for. 
+
+* **Task**: Represents additional requirements or milestones that are part of the internship application process.
+Examples include online assessment, technical interview, etc.
+
+#### Others
 
 * **GUI**: Graphical User Interface
 * **CLI**: Command Line Interface

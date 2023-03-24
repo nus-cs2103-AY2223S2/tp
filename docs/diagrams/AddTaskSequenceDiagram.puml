@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+participant ":EditApplicationDescriptor" as EditApplicationDescriptor LOGIC_COLOR
+participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":EditApplicationCommand" as EditApplicationCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-task 1 d/Interview by/30-12-2023")
+
+LogicManager -> InternshipBookParser : parseCommand("add-task 1 d/Interview by/30-12-2023")
+
+create AddTaskCommandParser
+InternshipBookParser -> AddTaskCommandParser
+
+AddTaskCommandParser --> InternshipBookParser
+
+InternshipBookParser -> AddTaskCommandParser : parse("1 d/Interview by/30-12-2023")
+activate AddTaskCommandParser
+
+create EditApplicationDescriptor
+AddTaskCommandParser -> EditApplicationDescriptor
+activate EditApplicationDescriptor
+
+EditApplicationDescriptor --> AddTaskCommandParser : d
+deactivate EditApplicationDescriptor
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser : a
+deactivate AddTaskCommand
+
+AddTaskCommandParser --> InternshipBookParser : a
+deactivate AddTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddTaskCommandParser -[hidden]-> InternshipBookParser
+destroy AddTaskCommandParser
+
+InternshipBookParser --> LogicManager : d
+deactivate InternshipBookParser
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+AddTaskCommand -> EditApplicationCommand : createEditedApplication()
+
+AddTaskCommand -> Model : setApplication()
+
+
+create CommandResult
+AddTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTaskCommand
+deactivate CommandResult
+
+AddTaskCommand --> LogicManager : result
+deactivate AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
