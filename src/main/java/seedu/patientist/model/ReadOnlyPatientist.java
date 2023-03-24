@@ -17,4 +17,8 @@ public interface ReadOnlyPatientist {
 
     ObservableList<Ward> getWardList();
 
+    ObservableList<Person> getPatientListInWard(Ward ward);
+
+    ObservableList<Person> getStaffListInWard(Ward ward);
+
 }

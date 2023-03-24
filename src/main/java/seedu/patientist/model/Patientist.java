@@ -265,6 +265,16 @@ public class Patientist implements ReadOnlyPatientist {
     }
 
     @Override
+    public ObservableList<Person> getPatientListInWard(Ward ward) {
+        return ward.getPatientsAsUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getStaffListInWard(Ward ward) {
+        return ward.getStaffsAsUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Patientist // instanceof handles nulls
