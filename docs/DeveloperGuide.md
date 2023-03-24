@@ -68,7 +68,15 @@ Description coming soon
 
 ### Deleting XYZ (seq. diagram focussed on Logic layer) - Celeste Cheah
 
-### Linking XYZ to a flight (seq. diagram focussed on Model layer) - Xiuxuan
+### Linking XYZ to a flight (seq. diagram focussed on Model layer) 
+
+**Rationale**
+
+The rationale behind creating a `Link` class is that only such affords us the ability to describe a relationship between two objects in away that's safe. 
+
+**How is this feature implemented?**
+
+This linking feature is implemented a very similar way (if not the same) for unlinking crews, locations, pilots, and planes from flights. Hence, in this description the general term XYZ is used instead.
 
 ### Unlinking XYZ from a flight
 
@@ -152,7 +160,7 @@ we can keep the information displayed organised and clear to the user.
 * Alternative 2: Has one display window for items and a separate display window for flights
     * Pros: More organised and visually pleasant.
     * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
-  
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -343,5 +351,4 @@ is the `user`, unless specified otherwise)
 * **Pilot**: Someone that is certified to fly an aircraft.
 * **Plane**: A unit plane which can be assigned to flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes and crew can be assigned.
-
 
