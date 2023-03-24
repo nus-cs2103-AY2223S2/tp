@@ -53,6 +53,9 @@ public class MeetCommandParser implements Parser<MeetCommand> {
 
         Set<ContactIndex> indices =
                 ParserUtil.parseIndices(indexArray);
+
+        indices.add(new ContactIndex(0));
+
         return new MeetCommand(indices, locationHashSet);
     }
 }

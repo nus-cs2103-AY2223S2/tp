@@ -105,6 +105,18 @@ public class Scheduler {
     }
 
     /**
+     * Get all Hour Blocks that everyone is free.
+     */
+    public List<HourBlock> getAllHourBlocks() {
+        List<HourBlock> blocks = new ArrayList<>();
+        for (Day day : Day.values()) {
+            List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(day, schedules);
+            blocks.addAll(availableHourBlocks);
+        }
+        return blocks;
+    }
+
+    /**
      * Get all Time Periods that everyone is free on that school day.
      */
     public List<TimePeriod> getAllTimings(Day schoolDay) {

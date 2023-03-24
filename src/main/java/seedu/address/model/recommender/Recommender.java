@@ -1,39 +1,78 @@
 package seedu.address.model.recommender;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.LocationRecommender;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.scheduler.Scheduler;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Recommender {
     private static final int RECOMMENDATION_LIMIT = 20;
     private final LocationRecommender lr;
     private final Scheduler sc;
     private final Model model;
-    private final HashMap<ContactIndex, HashMap<Day, HashMap<Integer, Location>>> personLocations;
+    private Set<LocationTracker> locationTrackers;
 
     public Recommender(Model model) {
         this.model = model;
         lr = new LocationRecommender();
         sc = new Scheduler(model);
-        personLocations = new HashMap<>();
+        locationTrackers = new HashSet<>();
     }
 
-    public Recommendation recommend(Collection<ContactIndex> contactIndices) {
+    public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
+        initialise(contactIndices, destinations);
+        List<HourBlock> timingRecommendations = sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
+                .stream().map(TimePeriod::fragmentIntoHourBlocks)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        List<List<Location>> locationRecommendations = timingRecommendations.stream()
+                .map(this::getLocationsFromHourBlock)
+                .map(lr::recommend)
+                .collect(Collectors.toList());
+
+        List<Recommendation> recommendations = CollectionUtil
+                .zip(locationRecommendations.stream(),
+                        timingRecommendations.stream(),
+                        this::recommendFromLocationsHourBlock)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        return recommendations.stream()
+                .sorted().limit(RECOMMENDATION_LIMIT)
+                .collect(Collectors.toList());
+    }
+
+    private void initialise(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
+        lr.initialise(destinations);
         sc.initialise(contactIndices);
-        List<TimePeriod> availableTimePeriods = getAvailableTimePeriods(contactIndices);
+        locationTrackers = sc.getParticipants().stream()
+                .map(LocationTracker::new)
+                .collect(Collectors.toSet());
     }
 
-    private List<TimePeriod> getAvailableTimePeriods(Collection<ContactIndex> contactIndices) {
-        return sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT);
+    private Set<Location> getLocationsFromHourBlock(HourBlock hourBlock) {
+        return locationTrackers.stream()
+                .map(lt -> lt.getLocation(hourBlock))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+    }
+
+    private List<Recommendation> recommendFromLocationsHourBlock(List<Location> locations, HourBlock hourBlock) {
+        return locations.stream()
+                .map(l -> new Recommendation(l, hourBlock))
+                .collect(Collectors.toList());
     }
 }

@@ -3,16 +3,25 @@ package seedu.address.model.recommender;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import javafx.util.Pair;
 import seedu.address.model.location.Location;
+import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 
 public class LocationTracker {
+    private static final Integer[] START_TIMINGS = Timetable.startTimings;
+    private static final int EARLIEST_TIMING = START_TIMINGS[0];
+    private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
+    private static final int NUMBER_OF_HOURS = START_TIMINGS.length;
     private final Person person;
     private final HashMap<Day, List<Optional<Location>>> locations;
 
@@ -20,20 +29,13 @@ public class LocationTracker {
         this.person = person;
         locations = new HashMap<>();
         initialiseWithEmptyLocations();
-        initialiseWithAddress();
         initialiseWithSchedule();
+        fillUnknown();
     }
 
     private void initialiseWithEmptyLocations() {
         for (Day day : Day.values()) {
-            locations.put(day, Collections.nCopies(23, Optional.empty()));
-        }
-    }
-
-    private void initialiseWithAddress() {
-        for (Day day : Day.values()) {
-            locations.get(day).set(7, Optional.of(person.getAddress().getValue()));
-            locations.get(day).set(22, Optional.of(person.getAddress().getValue()));
+            locations.put(day, Collections.nCopies(NUMBER_OF_HOURS, Optional.empty()));
         }
     }
 
@@ -46,30 +48,88 @@ public class LocationTracker {
         };
     }
 
-    private Optional<Location> getOptionalLocationFromHourBlock(HourBlock hourBlock) {
+    private void setHourBlock(List<Optional<Location>> locationMap, HourBlock hourBlock) {
+        locationMap.set(hourBlock.getStartTime().getHourOfDay(),
+                getLocationFromHourBlock(hourBlock));
+    }
+
+    private Optional<Location> getLocationFromHourBlock(HourBlock hourBlock) {
         assert hourBlock.getLesson().isPresent();
         return Optional.of(hourBlock.getLesson().get().getLocation());
     }
 
-    private void setHourBlock(List<Optional<Location>> locationMap, HourBlock hourBlock) {
-        locationMap.set(hourBlock.getStartTime().getHourOfDay(),
-                getOptionalLocationFromHourBlock(hourBlock));
+    public Optional<Location> getLocation(HourBlock hourBlock) {
+        return getLocation(hourBlock.getSchoolDay(), hourBlock.getStartTime().getHourOfDay());
     }
 
     private Optional<Location> getLocation(Day day, int hour) {
-        return locations.get(day).get(hour);
+        assert hour >= EARLIEST_TIMING && hour <= LATEST_TIMING;
+        return locations.get(day).get(hour - EARLIEST_TIMING);
     }
 
-    private Optional<Location> getLocation(Day day, HourBlock hourBlock) {
-        return getLocation(day, hourBlock.getStartTime().getHourOfDay());
+    private void fillUnknown() {
+        for (List<Optional<Location>> dayLocations : locations.values()) {
+            List<Pair<Location, Integer>> knownLocationIndices = findKnownLocationIndices(dayLocations);
+            fillUnknownWithKnown(knownLocationIndices, dayLocations);
+        }
     }
 
-    private void fillEmptyBlocksWithApproximateLocations() {
-        
+    private List<Pair<Location, Integer>> findKnownLocationIndices(List<Optional<Location>> dayLocations) {
+        List<Integer> knownIndices = IntStream.range(0, dayLocations.size() - 1)
+                .filter(i -> dayLocations.get(i).isPresent())
+                .boxed().collect(Collectors.toList());
+        List<Pair<Location, Integer>> knownLocationIndices = new ArrayList<>();
+
+        for (int index : knownIndices) {
+            assert dayLocations.get(index).isPresent();
+            knownLocationIndices.add(new Pair<>(dayLocations.get(index).get(), index));
+        }
+
+        return knownLocationIndices;
     }
 
-    private void fillEmptyBlocksWithApproximateLocations(List<Optional<Location>> locations) {
+    private void fillUnknownWithKnown(
+            List<Pair<Location, Integer>> knownLocationIndices, List<Optional<Location>> dayLocations) {
+        Location homeAddress = person.getAddress().getValue();
+        Pair<Location, Integer> startPair = new Pair<>(homeAddress, -1);
+        Pair<Location, Integer> endPair = new Pair<>(homeAddress, NUMBER_OF_HOURS);
 
+        Pair<Location, Integer> currLocationIndex = startPair;
+        for (Pair<Location, Integer> locationIndex : knownLocationIndices) {
+            fillUnknownWithStartEnd(currLocationIndex, locationIndex, dayLocations);
+            currLocationIndex = locationIndex;
+        }
+        fillUnknownWithStartEnd(currLocationIndex, endPair, dayLocations);
 
+    }
+
+    private void fillUnknownWithStartEnd(
+            Pair<Location, Integer> startLocationIndex,
+            Pair<Location, Integer> endLocationIndex,
+            List<Optional<Location>> dayLocations) {
+        int startIndex = startLocationIndex.getValue();
+        int endIndex = endLocationIndex.getValue();
+        Location startLocation = startLocationIndex.getKey();
+        Location endLocation = endLocationIndex.getKey();
+
+        // number of unknown hours between the two known locations
+        int n = startIndex - endIndex - 1;
+
+        // we don't do anything if there are no unknown hours in between
+        if (n < 1) {
+            return;
+        }
+
+        List<Location> fillLocations = DistanceUtil.getApproximateLocations(startLocation, endLocation, n);
+        fillWithApproximateLocations(dayLocations, fillLocations, startIndex + 1);
+    }
+
+    private void fillWithApproximateLocations(List<Optional<Location>> dayLocations, List<Location> fillLocations, int startIndex) {
+        for (int i = 0; i < fillLocations.size(); i++) {
+            int indexToFill = i + startIndex;
+            assert dayLocations.get(indexToFill).isEmpty();
+
+            dayLocations.set(indexToFill, Optional.of(fillLocations.get(i)));
+        }
     }
 }

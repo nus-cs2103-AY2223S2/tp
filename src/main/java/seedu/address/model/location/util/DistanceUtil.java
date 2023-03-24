@@ -49,16 +49,23 @@ public class DistanceUtil {
         assert n > 0;
         double stepSize = 1 / ((double) n + 1);
         List<Location> locations = new ArrayList<>();
+
         for (int i = 1; i <= n; i++) {
-            double newLatitude = startLocation.getLat() * (i * stepSize)
-                    + endLocation.getLat() * (1 - (i * stepSize));
-            double newLongitude = startLocation.getLon() * (i * stepSize)
-                    + endLocation.getLon() * (1 - (i * stepSize));
+            double lambda = i * stepSize;
+            double newLatitude = getConvexCombination(startLocation.getLat(), endLocation.getLat(), lambda);
+            double newLongitude = getConvexCombination(startLocation.getLon(), endLocation.getLon(), lambda);
             assert Location.isValidLatitude(newLatitude);
             assert Location.isValidLongitude(newLongitude);
             locations.add(new Location(newLatitude, newLongitude));
         }
+
+        assert locations.size() == n;
         return locations;
+    }
+
+    private static double getConvexCombination(double first, double second, double lambda) {
+        assert lambda >= 0 && lambda <= 1;
+        return (first * (1 - lambda)) + (second * lambda);
     }
 
     /**
