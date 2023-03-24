@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import seedu.address.files.FilesManager;
 import seedu.address.model.person.Person;
 
 
@@ -74,12 +75,6 @@ public class DetailDisplay extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
         address.setText("Address: " + person.getAddress().value);
-        uploadButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("upload");
-            }
-        });
 
         if (person.hasTime()) {
             time.setText("Time: " + person.getTime().toString());
@@ -105,6 +100,15 @@ public class DetailDisplay extends UiPart<Region> {
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         //@@author
+    }
+
+    public void setUploadButton(FilesManager filesManager) {
+        uploadButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                filesManager.addFile();
+            }
+        });
     }
 
     /**

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.files.FilesManager;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -44,16 +45,19 @@ public class FileCard extends UiPart<Region> {
         this.file = file;
         id.setText(displayedIndex + ". ");
         fileName.setText(file.getFileName());
+        FilesManager filesManager = new FilesManager(file.getPerson());
         view.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("view");
+                String completeFileName = filesManager.getPathInString().trim()
+                    + "/" + file.getFileName().trim();
+                filesManager.viewFile(completeFileName);
             }
         });
         delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("delete");
+                filesManager.deleteFile(file.getFileName());
             }
         });
     }

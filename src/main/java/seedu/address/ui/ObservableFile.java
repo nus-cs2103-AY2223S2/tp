@@ -5,12 +5,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * Class to provide input for FileList.
  */
 public class ObservableFile {
     private List<String> listOfFileName;
+    private Person person;
     /**
    * Panel containing the list of persons.
    */
@@ -25,14 +27,18 @@ public class ObservableFile {
         listOfFileName.add("b");
         listOfFileName.add("b");
     }
-    public ObservableFile(List<String> listOfFileName) {
+    /**
+     * Construct ObservableFile with the person and its file names.
+     */
+    public ObservableFile(List<String> listOfFileName, Person person) {
         this.listOfFileName = listOfFileName;
+        this.person = person;
     }
 
     public ObservableList<UiFile> getObservableFileList() {
         ObservableList<UiFile> fileList = FXCollections.observableArrayList();
         for (String s: listOfFileName) {
-            UiFile file = new UiFile(s);
+            UiFile file = new UiFile(s, person);
             fileList.add(file);
         }
         return fileList;

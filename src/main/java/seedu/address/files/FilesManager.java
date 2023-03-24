@@ -110,6 +110,9 @@ public class FilesManager {
     public int numberOfFiles(Path drc) {
         return files.size();
     }
+    public String getPathInString() {
+        return this.path;
+    }
 
     /**
      * Display file.
@@ -125,6 +128,27 @@ public class FilesManager {
             imageReader.displayImage();
         } else if (extension.equals("pdf")) {
             PdfReader pdfReader = new PdfReader(path);
+            pdfReader.displayPdf();
+        } else {
+            //adding custom exception of Wrong File type exception
+            System.out.println("Invlid file type");
+        }
+    }
+
+    /**
+     * Display file.
+     *
+     * @param fileName the file name
+     */
+    public void viewFile(String fileName) {
+        Path filepath = Paths.get(fileName);
+        String extension = fileName.substring(
+            fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+            ImageReader imageReader = new ImageReader(filepath);
+            imageReader.displayImage();
+        } else if (extension.equals("pdf")) {
+            PdfReader pdfReader = new PdfReader(filepath);
             pdfReader.displayPdf();
         } else {
             //adding custom exception of Wrong File type exception
