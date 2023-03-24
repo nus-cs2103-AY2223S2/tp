@@ -141,6 +141,42 @@ Below is the sequence diagram for Marking attendane of a student
 
 <img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
+## **Add Assignment**
+
+Below is the main success scenario of adding an Assignment
+
+**MSS**
+
+1. User requests to add an assignment of a specific name and optionally, total marks.
+2. TAA creates the assignment, with total marks having a default value of 100 if it is not specified above.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no assignments with that particular name, .
+
+  Use case resumes from step 2.
+
+* 1b. There is already an assignment with that particular name.
+
+    * 1b1. TAA shows an error message
+
+* 1c. Total marks given is negative.
+
+    * 1c1. TAA shows an error message
+
+
+AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
+
+* `AddAssignmentCommandParser`-- Parse the input of users
+* `AddAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="images/AddAssignmentSequenceDiagram.png" width="574" />
+
 **Adding a student**
 
 1. User requests to add a user with a specific name into one or more classes.
