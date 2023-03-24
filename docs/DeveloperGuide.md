@@ -349,7 +349,9 @@ The `UI` component,
     <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
 </div>
 
+
 The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
+
 ---
 
 ## **Model Component**
