@@ -20,7 +20,7 @@ public class DeleteCategoryCommandTest {
     public void execute_validIndexUnfilteredList_success() throws CommandException {
         model.addCategory(toDelete);
         model.addCategory(toDelete2);
-        DeleteCategory deleteCategoryCommand = new DeleteCategory(Index.fromOneBased(1));
+        DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(Index.fromOneBased(1));
         deleteCategoryCommand.execute(model);
         ModelStub expectedModel = new ModelStub();
         expectedModel.addCategory(toDelete2);
@@ -31,7 +31,7 @@ public class DeleteCategoryCommandTest {
     public void execute_invalidIndexUnfilteredList_failure() throws CommandException {
         model.addCategory(toDelete);
         model.addCategory(toDelete2);
-        DeleteCategory deleteCategoryCommand = new DeleteCategory(Index.fromOneBased(3));
+        DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(Index.fromOneBased(3));
         // command should throw an exception
         assertThrows(CommandException.class, () -> deleteCategoryCommand.execute(model));
     }

@@ -13,7 +13,7 @@ import seedu.address.model.category.Category;
 /**
  * Deletes a category identified using it's displayed index from the address book.
  */
-public class DeleteCategory extends Command {
+public class DeleteCategoryCommand extends Command {
 
     public static final String COMMAND_WORD = "delcat";
 
@@ -30,7 +30,7 @@ public class DeleteCategory extends Command {
      * Creates an DeleteCategory to delete the specified {@code Category}
      * @param targetIndex index of the category in the filtered category list to delete
      */
-    public DeleteCategory(Index targetIndex) {
+    public DeleteCategoryCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -51,7 +51,7 @@ public class DeleteCategory extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCategory // instanceof handles nulls
-                && targetIndex.equals(((DeleteCategory) other).targetIndex)); // state check
+                || (other instanceof DeleteCategoryCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCategoryCommand) other).targetIndex)); // state check
     }
 }
