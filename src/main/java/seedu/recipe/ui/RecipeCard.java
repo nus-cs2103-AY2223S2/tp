@@ -98,7 +98,7 @@ public class RecipeCard extends UiPart<Region> {
         tagsTitle.setText("Steps:");
         recipe.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));        
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         //Selector focus
         cardPane.setOnMouseEntered(event -> {

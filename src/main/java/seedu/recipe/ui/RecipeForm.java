@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,13 +16,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
- */public class RecipeForm extends UiPart<Region> {
+ */
+public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
 
     @FXML
@@ -62,7 +63,6 @@ import seedu.recipe.ui.events.EditRecipeEvent;
 
     @FXML
     private Button cancelButton;
-    
     private int displayedIndex;
     private Map<String, String> initialValues;
     private Recipe recipe;
@@ -83,13 +83,7 @@ import seedu.recipe.ui.events.EditRecipeEvent;
         }
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
-        saveButton.setOnAction(event -> EditRecipeEvent());
-
         cancelButton.setOnAction(event -> closeForm());
-    }
-
-    private Object EditRecipeEvent() {
-        return null;
     }
 
     /**
@@ -124,14 +118,14 @@ import seedu.recipe.ui.events.EditRecipeEvent;
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
                         .orElse("Duration was not added.")
-        );        
+        );
         //Portion
         portionField.setText(
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
                         .orElse("Portion was not added.")
-        );        
-        /* 
+        );
+        /*
         //Ingredients
         ingredientsField.setText(recipe.getIngredients().stream()
                 .map(Ingredient::toString)
@@ -198,13 +192,16 @@ import seedu.recipe.ui.events.EditRecipeEvent;
             case "tags":
                 currentValue = tagsField.getText();
                 break;
+            default:
+                currentValue = ""; // or any default value you prefer
+                break;
             }
 
             if (!initialValue.equals(currentValue)) {
                 changedValues.put(key, currentValue);
             }
         }
-        /* 
+        /*
         ...
         model.saveRecipe(recipe);
         EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
