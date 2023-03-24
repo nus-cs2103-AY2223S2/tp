@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("find n/read")
 activate LogicManager
 
-LogicManager -> TaskBookParser : parseCommand("find")
+LogicManager -> TaskBookParser : parseCommand("find n/read")
 activate TaskBookParser
 
 create FindCommand

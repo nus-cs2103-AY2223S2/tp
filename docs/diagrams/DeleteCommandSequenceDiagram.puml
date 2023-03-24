@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Commons COMMONS_COLOR_T1
+participant "i:IndexList" as IndexList COMMONS_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("delete 1 2")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("delete 1 2")
+activate TaskBookParser
+
+create DeleteCommandParser
+TaskBookParser -> DeleteCommandParser : DeleteCommandParser()
+activate DeleteCommandParser
+
+DeleteCommandParser --> TaskBookParser
+deactivate DeleteCommandParser
+
+TaskBookParser -> DeleteCommandParser : parse("1 2")
+activate DeleteCommandParser
+
+DeleteCommandParser -> ParserUtil : parseIndexList("1 2")
+activate ParserUtil
+
+create IndexList
+ParserUtil -> IndexList : IndexList()
+activate IndexList
+
+IndexList --> ParserUtil : i
+deactivate IndexList
+
+ParserUtil --> DeleteCommandParser : i
+deactivate ParserUtil
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(i)
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser --> TaskBookParser : d
+deactivate DeleteCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> TaskBookParser
+destroy DeleteCommandParser
+
+TaskBookParser --> LogicManager : d
+deactivate TaskBookParser
+
+LogicManager -> DeleteCommand : execute(model)
+activate DeleteCommand
+
+loop all indices in IndexList
+DeleteCommand -> IndexList : get(index)
+activate IndexList
+
+IndexList --> DeleteCommand : taskToDelete
+deactivate IndexList
+
+DeleteCommand -> Model : deleteTask(taskToDelete)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+end
+
+create CommandResult
+DeleteCommand -> CommandResult : CommandResult(successMessage)
+activate CommandResult
+
+CommandResult --> DeleteCommand : result
+deactivate CommandResult
+
+DeleteCommand --> LogicManager : result
+deactivate LogicManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
