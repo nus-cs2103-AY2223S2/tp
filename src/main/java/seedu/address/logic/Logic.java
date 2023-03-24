@@ -30,6 +30,11 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Sets the address book to the given address book.
+     */
+    void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException;
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
@@ -54,4 +59,5 @@ public interface Logic {
      * @return the person being selected by the user.
      */
     Person findCheckedPerson();
+
 }

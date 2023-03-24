@@ -18,7 +18,9 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -190,6 +192,15 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(backupFile.toPath());
+
+        try {
+            this.logic.setAddressBook(addressBookStorage.readAddressBook().get());
+        } catch (DataConversionException | IOException e) {
+            logger.info("Error reading backup file");
+        } catch (CommandException e) {
+            logger.info("Error setting address book");
+        }
+        
     }
 
     @FXML

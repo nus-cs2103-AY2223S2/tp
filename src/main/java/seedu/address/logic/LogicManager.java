@@ -60,6 +60,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException{
+        model.setAddressBook(addressBook);
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
@@ -83,4 +94,6 @@ public class LogicManager implements Logic {
     public Person findCheckedPerson() {
         return model.findSelectedPerson();
     }
+
+
 }
