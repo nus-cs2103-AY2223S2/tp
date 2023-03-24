@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -112,7 +114,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_prescribe() throws Exception {
         assertTrue(parser.parseCommand(
-                PrescribeCommand.COMMAND_WORD + " 3 " + PREFIX_MEDICATION) instanceof PrescribeCommand);
+                PrescribeCommand.COMMAND_WORD + " "
+                + " " + PREFIX_NRIC + " " + VALID_NRIC_AMY
+                + " " + PREFIX_MEDICATION) instanceof PrescribeCommand);
     }
 
     @Test
