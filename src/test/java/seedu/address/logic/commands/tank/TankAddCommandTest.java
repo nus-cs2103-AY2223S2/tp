@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 import seedu.address.testutil.TankBuilder;
 
 
@@ -230,6 +231,12 @@ public class TankAddCommandTest {
         }
 
         public void updateFilteredTankList(Predicate<Tank> predicate) {}
+
+        @Override
+        public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
+            //TODO tests
+            return null;
+        }
     }
 
     /**

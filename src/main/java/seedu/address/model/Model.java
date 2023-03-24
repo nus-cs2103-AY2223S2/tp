@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -10,6 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * The API of the Model component.
@@ -168,4 +170,9 @@ public interface Model {
     ObservableList<Tank> getFilteredTankList();
 
     void updateFilteredTankList(Predicate<Tank> predicate);
+
+    /**
+     * Executes the auto feeding reminder feature for Model
+     */
+    public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel();
 }

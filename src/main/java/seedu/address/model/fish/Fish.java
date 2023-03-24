@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.date.DateUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 
@@ -15,7 +16,6 @@ import seedu.address.model.tank.Tank;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Fish {
-
     // Identity fields
     private final Name name;
     private final Species species;
@@ -88,6 +88,23 @@ public class Fish {
 
         return otherFish != null
                 && otherFish.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if Fish needs to be fed
+     * @return true if Fish needs to be fed
+     */
+    public boolean needsToBeFed() {
+        return DateUtil.checkFishNeedsToBeFed(lastFedDate, feedingInterval);
+    }
+
+    /**
+     * Returns formatted string of the last time this fish was fed on
+     * @return formatted string of the last time this fish was fed on
+     */
+    public String getLastFedString() {
+        String ret = this.getName() + " last fed on " + lastFedDate.getAlphaNumericDate();
+        return ret;
     }
 
     /**

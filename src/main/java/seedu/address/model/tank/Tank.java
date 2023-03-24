@@ -31,6 +31,30 @@ public class Tank {
     }
 
     /**
+     * Returns true if this tank has a fish fue to be feed today
+     * @return true if this tank has a fish fue to be feed today
+     */
+    public boolean hasUnfedFish() {
+        for (Fish f : fishList.getFishList()) {
+            if (f.needsToBeFed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getUnfedFishesString() {
+        String ret = "";
+        for (Fish f : fishList.getFishList()) {
+            if (f.needsToBeFed()) {
+                ret += f.getLastFedString();
+                ret += "\n";
+            }
+        }
+        return ret;
+    }
+
+    /**
      * Adds a fish to the TankList.
      * @param fish fish to be added.
      */

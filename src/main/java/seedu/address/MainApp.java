@@ -210,10 +210,20 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    private void executeAutoInitActions() {
+        executeFeedingReminderFeature();
+    }
+
+    private void executeFeedingReminderFeature() {
+        ui.executeFeedingReminderInitUi();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        logger.info("Checking for feeding reminders " + MainApp.VERSION);
+        executeAutoInitActions();
     }
 
     @Override

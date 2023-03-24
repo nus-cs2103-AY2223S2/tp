@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.task.TaskFeedingReminderCommand;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -17,6 +19,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 import seedu.address.storage.Storage;
 
 /**
@@ -96,5 +99,30 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Tank> getFilteredTankList() {
         return model.getFilteredTankList();
+    }
+
+    @Override
+    public ArrayList<TaskFeedingReminder> getTaskFeedingReminderList() {
+        return model.executeFeedingReminderInitModel();
+    }
+
+    @Override
+    public CommandResult executeFeedingReminderInitLogic(TaskFeedingReminder taskFeedingReminder)
+            throws CommandException {
+        //create command
+
+        Command remindCommand = new TaskFeedingReminderCommand(taskFeedingReminder);
+        CommandResult commandResult = remindCommand.execute((model));
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskList(model.getTaskList());
+            storage.saveTankList(model.getTankList());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        return commandResult;
+
     }
 }

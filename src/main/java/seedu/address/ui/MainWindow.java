@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -224,6 +226,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Executes automatic feeding reminder feature actions within
+     * main window
+     */
+    public void executeFeedingReminderInitMainWindow() {
+        ArrayList<TaskFeedingReminder> taskFeedingReminders = logic.getTaskFeedingReminderList();
+        for (TaskFeedingReminder t : taskFeedingReminders) {
+            try {
+                CommandResult commandResult = logic.executeFeedingReminderInitLogic(t);
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                if (commandResult.isChangeGui()) {
+                    handleGuiChange();
+                }
+            } catch (CommandException e) {
+                logger.info("Error executing feeding reminder init");
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
         }
     }
 }
