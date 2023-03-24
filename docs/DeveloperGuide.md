@@ -302,11 +302,11 @@ First, we briefly note that since the same command input box must be toggled
 between use for regular commands (e.g. for basic CRUD) as well as for fuzzy
 searching, the `CommandBox` has a `mode` attribute to help it distinguish
 between the two states. (The toggling between states is handled by key actions,
-which is discussed in another section.) The `Mode` class is responsible for
-taking action upon changes in user input. In particular, the `SearchMode` class
-encapsulates the logic required to handle search requests (via a change in user
-input) as well as applying updates to the UI. The following sequence diagrams
-illustrate this in further detail.
+which is discussed in another section.) The `Mode` abstract class is
+responsible for taking action upon changes in user input. In particular, the
+`SearchMode` class encapsulates the logic required to handle search requests
+(via a change in user input) as well as applying updates to the UI. The
+following sequence diagrams illustrate this in further detail.
 
 ![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
 ![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
@@ -361,7 +361,7 @@ The class diagram below gives an overview of the `Mode` abstract class. The two
 methods of interest are `onInputChange()` and `onInputSubmit()`. The latter is
 invoked by `CommandBox` when the user pressed enter, while the former is
 invoked upon every change in the input. Thus, `SearchMode` implements its logic
-in the `onInputChange()` method and does nothing for `onInputSubmit()`.
+in the `onInputChange()` method.
 
 ![ModeAbstractClassDiagram](images/ModeAbstractClassDiagram.png)
 
