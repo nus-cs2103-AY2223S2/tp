@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class NoteList {
      * @param notes A list of {@code Note} objects
      */
     public NoteList(List<Note> notes) {
+        assert notes.size() < 20 : "upper limit is 20";
         this.notes.addAll(notes);
     }
 
