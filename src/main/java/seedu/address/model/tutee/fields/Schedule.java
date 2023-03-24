@@ -17,7 +17,7 @@ public class Schedule {
     public static final List<String> DAYS_OF_WEEK_LIST = Arrays.asList(DAYS_OF_WEEK);
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Subjects should only be: " + weekBuilder();
+            "Schedule should only be: " + weekBuilder();
 
     /*
      * The first character of the address must not be a whitespace,

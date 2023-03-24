@@ -95,7 +95,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Tutee} with the details of {@code tuteeToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
+    static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert tuteeToEdit != null;
 
         TuteeBuilder builder = new TuteeBuilder(tuteeToEdit);
@@ -167,7 +167,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, subject, schedule, startTime, endTime,
+                    tags);
         }
 
         public void setName(Name name) {

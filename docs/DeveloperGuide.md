@@ -154,9 +154,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Learn\Unlearn feature
+### Field Validation
+Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
+when loading from a JSON file field validation is performed automatically.\
+The automatic validation of a tutee field requires the following three elements to be defined,
+an example implementation of a tutee field is shown below:
+```java
+public class Phone {
+   // Need at least one constructor with this signature
+   public Phone(String value) {
+      // ...
+   }
 
-#### Implementation
+   // Message to display to the user if the stored JSON data is invalid for the given field
+   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!"
+
+   // Validation method that will return true if the value is valid for the field, false otherwise
+   // If your field is named differently this method is named differently too, e.g. isValidRemark
+   public static boolean isValidPhone(String value) {
+      // ... details
+   }
+}
+```
+This automatic validation relies on Java reflection and will raise `RuntimeExceptions` if the automatic validation fails
+for reasons other than the user input being invalid. The process is as follows:
+1. The JSON file is read
+1. The `isValid` method is called with the given input
+1. If `isValid` returns false, the `MESSAGE_CONSTRAINT` is displayed to the user
+1. Otherwise, the input is passed to the constructor to create an instance of the field
+
+### Attendance Management
+#### The Attendance Field
+The `Attendance` field uses a hashset internally to store all the dates on which the tutee was present. The field is designed to be
+immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
+
+#### Mark and Unmark Command
+The mark and unmark commands are implemented similarly: both follow the format of `<mark|unmark> <index> [date]`. The
+user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
+are passed to the command.\
+If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add that
+date to the attendance field, thereby marking them as present on that date. Unmark will remove it, thereby marking them as absent on that date.\
+If tutee has already been marked present or absent on the specified date, the commands will have no effect.
+
+#### Query Command
+The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
+`didAttend()` method on the attendance field.
+
+### \[Proposed\] Undo/redo feature
+
+### Learn\Unlearn feature
 
 The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing a `lesson` is editing this `Set`. It implements the following classes and operations:
 
@@ -198,6 +245,43 @@ The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing
 
 _{more aspects and alternatives to be added}_
 
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
+### Filter feature
+
+#### Filter Implementation
+
+The filter feature is facilitated by `FilterCommand`. It extends `Command`. The constructor of `FilterCommand` takes in 
+a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
+`FilterTuteeDescription`. Inside the `FilterCommand` class is a static `FilterTuteeDescription` class which encapsulates 
+the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
+`name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
+By default, they are all an empty string hence when filter is called without specifying an fields, the feature lists down 
+all the tutees.
+
+`FilterTuteeDescription` will have its fields updated when the user specifies the fields he/she wants to filter using the
+`filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
+fields that are to be filtered in. Once `FilterTuteeDescription` has its fields set (i.e. nameToFilter = "alex"), 
+`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` 
+object. `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
+given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
+command. 
+
+Finally, `FilterCommand` will execute which will call the method `model.updateFilteredTuteeList(predicate)` using the 
+`FieldContainsKeywordPredicate` object as the predicate. The feature will filter and display the tutees which have fields 
+that are equal to what the user has provided. 
+
+### Copy feature
+
+#### Copy Implementation
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in 
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in 
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including: 
+`subject`, `schedule`, `start time`, `end time` of a tutee. 
+All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
 
 --------------------------------------------------------------------------------------------------------------------
 
