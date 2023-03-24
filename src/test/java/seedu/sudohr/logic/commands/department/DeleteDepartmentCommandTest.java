@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands;
+package seedu.sudohr.logic.commands.department;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +11,6 @@ import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;

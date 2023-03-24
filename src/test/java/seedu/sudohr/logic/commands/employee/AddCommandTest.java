@@ -298,69 +298,73 @@ public class AddCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addLeave'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasLeave(Leave leave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasLeave'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getInternalLeaveIfExist'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToLeave'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Leave> getFilteredLeaveList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredLeaveList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Leave> getLeavesList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getLeavesList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromLeave'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredLeaveList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'cascadeUpdateUserInLeaves'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
+            throw new AssertionError("This method should not be called.");
         }
     }
 

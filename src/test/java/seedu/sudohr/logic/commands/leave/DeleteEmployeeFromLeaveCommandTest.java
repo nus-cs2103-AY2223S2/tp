@@ -54,7 +54,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                 TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
-        assertFalse(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+        assertFalse(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(new LeaveDate(LocalDate.parse(
                 VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
@@ -71,7 +71,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
 
-    // Remove a nonexistent employee
+    // Remove a employee from leave that already has an existing employee added
     @Test
     public void execute_removeNonExistentEmployeeFromLeave_throwsCommandException() {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
@@ -96,7 +96,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of its methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -245,6 +245,21 @@ public class DeleteEmployeeFromLeaveCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getLeave(LeaveDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             throw new AssertionError("This method should not be called.");
         }
@@ -359,7 +374,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
             if (sudoHr.hasLeave(leaveToAdd)) {
-                return sudoHr.getLeave(leaveToAdd);
+                return sudoHr.getInternalLeaveIfExist(leaveToAdd);
             } else {
                 sudoHr.addLeave(leaveToAdd);
                 return leaveToAdd;

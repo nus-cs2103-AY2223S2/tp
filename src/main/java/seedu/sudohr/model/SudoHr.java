@@ -81,7 +81,6 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void resetData(ReadOnlySudoHr newData) {
         requireNonNull(newData);
-
         setEmployees(newData.getEmployeeList());
         setDepartments(newData.getDepartmentList());
         setLeaves(newData.getLeavesList());
@@ -126,8 +125,15 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if an employee shares the same email with a different
-     * {@code employee} (different id).
+     * Returns true if an employee with the exact same fields as {@code employee} exists in SudoHR.
+     */
+    public boolean strictlyHasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return employees.strictlyContains(employee);
+    }
+
+    /**
+     * Returns true if an employee shares the same email with a different {@code employee} (different id).
      */
     public boolean hasClashingEmail(Employee employee) {
         requireNonNull(employee);
@@ -183,7 +189,6 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
-
         employees.setEmployee(target, editedEmployee);
     }
 
@@ -245,32 +250,85 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a given employee from a given department
+     * Adds a given employee from a given department.
      *
      * @param p The employee to add
      * @param d The department to add the employee to
      */
     public void addEmployeeToDepartment(Employee p, Department d) {
-        requireNonNull(p);
-        requireNonNull(d);
-
+        requireAllNonNull(p, d);
         d.addEmployee(p);
     }
 
     /**
-     * Removes a given employee from a given department
+     * Removes a given employee from a given department.
      *
      * @param p The employee to remove
-     * @param d The department to remove the employee fro
+     * @param d The department to remove the employee from
      */
     public void removeEmployeeFromDepartment(Employee p, Department d) {
-        requireNonNull(p);
-        requireNonNull(d);
-
+        requireAllNonNull(p, d);
         d.removeEmployee(p);
     }
 
-    //// leave-level operations
+    /**
+     * Deletes an employee from the employee list for each department it belongs to
+     * @param employeeToDelete employee to delete
+     */
+    public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+        requireAllNonNull(employeeToDelete);
+        ObservableList<Department> departmentList = this.getDepartmentList();
+        for (Department dept : departmentList) {
+            if (dept.hasEmployee(employeeToDelete)) {
+                dept.removeEmployee(employeeToDelete);
+            }
+        }
+    }
+
+    /**
+     * Edits an employee's details in the employee list for each department it belongs to.
+     * @param employeeToEdit the employee's details to edit
+     * @param editedEmployee the updated details of an employee
+     */
+    public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(employeeToEdit, editedEmployee);
+        ObservableList<Department> departmentList = this.getDepartmentList();
+        for (Department dept : departmentList) {
+            if (dept.hasEmployee(employeeToEdit)) {
+                dept.setEmployee(employeeToEdit, editedEmployee);
+            }
+        }
+    }
+
+    // =========== Leave-Level Operations
+    // ==========================================================================
+
+    /**
+     * Returns the leave object with the given date.
+     *
+     * @param date The date of leave.
+     * @return The corresponding leave.
+     */
+    public Leave getLeave(LeaveDate date) {
+        return leaves.getLeave(date);
+    }
+
+    /**
+     * Returns the leave object in SudoHr with the equivalent date if it exists or else, return
+     * the leave object provided as parameter.
+     *
+     * @param leaveToAdd the leave object to return if a leave object with the same date does not exist.
+     * @return The corresponding leave.
+     */
+    public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+        ObservableList<Leave> leaveList = this.getLeavesList();
+        for (Leave leave : leaveList) {
+            if (leave.isSameLeave(leaveToAdd)) {
+                return leave;
+            }
+        }
+        return leaveToAdd;
+    }
 
     /**
      * Adds a leave to the address book.
@@ -289,26 +347,15 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a leave with the same identity as {@code leave} exists in
-     * the sudohr book.
+     * Returns true if a leave with the same identity as {@code leave} exists in SudoHR.
      */
     public boolean hasLeave(Leave leave) {
         requireNonNull(leave);
         return leaves.contains(leave);
     }
 
-    public Leave getLeave(Leave leaveToAdd) {
-        ObservableList<Leave> leaveList = this.getLeavesList();
-        for (Leave leave : leaveList) {
-            if (leave.isSameLeave(leaveToAdd)) {
-                return leave;
-            }
-        }
-        return leaveToAdd;
-    }
-
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in
+     * Returns true if an employee with the same identity as {@code employee} exists in
      * the specified leave
      * {@code date}
      * the sudohr book.
@@ -325,8 +372,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a employee {@code employee} to a specified leave{@code leave}
-     * in the sudohr book.
+     * Adds a employee {@code employee} to a specified leave{@code leave} in SudoHR.
      */
     public void addEmployeeToLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
@@ -334,8 +380,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Deletes a employee {@code employee} from a specified leaeve{@code leave}
-     * in the sudohr book.
+     * Deletes an employee {@code employee} from a specified leaeve{@code leave} in SudoHR.
      */
     public void deleteEmployeeFromLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
@@ -343,22 +388,19 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Update a employee {@code employee} with editedEmployee {@code employee} in all leaves
-     * in the sudohr book.
+     * Update an employee {@code employee} with editedEmployee {@code employee} in all leaves in SudoHR.
      */
     public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
             if (leave.hasEmployee(employeeToEdit)) {
-                leave.deleteEmployee(employeeToEdit);
-                leave.addEmployee(editedEmployee);
+                leave.setEmployee(employeeToEdit, editedEmployee);
             }
         }
     }
 
     /**
-     * Deletes a employee {@code employee} from all leaves
-     * in the sudohr book.
+     * Deletes an employee {@code employee} from all leaves in SudoHR.
      */
     public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
         ObservableList<Leave> leaveList = this.getLeavesList();
@@ -370,16 +412,14 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * return the list of all leaves in sudohr
+     * return the list of all leaves in SudoHR
      */
     @Override
     public ObservableList<Leave> getLeavesList() {
         return leaves.asUnmodifiableObservableList();
     }
 
-    //// leave-level operations
-
-    //// util methods
+    // ================================== Utils ==================================================
 
     @Override
     public String toString() {

@@ -46,6 +46,8 @@ public class JsonSerializableSudoHrTest {
             .resolve("clashingEmployeeEmailInDepartmentSudoHr.json");
     private static final Path NON_EXISTENT_EMPLOYEE_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
             .resolve("nonExistentEmployeeInDepartmentSudoHr.json");
+    private static final Path INCONSISTENT_EMPLOYEE_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("inconsistentEmployeeInDepartmentSudoHr.json");
 
     // leave paths
     private static final Path TYPICAL_LEAVE_FILE = TEST_DATA_FOLDER.resolve("typicalLeavesSudoHr.json");
@@ -149,6 +151,13 @@ public class JsonSerializableSudoHrTest {
     @Test
     public void toModelType_nonExistentEmployeeInDepartment_throwsEmployeeNotFoundException() throws Exception {
         JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(NON_EXISTENT_EMPLOYEE_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(EmployeeNotFoundException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_inconsistentEmployeeInDepartment_throwsEmployeeNotFoundException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(INCONSISTENT_EMPLOYEE_IN_DEPARTMENT_FILE,
                 JsonSerializableSudoHr.class).get();
         assertThrows(EmployeeNotFoundException.class, dataFromFile::toModelType);
     }

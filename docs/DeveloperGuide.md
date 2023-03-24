@@ -30,7 +30,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The * * *Architecture Diagram* * * given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,11 +82,11 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Employee`, `Department` or `Leave` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](./images/LogicClassDiagram.png)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,28 +114,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](./images/ModelClassDiagram.png)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the system data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the system data i.e., all `Employee`, `Department` and `Leave` objects (which are contained in `UniqueEmployeeList`, `UniqueDepartmentList` and `UniqueLeaveList` objects respectively).
+* stores the currently 'selected' `Employee`, `Department` and `Leave` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>`, `ObservableList<Department>` or `ObservableList<Leave>`, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `SudoHR`, which `Person` references. This allows `SudoHR` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](./images/StorageClassDiagram.png)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -154,90 +147,55 @@ Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Department-related features
 
-#### Proposed Implementation
+The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedSudoHR`. It extends `SudoHR` with an undo/redo history, stored internally as an `SudoHRStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedSudoHR#commit()` — Saves the current system state in its history.
-* `VersionedSudoHR#undo()` — Restores the previous system state from its history.
-* `VersionedSudoHR#redo()` — Restores a previously undone system state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitSudoHR()`, `Model#undoSudoHR()` and `Model#redoSudoHR()` respectively.
+The attributes of a department are:
+* `name`: The name of the department, which is also the unique identifier for a department.
+* `employees`: The employees in a department, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+### Adding a department
 
-Step 1. The user launches the application for the first time. The `VersionedSudoHR` will be initialized with the initial system state, and the `currentStatePointer` pointing to that single system state.
+![AddDepartmentCommand](./images/commands/department/AddDepartmentSequenceDiagram.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The call stack is the same as a typical command during parsing. It requires the department name prefix: `n/`.
 
-Step 2. The user executes `delete 5` command to delete the 5th employee in the system. The `delete` command calls `Model#commitSudoHR()`, causing the modified state of the system after the `delete 5` command executes to be saved in the `SudoHRStateList`, and the `currentStatePointer` is shifted to the newly inserted system state.
+Upon execution, it first checks if the department contains the employee being added. This is done to prevent the addition of duplicates. After the check is done, the model adds the employee to the department. 
 
-![UndoRedoState1](images/UndoRedoState1.png)
+After that, it returns the command result.
 
-Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitSudoHR()`, causing another modified system state to be saved into the `SudoHRStateList`.
+### Listing all departments
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![ListDepartmentCommand](./images/commands/department/ListDepartmentSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSudoHR()`, so the system state will not be saved into the `SudoHRStateList`.
+The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.
 
-</div>
+Upon execution, it updates the department view.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSudoHR()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous system state, and restores the system to that state.
+After that, it returns the command result.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+### Event-related features
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial SudoHR state, then there are no previous SudoHR states to restore. The `undo` command uses `Model#canUndoSudoHR()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
-</div>
+The attributes of a leave are:
+* `date`: The date of the leave, which is also the unique identifier for a leave
+* `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoSudoHR()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the system to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `SudoHRStateList.size() - 1`, pointing to the latest system state, then there are no undone SudoHR states to restore. The `redo` command uses `Model#canRedoSudoHR()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the system, such as `list`, will usually not call `Model#commitSudoHR()`, `Model#undoSudoHR()` or `Model#redoSudoHR()`. Thus, the `SudoHRStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitSudoHR()`. Since the `currentStatePointer` is not pointing at the end of the `SudoHRStateList`, all system states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+### Cascading employee updates to department and event
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+### Employee
 
-* **Alternative 1 (current choice):** Saves the entire system.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+An important design consideration to note for Employee is the multiple different types of equality checks.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+An employee is identified by his ID field, and this field is used to get an employee with the specified Id.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+However, other stronger forms of equality are used in the application. For example, when loading Employees from Storage, strict equality checks are used to ensure no two employees have the same ID, phone number or address.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -264,34 +222,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                               | So that I can…​                                                          |
-| -------- |----------------------------------------|------------------------------------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | new user                               | see usage instructions                                     | refer to instructions when I forget how to use the App                   |
-| `* * *`  | user                                   | add a new employee                                         |                                                                          |
-| `* * *`  | user                                   | delete an employee                                         | remove entries that I no longer need                                     |
-| `* * *`  | user                                   | find an employee by name                                   | locate details of employees without having to go through the entire list |
-| `* *`    | user                                   | hide private contact details                               | minimize chance of someone else seeing them by accident                  |
-| `*`      | user with many employees in the system | sort employees by name                                     | locate an employee
-| `***` | HR personnel                           | Add an employee’s leave to SudoHR                          | Ensure consolidation of information
-| `***` | HR personnel                           | be able to view all the leave the employee has applied for | Access an employee availability easily
-| `***` | HR personnel                           | Be able to view everyone who has applied leave on a day    | Better plan company events
-| `***` | HR personnel                           | Creae a department                                         | Create a department to add employees in
-| `***` | HR personnel                           | Add an employee to a department                            | Apply department-level operations (e.g announcements) on the employee
-| `***`| HR personnel                           | Create a project                                           | create project to add employees inside
-| `***`| HR personnel                           | Update a project                                           | modify a project
-| `***`| HR personnel                           | Delete a project                                           | delete old projects
-| `***`| HR personnel                           | List projects                                              | list all existing projects
-| `***`| HR personnel                           | Add employee to a project                                  | add employees to projects that they are doing
-| `***`| HR personnel                           | Remove employee from a project                             | remove employees from projects they are no longer doing
-| `***`| HR personnel                           | List all employees doing a project                         | list all employees doing a certain project
-| `*` | user with many employees in the system | sort employees by name                                     | locate an employee easily
-| `***` | HR personnel                           | Create a new event                                         | keep track of all the event details of the company
-| `***` | HR personnel                           | Delete a event                                             | Remove events I no longer need
-| `**` | HR personnel                           | Update a event                                             | Update the details of an event
-| `***` | HR personnel                           | List a event                                               | See all the events added to the management system
-| `***` | HR personnel                           | Add a employee to a event                                  | Know which employee is involved in a event
-| `***` | HR personnel                           | Delete a employee from a event                             | Remove employees that are not participating in a event
-| `***` | HR personnel                           | List employees attending a specific event                  | Obtain the contact details of all employees attending a specific event
+| Priority | As a …​                                | I want to …​                                                   | So that I can…​                                                            |
+|----------|----------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user                               | see usage instructions                                         | refer to instructions when I forget how to use the App                     |
+| `* * *`  | HR personnel                           | add a new employee                                             | ensure consolidation of information when an employee is hired              |
+| `* * *`  | HR personnel                           | edit a new employee                                            | ensure consolidation of information when an employee has new details       |
+| `* * *`  | HR personnel                           | delete an employee                                             | ensure consolidation of information when an employee left the company      |
+| `* * *`  | HR personnel                           | find an employee by name                                       | locate details of employees without having to go through the entire list   |
+| `* *`    | HR personnel                           | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
+| `* * *`  | HR personnel                           | add an employee’s leave to SudoHR                              | ensure consolidation of information                                        |
+| `* * *`  | HR personnel                           | remove an employee’s leave for SudoHR                          | ensure consolidation of information                                        |
+| `* * *`  | HR personnel                           | view all leaves an employee has applied for                    | access an employee's availability easily                                   |
+| `* * *`  | HR personnel                           | view all employees on leave today                              | know today's headcount                                                     |
+| `* * *`  | HR personnel                           | view all leaves applied for a given day                        | better plan company events                                                 |
+| `* * *`  | HR personnel                           | view all leaves applied for a given day for a given department | better plan depeartment events                                             |
+| `* * *`  | HR personnel                           | add a department                                               | ensure consolidation of information when a new department is formed        |
+| `* * *`  | HR personnel                           | edit a department                                              | ensure consolidation of information when a department's detail is changed  |
+| `* * *`  | HR personnel                           | delete a department                                            | ensure consolidation of information when a department is disbanded         |
+| `* * *`  | HR personnel                           | find a department by name                                      | locate details of departments without having to go through the entire list |
+| `* * *`  | HR personnel                           | add an employee to a department                                | ensure consolidation of information when a department has a new employee   |
+| `* * *`  | HR personnel                           | remove an employee from a department                           | ensure consolidation of information when an employee leaves a department   |
+| `* * *`  | HR personnel                           | list all departments an employee is in                         |                                                                            |
+| `* * *`  | HR personnel                           | list all employees in a department                             | view manpower size of a department                                         |
 
 
 *{More to be added}*
@@ -300,7 +252,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is  `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an employee**
+**Use case: Add a new employee**
 
 **MSS**
 
@@ -354,38 +306,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC3 - Create a project**
+**Use case: UC3 - List Employees in department**
 
 **MSS:**
-1. User requests to create a project.
-2. SudoHR creates the project.
+1. User requests to list the employees in a specified department. 
+2. SudoHr lists all the employees in the department.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department is invalid.
 
     * 1a1. SudoHR shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC4 - Update a project**
+**Use case: UC4 - List Employees in a department present on a given day.**
 
 **MSS:**
-1. User lists all existing projects.
-2. User requests to update a project.
-3. SudoHR updates the project.
+1. User requests to list all employees in a given department who are present.
+2. SudoHR lists the employees.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department does not exist.
 
     * 1a1. SudoHR shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: UC5 - Delete a project**
 

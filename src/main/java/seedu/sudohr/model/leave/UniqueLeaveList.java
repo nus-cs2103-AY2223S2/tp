@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.model.leave.exceptions.LeaveNotFoundException;
 
@@ -51,6 +52,20 @@ public class UniqueLeaveList implements Iterable<Leave> {
             throw new DuplicateLeaveException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Gets the leave object by date.
+     * @param date
+     * @return
+     */
+    public Leave getLeave(LeaveDate date) {
+        for (Leave leave : internalList) {
+            if (leave.getDate().equals(date)) {
+                return leave;
+            }
+        }
+        return null;
     }
 
     /**

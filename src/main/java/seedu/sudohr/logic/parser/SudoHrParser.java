@@ -16,6 +16,7 @@ import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.department.FindDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListEmployeesInDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
 import seedu.sudohr.logic.commands.employee.AddCommand;
@@ -28,8 +29,10 @@ import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.department.AddDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.AddEmployeeToDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.DeleteDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.EditDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.FindDepartmentCommandParser;
+import seedu.sudohr.logic.parser.department.ListEmployeeDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.ListEmployeesInDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.RemoveEmployeeFromDepartmentCommandParser;
 import seedu.sudohr.logic.parser.employee.AddCommandParser;
@@ -85,11 +88,15 @@ public class SudoHrParser {
 
         case DeleteDepartmentCommand.COMMAND_WORD:
             return new DeleteDepartmentCommandParser().parse(arguments);
+
         case AddEmployeeToDepartmentCommand.COMMAND_WORD:
             return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case ListDepartmentCommand.COMMAND_WORD:
             return new ListDepartmentCommand();
+
+        case ListEmployeeDepartmentCommand.COMMAND_WORD:
+            return new ListEmployeeDepartmentCommandParser().parse(arguments);
 
         case ListEmployeesInDepartmentCommand.COMMAND_WORD:
             return new ListEmployeesInDepartmentCommandParser().parse(arguments);
