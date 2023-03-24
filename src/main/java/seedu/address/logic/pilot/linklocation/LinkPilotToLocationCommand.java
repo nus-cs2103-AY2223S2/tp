@@ -14,7 +14,7 @@ import seedu.address.model.location.PilotLocationType;
 import seedu.address.model.pilot.Pilot;
 
 /**
- * The command that links a crew to a flight
+ * The command that links a pilot to a flight
  */
 public class LinkPilotToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =

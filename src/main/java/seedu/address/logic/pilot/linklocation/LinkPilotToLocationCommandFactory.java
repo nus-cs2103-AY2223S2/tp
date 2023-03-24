@@ -17,9 +17,9 @@ import seedu.address.model.location.PilotLocationType;
 import seedu.address.model.pilot.Pilot;
 
 /**
- * Links a crew to location.
+ * Links a pilot to location.
  * The location could be a place where they reside.
- * To link a crew to a flight, the crew should reside in
+ * To link a pilot to a flight, the pilot should reside in
  * the same location as the flight's starting location.
  *
  */
@@ -65,7 +65,7 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
     }
 
     /**
-     * Creates a new link crew command factory with the given pilot manager
+     * Creates a new link pilot command factory with the given pilot manager
      * lazy and the flight manager lazy.
      *
      * @param pilotManagerLazy  the lazy instance of the pilot manager.
@@ -80,7 +80,7 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
     }
 
     /**
-     * Creates a new link crew command factory with the given pilot manager
+     * Creates a new link pilot command factory with the given pilot manager
      * and the location manager.
      *
      * @param pilotManager  the pilot manager.
