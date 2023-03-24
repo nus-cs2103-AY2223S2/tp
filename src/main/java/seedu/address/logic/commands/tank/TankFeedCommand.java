@@ -50,7 +50,6 @@ public class TankFeedCommand extends TankCommand {
 
         Tank tankToFeed = lastShownList.get(targetIndex.getZeroBased());
         //FEED ALL FISHES IN THIS TANK
-        System.out.println(tankToFeed.toString());
 
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
