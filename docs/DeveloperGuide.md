@@ -161,6 +161,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Implementation of Commands based on Application's Mode
+The following activity diagram summarises how the application handles a new user command:
+
+![CommandActivityFlowDiagram](images/CommandActivityFlowDiagram.png)
+
+#### Activity: Check validity of command 
+![CommandValidityActivityDiagram](images/CommandValidityActivityDiagram.png)
+
+### Implementation of Main Mode Features
+
+### Implementation of Card Mode Features
+
+### Implementation of Review Mode Features
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
