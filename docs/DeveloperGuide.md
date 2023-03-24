@@ -238,7 +238,7 @@ When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contai
 
 Below is a sequence diagram and the explanation of the `list` command.
 
-![ListCommand](images/ListCommand.png)
+![ListCommand](images/ListSequenceDiagram.png)
 
 Step 1. User enters the command `list`.
 
@@ -260,7 +260,7 @@ This command changes the appearance of ExecutivePro's GUI to the specified theme
 The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
 The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
 
-![ListCommand](images/ThemeCommand.png)
+![ListCommand](images/ThemeSequenceDiagram.png)
 
 Step 1. User enters a valid command, e.g. `theme light`.
 
