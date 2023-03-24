@@ -154,6 +154,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add event feature
+
+#### Current Implementation
+
+Adding an event is a feature that uses the command `addevent ev/EVENT_NAME from/EVENT_START_DATE_TIME to/EVENT_END_DATE_TIME`.
+
+The following sequence diagram shows how the add event operation works.
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram.png)
+
+This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
+
 ### \[Implemented] Find event feature
 
 #### Current Implementation
@@ -166,7 +178,6 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
 This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
-=======
 
 ### \[Implemented] Delete event feature
 
@@ -181,6 +192,27 @@ This operation is similar to that of deleting a person. Deleting an event involv
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
+
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`. 
+The events can be sorted based on their:
+- names in ascending order (using `sortevent a`)
+- names in descending order (using `sortevent b`)
+- start date times in ascending order (using `sortevent c`)
+- end date times in ascending order (using `sortevent d`)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+Moreover, the sorting is preserved until this command is executed again to sort the events by another variable or the program stops running.
 
 ### \[Implemented] List persons from an event feature
 
