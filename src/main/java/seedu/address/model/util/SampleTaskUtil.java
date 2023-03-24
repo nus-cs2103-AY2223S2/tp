@@ -18,7 +18,7 @@ public class SampleTaskUtil {
         return new Task[] {
             new Task(new Description("clean tank"), new Tank(new TankName("freshwater tank"), new AddressBook()),
                     new Priority("medium")),
-            new Task(new Description("feed fish"), null, null)
+            new Task(new Description("feed fish"), null, new Priority("medium"))
         };
     }
 

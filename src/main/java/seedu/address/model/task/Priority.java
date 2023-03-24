@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Priority {
     public static final String MESSAGE_CONSTRAINTS =
-            "Priority should be of the form: Low / Medium / High, and it should not be blank";
+            "Priority should be of the form: 'low' / 'medium' / 'high', and it should not be blank";
 
     public final String priority;
 
