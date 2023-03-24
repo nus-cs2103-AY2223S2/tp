@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,5 +135,21 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns a list of all the meetings that every person in this list has.
+     * List returned is unmodifiable
+     */
+    public ObservableList<Meeting> getAllMeetingAsUnmodifiableObservableList() {
+        // Converts the internalList into a stream, maps every person inside it to it's meeting list,
+        // then every ArrayList of Meetings are combined together to form one giant ArrayList that
+        // contains all the meetings that every person has
+        ArrayList<Meeting> m = internalList.stream()
+                                           .map(p -> p.getMeetings())
+                                           .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+
+        ObservableList<Meeting> observableList = FXCollections.observableArrayList(m);
+        return FXCollections.unmodifiableObservableList(observableList);
     }
 }

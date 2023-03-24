@@ -2,9 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -116,5 +119,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return persons.getAllMeetingAsUnmodifiableObservableList();
     }
 }

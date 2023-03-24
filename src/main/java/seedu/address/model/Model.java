@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filtered meeting list to filter by input {@code predicate}
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 }
