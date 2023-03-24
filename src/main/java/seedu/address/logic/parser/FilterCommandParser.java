@@ -26,11 +26,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        System.out.println(tagList);
         //only allowed to specify one tag
         if (tagList.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-
+        assert tagList.size() == 1;
         Tag currTag = tagList.stream().collect(Collectors.toList()).get(0);
 
         return new FilterCommand(currTag);
