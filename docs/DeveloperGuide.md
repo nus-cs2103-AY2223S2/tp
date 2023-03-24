@@ -269,7 +269,7 @@ The proposed Add Exercise mechanism is facilitated by `FitBook`. It implements t
 
 This operation is exposed in the `FitBookModel` interface as `FitBookModel#addExercise()`
 
-Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+Given below is an example usage scenario and how the addExercise mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
 
@@ -330,7 +330,7 @@ Step 2.5. These commands will therefore go through updates for the FitBookModel 
 
 </div>
 
-The following sequence diagram shows how the delete routine operation works:
+The following sequence diagram shows how the deleteRoutine operation works:
 
 ![DeleteRoutineSeqDiagram](images/DeleteRoutineSeqDiagram.png)
 
