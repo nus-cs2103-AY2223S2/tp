@@ -18,6 +18,8 @@ title: Developer Guide
     - [Design considerations](#design-considerations)
   - [Filter feature](#filter-feature)
     - [Current Implementation](#current-filter-implementation)
+  - [Copy feature](#copy-feature)
+    - [Current Implementation](#current-copy-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -301,6 +303,24 @@ The following sequence diagram shows an example of how the filter feature runs w
 :information_source: **Note:** The lifeline for `FilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+### Copy feature
+
+#### Current Filter Implementation
+
+The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`.
+Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
+
+The following sequence diagram shows how the copy operation works:
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `CopyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
 
 ### \[Proposed\] Data archiving
 
