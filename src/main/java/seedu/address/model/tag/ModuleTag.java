@@ -18,6 +18,6 @@ public class ModuleTag extends Tag {
 
     @Override
     public String toString() {
-        return  " [Module: " + tagName.split("XXXXX")[1] + "] ";
+        return " [Module: " + tagName.split("XXXXX")[1] + "] ";
     }
 }

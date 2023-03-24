@@ -10,10 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.tag.ModuleTag;
-import seedu.address.model.tag.Tag;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.ImageUtil;
 
 /**
@@ -89,6 +88,9 @@ public class PersonCard extends UiPart<Region> {
         case "Module":
             str = "#006400";
             break;
+        case "Commitment":
+            str = "#f88379";
+            break;
         default:
             str = "#3e7b91";
         }
@@ -96,10 +98,11 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private String setLabel(String tagLabel) {
-        String [] parts = tagLabel.split("XXXXX");
+        String[] parts = tagLabel.split("XXXXX");
         String str = "";
         switch (parts[0]) {
         case "Module":
+        case "Commitment":
             str = parts[1];
             break;
         default:

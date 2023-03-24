@@ -31,6 +31,8 @@ public class ArgumentMultimap {
         List<String> argValues = getAllValues(prefix);
         if (prefix.toString().equals("mt/")) {
             argValues.add("ModuleXXXXX" + argValue);
+        } else if (prefix.toString().equals("ct/")) {
+            argValues.add("CommitmentXXXXX" + argValue);
         } else {
             argValues.add(argValue);
         }
