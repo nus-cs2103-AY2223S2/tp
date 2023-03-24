@@ -69,8 +69,6 @@ public class EditExpenseCommand extends Command {
 
         if (toBeAllocated != null) {
             expenseToEdit.setCategory(toBeAllocated);
-        } else if (this.newExpenseCategoryInString != null && toBeAllocated == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
         if (newExpenseName != null) {

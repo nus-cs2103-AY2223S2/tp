@@ -61,7 +61,7 @@ public class EditExpenseCommandParser implements Parser<EditExpenseCommand> {
             try {
                 newDate = ParserUtil.parseDate(inputDateInString);
             } catch (ParseException pe) {
-                throw new ParseException("Invalid date format! Please use DD/MM/YY format!", pe);
+                throw new ParseException("Invalid date format! Please use DD-MM-YY format!", pe);
             }
         } else {
             newDate = null;
