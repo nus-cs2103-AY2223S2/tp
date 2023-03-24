@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 /**
  * Represents a <code>TaskStatus</code> that holds the possible task statuses available.
  */

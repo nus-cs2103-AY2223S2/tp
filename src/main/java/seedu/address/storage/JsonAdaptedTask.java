@@ -18,7 +18,7 @@ import seedu.address.model.task.TaskStatus;
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_DATE_TIME;
     public static final String DATE_MESSAGE_CONSTRAINTS = "Wrong format of date.";
 
     private final String taskName;
@@ -73,11 +73,11 @@ public class JsonAdaptedTask {
                     LocalDateTime.class.getSimpleName()));
         }
         try {
-            LocalDateTime.parse(creationDate, formatter);
+            LocalDateTime.parse(creationDate, FORMATTER);
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(DATE_MESSAGE_CONSTRAINTS);
         }
-        LocalDateTime modelCreationDate = LocalDateTime.parse(creationDate, formatter);
+        LocalDateTime modelCreationDate = LocalDateTime.parse(creationDate, FORMATTER);
 
         return new Task(modelTaskName, modelTaskStatus, modelCreationDate);
     }
