@@ -16,8 +16,10 @@ title: Developer Guide
   - [Undo feature](#undo-feature)
     - [Current Implementation](#current-implementation)
     - [Design considerations](#design-considerations)
+  - [Filter feature](#filter-feature)
+    - [Current Filter Implementation](#current-filter-implementation)
   - [Copy feature](#copy-feature)
-    - [Current Implementation](#current-implementation)
+    - [Current Copy Implementation](#current-copy-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -317,9 +319,34 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 *{more aspects and alternatives to be added}*
 
+### Filter feature
+
+#### Current Filter Implementation
+
+The current filter feature is facilitated by `FilterCommand` which extends `Command`. The `FilterCommand`
+has a constructor that requires a non-null `FilterDescriptor`, which is an inner class of `FilterCommand`. 
+It is used to store the desired filter's information. `FilterDescriptor` has all the fields that a `Person`
+object has (i.e. `Phone`, `Email`,`Rank`, etc), except that the field values can be empty
+and do not need to follow any format or restriction.
+
+When `FilterCommand` receives a valid `FilterDescriptor`, it creates a `FieldContainsPartialKeywordsPredicate`
+using all of the `FilterDescriptor`'s information. This `Predicate` is used go through all the `Person` objects that are 
+currently in the `Model`. A `Person` is filtered out if it does not contain the keyword in the corresponding field.
+
+The following sequence diagram shows an example of how the filter feature runs with user input: 
+`filter e/gmail r/3sg`.
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `FilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ### Copy feature
 
-#### Current Implementation
+#### Current Copy Implementation
 
 The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`.
 Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
