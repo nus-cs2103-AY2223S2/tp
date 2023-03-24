@@ -1,7 +1,9 @@
 package seedu.sudohr.logic.parser.leave;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
