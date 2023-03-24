@@ -172,6 +172,7 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
 The following sequence diagram illustrates the description for adding meeting:
 
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
 
 ### 2. Remove Meeting Feature
 
@@ -190,6 +191,8 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 
 After being parsed, the `RemoveMeetingCommand#execute()` method is called, remove a meeting at the specified index
 for the specified person. The following sequence diagram illustrates the description for removing meeting:
+
+![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
 
 ### \[Proposed\] Undo/redo feature
 
