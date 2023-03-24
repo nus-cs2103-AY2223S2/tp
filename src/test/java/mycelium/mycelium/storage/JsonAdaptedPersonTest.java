@@ -1,7 +1,7 @@
 package mycelium.mycelium.storage;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.BENSON;
+import static mycelium.mycelium.testutil.TypicalEntities.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;

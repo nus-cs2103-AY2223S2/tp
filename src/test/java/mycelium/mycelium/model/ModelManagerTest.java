@@ -1,9 +1,9 @@
 package mycelium.mycelium.model;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
-import static mycelium.mycelium.testutil.TypicalPersons.BENSON;
-import static mycelium.mycelium.testutil.TypicalPersons.WEST;
+import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
+import static mycelium.mycelium.testutil.TypicalEntities.BENSON;
+import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

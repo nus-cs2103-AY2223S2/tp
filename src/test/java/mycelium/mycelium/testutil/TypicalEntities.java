@@ -25,8 +25,7 @@ import mycelium.mycelium.model.project.ProjectStatus;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
-    // Temporary placement of clients
+public class TypicalEntities {
     public static final Client FUTA = new ClientBuilder().withName("Rantaro Futanari")
         .withEmail("Futanari@example.com")
         .withYearOfBirth("1958")
@@ -114,7 +113,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {
+    private TypicalEntities() {
     } // prevents instantiation
 
     /**

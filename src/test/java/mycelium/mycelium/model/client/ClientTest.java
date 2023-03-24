@@ -1,8 +1,8 @@
 package mycelium.mycelium.model.client;
 
-import static mycelium.mycelium.testutil.TypicalPersons.FUTA;
-import static mycelium.mycelium.testutil.TypicalPersons.RANTARO;
-import static mycelium.mycelium.testutil.TypicalPersons.WEST;
+import static mycelium.mycelium.testutil.TypicalEntities.FUTA;
+import static mycelium.mycelium.testutil.TypicalEntities.RANTARO;
+import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
