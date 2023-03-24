@@ -6,9 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -25,7 +27,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Consultation> filteredConsultations;
@@ -225,6 +227,30 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+
+    public void updateFPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+        SortedList<Person> sortedData = new SortedList<>(filteredPersons);
+        sortedData.setComparator(new comp());
+
+        filteredPersons = new FilteredList<>(sortedData);
+    }
+
+    class comp implements Comparator<Person> {
+        public int compare(Person p1, Person p2) {
+            int first = p1.getPerformance().calculateUrgency();
+            int second = p2.getPerformance().calculateUrgency();
+            if (second > first) {
+                return 1;
+            } else if (second < first) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================

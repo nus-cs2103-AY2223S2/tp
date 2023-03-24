@@ -19,6 +19,6 @@ public class SortStudentCommandTest {
 
     @Test
     public void execute() {
-        assertCommandFailure(new SortStudentCommand(), model, MESSAGE_NOT_IMPLEMENTED_YET);
+        assertCommandFailure(new SortStudentCommand("temp", "temp", true), model, MESSAGE_NOT_IMPLEMENTED_YET);
     }
 }

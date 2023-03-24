@@ -88,6 +88,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFPersonList(Predicate<Person> predicate);
 
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
