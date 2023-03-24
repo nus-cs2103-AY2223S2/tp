@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 
@@ -57,7 +57,7 @@ public class UploadCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         try {
             Path sourcePath = this.sourcePath;
             Path destPath = this.destPath;

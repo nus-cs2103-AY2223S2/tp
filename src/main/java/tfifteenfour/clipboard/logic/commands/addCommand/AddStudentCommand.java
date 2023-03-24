@@ -7,7 +7,8 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
-import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -44,10 +45,14 @@ public class AddStudentCommand extends AddCommand {
     }
 
     @Override
-	public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
+	public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
 		requireNonNull(model);
 
-		Group targetGroup = currentSelected.getSelectedGroup();
+		if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+			throw new CommandException("Wrong page. Navigate to student page to add student");
+		}
+
+		Group targetGroup = currentSelection.getSelectedGroup();
 		if (targetGroup.hasStudent(studentToAdd)) {
 			throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
 		}

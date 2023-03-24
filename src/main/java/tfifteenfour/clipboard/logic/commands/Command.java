@@ -1,6 +1,6 @@
 package tfifteenfour.clipboard.logic.commands;
 
-import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 
@@ -23,7 +23,7 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException;
+    public abstract CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException;
 
     public boolean getWillModifyState() {
         return this.willModifyState;

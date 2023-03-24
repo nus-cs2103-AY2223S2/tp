@@ -4,7 +4,8 @@ import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Student;
 
-public class CurrentSelected {
+
+public class CurrentSelection {
 
 	private PageType currentPage;
 
@@ -12,7 +13,7 @@ public class CurrentSelected {
 	private Group selectedGroup;
 	private Student selectedStudent;
 
-	public CurrentSelected() {
+	public CurrentSelection() {
 		this.currentPage = PageType.COURSE_PAGE;
 	}
 

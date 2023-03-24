@@ -6,7 +6,7 @@ import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -36,61 +36,65 @@ public class SelectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
 
 
-        switch (currentSelected.getCurrentPage()) {
+        switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE:
-            Course selectedCourse = handleSelectCourse(model, currentSelected);
-            return new CommandResult(this, String.format("Viewing Course: %s", selectedCourse), willModifyState);
+            // if you are on course page now, means you can only select a course
+            Course selectedCourse = handleSelectCourse(model, currentSelection);
+            return new CommandResult(this, String.format("[GROUP PAGE]\nViewing Course: %s", selectedCourse), willModifyState);
 
         case GROUP_PAGE:
-            Group selectedGroup = handleSelectGroup(model, currentSelected);
-            return new CommandResult(this, String.format("Viewing Group: %s of %s", selectedGroup,
-                    currentSelected.getSelectedCourse()), willModifyState);
+            // if you are on group page now, means you can only select a group
+            Group selectedGroup = handleSelectGroup(model, currentSelection);
+            return new CommandResult(this, String.format("[STUDENT PAGE]\nViewing Group: %s of %s", selectedGroup,
+                    currentSelection.getSelectedCourse()), willModifyState);
 
         case STUDENT_PAGE:
-            Student selectedStudent = handleSelectStudent(model, currentSelected);
+            Student selectedStudent = handleSelectStudent(model, currentSelection);
             return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
         default:
             throw new CommandException("Unable to select");
         }
     }
 
-    private Course handleSelectCourse(Model model, CurrentSelected currentSelected) throws CommandException {
+    private Course handleSelectCourse(Model model, CurrentSelection currentSelection) throws CommandException {
 
         List<Course> courseList = model.getUnmodifiableFilteredCourseList();
         if (targetIndex.getZeroBased() >= courseList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
         Course selectedCourse = courseList.get(targetIndex.getZeroBased());
-        currentSelected.setSelectedCourse(selectedCourse);
-        currentSelected.setCurrentPage(PageType.GROUP_PAGE);
+        currentSelection.setSelectedCourse(selectedCourse);
+        // after selecting course, move to group_page
+        currentSelection.setCurrentPage(PageType.GROUP_PAGE);
 
         return selectedCourse;
     }
 
-    private Group handleSelectGroup(Model model, CurrentSelected currentSelected) throws CommandException {
-        List<Group> groupList = currentSelected.getSelectedCourse().getUnmodifiableGroupList();
+    private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
+        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
         Group selectedGroup = groupList.get(targetIndex.getZeroBased());
-        currentSelected.setSelectedGroup(selectedGroup);
-        currentSelected.setCurrentPage(PageType.STUDENT_PAGE);
+        currentSelection.setSelectedGroup(selectedGroup);
+        // after selecting group, move to student_page
+        currentSelection.setCurrentPage(PageType.STUDENT_PAGE);
 
         return selectedGroup;
     }
 
-    private Student handleSelectStudent(Model model, CurrentSelected currentSelected) throws CommandException {
-        List<Student> studentList = currentSelected.getSelectedGroup().getUnmodifiableStudentList();
+    private Student handleSelectStudent(Model model, CurrentSelection currentSelection) throws CommandException {
+        List<Student> studentList = currentSelection.getSelectedGroup().getUnmodifiableStudentList();
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Student selectedStudent = studentList.get(targetIndex.getZeroBased());
-        // end of navigation, no longer need to call setters of currentSelected
+        // end of navigation, no longer need to call setters of currentSelection
         return selectedStudent;
     }
 

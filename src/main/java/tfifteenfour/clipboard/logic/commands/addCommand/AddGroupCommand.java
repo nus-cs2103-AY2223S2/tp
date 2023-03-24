@@ -2,7 +2,8 @@ package tfifteenfour.clipboard.logic.commands.addCommand;
 
 import static java.util.Objects.requireNonNull;
 
-import tfifteenfour.clipboard.logic.CurrentSelected;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -27,10 +28,14 @@ public class AddGroupCommand extends AddCommand {
 		this.groupToAdd = group;
 	}
 
-	public CommandResult execute(Model model, CurrentSelected currentSelected) throws CommandException {
+	public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
 		requireNonNull(model);
 
-		Course targetCourse = currentSelected.getSelectedCourse();
+		if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+			throw new CommandException("Wrong page. Navigate to group page to add group");
+		}
+
+		Course targetCourse = currentSelection.getSelectedCourse();
 		if (targetCourse.hasGroup(groupToAdd)) {
 			throw new CommandException(MESSAGE_DUPLICATE_GROUP);
 		}

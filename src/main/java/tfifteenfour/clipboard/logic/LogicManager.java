@@ -30,7 +30,7 @@ public class LogicManager implements Logic {
     private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
 
-    private CurrentSelected currentSelected;
+    private CurrentSelection currentSelection;
 
 
 
@@ -42,14 +42,14 @@ public class LogicManager implements Logic {
         System.out.println("LOGIC MANGER #####");
         this.model = model;
         this.storage = storage;
-        this.currentSelected = new CurrentSelected();
+        this.currentSelection = new CurrentSelection();
     }
 
     CommandResult handleUndoCommand(Command command) throws CommandException, ParseException {
         UndoCommand undoCmd = (UndoCommand) command;
 
         undoCmd.setStateHistoryBuffer(this.stateHistoryBuffer);
-        CommandResult commandResult = undoCmd.execute(model, currentSelected);
+        CommandResult commandResult = undoCmd.execute(model, currentSelection);
         model = undoCmd.getPrevModel();
 
         return commandResult;
@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
         System.out.println("$$$$$$$$$");
 
         CommandResult commandResult;
-        Command command = RosterParser.parseCommand(commandText, currentSelected);
+        Command command = RosterParser.parseCommand(commandText, currentSelection);
 
         // Special case for UndoCommand because restoring the model to a previous state requires actions that are above
         // the model, as opposed to typical commands that behave within the model.
@@ -71,7 +71,7 @@ public class LogicManager implements Logic {
             commandResult = handleUndoCommand(command);
         } else {
             Model modelCopy = model.copy();
-            commandResult = command.execute(model, currentSelected);
+            commandResult = command.execute(model, currentSelection);
             if (commandResult.isStateModified()) {
                 modelCopy.setCommandTextExecuted(commandText);
                 modelCopy.setCommandExecuted(command);
