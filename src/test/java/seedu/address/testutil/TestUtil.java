@@ -2,11 +2,14 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.io.IOException;
@@ -17,13 +20,15 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.tag.MedicalQualificationTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -115,15 +120,15 @@ public class TestUtil {
     /**
      * Returns an edit command string for editing the {@code person}.
      */
-    public static String getEditCommand(String nric, EditPersonDescriptor descriptor) {
+    public static String getEditCommand(String nric, EditDescriptor descriptor) {
         return EditCommand.COMMAND_WORD + " " + nric
-                + " " + getEditPersonDescriptorDetails(descriptor);
+                + " " + getEditDescriptorDetails(descriptor);
     }
 
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditDescriptorDetails(EditDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
@@ -133,13 +138,35 @@ public class TestUtil {
         descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.value).append(" "));
         descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.value).append(" "));
         descriptor.getRegion().ifPresent(region -> sb.append(PREFIX_REGION).append(region).append(" "));
+        descriptor.getRiskLevel().ifPresent(riskLevel ->
+                sb.append(PREFIX_RISK).append(riskLevel).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+
+        if (descriptor.getMedicalTags().isPresent()) {
+            Set<MedicalQualificationTag> tags = descriptor.getMedicalTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_MEDICAL_TAG).append(" ");
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_MEDICAL_TAG).append(s.tagName).append(" ")
+                        .append(s.getQualificationLevel()).append(" "));
+            }
+        }
+
+        if (descriptor.getAvailableDates().isPresent()) {
+            Set<AvailableDate> dates = descriptor.getAvailableDates().get();
+            if (dates.isEmpty()) {
+                sb.append(PREFIX_AVAILABILITY);
+            } else {
+                dates.forEach(s -> sb.append(PREFIX_AVAILABILITY).append(s.getStartDate().toString()).append(",")
+                        .append(s.getEndDate().toString()).append(" "));
             }
         }
 

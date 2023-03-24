@@ -224,6 +224,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public void setElderly(Elderly target, Elderly editedElderly) {
         requireNonNull(editedElderly);
         elderly.setPerson(target, editedElderly);
+        for (Pair pair : pairs) {
+            if (pair.getElderly().equals(target)) {
+                pairs.setPair(pair, new Pair(editedElderly, pair.getVolunteer()));
+            }
+        }
     }
 
     /**
@@ -238,6 +243,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
         requireNonNull(editedVolunteer);
         volunteers.setPerson(target, editedVolunteer);
+        for (Pair pair : pairs) {
+            if (pair.getVolunteer().equals(target)) {
+                pairs.setPair(pair, new Pair(pair.getElderly(), editedVolunteer));
+            }
+        }
     }
 
     /**

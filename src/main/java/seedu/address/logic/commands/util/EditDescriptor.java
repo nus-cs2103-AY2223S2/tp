@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
@@ -15,12 +17,14 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
+import seedu.address.model.person.information.RiskLevel;
+import seedu.address.model.tag.MedicalQualificationTag;
 import seedu.address.model.tag.Tag;
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
  * corresponding field value of the person.
  */
-public class EditPersonDescriptor {
+public class EditDescriptor {
     private Name name;
     private Phone phone;
     private Email email;
@@ -28,20 +32,22 @@ public class EditPersonDescriptor {
     private Nric nric;
     private Age age;
     private Region region;
+    private RiskLevel riskLevel;
+    private Set<MedicalQualificationTag> medicalTags;
     private Set<Tag> tags;
     private Set<AvailableDate> availableDates;
 
     /**
      * Default empty constructor.
      */
-    public EditPersonDescriptor() {}
+    public EditDescriptor() {}
 
     /**
      * Copy constructor.
      *
      * @param toCopy {@code EditPersonDescriptor} for copying.
      */
-    public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+    public EditDescriptor(EditDescriptor toCopy) {
         setName(toCopy.name);
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
@@ -49,6 +55,8 @@ public class EditPersonDescriptor {
         setNric(toCopy.nric);
         setAge(toCopy.age);
         setRegion(toCopy.region);
+        setRiskLevel(toCopy.riskLevel);
+        setMedicalTags(toCopy.medicalTags);
         setTags(toCopy.tags);
         setAvailableDates(toCopy.availableDates);
     }
@@ -60,7 +68,7 @@ public class EditPersonDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone,
-                email, address, nric, age, region, tags, availableDates);
+                email, address, nric, age, region, tags, riskLevel, medicalTags, availableDates);
     }
 
     public void setName(Name name) {
@@ -119,6 +127,24 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(region);
     }
 
+    public void setRiskLevel(RiskLevel riskLevel) {
+        this.riskLevel = riskLevel;
+    }
+
+    public Optional<RiskLevel> getRiskLevel() {
+        return Optional.ofNullable(riskLevel);
+    }
+
+    public void setMedicalTags(Set<MedicalQualificationTag> tags) {
+        this.medicalTags = (tags != null) ? new HashSet<>(tags) : null;
+    }
+
+    public Optional<Set<MedicalQualificationTag>> getMedicalTags() {
+        return (medicalTags != null)
+                ? Optional.of(Collections.unmodifiableSet(medicalTags))
+                : Optional.empty();
+    }
+
     /**
      * Sets {@code tags} to this object's {@code tags}.
      *
@@ -136,7 +162,9 @@ public class EditPersonDescriptor {
      * @return {@code Optional} of the set of tags.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null)
+                ? Optional.of(Collections.unmodifiableSet(tags))
+                : Optional.empty();
     }
 
     /**
@@ -161,6 +189,62 @@ public class EditPersonDescriptor {
                 : Optional.empty();
     }
 
+    /**
+     * Creates and returns a {@code Elderly} with the details of {@code elderlyToEdit}
+     * edited with {@code editDescriptor}.
+     *
+     * @param elderlyToEdit Elderly to edit.
+     * @param editDescriptor Edit details.
+     * @return Edited elderly.
+     */
+    public static Elderly createEditedElderly(Elderly elderlyToEdit, EditDescriptor editDescriptor) {
+        assert elderlyToEdit != null;
+
+        Name updatedName = editDescriptor.getName().orElse(elderlyToEdit.getName());
+        Phone updatedPhone = editDescriptor.getPhone().orElse(elderlyToEdit.getPhone());
+        Email updatedEmail = editDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
+        Address updatedAddress = editDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
+        Nric updatedNric = editDescriptor.getNric().orElse(elderlyToEdit.getNric());
+        Age updatedAge = editDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        Region updateRegion = editDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
+        RiskLevel updatedRiskLevel = editDescriptor.getRiskLevel().orElse(elderlyToEdit.getRiskLevel());
+        Set<Tag> updatedTags = editDescriptor.getTags().orElse(elderlyToEdit.getTags());
+        Set<AvailableDate> updatedDates = editDescriptor.getAvailableDates()
+                .orElse(elderlyToEdit.getAvailableDates());
+
+        return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags, updatedDates);
+    }
+
+    /**
+     * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
+     * edited with {@code editDescriptor}.
+     *
+     * @param volunteerToEdit Volunteer to edit.
+     * @param editDescriptor Edit details.
+     * @return Edited volunteer.
+     */
+    public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
+            EditDescriptor editDescriptor) {
+        assert volunteerToEdit != null;
+
+        Name updatedName = editDescriptor.getName().orElse(volunteerToEdit.getName());
+        Phone updatedPhone = editDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
+        Email updatedEmail = editDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
+        Address updatedAddress = editDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
+        Nric updatedNric = editDescriptor.getNric().orElse(volunteerToEdit.getNric());
+        Age updatedAge = editDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Region updateRegion = editDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
+        Set<MedicalQualificationTag> updatedMedicalTags = editDescriptor.getMedicalTags()
+                .orElse(volunteerToEdit.getMedicalTags());
+        Set<Tag> updatedTags = editDescriptor.getTags().orElse(volunteerToEdit.getTags());
+        Set<AvailableDate> updatedDates = editDescriptor.getAvailableDates()
+                .orElse(volunteerToEdit.getAvailableDates());
+
+        return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedNric, updatedAge, updateRegion, updatedTags, updatedMedicalTags, updatedDates);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -169,12 +253,12 @@ public class EditPersonDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditPersonDescriptor)) {
+        if (!(other instanceof EditDescriptor)) {
             return false;
         }
 
         // state check
-        EditPersonDescriptor e = (EditPersonDescriptor) other;
+        EditDescriptor e = (EditDescriptor) other;
 
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
@@ -183,6 +267,8 @@ public class EditPersonDescriptor {
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
                 && getRegion().equals(e.getRegion())
+                && getRiskLevel().equals(e.getRiskLevel())
+                && getMedicalTags().equals(e.getMedicalTags())
                 && getTags().equals(e.getTags())
                 && getAvailableDates().equals(e.getAvailableDates());
     }
@@ -190,6 +276,6 @@ public class EditPersonDescriptor {
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, email, address, nric,
-                age, region, tags);
+                age, region, riskLevel, medicalTags, availableDates, tags);
     }
 }

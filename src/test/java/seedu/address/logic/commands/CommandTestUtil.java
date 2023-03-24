@@ -24,9 +24,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
-import seedu.address.logic.commands.util.EditPersonDescriptor;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
@@ -42,9 +40,7 @@ import seedu.address.model.person.predicates.NricContainsKeywordPredicate;
 import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
-import seedu.address.testutil.EditElderlyDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.EditDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -136,13 +132,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditElderlyDescriptor DESC_ELDERLY_AMY;
-    public static final EditElderlyDescriptor DESC_ELDERLY_BOB;
-
-    public static final EditVolunteerDescriptor DESC_VOLUNTEER_AMY;
-    public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
-    public static final EditPersonDescriptor DESC_PERSON_AMY;
-    public static final EditPersonDescriptor DESC_PERSON_BOB;
+    public static final EditDescriptor DESC_AMY;
+    public static final EditDescriptor DESC_BOB;
 
     public static final NameContainsKeywordPredicate<Person> PREDICATE_HAS_NAME =
             new NameContainsKeywordPredicate<>(ALICE.getName().fullName);
@@ -162,35 +153,14 @@ public class CommandTestUtil {
             new TagIsEqualPredicate<>(ALICE.getTags().iterator().next().tagName);
 
     static {
-        DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRegion(VALID_REGION_AMY)
-                .withRiskLevel(VALID_RISK_LEVEL_AMY).withTags(VALID_TAG_STRONG).build();
-
-        DESC_ELDERLY_BOB = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
-                .withRegion(VALID_REGION_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
-                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
-
-        DESC_VOLUNTEER_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRegion(VALID_REGION_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
                 .withTags(VALID_TAG_STRONG).build();
 
-        DESC_VOLUNTEER_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRegion(VALID_REGION_BOB)
-                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
-
-        DESC_PERSON_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
-                .withTags(VALID_TAG_STRONG).build();
-
-        DESC_PERSON_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
     }
 

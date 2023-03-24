@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":FriendlyLinkParser" as FriendlyLinkParser LOGIC_COLOR
+participant ":DeleteElderlyCommandParser" as DeleteElderlyCommandParser LOGIC_COLOR
+participant "d:DeleteElderlyCommand" as DeleteElderlyCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,62 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete_elderly S1234567I")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> FriendlyLinkParser : parseCommand("delete_elderly S1234567I")
+activate FriendlyLinkParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteElderlyCommandParser
+FriendlyLinkParser -> DeleteElderlyCommandParser
+activate DeleteElderlyCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeleteElderlyCommandParser --> FriendlyLinkParser
+deactivate DeleteElderlyCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+FriendlyLinkParser -> DeleteElderlyCommandParser : parse("S1234567I")
+activate DeleteElderlyCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteElderlyCommand
+DeleteElderlyCommandParser -> DeleteElderlyCommand
+activate DeleteElderlyCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteElderlyCommand --> DeleteElderlyCommandParser : d
+deactivate DeleteElderlyCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeleteElderlyCommandParser --> FriendlyLinkParser : d
+deactivate DeleteElderlyCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteElderlyCommandParser -[hidden]-> FriendlyLinkParser
+destroy DeleteElderlyCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+FriendlyLinkParser --> LogicManager : d
+deactivate FriendlyLinkParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteElderlyCommand : execute()
+activate DeleteElderlyCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteElderlyCommand -> Model : getElderly(targetNric)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteElderlyCommand : elderlyToDelete
+deactivate Model
+
+DeleteElderlyCommand -> Model : deleteElderly(elderlyToDelete)
+activate Model
+
+Model --> DeleteElderlyCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteElderlyCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteElderlyCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteElderlyCommand --> LogicManager : result
+deactivate DeleteElderlyCommand
 
 [<--LogicManager
 deactivate LogicManager

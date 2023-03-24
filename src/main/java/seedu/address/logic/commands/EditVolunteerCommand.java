@@ -11,8 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,7 +25,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 
@@ -43,10 +44,11 @@ public class EditVolunteerCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_NRIC_VOLUNTEER + "NRIC] "
+            + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_REGION + "REGION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG]... "
             + "[" + PREFIX_AVAILABILITY + "DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -56,24 +58,24 @@ public class EditVolunteerCommand extends Command {
     public static final String MESSAGE_EDIT_VOLUNTEER_SUCCESS = "Edited volunteer: %1$s";
 
     private final Index index;
-    private final EditVolunteerDescriptor editVolunteerDescriptor;
+    private final EditDescriptor editDescriptor;
 
     /**
      * Creates an {@code EditVolunteerCommand} to edit a volunteer.
      *
      * @param index Index of the volunteer in the filtered volunteer list to edit.
-     * @param editVolunteerDescriptor Details to edit the volunteer with.
+     * @param editDescriptor Details to edit the volunteer with.
      */
-    public EditVolunteerCommand(Index index, EditVolunteerDescriptor editVolunteerDescriptor) {
-        requireAllNonNull(index, editVolunteerDescriptor);
+    public EditVolunteerCommand(Index index, EditDescriptor editDescriptor) {
+        requireAllNonNull(index, editDescriptor);
         this.index = index;
-        this.editVolunteerDescriptor = new EditVolunteerDescriptor(editVolunteerDescriptor);
+        this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
-        if (!editVolunteerDescriptor.isAnyFieldEdited()) {
+        if (!editDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
@@ -86,8 +88,8 @@ public class EditVolunteerCommand extends Command {
         assert index.getZeroBased() >= 0 : "index should not be negative";
 
         Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
-        Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
-                volunteerToEdit, editVolunteerDescriptor);
+        Volunteer editedVolunteer = EditDescriptor.createEditedVolunteer(
+                volunteerToEdit, editDescriptor);
 
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
             throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
@@ -121,11 +123,11 @@ public class EditVolunteerCommand extends Command {
         // state check
         EditVolunteerCommand e = (EditVolunteerCommand) other;
         return index.equals(e.index)
-                && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
+                && editDescriptor.equals(e.editDescriptor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, editVolunteerDescriptor);
+        return Objects.hash(index, editDescriptor);
     }
 }
