@@ -62,6 +62,10 @@ public class Meeting {
         return description;
     }
 
+    public boolean getHasPassed() {
+        return hasPassed;
+    }
+
     /**
      * Returns true if both meetings have the same title, dateTime and attendees.
      * This defines a weaker notion of equality between two meetings.
