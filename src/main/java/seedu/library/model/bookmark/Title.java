@@ -12,8 +12,8 @@ public class Title {
     public static final int TITLE_MAX_LENGTH = 180;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Title should only contain alphanumeric characters and spaces, it should not be blank and " +
-                    "length of title should not be longer than 180 characters";
+            "Title should only contain alphanumeric characters and spaces, it should not be blank and "
+                    + "length of title should not be longer than 180 characters";
 
     /*
      * The first character of the title must not be a whitespace,
