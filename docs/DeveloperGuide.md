@@ -266,6 +266,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### 3.1 Add Feature
 
+The add feature now supports three types of additions: simple tasks, events and deadlines. The AddCommandParser will handle the multiple prefixes in the input before the AddCommand adds a list of tasks into the taskbook.
+Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
+
+You can find the specific implementation in the 'AddCommandParser' class and the 'AddCommand' class
+
+Given below is a scenario of how the add command is used and behaves.
+
+Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
+
+Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
+
+Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
+
+Step 4. The add command is returned to the logic manager for execution.
+
+Step 5. For each of the task in the temporary task list, we add them to the task list in the model.
+
+Step 6. The result of execution is returned to the logic manager and the UI will display the result as a message.
+
+The following diagram summarises the sequence of events happening during the execution.
+![AddCommandSequenceDiagram](images/AddCommand.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+
 ### 3.2 Clear Feature
 
 ### 3.3 Delete Feature
@@ -388,6 +413,7 @@ Aspect: How are tasks sorted:
 * Deadline is  listed below SimpleTask and above Event.
 * Event is  listed below SimpleTask and Event.
 * When comparing 2 tasks of the same class:
+
   * SimpleTask
     * The task with lesser tags is listed above the task with more tags.
     * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
