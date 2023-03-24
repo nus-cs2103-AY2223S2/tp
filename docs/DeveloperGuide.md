@@ -112,6 +112,35 @@ The following sequence diagram shows how the _**Delete Task**_ feature works.
 #### Design Considerations
 The _**Delete Task**_ feature is implemented in this way so as to make it similar to the analogous _**Delete Person**_ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
 
+### Edit task feature
+
+<img src="./images/EditTaskClassDiagram.png" width="100%">
+
+The `EditTaskCommand` class represents a command that edits an **existing** task. It takes in the index of the task in the task list to be edited and an `EditTaskDescriptor` object. The `EditTaskDescriptor` class is a helper class that stores the new details of the task to be updated. The `execute` method updates the task in the model with the new details and returns a `CommandResult`.
+
+#### Sequence diagram here
+
+`EditTaskCommand` is facilitated by `EditTaskCommandParser` which parses and provides the fields entered by the user in the required format.
+
+Internally, the `EditTaskDescriptor` is casted to either a `EditTodoDescriptor` or `EditEventDescriptor` based on the type of task to be edited. The relevant information is used to create a new `Todo` or `Event` object with the updated fields.
+
+The newly created object replaces the task to be edited in the `TaskList`. Finally, an output is displayed with the status of the edit operation and the updated task details.
+
+<!-- 
+To provide an example of how this feature works, consider the following usage scenario. -->
+
+
+#### Design considerations:
+**Aspect: How edit command executes**
+
+* **Alternative 1 (current choice):** Overwrite all existing task fields if any of them is modified.
+    * Pros: Easy to implement.
+    * Cons: Might be inefficient in terms of resource usage and possibly cause delays
+
+* **Alternative 2:** Only update the task fields that were changed.
+    * Pros: Will use less resources and time, thus improving system performance.
+    * Cons: Requires more complex implementation logic to track and update the modified fields.
+
 ## Appendix
 
 ### Requirements
