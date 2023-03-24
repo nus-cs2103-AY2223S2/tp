@@ -49,7 +49,6 @@ public class SummaryWindow extends UiPart<Stage> {
         System.out.println(size);
         SummaryWindow.SIZE = size;
     }
-    
     /**
      * Shows the help window.
      * @throws IllegalStateException
