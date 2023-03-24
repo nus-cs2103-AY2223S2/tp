@@ -98,8 +98,8 @@ public class DegreeProgressionData {
         float totalRequirementCompletion = 0;
         for (Entry<String, Integer> entry : completedRequirementCredits.entrySet()) {
             int total = totalRequirementCredits.get(entry.getKey());
-                int current = entry.getValue();
-                totalRequirementCompletion += Math.min(total, current);
+            int current = entry.getValue();
+            totalRequirementCompletion += Math.min(total, current);
         }
         totalRequirementCompletion -= duplicatedCredits;
         assert totalRequirementCompletion >= 0;
