@@ -25,7 +25,7 @@ public class IngredientBuilder {
 
     public final String name;
 
-    private final HashMap<Prefix, List<String >> arguments;
+    private final HashMap<Prefix, List<String>> arguments;
 
     /**
      * Constructs a {@code IngredientBuilder}.

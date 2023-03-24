@@ -108,7 +108,7 @@ Format:
 `find KEYWORD [KEYWORDS]...`
 
 > Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
-> 
+>
 > Recipes are listed in the chronological order that they were added.
 > 
 > Only the name of the recipe is searched
