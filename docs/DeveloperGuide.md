@@ -171,40 +171,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort feature
-
-#### Implementation
-The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish 
-attributes, we are able to make a `SortedList` sort its list by the specified order.
-Specifically, it currently sorts by the five compulsory fields of a fish:
-
-* Name 
-* Last Fed Interval
-* Species
-* Feeding Interval 
-* Tank
-
-Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
-a `SortedList` is created based off the same `AddressBook`. Hence, when we perform sorting operations, we are able to manipulate
-the original list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
-
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
-
-Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
-
-Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
-in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish, 
-is passed to `FishSortCommand` and returned.
-
-Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#SetComparator()`. 
-This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
-
-Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change to display the `SortedList` of `Dory, Marlin, Nemo`.
-
-#### Design considerations:
-
-
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -307,6 +273,49 @@ if the various lists.
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
 
+### Fish Sort feature
+
+#### Implementation
+The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
+attributes, we are able to make a `SortedList` sort its list by the specified order.
+Specifically, it currently sorts by the five compulsory fields of a fish:
+
+* Name
+* Last Fed Interval
+* Species
+* Feeding Interval
+* Tank
+
+Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
+a `SortedList` is created based off the same `AddressBook`. Hence, when we perform sorting operations, we are able to manipulate
+the original list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
+
+Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
+in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
+is passed to `FishSortCommand` and returned.
+
+![FishSortCommmandDiagram](images/FishSortDiagram.png)
+
+Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
+This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
+
+Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
+
+#### Design considerations:
+
+**Aspect: Where Sorting takes place :**
+
+* **Alternative 1 (current choice):** Use a SortedList and comparators to sort within the list.
+    * Pros: Easy to implement.
+    * Cons: Requires a separate list or wrapping.
+
+* **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
+    * Pros: More customization and control over sorting.
+    * Cons: Requires a duplicate list to be made each time.
 
 --------------------------------------------------------------------------------------------------------------------
 
