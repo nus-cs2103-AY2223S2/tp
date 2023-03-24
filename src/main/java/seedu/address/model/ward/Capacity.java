@@ -4,22 +4,18 @@ package seedu.address.model.ward;
  * Represents the capacity and occupancy of a ward.
  */
 public class Capacity {
-    private int maxCapacity;
-    private int occupancy = 0;
+    private int value;
 
     public Capacity(int capacity) {
-        this.maxCapacity = capacity;
+        value = capacity;
     }
 
     public void setCapacity(int capacity) {
-        this.maxCapacity = capacity;
+        value = capacity;
     }
 
-    public boolean isFull() {
-        return occupancy >= maxCapacity;
+    public int getValue() {
+        return value;
     }
-    @Override
-    public String toString() {
-        return "Current occupancy rate: " + occupancy + "/" + maxCapacity;
-    }
+
 }
