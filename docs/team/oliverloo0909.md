@@ -11,10 +11,10 @@ Given below are my contributions to the project.
 
 
 * **New Feature**:
-    * What it does:
-    * Justification:
-    * Highlights:
-    * Credits:
+    * What it does: ability to group student's however the coach likes
+    * Justification: for better contact management handling 
+    * Highlights: 
+    * Credits: Oliver Loo 
 
 * **New Feature**:
 
