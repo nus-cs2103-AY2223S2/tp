@@ -46,6 +46,8 @@ public class Scheduler {
         // for each contact person, query person from model.
         // Each person's schedule would be constructed
         // and appended to the schedules
+        logger.info(String.format("Attempting to query %d indices from Model in Scheduler",
+            participantIndices.size()));
         addParticipants(participantIndices);
         return this;
     }

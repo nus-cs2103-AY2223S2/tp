@@ -72,6 +72,7 @@ public class CommandBox extends UiPart<Region> {
         if (output.equals("")) {
             return;
         }
+        assert (output != null);
         commandTextField.setText(output + "\n");
         commandTextField.positionCaret(commandTextField.getText().length());
 
