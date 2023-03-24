@@ -62,7 +62,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 
 ## Product scope
 
-**************************Target user profile: Recruiters**************************
+**************************Target user profile: Recruiters (Private or from small businesses)**************************
 
 - Has a need to manage a significant number of job listings.
 - Prefer desktop apps over other types.
@@ -70,7 +70,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 - Prefers typing to mouse interactions.
 - Is reasonably comfortable using CLI apps
 
-**************************************Value proposition:************************************** All-in-one app for managing job listings with an intuitive user experience
+**************************************Value proposition:************************************** All-in-one app that is free for managing job listings with an intuitive user experience
 
 ## User stories
 
@@ -120,9 +120,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 **MSS**
 
 1. Recruiter requests to list listings.
-2. ListingHub shows a list of listings.
+2. ListingBook shows a list of listings.
 3. The recruiter requests to delete a specific listing from the list.
-4. ListingHub deletes the listing.
+4. ListingBook deletes the listing.
 Use case ends.
 
 
@@ -132,7 +132,7 @@ Use case ends.
     Use case ends.
 
 - 3a. The given index is invalid.
-    - 3a1. ListingHub shows an error message.
+    - 3a1. ListingBook shows an error message.
     - Use case resumes at step 2.
 
 
