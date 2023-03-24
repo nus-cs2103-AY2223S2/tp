@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import expresslibrary.logic.commands.AddCommand;
+import expresslibrary.logic.commands.AddPersonCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
@@ -23,7 +23,7 @@ import expresslibrary.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -31,13 +31,13 @@ public class AddCommandParser implements Parser<AddCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Person person = new Person(name, phone, email, address, new HashSet<>(), tagList);
 
-        return new AddCommand(person);
+        return new AddPersonCommand(person);
     }
 
     /**

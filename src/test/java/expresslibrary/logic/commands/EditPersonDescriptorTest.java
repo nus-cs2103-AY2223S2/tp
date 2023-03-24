@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import expresslibrary.logic.commands.EditCommand.EditPersonDescriptor;
+import expresslibrary.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import expresslibrary.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
