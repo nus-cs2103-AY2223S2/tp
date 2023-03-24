@@ -246,7 +246,40 @@ If no argument is provided, Persons will be sorted by name and Projects will be 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
 The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
+### Find Feature
+The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
+The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
+`FindCommand` extends `Command` and implements the following operation:
+* `FindCommand#execute()` — Finds and displats the list of persons in the application that contains the given keyword of each respective fields.
 
+The `FindCommandParser` class is used to parse & verify the user input to create the find command.
+Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
+
+This list of Predicate classes include:
+* `FindCommandAddressPredicate`
+* `FindCommandEmailPredicate`
+* `FindCommandLanguagePredicate`
+* `FindCommandNamePredicate`
+* `FindCommandPhonePredicate`
+* `FindCommandProfilePredicate`
+* `FindCommandTagPredicate`
+
+All the above Predicate classes will be enclosed inside a `FindCommandPersonPredicate` class.
+This Predicate class will return True as long as any of the Predicate classes inside it returns True.
+The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from find command.
+
+If no argument is provided, an empty list will be shown.
+
+#### Design considerations:
+
+**AND search or OR search**
+* An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
+  * List command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making find a duplicate command of list command should find use AND search as well.
+  * We intend for find command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
+
+**Full keyword match or Partial keyword match**
+* We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
+  * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
