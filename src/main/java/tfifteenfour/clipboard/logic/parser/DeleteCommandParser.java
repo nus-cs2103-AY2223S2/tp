@@ -17,6 +17,8 @@ import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCourseCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteGroupCommand;
+import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteSessionCommand;
+import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteStudentCommand;
 import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
@@ -64,8 +66,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         case SESSION:
             return new DeleteSessionCommand();
         case STUDENT:
-            Student student = parseStudentInfo(args);
-            return new AddStudentCommand(student);
+            return new DeleteStudentCommand(index);
         default:
             throw new ParseException("Invalid argument for add command");
         }

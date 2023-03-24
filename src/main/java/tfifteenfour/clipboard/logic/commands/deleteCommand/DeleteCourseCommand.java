@@ -25,7 +25,7 @@ public class DeleteCourseCommand extends DeleteCommand {
 			+ " " + COMMAND_TYPE_WORD
 			+ " " + "1";
 
-	public static final String MESSAGE_SUCCESS = "Course course deleted: %1$s";
+	public static final String MESSAGE_SUCCESS = "Course deleted: %1$s";
 
 	private final Index index;
 
