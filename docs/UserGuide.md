@@ -113,7 +113,7 @@ Format: `help`
 
 Adds a person to the FAILS.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​ `
 
 <div markdown="span" class="alert alert-primary">
 
@@ -261,7 +261,7 @@ the data of your previous FAILS home folder.
  **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1` 
  **Clear**  | `clear`                                                                                                                                                                                                                                
  **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                    
- **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            
+ **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            
  **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                             
  **List**   | `list`                                                                                                                                                                                                                                 
  **Help**   | `help`                                                                                                                                                                                                                                 
