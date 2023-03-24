@@ -418,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User input format is wrong.
   * 1a1.  Medimate asks User for another correct input of the patient’s information.
-  * 1a2. User inputs a new line of patient’s information with the correct format.
+  * 1a2.  User inputs a new line of patient’s information with the correct format.
     
     Use Case resumes at step 2.
 
@@ -426,8 +426,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all patients based on their scheduled time
-2. Medimate displays a list of all patients sorted in order based on scheduled time
+1. User requests to list all patients based on their scheduled time.
+2. Medimate displays a list of all patients sorted in order based on scheduled time.
    
    Use case ends.
 
@@ -437,6 +437,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case:  Display the detailed information of the patient**
+
+**MSS**
+
+1. User requests to display a specific patient's detailed information.
+2. Medimate displays the patient's detailed information in the detail display pane.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Index of the User input is out of bound of the current Person List.
+  * 1a1.  Medimate asks User for another correct input of the index.
+  * 1a2.  User inputs a new valid index.
+
+    Use Case resumes at step 2.
 
 ### Non-Functional Requirements
 
