@@ -185,6 +185,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            
+            personListPanel.setHidden(commandResult.isHidden());
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {
