@@ -62,21 +62,18 @@ Format:
 > :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 > 
 > :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
->
-> Although optional, we do however still suggest adding in the other fields if possible for your own convenience.
 > 
-> We recommend you add in your own units of measurement for the optional fields! (i.e g/kg for ingredient weights)
-> 
-> If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2)
-> 
-> Each field does not have to be input in order (/p can come before /d etc.)
-> 
-> However, for steps, please input the steps in the order that they are intended to be performed
-
 > :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECCOMENDED**) and substitutions etc.!
 > 
 > Although optional, we do however suggest adding in the other fields if possible for your own future reference.
-
+>
+> If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2).
+> 
+> Each field does not have to be input in order (/p can come before /d etc.).
+> 
+> Likewise, ingredient fields do not have to be input in order (-a can come before -n etc.).
+> 
+> However, for steps, please input the steps in the order that they are intended to be performed.
 
 **Example(s) of usage**:
 * `add n/Honey Chicken Rice`
@@ -93,17 +90,9 @@ simply want to pick a recipe at random? Just run the `list` command.
 Format:
 `list`
 
-<<<<<<< HEAD
-> Lists all recipes that are in the storage, in the chronological order they were
-added. 
-> 
-> Depending on the size of the window, the user may add multiple columns to display
-more recipes.
-=======
 > Lists all recipes that are in the storage, in the chronological order they were added.
 > 
 > Depending on the size of the window, the user may add multiple columns to display more recipes.
->>>>>>> c033fa194361ae0b10a92ee29102654b41e193ee
 > 
 > :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 > 
