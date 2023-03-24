@@ -60,7 +60,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException{
+    public void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException {
         model.setAddressBook(addressBook);
 
         try {

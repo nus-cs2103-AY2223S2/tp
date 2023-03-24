@@ -2,10 +2,8 @@ package seedu.address.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -15,12 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -53,10 +49,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-    @FXML 
+    @FXML
     private MenuItem importMenuItem;
 
-    @FXML 
+    @FXML
     private MenuItem exportMenuItem;
 
     @FXML
@@ -177,9 +173,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML 
+    /**
+     * Opens the file explorer to select a file to import into the application.
+     */
+    @FXML
     public void handleImport() {
-        logger.info("Import Button Clicked"); 
+        logger.info("Import Button Clicked");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Backup File");
         fileChooser.getExtensionFilters().addAll(
@@ -200,7 +199,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException e) {
             logger.info("Error setting address book");
         }
-        
     }
 
     @FXML
