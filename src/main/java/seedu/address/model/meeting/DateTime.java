@@ -13,24 +13,27 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.meeting.exceptions.InvalidDateTimeFormatException;
 
 /**
  * Represents a Meetings's date/time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
- *
- * TODO: Include more acceptable formats for date/time instead of just dd/MM/yyyy HH:mm
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
     public static final String DATE_FORMAT = "dd/MM/yyyy";
     public static final String TIME_FORMAT = "HH:mm";
 
+    private static final String DATE_FORMAT_MESSAGE = "dd/MM/yyyy OR DD/MM/YY OR DD/MM with separators being '/', '', '"
+            + ".', '-'";
+    private static final String TIME_FORMAT_MESSAGE = "HH:mm OR HH:mmAM/PM with separators being ':','','.'";
+
     public static final String MESSAGE_CONSTRAINTS =
             "Dates/Times should only contain alphanumeric characters and spaces, and it should not be blank"
-            + "and adhere to the following constraints:\n"
-            + "1. Date must comply with the format: " + DATE_FORMAT + ".\n"
-            + "2. Time must comply with the format: " + TIME_FORMAT + " in 24-hour format.";
+                    + "and adhere to the following constraints:\n"
+                    + "1. Date must comply with the format: " + DATE_FORMAT_MESSAGE + ".\n"
+                    + "2. Time must comply with the format: " + TIME_FORMAT_MESSAGE + " in 24-hour format.";
 
     /**
      * The first character of the date/time string must not be a whitespace,
@@ -39,7 +42,7 @@ public class DateTime {
      * Inputs in addition to formats like dd/MM/yyyy are allowed for semantics
      * such as "next monday".
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{ASCII} ]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{ASCII} ]*";
 
     private static final String[] DATE_SEPARATORS = {"/", "", ".", "-"};
     private static final String[] TIME_SEPARATORS = {":", "", "."};
@@ -53,12 +56,7 @@ public class DateTime {
     private static final String HHMM_AM_PM_TEMPLATE = "h" + SEPARATOR_PLACEHOLDER + "mma";
 
     private final LocalDate meetingDate;
-
-    /**
-     * If meetingTime is not specified in the input, {@code meetingTime} will
-     * be set to {@code LocalTime.MAX}.
-     */
-    private final LocalTime meetingTime;
+    private final Optional<LocalTime> meetingTime;
 
     /**
      * This is used only for inputs that include specific durations.
@@ -83,9 +81,9 @@ public class DateTime {
 
         if (dtSplit.length == 2) {
             String timePortion = dtSplit[1];
-            meetingTime = stringToLocalTime(timePortion);
+            meetingTime = Optional.of(stringToLocalTime(timePortion));
         } else {
-            meetingTime = LocalTime.MAX;
+            meetingTime = Optional.empty();
         }
 
         meetingDuration = Duration.ZERO;
@@ -95,7 +93,7 @@ public class DateTime {
      * Constructs a {@code DateTime} with a duration specified.
      *
      * @param startDateTime A valid start date/time.
-     * @param endDateTime A valid end date/time.
+     * @param endDateTime   A valid end date/time.
      */
     public DateTime(String startDateTime, String endDateTime) {
         requireAllNonNull(startDateTime, endDateTime);
@@ -112,16 +110,16 @@ public class DateTime {
         if (startDtSplit.length == 2 && endDtSplit.length == 2) {
             String startTimePortion = startDtSplit[1];
             String endTimePortion = endDtSplit[1];
-            meetingTime = stringToLocalTime(startTimePortion);
+            meetingTime = Optional.of(stringToLocalTime(startTimePortion));
 
-            LocalDateTime startDT = LocalDateTime.of(meetingDate, meetingTime);
+            LocalDateTime startDT = LocalDateTime.of(meetingDate, meetingTime.get());
             LocalDateTime endDT = LocalDateTime.of(stringToLocalDate(endDatePortion),
                     stringToLocalTime(endTimePortion));
 
             checkArgument(isValidDuration(startDT, endDT));
             meetingDuration = Duration.between(startDT, endDT);
         } else {
-            meetingTime = LocalTime.MAX;
+            meetingTime = Optional.empty();
             meetingDuration = Duration.between(meetingDate, stringToLocalDate(endDatePortion));
         }
     }
@@ -131,13 +129,11 @@ public class DateTime {
      * in this class.
      */
     public String getDateTime() {
-        if (meetingTime != LocalTime.MAX) {
-            return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
-                    + " "
-                    + meetingTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
-        }
+        String timePortion = meetingTime
+                .map(localTime -> " " + localTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT)))
+                .orElse("");
 
-        return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + timePortion;
     }
 
     /**
@@ -287,24 +283,19 @@ public class DateTime {
      * @return {@code LocalDateTime} representation of the DateTime stored.
      */
     public LocalDateTime get() {
-        if (meetingTime == LocalTime.MAX) {
-            return LocalDateTime.of(meetingDate, LocalTime.of(0, 0));
-        }
-
-        return LocalDateTime.of(meetingDate, meetingTime);
+        return LocalDateTime.of(meetingDate, meetingTime.orElse(LocalTime.of(0, 0)));
     }
 
     @Override
     public String toString() {
-        String end = meetingDuration != null && !meetingDuration.isZero()
-                ? LocalDateTime.of(meetingDate, meetingTime).plus(meetingDuration).format(
-                        DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
-                : "";
-
-        if (!end.isEmpty()) {
+        if (meetingDuration != null && !meetingDuration.isZero()) {
+            String start = meetingTime.orElse(LocalTime.of(0, 0))
+                    .format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+            String end = LocalDateTime.of(meetingDate, meetingTime.orElse(LocalTime.of(0, 0))).plus(meetingDuration)
+                    .format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT));
             return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
                     + " "
-                    + meetingTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
+                    + start
                     + " to "
                     + end;
         }
@@ -325,5 +316,16 @@ public class DateTime {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(meetingDate, meetingTime, meetingDuration);
+    }
+
+    @Override
+    public int compareTo(DateTime o) {
+        if (meetingDate.isEqual(o.meetingDate)) {
+            return this.meetingTime
+                    .orElse(LocalTime.of(0, 0))
+                    .compareTo(o.meetingTime
+                            .orElse(LocalTime.of(0, 0)));
+        }
+        return meetingDate.compareTo(o.meetingDate);
     }
 }

@@ -22,6 +22,8 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`findm`](#finding-meetings-by-name--findm)
     - [`export`](#exporting-of-contact--export)
     - [`import`](#importing-of-contacts--import)
+    - [`exportm`](#export-meetings--exportm)
+    - [`importm`](#import-meetings--importm)
     - [Saving of data](#saving-the-data)
     - [Editing of data](#editing-the-data-file)
     - [Archiving of data](#archiving-data-files-coming-in-v20)
@@ -254,6 +256,89 @@ Example:
   }
 ]
 ```
+Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+
+Format: `import JSON f/ true`
+
+### Export meetings: `exportm`
+* Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
+* The indexes refer to the index numbers shown in the displayed meetings list.
+* The indexes **must be positive integers** 1, 2, 3
+* The start and end dates must be valid dates in the DD/MM/YY format
+
+Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
+
+### Import meetings: `importm`
+* Imports the meetings in the provided JSON.
+* The JSON **must contain a valid array of meetings**
+
+Example:
+```json
+[
+  {
+    "title": "Dinner with Alice",
+    "dateTime": "01/02/2023 19:00",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "NUS",
+    "description": "Weekly catchup"
+  },
+  {
+    "title": "Study session with Benson and Carl",
+    "dateTime": "02/03/2023 15:00",
+    "attendees": [
+      {
+        "name": "Benson Meier",
+        "phone": "98765432",
+        "email": "johnd@example.com",
+        "address": "311, Clementi Ave 2, #02-25",
+        "tagged": [
+          "owesMoney",
+          "friends"
+        ]
+      },
+      {
+        "name": "Carl Kurz",
+        "phone": "95352563",
+        "email": "heinz@example.com",
+        "address": "wall street",
+        "tagged": []
+      }
+    ],
+    "location": "Central Library",
+    "description": "Study for finals"
+  },
+  {
+    "title": "Zoom meeting for agenda planning",
+    "dateTime": "13/03/2023 12:45",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12",
+    "description": "Plan for project work"
+  }
+]
+
+
+```
+
 Optional Parameter `f/ true` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/ true`

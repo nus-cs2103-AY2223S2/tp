@@ -241,9 +241,13 @@ Person does not already exist, and ignores those that do. This allows the previo
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
 
-### \[Proposed\] Exporting and importing of Meetings
-#### Proposed implementation
-Similar to the exporting and importing of contacts.
+### Exporting and importing of Meetings
+#### Implementation
+Exporting and importing for meetings is similar to that of contacts, with the main difference being that meetings 
+has additional functionality of returning meetings between two dates. This is implemented through the use of a 
+`isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the 
+corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then 
+only the other date is considered.
 
 ### Autocompletion of Argument Prefixes
 

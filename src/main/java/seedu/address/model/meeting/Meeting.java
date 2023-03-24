@@ -107,6 +107,21 @@ public class Meeting {
                 && otherMeeting.getDescription().equals(getDescription());
     }
 
+    /**
+     * Checks whether meeting is between two datetimes
+     *
+     * @return true if meeting is between two datetimes, else false
+     */
+    public boolean isBetween(DateTime start, DateTime end) {
+        if (end == null) {
+            return this.dateTime.compareTo(start) >= 0;
+        }
+        if (start == null) {
+            return this.dateTime.compareTo(end) <= 0;
+        }
+        return this.dateTime.compareTo(start) >= 0 && this.dateTime.compareTo(end) <= 0;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

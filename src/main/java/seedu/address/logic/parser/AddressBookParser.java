@@ -16,10 +16,12 @@ import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditMeetingsCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportMeetingsCommand;
 import seedu.address.logic.commands.ExportPersonsCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportMeetingsCommand;
 import seedu.address.logic.commands.ImportPersonsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewMeetingsCommand;
@@ -96,6 +98,10 @@ public class AddressBookParser {
             return new ExportPersonsParser().parse(arguments);
         case ImportPersonsCommand.COMMAND_WORD:
             return new ImportPersonsParser().parse(arguments);
+        case ExportMeetingsCommand.COMMAND_WORD:
+            return new ExportMeetingsParser().parse(arguments);
+        case ImportMeetingsCommand.COMMAND_WORD:
+            return new ImportMeetingsParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -131,7 +137,8 @@ public class AddressBookParser {
             return new EditMeetingParser().getAutocompleteSuggestion(arguments);
         case ExportPersonsCommand.COMMAND_WORD:
             return new ExportPersonsParser().getAutocompleteSuggestion(arguments);
-
+        case ExportMeetingsCommand.COMMAND_WORD:
+            return new ExportMeetingsParser().getAutocompleteSuggestion(arguments);
         default:
             return new AutocompleteResult(null, false);
         }
