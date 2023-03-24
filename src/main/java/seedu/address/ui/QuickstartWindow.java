@@ -1,16 +1,11 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TreeView;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.Pagination;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
+
 
 
 /**
@@ -19,6 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 public class QuickstartWindow extends UiPart<Stage> {
 
     private static final String FXML = "QuickstartWindow.fxml";
+
+    @FXML
+    private Pagination quickPagination;
 
     /**
      * Creates a new QuickstartWindow.
@@ -34,8 +32,13 @@ public class QuickstartWindow extends UiPart<Stage> {
      */
     public QuickstartWindow(Stage root) {
         super(FXML, root);
+        quickPagination.setPageFactory((Integer pageIndex) -> pageImageSet(pageIndex));
     }
 
+    public ImageView pageImageSet(int pageIndex) {
+        ImageView imageToShow = new ImageView(QuickstartImages.giveImage(pageIndex));
+        return imageToShow;
+    }
 
     /**
      * Shows the QuickstartWindow.
