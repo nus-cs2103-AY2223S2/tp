@@ -75,6 +75,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code step} is invalid.
      */
     public static Step parseStepHelper(String step) throws ParseException {
+
         requireNonNull(step);
         String trimmedStep = step.trim();
         if (!Step.isValidStep(trimmedStep)) {
@@ -149,11 +150,13 @@ public class ParserUtil {
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+        // requireNonNull(tags);
+        // final Set<Tag> tagSet = new HashSet<>();
+        // for (String tagName : tags) {
+        //    tagSet.add(parseTag(tagName));
+        // }
+        // return tagSet;
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
         return tagSet;
     }
 }
