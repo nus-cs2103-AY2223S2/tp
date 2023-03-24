@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
@@ -96,7 +95,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRank,
-            updatedUnit, updatedCompany, updatedPlatoon, updatedTags);
+                updatedUnit, updatedCompany, updatedPlatoon, updatedTags);
     }
 
     @Override

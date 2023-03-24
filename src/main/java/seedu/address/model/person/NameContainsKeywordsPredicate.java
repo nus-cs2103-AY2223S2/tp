@@ -7,6 +7,8 @@ import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * A match is found only if the keyword matches the a whole word in a {@code Person}'s
+ * {@code Name}.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

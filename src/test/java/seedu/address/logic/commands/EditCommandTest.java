@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EDIT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EDIT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -148,10 +148,10 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, EDIT_DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(EDIT_DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -165,9 +165,9 @@ public class EditCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_PERSON, DESC_AMY));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_PERSON, EDIT_DESC_AMY));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_PERSON, DESC_BOB));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_PERSON, EDIT_DESC_BOB));
     }
 }
