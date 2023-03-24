@@ -6,45 +6,75 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyAppointmentList" as ReadOnlyAppointmentList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as iModel
+Class AppointmentList
 Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueAppointmentList
+Class Appointment
+Class AppointmentId
+Class Timeslot
+Class Description
+Class AppointmentTag
+
+Class UniquePatientList
+Class Patient
+Class PatientId
 Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class PatientTag
+Class Remark
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> iModel
 
+AppointmentList .up.|> ReadOnlyAppointmentList
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+ModelManager .up.|> iModel
+iModel .right.> ReadOnlyUserPrefs
+iModel .left.> ReadOnlyAddressBook
+iModel .left.> ReadOnlyAppointmentList
+ModelManager -left-> "1" AppointmentList
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AppointmentList *--> "1" UniqueAppointmentList
+UniqueAppointmentList --> "~* all" Appointment
+Appointment *--> AppointmentId
+Appointment *--> Timeslot
+Appointment *--> Description
+Appointment *--> "*" AppointmentTag
 
+AddressBook *--> "1" UniquePatientList
+UniquePatientList --> "~* all" Patient
+Patient *--> PatientId
+Patient *--> Name
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
+Patient *--> Remark
+Patient *--> "*" PatientTag
+
+AppointmentId -[hidden]right-> Timeslot
+Timeslot -[hidden]right-> Description
+Description -[hidden]right-> AppointmentTag
+AppointmentTag -[hidden]right-> PatientId
+PatientId -[hidden]right-> Name
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> PatientTag
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Patient
+ModelManager --> Appointment
 @enduml

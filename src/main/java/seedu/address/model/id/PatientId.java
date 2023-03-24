@@ -5,14 +5,18 @@ package seedu.address.model.id;
  * guarantees: details are present and not null, field values are validated, immutable.
  */
 public class PatientId extends Id {
-    public static final String MESSAGE_CONSTRAINTS =
-        "Patient ID should not be blank";
-    public static final String VALIDATION_REGEX = ".*";
 
-    public final String id;
-
+    /**
+     * Constructs a {@code PatientId}.
+     *
+     * @param id A valid ID.
+     */
     public PatientId(String id) {
-        this.id = id;
+        super(id);
+    }
+
+    public String getPatientId() {
+        return super.getId();
     }
 
     /**

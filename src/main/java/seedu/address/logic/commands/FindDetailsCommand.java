@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.patient.DetailsContainsKeywordsPredicate;
+import seedu.address.model.patient.DetailsContainKeywordsPredicate;
 
 /**
  * Finds and lists all patients in address book whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindDetailsCommand extends Command {
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final DetailsContainsKeywordsPredicate predicate;
+    private final DetailsContainKeywordsPredicate predicate;
 
-    public FindDetailsCommand(DetailsContainsKeywordsPredicate predicate) {
+    public FindDetailsCommand(DetailsContainKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

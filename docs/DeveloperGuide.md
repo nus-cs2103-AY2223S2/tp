@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AppointmentListPanel`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Patient` and `Appointment` objects
+* residing in the `Model`.
 
 ### Logic component
 
@@ -95,7 +96,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a Patient).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -121,12 +122,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object), and all `Appointment` objects (which are contained in a `UniqueAppointmentList` object).
+* stores the currently 'selected' `Patient` and `Appointment` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>`/`ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,7 +142,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `AddressBookStorage`, `AppointmentListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +154,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Find (`find`) and find details (`find_details`) command
+
+**Implementation**
+
+The find and find details commands offer two ways of finding a patient to view their info. `find` is less comprehensive, and only searches for by patient name, while `find_details` tries to find a match in a patient's details, including their phone, address, email and tags. Both utilise a `Predicate<Patient>` in order to filter `model`'s appointment list via `Model#updateFilteredPatientList(Predicate<Patient>)`. `find` uses a `NameContainsKeywordsPredicate`, while `find_details` uses a `DetailsContainKeywordsPredicate`.
+
+Both predicates work in a similar fashion as they implement Java's base `Predicate` interface. `NameContainsKeywordsPredicate:test(Patient)` takes the patient's full name, turns it into a `List<String>`, and checks if any of the keywords match any word in the name. `DetailsContainKeywordsPredicate#test(Patient)` calls `Patient:getDetailsAsList()` and matches the keywords against that list of all the patient's details instead.
+
+**Alternative implementations**
+
+The two commands are very similar. Currently, they only differ in their predicate's type, and have the same `execute` method implementation. An alternative way of implementing `find_details` would be to change `FindCommand`'s constructor to accept a `Predicate<Patient>` instead, and `FindCommandParser` to create the correct type of `Predicate`.
+
+**Design considerations**
+
+We chose to use two different commands as we expect to expand upon the find commands differently in the future, such as allowing partial matches for `find` but not `find_details`. The details of a patient often include too many words for partial matching to be relevant. Thus, decoupling the commands from each other allows future extension of the commands to be easier.
+
+### Delete appointment ('delete_appt') command
+
+**Implementation**
+
+The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by identifying the chosen appointment by its AppointmentId, filtering `model` appointment list via `model.getFilteredAppointmentList()` and obtaining a `matchingAppointments` list and finally removing the first `Appointment` on the list.
+
+**Design considerations**
+
+We decided to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -172,11 +199,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th Patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new Patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +211,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the Patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +256,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the Patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -263,8 +290,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: MediMeet enables small clinics to effectively manage patient details and appointments, and 
-saves costs by reducing the need for personal assistants or appointment managers.
+**Value proposition**: MediMeet enables doctors to effectively manage patient details and appointments, and saves costs by reducing the need for Patiental assistants or appointment managers.
 
 ### User stories
 
@@ -311,14 +337,14 @@ saves costs by reducing the need for personal assistants or appointment managers
 
 (For all use cases below, the **System** is the `MediMeet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a Patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list Patients
+2.  AddressBook shows a list of Patients
+3.  User requests to delete a specific Patient in the list
+4.  AddressBook deletes the Patient
 
     Use case ends.
 
@@ -350,7 +376,7 @@ saves costs by reducing the need for personal assistants or appointment managers
 
     * 3a1. MediMeet requests for a valid time/time input.
     * 3a2. User provides a valid date/time input.
-  
+
 Steps 3a1-3a2 are repeated until a valid input is provided.
 Use case resumes at step 4.
 
@@ -381,7 +407,7 @@ Use case resumes at step 2.
 1. User requests to filter appointments.
 2. MediMeet asks the user to enter the criteria to filter appointments by.
 3. User enters the criteria to filter appointments by.
-4. MediMeet shows the list of appointments that match the request.                                                                                 
+4. MediMeet shows the list of appointments that match the request.                                                                              
    Use case ends.
 
 **Extensions:**
@@ -406,7 +432,7 @@ Use case resumes at step 4.
 4. MediMeet displays the patient details.
 5. User provides the edited patient details.
 6. MediMeet edits the details of the patient and displays the new patient details.
-   
+
    Use case ends.
 
 **Extensions**
@@ -510,7 +536,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. A sample of the expected result is shown below:
+   ![v1.2_jar](images/v1.2_jar.jpg)
 
 1. Saving window preferences
 
@@ -521,17 +548,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a Patient
 
-1. Deleting a person while all persons are being shown
+1. Deleting a Patient while all Patients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all Patients using the `list` command. Multiple Patients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No Patient is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

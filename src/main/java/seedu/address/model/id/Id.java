@@ -1,26 +1,34 @@
 package seedu.address.model.id;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * represents an id in the addressbook
  * guarantees: id is immutable.
  */
 public abstract class Id {
-    private static final AtomicInteger idCounter = new AtomicInteger();
+    public static final String MESSAGE_CONSTRAINTS =
+        "ID should not be blank";
+    public static final String VALIDATION_REGEX = ".*";
+    public final String id;
 
-    private String id;
+    protected Id(String id) {
+        requireNonNull(id);
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        this.id = id;
+    }
 
-    public Id() {
-        this.id = generateUniqueId();
+    public static String generateUniqueId() {
+        return "1";
     }
 
     public String getId() {
         return id;
     }
 
-    public static String generateUniqueId() {
-        return Integer.toString(idCounter.getAndIncrement());
+    public static boolean isValidId(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -72,8 +72,6 @@ public class JsonAppointmentListStorage implements AppointmentListStorage {
     public void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException {
         requireNonNull(appointmentList);
         requireNonNull(filePath);
-        System.out.println("saving appointment list:");
-        appointmentList.getAppointmentList().forEach(System.out::println);
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAppointmentList(appointmentList), filePath);

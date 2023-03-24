@@ -17,8 +17,8 @@ import seedu.address.model.util.SampleDataUtil;
 public class AppointmentBuilder {
     public static final String DEFAULT_TIMESLOT = "01012023 00:00,01012023 01:00";
     public static final String DEFAULT_DESCRIPTION = "Regular checkup";
-    public static final String DEFAULT_PATIENT_ID = "001";
-    public static final String DEFAULT_APPOINTMENT_ID = AppointmentId.generateUniqueId();
+    public static final String DEFAULT_PATIENT_ID = "1";
+    public static final String DEFAULT_APPOINTMENT_ID = "1";
 
     private AppointmentId appointmentId;
     private Timeslot timeslot;

@@ -22,6 +22,7 @@ import seedu.address.model.tag.Tag;
 public class Patient {
 
     // Identity fields
+    private final PatientId id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -30,13 +31,12 @@ public class Patient {
     private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private final PatientId id;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(PatientId id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, tags);
+        requireAllNonNull(id, name, phone, email, address, remark, tags);
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -61,7 +61,6 @@ public class Patient {
     public Address getAddress() {
         return address;
     }
-
 
     public PatientId getId() {
         return id;
@@ -122,6 +121,7 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
+            && otherPatient.getId().equals(getId())
             && otherPatient.getPhone().equals(getPhone())
             && otherPatient.getEmail().equals(getEmail())
             && otherPatient.getAddress().equals(getAddress())
@@ -131,7 +131,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override
@@ -145,7 +145,9 @@ public class Patient {
             .append("; Address: ")
             .append(getAddress())
             .append("; Remark: ")
-            .append(getRemark());
+            .append(getRemark())
+            .append("; Id: ")
+            .append(getId());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
