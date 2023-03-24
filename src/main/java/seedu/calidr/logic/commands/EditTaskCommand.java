@@ -87,7 +87,9 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+            throws CommandException {
+
         assert taskToEdit != null;
 
         if (taskToEdit instanceof ToDo) {
@@ -158,7 +160,9 @@ public class EditTaskCommand extends Command {
             this.title = title;
         }
 
-        public void setDescription(Description description) { this.description = description; }
+        public void setDescription(Description description) {
+            this.description = description;
+        }
 
         public void setBy(TodoDateTime todoDateTime) {
             this.byDateTime = todoDateTime;

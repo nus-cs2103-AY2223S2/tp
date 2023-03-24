@@ -7,8 +7,7 @@ import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
 /**
- * Represents a task with the title of the task and
- * the status of the task - whether it is done.
+ * Represents a task.
  */
 public abstract class Task {
 
@@ -21,6 +20,7 @@ public abstract class Task {
      * Creates a Task object with the given title and MEDIUM priority.
      *
      * @param title The title of the Task.
+     * @param description The description of the Task
      */
     public Task(Title title, Description description) {
         assert title != null;
@@ -29,7 +29,6 @@ public abstract class Task {
         this.description = description;
         this.isDone = false;
         this.priority = Priority.MEDIUM;
-//        this.priority = priority == null ? Priority.MEDIUM : priority;
     }
 
 
@@ -37,7 +36,9 @@ public abstract class Task {
         return this.title;
     }
 
-    public Optional<Description> getDescription() { return Optional.ofNullable(this.description); }
+    public Optional<Description> getDescription() {
+        return Optional.ofNullable(this.description);
+    }
 
     public void mark() {
         this.isDone = true;

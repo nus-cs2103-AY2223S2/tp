@@ -1,7 +1,6 @@
 package seedu.calidr.model.task;
 
 import seedu.calidr.model.task.params.Description;
-import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 
@@ -17,8 +16,8 @@ public class ToDo extends Task {
      * Creates a ToDo with the given details.
      *
      * @param title The title of the ToDo.
+     * @param description The description of the ToDo.
      * @param by The deadline date-time of the ToDo.
-     * @param priority The priority of the ToDo.
      */
     public ToDo(Title title, Description description, TodoDateTime by) {
         super(title, description);
@@ -40,7 +39,7 @@ public class ToDo extends Task {
                 .append(getPriority().toString().toLowerCase())
                 .append("}[").append(mark).append("] ")
                 .append(getTitle())
-                .append( " (")
+                .append(" (")
                 .append(byDateTime.toString())
                 .append(")");
 
