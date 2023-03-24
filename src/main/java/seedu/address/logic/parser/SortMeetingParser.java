@@ -24,9 +24,8 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
     private static boolean arePrefixesValidUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         if (argumentMultimap.getLength() != 2) {
             return false;
-        } else {
-            return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
         }
+            return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     @Override
