@@ -197,7 +197,7 @@ import `[Person1, Person2, Person3, Person4]` without considering duplicates fir
 followed by the import of Person2 throwing a DuplicatePersonError, resulting in the command throwing a failure 
 message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`. 
 
-However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the 
+However, if the user wishes to "force import", a `-f` parameter is provided. This imports for each `Person` if the 
 Person does not already exist, and ignores those that do. This allows the previous situation to complete with `
 [Person1, Person2, Person3, Person4]` in the system.
 

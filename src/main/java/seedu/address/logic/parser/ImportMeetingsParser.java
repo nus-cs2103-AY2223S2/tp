@@ -19,9 +19,7 @@ public class ImportMeetingsParser implements Parser<ImportMeetingsCommand> {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIXES);
         String json = argMultimap.getPreamble();
-        boolean isForced =
-                argMultimap.getValue(PREFIX_FORCE).isPresent()
-                        && argMultimap.getValue(PREFIX_FORCE).get().equals("true");
+        boolean isForced = argMultimap.getValue(PREFIX_FORCE).isPresent();
         if (json.equals("")) {
             throw new ParseException(MESSAGE_USAGE);
         }
