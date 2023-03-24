@@ -90,9 +90,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Sorts the filter of the filtered person list in alphabetical order.
+     * Sorts the person list with specified attribute.
      */
-    void sortAddressBook();
+    void sortAddressBook(int targetField);
 
     /**
      * Commits the current state of the address book.

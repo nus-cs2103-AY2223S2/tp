@@ -98,8 +98,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAddressBook() {
-        addressBook.sort();
+    public void sortAddressBook(int targetField) {
+        addressBook.sort(targetField);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

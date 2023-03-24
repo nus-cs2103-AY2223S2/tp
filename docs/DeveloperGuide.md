@@ -154,6 +154,32 @@ Classes used by multiple components are in the `seedu.AddressBook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort feature
+
+#### Proposed Implementation
+
+The proposed sort mechanism is facilitated by `UniquePersonList`.
+
+Step 1. The Coach launches the application for the first time. The list of students will be initialised.
+
+Step 2. The Coach keys in details of some students with the `add` method.
+
+Step 3. After adding his students, the Coach wants to view the upcoming coaching sessions in chronological order, so he wants to sort them by training session date in ascending order.
+
+Step 4. The Coach then decides to execute the command `sort 2 0`.
+
+#### Design considerations:
+
+Restricting attribute and order to an integer value allows us to more easily anticipate and control input.
+
+* **Alternative 1 (current choice):** Allows users to specify what and how to sort their list.
+    * Pros: More flexible and customisable to user needs.
+    * Cons: More troublesome as user needs to check user guide to learn what integers to use.
+
+* **Alternative 2:** User types `sort` and it sorts based on a pre-determined attribute and order.
+    * Pros: Easy for user to use.
+    * Cons: Not flexible and customisable.
+
 ### Undo/redo feature
 
 #### Proposed Implementation
