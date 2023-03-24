@@ -162,7 +162,7 @@ employee into the ExecutivePro database.
 
 Below is a sequence diagram and the explanation of `add` command.
 
-![AddCommand](images/AddCommandSequenceDiagram.png)
+![AddCommand](images/AddSequenceDiagram.png)
 
 Step 1. Users will enter the command `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25
 d/Marketing`.
@@ -210,7 +210,7 @@ The command takes in one parameter which is the employee ID, executing the comma
 with that specific employee ID
 Below is a sequence diagram and the explanation of `delete` command.
 
-![DeleteCommand](images/DeleteCommand.png)
+![DeleteCommand](images/DeleteSequenceDiagram.png)
 
 Step 1. Users will enter the command `delete 1`.
 
