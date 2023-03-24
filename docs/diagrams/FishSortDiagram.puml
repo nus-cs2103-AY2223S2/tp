@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FishSortCommand" as FishSortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":SortedList" as SortedList MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":SortedFishPanel" as SortedFishPanel UI_COLOR
+end box
+
+[-> FishSortCommand : execute
+activate FishSortCommand
+
+FishSortCommand -> Model : sortFilteredFishList
+activate Model
+
+Model -> SortedList : setComparator
+activate SortedList
+
+SortedList -> SortedFishPanel : Updates
+
+SortedList --> Model
+deactivate SortedList
+
+Model --> FishSortCommand
+deactivate Model
+
+FishSortCommand -> Model : setGuiMode
+activate Model
+
+Model -> MainWindow : handleGuiChange
+activate MainWindow
+
+MainWindow -> SortedFishPanel : setPanels
+
+MainWindow <-- SortedFishPanel
+
+MainWindow --> Model
+deactivate MainWindow
+
+Model --> FishSortCommand
+deactivate Model
+
+[<--FishSortCommand
+deactivate FishSortCommand
+@enduml

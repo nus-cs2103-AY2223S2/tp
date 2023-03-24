@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 import seedu.address.testutil.TankBuilder;
 
 
@@ -148,7 +150,17 @@ public class TankAddCommandTest {
         }
 
         @Override
+        public ObservableList<Fish> getSortedFishList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredFishList(Predicate<Fish> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredFishList(Comparator<Fish> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -219,6 +231,12 @@ public class TankAddCommandTest {
         }
 
         public void updateFilteredTankList(Predicate<Tank> predicate) {}
+
+        @Override
+        public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
+            //TODO tests
+            return null;
+        }
     }
 
     /**

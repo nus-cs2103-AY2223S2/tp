@@ -60,4 +60,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveTankList(ReadOnlyTankList tankList) throws IOException;
 
     void saveTankList(ReadOnlyTankList tankList, Path filePath) throws IOException;
+
+    /**
+     * Executes the auto feeding reminder feature for Storage
+     */
+    void executeFeedingReminderInitStorage();
 }

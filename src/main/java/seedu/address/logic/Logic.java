@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -11,6 +12,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * API of the Logic component
@@ -35,6 +37,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of Fishes */
     ObservableList<Fish> getFilteredFishList();
 
+    ObservableList<Fish> getSortedFishList();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -53,4 +57,13 @@ public interface Logic {
     ObservableList<Task> getFilteredTaskList();
 
     ObservableList<Tank> getFilteredTankList();
+
+    ArrayList<TaskFeedingReminder> getTaskFeedingReminderList();
+
+    /**
+     * Executes the auto feeding reminder feature for Logic
+     * @return CommandResult of trying to create feeding reminders
+     * @throws CommandException If an error occurs during command execution.
+     */
+    CommandResult executeFeedingReminderInitLogic(TaskFeedingReminder taskFeedingReminder) throws CommandException;
 }
