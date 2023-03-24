@@ -56,19 +56,22 @@ public class EditExpenseCommand extends Command {
             }
         }
 
-        //Check if index is valid
-        if (targetIndex.getZeroBased() >= lastShownListOfExpenses.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
-        }
-
-        Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
         if (newExpenseName == null && newExpenseAmount == null
                 && newExpenseDate == null && newExpenseCategoryInString == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_EXPENSE);
         }
 
+        //Check if index is valid
+        if (targetIndex == null || targetIndex.getZeroBased() >= lastShownListOfExpenses.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        }
+
+        Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
+
         if (toBeAllocated != null) {
             expenseToEdit.setCategory(toBeAllocated);
+        } else if (this.newExpenseCategoryInString != null && toBeAllocated == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
         if (newExpenseName != null) {
