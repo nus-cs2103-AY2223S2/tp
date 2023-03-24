@@ -3,12 +3,7 @@ package seedu.careflow.logic.parser.patientparser;
 import static seedu.careflow.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.careflow.logic.commands.Command;
-import seedu.careflow.logic.commands.patientcommands.AddCommand;
-import seedu.careflow.logic.commands.patientcommands.ClearCommand;
-import seedu.careflow.logic.commands.patientcommands.DeleteCommand;
-import seedu.careflow.logic.commands.patientcommands.FindCommand;
-import seedu.careflow.logic.commands.patientcommands.ListCommand;
-import seedu.careflow.logic.commands.patientcommands.UpdateCommand;
+import seedu.careflow.logic.commands.patientcommands.*;
 import seedu.careflow.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,6 +30,8 @@ public class PatientParser {
             return new FindCommandParser().parse(arguments);
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommandParser().parse(arguments);
+        case ViewCommand.COMMAND_WORD:
+                return new ViewCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case ClearCommand.COMMAND_WORD:
