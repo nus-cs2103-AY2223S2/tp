@@ -109,7 +109,7 @@ public class TypicalLectures {
     }
 
     public static Lecture getCs2040sWeek3() {
-        return new LectureBuilder().withName("Week3")
+        return new LectureBuilder().withName("Week 3")
                 .withTags("Sorting")
                 .withVideos(TypicalVideos.CONTENT_VIDEO, TypicalVideos.ANALYSIS_VIDEO).build();
     }

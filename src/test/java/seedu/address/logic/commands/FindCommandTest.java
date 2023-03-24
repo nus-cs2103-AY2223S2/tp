@@ -221,7 +221,9 @@ public class FindCommandTest {
         LectureNameContainsKeywordsPredicate predicate =
             (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         expectedModel.updateFilteredLectureList(predicate, CS2040S);
-        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), CS2040S.getCode(), hasByTag);
+        FindCommand command =
+            new FindCommand(
+                StringUtil.commaDelimitedStringsToList(input), CS2040S.getCode(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(week1, week2, week3, week4, week5, week6, week7),
