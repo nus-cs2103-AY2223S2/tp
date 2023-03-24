@@ -2,9 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,16 +19,14 @@
           </stylesheets>
 
 
-            <AnchorPane prefHeight="562.0" prefWidth="800.0">
+            <AnchorPane prefHeight="472.0" prefWidth="800.0">
             <children>
-               <ImageView fitHeight="433.0" fitWidth="693.0" layoutX="52.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="64.0" fitWidth="130.0" layoutX="-37.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images/Ui.png" />
                   </image>
                </ImageView>
-               <TextArea editable="false" focusTraversable="false" layoutX="187.0" layoutY="496.0" prefHeight="48.0" prefWidth="422.0" text="Step 1: Make sure all ur stuff is here and if u enter a command it will be wojrojw ejowjo ad o lorem ipsum" wrapText="true" />
-               <Label alignment="CENTER" layoutX="628.0" layoutY="491.0" prefHeight="28.0" prefWidth="55.0" text="hi" textAlignment="JUSTIFY" />
-               <ProgressBar layoutX="298.0" layoutY="471.0" prefHeight="19.0" prefWidth="200.0" progress="0.0" />
+               <Pagination currentPageIndex="1" layoutX="10.0" layoutY="14.0" prefHeight="442.0" prefWidth="780.0" />
             </children></AnchorPane>
 
 

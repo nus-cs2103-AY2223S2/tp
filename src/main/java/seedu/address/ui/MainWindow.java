@@ -50,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem quickMenuItem;
 
     @FXML
+    private MenuItem baseMenuItem;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
