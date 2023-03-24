@@ -51,7 +51,7 @@ public class ExpiryDate {
     public boolean equals(Object otherDate) {
         return otherDate == this
                 || (otherDate instanceof ExpiryDate
-                && this.expiryDate.equals((ExpiryDate) otherDate));
+                && expiryDate.equals(((ExpiryDate) otherDate).expiryDate));
     }
 
     @Override

@@ -36,23 +36,33 @@ public class EditFoodDescriptorTest {
         assertFalse(DESC_MEIJI.equals(DESC_CHOCOLATE));
 
         // different name -> returns false
-        EditFoodDescriptor editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI).withName(VALID_NAME_CHOCOLATE).build();
+        EditFoodDescriptor editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withName(VALID_NAME_CHOCOLATE)
+                .build();
         assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different phone -> returns false
-        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI).withUnit(VALID_UNIT_CHOCOLATE).build();
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withUnit(VALID_UNIT_CHOCOLATE)
+                .build();
         assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different email -> returns false
-        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI).withQuantity(VALID_QUANTITY_CHOCOLATE).build();
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withQuantity(VALID_QUANTITY_CHOCOLATE)
+                .build();
         assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different address -> returns false
-        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI).withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).build();
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .build();
         assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different tags -> returns false
-        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI).withTags(VALID_TAG_CHOCOLATE).build();
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withTags(VALID_TAG_CHOCOLATE)
+                .build();
         assertFalse(DESC_MEIJI.equals(editedChocolate));
     }
 }
