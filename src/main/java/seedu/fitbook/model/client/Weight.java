@@ -1,5 +1,9 @@
 package seedu.fitbook.model.client;
 
+import javafx.util.Pair;
+
+import java.time.LocalDate;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
@@ -14,6 +18,7 @@ public class Weight {
             "Weight should only contain positive numbers and cannot be 0";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
     public final String value;
+    public final WeightHistory weightHistory;
 
     /**
      * Constructs a {@code Weight}.
@@ -23,7 +28,9 @@ public class Weight {
     public Weight(String weight) {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
+        LocalDate today = LocalDate.now();
         value = weight;
+        weightHistory = new WeightHistory(new Pair<>(weight, today.toString()));
     }
 
     /**
