@@ -61,7 +61,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `CareFLowLogic` component defines its API in the `CareFlowLogic.java` interface and implements its functionality using the `CareFlowLogicManager.java` class which follows the `CareFlowLogic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -79,10 +79,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* executes user commands using the `CareFlowLogic` component.
+* listens for changes to `CareFlowModel` data so that the UI can be updated with the modified data.
+* keeps a reference to the `CareFlowLogic` component, because the `UI` relies on the `CareFlowLogic` to execute commands.
+* depends on some classes in the `CareFlowModel` component, as it displays `Patient` object residing in the `CareFlowModel`.
 
 ### Logic component
 
