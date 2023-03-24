@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.logic.parser;
 
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -9,7 +8,6 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
@@ -26,7 +24,6 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -98,10 +95,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
-        Set<Course> modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_COURSE));
+        // Set<Course> course = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_COURSE));
         Remark remark = new Remark("");
-        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Student student = new Student(name, phone, email, studentId, modules, remark, tags);
+        // Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Student student = new Student(name, phone, email, studentId, remark);
 
         return student;
     }

@@ -1,9 +1,5 @@
 package tfifteenfour.clipboard.storage.serializedClasses;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tfifteenfour.clipboard.model.student.Email;
@@ -12,7 +8,6 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 
 public class SerializedStudent {
     private String name;
@@ -20,7 +15,7 @@ public class SerializedStudent {
     private String email;
     private String studentId;
     private String remark;
-    private List<Tag> tags;
+    // private List<Tag> tags;
 
     public SerializedStudent(Student student) {
         this.name = student.getName().toString();
@@ -28,7 +23,7 @@ public class SerializedStudent {
         this.email = student.getEmail().toString();
         this.studentId = student.getStudentId().toString();
         this.remark = student.getRemark().toString();
-        this.tags = new ArrayList<Tag>(student.getTags());
+        // this.tags = new ArrayList<Tag>(student.getTags());
     }
 
     public SerializedStudent() {}
@@ -58,14 +53,14 @@ public class SerializedStudent {
         return remark;
     }
 
-    @JsonProperty("tags")
-    public List<Tag> getTagged() {
-        return tags;
-    }
+    // @JsonProperty("tags")
+    // public List<Tag> getTagged() {
+    //     return tags;
+    // }
 
     public Student toModelType() {
         return new Student(new Name(name), new Phone(phone),
                 new Email(email), new StudentId(studentId),
-                new HashSet<>(), new Remark(remark), new HashSet<>(tags));
+                new Remark(remark));
     }
 }

@@ -1,8 +1,5 @@
 package tfifteenfour.clipboard.logic;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Email;
@@ -11,7 +8,6 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 
 
 public class CurrentSelection {
@@ -30,10 +26,10 @@ public class CurrentSelection {
 		Phone phone = new Phone("123456");
 		Email email = new Email("empty@empty.com");
 		StudentId sid = new StudentId("EMPTY99");
-		Set<Course> modules = new HashSet<>();
+		// Set<Course> modules = new HashSet<>();
 		Remark remark = new Remark("");
-		Set<Tag> tags = new HashSet<>();
-		return new Student(name, phone, email, sid, modules, remark, tags);
+		// Set<Tag> tags = new HashSet<>();
+		return new Student(name, phone, email, sid, remark);
 	}
 
 	public CurrentSelection() {
