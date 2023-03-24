@@ -37,6 +37,7 @@ public class DeleteCommand extends Command {
         Employee employeeToDelete;
 
         for (Employee employee : lastShownList) {
+            assert employee != null;
             if (employee.getEmployeeId().equals(employeeId)) {
                 model.deleteEmployee(employee);
                 employeeToDelete = employee;
