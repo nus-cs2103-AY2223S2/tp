@@ -5,8 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
-participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":DateTime" as DateTime MODEL_COLOR
-participant ":Event" as Event MODEL_COLOR
+participant "e:Event" as Event MODEL_COLOR
 end box
 
 [-> LogicManager : execute("addevent ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
@@ -34,33 +32,11 @@ deactivate AddEventCommandParser
 AddressBookParser -> AddEventCommandParser : parse("ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
 activate AddEventCommandParser
 
-AddEventCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_EVENT_NAME, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME)
-activate ArgumentTokenizer
-ArgumentTokenizer --> AddEventCommandParser
-deactivate ArgumentTokenizer
+AddEventCommandParser -> AddEventCommandParser : check that ev/, from/, to/ prefixes are entered
 
-AddEventCommandParser -> AddEventCommandParser : arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME)
-
-' To add Line 31 of AddEventCommandParser.java?
-
-AddEventCommandParser -> ParserUtil : parseEventName("Carnival")
-activate ParserUtil
-ParserUtil --> AddEventCommandParser : EventName
-deactivate ParserUtil
-
-AddEventCommandParser -> ParserUtil : parseDateTime("17-07-2023 12:00")
-activate ParserUtil
-ParserUtil --> AddEventCommandParser : DateTime
-deactivate ParserUtil
-
-AddEventCommandParser -> ParserUtil : parseDateTime("23-07-2023 22:00")
-activate ParserUtil
-ParserUtil --> AddEventCommandParser : DateTime
-deactivate ParserUtil
-
-AddEventCommandParser -> DateTime : isValidDateRange("17-07-2023 12:00", "23-07-2023 22:00")
+AddEventCommandParser -> DateTime : check that date time inputs are valid
 activate DateTime
-DateTime --> AddEventCommandParser : Boolean
+DateTime --> AddEventCommandParser
 deactivate DateTime
 
 create Event
@@ -85,23 +61,23 @@ destroy AddEventCommandParser
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
-LogicManager -> AddEventCommand : execute(Model)
+LogicManager -> AddEventCommand : execute(model)
 activate AddEventCommand
 
-AddEventCommand -> Model : hasEvent(Event)
+AddEventCommand -> Model : hasEvent(e)
 activate Model
-Model --> AddEventCommand : Boolean
+Model --> AddEventCommand
 deactivate Model
 
-AddEventCommand -> Model : addEvent(Event)
+AddEventCommand -> Model : addEvent(e)
 activate Model
-Model -> AddressBook : addEvent(Event)
+Model -> AddressBook : addEvent(e)
 activate AddressBook
 
 AddressBook --> Model
 deactivate AddressBook
 
-Model -> Model : updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS)
+Model -> Model : update event list to show all events
 
 Model --> AddEventCommand
 deactivate Model
