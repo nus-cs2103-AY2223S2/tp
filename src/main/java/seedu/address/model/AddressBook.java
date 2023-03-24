@@ -68,9 +68,35 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPatients(newData.getPatientList());
         setWards(newData.getWardList());
+        fixData();
+    }
+
+    /**
+     * Helper function for resetData().
+     * Fixes any discrepancies and inconsistencies in patient-ward relationships.
+     */
+    public void fixData() {
+        for (Patient patient:patients) {
+            Boolean wardExists = false;
+            String wardName = patient.getWard();
+            for (Ward ward:wards) {
+                if (wardName == ward.value) {
+                    wardExists = true;
+                    if (!ward.hasPatient(patient)) {
+                        ward.addPatient(patient);
+                    }
+                    break;
+                } else if (ward.hasPatient(patient)){
+                    ward.removePatient(patient);
+                    break;
+                }
+            }
+            if (!wardExists) {
+                wards.add(new Ward(wardName));
+            }
+        }
     }
 
     //// patient-level operations
@@ -110,7 +136,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
-
         patients.setPatient(target, editedPatient);
     }
 
