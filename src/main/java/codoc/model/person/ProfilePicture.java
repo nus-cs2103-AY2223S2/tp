@@ -5,26 +5,26 @@ package codoc.model.person;
  * The type Profile picture.
  */
 public class ProfilePicture {
-    public final String imagePath;
+    public final String profilePicturePath;
 
-    public ProfilePicture(String imagePath) {
-        this.imagePath = imagePath;
+    public ProfilePicture(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
     }
 
     @Override
     public String toString() {
-        return imagePath;
+        return profilePicturePath;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ProfilePicture // instanceof handles nulls
-                && imagePath.equals(((ProfilePicture) other).imagePath)); // state check
+                && profilePicturePath.equals(((ProfilePicture) other).profilePicturePath)); // state check
     }
 
     @Override
     public int hashCode() {
-        return imagePath.hashCode();
+        return profilePicturePath.hashCode();
     }
 }

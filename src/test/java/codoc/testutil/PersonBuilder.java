@@ -13,6 +13,7 @@ import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.ProfilePicture;
 import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 import codoc.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ import codoc.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
+    public static final String DEFAULT_PROFILE_PICTURE = "src/main/resources/images/avataricons/001-bear.png";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_COURSE = "1";
     public static final String DEFAULT_YEAR = "1";
@@ -35,6 +37,7 @@ public class PersonBuilder {
 
 
 
+    private ProfilePicture profilePicture;
     private Name name;
     private Course course;
     private Year year;
@@ -48,6 +51,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        profilePicture = new ProfilePicture(DEFAULT_PROFILE_PICTURE);
         name = new Name(DEFAULT_NAME);
         course = new Course(DEFAULT_COURSE);
         year = new Year(DEFAULT_YEAR);
@@ -64,6 +68,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        profilePicture = personToCopy.getProfilePicture();
         name = personToCopy.getName();
         course = personToCopy.getCourse();
         year = personToCopy.getYear();
@@ -82,6 +87,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ProfilePicture} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withProfilePicture(String profilePicturePath) {
+        this.profilePicture = new ProfilePicture(profilePicturePath);
+        return this;
+    }
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
@@ -145,7 +157,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, course, year, github, email, linkedin, skills, mods);
+        return new Person(profilePicture, name, course, year, github, email, linkedin, skills, mods);
     }
 
     /**
@@ -153,6 +165,7 @@ public class PersonBuilder {
      * @return
      */
     public Person buildEditedPerson() {
+        profilePicture = new ProfilePicture("src/main/resources/images/avataricons/002-rabbit.png");
         name = new Name("Test name");
         course = new Course("1");
         year = new Year("1");
@@ -166,7 +179,7 @@ public class PersonBuilder {
         mods.add(DEFAULT_MODULE);
         mods.add(new Module("AY2122S1 GEA1000"));
 
-        return new Person(name, course, year, github, email, linkedin, skills, mods);
+        return new Person(profilePicture, name, course, year, github, email, linkedin, skills, mods);
     }
 
 }

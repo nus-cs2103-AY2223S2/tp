@@ -2,11 +2,9 @@ package codoc.model.person;
 
 import static codoc.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Random;
 import java.util.Set;
 
 import codoc.model.course.Course;
@@ -36,6 +34,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(
+            ProfilePicture profilePicture,
             Name name,
             Course course,
             Year year,
@@ -45,7 +44,8 @@ public class Person {
             Set<Skill> skills,
             Set<Module> modules
     ) {
-        requireAllNonNull(name, github, email, linkedin, skills, modules, course, year);
+        requireAllNonNull(profilePicture, name, github, email, linkedin, skills, modules, course, year);
+        this.profilePicture = profilePicture;
         this.name = name;
         this.github = github;
         this.email = email;
@@ -54,17 +54,6 @@ public class Person {
         this.year = year;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
-
-        // /Users/linustws/Desktop/CS2103T/tp/src/main/java/codoc/model/person/Person.java
-        // randomly select a profile pic from the folder
-        File[] files =
-                new File("src/main/resources/images/avataricons").listFiles();
-        assert files != null;
-        int randomIndex = new Random().nextInt(files.length);
-        String imagePath = files[randomIndex].getAbsolutePath();
-
-        // set the profile pic of the person
-        this.profilePicture = new ProfilePicture(imagePath);
     }
 
     public ProfilePicture getProfilePicture() {

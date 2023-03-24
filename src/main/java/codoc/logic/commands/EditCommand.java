@@ -32,6 +32,7 @@ import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.ProfilePicture;
 import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
@@ -133,6 +134,8 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        ProfilePicture updatedProfilePicture =
+                editPersonDescriptor.getProfilePicture().orElse(personToEdit.getProfilePicture());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
@@ -153,6 +156,7 @@ public class EditCommand extends Command {
         Set<Module> finalModules = editPersonDescriptor.getModulesFinal().orElse(updatedModules);
 
         return new Person(
+                updatedProfilePicture,
                 updatedName,
                 updatedCourse,
                 updatedYear,
@@ -186,6 +190,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+
+        private ProfilePicture profilePicture;
         private Name name;
         private Github github;
         private Email email;
@@ -206,6 +212,7 @@ public class EditCommand extends Command {
          * A defensive copies of {@code skills} and {@Code modules} are used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setProfilePicture(toCopy.profilePicture);
             setName(toCopy.name);
             setGithub(toCopy.github);
             setEmail(toCopy.email);
@@ -226,6 +233,14 @@ public class EditCommand extends Command {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, github, email, course, year, linkedin, skillsRemoved, skillsAdded,
                     skillsFinal, modulesRemoved, modulesAdded, modulesFinal);
+        }
+
+        public void setProfilePicture(ProfilePicture profilePicture) {
+            this.profilePicture = profilePicture;
+        }
+
+        public Optional<ProfilePicture> getProfilePicture() {
+            return Optional.ofNullable(profilePicture);
         }
 
         public void setName(Name name) {
@@ -388,7 +403,8 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getProfilePicture().equals(e.getProfilePicture())
+                    && getName().equals(e.getName())
                     && getGithub().equals(e.getGithub())
                     && getEmail().equals(e.getEmail())
                     && getCourse().equals(e.getCourse())

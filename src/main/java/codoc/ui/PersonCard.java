@@ -55,8 +55,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         this.displayedIndex = displayedIndex;
         id.setText(displayedIndex + "");
-        String imagePath = person.getProfilePicture().imagePath;
-        Image image = new Image("file:" + imagePath);
+        String profilePicturePath = person.getProfilePicture().profilePicturePath;
+        Image image = new Image("file:" + profilePicturePath);
         profilePicture.setImage(image);
         name.setText(person.getName().fullName);
         year.setText("Year " + person.getYear().year);

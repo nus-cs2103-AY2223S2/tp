@@ -13,6 +13,7 @@ import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.ProfilePicture;
 import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
@@ -23,6 +24,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/001-bear.png"),
                     new Name("Alex Yeoh"),
                     new Course("1"),
                     new Year("1"),
@@ -33,6 +35,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS1101S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/002-rabbit.png"),
                     new Name("Bernice Yu"),
                     new Course("2"),
                     new Year("2"),
@@ -43,6 +46,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS1101S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/003-panda.png"),
                     new Name("Charlotte Oliveiro"),
                     new Course("1"),
                     new Year("3"),
@@ -53,6 +57,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS2030S", "AY2223S2 CS2040S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/004-sloth.png"),
                     new Name("David Li"),
                     new Course("3"),
                     new Year("4"),
@@ -63,6 +68,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS2030S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/005-hen.png"),
                     new Name("Irfan Ibrahim"),
                     new Course("3"),
                     new Year("2"),
@@ -73,6 +79,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS2040S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/006-puffer-fish.png"),
                     new Name("Roy Balakrishnan"),
                     new Course("4"),
                     new Year("2"),
@@ -83,6 +90,7 @@ public class SampleDataUtil {
                     getModuleSet("AY2223S2 CS2109S")
             ),
             new Person(
+                    new ProfilePicture("src/main/resources/images/avataricons/007-beaver.png"),
                     new Name("Roy Boy"),
                     new Course("5"),
                     new Year("4"),
