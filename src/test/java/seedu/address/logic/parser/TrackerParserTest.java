@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_204
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.CS2040S;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,6 +50,7 @@ import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
+import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.VideoBuilder;
 import seedu.address.testutil.VideoUtil;
 
@@ -96,8 +96,8 @@ public class TrackerParserTest {
     @Test
     public void parseCommand_deleteModule() throws Exception {
         DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + CS2040S.getCode());
-        assertEquals(new DeleteModuleCommand(CS2040S.getCode()), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalModules.getCs2040s().getCode());
+        assertEquals(new DeleteModuleCommand(TypicalModules.getCs2040s().getCode()), command);
     }
 
     @Test
@@ -148,8 +148,8 @@ public class TrackerParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(keywords), command);
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(",")));
+        assertEquals(new FindCommand(keywords, false), command);
     }
 
     @Test
@@ -161,7 +161,7 @@ public class TrackerParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

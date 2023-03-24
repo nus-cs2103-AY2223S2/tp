@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BY_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -36,11 +37,13 @@ public class CommandTestUtil {
     public static final String VALID_LECTURE_NAME_L2 = "lecture2";
     public static final String VALID_VIDEO_NAME_V1 = "video1";
     public static final String VALID_VIDEO_NAME_V2 = "video2";
+    public static final String VALID_TAG = "" + PREFIX_BY_TAG;
 
     public static final String INVALID_MODULE_CODE = "404CS";
     public static final String INVALID_MODULE_NAME = "modu!e";
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
+    public static final String INVALID_TAG = "/tagBy";
 
     public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2103;
     public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2040;

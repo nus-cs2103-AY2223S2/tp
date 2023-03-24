@@ -7,12 +7,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.video.Video;
 
 /**
- * Tests that a {@code Lecture}'s {@code name} matches any of the keywords given.
+ * Tests that a {@code Video}'s {@code tags} matches any of the keywords given.
  */
-public class VideoNameContainsKeywordsPredicate implements Predicate<Video> {
+public class VideoTagContainsKeywordsPredicate implements Predicate<Video> {
     private final List<String> keywords;
 
-    public VideoNameContainsKeywordsPredicate(List<String> keywords) {
+    public VideoTagContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -21,15 +21,15 @@ public class VideoNameContainsKeywordsPredicate implements Predicate<Video> {
         return keywords.stream()
                 .anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(
-                        StringUtil.joinSentenceToWord(video.getName().name),
+                        StringUtil.joinTagsAsString(video.getTags()),
                             StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof VideoNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((VideoNameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof VideoTagContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((VideoTagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
