@@ -163,6 +163,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add person feature
+
+The add person feature allows for some fields to be optional. However, the person must have a name, and their name cannot be the same as another existing contact in TeamBuilder.
+
+The interactions between components for the `add` command is similar to the `delete` command shown [above](#logic-component).
+
+Below shows the activity diagram when the user inputs the add command in the command box:
+
+![Activity Diagram for add person command](images/ActivityDiagram_AddPerson.png){:.center}
+
+The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. The subsidiary diagram is as shown below:
+
+![Activity Diagram for parsing command](images/ActivityDiagram_AddCommandParser.png){:.center}
+
+### Optional Fields feature
+
+The AB3 implementation made it such that you could not add a contact without having all of their fields present. We felt this to be not user-friendly as for our purposes it is unreasonable for users to have the phone, email, address, and major of the contact they which to add.
+
+Thus, we have made it such that the only mandatory field is the persons name.
+
+> This feature has only been added to phone so far.
+
+To achieve this, we needed to: 
+1. Allow users to input empty fields.
+2. Allow users to omit field prefixes.
+3. Allow users to edit contacts to empty their field.
+
+This meant that the validation regex in each field class _e.g. Phone class, Email class_ had to allow for empty strings/ white spaces as an input, and the parser for each of these fields should know how to handle theses cases.
+
+We considered using "java.util.Optional" package to resolve the issue, however in the end since we do need a 'default empty field' to act as a place holder for each of the fields _e.g. a empty_phone instance_, it made the Optional functionality redundant.
+
+Additionally, storing fields as Optional classes caused many dependencies issues which required wide-spread change. Thus, we opted for the following changes:
+
+1. The value for each Person field classes is now private, e.g. Phone.value is not accessible outside of phone class
+2. Constructor for field class set to private
+3. Public `of()` method created for each class to be called from other classes. `of()` method creates and instance of the class, given the parameters. E.g. `Phone.of(String <Phone_number>)' creates the phone instance with phone number given as argument.
+4. Default instance for empty fields for each field class is created and stored within its own class. E.g. Phone class has a `private static final Phone EMPTY_PHONE` instance.
+5. The default instance mentioned above can be returned by calling a static method in the class.
+
+
+
 ### Undo/Redo feature
 
 #### Implementation
@@ -316,14 +357,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TeamBuilder` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a contact**
+
+**MSS**
+
+1. User enters add command followed by input fields.
+2. TeamBuilder parses input with AddCommandParser.
+3. TeamBuilder creates AddCommand.
+4. TeamBuilder executes AddCommand.
+5. TeamBuilder saves person in model and storage.
+   
+   Use case ends.
+
+**Extensions**
+- 2a. Inputs for command invalid.
+  - 2a1. TeamBuilder displays error caused by invalid field/ missing field.
+  - 2a2. TeamBuilder displays valid format for add command.
+    
+     Use case ends.
+- 4a. User inputs name which already exists in TeamBuilder.
+  - 4a1. TeamBuilder displays error message indicating duplicate name.
+  
+    Use case ends
+
+
 **Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  TeamBuilder shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  TeamBuilder deletes the person
+1.  User requests to list contacts.
+2.  TeamBuilder shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  TeamBuilder deletes the person.
 
     Use case ends.
 
@@ -339,14 +404,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit a contact**
+**Use case: List all contact**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  TeamBuilder shows a list of contacts
-3.  User requests to edit a specific contact in the list
-4.  TeamBuilder edit the person
+1.  User requests to list contacts.
+2.  TeamBuilder shows a list of contacts.
+3.  User requests to edit a specific contact in the list.
+4.  TeamBuilder edit the person.
 
     Use case ends.
 
