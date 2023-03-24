@@ -38,6 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private InfoTab infoTab;
 
+    private CourseListPanel courseListPanel;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -55,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox infoTabPlaceholder;
+
+    @FXML
+    private VBox courseListPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,6 +135,9 @@ public class MainWindow extends UiPart<Stage> {
 
         infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
         infoTabPlaceholder.getChildren().add(infoTab.getRoot());
+
+        courseListPanel = new CourseListPanel();
+        courseListPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
     /**
