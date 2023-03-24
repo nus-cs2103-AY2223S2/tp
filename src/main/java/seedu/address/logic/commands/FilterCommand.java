@@ -14,8 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tutee.*;
+import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
 
 import java.util.*;
 
