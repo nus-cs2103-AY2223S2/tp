@@ -14,6 +14,7 @@ import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * An Immutable Patientist that is serializable to JSON format.
@@ -21,16 +22,16 @@ import seedu.patientist.model.person.staff.Staff;
 @JsonRootName(value = "patientist")
 class JsonSerializablePatientist {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_WARD = "Persons list contains duplicate ward(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedWard> wards = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePatientist} with the given persons.
      */
     @JsonCreator
-    public JsonSerializablePatientist(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializablePatientist(@JsonProperty("wards") List<JsonAdaptedWard> wards) {
+        this.wards.addAll(wards);
     }
 
     /**
@@ -39,7 +40,7 @@ class JsonSerializablePatientist {
      * @param source future changes to this will not affect the created {@code JsonSerializablePatientist}.
      */
     public JsonSerializablePatientist(ReadOnlyPatientist source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        wards.addAll(source.getWardList().stream().map(JsonAdaptedWard::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,18 +50,12 @@ class JsonSerializablePatientist {
      */
     public Patientist toModelType() throws IllegalValueException {
         Patientist patientist = new Patientist();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (patientist.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedWard jsonAdaptedWard : wards) {
+            Ward ward = jsonAdaptedWard.toModelType();
+            if (patientist.hasWard(ward)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_WARD);
             }
-            if (person instanceof Staff) {
-                Staff staff = (Staff) person;
-                //patientist.addPerson(staff);
-            } else {
-                Patient patient = (Patient) person;
-                //patientist.addPerson(patient);
-            }
+            patientist.addWard(ward);
         }
         return patientist;
     }
