@@ -28,6 +28,9 @@ public class AddExerciseCommand extends Command {
     private final Index targetRoutine;
     private final Exercise exerciseToAdd;
 
+    /**
+     * Creates an AddExerciseCommand to add the specified {@code Exercise}
+     */
     public AddExerciseCommand(Index targetRoutine, Exercise exercise) {
         requireNonNull(exercise);
         this.targetRoutine = targetRoutine;

@@ -1,14 +1,11 @@
 package seedu.fitbook.logic.commands.routine;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,10 +14,6 @@ import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.AddExerciseCommand;
-import seedu.fitbook.logic.commands.AddRoutineCommand;
-import seedu.fitbook.logic.commands.CommandResult;
-import seedu.fitbook.logic.commands.exceptions.CommandException;
-import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
@@ -28,35 +21,27 @@ import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
-import seedu.fitbook.testutil.routine.RoutineBuilder;
 
 public class AddExerciseCommandTest {
 
     @Test
     public void constructor_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddExerciseCommand(null,null));
-    }
-    /*
-    @Test
-    public void execute_exerciseAcceptedByFitBookModelExerciseRoutine_addSuccessful() throws Exception {
-        //todo
+        assertThrows(NullPointerException.class, () -> new AddExerciseCommand(null, null));
     }
 
-
-     */
     @Test
     public void equals() {
         Index index = Index.fromZeroBased(1);
         Index index2 = Index.fromZeroBased(2);
         Exercise exerciseToAdd = new Exercise("push ups");
-        AddExerciseCommand addExerciseCommand = new AddExerciseCommand(index,exerciseToAdd);
-        AddExerciseCommand addExercise2Command = new AddExerciseCommand(index2,exerciseToAdd);
+        AddExerciseCommand addExerciseCommand = new AddExerciseCommand(index, exerciseToAdd);
+        AddExerciseCommand addExercise2Command = new AddExerciseCommand(index2, exerciseToAdd);
 
         // same object -> returns true
         assertTrue(addExerciseCommand.equals(addExerciseCommand));
 
         // same values -> returns true
-        AddExerciseCommand addExerciseCommandCopy = new AddExerciseCommand(index,exerciseToAdd);
+        AddExerciseCommand addExerciseCommandCopy = new AddExerciseCommand(index, exerciseToAdd);
         assertTrue(addExerciseCommand.equals(addExerciseCommandCopy));
 
         // different types -> returns false
@@ -197,10 +182,10 @@ public class AddExerciseCommandTest {
     /**
      * A FitBookExerciseRoutineModel stub that contains a single routine.
      */
-    private class FitBookExerciseRoutineModelStubWithRoutine extends FitBookExerciseRoutineModelStub {
+    private class FitBookExerciseRoutineModelStubWithExercise extends FitBookExerciseRoutineModelStub {
         private final Routine routine;
 
-        FitBookExerciseRoutineModelStubWithRoutine(Routine routine) {
+        FitBookExerciseRoutineModelStubWithExercise(Routine routine) {
             requireNonNull(routine);
             this.routine = routine;
         }
@@ -216,27 +201,4 @@ public class AddExerciseCommandTest {
             routine.addExercise(exercise);
         }
     }
-    // todo
-
-    /**
-     * A FitBookExerciseRoutineModel stub that always accept the routine being added.
-     */
-    /*
-    private class FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded
-            extends FitBookExerciseRoutineModelStub {
-        final ArrayList<Exercise> exerciseAdded = new ArrayList<>();
-
-        @Override
-        public void addExercise(Routine routine, Exercise exercise) {
-            requireNonNull(routine);
-            exerciseAdded.add(exercise);
-        }
-
-        @Override
-        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
-            return new FitBookExerciseRoutine();
-        }
-    }
-    */
-
 }

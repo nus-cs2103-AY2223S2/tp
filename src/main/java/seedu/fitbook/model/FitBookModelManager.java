@@ -149,7 +149,7 @@ public class FitBookModelManager implements FitBookModel {
 
     @Override
     public void addExercise(Routine routine, Exercise exercise) {
-        fitBookExerciseRoutine.addExercise(routine,exercise);
+        fitBookExerciseRoutine.addExercise(routine, exercise);
         updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
     }
 

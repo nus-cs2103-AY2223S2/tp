@@ -94,12 +94,18 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
         routines.remove(key);
     }
 
+    /**
+     * Adds an exercise to the exercise list of {@code Routine}
+     */
     public void addExercise(Routine routine, Exercise exercise) {
         requireNonNull(routine);
         requireNonNull(exercise);
         routine.addExercise(exercise);
     }
 
+    /**
+     * Removes an exercise from the exercise list of {@code Routine}
+     */
     public void removeExercise(Routine routine, int targetIndex) {
         requireNonNull(routine);
         routine.deleteExercise(targetIndex);
