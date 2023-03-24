@@ -16,8 +16,13 @@ participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":XYZManager" as XYZManager MODEL_COLOR
 end box
 
-LogicManager -> WingmanParser : parse(getOperationMode(), "delete id")
+[-> MainWindow : executeCommand("delete id")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("delete id")
 activate LogicManager
+
+LogicManager -> WingmanParser : parse(getOperationMode(), "delete id")
 activate WingmanParser
 
 create DeleteXYZCommand
@@ -32,7 +37,7 @@ deactivate WingmanParser
 LogicManager -> DeleteXYZCommand : execute()
 activate DeleteXYZCommand
 
-DeleteXYZCommand -> ModelManager : deletePlane(id)
+DeleteXYZCommand -> ModelManager : deleteXYZ(id)
 activate ModelManager
 
 ModelManager -> XYZManager : removeItem(id)
@@ -48,5 +53,8 @@ deactivate DeleteXYZCommand
 
 LogicManager --> MainWindow : commandResult
 deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
 
 @enduml
