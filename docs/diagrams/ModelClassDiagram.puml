@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package Model as PackageModel <<Rectangle>>{
 Class "<<interface>>\nReadOnlyMasterDeck" as ReadOnlyMasterDeck
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
@@ -13,12 +13,13 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueCardList
+Class UniqueDeckList
+Class Review
 Class Card
-Class Address
-Class Email
-Class Name
-Class Phone
+Class Question
+Class Answer
 Class Tag
+Class Deck
 
 }
 
@@ -30,21 +31,23 @@ MasterDeck .up.|> ReadOnlyMasterDeck
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyMasterDeck
-ModelManager -left-> "1" MasterDeck
+ModelManager -down-> "1" MasterDeck
 ModelManager -right-> "1" UserPrefs
+ModelManager -left-> "1" Review
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 MasterDeck *--> "1" UniqueCardList
+MasterDeck *--> "1" UniqueDeckList
 UniqueCardList --> "~* all" Card
-Card *--> Name
-Card *--> Phone
-Card *--> Email
-Card *--> Address
-Card *--> "*" Tag
+UniqueDeckList -right-> "~* all" Deck
+Card *--> "1" Question
+Card *--> "1" Answer
+Card --> "0..1" Tag
+Card -up-> "1" Deck
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Card
+ModelManager --->"~* filtered" Card
+ModelManager --> "0..1 selected" Deck
+ModelManager -->"~* filtered" Deck
+
 @enduml

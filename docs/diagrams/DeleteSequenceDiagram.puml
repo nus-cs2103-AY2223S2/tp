@@ -48,7 +48,7 @@ deactivate MasterDeckParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteCard(1)
+DeleteCommand -> Model : deleteCard(c)
 activate Model
 
 Model --> DeleteCommand

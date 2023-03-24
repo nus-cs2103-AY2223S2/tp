@@ -1,0 +1,16 @@
+@startuml
+start
+:User's command;
+
+if () then ([command is valid in current mode])
+    :Save Command Result to Model;
+    :Store changes in MasterDeckStorage;
+    :Display Command Result;
+else ([else])
+    :Throws CommandException;
+    :Displays error message;
+
+endif
+
+stop
+@enduml
