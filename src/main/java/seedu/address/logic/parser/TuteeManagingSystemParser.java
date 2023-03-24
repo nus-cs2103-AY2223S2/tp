@@ -21,20 +21,6 @@ public class TuteeManagingSystemParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     private static final Map<String, CommandSupplier> commandMap = Map.ofEntries(
-<<<<<<< HEAD:src/main/java/seedu/address/logic/parser/AddressBookParser.java
-            Map.entry(AddCommand.COMMAND_WORD, new AddCommandParser()),
-            Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
-            Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
-            Map.entry(EditCommand.COMMAND_WORD, new EditCommandParser()),
-            Map.entry(FindCommand.COMMAND_WORD, new FindCommandParser()),
-            Map.entry(ExitCommand.COMMAND_WORD, args -> new ExitCommand()),
-            Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
-            Map.entry(ListCommand.COMMAND_WORD, args -> new ListCommand()),
-            Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
-            Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
-            Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser()),
-            Map.entry(LearnCommand.COMMAND_WORD, new LearnCommandParser())
-=======
         Map.entry(AddCommand.COMMAND_WORD, new AddCommandParser()),
         Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
         Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
@@ -47,8 +33,8 @@ public class TuteeManagingSystemParser {
         Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
         Map.entry(QueryCommand.COMMAND_WORD, new QueryCommandParser()),
         Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
+            Map.entry(LearnCommand.COMMAND_WORD, new LearnCommandParser()),
         Map.entry(UnmarkCommand.COMMAND_WORD, new UnmarkCommandParser())
->>>>>>> upstream/master:src/main/java/seedu/address/logic/parser/TuteeManagingSystemParser.java
     );
 
     /**

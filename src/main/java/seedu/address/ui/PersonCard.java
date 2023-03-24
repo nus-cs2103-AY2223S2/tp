@@ -73,8 +73,11 @@ public class PersonCard extends UiPart<Region> {
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        lessons.getChildren().add(new Label("Lessons: "));
         tutee.getLessons().stream()
                 .forEach(lesson -> lessons.getChildren().add(new Label(lesson)));
+        lessons.setHgap(10);    
+        lessons.setVgap(10);
     }
 
     @Override
