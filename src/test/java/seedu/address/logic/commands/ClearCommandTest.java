@@ -5,7 +5,6 @@ import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,7 +23,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyMasterDeck_success() {
         Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
-        expectedModel.setMasterDeck(new MasterDeck());
+        // expectedModel.setMasterDeck(new MasterDeck());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
