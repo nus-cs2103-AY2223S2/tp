@@ -37,7 +37,7 @@ public abstract class Task {
         return this.title;
     }
 
-    public Optional<Description> getDescription() { return Optional.of(this.description); }
+    public Optional<Description> getDescription() { return Optional.ofNullable(this.description); }
 
     public void mark() {
         this.isDone = true;

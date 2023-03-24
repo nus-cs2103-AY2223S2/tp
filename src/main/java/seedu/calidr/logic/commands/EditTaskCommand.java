@@ -87,7 +87,7 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException {
         assert taskToEdit != null;
 
         if (taskToEdit instanceof ToDo) {
@@ -118,7 +118,8 @@ public class EditTaskCommand extends Command {
 
         } else {
             // error
-            return null;
+            // todo store messages as constant in messages
+            throw new CommandException("Invalid task type!");
         }
     }
 
