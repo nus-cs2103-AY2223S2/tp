@@ -41,7 +41,7 @@ public class ModelManager implements Model {
 
         filteredPersonsByName = new FilteredList<>(this.addressBook.getPersonListByName());
         persons = FXCollections.observableArrayList(this.addressBook.getPersonList());
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(persons);
     }
 
     public ModelManager() {
