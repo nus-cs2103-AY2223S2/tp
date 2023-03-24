@@ -27,7 +27,7 @@ public class FindPatientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a patient in the address book. "
             + "Parameters: "
-            + "(" + PREFIX_NAME + "NAME) "
+            + "[" + PREFIX_NAME + "NAME] "
             + "(" + PREFIX_PHONE + "PHONE) "
             + "(" + PREFIX_EMAIL + "EMAIL) "
             + "(" + PREFIX_HEIGHT + "HEIGHT) "
