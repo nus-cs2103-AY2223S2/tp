@@ -64,24 +64,43 @@ Description coming soon
 
 ## Implementation
 
+### Adding XYZ (seq. diagram focussed on UI layer)
 
-### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
+**How is this feature implemented?**
+
 In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and users can add new objects 
 into the database via `add` command.
 
 This feature is enabled by the following classes:
 * `LinkXYZCommand` - the command that can be executed and adds a new entity
-* into the system
+into the system
 * `LinkXYZCommandFactory` - The factory class that creates `LinkXYZCommand`
+object, which can be executed to complete the task
 
 When a user enters the command
 ```agsl
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
-this command is passed from the UI layer to the logic layer.
 
-<img src="images/WingmanUnlinkXYZDiagram.png" width="966" alt="Sequence diagram at Storage layer">
-Description coming soon. 
+Initially, when the input is received, it is processed by the UI layer, which calls the logic.execute(input) function and transfers the control to the logic layer. The execute(input) function in the logic layer then utilizes the WingmanParser to break down the input into tokens, determine the command's mode, such as Crew, Flight, Location, Pilot, or Plane, and identify the command's nature.
+
+The WingmanParser's primary goal is to recognize the command type based on the input and return the corresponding command object. For instance, the AddXYZCommand object is returned with the {XYZ identifier} after analyzing the input's tokens.
+
+To execute the DeleteXYZCommand, the appropriate XYZManager is employed. Firstly, the getItem(id) function is used to retrieve the corresponding XYZ that needs to be deleted. Next, the addXYZ(id) function is called, which removes the desired XYZ from the Wingman app using the item.removeItem(id) method.
+
+Finally, the CommandResult message, indicating a successful deletion, is returned to the user. GUI will display the return message to the user. 
+
+<img src="images/WingmanAddCommandSequenceDiagram.png" width="966" alt="Sequence diagram for add command">
+
+**Why was it implemented this way?**
+
+Our app has different operation `mode`, e.g., location and pilot. We wish to share the common modules, but separate different components. Here, we have a global logic manager that process the input string with a parser, which instantiate the  command object corresponded to the mode. To execute mode-specific command, we have a global manager that routes commands to mode-specific managers all commands related to that mode. These abstractions allow us to naturally group functionalities among different groups and efficiently coordinate different components.
+
+**Alternatives considered for adding XYZ**
+
+One alternative approach could be to use a more direct approach to add the new entity without using a command pattern. For instance, the UI layer could directly call the logic layer's addXYZ() function, which would handle the addition of the new entity. This approach, however, could make it more challenging to manage the application's state, particularly as the app grows more complex, and new features are added.
+
+Another alternative is to use a different design pattern, such as the builder pattern. In this approach, a builder object is responsible for constructing an object in stages, and the construction process can be further customized by calling specific builder methods. This approach can be useful when the entity being constructed has several configurable attributes that need to be set. However, in our case, the entities have fixed attributes, and the command pattern seems to be a more natural fit.
 
 ### Deleting XYZ (seq. diagram focused on Logic layer)
 **How is this feature implemented?**
