@@ -418,6 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+
 * 2a. User input format is wrong.
   * 2a1.  Medimate asks User for another correct input of the patient’s information.
   * 2a2. User inputs a new line of patient’s information with the correct format.
@@ -438,8 +439,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list all patients based on their scheduled time
-2. Medimate displays a list of all patients sorted in order based on scheduled time
+1. User requests to list all patients based on their scheduled time.
+2. Medimate displays a list of all patients sorted in order based on scheduled time.
    
    Use case ends.
 
@@ -448,6 +449,74 @@ Use case ends.
 * 1a. The list is empty.
 
   Use case ends.
+
+**Use case:  Upload reports for a patient**
+
+**MSS**
+
+1. User requests to upload reports for given patient.
+2. Medimate allows user to choose files.
+3. User upload those selected files.
+4. Medimate store the uploaded files at patient's directory.
+
+    Use Case ends.
+
+**Extensions**
+
+* 1a. User input format is wrong.
+    * 1a1.  Medimate asks User for another correct input upload.
+    * 1a2. User inputs a new line of upload format.
+
+      Use Case resumes at step 2.
+
+**Use case:  Generate MCs for given patient**
+
+**MSS**
+
+1. User requests to generate MC for given patients.
+2. Medimate generated MC with user desired informations and stored at patient directory.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+**Use case:  Display the detailed information of the patient**
+
+**MSS**
+
+1. User requests to display a specific patient's detailed information.
+2. Medimate displays the patient's detailed information in the detail display pane.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Index of the User input is out of bound of the current Person List.
+  * 1a1.  Medimate asks User for another correct input of the index.
+  * 1a2.  User inputs a new valid index.
+
+    Use Case resumes at step 2.
+
+
+**Use case: Make appointment with specified patient**
+
+**MSS**
+1. User search for all appointments on a specified date
+2. Mediate displays all patients with appointment all that date with time sorted.
+3. User make appointment with specified patient using CommandLine
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+* 2a.
+  * 2a1. User's input is invalid
+  * 2a2. wait to be modified
 
 
 ### Non-Functional Requirements

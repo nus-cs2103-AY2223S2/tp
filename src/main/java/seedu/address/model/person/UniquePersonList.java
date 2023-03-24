@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -36,6 +37,21 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the person's appointment has clashes with at least one other patients.
+     */
+    public boolean hasClash(Person person, Index index) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (i == index.getZeroBased() || !internalList.get(i).hasAppointment()) {
+                continue;
+            }
+            if (person.hasClash(internalList.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

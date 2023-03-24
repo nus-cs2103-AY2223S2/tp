@@ -8,8 +8,8 @@ import java.util.Comparator;
 public class TimeComparator implements Comparator<Person> {
     @Override
     public int compare(Person person1, Person person2) {
-        if (person1.hasTime() & person2.hasTime()) {
-            return person1.getTime().compareTo(person2.getTime());
+        if (person1.hasAppointment() && person2.hasAppointment()) {
+            return person1.getAppointment().getStartTime().compareTo(person2.getAppointment().getStartTime());
         } else {
             return 0;
         }

@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.files.FilesManager;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -200,7 +201,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
-                detailDisplay.setInfo(personToShow, new ObservableFile().getObservableFileList());
+                FilesManager filesManager = new FilesManager(personToShow);
+                detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getFileNames())
+                        .getObservableFileList());
                 detailDisplay.showAppointmentButton();
                 detailDisplay.showGenerateButton();
                 detailDisplay.showUploadButton();

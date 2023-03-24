@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.files.FilesManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TimeComparator;
@@ -43,7 +44,7 @@ public class ModelManager implements Model {
 
         filteredPersonsByName = new FilteredList<>(this.addressBook.getPersonListByName());
         persons = FXCollections.observableArrayList(this.addressBook.getPersonList());
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(persons);
     }
 
     public ModelManager() {
@@ -104,6 +105,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasClash(Person person, Index index) {
+        requireNonNull(person);
+        // check if person's appointment has clashes with appointments except for person with index
+        // should check with Json file or lowest-level personlist
+        return addressBook.hasClash(person, index);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         FilesManager filesManager = new FilesManager(target);
         filesManager.deleteAll();
@@ -115,9 +124,6 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
         FilesManager filesManager = new FilesManager(person);
         filesManager.initFile();
-        //Path path = Paths.get("reports/" + person.getName().fullName + "/mc.pdf");
-        //PdfReader reader = new PdfReader(path);
-        //reader.displayPdf();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -158,6 +164,15 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         addressBook.setPersons(this.addressBook.getPersonListByName());
         updateFilteredPersonList(predicate);
+    }
+
+    @Override
+    public void updateSearchAppointmentDate(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        persons.setAll(addressBook.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SCHEDULED.and(predicate));
+        SortedList<Person> newSortedList = new SortedList<>(filteredPersons, new TimeComparator());
+        persons.setAll(newSortedList);
     }
 
     @Override
