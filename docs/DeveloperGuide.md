@@ -327,6 +327,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   currently being opened.
 
     Use case resumes at step 5.
+    
+**Use case: Import application data via CLI**
+
+**MSS**
+
+1. Tutor requests to import application data.
+2. MATHUTORING loads the data into the application.
+
+    Use case ends.
+
+**Extensions**
+* 1a. MATHUTORING detects a command format error. 
+  
+  Use case resumes at step 1.
+
+* 1b. MATHUTORING detects the file does not follow the parsing format.
+
+  Use case resumes at step 1.
+
+**Use case: Import application data via GUI**
+
+**MSS**
+
+1. Tutor requests to import application data.
+2. MATHUTORING opens Import GUI window.
+3. Tutor request to upload file.
+4. MATHUTORING opens the OS file explorer.
+5. Tutor selects a directory to upload the data.
+6. MATHUTORING saves the file.
+7. MATHUTORING loads the data into the application.
+
+    Use case ends.
+
+**Extensions**
+* 6a. MATHUTORING detects the file does not follow the parsing format.
+ 
+  Use case resumes at step 3.
+
+**Use case: Export application data via CLI**
+
+**MSS**
+
+1. Tutor requests to export application data.
+2. MATHUTORING saves the file.
+
+    Use case ends.
+
+**Extensions**
+* 1a. MATHUTORING detects a command format error. 
+  
+  Use case resumes at step 1.
+
+**Use case: Export application data via GUI**
+
+**MSS**
+
+1. Tutor requests to export application data.
+2. MATHUTORING opens the OS file explorer.
+3. Tutor selects a directory to save the data.
+4. MATHUTORING saves the file.
+
+    Use case ends.
+
+**Extensions**
+* 2a. File explorer closed by Tutor by mistake. 
+  
+  Use case resumes at step 1.
+
+* 2b. File explorer closed by Tutor
+
+  Use case ends.
 
 *{More to be added}*
 
