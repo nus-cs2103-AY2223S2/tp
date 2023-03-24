@@ -163,6 +163,7 @@ The `Deadline` class has a `deadline` field which is of type `LocalDateTime`. Ad
 
 'RemindCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
 
+Given below is an example usage scenario and how the set file mechanism behaves at each step.
 Given below is an example usage scenario and how the remind mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
@@ -198,10 +199,30 @@ Step 4. The amount updates upon clicking on the PetCard on panel, or upon restar
 
 The calculator feature is not an additional command, and does not have an activity or sequence diagram.
 
+
+
 ### Archive Feature
+
 #### Current Implementation
+The archive mechanism is facilitated by the `ArchiveCommand` class.
+The `ArchiveCommand#execute()` adds the provided `Pet` into an archive list and deletes the `Pet` from the pet list,
+the `Pet` must exist in the pet list.
+
+##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
+```text
+Step 1. The user launches the application for the first time
+Step 2. The user decides to archive a pet in the pet list. The user executes `archive 1`
+Step 3. The user can view the archived pets in data/archive.json file 
+```
+##### Extensions:
+```text
+Step 2a. The PetPal list does not have any pets, the pet at list position 1 does not exist
+     3a. The PetPal returns an error message: `The provided index is out of bounds`
+```
+
 
 ### Highlight Feature
+
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
 This feature highlight pets that have not been marked and have a deadline within a day in the GUI.
@@ -240,6 +261,27 @@ The following activity diagram summarizes what happens during the process:
 * Cons:
     * User might forget to refresh to the updated state and shows the outdated instead.
 
+
+
+### \[Proposed\] Importing data from excel (csv)
+
+#### Proposed Implementation
+The proposed importing function is an extension of the base `AddressBook`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+  for PetPal to be able to read and modify the imported data
+    - Pros: Might be easier to implement
+    - Cons: Might be confusing for users to use (running external script)
+
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+  the data into json format and refreshes the database.
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Builds upon **Alternative 1**, requiring more work to implement
+
+
 ### Undo Feature
 #### Current Implementation
 The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
@@ -273,7 +315,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design Considerations:
 **Choice 1 (Current Choice) : Filter pet list upon command**
 * Pros:
-    * Use can easily find upcoming deadlines easily.
+    * User can easily find upcoming deadlines easily.
 * Cons:
     * Counterintuitive since reminders shouldn't need user input to be shown.
 
@@ -363,22 +405,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Importing data from excel (csv)
-The proposed importing function is an extension of the base `AddressBook`, uses a `CsvToJsonParser` to convert csv data
-to application readable json data.
-
-#### Design considerations:
-- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
-into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
-for PetPal to be able to read and modify the imported data
-  - Pros: Might be easier to implement
-  - Cons: Might be confusing for users to use (running external script)
-
-- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
-the data into json format and refreshes the database.
-  - Pros: Easier and more intuitive for users to use
-  - Cons: Builds upon **Alternative 1**, requiring more work to implement
 
 --------------------------------------------------------------------------------------------------------------------
 
