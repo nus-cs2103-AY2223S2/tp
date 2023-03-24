@@ -241,6 +241,10 @@ public class Patientist implements ReadOnlyPatientist {
         wards.setWard(target, edited);
     }
 
+    public Ward getWard(String wardName) {
+        return this.wards.get(wardName);
+    }
+
     //// util methods
 
     @Override

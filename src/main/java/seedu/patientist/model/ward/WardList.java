@@ -115,6 +115,12 @@ public class WardList implements Iterable<Ward> {
         return internalList.get(index);
     }
 
+    public Ward get(String wardName) {
+        return internalList.stream()
+                .filter(ward -> ward.getWardName().equals(wardName))
+                .findFirst().orElse(null);
+    }
+
     public ObservableList<Ward> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }

@@ -158,6 +158,12 @@ public interface Model {
      */
     void setWard(Ward target, Ward editedWard);
 
+    /**
+     * Returns the Ward object with the associated name in the Patientist, if it exists.
+     * Else, null is returned.
+     */
+    Ward getWard(String wardName);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
