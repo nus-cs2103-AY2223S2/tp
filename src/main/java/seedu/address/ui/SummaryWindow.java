@@ -13,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 public class SummaryWindow extends UiPart<Stage> {
 
     // TODO: 23/3/2023 add more information to the summary page, get info from SummaryCommand
+    // TODO: 24/3/2023 write test cases for summary feature 
     public static final String COUNT_MESSAGE = "Contact Counts: ";
     public static final String TAG_MESSAGE = "Existing tags: ";
 
