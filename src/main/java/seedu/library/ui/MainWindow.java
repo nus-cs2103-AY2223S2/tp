@@ -217,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * updates view on right panel
      */
-    private void handleUpdate()  {
+    private void handleUpdate() {
         Bookmark currentSelect = bookmarkListPanel.getSelectedItem();
         if (currentSelect == null) {
             zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
