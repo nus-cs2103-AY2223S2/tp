@@ -62,7 +62,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 
 ## Product scope
 
-**************************Target user profile: Recruiters**************************
+**************************Target user profile: Recruiters (Private or from small businesses)**************************
 
 - Has a need to manage a significant number of job listings.
 - Prefer desktop apps over other types.
@@ -70,7 +70,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 - Prefers typing to mouse interactions.
 - Is reasonably comfortable using CLI apps
 
-**************************************Value proposition:************************************** All-in-one app for managing job listings with an intuitive user experience
+**************************************Value proposition:************************************** All-in-one app that is free for managing job listings with an intuitive user experience
 
 ## User stories
 
@@ -126,7 +126,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-
 **Extensions**
 
 - 2a. The list is empty.
@@ -134,7 +133,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     Use case ends.
 
 - 3a. The given index is invalid.
-    - 3a1. ListingHub shows an error message.
+    - 3a1. ListingBook shows an error message.
     - Use case resumes at step 2.
 
 
