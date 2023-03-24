@@ -4,10 +4,12 @@ import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
-import static ezschedule.testutil.TypicalEvents.*;
 import static ezschedule.testutil.TypicalEvents.ART;
-import static org.junit.jupiter.api.Assertions.*;
+import static ezschedule.testutil.TypicalEvents.EVENT_A;
+import static ezschedule.testutil.TypicalEvents.EVENT_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
