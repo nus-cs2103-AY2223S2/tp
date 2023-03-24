@@ -1,8 +1,14 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.Set;
 
 import seedu.wife.logic.commands.foodcommands.ListByTagCommand;
+import seedu.wife.logic.parser.ArgumentMultimap;
+import seedu.wife.logic.parser.ArgumentTokenizer;
 import seedu.wife.logic.parser.Parser;
 import seedu.wife.logic.parser.ParserUtil;
 import seedu.wife.logic.parser.exceptions.ParseException;
@@ -19,13 +25,22 @@ public class ListByTagCommandParser implements Parser<ListByTagCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListByTagCommand parse(String args) throws ParseException {
-        try {
-            Tag tag = ParserUtil.parseTag(args);
-            return new ListByTagCommand(tag);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ListByTagCommand.MESSAGE_USAGE), pe);
+        requireNonNull(args);
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+
+        if (
+            !ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()
+        ) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByTagCommand.MESSAGE_USAGE)
+            );
         }
+
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NAME));
+
+        return new ListByTagCommand(tagList);
     }
 
 }
