@@ -12,8 +12,6 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="MODTrek" minWidth="1000" minHeight="700">
   <icons>
-<!--    <ImageView fitHeight="50.0" pickOnBounds="true" preserveRatio="true" />-->
-
     <Image url="@/images/logo_graph.png" />
   </icons>
   <scene>
