@@ -133,7 +133,7 @@ public class EditDeliveryJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<DeliveryJob> lastShownList = model.getFilteredDeliveryJobList();
+        List<DeliveryJob> lastShownList = model.getDeliveryJobList();
 
         Optional<DeliveryJob> deliveryJobToEdit;
         if (index.isPresent()) {
