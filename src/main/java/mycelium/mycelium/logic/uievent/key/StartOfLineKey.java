@@ -8,7 +8,7 @@ import mycelium.mycelium.ui.MainWindow;
  * StartOfLineKey is a key combination that moves the cursor to the start of the command box.
  */
 public class StartOfLineKey extends Key {
-    public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+<");
+    public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+W");
 
     @Override
     public void execute(Logic logic, MainWindow mainWindow) {
