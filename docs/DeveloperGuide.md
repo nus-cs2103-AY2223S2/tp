@@ -340,8 +340,6 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 
-{to be filled by Zichen}
-
 ---
 
 ## **Model Component**
