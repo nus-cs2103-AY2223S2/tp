@@ -105,17 +105,26 @@
 }
 
 .list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: -fx-evening-green;
-    -fx-border-color: -fx-dark-green;
+    -fx-padding: 3;
+    -fx-background-color: transparent;
+}
+
+.listView {
+    -fx-background-color: -fx-dark-green;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.listLabel {
+    -fx-label-padding: 10;
+    -fx-font-size: 30;
+    -fx-text-fill: -fx-morning-green;
 }
 
 .list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
+    -fx-font-weight: 10;
 }
 
 .list-cell:filled:even {
@@ -124,10 +133,6 @@
 
 .list-cell:filled:odd {
     -fx-background-color: -fx-medium-green;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: -fx-evening-green;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -139,9 +144,18 @@
     -fx-text-fill: black;
 }
 
+.cell_big_label_with_ball {
+    -fx-background-color: transparent;
+    -fx-font-family: -fx-label-ff;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #010504;
+}
+
 .cell_big_label {
     -fx-font-family: -fx-label-ff;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
     -fx-text-fill: #010504;
 }
 
@@ -213,7 +227,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: -fx-dark-green;
 }
 
 .context-menu .label {
@@ -233,6 +247,16 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.menu:hover, .menu:showing {
+    -fx-border-color: -fx-morning-green;
+    -fx-background-color: -fx-dark-green;
+}
+
+.menu-item:focused {
+    -fx-border-color: -fx-morning-green;
+    -fx-background-color: -fx-dark-green;
 }
 
 /*
@@ -311,8 +335,8 @@
 
 .scroll-bar {
     -fx-background-color: -fx-medium-green;
-    -fx-border-radius: 0 10 10 0;
-    -fx-background-radius: 0 10 10 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
 
 .scroll-bar .thumb {
