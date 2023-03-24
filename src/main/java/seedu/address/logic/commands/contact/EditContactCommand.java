@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -23,6 +24,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Edits the contact details of an existing application in the list of internship applications.
@@ -91,6 +93,7 @@ public class EditContactCommand extends Command {
 
         CompanyName companyName = internshipToUpdateContact.getCompanyName();
         JobTitle jobTitle = internshipToUpdateContact.getJobTitle();
+        Set<Review> reviews = internshipToUpdateContact.getReviews();
         Phone phone = editContactDescriptor.getPhone()
                 .orElse(internshipToUpdateContact.getContact().getPhone());
         Email email = editContactDescriptor.getEmail()
@@ -99,7 +102,7 @@ public class EditContactCommand extends Command {
         InternshipStatus status = internshipToUpdateContact.getStatus();
         InterviewDate interviewDate = internshipToUpdateContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, newContact, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, newContact, status, interviewDate);
     }
 
     @Override

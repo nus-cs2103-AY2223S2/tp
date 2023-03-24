@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -16,6 +17,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Delete the contact details of an application identified using it's displayed index
@@ -79,10 +81,11 @@ public class DeleteContactCommand extends Command {
 
         CompanyName companyName = internshipToDeleteContact.getCompanyName();
         JobTitle jobTitle = internshipToDeleteContact.getJobTitle();
+        Set<Review> reviews = internshipToDeleteContact.getReviews();
         InternshipStatus status = internshipToDeleteContact.getStatus();
         InterviewDate interviewDate = internshipToDeleteContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, null, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, null, status, interviewDate);
     }
 
     @Override
