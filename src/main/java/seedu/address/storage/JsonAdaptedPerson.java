@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address; // create a new import group for Address
+import seedu.address.model.person.HasPaid;
+import seedu.address.model.person.IsPresent;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
@@ -29,19 +31,27 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String address;
     private final String payRate;
-    private final String sessionString; // new field
+    private final String sessionString;
+    private final String isPresent;
+    private final String hasPaid;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("address") String address, @JsonProperty("payRate") String payRate,
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("payRate") String payRate,
                              @JsonProperty("sessionString") String sessionString,
+                             @JsonProperty("hasPaid") String hasPaid,
+                             @JsonProperty("isPresent") String isPresent,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.payRate = payRate;
         this.sessionString = sessionString;
+        this.isPresent = isPresent;
+        this.hasPaid = hasPaid;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,7 +62,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         payRate = source.getPayRate().value;
-        sessionString = source.getSession().toCommandString(); // convert session to string
+        sessionString = source.getSession().toCommandString();
+        hasPaid = String.valueOf(source.getHasPaid().getBool());
+        isPresent = String.valueOf(source.getIsPresent().getBool());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -101,8 +113,22 @@ class JsonAdaptedPerson {
         }
         final Session modelSession = new Session(sessionString); // create session from string
 
+        if (hasPaid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, HasPaid.class.getSimpleName()));
+        }
+        final HasPaid modelHasPaid = new HasPaid(Boolean.parseBoolean(hasPaid));
+        if (isPresent == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT,
+                    IsPresent.class.getSimpleName()));
+        }
+        final IsPresent modelIsPresent = new IsPresent(Boolean.parseBoolean(isPresent));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, modelPayRate, modelSession, modelTags);
+        return new Person(modelName, modelPhone,
+                modelAddress, modelPayRate,
+                modelSession, modelIsPresent,
+                modelHasPaid, modelTags);
     }
 
 }
