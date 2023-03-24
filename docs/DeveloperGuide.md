@@ -283,7 +283,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* is a doctor, likely a General Practitioner (GP) in a small clinic.
+* is a receptionist for a small clinic, or a doctor who is a General Practitioner (GP)
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -468,6 +468,8 @@ Use case resumes at step 4.
   * 1a2. User provides a valid search request.
   * Steps 1a1-1a2 are repeated until a valid search request is provided.
   * Use case resumes from step 2.
+
+![AddRemark](images/RemarkSequenceDiagram.png)
 
 **Use case: UC8 - Add patient appointment**
 
