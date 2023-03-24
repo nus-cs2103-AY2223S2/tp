@@ -1,19 +1,18 @@
 package seedu.careflow.logic.commands.drugcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE_BY;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
+
+import java.util.List;
+
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.drug.TradeName;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE_BY;
-import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 /**
  * Updates the storage count of an existing Drug in the drug inventory.
