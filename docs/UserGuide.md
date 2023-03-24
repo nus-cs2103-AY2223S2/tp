@@ -177,7 +177,26 @@ Examples:
 * `meeting delete 3 2` Deletes a meeting with index 2 from a person with index 3
 * `meeting delete 20 6` Deletes a meeting with index 6 from a person with index 20
 
+### Updating a meeting : `meetingUpdate`
 
+Updates an existing meeting belonging to a person in the address book.
+
+Format: `meetingUpdate PERSON_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
+
+Required Information:
+* Index of a person already in address book
+* Meeting ID
+
+Examples:
+*  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st person to `Policy discussion`
+*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
+to `Plan review`, `30-03-2020 20:10` and `22:10` respectively
+
+Notes:
+* Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* 
 ### Find meeting : `meeting find`
 
 Gets meetings from the address book
