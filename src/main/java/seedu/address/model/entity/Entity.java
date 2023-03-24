@@ -2,7 +2,11 @@ package seedu.address.model.entity;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
