@@ -315,11 +315,6 @@ The increase/decrease quantity feature is meant to be a shorthand for users to c
 Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a food item.
 The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed food item respectively.
 
-
-The following UML diagram shows `Tag` and its associated class.
-
-*** insert uml
-
 #### Design considerations:
 
 * **Alternative 1:** The command parameter will be the new quantity of the food item to edit
