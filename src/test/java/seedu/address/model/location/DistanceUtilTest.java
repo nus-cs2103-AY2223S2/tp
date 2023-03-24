@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.location.util.DistanceUtil;
 
 public class DistanceUtilTest {
     private static final double LAT_1 = 1.3405;

@@ -16,7 +16,6 @@ import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.scheduler.Module;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.tag.ModuleTag;
 
@@ -141,25 +140,7 @@ public class TagCommand extends Command {
 
     private void addLessons(Person editedPerson, ModuleTagSet moduleTagSet) throws CommandException {
         for (ModuleTag tag : moduleTags) {
-            String day = tag.getDayAsStr();
-            String startTime = tag.getStartTimeAsStr();
-            String endTime = tag.getEndTimeAsStr();
-            if (day == null || startTime == null || endTime == null) {
-                continue;
-            }
-
-            Module mod = new Module(tag.tagName);
-            int startHour = Integer.parseInt(startTime);
-            int endHour = Integer.parseInt(endTime);
-
-            LocalTime start = new LocalTime(startHour, 0);
-            LocalTime end = new LocalTime(endHour, 0);
-
-            Day schoolDay = Day.valueOf(day.toUpperCase());
-
-            Lesson lesson = new Lesson(mod, start, end, schoolDay, Location.NUS);
-
-            moduleTagSet.addLesson(tag, lesson);
+            moduleTagSet.add(tag);
         }
     }
 

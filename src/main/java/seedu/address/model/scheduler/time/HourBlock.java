@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
@@ -19,7 +20,7 @@ public class HourBlock extends TimePeriod {
     public static final String WRONG_TIME_MESSAGE = "Timing does not match!";
     public static final String ALREADY_FILLED_MESSAGE = "Slot is already filled by a class!";
 
-    private Optional<Lesson> lesson = Optional.empty();
+    private Optional<Commitment> lesson = Optional.empty();
 
     public HourBlock(LocalTime startTime, Day schoolDay) {
         super(startTime, startTime.plusHours(1), schoolDay);
@@ -60,7 +61,7 @@ public class HourBlock extends TimePeriod {
         return Hours.ONE;
     }
 
-    public Optional<Lesson> getLesson() {
+    public Optional<Commitment> getLesson() {
         return lesson;
     }
 
@@ -72,7 +73,7 @@ public class HourBlock extends TimePeriod {
      * Sets this slot to hold the current lesson.
      * @param lesson
      */
-    public void setLesson(Lesson lesson) {
+    public void setLesson(Commitment lesson) {
         if (!isFree()) {
             throw new CommitmentClashException(ALREADY_FILLED_MESSAGE);
         } else if (canFitLesson(lesson)) {
@@ -85,7 +86,7 @@ public class HourBlock extends TimePeriod {
     /**
      * Verifies if the timeslot is suitable to input that lesson.
      */
-    public boolean canFitLesson(Lesson lesson) {
+    public boolean canFitLesson(Commitment lesson) {
         // timeslot must either start match with start or end match with end
         // or that timeslot start is after lesson start AND timeslot end is before lesson end.
         LocalTime lessonStartTime = lesson.getStartTime();

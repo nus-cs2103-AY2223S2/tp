@@ -135,25 +135,7 @@ public class UntagCommand extends Command {
 
     private void removeLessons(Person editedPerson, ModuleTagSet moduleTagSet) throws CommandException {
         for (ModuleTag tag: moduleTags) {
-            String day = tag.getDayAsStr();
-            String startTime = tag.getStartTimeAsStr();
-            String endTime = tag.getEndTimeAsStr();
-            if (day == null || startTime == null || endTime == null) {
-                continue;
-            }
-
-            Module mod = new Module(tag.tagName);
-            int startHour = Integer.parseInt(startTime);
-            int endHour = Integer.parseInt(endTime);
-
-            LocalTime start = new LocalTime(startHour, 0);
-            LocalTime end = new LocalTime(endHour, 0);
-
-            Day schoolDay = Day.valueOf(day.toUpperCase());
-
-            Lesson lesson = new Lesson(mod, start, end, schoolDay, Location.NUS);
-
-            moduleTagSet.removeLesson(tag, lesson);
+            moduleTagSet.remove(tag);
         }
     }
 }

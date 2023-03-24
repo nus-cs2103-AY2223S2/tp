@@ -5,10 +5,11 @@ import java.util.HashMap;
 
 import org.joda.time.LocalTime;
 
-import seedu.address.model.commitment.Lesson;
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.scheduler.time.TimePeriod;
 
 /**
  * Represents a timetable for a person.
@@ -35,17 +36,18 @@ public class Timetable {
     }
 
     /**
-     * Adds a lesson to the schedule.
+     * Adds a commitment to the schedule.
      */
-    public void addLesson(Lesson lesson) {
-        Day day = lesson.getDay();
+    public void addCommitment(Commitment commitment) {
+        TimePeriod timePeriod = commitment.getTimePeriod();
+        Day day = timePeriod.getSchoolDay();
         ArrayList<HourBlock> availableSlots = schedule.get(day);
-        if (!lesson.canFitLessonIntoDaySchedule(availableSlots)) {
-            throw new CommitmentClashException("There is lesson clash!");
+        if (!commitment.canFitIntoDaySchedule(availableSlots)) {
+            throw new CommitmentClashException("There is already a prior commitment!");
         } else {
-            for (int i = lesson.getStartTime().getHourOfDay() - 8;
-                 i < lesson.getEndTime().getHourOfDay() - 8; i++) {
-                availableSlots.get(i).setLesson(lesson);
+            for (int i = timePeriod.getStartTime().getHourOfDay() - 8;
+                 i < timePeriod.getEndTime().getHourOfDay() - 8; i++) {
+                availableSlots.get(i).setLesson(commitment);
             }
         }
     }

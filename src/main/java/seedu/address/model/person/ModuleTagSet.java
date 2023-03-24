@@ -24,7 +24,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     private static final int DISPLAY_LIMIT = 10;
 
-    private final Set<ModuleTag> modules;
+    private final HashMap<String, ModuleTag> modules;
 
     /**
      * We want to find the modules in common with the user.
@@ -32,15 +32,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     private Set<ModuleTag> commonModules;
 
-    private final HashMap<ModuleTag, Set<Lesson>> lessons;
-
     /**
      * Initialises a new ModuleTagSet.
      */
     public ModuleTagSet() {
-        modules = new HashSet<>();
+        modules = new HashMap<>();
         commonModules = new HashSet<>();
-        this.lessons = new HashMap<ModuleTag, Set<Lesson>>();
     }
 
     /**
@@ -48,10 +45,14 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Gives access from outside classes to this set.
      */
     public void add(ModuleTag moduleTag) {
-        modules.add(moduleTag);
-        if (!this.lessons.containsKey(moduleTag)) {
-            this.lessons.put(moduleTag, new HashSet<Lesson>());
+        String tagName = moduleTag.tagName;
+        if (!modules.containsKey(tagName)) {
+            modules.put(tagName, moduleTag);
+            return;
         }
+
+        ModuleTag mergedModuleTag = modules.get(tagName).mergeWith(moduleTag);
+        modules.put(tagName, mergedModuleTag);
     }
 
     /**
@@ -60,25 +61,8 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void addAll(Collection<? extends ModuleTag> moduleTags) {
         for (ModuleTag tag : moduleTags) {
-            if (tag.isBasicTag()) {
-                modules.add(tag);
-            }
+            add(tag);
         }
-    }
-
-    /**
-     * Adds lesson to the HashMap of sets of lessons.
-     *
-     * @param hash Module to act as the key.
-     * @param lesson Lesson to be inserted.
-     */
-    public void addLesson(ModuleTag hash, Lesson lesson) {
-        if (!this.lessons.containsKey(hash)) {
-            this.lessons.put(hash, new HashSet<Lesson>());
-            // should never come here.
-        }
-        modules.add(hash);
-        this.lessons.get(hash).add(lesson);
     }
 
     /**
@@ -86,8 +70,17 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Gives access from outside classes to this set.
      */
     public void remove(ModuleTag moduleTag) {
-        modules.remove(moduleTag);
-        this.lessons.remove(moduleTag);
+        String tagName = moduleTag.tagName;
+        if (!modules.containsKey(tagName)) {
+            return;
+        }
+
+        ModuleTag existingModuleTag = modules.get(tagName);
+        existingModuleTag.removeLessons(moduleTag.getImmutableLessons());
+
+        if (existingModuleTag.getImmutableLessons().size() == 0) {
+            modules.remove(tagName);
+        }
     }
 
     /**
@@ -96,22 +89,15 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void removeAll(Collection<? extends ModuleTag> moduleTags) {
         for (ModuleTag tag : moduleTags) {
-            if (tag.isBasicTag()) {
-                this.remove(tag);
-            }
+            this.remove(tag);
         }
     }
 
     /**
-     * Removes a lesson from the HashMap of Set of Lessons.
-     * @param hash ModuleTag to act as key
-     * @param lesson Lesson to be removed
+     * Returns whether the tag set contains the key.
      */
-    public void removeLesson(ModuleTag hash, Lesson lesson) {
-        if (!this.lessons.containsKey(hash)) {
-            return;
-        }
-        this.lessons.get(hash).remove(lesson);
+    public boolean containsKey(String tagName) {
+        return modules.containsKey(tagName);
     }
 
     /**
@@ -128,7 +114,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         requireNonNull(userModuleTags);
 
         // we make a copy so that retainAll does not destroy this set
-        commonModules = new HashSet<>(modules);
+        commonModules = new HashSet<>(modules.values());
 
         // finds the intersection between user modules and person modules
         commonModules.retainAll(userModuleTags);
@@ -139,7 +125,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * if modification is attempted.
      */
     public Set<ModuleTag> getImmutableModules() {
-        return Collections.unmodifiableSet(modules);
+        return Set.copyOf(modules.values());
     }
 
     /**
@@ -158,7 +144,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public Set<ModuleTag> getUncommonModuleTags() {
         // finds modules that are not in common with the user.
-        Set<ModuleTag> uncommonModuleTags = new HashSet<>(modules);
+        Set<ModuleTag> uncommonModuleTags = new HashSet<>(modules.values());
         uncommonModuleTags.removeAll(commonModules);
         return uncommonModuleTags;
     }
@@ -202,9 +188,8 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public String lessonsAsStr() {
         String result = "";
-        for (ModuleTag hash: lessons.keySet()) {
-            result = result + hash;
-            result = result + lessons.get(hash).toString();
+        for (ModuleTag hash : modules.values()) {
+            result = result + hash.getImmutableLessons().toString();
             result = result + "\n";
         }
         return result;

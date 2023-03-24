@@ -11,7 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
-import seedu.address.model.location.DistanceUtil;
+import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.scheduler.Scheduler;

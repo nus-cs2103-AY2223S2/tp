@@ -11,15 +11,20 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.joda.time.LocalTime;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -183,10 +188,41 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         ArrayList<String> args = parseMoreModules(trimmedTag);
-        if (!ModuleTag.isValidTagName(args.get(0))) {
+        if (args.size() != 4) {
             throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleTag(args);
+
+        String moduleCode = args.get(0);
+        Day day = parseDay(args.get(1));
+        LocalTime startTime = parseLocalTime(args.get(2));
+        LocalTime endTime = parseLocalTime(args.get(3));
+        TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
+
+        Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
+
+        return new ModuleTag(moduleCode, lesson);
+    }
+
+    private static Day parseDay(String dayAsStr) throws ParseException {
+        String upperDayAsStr = dayAsStr.toUpperCase();
+        for (Day day : Day.values()) {
+            if (day.toString().contains(upperDayAsStr)) {
+                return day;
+            }
+        }
+        throw new ParseException("Day is invalid");
+    }
+
+    private static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
+        try {
+            int hour = Integer.parseInt(localTimeAsStr);
+            if (hour >= 24 || hour < 0) {
+                throw new ParseException("Invalid time");
+            }
+            return new LocalTime(hour, 0);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException("Invalid time");
+        }
     }
 
     /**

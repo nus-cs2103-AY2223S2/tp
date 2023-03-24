@@ -2,10 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -28,6 +33,7 @@ public class Person {
     private final Address address;
     private final GroupTagSet groupTags = new GroupTagSet();
     private final ModuleTagSet moduleTags = new ModuleTagSet();
+    private final Timetable timetable = new Timetable();
 
     /**
      * Every field must be present and not null.
@@ -42,6 +48,7 @@ public class Person {
         this.telegramHandle = telegramHandle;
         this.contactIndex = contactIndex;
         this.groupTags.addAll(groupTags);
+        addModuleTags(moduleTags);
         this.moduleTags.addAll(moduleTags);
     }
 
@@ -133,6 +140,43 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Checks whether a {@code ModuleTag} can be added.
+     * If the timetable allows it, then add to both {@code Timetable} and {@code ModuleTagSet}.
+     * Otherwise, do nothing.
+     */
+    private void addModuleTags(Set<ModuleTag> moduleTags) {
+        for (ModuleTag moduleTag : moduleTags) {
+            for (Lesson lesson : moduleTag.getImmutableLessons()) {
+                try {
+                    timetable.addCommitment(lesson);
+                } catch (CommitmentClashException cce) {
+                    continue;
+                }
+
+                this.moduleTags.add(new ModuleTag(moduleTag.tagName, lesson));
+            }
+        }
+    }
+
+    /**
+     * Checks the {@code ModuleTagSet} whether the lesson exists.
+     * If it exists, then remove the
+     * lesson from both the {@code ModuleTagSet} and {@code Timetable}
+     */
+    private void removeModuleTags(Set<ModuleTag> moduleTags) {
+        for (ModuleTag moduleTag : moduleTags) {
+            String tagName = moduleTag.tagName;
+            if (!this.moduleTags.containsKey(tagName)) {
+                continue;
+            }
+
+            for (Lesson lesson : moduleTag.getImmutableLessons()) {
+
+            }
+        }
     }
 
     /**

@@ -1,4 +1,6 @@
-package seedu.address.model.location;
+package seedu.address.model.location.util;
+
+import seedu.address.model.location.Location;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -27,7 +29,7 @@ public class DistanceUtil {
      * Gets the midpoint location based on a list of locations.
      * By default, an invalid calculation returns the coordinates of NUS.
      */
-    public static Location getMidpoint(List<? extends Location> locations) {
+    public static Location getMidpoint(Collection<? extends Location> locations) {
         double midLat = locations.stream()
                 .mapToDouble(Location::getLat)
                 .average()
@@ -44,7 +46,7 @@ public class DistanceUtil {
      * For example, "the closest restaurant to home" would be {@code getClosestPoint(home, restaurants)}.
      */
     public static Optional<Location> getClosestPoint(
-            Location location, List<Location> locations) {
+            Location location, Collection<Location> locations) {
         return locations.stream()
                 .min(Comparator.comparingDouble((Location location1) -> getDistance(location1, location)));
     }
