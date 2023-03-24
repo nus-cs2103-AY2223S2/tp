@@ -30,6 +30,19 @@ public class Lesson extends Commitment {
         this.moduleCode = moduleCode;
     }
 
+    public Lesson(TimePeriod timePeriod) {
+        super(Location.NUS, timePeriod);
+        this.moduleCode = "";
+    }
+
+    /**
+     * Creates a new {@code Lesson} with updated module code.
+     * Used for handling empty module code strings.
+     */
+    public Lesson updateModuleCode(String moduleCode) {
+        return new Lesson(moduleCode, location, timePeriod);
+    }
+
     public String getModuleCode() {
         return moduleCode;
     }

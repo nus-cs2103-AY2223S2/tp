@@ -23,6 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.tag.GroupTag;
@@ -203,7 +204,7 @@ public class ParserUtil {
         return new ModuleTag(moduleCode, lesson);
     }
 
-    private static Day parseDay(String dayAsStr) throws ParseException {
+    public static Day parseDay(String dayAsStr) throws ParseException {
         String upperDayAsStr = dayAsStr.toUpperCase();
         for (Day day : Day.values()) {
             if (day.toString().contains(upperDayAsStr)) {
@@ -213,10 +214,10 @@ public class ParserUtil {
         throw new ParseException("Day is invalid");
     }
 
-    private static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
+    public static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
         try {
             int hour = Integer.parseInt(localTimeAsStr);
-            if (hour >= 24 || hour < 0) {
+            if (!Arrays.asList(Timetable.startTimings).contains(hour)) {
                 throw new ParseException("Invalid time");
             }
             return new LocalTime(hour, 0);

@@ -6,7 +6,6 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.commitment.Commitment;
-import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 import seedu.address.model.scheduler.time.util.TimeUtil;

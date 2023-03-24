@@ -19,6 +19,10 @@ public class Commitment {
         this.timePeriod = timePeriod;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     public TimePeriod getTimePeriod() {
         return timePeriod;
     }

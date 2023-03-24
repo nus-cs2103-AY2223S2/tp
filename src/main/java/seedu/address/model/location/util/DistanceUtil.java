@@ -2,6 +2,7 @@ package seedu.address.model.location.util;
 
 import seedu.address.model.location.Location;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -39,6 +40,25 @@ public class DistanceUtil {
                 .average()
                 .orElse(Location.NUS.getLon());
         return new Location(midLat, midLon);
+    }
+
+    /**
+     * Creates n evenly-spaced locations between the start and end locations.
+     */
+    public static List<Location> getApproximateLocations(Location startLocation, Location endLocation, int n) {
+        assert n > 0;
+        double stepSize = 1 / ((double) n + 1);
+        List<Location> locations = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            double newLatitude = startLocation.getLat() * (i * stepSize)
+                    + endLocation.getLat() * (1 - (i * stepSize));
+            double newLongitude = startLocation.getLon() * (i * stepSize)
+                    + endLocation.getLon() * (1 - (i * stepSize));
+            assert Location.isValidLatitude(newLatitude);
+            assert Location.isValidLongitude(newLongitude);
+            locations.add(new Location(newLatitude, newLongitude));
+        }
+        return locations;
     }
 
     /**

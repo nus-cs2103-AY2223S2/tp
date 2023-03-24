@@ -15,7 +15,7 @@ import seedu.address.model.scheduler.time.TimePeriod;
  * Represents a timetable for a person.
  */
 public class Timetable {
-    private static final Integer[] startTimings = new Integer[] {
+    public static final Integer[] startTimings = new Integer[] {
         8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
     };
 
