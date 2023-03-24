@@ -120,6 +120,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getDeliveryJobSystemFilePath() {
+        return model.getDeliveryJobSystemFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

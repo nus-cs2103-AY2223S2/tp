@@ -18,7 +18,7 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
    <scene>
-      <Scene>
+      <Scene fill="#1d1d1d">
           <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>
                <MenuBar fx:id="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -41,11 +41,16 @@
                            <MenuItem fx:id="statsItem" mnemonicParsing="false" onAction="#handleStats" text="Display Statistics" />
                         </items>
                      </Menu>
+                     <Menu mnemonicParsing="false" text="Customer">
+                        <items>
+                           <MenuItem fx:id="addressBookMenuItem" mnemonicParsing="false" onAction="#handleAddressBook" text="Address Book" />
+                        </items>
+                     </Menu>
                   </menus>
                </MenuBar>
-               <SplitPane dividerPositions="0.29797979797979796" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+               <SplitPane dividerPositions="0.3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                  <items>
-                   <AnchorPane fx:id="job_listview" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                   <AnchorPane fx:id="job_listview" maxWidth="400.0" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                         <children>
                            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <children>

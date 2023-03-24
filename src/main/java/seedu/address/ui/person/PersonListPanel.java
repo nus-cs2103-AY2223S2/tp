@@ -1,13 +1,18 @@
 package seedu.address.ui.person;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 
@@ -25,9 +30,29 @@ public class PersonListPanel extends UiPart<Region> {
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
+        this(personList, (personIndex) -> {});
+    }
+
+    /**
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList} with a delete handler.
+     */
+    public PersonListPanel(ObservableList<Person> personList, Consumer<Index> deleteHandler) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        personListView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.DELETE)) {
+                    logger.info(personListView.getSelectionModel().getSelectedItem().getPersonId() + " for Deletion");
+                    deleteHandler.accept(Index.fromZeroBased(personListView.getSelectionModel().getSelectedIndex()));
+                    return;
+                }
+            }
+
+        });
     }
 
     /**
@@ -46,5 +71,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
