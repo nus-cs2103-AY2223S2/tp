@@ -12,6 +12,8 @@ import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.predicate.PersonContainsDatePredicate;
+import seedu.dengue.model.predicate.RangeContainsPersonPredicate;
 import seedu.dengue.model.range.Range;
 
 /**
@@ -75,7 +77,7 @@ public class DeleteCommand extends Command {
     }
 
     public CommandResult executeIndex(Model model, List<Person> lastShownList) throws CommandException {
-
+        assert targetIndex.isPresent();
         // TODO: update for multiple indexes
         if (targetIndex.get().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -87,25 +89,31 @@ public class DeleteCommand extends Command {
     }
 
     public CommandResult executeDate(Model model, List<Person> lastShownList) throws CommandException {
+        assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        int listSize = lastShownList.size();
+        int numDeleted = 0;
+        PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date.get());
         for (Person person : referenceCopy) {
-            if (true) { // TODO: update to check if person matches date
+            if (predicate.test(person)) {
                 model.deletePerson(person);
+                numDeleted++;
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, listSize));
+        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted));
     }
 
     public CommandResult executeRange(Model model, List<Person> lastShownList) throws CommandException {
+        assert range.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        int listSize = lastShownList.size();
+        int numDeleted = 0;
+        RangeContainsPersonPredicate predicate = new RangeContainsPersonPredicate(range.get());
         for (Person person : referenceCopy) {
-            if (true) { // TODO: update to check if person in range
+            if (predicate.test(person)) { // TODO: update predicate! currently wishful thinking
                 model.deletePerson(person);
+                numDeleted++;
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS, listSize));
+        return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS, numDeleted));
     }
 
     @Override
