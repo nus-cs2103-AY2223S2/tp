@@ -35,11 +35,6 @@ public class SummaryWindow extends UiPart<Stage> {
         tagMessage.setText(TAG_MESSAGE + String.valueOf(SummaryWindow.SIZE));
     }
 
-    public static void setSize(int size) {
-        System.out.println(size);
-        SummaryWindow.SIZE = size;
-    }
-
     /**
      * Creates a new HelpWindow.
      */
@@ -47,6 +42,14 @@ public class SummaryWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Set size of list.
+     */
+    public static void setSize(int size) {
+        System.out.println(size);
+        SummaryWindow.SIZE = size;
+    }
+    
     /**
      * Shows the help window.
      * @throws IllegalStateException
