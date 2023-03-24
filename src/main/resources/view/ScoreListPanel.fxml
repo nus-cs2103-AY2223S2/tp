@@ -26,7 +26,7 @@
                     <CategoryAxis fx:id="xAxis" side="BOTTOM"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="yAxis" side="LEFT"/>
+                    <NumberAxis fx:id="yAxis" side="LEFT" autoRanging="false" lowerBound="0" upperBound="100"/>
                 </yAxis>
             </LineChart>
         </VBox>
