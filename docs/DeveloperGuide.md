@@ -350,6 +350,7 @@ The `UI` component,
 </div>
 
 The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
+
 ---
 
 ## **Model Component**
