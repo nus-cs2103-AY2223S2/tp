@@ -1,9 +1,14 @@
 package seedu.socket.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_MEETING_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_HOST_ALPHA;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_HOST_BRAVO;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.logic.commands.CommandTestUtil.showProjectAtIndex;
+import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.socket.testutil.TypicalProjects.getTypicalSocket;
@@ -18,6 +23,7 @@ import seedu.socket.model.ModelManager;
 import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.project.Project;
+import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.ProjectBuilder;
 import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 import seedu.socket.testutil.TypicalProjects;
@@ -191,6 +197,40 @@ public class RemoveProjectCommandTest {
                 new RemoveProjectDescriptorBuilder().build());
 
         assertCommandFailure(removeProjectCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void testEquals() {
+        final RemoveProjectCommand standardCommand = new RemoveProjectCommand(INDEX_FIRST_PERSON,
+                new RemoveProjectDescriptorBuilder()
+                        .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                        .withMeeting(VALID_PROJECT_MEETING_ALPHA).build());
+
+        // same values -> returns true
+        RemoveProjectCommand.RemoveProjectDescriptor copyDescriptor =
+                new RemoveProjectCommand.RemoveProjectDescriptor(new RemoveProjectDescriptorBuilder()
+                        .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                        .withMeeting(VALID_PROJECT_MEETING_ALPHA).build());
+        RemoveProjectCommand commandWithSameValues = new RemoveProjectCommand(INDEX_FIRST_PROJECT, copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new RemoveProjectCommand(INDEX_SECOND_PROJECT,
+                new RemoveProjectDescriptorBuilder()
+                        .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                        .withMeeting(VALID_PROJECT_MEETING_ALPHA).build())));
+
+        // different descriptor same field -> returns true
+        assertTrue(standardCommand.equals(new RemoveProjectCommand(INDEX_FIRST_PROJECT,
+                new RemoveProjectDescriptorBuilder()
+                        .withRepoHost(VALID_PROJECT_REPO_HOST_BRAVO)
+                        .withMeeting(VALID_PROJECT_MEETING_ALPHA).build())));
     }
 }
 
