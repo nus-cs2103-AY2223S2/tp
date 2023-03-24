@@ -77,8 +77,18 @@ public abstract class Task {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder();
         String mark = this.isDone ? "X" : " ";
-        return "{" + this.priority.toString().toLowerCase() + "}[" + mark + "] " + this.title;
+        sb.append("{")
+                .append(this.priority.toString().toLowerCase())
+                .append("}[").append(mark)
+                .append("] ").append(this.title);
+
+        if (getDescription().isPresent()) {
+            sb.append(": ").append(getDescription().get());
+        }
+
+        return sb.toString();
     }
 
     @Override

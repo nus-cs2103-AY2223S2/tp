@@ -34,10 +34,21 @@ public class ToDo extends Task {
     @Override
     public String toString() {
 
-        return "[T]" + super.toString()
-                + " ("
-                + byDateTime.toString()
-                + ")";
+        StringBuilder sb = new StringBuilder("[T]");
+        String mark = isDone() ? "X" : " ";
+        sb.append("{")
+                .append(getPriority().toString().toLowerCase())
+                .append("}[").append(mark).append("] ")
+                .append(getTitle())
+                .append( " (")
+                .append(byDateTime.toString())
+                .append(")");
+
+        if (getDescription().isPresent()) {
+            sb.append(": \n").append(getDescription().get());
+        }
+
+        return sb.toString();
     }
 
     @Override

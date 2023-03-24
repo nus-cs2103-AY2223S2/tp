@@ -33,10 +33,22 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString()
-                + " ("
-                + eventDateTimes.toString()
-                + ")";
+
+        StringBuilder sb = new StringBuilder("[E]");
+        String mark = isDone() ? "X" : " ";
+        sb.append("{")
+                .append(getPriority().toString().toLowerCase())
+                .append("}[").append(mark).append("] ")
+                .append(getTitle())
+                .append( "(")
+                .append(eventDateTimes.toString())
+                .append(")");
+
+        if (getDescription().isPresent()) {
+            sb.append(": \n").append(getDescription().get());
+        }
+
+        return sb.toString();
     }
 
     @Override
