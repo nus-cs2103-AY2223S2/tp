@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.predicate.PersonContainsKeywordsPredicate;
+import seedu.dengue.model.person.FilterPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new PersonContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new FilterPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
