@@ -106,7 +106,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code members} to the {@code Project} that we are building.
      */
-    public ProjectBuilder putMembers(Set<Person> members) {
+    public ProjectBuilder withMembers(Set<Person> members) {
         this.members = members;
         return this;
     }

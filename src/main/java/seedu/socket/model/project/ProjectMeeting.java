@@ -34,7 +34,7 @@ public class ProjectMeeting {
      * @return true if {@code String} is of valid DateTime format, else false.
      */
     public static Boolean isValidProjectMeeting(String test) {
-        if (test == "") {
+        if (test.equals("")) {
             return true;
         }
         try {
@@ -45,6 +45,14 @@ public class ProjectMeeting {
         }
     }
 
+    /**
+     * Returns true if meeting is empty.
+     *
+     * @return {@code true} if meeting is empty.
+     */
+    public boolean isEmptyMeeting() {
+        return meeting.equals("");
+    }
     /**
      * Returns a {@code LocalDateTime} object if {@code meeting} is not empty.
      *

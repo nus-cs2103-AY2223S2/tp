@@ -34,7 +34,7 @@ public class ProjectDeadline {
      * @return true if {@code String} is of valid DateTime format, else false.
      */
     public static Boolean isValidProjectDeadline(String test) {
-        if (test == "") {
+        if (test.equals("")) {
             return true;
         }
         try {
@@ -43,6 +43,15 @@ public class ProjectDeadline {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if deadline is empty.
+     *
+     * @return {@code true} if deadline is empty.
+     */
+    public boolean isEmptyDeadline() {
+        return deadline.equals("");
     }
 
     /**
