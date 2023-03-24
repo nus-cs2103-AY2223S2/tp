@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.parser.Flag;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -43,13 +42,12 @@ public class FindCommand extends Command {
         + "5." + COMMAND_WORD + " Video1 /mod ST2334 /lec Week1\n"
         + "Find by tagName: \n"
         + "1." + COMMAND_WORD + " Heavy -t\n"
-        + "2." + COMMAND_WORD + " Heavy -tm\n"
-        + "3." + COMMAND_WORD + " Heavy -tl\n"
-        + "4." + COMMAND_WORD + " Heavy -tv\n";
+        + "2." + COMMAND_WORD + " Heavy -t /mod ST2334\n"
+        + "3." + COMMAND_WORD + " Heavy -t /mod ST2334 /lec Week1\n";
 
     private List<String> keywords;
 
-    private Flag flagTag;
+    private boolean hasByTag;
 
     private ModuleCode moduleCode;
 
@@ -58,22 +56,23 @@ public class FindCommand extends Command {
     /**
      * Creates a FindCommand to search from current context.
      * @param keywords
+     * @param hasByTag
      */
-    public FindCommand(List<String> keywords, Flag flag) {
+    public FindCommand(List<String> keywords, boolean hasByTag) {
         this.keywords = keywords;
-        this.flagTag = flag;
+        this.hasByTag = hasByTag;
     }
 
     /**
      * Creates a FindCommand to search for lectures from module context
      * @param keywords
      * @param moduleCode
-     * @param flag
+     * @param hasByTag
      */
-    public FindCommand(List<String> keywords, ModuleCode moduleCode, Flag flag) {
+    public FindCommand(List<String> keywords, ModuleCode moduleCode, boolean hasByTag) {
         this.keywords = keywords;
         this.moduleCode = moduleCode;
-        this.flagTag = flag;
+        this.hasByTag = hasByTag;
     }
 
     /**
@@ -81,13 +80,13 @@ public class FindCommand extends Command {
      * @param keywords
      * @param moduleCode
      * @param lectureName
-     * @param flag
+     * @param hasByTag
      */
-    public FindCommand(List<String> keywords, ModuleCode moduleCode, LectureName lectureName, Flag flag) {
+    public FindCommand(List<String> keywords, ModuleCode moduleCode, LectureName lectureName, boolean hasByTag) {
         this.keywords = keywords;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
-        this.flagTag = flag;
+        this.hasByTag = hasByTag;
     }
 
     @Override
@@ -109,18 +108,14 @@ public class FindCommand extends Command {
         }
         if (other instanceof FindCommand) { // instanceof handles nulls
             FindCommand otherCommand = (FindCommand) other;
-            if (flagTag == null) {
-                return otherCommand.flagTag == null
-                    && keywords.equals(otherCommand.keywords);
-            }
-            return flagTag.equals(otherCommand.flagTag)
+            return hasByTag == otherCommand.hasByTag
                 && keywords.equals(otherCommand.keywords);
         }
         return false;
     }
 
     private CommandResult filterByVideoList(Model model) {
-        Predicate<Video> videoPredicate = flagTag == null
+        Predicate<Video> videoPredicate = hasByTag
             ? new VideoNameContainsKeywordsPredicate(keywords)
             : new VideoTagContainsKeywordsPredicate(keywords);
         model.updateFilteredVideoList(videoPredicate, model.getLecture(moduleCode, lectureName));
@@ -129,7 +124,7 @@ public class FindCommand extends Command {
     }
 
     private CommandResult filterByLectureList(Model model) {
-        Predicate<ReadOnlyLecture> lecturePredicate = flagTag == null
+        Predicate<ReadOnlyLecture> lecturePredicate = hasByTag
             ? new LectureNameContainsKeywordsPredicate(keywords)
             : new LectureTagContainsKeywordsPredicate(keywords);
         model.updateFilteredLectureList(lecturePredicate, model.getModule(moduleCode));
@@ -138,7 +133,7 @@ public class FindCommand extends Command {
     }
 
     private CommandResult filterByModuleList(Model model) {
-        Predicate<ReadOnlyModule> modulePredicate = flagTag == null
+        Predicate<ReadOnlyModule> modulePredicate = hasByTag
             ? new ModuleCodeContainsKeywordsPredicate(keywords)
             : new ModuleTagContainsKeywordsPredicate(keywords);
         model.updateFilteredModuleList(modulePredicate);

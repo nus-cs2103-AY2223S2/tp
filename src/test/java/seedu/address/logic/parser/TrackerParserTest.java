@@ -149,7 +149,7 @@ public class TrackerParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(keywords, null), command);
+        assertEquals(new FindCommand(keywords, false), command);
     }
 
     @Test

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BY_TAG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BY_TAG, PREFIX_MODULE, PREFIX_LECTURE);
 
         String keywords = argMultimap.getPreamble();
 
@@ -33,22 +34,22 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         List<String> keywordList = Arrays.asList(keywords.split("\\s+"));
-        Flag flagTag = ParserUtil.parseFlag(keywords);
 
+        boolean hasByTag = argMultimap.getValue(PREFIX_BY_TAG).isPresent();
         Optional<String> moduleCodeOpt = argMultimap.getValue(PREFIX_MODULE);
         Optional<String> lectureNameOpt = argMultimap.getValue(PREFIX_LECTURE);
 
         if (lectureNameOpt.isPresent()) {
-            return parseFindVideoCommand(keywordList, lectureNameOpt, moduleCodeOpt, flagTag);
+            return parseFindVideoCommand(keywordList, lectureNameOpt, moduleCodeOpt, hasByTag);
         }
         if (moduleCodeOpt.isPresent()) {
-            return parseFindLectureCommand(keywordList, moduleCodeOpt, flagTag);
+            return parseFindLectureCommand(keywordList, moduleCodeOpt, hasByTag);
         }
-        return new FindCommand(keywordList, flagTag);
+        return new FindCommand(keywordList, hasByTag);
     }
 
     private FindCommand parseFindLectureCommand(List<String> keywordList,
-        Optional<String> moduleCodeOpt, Flag flag) throws ParseException {
+        Optional<String> moduleCodeOpt, boolean hasByTag) throws ParseException {
 
         if (!moduleCodeOpt.isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -56,17 +57,17 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String moduleCodeStr = moduleCodeOpt.get();
 
-        if (flag != null) {
-            keywordList = keywordList.subList(0, keywordList.size() - 1);
+        if (hasByTag) {
+            keywordList = keywordList.subList(0, keywordList.size());
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        return new FindCommand(keywordList, moduleCode, flag);
+        return new FindCommand(keywordList, moduleCode, hasByTag);
     }
 
     private FindCommand parseFindVideoCommand(List<String> keywordList,
         Optional<String> lectureNameOpt, Optional<String> moduleCodeOpt,
-            Flag flag) throws ParseException {
+            boolean hasByTag) throws ParseException {
 
         if (!moduleCodeOpt.isPresent() || !lectureNameOpt.isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -78,11 +79,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
 
-        if (flag != null) {
-            keywordList = keywordList.subList(0, keywordList.size() - 1);
+        if (hasByTag) {
+            keywordList = keywordList.subList(0, keywordList.size());
         }
 
-        return new FindCommand(keywordList, moduleCode, lectureName, flag);
+        return new FindCommand(keywordList, moduleCode, lectureName, hasByTag);
 
     }
 }
