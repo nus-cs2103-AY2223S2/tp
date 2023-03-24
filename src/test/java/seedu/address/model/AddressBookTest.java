@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -98,8 +99,22 @@ public class AddressBookTest {
             return persons;
         }
 
+
         @Override
-        public int size() { return persons.size(); }
+        public int size() {
+            return persons.size();
+        }
+
+        @Override
+        public int getPotentialEarnings() {
+            Iterator<Person> iterator = persons.iterator();
+            int totalValue = 0;
+            while (iterator.hasNext()) {
+                totalValue += iterator.next().getBusinessSize().getNumericValue();
+            }
+            return totalValue;
+        }
+
     }
 
 }

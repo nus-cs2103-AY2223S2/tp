@@ -16,15 +16,20 @@ public class SummaryWindow extends UiPart<Stage> {
     // TODO: 24/3/2023 write test cases for summary feature
     public static final String COUNT_MESSAGE = "Contact Counts: ";
     public static final String TAG_MESSAGE = "Existing tags: ";
+    public static final String POTENTIAL_EARNINGS_MESSAGE = "Total Potential Earnings: ";
 
     private static final Logger logger = LogsCenter.getLogger(SummaryWindow.class);
     private static final String FXML = "SummaryWindow.fxml";
     private static int SIZE;
+    private static int POTENTIAL_EARNINGS;
     @FXML
     private Label countMessage;
 
     @FXML
     private Label tagMessage;
+
+    @FXML
+    private Label potentialEarnings;
     /**
      * Creates a new HelpWindow.
      *
@@ -34,6 +39,7 @@ public class SummaryWindow extends UiPart<Stage> {
         super(FXML, root);
         countMessage.setText(COUNT_MESSAGE + String.valueOf(SummaryWindow.SIZE));
         tagMessage.setText(TAG_MESSAGE + String.valueOf(SummaryWindow.SIZE));
+        potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + String.valueOf(SummaryWindow.POTENTIAL_EARNINGS));
     }
 
     /**
@@ -49,6 +55,14 @@ public class SummaryWindow extends UiPart<Stage> {
     public static void setSize(int size) {
         System.out.println(size);
         SummaryWindow.SIZE = size;
+    }
+    /**
+     * Sets the value of the potential earnings
+     */
+
+    public static void setPotentialEarnings(int potentialEarnings) {
+        System.out.println(potentialEarnings);
+        SummaryWindow.POTENTIAL_EARNINGS = potentialEarnings;
     }
     /**
      * Shows the help window.
@@ -72,6 +86,7 @@ public class SummaryWindow extends UiPart<Stage> {
         logger.fine("Showing summary page of the application.");
         countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
         tagMessage.setText(TAG_MESSAGE + SummaryWindow.SIZE);
+        potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + SummaryWindow.POTENTIAL_EARNINGS);
         getRoot().show();
         getRoot().centerOnScreen();
     }

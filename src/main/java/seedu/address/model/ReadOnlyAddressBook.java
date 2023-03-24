@@ -19,4 +19,9 @@ public interface ReadOnlyAddressBook {
      */
     int size();
 
+    /**
+     * Returns the sum of the potential earnings
+     */
+    int getPotentialEarnings();
+
 }
