@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,6 +29,16 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Executes specific command object and returns the result.
+     *
+     * @param command Prebuild command object.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws ParseException   If an error occurs during parsing.
+     */
+    CommandResult execute(Command command) throws CommandException, ParseException;
 
     CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException;
 

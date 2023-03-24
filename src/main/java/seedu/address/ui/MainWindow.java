@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         }, job -> {
             try {
-                executeCommand(DeleteDeliveryJobCommand.COMMAND_WORD + " " + job.getJobId());
+                logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
             } catch (ParseException | CommandException e) {
                 logger.warning(e.getMessage());
             }
