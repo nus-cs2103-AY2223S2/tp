@@ -213,7 +213,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
-    
     /**
      * Makes the primary stage of this main window visible.
      */
