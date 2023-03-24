@@ -3,6 +3,7 @@ package seedu.loyaltylift.ui;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import seedu.loyaltylift.model.customer.Marked;
 
 public class Bookmark extends UiPart<StackPane> {
 
@@ -11,13 +12,14 @@ public class Bookmark extends UiPart<StackPane> {
     @FXML
     private ImageView markedIcon;
 
-    private Bookmark(boolean marked) {
+    private Bookmark(Marked marked) {
         super(FXML);
 
-        markedIcon.setVisible(marked);
+
+        markedIcon.setVisible(marked.value);
     }
 
-    public static Bookmark createBookmarkIcon(boolean marked) {
+    public static Bookmark createBookmarkIcon(Marked marked) {
         return new Bookmark(marked);
     }
 }

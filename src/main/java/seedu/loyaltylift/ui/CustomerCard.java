@@ -55,8 +55,8 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
 
-        Bookmark bookmark = Bookmark.createBookmarkIcon(customer.getMarked()); //edit Marked to get boolean
-        // insert bookmark into placeholder
+        Bookmark bookmark = Bookmark.createBookmarkIcon(customer.getMarked());
+        customerTypePlaceholder.getChildren().add(bookmark.getRoot());
 
         Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
         customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
