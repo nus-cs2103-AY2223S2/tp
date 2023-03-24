@@ -154,6 +154,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Pie chart drug storage analysis feature
+
+Given below is an example usage sequence with the steps taken by the drug storage analysis pie chart to display the latest storage percentage calculation to the user.
+
+Step 1. The user adds a new Drug via the command `d add`    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
