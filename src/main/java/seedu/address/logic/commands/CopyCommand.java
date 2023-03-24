@@ -25,7 +25,7 @@ public class CopyCommand extends Command {
             + PREFIX_SCHEDULE + "SCHEDULE "
             + PREFIX_STARTTIME + "STARTTIME "
             + PREFIX_ENDTIME + "ENDTIME \n"
-            + "Example: " + COMMAND_WORD + " 1"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SUBJECT + "English "
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
@@ -61,9 +61,6 @@ public class CopyCommand extends Command {
         Tutee tuteeToCopy = lastShownList.get(targetIndex.getZeroBased());
         Tutee copiedTutee = createEditedPerson(tuteeToCopy, editPersonDescriptor);
 
-        if (!tuteeToCopy.isSamePerson(copiedTutee) && model.hasTutee(copiedTutee)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
 
         model.addTutee(copiedTutee);
         model.updateFilteredTuteeList(Model.PREDICATE_SHOW_ALL_TUTEES);

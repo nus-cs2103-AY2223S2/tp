@@ -29,8 +29,8 @@ public class CopyCommandParser implements Parser<CopyCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT, PREFIX_SCHEDULE,
                         PREFIX_STARTTIME, PREFIX_ENDTIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_STARTTIME, PREFIX_ENDTIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap,  PREFIX_SUBJECT, PREFIX_SCHEDULE, PREFIX_STARTTIME, PREFIX_ENDTIME)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
         }
 
@@ -51,11 +51,12 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
-            editPersonDescriptor.setSchedule(ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_STARTTIME).get()));
+            editPersonDescriptor.setStartTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
-            editPersonDescriptor.setSchedule(ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_ENDTIME).get()));
+            editPersonDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(),
+                    argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

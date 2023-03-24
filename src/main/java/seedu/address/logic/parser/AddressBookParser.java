@@ -64,7 +64,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case CopyCommand.COMMAND_WORD:
-            return new CopyCommand().parse(arguments);
+            return new CopyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
