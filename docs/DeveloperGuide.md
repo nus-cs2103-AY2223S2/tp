@@ -399,7 +399,7 @@ The following activity diagram summarizes what happens when a user wants to exec
   assigned to any person or to display a people that have not been assigned to that task.
   * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
     `findtask` to search for unassigned tasks one at a time.
-  * Cons: None, because this is an additional feature proposed that will complement Alternative.
+  * Cons: None, because this is an additional feature proposed that will complement Alternative 1.
 
 ### 3.7 Help Window
 
