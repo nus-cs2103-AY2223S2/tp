@@ -139,4 +139,5 @@ public class Expense {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }

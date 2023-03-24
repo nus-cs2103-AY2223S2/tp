@@ -4,7 +4,6 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -46,7 +45,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#dataModel-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
@@ -114,19 +113,23 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/dataModel/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the expense tracker data i.e., all `Category` objects (which are contained in a `UniqueCategoryList` object).
+* stores the currently 'selected' `Category` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Category>` that can be
+'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the expense tracker data i.e., all `Expense` objects (which are contained in a `ExpenseList` object).
+* stores the currently 'selected' `Expense` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Expense>` that can be
+'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) dataModel is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Category` list in the `ExpenseTracker`, which `Expense` references. This allows `ExpenseTracker` to only require one `Category` object per unique expense, instead of each `Expense` needing their own `Category` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,7 +144,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `ExpenseTrackerStorage`
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +156,175 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Implemented\] Delete Category feature
+
+The delete category feature, `delcat` command, is implemented similarly to the command add category. The command takes in one parameter index, which is the index of the category to delete when `lcat` is called. The specified category will be removed from the database.
+
+The index of the category to delete is obtained using a `DeleteCategoryParser` before passing to a `DeleteCategoryCommand`.
+
+To check if the user has entered a valid index, the `DeleteCategoryCommand#execute()` throws a `CommandException` when the index provided is out of bounds.
+
+After a successful removal of a `Category`, all `Expense` with the deleted `Category` will have its category field replaced with `MiscellaneousCategory`. This is to reflect the deletion on existing expenses added.
+
+Given below is an example usage scenario of how the Delete Category behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `lcat` command to list out all categories.
+
+//Insert pictures of results of lcat.
+
+Step 3. The user executes `delcat 2` command to delete the 2nd category in the category list. `LogicManager#execute()` will call `ExpenseTrackerParser#parseCommand()`, resulting in a `DeleteCategoryParser`.
+
+Step 4. `DeleteCategoryParser#parse()` is called, extracting the `Index` 2 from the command. A `DeleteCategoryCommand` will be returned. `DeleteCategoryCommand#execute()` is then called, a check on the `Index` provided will be done to ensure that it is a valid category, else a `CommandException` will be thrown.
+
+Step 5. `Model#deleteCategory()` is then called, which will further call `ExpenseTracker#removeCategory()`.
+
+Step 6. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`.
+
+### \[Implemented\] Edit Category feature
+
+The edit category feature is implemented similarly to all the other commands, such as the add category and delete category
+feature. However, the method of handling the user input is slightly more complicated as it falls into one of the following:
+1. The user wishes to edit both the category's name and summary.
+2. The user only wishes to edit the category's name.
+3. The user only wishes to edit the category's summary.
+4. The user is calling the command with no arguments.
+
+In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
+`EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
+whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are
+passed in as `null` and checked later in `EditCategory#execute()`.
+
+To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
+the index (If it is a valid input.). Thereafter, `UserDefinedCategory#setCategoryName()` and `UserDefinedCategory#setDescription()`
+are used to edit the `Category` object.
+
+Given below is an example usage scenario of how the Edit Category behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `lcat` command to list out all categories.
+
+//Insert pictures of results of lcat.
+
+Step 3. The user uses the `ecat 1 c/newname s/newsummary` command.
+
+//Insert pictures of executing command.
+
+The following sequence diagram shows the order of operations of the Edit Category command:
+
+//Insert sequence diagram of how the edit category command works.
+
+#### Design considerations:
+**Aspect: How the category object is edited**:
+
+* **Alternative 1 (Current choice):** Directly retrieve and edit the currently-specified `Category` object.
+  * Pros: No need to re-point all `Expense` objects currently affiliated with the `Category` object that is being edited.
+  * Cons: Mutates the state of the `Category` object, which might not be ideal if seeking immutability.
+
+* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object
+that uses the same name and summary before replacing the required name or summary depending on user's arguments.
+  * Pros: Enforces immutability by replacing the previous `Category` object.
+  * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
+
+### \[Implemented\] List feature
+The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
+
+1. The user wishes to list all expenses.
+2. The user wishes to only list expenses in a category.
+3. The user wishes to only list expenses in the past week/month/year.
+4. The user wishes to list expenses in a category from the past week/month/year.
+
+In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+
+To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+
+Given below is an example usage scenario of how the List Command behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `list` command to list out all expenses.
+
+// Insert pictures of results of `list`
+
+Step 2a. The user uses the `list c/category` command.
+
+// Insert pictures of command
+
+Step 2b. The user uses the `list t/(week/month/year)` command.
+
+//Insert pictures of command
+
+The following sequence diagram shows the order of operations of the ListCommand command:
+
+// Insert sequence diagram of how listcommand works.
+
+### \[Implemented\] Expense Statistics Feature
+FastTrack allows the user to view a summary of their expense statistics for both the current week and month.
+These statistics are displayed on the expense summary screen on the right window of the application and are updated automatically everytime the user adds, edits or deletes an expense from FastTrack.
+
+The following statistics are calculated and displayed to the user. In FastTrack, the user is allowed to set only a monthly budget. A weekly budget is then defined as the value of the monthly budget divided by four (weeks).
+
+1. `Weekly Spending` - Total amount spent for the current week
+2. `Monthly Spending` - Total amount spent for the current month
+3. `Weekly Remaining` - Amount of weekly budget remaining for the current week
+4. `Monthly Remaining` - Amount of monthly budget remaining for the current month
+5. `Weekly % Change` - Percentage increase/decrease of weekly spending relative to the previous week
+6. `Monthly % Change` - Percentage increase/decrease of monthly spending relative to the previous month
+7. `Total Spent` - The total amount the user has spent to-date
+8. `Budget Utilised` - The percentage of monthly budget that the user has utilised this month
+
+#### Implementation Details
+The current implementation of the expense summary feature requires consistent calculations of the user's expense statistics. As such, an `AnalyticModelManager`, which implements the `AnalyticModel` interface is used to keep track of all of these statistics.
+It contains fields which keep track of each individual statistic as mentioned in the above list, as well as specific methods to perform new calculations and updates to each of these fields.
+
+The following Class Diagram describes the structure of the `AnalyticModelManager`.
+
+// class diagram for AnalyticModelManager
+
+`AnalyticModelManager` requires an instance of `ExpenseTracker` to read and obtain the following unmodifiable, `ObservableList` objects containing data from FastTrack:
+1. `allExpenses`: an `ObservableList` of Expense objects representing all expenses in the expense tracker
+2. `allCategories`: an `ObservableList` of Category objects representing all expense categories in the expense tracker
+
+The fields contained within `AnalyticModelManager` are of type `DoubleProperty` which implement the `Observable` interface. This allows the `UI` to establish bindings to each property.
+A binding is a mechanism of JavaFX allows for the establishment of relationships between variables. The `UI` observes each `DoubleProperty` for changes, and then updates the GUI automatically when it detects that the `DoubleProperty` has changed.
+
+Each `DoubleProperty` is updated using the respective calculation method, e.g. `AnalyticModelManager#getWeeklySpent()` for the `weeklySpent` property. A listener listens for changes in the `ObservableList` objects, `allExpenses` and `allCategories`.
+Each time a change is detected, for example, when the user has deleted an expense or changed the amount of an expense, for each expense statistic, its corresponding calculation method is called, causing the corresponding property to be updated. This notifies the `UI` to update and display the new calculated expense statistics on the GUI.
+
+This method of implementation closely follows the _Observer Pattern_, which promotes loose coupling between the `UI` and the `AnalyticModelManager`. Bindings can also be added or removed dynamically, making any changes to the expense summary statistics more flexible and adaptable.
+
+#### Design Considerations
+
+**Aspect: Separation of Analytics and App Data**:
+
+* **Alternative 1 (Current choice):** Create two separate `ModelManager` components, one for managing analytics and another for managing app data.
+    * Pros: As analytics functions are read-only and do not require modifying the internal data of FastTrack, keeping the expense summary statistics in a separate component is ideal as it abides by the _Separation of Concerns_ principle.
+    * Cons: Less convenient to implement as a new class would be created.
+* **Alternative 2 :** Store fields and methods for calculating expense summary statistics inside the existing `ModelManager` component.
+    * Pros: Easier to implement as the class already exists, there is no need to instantiate another `AnalyticModelManager` class.
+      * Cons: Will result in the current `ModelManager` being cluttered due to the presence of many differing getter and setter methods. Violates the _Separation of Concerns_ principle since the process of calculating statistics does not involve modifying the data within FastTrack, i.e. is purely read-only.
+
+**Alternative 1** was chosen as it would be more ideal to abide by the principle of _Separation of Concerns_. Moreover, as many developers were working on features that require direct modification of the `ModelManager` component, separating analytics into another `AnalyticModelManager` eliminates the possibility of merge conflicts.
+
+**Aspect: GUI update when user updates expenses in FastTrack**:
+
+* **Alternative 1:** Call methods to calculate and refresh the summary statistics after every user command.
+    * Pros: More convenient to implement since it is easy to ensure the GUI is always updated whenever the user enters a command
+    * Cons: Inefficient, as this would require tearing down and creating a new instance of each `UI` component in order to display the updated data. Redundant calculations would also need to be performed every single time the user enters a command that does not change the underlying expense data.
+* **Alternative 2 (Current choice):** Use the _Observer Pattern_ to allow `UI` to update whenever the underlying data of FastTrack changes
+    * Pros: More efficient, since no redundant calculations are performed. The `AnalyticModelManager` also does not need a reference to the `UI` component to perform an update, which reduces the coupling between these classes.
+    * Cons: Was more time-consuming to implement, due to the need to learn about mechanisms like bindings and change listeners in JavaFX.
+
+**Alternative 2** was chosen as it was neater to implement and performs statistic calculations only when absolutely necessary, this preventing unnecessary wastage of computational resources.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -390,7 +562,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 3.
 
-## Use case: UC6 - Delete an expense
+### Use case: UC6 - Delete an expense
 
 **MSS**
 
@@ -445,12 +617,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all expense in the past week.
-2.  FastTrack displays all expenses added by user in the past week .
+1. User requests to list all expense in the past week.
+2. FastTrack displays all expenses added by user in the past week .
 
     Use case ends.
 
-### Use case: UC10 - Find an expense
+### Use case: UC10 - List all expense in a given category in the past week
+
+**MSS**
+
+1. User requests to list all expense in a category in the past week.
+2. FastTrack displays all expenses added by user in the category in the past week.
+
+    Use case ends.
+
+### Use case: UC11 - Find an expense
 
 **MSS**
 
@@ -459,7 +640,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC11 - Clear all expenses from the expense log
+### Use case: UC12 - Clear all expenses from the expense log
 
 **MSS**
 
@@ -468,7 +649,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC12 - Exit from FastTrack
+### Use case: UC13 - Get Help within the app
+
+**MSS**
+
+1. User wants to check help for the commands to use FastTrack.
+2. User keys in the command to get help.
+3. FastTrack opens a pop-up window to show help for commands and a link to the User Guide.
+
+    Use case ends.
+
+### Use case: UC13 - Exit from FastTrack
 
 **MSS**
 

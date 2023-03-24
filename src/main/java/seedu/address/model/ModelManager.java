@@ -91,7 +91,6 @@ public class ModelManager implements Model {
         return expenseTracker;
     }
 
-
     // =========== Expenses List Accessors
     // =============================================================
     @Override
@@ -146,6 +145,8 @@ public class ModelManager implements Model {
     @Override
     public void deleteCategory(Category target) {
         expenseTracker.removeCategory(target);
+        updateFilteredCategoryList(PREDICATE_SHOW_ALL_CATEGORY);
+        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
     @Override
