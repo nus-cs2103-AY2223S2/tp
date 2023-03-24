@@ -35,6 +35,7 @@
     "jobTitle": "job title",
     "address" : "wall street",
     "remark": "",
+    "task": "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -47,6 +48,7 @@
     "jobTitle": "job title",
     "address" : "10th street",
     "remark": "",
+    "task": "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -59,6 +61,7 @@
     "jobTitle": "job title",
     "address" : "michegan ave",
     "remark": "",
+    "task": "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -71,6 +74,7 @@
     "jobTitle": "job title",
     "address" : "little tokyo",
     "remark": "",
+    "task": "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -83,6 +87,7 @@
     "jobTitle": "job title",
     "address" : "4th street",
     "remark": "",
+    "task": "",
     "tagged" : [ ]
   } ]
 }

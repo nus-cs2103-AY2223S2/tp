@@ -41,6 +41,7 @@ public class TypicalPersons {
             .withOccupation("occupation")
             .withJobTitle("job title")
             .withPhone("94351253")
+            .withTask("Eat dinner.")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withGender("male")
@@ -50,6 +51,7 @@ public class TypicalPersons {
             .withOccupation("occupation")
             .withJobTitle("job title")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withTask("Eat brunch.")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withGender("male")
             .withPhone("95352563").withEmail("heinz@example.com").withCompany("company")

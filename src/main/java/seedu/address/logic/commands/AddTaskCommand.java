@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,38 +11,39 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Task;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the task of an existing person in the address book.
  */
-public class RemarkCommand extends Command {
+public class AddTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "addtask";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the task of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing task will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
+            + PREFIX_ADD_TASK + "[TASK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + PREFIX_ADD_TASK + "Time to swim.";
+
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Task: %2$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed remark from Person: %1$s";
 
     private final Index index;
-    private final Remark remark;
+    private final Task task;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the person in the filtered person list to edit the task
+     * @param task of the person to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+    public AddTaskCommand(Index index, Task task) {
+        requireAllNonNull(index, task);
 
         this.index = index;
-        this.remark = remark;
+        this.task = task;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -52,10 +54,12 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(),
-                personToEdit.getEmail(), personToEdit.getCompany(), personToEdit.getIndustry(),
-                personToEdit.getOccupation(), personToEdit.getJobTitle(), personToEdit.getAddress(), remark,
-                personToEdit.getTags(), personToEdit.getTask());
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getGender(),
+                personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getCompany(), personToEdit.getIndustry(),
+                personToEdit.getOccupation(), personToEdit.getJobTitle(),
+                personToEdit.getAddress(), personToEdit.getRemark(),
+                personToEdit.getTags(), task, personToEdit.getStatus());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -68,7 +72,7 @@ public class RemarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !task.value.isEmpty() ? MESSAGE_ADD_TASK_SUCCESS : MESSAGE_DELETE_TASK_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -80,15 +84,14 @@ public class RemarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof AddTaskCommand)) {
             return false;
         }
 
+        assert other instanceof AddTaskCommand;
         // state check
-        RemarkCommand e = (RemarkCommand) other;
+        AddTaskCommand e = (AddTaskCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && task.equals(e.task);
     }
 }
-
-
