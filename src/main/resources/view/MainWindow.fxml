@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="660.0" minWidth="900" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="660.0" minWidth="1100" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/technologist.png" />
   </icons>
@@ -23,7 +23,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox prefHeight="600" prefWidth="1200">
+      <VBox prefHeight="600" prefWidth="1100">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -33,9 +33,9 @@
           </Menu>
         </MenuBar>
 
-          <SplitPane fx:id="mainSplit" dividerPositions="0.5" VBox.vgrow="ALWAYS">
-
-              <VBox VBox.vgrow="ALWAYS">
+          <SplitPane fx:id="mainSplit" dividerPositions="0.05, 0.5" VBox.vgrow="ALWAYS">
+              <VBox fx:id="courseListPlaceholder" maxWidth="340" minWidth="210.0" prefHeight="563.0" prefWidth="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
+              <VBox prefHeight="563.0" prefWidth="564.0" VBox.vgrow="ALWAYS">
                   <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                       <padding>
                           <Insets bottom="5" left="10" right="10" top="5" />

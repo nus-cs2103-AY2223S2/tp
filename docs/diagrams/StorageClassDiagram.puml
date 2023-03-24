@@ -4,6 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+Class HiddenOutside #FFFFFF
+
 package Storage{
 
 package "UserPrefs Storage" #F4F6F6{
@@ -11,7 +13,7 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as StorageFacade
 Class StorageManager
 
 package "Codoc Storage" #F4F6F6{
@@ -20,24 +22,25 @@ Class JsonCodocStorage
 Class JsonSerializableCodoc
 Class JsonAdaptedPerson
 Class JsonAdaptedSkill
+Class JsonAdaptedModule
 }
 
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside .down.> StorageFacade
 
-StorageManager .up.|> Storage
+StorageFacade -left-|> CodocStorage : \t\t\t
+StorageFacade -right-|> UserPrefsStorage : \t
+
+StorageManager .up.|> StorageFacade
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" CodocStorage
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> CodocStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonCodocStorage .up.|> CodocStorage
 JsonCodocStorage ..> JsonSerializableCodoc
 JsonSerializableCodoc --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedSkill
+JsonAdaptedPerson --> "*" JsonAdaptedModule
 
 @enduml

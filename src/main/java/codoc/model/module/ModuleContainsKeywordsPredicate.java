@@ -34,7 +34,6 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-
         String academicYear = "";
 
         for (String word : keywords) {
