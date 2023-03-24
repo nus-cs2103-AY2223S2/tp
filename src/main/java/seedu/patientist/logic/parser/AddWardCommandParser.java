@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.Name;
 import seedu.patientist.model.ward.Ward;
 
 /**

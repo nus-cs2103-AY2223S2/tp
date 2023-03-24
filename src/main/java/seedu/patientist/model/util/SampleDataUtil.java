@@ -10,7 +10,6 @@ import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
-import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
@@ -47,21 +46,21 @@ public class SampleDataUtil {
 
     private static Staff[] getSampleStaffs() {
         return new Staff[] {
-                new Staff(new Name("Amy Bee"), new Phone("11111111"), new Email("amy@example.com"),
-                        new IdNumber("A12345678B"), new Address("Block 312, Amy Street 1"), getTagSet("Staff")),
-                new Staff(new Name("Bob Choo"), new Phone("222222222"), new Email("bob@example.com"),
-                        new IdNumber("Y78932734N"), new Address("Block 123, Bobby Street 3"), getTagSet("Staff")),
-                new Staff(new Name("Charles Lee"), new Phone("2136784"), new Email("leecharles@example.com"),
-                        new IdNumber("G487659645D"), new Address("123, ABC, #08-111"), getTagSet("Staff")),
-                new Staff(new Name("Dacia Chin"), new Phone("96128393"), new Email("daciachin@example.com"),
-                        new IdNumber("L73825263J"), new Address("970, Hindhede St, #07-27"), getTagSet("Staff")),
+            new Staff(new Name("Amy Bee"), new Phone("11111111"), new Email("amy@example.com"),
+                    new IdNumber("A12345678B"), new Address("Block 312, Amy Street 1"), getTagSet("Staff")),
+            new Staff(new Name("Bob Choo"), new Phone("222222222"), new Email("bob@example.com"),
+                    new IdNumber("Y78932734N"), new Address("Block 123, Bobby Street 3"), getTagSet("Staff")),
+            new Staff(new Name("Charles Lee"), new Phone("2136784"), new Email("leecharles@example.com"),
+                    new IdNumber("G487659645D"), new Address("123, ABC, #08-111"), getTagSet("Staff")),
+            new Staff(new Name("Dacia Chin"), new Phone("96128393"), new Email("daciachin@example.com"),
+                    new IdNumber("L73825263J"), new Address("970, Hindhede St, #07-27"), getTagSet("Staff")),
         };
     }
 
     public static Ward[] getSampleWards() {
         return new Ward[] {
-                new Ward("Block A Ward 1"),
-                new Ward("Block B Ward 2")
+            new Ward("Block A Ward 1"),
+            new Ward("Block B Ward 2")
         };
     }
 
@@ -72,10 +71,10 @@ public class SampleDataUtil {
         Ward[] wards = getSampleWards();
 
         for (int i = 0; i < wards.length; i++) {
-            for (int j = i; j < patients.length; j+=2) {
+            for (int j = i; j < patients.length; j += 2) {
                 wards[i].addPatient(patients[j]);
             }
-            for (int j = i; j < staffs.length; j+=2) {
+            for (int j = i; j < staffs.length; j += 2) {
                 wards[i].addStaff(staffs[j]);
             }
             sampleAb.addWard(wards[i]);

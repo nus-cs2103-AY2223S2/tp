@@ -11,9 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.patientist.commons.exceptions.IllegalValueException;
 import seedu.patientist.model.Patientist;
 import seedu.patientist.model.ReadOnlyPatientist;
-import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 
 /**
