@@ -7,7 +7,6 @@ import java.util.List;
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
-import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
@@ -68,10 +67,8 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
         Course selectedCourse = courseList.get(targetIndex.getZeroBased());
-        currentSelection.setSelectedCourse(selectedCourse);
-        // after selecting course, move to group_page
-        currentSelection.setCurrentPage(PageType.GROUP_PAGE);
 
+        currentSelection.selectCourse(selectedCourse);
         return selectedCourse;
     }
 
@@ -81,10 +78,8 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
         Group selectedGroup = groupList.get(targetIndex.getZeroBased());
-        currentSelection.setSelectedGroup(selectedGroup);
-        // after selecting group, move to student_page
-        currentSelection.setCurrentPage(PageType.STUDENT_PAGE);
 
+        currentSelection.selectGroup(selectedGroup);
         return selectedGroup;
     }
 
@@ -94,6 +89,7 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Student selectedStudent = studentList.get(targetIndex.getZeroBased());
+
         // end of navigation, no longer need to call setters of currentSelection
         return selectedStudent;
     }
