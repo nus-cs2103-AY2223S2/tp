@@ -1,4 +1,4 @@
-package seedu.address.model.prescription;
+package seedu.address.model.medication;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
