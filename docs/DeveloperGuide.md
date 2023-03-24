@@ -220,7 +220,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState0](images/UndoRedoState0.png)
+   ![UndoState0](images/UndoState0.png)
 
    <figcaption>Figure 1: Initial state of the address book history upon startup</figcaption>
 
@@ -230,7 +230,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState1](images/UndoRedoState1.png)
+   ![UndoState1](images/UndoState1.png)
 
    <figcaption>Figure 2: State of the address book history after calling <code>delete 5</code></figcaption>
 
@@ -240,7 +240,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState2](images/UndoRedoState2.png)
+   ![UndoState2](images/UndoState2.png)
 
    <figcaption>Figure 3: State of the address book history after calling <code>add n/David …​</code></figcaption>
 
@@ -256,7 +256,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState3](images/UndoRedoState3.png)
+   ![UndoState3](images/UndoState3.png)
 
    <figcaption>Figure 4: State of the address book history after calling <code>undo</code></figcaption>
 
@@ -266,7 +266,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState4](images/UndoRedoState4.png)
+   ![UndoState4](images/UndoState4.png)
 
    <figcaption>Figure 5: State of the address book history after calling <code>list</code>. Note that it hasn't changed from Figure 4</figcaption>
 
@@ -276,7 +276,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState5_2](images/UndoRedoState5_2.png)
+   ![UndoState5_2](images/UndoState5_2.png)
 
    <figcaption>Figure 6: State of the address book history after calling <code>undo</code> again</figcaption>
 
@@ -292,7 +292,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    <figure style="text-align: center;">
 
-   ![UndoRedoState6](images/UndoRedoState6.png)
+   ![UndoState6](images/UndoState6.png)
 
    <figcaption>Figure 7: State of the address book history after having "overwritten" old states</figcaption>
 
