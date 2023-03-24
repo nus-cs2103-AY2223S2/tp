@@ -12,7 +12,7 @@ import seedu.fitbook.model.routines.Exercise;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddExerciseCommand object
  */
 public class AddExerciseCommandParser implements Parser<AddExerciseCommand> {
     private Index index;
