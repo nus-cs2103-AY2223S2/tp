@@ -11,6 +11,7 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.Link;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 
 /**
  * Location is a unit place that the flight can travel to or
@@ -29,6 +30,7 @@ public class Location implements Item {
     private static final String ID_STRING = "ID";
     public final Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink;
     public final Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
+    public final Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> planeLink;
     private final String name;
     private final String id;
 
@@ -49,6 +51,10 @@ public class Location implements Item {
             new Link<>(
                     Pilot.SHAPE_FOR_LOCATION,
                     GetUtil.getLazy(Model.class).map(Model::getPilotManager)
+            ),
+            new Link<>(
+                    Plane.SHAPE_FOR_LOCATION,
+                    GetUtil.getLazy(Model.class).map(Model::getPlaneManager)
             )
         );
     }
@@ -61,17 +67,21 @@ public class Location implements Item {
      *                 this location
      * @param pilotLink the link to the pilot that stays
      *                  in this location
+     * @param planeLink the link to the planes that stays in
+     *                  this location
      */
     public Location(
             String id,
             String name,
             Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink,
-            Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink
+            Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink,
+            Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> planeLink
     ) {
         this.id = id;
         this.name = name;
         this.crewLink = crewLink;
         this.pilotLink = pilotLink;
+        this.planeLink = planeLink;
     }
 
     /**
