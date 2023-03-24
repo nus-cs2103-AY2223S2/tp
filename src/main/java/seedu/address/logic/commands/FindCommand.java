@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -14,7 +16,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"find", "f"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("find", "f"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

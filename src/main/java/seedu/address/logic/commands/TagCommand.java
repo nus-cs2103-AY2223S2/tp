@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -16,7 +18,7 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"tag", "t"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("tag", "t"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Tags the person identified by the index used in the displayed person list.\n"

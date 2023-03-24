@@ -8,11 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -32,7 +28,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"edit", "ed"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("edit", "ed"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "

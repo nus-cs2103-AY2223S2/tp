@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -16,7 +18,7 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"delete_tag", "dt"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("delete_tag", "dt"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Delete tag from the person identified by the index used in the displayed person list.\n"

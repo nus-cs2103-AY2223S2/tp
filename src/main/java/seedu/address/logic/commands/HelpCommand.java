@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Model;
@@ -9,7 +11,7 @@ import seedu.address.model.Model;
  */
 public class HelpCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"help", "h"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("help", "h"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORDS;

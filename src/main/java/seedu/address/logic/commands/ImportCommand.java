@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.JFileChooser;
@@ -19,7 +21,7 @@ import seedu.address.storage.CsvAddressBookStorage;
  */
 public class ImportCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"import", "imp"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("import", "i"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Imports customer data from an existing dataset.";
 

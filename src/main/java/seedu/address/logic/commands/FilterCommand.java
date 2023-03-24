@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -17,7 +19,7 @@ import seedu.address.model.person.FieldsMatchRegexPredicate;
  */
 public class FilterCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"filter", "fil"});
+    public static final List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("filter", "fil"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Filters all persons whose every field matches "
             + "at least one respective regex filter, and displays them as a list with index numbers.\n"
