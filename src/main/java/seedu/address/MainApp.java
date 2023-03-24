@@ -101,12 +101,12 @@ public class MainApp extends Application {
             petPalArchive = storage.readPetPalArchive();
 
             if (!petPalArchive.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PetPal");
+                logger.info("Archive file not found. Will be starting with an empty archive file");
             }
 
             initialArchiveData = petPalArchive.orElse(new PetPal());
         } catch (IOException e) {
-            logger.warning("Problem reading from the archive. Will start with empty archive");
+            logger.warning("Problem reading from the archive. Will start with empty archive file");
             initialArchiveData = new PetPal();
         } catch (DataConversionException e) {
             logger.warning("Archive file not in the correct format. Will start with an empty archive file");

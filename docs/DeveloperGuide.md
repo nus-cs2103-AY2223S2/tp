@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* PetPal was adapted from the [AddressBook 3 (AB3)](https://github.com/nus-cs2103-AY2223S2/tp) code.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -198,6 +198,9 @@ Step 4. The amount updates upon clicking on the PetCard on panel, or upon restar
 
 The calculator feature is not an additional command, and does not have an activity or sequence diagram.
 
+### Archive Feature
+#### Current Implementation
+
 ### Highlight Feature
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
@@ -361,10 +364,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Importing data from excel (csv)
+The proposed importing function is an extension of the base `AddressBook`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+for PetPal to be able to read and modify the imported data
+  - Pros: Might be easier to implement
+  - Cons: Might be confusing for users to use (running external script)
 
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+the data into json format and refreshes the database.
+  - Pros: Easier and more intuitive for users to use
+  - Cons: Builds upon **Alternative 1**, requiring more work to implement
 
 --------------------------------------------------------------------------------------------------------------------
 
