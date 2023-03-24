@@ -307,6 +307,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Sort feature
+
+#### Implementation
+
+The `filteredPersons` variable in the ModelManager.java is defined by passing in the `getPersonList()` from `addressBook` 
+into a `FilteredList` object. However, `sortedPersons` variable in the ModelManager.java is instead defined by passing 
+in `filteredPersons` into a `SortedList` object. 
+
+This ensures that modifications (deletes/edits) to the persons after a `list` or `sort` command will be consistent.
+
+The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added 
+to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator. 
+
+### Get Team feature
+
+#### Implementation
+
+_{To be Added}_
+
+#### Design considerations:
+
+The `get` command utilizes the `filter()` method from FilterCommand.java. It filters the person list based on tag `teams`
+while the Filter command targets on other features such as `major` and `name`. 
+
+This guarantees that from the users' perspective, `filter` and `get` are separate commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
