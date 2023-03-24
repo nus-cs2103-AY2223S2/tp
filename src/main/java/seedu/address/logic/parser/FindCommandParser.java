@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        List<String> keywordList = Arrays.asList(keywords.split("\\s+"));
+        List<String> keywordList = Arrays.asList(keywords.split("\\s*,\\s*"));
 
         boolean hasByTag = argMultimap.getValue(PREFIX_BY_TAG).isPresent();
         Optional<String> moduleCodeOpt = argMultimap.getValue(PREFIX_MODULE);

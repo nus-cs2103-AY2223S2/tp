@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -47,6 +48,9 @@ public class FindCommandTest {
     private static final Lecture week2 = TypicalLectures.getCs2040sWeek2();
     private static final Lecture week3 = TypicalLectures.getCs2040sWeek3();
     private static final Lecture week4 = TypicalLectures.getCs2040sWeek4();
+    private static final Lecture week5 = TypicalLectures.getCs2040sWeek5();
+    private static final Lecture week6 = TypicalLectures.getCs2040sWeek6();
+    private static final Lecture week7 = TypicalLectures.getCs2040sWeek7();
     private static final Video vid1 = TypicalVideos.CONTENT_VIDEO;
     private static final Video vid2 = TypicalVideos.ANALYSIS_VIDEO;
 
@@ -170,11 +174,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 2);
-        String input = "CS2040S ST2334";
+        String input = "CS2040S, ST2334";
         boolean hasByTag = false;
         ModuleCodeContainsKeywordsPredicate predicate =
             (ModuleCodeContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input), hasByTag);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2040S, ST2334), model.getFilteredModuleList());
@@ -183,11 +187,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleModulesFoundByTag() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 2);
-        String input = "heavy math";
+        String input = "heavy, math";
         boolean hasByTag = true;
         ModuleTagContainsKeywordsPredicate predicate =
             (ModuleTagContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input), hasByTag);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2040S, ST2334), model.getFilteredModuleList());
@@ -196,30 +200,45 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleLecturesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 3);
-        String input = "week1 week2 week3";
+        String input = "week 1, week 2, week 3";
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
             (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input), moduleCode, hasByTag);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(week1, week2, week3), model.getFilteredLectureList());
     }
 
     @Test
+    public void execute_singleKeyword_multipleLecturesFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 7);
+        String input = "week";
+        boolean hasByTag = false;
+        LectureNameContainsKeywordsPredicate predicate =
+            (LectureNameContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
+        expectedModel.updateFilteredLectureList(predicate, CS2040S);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), CS2040S.getCode(), hasByTag);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(week1, week2, week3, week4, week5, week6, week7),
+            model.getFilteredLectureList());
+    }
+
+    @Test
     public void execute_multipleKeywords_multipleLecturesFoundByTag() {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 4);
-        String input = "intro arrays sorting";
+        String input = "intro, arrays, sorting";
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
             (LectureTagContainsKeywordsPredicate) preparePredicate(input, Level.LECTURE, hasByTag);
         ReadOnlyModule module = new ModuleBuilder().build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input), moduleCode, hasByTag);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(week1, week2, week3, week4), model.getFilteredLectureList());
@@ -228,14 +247,14 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleVideosFound() {
         String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 2);
-        String input = "vid1 vid2";
+        String input = "vid 1, vid 2";
         boolean hasByTag = false;
         VideoNameContainsKeywordsPredicate predicate =
             (VideoNameContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input),
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input),
             module.getCode(), lecture.getName(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -245,14 +264,14 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleVideosFoundByTag() {
         String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 2);
-        String input = "content analysis";
+        String input = "content, analysis";
         boolean hasByTag = true;
         VideoTagContainsKeywordsPredicate predicate =
             (VideoTagContainsKeywordsPredicate) preparePredicate(input, Level.VIDEO, hasByTag);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
-        FindCommand command = new FindCommand(StringUtil.spaceDelimetedStringsToList(input),
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input),
             module.getCode(), lecture.getName(), hasByTag);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -264,7 +283,11 @@ public class FindCommandTest {
      * or LectureNameContainsKeywordsPredicate or VideoNameContainsKeywordsPredicate}.
      */
     private Predicate<?> preparePredicate(String userInput, Level level, boolean hasByTag) {
-        List<String> keywords = Arrays.asList(userInput.split("\\s+"));
+        String trimmedInput = userInput.trim();
+        List<String> keywords = Arrays.asList(trimmedInput.split("\\s*,\\s*"));
+        if (trimmedInput.isBlank()) {
+            keywords = new ArrayList<>();
+        }
         if (level == Level.MODULE) {
             return hasByTag
                 ? new ModuleTagContainsKeywordsPredicate(keywords)

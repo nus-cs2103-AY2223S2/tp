@@ -21,7 +21,8 @@ public class LectureTagContainsKeywordsPredicate implements Predicate<ReadOnlyLe
         return keywords.stream()
                 .anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(
-                        StringUtil.joinTagsAsString(lecture.getTags()), keyword));
+                        StringUtil.joinTagsAsString(lecture.getTags()),
+                            StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override

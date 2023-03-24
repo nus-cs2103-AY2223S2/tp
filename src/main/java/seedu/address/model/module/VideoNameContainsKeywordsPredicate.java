@@ -19,7 +19,10 @@ public class VideoNameContainsKeywordsPredicate implements Predicate<Video> {
     @Override
     public boolean test(Video video) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(video.getName().name, keyword));
+                .anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(
+                        StringUtil.joinSentenceToWord(video.getName().name),
+                            StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override

@@ -20,7 +20,8 @@ public class ModuleTagContainsKeywordsPredicate implements Predicate<ReadOnlyMod
         return keywords.stream()
                 .anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(
-                        StringUtil.joinTagsAsString(module.getTags()), keyword));
+                        StringUtil.joinTagsAsString(module.getTags()),
+                            StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override

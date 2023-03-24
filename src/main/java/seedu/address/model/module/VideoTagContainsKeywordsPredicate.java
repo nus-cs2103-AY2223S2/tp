@@ -21,7 +21,8 @@ public class VideoTagContainsKeywordsPredicate implements Predicate<Video> {
         return keywords.stream()
                 .anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(
-                        StringUtil.joinTagsAsString(video.getTags()), keyword));
+                        StringUtil.joinTagsAsString(video.getTags()),
+                            StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override

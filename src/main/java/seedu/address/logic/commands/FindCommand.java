@@ -30,20 +30,20 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName or tagNames contain any of "
-        + "the specified keywords (case-insensitive) separated with a space "
+        + "the specified keywords (case-insensitive) separated with a comma "
         + "and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: \n"
         + "Find by moduleCode/lectureName/videoName: \n"
         + "1." + COMMAND_WORD + " CS2040S\n"
-        + "2." + COMMAND_WORD + " Week1 Week2\n"
-        + "3." + COMMAND_WORD + " Video1 Video2 Video3\n"
-        + "4." + COMMAND_WORD + " Topic1 Topic2 /mod ST2334\n"
-        + "5." + COMMAND_WORD + " Video1 /mod ST2334 /lec Week1\n"
+        + "2." + COMMAND_WORD + " Week 1, Week 2\n"
+        + "3." + COMMAND_WORD + " Video 1, Video 2, Video 3\n"
+        + "4." + COMMAND_WORD + " Topic 1, Topic 2 /mod ST2334\n"
+        + "5." + COMMAND_WORD + " Video 1 /mod ST2334 /lec Week 1\n"
         + "Find by tagName: \n"
-        + "1." + COMMAND_WORD + " Heavy -t\n"
-        + "2." + COMMAND_WORD + " Heavy -t /mod ST2334\n"
-        + "3." + COMMAND_WORD + " Heavy -t /mod ST2334 /lec Week1\n";
+        + "1." + COMMAND_WORD + " Heavy /byTag\n"
+        + "2." + COMMAND_WORD + " Heavy /byTag /mod ST2334\n"
+        + "3." + COMMAND_WORD + " Heavy /byTag /mod ST2334 /lec Week 1\n";
 
     private List<String> keywords;
 

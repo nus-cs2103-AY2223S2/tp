@@ -18,7 +18,9 @@ public class ModuleCodeContainsKeywordsPredicate implements Predicate<ReadOnlyMo
     @Override
     public boolean test(ReadOnlyModule module) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(module.getCode().code, keyword));
+                .anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(module.getCode().code,
+                        StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override

@@ -19,7 +19,10 @@ public class LectureNameContainsKeywordsPredicate implements Predicate<ReadOnlyL
     @Override
     public boolean test(ReadOnlyLecture lecture) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(lecture.getName().name, keyword));
+                .anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(
+                        StringUtil.joinSentenceToWord(lecture.getName().name),
+                            StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override
