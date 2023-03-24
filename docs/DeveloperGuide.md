@@ -3,7 +3,53 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
+
+## Design
+
+### Architecture
+
+The above _**Architecture Diagram**_ explains the high-level design of the App.
+
+Given below is a quick overview of the main components of the app, and how they interact with each other.
+
+<img src="images/ArchitectureDiagram.png" width="250px">
+
+#### Main components of the architecture
+
+`Main` has 2 classes called `Main` and `MainApp`. Its responsibilities are:
+
+* On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) and connects them with each other.
+
+* On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
+
+`Commons` represents a collection of classes used by multiple other components, and it stores information like GUI settings and user-visible error messages.
+
+The rest of the App consists of four components.
+
+* `UI`: The user interface of the app.
+* `Logic`: The command executor.
+* `Model`: Holds the data of the App in memory.
+* `Storage`: Reads data from, and writes data to, the hard disk.
+
+#### How the architecture components interact with each other
+
+The following _Sequence Diagram_ shows how the different components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="500px">
+
+
+Each of the four main components as shown in the diagram above,
+* defines its API in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component name}Manager` class (which follows the corresponding API `interface` mentioned above)
+
+For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
+Other components interact with a given component through its interface rather than the concrete class (in order to prevent external components being coupled to the implementation of a component) as illustrated in the (partial) class diagram below.
+
+<img src="images/ComponentManagers.png" width="300px">
+
+The following sections will give more details on each component.
+
 
 ## **Design**
 
@@ -144,7 +190,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Chef requests to delete a specific recipe in the list
 4. Book deletes the recipe
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -167,19 +213,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Chef requests to list recipes
 2. Book shows a list of ***all*** recipes
 3. Chef requests to view a specific recipe in the list
-4. Book return the specified recipe 
-    Use case ends.
+4. Book return the specified recipe
+   Use case ends.
 
 **Extensions**
 
 * 1a. The current list is empty
-  
-    Use case ends.
+
+  Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. Book shows an error message.
-  
-    Use case resumes from step 2.
+    * 3a1. Book shows an error message.
+
+      Use case resumes from step 2.
 
 #### **Use case: Ask for help**
 
@@ -188,7 +234,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Chef requests for help
 2. Book shows the link to the user guide
 
-    Use case ends.
+   Use case ends.
 
 #### **Use case: Clear recipe book**
 
@@ -197,7 +243,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Chef requests to clear recipe book
 2. Book clears itself of all recipes
 
-    Use case ends.
+   Use case ends.
 
 *{More to be added}*
 
@@ -205,15 +251,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
     able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should have a high level of test coverage to ensure quality.
 5. The app should have automated testing and deployment processes to facilitate maintenance.
-6. The app should have clean and well-documented code that is easy to maintain and update. 
-7. The app should be able to tolerate system failures, and save data to the storage file with backups. 
-8. The app should have clear and comprehensive documentation, including user manuals and technical documentation. 
-9. The app should be easily extensible to support new features and functionality. 
-10. The documentation should be up-to-date and accurate. 
+6. The app should have clean and well-documented code that is easy to maintain and update.
+7. The app should be able to tolerate system failures, and save data to the storage file with backups.
+8. The app should have clear and comprehensive documentation, including user manuals and technical documentation.
+9. The app should be easily extensible to support new features and functionality.
+10. The documentation should be up-to-date and accurate.
 11. The documentation should be accessible to all users.
 
 *{More to be added}*
@@ -243,15 +289,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -260,6 +306,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }
