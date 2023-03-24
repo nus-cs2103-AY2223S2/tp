@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;

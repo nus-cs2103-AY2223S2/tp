@@ -4,6 +4,8 @@ import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import tfifteenfour.clipboard.model.course.Course;
+
 public class ModuleCodeTest {
 
     @Test

@@ -2,8 +2,8 @@ package tfifteenfour.clipboard.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
@@ -48,8 +49,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
-    public static final String MODULE_DESC_CS2105 = " " + PREFIX_MODULE + VALID_MODULE_CS2105;
-    public static final String MODULE_DESC_CS2103 = " " + PREFIX_MODULE + VALID_MODULE_CS2103;
+    public static final String MODULE_DESC_CS2105 = " " + PREFIX_COURSE + VALID_MODULE_CS2105;
+    public static final String MODULE_DESC_CS2103 = " " + PREFIX_COURSE + VALID_MODULE_CS2103;
     public static final String TAG_DESC_TEAM1 = " " + PREFIX_TAG + VALID_TAG_TEAM1;
     public static final String TAG_DESC_TEAM2 = " " + PREFIX_TAG + VALID_TAG_TEAM2;
 
@@ -57,7 +58,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID; // empty string not allowed for address
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS*"; // '*' not allowed in module codes
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_COURSE + "CS*"; // '*' not allowed in module codes
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

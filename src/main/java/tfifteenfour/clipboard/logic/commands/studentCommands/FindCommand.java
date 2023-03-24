@@ -1,8 +1,11 @@
-package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands.studentCommands;
 
 import static java.util.Objects.requireNonNull;
 
 import tfifteenfour.clipboard.commons.core.Messages;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 
@@ -32,7 +35,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CurrentSelection currentSelection) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(this,

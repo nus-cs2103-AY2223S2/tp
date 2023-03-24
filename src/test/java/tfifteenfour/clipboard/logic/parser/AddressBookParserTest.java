@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
-import tfifteenfour.clipboard.logic.commands.DeleteCommand;
-import tfifteenfour.clipboard.logic.commands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
-import tfifteenfour.clipboard.logic.commands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.ListCommand;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentCommands.FindCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 import tfifteenfour.clipboard.model.student.Student;

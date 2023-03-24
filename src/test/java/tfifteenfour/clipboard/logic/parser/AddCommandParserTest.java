@@ -36,9 +36,9 @@ import static tfifteenfour.clipboard.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.CommandTestUtil;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;

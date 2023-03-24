@@ -62,8 +62,8 @@ public class StudentViewCard extends UiPart<Region> {
         email.setText(viewedStudent.getEmail().value);
         remark.setText(viewedStudent.getRemark().value);
         viewedStudent.getModules().stream()
-                .sorted(Comparator.comparing(module -> module.moduleCode))
-                .forEach(module -> modules.getChildren().add(new Label(module.moduleCode)));
+                .sorted(Comparator.comparing(module -> module.courseCode))
+                .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
         viewedStudent.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.UniqueCoursesList;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
@@ -15,6 +17,7 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
 public class Roster implements ReadOnlyRoster {
 
     private final UniqueStudentList students;
+    private final UniqueCoursesList courses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,10 @@ public class Roster implements ReadOnlyRoster {
      */
     {
         students = new UniqueStudentList();
+    }
+
+    {
+        courses = new UniqueCoursesList();
     }
 
     public Roster() {}
@@ -47,13 +54,17 @@ public class Roster implements ReadOnlyRoster {
         this.students.setStudents(students);
     }
 
+    public void setCourses(List<Course> courses) {
+        this.courses.setCourses(courses);
+    }
+
     /**
      * Resets the existing data of this {@code Roster} with {@code newData}.
      */
     public void resetData(ReadOnlyRoster newData) {
         requireNonNull(newData);
-
-        setStudents(newData.getUnmodifiableStudentList());
+        // setStudents(newData.getUnmodifiableStudentList());
+        setCourses(newData.getUnmodifiableCourseList());
     }
 
     //// student-level operations
@@ -66,12 +77,21 @@ public class Roster implements ReadOnlyRoster {
         return students.contains(student);
     }
 
+    public boolean hasCourse(Course course) {
+        requireNonNull(course);
+        return courses.contains(course);
+    }
+
     /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */
     public void addStudent(Student p) {
         students.add(p);
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 
     /**
@@ -110,6 +130,17 @@ public class Roster implements ReadOnlyRoster {
     @Override
     public ObservableList<Student> getModifiableStudentList() {
         return students.asModifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Course> getModifiableCourseList() {
+        return courses.asModifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Course> getUnmodifiableCourseList() {
+        System.out.println("GET UNMODIFIABLE COURSE LIST##");
+        return courses.asUnmodifiableObservableList();
     }
 
     @Override

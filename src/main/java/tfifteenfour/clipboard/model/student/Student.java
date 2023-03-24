@@ -2,12 +2,7 @@ package tfifteenfour.clipboard.model.student;
 
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.
@@ -24,22 +19,21 @@ public class Student {
 
     private final Remark remark;
     private final StudentId studentId;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Set<Course> modules = new HashSet<>();
+    // private final Set<Tag> tags = new HashSet<>();
+    // private final Set<Course> modules = new HashSet<>();
 
     /**
      * With remark and tags field.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Course> modules,
-                   Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, modules, remark, tags);
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Remark remark) {
+        requireAllNonNull(name, phone, email, studentId, remark);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
-        this.modules.addAll(modules);
+        // this.modules.addAll(modules);
         this.remark = remark;
-        this.tags.addAll(tags);
+        // this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -66,17 +60,17 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
+    // public Set<Tag> getTags() {
+    //     return Collections.unmodifiableSet(tags);
+    // }
 
     /**
      * Returns an immutable module set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Course> getModules() {
-        return Collections.unmodifiableSet(modules);
-    }
+    // public Set<Course> getModules() {
+    //     return Collections.unmodifiableSet(modules);
+    // }
 
 
     /**
@@ -110,14 +104,14 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getStudentId().equals(getStudentId())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getStudentId().equals(getStudentId());
+                // && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, studentId, tags);
+        return Objects.hash(name, phone, email, studentId);
     }
 
     @Override
@@ -131,18 +125,18 @@ public class Student {
                 .append("; StudentId: ")
                 .append(getStudentId());
 
-        Set<Course> modules = getModules();
-        builder.append("; Modules: ");
-        modules.forEach(builder::append);
+        // Set<Course> modules = getModules();
+        // builder.append("; Modules: ");
+        // modules.forEach(builder::append);
 
         builder.append("; Remark: ")
                 .append(getRemark());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+        // Set<Tag> tags = getTags();
+        // if (!tags.isEmpty()) {
+        //     builder.append("; Tags: ");
+        //     tags.forEach(builder::append);
+        // }
         return builder.toString();
     }
 }

@@ -7,6 +7,7 @@ import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
 import tfifteenfour.clipboard.model.UserPrefs;

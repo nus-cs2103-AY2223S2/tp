@@ -1,23 +1,15 @@
 package tfifteenfour.clipboard.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
-import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -30,9 +22,8 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String studentId;
-    private final List<JsonAdaptedModuleCode> modules = new ArrayList<>();
     private final String remark;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -40,17 +31,15 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("studentId") String studentId,
-           @JsonProperty("modules") List<JsonAdaptedModuleCode> modules,
-           @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+           @JsonProperty("remark") String remark) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
-        this.modules.addAll(modules);
         this.remark = remark;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        // if (tagged != null) {
+        //     this.tagged.addAll(tagged);
+        // }
     }
 
     /**
@@ -62,13 +51,11 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         studentId = source.getStudentId().value;
-        modules.addAll(source.getModules().stream()
-                .map(JsonAdaptedModuleCode::new)
-                .collect(Collectors.toList()));
+
         remark = source.getRemark().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        // tagged.addAll(source.getTags().stream()
+        //         .map(JsonAdaptedTag::new)
+        //         .collect(Collectors.toList()));
     }
 
     /**
@@ -77,20 +64,10 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Course> personModules = new ArrayList<>();
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
-        if (modules.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Course.class.getSimpleName()));
-        }
-
-        for (JsonAdaptedModuleCode moduleCode : modules) {
-            personModules.add(moduleCode.toModelType());
-        }
+        // final List<Tag> personTags = new ArrayList<>();
+        // for (JsonAdaptedTag tag : tagged) {
+        //     personTags.add(tag.toModelType());
+        // }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -129,13 +106,13 @@ class JsonAdaptedStudent {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        final Set<Course> modelModules = new HashSet<>(personModules);
+        // final Set<Course> modelModules = new HashSet<>();
 
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        // final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Student(modelName, modelPhone, modelEmail, modelStudentId, modelModules, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelStudentId, modelRemark);
 
     }
 }
