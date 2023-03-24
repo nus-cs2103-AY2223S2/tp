@@ -49,7 +49,7 @@ public class EditProjectCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This person already exists in SOCket.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in SOCket.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;
@@ -138,7 +138,6 @@ public class EditProjectCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code languages} and {@code tags} is used internally.
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
