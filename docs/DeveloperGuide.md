@@ -147,6 +147,19 @@ Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Employee-related features
+
+The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
+
+The attributes of an Employee are:
+* `Id`: The employee id, which is their unique identifier in the company.
+* `Name`: The name of the employee.
+* `Email`: The email of the employee, which should be unique.
+* `Phone`: The phone of the employee, which should be unique.
+* `Address`: The address of the employee.
+* `Tags`: The tags assigned to the employee.
+
+
 ### Department-related features
 
 The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
@@ -185,17 +198,26 @@ The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-### Cascading employee updates to department and event
-
 #### Design considerations:
 
 ### Employee
+An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
 
-An important design consideration to note for Employee is the multiple different types of equality checks.
+An employee is identified by his ID field, and this field is used to get an employee object.
 
-An employee is identified by his ID field, and this field is used to get an employee with the specified Id.
+However, there are other fields to guard against duplication, specifically email and phone number fields. 
+For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
-However, other stronger forms of equality are used in the application. For example, when loading Employees from Storage, strict equality checks are used to ensure no two employees have the same ID, phone number or address.
+### Departments
+
+### Leaves
+
+### Cascading employee updates and deletion to department and leave
+An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
+each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files 
+where employee objects are separately created for department's and leave's employee lists. 
+Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
