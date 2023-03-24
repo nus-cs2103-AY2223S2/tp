@@ -27,7 +27,7 @@ public class UnassignCommandParserTest {
     public void parse_invalidIndex_throwsParseException() {
         assertParseFailure(parser, "a n/Amy Bee", MESSAGE_INVALID_FORMAT);
     }
-    
+
     @Test
     public void parse_invalidName_throwsParseException() {
         assertParseFailure(parser, "1 n/", MESSAGE_INVALID_FORMAT);
