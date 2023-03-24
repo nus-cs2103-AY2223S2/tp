@@ -36,34 +36,23 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label person;
     @FXML
-    private Label date;
-    @FXML
     private Label start;
     @FXML
     private Label end;
     @FXML
-    private FlowPane tags;
+    private FlowPane tags; // Unused currently
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code MeetingCard} with the given {@code Meeting} and index to display.
      */
-    public MeetingCard(Meeting meeting, int displayedIndex) {
+    public MeetingCard(Meeting meeting, int displayedIndex, Person personToMeet) {
         super(FXML);
         this.meeting = meeting;
-        // id.setText(displayedIndex + ". ");
-        // person.setText(meeting.().fullName);
-        // date.setText(meeting.getAddress().getRegionString());
-        // start.setText(meeting.getPhone().value);
-        // end.setText(meeting.getAddress().value);
-        // meeting.getTags().stream()
-        //         .sorted(Comparator.comparing(tag -> tag.tagName))
-        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        meetingTitle.setText("Test Meeting");
-        id.setText(1 + ". ");
-        person.setText("Bobby");
-        date.setText("15/03/2023");
-        start.setText("1500");
-        end.setText("1900");
+        meetingTitle.setText("Meeting");
+        id.setText(displayedIndex + ". ");
+        person.setText(personToMeet.getName().fullName);
+        start.setText(meeting.getStartString());
+        end.setText(meeting.getEndString());
     }
 
     // @Override

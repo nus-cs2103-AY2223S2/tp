@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -122,7 +123,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Meeting> getMeetingList() {
+    public ObservableList<MeetingWithPerson> getMeetingList() {
         return persons.getAllMeetingAsUnmodifiableObservableList();
     }
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,7 +88,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the filtered meeting list */
-    ObservableList<Meeting> getFilteredMeetingList();
+    ObservableList<MeetingWithPerson> getFilteredMeetingList();
 
     /**
      * Updates the filtered meeting list to filter by input {@code predicate}

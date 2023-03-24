@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<MeetingWithPerson> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -152,7 +153,7 @@ public class ModelManager implements Model {
     //=========== Filtered Meeting List Accessors =============================================================
 
     @Override
-    public ObservableList<Meeting> getFilteredMeetingList() {
+    public ObservableList<MeetingWithPerson> getFilteredMeetingList() {
         return filteredMeetings;
     }
 

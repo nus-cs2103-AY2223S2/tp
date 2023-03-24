@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -141,15 +144,15 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns a list of all the meetings that every person in this list has.
      * List returned is unmodifiable
      */
-    public ObservableList<Meeting> getAllMeetingAsUnmodifiableObservableList() {
+    public ObservableList<MeetingWithPerson> getAllMeetingAsUnmodifiableObservableList() {
         // Converts the internalList into a stream, maps every person inside it to it's meeting list,
         // then every ArrayList of Meetings are combined together to form one giant ArrayList that
         // contains all the meetings that every person has
-        ArrayList<Meeting> m = internalList.stream()
-                                           .map(p -> p.getMeetings())
-                                           .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
-
-        ObservableList<Meeting> observableList = FXCollections.observableArrayList(m);
+        ArrayList<MeetingWithPerson> meeting = internalList.stream()
+                                           .flatMap(p -> p.getMeetings().stream().map(m -> new MeetingWithPerson(m, p)))
+                                           .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        ObservableList<MeetingWithPerson> observableList = FXCollections.observableArrayList(meeting);
         return FXCollections.unmodifiableObservableList(observableList);
     }
+
 }

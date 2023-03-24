@@ -123,23 +123,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Meeting> examppleMeetingList = FXCollections.observableArrayList();
-        try {
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
-        } catch (Exception e) {
-
-        }
-        meetingListPanel = new MeetingListPanel(examppleMeetingList);
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

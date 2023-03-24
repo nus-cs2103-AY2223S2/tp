@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
+import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
@@ -18,30 +20,30 @@ public class MeetingListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Meeting> meetingListView;
+    private ListView<MeetingWithPerson> meetingListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public MeetingListPanel(ObservableList<Meeting> meetingList) {
+    public MeetingListPanel(ObservableList<MeetingWithPerson> meetingList) {
         super(FXML);
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Meeting} using a {@code MeetingCard}.
      */
-    class MeetingListViewCell extends ListCell<Meeting> {
+    class MeetingListViewCell extends ListCell<MeetingWithPerson> {
         @Override
-        protected void updateItem(Meeting meeting, boolean empty) {
+        protected void updateItem(MeetingWithPerson meeting, boolean empty) {
             super.updateItem(meeting, empty);
 
             if (empty || meeting == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new MeetingCard(meeting, getIndex() + 1).getRoot());
+                setGraphic(new MeetingCard(meeting, getIndex() + 1, meeting.getPersonToMeet()).getRoot());
             }
         }
     }
