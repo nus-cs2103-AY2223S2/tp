@@ -54,15 +54,27 @@ public class ExportMeetingsParser implements Parser<ExportMeetingsCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String input) {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, PREFIXES);
+        String[] argsSplit = input.split(" ");
+        if (argsSplit.length == 0) {
+            return new AutocompleteResult(PREFIXES[0], false);
+        }
+        String lastPrefix = argsSplit[argsSplit.length - 1];
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + lastPrefix, PREFIXES);
+        boolean returnNext = false;
 
         for (Prefix p : PREFIXES) {
-            if (argMultimap.getValue(p).isEmpty()) {
-                return new AutocompleteResult(p, false);
+            if (returnNext) {
+                return new AutocompleteResult(p, true);
+            }
+
+            if (argMultimap.getValue(p).isPresent() && p.toString().equals(lastPrefix)) {
+                returnNext = true;
             }
         }
 
-        return new AutocompleteResult(null, false);
-
+        return new AutocompleteResult(PREFIXES[0], true);
     }
+
 }
+
