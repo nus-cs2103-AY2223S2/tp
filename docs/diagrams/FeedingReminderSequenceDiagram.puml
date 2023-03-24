@@ -41,16 +41,16 @@ loop for each feedingReminder
     alt no CommandError
 
         mainwindow -[UI_COLOR]-> logic : executeFeedingReminderInitLogic(feedingReminder)
-        activate logic
-        logic -[LOGIC_COLOR]-> TaskFeedingReminderCommand  ** : new
-        activate TaskFeedingReminderCommand
-        TaskFeedingReminderCommand --> logic
-        deactivate TaskFeedingReminderCommand
-        logic -[hidden]-> TaskFeedingReminderCommand
-        logic -[LOGIC_COLOR]-> TaskFeedingReminderCommand : execute(model)
-        activate TaskFeedingReminderCommand
-        TaskFeedingReminderCommand --> logic : CommandResult
-        deactivate TaskFeedingReminderCommand
+        activate logic LOGIC_COLOR
+        logic -[LOGIC_COLOR]-> ":TaskFeedingReminderCommand"  ** : new
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic
+        deactivate ":TaskFeedingReminderCommand"
+        logic -[hidden]-> ":TaskFeedingReminderCommand"
+        logic -[LOGIC_COLOR]-> ":TaskFeedingReminderCommand" : execute(model)
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic : CommandResult
+        deactivate ":TaskFeedingReminderCommand"
 
         logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
         activate storage STORAGE_COLOR
@@ -79,11 +79,15 @@ loop for each feedingReminder
 
         logic -[LOGIC_COLOR]-> mainwindow : CommandResult
         deactivate logic
+        mainwindow --> mainwindow : handleGuiChange()
+        activate mainwindow
+        deactivate mainwindow
 
     else CommandError
-        mainwindow -[UI_COLOR]-> ResultDisplay : setFeedbackToUser(CommandError)
-        activate ResultDisplay
-        deactivate ResultDisplay
+        mainwindow -[UI_COLOR]-> ":ResultDisplay" : setFeedbackToUser(CommandError)
+        activate ":ResultDisplay"
+        ":ResultDisplay" --> mainwindow : Show error message
+        deactivate ":ResultDisplay"
     end
 end
 mainwindow --> ui
