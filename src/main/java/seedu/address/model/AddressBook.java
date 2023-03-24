@@ -93,6 +93,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Return the size of the list.
+     *
+     */
+    public int size() {
+        return 1;//persons.size();
+    }
+
     //// util methods
 
     @Override

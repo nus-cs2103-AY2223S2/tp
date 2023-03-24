@@ -35,11 +35,16 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private SummaryWindow summaryWindow;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem summaryMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -66,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        summaryWindow = new SummaryWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -75,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
+
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -152,6 +159,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the summary window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSummary() {
+        if (!summaryWindow.isShowing()) {
+            summaryWindow.show();
+        } else {
+            summaryWindow.focus();
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -160,6 +179,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        summaryWindow.hide();
         primaryStage.hide();
     }
 
@@ -180,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowSummary()) {
+                handleSummary();
             }
 
             if (commandResult.isExit()) {
