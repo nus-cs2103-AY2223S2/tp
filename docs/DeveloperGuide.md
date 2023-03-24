@@ -264,7 +264,7 @@ The people in our user group who would benefit most from this product generally 
 * Type fast and prefer CLI
 * Need inspiration for character, item and monster creation that a randomizer would help address
 
-**Value proposition**: 
+**Value proposition**:
 
 Our product is a more expansive and well-organized system capable of managing TTRPG entities better than a traditional pen and paper format.
 
@@ -324,7 +324,7 @@ The user stories are not limited to those in this list. More can be added in the
    Steps 4-5 are repeated for as many fields as required.
 6. User exits edit mode
 
-    Use case ends  
+    Use case ends
 
 **Extensions**
 
@@ -333,11 +333,11 @@ The user stories are not limited to those in this list. More can be added in the
     Use case ends
 * 3a. The given name is invalid
   * 3a1. Reroll shows an error message.
-  
+
     Use case resumes at step 2
 * 4a. The given fields are invalid
   * 4a.1 Reroll shows an error message and exits edit mode
-  
+
     Use case resumes at step 2
 
 
@@ -398,16 +398,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a entity
 
@@ -415,16 +415,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all entities using the `list` command. Multiple entities in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 

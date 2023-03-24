@@ -5,7 +5,7 @@
 * Reroll is an **entity management app targeted at tabletop RPG players**.<br>
 * Reroll aims to provide ease of creation, organisation and management of character, item and monster stat sheets in a quick and intuitive manner.
 
- 
+
 * Example usages:
   * to store the character sheet for a player's next game
   * for a Dungeon Master to store and organize the monsters and items for their ongoing campaign
