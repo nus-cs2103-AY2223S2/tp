@@ -17,8 +17,8 @@ and returns an EditXYZCommand;
 
 if () then ([Index is out of bounds])
     :CommandExeception is thrown;
-    :MainWindow catches ParseException and
-    Invalid Item Index error message is shown;
+    :MainWindow catches and handles ParseException;
+    :Invalid Item Index error message is shown;
     stop
 else ([else])
 :Item XYZ at given index will be retrieved from its filtered XYZ List;
@@ -27,12 +27,13 @@ else ([else])
 if () then ([Edited item is the same as other items in the list
 or no actual change is made to item])
 :CommandException is thrown;
-:MainWindow catches CommandException and
-Duplicate Item error message is shown;
+:MainWindow catches and handles CommandException;
+:Duplicate Item error message is shown;
 stop
 
 else ([else])
-:Item in XYZ List is edited and Filtered XYZ List is updated;
+:Item in XYZ List is edited
+and Filtered XYZ List is updated;
 :EditXYZCommand returns CommandResult;
 :Changes made are saved to local data;
 :Edit Success Message is shown;
