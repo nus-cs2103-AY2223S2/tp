@@ -19,13 +19,35 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private HistoryStorage historyStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given
+     * {@code AddressBookStorage}, {@code UserPrefStorage} and {@code HistoryStorage}.
+     *
+     * @param addressBookStorage An object represents storage of address book.
+     * @param userPrefsStorage An object represents storage of user preferences.
+     * @param historyStorage An object represents storage of executed commands.
+     */
+    public StorageManager(AddressBookStorage addressBookStorage,
+            UserPrefsStorage userPrefsStorage, HistoryStorage historyStorage) {
+        this.addressBookStorage = addressBookStorage;
+        this.userPrefsStorage = userPrefsStorage;
+        this.historyStorage = historyStorage;
+    }
+
+    /**
+     * Creates a {@code StorageManager} with the given arguments.
+     * This constructors will initialize the {@code StorageManager} historyStorage
+     * with a {@code TxtHistoryStorage} with default history file Path.
+     *
+     * @param addressBookStorage An object represents storage of address book.
+     * @param userPrefsStorage An object represents storage of user preferences.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.historyStorage = new TxtHistoryStorage();
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +97,33 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+
+    // ================ History methods ==============================
+
+    @Override
+    public Path getHistoryStoragePath() {
+        return historyStorage.getHistoryStoragePath();
+    }
+
+    @Override
+    public Optional<String> readHistoryString() throws IOException {
+        return readHistoryString(historyStorage.getHistoryStoragePath());
+    }
+
+    @Override
+    public Optional<String> readHistoryString(Path filePath) throws IOException {
+        logger.fine("Reading from history file" + filePath);
+        return historyStorage.readHistoryString(filePath);
+    }
+
+    @Override
+    public void saveHistoryString(String historyString) throws IOException {
+        saveHistoryString(historyString, historyStorage.getHistoryStoragePath());
+    }
+
+    @Override
+    public void saveHistoryString(String historyString, Path filePath) throws IOException {
+        logger.fine("Saving previous executed command(s) to the history file: " + filePath);
+        historyStorage.saveHistoryString(historyString, filePath);
+    }
 }
