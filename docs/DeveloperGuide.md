@@ -137,25 +137,35 @@ The `Model` component,
 
 ![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
 
-The `Model` box is the central component of the Mycelium's data. 
-It contains the entities `Client` and `Project` which are used to store the data of each entity. 
+The `Model` box is the central component of the Mycelium's data. It contains
+the entities `Client` and `Project` which are used to store the data of each
+entity.
 
-The `Client` class contains the attributes for a client's `Name`, `Email`, `YearOfBirth`, source and `Phone` number,
-where the name and email are compulsory fields. The rest of the attributes are optional, and hence stored in `Optional` objects.
-The source attribute is a `String`.
+The `Client` class contains the attributes for a client's `Name`, `Email`,
+`YearOfBirth`, source and `Phone` number, where the name and email are
+compulsory fields. The rest of the attributes are optional, and hence stored in
+`Optional` objects. The source attribute is a `String`.
 
-The `Project` class contains the attributes for a project's `Name`, `ProjectStatus`, `Email`, source, description, acceptedOn and deadline,
-where the project name and email are compulsory fields. The rest of the attributes are optional, where source, description and deadline are wrapped in `Optional` objects.
-These optional attributes are typed:
+The `Project` class contains the attributes for a project's `Name`,
+`ProjectStatus`, `Email`, source, description, acceptedOn and deadline, where
+the project name and email are compulsory fields. The rest of the attributes
+are optional, where source, description and deadline are wrapped in `Optional`
+objects. These optional attributes are typed:
+
 - source: String
 - projectStatus: `ProjectStatus`
 - description: String
 - acceptedOn: `LocalDate`
 - deadline: `LocalDate`
 
-Each entity uses different methods, which they inherit from `ClientModel` and `ProjectModel` interface via the `Model` interface respectively.
+Each entity uses different methods, which they inherit from `ClientModel` and
+`ProjectModel` interface via the `Model` interface respectively.
 
-Moreover, each entity is also stored in a `UniqueList`, which ensures that the list do not contain duplicates. `UniqueList` from each entity is then stored in `AddressBook`, which contains the overarching methods for handling each type of list. 
+Moreover, each entity is also stored in a `UniqueList`, which ensures that the
+list do not contain duplicates. `UniqueList` from each entity is then stored in
+`AddressBook`, which contains the overarching methods for handling each type of
+list. 
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -384,6 +394,43 @@ sorting and filtering it requires without worrying about any unintentional
 side-effects on the UI. After the user exits from fuzzy finding mode, the UI
 then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
+
+### UiEvents
+
+UiEvents is an abstraction of Keyboard events that can trigger some changes in
+user interface and its behaviour. The `UiEventManager` class is responsible of
+bundling all UiEvents that can occur. The following is the class diagram of the
+`UiEventManager` class.
+
+![UiEventManager class diagram](images/UiEventManager.png)
+
+There are currently 3 registered event handlers, namely:
+* `HelpKey` (F1)
+  * Opens up the help menu, and focuses on it if already opened
+* `FindKey` (Ctrl+F)
+  * toggles between CommandMode and SearchMode.
+* `SwitchKey` (Ctrl+W)
+  * Switches between the tabs
+
+#### UiEvent Handling
+When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
+method will be called. The following is the sequence diagram for the mentioned method.
+
+![EventHandling sequence diagram](images/EventHandling.png)
+
+The key combination that triggered the event will be checked against each of the 3
+registered event handlers *(`HelpKey`, `FindKey`, and `SwitchKey`)*. Once there is a match,
+an instance of the event handler will be created, executed and the event consumed to
+prevent the event from propagating any further.
+
+##### `HelpKey`
+![Show Help](images/ShowHelp.png)
+
+##### `FindKey`
+![Toggle command box mode](images/ToggleMode.png)
+
+#### `SwitchKey`
+![Switch Tabs](images/SwitchTab.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
