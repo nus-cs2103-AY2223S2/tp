@@ -35,8 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
-    private static final ObservableList<Pair<String, String>> EMPTY_TITLE =
-            FXCollections.observableArrayList(new Pair<>("", ""));
+    private static final ObservableList<String> EMPTY_TITLE = FXCollections.observableArrayList("");
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

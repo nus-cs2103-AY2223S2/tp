@@ -63,7 +63,7 @@ public interface Logic {
 
     ObservableList<Pair<String, String>> getReviewStatsList();
 
-    ObservableList<Pair<String, String>> getDeckNameList();
+    ObservableList<String> getDeckNameList();
 
     ObservableList<Pair<String, String>> getReviewDeckNameList();
 

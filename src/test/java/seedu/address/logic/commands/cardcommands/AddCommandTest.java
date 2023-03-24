@@ -226,11 +226,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Pair<String, String> > getDeckNameList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public int getDeckSize(int deckIndex) {
             throw new AssertionError("This method should not be called.");
         }

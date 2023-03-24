@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
@@ -215,7 +214,7 @@ public class ModelManager implements Model {
         }
 
         selectedDeck = toSelect.buildSelectedDeck();
-        setDeck(toSelect, selectedDeck); // update UniqueDeckList and GUI
+        setDeck(toSelect, selectedDeck); // will also update GUI to highlight blue card
 
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
@@ -238,16 +237,7 @@ public class ModelManager implements Model {
     public String getSelectedDeckName() {
         return Optional.ofNullable(selectedDeck)
                 .map(Deck::getDeckName)
-                .orElse("None");
-    }
-
-    @Override
-    public ObservableList<Pair<String, String> > getDeckNameList() {
-        ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
-        placeholder.add(new Pair("Current Deck:", "No deck selected!"));
-        return Optional.ofNullable(selectedDeck)
-                .map(Deck::getDeckNameList)
-                .orElse(placeholder);
+                .orElse("No deck selected.");
     }
 
     @Override
