@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.stage.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="660.0" minWidth="900" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/technologist.png" />
   </icons>
@@ -56,7 +60,7 @@
                   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
               </VBox>
 
-              <VBox fx:id="infoTabPlaceholder" maxWidth="340" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS"/>
+              <VBox fx:id="infoTabPlaceholder" maxWidth="340" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
           </SplitPane>
       </VBox>
     </Scene>

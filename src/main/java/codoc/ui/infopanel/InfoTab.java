@@ -8,6 +8,8 @@ import codoc.ui.MainWindow;
 import codoc.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -20,6 +22,9 @@ public class InfoTab extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(InfoTab.class);
 
     private DetailedInfo detailedInfo;
+
+    @FXML
+    private ImageView profilePicture;
 
     @FXML
     private Label name;
@@ -54,6 +59,9 @@ public class InfoTab extends UiPart<Region> {
         }
 
         if (protagonist != null) {
+            String imagePath = protagonist.getProfilePicture().imagePath;
+            Image image = new Image("file:" + imagePath);
+            profilePicture.setImage(image);
             name.setText(protagonist.getName().fullName);
             StringBuilder sb = new StringBuilder();
             sb.append("Year ");

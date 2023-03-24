@@ -2,9 +2,11 @@ package codoc.model.person;
 
 import static codoc.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
 import codoc.model.course.Course;
@@ -12,12 +14,12 @@ import codoc.model.module.Module;
 import codoc.model.skill.Skill;
 
 /**
- * Represents a Person in CoDoc.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Person in CoDoc. Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
+    private final ProfilePicture profilePicture;
     private final Name name;
     private final Github github;
     private final Email email;
@@ -52,6 +54,21 @@ public class Person {
         this.year = year;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
+
+        // /Users/linustws/Desktop/CS2103T/tp/src/main/java/codoc/model/person/Person.java
+        // randomly select a profile pic from the folder
+        File[] files =
+                new File("src/main/resources/images/avataricons").listFiles();
+        assert files != null;
+        int randomIndex = new Random().nextInt(files.length);
+        String imagePath = files[randomIndex].getAbsolutePath();
+
+        // set the profile pic of the person
+        this.profilePicture = new ProfilePicture(imagePath);
+    }
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
     public Name getName() {
@@ -65,6 +82,7 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
     public Course getCourse() {
         return course;
     }
@@ -72,28 +90,28 @@ public class Person {
     public Year getYear() {
         return year;
     }
+
     public Linkedin getLinkedin() {
         return linkedin;
     }
 
     /**
-     * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable skill set, which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
+
     /**
-     * Returns an immutable Module List, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable Module List, which throws {@code UnsupportedOperationException} if modification is
+     * attempted.
      */
     public Set<Module> getModules() {
         return Collections.unmodifiableSet(modules);
     }
 
     /**
-     * Returns true if both persons have the same email.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same email. This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -105,8 +123,8 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
+     * between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -119,7 +137,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getProfilePicture().equals(getProfilePicture())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getLinkedin().equals(getLinkedin())
