@@ -251,6 +251,42 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Sort events feature
+
+Sort all events in the scheduler in chronological order by entering `sort` as a command.
+A chronological order can help user to prioritise and focus on the more urgent events.
+
+#### How it is currently implemented
+
+A `SortCommand` was added to allow user to initiate the sorting of events. 
+The sorting is handled by `FXCollections#sort()`.
+The method calls by `SortCommand` is similar to the other `XXXCommand`.
+
+#### Proposed enhancement
+
+Remove `SortCommand`. Instead, automatically sort the events whenever an event is changed
+(for example: added, deleted, edited).
+
+##### Pros over existing implementation
+
+- Provide convenience for user
+- Allow smoother implementation for showing the next arbitrary number of upcoming events
+
+##### Cons over existing implementation
+
+- Repeated sorting of events whenever events are changed might introduce lag,
+  especially if there is a large number of events
+  - Possible to resolve via threads
+- Implementation may be complicated if completed/old events are still in the schedule
+
+After reviewing the following pros and cons, we have decided that the pros outweighs the cons,
+and shall implement the enhancement in the future.
+
+#### Alternatives Considered
+
+Implement our own insertion sort to use when adding events.\
+This ensures the chronological order of the events is always correct when adding.
+However, other ways of managing the chronological order is required in case of an event being edited.
 
 --------------------------------------------------------------------------------------------------------------------
 
