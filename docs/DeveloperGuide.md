@@ -166,6 +166,8 @@ The following activity diagram summarises how the application handles a new user
 
 ![CommandActivityFlowDiagram](images/CommandActivityFlowDiagram.png)
 
+The rake symbol (in the Check validity of command action above) is used to show that the action is described in another subsidiary activity diagram elsewhere. That diagram is given below.
+
 #### Activity: Check validity of command 
 ![CommandValidityActivityDiagram](images/CommandValidityActivityDiagram.png)
 

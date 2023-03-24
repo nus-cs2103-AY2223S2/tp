@@ -1,4 +1,5 @@
 @startuml
+
 start
 :User's command;
 
