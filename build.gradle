@@ -6,6 +6,10 @@ plugins {
     id 'jacoco'
 }
 
+tasks.withType(JavaExec) {
+    enableAssertions = true
+}
+
 mainClassName = 'seedu.patientist.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
