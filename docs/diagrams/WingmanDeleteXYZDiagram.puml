@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WingmanParser" as WingmanParser LOGIC_COLOR
+participant "command:DeleteXYZCommand" as DeleteXYZCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":XYZManager" as XYZManager MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("delete id")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("delete id")
+activate LogicManager
+
+LogicManager -> WingmanParser : parse(getOperationMode(), "delete id")
+activate WingmanParser
+
+create DeleteXYZCommand
+WingmanParser -> DeleteXYZCommand
+activate DeleteXYZCommand
+DeleteXYZCommand --> WingmanParser
+deactivate DeleteXYZCommand
+
+WingmanParser --> LogicManager : command
+deactivate WingmanParser
+
+LogicManager -> DeleteXYZCommand : execute()
+activate DeleteXYZCommand
+
+DeleteXYZCommand -> ModelManager : deleteXYZ(id)
+activate ModelManager
+
+ModelManager -> XYZManager : removeItem(id)
+activate XYZManager
+
+ModelManager --> DeleteXYZCommand
+XYZManager --> ModelManager
+deactivate ModelManager
+deactivate XYZManager
+
+DeleteXYZCommand --> LogicManager : commandResult
+deactivate DeleteXYZCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml

@@ -97,7 +97,6 @@ public class UnlinkPilotCommandFactory implements CommandFactory<UnlinkPilotComm
         ));
     }
 
-
     private boolean addPilot(
             Optional<String> pilotIdOptional,
             FlightPilotType type,
@@ -106,8 +105,10 @@ public class UnlinkPilotCommandFactory implements CommandFactory<UnlinkPilotComm
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfPilot =
+                Integer.parseInt(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItem(pilotIdOptional.get());
+                pilotManagerLazy.get().getItemByIndex(indexOfPilot);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -121,8 +122,10 @@ public class UnlinkPilotCommandFactory implements CommandFactory<UnlinkPilotComm
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfFlight =
+                Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }

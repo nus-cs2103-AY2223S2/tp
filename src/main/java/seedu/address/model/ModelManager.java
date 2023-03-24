@@ -16,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.exceptions.CrewNotFoundException;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.flight.exceptions.FlightNotFoundException;
 import seedu.address.model.item.Item;
@@ -225,6 +226,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePilotByIndex(int index) throws IndexOutOfBoundException {
+        pilotManager.removeItemByIndex(index);
+    }
+
+    @Override
     public void addPilot(Pilot pilot) {
         requireNonNull(pilot);
         pilotManager.addItem(pilot);
@@ -242,6 +248,18 @@ public class ModelManager implements Model {
 
         if (temp.isPresent()) {
             Pilot pilotToCheck = temp.get();
+            return pilotToCheck.isAvailable();
+        } else {
+            throw new PilotNotFoundException();
+        }
+    }
+
+    @Override
+    public boolean checkPilotByIndex(int index) throws IndexOutOfBoundException {
+        Optional<Pilot> pilot = pilotManager.getItemByIndex(index);
+
+        if (pilot.isPresent()) {
+            Pilot pilotToCheck = pilot.get();
             return pilotToCheck.isAvailable();
         } else {
             throw new PilotNotFoundException();
@@ -303,6 +321,7 @@ public class ModelManager implements Model {
         return locationManager.hasItem(location);
     }
 
+    @Override
     public void deleteLocation(Location location) {
         locationManager.removeItem(location);
     }
@@ -310,6 +329,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteLocation(String id) {
         locationManager.removeItem(id);
+    }
+
+    @Override
+    public void deleteLocationByIndex(int index) throws IndexOutOfBoundException {
+        locationManager.removeItemByIndex(index);
     }
 
     @Override
@@ -389,6 +413,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCrew(int index) throws IndexOutOfBoundException {
+        crewManager.removeItemByIndex(index);
+    }
+
+    @Override
+    public void deleteCrewByIndex(int index) throws IndexOutOfBoundException {
+        crewManager.removeItemByIndex(index);
+    }
+
+    @Override
     public void setCrew(Crew target, Crew editedCrew) {
         requireAllNonNull(target, editedCrew);
         crewManager.setItem(target, editedCrew);
@@ -400,6 +434,18 @@ public class ModelManager implements Model {
 
         if (temp.isPresent()) {
             Crew crewToCheck = temp.get();
+            return crewToCheck.isAvailable();
+        } else {
+            throw new CrewNotFoundException();
+        }
+    }
+
+    @Override
+    public boolean checkCrewByIndex(int index) throws IndexOutOfBoundException {
+        Optional<Crew> crew = crewManager.getItemByIndex(index);
+
+        if (crew.isPresent()) {
+            Crew crewToCheck = crew.get();
             return crewToCheck.isAvailable();
         } else {
             throw new CrewNotFoundException();
@@ -447,6 +493,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePlaneByIndex(int index) throws IndexOutOfBoundException {
+        planeManager.removeItemByIndex(index);
+    }
+
+    @Override
     public boolean hasPlane(Plane plane) {
         requireNonNull(plane);
         return planeManager.hasItem(plane);
@@ -469,6 +520,18 @@ public class ModelManager implements Model {
 
         if (temp.isPresent()) {
             Plane planeToCheck = temp.get();
+            return planeToCheck.isAvailable();
+        } else {
+            throw new PlaneNotFoundException();
+        }
+    }
+
+    @Override
+    public boolean checkPlaneByIndex(int index) throws IndexOutOfBoundException {
+        Optional<Plane> plane = planeManager.getItemByIndex(index);
+
+        if (plane.isPresent()) {
+            Plane planeToCheck = plane.get();
             return planeToCheck.isAvailable();
         } else {
             throw new PlaneNotFoundException();
@@ -529,15 +592,23 @@ public class ModelManager implements Model {
     public void deleteFlight(Flight target) {
         flightManager.removeItem(target);
     };
+
     @Override
     public void deleteFlight(String id) {
         flightManager.removeItem(id);
     };
+
+    @Override
+    public void deleteFlightByIndex(int index) throws IndexOutOfBoundException {
+        flightManager.removeItemByIndex(index);
+    }
+
     @Override
     public void addFlight(Flight flight) {
         requireNonNull(flight);
         flightManager.addItem(flight);
     };
+
     @Override
     public void setFlight(Flight target, Flight editedFlight) {
         requireAllNonNull(target, editedFlight);
@@ -548,6 +619,7 @@ public class ModelManager implements Model {
     public ObservableList<Flight> getFilteredFlightList() {
         return filteredFlights;
     };
+
     @Override
     public void updateFilteredFlightList(Predicate<Flight> predicate) {
         requireNonNull(predicate);

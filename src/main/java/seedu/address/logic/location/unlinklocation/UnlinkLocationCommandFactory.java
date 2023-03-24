@@ -12,6 +12,7 @@ import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
@@ -104,12 +105,15 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
         if (locationIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfLocation =
+                Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItem(locationIdOptional.get());
+                locationManagerLazy.get().getItemByIndex(indexOfLocation);
         if (locationOptional.isEmpty()) {
             return false;
         }
         target.put(type, locationOptional.get());
+
         return true;
     }
 
@@ -119,17 +123,22 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfFlight =
+                Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
 
     @Override
-    public UnlinkLocationCommand createCommand(CommandParam param) throws ParseException {
+    public UnlinkLocationCommand createCommand(
+            CommandParam param
+    ) throws ParseException, IndexOutOfBoundException {
         Optional<String> locationDepartureIdOptional =
                 param.getNamedValues(LOCATION_DEPARTURE_PREFIX);
         Optional<String> locationArrivalIdOptional =

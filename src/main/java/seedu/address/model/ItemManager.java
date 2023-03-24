@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueList;
 
@@ -122,6 +123,20 @@ public class ItemManager<T extends Item> implements
         items.remove(id);
     }
 
+    /**
+     * Remove an item in the list by the
+     * given index.
+     *
+     * @param index the index of the item to remove
+     * @throws IndexOutOfBoundException when the given index larger than size
+     */
+    public void removeItemByIndex(int index) throws IndexOutOfBoundException {
+        Optional<T> itemToRemove = getItemByIndex(index);
+        assert itemToRemove.isPresent() : "the item to remove cannot be absent.";
+
+        removeItem(itemToRemove.get().getId());
+    }
+
     @Override
     public Optional<T> getItem(String id) {
         for (T item : items) {
@@ -129,6 +144,25 @@ public class ItemManager<T extends Item> implements
                 return Optional.of(item);
             }
         }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<T> getItemByIndex(int idx) throws IndexOutOfBoundException {
+        if (idx > items.size() || items.size() == 0) {
+            throw new IndexOutOfBoundException(idx, items.size());
+        }
+
+        int count = 0;
+        for (T item: items) {
+            if (count == idx) {
+                return Optional.of(item);
+            }
+            count = count + 1;
+        }
+
+        assert false : "Should not reach here. ";
+
         return Optional.empty();
     }
 
