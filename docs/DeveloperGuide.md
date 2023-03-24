@@ -178,6 +178,29 @@ a message indicating duplicate person will be shown.
 
 Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
 
+### Edit Feature
+
+#### Implementation
+This section explains the implementation of the `edit` feature.
+The command takes in a first parameter which is the unique employee ID, then one or more other employee details that the user wants to edit.
+Executing the command edits the details of the employee into the ExecutivePro database.
+
+Below is a sequence diagram and the explanation of `edit` command.
+
+![AddCommand](images/EditSequenceDiagram.png)
+
+Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `EditCommandParser`
+to parse the user input. This creates a `EditCommand` object containing a `EditEmployeeDescriptor` object that contains the new details.
+
+Step 3. The `execute` method of `EditCommand` will be called, it returns a `CommandResult`object.
+
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
+a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+
 ### Delete Feature
 
 #### Implementation
