@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Fish> filteredFish;
+    private final SortedList<Fish> sortedFish;
     private final TaskList taskList;
     private final FilteredList<Task> filteredTasks;
     private final TankList tankList;
@@ -41,6 +44,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFish = new FilteredList<>(this.addressBook.getFishList());
+        sortedFish = new SortedList<>(this.addressBook.getFishList());
         this.taskList = new TaskList(taskList);
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         this.tankList = new TankList(tankList);
@@ -202,9 +206,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Fish> getSortedFishList() {
+        return sortedFish;
+    }
+
+    @Override
     public void updateFilteredFishList(Predicate<Fish> predicate) {
         requireNonNull(predicate);
         filteredFish.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredFishList(Comparator<Fish> comparator) {
+        requireNonNull(comparator);
+        sortedFish.setComparator(comparator);
     }
 
     @Override
