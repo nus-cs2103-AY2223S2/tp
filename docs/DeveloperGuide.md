@@ -279,7 +279,7 @@ Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exer
 The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
 which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
 
-![DeleteRoutineState1](images/AddExercuseState1.png)
+![DeleteRoutineState1](images/AddExerciseState1.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
 
 
@@ -293,7 +293,6 @@ The following sequence diagram shows how the add exercise operation works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -338,8 +337,6 @@ The following sequence diagram shows how the delete routine operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
-The following activity diagram summarizes what happens when a user executes a new command:
 
 
 #### Design considerations:
