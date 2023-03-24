@@ -259,11 +259,58 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+### Add Exercise feature
+
+#### Implementation
+
+The proposed Add Exercise mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#addExercise()` — Adds an exercise to the specified routine in 'FitBookExerciseRoutine'.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#addExercise()`
+
+Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
+
+![AddExerciseState0](images/AddExerciseState0.png)
+
+Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exercise `push-up` to the exercise list of the routine specified at index `2`
+The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
+which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
+
+![DeleteRoutineState1](images/DeleteRoutineState1.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How find executes more than once:**
+
+* **Alternative 1 (current choice):** Finds from the entire FitBook.
+    * Pros: Easy to implement.
+    * Cons: Lower performance as every command will have to filter the entire FitBook.
+
+* **Alternative 2:** Finds from an already filtered list.
+    * Pros: Better performance.
+    * Cons: May result in high memory usage as each new state has to be saved.
 ### Delete Routine feature
 
 #### Implementation
 
-The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
+The proposed Delete Routine mechanism is facilitated by `FitBook`. It implements the following operations:
 
 * `FitBook#deleteRoutine()` — Deletes the routine in the routline list in 'FitBookExerciseRoutine'.
 
