@@ -31,7 +31,7 @@ public class JsonSerializableTuteeManagingSystemTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         TuteeManagingSystem tuteeManagingSystemFromFile = dataFromFile.toModelType();
-        TuteeManagingSystem typicalPersonsTuteeManagingSystem = TypicalPersons.getTypicalAddressBook();
+        TuteeManagingSystem typicalPersonsTuteeManagingSystem = TypicalPersons.getTypicalTuteeManagingSystem();
         assertEquals(tuteeManagingSystemFromFile, typicalPersonsTuteeManagingSystem);
     }
 

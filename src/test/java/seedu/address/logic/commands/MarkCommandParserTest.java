@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTuteeManagingSystem;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -26,8 +26,8 @@ class MarkCommandParserTest {
             .withAttendance(new Attendance(Set.of(LocalDate.of(2020, 03, 04))))
             .build();
 
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
         expectedModel.addTutee(amy);
 
         MarkCommandParser parser = new MarkCommandParser();
@@ -48,8 +48,8 @@ class MarkCommandParserTest {
     //         .withAttendance(new Attendance(Set.of(LocalDate.of(2020, 03, 04))))
     //         .build();
 
-    //     Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    //     Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    //     Model model = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
+    //     Model expectedModel = new ModelManager(getTypicalTuteeManagingSystem(), new UserPrefs());
     //     expectedModel.addTutee(amy);
 
     //     MarkCommandParser parser = new MarkCommandParser();
