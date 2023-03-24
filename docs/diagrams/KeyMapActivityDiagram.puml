@@ -18,9 +18,7 @@ elseif() then ([DOWN key pressed])
     :Sets text to textfield;
     else ([else])
     endif
-elseif () then ([else])
-:Other keys work as intended;
-else()
+else([else])
 endif
 stop
 @enduml
