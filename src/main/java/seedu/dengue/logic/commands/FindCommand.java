@@ -19,6 +19,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    // TODO: change to accept any predicate
     private final PersonContainsKeywordsPredicate predicate;
 
     public FindCommand(PersonContainsKeywordsPredicate predicate) {

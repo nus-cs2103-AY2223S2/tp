@@ -1,4 +1,20 @@
 package seedu.dengue.model.predicate;
 
-public class RangeContainsPersonPredicate {
+import java.util.function.Predicate;
+
+import seedu.dengue.model.person.Person;
+import seedu.dengue.model.range.Range;
+
+public class RangeContainsPersonPredicate implements Predicate<Person> {
+
+    private final Range range;
+
+    public RangeContainsPersonPredicate(Range range) {
+        this.range = range;
+    }
+
+    @Override
+    public boolean test(Person person) {
+        return true; // TODO: update
+    }
 }
