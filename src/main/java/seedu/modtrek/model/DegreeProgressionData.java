@@ -16,13 +16,13 @@ public class DegreeProgressionData {
 
     // Currently for cohort 2122
     public static final int TOTALCREDIT = 160;
-    private Map<String, Integer> totalRequirementCredits = Map.of(
-                "ULR", 16,
-                "CSF", 36,
-                "CSBD", 40,
-                "ITP", 12,
-                "MS", 16,
-                "UE", 40);
+    private HashMap<String, Integer> totalRequirementCredits = new HashMap<>(Map.of(
+        "ULR", 16,
+        "CSF", 36,
+        "CSBD", 40,
+        "ITP", 12,
+        "MS", 16,
+        "UE", 40));
 
     // User's calculated data
     private int completedCredit = 0;
@@ -141,10 +141,11 @@ public class DegreeProgressionData {
         StringBuilder details = new StringBuilder();
         details.append("Requirement: completed/total\n");
         for (String tag : ValidTag.getTags()) {
-            int tagTotal = totalRequirementCredits.get(tag);
+            String shortFormTag = ValidTag.getShortForm(tag).toString();
+            int tagTotal = totalRequirementCredits.get(shortFormTag);
             details.append(String.format("%1$s: %2$d / %3$d\n",
                     tag.replace("_", " "),
-                    completedRequirementCredits.get(ValidTag.getShortForm(tag).toString()),
+                    completedRequirementCredits.get(shortFormTag),
                     tag.equals("UE") ? tagTotal + duplicatedCredits : tagTotal));
         }
         details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))

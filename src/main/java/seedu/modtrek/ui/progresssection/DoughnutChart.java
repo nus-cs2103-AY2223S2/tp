@@ -62,8 +62,9 @@ public class DoughnutChart extends PieChart {
 
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
-            int completeCredits = completeCreditsMap.get(ValidTag.getShortForm(tag).toString());
-            int incompleteCredits = totalCreditsMap.get(tag) - completeCredits;
+            String shortFormTag = ValidTag.getShortForm(tag).toString();
+            int completeCredits = completeCreditsMap.get(shortFormTag);
+            int incompleteCredits = totalCreditsMap.get(shortFormTag) - completeCredits;
             doughnutData.add(new PieChart.Data(tag, completeCredits));
             doughnutData.add(new PieChart.Data(tag, incompleteCredits));
         }
