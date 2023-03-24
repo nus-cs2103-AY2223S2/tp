@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.model.item.Item;
+import seedu.address.model.location.PlaneLocationType;
 
 /**
  * Represents a plane in the Wingman app.
@@ -16,6 +17,16 @@ public class Plane implements Item {
      */
     public static final Map<FlightPlaneType, Integer> SHAPE =
             Map.of(FlightPlaneType.PLANE_USING, 1
+            );
+
+    /**
+     * THe shape of the link between plane and location.
+     * Here the number could be arbitrarily large values to
+     * indicate "infinity".
+     */
+    public static final Map<PlaneLocationType, Integer> SHAPE_FOR_LOCATION =
+            Map.of(
+                    PlaneLocationType.LOCATION_USING, 1000000
             );
 
     private static final String UUID_STRING = "UUID";

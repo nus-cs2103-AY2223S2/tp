@@ -15,7 +15,9 @@ import seedu.address.model.link.Link;
 import seedu.address.model.location.CrewLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.PilotLocationType;
+import seedu.address.model.location.PlaneLocationType;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**
@@ -46,25 +48,33 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
     private final Map<PilotLocationType, Deque<String>> pilotLink;
 
     /**
+     * Linked planes
+     */
+    private final Map<PlaneLocationType, Deque<String>> planeLink;
+
+    /**
      * Constructs a {@code JsonAdaptedLocation} with the given location details.
      * This is intended for Jackson to use.
      *
      * @param id   The id of the location.
      * @param name The name of the location.
      * @param crewLink The link between locations to crews.
-     *
+     * @param pilotLink The link between locations to pilots.
+     * @param planeLink The link between locations to planes.
      */
     @JsonCreator
     public JsonAdaptedLocation(
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("crewLink") Map<CrewLocationType, Deque<String>> crewLink,
-            @JsonProperty("pilotLink") Map<PilotLocationType, Deque<String>> pilotLink
+            @JsonProperty("pilotLink") Map<PilotLocationType, Deque<String>> pilotLink,
+            @JsonProperty("planeLink") Map<PlaneLocationType, Deque<String>> planeLink
     ) {
         this.id = id;
         this.name = name;
         this.crewLink = crewLink;
         this.pilotLink = pilotLink;
+        this.planeLink = planeLink;
     }
 
     /**
@@ -77,6 +87,7 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
         this.name = location.getName();
         this.crewLink = location.crewLink.getCopiedContents();
         this.pilotLink = location.pilotLink.getCopiedContents();
+        this.planeLink = location.planeLink.getCopiedContents();
     }
 
     @Override
@@ -111,11 +122,20 @@ public class JsonAdaptedLocation implements JsonAdaptedModel<Location> {
                                 .map(Model::getPilotManager)
                 );
 
+        Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> linkPlane =
+                Link.fromOrCreate(
+                        Plane.SHAPE_FOR_LOCATION,
+                        planeLink,
+                        GetUtil.getLazy(Model.class)
+                                .map(Model::getPlaneManager)
+                );
+
         location = new Location(
                 id,
                 name,
                 linkCrew,
-                linkPilot
+                linkPilot,
+                linkPlane
         );
 
         return location;
