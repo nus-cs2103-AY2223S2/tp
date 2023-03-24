@@ -65,38 +65,48 @@ public class IngredientBuilder {
      */
     public HashMap<Ingredient, IngredientQuantifier> build() {
         HashMap<Ingredient, IngredientQuantifier> out = new HashMap<>();
-        Ingredient main = Ingredient.of(this.arguments.get(NAME_PREFIX).get(0));
+
+        Ingredient mainIngredient = Ingredient.of(this.arguments.get(NAME_PREFIX).get(0));
         IngredientQuantity quantity = null;
-        String commonName = null;
+        String commonName = "";
+        String estimatedQuantity = "";
         List<String> remarks = new ArrayList<>();
-        List<String> estimatedQuantity = new ArrayList<>();
         Set<Ingredient> substitutes = new HashSet<>();
-        if (arguments.containsKey(AMOUNT_PREFIX)) {
+
+        if (arguments.containsKey(AMOUNT_PREFIX)) { //Take the first one
             quantity = IngredientQuantity.of(arguments.get(AMOUNT_PREFIX).get(0));
         }
-        if (arguments.containsKey(COMMON_NAME_PREFIX)) {
+        if (arguments.containsKey(ESTIMATE_PREFIX)) { //First estimated name
+            estimatedQuantity = arguments.get(ESTIMATE_PREFIX).get(0);
+        }
+        if (arguments.containsKey(COMMON_NAME_PREFIX)) { //First common name
             commonName = arguments.get(COMMON_NAME_PREFIX).get(0);
         }
         if (arguments.containsKey(REMARK_PREFIX)) {
-            remarks.addAll(arguments.get(REMARK_PREFIX));
-        }
-        if (arguments.containsKey(ESTIMATE_PREFIX)) {
-            estimatedQuantity.addAll(arguments.get(ESTIMATE_PREFIX));
+            //Invalid remarks will fail silently, and not get added.
+            List<String> remarkList = arguments.get(REMARK_PREFIX);
+            remarks.addAll(remarkList.stream()
+                    .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
+                    .collect(Collectors.toList()
+            ));
         }
         if (arguments.containsKey(SUBSTITUTION_PREFIX)) {
+            //Invalid substitutions will indicate to the system via errors thrown by Ingredient.
             substitutes.addAll(arguments.get(SUBSTITUTION_PREFIX)
                     .stream()
                     .map(Ingredient::of)
                     .collect(Collectors.toList())
             );
         }
-        out.put(main, new IngredientQuantifier(
+        out.put(mainIngredient,
+            new IngredientQuantifier(
                 quantity,
                 commonName,
-                estimatedQuantity.toArray(String[]::new),
+                estimatedQuantity,
                 remarks.toArray(String[]::new),
                 substitutes.toArray(Ingredient[]::new)
-        ));
+            )
+        );
         return out;
     }
 
@@ -116,5 +126,4 @@ public class IngredientBuilder {
     public int hashCode() {
         return name.hashCode();
     }
-
 }
