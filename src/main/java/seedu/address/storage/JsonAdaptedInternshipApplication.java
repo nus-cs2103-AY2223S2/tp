@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,6 +18,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
@@ -24,6 +28,7 @@ public class JsonAdaptedInternshipApplication {
 
     private final String companyName;
     private final String jobTitle;
+    private final List<String> reviews = new ArrayList<>();
     private final List<String> contact = new ArrayList<>();
     private final String status;
     private final String interviewDate;
@@ -34,11 +39,15 @@ public class JsonAdaptedInternshipApplication {
     @JsonCreator
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
+                                            @JsonProperty("review") List<String> reviews,
                                             @JsonProperty("status") String status,
                                             @JsonProperty("interviewDate") String interviewDate,
                                             @JsonProperty("contact") List<String> contact) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
+        if (reviews != null) {
+            this.reviews.addAll(reviews);
+        }
         if (contact != null) {
             this.contact.addAll(contact);
         }
@@ -52,6 +61,9 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(InternshipApplication source) {
         companyName = source.getCompanyName().fullName;
         jobTitle = source.getJobTitle().fullName;
+        reviews.addAll(source.getReviews().stream()
+                .map(Review::toString)
+                .collect(Collectors.toList()));
         if (source.getContact() != null) {
             contact.add(source.getContact().getPhone().value);
             contact.add(source.getContact().getEmail().value);
@@ -89,6 +101,12 @@ public class JsonAdaptedInternshipApplication {
         }
         final JobTitle modelJobTitle = new JobTitle(jobTitle);
 
+        final List<Review> reviewList = new ArrayList<>();
+        for (String review : reviews) {
+            reviewList.add(new Review(review));
+        }
+        final Set<Review> modelReviews = new HashSet<>(reviewList);
+
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     InternshipStatus.class.getSimpleName()));
@@ -115,10 +133,11 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelContact, modelStatus,
                     modelInterviewDate);
         }
 
-        return new InternshipApplication(modelCompanyName, modelJobTitle, null, modelStatus, modelInterviewDate);
+        return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews,
+                                                    null, modelStatus, modelInterviewDate);
     }
 }
