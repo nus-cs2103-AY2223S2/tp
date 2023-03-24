@@ -18,6 +18,7 @@ public class LastFedDate {
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
     public final String value;
     public final LocalDate localDate;
+    public final String alphaNumericDate;
 
     /**
      * Constructs a {@code LastFedDate}.
@@ -29,6 +30,7 @@ public class LastFedDate {
         checkArgument(isValidLastFedDate(lastFedDate), MESSAGE_CONSTRAINTS);
         value = lastFedDate;
         localDate = DateUtil.parseStringToDate(lastFedDate);
+        alphaNumericDate = DateUtil.getTaskDescriptionDateFormat(localDate);
     }
 
     /**
@@ -36,6 +38,15 @@ public class LastFedDate {
      */
     public static boolean isValidLastFedDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    public String getAlphaNumericDate() {
+        return this.alphaNumericDate;
+    }
+
+    public LocalDate getLocalDate() {
+        return this.localDate;
     }
 
     @Override

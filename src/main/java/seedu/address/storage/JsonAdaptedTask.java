@@ -10,6 +10,7 @@ import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -24,16 +25,20 @@ class JsonAdaptedTask {
 
     private final String priority;
 
+    private final String isReminder;
+
     /**
      * Constructs a {@code JsonAdaptedTask} with the given details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description,
                            @JsonProperty("tank") String tank,
-                           @JsonProperty("priority") String priority) {
+                           @JsonProperty("priority") String priority,
+                           @JsonProperty("isReminder") String isReminder) {
         this.description = description;
         this.tank = tank;
         this.priority = priority;
+        this.isReminder = isReminder;
     }
 
     /**
@@ -47,6 +52,7 @@ class JsonAdaptedTask {
         } else {
             priority = null;
         }
+        isReminder = String.valueOf(source.getIsReminder());
         if (source.isTankRelatedTask()) {
             tank = source.getTank().getTankName().fullTankName;
         } else {
@@ -79,6 +85,11 @@ class JsonAdaptedTask {
         }
 
         final Description modelDescription = new Description(description);
+
+        if (isReminder.equals("true")) {
+            TaskFeedingReminder task = new TaskFeedingReminder(modelDescription, modelTank);
+            return task;
+        }
         return new Task(modelDescription, modelTank, modelPriority);
     }
 }

@@ -2,9 +2,26 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## About Fish Ahoy!
 
+Fish Ahoy! is a desktop CLI-focused application, designed to help users take better care of their 
+aquatic pets. It allows fish keepers to:
+
+1. Keep track of their tanks and fishes in a hierarchical view, sorted by tanks.
+2. Keep track of their fishes' attributes like the last time it was fed and how often it needs to be fed
+3. Consolidate fish-up-keeping tasks and automatically remind users to feed their fish according to information
+given by the user
+
+This developer guide aims to provide instructions and guidelines for developers to understand how to
+effectively use and contribute to this project by explaining design considerations for certain key features. Moreover, 
+new developers can use this guide as an entry point for navigating this extensive code base.
+* Table of Contents
+  * Acknowledgements
+  * Setting up, getting started
+  * Design
+  * Implementation
+  * Documentation, logging, testing, configuration, dev-ops
+  * Appendix
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -116,7 +133,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/FishTankTaskClassDiagram.png" />
 
 
 The `Model` component,
@@ -238,6 +255,67 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Automatic Feeding Reminders
+#### Implementation
+
+The entrypoint of this feature is in the `start()` method of MainApp, which is automatically called when the user opens
+Fish Ahoy!. We then access the `Logic` component to access the `Model` component to find out which `Tank` have unfed
+`Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
+`TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
+each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
+if the various lists. 
+
+![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
+
+#### Design considerations:
+* Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
+  * Pros: user can update Reminders without opening the app
+  * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
+command, the reminders likely do not need to be updated.
+
+### Fish Sort feature
+
+#### Implementation
+The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
+attributes, we are able to make a `SortedList` sort its list by the specified order.
+Specifically, it currently sorts by the five compulsory fields of a fish:
+
+* Name
+* Last Fed Interval
+* Species
+* Feeding Interval
+* Tank
+
+Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
+a `SortedList` is created based off the same `AddressBook`. Hence, when we perform sorting operations, we are able to manipulate
+the original list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
+
+Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
+in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
+is passed to `FishSortCommand` and returned.
+
+![FishSortCommmandDiagram](images/FishSortDiagram.png)
+
+Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
+This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
+
+Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
+
+#### Design considerations:
+
+**Aspect: Where Sorting takes place :**
+
+* **Alternative 1 (current choice):** Use a SortedList and comparators to sort within the list.
+    * Pros: Easy to implement.
+    * Cons: Requires a separate list or wrapping.
+
+* **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
+    * Pros: More customization and control over sorting.
+    * Cons: Requires a duplicate list to be made each time.
 
 --------------------------------------------------------------------------------------------------------------------
 

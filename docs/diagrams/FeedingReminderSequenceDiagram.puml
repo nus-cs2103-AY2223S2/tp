@@ -1,0 +1,99 @@
+@startuml
+!include style.puml
+skinparam Participant {
+    FontColor #DB9CDC
+    Padding 20
+    BorderColor #FFFFFF
+}
+Actor User as user USER_COLOR
+Participant ":MainApp" as mainapp #A821B0
+Participant ":UI" as ui UI_COLOR
+Participant ":MainWindow" as mainwindow UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+
+user -[USER_COLOR]> mainapp : Opens app
+activate mainapp
+
+mainapp --> mainapp : executeFeedingReminderFeature()
+activate mainapp
+mainapp -> ui : executeFeedingReminderInitUi()
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> mainwindow : executeFeedingReminderInitMainWindow()
+activate mainwindow UI_COLOR
+
+mainwindow -[UI_COLOR]-> logic : getTaskFeedingReminderList()
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : executeFeedingReminderInitModel()
+activate model MODEL_COLOR
+
+
+model -[MODEL_COLOR]-> logic : feedingReminders
+deactivate model
+logic -[LOGIC_COLOR]-> mainwindow : feedingReminders
+deactivate logic
+logic -[hidden]-> logic
+
+loop for each feedingReminder
+    alt no CommandError
+
+        mainwindow -[UI_COLOR]-> logic : executeFeedingReminderInitLogic(feedingReminder)
+        activate logic LOGIC_COLOR
+        logic -[LOGIC_COLOR]-> ":TaskFeedingReminderCommand"  ** : new
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic
+        deactivate ":TaskFeedingReminderCommand"
+        logic -[hidden]-> ":TaskFeedingReminderCommand"
+        logic -[LOGIC_COLOR]-> ":TaskFeedingReminderCommand" : execute(model)
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic : CommandResult
+        deactivate ":TaskFeedingReminderCommand"
+
+        logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+        activate storage STORAGE_COLOR
+        storage -[STORAGE_COLOR]> storage : Save to file
+        activate storage STORAGE_COLOR_T1
+        storage --[STORAGE_COLOR]> storage
+        deactivate storage
+        storage --[STORAGE_COLOR]> logic
+        deactivate storage
+        logic -[LOGIC_COLOR]> storage : saveTaskList(tasklist)
+                activate storage STORAGE_COLOR
+                storage -[STORAGE_COLOR]> storage : Save to file
+                activate storage STORAGE_COLOR_T1
+                storage --[STORAGE_COLOR]> storage
+                deactivate storage
+                storage --[STORAGE_COLOR]> logic
+                deactivate storage
+        logic -[LOGIC_COLOR]> storage : saveTankList(tanklist)
+        activate storage STORAGE_COLOR
+        storage -[STORAGE_COLOR]> storage : Save to file
+        activate storage STORAGE_COLOR_T1
+        storage --[STORAGE_COLOR]> storage
+        deactivate storage
+        storage --[STORAGE_COLOR]> logic
+        deactivate storage
+
+        logic -[LOGIC_COLOR]-> mainwindow : CommandResult
+        deactivate logic
+        mainwindow --> mainwindow : handleGuiChange()
+        activate mainwindow
+        deactivate mainwindow
+
+    else CommandError
+        mainwindow -[UI_COLOR]-> ":ResultDisplay" : setFeedbackToUser(CommandError)
+        activate ":ResultDisplay"
+        ":ResultDisplay" --> mainwindow : Show error message
+        deactivate ":ResultDisplay"
+    end
+end
+mainwindow --> ui
+deactivate mainwindow
+ui -[UI_COLOR]-> mainapp
+deactivate ui
+deactivate user
+
+@enduml

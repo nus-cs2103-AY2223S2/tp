@@ -10,4 +10,9 @@ public interface Ui {
     /** Starts the UI (and the App).  */
     void start(Stage primaryStage);
 
+    /**
+     * Executes the auto feeding reminder feature for Ui
+     */
+    void executeFeedingReminderInitUi();
+
 }
