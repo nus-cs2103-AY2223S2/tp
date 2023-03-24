@@ -16,7 +16,7 @@ import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.studentCommands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.studentCommands.RemarkCommand;

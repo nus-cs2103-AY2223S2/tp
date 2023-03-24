@@ -19,7 +19,7 @@ public class UniqueCoursesList implements Iterable<Course> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent student as the given argument.
+     * Returns true if the list contains an equivalent course as the given argument.
      */
     public boolean contains(Course toCheck) {
         requireNonNull(toCheck);
@@ -27,8 +27,8 @@ public class UniqueCoursesList implements Iterable<Course> {
     }
 
     /**
-     * Adds a student to the list.
-     * The student must not already exist in the list.
+     * Adds a course to the list.
+     * The course must not already exist in the list.
      */
     public void add(Course toAdd) {
         requireNonNull(toAdd);
@@ -39,9 +39,9 @@ public class UniqueCoursesList implements Iterable<Course> {
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedCourse}.
+     * Replaces the course {@code target} in the list with {@code editedCourse}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedCourse} must not be the same as another existing student in the list.
+     * The course identity of {@code editedCourse} must not be the same as another existing course in the list.
      */
     public void setCourse(Course target, Course editedCourse) {
         requireAllNonNull(target, editedCourse);
@@ -59,8 +59,8 @@ public class UniqueCoursesList implements Iterable<Course> {
     }
 
     /**
-     * Removes the equivalent student from the list.
-     * The student must exist in the list.
+     * Removes the equivalent course from the list.
+     * The course must exist in the list.
      */
     public void remove(Course toRemove) {
         requireNonNull(toRemove);

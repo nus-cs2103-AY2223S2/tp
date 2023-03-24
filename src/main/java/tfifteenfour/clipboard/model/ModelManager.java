@@ -167,6 +167,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCourse(Course course) {
+        roster.deleteCourse(course);
+    }
+
+    @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
