@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 !include style.puml
 
-box Logic LOGIC_COLOR_T2
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CalidrParser" as CalidrParser LOGIC_COLOR
 participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
@@ -10,7 +10,7 @@ participant ":AddEventCommand" as AddEventCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR
+box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR_T2
 end box
 
