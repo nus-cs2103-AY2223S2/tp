@@ -2,11 +2,12 @@ package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
+import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
+import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.FROM_DESC_DEFAULT;
-import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_FROM_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -130,6 +131,11 @@ public class AddCommandParserTest {
         Task expectedTask = new SimpleTaskBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY,
                 new AddCommand(expectedTask));
+
+        // no description
+        expectedTask = new SimpleTaskBuilder(AMY).withTags().withDescription().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_DEFAULT,
+                new AddCommand(expectedTask));
     }
 
     @Test
@@ -155,10 +161,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + DESCRIPTION_DESC_BOB,
                 expectedMessage);
 
-        // missing description prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_DESCRIPTION_BOB,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_DESCRIPTION_BOB,
                 expectedMessage);
@@ -171,7 +173,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DESCRIPTION_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + BLANK_DESCRIPTION_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
@@ -179,7 +181,7 @@ public class AddCommandParserTest {
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + BLANK_DESCRIPTION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

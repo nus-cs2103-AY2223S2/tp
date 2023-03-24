@@ -43,16 +43,20 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
                             PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM, PREFIX_EFFORT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = new Description();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Effort effort = new Effort();
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_EFFORT)) {
             effort = ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get());
         }

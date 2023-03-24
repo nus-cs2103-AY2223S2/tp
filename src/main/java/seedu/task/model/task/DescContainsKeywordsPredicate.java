@@ -16,7 +16,8 @@ public class DescContainsKeywordsPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return StringUtil.containsIgnoreCase(task.getDescription().value, keyphrase);
+        return StringUtil.containsIgnoreCase(task.getDescription().value, keyphrase)
+                && task.hasDescription();
     }
 
     @Override

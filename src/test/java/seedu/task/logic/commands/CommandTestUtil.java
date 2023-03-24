@@ -29,19 +29,18 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "Amy's description";
+    public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_FROM_DATE = "2023-01-01 1800";
     public static final String VALID_TO_DATE = "2023-01-02 1800";
-
-
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
+    public static final String DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DEFAULT;
     public static final String DESCRIPTION_DESC_BOTH = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOTH;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -49,7 +48,7 @@ public class CommandTestUtil {
     public static final String TO_DESC_DEFAULT = " " + PREFIX_TO + VALID_TO_DATE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + ""; // description cannot be empty
+    public static final String BLANK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + VALID_TO_DATE;
     public static final String INVALID_TO_DESC = " " + PREFIX_TO + VALID_FROM_DATE;
