@@ -7,7 +7,6 @@ import java.util.Optional;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
-import mycelium.mycelium.logic.uiaction.TabSwitch;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
@@ -44,12 +43,12 @@ public class DeleteProjectCommand extends Command {
         if (targetProject.isEmpty()) {
             throw new CommandException(
                 Messages.MESSAGE_INVALID_PROJECT,
-                new TabSwitchAction(TabSwitch.PROJECT));
+                new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
         model.deleteProject(targetProject.get());
         return new CommandResult(
             String.format(MESSAGE_DELETE_PROJECT_SUCCESS, targetProject.get()),
-            new TabSwitchAction(TabSwitch.PROJECT));
+            new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
     }
 
     @Override

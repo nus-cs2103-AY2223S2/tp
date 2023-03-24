@@ -24,10 +24,10 @@ public class TabSwitchAction extends UiAction {
         logger.info("Switching to tab " + tabSwitch.name());
         switch (tabSwitch) {
         case PROJECT:
-            mainWindow.getEntityPanel().selectProjectTab();
+            mainWindow.selectProjectTab();
             break;
         case CLIENT:
-            mainWindow.getEntityPanel().selectClientTab();
+            mainWindow.selectClientTab();
             break;
         default:
             // Do Nothing
@@ -53,5 +53,12 @@ public class TabSwitchAction extends UiAction {
     @Override
     public int hashCode() {
         return Objects.hash(tabSwitch);
+    }
+
+    /**
+     * Represents the tab to switch to.
+     */
+    public enum TabSwitch {
+        PROJECT, CLIENT
     }
 }

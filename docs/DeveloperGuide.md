@@ -94,15 +94,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddProjectCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("dp -pn Mycelium")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `dp -pn Mycelium` Command](images/DeleteProjectSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,8 +110,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddProjectCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddProjectCommandParser`, `DeleteProjectCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -132,6 +132,39 @@ The `Model` component,
 
 </div>
 
+### Smaller components used by Model component
+***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java)
+
+![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
+
+The `Model` box is the central component of the Mycelium's data. It contains
+the entities `Client` and `Project` which are used to store the data of each
+entity.
+
+The `Client` class contains the attributes for a client's `Name`, `Email`,
+`YearOfBirth`, source and `Phone` number, where the name and email are
+compulsory fields. The rest of the attributes are optional, and hence stored in
+`Optional` objects. The source attribute is a `String`.
+
+The `Project` class contains the attributes for a project's `Name`,
+`ProjectStatus`, `Email`, source, description, acceptedOn and deadline, where
+the project name and email are compulsory fields. The rest of the attributes
+are optional, where source, description and deadline are wrapped in `Optional`
+objects. These optional attributes are typed:
+
+- source: String
+- projectStatus: `ProjectStatus`
+- description: String
+- acceptedOn: `LocalDate`
+- deadline: `LocalDate`
+
+Each entity uses different methods, which they inherit from `ClientModel` and
+`ProjectModel` interface via the `Model` interface respectively.
+
+Moreover, each entity is also stored in a `UniqueList`, which ensures that the
+list do not contain duplicates. `UniqueList` from each entity is then stored in
+`AddressBook`, which contains the overarching methods for handling each type of
+list. 
 
 ### Storage component
 
@@ -146,7 +179,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `mycelium.mycelium.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -245,7 +278,9 @@ exactly. In Mycelium, this is implemented using [Levenshtein
 distance](https://en.wikipedia.org/wiki/Levenshtein_distance). A higher
 distance corresponds to a better match; a lower distance corresponds to a worse
 match. The goal of this feature is to provide interactive fuzzy searching and
-display sorted results such that the best match is at the top.
+display sorted results such that the best match is at the top; here,
+"interactive" means that results are ranked and displayed *as* the user types
+their query.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** We will use the terms "fuzzy search" and "fuzzy
@@ -257,37 +292,40 @@ front.
 
 The main algorithm is in `Fuzzy#delta`, which is a pure function computing the
 distance between two strings. In order to use it from the application, we also
-have the `FuzzyManager` class which works with some components from the UI. The
-figure below shows a high-level overview of the classes involved.
+have the `FuzzyManager` class which simplifies the task of ranking clients and
+projects. The class diagram below shows a high level overview of the classes
+involved.
 
 ![FuzzyManagerHighLevelClassDiagram](images/FuzzyManagerHighLevelClassDiagram.png)
 
-Since the fuzzy search is done interactively as the user types, we enable the
-`CommandBox` to keep a callback (a functional interface `CommandInputListener`)
-which is called whenever the text in the input box changes. The `FuzzyManager`
-implements this interface, and, when called by `CommandBox`, performs the
-required fuzzy ranking, and then applies it to the UI. The following sequence
-diagrams illustrate this in further detail.
+First, we briefly note that since the same command input box must be toggled
+between use for regular commands (e.g. for basic CRUD) as well as for fuzzy
+searching, the `CommandBox` has a `mode` attribute to help it distinguish
+between the two states. (The toggling between states is handled by key actions,
+which is discussed in another section.) The `Mode` abstract class is
+responsible for taking action upon changes in user input. In particular, the
+`SearchMode` class encapsulates the logic required to handle search requests
+(via a change in user input) as well as applying updates to the UI. The
+following sequence diagrams illustrate this in further detail.
 
 ![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
-
-This diagram above shows us that the `MainWindow` is responsible for
-instantiating the `FuzzyManager`, and subsequently passing it to the
-`CommandBox` when creating it. The `fillInnerParts()` method is part of the
-UI's initialization routine, and the remaining details are not important for
-our purposes.
-
 ![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
-![FuzzyManagerSequenceDiagramC](images/FuzzyManagerSequenceDiagramC.png)
 
-The two sequence diagrams above describe the flow of events upon a change in
-the input text. The `handleInputChanged()` method on `CommandBox` is invoked by
-JavaFX, which in turn invokes the `FuzzyManager`. The `FuzzyManager` obtains a
-reference to the unfiltered and unsorted list of clients and projects from
-`AddressBook`, performs the necessary ranking and filtering, and finally
-applies it onto `MainWindow`. Note that the `fuzzyCompareTo()` method invoked
-on `Client` and `Project` is just a convenience method to compute the
-Levenshtein distance between their names and the existing input.
+The two figures above illustrate the end to end sequence between a change in
+user input (e.g. a user types a single character) until the updating of the UI.
+The `handleInputChanged()` method on `CommandBox` is invoked by JavaFX, and the
+contents of the command box are passed to a `SearchMode` instance to handle.
+From here, it is a three-step process.
+
+1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
+1. Pass the two lists through the `FuzzyManager#rankItems` method, which
+   performs fuzzy ranking on the lists of clients and projects
+1. Apply the two ranked lists to the `MainWindow`
+
+The `FuzzyManager#rankItems` method is just a convenient pure function which,
+when given a list of clients or projects and a query string, constructs a new
+sorted and filtered list based on how well each item matches the query. It
+relies on the algorithm implemented within the `Fuzzy` class.
 
 #### Ranking considerations
 
@@ -310,17 +348,25 @@ for potential fine-tuning in the future.
 
 #### `CommandBox` state
 
-As the same command box is used for entering regular commands as well as fuzzy
-searching, we need some way to track the state of the command box, i.e. at any
-point in time, whether it should be taking in commands or performing fuzzy
-searching. This is achieved through a simple boolean `isListening` flag in
-`CommandBox` itself. Toggling between the two states is managed by key actions,
-an explanation for which is not relevant or necessary for this section. Fuzzy
-searching is enabled if and only if `isListening` is set to `true`. (Indeed,
-our discussion of fuzzy searching above assumed that the `CommandBox` was in
-the listening state.)
+As mentioned above, the same command box is used for entering regular commands
+as well as fuzzy searching, so we need some way to track the state of the
+command box, i.e. at any point in time, whether it should be taking in commands
+or performing fuzzy searching. This is achieved through a `mode` attribute on
+the `CommandBox` class. At the time of writing, there are two modes in used -
+`CommandMode`, which is the usual mode used for entering commands to, for
+instance, create a project, and `SearchMode`, which allows the command box to
+function as an interactive search bar.
 
-The activity diagram below illustrates this dispatching of state.
+The class diagram below gives an overview of the `Mode` abstract class. The two
+methods of interest are `onInputChange()` and `onInputSubmit()`. The latter is
+invoked by `CommandBox` when the user pressed enter, while the former is
+invoked upon every change in the input. Thus, `SearchMode` implements its logic
+in the `onInputChange()` method.
+
+![ModeAbstractClassDiagram](images/ModeAbstractClassDiagram.png)
+
+The activity diagram below illustrates this dispatching of state concerning
+changes in user input.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
@@ -348,6 +394,78 @@ sorting and filtering it requires without worrying about any unintentional
 side-effects on the UI. After the user exits from fuzzy finding mode, the UI
 then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
+
+
+### Statistics Dashboard
+
+Statistics Dashboard displays statistics regarding Projects. There are three 
+main statistics: projects that are due within one week, projects that are overdue
+and a pie chart showing progress overview. The goal of this feature is to provide users 
+with useful information related to productivity to make adjustments accordingly.
+
+For projects that are due within one week, only top three projects that match the 
+condition will be displayed to ensure that users can focus on the most urgent projects. 
+
+For overdue list, all overdue projects will be displayed to make sure that users can 
+keep track of all the deadlines they have missed. 
+
+For progress overview pie chart, there will be at most three segments. The three segments 
+will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
+The size of each segment is proportional to the number of projects with its corresponding segment
+label. 
+
+#### Updating the UI
+
+For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by 
+using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides, 
+all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`. 
+Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener` 
+will be attached to the original list of projects. Whenever there is a change in the project list (e.g. 
+a new project is added), all the statistics will be updated as well.
+Moreover, when there are no projects available, there will be messages displayed.
+
+
+This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox. 
+The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
+will be called to listen for changes in project list. The remaining methods are not important in this discussion. 
+![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
+
+### UiEvents
+
+UiEvents is an abstraction of Keyboard events that can trigger some changes in
+user interface and its behaviour. The `UiEventManager` class is responsible of
+bundling all UiEvents that can occur. The following is the class diagram of the
+`UiEventManager` class.
+
+![UiEventManager class diagram](images/UiEventManager.png)
+
+There are currently 3 registered event handlers, namely:
+* `HelpKey` (F1)
+  * Opens up the help menu, and focuses on it if already opened
+* `FindKey` (Ctrl+F)
+  * toggles between CommandMode and SearchMode.
+* `SwitchKey` (Ctrl+W)
+  * Switches between the tabs
+
+#### UiEvent Handling
+When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
+method will be called. The following is the sequence diagram for the mentioned method.
+
+![EventHandling sequence diagram](images/EventHandling.png)
+
+The key combination that triggered the event will be checked against each of the 3
+registered event handlers *(`HelpKey`, `FindKey`, and `SwitchKey`)*. Once there is a match,
+an instance of the event handler will be created, executed and the event consumed to
+prevent the event from propagating any further.
+
+##### `HelpKey`
+![Show Help](images/ShowHelp.png)
+
+##### `FindKey`
+![Toggle command box mode](images/ToggleMode.png)
+
+#### `SwitchKey`
+![Switch Tabs](images/SwitchTab.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,64 @@
+@startuml
+participant ":UiEventManager" as UiEventManager
+participant ":HelpKey" as HelpKey
+participant ":SwitchKey" as SwitchKey
+participant ":FindKey" as FindKey
+participant "event:KeyEvent" as Event
+
+[-> UiEventManager : catchAndExecute(event)
+activate UiEventManager
+alt is show help event
+    create HelpKey
+    UiEventManager -> HelpKey
+    activate HelpKey
+    HelpKey --> UiEventManager: helpKey
+    deactivate HelpKey
+
+    UiEventManager -> HelpKey : execute(logic,mainWindow)
+    activate HelpKey
+    ref over HelpKey : Show help
+    HelpKey -> Event : consume()
+    activate Event
+    Event --> HelpKey
+    deactivate Event
+    HelpKey --> UiEventManager
+    deactivate HelpKey
+    destroy HelpKey
+else is switch tab event
+    create SwitchKey
+    UiEventManager -> SwitchKey
+    activate SwitchKey
+    SwitchKey --> UiEventManager: switchKey
+    deactivate SwitchKey
+
+    UiEventManager -> SwitchKey : execute(logic,mainWindow)
+    activate SwitchKey
+    ref over SwitchKey: Switch tabs
+    SwitchKey -> Event : consume()
+    activate Event
+    Event --> SwitchKey
+    deactivate Event
+    SwitchKey --> UiEventManager
+    deactivate SwitchKey
+    destroy SwitchKey
+else is toggle command box mode event
+    create FindKey
+    UiEventManager -> FindKey
+    activate FindKey
+    FindKey --> UiEventManager: findKey
+    deactivate FindKey
+
+    UiEventManager -> FindKey : execute(logic,mainWindow)
+    activate FindKey
+    ref over FindKey : Toggle command box mode
+    FindKey -> Event : consume()
+    activate Event
+    Event --> FindKey
+    deactivate Event
+    FindKey -> UiEventManager
+    deactivate FindKey
+    destroy FindKey
+end
+UiEventManager -->[
+@enduml
+
