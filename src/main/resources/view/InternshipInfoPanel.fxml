@@ -2,66 +2,75 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="infoPanel" hgap="30.0" vgap="50.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox>
+<ScrollPane fx:id="infoPanelContainer" fitToWidth="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox id="infoPanel" spacing="10.0">
          <children>
-            <Label fx:id="position" styleClass="info-panel-h1" text="Software Engineering" VBox.vgrow="ALWAYS">
-               <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-               </minWidth>
-      <!--         <minHeight>-->
-      <!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
-      <!--            <Region fx:constant="USE_PREF_SIZE" />-->
-      <!--         </minHeight>-->
-
-            </Label>
-            <Separator fx:id="separator" prefWidth="200.0" />
-            <Label fx:id="company" styleClass="info-panel-h2" text="Sample sample sample">
-               <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-               </minWidth>
-            </Label>
+            <VBox fx:id="titleSegment" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="company" styleClass="info-panel-h1" text="Company" VBox.vgrow="ALWAYS">
+                     <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                     </minWidth>
+            <!--         <minHeight>-->
+            <!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+            <!--            <Region fx:constant="USE_PREF_SIZE" />-->
+            <!--         </minHeight>-->
+                  </Label>
+                  <Separator fx:id="separator" halignment="LEFT" prefWidth="200.0" />
+                  <Label fx:id="position" styleClass="info-panel-h2" text="Position" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="detailSegment" spacing="5.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox fx:id="statusHolder">
+                     <children>
+                        <Label minWidth="-Infinity" style="-fx-font-weight: bold;" text="Status: " />
+                        <Label fx:id="status" minWidth="-Infinity" styleClass="info-panel-h3" text="Status" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="5.0" />
+                     </opaqueInsets>
+                  </HBox>
+                  <VBox fx:id="descriptionHolder" spacing="5.0">
+                     <children>
+                        <Label minWidth="-Infinity" style="-fx-font-weight: bold;" text="Description: " />
+                        <Label fx:id="description" minWidth="-Infinity" styleClass="info-panel-h3" text="Description" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="eventSegment" spacing="15.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Events:" />
+                  <VBox fx:id="eventPanel" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" />
+               </padding>
+            </VBox>
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" top="30.0" />
+         </padding>
       </VBox>
-      <VBox GridPane.rowIndex="1">
-         <children>
-            <Label fx:id="status" styleClass="info-panel-h3" text="Status">
-               <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-               </minWidth>
-            </Label>
-            <Label fx:id="description" styleClass="info-panel-h3" text="Description">
-               <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-               </minWidth>
-            </Label>
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </VBox>
-   </children>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints maxHeight="47.42857142857143" minHeight="9.714298793247764" prefHeight="25.714272635323653" />
-   </rowConstraints>
-   <columnConstraints>
-      <ColumnConstraints maxWidth="93.14288766043526" minWidth="12.000004359654017" prefWidth="54.28570992606027" />
-      <ColumnConstraints maxWidth="93.14285278320312" minWidth="10.0" prefWidth="50.857147216796875" />
-   </columnConstraints>
-   <padding>
-      <Insets bottom="30.0" left="30.0" right="30.0" top="50.0" />
-   </padding>
-</GridPane>
+   </content>
+</ScrollPane>
