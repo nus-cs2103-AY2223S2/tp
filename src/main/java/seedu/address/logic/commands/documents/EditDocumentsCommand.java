@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,6 +25,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Edits links to the resume and/or cover letter of an application identified using it's displayed index
@@ -98,6 +100,7 @@ public class EditDocumentsCommand extends Command {
 
         CompanyName companyName = internshipToEditDocuments.getCompanyName();
         JobTitle jobTitle = internshipToEditDocuments.getJobTitle();
+        Set<Review> reviews = internshipToEditDocuments.getReviews();
         Contact contact = internshipToEditDocuments.getContact();
         InternshipStatus status = internshipToEditDocuments.getStatus();
         InterviewDate interviewDate = internshipToEditDocuments.getInterviewDate();
@@ -108,7 +111,7 @@ public class EditDocumentsCommand extends Command {
 
         Documents newDocuments = new Documents(resumeLink, coverLetterLink);
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate, newDocuments);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, newDocuments);
     }
 
     @Override

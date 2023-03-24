@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,6 +18,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Edits the status of an application identified using it's displayed index from the list of internship applications.
@@ -75,11 +77,12 @@ public class EditStatusCommand extends Command {
 
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
+        Set<Review> reviews = internshipApplication.getReviews();
         Contact contact = internshipApplication.getContact();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
         Documents documents = internshipApplication.getDocuments();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, documents);
     }
 
     @Override

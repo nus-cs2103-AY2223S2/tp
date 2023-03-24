@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -18,6 +19,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Adds a contact to an application identified using it's displayed index from the list of internship applications.
@@ -79,11 +81,12 @@ public class AddContactCommand extends Command {
 
         CompanyName companyName = internshipToAddContact.getCompanyName();
         JobTitle jobTitle = internshipToAddContact.getJobTitle();
+        Set<Review> reviews = internshipToAddContact.getReviews();
         InternshipStatus status = internshipToAddContact.getStatus();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
         Documents documents = internshipToAddContact.getDocuments();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, documents);
     }
 
     @Override
