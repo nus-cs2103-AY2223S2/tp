@@ -88,7 +88,6 @@ public class RecipeCard extends UiPart<Region> {
         ingredientsTitle.setText("Ingredients:");
         recipe.getIngredients()
                 .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
-        
         //Steps
         stepsTitle.setText("Steps:");
         recipe.getSteps()
