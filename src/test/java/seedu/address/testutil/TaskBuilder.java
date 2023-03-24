@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.person.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
@@ -11,10 +13,11 @@ public class TaskBuilder {
 
     public static final String DEFAULT_TASK_NAME = "Complete A Math Exercise 1";
     public static final TaskStatus DEFAULT_TASK_STATUS = TaskStatus.INPROGRESS;
+    public static final LocalDateTime DEFAULT_CREATION_DATE = LocalDateTime.now();
 
     private Name taskName;
-
     private TaskStatus taskStatus;
+    private LocalDateTime taskCreationDate;
 
     /**
      * Creates a {@code ScoreBuilder} with the default details.
@@ -22,6 +25,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         taskName = new Name(DEFAULT_TASK_NAME);
         taskStatus = DEFAULT_TASK_STATUS;
+        taskCreationDate = DEFAULT_CREATION_DATE;
     }
 
     /**
@@ -30,6 +34,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         taskName = taskToCopy.getName();
         taskStatus = taskToCopy.getStatus();
+        taskCreationDate = taskToCopy.getCreationDate();
     }
 
     /**
@@ -48,7 +53,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LocalDateTime} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withCreationDate(LocalDateTime creationDate) {
+        this.taskCreationDate = creationDate;
+        return this;
+    }
+
     public Task build() {
-        return new Task(taskName, taskStatus);
+        return new Task(taskName, taskStatus, taskCreationDate);
     }
 }

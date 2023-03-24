@@ -16,8 +16,18 @@ import seedu.address.testutil.TaskBuilder;
 public class TaskTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void firstConstructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Task(null));
+    }
+
+    @Test
+    public void secondConstructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Task(null, null));
+    }
+
+    @Test
+    public void thirdConstructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Task(null, null, null));
     }
 
     @Test

@@ -1,6 +1,5 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
@@ -35,20 +34,14 @@ public class Task implements Comparable<Task> {
      * @param taskName A valid Task name.
      */
     public Task(Name taskName) {
-        requireNonNull(taskName);
-        this.taskName = taskName;
-        this.status = TaskStatus.INPROGRESS;
-        this.creationDate = LocalDateTime.now();
+        this(taskName, TaskStatus.INPROGRESS);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Task(Name taskName, TaskStatus status) {
-        requireAllNonNull(taskName, status);
-        this.taskName = taskName;
-        this.status = status;
-        this.creationDate = LocalDateTime.now();
+        this(taskName, status, LocalDateTime.now());
     }
 
     /**
