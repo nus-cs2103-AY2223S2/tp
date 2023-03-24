@@ -55,9 +55,9 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         studentId = studentToCopy.getStudentId();
-        modules = new HashSet<>(studentToCopy.getModules());
+        // modules = new HashSet<>(studentToCopy.getModules());
         remark = studentToCopy.getRemark();
-        tags = new HashSet<>(studentToCopy.getTags());
+        // tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -117,6 +117,6 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, studentId, modules, remark, tags);
+        return new Student(name, phone, email, studentId, remark);
     }
 }

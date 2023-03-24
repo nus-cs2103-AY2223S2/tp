@@ -16,20 +16,24 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.ReadOnlyUserPrefs;
 import tfifteenfour.clipboard.model.Roster;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
 
-public class AddCommandTest {
+public class AddStudentCommandTest {
+
+    public static final CurrentSelection TEST_CURRENT_SELECTION = new CurrentSelection();
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddStudentCommand(null));
     }
 
     @Test
@@ -37,33 +41,33 @@ public class AddCommandTest {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddStudentCommand(validStudent).execute(modelStub, TEST_CURRENT_SELECTION);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
+        AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub, TEST_CURRENT_SELECTION));
     }
 
     @Test
     public void equals() {
         Student alice = new StudentBuilder().withName("Alice").build();
         Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddStudentCommand addAliceCommand = new AddStudentCommand(alice);
+        AddStudentCommand addBobCommand = new AddStudentCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddStudentCommand addAliceCommandCopy = new AddStudentCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -80,6 +84,32 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
+        @Override
+        public boolean hasCourse(Course course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addCourse(Course course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Course> getModifiableFilteredCourseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Course> getUnmodifiableFilteredCourseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCourse(Course course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public Model copy() {

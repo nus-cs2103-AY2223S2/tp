@@ -7,7 +7,7 @@ import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
 import tfifteenfour.clipboard.model.UserPrefs;
@@ -15,9 +15,9 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudentCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddStudentCommandIntegrationTest {
 
     private Model model;
 
@@ -33,14 +33,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getRoster(), new UserPrefs());
         expectedModel.addStudent(validStudent);
 
-        assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+        assertCommandSuccess(new AddStudentCommand(validStudent), model,
+                String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getRoster().getUnmodifiableStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

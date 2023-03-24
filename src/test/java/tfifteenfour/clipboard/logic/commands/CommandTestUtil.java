@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
 import tfifteenfour.clipboard.model.Model;
@@ -67,6 +68,8 @@ public class CommandTestUtil {
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
+    public static final CurrentSelection TEST_CURRENT_SELECTION = new CurrentSelection();
+
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withStudentId(VALID_STUDENTID_AMY)
@@ -85,7 +88,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, TEST_CURRENT_SELECTION);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -115,7 +118,7 @@ public class CommandTestUtil {
         Roster expectedRoster = new Roster(actualModel.getRoster());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getUnmodifiableFilteredStudentList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, TEST_CURRENT_SELECTION));
         assertEquals(expectedRoster, actualModel.getRoster());
         assertEquals(expectedFilteredList, actualModel.getUnmodifiableFilteredStudentList());
     }

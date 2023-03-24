@@ -75,6 +75,8 @@ public interface Model {
 
     void addCourse(Course course);
 
+    void deleteCourse(Course course);
+
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.

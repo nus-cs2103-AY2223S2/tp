@@ -82,8 +82,6 @@ public class MainApp extends Application {
         ReadOnlyRoster initialData;
         try {
             addressBookOptional = storage.readRoster();
-            System.out.println("SOTRAGE ROSTER###########");
-            System.out.println(addressBookOptional.isPresent());
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Roster");
                 new File("data").mkdir();

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.exceptions.DuplicateStudentException;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
@@ -88,9 +89,20 @@ public class RosterTest {
      */
     private static class RosterStub implements ReadOnlyRoster {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Course> courses = FXCollections.observableArrayList();
 
         RosterStub(Collection<Student> students) {
             this.students.setAll(students);
+        }
+
+        @Override
+        public ObservableList<Course> getUnmodifiableCourseList() {
+            return courses;
+        }
+
+        @Override
+        public ObservableList<Course> getModifiableCourseList() {
+            return FXCollections.unmodifiableObservableList(courses);
         }
 
         @Override

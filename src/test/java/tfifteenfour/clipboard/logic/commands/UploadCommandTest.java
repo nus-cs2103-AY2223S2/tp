@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
@@ -21,6 +22,8 @@ import tfifteenfour.clipboard.model.ModelManager;
  * Contains integration tests (interaction with the Model) and unit tests for UploadCommand.
  */
 class UploadCommandTest {
+
+    private static final CurrentSelection TEST_CURRENT_SELECTION = new CurrentSelection();
 
     private static final Path UPLOAD_TEST_FOLDER_PATH = Paths.get("src/test/data/UploadFileTest");
 
@@ -54,7 +57,7 @@ class UploadCommandTest {
         Path destPath = DESTINATION_FOLDER_PATH;
         UploadCommand uploadCommand = new UploadCommand(sourcePath, destPath);
         try {
-            uploadCommand.execute(model);
+            uploadCommand.execute(model, TEST_CURRENT_SELECTION);
             Path destinationPath = destPath.resolve(sourcePath.getFileName());
             assertTrue(Files.exists(destinationPath));
         } catch (CommandException ce) {
@@ -71,8 +74,8 @@ class UploadCommandTest {
         UploadCommand uploadTestCommand = new UploadCommand(SOURCE_TEST_FILE, DESTINATION_FOLDER_PATH);
         UploadCommand uploadDuplicateCommand = new UploadCommand(SOURCE_DUPLICATE_FILE, DESTINATION_FOLDER_PATH);
         try {
-            uploadTestCommand.execute(model);
-            uploadDuplicateCommand.execute(model);
+            uploadTestCommand.execute(model, TEST_CURRENT_SELECTION);
+            uploadDuplicateCommand.execute(model, TEST_CURRENT_SELECTION);
             String sourceText = new String(Files.readAllBytes(SOURCE_DUPLICATE_FILE));
             String destinationText =
                     new String(Files.readAllBytes(DESTINATION_FOLDER_PATH.resolve("test.txt")));

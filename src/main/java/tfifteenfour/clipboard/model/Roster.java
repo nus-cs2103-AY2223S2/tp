@@ -94,6 +94,10 @@ public class Roster implements ReadOnlyRoster {
         courses.add(course);
     }
 
+    public void deleteCourse(Course course) {
+        courses.remove(course);
+    }
+
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.

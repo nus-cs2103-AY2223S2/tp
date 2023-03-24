@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -66,6 +67,8 @@ public class JsonRosterStorage implements RosterStorage {
             Roster roster = jsonToRoster(jsonRoster);
 
             return Optional.of(roster);
+        } catch (JsonParseException e){
+            throw new DataConversionException(e);
         } catch (IOException e) {
             e.printStackTrace();
             return Optional.empty();

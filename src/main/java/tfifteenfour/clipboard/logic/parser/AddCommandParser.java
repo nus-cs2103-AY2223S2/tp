@@ -37,23 +37,23 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
 
-        AddCommandType addCommandType;
+        CommandTargetType addCommandType;
         try {
-            addCommandType = AddCommandType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
+            addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Add type missing");
         }
 
         switch (addCommandType) {
-        case ADD_MODULE:
+        case MODULE:
             Course course = parseCourseInfo(args);
             return new AddCourseCommand(course);
-        case ADD_GROUP:
+        case GROUP:
             Group group = parseGroupInfo(args);
             return new AddGroupCommand(group);
-        case ADD_SESSION:
+        case SESSION:
             return new AddSessionCommand();
-        case ADD_STUDENT:
+        case STUDENT:
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);
         default:
@@ -87,7 +87,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL)
-                || !AddCommandType.isValidAddType(argMultimap.getPreamble())) {
+                || !CommandTargetType.isValidAddType(argMultimap.getPreamble())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
@@ -110,40 +110,4 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-}
-
-enum AddCommandType {
-    ADD_MODULE("course"),
-    ADD_GROUP("group"),
-    ADD_SESSION("session"),
-    ADD_STUDENT("student");
-
-    private String addType;
-
-    private AddCommandType(String addType) {
-        this.addType = addType;
-    }
-
-    public String getAddType() {
-        return this.addType;
-    }
-
-    public static AddCommandType fromString(String addType) throws ParseException {
-        for (AddCommandType sc : AddCommandType.values()) {
-            if (sc.getAddType().equalsIgnoreCase(addType)) {
-                return sc;
-            }
-        }
-
-        throw new ParseException("Unrecognised category for add command: " + addType);
-    }
-
-    public static boolean isValidAddType(String addType) throws ParseException {
-        for (AddCommandType sc : AddCommandType.values()) {
-            if (sc.getAddType().equalsIgnoreCase(addType)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
