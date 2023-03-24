@@ -9,10 +9,10 @@ import seedu.address.model.Model;
  */
 public class HelpCommand extends Command {
 
-    public static final List<String> COMMAND_WORD = List.of(new String[]{"help", "h"});
+    public static final List<String> COMMAND_WORDS = List.of(new String[]{"help", "h"});
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Shows program usage instructions.\n"
+            + "Example: " + COMMAND_WORDS;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 

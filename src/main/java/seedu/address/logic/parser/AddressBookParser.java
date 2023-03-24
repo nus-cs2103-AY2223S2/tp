@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -48,30 +49,32 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         // if the user's command fits a keyword for a command, create a parser
-        if (AddCommand.COMMAND_WORD.contains(commandWord)) {
+        if (AddCommand.COMMAND_WORDS.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
-        } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (EditCommand.COMMAND_WORDS.contains(commandWord)) {
             return new EditCommandParser().parse(arguments);
-        } else if (DeleteCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (DeleteCommand.COMMAND_WORDS.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
-        } else if (DeleteTagCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (DeleteTagCommand.COMMAND_WORDS.contains(commandWord)) {
             return new DeleteTagCommandParser().parse(arguments);
-        } else if (ClearCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (ClearCommand.COMMAND_WORDS.contains(commandWord)) {
             return new ClearCommand();
-        } else if (FilterCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (FilterCommand.COMMAND_WORDS.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
-        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (FindCommand.COMMAND_WORDS.contains(commandWord)) {
             return new FindCommandParser().parse(arguments);
-        } else if (ListCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (ListCommand.COMMAND_WORDS.contains(commandWord)) {
             return new ListCommand();
-        } else if (ExitCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (ExitCommand.COMMAND_WORDS.contains(commandWord)) {
             return new ExitCommand();
-        } else if (HelpCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (HelpCommand.COMMAND_WORDS.contains(commandWord)) {
             return new HelpCommand();
-        } else if (TagCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (TagCommand.COMMAND_WORDS.contains(commandWord)) {
             return new TagCommandParser().parse(arguments);
-        } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (ExportCommand.COMMAND_WORDS.contains(commandWord)) {
             return new ExportCommand();
+        } else if (ShortcutCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new ShortcutCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

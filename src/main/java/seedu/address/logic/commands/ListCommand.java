@@ -14,7 +14,7 @@ import seedu.address.model.Model;
  */
 public class ListCommand extends Command {
 
-    public static final List<String> COMMAND_WORD = List.of(new String[]{"list", "l"});
+    public static final List<String> COMMAND_WORDS = List.of(new String[]{"list", "l"});
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
