@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.LogicManager.UNKNOWN_STATE_MESSAGE;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelState;
 import seedu.address.model.card.QuestionContainsKeywordsPredicate;
@@ -37,19 +39,24 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String returnMessage;
         int returnListSize;
         ModelState currentState = model.getState();
-        if (currentState.equals(ModelState.MAIN_MODE)) {
-            model.updateFilteredDeckList(deckPredicate);
-            returnMessage = Messages.MESSAGE_DECKS_LISTED_OVERVIEW;
-            returnListSize = model.getFilteredDeckList().size();
-        } else {
+        switch (currentState) {
+        case DECK_MODE:
             model.updateFilteredCardList(cardPredicate);
             returnMessage = Messages.MESSAGE_CARDS_LISTED_OVERVIEW;
             returnListSize = model.getFilteredCardList().size();
+            break;
+        case MAIN_MODE:
+            model.updateFilteredDeckList(deckPredicate);
+            returnMessage = Messages.MESSAGE_DECKS_LISTED_OVERVIEW;
+            returnListSize = model.getFilteredDeckList().size();
+            break;
+        default:
+            throw new CommandException(UNKNOWN_STATE_MESSAGE);
         }
 
         return new CommandResult(
