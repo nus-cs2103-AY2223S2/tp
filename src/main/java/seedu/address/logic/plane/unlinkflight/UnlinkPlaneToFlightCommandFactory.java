@@ -134,7 +134,9 @@ public class UnlinkPlaneToFlightCommandFactory implements CommandFactory<UnlinkP
 
 
     @Override
-    public UnlinkPlaneToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public UnlinkPlaneToFlightCommand createCommand(
+            CommandParam param
+    ) throws ParseException, IndexOutOfBoundException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
         Map<FlightPlaneType, Plane> planes = new HashMap<>();
