@@ -12,7 +12,7 @@ import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
 /**
- * Deletes a Routine identified using it's displayed index from the FitBook.
+ * Deletes an Exercise identified using it's displayed index from the FitBook.
  */
 public class DeleteExerciseCommand extends Command {
 
