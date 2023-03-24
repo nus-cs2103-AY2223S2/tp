@@ -1,0 +1,12 @@
+@startuml
+!include style-group.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+UniqueGroupList *-right-> "1" Group
+Group *-down-> "1" UniquePersonList
+Group *-down-> Tag
+UniquePersonList -right-> "*" Person
+Person -up-> "*" Tag
+@enduml
