@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,6 +27,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -40,6 +45,8 @@ public class DeleteCommand extends Command {
         }
 
         Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        logger.info(String.format("Deleting Internship %s", internshipToDelete));
         //Delete internship
         model.deleteInternship(internshipToDelete);
         //Update right panel
