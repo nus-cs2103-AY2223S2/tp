@@ -75,16 +75,16 @@ public class UniqueCoursesList implements Iterable<Course> {
     }
 
     /**
-     * Replaces the contents of this list with {@code students}.
-     * {@code students} must not contain duplicate students.
+     * Replaces the contents of this list with {@code courses}.
+     * {@code courses} must not contain duplicate courses.
      */
-    public void setCourses(List<Course> students) {
-        requireAllNonNull(students);
-        if (!personsAreUnique(students)) {
+    public void setCourses(List<Course> courses) {
+        requireAllNonNull(courses);
+        if (!coursesAreUnique(courses)) {
             throw new DuplicateGroupException();
         }
 
-        internalList.setAll(students);
+        internalList.setAll(courses);
     }
 
     /**
@@ -119,12 +119,12 @@ public class UniqueCoursesList implements Iterable<Course> {
     }
 
     /**
-     * Returns true if {@code students} contains only unique students.
+     * Returns true if {@code courses} contains only unique courses.
      */
-    private boolean personsAreUnique(List<Course> students) {
-        for (int i = 0; i < students.size() - 1; i++) {
-            for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameCourse(students.get(j))) {
+    private boolean coursesAreUnique(List<Course> courses) {
+        for (int i = 0; i < courses.size() - 1; i++) {
+            for (int j = i + 1; j < courses.size(); j++) {
+                if (courses.get(i).isSameCourse(courses.get(j))) {
                     return false;
                 }
             }

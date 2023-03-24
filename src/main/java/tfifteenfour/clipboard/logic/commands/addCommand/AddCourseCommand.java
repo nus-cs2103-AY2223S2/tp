@@ -14,14 +14,14 @@ public class AddCourseCommand extends AddCommand {
 	public static final String MESSAGE_USAGE = COMMAND_WORD
 			+ " " + COMMAND_TYPE_WORD
 			+ ": Adds a course. "
-            + "Parameters: "
-            + "COURSE_CODE\n"
-            + "Example: " + COMMAND_WORD
+			+ "Parameters: "
+			+ "COURSE_CODE\n"
+			+ "Example: " + COMMAND_WORD
 			+ " " + COMMAND_TYPE_WORD
-            + " " + "CS2103T ";
+			+ " " + "CS2103T ";
 
-    public static final String MESSAGE_SUCCESS = "New course added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COURSE = "This course already exists";
+	public static final String MESSAGE_SUCCESS = "New course added: %1$s";
+	public static final String MESSAGE_DUPLICATE_COURSE = "This course already exists";
 
 	private final Course courseToAdd;
 
@@ -45,9 +45,9 @@ public class AddCourseCommand extends AddCommand {
 	}
 
 	@Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCourseCommand // instanceof handles nulls
-                && courseToAdd.equals(((AddCourseCommand) other).courseToAdd));
-    }
+	public boolean equals(Object other) {
+		return other == this // short circuit if same object
+				|| (other instanceof AddCourseCommand // instanceof handles nulls
+				&& courseToAdd.equals(((AddCourseCommand) other).courseToAdd));
+	}
 }

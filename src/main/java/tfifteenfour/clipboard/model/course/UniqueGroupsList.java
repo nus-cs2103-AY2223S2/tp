@@ -75,16 +75,16 @@ public class UniqueGroupsList implements Iterable<Group> {
     }
 
     /**
-     * Replaces the contents of this list with {@code students}.
-     * {@code students} must not contain duplicate students.
+     * Replaces the contents of this list with {@code groups}.
+     * {@code groups} must not contain duplicate groups.
      */
-    public void setGroups(List<Group> students) {
-        requireAllNonNull(students);
-        if (!personsAreUnique(students)) {
+    public void setGroups(List<Group> groups) {
+        requireAllNonNull(groups);
+        if (!groupsAreUnique(groups)) {
             throw new DuplicateGroupException();
         }
 
-        internalList.setAll(students);
+        internalList.setAll(groups);
     }
 
     /**
@@ -119,12 +119,12 @@ public class UniqueGroupsList implements Iterable<Group> {
     }
 
     /**
-     * Returns true if {@code students} contains only unique students.
+     * Returns true if {@code groups} contains only unique groups.
      */
-    private boolean personsAreUnique(List<Group> students) {
-        for (int i = 0; i < students.size() - 1; i++) {
-            for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameGroup(students.get(j))) {
+    private boolean groupsAreUnique(List<Group> groups) {
+        for (int i = 0; i < groups.size() - 1; i++) {
+            for (int j = i + 1; j < groups.size(); j++) {
+                if (groups.get(i).isSameGroup(groups.get(j))) {
                     return false;
                 }
             }
