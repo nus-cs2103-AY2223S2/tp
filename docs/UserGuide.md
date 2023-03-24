@@ -88,7 +88,7 @@ Format: `add n/NAME p/PHONE\_NUMBER e/EMAIL a/ADDRESS s/BUSINESS\_SIZE c/COMPANY
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS`
-* `add n/Betsy Crowe p/1234567 t/friend e/betsycrowe@example.com a/Newgate Prison s/5000 c/Maybank t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank t/criminal`
 
 <<<<<<< HEAD
 ### Listing all persons : 'list'
