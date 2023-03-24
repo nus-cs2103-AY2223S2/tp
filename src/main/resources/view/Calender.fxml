@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="360.0" prefWidth="420.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <FlowPane fx:id="calendar" hgap="10.0" layoutX="10.0" layoutY="75.0" prefHeight="280.0" prefWidth="400.0" vgap="5.0" />
-    <HBox alignment="CENTER" layoutX="160.0" layoutY="15.0" spacing="5.0">
+<AnchorPane style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <FlowPane fx:id="calendar" hgap="5.0" layoutX="5.0" layoutY="75.0" prefWidth="455.0" vgap="5.0" />
+    <HBox alignment="CENTER" layoutX="185.0" layoutY="15.0" spacing="5.0">
         <children>
             <Button onAction="#backOneMonth" text="&lt;">
                 <font>
@@ -27,15 +28,21 @@
             </Button>
         </children>
     </HBox>
-    <HBox alignment="CENTER" layoutX="10.0" layoutY="45.0" prefHeight="30.0" prefWidth="400.0" spacing="35.0">
+    <HBox alignment="CENTER" layoutY="45.0" prefHeight="30.0">
         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" />
-            <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" />
-            <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" textAlignment="CENTER" />
-            <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" />
-            <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" textAlignment="CENTER" />
-            <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" textAlignment="CENTER" />
-            <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" textAlignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" wrappingWidth="65.0">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin></Text>
+            <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" wrappingWidth="65.0">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin></Text>
+            <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" textAlignment="CENTER" wrappingWidth="65.0" />
+            <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" wrappingWidth="65.0" />
+            <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" textAlignment="CENTER" wrappingWidth="65.0" />
+            <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" textAlignment="CENTER" wrappingWidth="65.0" />
+            <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" textAlignment="CENTER" wrappingWidth="65.0" />
         </children>
     </HBox>
 </AnchorPane>

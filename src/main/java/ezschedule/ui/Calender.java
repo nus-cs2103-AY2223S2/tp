@@ -83,36 +83,18 @@ public class Calender extends UiPart<Region> {
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
-                StackPane stackPane = new StackPane();
-                Rectangle rectangle = new Rectangle();
-                rectangle.setFill(Color.TRANSPARENT);
-                rectangle.setStroke(Color.BLACK);
-                rectangle.setStrokeWidth(strokeWidth);
-                double rectangleWidth = (calendarWidth / 7) - strokeWidth - spacingH;
-                rectangle.setWidth(rectangleWidth);
-                double rectangleHeight = (calendarHeight / 5) - strokeWidth - spacingV;
-                rectangle.setHeight(rectangleHeight);
-                stackPane.getChildren().add(rectangle);
 
                 int calculatedDate = (j + 1) + (7 * i);
                 if (calculatedDate > dateOffset) {
                     int currentDate = calculatedDate - dateOffset;
                     if (currentDate <= monthMaxDate) {
-                        Text date = new Text(String.valueOf(currentDate));
-                        double textTranslationY = -(rectangleHeight / 2) * 0.75;
-                        date.setTranslateY(textTranslationY);
-                        stackPane.getChildren().add(date);
-
+                        String date = String.valueOf(currentDate);
                         List<Event> calendarActivities = calendarActivityMap.get(currentDate);
-                        if (calendarActivities != null) {
-                            createCalendarActivity(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
-                        }
-                    }
-                    if (today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate) {
-                        rectangle.setStroke(Color.BLUE);
+                        calendar.getChildren().add(new CalenderBox(date, calendarActivities, today, dateFocus, calculatedDate).getRoot());
+
+//                        new CalenderBox(date, calendarActivities, today, dateFocus, calculatedDate);
                     }
                 }
-                calendar.getChildren().add(stackPane);
             }
         }
     }
