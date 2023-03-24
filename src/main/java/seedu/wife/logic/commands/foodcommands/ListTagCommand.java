@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands.tagcommands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
 

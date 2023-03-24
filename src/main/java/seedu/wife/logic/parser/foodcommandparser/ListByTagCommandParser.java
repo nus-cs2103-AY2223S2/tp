@@ -1,4 +1,4 @@
-package seedu.wife.logic.parser.tagcommandparser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
