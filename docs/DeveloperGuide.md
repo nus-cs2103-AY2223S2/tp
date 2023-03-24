@@ -657,6 +657,42 @@ Use case ends
 
 *{More to be added}*
 
+#### Use case: Add a new student
+
+**MSS**
+
+1.  User request to add a new student's name and particulars
+
+2.  System adds new student and their particulars as a new entry in the list
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The given name/particulars is invalid
+
+  * 1a1. System shows an error message
+
+    Use case resumes from the start
+
+* 1b. The compulsory name field is missing
+
+  * 1a1. System shows an error message
+
+    Use case resumes from the start
+
+* 1c. A student entry with the same name exists in the list
+
+  * 1c1. System shows an error message
+
+    Use case resumes from the start
+
+* 1d. Some optional particulars are missing
+
+  * 1d1. System adds new student, leaving their particulars blank
+
+    Use case ends
+
 ### Non-Functional Requirements
 
 1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
