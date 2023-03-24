@@ -15,12 +15,15 @@ import seedu.internship.model.tag.Tag;
  */
 public class Internship {
 
+    public static final Internship EMPTY_INTERNSHIP = new Internship(new Position("EMPTY"),
+            new Company("EMPTY"), new Status(0), new Description("EMPTY"),
+            new HashSet<Tag>());
+
     private final Position position;
     private final Company company;
     private final Status status;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
-    public static final Internship EMPTY_INTERNSHIP = new Internship(new Position("EMPTY"),new Company("EMPTY"),new Status(0),new Description("EMPTY"), new HashSet<Tag>());
 
     /**
      * Every field must be present and not null.

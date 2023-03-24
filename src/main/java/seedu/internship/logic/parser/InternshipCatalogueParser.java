@@ -13,7 +13,7 @@ import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -52,7 +52,7 @@ public class InternshipCatalogueParser {
             return new DeleteCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case ViewCommand.COMMAND_WORD:
+        case SelectCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
