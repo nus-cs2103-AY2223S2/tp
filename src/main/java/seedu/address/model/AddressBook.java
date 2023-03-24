@@ -135,7 +135,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Sort Meeting in addressbook.
-     * The meeting must not already exist in the address book.
      */
     public void sortMeeting(Comparator comparator) {
         meetings.sort(comparator);
