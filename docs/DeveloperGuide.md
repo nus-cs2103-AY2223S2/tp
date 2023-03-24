@@ -147,6 +147,19 @@ Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Employee-related features
+
+The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
+
+The attributes of an Employee are:
+* `Id`: The employee id, which is their unique identifier in the company.
+* `Name`: The name of the employee.
+* `Email`: The email of the employee, which should be unique.
+* `Phone`: The phone of the employee, which should be unique.
+* `Address`: The address of the employee.
+* `Tags`: The tags assigned to the employee.
+
+
 ### Department-related features
 
 The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
@@ -229,12 +242,23 @@ Given below is an example of how `AddEmployeeToLeaveCommand` works
 #### Design considerations:
 
 ### Employee
+An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
 
-An important design consideration to note for Employee is the multiple different types of equality checks.
+An employee is identified by his ID field, and this field is used to get an employee object.
 
-An employee is identified by his ID field, and this field is used to get an employee with the specified Id.
+However, there are other fields to guard against duplication, specifically email and phone number fields. 
+For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
-However, other stronger forms of equality are used in the application. For example, when loading Employees from Storage, strict equality checks are used to ensure no two employees have the same ID, phone number or address.
+### Departments
+
+### Leaves
+
+### Cascading employee updates and deletion to department and leave
+An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
+each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files 
+where employee objects are separately created for department's and leave's employee lists. 
+Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -345,38 +369,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC3 - Create a project**
+**Use case: UC3 - List Employees in department**
 
 **MSS:**
-1. User requests to create a project.
-2. SudoHR creates the project.
+1. User requests to list the employees in a specified department. 
+2. SudoHr lists all the employees in the department.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department is invalid.
 
     * 1a1. SudoHR shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC4 - Update a project**
+**Use case: UC4 - List Employees in a department present on a given day.**
 
 **MSS:**
-1. User lists all existing projects.
-2. User requests to update a project.
-3. SudoHR updates the project.
+1. User requests to list all employees in a given department who are present.
+2. SudoHR lists the employees.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given argument is invalid.
+* 1a. The given department does not exist.
 
     * 1a1. SudoHR shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: UC5 - Delete a project**
 

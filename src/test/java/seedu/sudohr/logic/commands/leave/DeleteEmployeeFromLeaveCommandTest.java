@@ -54,7 +54,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                 TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
-        assertFalse(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+        assertFalse(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(new LeaveDate(LocalDate.parse(
                 VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
@@ -71,7 +71,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
 
-    // Remove a nonexistent employee
+    // Remove a employee from leave that already has an existing employee added
     @Test
     public void execute_removeNonExistentEmployeeFromLeave_throwsCommandException() {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
@@ -374,7 +374,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
             if (sudoHr.hasLeave(leaveToAdd)) {
-                return sudoHr.getLeave(leaveToAdd);
+                return sudoHr.getInternalLeaveIfExist(leaveToAdd);
             } else {
                 sudoHr.addLeave(leaveToAdd);
                 return leaveToAdd;
