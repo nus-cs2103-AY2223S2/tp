@@ -14,7 +14,7 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person {
-    - eventSet: Set<Event>
+    eventSet: Set<Event>
 }
 Class Address
 Class Email
