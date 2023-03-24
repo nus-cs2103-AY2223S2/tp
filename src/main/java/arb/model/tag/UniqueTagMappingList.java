@@ -3,7 +3,7 @@ package arb.model.tag;
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -273,12 +273,9 @@ public class UniqueTagMappingList implements Iterable<TagMapping> {
         if (other == this) {
             return true;
         } else if (other instanceof UniqueTagMappingList) {
-            // disregard order of tag mappings in the list
-            List<TagMapping> sortedThis = new ArrayList<>(internalList);
-            sortedThis.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
-            List<TagMapping> sortedOther = new ArrayList<>(((UniqueTagMappingList) other).internalList);
-            sortedOther.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
-            return sortedThis.equals(sortedOther);
+            // disregard order of tag mappings in the list using a set
+            return new HashSet<>(internalList)
+                    .equals(new HashSet<>(((UniqueTagMappingList) other).internalList));
         }
         return false;
     }

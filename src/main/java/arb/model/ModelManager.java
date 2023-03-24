@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
+import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -240,12 +240,7 @@ public class ModelManager implements Model {
             return false;
         }
 
-        // for tag mappings, order in the list doesn't matter
         ModelManager other = (ModelManager) obj;
-        List<TagMapping> sortedThisTagMappings = new ArrayList<>(tagMappings);
-        sortedThisTagMappings.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
-        List<TagMapping> sortedOtherTagMappings = new ArrayList<>(((ModelManager) other).tagMappings);
-        sortedOtherTagMappings.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
 
         // state check
         return addressBook.equals(other.addressBook)
@@ -254,7 +249,7 @@ public class ModelManager implements Model {
                 && filteredProjects.equals(other.filteredProjects)
                 && sortedClients.equals(other.sortedClients)
                 && sortedProjects.equals(other.sortedProjects)
-                && sortedThisTagMappings.equals(sortedOtherTagMappings);
+                && new HashSet<>(tagMappings).equals(new HashSet<>(other.tagMappings));
     }
 
 }

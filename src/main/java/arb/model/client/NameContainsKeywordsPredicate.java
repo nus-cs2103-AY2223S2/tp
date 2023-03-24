@@ -1,6 +1,8 @@
 package arb.model.client;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import arb.commons.util.StringUtil;
@@ -9,10 +11,10 @@ import arb.commons.util.StringUtil;
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Client> {
-    private final List<String> keywords;
+    private final Set<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new HashSet<>(keywords);
     }
 
     @Override
@@ -26,6 +28,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return keywords.hashCode();
     }
 
 }

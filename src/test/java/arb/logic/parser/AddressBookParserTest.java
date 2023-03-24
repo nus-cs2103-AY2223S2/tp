@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.CommandTestUtil;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
@@ -37,13 +37,16 @@ import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
+import arb.model.client.ClientContainsTagPredicate;
 import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
+import arb.model.project.ProjectContainsTagsPredicate;
 import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
 import arb.testutil.EditProjectDescriptorBuilder;
+import arb.testutil.PredicateUtil;
 import arb.testutil.ProjectBuilder;
 import arb.testutil.ProjectUtil;
 import arb.testutil.TypicalProjectSortingOptions;
@@ -139,22 +142,34 @@ public class AddressBookParserTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void parseCommand_findClient() throws Exception {
+        List<String> tags = Arrays.asList("friend", "husband");
+        List<String> names = Arrays.asList("foo", "baz");
+        ClientContainsTagPredicate expectedTagsPredicate = new ClientContainsTagPredicate(tags);
+        NameContainsKeywordsPredicate expectedKeywordsPredicate = new NameContainsKeywordsPredicate(names);
+        CombinedPredicate<Client> expectedCombinedPredicate = PredicateUtil
+                .getCombinedPredicate(expectedKeywordsPredicate, expectedTagsPredicate);
         for (String commandWord : FindClientCommand.getCommandWords()) {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            FindClientCommand command = (FindClientCommand) parser.parseCommand(
-                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
-            assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+            FindClientCommand command = (FindClientCommand) parser
+                    .parseCommand(ClientUtil.getFindClientCommand(tags, names, commandWord));
+            assertEquals(new FindClientCommand(expectedCombinedPredicate), command);
         }
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void parseCommand_findProject() throws Exception {
+        List<String> tags = Arrays.asList("painting", "pottery");
+        List<String> names = Arrays.asList("foo", "bar", "baz");
+        ProjectContainsTagsPredicate expectedTagsPredicate = new ProjectContainsTagsPredicate(tags);
+        TitleContainsKeywordsPredicate expectedKeywordsPredicate = new TitleContainsKeywordsPredicate(names);
+        CombinedPredicate<Project> expectedCombinedPredicate = PredicateUtil
+                .getCombinedPredicate(expectedKeywordsPredicate, expectedTagsPredicate);
         for (String commandWord : FindProjectCommand.getCommandWords()) {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
-                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
-            assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+            FindProjectCommand command = (FindProjectCommand) parser
+                    .parseCommand(ProjectUtil.getFindProjectCommand(tags, names, commandWord));
+            assertEquals(new FindProjectCommand(expectedCombinedPredicate), command);
         }
     }
 

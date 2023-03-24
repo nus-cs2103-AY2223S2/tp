@@ -5,10 +5,12 @@ import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Set;
 
 import arb.logic.commands.project.AddProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
+import arb.logic.commands.project.FindProjectCommand;
 import arb.model.project.Project;
 import arb.model.tag.Tag;
 
@@ -23,6 +25,22 @@ public class ProjectUtil {
     public static String getAddProjectCommand(Project project, String commandWord) {
         assert AddProjectCommand.isCommandWord(commandWord);
         return commandWord + " " + getProjectDetails(project);
+    }
+
+    /**
+     * Returns a find project command string to find a project.
+     */
+    public static String getFindProjectCommand(List<String> tags, List<String> names, String commandWord) {
+        assert FindProjectCommand.isCommandWord(commandWord);
+        StringBuilder sb = new StringBuilder();
+        sb.append(commandWord + " ");
+        tags.stream().forEach(
+            t -> sb.append(PREFIX_TAG + t + " ")
+        );
+        names.stream().forEach(
+            n -> sb.append(PREFIX_NAME + n + " ")
+        );
+        return sb.toString();
     }
 
     /**

@@ -122,6 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        assert false;
         clientListPanel = new ClientListPanel(logic.getSortedClientList());
         projectListPanel = new ProjectListPanel(logic.getSortedProjectList());
         tagMappingListPanel = new TagMappingListPanel(logic.getTagMappingList());

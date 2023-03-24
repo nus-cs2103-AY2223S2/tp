@@ -5,10 +5,12 @@ import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Set;
 
 import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
+import arb.logic.commands.client.FindClientCommand;
 import arb.model.client.Client;
 import arb.model.tag.Tag;
 
@@ -23,6 +25,22 @@ public class ClientUtil {
     public static String getAddClientCommand(Client client, String commandWord) {
         assert AddClientCommand.isCommandWord(commandWord);
         return commandWord + " " + getClientDetails(client);
+    }
+
+    /**
+     * Returns a find client command string to find a client.
+     */
+    public static String getFindClientCommand(List<String> tags, List<String> names, String commandWord) {
+        assert FindClientCommand.isCommandWord(commandWord);
+        StringBuilder sb = new StringBuilder();
+        sb.append(commandWord + " ");
+        tags.stream().forEach(
+            t -> sb.append(PREFIX_TAG + t + " ")
+        );
+        names.stream().forEach(
+            n -> sb.append(PREFIX_NAME + n + " ")
+        );
+        return sb.toString();
     }
 
     /**
