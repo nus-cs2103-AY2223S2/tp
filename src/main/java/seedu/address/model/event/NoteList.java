@@ -65,6 +65,7 @@ public class NoteList {
      * @param noteList The {@code NoteList} to add
      */
     public void addAll(NoteList noteList) {
+        assert len() + noteList.len() <= 20 : "upper limit of adding notes is 20";
         getNotes().addAll(noteList.getNotes());
     }
 
