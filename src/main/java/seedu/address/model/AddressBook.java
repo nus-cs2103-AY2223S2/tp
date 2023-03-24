@@ -97,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Return the size of the list.
      *
      */
+    @Override
     public int size() {
         return persons.size();
     }

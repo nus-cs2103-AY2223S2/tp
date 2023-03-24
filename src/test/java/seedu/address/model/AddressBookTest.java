@@ -97,6 +97,9 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        @Override
+        public int size() {return persons.size();}
     }
 
 }
