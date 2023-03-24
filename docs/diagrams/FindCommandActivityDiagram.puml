@@ -21,7 +21,7 @@ else ([else])
         if () then ([true])
             : Keep XYZ in filtered list;
         else ([false])
-            : Remove XYZ from filtered list;
+
         endif
     repeat while () is ([Have remaining XYZ in XYZList]) not ([else])
 : Show all filtered XYZ in FilteredXYZList;
