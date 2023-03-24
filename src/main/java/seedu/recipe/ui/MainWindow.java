@@ -11,7 +11,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.Logic;
@@ -138,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
      *              and a map of the changed values.
      */
     private void handleEditRecipeEvent(EditRecipeEvent event) {
-        assert event != null : "EditRecipeEvent cannot be null";    
+        assert event != null : "EditRecipeEvent cannot be null";
         int recipeIndex = event.getRecipeIndex();
         Map<String, String> changedValues = event.getChangedValues();
         try {
