@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -28,6 +31,10 @@ public class FileCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label fileName;
+    @FXML
+    private Button view;
+    @FXML
+    private Button delete;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -37,8 +44,19 @@ public class FileCard extends UiPart<Region> {
         this.file = file;
         id.setText(displayedIndex + ". ");
         fileName.setText(file.getFileName());
+        view.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("view");
+            }
+        });
+        delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("delete");
+            }
+        });
     }
-
 
     @Override
     public boolean equals(Object other) {

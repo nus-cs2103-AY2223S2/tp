@@ -3,10 +3,12 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -72,6 +74,12 @@ public class DetailDisplay extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
         address.setText("Address: " + person.getAddress().value);
+        uploadButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("upload");
+            }
+        });
 
         if (person.hasTime()) {
             time.setText("Time: " + person.getTime().toString());
