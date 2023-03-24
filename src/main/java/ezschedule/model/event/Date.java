@@ -43,6 +43,10 @@ public class Date implements Comparable<Date> {
         return date.isBefore(LocalDate.now());
     }
 
+    public boolean isFutureDate() {
+        return date.isAfter(LocalDate.now());
+    }
+
     @Override
     public int compareTo(Date otherDate) {
         return date.compareTo(otherDate.date);
