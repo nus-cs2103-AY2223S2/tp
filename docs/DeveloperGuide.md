@@ -42,12 +42,17 @@ by [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Design
+## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/tree/master/docs/diagrams) folder.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-1/tp/tree/master/docs/diagrams) folder.
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
@@ -62,14 +67,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### 2.1.1 Main components of the architecture
 
-**`Main`** has two classes called [`Main`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
-It is responsible for,
-
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
+It is responsible for, At app launch: Initializes the components in the correct sequence, and connects them up with each other. At shut down: Shuts down the components and invokes cleanup methods where necessary.
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
@@ -86,11 +86,7 @@ the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
-
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API
-* `interface` mentioned in the previous point.
+Each of the four main components (also shown in the diagram above), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
@@ -98,7 +94,7 @@ component through its interface rather than the concrete class (reason: to preve
 to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 
-<img src="images/OfficeComponentManagers.png" width="300" />
+<img src="images/OfficeComponentManagers.png" width="750" />
 
 ### 2.2 UI component
 
@@ -111,22 +107,15 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml`
-files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`]
-(https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`]
-(https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+executes user commands using the `Logic` component. listens for changes to `Model` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### 2.3 Logic component
 
-**API** : [`Logic.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -156,30 +145,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser`
-* (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown
-* above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser`
-* returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-* interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser`(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
 
-**API** : [`Model.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
-The `Model` component,
-
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
-* which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be
-* bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
-* `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain,
-* they should make sense on their own without depending on other components)
+The `Model` component, stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object). stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` objects. does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP)
 model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook`
@@ -191,29 +165,24 @@ to only require one `Tag` object per unique tag, instead of each `Person` needin
 
 ### 2.5 OfficeConnectModel component
 
-**API** : [`OfficeConnectModel.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
-<img src="images/OfficeConnectModelClassDiagram.png" width="450" />
+**API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
 
-* stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in
-* a `UniqueItemList` object).
-* stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query)
-* as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and
-* `ObservableList<AssignTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI
-* automatically updates when the data in the list change.
-* does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of
-* the domain, they should make sense on their own without depending on other components)
+<img src="images/OfficeConnectModelClassDiagram.png" width="650" />
+
+Stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object). Stores the currently 'selected' `Task` objects and 'AssignTask' (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### 2.6 Storage component
 
-**API** : [`Storage.java`]
-(https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
 Original AddressBook Storage Component
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 OfficeConnect Storage Component
-<img src="images/OfficeStorageClassDiagram.png" width="550" />
+
+<img src="images/OfficeStorageClassDiagram.png" width="750" />
+
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
 
@@ -222,14 +191,7 @@ This addition allows for increased extensibility and flexibility in the storage 
 
 The enhanced design is extendable and also capable of supporting the integration of additional databases into the
 application in the future if required.
-The `Storage` component,
-
-* can save address book data, task list data, task assignment data and user preference data in json format, and read
-* them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one
-* (if only the functionality of only one is needed).
-* depends on some classes in the `Model` and `OfficeConnectModel` component (because the `Storage` component's
-* job is to save/retrieve objects that belong to the `Model` and `OfficeConnectModel`)
+The `Storage` component, can save address book data, task list data, task assignment data and user preference data in json format, and read them back into corresponding objects. Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed). Depends on some classes in the `Model` and `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model` and `OfficeConnectModel`)
 
 ### 2.7 Common classes
 
@@ -506,6 +468,113 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
+_{Explain here how the data archiving feature will be implemented}_
+
+### Adding a task
+
+Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]` </br>
+Purpose: Allows users to add tasks into the OfficeConnectModel
+
+#### Implementation
+The implementation of this feature is supported by `AddTaskCommand` and `AddTaskCommandParser`.
+Below is a sequence diagram that illustrates how a user adds new tasks into the OfficeConnectModel. </br>
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: Format of inputs in Add Task Command**
+
+* **Alternative 1 (current choice):** Only title is required when creating a task. The other fields are optional.
+    * Pros: As users may not have a content or status in mind when creating new tasks, this alternative allows flexibility
+  in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not 
+  require content descriptions.
+    * Cons: More difficult to implement, more likely to cause bugs.
+
+* **Alternative 2:** Require all fields to be compulsory
+    * Pros: Easier to implement, fewer bugs may be generated.
+    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when 
+  creating tasks may be forced to key in random content to add tasks.
+
+#### Constraints:
+**Title must be unique:** </br>
+We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
+titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as 
+"Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be 
+able to clearly distinguish the purpose of each task just by looking at the title. </br>
+Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
+to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
+clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
+Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in 
+both the short and long term.
+
+### Deleting a task
+Syntax: `deletetask INDEX` </br>
+Purpose: Allows users to delete the task at the specified index in the OfficeConnectModel.
+
+#### Implementation
+The implementation of this feature is supported by `ListTaskCommand`, `DeleteTaskCommand` and `DeleteTaskCommandParser`.
+Below are the steps required to delete a task in the OfficeConnectModel. </br>
+
+Step 1: User keys in `listtask`, which will display the index of all tasks. 
+The user can thus obtain the index of the task that they want to delete.
+
+Step 2: User keys in `deletetask INDEX` to delete the task at the specified index. 
+If the index is invalid, an error will be thrown. 
+
+Below is an activity diagram showcasing the 2 steps: </br> 
+![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
+
+#### Design Considerations
+**Aspect: Implementation of Delete Task Command**
+
+* **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
+    * Pros: Increase convenience for users, as they do not have to remember the index of each task. Also easier to implement.
+    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
+  obtaining the index needed for `deletetask`.
+
+* **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can 
+use this index when deleting tasks
+    * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
+  troublesome for them to delete tasks as the number of steps required is reduced by one. 
+  Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
+    * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
+  If the user does not keep track of the indexes they have used for previous tasks, they may have to still 
+  call `listtask` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not 
+  give it an advantage over the first alternative. </br>
+  It would also be harder to keep track of invalid indexes. When tasks are deleted, their index should be invalid. Using
+  this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which 
+  would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e first task
+  has index 1, second task has index 2 etc) and thus the invalid indexes can be easily obtained.
+
+## Unassigning a Task from a Person
+
+**Syntax:** `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
+**Purpose:** Allows users to unassign a task from a person.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UnassignActivity.png" width="550" />
+
+Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
+
+![AddTaskSequenceDiagram](images/UnassignSequenceDiagram.png)
+### Implementation
+
+The implementation of this feature is supported by `UnassignTaskCommand` and `UnassignTaskCommandParser`.
+
+### Design Considerations
+
+**Aspect: Unassigning a task from a person**
+
+- **Alternative 1 (current choice):** Unassign tasks using the index of the person and the index of the task.
+    - Pros: Easier for users to locate the task and person they want to unassign, especially if the list of tasks or persons is long.
+    - Cons: Requires users to first obtain the index of the task and person by listing them, which might increase the steps required for the user.
+
+- **Alternative 2:** Unassign tasks using the task title and person name.
+    - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
+    - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Documentation, logging, testing, configuration, dev-ops
@@ -522,19 +591,19 @@ _{more aspects and alternatives to be added}_
 ### 5.1 Product scope
 
 **Target user profile**:
-* holds a managerial role
-* has a need to manage a significant number of subordinates
-* has a need to assign large number of tasks to subordinates
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Holds a managerial role
+* Has a need to manage a significant number of subordinates
+* Has a need to assign large number of tasks to subordinates
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
-* manage tasks and contacts faster than a typical mouse/GUI driven app
-* able to view all upcoming tasks to be completed at one glance
-* allows efficient delegation of tasks to subordinates in an organised and centralised manner
+* Manage tasks and contacts faster than a typical mouse/GUI driven app
+* Able to view all upcoming tasks to be completed at one glance
+* Allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 ### 5.2 User stories
 
@@ -745,8 +814,6 @@ feature would work in practice.
 
       Use case resumes at step 2.
 
-**Below is an activity diagram showcasing removing assignment of task from a person:** </br>
-<img src="images/UnassignActivity.png" width="250" />
 
 ---
 
@@ -918,20 +985,21 @@ feature would work in practice.
 5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
 
-### 5.5 Glossary
+### Glossary
 
-#### *U*
-* **Unassign**: remove assignment of task from the person.
+1. Unassign: remove assignment of task from the person.
 
 #### *M*
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 #### *P*
+
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix: Instructions for manual testing
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
