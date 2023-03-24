@@ -40,7 +40,7 @@ public class EmployeeId {
     }
 
 
-    /**
+    /*
      * Returns true if a given string is a valid number, and can possibly be an employee ID.
      */
     /*public static boolean isValidNumber(String test) {
