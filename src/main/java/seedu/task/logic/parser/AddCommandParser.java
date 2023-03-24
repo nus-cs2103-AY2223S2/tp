@@ -1,6 +1,7 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
@@ -71,6 +72,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO)) {
             Date from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
             Date to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
+            if (!from.isValidEvent(to)) {
+                throw new ParseException(MESSAGE_INVALID_EVENT_DATES);
+            }
             taskList = addEvents(nameList, description, tagList, from, to, effort);
             return new AddCommand(taskList);
         }

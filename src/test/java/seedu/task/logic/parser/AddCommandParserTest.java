@@ -1,19 +1,23 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
-import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_DEFAULT;
+import static seedu.task.logic.commands.CommandTestUtil.FROM_DESC_DEFAULT;
+import static seedu.task.logic.commands.CommandTestUtil.INVALID_FROM_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.task.logic.commands.CommandTestUtil.INVALID_TO_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.task.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.task.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.task.logic.commands.CommandTestUtil.TO_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -132,6 +136,21 @@ public class AddCommandParserTest {
         System.out.println(expectedTask.getDescription());
         assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_DEFAULT,
                 new AddCommand(expectedTask));
+    }
+
+    @Test
+    public void parseEvent_validDates_success() {
+        // zero tags
+        Task expectedTask = new EventBuilder().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY + FROM_DESC_DEFAULT + TO_DESC_DEFAULT,
+                new AddCommand(expectedTask));
+    }
+
+    @Test
+    public void parseEvent_invalidDates_failure() {
+        // zero tags
+        assertParseFailure(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY + INVALID_FROM_DESC + INVALID_TO_DESC,
+                MESSAGE_INVALID_EVENT_DATES);
     }
 
     @Test
