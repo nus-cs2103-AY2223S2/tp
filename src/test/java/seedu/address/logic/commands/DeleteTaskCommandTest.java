@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,8 +27,19 @@ class DeleteTaskCommandTest {
     }
 
     @Test
+    void execute_invalidStudentIndexUnfilteredList_failure() {
+        Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundPersonIndex, INDEX_FIRST_TASK);
+
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
     void execute_validStudentIndexInvalidTaskIndexUnfilteredList_failure() {
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
+        Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredPersonList().get(INDEX_FIRST_PERSON
+                .getZeroBased()).getTaskList().asUnmodifiableObservableList().size() + 1);
+
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, outOfBoundTaskIndex);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
