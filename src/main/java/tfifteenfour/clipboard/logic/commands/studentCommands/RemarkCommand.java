@@ -60,7 +60,7 @@ public class RemarkCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getStudentId(), studentToEdit.getModules(), remark, studentToEdit.getTags());
+                studentToEdit.getStudentId(), remark);
 
         model.setStudent(studentToEdit, editedStudent);
         //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);

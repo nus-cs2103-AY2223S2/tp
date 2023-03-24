@@ -1,6 +1,5 @@
 package tfifteenfour.clipboard.ui;
 
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -53,12 +52,12 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         //studentId.setText(student.getStudentId().value);
-        student.getModules().stream()
-                .sorted(Comparator.comparing(module -> module.courseCode))
-                .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        // student.getModules().stream()
+        //         .sorted(Comparator.comparing(module -> module.courseCode))
+        //         .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
+        // student.getTags().stream()
+        //         .sorted(Comparator.comparing(tag -> tag.tagName))
+        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
