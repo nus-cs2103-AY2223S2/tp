@@ -7,9 +7,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's review in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidReview(String)}
  */
-public class Review {
+public class Qualification {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reviews can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
