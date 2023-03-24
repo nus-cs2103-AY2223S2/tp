@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -20,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -27,6 +30,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**
@@ -100,19 +104,79 @@ public class EditContactCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
-        Modules updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
+        Modules updatedModules = createEditedModules(personToEdit.getModules(), editPersonDescriptor.getModules());
         Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
         Favorite currentFavorite = personToEdit.getIsFavorite();
-
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
+        Set<Tag> updatedTags = createEditedTags(personToEdit.getTags(), editPersonDescriptor.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
+                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags,
+                updatedComms, currentFavorite, updatedFaculty);
     }
 
     public EditPersonDescriptor getEditPersonDescriptor() {
         return this.editPersonDescriptor;
+    }
+
+    /**
+     * Creates and returns a {@code Module} with the updated Details of Modules Taken.
+     * If the same NusMods appears in both Old Modules and New Modules, we count that as removal.
+     * Otherwise,it is an addition.
+     *
+     * @param oldModules
+     * @param optionalNewModules
+     */
+    public static Modules createEditedModules(Modules oldModules, Optional<Modules> optionalNewModules) {
+        Set<NusMod> unmodifiableOldNusMods = oldModules.getMods();
+        Set<NusMod> oldNusMods = new HashSet<>(unmodifiableOldNusMods);
+        Set<NusMod> finalNusMods = new HashSet<>();
+
+        if (optionalNewModules.isEmpty()) {
+            return oldModules;
+        }
+
+        Modules newModules = optionalNewModules.get();
+        Set<NusMod> newNusMods = newModules.getMods();
+        for (NusMod nusMod : newNusMods) {
+            if (oldNusMods.contains(nusMod)) {
+                oldNusMods.remove(nusMod);
+            } else {
+                finalNusMods.add(nusMod);
+            }
+        }
+
+        finalNusMods.addAll(oldNusMods);
+        return new Modules(finalNusMods);
+    }
+
+    /**
+     * Creates and returns a {@code Set<Tag>} with the Updated set of Tags.
+     * If the same Tag appears in both Old Set and New Set, we count that as removal.
+     * Otherwise,it is an addition.
+     *
+     * @param unmodifiableOldTags
+     * @param optionalNewTags
+     */
+    public static Set<Tag> createEditedTags(Set<Tag> unmodifiableOldTags, Optional<Set<Tag>> optionalNewTags) {
+        Set<Tag> finalSet = new HashSet<>();
+        Set<Tag> oldTags = new HashSet<>(unmodifiableOldTags);
+        if (optionalNewTags.isEmpty()) {
+            return oldTags;
+        }
+
+        Set<Tag> newTags = optionalNewTags.get();
+        for (Tag tags : newTags) {
+            if (oldTags.contains(tags)) {
+                oldTags.remove(tags);
+            } else {
+                finalSet.add(tags);
+            }
+        }
+
+        finalSet.addAll(oldTags);
+        return finalSet;
     }
 
     @Override

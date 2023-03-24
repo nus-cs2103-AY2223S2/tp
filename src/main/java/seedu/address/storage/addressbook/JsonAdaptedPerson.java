@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -39,6 +40,7 @@ public class JsonAdaptedPerson {
     protected String major;
     protected String gender;
     protected String comms;
+    protected String faculty;
 
     protected String isFavorite;
 
@@ -56,7 +58,8 @@ public class JsonAdaptedPerson {
                              @JsonProperty("comms") String comms,
                              @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("favorite") String isFavorite) {
+                             @JsonProperty("favorite") String isFavorite,
+                             @JsonProperty("faculty") String faculty) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -67,6 +70,7 @@ public class JsonAdaptedPerson {
         this.gender = gender;
         this.comms = comms;
         this.isFavorite = isFavorite;
+        this.faculty = faculty;
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -95,6 +99,7 @@ public class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         this.isFavorite = source.getIsFavorite().toString();
+        this.faculty = source.getFaculty().faculty;
     }
 
     /**
@@ -160,9 +165,15 @@ public class JsonAdaptedPerson {
 
         CommunicationChannel modelComms = new CommunicationChannel(this.comms);
 
+        if (!Faculty.isValidFaculty(this.faculty)) {
+            throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+
+        final Faculty faculty = new Faculty(this.faculty);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
-                modelModules, modelRace, modelTags, modelComms, favoriteStatus);
+                modelModules, modelRace, modelTags, modelComms, favoriteStatus, faculty);
     }
 
 }
