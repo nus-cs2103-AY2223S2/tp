@@ -19,6 +19,7 @@ import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.ui.appointment.AppointmentCard;
 import seedu.vms.ui.patient.PatientCard;
 import seedu.vms.ui.vaccination.SimplifiedVaxTypeCard;
+import seedu.vms.ui.vaccination.VaxTypeCard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
     // Independent Ui parts residing in this Ui container
     private ListViewPanel<IdData<Patient>> patientListPanel;
     private ListViewPanel<VaxType> vaxTypeListPanel;
+    private DetailedView<VaxType> detailedVaxTypeView;
     private ListViewPanel<IdData<Appointment>> appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,7 +45,10 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
     @FXML private MenuItem helpMenuItem;
 
     @FXML private StackPane patientListPanelPlaceholder;
+
     @FXML private StackPane vaxTypeListPanelPlaceholder;
+    @FXML private VBox detailedVaxTypePanel;
+
     @FXML private StackPane appointmentListPanelPlaceholder;
 
     @FXML private VBox resultDisplayPlaceholder;
@@ -76,6 +81,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         resultDisplay.refresh();
         patientListPanel.refresh();
         vaxTypeListPanel.refresh();
+        detailedVaxTypeView.refresh();
         appointmentListPanel.refresh();
     }
 
@@ -127,6 +133,10 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
                 logic.getFilteredVaxTypeMap(),
                 (index, vaxType) -> new SimplifiedVaxTypeCard(index, vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
+        detailedVaxTypeView = new DetailedView<>(
+                logic.detailVaxTypeProperty(),
+                vaxType -> new VaxTypeCard(vaxType).getRoot());
+        detailedVaxTypePanel.getChildren().add(detailedVaxTypeView);
 
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),

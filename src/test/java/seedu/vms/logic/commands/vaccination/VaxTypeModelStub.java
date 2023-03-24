@@ -3,6 +3,7 @@ package seedu.vms.logic.commands.vaccination;
 import java.util.Collection;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
@@ -210,6 +211,18 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
         filteredMapView.setFilters(filters);
+    }
+
+    @Override
+    public ObjectProperty<VaxType> detailVaxTypeProperty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
+    }
+
+    @Override
+    public void setDetailedVaxType(VaxType vaxType) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
     }
 
 }

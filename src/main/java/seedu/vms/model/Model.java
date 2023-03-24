@@ -1,8 +1,10 @@
 package seedu.vms.model;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
@@ -194,4 +196,10 @@ public interface Model {
 
 
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
+
+
+    ObjectProperty<VaxType> detailVaxTypeProperty();
+
+
+    void setDetailedVaxType(VaxType vaxType);
 }

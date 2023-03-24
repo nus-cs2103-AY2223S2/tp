@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
@@ -30,6 +32,8 @@ import seedu.vms.model.vaccination.VaxTypeManager;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    private final ObjectProperty<VaxType> detailVaxTypeProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -211,6 +215,18 @@ public class ModelManager implements Model {
     @Override
     public void setVaxTypeManager(VaxTypeManager manager) {
         vaxTypeManager.resetData(manager);
+    }
+
+
+    @Override
+    public ObjectProperty<VaxType> detailVaxTypeProperty() {
+        return detailVaxTypeProperty;
+    }
+
+
+    @Override
+    public void setDetailedVaxType(VaxType vaxType) {
+        detailVaxTypeProperty.set(vaxType);
     }
 
     // =========== KeywordManager ==============================================================================

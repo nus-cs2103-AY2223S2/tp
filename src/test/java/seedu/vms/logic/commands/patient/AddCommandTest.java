@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
@@ -259,6 +260,18 @@ public class AddCommandTest {
         public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
+        }
+
+        @Override
+        public ObjectProperty<VaxType> detailVaxTypeProperty() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
+        }
+
+        @Override
+        public void setDetailedVaxType(VaxType vaxType) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
         }
     }
 
