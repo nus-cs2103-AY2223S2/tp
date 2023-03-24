@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddCourseCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddGroupCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCourseCommand;
@@ -63,7 +62,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         case GROUP:
             return new DeleteGroupCommand(index);
         case SESSION:
-            return new AddSessionCommand();
+            return new DeleteSessionCommand();
         case STUDENT:
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);

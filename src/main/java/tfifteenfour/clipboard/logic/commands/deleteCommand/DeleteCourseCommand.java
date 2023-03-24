@@ -20,10 +20,10 @@ public class DeleteCourseCommand extends DeleteCommand {
 			+ " " + COMMAND_TYPE_WORD
 			+ ": Deletes a course and ALL its students."
 			+ "Parameters: "
-			+ "COURSE_CODE\n"
+			+ "INDEX\n"
 			+ "Example: " + COMMAND_WORD
 			+ " " + COMMAND_TYPE_WORD
-			+ " " + "CS2103T ";
+			+ " " + "1";
 
 	public static final String MESSAGE_SUCCESS = "Course course deleted: %1$s";
 
@@ -37,10 +37,8 @@ public class DeleteCourseCommand extends DeleteCommand {
 		requireNonNull(model);
 
 		if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
-			throw new CommandException("Wrong page. Navigate to course page to add course");
+			throw new CommandException("Wrong page. Navigate to course page to delete course");
 		}
-
-
 
 		List<Course> lastShownList = model.getUnmodifiableFilteredCourseList();
 
