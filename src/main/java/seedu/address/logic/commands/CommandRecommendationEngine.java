@@ -121,13 +121,16 @@ public class CommandRecommendationEngine {
     public String recommendCommand(String userInput) throws CommandException {
         // find entered command
         int commandIndex = userInput.indexOf(" ");
-        String commandWord, commandArgs;
+        String commandWord;
+        String commandArgs;
         CommandInfo commandInfo;
 
         // not a complete command
         if (commandIndex == -1) {
             commandInfo = findMatchingCommandInfo(userInput);
-            if (commandInfo == null) throw new CommandException(INVALID_COMMAND_MESSAGE);
+            if (commandInfo == null) {
+                throw new CommandException(INVALID_COMMAND_MESSAGE);
+            }
             return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null);
         }
 
