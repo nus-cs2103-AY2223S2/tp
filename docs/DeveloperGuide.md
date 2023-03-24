@@ -814,8 +814,6 @@ feature would work in practice.
 
       Use case resumes at step 2.
 
-**Below is an activity diagram showcasing removing assignment of task from a person:** </br>
-<img src="images/UnassignActivity.png" width="250" />
 
 ---
 
