@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
@@ -20,6 +22,9 @@ import seedu.address.model.scheduler.time.util.TimeUtil;
  * Represents an automatic scheduler.
  */
 public class Scheduler {
+
+    public static final Logger logger = LogsCenter.getLogger(Scheduler.class);
+
     private List<Timetable> schedules;
     private Model model;
     private List<Person> participants;
@@ -42,6 +47,8 @@ public class Scheduler {
         // for each contact person, query person from model.
         // Each person's schedule would be constructed
         // and appended to the schedules
+        logger.info(String.format("Attempting to query %d indices from Model in Scheduler",
+            participantIndices.size()));
         addParticipants(participantIndices);
         return this;
     }
