@@ -10,7 +10,7 @@ if () then ([Invalid command format])
   :Invalid Command Format error message is shown;
   stop
 else ([else])
-:EditXYZCommandParser parses input
+:EditXYZCommandParser parses input;
 :Check if index given is valid;
 
 if () then ([Index is out of bounds])
