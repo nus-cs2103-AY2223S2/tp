@@ -32,6 +32,7 @@ class JsonAdaptedTask {
     public static final String DEADLINE_EVENT_OVERLAP = "You can only declare a deadline or an event!";
     private final String name;
     private final String description;
+    private final String hasDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private String deadline = "";
     private String from = "";
@@ -51,9 +52,11 @@ class JsonAdaptedTask {
                            @JsonProperty("from") String from,
                            @JsonProperty("to") String to,
                            @JsonProperty("effort") Long effort,
-                           @JsonProperty("alertWindow") String alertWindow) {
+                           @JsonProperty("alertWindow") String alertWindow,
+                           @JsonProperty("hasDescription") String hasDescription) {
         this.name = name;
         this.description = description;
+        this.hasDescription = String.valueOf(hasDescription);
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -77,6 +80,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
         description = source.getDescription().value;
+        hasDescription = String.valueOf(source.getDescription().getHasDescription());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,10 +119,18 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
+
+        if (Boolean.parseBoolean(hasDescription) && !Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(description);
+
+        final Description modelDescription;
+
+        if (Boolean.parseBoolean(hasDescription)) {
+            modelDescription = new Description(description);
+        } else {
+            modelDescription = new Description();
+        }
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         if (!deadline.equals("") && (!from.equals("") || !to.equals(""))) {

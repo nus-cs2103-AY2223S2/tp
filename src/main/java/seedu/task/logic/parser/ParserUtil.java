@@ -128,6 +128,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     * This function is to be used by the edit command, allowing differentiation of behaviour for empty strings.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseEditedDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (trimmedDescription.length() == 0) {
+            return new Description();
+        }
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(description);
+    }
+
+    /**
      * Parses a {@code Collection string} into a {@code Set description}
      * @param descriptions The collection of descriptions
      * @return The descriptions as a set
