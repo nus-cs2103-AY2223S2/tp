@@ -4,9 +4,15 @@ import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 public class TimeTest {
+
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    private final Time time = new Time(LocalTime.now().format(formatter));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -32,5 +38,11 @@ public class TimeTest {
 
         // valid addresses
         assertTrue(Time.isValidTime("18:00"));
+    }
+
+    @Test
+    public void isPastTime() {
+        // time has passed
+        assertTrue(time.isPastTime());
     }
 }

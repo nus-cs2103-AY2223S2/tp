@@ -11,7 +11,7 @@ import ezschedule.commons.util.AppUtil;
  * Represents an Event's date in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
@@ -37,6 +37,11 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(Date otherDate) {
+        return date.compareTo(otherDate.date);
     }
 
     @Override

@@ -167,6 +167,44 @@ Classes used by multiple components are in the `ezschedule.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort events feature
+
+Sort all events in the scheduler in chronological order by entering `sort` as a command.
+A chronological order can help user to prioritise and focus on the more urgent events.
+
+#### How it is currently implemented
+
+A `SortCommand` was added to allow user to initiate the sorting of events.
+The sorting is handled by `FXCollections#sort()`.
+The method calls by `SortCommand` is similar to the other `XXXCommand`.
+
+#### Proposed enhancement
+
+Remove `SortCommand`. Instead, automatically sort the events whenever an event is changed
+(for example: added, deleted, edited).
+
+##### Pros over existing implementation
+
+- Provide convenience for user
+- Allow smoother implementation for showing the next arbitrary number of upcoming events
+
+##### Cons over existing implementation
+
+- Repeated sorting of events whenever events are changed might introduce lag,
+  especially if there is a large number of events
+    - Possible to resolve via threads
+- Implementation may be complicated if completed/old events are still in the schedule
+
+After reviewing the following pros and cons, we have decided that the pros outweighs the cons,
+and shall implement the enhancement in the future.
+
+#### Alternatives Considered
+
+Implement our own insertion sort to use when adding events.\
+This ensures the chronological order of the events is always correct when adding.
+However, other ways of managing the chronological order is required in case of an event being edited.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -251,47 +289,40 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Sort events feature
+### \[Proposed\] Calender view feature
 
-Sort all events in the scheduler in chronological order by entering `sort` as a command.
-A chronological order can help user to prioritise and focus on the more urgent events.
+#### Proposed Implementation
 
-#### How it is currently implemented
+The proposed calender view user interface implements the following operations:
 
-A `SortCommand` was added to allow user to initiate the sorting of events. 
-The sorting is handled by `FXCollections#sort()`.
-The method calls by `SortCommand` is similar to the other `XXXCommand`.
+1. Provides an overview of all saved events in the scheduler to the user
+2. onClick() of calender date (boxes) - List all the saved events the user have for that day
 
-#### Proposed enhancement
+The feature is going to be implemented by
+1. Creating the GUI of a calender via JavaFX (Calender.fxml and CalenderBox.fxml)
+2. When the program starts, it first fetches the existing events
+3. The calender will next be "drawn" with the events for the current month
+4. The calender includes button that allow users to go to either the next or previous month, each time the button is called, the calender is "redrawn" with that particular month's events
+5. When a user were to click a date in the calender (CalenderBox.fxml), it will list all existing events of that day to the user
+6. When a user were to add, edit or update an event, the calender will be updated as well
 
-Remove `SortCommand`. Instead, automatically sort the events whenever an event is changed
-(for example: added, deleted, edited).
+#### Design considerations:
+* **Alternative 1 (current choice):** Update the Calender GUI whenever add/edit/delete an event.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
-##### Pros over existing implementation
+* **Alternative 2:** Update the Calender GUI on if the month of the event is what the Calender is current showing
+  itself.
+    * Pros: Will have better performance (e.g. for `add event`, no need to update the GUI if it is not what I am currently showing, if I were to click next).
+    * Cons: Implementation will become much more complex.
 
-- Provide convenience for user
-- Allow smoother implementation for showing the next arbitrary number of upcoming events
+#### Additional Feature
+1. onDoubleClick() of a calender date (boxes) - Shows a popup GUI of user schedule, similar to that of a timetable for either that day or week
 
-##### Cons over existing implementation
-
-- Repeated sorting of events whenever events are changed might introduce lag,
-  especially if there is a large number of events
-  - Possible to resolve via threads
-- Implementation may be complicated if completed/old events are still in the schedule
-
-After reviewing the following pros and cons, we have decided that the pros outweighs the cons,
-and shall implement the enhancement in the future.
-
-#### Alternatives Considered
-
-Implement our own insertion sort to use when adding events.\
-This ensures the chronological order of the events is always correct when adding.
-However, other ways of managing the chronological order is required in case of an event being edited.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
-
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -471,9 +502,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with 3 components (The window size may not be
+      optimum):
+      1. A calendar of the month of present time 
+      2. An input bar for user commands
+      3. A container showing the next upcoming event.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -484,12 +519,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a event
 
-1. Deleting a event while all persons are being shown
+1. Deleting a event while all events are shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. 
+      Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
