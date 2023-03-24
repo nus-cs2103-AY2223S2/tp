@@ -38,7 +38,7 @@ public class PatientUtil {
         sb.append(PREFIX_DOB + patient.getBirthDate().value + " ");
         sb.append(PREFIX_GENDER + patient.getGender().value + " ");
         sb.append(PREFIX_IC + patient.getIc().value + " ");
-        sb.append(PREFIX_DRUG_ALLERGY + patient.getDrugAllergy().toString() + " ");
+        sb.append(PREFIX_DRUG_ALLERGY + patient.getDrugAllergy().value + " ");
         sb.append(PREFIX_EMERGENCY_CONTACT_NUMBER + patient.getEmergencyContact().value + " ");
         return sb.toString();
     }

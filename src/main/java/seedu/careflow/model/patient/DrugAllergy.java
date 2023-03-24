@@ -12,6 +12,8 @@ public class DrugAllergy {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}-]{0,499}+";
     private final String drugAllergy;
 
+    public final String value;
+
     /**
      * Constructs a {@code DrugAllergy}.
      *
@@ -21,6 +23,7 @@ public class DrugAllergy {
         requireNonNull(drugAllergy);
         checkArgument(isValidDrugAllergy(drugAllergy), MESSAGE_CONSTRAINTS);
         this.drugAllergy = drugAllergy;
+        value = drugAllergy;
     }
 
     /**
