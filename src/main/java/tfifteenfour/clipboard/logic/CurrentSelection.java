@@ -16,17 +16,17 @@ import tfifteenfour.clipboard.model.tag.Tag;
 
 public class CurrentSelection {
 
-	private static final Course NON_EXISTENT_COURSE = new Course("NON-EXISTENT COURSE");
-	private static final Group NON_EXISTENT_GROUP = new Group("NON-EXISTENT GROUP");
+	private static final Course NON_EXISTENT_COURSE = new Course("NONEXISTENTCOURSE");
+	private static final Group NON_EXISTENT_GROUP = new Group("NONEXISTENTGROUP");
 	private static final Student NON_EXISTENT_STUDENT = emptyStudentBuilder();
 	private PageType currentPage;
 
-	private Course selectedCourse;
-	private Group selectedGroup;
-	private Student selectedStudent;
+	private Course selectedCourse = NON_EXISTENT_COURSE;
+	private Group selectedGroup = NON_EXISTENT_GROUP;
+	private Student selectedStudent = NON_EXISTENT_STUDENT;
 
 	private static Student emptyStudentBuilder() {
-		Name name = new Name("NON-EXISTENT STUDENT");
+		Name name = new Name("NONEXISTENT STUDENT");
 		Phone phone = new Phone("123456");
 		Email email = new Email("empty@empty.com");
 		StudentId sid = new StudentId("EMPTY99");
