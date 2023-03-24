@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,13 +15,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.ui.events.EditRecipeEvent;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
-
+/**
+ * Represents the form element for users to edit {@code Recipe}s
+ */
 public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
 
@@ -62,7 +62,7 @@ public class RecipeForm extends UiPart<Region> {
 
     @FXML
     private Button cancelButton;
-    
+
     private int displayedIndex;
     private Map<String, String> initialValues;
     private Recipe recipe;
@@ -81,6 +81,7 @@ public class RecipeForm extends UiPart<Region> {
         if (recipe != null) {
             populateFields();
         }
+        assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
@@ -117,14 +118,14 @@ public class RecipeForm extends UiPart<Region> {
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
                         .orElse("Duration was not added.")
-        );        
+        );
         //Portion
         portionField.setText(
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
                         .orElse("Portion was not added.")
-        );        
-        /* 
+        );
+        /*
         //Ingredients
         ingredientsField.setText(recipe.getIngredients().stream()
                 .map(Ingredient::toString)
@@ -151,10 +152,10 @@ public class RecipeForm extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .map(tag -> tag.tagName)
                 .collect(Collectors.joining(", ")));
-                
+
         storeInitialValues();
     }
-    
+
     /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
@@ -169,35 +170,37 @@ public class RecipeForm extends UiPart<Region> {
             String currentValue = null;
 
             switch (key) {
-                case "name":
-                    currentValue = nameField.getText();
-                    break;
-                case "duration":
-                    currentValue = durationField.getText();
-                    break;
-                case "portion":
-                    currentValue = portionField.getText();
-                    break;
-                case "ingredients":
-                    currentValue = ingredientsBox.getChildren().stream()
-                        .map(node -> ((TextField) node).getText())
-                        .collect(Collectors.joining(", "));
-                    break;
-                case "steps":
-                    currentValue = stepsBox.getChildren().stream()
-                        .map(node -> ((TextField) node).getText())
-                        .collect(Collectors.joining(", "));
-                    break;
-                case "tags":
-                    currentValue = tagsField.getText();
-                    break;
+            case "name":
+                currentValue = nameField.getText();
+                break;
+            case "duration":
+                currentValue = durationField.getText();
+                break;
+            case "portion":
+                currentValue = portionField.getText();
+                break;
+            case "ingredients":
+                currentValue = ingredientsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "steps":
+                currentValue = stepsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "tags":
+                currentValue = tagsField.getText();
+                break;
+            default:
+                return;
             }
 
             if (!initialValue.equals(currentValue)) {
                 changedValues.put(key, currentValue);
             }
         }
-        /* 
+        /*
         ...
         model.saveRecipe(recipe);
         EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
