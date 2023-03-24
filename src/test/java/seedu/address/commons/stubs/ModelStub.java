@@ -160,7 +160,7 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteCategory(Category target) {
-        // Detete the category from the list
+        // Delete the category from the list
         categories.remove(target);
         // change the category of the expenses in the list
         for (Expense expense : expenses) {
