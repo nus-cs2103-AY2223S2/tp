@@ -50,7 +50,6 @@ public class Task {
     
     public boolean getIsReminder() {
         return this.isReminder;
-
     }
 
     public Tank getTank() {
