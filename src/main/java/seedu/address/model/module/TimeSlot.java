@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TimeSlot {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module type can be Lecture/Tutorial/Lab/Assignment/Project/Exam/Quiz";
+            "Time slot should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;

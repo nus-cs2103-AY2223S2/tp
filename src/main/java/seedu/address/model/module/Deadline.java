@@ -4,6 +4,8 @@ package seedu.address.model.module;
  * Represents a Module's deadline.
  */
 public class Deadline {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadline should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\d].*";
 
     public final String value;
@@ -20,7 +22,7 @@ public class Deadline {
     }
 
     /**
-     * Returns if a given string is a valid timeSlot.
+     * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
         return test.matches(VALIDATION_REGEX);

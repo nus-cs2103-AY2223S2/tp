@@ -54,7 +54,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String type} into a {@code Type}.
+     * Parses a {@code String resource} into a {@code Resource}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code type} is invalid.
@@ -129,9 +129,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static Teacher parseTeacher(String teacher) {
+    public static Teacher parseTeacher(String teacher) throws ParseException {
         requireNonNull(teacher);
         String trimmedTeacher = teacher.trim();
+        if (!Teacher.isValidTeacher(trimmedTeacher)) {
+            throw new ParseException(Teacher.MESSAGE_CONSTRAINTS);
+        }
         return new Teacher(trimmedTeacher);
     }
 

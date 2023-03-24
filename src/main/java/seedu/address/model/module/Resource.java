@@ -18,12 +18,13 @@ public class Resource {
     /**
      * Constructs a {@code Type}.
      *
-     * @param type A valid type number.
+     * @param resource A valid resource.
      */
-    public Resource(String type) {
-        requireNonNull(type);
-        checkArgument(isValidResource(type), MESSAGE_CONSTRAINTS);
-        value = type;
+    public Resource(String resource) {
+        // resource is optional so we do not need requireNonNull
+        // requireNonNull(resource);
+        // checkArgument(isValidResource(resource), MESSAGE_CONSTRAINTS);
+        value = resource;
     }
 
     /**
@@ -41,8 +42,8 @@ public class Resource {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Resource // instanceof handles nulls
-                && value.equals(((Resource) other).value)); // state check
+                || (other instanceof seedu.address.model.module.Resource // instanceof handles nulls
+                && value.equals(((seedu.address.model.module.Resource) other).value)); // state check
     }
 
     @Override
