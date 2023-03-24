@@ -409,18 +409,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a patient and inputs his information.
-2.  Medimate adds the patient.
+1. User clicks "Add" button above the patient list.
+2. user enters the required patient information, including name, phone number, email, and address.
+3. user submits the patient information by clicking "OK" button.
+4. Medimate adds a patient and stores the information in the database.
 
     Use Case ends.
 
 **Extensions**
 
-* 1a. User input format is wrong.
-  * 1a1.  Medimate asks User for another correct input of the patient’s information.
-  * 1a2.  User inputs a new line of patient’s information with the correct format.
+
+* 2a. User input format is wrong.
+  * 2a1.  Medimate asks User for another correct input of the patient’s information.
+  * 2a2. User inputs a new line of patient’s information with the correct format.
     
     Use Case resumes at step 2.
+  
+**Use case: View patients' document**
+
+**MSS**
+
+1. User clicks "view" button on the patient's file list.
+2. Medimate retrieves the correspondent PDF document.
+3. Medimate displays the PDF document to the user in a new window.
+
+Use case ends.
 
 **Use case:  List patients by their booked schedules**
 
