@@ -23,7 +23,6 @@ import seedu.socket.model.ModelManager;
 import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.project.Project;
-import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.ProjectBuilder;
 import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 import seedu.socket.testutil.TypicalProjects;
