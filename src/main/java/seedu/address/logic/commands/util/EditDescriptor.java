@@ -140,9 +140,9 @@ public class EditDescriptor {
     }
 
     public Optional<Set<MedicalQualificationTag>> getMedicalTags() {
-        return (medicalTags != null) ? Optional.of(
-                Collections.unmodifiableSet(medicalTags)
-        ) : Optional.empty();
+        return (medicalTags != null)
+                ? Optional.of(Collections.unmodifiableSet(medicalTags))
+                : Optional.empty();
     }
 
     /**
@@ -162,7 +162,9 @@ public class EditDescriptor {
      * @return {@code Optional} of the set of tags.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null)
+                ? Optional.of(Collections.unmodifiableSet(tags))
+                : Optional.empty();
     }
 
     /**
@@ -189,7 +191,7 @@ public class EditDescriptor {
 
     /**
      * Creates and returns a {@code Elderly} with the details of {@code elderlyToEdit}
-     * edited with {@code editElderlyDescriptor}.
+     * edited with {@code editDescriptor}.
      *
      * @param elderlyToEdit Elderly to edit.
      * @param editDescriptor Edit details.
@@ -209,20 +211,21 @@ public class EditDescriptor {
         Set<Tag> updatedTags = editDescriptor.getTags().orElse(elderlyToEdit.getTags());
         Set<AvailableDate> updatedDates = editDescriptor.getAvailableDates()
                 .orElse(elderlyToEdit.getAvailableDates());
+
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags, updatedDates);
     }
 
     /**
      * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
-     * edited with {@code editVolunteerDescriptor}.
+     * edited with {@code editDescriptor}.
      *
      * @param volunteerToEdit Volunteer to edit.
      * @param editDescriptor Edit details.
      * @return Edited volunteer.
      */
     public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                  EditDescriptor editDescriptor) {
+            EditDescriptor editDescriptor) {
         assert volunteerToEdit != null;
 
         Name updatedName = editDescriptor.getName().orElse(volunteerToEdit.getName());
@@ -273,6 +276,6 @@ public class EditDescriptor {
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, email, address, nric,
-                age, region, riskLevel, medicalTags, tags);
+                age, region, riskLevel, medicalTags, availableDates, tags);
     }
 }

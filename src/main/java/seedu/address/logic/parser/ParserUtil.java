@@ -28,6 +28,7 @@ public class ParserUtil {
 
     /**
      * Defines the functional interface that the argument parsers should follow.
+     *
      * @param <R> The return type.
      */
     @FunctionalInterface
