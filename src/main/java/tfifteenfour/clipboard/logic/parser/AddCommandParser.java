@@ -67,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     private Course parseCourseInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        if (tokens.length > 3) {
+        if (tokens.length != 3) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
         }
 
@@ -77,7 +77,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     private Group parseGroupInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        if (tokens.length > 3) {
+        if (tokens.length != 3) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
         }
 
