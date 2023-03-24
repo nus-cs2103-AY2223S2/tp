@@ -18,9 +18,6 @@ import seedu.address.model.category.UserDefinedCategory;
 public class EditCategory extends Command {
     public static final String COMMAND_WORD = "ecat";
 
-    public static final String MESSAGE_NO_EXISTING_CATEGORY = "There is no such category!";
-
-    public static final String MESSAGE_DEFAULT_CATEGORY = "The MISC category can not be edited!";
     private final Index targetIndex;
 
     private final String newCategoryName;
