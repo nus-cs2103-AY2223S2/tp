@@ -31,7 +31,7 @@ class RemarkCommandTest {
 
     @Test
     void execute_addRemarkUnfilteredList_success() {
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
@@ -50,8 +50,8 @@ class RemarkCommandTest {
     public void execute_addRemarkFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student editedStudent = new StudentBuilder(model.getFilteredStudentList()
+        Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getUnmodifiableFilteredStudentList()
                 .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
@@ -69,7 +69,7 @@ class RemarkCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getUnmodifiableFilteredStudentList().size() + 1);
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -81,7 +81,7 @@ class RemarkCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getRoster().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getRoster().getUnmodifiableStudentList().size());
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
 
@@ -90,7 +90,7 @@ class RemarkCommandTest {
 
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
@@ -108,8 +108,8 @@ class RemarkCommandTest {
     public void execute_deleteRemarkFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student editedStudent = new StudentBuilder(model.getFilteredStudentList()
+        Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getUnmodifiableFilteredStudentList()
                 .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,

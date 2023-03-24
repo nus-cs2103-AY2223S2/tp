@@ -79,6 +79,32 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
+        @Override
+        public Model copy() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCommandExecuted(Command command) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Command getCommandExecuted() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCommandTextExecuted(String commandText) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getCommandTextExecuted() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -140,7 +166,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Student> getFilteredStudentList() {
+        public ObservableList<Student> getUnmodifiableFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Student> getModifiableFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 

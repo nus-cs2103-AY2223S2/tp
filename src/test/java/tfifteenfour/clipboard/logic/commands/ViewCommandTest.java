@@ -26,7 +26,7 @@ public class ViewCommandTest {
     public void execute_validIndexFilteredList_success() {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        Student studentToView = model.getFilteredStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Student studentToView = model.getUnmodifiableFilteredStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_SECOND_PERSON);
 
         String expectedMessage = String.format("Viewing: %s, (%s)",
@@ -39,7 +39,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getUnmodifiableFilteredStudentList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
         assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

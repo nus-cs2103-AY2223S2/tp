@@ -43,6 +43,7 @@ public class AddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Student}
      */
     public AddCommand(Student student) {
+        super(true);
         requireNonNull(student);
         toAdd = student;
     }
@@ -56,7 +57,7 @@ public class AddCommand extends Command {
         }
 
         model.addStudent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, toAdd), willModifyState);
     }
 
     @Override

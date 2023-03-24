@@ -40,6 +40,7 @@ public class RemarkCommand extends Command {
      * @param remark that will be added to the student
      */
     public RemarkCommand(Index index, Remark remark) {
+        super(true);
         requireAllNonNull(index, remark);
         this.index = index;
         this.remark = remark;
@@ -47,7 +48,7 @@ public class RemarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -61,7 +62,7 @@ public class RemarkCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedStudent));
+        return new CommandResult(this, generateSuccessMessage(editedStudent), true);
     }
 
     /**

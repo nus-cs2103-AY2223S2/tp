@@ -14,12 +14,13 @@ import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
-import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
+import tfifteenfour.clipboard.logic.commands.ExitCommand;
+import tfifteenfour.clipboard.logic.commands.HelpCommand;
+import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**
@@ -122,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(logic.getUnmodifiableFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -183,6 +184,28 @@ public class MainWindow extends UiPart<Stage> {
         studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
     }
 
+    @FXML
+    private void handleUndo() {
+        studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
+    }
+
+    private void handleSpecialCommandConsiderations(CommandResult commandResult) {
+        if (commandResult.getCommand() instanceof HelpCommand) {
+            handleHelp();
+        } else if (commandResult.getCommand() instanceof UndoCommand) {
+            handleUndo();
+        } else if (commandResult.getCommand() instanceof ViewCommand
+                || (commandResult.getCommand() instanceof UploadCommand && studentViewPanel != null)) {
+            refreshViewPane();
+        } else if (commandResult.getCommand() instanceof ExitCommand) {
+            handleExit();
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -191,25 +214,10 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            Command commandType = RosterParser.parseCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandType instanceof ViewCommand) {
-                refreshViewPane();
-            }
-
-            if (commandType instanceof UploadCommand && studentViewPanel != null) {
-                refreshViewPane();
-            }
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+            handleSpecialCommandConsiderations(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

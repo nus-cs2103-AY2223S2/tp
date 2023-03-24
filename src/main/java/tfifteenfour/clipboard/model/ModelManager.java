@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -24,6 +25,9 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
 
+    private String commandTextExecuted;
+    private Command commandExecuted;
+
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
      */
@@ -34,12 +38,47 @@ public class ModelManager implements Model {
 
         this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.roster.getStudentList());
-        viewedStudent = new FilteredList<>(this.roster.getStudentList());
+        filteredStudents = new FilteredList<>(this.roster.getUnmodifiableStudentList());
+        viewedStudent = new FilteredList<>(this.roster.getUnmodifiableStudentList());
     }
 
     public ModelManager() {
         this(new Roster(), new UserPrefs());
+    }
+
+    /**
+     * Constructs a ModelManager with the given roster, user preferences, and previous state modifying command.
+     *
+     * @param roster The roster to use in the ModelManager.
+     * @param userPrefs The user preferences to use in the ModelManager.
+     * @param commandTextExecuted The previous state modifying command to use in the ModelManager.
+     */
+    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted) {
+        this.roster = roster;
+        this.userPrefs = userPrefs;
+        this.commandTextExecuted = commandTextExecuted;
+        this.filteredStudents = new FilteredList<>(roster.getUnmodifiableStudentList());
+        viewedStudent = new FilteredList<>(roster.getUnmodifiableStudentList());
+    }
+
+    @Override
+    public void setCommandExecuted(Command command) {
+        this.commandExecuted = command;
+    }
+
+    @Override
+    public Command getCommandExecuted() {
+        return this.commandExecuted;
+    }
+
+    @Override
+    public void setCommandTextExecuted(String commandText) {
+        this.commandTextExecuted = commandText;
+    }
+
+    @Override
+    public String getCommandTextExecuted() {
+        return this.commandTextExecuted;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -120,14 +159,24 @@ public class ModelManager implements Model {
      * {@code versionedRoster}
      */
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
+    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<Student> getModifiableFilteredStudentList() {
+        return roster.getModifiableStudentList();
     }
 
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public Model copy() {
+        return new ModelManager(this.roster.copy(), this.userPrefs, commandTextExecuted);
     }
 
     @Override
@@ -161,3 +210,4 @@ public class ModelManager implements Model {
         viewedStudent.setPredicate(predicate);
     }
 }
+

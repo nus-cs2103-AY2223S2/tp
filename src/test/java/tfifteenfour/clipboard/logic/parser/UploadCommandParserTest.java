@@ -19,7 +19,7 @@ class UploadCommandParserTest {
     @Test
     public void parse_validArgs_returnsUploadCommand() {
         assertParseSuccess(parser, SOURCE, new UploadCommand(Paths.get(SOURCE),
-                Paths.get(UploadCommandParser.DESTINATION_FILEPATH)));
+                Paths.get(UploadCommand.DESTINATION_FILEPATH)));
     }
 
     @Test

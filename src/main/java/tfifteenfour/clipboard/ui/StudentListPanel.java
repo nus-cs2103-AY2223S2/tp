@@ -46,4 +46,8 @@ public class StudentListPanel extends UiPart<Region> {
         }
     }
 
+    public void setPersonListView(ObservableList<Student> studentList) {
+        personListView.setItems(studentList);
+    }
+
 }

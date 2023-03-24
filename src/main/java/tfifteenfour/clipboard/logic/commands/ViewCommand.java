@@ -24,7 +24,11 @@ public class ViewCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a ViewCommand to view a student at the specified index
+     */
     public ViewCommand(Index targetIndex) {
+        super(false);
         this.targetIndex = targetIndex;
     }
 
@@ -33,7 +37,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         // refresh list before viewing
-        List<Student> studentList = model.getFilteredStudentList();
+        List<Student> studentList = model.getUnmodifiableFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -44,7 +48,7 @@ public class ViewCommand extends Command {
         //model.updateViewedStudent(studentToView);
         model.updateViewedStudent(isTargetStudent(studentToView));
 
-        return new CommandResult(generateSuccessMessage(studentToView));
+        return new CommandResult(this, generateSuccessMessage(studentToView), willModifyState);
     }
 
     @Override

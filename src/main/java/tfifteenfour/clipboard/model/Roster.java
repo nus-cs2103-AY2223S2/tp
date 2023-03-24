@@ -53,7 +53,7 @@ public class Roster implements ReadOnlyRoster {
     public void resetData(ReadOnlyRoster newData) {
         requireNonNull(newData);
 
-        setStudents(newData.getStudentList());
+        setStudents(newData.getUnmodifiableStudentList());
     }
 
     //// student-level operations
@@ -103,8 +103,13 @@ public class Roster implements ReadOnlyRoster {
     }
 
     @Override
-    public ObservableList<Student> getStudentList() {
+    public ObservableList<Student> getUnmodifiableStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getModifiableStudentList() {
+        return students.asModifiableObservableList();
     }
 
     @Override
@@ -117,5 +122,17 @@ public class Roster implements ReadOnlyRoster {
     @Override
     public int hashCode() {
         return students.hashCode();
+    }
+
+
+    /**
+     * Copies this roster and its current state
+     * @return a copy of this roster
+     */
+    public Roster copy() {
+        Roster copy = new Roster();
+        copy.setStudents(students.asUnmodifiableObservableList());
+
+        return copy;
     }
 }

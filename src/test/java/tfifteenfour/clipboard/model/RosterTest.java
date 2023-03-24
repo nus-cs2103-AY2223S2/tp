@@ -28,7 +28,7 @@ public class RosterTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), roster.getStudentList());
+        assertEquals(Collections.emptyList(), roster.getUnmodifiableStudentList());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class RosterTest {
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> roster.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> roster.getUnmodifiableStudentList().remove(0));
     }
 
     /**
@@ -94,8 +94,13 @@ public class RosterTest {
         }
 
         @Override
-        public ObservableList<Student> getStudentList() {
+        public ObservableList<Student> getUnmodifiableStudentList() {
             return students;
+        }
+
+        @Override
+        public ObservableList<Student> getModifiableStudentList() {
+            return FXCollections.unmodifiableObservableList(students);
         }
     }
 

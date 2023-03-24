@@ -8,6 +8,13 @@ import tfifteenfour.clipboard.model.Model;
  */
 public abstract class Command {
 
+    /** Whether the command will modify the rosterstate */
+    protected boolean willModifyState;
+
+    public Command(boolean willModifyState) {
+        this.willModifyState = willModifyState;
+    }
+
     /**
      * Executes the command and returns the result message.
      *
@@ -16,5 +23,9 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
+    public boolean getWillModifyState() {
+        return this.willModifyState;
+    }
 
 }

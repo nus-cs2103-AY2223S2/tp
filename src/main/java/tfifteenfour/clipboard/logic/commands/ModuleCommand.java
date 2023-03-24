@@ -20,15 +20,23 @@ public class ModuleCommand extends Command {
 
     private final StudentTakingModulePredicate predicate;
 
+    /**
+     * Creates a ModuleCommand to list only students taking the specified module
+     *
+     * @param predicate the predicate tester for checking if the student module matches the specified module
+     */
     public ModuleCommand(StudentTakingModulePredicate predicate) {
+        super(false);
         this.predicate = predicate;
     }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        return new CommandResult(this,
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                        model.getUnmodifiableFilteredStudentList().size()), willModifyState);
     }
 
     @Override

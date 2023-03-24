@@ -26,14 +26,20 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+
+    /**
+     * Creates a DeleteCommand to delete the student at the specified index
+     * @param targetIndex the index to delete
+     */
     public DeleteCommand(Index targetIndex) {
+        super(true);
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -41,7 +47,7 @@ public class DeleteCommand extends Command {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
+        return new CommandResult(this, String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete), willModifyState);
     }
 
     @Override
