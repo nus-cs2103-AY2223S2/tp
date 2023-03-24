@@ -143,6 +143,14 @@ public class Wife implements ReadOnlyWife {
         foods.remove(key);
     }
 
+    /**
+     * View {@code key} from {@code WIFE}.
+     * {@code key} must exist in WIFE.
+     */
+    public void viewFood(Food key) {
+        foods.view(key);
+    }
+
     //// util methods
 
     @Override
