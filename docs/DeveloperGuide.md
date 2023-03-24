@@ -127,12 +127,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores all `Task` objects (which are contained in a `UniqueTaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -321,7 +323,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* * *`  | user | create tasks with a deadline          | see the due date of the task easily                                 |
 | `* * *`  | user | create tasks that are events          | keep track of events we conduct as a group                          |
 | `* * *`  | user | comment on tasks                      | record my feedback for each accomplished task                       |
-| `* * *`  | user | mark a task as completed              | have a clear view of what tasks are accomplished                    |
+| `* * *`  | user | mark a task as completed               | have a clear view of what tasks are accomplished                    |
 | `* * *`  | user | unmark a task as uncompleted          | undo any possible false marking of tasks                            |
 | `* * *`  | user | assign scores for each completed task | better evaluate overall performance of teammates                    |
 
@@ -408,6 +410,26 @@ _{Explain here how the data archiving feature will be implemented}_
   * 1a1. Display message to user that there are no existing tasks
 
     Use case ends
+
+**Use case: mark a task**
+
+**MSS**
+
+1. User requests to mark a specified task in the list with a score.
+2. Pied Piper marks the task with a valid score.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The task is not assigned.
+
+    Use case ends
+
+* 1a. The given index is invalid.
+  * 1a1. Pied Piper shows an error message.
+
+    Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
