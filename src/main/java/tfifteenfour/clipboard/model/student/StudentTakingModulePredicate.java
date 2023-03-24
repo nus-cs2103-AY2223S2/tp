@@ -15,12 +15,12 @@ public class StudentTakingModulePredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        for (Course module : student.getModules()) {
-            String moduleString = module.getModule();
-            if (moduleString.equals(moduleToCheck)) {
-                return true;
-            }
-        }
+        // for (Course module : student.getModules()) {
+        //     String moduleString = module.getCourseCode();
+        //     if (moduleString.equals(moduleToCheck)) {
+        //         return true;
+        //     }
+        // }
         return false;
     }
 

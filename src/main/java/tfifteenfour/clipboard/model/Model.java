@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -58,6 +59,8 @@ public interface Model {
      */
     boolean hasStudent(Student student);
 
+    boolean hasCourse(Course course);
+
     /**
      * Deletes the given student.
      * The student must exist in the address book.
@@ -69,6 +72,10 @@ public interface Model {
      * {@code student} must not already exist in the address book.
      */
     void addStudent(Student student);
+
+    void addCourse(Course course);
+
+    void deleteCourse(Course course);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
@@ -82,6 +89,10 @@ public interface Model {
     ObservableList<Student> getUnmodifiableFilteredStudentList();
 
     ObservableList<Student> getModifiableFilteredStudentList();
+
+    ObservableList<Course> getModifiableFilteredCourseList();
+
+    ObservableList<Course> getUnmodifiableFilteredCourseList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.

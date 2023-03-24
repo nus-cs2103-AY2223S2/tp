@@ -9,7 +9,8 @@ import java.util.Set;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -129,13 +130,19 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module code} is invalid.
      */
-    public static Course parseModule(String moduleCode) throws ParseException {
-        requireNonNull(moduleCode);
-        String trimmedModule = moduleCode.trim();
-        if (!Course.isValidModuleCode(trimmedModule)) {
+    public static Course parseCourse(String courseCode) throws ParseException {
+        requireNonNull(courseCode);
+        String trimmedCourse = courseCode.trim();
+        if (!Course.isValidCourseCode(trimmedCourse)) {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
-        return new Course(trimmedModule);
+        return new Course(trimmedCourse);
+    }
+
+    public static Group parseGroup(String groupName) throws ParseException {
+        requireNonNull(groupName);
+        String trimmedGroup = groupName.trim();
+        return new Group(trimmedGroup);
     }
 
     /**
@@ -146,7 +153,7 @@ public class ParserUtil {
         final Set<Course> moduleSet = new HashSet<>();
 
         for (String moduleName : modules) {
-            moduleSet.add(parseModule(moduleName));
+            moduleSet.add(parseCourse(moduleName));
         }
         return moduleSet;
     }

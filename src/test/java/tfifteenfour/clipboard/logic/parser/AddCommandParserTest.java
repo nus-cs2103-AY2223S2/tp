@@ -36,9 +36,9 @@ import static tfifteenfour.clipboard.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.CommandTestUtil;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -57,41 +57,41 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
 
         // multiple student ids - last student id accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_AMY
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
 
         // multiple modules - all accepted
         Student expectedStudentMultipleModules = new StudentBuilder(BOB)
                 .withModules(VALID_MODULE_CS2103, VALID_MODULE_CS2105).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_BOB
                 + MODULE_DESC_CS2103 + MODULE_DESC_CS2105,
-                new AddCommand(expectedStudentMultipleModules));
+                new AddStudentCommand(expectedStudentMultipleModules));
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB)
                 .withTags(VALID_TAG_TEAM1, VALID_TAG_TEAM2).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_BOB
                 + MODULE_DESC_CS2103 + TAG_DESC_TEAM1 + TAG_DESC_TEAM2,
-                new AddCommand(expectedStudentMultipleTags));
+                new AddStudentCommand(expectedStudentMultipleTags));
     }
 
     @Test
@@ -99,12 +99,12 @@ public class AddCommandParserTest {
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STUDENTID_DESC_AMY
-                + CommandTestUtil.MODULE_DESC_CS2105, new AddCommand(expectedStudent));
+                + CommandTestUtil.MODULE_DESC_CS2105, new AddStudentCommand(expectedStudent));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_BOB
@@ -164,6 +164,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENTID_DESC_BOB + MODULE_DESC_CS2105 + TAG_DESC_TEAM1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
     }
 }

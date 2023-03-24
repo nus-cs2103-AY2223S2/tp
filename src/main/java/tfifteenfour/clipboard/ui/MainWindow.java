@@ -19,8 +19,8 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
-import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**

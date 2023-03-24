@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.ui;
 
 import java.io.File;
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -61,12 +60,12 @@ public class StudentViewCard extends UiPart<Region> {
         studentId.setText(viewedStudent.getStudentId().value);
         email.setText(viewedStudent.getEmail().value);
         remark.setText(viewedStudent.getRemark().value);
-        viewedStudent.getModules().stream()
-                .sorted(Comparator.comparing(module -> module.moduleCode))
-                .forEach(module -> modules.getChildren().add(new Label(module.moduleCode)));
-        viewedStudent.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        // viewedStudent.getModules().stream()
+        //         .sorted(Comparator.comparing(module -> module.courseCode))
+        //         .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
+        // viewedStudent.getTags().stream()
+        //         .sorted(Comparator.comparing(tag -> tag.tagName))
+        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         displayPhoto.setImage(new Image(this.getClass().getResourceAsStream("/images/studenticon.png")));
         try {

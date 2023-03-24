@@ -2,8 +2,8 @@ package tfifteenfour.clipboard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -15,10 +15,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
@@ -34,8 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
-                        PREFIX_MODULE, PREFIX_TAG);
+                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
+                        PREFIX_COURSE, PREFIX_TAG);
 
         Index index;
 
@@ -58,8 +58,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
             editStudentDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
         }
-        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editStudentDescriptor::setModules);
+        if (argMultimap.getValue(PREFIX_COURSE).isPresent()) {
+            parseModulesForEdit(argMultimap.getAllValues(PREFIX_COURSE)).ifPresent(editStudentDescriptor::setModules);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 

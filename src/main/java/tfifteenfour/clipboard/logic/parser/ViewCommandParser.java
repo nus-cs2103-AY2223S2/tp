@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.logic.parser;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.ViewCommand;
+import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**

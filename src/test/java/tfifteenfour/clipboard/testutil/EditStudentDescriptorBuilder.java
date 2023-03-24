@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -37,8 +37,8 @@ public class EditStudentDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setStudentId(student.getStudentId());
-        descriptor.setModules(student.getModules());
-        descriptor.setTags(student.getTags());
+        // descriptor.setModules(student.getModules());
+        // descriptor.setTags(student.getTags());
     }
 
     /**

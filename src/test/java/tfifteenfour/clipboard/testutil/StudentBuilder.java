@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -55,9 +55,9 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         studentId = studentToCopy.getStudentId();
-        modules = new HashSet<>(studentToCopy.getModules());
+        // modules = new HashSet<>(studentToCopy.getModules());
         remark = studentToCopy.getRemark();
-        tags = new HashSet<>(studentToCopy.getTags());
+        // tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -117,6 +117,6 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, studentId, modules, remark, tags);
+        return new Student(name, phone, email, studentId, remark);
     }
 }

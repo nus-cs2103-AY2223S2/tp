@@ -1,8 +1,8 @@
-package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands.studentCommands;
 
 import static java.util.Objects.requireNonNull;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -17,9 +17,12 @@ import java.util.Set;
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.CollectionUtil;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -42,7 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "[" + PREFIX_MODULE + "MODULE]..."
+            + "[" + PREFIX_COURSE + "MODULE]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -72,7 +75,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
 
@@ -104,12 +107,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
-        Set<Course> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        // Set<Course> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
+        // Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Remark remark = studentToEdit.getRemark();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedModules,
-                remark, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId,
+                remark);
     }
 
     @Override
