@@ -21,6 +21,10 @@ public class BusinessSize {
         this.value = String.valueOf(businessSize);
     }
 
+    public int getNumericValue() {
+        return Integer.valueOf(this.value);
+    }
+
     public static boolean isValidBusinessSize(String test) {
         return test.matches(VALIDATION_REGEX);
     }

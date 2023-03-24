@@ -19,6 +19,8 @@ public class SummaryCommand extends Command {
     public CommandResult execute(Model model) {
         int size = model.getAddressBook().size();
         SummaryWindow.setSize(size);
+        int potentialEarnings = model.getAddressBook().getPotentialEarnings();
+        SummaryWindow.setPotentialEarnings(potentialEarnings);
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
     }
 }

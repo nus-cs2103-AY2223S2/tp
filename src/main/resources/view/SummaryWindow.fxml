@@ -31,6 +31,11 @@
                             <Insets right="5.0" />
                         </HBox.margin>
                     </Label>
+                    <Label fx:id="potentialEarnings" text="Label">
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+                    </Label>
                 </children>
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
