@@ -7,17 +7,18 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.model.ListType;
 import arb.model.Model;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.Project;
 
 /**
- * Finds and lists all projects in address book whose title contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all projects in address book whose title contains any of the argument keywords given
+ * and contains any of the tags given and falls within the provided timeframe. Keyword matching is case insensitive.
  */
 public class FindProjectCommand extends Command {
 
@@ -27,13 +28,15 @@ public class FindProjectCommand extends Command {
             new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose titles contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + MAIN_COMMAND_WORD + " digital sculpture";
+            + "the specified keywords (case-insensitive) and contains any of the tags given (case-insensitive) "
+            + "and falls within the given timeframe and displays them as a list with index numbers.\n"
+            + "Parameters: name/TITLE tag/TAG start/START OF TIMEFRAME end/END OF TIMEFRAME...\n"
+            + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital tag/personal start/last "
+            + "week end/next year";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    private final Predicate<Project> predicate;
 
-    public FindProjectCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindProjectCommand(Predicate<Project> predicate) {
         this.predicate = predicate;
     }
 

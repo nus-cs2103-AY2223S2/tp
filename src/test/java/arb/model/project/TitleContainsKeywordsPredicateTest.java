@@ -37,8 +37,12 @@ public class TitleContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different project -> returns false
+        // different keywords -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        TitleContainsKeywordsPredicate secondPredicateCopy =
+                new TitleContainsKeywordsPredicate(Arrays.asList("second", "first"));
+        assertTrue(secondPredicate.equals(secondPredicateCopy)); // different order
     }
 
     @Test

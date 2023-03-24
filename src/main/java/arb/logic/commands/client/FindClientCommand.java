@@ -7,17 +7,18 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.model.ListType;
 import arb.model.Model;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.Client;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all clients in address book whose name contains any of the argument keywords given
+ * and contains any of the tags given. Keyword matching is case insensitive.
  */
 public class FindClientCommand extends Command {
 
@@ -27,13 +28,14 @@ public class FindClientCommand extends Command {
             new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all clients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + MAIN_COMMAND_WORD + " alice bob charlie";
+            + "the specified keywords (case-insensitive) and contains any of the given tags (case-insensitive) "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: name/NAME tag/TAG [MORE KEYWORDS]...\n"
+            + "Example: " + MAIN_COMMAND_WORD + " name/alice name/bob name/charlie tag/friend";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Client> predicate;
 
-    public FindClientCommand(NameContainsKeywordsPredicate predicate) {
+    public FindClientCommand(Predicate<Client> predicate) {
         this.predicate = predicate;
     }
 
