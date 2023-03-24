@@ -6,7 +6,7 @@ title: User Guide
 Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,21 +21,21 @@ Docédex is a **desktop application for managing doctors and patients within hos
 4. Open a command terminal within the home folder.
 
 5. Enter `java -jar docedex.jar` in the command terminal
-   1. You should notice the GUI of the application pop up.<br>
-   ![Ui](images/Ui.png)
+    1. You should notice the GUI of the application pop up.<br>
+       ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`list-doc`** and pressing Enter will display all doctors stored in Docedex.<br>
-   1. Some example commands you can try:
+    1. Some example commands you can try:
 
-      * `help` : Opens up the help menu.
+        * `help` : Opens up the help menu.
 
-      * `add-doc n/John Doe p/98765432` : Adds a doctor contact named `John Doe` to Docedex.
+        * `add-doc n/John Doe p/98765432` : Adds a doctor contact named `John Doe` to Docedex.
 
-      * `del-doc 3` : Deletes the doctor with the associated ID of 3.
+        * `del-doc 3` : Deletes the doctor with the associated ID of 3.
 
-      * `find-doc Gabriel` : Finds all doctors contacts that have the keyword 'Gabriel'
+        * `find-doc Gabriel` : Finds all doctors contacts that have the keyword 'Gabriel'
 
-      * `exit` : Exits the app.
+        * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -89,7 +89,22 @@ A doctor can have any number of tags (including 0)
 
 Examples:
 
-* `add n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
+* `add-doc n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
+
+### Adding a patient: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+
+Adds a patient to the address book.
+
+Format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A patient can have any number of tags (including 0)
+</div>
+
+Examples:
+
+* `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
 ### Editing a doctor : `edit-doc`
 
@@ -102,7 +117,7 @@ Format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
@@ -115,12 +130,26 @@ Deletes the specified doctor from the address book.
 Format: `del-doc INDEX`
 
 * Deletes the doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `del-doc 2` deletes the 2nd doctor in the address book.
-* `find-doc Gabriel` followed by `delete 1` deletes the 1st doctor in the results of the `find-doc` command.
+* `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
+* `find-doc Gabriel` followed by `del-doc 1` deletes the 1st doctor in the results of the `find-doc` command.
+*
+### Deleting a patient : `del-ptn`
+
+Deletes the specified patient from the address book.
+
+Format: `del-ptn INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
+* `find-ptn Gabriel` followed by `del-ptn 1` deletes the 1st patient in the results of the `find-ptn` command.
 
 ### Finding a doctor
 
@@ -129,9 +158,9 @@ Command: `find-doc KEYWORD`
 Users can search up doctors that contain a specific text (KEYWORD) using this command.
 
 * KEYWORD can contain multiple words.
-    > e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD.
+  > e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD.
 * The search is case-insensitive.
-    > e.g. `hans` will match `Hans`.
+  > e.g. `hans` will match `Hans`.
 * All doctor entries that contain KEYWORD in their fields will be listed.
 
 ### Listing all doctors
@@ -168,8 +197,10 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 Action | Format, Examples
 --------|------------------
-**Add Doctor** | `add-doc n/NAME p/PHONE_NUMBER` <br> E.g. `add-doc n/Gabriel p/81119666`
+**Add Doctor** | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
+**Add Patient** | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 **Delete Doctor** | `del-doc INDEX`<br> E.g. `del-doc 3`
+**Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`
 **Edit Doctor** | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`
 **Find Doctor** | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`
 **List Doctors** | `list-doc`

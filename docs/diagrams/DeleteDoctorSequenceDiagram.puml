@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteDoctorCommandParser" as DeleteDoctorCommandParser LOGIC_COLOR
+participant "d:DeleteDoctorCommand" as DeleteDoctorCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("del-doc 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("del-doc 1")
+activate AddressBookParser
+
+create DeleteDoctorCommandParser
+AddressBookParser -> DeleteDoctorCommandParser
+activate DeleteDoctorCommandParser
+
+DeleteDoctorCommandParser --> AddressBookParser
+deactivate DeleteDoctorCommandParser
+
+AddressBookParser -> DeleteDoctorCommandParser : parse("1")
+activate DeleteDoctorCommandParser
+
+create DeleteDoctorCommand
+DeleteDoctorCommandParser -> DeleteDoctorCommand
+activate DeleteDoctorCommand
+
+DeleteDoctorCommand --> DeleteDoctorCommandParser : d
+deactivate DeleteDoctorCommand
+
+DeleteDoctorCommandParser --> AddressBookParser : d
+deactivate DeleteDoctorCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteDoctorCommandParser -[hidden]-> AddressBookParser
+destroy DeleteDoctorCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteDoctorCommand : execute()
+activate DeleteDoctorCommand
+
+DeleteDoctorCommand -> Model : deleteDoctor(1)
+activate Model
+
+Model --> DeleteDoctorCommand
+deactivate Model
+
+create CommandResult
+DeleteDoctorCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteDoctorCommand
+deactivate CommandResult
+
+DeleteDoctorCommand --> LogicManager : result
+deactivate DeleteDoctorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
