@@ -233,6 +233,47 @@ Seed states are captured
 
 These details are handled transparently by `StateHistory`.
 
+### Displaying history of executed commands feature.
+
+This is a new nice-to-have feature, it helps the users to manage their workflow with E-Lister more efficiently by allowing them to see all the commands they keyed in that were successfully executed.
+
+#### Implementation
+
+The feature implementation involves in almost all high-level components which are `UI`, `Model`, `Storage` and `Commons`:
+
+* `HistoryDisplay` class in the `UI` encapsulates the visual display of the saved data onto the GUI.
+* `History` class in the `Model` represents the list of executed commands.
+* `TxtHistoryStorage` and `HistoryStorage` from the `Storage` represents the `.txt` file and the action of reading/writing from/to that file.
+
+1. Initially, when E-Lister is run, a new `TxtHistoryStorage` will be initialized along with other parts of high-level components.
+2. Then, the history will be read from the file after the `AddressBook` is read.
+3. It will then be passed to `Logic` where the users' command in `String` type is going to be execute and write the commands into the file if the commands are succesfully executed.
+4. After the execution, the new `String` from `.txt` file will be read and display the updated history list to the users.
+
+Below is the diagram showing the process [*To-be-add*]
+
+### Design Consideration:
+1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a seperate `.txt` file to store the commands, it would be much more convenient and less methods invoking among high-level components because:
+    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file. 
+    * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
+```
+   historyStringOptional = storage.readHistoryString();
+   if (!historyStringOptional.isPresent()) {
+       logger.info("History file not found. Will be starting with the default file");
+   }
+   initialHistory = new History(historyStringOptional.orElse(""));
+```
+2. Inspired by the `Optional<ReadOnlyAdressBook` from the read and write process to the `.json` file, I also implement the read/write process of history such that the content will be encapsulated with an `Optional<String>` instead of `String`. This is useful since `Optional<T>` helps to avoid `NullPointException` and also lead to cleaner codes.
+```markdown
+    /**
+     * Returns history string.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws IOException if there was any problem when reading from the storage.
+     */
+    Optional<String> readHistoryString() throws IOException;
+```
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
