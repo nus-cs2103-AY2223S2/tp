@@ -14,6 +14,12 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.comparators.AddressComparator;
+import seedu.address.logic.comparators.EmailComparator;
+import seedu.address.logic.comparators.NameComparator;
+import seedu.address.logic.comparators.PerformanceComparator;
+import seedu.address.logic.comparators.RemarkComparator;
+
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
@@ -236,53 +242,23 @@ public class ModelManager implements Model {
         Comparator<Person> comparator;
         switch (metric) {
         case "performance":
-            comparator = new PerformanceComp(increasingOrder);
+            comparator = new PerformanceComparator(increasingOrder);
             break;
         case "email":
-            comparator = new EmailComp(increasingOrder);
+            comparator = new EmailComparator(increasingOrder);
+            break;
+        case "name":
+            comparator = new NameComparator(increasingOrder);
+            break;
+        case "address":
+            comparator = new AddressComparator(increasingOrder);
             break;
         default:
-            comparator = new NameComp(increasingOrder);
+            comparator = new RemarkComparator(increasingOrder);
         }
         sortedData.setComparator(comparator);
 
         filteredPersons = new FilteredList<>(sortedData);
-    }
-
-    class PerformanceComp implements Comparator<Person> {
-        private final int increasingOrder;
-        public PerformanceComp(boolean increasingOrder) {
-            this.increasingOrder = (increasingOrder) ? 1 : -1;
-        }
-        public int compare(Person p1, Person p2) {
-            int first = p1.getPerformance().calculateUrgency();
-            int second = p2.getPerformance().calculateUrgency();
-            if (second > first) {
-                return 1 * increasingOrder;
-            } else if (second < first) {
-                return -1 * increasingOrder;
-            } else {
-                return 0;
-            }
-        }
-    }
-    class NameComp implements Comparator<Person> {
-        private final int increasingOrder;
-        public NameComp(boolean increasingOrder) {
-            this.increasingOrder = (increasingOrder) ? 1 : -1;
-        }
-        public int compare(Person p1, Person p2) {
-            return p1.getName().toString().compareTo(p2.getName().toString()) * increasingOrder;
-        }
-    }
-    class EmailComp implements Comparator<Person> {
-        private final int increasingOrder;
-        public EmailComp(boolean increasingOrder) {
-            this.increasingOrder = (increasingOrder) ? 1 : -1;
-        }
-        public int compare(Person p1, Person p2) {
-            return p1.getEmail().toString().compareTo(p2.getEmail().toString()) * increasingOrder;
-        }
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================
