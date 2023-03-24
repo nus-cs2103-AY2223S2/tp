@@ -150,6 +150,21 @@ Shows a list of all people in the address book.
 
 Format: `list`
 
+### Switch to light mode: `light`
+Switch to light mode.
+Format: `light`
+
+### Switch to dark mode: `dark`
+Switch to dark mode.
+Format: `dark`
+
+### Undoing previous command: `undo`
+Reverts the address book to the state before the previous command was executed.
+Format: `undo`
+
+### Redoing previous undo: `redo`
+Reverts the address book to the state before the previous undo was executed.
+Format: `redo`
 
 
 
@@ -175,3 +190,7 @@ Format: `list`
 | **Save**      | `save INDEX_NO` <br/> e.g. save 3                                                                                                                                                               |
 | **List**      | `list`                                                                                                                                                                                          |
 | **Help**      | `help`                                                                                                                                                                                          |
+| **Light**     | `light`                                                                                                                                                                                         |
+| **Dark**      | `dark`                                                                                                                                                                                          |
+| **Undo**      | `undo`                                                                                                                                                                                          |
+| **Redo**      | `redo`                                                                                                                                                                                          |
