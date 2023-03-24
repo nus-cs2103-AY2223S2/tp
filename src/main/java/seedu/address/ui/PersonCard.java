@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.ImageUtil;
@@ -76,9 +78,49 @@ public class PersonCard extends UiPart<Region> {
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(this::createLabel);
     }
+
+    private String setColorType(String tagType) {
+        String str = "";
+
+        switch (tagType.split("XXXXX")[0]) {
+        case "Module":
+            str = "#006400";
+            break;
+        default:
+            str = "#3e7b91";
+        }
+        return str;
+    }
+
+    private String setLabel(String tagLabel) {
+        String [] parts = tagLabel.split("XXXXX");
+        String str = "";
+        switch (parts[0]) {
+        case "Module":
+            str = parts[1];
+            break;
+        default:
+            str = tagLabel;
+        }
+        return str;
+    }
+
+
+    private void createLabel(Tag tag) {
+        Label label = new Label(setLabel(tag.tagName));
+        String colour = setColorType(tag.tagName);
+        label.setStyle("-fx-text-fill: white;\n"
+            + "-fx-padding: 1 3 1 3;\n"
+            + "-fx-border-radius: 2;\n"
+            + "-fx-background-radius: 2;\n"
+            + "-fx-font-size: 11;\n"
+            + "-fx-background-color: " + colour + ";");
+        tags.getChildren().add(label);
+    }
+
 
     @FXML
     private void showPersonalPane() {
@@ -101,6 +143,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }
