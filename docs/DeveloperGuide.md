@@ -1,5 +1,3 @@
-# Developer Guide
-
 # Acknowledgments
 
 Codebase foundation by AB3.
@@ -163,7 +161,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 2a. The placeholders used are invalid.
     - 2a1. ListingBook shows an error message.
@@ -181,10 +179,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     - 2d1. ListingBook shows an error message.
     - Use case resumes at step 1.
 
-- 2e. Update filtered listing got some problem la idk. (to change)
-    - 2e1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
 ### **Use case: Update a job listing**
 
 **MSS**
@@ -196,7 +190,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 2a. The list is empty.
 
@@ -221,12 +215,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 - 3e. There is a duplicate listing in the listing book.
     - 3e1. ListingBook shows an error message.
     - Use case resumes at step 2.
-
-- 3f. Update filtered listing got some problem la idk. (to change)
-    - 3f1. ListingBook shows an error message.
-    - Use case resumes at step 2.
-
-
 
 ### **Use case: Find a job listing**
 
@@ -257,7 +245,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 2a. The list is empty.
 
@@ -272,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
     
-********************Extensions********************
+**Extensions**
 - 2a. Previous command does not change the ListingBook.
 
     Use case ends.
@@ -287,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 4a. No job listings match the filter criteria.
 
@@ -305,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 3. ListingBook displays the job listings with the applicant removed from the specified listing.
 Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 1a. Specified job listing not found.
 
@@ -329,7 +317,7 @@ Use case ends.
 
     Use case ends.
 
-********************Extensions********************
+**Extensions**
 
 - 1a. Specified job listing not found.
 
