@@ -171,7 +171,7 @@ The following details explain how it works:
 
 
    * Details:
-      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment* 
+      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
       class.
       * In the *EditCommand* class, the data entered by user is parsed.
       * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
@@ -310,7 +310,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
-`Fitbook` creates a new CSV file and write data to it. 
+`Fitbook` creates a new CSV file and write data to it.
 
 The proposed export mechanism is facilitated by `FitBook`. It implements the following operations:
 
@@ -726,7 +726,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   3b. The given exercise index is invalid.
 
     * 3b1. FitBook shows an error message.
- 
+
       Use case resumes at step 2.
 
 > **Use case: UC11 - Find Routine**
