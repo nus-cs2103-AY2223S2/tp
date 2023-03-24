@@ -29,8 +29,38 @@ public class IngredientQuantity {
         this.amount = amount;
     }
 
-    private static boolean isValidRecipeQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+    private static boolean isValidRecipeQuantity(String candidate) {
+        if (!candidate.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        String[] tokens = candidate.split("\\s+", 2);
+        double amount = 0;
+        double upperLimit = -1;
+        if (tokens[0].matches(ALPHA_AMOUNT_REGEX)) {
+            amount = 1;
+        } else if (tokens[0].matches(FRACTION_REGEX)) {
+            String[] fractionComponents = tokens[0].split("/");
+            double numerator = Integer.parseInt(fractionComponents[0]);
+            double denominator = Integer.parseInt(fractionComponents[1]);
+            if (denominator == 0) {
+                return false;
+            }
+            amount = numerator;
+            upperLimit = denominator;
+
+        } else if (tokens[0].matches(RANGE_REGEX)) {
+            String[] rangeComponents = tokens[0].split("-|to");
+            double lowerRange = Integer.parseInt(rangeComponents[0]);
+            double upperRange = Integer.parseInt(rangeComponents[1]);
+            amount = lowerRange;
+            upperLimit = upperRange;
+            if (lowerRange >= upperRange) {
+                return false;
+            }
+        } else {
+            amount = Double.parseDouble(tokens[0]);
+        }
+        return amount != 0;
     }
 
     /**
@@ -43,40 +73,6 @@ public class IngredientQuantity {
     public static IngredientQuantity of(String candidate) {
         if (!isValidRecipeQuantity(candidate)) {
             throw new RecipeQuantityInvalidArgumentException(candidate);
-        }
-        String[] tokens = candidate.split("\\s+", 2);
-        double amount = 0;
-        double upperLimit = -1;
-        if (tokens[0].matches(ALPHA_AMOUNT_REGEX)) {
-            amount = 1;
-        } else if (tokens[0].matches(FRACTION_REGEX)) {
-            String[] fractionComponents = tokens[0].split("/");
-            double numerator = Integer.parseInt(fractionComponents[0]);
-            double denominator = Integer.parseInt(fractionComponents[1]);
-            if (denominator == 0) {
-                throw new RecipeQuantityInvalidArgumentException(candidate);
-            }
-            amount = numerator;
-            upperLimit = denominator;
-
-        } else if (tokens[0].matches(RANGE_REGEX)) {
-            String[] rangeComponents = tokens[0].split("-|to");
-            double lowerRange = Integer.parseInt(rangeComponents[0]);
-            double upperRange = Integer.parseInt(rangeComponents[1]);
-            amount = lowerRange;
-            upperLimit = upperRange;
-            if (lowerRange > upperRange) {
-                throw new RecipeQuantityInvalidArgumentException(candidate);
-            }
-        } else {
-            amount = Double.parseDouble(tokens[0]);
-        }
-        if (amount == 0) {
-            throw new RecipeQuantityInvalidArgumentException(candidate);
-        }
-        RecipeIngredientQuantityUnit unit = null;
-        if (tokens.length > 1) {
-            unit = new RecipeIngredientQuantityUnit(tokens[1]);
         }
         return new IngredientQuantity(candidate);
     }

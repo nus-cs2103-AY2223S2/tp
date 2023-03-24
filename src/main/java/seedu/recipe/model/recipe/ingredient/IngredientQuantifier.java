@@ -46,10 +46,10 @@ public class IngredientQuantifier {
     @Override
     public String toString() {
         return "{"
-            + quantity.map(Object::toString).orElse("Q: []") + "; "
-            + commonName.map(Object::toString).orElse("CN: []") + "; "
-            + estimatedQuantity + "; "
-            + substitutions + "; "
-            + remarks + "}\n";
+            + quantity.map(v -> "Q: " + v).orElse("Q: []") + "; "
+            + commonName.map(v -> "CN: " + v).orElse("CN: []") + "; "
+            + "E: " + estimatedQuantity + "; "
+            + "S: " + substitutions + "; "
+            + "R: " + remarks + "}\n";
     }
 }
