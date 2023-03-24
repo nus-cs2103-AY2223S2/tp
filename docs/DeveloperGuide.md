@@ -139,7 +139,7 @@ The `Model` component,
 
 The `Model` box is the central component of the Mycelium's data. It contains
 the entities `Client` and `Project` which are used to store the data of each
-entity. 
+entity.
 
 The `Client` class contains the attributes for a client's `Name`, `Email`,
 `YearOfBirth`, source and `Phone` number, where the name and email are
@@ -158,9 +158,14 @@ objects. These optional attributes are typed:
 - acceptedOn: `LocalDate`
 - deadline: `LocalDate`
 
-Each entity uses different methods, which they inherit from `ClientModel` and `ProjectModel` interface via the `Model` interface respectively.
+Each entity uses different methods, which they inherit from `ClientModel` and
+`ProjectModel` interface via the `Model` interface respectively.
 
-Moreover, each entity is also stored in a `UniqueList`, which ensures that the list do not contain duplicates. `UniqueList` from each entity is then stored in `AddressBook`, which contains the overarching methods for handling each type of list. 
+Moreover, each entity is also stored in a `UniqueList`, which ensures that the
+list do not contain duplicates. `UniqueList` from each entity is then stored in
+`AddressBook`, which contains the overarching methods for handling each type of
+list. 
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
