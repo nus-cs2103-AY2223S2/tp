@@ -148,7 +148,24 @@ public class CommandRecommendationEngineTest {
     }
 
     @Test
-    public void parseArguments_invalidArgsPrefix_failure() {
+    public void parseUserInputForAutocompletion_validInput_success() {
+        try {
+            String userInput = "add_v";
+            String recommended = commandRecommendationEngine.recommendCommand(userInput);
+            String autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
+            assertEquals("add_volunteer", autocomplete);
 
+            userInput = "clea";
+            recommended = commandRecommendationEngine.recommendCommand(userInput);
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
+            assertEquals("clear", autocomplete);
+
+            userInput = "add_elderly";
+            recommended = commandRecommendationEngine.recommendCommand(userInput);
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
+            assertEquals("add_elderly n/", autocomplete);
+        } catch (CommandException e) {
+            fail();
+        }
     }
 }
