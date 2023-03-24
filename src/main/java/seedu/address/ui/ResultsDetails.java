@@ -18,9 +18,9 @@ import seedu.address.model.expense.Expense;
 public class ResultsDetails extends UiPart<Region> {
 
     private static final String FXML = "ResultsDetails.fxml";
-    IntegerProperty count;
-    ObservableList<Expense> expenseList;
-    ObservableList<Category> categoryList;
+    private final IntegerProperty count;
+    private final ObservableList<Expense> expenseList;
+    private final ObservableList<Category> categoryList;
 
     @FXML
     private Label resultsCount;
@@ -43,6 +43,12 @@ public class ResultsDetails extends UiPart<Region> {
     }
 
 
+    /**
+     * Switches the details displayed on the GUI based on a time filter and a boolean flag indicating
+     * whether expenses or categories is being displayed.
+     * @param timeFilter a string representing the time filter to be applied to the details.
+     * @param isExpenseDisplay a boolean flag indicating whether expenses or categories is being displayed.
+     */
     public void switchDetails(String timeFilter, boolean isExpenseDisplay) {
         bindResultsCount(isExpenseDisplay);
         if (isExpenseDisplay) {
@@ -54,6 +60,12 @@ public class ResultsDetails extends UiPart<Region> {
         }
     }
 
+    /**
+     * Helper method used by the switchDetails method to bind the count of the number of items
+     * in the expenseList or categoryList to the count variable,
+     * which is then displayed in the GUI.
+     * @param isExpenseDisplay a boolean flag indicating whether expenses or categories is being displayed.
+     */
     private void bindResultsCount(boolean isExpenseDisplay) {
         if (isExpenseDisplay) {
             IntegerBinding expenseListSizeBinding = Bindings.size(expenseList);

@@ -137,8 +137,7 @@ public class AnalyticModelManager implements AnalyticModel {
     /**
      * Calculates percentage change in spending from the previous week
      * to the current week and updates the value of weeklyChange property
-     * @return DoubleProperty representing the percentage change in
-     * spending from the previous week to the current week
+     * @return DoubleProperty representing percentage change
      */
     @Override
     public DoubleProperty getWeeklyChange() {
@@ -163,9 +162,8 @@ public class AnalyticModelManager implements AnalyticModel {
 
     /**
      * Calculates percentage change in spending from the previous month
-     * to the current month and updates the value of monthlyChange property
-     * @return DoubleProperty representing the percentage change in
-     * spending from the previous month to the current month
+     * to the current month and updates the value of monthlyChange property.
+     * @return DoubleProperty representing the percentage change
      */
     @Override
     public DoubleProperty getMonthlyChange() {
@@ -223,24 +221,24 @@ public class AnalyticModelManager implements AnalyticModel {
     @Override
     public DoubleProperty getAnalyticsData(AnalyticsType type) throws IllegalArgumentException {
         switch(type) {
-            case MONTHLY_SPENT:
-                return getMonthlySpent();
-            case MONTHLY_REMAINING:
-                return getMonthlyRemaining();
-            case WEEKLY_SPENT:
-                return getWeeklySpent();
-            case WEEKLY_REMAINING:
-                return getWeeklyRemaining();
-            case WEEKLY_CHANGE:
-                return getWeeklyChange();
-            case MONTHLY_CHANGE:
-                return getMonthlyChange();
-            case TOTAL_SPENT:
-                return getTotalSpent();
-            case BUDGET_PERCENTAGE:
-                return getBudgetPercentage();
-            default:
-                throw new IllegalArgumentException("Unsupported analytics type");
+        case MONTHLY_SPENT:
+            return getMonthlySpent();
+        case MONTHLY_REMAINING:
+            return getMonthlyRemaining();
+        case WEEKLY_SPENT:
+            return getWeeklySpent();
+        case WEEKLY_REMAINING:
+            return getWeeklyRemaining();
+        case WEEKLY_CHANGE:
+            return getWeeklyChange();
+        case MONTHLY_CHANGE:
+            return getMonthlyChange();
+        case TOTAL_SPENT:
+            return getTotalSpent();
+        case BUDGET_PERCENTAGE:
+            return getBudgetPercentage();
+        default:
+            throw new IllegalArgumentException("Unsupported analytics type");
         }
     }
 
@@ -273,7 +271,7 @@ public class AnalyticModelManager implements AnalyticModel {
 
         // state check
         AnalyticModelManager other = (AnalyticModelManager) obj;
-        return  allExpenses.equals(other.allExpenses)
+        return allExpenses.equals(other.allExpenses)
                 && allCategories.equals(other.allCategories)
                 && currentDate.equals(other.currentDate);
     }

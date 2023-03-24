@@ -59,17 +59,23 @@ public class EditCategory extends Command {
         if (newCategoryName != null && newSummaryName != null) {
             categoryToEdit.setCategoryName(newCategoryName);
             categoryToEdit.setDescription(newSummaryName);
-            return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY, categoryToEdit), false);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
+                            categoryToEdit), false);
         }
 
         if (newCategoryName != null) {
             categoryToEdit.setCategoryName(newCategoryName);
-            return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY, categoryToEdit), false);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
+                            categoryToEdit), false);
         }
 
         //Only other possible outcome is that summary is the only field being changed.
         categoryToEdit.setDescription(newSummaryName);
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY, categoryToEdit), false);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
+                        categoryToEdit), false);
     }
 
     @Override

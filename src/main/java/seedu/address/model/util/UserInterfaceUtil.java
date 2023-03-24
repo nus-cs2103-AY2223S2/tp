@@ -1,7 +1,5 @@
 package seedu.address.model.util;
 
-import javafx.css.converter.StringConverter;
-
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -8,7 +8,6 @@ import seedu.address.model.util.AnalyticsType;
  * It provides various methods for calculating and retrieving statistics related to user expenses.
  */
 public interface AnalyticModel {
-
     /**
      * Returns a DoubleProperty representing analytics data for a given AnalyticsType.
      * @param type an AnalyticsType enum that specifies which type of analytics data to return
@@ -48,16 +47,14 @@ public interface AnalyticModel {
     /**
      * Calculates percentage change in spending from the previous week
      * to the current week and updates the value of weeklyChange property
-     * @return DoubleProperty representing the percentage change in
-     * spending from the previous week to the current week
+     * @return DoubleProperty representing percentage change
      */
     DoubleProperty getWeeklyChange();
 
     /**
      * Calculates percentage change in spending from the previous month
      * to the current month and updates the value of monthlyChange property
-     * @return DoubleProperty representing the percentage change in
-     * spending from the previous month to the current month
+     * @return DoubleProperty representing percentage change in spending
      */
     DoubleProperty getMonthlyChange();
 

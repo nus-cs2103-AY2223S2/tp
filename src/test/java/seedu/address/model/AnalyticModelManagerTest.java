@@ -1,21 +1,23 @@
 package seedu.address.model;
 
-import javafx.beans.property.DoubleProperty;
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import seedu.address.model.util.AnalyticsType;
-import seedu.address.testutil.TypicalExpenses;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javafx.beans.property.DoubleProperty;
+import seedu.address.model.util.AnalyticsType;
+import seedu.address.testutil.TypicalExpenses;
 
 
 class AnalyticModelManagerTest {
 
+    private LocalDate testDate;
     private AnalyticModel analyticModel;
-    LocalDate testDate;
 
     @BeforeEach
     public void setUp() {
@@ -71,32 +73,32 @@ class AnalyticModelManagerTest {
             for (AnalyticsType type : AnalyticsType.values()) {
                 DoubleProperty result = analyticModel.getAnalyticsData(type);
                 switch (type) {
-                    case MONTHLY_SPENT:
-                        assertEquals(27.7, result.get());
-                        break;
-                    case MONTHLY_REMAINING:
-                        assertEquals((1000 - 27.7), result.get());
-                        break;
-                    case WEEKLY_SPENT:
-                        assertEquals(2.7, result.get());
-                        break;
-                    case WEEKLY_REMAINING:
-                        assertEquals(((1000 / 4) - 2.7), result.get());
-                        break;
-                    case WEEKLY_CHANGE:
-                        assertEquals(0, result.get());
-                        break;
-                    case MONTHLY_CHANGE:
-                        assertEquals(((27.7 - 1000) / 1000) * 100, result.get());
-                        break;
-                    case TOTAL_SPENT:
-                        assertEquals(1031.7, result.get());
-                        break;
-                    case BUDGET_PERCENTAGE:
-                        assertEquals(2.77, result.get());
-                        break;
-                    default:
-                        fail("Unexpected analytics type was provided");
+                case MONTHLY_SPENT:
+                    assertEquals(27.7, result.get());
+                    break;
+                case MONTHLY_REMAINING:
+                    assertEquals((1000 - 27.7), result.get());
+                    break;
+                case WEEKLY_SPENT:
+                    assertEquals(2.7, result.get());
+                    break;
+                case WEEKLY_REMAINING:
+                    assertEquals(((1000 / 4) - 2.7), result.get());
+                    break;
+                case WEEKLY_CHANGE:
+                    assertEquals(0, result.get());
+                    break;
+                case MONTHLY_CHANGE:
+                    assertEquals(((27.7 - 1000) / 1000) * 100, result.get());
+                    break;
+                case TOTAL_SPENT:
+                    assertEquals(1031.7, result.get());
+                    break;
+                case BUDGET_PERCENTAGE:
+                    assertEquals(2.77, result.get());
+                    break;
+                default:
+                    fail("Unexpected analytics type was provided");
                 }
             }
         } catch (IllegalArgumentException e) {

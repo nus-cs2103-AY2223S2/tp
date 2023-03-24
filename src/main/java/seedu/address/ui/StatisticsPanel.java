@@ -71,41 +71,56 @@ public class StatisticsPanel extends UiPart<Region> {
      */
     private void bindValueToChangeIndicator(AnalyticsType analyticsType) {
         DoubleProperty changeValue = analyticModel.getAnalyticsData(analyticsType);
-        if (analyticsType != AnalyticsType.WEEKLY_CHANGE && analyticsType != AnalyticsType.MONTHLY_CHANGE) {
-            throw new IllegalArgumentException("The change indicator only accepts MONTHLY_CHANGE or WEEKLY_CHANGE!");
+        if (analyticsType != AnalyticsType.WEEKLY_CHANGE
+            && analyticsType != AnalyticsType.MONTHLY_CHANGE) {
+            throw new IllegalArgumentException(
+                "The change indicator only accepts MONTHLY_CHANGE or WEEKLY_CHANGE!");
         }
         // Updating weekly change indicator
         if (analyticsType == AnalyticsType.WEEKLY_CHANGE) {
             weeklyChange.textProperty().bind(changeValue.asString("%.2f%%"));
-            updateChangeIndicatorStyles(weeklyChange, weeklySign, weeklyChangeBackground, changeValue.doubleValue());
+            updateChangeIndicatorStyles(
+                weeklyChange, weeklySign, weeklyChangeBackground, changeValue.doubleValue());
             changeValue.addListener((observable, oldValue, newValue) -> {
-                updateChangeIndicatorStyles(weeklyChange, weeklySign, weeklyChangeBackground, newValue.doubleValue());
+                updateChangeIndicatorStyles(
+                    weeklyChange, weeklySign, weeklyChangeBackground, newValue.doubleValue());
             });
         } else {
             // Updating monthly change indicator
             monthlyChange.textProperty().bind(changeValue.asString("%.2f%%"));
-            updateChangeIndicatorStyles(monthlyChange, monthlySign, monthlyChangeBackground, changeValue.doubleValue());
+            updateChangeIndicatorStyles(
+                monthlyChange, monthlySign, monthlyChangeBackground, changeValue.doubleValue());
             changeValue.addListener((observable, oldValue, newValue) -> {
-                updateChangeIndicatorStyles(monthlyChange, monthlySign, monthlyChangeBackground, newValue.doubleValue());
+                updateChangeIndicatorStyles(
+                    monthlyChange, monthlySign, monthlyChangeBackground, newValue.doubleValue());
             });
         }
     }
 
-    private void updateChangeIndicatorStyles(Label labelToUpdate, Label signToUpdate, HBox backgroundToUpdate, double value) {
+    private void updateChangeIndicatorStyles(Label labelToUpdate,
+                                             Label signToUpdate,
+                                             HBox backgroundToUpdate, double value) {
         // Determine the CSS classes to apply based on the value of the change
-        String textColorClass = (value > 0) ? "negative_change_indicator" : "positive_change_indicator";
-        String backgroundColorClass = (value > 0) ? "change_indicator_background_negative" : "change_indicator_background_positive";
-
+        String textColorClass = (value > 0)
+                ? "negative_change_indicator"
+                : "positive_change_indicator";
+        String backgroundColorClass = (value > 0)
+                ? "change_indicator_background_negative"
+                : "change_indicator_background_positive";
         // Add sign label with a plus if the value is positive
         signToUpdate.setText((value >= 0) ? "+" : "");
-
         // Update the style classes with new background
-        signToUpdate.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
+        signToUpdate.getStyleClass().removeAll("negative_change_indicator",
+                "positive_change_indicator");
         signToUpdate.getStyleClass().add(textColorClass);
-        backgroundToUpdate.getStyleClass().removeAll("change_indicator_background_positive", "change_indicator_background_negative");
+        backgroundToUpdate.getStyleClass()
+                .removeAll("change_indicator_background_positive",
+                        "change_indicator_background_negative");
         backgroundToUpdate.getStyleClass().add(backgroundColorClass);
         // Update the main labels showing the values
-        labelToUpdate.getStyleClass().removeAll("negative_change_indicator", "positive_change_indicator");
+        labelToUpdate.getStyleClass()
+                .removeAll("negative_change_indicator",
+                        "positive_change_indicator");
         labelToUpdate.getStyleClass().add(textColorClass);
     }
 

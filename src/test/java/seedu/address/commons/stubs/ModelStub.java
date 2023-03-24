@@ -3,9 +3,9 @@ package seedu.address.commons.stubs;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -19,8 +19,8 @@ import seedu.address.model.expense.Expense;
  * A default model stub that have some methods failing.
  */
 public class ModelStub implements Model {
-    private ArrayList<Category> categories = new ArrayList<>();
-    private ArrayList<Expense> expenses = new ArrayList<>();
+    private ObservableList<Category> categories = FXCollections.observableArrayList();
+    private ObservableList<Expense> expenses = FXCollections.observableArrayList();
 
     @Override
     public void addCategory(Category toAdd) {
@@ -34,89 +34,45 @@ public class ModelStub implements Model {
         expenses.add(toAdd);
     }
 
-    /*
-     * get the list of categories
-     */
-    public ArrayList<Category> getCategories() {
-        return categories;
-    }
-
-    /*
-     * get the list of expenses
-     */
-    public ArrayList<Expense> getExpenses() {
-        return expenses;
-    }
-
-    /*
-     * get the list of expenses in a category
-     */
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
-    }
-
-    /*
-     * get the list of expenses in a category
-     */
-    public void setExpenses(ArrayList<Expense> expenses) {
-        this.expenses = expenses;
-    }
-
-    /*
-     * set the category of an expense
-     */
-    public void setCategory(Category target, Category editedCategory) {
-        int index = categories.indexOf(target);
-        categories.set(index, editedCategory);
-    }
-    // All other methods should throw an UnsupportedOperationException
-
+    // All other methods should throw an AssertionError
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setUserPrefs'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserPrefs'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGuiSettings'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setGuiSettings'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public Path getExpenseTrackerFilePath() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getExpenseTrackerFilePath'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setExpenseTrackerFilePath(Path expenseTrackerFilePath) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setExpenseTrackerFilePath'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setExpenseTracker(ReadOnlyExpenseTracker expenseTracker) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setExpenseTracker'");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public ReadOnlyExpenseTracker getExpenseTracker() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getExpenseTracker'");
+        throw new AssertionError("This method should not be called.");
     }
 
 
@@ -149,12 +105,12 @@ public class ModelStub implements Model {
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
         // get the filtered list
-        return null;
+        return expenses;
     }
 
     @Override
     public void deleteCategory(Category target) {
-        // Detete the category from the list
+        // Delete the category from the list
         categories.remove(target);
         // change the category of the expenses in the list
         for (Expense expense : expenses) {
@@ -172,8 +128,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Category> getFilteredCategoryList() {
-        // filter the list
-        return null;
+        return categories;
     }
 
     @Override
