@@ -2,6 +2,8 @@ package seedu.recipe.model.recipe.ingredient;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * A set of utility methods for formatting Ingredients within a Recipe.
@@ -14,7 +16,8 @@ public class IngredientUtil {
      */
     public static String ingredientTableToString(Hashtable<Ingredient, IngredientQuantifier> ingredientTable) {
         StringBuilder stringBuilder = new StringBuilder();
-        ingredientTable.forEach((ingredient, quantifier) ->
+        TreeMap<Ingredient, IngredientQuantifier> sortedIngredientTable = new TreeMap<>(ingredientTable);
+        sortedIngredientTable.forEach((ingredient, quantifier) ->
             stringBuilder.append("- ")
                 .append(ingredientKeyValuePairToString(ingredient, quantifier))
                 .append("\n")

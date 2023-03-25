@@ -157,7 +157,12 @@ public class RecipeTest {
     //IngredientBuilder logic
     @Test
     public void getIngredients() {
-        assertEquals(CACIO_INGREDIENTS, CACIO_E_PEPE.getIngredients());
+        Hashtable<Ingredient, IngredientQuantifier> cacioIngredients = new Hashtable<>();
+        CACIO_INGREDIENTS.stream()
+            .map(IngredientBuilder::build)
+            .forEach(cacioIngredients::putAll);
+
+        assertEquals(cacioIngredients, CACIO_E_PEPE.getIngredients());
     }
 
     @Test
@@ -175,10 +180,7 @@ public class RecipeTest {
         newIngredientList.forEach(ingredientBuilder -> newIngredientTable.putAll(ingredientBuilder.build()));
         Hashtable<Ingredient, IngredientQuantifier> testTable = test.getIngredients();
 
-        newIngredientTable.forEach((ingredient, quantifier) -> {
-            assertTrue(testTable.contains(ingredient));
-            assertEquals(quantifier, testTable.get(ingredient));
-        });
+        assertEquals(newIngredientTable, testTable);
     }
 
     //IngredientBuilder logic
@@ -259,7 +261,12 @@ public class RecipeTest {
 
     @Test
     public void testHashCode() {
-        int hash = Objects.hash(CACIO_NAME, CACIO_PORTION, CACIO_DURATION, CACIO_TAGS, CACIO_INGREDIENTS, CACIO_STEPS);
+        Hashtable<Ingredient, IngredientQuantifier> cacioIngredientTable = new Hashtable<>();
+        CACIO_INGREDIENTS.stream()
+                .map(IngredientBuilder::build)
+                .forEach(cacioIngredientTable::putAll);
+        int hash = Objects.hash(
+                CACIO_NAME, CACIO_PORTION, CACIO_DURATION, CACIO_TAGS, cacioIngredientTable, CACIO_STEPS);
         assertEquals(hash, CACIO_E_PEPE.hashCode());
     }
 

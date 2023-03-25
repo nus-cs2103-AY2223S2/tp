@@ -14,6 +14,7 @@ import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,7 @@ public class JsonAdaptedRecipeTest {
     );
     private static final String INVALID_TAG = "#lit";
     private static final JsonAdaptedIngredient INVALID_INGREDIENT =
-            new JsonAdaptedIngredient("", "", "", "", List.of(), List.of());
+            new JsonAdaptedIngredient("", "", "1g", "", List.of(), List.of());
 
     private static final String INVALID_STEP = "";
 
@@ -184,8 +185,8 @@ public class JsonAdaptedRecipeTest {
                 CACIO_TAGS.stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
                 invalidIngredients,
                 CACIO_STEPS.stream().map(JsonAdaptedStep::new).collect(Collectors.toList()));
-        String expectedMessage = String.format(IngredientBuilder.MESSAGE_CONSTRAINTS);
-        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
+        String expectedMessage = String.format(Ingredient.MESSAGE_CONSTRAINTS);
+        assertThrows(IllegalArgumentException.class, expectedMessage, recipe::toModelType);
     }
 
     @Test

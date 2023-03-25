@@ -1,5 +1,6 @@
 package seedu.recipe.testutil;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -13,6 +14,9 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientUtil;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -202,23 +206,28 @@ public class TypicalRecipes {
     private static final BinaryOperator<String> combiner = (leftString, rightString) -> leftString + rightString;
     private static final BiFunction<String, Object, String> tagAccumulator = (s, o) -> s + o.toString();
     private static final BiFunction<String, Object, String> ingredientAccumulator = (s, o) -> s + o.toString() + ",\n";
-
+    private static final Supplier<String> ingredientTableString = () -> {
+        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        CACIO_INGREDIENTS.stream().map(IngredientBuilder::build).forEach(ingredientTable::putAll);
+        return IngredientUtil.ingredientTableToString(ingredientTable);
+    };
+    private static final Supplier<String> stepListString = () -> {
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < CACIO_STEPS.size(); i++) {
+            out.append(i + 1)
+                    .append(". ")
+                    .append(CACIO_STEPS.get(i).toString())
+                    .append(",\n");
+        }
+        return out.toString();
+    };
     public static final String CACIO_STRING = String.format(
             "%s;\nPortion: %s;\nDuration: %s;\nTags: %s;\n"
-                    + "Ingredients: %s;\nSteps: %s",
+                    + "Ingredients:\n%s;\nSteps: %s",
             CACIO_NAME, CACIO_PORTION, CACIO_DURATION,
             CACIO_TAGS.stream().reduce("", tagAccumulator, combiner),
-            CACIO_INGREDIENTS.stream().reduce("", ingredientAccumulator, combiner), (
-            (Supplier<String>) () -> {
-                StringBuilder out = new StringBuilder();
-                for (int i = 0; i < CACIO_STEPS.size(); i++) {
-                    out.append(i + 1)
-                            .append(". ")
-                            .append(CACIO_STEPS.get(i).toString())
-                            .append(",\n");
-                }
-                return out.toString();
-            }).get()
+            ingredientTableString.get(),
+            stepListString.get()
     );
 
     private TypicalRecipes() {

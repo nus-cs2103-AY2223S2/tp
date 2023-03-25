@@ -68,4 +68,11 @@ public class IngredientQuantity {
     public String toString() {
         return amount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this
+            || o instanceof IngredientQuantity
+            && ((IngredientQuantity) o).amount.equals(this.amount);
+    }
 }

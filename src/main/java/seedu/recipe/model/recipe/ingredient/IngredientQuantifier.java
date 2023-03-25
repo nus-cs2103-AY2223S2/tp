@@ -1,6 +1,7 @@
 package seedu.recipe.model.recipe.ingredient;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -69,5 +70,20 @@ public class IngredientQuantifier {
             + "E: " + estimatedQuantity + "; "
             + "S: " + substitutions + "; "
             + "R: " + remarks + "}\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this
+            || o instanceof IngredientQuantifier
+            && ((IngredientQuantifier) o).quantity.equals(this.quantity)
+            && ((IngredientQuantifier) o).estimatedQuantity.equals(this.estimatedQuantity)
+            && ((IngredientQuantifier) o).remarks.equals(this.remarks)
+            && ((IngredientQuantifier) o).substitutions.equals(this.substitutions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(quantity, estimatedQuantity, remarks, substitutions);
     }
 }

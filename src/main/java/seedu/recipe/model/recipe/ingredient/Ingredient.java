@@ -2,10 +2,12 @@ package seedu.recipe.model.recipe.ingredient;
 
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents an ingredient that is used in a {@code Recipe}.
  */
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
     public static final String MESSAGE_CONSTRAINTS = "An ingredient should be made up of one or more groups of "
             + "whitespace separated alphabetic characters. These characters may also be separated by "
             + "singular hyphens, such as 'self-raising flour'.";
@@ -54,7 +56,7 @@ public class Ingredient {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(name, commonName);
     }
 
     @Override
@@ -63,6 +65,19 @@ public class Ingredient {
             return String.format("%s (aka %s)", name, commonName);
         }
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this
+            || o instanceof Ingredient
+            && ((Ingredient) o).name.equals(this.name)
+            && ((Ingredient) o).commonName.equals(this.commonName);
+    }
+
+    @Override
+    public int compareTo(Ingredient other) {
+        return name.compareTo(other.name);
     }
 
     public String getName() {
