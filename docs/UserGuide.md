@@ -10,15 +10,19 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Using this guide
+- Refer to [Quick start](#quick-start) for instructions on how to set up ConnectUS.
+- Refer to [Command summary](#command-summary) for a table of commands on how to use ConnectUS.
+
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) or above installed in your computer.
 
 2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app.
 
-4. Double-click the `.jar` file to start the app.<br>
+4. Double-click the `ConnectUS.jar` file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +31,7 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 
    * `list` : Lists all contacts.
 
-   * `add n/James p/12345678 e/james@example.com tele/@itsjameshere bd/14/02/2000` : Adds a contact named `James` to ConnectUS.
+   * `add n/James p/12345678 e/james@example.com a/Clementi tg/itsjameshere ig/itsjameshere wa/12345678 b/14/02/2000` : Adds a contact named `James` to ConnectUS.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -63,6 +67,9 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Commands are case-sensitive!<br>
+  e.g. if you specify `ADD n/James` or `aDd n/James` instead of `add n/James`, ConnectUS will not register it as a valid command.
+
 </div>
 
 ### Viewing help : `help`
@@ -77,17 +84,17 @@ Format: `help`
 
 Adds a person to the ConnectUS app.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [t/TAG]…​ [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of modules and CCAs. (including 0)
+A person can have any number of tags, modules and CCAs! (including 0)
 </div>
 
 Examples:
 * `add n/James` would create a contact named James without any other contact information.
 * `add n/James p/12345678` would create a contact named James with a phone number 12345678.
-* `add n/James e/james@example.com tg/@itsjameshere` would create a contact named James with an email james@example.com and Telegram `@itsjameshere`.
-* `add n/James tg/@itsjameshere mod/CS2103T mod/CS2101 CCA/NUS Hackers` would create a contact named James with Telegram `@itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
+* `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
+* `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 CCA/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
 
 ### Listing all persons : `list`
 
