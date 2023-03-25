@@ -423,8 +423,6 @@ What you should expect to find:
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-
-
 <ul>
     <li>For each command, "Format" indicates the syntax of the command.</li>
     <li>Square brackets indicates an optional parameter.</li>
