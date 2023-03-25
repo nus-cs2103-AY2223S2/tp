@@ -6,6 +6,10 @@ import javafx.scene.layout.HBox;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.ui.UiPart;
 
+
+/**
+ * Simplified view of a vaccination.
+ */
 public class SimplifiedVaxTypeCard extends UiPart<HBox> {
     private static final String FXML_FILE = "SimplifiedVaxTypeCard.fxml";
 
@@ -13,7 +17,12 @@ public class SimplifiedVaxTypeCard extends UiPart<HBox> {
     @FXML private Label nameLabel;
 
 
-
+    /**
+     * Constructs a {@code SimplifiedVaxTypeCard}.
+     *
+     * @param index - the index of this card.
+     * @param vaxType - the vaccination to display.
+     */
     public SimplifiedVaxTypeCard(int index, VaxType vaxType) {
         super(FXML_FILE);
         indexLabel.setText(String.valueOf(index));

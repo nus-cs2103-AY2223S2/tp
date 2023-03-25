@@ -7,6 +7,10 @@ import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 
+
+/**
+ * Parser for {@link DetailVaxTypeCommand}.
+ */
 public class DetailVaxTypeParser implements CommandParser {
     public static final String COMMAND_WORD = "detail";
 

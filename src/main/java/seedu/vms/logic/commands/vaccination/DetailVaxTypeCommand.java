@@ -7,10 +7,17 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.vaccination.VaxType;
 
+
+/**
+ * Command to show the details of a vaccination.
+ */
 public class DetailVaxTypeCommand extends Command {
     private final GroupName vaxName;
 
 
+    /**
+     * Constructs a {@code DetailVaxTypeCommand}.
+     */
     public DetailVaxTypeCommand(GroupName vaxName) {
         this.vaxName = vaxName;
     }

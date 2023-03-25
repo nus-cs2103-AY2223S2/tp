@@ -59,7 +59,7 @@ public class ValueChange<T> {
     public String toString() {
         if (oldValue.equals(newValue)) {
             return MESSAGE_NO_CHANGE;
-        }else if (oldValue.isPresent() && newValue.isPresent()) {
+        } else if (oldValue.isPresent() && newValue.isPresent()) {
             return String.format(MESSAGE_UPDATE, oldValue.get().toString());
         } else if (oldValue.isPresent()) {
             return String.format(MESSAGE_DELETION, oldValue.get().toString());

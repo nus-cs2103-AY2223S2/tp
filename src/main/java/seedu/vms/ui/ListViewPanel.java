@@ -25,18 +25,25 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implemen
 
 
     /**
-     * Constructs a {@code ListViewPanel}.
+     * Constructs a {@code ListViewPanel} whose data does not require the index
+     * within the list view to be displayed.
      *
      * @param dataMap - the map of data to display within this list view.
      * @param displayFunction - factory function to generate the graphical
      *      representation of the data.
-     * @param <T> - the type of data being displayed.
      */
     public ListViewPanel(ObservableMap<?, T> dataMap, Function<T, Node> displayFunction) {
         this(dataMap, (index, data) -> displayFunction.apply(data));
     }
 
 
+    /**
+     * Constructs a {@code ListViewPanel}.
+     *
+     * @param dataMap - the map of data to display within this list view.
+     * @param displayFunction - factory function to generate the graphical
+     *      representation of the data.
+     */
     public ListViewPanel(ObservableMap<?, T> dataMap, BiFunction<Integer, T, Node> displayFunction) {
         this.displayFunction = displayFunction;
         setCellFactory(listView -> new DisplayCell());

@@ -8,6 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 
+/**
+ * Graphical display to display the detailed view of a value.
+ *
+ * @param <T> the type of value to display.
+ */
 public class DetailedView<T> extends VBox implements Refreshable {
     public static final String STYLE_CLASS = "detailed-view-card";
 
@@ -17,6 +22,13 @@ public class DetailedView<T> extends VBox implements Refreshable {
     private volatile boolean isUpdated = false;
 
 
+    /**
+     * Constructs a {@code DetailedView}.
+     *
+     * @param sourceProperty - value property to bind to.
+     * @param displayFunction - a function to convert the value to display to
+     *      its graphical representation.
+     */
     public DetailedView(ObjectProperty<T> sourceProperty, Function<T, Node> displayFunction) {
         getStyleClass().add(STYLE_CLASS);
         this.displayFunction = displayFunction;
