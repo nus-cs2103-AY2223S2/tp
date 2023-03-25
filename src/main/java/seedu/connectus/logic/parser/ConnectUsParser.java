@@ -11,6 +11,7 @@ import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.logic.commands.ClearCommand;
 import seedu.connectus.logic.commands.Command;
 import seedu.connectus.logic.commands.DeleteCommand;
+import seedu.connectus.logic.commands.DeleteTagFromPersonCommand;
 import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.commands.ExitCommand;
 import seedu.connectus.logic.commands.HelpCommand;
@@ -71,6 +72,9 @@ public class ConnectUsParser {
 
         case AddTagToPersonCommand.COMMAND_WORD:
             return new AddTagToPersonCommandParser().parse(arguments);
+
+        case DeleteTagFromPersonCommand.COMMAND_WORD:
+            return new DeleteTagFromPersonCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
