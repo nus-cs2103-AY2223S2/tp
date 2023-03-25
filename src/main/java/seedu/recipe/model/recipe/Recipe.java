@@ -65,7 +65,7 @@ public class Recipe {
         }
     }
 
-    public void setIngredientTable(Map<? extends Ingredient, ? extends IngredientQuantifier> ingredientMap) {
+    public void setIngredients(Map<? extends Ingredient, ? extends IngredientQuantifier> ingredientMap) {
         this.ingredientTable.putAll(ingredientMap);
     }
 
