@@ -22,6 +22,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.user.User;
@@ -144,7 +145,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         final Faculty modelFaculty = new Faculty(faculty);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Tags modelTags = new Tags(new HashSet<>(personTags));
         return new User(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
                 modelModules, modelRace, modelTags, modelComms, modelFavoriteStatus, modelFaculty, modelUserEvents);
     }

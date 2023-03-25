@@ -86,9 +86,9 @@ public class PersonDetailPanel extends UiPart<Region> {
     }
 
     private Collection<Label> getTagLabels(Person person) {
-        return person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .map(tag -> tag.tagName)
+        return person.getSetOfTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.value))
+                .map(tag -> tag.value)
                 .map(Label::new)
                 .collect(Collectors.toList());
     }
@@ -97,7 +97,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         List<Region> regions = new LinkedList<>();
 
         // Adds Person tags, if any
-        if (!person.getTags().isEmpty()) {
+        if (!person.getSetOfTags().isEmpty()) {
             tags.getChildren().addAll(getTagLabels(person));
             regions.add(tags);
         }
@@ -119,10 +119,10 @@ public class PersonDetailPanel extends UiPart<Region> {
 
         // Adds card for modules taken, if any
         boolean hasModules = person.getModules() != null
-                && person.getModules().mods != null
-                && !person.getModules().mods.isEmpty();
+                && person.getModules().values != null
+                && !person.getModules().values.isEmpty();
         if (hasModules) {
-            regions.add(new PersonModulesCard("Modules", person.getModules().mods).getRoot());
+            regions.add(new PersonModulesCard("Modules", person.getModules().values).getRoot());
         }
 
         return regions;
