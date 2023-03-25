@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
@@ -116,7 +116,7 @@ public class EditElderlyCommandTest {
         EditDescriptor descriptor = new EditDescriptorBuilder(firstElderly).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_ELDERLY);
+        assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class EditElderlyCommandTest {
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
                 new EditDescriptorBuilder(elderlyInList).build());
 
-        assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_ELDERLY);
+        assertCommandFailure(editElderlyCommand, model, MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
     }
 
     @Test

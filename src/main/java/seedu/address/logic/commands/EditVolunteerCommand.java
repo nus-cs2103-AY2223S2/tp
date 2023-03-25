@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Edits the details of an existing volunteer in FriendlyLink.
@@ -106,8 +108,12 @@ public class EditVolunteerCommand extends Command {
         Volunteer editedVolunteer = EditDescriptor.createEditedVolunteer(
                 volunteerToEdit, editDescriptor);
 
-        if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
+        Nric editedNric = editedVolunteer.getNric();
+        if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
+        }
+        if (model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);

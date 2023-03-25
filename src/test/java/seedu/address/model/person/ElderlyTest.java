@@ -54,18 +54,31 @@ public class ElderlyTest {
                 .withRiskLevel(VALID_RISK_LEVEL_BOB).withAge(VALID_AGE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
         editedAlice = new ElderlyBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Person editedBob = new ElderlyBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ElderlyBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
+
+        // different nric, all other attributes same -> returns false
+        editedAlice = new ElderlyBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
+        // nric differs in case, all other attributes same -> returns true
+        editedBob = new ElderlyBuilder(BOB).withNric(VALID_NRIC_BOB.toLowerCase()).build();
+        assertTrue(BOB.isSamePerson(editedBob));
+
+        // nric has trailing spaces, all other attributes same -> returns true
+        String nricWithTrailingSpaces = VALID_NRIC_BOB + " ";
+        editedBob = new ElderlyBuilder(BOB).withName(nricWithTrailingSpaces).build();
+        assertTrue(BOB.isSamePerson(editedBob));
     }
 
     @Test
