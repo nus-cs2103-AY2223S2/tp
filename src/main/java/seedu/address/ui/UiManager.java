@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -47,8 +48,13 @@ public class UiManager implements Ui {
             mainWindow.fillInnerParts();
 
             NotificationManager notificationManager = new NotificationManager(logic);
-            //notificationManager.applySettings();
             notificationManager.checkReminderList();
+            /*
+            if (Calendar.getInstance().get(Calendar.MINUTE) < 40) { //once setting is in place, take from there
+                notificationManager.checkNowSchedule();
+            } else {
+                notificationManager.checkNextSchedule();
+            */
             new BackgroundNotificationScheduler(notificationManager).run();
 
         } catch (Throwable e) {

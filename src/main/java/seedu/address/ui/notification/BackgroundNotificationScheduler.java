@@ -22,14 +22,39 @@ public class BackgroundNotificationScheduler extends Timer {
      * A {@code BackgroundReminderTask} is scheduled from the closet upcoming hour, and
      * every subsequent hour
      */
-    public void run() {
+    public void backgroundReminder() {
         Calendar now = Calendar.getInstance();
-        now.set(Calendar.MINUTE, 0);
+        now.add(Calendar.MINUTE, 1);
         now.set(Calendar.SECOND, 0);
-        now.add(Calendar.HOUR, 1);
-        new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000 * 60 * 60);
+
+        new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000 * 60);
         //new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000*5);
-        //add new BackgroundTimetableTask
+    }
+
+    /**
+     * Create a scheduled task with {@code Timer}.
+     * A {@code } is scheduled 20 minutes before the closet upcoming hour, and
+     * every subsequent hour
+     */
+    public void backgroundSchedule() {
+        Calendar now = Calendar.getInstance();
+        now.set(Calendar.MINUTE, 40);
+        now.set(Calendar.SECOND, 0);
+        if (now.get(Calendar.MINUTE) > 40) {
+            now.add(Calendar.HOUR, 1);
+        }
+        new Timer().schedule(new BackgroundScheduleTask(notificationManager), now.getTime(), 1000 * 60 * 60);
+        //new Timer().schedule(new BackgroundScheduleTask(notificationManager), now.getTime(), 1000*5);
+    }
+
+    /**
+     * Create a scheduled task with {@code Timer}.
+     * A {@code BackgroundReminderTask} is scheduled from the closet upcoming hour, and
+     * every subsequent hour
+     */
+    public void run() {
+        backgroundReminder();
+        //backgroundSchedule();
     }
 
 }
