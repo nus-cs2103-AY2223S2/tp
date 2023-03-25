@@ -3,7 +3,7 @@ package seedu.wife.logic.commands.foodcommands;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_INCREASE;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
