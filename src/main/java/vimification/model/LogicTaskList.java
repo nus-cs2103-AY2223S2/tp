@@ -123,6 +123,10 @@ public class LogicTaskList {
         tasks.get(index.getZeroBased()).addTag(newTag);
     }
 
+    public void removeTag(String tag, Index index) {
+        tasks.get(index.getZeroBased()).removeTag(tag);
+    }
+
     //// util methods
 
     public LogicTaskList slice(int start, int end) {

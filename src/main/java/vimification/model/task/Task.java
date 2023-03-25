@@ -51,6 +51,12 @@ public abstract class Task {
         tags.add(newTag);
     }
 
+    public void removeTag(String tag) {
+        if (!tags.remove(tag)) {
+            throw new IllegalArgumentException("Tag does not exist");
+        }
+    }
+
     public abstract Task clone();
 
     public boolean isSameTask(Task otherTask) {
