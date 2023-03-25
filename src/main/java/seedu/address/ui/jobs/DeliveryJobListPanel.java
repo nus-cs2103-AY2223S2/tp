@@ -10,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -62,6 +64,9 @@ public class DeliveryJobListPanel extends UiPart<Region> {
                     selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
                     return;
                 }
+                if (event.isControlDown() && event.getCode().equals(KeyCode.C)) {
+                    copyToClipboard();
+                }
             }
 
         });
@@ -72,9 +77,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * without any event handler.
      */
     public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
-        this(jobList, (job, idx) -> {
-        }, (job) -> {
-        });
+        this(jobList, (job, idx) -> {}, (job) -> {});
     }
 
     /**
@@ -110,4 +113,17 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         }
     }
 
+    private void copyToClipboard() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(deliveryJobListView.getSelectionModel().getSelectedItem().getJobId());
+        clipboard.setContent(url);
+    }
+
+    /**
+     * @return the number of item in listview.
+     */
+    public int size() {
+        return deliveryJobListView.getItems().size();
+    }
 }

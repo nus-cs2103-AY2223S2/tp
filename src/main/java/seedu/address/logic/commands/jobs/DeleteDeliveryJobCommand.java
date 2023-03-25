@@ -2,13 +2,14 @@ package seedu.address.logic.commands.jobs;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.transformation.FilteredList;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.jobs.DeliveryJob;
 
 /**
@@ -34,16 +35,18 @@ public class DeleteDeliveryJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ReadOnlyDeliveryJobSystem jobSystem = model.getDeliveryJobSystem();
-        FilteredList<DeliveryJob> list = jobSystem.getDeliveryJobList().filtered(x -> x.getJobId().equals(jobId));
 
-        if (list.size() != 1) {
+        List<DeliveryJob> lastShownList = model.getDeliveryJobList();
+        Optional<DeliveryJob> deliveryJobToDelete = lastShownList.stream()
+                .filter(x -> x.getJobId().equals(jobId))
+                .findAny();
+
+        if (deliveryJobToDelete.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
 
-        DeliveryJob jobToDelete = list.get(0);
-        model.deleteDeliveryJob(jobToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, jobToDelete));
+        model.deleteDeliveryJob(deliveryJobToDelete.get());
+        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, deliveryJobToDelete.get().getJobId()));
     }
 
     @Override

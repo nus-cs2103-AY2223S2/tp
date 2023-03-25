@@ -148,17 +148,17 @@ public class DeliveryJob {
                 + "deliver date: %s\n"
                 + "deliver slot: %s\n"
                 + "earn: $%s\n"
-                + "status: $%s\n";
+                + "status: %s\n";
 
         builder.append(
                 String.format(outString,
-                        jobId,
+                        getJobId(),
                         getRecipientId(),
                         getSenderId(),
                         getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
                         getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
-                        getEarning(),
-                        getDeliveredStatus()));
+                        getEarning().isPresent() ? getEarning().get() : "",
+                        getDeliveredStatus() ? "Delivered" : "Pending"));
 
         return builder.toString();
     }
@@ -174,6 +174,23 @@ public class DeliveryJob {
         private Optional<DeliverySlot> deliverySlot = Optional.empty();
         private Optional<Earning> earning = Optional.empty();
         private Boolean isDelivered;
+
+        /**
+         * Copys from an existing job.
+         *
+         * @param job
+         * @return
+         */
+        public Builder copy(DeliveryJob job) {
+            this.jobId = job.getJobId();
+            this.recipient = job.getRecipientId();
+            this.sender = job.getSenderId();
+            this.deliveryDate = job.getDeliveryDate();
+            this.deliverySlot = job.getDeliverySlot();
+            this.earning = job.getEarning();
+            this.isDelivered = job.getDeliveredStatus();
+            return this;
+        }
 
         /**
          * Sets jobid.
