@@ -204,7 +204,7 @@ Format: `sort [CATEGORY]`
 
 * If no category is provided, the persons are sorted by their names alphanumerically
 * If a category is provided, the persons are sorted by that category alphanumerically
-  * e.g. sort address will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
+  * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
 ### Adding a project: `addpj`
 
@@ -227,10 +227,22 @@ Examples:
 ### Clearing all projects: `clearpj`
 
 ### Sorting projects (by other fields): `sortpj`
+Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
+Format: `sortpj [CATEGORY]`
+* If no category is provided, the projects are sorted by their deadlines alphanumerically
+* If a category is provided, the projects are sorted by that category alphanumerically
+  * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
 ### Assign a person to a project: `assign`
 
 ### Unassign a person from a project: `unassign`
+Removes the specified person from the specified project.
+
+Format: `unassign INDEX n/NAME`
+* Removes the person with the specified `NAME` from the project with the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed project list.
+* `NAME` is case-insensitive.
+* `NAME` must match in full.
 
 ### Undoing a change : `undo`
 
@@ -306,7 +318,9 @@ _Details coming soon ..._
 | **Delete Project** | `deletepj INDEX`                                                                                                                                                                                             |
 | **Remove Project** |                                                                                                                                                                                                              |    
 | **Edit Project** |                                                                                                                                                                                                              |
-| **Sort Projects** |                                                                                                                                                                                                              |                                                                                                                                                                                                              |
+| **Assign**      |                                                                                                                                                                                        |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g., `unassign 1 n/John Doe`                                                                                                                                                   |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                               |                                                                                                                                                                                                              |
 | **Help**        | `help`                                                                                                                                                                                                       |
 | **Undo**        | `undo`                                                                                                                                                                                                       |
 | **Redo**        | `redo`                                                                                                                                                                                                       |

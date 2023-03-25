@@ -23,6 +23,7 @@ import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.commands.RemoveProjectCommand;
 import seedu.socket.logic.commands.SortCommand;
 import seedu.socket.logic.commands.SortProjectCommand;
+import seedu.socket.logic.commands.UnassignCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
@@ -103,6 +104,9 @@ public class SocketParser {
 
         case ClearProjectCommand.COMMAND_WORD:
             return new ClearProjectCommand();
+
+        case UnassignCommand.COMMAND_WORD:
+            return new UnassignCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
