@@ -40,7 +40,7 @@ public class DeleteCategoryCommand extends Command {
         List<Category> lastShownList = dataModel.getFilteredCategoryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_DISPLAYED_INDEX);
         }
 
         Category categoryToDelete = lastShownList.get(targetIndex.getZeroBased());
