@@ -1,4 +1,4 @@
-package vimification.internal.commands;
+package vimification.internal.command;
 
 import static java.util.Objects.requireNonNull;
 

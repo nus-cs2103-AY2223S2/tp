@@ -1,10 +1,10 @@
-package vimification.internal.commands.logic;
+package vimification.internal.command.logic;
 
 import static java.util.Objects.requireNonNull;
 
 import vimification.commons.core.Index;
-import vimification.internal.commands.CommandException;
-import vimification.internal.commands.CommandResult;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 

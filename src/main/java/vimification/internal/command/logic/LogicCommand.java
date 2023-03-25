@@ -1,7 +1,7 @@
-package vimification.internal.commands.logic;
+package vimification.internal.command.logic;
 
 import javafx.collections.ObservableList;
-import vimification.internal.commands.Command;
+import vimification.internal.command.Command;
 import vimification.model.task.Task;
 
 public abstract class LogicCommand extends Command {

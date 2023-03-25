@@ -1,7 +1,7 @@
 package vimification.internal.parser;
 
 import vimification.commons.core.Index;
-import vimification.internal.commands.logic.DeleteCommand;
+import vimification.internal.command.logic.DeleteCommand;
 
 public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
 
