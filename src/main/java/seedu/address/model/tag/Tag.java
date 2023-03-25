@@ -9,6 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
+    /**
+     * An enumeration of tag names for Tag class to show the difficulty level of a card.
+     */
     public enum TagName {
         UNTAGGED,
         EASY,
