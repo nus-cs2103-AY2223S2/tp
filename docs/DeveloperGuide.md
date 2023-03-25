@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 The edit appointments feature allows users to view appointments in the upcoming dates.
 
-This feature is implemented using a panel on the main window with a list of clients names 
+This feature is implemented using a panel on the main window with a list of clients names
 that is updated with every command that may affect appointment set.
 
 One situation that trigger the edit appointments feature is when a suer edits an appointment.
@@ -168,17 +168,17 @@ The following details explain how it works:
       * When an appointment is edited in the clients list, it is automatically added to the
       list of appointments.
       * The list is automatically sorted in increasing order of the appointment data time.
-      
+
 
    * Details:
-      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment* 
+      * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
       class.
       * In the *EditCommand* class, the data entered by user is parsed.
       * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
       * This function, in turn, calls editCommand() function in FitBook.
-      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the 
+      * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
       appointment date time are valid.
-      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted. 
+      * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
 
 
@@ -186,15 +186,15 @@ The following details explain how it works:
 
      Below is an example usage scenario of how the appointment list mechanism behaves at each step:
        * The user launches the application for the first time.
-       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also 
+       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
        checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
 
 
   * Design Considerations
 
-    One important design consideration is how to handle expired appointment dates and times. The current choice is to 
+    One important design consideration is how to handle expired appointment dates and times. The current choice is to
     automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-      * pros: Users can easily distinguish between expired and non-expired appointment dates and times. 
+      * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
       * cons: expired date time cannot be updated immediately unless the user reopen the application.
 
 ### Find feature
@@ -259,6 +259,147 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+
+### Add Exercise feature
+
+#### Implementation
+
+The proposed Add Exercise mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#addExercise()` — Adds an exercise to the specified routine in 'FitBookExerciseRoutine'.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#addExercise()`
+
+Given below is an example usage scenario and how the addExercise mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
+
+![AddExerciseState0](images/AddExerciseState0.png)
+
+Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exercise `push-up` to the exercise list of the routine specified at index `2`
+The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
+which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
+
+![AddExerciseState1](images/AddExerciseState1.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddExerciseCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+
+The following sequence diagram shows how the add exercise operation works:
+
+![AddExerciseSequenceDiagram](images/AddExerciseSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddExerciseCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Adds the exercise into the specific Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
+    * Pros: Easy to implement.
+    * Cons: Might cause performance issues in terms of memory usage and speed.
+
+* **Alternative 2:** Keep track of the update list without saving the entire model into FitBookExerciseRoutine after each addExercise command.
+    * Pros: Might be faster.
+    * Cons: Will be risky as it does not maintain accuracy of data in the model.
+    * 
+### Delete Routine feature
+
+#### Implementation
+
+The proposed Delete Routine mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#deleteRoutine()` — Deletes the routine in the routline list in 'FitBookExerciseRoutine'.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#deleteRoutine()`
+
+Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
+
+![DeleteRoutineState0](images/DeleteRoutineState0.png)
+
+Step 2. The user executes `deleteRoutine 1` command to delete the corresponding index specified in the Routine list of the `FitBookExerciseRoutine`. The `deleteRoutine`
+command calls `DeleteRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command
+which thereafter calls `DeleteRoutineCommand#execute()` which calls `FitBookModel#deleteRoutine()` to delete the routine in `FitBookExerciseRoutine`.
+
+Step 2.5. These commands will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages.
+![DeleteRoutineState1](images/DeleteRoutineState1.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+</div>
+
+The following sequence diagram shows how the deleteRoutine operation works:
+
+![DeleteRoutineSeqDiagram](images/DeleteRoutineSeqDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRoutineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Delete the Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
+    * Pros: Easy to implement.
+    * Cons: Might cause performance issues in terms of memory usage and speed.
+
+* **Alternative 2:** Keep track of the update list without saving the entire model into FitBookExerciseRoutine after each deleteRoutine command.
+    * Pros: Might be faster.
+    * Cons: Will be risky as it does not maintain accuracy of data in the model.
+
+### Export client/routine list
+
+#### Implementation
+This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
+`Fitbook` creates a new CSV file and write data to it.
+
+The proposed export mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#getFilteredClientList` — Retrieves the client list.
+
+This operation is exposed in the `FitBookModel` interface as `FitBookModel#getFilteredClientList()`
+
+Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly
+
+![ExportState0](images/ExportState0.png)
+
+Step 2. The user executes `export` command to export the client list of `FitBook`. The `FitBookParser` calls the `ExportCommand()`
+command which calls `ExportCommand#writeToCsvFile(model)`, to write the client details into a csv file with the client list obtained from `model`.
+The `ExportCommand#writeToCsvFile(model)` calls `ExportCommand#writeHeaderRow(pw)` and `ExportCommand#writeClientRows(PrintWriter pw, List<Client> clients)` which uses
+the input parameter printwriter to write the header row and client rows respectively into the csv file
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+</div>
+
+The following sequence diagram shows how the find operation works:
+
+![ExportSeqDiagram](images/ExportSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design considerations:
+
+**Aspect: How to export the client details :**
+
+* **Alternative 1 (current choice):** Obtains the client list from the model and writes to the csv file which is facilitated by `PrintWriter`
+    * Pros: Code is modular, and easy to implement.
+    * Cons: this implementation is specific to exporting client details to a CSV file, cannot be adapted to other types of exports and the use of static methods makes it difficult to extend or modify the behavior of the command.
+
+* **Alternative 2:** Allows the user to specify which client to export by providing the index of the client. Use a `CsvUtil` class to handle the file I/O operations and list generation.
+
+    * Pros: The file I/O operations are abstracted away in a separate utility class, which improves modularity and readability.
+    * Cons: This implementation may be more complex and harder to understand for someone unfamiliar with the code.
+
 ### Add/Edit Routine feature
 
 The proposed add routine mechanism is facilitated by `FitBook`. It extends `FitBook` with a Routine storage, stored in a `exerciseroutine.json` file. Additionally, it implements the following operations:
@@ -312,6 +453,7 @@ The following sequence diagram shows how the addRoutine operation works:
   itself.
     * Pros: Will use less memory (e.g. for `edit`, just allocate an array for any edits of the same routine before adding the latest edit of that routine only).
     * Cons: Each command implementation must be correct which is hard to maintain.
+
 
 
 ### \[Proposed\] Undo/redo feature
@@ -520,9 +662,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-       
+
        Use case ends.
-    
+
 >**Use case: UC03 - List clients**
 
 **MSS**
@@ -692,11 +834,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
-  
+
   3b. The given exercise index is invalid.
 
     * 3b1. FitBook shows an error message.
-    
+
       Use case resumes at step 2.
 
 > **Use case: UC11 - Find Routine**
@@ -721,14 +863,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User request to export Client List.
 2. FitBook exports the Client List to csv format.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The Client csv file is opened in the background
-    * 1a1. FitBook shows an error message.  
-      
+    * 1a1. FitBook shows an error message.
+
       Use case ends.
 
 > **Use case: UC14 - Export Routine List**
@@ -760,7 +902,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User request have missing routine name field.
     * 1a1. FitBook shows an error for missing routine name.
-      
+
       Use case ends.
 
 * 1b. User request have missing exercise field.
@@ -887,7 +1029,7 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
-   
+
 2. _{ more test cases …​ }_
 
 ### Saving data
