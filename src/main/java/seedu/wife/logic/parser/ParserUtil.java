@@ -14,6 +14,7 @@ import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.model.tag.Tag;
 import seedu.wife.model.tag.TagName;
 
@@ -91,7 +92,7 @@ public class ParserUtil {
     public static ExpiryDate parseExpiryDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!ExpiryDate.isValid(trimmedDate)) {
+        if (!ExpiryDateValidator.isValidDateFormat(trimmedDate)) {
             throw new ParseException(ExpiryDate.FORMAT_MESSAGE_CONSTRAINTS);
         }
         return new ExpiryDate(trimmedDate);

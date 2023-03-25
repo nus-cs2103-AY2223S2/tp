@@ -1,5 +1,7 @@
 package seedu.wife.model.food;
 
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
 
@@ -16,7 +18,7 @@ public class ExpiryDate {
             + "Please insert using the format DD-MM-YYYY";
     public static final String FORMAT_MESSAGE_CONSTRAINTS = "Format of your date is incorrect. "
             + "Please insert using the format DD-MM-YYYY";
-    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
+
     private final LocalDate expiryDate;
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
     private final DateTimeFormatter validFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -28,12 +30,8 @@ public class ExpiryDate {
      */
     public ExpiryDate(String date) {
         requireNonNull(date);
-        checkArgument(isValid(date), FORMAT_MESSAGE_CONSTRAINTS);
+        checkArgument(ExpiryDateValidator.isValidDateFormat(date), FORMAT_MESSAGE_CONSTRAINTS);
         this.expiryDate = LocalDate.parse(date, validFormat);
-    }
-
-    public static boolean isValid(String date) {
-        return date.matches(VALIDATION_REGEX);
     }
 
     /**

@@ -3,7 +3,7 @@ package seedu.wife.model.food.foodvalidator;
 /**
  * Interface to validate string parsed to create food.
  */
-public class FoodValidator {
+public interface FoodValidator {
     /**
      * Validates the string input.
      * @param string String input by the user.
