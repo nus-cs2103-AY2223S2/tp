@@ -16,4 +16,12 @@ public class Range<T> {
         this.end = end;
     }
 
+    public Start<T> getStart() {
+        return start;
+    }
+
+    public End<T> getEnd() {
+        return end;
+    }
+
 }

@@ -31,8 +31,8 @@ public class DeleteCommand extends Command {
 
     // TODO: change / add message for indexes
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_DELETE_DATE_SUCCESS = "Cases from %1$s deleted";
-    public static final String MESSAGE_DELETE_RANGE_SUCCESS = "Cases from %1$s to %1$s deleted";
+    public static final String MESSAGE_DELETE_DATE_SUCCESS = "%1$s cases from %1$s deleted";
+    public static final String MESSAGE_DELETE_RANGE_SUCCESS = "%1$s cases from %1$s to %1$s deleted";
 
     private final Optional<Index> targetIndex; // TODO: make list of indexes
     private final Optional<Date> date;
@@ -88,7 +88,7 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    public CommandResult executeDate(Model model, List<Person> lastShownList) throws CommandException {
+    public CommandResult executeDate(Model model, List<Person> lastShownList) {
         assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         int numDeleted = 0;
@@ -99,21 +99,22 @@ public class DeleteCommand extends Command {
                 numDeleted++;
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted));
+        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted, date.get().toString()));
     }
 
-    public CommandResult executeRange(Model model, List<Person> lastShownList) throws CommandException {
+    public CommandResult executeRange(Model model, List<Person> lastShownList) {
         assert range.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         int numDeleted = 0;
         RangeContainsPersonPredicate predicate = new RangeContainsPersonPredicate(range.get());
         for (Person person : referenceCopy) {
-            if (predicate.test(person)) { // TODO: update predicate! currently wishful thinking
+            if (predicate.test(person)) {
                 model.deletePerson(person);
                 numDeleted++;
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS, numDeleted));
+        return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
+                numDeleted, range.get().getStart().toString(), range.get().getEnd().toString()));
     }
 
     @Override

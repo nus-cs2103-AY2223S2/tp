@@ -24,13 +24,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
+        // TODO: fix, not working to catch mix at the moment
         try { // all indexes
             // TODO: parseMultiIndex(args)
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-
             try {
+                // TODO: does not catch index/prefix mix
+                //  bc tokeniser does not care abt indexes at front
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(args, PREFIX_DATE,
                                 PREFIX_STARTDATE, PREFIX_ENDDATE);
