@@ -152,7 +152,9 @@ extension feature to this project.<br/><br/>
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+**Structure:**
+<img src="images/StorageClassDiagram.png" width="500" />
+<img src="images/JsonAdaptersDiagram.png" width="500" />
 
 **The `Storage` component:**
 
@@ -172,7 +174,7 @@ To serialize a recipe, we must necessarily serialize its component fields too: i
 The default JSON representation for each component is to express the fields of each component as key-value pairs. 
 However, this representation is too verbose and space-inefficient. Hence, we opted to write custom JSON adapters for
 each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
-package. The JSON adapters allow us to express how each class should be serialized.
+package. These JSON adapters allow us to express how each class should be serialized.
 
 ## **Implementation**
 
