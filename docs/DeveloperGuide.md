@@ -84,6 +84,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* Although not represented in the diagram, the UI component starts the Notification function as soon as the app runs.
 
 ### Logic component
 
@@ -127,7 +128,7 @@ The `Model` component,
 * stores the currently 'selected' `DeliveryJob` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DeliveryJob>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* The address book structure largly remained the same.
+* The address book structure largely remains the same.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -337,6 +338,45 @@ The following sequence diagram shows how the update operation works:
 #### Design considerations:
 
 //to be added
+
+### Notification feature
+#### Implementation
+
+The Notification feature is facilitated by an external library, [ControlsFx](https://github.com/controlsfx/controlsfx). 
+It is an open source project for JavaFX that aims to provide really high quality UI controls and other tools to 
+complement the core JavaFX distribution. The mechanism is handled by `NotificationManager`, which implements the 
+following operations:
+
+* `NotificationManager#checkReminderList()` — Check against the `reminderList` found in `Model` and display a reminder notification with `NotificationManager#show()`.
+* `NotificationManager#checkNowSchedule()` — Check against the timetable to create a notification of scheduled jobs to be carried out at in the present scheduled slot. Displays notification with `NotificationManager#show()`.
+* `NotificationManager#checkNextSchedule()` — Check against the timetable to create a notification of upcoming scheduled jobs to be carried out in the next scheduled slot. Displays notificaiton with `NotificationManager#show()`.
+* `NotificationManager#show()` — Creates the actual notification with details picked up by the other methods, and displays it on the screen.
+
+Additionally, to allow notifications to display even when the app is running in the background, `TimerTask` and `Timer` from `java.util` is utilised. This mechanism is started by
+`BackgroundNotificationScheduler`, which schedules 2 `TimerTask`:
+
+* `BackgroundReminderTask` — Runs `NotificationManager#checkReminderList()`. This task is scheduled every minute after the app has run. It will not show notifications of reminders that it has already shown (this check resets after the app shutdown).
+* `BackgroundScheduleTask` — Runs `NotificationManager#checkNextSchedule()`. This task is scheduled 20 minutes before the next scheduled slot to display upcoming scheduled jobs. If the current time is
+after the last slot timing, no notification for upcoming jobs will be displayed until the end of the day.
+
+Given below is an example of the usage scenario and how the Notification feature behaves at each step.
+
+Step 1. The user launches the application. `UiManager` will create an instance of `NotificationManager`. 
+Step 2. The instance of `NotificationManager` will then call `NotificationManager#checkReminderList()` and `NotificationManager#checkNowSchedule()`, which will display the corresponding notifications
+Step 3. An instance of `BackgroundNotificationScheduler` will be created and its `BackgroundNotificationScheduler#run()` function will be called to schedule the 2 `TimerTask`.
+Step 4. At the appropriate timings, `NotificationManager#checkReminderList()` and `NotificationManager#checkNextSchedule()` will run and display the appropriate notifications accordingly.
+
+The following sequence diagram shows how the Notification feature works:
+![NotificationSequenceDiagram](images/NotificationSequenceDiagram.png)
+
+Design considerations:
+Aspect: How background notifications run its checks:
+* **Alternative 1 (current choice):** `TimerTask` and `Timer`
+  * Pros: Easy to implement. Better OOP.
+  * Cons: Cannot run random checks against the current time or date.
+*  **Alternative 2**: `Thread`
+  * Pros: Allows random checks against the current time or date.
+  * Cons: May slow down the app, or worst case scenario, hang the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
