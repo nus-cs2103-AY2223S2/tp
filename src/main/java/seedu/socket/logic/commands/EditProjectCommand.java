@@ -42,7 +42,7 @@ public class EditProjectCommand extends Command {
             + "[" + PREFIX_REPO_HOST + "REPO HOST] "
             + "[" + PREFIX_REPO_NAME + "REPO NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_MEETING + "MEETING]...\n "
+            + "[" + PREFIX_MEETING + "MEETING]\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Socket2.0 "
             + PREFIX_DEADLINE + "02/01/2023-2359";

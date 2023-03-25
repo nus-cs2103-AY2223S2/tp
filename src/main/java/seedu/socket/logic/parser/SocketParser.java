@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.AddProjectCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.Command;
@@ -84,6 +85,8 @@ public class SocketParser {
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
         case EditProjectCommand.COMMAND_WORD:
             return new EditProjectCommandParser().parse(arguments);
         case DeleteProjectCommand.COMMAND_WORD:
