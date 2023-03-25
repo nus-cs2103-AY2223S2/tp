@@ -24,7 +24,7 @@ public class AddEmployeeToLeaveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee's leave to SudoHR.\n";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day"
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day "
             + "in SudoHR";
     public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
     public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s is added on %2$s";
