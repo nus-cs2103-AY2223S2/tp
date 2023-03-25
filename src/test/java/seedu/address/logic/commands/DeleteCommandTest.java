@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_ONE;
+import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_THREE;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_TWO;
 import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
@@ -65,6 +66,7 @@ public class DeleteCommandTest {
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(EMPLOYEE_ID_ONE);
         DeleteCommand deleteSecondCommand = new DeleteCommand(EMPLOYEE_ID_TWO);
+        DeleteCommand deleteThirdCommand = new DeleteCommand(EMPLOYEE_ID_THREE);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
@@ -81,6 +83,7 @@ public class DeleteCommandTest {
 
         // different employee -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteThirdCommand.equals(deleteSecondCommand));
     }
 
     /**

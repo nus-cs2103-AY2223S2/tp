@@ -35,31 +35,15 @@ public class EmployeeId {
      */
     public EmployeeId(String id) {
         requireNonNull(id);
-        checkArgument(isValidNumber(id));
-        this.value = String.valueOf(Integer.parseInt(id));
+        checkArgument(isValidEmployeeId(id), MESSAGE_CONSTRAINTS);
+        this.value = id;
     }
-
-
-    /**
-     * Returns true if a given string is a valid number, and can possibly be an employee ID.
-     */
-    public static boolean isValidNumber(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidEmployeeId(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Gets the current employee ID as an integer.
-     */
-    public int getEmployeeId() {
-        return Integer.parseInt(value);
     }
 
     /**
@@ -85,7 +69,7 @@ public class EmployeeId {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof EmployeeId
-                && Integer.valueOf(this.value).equals(Integer.valueOf(((EmployeeId) other).value)));
+                && this.value.equals(((EmployeeId) other).value));
     }
 }
 

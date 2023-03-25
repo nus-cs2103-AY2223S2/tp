@@ -17,6 +17,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,15 +33,14 @@ class JsonAdaptedEmployee {
     private final String email;
     private final String address;
     private final String department;
+    private String picturePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    /**
-     * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
-     */
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address, @JsonProperty("department") String department,
+                               @JsonProperty("picturePath") String picturePath,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.employeeId = employeeId;
@@ -48,6 +48,7 @@ class JsonAdaptedEmployee {
         this.email = email;
         this.address = address;
         this.department = department;
+        this.picturePath = picturePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +64,7 @@ class JsonAdaptedEmployee {
         email = source.getEmail().value;
         address = source.getAddress().value;
         department = source.getDepartment().value;
+        picturePath = source.getPicturePath().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -129,9 +131,18 @@ class JsonAdaptedEmployee {
         }
         final Department modelDepartment = new Department(department);
 
+        if (picturePath == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PicturePath.class.getSimpleName()));
+        }
+        if (!PicturePath.isValidPicturePath(picturePath)) {
+            throw new IllegalValueException(PicturePath.MESSAGE_CONSTRAINTS);
+        }
+        final PicturePath modelPicturePath = new PicturePath(picturePath);
+
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
         return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail,
-                modelAddress, modelDepartment, modelTags);
+                modelAddress, modelDepartment, modelPicturePath, modelTags);
     }
 
 }

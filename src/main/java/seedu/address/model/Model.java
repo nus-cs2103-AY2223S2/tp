@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 /**
  * The API of the Model component.
@@ -59,6 +61,11 @@ public interface Model {
     boolean hasEmployee(Employee employee);
 
     /**
+     * Returns an Optional object that may contain the employee with a given employee ID {@code employeeId}.
+     */
+    Optional<Employee> getEmployee(EmployeeId employeeId);
+
+    /**
      * Deletes the given employee.
      * The employee must exist in the address book.
      */
@@ -71,12 +78,21 @@ public interface Model {
     void addEmployee(Employee employee);
 
     /**
+     * Batch Adds the employees from the user input.
+     * {@code fileName} must not already exist in the address book.
+     */
+    void batchAddEmployees(String fileName);
+
+    /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
      * {@code target} must exist in the address book.
      * The employee identity of {@code editedPerson} must not be the same as another
      * existing employee in the address book.
      */
     void setEmployee(Employee target, Employee editedEmployee);
+
+    /** Returns an unmodifiable view of the full employee list */
+    ObservableList<Employee> getFullEmployeeList();
 
     /** Returns an unmodifiable view of the filtered employee list */
     ObservableList<Employee> getFilteredEmployeeList();

@@ -88,7 +88,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Keyword is for the name only, not any other details
 
 Examples:
-* `find John` displays list of all employees whose full name contains a 'John' in it  
+* `find John` displays list of all employees whose full name contains a 'John' in it
 
 
 ### Deleting a employee : `delete`

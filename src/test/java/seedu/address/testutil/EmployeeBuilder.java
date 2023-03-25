@@ -10,6 +10,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -23,6 +24,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DEPARTMENT = "Marketing";
+    public static final String DEFAULT_PICTURE_PATH = "src/main/resources/employeepictures/default.png";
 
     private Name name;
     private EmployeeId employeeId;
@@ -30,6 +32,7 @@ public class EmployeeBuilder {
     private Email email;
     private Address address;
     private Department department;
+    private PicturePath picturePath;
     private Set<Tag> tags;
 
     /**
@@ -42,6 +45,7 @@ public class EmployeeBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         department = new Department(DEFAULT_DEPARTMENT);
+        picturePath = new PicturePath(DEFAULT_PICTURE_PATH);
         tags = new HashSet<>();
     }
 
@@ -55,6 +59,7 @@ public class EmployeeBuilder {
         email = employeeToCopy.getEmail();
         address = employeeToCopy.getAddress();
         department = employeeToCopy.getDepartment();
+        picturePath = employeeToCopy.getPicturePath();
         tags = new HashSet<>(employeeToCopy.getTags());
     }
 
@@ -119,8 +124,16 @@ public class EmployeeBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PicturePath} of the {@code Person} that we are building.
+     */
+    public EmployeeBuilder withPicturePath(String picturePath) {
+        this.picturePath = new PicturePath(picturePath);
+        return this;
+    }
+
     public Employee build() {
-        return new Employee(name, employeeId, phone, email, address, department, tags);
+        return new Employee(name, employeeId, phone, email, address, department, picturePath, tags);
     }
 
 }

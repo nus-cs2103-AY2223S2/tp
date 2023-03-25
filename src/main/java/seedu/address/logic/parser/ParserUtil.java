@@ -46,7 +46,7 @@ public class ParserUtil {
      */
     public static EmployeeId parseEmployeeId(String employeeId) throws ParseException {
         String trimmedEmployeeId = employeeId.trim();
-        if (!EmployeeId.isValidNumber(trimmedEmployeeId)) {
+        if (!EmployeeId.isValidEmployeeId(trimmedEmployeeId)) {
             throw new ParseException(MESSAGE_INVALID_EMPLOYEE_ID);
         }
         return new EmployeeId(trimmedEmployeeId);
@@ -167,5 +167,15 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static String parseFileName(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
     }
 }
