@@ -2,13 +2,12 @@ package seedu.connectus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
@@ -26,9 +25,9 @@ import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.connectus.logic.parser.exceptions.ParseException;
-import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
@@ -48,7 +47,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_MODULE,
             PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
-
 
         Index index;
 
@@ -80,7 +78,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
         parseCcasForEdit(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(editPersonDescriptor::setCcas);
-        parseCcaPositionsForEdit(argMultimap.getAllValues(PREFIX_CCA_POSITION)).ifPresent(editPersonDescriptor::setCcaPositions);
+        parseCcaPositionsForEdit(argMultimap.getAllValues(PREFIX_CCA_POSITION))
+                .ifPresent(editPersonDescriptor::setCcaPositions);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -153,7 +152,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (ccaPositions.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> ccaPositionSet = ccaPositions.size() == 1 && ccaPositions.contains("") ? Collections.emptySet() : ccaPositions;
+        Collection<String> ccaPositionSet = ccaPositions.size() == 1 && ccaPositions
+                .contains("") ? Collections.emptySet() : ccaPositions;
         return Optional.of(ParserUtil.parseCcaPositions(ccaPositionSet));
     }
 }

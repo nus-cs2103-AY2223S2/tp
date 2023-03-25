@@ -1,9 +1,10 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
@@ -11,11 +12,8 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -35,9 +33,9 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
-import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
@@ -60,8 +58,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_MODULE + "MODULE]... "
-            + "[" + PREFIX_MODULE + "CCA]... "
-            + "[" + PREFIX_MODULE + "CCA_POSITION]... "
+            + "[" + PREFIX_CCA + "CCA]... "
+            + "[" + PREFIX_CCA_POSITION + "CCA_POSITION]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -118,7 +116,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
         Set<Cca> updatedCcas = editPersonDescriptor.getCcas().orElse(personToEdit.getCcas());
-        Set<CcaPosition> updatedCcaPositions = editPersonDescriptor.getCcaPositions().orElse(personToEdit.getCcaPositions());
+        Set<CcaPosition> updatedCcaPositions = editPersonDescriptor.getCcaPositions()
+                .orElse(personToEdit.getCcaPositions());
         Person p = new Person(updatedName, updatedTags, updatedModules, updatedCcas, updatedCcaPositions);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
@@ -225,7 +224,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday, modules, ccas, ccaPositions);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags,
+                    birthday, modules, ccas, ccaPositions);
         }
 
         public void setName(Name name) {

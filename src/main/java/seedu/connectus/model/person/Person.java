@@ -9,9 +9,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.connectus.model.socialmedia.SocialMedia;
-import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
