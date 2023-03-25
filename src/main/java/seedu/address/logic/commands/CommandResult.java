@@ -17,13 +17,24 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Replaces result display with more information on command */
+    private final boolean view;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean view) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.view = view;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this(requireNonNull(feedbackToUser), showHelp, exit, false);
     }
 
     /**
