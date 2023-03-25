@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -54,12 +53,9 @@ public class ScoreListPanel extends UiPart<Region> {
 
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
 
-        ObservableList<Score> sortedScoreList = person.getSortedScoreList();
-        ObservableList<Score> scoreList = person.getScoreList().getInternalList();
-
         if (person != null) {
-            scoreListView.setItems(scoreList);
-            if (scoreList.size() != 0) {
+            scoreListView.setItems(person.getSortedScoreList());
+            if (person.getSortedScoreList().size() != 0) {
                 newChart(person);
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
@@ -76,9 +72,6 @@ public class ScoreListPanel extends UiPart<Region> {
         scoreChart.setVisible(true);
         XYChart.Series<String, Double> series = new XYChart.Series<>();
 
-        ObservableList<Score> recentScoreList = person.getRecentScoreList();
-        ObservableList<Score> scoreList = person.getScoreList().getInternalList();
-
         Region chartContent = (Region) scoreChart.lookup(".chart-content");
         for (Node node: chartContent.getChildrenUnmodifiable()) {
             if (node instanceof Group) {
@@ -88,14 +81,14 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         }
 
-        for (int i = 0; i < scoreList.size() && i < 5; i++) {
-            String date = scoreList.get(i).getDate().toString();
-            Double value = scoreList.get(i).getValue().value;
-            String label = scoreList.get(i).getLabel().toString();
+        for (int i = 0; i < person.getRecentScoreList().size() && i < 5; i++) {
+            String date = person.getRecentScoreList().get(i).getDate().toString();
+            Double value = person.getRecentScoreList().get(i).getValue().value;
+            String label = person.getRecentScoreList().get(i).getLabel().toString();
             XYChart.Data<String, Double> data = new XYChart.Data<>(date, value);
             data.setNode(new HoveredThresholdNode(data.getYValue(), label));
             series.getData().add(data);
-        }
+         }
 
         scoreChart.getData().add(series);
     }
@@ -123,7 +116,7 @@ public class ScoreListPanel extends UiPart<Region> {
         }
 
         private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
-            final Label label = new Label(examLabel + "\n" + scoreValue);
+            final Label label = new Label(examLabel + ": " + scoreValue);
             label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
             label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: white; "
                     + "-fx-border-color: #605BF1; -fx-border-width: 2; ");

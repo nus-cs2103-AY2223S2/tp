@@ -28,6 +28,8 @@ public class ScoreList implements Iterable<Score> {
     private final ObservableList<Score> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    private ObservableList<Score> sortedScoreList = FXCollections.observableArrayList();
+
     /**
      * Returns true if the list contains an equivalent score as the given argument.
      */
@@ -46,6 +48,7 @@ public class ScoreList implements Iterable<Score> {
             throw new DuplicateScoreException();
         }
         internalList.add(toAdd);
+        sortedScoreList.add(toAdd);
     }
 
     /**
@@ -116,20 +119,20 @@ public class ScoreList implements Iterable<Score> {
     }
 
     /**
-     * Gets the first 5 recent scores.
-     * @return First 5 recent scores in list.
+     * Gets the sorted score list with recent score at front.
+     * @return Sorted score list.
      */
     public ObservableList<Score> getSortedScoreList() {
-        internalList.sort(Comparator.comparing(Score::getLocalDate).reversed());
-        return internalList;
+        sortedScoreList.sort(Comparator.comparing(Score::getLocalDate).reversed());
+        return sortedScoreList;
     }
 
     public ObservableList<Score> getRecentScoreList() {
         ObservableList<Score> sortedScoreList = getSortedScoreList();
-        ObservableList<Score> recentScoreList = null;
-        for (int i = 0; i < 5; i++) {
-            recentScoreList.add(sortedScoreList.get(i));
-        }
+        //ObservableList<Score> recentScoreList = sortedScoreList.remove(5, sortedScoreList.size() - 1);
+        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream().
+                limit(5).collect(java.util.stream.Collectors.toList()));
+        FXCollections.reverse(recentScoreList);
         return recentScoreList;
     }
 
