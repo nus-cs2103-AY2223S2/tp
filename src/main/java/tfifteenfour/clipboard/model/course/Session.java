@@ -30,16 +30,6 @@ public class Session {
     private final Map<Student, Integer> attendance;
 
     /**
-     * A list that stores the students who attended the session.
-     */
-    private final UniqueStudentList students;
-
-    {
-        students = new UniqueStudentList();
-    }
-
-
-    /**
      * Constructs a {@code Session} with the given session name.
      *
      * @param sessionName The name of the session.
