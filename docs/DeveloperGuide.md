@@ -13,6 +13,7 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 </p>
 
 
+## Table of Contents
 * Table of Contents
   {:toc}
 
