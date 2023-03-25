@@ -195,14 +195,14 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Doctor** | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
-**Add Patient** | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
-**Delete Doctor** | `del-doc INDEX`<br> E.g. `del-doc 3`
-**Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`
-**Edit Doctor** | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`
-**Find Doctor** | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`
-**List Doctors** | `list-doc`
-**Help** | `help`
-**Exit** | `exit`
+| Action             | Format, Examples                                                                                                                                                                                                                              |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Doctor**     | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
+| **Add Patient**    | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
+| **Delete Doctor**  | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                          |
+| **Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                          |
+| **Edit Doctor**    | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
+| **Find Doctor**    | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`                                                                                                                                                                                                |
+| **List Doctors**   | `list-doc`                                                                                                                                                                                                                                    |
+| **Help**           | `help`                                                                                                                                                                                                                                        |
+| **Exit**           | `exit`                                                                                                                                                                                                                                        |
