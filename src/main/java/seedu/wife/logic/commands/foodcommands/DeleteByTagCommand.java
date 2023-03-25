@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.wife.commons.util.TagUtil;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.CommandResult;
-import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
