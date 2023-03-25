@@ -193,6 +193,10 @@ public class Review {
         updateReviewStatsList();
     }
 
+    public void setCard(Tag tag) {
+        currCard = new Card(currCard.getQuestion(), currCard.getAnswer(), tag, currCard.getDeck());
+    }
+
     public void unflipAllCards() {
         cardList.stream().forEach(Card::setAsUnflipped);
     }

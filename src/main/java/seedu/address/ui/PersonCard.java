@@ -49,7 +49,7 @@ public class PersonCard extends UiPart<Region> {
         answer.setText(card.getAnswer().answer);
 
         if (!card.getTag().equals(Tag.TagName.UNTAGGED)) {
-            tags.getChildren().add(new CardTag(card.getTag().toString()));
+            tags.getChildren().add(new CardTag(card.getTagName()));
         }
     }
 
