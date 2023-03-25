@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: Immutable; expiry date is validated in {@link #isValidDate(LocalDate)}
  */
 public class ExpiryDate {
-    public static final String MESSAGE_CONSTRAINTS = "Format of your date is incorrect. "
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Format of your date is incorrect. "
             + "Please insert using the format DD-MM-YYYY";
     public static final String FORMAT_MESSAGE_CONSTRAINTS = "Format of your date is incorrect. "
             + "Please insert using the format DD-MM-YYYY";
@@ -30,7 +30,7 @@ public class ExpiryDate {
      */
     public ExpiryDate(String date) {
         requireNonNull(date);
-        checkArgument(ExpiryDateValidator.isValidDateFormat(date), FORMAT_MESSAGE_CONSTRAINTS);
+        ExpiryDateValidator.validate(date);
         this.expiryDate = LocalDate.parse(date, validFormat);
     }
 
