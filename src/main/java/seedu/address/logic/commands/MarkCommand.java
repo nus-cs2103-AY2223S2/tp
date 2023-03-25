@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -30,7 +31,11 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     private final Index taskIndex;
 
+    /**
+     * Creates a MarkCommand object to mark the task at specified {@code Index}
+     */
     public MarkCommand(Index taskIndex) {
+        requireNonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
 
