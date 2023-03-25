@@ -17,12 +17,6 @@ import seedu.address.testutil.CardBuilder;
 public class CardTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Card card = new CardBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> card.getTags().remove(0));
-    }
-
-    @Test
     public void isSameCard() {
         // same object -> returns true
         assertTrue(LOOP.isSameCard(LOOP));

@@ -3,10 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
@@ -126,7 +122,7 @@ public class ParserUtil {
         String trimmedUserInput = userInput.trim().toUpperCase();
         String tagName;
         try {
-            Tag.Difficulty.valueOf(trimmedUserInput);
+            Tag.TagName.valueOf(trimmedUserInput);
             tagName = trimmedUserInput.toLowerCase();
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

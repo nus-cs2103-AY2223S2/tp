@@ -53,6 +53,13 @@ public class Card {
         return tag;
     }
 
+    public String getTagName() {
+        if (tag == null) {
+            return null;
+        }
+        return tag.tagName.name().toLowerCase();
+    }
+
     public Deck getDeck() {
         return deck;
     }
@@ -138,8 +145,11 @@ public class Card {
         builder.append(getQuestion())
                 .append("; Answer: ")
                 .append(getAnswer())
-                .append(getTag())
                 .append(getDeck());
+
+        if (getTag() != null) {
+            builder.append(getTag());
+        }
 
         return builder.toString();
     }

@@ -53,7 +53,7 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         AddCardDescriptor expectedCardMultipleTags = new AddCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
-                .withTag(VALID_TAG_MEDIUM, VALID_TAG_HARD).build();
+                .withTag(VALID_TAG_MEDIUM).build();
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS
                 + TAG_DESC_MEDIUM + TAG_DESC_HARD, new AddCommand(expectedCardMultipleTags));
     }

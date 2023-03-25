@@ -63,7 +63,7 @@ public class CommandTestUtil {
                 .withTag(VALID_TAG_MEDIUM).build();
         DESC_PHOTOSYNTHESIS = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
-                .withTag(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
+                .withTag(VALID_TAG_HARD).build();
     }
 
     /**

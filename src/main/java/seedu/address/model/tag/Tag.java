@@ -1,7 +1,5 @@
 package seedu.address.model.tag;
 
-import seedu.address.logic.parser.TagCardDuringReviewCommandParser;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -11,15 +9,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public enum Difficulty {
+    public enum TagName {
+        UNTAGGED,
         EASY,
         MEDIUM,
         HARD
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either Easy, Medium, or Hard";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final Difficulty tagName;
+    public final TagName tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -29,16 +29,17 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = Difficulty.valueOf(tagName.toUpperCase());
+        this.tagName = TagName.valueOf(tagName.toUpperCase());
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        requireNonNull(test);
         try {
-            Difficulty.valueOf(test.toUpperCase());
-            return true;
+            TagName.valueOf(test.toUpperCase());
+            return test.matches(VALIDATION_REGEX);
         } catch (Exception e) {
             return false;
         }
@@ -60,7 +61,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName.toString() + ']';
+        return '[' + tagName.name() + ']';
     }
 
 }

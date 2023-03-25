@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -47,9 +48,9 @@ public class UnflippedReviewCard extends UiPart<Region> {
 
         answer.setText(EMPTY_STRING);
 
-        card.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new PersonCard.CardTag(tag.tagName)));
+        if (!card.getTag().equals(Tag.TagName.UNTAGGED)) {
+            tags.getChildren().add(new PersonCard.CardTag(card.getTag().toString()));
+        }
     }
 
     @Override

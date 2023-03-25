@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
+import seedu.address.model.tag.Tag;
 
 /**
  * A UI component that displays information of a {@code Card}.
@@ -47,9 +48,9 @@ public class PersonCard extends UiPart<Region> {
         question.setText(card.getQuestion().question);
         answer.setText(card.getAnswer().answer);
 
-        card.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new CardTag(tag.tagName)));
+        if (!card.getTag().equals(Tag.TagName.UNTAGGED)) {
+            tags.getChildren().add(new CardTag(card.getTag().toString()));
+        }
     }
 
     static class CardTag extends Label {

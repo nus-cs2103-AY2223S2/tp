@@ -2,11 +2,12 @@
   "cards": [ {
     "question": "What is a loop",
     "answer": "A construct that repeats instructions until a condition is met",
-    "tagged": [ "Hard" ],
+    "tagged": "Hard",
     "deck" : "Programming Concepts"
   }, {
     "question": "What is a loop",
     "answer": "A construct that repeats instructions until a condition is met",
+    "tagged": "Untagged",
     "deck" : "Programming Concepts"
   } ],
   "decks" : [ {

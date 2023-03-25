@@ -50,7 +50,7 @@ public class EditCommandTest {
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         Card toEdit = model.getFilteredCardList().get(0); // card at first index
         Card toReplace = new Card(editedCard.getQuestion(), editedCard.getAnswer(),
-                editedCard.getTags(), toEdit.getDeck()); // new card is in the same deck as old card
+                editedCard.getTag(), toEdit.getDeck()); // new card is in the same deck as old card
         expectedModel.setCard(toEdit, toReplace);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
