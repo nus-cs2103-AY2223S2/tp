@@ -90,7 +90,7 @@ public class EditCommand extends Command {
 
         int tagSize = editedPerson.getTags().size();
 
-        if (tagSize > 5) {
+        if (tagSize > 10) {
             throw new CommandException(String.format(MESSAGE_EXCEED_TAG, tagSize));
         }
 
