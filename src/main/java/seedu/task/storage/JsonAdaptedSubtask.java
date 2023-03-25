@@ -77,7 +77,7 @@ public class JsonAdaptedSubtask {
                 Description.class.getSimpleName()));
         }
         if (Boolean.parseBoolean(hasDescription)
-        && !Description.isValidDescription(description)) {
+            && !Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription;

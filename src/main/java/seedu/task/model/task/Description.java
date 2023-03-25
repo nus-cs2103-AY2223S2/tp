@@ -22,16 +22,16 @@ public class Description {
     }
 
     /**
-     * Constructs a {@code Description}.
-     */
-     public Description(String description) {
-     requireNonNull(description);
-     checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
-     value = description;
-     hasDescription = true;
-     }
+      * Constructs a {@code Description}.
+      */
+    public Description(String description) {
+        requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        value = description;
+        hasDescription = true;
+    }
 
-     /**
+    /**
       * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidDescription(String test) {
