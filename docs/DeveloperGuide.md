@@ -87,7 +87,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Elderly`, `Volunteer` and `Pair` object residing in
+* depends on some classes in the `Model` component, as it displays `Elderly`, `Volunteer` and `Pair` objects residing in
   the `Model`.
 
 ### Logic component
