@@ -19,6 +19,7 @@ import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -139,6 +140,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return document;
     }
 
+    public void createTableContent(TaskList tasks) {
+
+    }
 
     public PDPageContentStream setUpContentStream(PDPageContentStream contentStream, PDFont font, int fontSize, float x, float y, PDDocument document) throws IOException {
         contentStream.beginText();

@@ -31,7 +31,7 @@ public class ExportProgressCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + PREFIX_FILENAME + "John Doe's Progress Report "
-            + PREFIX_FILEPATH + System.getProperty("user.dir");
+            + PREFIX_FILEPATH + "C:\\Users\\John Doe\\Downloads\\MATHUTORING";
 
     public static final String MESSAGE_SUCCESS = "%1$s's progress report exported in %2$s with filename %3$s";
 

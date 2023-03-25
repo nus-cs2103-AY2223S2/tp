@@ -224,9 +224,12 @@ public class ParserUtil {
 
     public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
         String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
+        if (filePath.contains("/")) {
+            throw new ParseException("Path must contain backslashes ('\\') instead of forward slashes");
+        }
         Path path = Paths.get(filePath);
         if (Files.isWritable(path) && Files.isDirectory(path)) {
-            return filePath;
+            return path.toString();
         } else {
             throw new ParseException("Path to directory is invalid!");
         }
