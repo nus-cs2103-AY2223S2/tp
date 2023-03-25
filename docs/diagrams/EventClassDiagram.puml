@@ -9,7 +9,6 @@ Class Event
 Class Address
 Class Mark
 Class Name
-Class Phone
 Class Tag
 Class Rate
 Class Time
@@ -21,7 +20,6 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Event
 
 Event *--> Name
-Event *--> Phone
 Event *--> Mark
 Event *--> Address
 Event *--> "*" Tag

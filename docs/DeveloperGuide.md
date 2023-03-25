@@ -1,25 +1,50 @@
 ---
 layout: page
 title: Developer Guide
+output:
+   toc: true
+    toc_float: true
+    toc_depth: 2
+    collapsed: true
+    smooth_scroll: true
 ---
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
-   <!-- - [Architecture](#architecture)
-   - [UI component](#ui-component)
-   - [Logic component](#logic-component)
-   - [Model component](#model-component)
-   - [Storage component](#storage-component)
-   - [Common classes](#common-classes) -->
+  -    <details>
+       <summary>Design</summary>
+
+       - [Architecture](#architecture)
+       - [UI component](#ui-component)
+       - [Logic component](#logic-component)
+       - [Model component](#model-component)
+       - [Event component](#event-component)
+       - [Contact component](#contact-component)
+       - [Storage component](#storage-component)
+
+       </details>
 - [Implementation](#implementation)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+   -   <details>
+       <summary>Features</summary>
+      
+       - [New Contact feature](#new-contact-feature)
+       - [Mark feature](#mark-feature)
+       - [Unmark feature](#unmark-feature)
+       - [Reminder feature](#reminder-feature)
+       - [Linkcontact feature](#linkcontact-feature)
+
+       </details>
 - [Appendix: Requirements](#appendix-requirements)
-   * [Product scope](#product-scope)
-   * [User stories](#user-stories)
-   * [Use cases](#use-cases)
-   * [Non-Functional Requirements](#non-functional-requirements)
-   * [Glossary](#glossary)
+  -    <details>
+       <summary>more</summary>
+
+       * [Product scope](#product-scope)
+       * [User stories](#user-stories)
+       * [Use cases](#use-cases)
+       * [Non-Functional Requirements](#non-functional-requirements)
+       * [Glossary](#glossary)
+
+       </details>
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -38,22 +63,25 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design
 
-<div markdown="span" class="alert alert-primary">
+<!-- <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+</div> -->
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.1</b> Architecture Diagram for the high-level design of the App
+</div>
+<br>
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -72,6 +100,10 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div style="width:80%;margin:0">
+    <b>Figure 1.2</b> Sequence Diagram of delete command
+</div>
+<br>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -81,18 +113,24 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.3</b> Class diagram of components
+</div>
+<br>
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.4</b> Class diagram of UI
+</div>
+<br>
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -103,11 +141,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<div style="width:80%;margin:0">
+    <b>Figure 1.5</b> Class diagram of 'Logic' component
+</div>
+<br>
+
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
@@ -118,52 +160,99 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.6</b> Sequence diagram of 'Logic' component
+</div>
+<br>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.7</b> Class diagram of 'Logic''
+</div>
+<br>
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `EventBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EventBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+<div style="width:80%;margin:0">
+    <b>Figure 1.8</b> Class diagram of 'Model'
+</div>
+<br>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
+* stores the event book data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
+### Event component
+**API** : [`Event.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
+<img src="images/EventClassDiagram.png" width="450" />
+<div style="width:80%;margin:0">
+    <b>Figure 1.9</b> Class diagram of 'Event'
 </div>
+<br>
+
+The `Event` component,
+
+* stores each category of information of an event in individual attributes and each attribute is an object.
+* arrtibutes are:
+   * `Address`
+   * `Mark`
+   * `Name`
+   * `Tag`
+   * `Rate`
+   * `Time`
+   * `Contact`
+* when an event is created the above objects are created using user inputs and then the event object will be created.
+* the event will be added to the UniqueEventList.
+
+### Contact component
+**API** : [`Contact.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+
+<img src="images/ContactClassDiagram.png" width="450" />
+<div style="width:80%;margin:0">
+    <b>Figure 2.0</b> Class diagram of 'Contact'
+</div>
+<br>
+
+The `Contact` component,
+- it is made up of 2 objects the `ContactName` and `ContactPhone`
+- both objects are created using user input.
+
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>)
+
+[//]: # ()
+[//]: # (<img src="images/BetterModelClassDiagram.png" width="450" />)
+
+[//]: # ()
+[//]: # (</div>)
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both event book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `EventBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+<!-- ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package. -->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -268,7 +357,7 @@ The linkcontact feature will take in a contact number as a parameter. This param
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
 
-### \[Proposed\] Undo/redo feature
+<!-- ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -350,7 +439,7 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+_{Explain here how the data archiving feature will be implemented}_ -->
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -784,28 +873,88 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an event
 
-1. Deleting an event while all events are being shown
-
-   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
+1. Prerequisites: List all events using the list command. Multiple events in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. Timestamp in the status bar is updated.
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+      Expected: No event is deleted. Error details shown in the status message. 
 
 
-[Back to top](#)
+
+### Adding an event
+
+   1. Test case: `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`<br>
+      Expected: New event created. Details of event created shown in the status message.
+   
+   1. Test case: `newevent n/ r/`<br>
+      Expected: No event is created. Error details shown in the status message.
+
+
+### Adding a contact 
+
+   1. Test case: `newcontact n/Deborah Tan p/91234567`<br>
+   Expected: New contact created. Details of contact created shown in status message.
+
+   1. Test case: `newcontact n/`<br>
+   Expected: No new contact created. Error details shown in the status message.
+
+### Link contact to Event
+
+1. Prerequisites: List all events using the list command. Multiple events in the list.
+
+   1. Test case: `linkcontact 2 91234567`<br>
+   Expected: Contact linked to second event in the list. Details shown in status message.
+
+   1. Test case: `linkcontact 1`<br>
+   Expected: No contact linked. Error details shown in the status message.
+
+### Mark Event
+
+1. Prerequisites: List all events using the list command. Multiple events in the list.
+
+   1. Test case: `mark 1`<br>
+   Expected: First event in the list is marked. Details shown in the status message.
+
+   1. Test case:  `mark`<br>
+   Expected: No event marked. Error details shown in the status message.
+
+### Unmark Event
+
+1. Prerequisites: List all events using the list command. Multiple events in the list.
+
+   1. Test case: `unmark 1`<br>
+   Expected: First event in the list is unmarked. Details shown in the status message.
+
+   1. Test case:  `unmark`<br>
+   Expected: No event unmarked. Error details shown in the status message.
+
+### Edit an Event
+
+1. Prerequisites: List all events using the list command. Multiple events in the list.
+
+   1. Test case: `edit 1 r/100`<br>
+   Expected: Rate of first event in the list is edited. Details shown in message bar.
+
+   1. Test case: `edit`<br>
+   Expected: No event edited. Error details shown in the status message.
+
+### View upcoming Event
+
+   1. Test case: `remind 2`<br>
+   Expected: Events that start within 2 days will be displayed.
+
+   1. Test case: `remind -1` <br>
+   Expected: No filtered display shown. Error details shown in the status message.
+
+## Glossary
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **User Interface (UI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Event**: A freelancing gig
+
+<div style="text-align: right ">
+  <a href="#top">Back to top</a>
+</div>
+<br>
