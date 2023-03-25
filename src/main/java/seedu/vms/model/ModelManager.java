@@ -3,6 +3,7 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -26,7 +27,7 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -231,22 +232,32 @@ public class ModelManager implements Model {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
-        return List.of();
+        ArrayList<String> messages = new ArrayList<>();
+
+        messages.addAll(updateVaccinationDetail(change));
+
+        return messages;
     }
 
     // =========== VaxTypeManager ==============================================================================
 
     @Override
-    public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
-        return action.apply(vaxTypeManager);
+    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        return builder.create(vaxTypeManager);
     }
 
 
     @Override
-    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
-        return vaxTypeManager.remove(vaxName.toString())
+    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        return builder.update(vaxTypeManager);
+    }
+
+    @Override
+    public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
+        VaxType oldValue = vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+        return new ValueChange<>(oldValue, null);
     }
 
 
@@ -355,6 +366,16 @@ public class ModelManager implements Model {
     }
 
     // =========== Misc methods ================================================================================
+
+
+    private List<String> updateVaccinationDetail(ValueChange<VaxType> change) {
+        if (!change.getOldValue().isPresent()) {
+            return List.of();
+        }
+        detailVaxTypeProperty.setValue(change.getNewValue().orElse(null));
+        return List.of("Vaccination detail card updated");
+    }
+
 
     @Override
     public boolean equals(Object obj) {

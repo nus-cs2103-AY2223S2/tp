@@ -23,7 +23,7 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 
@@ -132,11 +132,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
-        return action.apply(manager);
-    }
-
-    @Override
     public void addAppointment(Appointment appointment) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addAppointment'");
@@ -155,10 +150,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
-        return manager.remove(vaxName.toString())
+    public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
+        VaxType oldValue = manager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+        return new ValueChange<>(oldValue, null);
     }
 
     @Override
@@ -249,6 +245,17 @@ public class VaxTypeModelStub implements Model {
     public void setDetailedVaxType(VaxType vaxType) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
+    }
+
+    @Override
+    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        return builder.create(manager);
+    }
+
+
+    @Override
+    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        return builder.update(manager);
     }
 
 }

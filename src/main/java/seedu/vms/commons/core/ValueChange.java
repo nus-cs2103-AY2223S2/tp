@@ -9,6 +9,11 @@ import java.util.Optional;
  * @param <T> the type of value being changed.
  */
 public class ValueChange<T> {
+    public static final String MESSAGE_ADDITION = "%s added";
+    public static final String MESSAGE_DELETION = "@s deleted";
+    public static final String MESSAGE_UPDATE = "%s updated";
+    public static final String MESSAGE_NO_CHANGE = "Nothing changed";
+
     private final Optional<T> oldValue;
     private final Optional<T> newValue;
 
@@ -47,5 +52,19 @@ public class ValueChange<T> {
      */
     public Optional<T> getNewValue() {
         return newValue;
+    }
+
+
+    @Override
+    public String toString() {
+        if (oldValue.equals(newValue)) {
+            return MESSAGE_NO_CHANGE;
+        }else if (oldValue.isPresent() && newValue.isPresent()) {
+            return String.format(MESSAGE_UPDATE, oldValue.get().toString());
+        } else if (oldValue.isPresent()) {
+            return String.format(MESSAGE_DELETION, oldValue.get().toString());
+        } else {
+            return String.format(MESSAGE_ADDITION, newValue.get().toString());
+        }
     }
 }

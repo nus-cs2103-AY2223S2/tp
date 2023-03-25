@@ -2,7 +2,6 @@ package seedu.vms.model;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
@@ -19,7 +18,7 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -163,10 +162,11 @@ public interface Model {
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
-    /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
-    VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
+    ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException;
 
-    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+    ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+
+    ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException;
 
 
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);

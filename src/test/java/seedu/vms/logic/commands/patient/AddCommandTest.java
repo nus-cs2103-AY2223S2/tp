@@ -34,7 +34,7 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.testutil.PatientBuilder;
 
@@ -185,11 +185,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addKeyword(Keyword keyword) {
             throw new AssertionError("This method should not be called.");
         }
@@ -229,7 +224,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
         }
@@ -298,6 +293,18 @@ public class AddCommandTest {
         public void setDetailedVaxType(VaxType vaxType) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
+        }
+
+        @Override
+        public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addVaccination'");
+        }
+
+        @Override
+        public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
         }
     }
 
