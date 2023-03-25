@@ -101,7 +101,10 @@ public class EditTaskCommand extends Command {
             Description oldDescription = todoToEdit.getDescription().orElse(null);
             Description updatedDescription = editTodoDescriptor.getDescription().orElse(oldDescription);
 
-            return new ToDo(updatedTitle, updatedDescription, updatedBy);
+            ToDo updatedTodo = new ToDo(updatedTitle, updatedBy);
+            updatedTodo.setDescription(updatedDescription);
+
+            return updatedTodo;
 
         } else if (taskToEdit instanceof Event) {
             Event eventToEdit = (Event) taskToEdit;
@@ -116,7 +119,10 @@ public class EditTaskCommand extends Command {
             Description oldDescription = eventToEdit.getDescription().orElse(null);
             Description updatedDescription = editEventDescriptor.getDescription().orElse(oldDescription);
 
-            return new Event(updatedTitle, updatedDescription, updatedEventTimes);
+            Event updatedEvent = new Event(updatedTitle, updatedEventTimes);
+            updatedEvent.setDescription(updatedDescription);
+
+            return updatedEvent;
 
         } else {
             // error

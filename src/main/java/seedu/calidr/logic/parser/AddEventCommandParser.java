@@ -44,7 +44,9 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
 
-        Event event = new Event(title, description, eventDateTimes);
+        Event event = new Event(title, eventDateTimes);
+        event.setDescription(description);
+
         return new AddEventCommand(event);
     }
 
