@@ -796,12 +796,13 @@ Listed all shortlisted applicants
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of <code>NOTE</code> are provided, both parameter will be taken in.
+* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter. </li>
-    <li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
+    <li> All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
+parameter. </li>
+    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
         <ul> 
             <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
             <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
