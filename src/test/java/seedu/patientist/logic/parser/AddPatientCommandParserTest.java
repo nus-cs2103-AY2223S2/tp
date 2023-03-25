@@ -52,7 +52,7 @@ import seedu.patientist.model.tag.Tag;
 import seedu.patientist.testutil.PatientBuilder;
 
 public class AddPatientCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private AddPatientCommandParser parser = new AddPatientCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

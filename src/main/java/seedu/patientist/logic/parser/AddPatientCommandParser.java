@@ -30,7 +30,7 @@ import seedu.patientist.model.ward.Ward;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddPatientCommand> {
+public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

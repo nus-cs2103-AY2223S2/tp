@@ -53,7 +53,7 @@ public class PatientistParser {
         switch (commandWord) {
 
         case AddPatientCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddPatientCommandParser().parse(arguments);
 
         case AddStaffCommand.COMMAND_WORD:
             return new AddStaffCommandParser().parse(arguments);
