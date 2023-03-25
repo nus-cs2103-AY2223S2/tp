@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
@@ -15,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.CopyCommand.CopyInformationSelector;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,6 +31,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CopyCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_RANK,
                         PREFIX_UNIT, PREFIX_COMPANY, PREFIX_PLATOON, PREFIX_TAG, PREFIX_ALL);
@@ -39,35 +42,23 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE), pe);
         }
+        CopyInformationSelector copyInformationSelector = new CopyInformationSelector();
         if (argMultimap.getValue(PREFIX_ALL).isPresent()) {
-            return new CopyCommand(index);
+            copyInformationSelector.copyAllInformation();
         } else {
-            CopyInformationSelector copyInformationSelector = new CopyInformationSelector();
-            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-                copyInformationSelector.copyName();
-            }
-            if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-                copyInformationSelector.copyPhone();
-            }
-            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-                copyInformationSelector.copyEmail();
-            }
-            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-                copyInformationSelector.copyAddress();
-            }
-            if (argMultimap.getValue(PREFIX_RANK).isPresent()) {
-                copyInformationSelector.copyRank();
-            }
-            if (argMultimap.getValue(PREFIX_UNIT).isPresent()) {
-                copyInformationSelector.copyUnit();
-            }
-            if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-                copyInformationSelector.copyCompany();
-            }
-            if (argMultimap.getValue(PREFIX_PLATOON).isPresent()) {
-                copyInformationSelector.copyPlatoon();
-            }
-            return new CopyCommand(index, copyInformationSelector);
+            copyInformationSelector.copyName(argMultimap.getValue(PREFIX_NAME).isPresent());
+            copyInformationSelector.copyPhone(argMultimap.getValue(PREFIX_PHONE).isPresent());
+            copyInformationSelector.copyEmail(argMultimap.getValue(PREFIX_EMAIL).isPresent());
+            copyInformationSelector.copyAddress(argMultimap.getValue(PREFIX_ADDRESS).isPresent());
+            copyInformationSelector.copyRank(argMultimap.getValue(PREFIX_RANK).isPresent());
+            copyInformationSelector.copyUnit(argMultimap.getValue(PREFIX_UNIT).isPresent());
+            copyInformationSelector.copyCompany(argMultimap.getValue(PREFIX_COMPANY).isPresent());
+            copyInformationSelector.copyPlatoon(argMultimap.getValue(PREFIX_PLATOON).isPresent());
+            copyInformationSelector.copyTags(argMultimap.getValue(PREFIX_TAG).isPresent());
         }
+        if (!copyInformationSelector.isAnyFieldSelected()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        return new CopyCommand(index, copyInformationSelector);
     }
 }
