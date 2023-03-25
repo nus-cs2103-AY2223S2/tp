@@ -3,6 +3,7 @@ package seedu.recipe.storage.jsonadapters;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 
 /**
@@ -20,6 +21,11 @@ public class JsonAdaptedSubstitutionIngredient {
 
     public JsonAdaptedSubstitutionIngredient(Ingredient ingredient) {
         ingredientName = ingredient.getName();
+    }
+
+    @JsonValue
+    public String getIngredientName() {
+        return ingredientName;
     }
 
     public Ingredient toModelType() throws IllegalArgumentException {

@@ -25,6 +25,7 @@ public class IngredientQuantity {
     }
 
     private static boolean isValidRecipeQuantity(String candidate) {
+        assert candidate != null;
         if (!candidate.matches(VALIDATION_REGEX)) {
             return false;
         }

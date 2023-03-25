@@ -56,7 +56,7 @@ public class JsonAdaptedRecipe {
             @JsonProperty("portion") Optional<JsonAdaptedRecipePortion> portion,
             @JsonProperty("duration") Optional<JsonAdaptedRecipeDuration> duration,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("ingredient") List<JsonAdaptedIngredient> ingredients,
+            @JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients,
             @JsonProperty("steps") List<JsonAdaptedStep> steps) {
         this.name = name;
         this.portion = portion;

@@ -82,11 +82,6 @@ public class JsonAdaptedIngredient {
                 .collect(Collectors.toList()));
     }
 
-    @JsonValue
-    public String getIngredientName() {
-        return ingredientName;
-    }
-
     /**
      * Converts this Jackson-friendly adapted ingredient object into the model's {@code Hashtable} mapping of
      * {@code Ingredient}-{@code IngredientQuantifier} key-value pairs.
@@ -99,7 +94,10 @@ public class JsonAdaptedIngredient {
         Ingredient mainIngredient = Ingredient.of(ingredientName);
 
         //Validate quantity
-        IngredientQuantity quantity = IngredientQuantity.of(ingredientQuantity);
+        IngredientQuantity quantity = null;
+        if (ingredientQuantity != null) {
+            quantity = IngredientQuantity.of(ingredientQuantity);
+        }
 
         // Validate substitutions
         IngredientQuantifier quantifier = new IngredientQuantifier(

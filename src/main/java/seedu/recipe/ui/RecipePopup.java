@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
 
+import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientKeyValuePairToString;
+
 /**
  * Represents the UI component that pops up and displays the detailed view of a Recipe.
  */
@@ -77,8 +79,12 @@ public class RecipePopup extends UiPart<Region> {
 
         //Ingredients
         recipe.getIngredients()
-                .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
-
+            .forEach((ingredient, quantifier) -> ingredients
+                .getChildren()
+                .add(
+                    new Label(ingredientKeyValuePairToString(ingredient, quantifier))
+                )
+            );
         //Steps
         recipe.getSteps()
                 .forEach(step -> steps.getChildren().add(new Label(step.toString())));
