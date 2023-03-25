@@ -49,7 +49,7 @@ public class DeleteByTagCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         List<Food> foodList = List.copyOf(model.getFoodList());
         String deletedFoodSuccessMessage = MESSAGE_DELETE_FOOD_SUCCESS;
