@@ -154,6 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Customer and Order Notes
+
+#### Implementation
+
+A **note** is any string that is associated with a `Customer` or an `Order`.
+
+To implement this, a new `note` field of type `Note` has been added to `Customer` and `Order`.
+
+* `Note` is a class with a `String` field that can take any value except `null`.
+* If a `Customer` or `Order` has a note, a **Note** section will be shown in their view panel
+* An empty note is indicated by a blank string, in which case the **Note** section will not be shown.
+
+There are four commands to manipulate a given customer/order's note
+
+* `setnotec` to set or overwrite a `Customer`'s note
+* `appendnotec` to add some string to the end of a `Customer`'s existing note
+* `setnoteo` to set or overwrite an `Order`'s note
+* `appendnoteo` to add some string to the end of an `Order`'s existing note
+
+We settled on just a **set** and **append** command as deleting a note can be done by simply setting the note to an empty string. On the other hand, there is no clear way to edit text in a CLI application.
+
+#### Potential Enhancements
+
+* **Multiple Notes**
+
+  Currently, a customer/order can have a single note. It may be useful if  they can have multiple notes instead. This would involve an alternative set of commands to add and remove notes for a given customer/order.
+
+* **Note Tags**
+
+  Different notes between different customers and orders may have related themes. Thus, the ability to add tags to these related notes can help the user group their notes.
+
+  This could be done inline using a special character (e.g. `#`) within the note itself, where the system would automatically detect the tags.
+
+  We can then provide an additional command to view all the notes with a specific tag, along with their associated customer/order.  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
