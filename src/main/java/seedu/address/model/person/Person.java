@@ -214,7 +214,7 @@ public class Person {
 
     /**
      * Returns true if for all the fields specified,
-     * the person contains at least one of the keywords in the list of keywords for that field,
+     * there exists a keyword linked to that field, where that person's field contains that keyword,
      * returns false otherwise.
      *
      * For the more mathematically inclined,
