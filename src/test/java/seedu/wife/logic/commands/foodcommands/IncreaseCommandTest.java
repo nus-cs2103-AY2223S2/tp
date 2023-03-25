@@ -55,14 +55,17 @@ public class IncreaseCommandTest {
     public void execute_quantityUnspecifiedUnfilteredList_success() {
         Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
+
         FoodBuilder foodInList = new FoodBuilder(lastFood);
         Integer newQuantity = lastFood.getQuantity().getValue() + 1;
         String newQuantityString = newQuantity.toString();
         Food increasedFood = foodInList.withQuantity(newQuantityString).build();
+
         String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood);
         Model expectedModel = new ModelManager(new Wife(model.getWife()), new UserPrefs());
         expectedModel.setFood(lastFood, increasedFood);
         IncreaseCommandParser increaseCommandParser = new IncreaseCommandParser();
+
         try {
             IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2");
             assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
