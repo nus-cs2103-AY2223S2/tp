@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.model.person.Nric;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Nric;
+
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -27,7 +27,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
-        Nric nric  = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         return new ViewCommand(nric);
     }
 
