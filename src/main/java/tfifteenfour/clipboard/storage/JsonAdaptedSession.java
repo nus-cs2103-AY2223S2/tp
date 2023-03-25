@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 /**
  * Jackson-friendly version of {@link Session}.
@@ -20,15 +22,26 @@ class JsonAdaptedSession {
     // TODO: Figure out how to convert attendance
     private final String sessionName;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
-    private final Map<JsonAdaptedStudent, Integer> attendance = new HashMap<>();
+    private final List<JsonAdaptedStudent> keys = new ArrayList<>();
+    private final List<Integer> values = new ArrayList<>();
 
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("groupName") String sessionName,
-                            @JsonProperty("students") List<JsonAdaptedStudent> students,
-                              @JsonProperty("attendance") Map<JsonAdaptedStudent, Integer> attendance) {
+                              @JsonProperty("students") List<JsonAdaptedStudent> students,
+                              @JsonProperty("keys") List<JsonAdaptedStudent> keys,
+                              @JsonProperty("values") List<Integer> values) {
         this.sessionName = sessionName;
+
         if (students != null) {
             this.students.addAll(students);
+        }
+
+        if (keys != null) {
+            this.keys.addAll(keys);
+        }
+
+        if (values != null) {
+            this.values.addAll(values);
         }
     }
 
@@ -37,6 +50,10 @@ class JsonAdaptedSession {
         this.students.addAll(source.getUnmodifiableStudentList()
                 .stream().map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
+        this.keys.addAll(source.getAttendance().keySet()
+                .stream().map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
+        this.values.addAll(source.getAttendance().values());
     }
 
     @JsonValue
@@ -55,10 +72,19 @@ class JsonAdaptedSession {
         }
         Session savedSession = new Session(sessionName);
 
-        // TODO: Figure out how to convert attendance
-//        for (JsonAdaptedStudent student : students) {
-//            savedGroup.addStudent(student.toModelType());
-//        }
+        UniqueStudentList uniqueStudents = new UniqueStudentList();
+        for (JsonAdaptedStudent student : students) {
+            uniqueStudents.add(student.toModelType());
+        }
+        savedSession.setStudents(uniqueStudents);
+
+        Map<Student, Integer> newAttendance = savedSession.getAttendance();
+        for (int i = 0; i < keys.size(); i++) {
+            newAttendance.put(
+                    keys.get(i).toModelType(),
+                    values.get(i)
+            );
+        }
         return savedSession;
     }
 

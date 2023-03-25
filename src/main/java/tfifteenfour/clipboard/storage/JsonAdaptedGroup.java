@@ -18,13 +18,19 @@ class JsonAdaptedGroup {
 
     private final String groupName;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedSession> sessions = new ArrayList<>();
 
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("groupName") String groupName,
-                            @JsonProperty("students") List<JsonAdaptedStudent> students) {
+                            @JsonProperty("students") List<JsonAdaptedStudent> students,
+                            @JsonProperty("sessions") List<JsonAdaptedSession> sessions) {
         this.groupName = groupName;
         if (students != null) {
             this.students.addAll(students);
+        }
+
+        if (sessions != null) {
+            this.sessions.addAll(sessions);
         }
     }
 
@@ -32,6 +38,9 @@ class JsonAdaptedGroup {
         this.groupName = source.getGroupName();
         this.students.addAll(source.getUnmodifiableStudentList()
                 .stream().map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
+        this.sessions.addAll(source.getUnmodifiableSessionList()
+                .stream().map(JsonAdaptedSession::new)
                 .collect(Collectors.toList()));
     }
 
@@ -53,6 +62,10 @@ class JsonAdaptedGroup {
 
         for (JsonAdaptedStudent student : students) {
             savedGroup.addStudent(student.toModelType());
+        }
+
+        for (JsonAdaptedSession session : sessions) {
+            savedGroup.addSession(session.toModelType());
         }
         return savedGroup;
     }
