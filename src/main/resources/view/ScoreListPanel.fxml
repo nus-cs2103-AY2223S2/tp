@@ -4,8 +4,31 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: white; -fx-background-radius: 10;">
-    <Label fx:id="title" styleClass="title_label" text="Score List" />
-    <Label fx:id="name" styleClass="heading_label" />
-    <ListView fx:id="scoreListView" VBox.vgrow="ALWAYS" style="-fx-padding: 10 18 18 18"/>
-</VBox>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: white; -fx-background-radius: 10;">
+    <Tab fx:id="tab1" text="Text" closable="false" styleClass="list_tab">
+        <VBox>
+        <Label fx:id="title" styleClass="title_label" text="Score List" />
+        <Label fx:id="name" styleClass="heading_label" />
+        <ListView fx:id="scoreListView" VBox.vgrow="ALWAYS" style="-fx-padding: 10 18 18 18" />
+        </VBox>
+    </Tab>
+    <Tab fx:id="tab2" text="Chart" closable="false" styleClass="list_tab">
+        <VBox>
+            <Label fx:id="chart" styleClass="title_label" text="Score Chart" />
+            <Label fx:id="nameChart" styleClass="heading_label" />
+            <LineChart fx:id="scoreChart" prefWidth="30" prefHeight="30" visible="false">
+                <xAxis>
+                    <CategoryAxis fx:id="xAxis" side="BOTTOM"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="yAxis" side="LEFT" autoRanging="false" lowerBound="0" upperBound="100"/>
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </Tab>
+</TabPane>
