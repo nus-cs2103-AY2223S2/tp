@@ -12,7 +12,7 @@ import seedu.calidr.model.task.params.Title;
 public abstract class Task {
 
     private final Title title;
-    private final Description description;
+    private Description description;
     private boolean isDone;
     private Priority priority;
 
@@ -20,13 +20,12 @@ public abstract class Task {
      * Creates a Task object with the given title and MEDIUM priority.
      *
      * @param title The title of the Task.
-     * @param description The description of the Task
      */
-    public Task(Title title, Description description) {
+    public Task(Title title) {
         assert title != null;
 
         this.title = title;
-        this.description = description;
+
         this.isDone = false;
         this.priority = Priority.MEDIUM;
     }
@@ -38,6 +37,10 @@ public abstract class Task {
 
     public Optional<Description> getDescription() {
         return Optional.ofNullable(this.description);
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
     }
 
     public void mark() {

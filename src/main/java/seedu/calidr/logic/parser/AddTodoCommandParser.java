@@ -41,7 +41,9 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
 
-        ToDo todo = new ToDo(title, description, byDateTime);
+        ToDo todo = new ToDo(title, byDateTime);
+        todo.setDescription(description);
+
         return new AddTodoCommand(todo);
     }
 
