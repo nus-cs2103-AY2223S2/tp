@@ -18,6 +18,9 @@ public class QuickstartWindow extends UiPart<Stage> {
     @FXML
     private Pagination quickPagination;
 
+    @FXML
+    private ImageView quickImageView;
+
     /**
      * Creates a new QuickstartWindow.
      */
@@ -32,12 +35,12 @@ public class QuickstartWindow extends UiPart<Stage> {
      */
     public QuickstartWindow(Stage root) {
         super(FXML, root);
-        quickPagination.setPageFactory((Integer pageIndex) -> pageImageSet(pageIndex));
+//        quickPagination.setPageFactory((Integer pageIndex) -> pageImageSet(pageIndex));
     }
 
     public ImageView pageImageSet(int pageIndex) {
-        ImageView imageToShow = new ImageView(QuickstartImages.giveImage(pageIndex));
-        return imageToShow;
+        quickImageView.setImage(QuickstartImages.giveImage(pageIndex));
+        return quickImageView;
     }
 
     /**

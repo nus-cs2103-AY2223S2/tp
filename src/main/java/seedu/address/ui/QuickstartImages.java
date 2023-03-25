@@ -12,6 +12,11 @@ public class QuickstartImages {
     public static final Image quickstartSeventhPage = new Image("/image/quickstart-7.png");
     public static final Image quickstartEighthPage = new Image("/image/quickstart-8.png");
 
+    /**
+     * Returns an image according to the current page number in Pagination.
+     *
+     * @param pageNum page number (index 0) being passed by the quickPaginator.
+     */
     public static Image giveImage(int pageNum) {
         switch (pageNum) {
         case 0:

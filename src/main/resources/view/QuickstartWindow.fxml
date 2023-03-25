@@ -4,12 +4,14 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Quickstart Guide" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/help_icon.png" />
+        <Image url="@/images/officeconnect.png" />
     </icons>
       <scene>
         <Scene>
@@ -18,9 +20,16 @@
           </stylesheets>
 
 
-            <AnchorPane prefHeight="472.0" prefWidth="800.0">
+            <AnchorPane id="quickAnchorPane" prefHeight="323.0" prefWidth="690.0">
             <children>
-               <Pagination fx:id="quickPagination" layoutX="10.0" layoutY="14.0" maxPageIndicatorCount="7" pageCount="7" prefHeight="442.0" prefWidth="780.0" />
+               <Pagination fx:id="quickPagination" layoutX="9.0" layoutY="8.0"
+                           maxPageIndicatorCount="7" pageCount="7" prefHeight="466.0" prefWidth="670.0" />
+               <ImageView id="quickImageView" fitHeight="421.0" fitWidth="686.0"
+                          layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/quickstart-1.png" />
+                  </image>
+               </ImageView>
             </children></AnchorPane>
 
 
