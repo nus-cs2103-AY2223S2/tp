@@ -26,9 +26,9 @@ public class SalaryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<String> execute(Model model) throws CommandException {
         requireNonNull(model);
         model.displaySortedSalaryList(this.order);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.order.toString()));
+        return new CommandResult<>(String.format(MESSAGE_SUCCESS, this.order.toString()));
     }
 }

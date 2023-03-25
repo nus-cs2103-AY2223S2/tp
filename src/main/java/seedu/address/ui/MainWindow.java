@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
+import seedu.address.model.job.Role;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -172,11 +173,16 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult<?> executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            CommandResult<?> commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult.getOutput());
+
+            if (commandResult.getOutput() instanceof String) {
+                resultDisplay.setFeedbackToUser((String) commandResult.getOutput());
+            } else if (commandResult.getOutput() instanceof Role) {
+                resultDisplay.setFeedbackToUser(((Role) commandResult.getOutput()).toString());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

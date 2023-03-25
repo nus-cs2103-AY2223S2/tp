@@ -15,9 +15,9 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult<>(MESSAGE_SUCCESS);
     }
 }

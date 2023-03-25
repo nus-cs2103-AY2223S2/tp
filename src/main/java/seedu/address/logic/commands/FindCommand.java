@@ -26,10 +26,10 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredRoleList(predicate);
-        return new CommandResult(
+        return new CommandResult<>(
                 String.format(Messages.MESSAGE_ROLES_LISTED_OVERVIEW, model.getFilteredRoleList().size()));
     }
 

@@ -38,7 +38,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validRole).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRole), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRole), commandResult.getOutput());
         assertEquals(Arrays.asList(validRole), modelStub.rolesAdded);
     }
 

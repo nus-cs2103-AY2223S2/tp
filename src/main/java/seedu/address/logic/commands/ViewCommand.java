@@ -46,7 +46,7 @@ public class ViewCommand extends Command {
 
         Role roleToView = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_VIEW_ROLE_SUCCESS, roleToView));
+        return new CommandResult(roleToView);
     }
 
     @Override
