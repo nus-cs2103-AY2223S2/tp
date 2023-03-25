@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC11 - Delete event**
 **MSS:**
-1. User request to list event
+1. User request to __list events(UC6)__
 2. SudoHR shows all events
 3. User requests to delete event from SudoHR
 4. SudoHR deletes event.
@@ -462,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC12 - Update event**
 **MSS:**
-1. User resuest to list event
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
 3. User requests to update event details on SudoHR
 4. SudoHR update event.
@@ -495,12 +495,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC14 - Add employee to event**
 **MSS:**
-1. User requests to list event
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
 3. User requests to list employees
 4. SudoHR shows all employees and their details
 5. User requests to add employee to event on SudoHR
-6. SudoHR add employee to event.
+6. SudoHR adds employee to event.
 7. Use case ends.
 
 **Extensions**
@@ -527,9 +527,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC15 - List employees in an event**
 **MSS:**
-1. User request to list events
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
-3. User requests to list employees added to an event
+3. User requests to __list employees in a event(UC8)__
 4. SudoHR shows all employees added to an event and their details
 5. Use case ends.
 
