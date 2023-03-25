@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
