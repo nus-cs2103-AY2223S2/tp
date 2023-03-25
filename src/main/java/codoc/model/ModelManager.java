@@ -41,12 +41,11 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.codoc.getPersonList());
         if (filteredPersons.size() == 0) { // fresh database
-            protagonist = null;
-            currentTab = null;
+            protagonist = Person.getDummyPerson();
         } else {
             protagonist = filteredPersons.get(0);
-            currentTab = "c";
         }
+        currentTab = "c";
     }
 
     public ModelManager() {

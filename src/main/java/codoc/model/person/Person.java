@@ -15,6 +15,7 @@ import codoc.model.skill.Skill;
  * Represents a Person in CoDoc. Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    private static final Person dummyPerson = createDummy();
 
     // Identity fields
     private final ProfilePicture profilePicture;
@@ -55,7 +56,22 @@ public class Person {
         this.skills.addAll(skills);
         this.modules.addAll(modules);
     }
+    public static Person getDummyPerson() {
+        return dummyPerson;
+    }
 
+    private static Person createDummy() {
+        ProfilePicture profilePicture = new ProfilePicture("src/main/resources/images/avataricons/001-bear.png");
+        Name name = new Name("DEFAULT NAME");
+        Course course = new Course("1");
+        Year year = new Year("1");
+        Github github = new Github("default-github");
+        Email email = new Email("default_email@gmail.com");
+        Linkedin linkedin = new Linkedin("linkedin.com/in/default-linkedin");
+        Set<Skill> skills = new HashSet<>();
+        Set<Module> mods = new HashSet<>();
+        return new Person(profilePicture, name, course, year, github, email, linkedin, skills, mods);
+    }
     public ProfilePicture getProfilePicture() {
         return profilePicture;
     }

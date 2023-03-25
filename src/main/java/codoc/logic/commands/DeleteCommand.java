@@ -40,6 +40,14 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (lastShownList.size() == 1) {
+            model.setProtagonist(Person.getDummyPerson());
+        } else if (personToDelete.equals(model.getProtagonist()) && lastShownList.size() == targetIndex.getOneBased()) {
+            model.setProtagonist(lastShownList.get(targetIndex.getZeroBased() - 1));
+        } else if (personToDelete.equals(model.getProtagonist())) {
+            model.setProtagonist(lastShownList.get(targetIndex.getZeroBased() + 1));
+        }
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

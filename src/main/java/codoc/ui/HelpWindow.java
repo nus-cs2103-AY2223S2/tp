@@ -50,7 +50,7 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private final CommandExample[] examples = {
         new CommandExample("Add", "add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
-                + "l/linkedin.com/in/bom-sim-086g93847 m/AY2223S2 CS2103T m/AY2223S2 CS2101 s/python s/java"),
+                + "l/linkedin.com/in/bom-sim-086g93847 m/ay2223s2 CS2103T m/AY2223S2 cs2101 s/python s/java"),
         new CommandExample("View contact", "view 3"),
         new CommandExample("View tab", "view c, view m, view s"),
         new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
