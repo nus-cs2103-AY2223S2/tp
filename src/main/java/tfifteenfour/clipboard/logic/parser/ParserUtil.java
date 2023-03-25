@@ -14,6 +14,7 @@ import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
 
@@ -125,7 +126,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into a {@code <ModuleCode>}.
+     * Parses a {@code String courseCode} into a {@code <Course>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code module code} is invalid.
@@ -139,10 +140,24 @@ public class ParserUtil {
         return new Course(trimmedCourse);
     }
 
+    /**
+     * Parses a {@code String groupName} into a {@code <Group>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static Group parseGroup(String groupName) throws ParseException {
         requireNonNull(groupName);
         String trimmedGroup = groupName.trim();
         return new Group(trimmedGroup);
+    }
+
+    /**
+     * Parses a {@code String sessionName} into a {@code <Session>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Session parseSession(String sessionName) throws ParseException {
+        requireNonNull(sessionName);
+        String trimmedSession = sessionName.trim();
+        return new Session(trimmedSession);
     }
 
     /**
