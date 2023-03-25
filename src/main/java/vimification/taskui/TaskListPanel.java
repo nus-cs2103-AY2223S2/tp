@@ -1,12 +1,14 @@
 package vimification.taskui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import vimification.model.task.Task;
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+
+
 
 /**
  * Panel containing the list of tasks.
@@ -36,6 +38,11 @@ public class TaskListPanel extends UiPart<VBox> {
         this.taskListView.requestFocus();
     }
 
+    /**
+     * Scroll to the kth index on the TaskListPanel.
+     *
+     * @param displayedIndex
+     */
     public void scrollToTaskIndex(int displayedIndex) {
         taskListView.getFocusModel().focus(displayedIndex - 1);
         taskListView.getSelectionModel().select(displayedIndex - 1);
@@ -75,6 +82,9 @@ public class TaskListPanel extends UiPart<VBox> {
         case "k":
             System.out.println("You've moved up");
             navigateToPrevCell();
+            break;
+        default:
+            System.out.println("You've pressed: " + event.getText());
             break;
         }
     }
