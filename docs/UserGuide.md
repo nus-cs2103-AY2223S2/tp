@@ -267,7 +267,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 22-03-2023 after 11:00
     * 23-03-2023 the whole day
     * 24-03-2023 the whole day
-  - Note that 24-03-2023 is within three days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
+  - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
 ### Saving the data
 
