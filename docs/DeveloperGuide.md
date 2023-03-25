@@ -1,5 +1,3 @@
-# Developer Guide
-
 ## Table of Contents
 - **[Acknowledgements](#acknowledgements)**
 - **[Setting up, getting started](#setting-up-getting-started)**
@@ -18,6 +16,7 @@
 
 <br>
 <br>
+<div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 Coming soon
@@ -28,6 +27,8 @@ Coming soon
 Coming soon
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ## Architecture
 <img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
@@ -74,6 +75,8 @@ Description coming soon
 <br>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ## Implementation
 
 ### Adding XYZ
@@ -116,6 +119,7 @@ Another alternative is to use a different design pattern, such as the builder pa
 
 <br>
 
+<div style="page-break-after: always;"></div>
 ### Deleting XYZ
 **How is this feature implemented?**
 
@@ -158,6 +162,8 @@ related commands only.
 Description coming soon
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Linking XYZ to a flight
 
@@ -234,6 +240,8 @@ as discussed in the previous section.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Unlinking XYZ from a flight
 
 **How is this feature implemented?**
@@ -289,6 +297,8 @@ it directly with every change. However, this approach had a few limitations as d
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Displaying flights across all modes
 Initially, there is only one `ItemListPanel` that displays an item list specific to each mode. 
 However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
@@ -323,6 +333,8 @@ we can keep the information displayed organised and clear to the user.
 
 <br>
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirements
 
@@ -384,6 +396,8 @@ unlikely to have) - `*`
 *{More to be added}*
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 

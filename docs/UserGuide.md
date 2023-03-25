@@ -1,9 +1,5 @@
 # User Guide
 
----
-layout: page
-title: User Guide
----
 
 Wingman is a **modal** manager for managing airplanes, pilots, crews, flights,
 and locations. It seeks to provide a highly efficient way of resource
