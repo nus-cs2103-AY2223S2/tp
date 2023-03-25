@@ -1,29 +1,48 @@
 package seedu.loyaltylift.model.order;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the possible values for an Order's Status.
+ * Represents the collection of {@code StatusUpdate} of an Order.
  */
-public enum Status {
-    PENDING, PAID, SHIPPED, COMPLETED, CANCELLED;
+public class Status {
 
-    public static final String MESSAGE_FAIL_CONVERSION = "Unrecognised order type";
+    public final List<StatusUpdate> statusUpdates;
 
-    /**
-     * Returns a {@code Status} based on the given string.
-     *
-     * @param status The given string.
-     */
-    public static Status fromString(String status) {
-        requireNonNull(status);
-        return valueOf(status.toUpperCase());
+    public Status(List<StatusUpdate> statusUpdates) {
+        requireNonNull(statusUpdates);
+        this.statusUpdates = List.copyOf(statusUpdates);
     }
 
-    @Override
-    public String toString() {
-        String str = super.toString();
-        return str.substring(0, 1).toUpperCase()
-                + str.substring(1).toLowerCase();
+    public Status() {
+        this.statusUpdates = List.of(
+                new StatusUpdate(StatusValue.PENDING, LocalDate.now())
+        );
+    }
+
+    public Status newStatusWithNewUpdate(LocalDate date) {
+        StatusUpdate latestStatusUpdate = getLatestStatus();
+        List<StatusUpdate> newStatusUpdates = List.copyOf(this.statusUpdates);
+        newStatusUpdates.add(latestStatusUpdate.nextStatusUpdate(date));
+
+        return new Status(newStatusUpdates);
+    }
+
+    public Status newStatusWithRemoveLatest() {
+        List<StatusUpdate> newStatusUpdates = List.copyOf(this.statusUpdates);
+        newStatusUpdates.remove(newStatusUpdates.size() - 1);
+
+        return new Status(newStatusUpdates);
+    }
+
+    public List<StatusUpdate> getStatusUpdates() {
+        return List.copyOf(statusUpdates);
+    }
+
+    public StatusUpdate getLatestStatus() {
+        return statusUpdates.get(statusUpdates.size() - 1);
     }
 }

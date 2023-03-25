@@ -153,19 +153,6 @@ public class ParserUtil {
         }
         return type;
     }
-    /**
-     * Parses {@code String status} into a {@code Status}.
-     */
-    public static Status parseStatus(String statusString) throws ParseException {
-        requireNonNull(statusString);
-        Status status;
-        try {
-            status = Status.fromString(statusString);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Status.MESSAGE_FAIL_CONVERSION);
-        }
-        return status;
-    }
 
     /**
      * Parses a {@code String points} into a {@code Points}.

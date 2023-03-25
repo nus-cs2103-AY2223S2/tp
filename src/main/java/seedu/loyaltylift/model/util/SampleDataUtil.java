@@ -2,6 +2,7 @@ package seedu.loyaltylift.model.util;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,8 @@ import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
+import seedu.loyaltylift.model.order.StatusUpdate;
+import seedu.loyaltylift.model.order.StatusValue;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -78,8 +81,11 @@ public class SampleDataUtil {
     /**
      * Returns a Status from a given string.
      */
-    public static Status getStatus(String status) {
-        return Status.fromString(status);
+    public static Status getStatus(String status, LocalDate date) {
+        StatusValue statusValue = StatusValue.fromString(status);
+        return new Status(List.of(
+                new StatusUpdate(statusValue, date)
+        ));
     }
 
     /**

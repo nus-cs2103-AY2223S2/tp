@@ -62,7 +62,7 @@ public class Badge extends UiPart<StackPane> {
      * @return An instance of the Badge.
      */
     public static Badge createOrderStatusBadge(Status status) {
-        switch (status) {
+        switch (status.getLatestStatus().statusValue) {
         case PENDING:
             return new Badge(Color.valueOf("#E4544B"), Color.WHITE, "Pending");
         case PAID:

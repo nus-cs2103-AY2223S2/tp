@@ -2,6 +2,9 @@ package seedu.loyaltylift.storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +19,8 @@ import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
+import seedu.loyaltylift.model.order.StatusUpdate;
+import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -28,7 +33,7 @@ public class JsonAdaptedOrder {
     private final String customerId;
     private final String name;
     private final Integer quantity;
-    private final String status;
+    private final List<JsonAdaptedStatusUpdate> statusUpdates = new ArrayList<>();
     private final String address;
     private final String createdDate;
     private final String note;
@@ -39,18 +44,20 @@ public class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("customerId") String customerId,
                             @JsonProperty("name") String name,
-                            @JsonProperty("quantity") Integer quantity,
+                            @JsonProperty("phone") Integer quantity,
+                            @JsonProperty("statusUpdates") List<JsonAdaptedStatusUpdate> statusUpdates,
                             @JsonProperty("address") String address,
-                            @JsonProperty("status") String status,
                             @JsonProperty("createdDate") String createdDate,
                             @JsonProperty("note") String note) {
         this.customerId = customerId;
         this.name = name;
         this.quantity = quantity;
         this.address = address;
-        this.status = status;
         this.createdDate = createdDate;
         this.note = note;
+        if (statusUpdates != null) {
+            this.statusUpdates.addAll(statusUpdates);
+        }
     }
 
     /**
@@ -60,8 +67,10 @@ public class JsonAdaptedOrder {
         customerId = source.getCustomer().getUid();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
+        statusUpdates.addAll(source.getStatus().getStatusUpdates().stream()
+                .map(JsonAdaptedStatusUpdate::new)
+                .collect(Collectors.toList()));
         address = source.getAddress().value;
-        status = source.getStatus().toString().toUpperCase();
         createdDate = source.getCreatedDate().toString();
         note = source.getNote().value;
     }
@@ -94,6 +103,12 @@ public class JsonAdaptedOrder {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
+        final List<StatusUpdate> modelStatusUpdates = new ArrayList<>();
+        for (JsonAdaptedStatusUpdate statusUpdate : statusUpdates) {
+            modelStatusUpdates.add(statusUpdate.toModelType());
+        }
+        final Status modelStatus = new Status(modelStatusUpdates);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -107,17 +122,13 @@ public class JsonAdaptedOrder {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName()));
         }
 
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        final Status modelStatus = Status.valueOf(status);
-
         LocalDate dateObject;
         try {
             dateObject = LocalDate.parse(createdDate, CreatedDate.DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(CreatedDate.MESSAGE_CONSTRAINTS);
         }
+
         if (!CreatedDate.isValidCreatedDate(dateObject)) {
             throw new IllegalValueException(CreatedDate.MESSAGE_CONSTRAINTS);
         }
