@@ -75,9 +75,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Helper function for resetData().
-     * Fixes any discrepancies and inconsistencies in patient-ward relationships.
+     * Fixes any discrepancies and inconsistencies in patient-ward relationships
+     * when reading from data.
      */
-    public void fixData() {
+    private void fixData() {
         for (Patient patient:patients) {
             Boolean wardExists = false;
             String wardName = patient.getWard();
@@ -96,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             if (!wardExists) {
                 Ward newWard = new Ward(wardName);
                 newWard.addPatient(patient);
-                wards.add(newWard);
+                addWard(newWard);
             }
         }
     }
@@ -165,7 +166,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The ward must not already exist in the address book.
      */
     public void addWard(Ward ward) {
-        wards.add(ward);
+        if (!hasWard(ward)) {
+            wards.add(ward);
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
+import seedu.address.model.ward.Ward;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -22,10 +23,24 @@ public class SampleDataUtil {
         };
     }
 
+    public static Ward[] getSampleWards() {
+        return new Ward[] {
+            new Ward("Waiting Room"),
+            new Ward("Class A"),
+            new Ward("Class B"),
+            new Ward("Class C"),
+            new Ward("Intensive Care")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.addPatient(samplePatient);
+        }
+
+        for (Ward sampleWard : getSampleWards()) {
+            sampleAb.addWard(sampleWard);
         }
         return sampleAb;
     }
