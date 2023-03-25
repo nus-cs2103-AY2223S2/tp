@@ -25,36 +25,29 @@ public class SampleDataUtil {
 
     public static Contact[] getSampleContacts() {
         return new Contact [] {
-            new Contact(new ContactName("Deborah Tan"), new ContactPhone("91234567")),
-            new Contact(new ContactName("Mandy"), new ContactPhone("98765432"))
+            new Contact(new ContactName("Gladious Lee"), new ContactPhone("92348274")),
+            new Contact(new ContactName("Sofia Neistat"), new ContactPhone("81274623")),
+            new Contact(new ContactName("Tan Pei Ming"), new ContactPhone("91120392"))
         };
     }
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Event 1"), new Rate("1"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                new Time("02-02-2023 11:00"), new Time("02-02-2023 11:30"),
-                getTagSet("friends")),
-            new Event(new Name("Event 2"), new Rate("2"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Time("02-04-2023 06:00"), new Time("02-04-2023 11:30"),
-                getTagSet("colleagues", "friends")),
-            new Event(new Name("Event 3"), new Rate("3"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                new Time("02-02-2023 11:00"), new Time("02-02-2023 11:30"),
-                getTagSet("neighbours")),
-            new Event(new Name("Event 4"), new Rate("4"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                new Time("02-02-2023 11:00"), new Time("02-02-2023 11:30"),
-                getTagSet("family")),
-            new Event(new Name("Event 5"), new Rate("5"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                new Time("02-02-2023 11:00"), new Time("02-02-2023 11:30"),
-                getTagSet("classmates")),
-            new Event(new Name("Event 6"), new Rate("6"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new Time("02-02-2023 11:00"), new Time("02-02-2023 11:30"),
-                getTagSet("colleagues"))
+            new Event(new Name("Wedding Lunch Photography"), new Rate("120"),
+                new Address("York Hotel ballroom"),
+                new Time("05-05-2023 11:00"), new Time("05-05-2023 14:30"),
+                getTagSet("carousell")),
+            new Event(new Name("Wedding Dinner Photobooth"), new Rate("80"),
+                new Address("3 rich avenue SG 991203"),
+                new Time("08-05-2023 19:00"), new Time("08-05-2023 22:30"),
+                getTagSet("photobooth", "carousell")),
+            new Event(new Name("Barista at Chanel launch"), new Rate("100"),
+                new Address("Open area @ Orchard Road"),
+                new Time("02-05-2023 11:00"), new Time("02-05-2023 18:00"),
+                getTagSet("barista")),
+            new Event(new Name("Wedding Lunch Live Singing"), new Rate("280"),
+                new Address("Raffles Hotel Jubilee Ballroom"),
+                new Time("15-05-2023 11:00"), new Time("15-05-2023 14:00"),
+                getTagSet("family"))
         };
     }
 

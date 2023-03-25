@@ -171,10 +171,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### New Contact feature
+
+### Implementation
+
+The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
+A new contact created will be added to the contact list which will be saved in a JSON file.
+
+### Design considerations:
+
+**Aspect: How new contact is created:**
+
+* **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
+    * Pros: More levels of abstraction to prevent the accidental change of information.
+    * Cons: Complicated code.
+* **Alternative 2:** Created a new contact through storing strings input by user.
+    * Pros: Easy to code.
+    * Cons: Might be hard to keep track or do comparisons with.
+  
+
 ### Mark feature
 The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
 
 **Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
+
+### Unmark feature
+
+The `unmark` feature allows for unmarking of the 'Mark' attribute in events should there be an accidental marking of an event.
+
+#### Implementation
+
+The `unmark` feature is implemented with the following considerations:
+
+- A valid `index` will be taken in as a parameter to facilitate unmarking of the correct event.
+- The unmark feature builds alongside the existing implementation of the 'Mark' class.
+- Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
+- Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
+
+#### Design considerations:  
+
+* **Alternative 1 (current choice): Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false** 
+  * Pros: Easier to implement.
+  * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
+
+* **Alternative 2: Replace current instance of specified event with a new unmarked event instance**
+  * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
+  * Cons: May have performance issues in terms of memory usage and runtime.
 
 ### Reminder feature
 
@@ -200,6 +242,31 @@ The `RemindCommand` is then executed by `LogicManager`. After testing all events
     * Pros: Less coupling between classes.
     * Cons: Difficult to test, as the current time is based on real time.
 
+
+### Linkcontact feature
+
+The link contact feature allows users to link a contact to an event.
+
+#### Implementation
+The `linkcontact` feature is facilitated by `Event` class.
+The feature is implemented as follows:
+* When a user adds an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally change the contact of the event.
+* If the user specifies a contact that does not exist in the contact list, the event will not be added/edited.
+* If the user specifies a contact that already exists in the contact list, the event will be added/edited with the contact.
+
+The linkcontact feature will take in a contact number as a parameter. This parameter will be used to search for the contact in the contact list.
+1. If the contact is found, the contact will be linked to the event.
+2. If the contact is not found, the event will not be added/edited.
+
+#### Design consideration:
+* **Alternative 1 (current choice):** Add a `Contact` attribute to `Event` class.
+    * Pros: Easy to implement.
+    * Cons: May violate Single Responsibility Principle as `Event` class now has to handle both event and contact.
+* **Alternative 2:** Add the `contact` as just a normal string attribute to `Event` class.
+    * Pros: Even easier to implement.
+    * Cons: Hard to implement filtering of events by contact in the future.
 
 ### \[Proposed\] Undo/redo feature
 
