@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.joda.time.LocalTime;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -216,6 +217,10 @@ public class ParserUtil {
         return new ModuleTag(tag);
     }
 
+    /**
+     * Tries to partial match a day string.
+     * MON will output MONDAY.
+     */
     public static Day parseDay(String dayAsStr) throws ParseException {
         String upperDayAsStr = dayAsStr.toUpperCase();
         for (Day day : Day.values()) {
@@ -226,6 +231,9 @@ public class ParserUtil {
         throw new ParseException("Day is invalid");
     }
 
+    /**
+     * Parses a local time and checks whether it is valid.
+     */
     public static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
         try {
             int hour = Integer.parseInt(localTimeAsStr);

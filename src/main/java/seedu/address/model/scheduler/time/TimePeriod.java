@@ -1,13 +1,12 @@
 package seedu.address.model.scheduler.time;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Represents a period in time.
@@ -97,6 +96,9 @@ public abstract class TimePeriod {
         return schoolDay;
     }
 
+    /**
+     * Splits the time period into a bunch of smaller hour blocks.
+     */
     public List<HourBlock> fragmentIntoHourBlocks() {
         List<HourBlock> hourBlocks = new ArrayList<>();
         for (int hour = getStartTime().getHourOfDay(); hour < getEndTime().getHourOfDay(); hour++) {

@@ -1,9 +1,9 @@
 package seedu.address.model.location;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Location object which contains a Latitude(lat), a Longitude(lon) and a name.

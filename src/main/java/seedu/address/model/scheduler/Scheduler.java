@@ -13,7 +13,6 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.recommender.Recommender;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
@@ -54,7 +53,6 @@ public class Scheduler {
 
     /**
      * Adds participants from the model by their ContactIndex.
-     * @param participantIndices
      */
     private void addParticipants(Collection<ContactIndex> participantIndices) {
         IndexHandler indexHandler = new IndexHandler(model);

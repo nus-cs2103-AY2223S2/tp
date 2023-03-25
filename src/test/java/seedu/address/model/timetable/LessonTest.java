@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.scheduler.Module;
 import seedu.address.model.scheduler.time.Day;
 
 class LessonTest {

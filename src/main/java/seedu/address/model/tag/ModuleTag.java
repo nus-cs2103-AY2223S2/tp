@@ -55,6 +55,9 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
         this.lessons = new HashSet<>(lessons);
     }
 
+    /**
+     * Combines the lesson set of two module tags.
+     */
     public ModuleTag mergeWith(ModuleTag otherModuleTag) {
         assert tagName.equals(otherModuleTag.tagName);
         Set<Lesson> newLessons = new HashSet<>(lessons);
@@ -69,32 +72,50 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
         return Set.copyOf(lessons);
     }
 
+    /**
+     * Formats the lessons into a string.
+     */
     public String getLessonsAsStr() {
         return lessons.stream()
                 .map(Lesson::toString)
                 .collect(Collectors.joining(", "));
     }
 
+    /**
+     * Adds a lesson to the module tag.
+     */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
     }
 
+    /**
+     * Adds multiple lessons to the module tag.
+     */
     public void addLessons(Collection<Lesson> lessons) {
         for (Lesson lesson : lessons) {
             addLesson(lesson);
         }
     }
 
+    /**
+     * Removes a lessons from the module tag.
+     */
     public void removeLesson(Lesson lesson) {
         lessons.remove(lesson);
     }
 
+    /**
+     * Removes multiple lessons from the module tag.
+     */
     public void removeLessons(Collection<Lesson> lessons) {
         for (Lesson lesson : lessons) {
             removeLesson(lesson);
         }
     }
 
+    /**
+     * Copies the information of the module tag to preserve immutability.
+     */
     public ModuleTag copy() {
         return new ModuleTag(tagName, new HashSet<>(lessons));
     }
