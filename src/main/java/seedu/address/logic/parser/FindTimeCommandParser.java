@@ -8,8 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindTimeCommand;
 import seedu.address.logic.commands.group.GroupCreateCommand;
+import seedu.address.logic.commands.group.GroupDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 
@@ -26,14 +28,16 @@ public class FindTimeCommandParser implements Parser<FindTimeCommand> {
     public FindTimeCommand parse(String arguments) throws ParseException {
         requireNonNull(arguments);
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_GROUP, PREFIX_STARTDATETIME);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_STARTDATETIME);
+        Index index;
 
-        if (!ParserHelper.arePrefixesPresent(argumentMultimap, PREFIX_GROUP)
-                || !ParserHelper.isPreambleEmpty(argumentMultimap)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTimeCommand.MESSAGE_USAGE));
+        try {
+            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTimeCommand.MESSAGE_USAGE), pe);
         }
 
-        Group group = ParserUtil.parseGroup(argumentMultimap.getValue(PREFIX_GROUP).get());
         // TODO: Change parsing function
         // TODO: Refactor the following lines, especially date parsing and Optional
         boolean isDateSpecified = argumentMultimap.getValue(PREFIX_STARTDATETIME).isPresent();
@@ -43,6 +47,6 @@ public class FindTimeCommandParser implements Parser<FindTimeCommand> {
         } else {
             date = LocalDate.now();
         }
-        return new FindTimeCommand(group, date);
+        return new FindTimeCommand(index, date);
     }
 }

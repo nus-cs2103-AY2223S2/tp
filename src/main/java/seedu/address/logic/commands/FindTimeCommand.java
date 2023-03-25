@@ -1,11 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
@@ -18,27 +20,27 @@ public class FindTimeCommand extends Command {
     public static final String COMMAND_WORD = "free";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all free time slots within a week shared by all members in the indicated group "
+            + ": Finds all free time slots within a week shared by all members in the group "
+            + "(identified by the index number used in the displayed group list)"
             + " and displays them in a timetable format."
             + " The start date can also be specified and time slots generated would be within a week from that date.\n"
-            + "Parameters: " + PREFIX_GROUP + "GROUP NAME" + "[" + PREFIX_STARTDATETIME + "START DATE]\n"
-            + "Example: " + COMMAND_WORD  + PREFIX_GROUP + "CS2103\n"
-            + COMMAND_WORD  + PREFIX_GROUP + "CS2103 " + PREFIX_STARTDATETIME + "09/03/2023\n";
+            + "Parameters: " + "INDEX (must be a positive integer)" + " [" + PREFIX_STARTDATETIME + "START DATE]\n"
+            + "Example: " + COMMAND_WORD  + " 1\n"
+            + COMMAND_WORD  + " 2 " + PREFIX_STARTDATETIME + "09/03/2023\n";
 
     // TODO: Consider using another prefix for date instead of dateTime
-    public static final String MESSAGE_SUCCESS = "New group added: %1$s";
-    public static final String MESSAGE_MISSING_GROUP = "This group does not exist";
+    public static final String MESSAGE_SUCCESS = "Timetable generated!";
 
-    private final Group targetGroup;
+    private final Index index;
 
     private final LocalDate startDate;
 
     /**
      * Creates a FindTimeCommand to find free time slots within a group
      */
-    public FindTimeCommand(Group group, LocalDate date) {
-        requireNonNull(group);
-        targetGroup = group;
+    public FindTimeCommand(Index index, LocalDate date) {
+        requireNonNull(index);
+        this.index = index;
         startDate = date;
     }
 
@@ -52,13 +54,14 @@ public class FindTimeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasGroup(targetGroup)) {
-            throw new CommandException(MESSAGE_MISSING_GROUP);
+        List<Group> lastShownGroups = model.getFilteredGroupList();
+
+        if (index.getZeroBased() >= lastShownGroups.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
 
-        String result = model.get
-
-        // TODO: Show timetable UI instead of text message
-        return new CommandResult(result);
+        Group targetGroup = lastShownGroups.get(index.getZeroBased());
+        model.updateFilteredTimeSlotList(targetGroup, startDate);
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
