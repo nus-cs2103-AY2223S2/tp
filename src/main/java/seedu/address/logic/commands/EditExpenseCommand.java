@@ -85,6 +85,6 @@ public class EditExpenseCommand extends Command {
         if (newExpenseDate != null) {
             expenseToEdit.setDate(newExpenseDate);
         }
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, expenseToEdit));
+        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, expenseToEdit), true);
     }
 }

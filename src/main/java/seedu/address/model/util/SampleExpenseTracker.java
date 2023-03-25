@@ -44,9 +44,8 @@ public class SampleExpenseTracker {
         }
 
         for (Expense sampleExpense : getSampleExpenses()) {
-            if (sampleExpenseTracker.getCategoryInstance(sampleExpense.getCategory().getCategoryName()) != null) {
-                sampleExpense.setCategory(sampleExpenseTracker.getCategoryInstance(sampleExpense.getCategory()
-                        .getCategoryName()));
+            if (sampleExpenseTracker.getCategoryInstance(sampleExpense.getCategory()) != null) {
+                sampleExpense.setCategory(sampleExpenseTracker.getCategoryInstance(sampleExpense.getCategory()));
             }
             sampleExpenseTracker.addExpense(sampleExpense);
         }
