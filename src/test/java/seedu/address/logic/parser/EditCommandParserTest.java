@@ -80,7 +80,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + ANSWER_DESC_GRAVITY + QUESTION_DESC_GRAVITY
-                +TAG_DESC_HARD + TAG_DESC_MEDIUM;
+                + TAG_DESC_HARD + TAG_DESC_MEDIUM;
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY)
                 .withAnswer(VALID_ANSWER_GRAVITY)

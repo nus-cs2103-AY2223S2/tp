@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
