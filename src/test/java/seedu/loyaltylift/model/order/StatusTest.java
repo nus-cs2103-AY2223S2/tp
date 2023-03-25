@@ -3,10 +3,10 @@ package seedu.loyaltylift.model.order;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class StatusTest {
 

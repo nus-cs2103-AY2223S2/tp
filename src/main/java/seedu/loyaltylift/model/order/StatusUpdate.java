@@ -1,17 +1,27 @@
 package seedu.loyaltylift.model.order;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * StatusUpdate that encapsulates a StatusValue and a date.
+ * These updates form a Status of an Order.
+ */
 public class StatusUpdate implements Comparable<StatusUpdate> {
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     public final StatusValue statusValue;
     public final LocalDate date;
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-
+    /**
+     * Constructs a {@code StatusUpdate}.
+     *
+     * @param statusValue Status Value associated with this update.
+     * @param date A valid date.
+     */
     public StatusUpdate(StatusValue statusValue, LocalDate date) {
         requireNonNull(statusValue);
         requireNonNull(date);
@@ -19,15 +29,26 @@ public class StatusUpdate implements Comparable<StatusUpdate> {
         this.date = date;
     }
 
+    /**
+     * Returns a new {@code StatusUpdate} which StatusValue is the next logical stage
+     * with the given date.
+     * @param date A valid date.
+     * @return A new StatusUpdate.
+     */
     public StatusUpdate nextStatusUpdate(LocalDate date) {
         // completed or cancelled should be the last stage
-        if (this.statusValue.equals(StatusValue.COMPLETED) ||
-            this.statusValue.equals(StatusValue.CANCELLED)) {
+        if (this.statusValue.equals(StatusValue.COMPLETED)
+                || this.statusValue.equals(StatusValue.CANCELLED)) {
             throw new IllegalStateException();
         }
         return new StatusUpdate(this.statusValue.nextValue(), date);
     }
 
+    /**
+     * Returns a new {@code StatusUpdate} which StatusValue is the next logical stage
+     * with the current date.
+     * @return A new StatusUpdate.
+     */
     public StatusUpdate nextStatusUpdate() {
         return nextStatusUpdate(LocalDate.now());
     }
@@ -48,7 +69,7 @@ public class StatusUpdate implements Comparable<StatusUpdate> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StatusUpdate  // instanceof handles nulls
+                || (other instanceof StatusUpdate // instanceof handles nulls
                 && statusValue.equals(((StatusUpdate) other).statusValue)
                 && date.equals(((StatusUpdate) other).date)); // state check
     }

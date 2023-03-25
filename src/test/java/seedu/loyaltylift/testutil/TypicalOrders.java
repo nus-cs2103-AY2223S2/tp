@@ -28,7 +28,8 @@ public class TypicalOrders {
             .withInitialStatus(VALID_STATUS_A_PENDING_DATE).withNextStatus(VALID_STATUS_A_PAID_DATE)
             .withAddress(VALID_ADDRESS_A).withCreatedDate(VALID_CREATED_DATE_A).build();
     public static final Order ORDER_B = new OrderBuilder().withName(VALID_NAME_B).withQuantity(VALID_QUANTITY_B)
-            .withInitialStatus(VALID_STATUS_B_PENDING_DATE).withAddress(VALID_ADDRESS_B).withCreatedDate(VALID_CREATED_DATE_B).build();
+            .withInitialStatus(VALID_STATUS_B_PENDING_DATE).withAddress(VALID_ADDRESS_B)
+            .withCreatedDate(VALID_CREATED_DATE_B).build();
 
     // Manually added
     public static final Order ORDER_C = new OrderBuilder().withName("Melon Cookie")

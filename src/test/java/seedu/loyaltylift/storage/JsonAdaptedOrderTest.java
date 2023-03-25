@@ -25,7 +25,6 @@ import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
-import seedu.loyaltylift.model.order.StatusUpdate;
 import seedu.loyaltylift.testutil.TypicalCustomers;
 import seedu.loyaltylift.testutil.TypicalOrders;
 
@@ -40,7 +39,7 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_CUSTOMER_UID = ORDER_A.getCustomer().getUid();
     private static final String VALID_NAME = ORDER_A.getName().fullName;
     private static final Integer VALID_QUANTITY = ORDER_A.getQuantity().value;
-    private static final List<JsonAdaptedStatusUpdate> VALID_STATUS= ORDER_A.getStatus().getStatusUpdates().stream()
+    private static final List<JsonAdaptedStatusUpdate> VALID_STATUS = ORDER_A.getStatus().getStatusUpdates().stream()
             .map(JsonAdaptedStatusUpdate::new)
             .collect(Collectors.toList());
     private static final String VALID_ADDRESS = ORDER_A.getAddress().toString();

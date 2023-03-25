@@ -20,7 +20,6 @@ import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
 import seedu.loyaltylift.model.order.StatusUpdate;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Order}.

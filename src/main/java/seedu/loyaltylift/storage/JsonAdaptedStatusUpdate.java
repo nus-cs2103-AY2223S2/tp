@@ -1,13 +1,16 @@
 package seedu.loyaltylift.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.loyaltylift.model.order.StatusUpdate;
 import seedu.loyaltylift.model.order.StatusValue;
 
-import java.time.LocalDate;
-
+/**
+ * Jackson-friendly version of {@link StatusUpdate}.
+ */
 public class JsonAdaptedStatusUpdate {
 
     private final String statusValue;
