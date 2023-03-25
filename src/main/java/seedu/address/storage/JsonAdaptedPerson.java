@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String drugAllergy;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +41,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
+                             @JsonProperty("drugAllergy") String drugAllergy,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.drugAllergy = drugAllergy;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +63,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        drugAllergy = source.getDrugAllergy().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +120,18 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+
+        if (drugAllergy == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DrugAllergy.class.getSimpleName()));
+        }
+        if (!DrugAllergy.isValidDrugAllergy(drugAllergy)) {
+            throw new IllegalValueException(DrugAllergy.MESSAGE_CONSTRAINTS);
+        }
+        final DrugAllergy modelAllergy = new DrugAllergy(drugAllergy);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelNric, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelNric, modelName, modelPhone, modelEmail, modelAddress, modelAllergy, modelTags);
     }
 
 }
