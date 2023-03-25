@@ -243,13 +243,17 @@ public class ModelManager implements Model {
 
     @Override
     public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.create(vaxTypeManager);
+        ValueChange<VaxType> change = builder.create(vaxTypeManager);
+        handleVaccinationChange(change);
+        return change;
     }
 
 
     @Override
     public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.update(vaxTypeManager);
+        ValueChange<VaxType> change = builder.update(vaxTypeManager);
+        handleVaccinationChange(change);
+        return change;
     }
 
     @Override
@@ -257,7 +261,9 @@ public class ModelManager implements Model {
         VaxType oldValue = vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
-        return new ValueChange<>(oldValue, null);
+        ValueChange<VaxType> change = new ValueChange<>(oldValue, null);
+        handleVaccinationChange(change);
+        return change;
     }
 
 
