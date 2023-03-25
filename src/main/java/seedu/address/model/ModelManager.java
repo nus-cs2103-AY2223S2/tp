@@ -209,12 +209,13 @@ public class ModelManager implements Model {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck toSelect = filteredDecks.get(zeroBasesIdx);
 
+        // Always unselect the previous deck before selecting a new deck
         if (selectedDeck != null) {
-            unselectDeck();
+            setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         }
 
         selectedDeck = toSelect.buildSelectedDeck();
-        setDeck(toSelect, selectedDeck); // will also update GUI to highlight blue card
+        setDeck(toSelect, selectedDeck); // also updates GUI to highlight blue card
 
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
