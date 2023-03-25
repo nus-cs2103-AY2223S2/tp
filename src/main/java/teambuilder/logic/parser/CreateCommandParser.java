@@ -1,20 +1,19 @@
 package teambuilder.logic.parser;
 
-import teambuilder.logic.commands.AddCommand;
-import teambuilder.logic.commands.CreateCommand;
-import teambuilder.logic.parser.exceptions.ParseException;
-import teambuilder.model.person.Name;
-import teambuilder.model.person.Person;
-import teambuilder.model.tag.Tag;
-import teambuilder.model.team.Desc;
-import teambuilder.model.team.Team;
-import teambuilder.model.team.TeamName;
+import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAMDESC;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static teambuilder.logic.parser.CliSyntax.*;
+import teambuilder.logic.commands.CreateCommand;
+import teambuilder.logic.parser.exceptions.ParseException;
+import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Desc;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.TeamName;
 
 /**
  * Parses input arguments and creates a new AddCommand object

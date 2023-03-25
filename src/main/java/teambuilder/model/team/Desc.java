@@ -1,7 +1,5 @@
 package teambuilder.model.team;
 
-import teambuilder.model.person.Address;
-
 import static java.util.Objects.requireNonNull;
 import static teambuilder.commons.util.AppUtil.checkArgument;
 

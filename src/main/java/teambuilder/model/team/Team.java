@@ -1,12 +1,11 @@
 package teambuilder.model.team;
 
-import teambuilder.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import teambuilder.model.tag.Tag;
 
 /**
  * Represents a Team in the address book.

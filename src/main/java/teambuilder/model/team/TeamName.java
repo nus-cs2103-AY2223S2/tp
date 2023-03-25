@@ -3,6 +3,9 @@ package teambuilder.model.team;
 import static java.util.Objects.requireNonNull;
 import static teambuilder.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Team's name in TeamBuilder.
+ */
 public class TeamName {
 
     public static final String MESSAGE_CONSTRAINTS = "Team names should be alphanumeric,"
