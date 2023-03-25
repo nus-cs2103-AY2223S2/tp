@@ -19,6 +19,8 @@ import teambuilder.model.person.Email;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Desc;
+import teambuilder.model.team.TeamName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -27,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TEAM = "Hackathon +";
+    private static final String INVALID_TEAMDESC = "";
 
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -37,6 +40,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_TEAM_1 = "CS2103 T17 1";
     private static final String VALID_TEAM_2 = "TeamBest";
+    private static final String VALID_TEAMDESC_1 = "This is a valid description.";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -210,6 +214,32 @@ public class ParserUtilTest {
     public void parseTags_collectionWithInvalidTeams_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 ParserUtil.parseTags(Arrays.asList(VALID_TEAM_1, INVALID_TEAM)));
+    }
+
+    @Test
+    public void parseTeamName_invalidTeam_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseTeamName(INVALID_TEAM));
+    }
+
+    @Test
+    public void parseTeamDesc_invalidDesc_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseTeamDesc(INVALID_TEAMDESC));
+    }
+
+    @Test
+    public void parseTeamName_validTeam_returnsTeamSet() throws Exception {
+        TeamName actualDesc = ParserUtil.parseTeamName(VALID_TEAM_1);
+        TeamName expectedDesc = new TeamName(VALID_TEAM_1);
+        assertEquals(expectedDesc, actualDesc);
+    }
+
+    @Test
+    public void parseTeamDesc_validDesc_returnsTeamSet() throws Exception {
+        Desc actualDesc = ParserUtil.parseTeamDesc(VALID_TEAMDESC_1);
+        Desc expectedDesc = new Desc(VALID_TEAMDESC_1);
+        assertEquals(expectedDesc, actualDesc);
     }
 
 }

@@ -15,6 +15,9 @@ import teambuilder.model.person.Major;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Desc;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.TeamName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -137,4 +140,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String teamName} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code teamName} is invalid.
+     */
+    public static TeamName parseTeamName(String teamName) throws ParseException {
+        requireNonNull(teamName);
+        String trimmedTeamName = teamName.trim();
+        if (!TeamName.isValidTeamName(trimmedTeamName)) {
+            throw new ParseException(Team.MESSAGE_CONSTRAINTS);
+        }
+        return new TeamName(trimmedTeamName);
+    }
+
+    /**
+     * Parses a {@code String teamName}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code teamName} is invalid.
+     */
+    public static Desc parseTeamDesc(String teamDesc) throws ParseException {
+        requireNonNull(teamDesc);
+        String trimmedTeamName = teamDesc.trim();
+        if (!Desc.isValidTeamDesc(trimmedTeamName)) {
+            throw new ParseException(Desc.MESSAGE_CONSTRAINTS);
+        }
+        return new Desc(trimmedTeamName);
+    }
+
 }

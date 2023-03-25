@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import teambuilder.logic.commands.AddCommand;
 import teambuilder.logic.commands.ClearCommand;
 import teambuilder.logic.commands.Command;
+import teambuilder.logic.commands.CreateCommand;
 import teambuilder.logic.commands.DeleteCommand;
 import teambuilder.logic.commands.EditCommand;
 import teambuilder.logic.commands.ExitCommand;
@@ -78,6 +79,9 @@ public class TeamBuilderParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        case CreateCommand.COMMAND_WORD:
+            return new CreateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
