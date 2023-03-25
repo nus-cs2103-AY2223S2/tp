@@ -57,6 +57,9 @@ public class Group {
 
     public void addStudent(Student student) {
         this.students.add(student);
+        for (Session session : sessions) {
+            session.setStudents(students);
+        }
     }
 
     public void addSession(Session session) {
