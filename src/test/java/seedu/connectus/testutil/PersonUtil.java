@@ -3,6 +3,8 @@ package seedu.connectus.testutil;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,6 +15,8 @@ import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Module;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Tag;
 
 /**
@@ -49,6 +53,12 @@ public class PersonUtil {
         person.getModules().stream().forEach(
                 s -> sb.append(PREFIX_MODULE + s.moduleName + " ")
         );
+        person.getCcas().stream().forEach(
+                s -> sb.append(PREFIX_CCA + s.tagName + " ")
+        );
+        person.getCcaPositions().stream().forEach(
+                s -> sb.append(PREFIX_CCA_POSITION + s.tagName + " ")
+        );
         return sb.toString();
     }
 
@@ -75,6 +85,22 @@ public class PersonUtil {
                 sb.append(PREFIX_MODULE).append(" ");
             } else {
                 modules.forEach(s -> sb.append(PREFIX_MODULE).append(s.moduleName).append(" "));
+            }
+        }
+        if (descriptor.getCcas().isPresent()) {
+            Set<Cca> ccas = descriptor.getCcas().get();
+            if (ccas.isEmpty()) {
+                sb.append(PREFIX_CCA).append(" ");
+            } else {
+                ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getCcaPositions().isPresent()) {
+            Set<CcaPosition> ccaPositions = descriptor.getCcaPositions().get();
+            if (ccaPositions.isEmpty()) {
+                sb.append(PREFIX_CCA_POSITION).append(" ");
+            } else {
+                ccaPositions.forEach(s -> sb.append(PREFIX_MODULE).append(s.tagName).append(" "));
             }
         }
         return sb.toString();

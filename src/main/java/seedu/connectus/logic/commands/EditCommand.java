@@ -11,6 +11,8 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -34,6 +36,8 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Module;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Tag;
 
 /**
@@ -56,6 +60,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_MODULE + "MODULE]... "
+            + "[" + PREFIX_MODULE + "CCA]... "
+            + "[" + PREFIX_MODULE + "CCA_POSITION]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -111,8 +117,9 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
-
-        Person p = new Person(updatedName, updatedTags, updatedModules);
+        Set<Cca> updatedCcas = editPersonDescriptor.getCcas().orElse(personToEdit.getCcas());
+        Set<CcaPosition> updatedCcaPositions = editPersonDescriptor.getCcaPositions().orElse(personToEdit.getCcaPositions());
+        Person p = new Person(updatedName, updatedTags, updatedModules, updatedCcas, updatedCcaPositions);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
             p.setPhone(editPersonDescriptor.getPhone().get());
@@ -190,6 +197,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Birthday birthday;
         private Set<Module> modules;
+        private Set<Cca> ccas;
+        private Set<CcaPosition> ccaPositions;
 
         public EditPersonDescriptor() {
         }
@@ -206,6 +215,8 @@ public class EditCommand extends Command {
             setSocialMedia(toCopy.socialMedia);
             setTags(toCopy.tags);
             setModules(toCopy.modules);
+            setCcas(toCopy.ccas);
+            setCcaPositions(toCopy.ccaPositions);
 
             setBirthday(toCopy.birthday);
         }
@@ -214,7 +225,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday, modules);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday, modules, ccas, ccaPositions);
         }
 
         public void setName(Name name) {
@@ -302,6 +313,42 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Module>> getModules() {
             return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code ccas} to this object's {@code ccas}.
+         * A defensive copy of {@code ccas} is used internally.
+         */
+        public void setCcas(Set<Cca> ccas) {
+            this.ccas = (ccas != null) ? new HashSet<>(ccas) : null;
+        }
+
+        /**
+         * Returns an unmodifiable ccas set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code ccas} is null.
+         */
+        public Optional<Set<Cca>> getCcas() {
+            return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code ccaPositions} to this object's {@code ccaPositions}.
+         * A defensive copy of {@code ccaPositions} is used internally.
+         */
+        public void setCcaPositions(Set<CcaPosition> ccaPositions) {
+            this.ccaPositions = (ccaPositions != null) ? new HashSet<>(ccaPositions) : null;
+        }
+
+        /**
+         * Returns an unmodifiable ccaPositions set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
+         */
+        public Optional<Set<CcaPosition>> getCcaPositions() {
+            return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
         }
 
         @Override
