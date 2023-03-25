@@ -3,6 +3,7 @@ package seedu.address.model.location.util;
 import seedu.address.model.location.Location;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -42,6 +43,10 @@ public class DistanceUtil {
         return new Location(midLat, midLon);
     }
 
+    public static Location getMidpoint(Location... locations) {
+        return getMidpoint(Arrays.asList(locations));
+    }
+
     /**
      * Creates n evenly-spaced locations between the start and end locations.
      */
@@ -78,6 +83,11 @@ public class DistanceUtil {
                 .min(Comparator.comparingDouble((Location location1) -> getDistance(location1, location)));
     }
 
+    public static Optional<Location> getClosestPoint(
+            Location location, Location... locations) {
+        return getClosestPoint(location, Arrays.asList(locations));
+    }
+
     /**
      * Returns the closest points to a particular location.
      * For example, "the 5 closest restaurants to home" would be {@code getClosestPoint(home, 5, restaurants)}.
@@ -88,5 +98,10 @@ public class DistanceUtil {
                 .sorted(Comparator.comparingDouble((Location other) -> getDistance(other, location)))
                 .limit(limit)
                 .collect(Collectors.toList());
+    }
+
+    public static List<Location> getClosestPoints(
+            Location location, int limit, Location... locations) {
+        return getClosestPoints(location, limit, Arrays.asList(locations));
     }
 }

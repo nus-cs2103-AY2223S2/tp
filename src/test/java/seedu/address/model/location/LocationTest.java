@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static seedu.address.model.location.util.TypicalLocation.BEDOK;
+import static seedu.address.model.location.util.TypicalLocation.PASIR_RIS;
+import static seedu.address.model.location.util.TypicalLocation.SERANGOON;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,17 +16,17 @@ import org.junit.jupiter.api.Test;
 
 public class LocationTest {
 
-    private static final double VALID_LAT_1 = 1.34917;
-    private static final double VALID_LON_1 = 103.87348;
-    private static final String VALID_NAME_1 = "Serangoon";
+    private static final double VALID_LAT_1 = SERANGOON.getLat();
+    private static final double VALID_LON_1 = SERANGOON.getLon();
+    private static final String VALID_NAME_1 = SERANGOON.getName();
 
-    private static final double VALID_LAT_2 = 1.35111;
-    private static final double VALID_LON_2 = 103.84833;
-    private static final String VALID_NAME_2 = "Bishan";
+    private static final double VALID_LAT_2 = PASIR_RIS.getLat();
+    private static final double VALID_LON_2 = PASIR_RIS.getLon();
+    private static final String VALID_NAME_2 = PASIR_RIS.getName();
 
-    private static final double VALID_LAT_3 = 1.28472;
-    private static final double VALID_LON_3 = 103.84389;
-    private static final String VALID_NAME_3 = "Chinatown";
+    private static final double VALID_LAT_3 = BEDOK.getLat();
+    private static final double VALID_LON_3 = BEDOK.getLon();
+    private static final String VALID_NAME_3 = BEDOK.getName();
 
     private static final List<Double> VALID_LAT_LIST =
             List.of(VALID_LAT_1, VALID_LAT_2, VALID_LAT_3);

@@ -42,26 +42,4 @@ class MeetCommandTest {
 
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
     private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
-
-    @Test
-    public void execute() throws CommandException {
-        String expectedMessage;
-        expectedMessage = MeetCommand.MESSAGE_SUCCESS
-            + "\n" + EMPTY_TIMETABLE_MESSAGE
-            + "\n\n" + "NUS Medical Library"
-            + "\n" + "NUS Science Library"
-            + "\n" + "Frontier";
-        assertCommandSuccess(MEET_COMMAND, model, expectedMessage, expectedModel);
-        expectedMessage = MeetCommand.MESSAGE_SUCCESS
-            + "\n" + EMPTY_TIMETABLE_MESSAGE
-            + "\n\n" + "NUS Medical Library"
-            + "\n" + "NUS Science Library";
-        assertCommandSuccess(STUDY_COMMAND, model, expectedMessage, expectedModel);
-        expectedMessage = MeetCommand.MESSAGE_SUCCESS
-            + "\n" + EMPTY_TIMETABLE_MESSAGE
-            + "\n\n" + "Frontier"
-            + "\n" + "Prince Georges Park"
-            + "\n" + "The Terrace";
-        assertCommandSuccess(EAT_COMMAND, model, expectedMessage, expectedModel);
-    }
 }

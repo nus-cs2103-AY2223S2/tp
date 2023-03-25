@@ -2,7 +2,6 @@ package seedu.address.model.scheduler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Optional;
 
 import org.joda.time.LocalTime;
 
@@ -39,7 +38,7 @@ public class Timetable {
     /**
      * Adds a commitment to the schedule.
      */
-    public void addCommitment(Commitment commitment) {
+    public void addLesson(Commitment commitment) {
         TimePeriod timePeriod = commitment.getTimePeriod();
         Day day = timePeriod.getSchoolDay();
         ArrayList<HourBlock> availableSlots = schedule.get(day);

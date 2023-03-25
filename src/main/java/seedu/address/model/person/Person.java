@@ -151,7 +151,7 @@ public class Person {
         for (ModuleTag moduleTag : moduleTags) {
             for (Lesson lesson : moduleTag.getImmutableLessons()) {
                 try {
-                    timetable.addCommitment(lesson);
+                    timetable.addLesson(lesson);
                 } catch (CommitmentClashException cce) {
                     continue;
                 }
