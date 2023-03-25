@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSucc
 import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
+import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
 
 public class FindTaskCommandTest {
@@ -40,10 +39,10 @@ public class FindTaskCommandTest {
 
     @Test
     public void equals() {
-        TitleContainsExactKeywordsPredicate firstPredicate =
-                new TitleContainsExactKeywordsPredicate(Collections.singletonList("first"));
-        TitleContainsExactKeywordsPredicate secondPredicate =
-                new TitleContainsExactKeywordsPredicate(Collections.singletonList("second"));
+        TitleContainsKeywordsPredicate firstPredicate =
+                new TitleContainsKeywordsPredicate("first");
+        TitleContainsKeywordsPredicate secondPredicate =
+                new TitleContainsKeywordsPredicate("second");
         FindTaskCommand findFirstCommand = new FindTaskCommand(firstPredicate);
         FindTaskCommand findSecondCommand = new FindTaskCommand(secondPredicate);
 
@@ -67,7 +66,7 @@ public class FindTaskCommandTest {
     @Test
     public void execute_invalidKeywords_noTaskFound() {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK;
-        TitleContainsExactKeywordsPredicate predicate = preparePredicate("Project Destroy");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Project Destroy");
         FindTaskCommand command = new FindTaskCommand(predicate);
         assertCommandFailure(command, model, expectedMessage);
         // Does not flush out the GUI when taking in invalid keywords
@@ -79,8 +78,8 @@ public class FindTaskCommandTest {
 
     @Test
     public void execute_validKeywords_noPersonAssigned() {
-        String expectedMessage = String.format(FindTaskCommand.MESSAGE_NO_PERSON_ASSIGNED, "Send email to client");
-        TitleContainsExactKeywordsPredicate predicate = preparePredicate("Send email to client");
+        String expectedMessage = String.format(FindTaskCommand.MESSAGE_NO_TASK_FOUND, "Send email to client");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Send email to client");
         FindTaskCommand command = new FindTaskCommand(predicate);
         Id tId = getAssignedTaskId(predicate);
 
@@ -98,7 +97,7 @@ public class FindTaskCommandTest {
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);
     }
 
-    private Id getAssignedTaskId(TitleContainsExactKeywordsPredicate predicate) {
+    private Id getAssignedTaskId(TitleContainsKeywordsPredicate predicate) {
         ObservableList<Task> taskList = officeConnectModel
                 .getTaskModelManager()
                 .getReadOnlyRepository().getData()
@@ -113,9 +112,9 @@ public class FindTaskCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code TitleContainsExactKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TitleContainsKeywordsPredicate}.
      */
-    private TitleContainsExactKeywordsPredicate preparePredicate(String userInput) {
-        return new TitleContainsExactKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TitleContainsKeywordsPredicate(userInput);
     }
 }
