@@ -16,7 +16,10 @@ import seedu.address.model.patient.UniquePatientList;
 public class Ward {
 
     public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
-        + "and it should not be blank";
+            + "and it should not be blank";
+
+    public static final String WARD_FULL_MESSAGE_CONSTRAINTS =
+        "The ward cannot be assigned to more patients than its capacity.";
 
     /*
      * The first character of the ward must not be a whitespace,
@@ -24,19 +27,34 @@ public class Ward {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private final Name name;
+    public final String value;
     private final Capacity capacity;
 
     private UniquePatientList patients;
+
     /**
      * Constructs a {@code Ward}.
      *
      * @param name A valid name.
      */
-    public Ward(Name name, Capacity capacity) {
+    public Ward(String name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.value = name;
+        this.capacity = new Capacity(10);
+        patients = new UniquePatientList();
+    }
+
+    /**
+     * Constructs a {@code Ward}.
+     *
+     * @param name A valid name.
+     * @param capacity A specified capacity.
+     */
+    public Ward(String name, Capacity capacity) {
+        requireNonNull(name);
+        checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.capacity = capacity;
         patients = new UniquePatientList();
     }
@@ -44,22 +62,40 @@ public class Ward {
     /**
      * Returns true if a given string is a valid ward.
      */
+    public static boolean isValidWard(String name) {
+        return name.matches(VALIDATION_REGEX);
+
+    }
     public static boolean isValidWard(Name name) {
         return name.toString().matches(VALIDATION_REGEX);
     }
 
-    public Name getName() {
-        return name;
+    /**
+     * Returns true if a given list of patients is small enough to fit the
+     * ward's capacity
+     */
+    private boolean isValidPatients(List<Patient> patients2) {
+        return patients2.size() <= capacity.getValue();
     }
+
+    public String getName() {
+        return value;
+    }
+
     public Capacity getCapacity() {
         return capacity;
     }
-    public String getNameString() {
-        return name.toString();
+
+    public int getOccupancy() {
+        return patients.size();
+    }
+
+    public boolean isFull() {
+        return getOccupancy() >= capacity.getValue();
     }
 
     public String getCapacityString() {
-        return capacity.toString();
+        return "Current occupancy rate: " + getOccupancy() + "/" + capacity.getValue();
     }
 
     public boolean isSameWard(Ward other) {
@@ -140,8 +176,8 @@ public class Ward {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Ward // instanceof handles nulls
-            && patients.equals(((Ward) other).patients));
+                || (other instanceof Ward // instanceof handles nulls
+                        && getName().equals(((Ward) other).getName()));
     }
 
     @Override

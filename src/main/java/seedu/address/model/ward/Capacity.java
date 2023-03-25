@@ -4,22 +4,48 @@ package seedu.address.model.ward;
  * Represents the capacity and occupancy of a ward.
  */
 public class Capacity {
-    private int maxCapacity;
-    private int occupancy = 0;
+    private static final int MIN_CAPACITY = 0;
+    private static final int MAX_CAPACITY = 1000;
+
+    public static final String MESSAGE_CONSTRAINTS = "Capacity should be a"+
+            " positive integer (less than " + Integer.valueOf(MAX_CAPACITY) + ")"
+            + " and it should not be blank";
+
+    private int value;
 
     public Capacity(int capacity) {
-        this.maxCapacity = capacity;
+        value = capacity;
+    }
+
+    public Capacity(String capacity) {
+        value = Integer.parseInt(capacity);
     }
 
     public void setCapacity(int capacity) {
-        this.maxCapacity = capacity;
+        value = capacity;
     }
 
-    public boolean isFull() {
-        return occupancy >= maxCapacity;
+    /**
+     * Returns true if a given string is a valid capacity.
+     */
+    public static boolean isValidCapacity(String test) {
+        try {
+            int value = Integer.parseInt(test);
+            if (value < MIN_CAPACITY || value > MAX_CAPACITY) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
+
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return "Current occupancy rate: " + occupancy + "/" + maxCapacity;
+        return Integer.toString(value);
     }
 }

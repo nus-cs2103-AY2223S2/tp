@@ -9,7 +9,8 @@ import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
-import seedu.address.model.patient.Ward;
+import seedu.address.model.ward.Capacity;
+import seedu.address.model.ward.Ward;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -86,13 +87,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ward} is invalid.
      */
-    public static Ward parseWard(String ward) throws ParseException {
+    public static String parseWard(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
         if (!Ward.isValidWard(trimmedWard)) {
             throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
         }
-        return new Ward(trimmedWard);
+        return trimmedWard;
+    }
+
+    /**
+     * Parses a {@code String ward} into a {@code Ward}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ward} is invalid.
+     */
+    public static Capacity parseCapacity(String capacity) throws ParseException {
+        requireNonNull(capacity);
+        String trimmedCapacity = capacity.trim();
+        if (!Capacity.isValidCapacity(trimmedCapacity)) {
+            throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+        }
+        return new Capacity(trimmedCapacity);
     }
 
     /**

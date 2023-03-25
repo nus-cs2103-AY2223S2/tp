@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.model.ward.exceptions.DuplicateWardException;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
@@ -39,7 +38,7 @@ public class UniqueWardList implements Iterable<Ward> {
      * Initializes wardlist with default Waiting Room ward with capacity of 30 inside.
      */
     public UniqueWardList() {
-        Ward waitingRoom = new Ward(new Name("Waiting Room"), new Capacity(30));
+        Ward waitingRoom = new Ward("Waiting Room");
         add(waitingRoom);
     }
 
