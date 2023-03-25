@@ -57,15 +57,16 @@ public class AddCommandParserTest {
                 + STEP_DESC_SOUP + TAG_DESC_SOUP, new AddCommand(expectedRecipe));
 
         // multiple tags - all accepted
-        Recipe expectedRecipeMultipleIngredients = new RecipeBuilder(SOUP)
-                .withIngredients(VALID_INGREDIENTS_SOUP, VALID_INGREDIENTS_CORNDOGS)
+        Recipe expectedRecipeManyIngredients = new RecipeBuilder(SOUP)
+                .withIngredients(VALID_INGREDIENTS_CORNDOGS, VALID_INGREDIENTS_SOUP)
                     .build();
 
         assertParseSuccess(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
                         + INGREDIENT_DESC_CORNDOGS + STEP_DESC_SOUP + TAG_DESC_SOUP,
                 new AddCommand(expectedRecipeMultipleIngredients));
 
-        Recipe expectedRecipeMultipleSteps = new RecipeBuilder(SOUP).withSteps(VALID_STEPS_SOUP, VALID_STEPS_CORNDOGS)
+        Recipe expectedRecipeManySteps = new RecipeBuilder(SOUP).withSteps(VALID_STEPS_SOUP,
+                        VALID_STEPS_CORNDOGS)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + STEP_DESC_SOUP
                         + STEP_DESC_CORNDOGS + INGREDIENT_DESC_SOUP + TAG_DESC_SOUP,
@@ -78,7 +79,6 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-
         assertParseFailure(parser, VALID_TITLE_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP,
                 expectedMessage);
 
@@ -90,7 +90,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + VALID_INGREDIENTS_SOUP + STEP_DESC_SOUP,
                 expectedMessage);
 
-
         // missing address prefix
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
                         + VALID_DESC_SOUP, expectedMessage);
@@ -98,6 +97,8 @@ public class AddCommandParserTest {
         // all prefixes missing
         assertParseFailure(parser, VALID_TITLE_SOUP + VALID_DESC_SOUP + VALID_INGREDIENTS_SOUP
                         + VALID_DESC_SOUP, expectedMessage);
+
+
     }
 
     @Test
