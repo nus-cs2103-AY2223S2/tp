@@ -1,6 +1,5 @@
 package seedu.calidr.model.task;
 
-import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Title;
 
@@ -16,11 +15,10 @@ public class Event extends Task {
      * Creates an Event with the given details.
      *
      * @param title The title of the Event.
-     * @param description The description of the Event
      * @param eventDateTimes The date-times associated with the Event.
      */
-    public Event(Title title, Description description, EventDateTimes eventDateTimes) {
-        super(title, description);
+    public Event(Title title, EventDateTimes eventDateTimes) {
+        super(title);
 
         assert eventDateTimes != null;
         this.eventDateTimes = eventDateTimes;
