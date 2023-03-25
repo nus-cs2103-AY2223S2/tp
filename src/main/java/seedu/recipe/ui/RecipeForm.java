@@ -80,6 +80,11 @@ public class RecipeForm extends UiPart<Region> {
         this.displayedIndex = displayedIndex;
         if (recipe != null) {
             populateFields();
+        } else {
+            TextField emptyIngredientField = createDynamicTextField("");
+            ingredientsBox.getChildren().add(emptyIngredientField);
+            TextField emptyStepField = createDynamicTextField("");
+            stepsBox.getChildren().add(emptyStepField);
         }
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
@@ -137,21 +142,37 @@ public class RecipeForm extends UiPart<Region> {
                 .collect(Collectors.joining(", ")));
         */
         //Ingredients
-        recipe.getIngredients().forEach(ingredient -> {
-            TextField ingredientField = new TextField(ingredient.toString());
+        //Ingredients
+        if (!recipe.getIngredients().isEmpty()) {
+            recipe.getIngredients().forEach(ingredient -> {
+                TextField ingredientField = createDynamicTextField(ingredient.toString());
+                ingredientsBox.getChildren().add(ingredientField);
+            });
+        } else {
+            TextField ingredientField = createDynamicTextField("Field is not added.");
             ingredientsBox.getChildren().add(ingredientField);
-        });
+        }
 
         //Steps
-        recipe.getSteps().forEach(step -> {
-            TextField stepField = new TextField(step.toString());
+        if (!recipe.getSteps().isEmpty()) {
+            recipe.getSteps().forEach(step -> {
+                TextField stepField = createDynamicTextField(step.toString());
+                stepsBox.getChildren().add(stepField);
+            });
+        } else {
+            TextField stepField = createDynamicTextField("Field is not added.");
             stepsBox.getChildren().add(stepField);
-        });
+        }
+
         //Tags
-        tagsField.setText(recipe.getTags().stream()
+        if (!recipe.getTags().isEmpty()) {
+            tagsField.setText(recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .map(tag -> tag.tagName)
                 .collect(Collectors.joining(", ")));
+        } else {
+            tagsField.setText("Field is not added.");
+        }
 
         storeInitialValues();
     }
@@ -193,7 +214,7 @@ public class RecipeForm extends UiPart<Region> {
                 currentValue = tagsField.getText();
                 break;
             default:
-                currentValue = ""; // or any default value you prefer
+                currentValue = ""; 
                 break;
             }
 
@@ -212,6 +233,31 @@ public class RecipeForm extends UiPart<Region> {
         closeForm();
     }
 
+    private TextField createDynamicTextField(String text) {
+        TextField textField = new TextField(text);
+    
+        textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                // If the TextField is the last one in its container and not empty, create a new one
+                VBox container = (VBox) textField.getParent();
+                if (container.getChildren().indexOf(textField) == container.getChildren().size() - 1
+                    && !textField.getText().isEmpty()) {
+                    TextField newTextField = createDynamicTextField("");
+                    container.getChildren().add(newTextField);
+                }
+            } else {
+                // If the TextField is empty and not the last one, remove it
+                VBox container = (VBox) textField.getParent();
+                if (container.getChildren().indexOf(textField) != container.getChildren().size() - 1
+                    && textField.getText().isEmpty()) {
+                    container.getChildren().remove(textField);
+                }
+            }
+        });
+    
+        return textField;
+    }
+    
     /**
      * Closes the form without saving any changes.
      */
