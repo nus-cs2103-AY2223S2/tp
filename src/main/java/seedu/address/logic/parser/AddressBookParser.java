@@ -80,6 +80,8 @@ public class AddressBookParser {
         case RemoveMeetingCommand.COMMAND_WORD:
             return new RemoveMeetingCommandParser().parse(arguments);
 
+            
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
