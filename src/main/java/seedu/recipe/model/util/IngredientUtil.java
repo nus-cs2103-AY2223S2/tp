@@ -20,9 +20,9 @@ public class IngredientUtil {
     public static String ingredientTableToString(Hashtable<Ingredient, IngredientInformation> ingredientTable) {
         StringBuilder stringBuilder = new StringBuilder();
         TreeMap<Ingredient, IngredientInformation> sortedIngredientTable = new TreeMap<>(ingredientTable);
-        sortedIngredientTable.forEach((ingredient, quantifier) ->
+        sortedIngredientTable.forEach((ingredient, info) ->
             stringBuilder.append("- ")
-                .append(ingredientKeyValuePairToString(ingredient, quantifier))
+                .append(ingredientKeyValuePairToString(ingredient, info))
                 .append("\n")
         );
         return stringBuilder.toString();
@@ -31,30 +31,30 @@ public class IngredientUtil {
     /**
      * Creates a String representing an {@code Ingredient}-{@code IngredientInformation} key-value pair.
      * @param ingredient The Ingredient key.
-     * @param quantifier The IngredientInformation value.
+     * @param info The IngredientInformation value.
      * @return The String representation of both.
      */
-    public static String ingredientKeyValuePairToString(Ingredient ingredient, IngredientInformation quantifier) {
+    public static String ingredientKeyValuePairToString(Ingredient ingredient, IngredientInformation info) {
         StringBuilder stringBuilder = new StringBuilder();
-        quantifier.getQuantity()
+        info.getQuantity()
                 .ifPresent(quantity -> stringBuilder
                         .append(quantity)
                         .append(" "));
         //Estimated Amount
-        quantifier.getEstimatedQuantity()
+        info.getEstimatedQuantity()
                 .ifPresent(estimatedQuantity -> stringBuilder
                         .append(String.format("(%s) ", estimatedQuantity)));
         //Ingredient itself
         stringBuilder.append(ingredient).append(" ");
         //List of remarks
-        List<String> remarks = quantifier.getRemarks();
+        List<String> remarks = info.getRemarks();
         if (remarks.size() > 0) {
             stringBuilder.append("(");
             remarks.forEach(remark -> stringBuilder.append(remark).append(","));
             stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length() - 1, ") ");
         }
         //List of substitutions
-        List<Ingredient> substitutions = quantifier.getSubstitutions();
+        List<Ingredient> substitutions = info.getSubstitutions();
         if (substitutions.size() > 0) {
             stringBuilder.append(" Substitutions: ");
             substitutions.forEach(s -> stringBuilder.append(s).append(", "));

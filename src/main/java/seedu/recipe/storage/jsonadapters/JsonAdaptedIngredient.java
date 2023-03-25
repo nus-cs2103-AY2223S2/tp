@@ -67,13 +67,13 @@ public class JsonAdaptedIngredient {
     /**
      * Converts a given {@code IngredientBuilder} into this class for Jackson use.
      */
-    public JsonAdaptedIngredient(Ingredient ingredient, IngredientInformation quantifier) {
+    public JsonAdaptedIngredient(Ingredient ingredient, IngredientInformation info) {
         ingredientName = ingredient.getName();
         commonName = ingredient.getCommonName();
-        ingredientQuantity = quantifier.getQuantity().map(Object::toString).orElse(null);
-        estimatedQuantity = quantifier.getEstimatedQuantity().orElse(null);
-        remarks.addAll(quantifier.getRemarks());
-        substitutions.addAll(quantifier.getSubstitutions().stream()
+        ingredientQuantity = info.getQuantity().map(Object::toString).orElse(null);
+        estimatedQuantity = info.getEstimatedQuantity().orElse(null);
+        remarks.addAll(info.getRemarks());
+        substitutions.addAll(info.getSubstitutions().stream()
                 .map(JsonAdaptedSubstitutionIngredient::new)
                 .collect(Collectors.toList()));
     }
@@ -96,7 +96,7 @@ public class JsonAdaptedIngredient {
         }
 
         // Validate substitutions
-        IngredientInformation quantifier = new IngredientInformation(
+        IngredientInformation info = new IngredientInformation(
                 quantity,
                 estimatedQuantity,
                 remarks.toArray(String[]::new),
@@ -104,7 +104,7 @@ public class JsonAdaptedIngredient {
                         .map(JsonAdaptedSubstitutionIngredient::toModelType)
                         .toArray(Ingredient[]::new)
         );
-        ingredientKeyValuePair.put(mainIngredient, quantifier);
+        ingredientKeyValuePair.put(mainIngredient, info);
         return ingredientKeyValuePair;
     }
 }

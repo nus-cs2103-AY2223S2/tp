@@ -205,7 +205,6 @@ public class TypicalRecipes {
 
     private static final BinaryOperator<String> combiner = (leftString, rightString) -> leftString + rightString;
     private static final BiFunction<String, Object, String> tagAccumulator = (s, o) -> s + o.toString();
-    private static final BiFunction<String, Object, String> ingredientAccumulator = (s, o) -> s + o.toString() + ",\n";
     private static final Supplier<String> ingredientTableString = () -> {
         Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         CACIO_INGREDIENTS.stream().map(IngredientBuilder::build).forEach(ingredientTable::putAll);
