@@ -38,21 +38,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design
 
-[//]: # (<div markdown="span" class="alert alert-primary">)
+<div markdown="span" class="alert alert-primary">
 
-[//]: # ()
-[//]: # (:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams]&#40;https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/&#41; folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides]&#40;https://se-education.org/guides/tutorials/plantUml.html&#41; to learn how to create and edit diagrams.)
-
-[//]: # (</div>)
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+</div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
-<div style="width:80%;margin:0">
-    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
-</div>
-<br>
-
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -150,21 +143,11 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Event component
-<img src="images/EventClassDiagram.png" width="450" />
-{to be added}
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
 
-### Contact component
-<img src="images/ContactClassDiagram.png" width="450" />
-{to be added}
+<img src="images/BetterModelClassDiagram.png" width="450" />
 
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>)
-
-[//]: # ()
-[//]: # (<img src="images/BetterModelClassDiagram.png" width="450" />)
-
-[//]: # ()
-[//]: # (</div>)
+</div>
 
 
 ### Storage component
@@ -260,133 +243,114 @@ The `RemindCommand` is then executed by `LogicManager`. After testing all events
     * Cons: Difficult to test, as the current time is based on real time.
 
 
-[//]: # (### \[Proposed\] Undo/redo feature)
+### Linkcontact feature
 
-[//]: # ()
-[//]: # (#### Proposed Implementation)
+The link contact feature allows users to link a contact to an event.
 
-[//]: # ()
-[//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:)
+#### Implementation
+The `linkcontact` feature is facilitated by `Event` class.
+The feature is implemented as follows:
+* When a user adds an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally change the contact of the event.
+* If the user specifies a contact that does not exist in the contact list, the event will not be added/edited.
+* If the user specifies a contact that already exists in the contact list, the event will be added/edited with the contact.
 
-[//]: # ()
-[//]: # (* `VersionedAddressBook#commit&#40;&#41;` — Saves the current address book state in its history.)
+The linkcontact feature will take in a contact number as a parameter. This parameter will be used to search for the contact in the contact list.
+1. If the contact is found, the contact will be linked to the event.
+2. If the contact is not found, the event will not be added/edited.
 
-[//]: # (* `VersionedAddressBook#undo&#40;&#41;` — Restores the previous address book state from its history.)
+#### Design consideration:
+* **Alternative 1 (current choice):** Add a `Contact` attribute to `Event` class.
+    * Pros: Easy to implement.
+    * Cons: May violate Single Responsibility Principle as `Event` class now has to handle both event and contact.
+* **Alternative 2:** Add the `contact` as just a normal string attribute to `Event` class.
+    * Pros: Even easier to implement.
+    * Cons: Hard to implement filtering of events by contact in the future.
 
-[//]: # (* `VersionedAddressBook#redo&#40;&#41;` — Restores a previously undone address book state from its history.)
+### \[Proposed\] Undo/redo feature
 
-[//]: # ()
-[//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` and `Model#redoAddressBook&#40;&#41;` respectively.)
+#### Proposed Implementation
 
-[//]: # ()
-[//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-[//]: # ()
-[//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.)
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
-[//]: # ()
-[//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-[//]: # ()
-[//]: # (Step 2. The user executes `delete 5` command to delete the 5th event in the address book. The `delete` command calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.)
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-[//]: # ()
-[//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-[//]: # ()
-[//]: # (Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into the `addressBookStateList`.)
+![UndoRedoState0](images/UndoRedoState0.png)
 
-[//]: # ()
-[//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
+Step 2. The user executes `delete 5` command to delete the 5th event in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-[//]: # ()
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
+![UndoRedoState1](images/UndoRedoState1.png)
 
-[//]: # ()
-[//]: # (</div>)
+Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-[//]: # ()
-[//]: # (Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.)
+![UndoRedoState2](images/UndoRedoState2.png)
 
-[//]: # ()
-[//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
-[//]: # ()
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
+</div>
 
-[//]: # (than attempting to perform the undo.)
+Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-[//]: # ()
-[//]: # (</div>)
+![UndoRedoState3](images/UndoRedoState3.png)
 
-[//]: # ()
-[//]: # (The following sequence diagram shows how the undo operation works:)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
 
-[//]: # ()
-[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
+</div>
 
-[//]: # ()
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
+The following sequence diagram shows how the undo operation works:
 
-[//]: # ()
-[//]: # (</div>)
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-[//]: # ()
-[//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-[//]: # ()
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
+</div>
 
-[//]: # ()
-[//]: # (</div>)
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-[//]: # ()
-[//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `addressBookStateList` remains unchanged.)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-[//]: # ()
-[//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
+</div>
 
-[//]: # ()
-[//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-[//]: # ()
-[//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
+![UndoRedoState4](images/UndoRedoState4.png)
 
-[//]: # ()
-[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-[//]: # ()
-[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
-[//]: # ()
-[//]: # (#### Design considerations:)
+![UndoRedoState5](images/UndoRedoState5.png)
 
-[//]: # ()
-[//]: # (**Aspect: How undo & redo executes:**)
+The following activity diagram summarizes what happens when a user executes a new command:
 
-[//]: # ()
-[//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
+<img src="images/CommitActivityDiagram.png" width="250" />
 
-[//]: # (  * Pros: Easy to implement.)
+#### Design considerations:
 
-[//]: # (  * Cons: May have performance issues in terms of memory usage.)
+**Aspect: How undo & redo executes:**
 
-[//]: # ()
-[//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
-[//]: # (  itself.)
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
-[//]: # (  * Pros: Will use less memory &#40;e.g. for `delete`, just save the event being deleted&#41;.)
+_{more aspects and alternatives to be added}_
 
-[//]: # (  * Cons: We must ensure that the implementation of each individual command are correct.)
+### \[Proposed\] Data archiving
 
-[//]: # ()
-[//]: # (_{more aspects and alternatives to be added}_)
-
-[//]: # ()
-[//]: # (### \[Proposed\] Data archiving)
-
-[//]: # ()
-[//]: # (_{Explain here how the data archiving feature will be implemented}_)
+_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
