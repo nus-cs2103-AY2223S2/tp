@@ -5,6 +5,7 @@ import java.util.Set;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.CrewRank;
 
@@ -50,5 +51,25 @@ public abstract class CrewSyntax {
      */
     public static void add(Model model, Crew crew) {
         model.addCrew(crew);
+    }
+
+    /**
+     * Gets the manager for the crew.
+     *
+     * @param model the model.
+     * @return the manager for the crew.
+     */
+    public static ReadOnlyItemManager<Crew> getManager(Model model) {
+        return model.getCrewManager();
+    }
+
+    /**
+     * Deletes the crew from the model.
+     *
+     * @param model the model.
+     * @param crew  the crew to be deleted from the model.
+     */
+    public static void delete(Model model, Crew crew) {
+        model.deleteCrew(crew);
     }
 }

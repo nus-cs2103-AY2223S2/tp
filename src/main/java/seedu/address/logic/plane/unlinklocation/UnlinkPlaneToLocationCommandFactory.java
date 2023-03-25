@@ -40,7 +40,6 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
 
     /**
      * Creates a new link command factory with the model registered.
-     *
      */
     public UnlinkPlaneToLocationCommandFactory() {
         this(GetUtil.getLazy(Model.class));
@@ -62,7 +61,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
      * Creates a new link command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
-     * @param planeManagerLazy  the lazy instance of the plane manager.
+     * @param planeManagerLazy    the lazy instance of the plane manager.
      * @param locationManagerLazy the lazy instance of the location manager.
      */
     public UnlinkPlaneToLocationCommandFactory(
@@ -77,7 +76,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
      * Creates a new link plane command factory with the given plane manager
      * and the location manager.
      *
-     * @param planeManager  the plane manager.
+     * @param planeManager    the plane manager.
      * @param locationManager the flight manager.
      */
     public UnlinkPlaneToLocationCommandFactory(
@@ -114,7 +113,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
         int indexOfPlane =
                 Integer.parseInt(pilotIdOptional.get());
         Optional<Plane> planeOptional =
-                planeManagerLazy.get().getItemByIndex(indexOfPlane);
+                planeManagerLazy.get().getItemOptional(indexOfPlane);
         if (planeOptional.isEmpty()) {
             return false;
         }
@@ -131,7 +130,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
         int indexOfLocation =
                 Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemByIndex(indexOfLocation);
+                locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }

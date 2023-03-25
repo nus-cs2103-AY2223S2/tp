@@ -5,6 +5,7 @@ import java.util.Set;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.location.Location;
 
 /**
@@ -41,5 +42,25 @@ public abstract class LocationSyntax {
      */
     public static void add(Model model, Location location) {
         model.addLocation(location);
+    }
+
+    /**
+     * Gets the manager for location.
+     *
+     * @param model the model.
+     * @return the manager for location.
+     */
+    public static ReadOnlyItemManager<Location> getManager(Model model) {
+        return model.getLocationManager();
+    }
+
+    /**
+     * Deletes the location from the model.
+     *
+     * @param model    the model.
+     * @param location the location to be deleted from the model.
+     */
+    public static void delete(Model model, Location location) {
+        model.deleteLocation(location);
     }
 }

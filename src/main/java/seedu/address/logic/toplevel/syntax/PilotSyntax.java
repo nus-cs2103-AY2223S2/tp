@@ -5,6 +5,7 @@ import java.util.Set;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.pilot.Gender;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.pilot.PilotRank;
@@ -74,5 +75,25 @@ public abstract class PilotSyntax {
      */
     public static void add(Model model, Pilot pilot) {
         model.addPilot(pilot);
+    }
+
+    /**
+     * Gets the manager for pilot.
+     *
+     * @param model the model.
+     * @return the manager for pilot.
+     */
+    public static ReadOnlyItemManager<Pilot> getManager(Model model) {
+        return model.getPilotManager();
+    }
+
+    /**
+     * Deletes the pilot from the model.
+     *
+     * @param model the model.
+     * @param pilot the pilot.
+     */
+    public static void delete(Model model, Pilot pilot) {
+        model.deletePilot(pilot);
     }
 }

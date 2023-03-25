@@ -5,6 +5,7 @@ import java.util.Set;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.Flight;
 
 /**
@@ -40,5 +41,25 @@ public abstract class FlightSyntax {
      */
     public static void add(Model model, Flight flight) {
         model.addFlight(flight);
+    }
+
+    /**
+     * Gets the flight manager.
+     *
+     * @param model the model.
+     * @return the flight manager.
+     */
+    public static ReadOnlyItemManager<Flight> getManager(Model model) {
+        return model.getFlightManager();
+    }
+
+    /**
+     * Deletes the flight from the model.
+     *
+     * @param model  the model from which the flight is deleted.
+     * @param flight the flight to be deleted.
+     */
+    public static void delete(Model model, Flight flight) {
+        model.deleteFlight(flight);
     }
 }

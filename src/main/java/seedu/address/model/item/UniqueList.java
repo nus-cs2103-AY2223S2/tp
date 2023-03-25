@@ -204,6 +204,26 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Gets the item at the index specified.
+     *
+     * @param index the index specified.
+     * @return the item at the index.
+     */
+    public T get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Gets the item with the given id.
+     *
+     * @param id the id.
+     * @return the item with the given id.
+     */
+    public T get(String id) {
+        return internalMap.get(id);
+    }
+
     @Override
     public Iterator<T> iterator() {
         return internalList.iterator();
@@ -241,4 +261,5 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         }
         return false;
     }
+
 }

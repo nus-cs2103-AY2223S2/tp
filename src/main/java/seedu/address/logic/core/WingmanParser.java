@@ -8,29 +8,25 @@ import java.util.Optional;
 
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.logic.crew.checkcrew.CheckCrewCommandFactory;
-import seedu.address.logic.crew.deletecrew.DeleteCrewCommandFactory;
 import seedu.address.logic.crew.linkflight.LinkCrewToFlightCommandFactory;
 import seedu.address.logic.crew.linklocation.LinkCrewToLocationCommandFactory;
 import seedu.address.logic.crew.unlinkflight.UnlinkCrewToFlightCommandFactory;
 import seedu.address.logic.crew.unlinklocation.UnlinkCrewToLocationCommandFactory;
-import seedu.address.logic.flight.deleteflight.DeleteFlightCommandFactory;
 import seedu.address.logic.flight.linklocation.LinkFlightToLocationCommandFactory;
 import seedu.address.logic.flight.unlinklocation.UnlinkFlightToLocationCommandFactory;
-import seedu.address.logic.location.deletelocation.DeleteLocationCommandFactory;
 import seedu.address.logic.pilot.checkpilot.CheckPilotCommandFactory;
-import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
 import seedu.address.logic.pilot.linkflight.LinkPilotToFlightCommandFactory;
 import seedu.address.logic.pilot.linklocation.LinkPilotToLocationCommandFactory;
 import seedu.address.logic.pilot.unlinklocation.UnlinkPilotToLocationCommandFactory;
 import seedu.address.logic.pilot.unlinkpilot.UnlinkPilotToFlightCommandFactory;
 import seedu.address.logic.plane.checkplane.CheckPlaneCommandFactory;
-import seedu.address.logic.plane.deleteplane.DeletePlaneCommandFactory;
 import seedu.address.logic.plane.linkflight.LinkPlaneToFlightCommandFactory;
 import seedu.address.logic.plane.linklocation.LinkPlaneToLocationCommandFactory;
 import seedu.address.logic.plane.unlinkflight.UnlinkPlaneToFlightCommandFactory;
 import seedu.address.logic.plane.unlinklocation.UnlinkPlaneToLocationCommandFactory;
 import seedu.address.logic.toplevel.add.AddCommandFactory;
 import seedu.address.logic.toplevel.changemode.ChangeModeCommandFactory;
+import seedu.address.logic.toplevel.delete.DeleteCommandFactory;
 import seedu.address.logic.toplevel.syntax.CrewSyntax;
 import seedu.address.logic.toplevel.syntax.FlightSyntax;
 import seedu.address.logic.toplevel.syntax.LocationSyntax;
@@ -54,7 +50,10 @@ public class WingmanParser extends FactoryParser {
                             PilotSyntax::add,
                             PilotSyntax::factory
                     ),
-                    new DeletePilotCommandFactory(),
+                    new DeleteCommandFactory<>(
+                            PilotSyntax::getManager,
+                            PilotSyntax::delete
+                    ),
                     new LinkPilotToFlightCommandFactory(),
                     new UnlinkPilotToFlightCommandFactory(),
                     new CheckPilotCommandFactory(),
@@ -68,7 +67,10 @@ public class WingmanParser extends FactoryParser {
                             CrewSyntax::add,
                             CrewSyntax::factory
                     ),
-                    new DeleteCrewCommandFactory(),
+                    new DeleteCommandFactory<>(
+                            CrewSyntax::getManager,
+                            CrewSyntax::delete
+                    ),
                     new LinkCrewToFlightCommandFactory(),
                     new UnlinkCrewToFlightCommandFactory(),
                     new CheckCrewCommandFactory(),
@@ -82,7 +84,10 @@ public class WingmanParser extends FactoryParser {
                             PlaneSyntax::add,
                             PlaneSyntax::factory
                     ),
-                    new DeletePlaneCommandFactory(),
+                    new DeleteCommandFactory<>(
+                            PlaneSyntax::getManager,
+                            PlaneSyntax::delete
+                    ),
                     new LinkPlaneToFlightCommandFactory(),
                     new UnlinkPlaneToFlightCommandFactory(),
                     new CheckPlaneCommandFactory(),
@@ -96,7 +101,10 @@ public class WingmanParser extends FactoryParser {
                             LocationSyntax::add,
                             LocationSyntax::factory
                     ),
-                    new DeleteLocationCommandFactory()
+                    new DeleteCommandFactory<>(
+                            LocationSyntax::getManager,
+                            LocationSyntax::delete
+                    )
             )),
             new CommandGroup(OperationMode.FLIGHT, List.of(
                     new AddCommandFactory<>(
@@ -105,7 +113,10 @@ public class WingmanParser extends FactoryParser {
                             FlightSyntax::add,
                             FlightSyntax::factory
                     ),
-                    new DeleteFlightCommandFactory(),
+                    new DeleteCommandFactory<>(
+                            FlightSyntax::getManager,
+                            FlightSyntax::delete
+                    ),
                     new LinkFlightToLocationCommandFactory(),
                     new UnlinkFlightToLocationCommandFactory()
             ))

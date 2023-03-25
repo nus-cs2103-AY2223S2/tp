@@ -5,6 +5,7 @@ import java.util.Set;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.plane.Plane;
 
 /**
@@ -48,5 +49,25 @@ public abstract class PlaneSyntax {
      */
     public static void add(Model model, Plane plane) {
         model.addPlane(plane);
+    }
+
+    /**
+     * Returns the manager for planes.
+     *
+     * @param model the model.
+     * @return the manager for planes.
+     */
+    public static ReadOnlyItemManager<Plane> getManager(Model model) {
+        return model.getPlaneManager();
+    }
+
+    /**
+     * Deletes the plane from the model.
+     *
+     * @param model the model.
+     * @param plane the plane.
+     */
+    public static void delete(Model model, Plane plane) {
+        model.deletePlane(plane);
     }
 }

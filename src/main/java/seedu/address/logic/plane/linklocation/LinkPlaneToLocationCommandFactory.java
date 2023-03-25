@@ -21,7 +21,6 @@ import seedu.address.model.plane.Plane;
  * The location could be a place where they reside.
  * To link a plane to a flight, the plane should reside in
  * the same location as the flight's starting location.
- *
  */
 public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPlaneToLocationCommand> {
     private static final String COMMAND_WORD = "linklocation";
@@ -46,7 +45,6 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
 
     /**
      * Creates a new link command factory with the model registered.
-     *
      */
     public LinkPlaneToLocationCommandFactory() {
         this(GetUtil.getLazy(Model.class));
@@ -68,7 +66,7 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
      * Creates a new link plane command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
-     * @param planeManagerLazy  the lazy instance of the plane manager.
+     * @param planeManagerLazy    the lazy instance of the plane manager.
      * @param locationManagerLazy the lazy instance of the location manager.
      */
     public LinkPlaneToLocationCommandFactory(
@@ -83,7 +81,7 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
      * Creates a new link plane command factory with the given plane manager
      * and the location manager.
      *
-     * @param planeManager  the plane manager.
+     * @param planeManager    the plane manager.
      * @param locationManager the flight manager.
      */
     public LinkPlaneToLocationCommandFactory(
@@ -120,7 +118,7 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
         int indexOfPilot =
                 Integer.parseInt(pilotIdOptional.get());
         Optional<Plane> planeOptional =
-                planeManagerLazy.get().getItemByIndex(indexOfPilot);
+                planeManagerLazy.get().getItemOptional(indexOfPilot);
         if (planeOptional.isEmpty()) {
             return false;
         }
@@ -137,7 +135,7 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
         int indexOfLocation =
                 Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemByIndex(indexOfLocation);
+                locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_FOUND_MESSAGE);
         }

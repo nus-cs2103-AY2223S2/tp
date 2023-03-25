@@ -108,7 +108,7 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
         int indexOfPilot =
                 Integer.parseInt(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItemByIndex(indexOfPilot);
+                pilotManagerLazy.get().getItemOptional(indexOfPilot);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -125,7 +125,7 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
         int indexOfFlight =
                 Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemByIndex(indexOfFlight);
+                flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }

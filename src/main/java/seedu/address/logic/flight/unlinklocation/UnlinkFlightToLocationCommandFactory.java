@@ -58,8 +58,8 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
      * Creates a new unlink location command factory with the given location manager
      * lazy and the flight manager lazy.
      *
-     * @param locationManagerLazy  the lazy instance of the location manager.
-     * @param flightManagerLazy the lazy instance of the flight manager.
+     * @param locationManagerLazy the lazy instance of the location manager.
+     * @param flightManagerLazy   the lazy instance of the flight manager.
      */
     public UnlinkFlightToLocationCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
@@ -73,8 +73,8 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
      * Creates a new unlink location command factory with the given location manager
      * and the flight manager.
      *
-     * @param locationManager  the location manager.
-     * @param flightManager the flight manager.
+     * @param locationManager the location manager.
+     * @param flightManager   the flight manager.
      */
     public UnlinkFlightToLocationCommandFactory(
             ReadOnlyItemManager<Location> locationManager,
@@ -108,7 +108,7 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
         int indexOfLocation =
                 Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemByIndex(indexOfLocation);
+                locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
             return false;
         }
@@ -126,7 +126,7 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
         int indexOfFlight =
                 Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemByIndex(indexOfFlight);
+                flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
