@@ -60,6 +60,18 @@ public class Score {
         return this.scoreDate.getDate();
     }
 
+    /**
+     * Returns true if both scores have the same date.
+     */
+    public boolean isSameScore(Score otherScore) {
+        if (otherScore == this) {
+            return true;
+        }
+
+        return otherScore != null
+                && otherScore.getDate().equals(getDate());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

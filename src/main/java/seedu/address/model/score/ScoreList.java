@@ -21,7 +21,7 @@ import seedu.address.model.score.exceptions.ScoreNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Score#isSameScore(otherScore)
+ * @see Score#isSameScore(Score)
  */
 public class ScoreList implements Iterable<Score> {
     private final ObservableList<Score> internalList = FXCollections.observableArrayList();
@@ -35,7 +35,7 @@ public class ScoreList implements Iterable<Score> {
      */
     public boolean contains(Score toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameScore);
     }
 
     /**
@@ -159,11 +159,12 @@ public class ScoreList implements Iterable<Score> {
     private boolean scoresAreUnique(List<Score> scores) {
         for (int i = 0; i < scores.size() - 1; i++) {
             for (int j = i + 1; j < scores.size(); j++) {
-                if (scores.get(i).equals(scores.get(j))) {
+                if (scores.get(i).isSameScore(scores.get(j))) {
                     return false;
                 }
             }
         }
         return true;
     }
+
 }
