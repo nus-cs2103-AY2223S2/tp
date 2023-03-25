@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -8,8 +9,9 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.BackupData;
 import seedu.address.model.ReadOnlyBackupData;
 
-import java.nio.file.Path;
-
+/**
+ * A class to access Backupdata stored in the hard disk as a json file
+ */
 public class JsonBackupDataStorage implements BackupDataStorage {
 
     private Path filePath;
@@ -27,7 +29,6 @@ public class JsonBackupDataStorage implements BackupDataStorage {
     public Optional<BackupData> readBackupData() throws DataConversionException {
         return readBackupData(filePath);
     }
-
 
     public Optional<BackupData> readBackupData(Path backupDataFilePath) throws DataConversionException {
         return JsonUtil.readJsonFile(backupDataFilePath, BackupData.class);

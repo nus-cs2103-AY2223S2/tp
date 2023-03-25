@@ -11,7 +11,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.BackupData;
 import seedu.address.model.Model;
 import seedu.address.model.backup.Backup;
-import seedu.address.storage.*;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.BackupDataStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonBackupDataStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * Backs up the data to a specified index
@@ -60,8 +67,8 @@ public class BackupCommand extends Command {
         } catch (IOException ex) {
             throw new CommandException(SAVE_ERROR);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, backup.getBackupIndex().getOneBased())
-                , false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, backup.getBackupIndex().getOneBased()),
+                false, false, true);
     }
 
     @Override

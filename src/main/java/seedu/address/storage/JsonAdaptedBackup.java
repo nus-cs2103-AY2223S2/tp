@@ -39,6 +39,11 @@ public class JsonAdaptedBackup {
         backupTime = source.getBackupTime().toString();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted backup object into the model's {@code Backup} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted backup.
+     */
     public Backup toModelType() throws IllegalValueException {
         Index thisIndex = Index.fromOneBased(Integer.parseInt(index));
         if (!Backup.isValidIndex(thisIndex)) {

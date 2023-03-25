@@ -22,10 +22,9 @@ public class BackupCommandParser implements Parser<BackupCommand> {
      */
     public BackupCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESC);
-        
         Index index;
         String desc;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESC);
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             desc = argMultimap.getValue(PREFIX_DESC).orElse("");

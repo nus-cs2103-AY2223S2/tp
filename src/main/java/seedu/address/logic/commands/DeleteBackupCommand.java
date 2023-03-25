@@ -1,15 +1,25 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.storage.*;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.BackupDataStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonBackupDataStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
+/**
+ * Deletes a backup from a specified index
+ */
 public class DeleteBackupCommand extends Command {
 
     public static final String COMMAND_WORD = "deletebackup";

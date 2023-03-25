@@ -36,6 +36,10 @@ public class CommandResult {
         this.showBackups = false;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * including showBackup.
+     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showBackups) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;

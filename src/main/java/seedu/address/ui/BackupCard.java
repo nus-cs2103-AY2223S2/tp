@@ -13,13 +13,13 @@ public class BackupCard extends UiPart<Region> {
 
     private static final String FXML = "BackupCard.fxml";
 
-    private final String SLOT = "Backup slot: ";
-
-    private final String DESC = "Description: ";
-
-    private final String TIME = "Time created: ";
-
     public final Backup backup;
+
+    private final String slot = "Backup slot: ";
+
+    private final String desc = "Description: ";
+
+    private final String time = "time created: ";
 
     @FXML
     private HBox cardPane;
@@ -36,9 +36,9 @@ public class BackupCard extends UiPart<Region> {
     public BackupCard(Backup backup) {
         super(FXML);
         this.backup = backup;
-        index.setText(SLOT + String.valueOf(backup.getBackupIndex().getOneBased()));
-        description.setText(DESC + backup.getBackupDesc());
-        backupTime.setText(TIME + backup.backupTimeToString());
+        index.setText(slot + String.valueOf(backup.getBackupIndex().getOneBased()));
+        description.setText(desc + backup.getBackupDesc());
+        backupTime.setText(time + backup.backupTimeToString());
     }
 
     @Override

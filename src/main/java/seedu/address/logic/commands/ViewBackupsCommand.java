@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.Model;
+
+/**
+ * Shows all the available backups to the user
+ */
 public class ViewBackupsCommand extends Command {
 
     public static final String COMMAND_WORD = "viewbackups";

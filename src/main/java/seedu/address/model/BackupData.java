@@ -2,14 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.backup.Backup;
-import seedu.address.storage.JsonAdaptedBackup;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.backup.Backup;
+import seedu.address.storage.JsonAdaptedBackup;
 
 /**
  * Represents backup data.
@@ -44,15 +44,26 @@ public class BackupData implements ReadOnlyBackupData {
         setBackups(newBackupData.getJsonAdaptedBackups());
     }
 
+    /**
+     * Sets the backups of this {@code BackupData}
+     */
     public void setBackups(List<JsonAdaptedBackup> backups) {
         this.backups = backups;
     }
 
+    /**
+     * Adds a backup to {@code BackupData}
+     */
     public void addBackup(JsonAdaptedBackup backup) {
         backups.removeIf(b -> b.index.equals(backup.index));
         backups.add(backup);
     }
 
+    /**
+     * Gets a {@code JsonAdaptedBackup} from {@code BackupData}
+     *
+     * @param i Index of the backup
+     */
     public JsonAdaptedBackup getBackup(String i) throws IndexOutOfBoundsException {
         for (JsonAdaptedBackup b : backups) {
             if (b.index.equals(i)) {
@@ -66,6 +77,10 @@ public class BackupData implements ReadOnlyBackupData {
         backups.remove(b);
     }
 
+    /**
+     * Gets a list of {@code Backup} from {@code BackupData}
+     * The list is sorted according to the backup index.
+     */
     public List<Backup> getRawBackups() throws IllegalValueException {
         List<Backup> rawBackups = new ArrayList<>();
         for (JsonAdaptedBackup jBackup : backups) {
