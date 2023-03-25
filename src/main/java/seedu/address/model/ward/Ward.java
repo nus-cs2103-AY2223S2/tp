@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -66,7 +65,7 @@ public class Ward {
         return name.matches(VALIDATION_REGEX);
 
     }
-    public static boolean isValidWard(Name name) {
+    public static boolean isValidWard(WardName name) {
         return name.toString().matches(VALIDATION_REGEX);
     }
 
