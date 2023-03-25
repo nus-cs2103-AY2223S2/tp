@@ -163,9 +163,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return masterDeck.equals(other.masterDeck)
                 && userPrefs.equals(other.userPrefs)
-                && filteredDecks.equals(other.filteredDecks);
+                && filteredDecks.equals(other.filteredDecks)
+                && filteredCards.equals(other.filteredCards); // todo: check equal selectedDeck and review
     }
-
 
     /* ==================================== PowerDeck Operations ==================================== */
 

@@ -108,6 +108,7 @@ public class CommandTestUtil {
         assertEquals(expectedMasterDeck, actualModel.getMasterDeck());
         assertEquals(expectedFilteredList, actualModel.getFilteredCardList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the card at the given {@code targetIndex} in the
      * {@code model}'s master deck.
@@ -119,6 +120,7 @@ public class CommandTestUtil {
         model.updateFilteredCardList(c -> c.getQuestion().question.equals(otherQuestion));
         assertEquals(1, model.getFilteredCardList().size());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the deck at the given {@code targetIndex} in the
      * {@code model}'s master deck.

@@ -28,12 +28,13 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
+        expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showCardAtIndex(model, INDEX_FIRST);
+        expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
