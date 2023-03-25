@@ -4,14 +4,11 @@ import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.connectus.logic.commands.AddTagToPersonCommand.AddTagDescriptor;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
-import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
@@ -29,7 +26,7 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE), pe);
         }
 
         var addTagDescriptor = new AddTagDescriptor(
