@@ -207,14 +207,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                            |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`  |
-| **Clear**  | `clear`                                                                                                                                     |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                         |
-| **Edit**   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg`        |
-| **Exit**   | `exit`                                                                                                                                      |
-| **Find**   | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered` |
-| **List**   | `list`                                                                                                                                      |
-| **Help**   | `help`                                                                                                                                      |
-| **Sort**   | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                   |
+| Action                       | Format, Examples                                                                                                                               |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered` |
+| **Add** <br/> Task           | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g., `add-task d/Technical Interview by/01-05-2023`                                                 |
+| **Clear**                    | `clear`                                                                                                                                        |
+| **Delete** <br/> Application | `delete-app INDEX`<br> e.g., `delete-app 3`                                                                                                    |
+| **Delete** <br/> Task        | `delete-task INDEX`<br> e.g., `delete-task 3`                                                                                                  |
+| **Edit** <br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit-app 1 r/Research Intern e/example@bstar.com.sg`       |
+| **Edit** <br/> Task          | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br> e.g., `edit-task 1 d/Accept offer by/07-05-2023`                                          |
+| **Exit**                     | `exit`                                                                                                                                         |
+| **Find**                     | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered`    |
+| **List**                     | `list`                                                                                                                                         |
+| **Help**                     | `help`                                                                                                                                         |
+| **Sort**                     | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                      |
+| **Undo**                     | `undo`                                                                                                                                         |
