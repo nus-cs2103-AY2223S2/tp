@@ -47,7 +47,7 @@ public class FishAddCommandParser {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LAST_FED_DATE, PREFIX_SPECIES,
                 PREFIX_FEEDING_INTERVAL, PREFIX_TANK)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
