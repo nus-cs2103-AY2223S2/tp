@@ -8,11 +8,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
-import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommender.Recommendation;
@@ -64,12 +61,16 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recommendation> recommendations = new Recommender(model).recommend(indices, locations);
+        List<Recommendation> indexedRecommendations = new ArrayList<>();
 
-        String message = recommendations.stream()
-                .map(Recommendation::toString)
-                .collect(Collectors.joining("\n"));
+        for (Recommendation recommendation : recommendations) {
+            Recommendation indexedRecommendation = model.addRecommendation(recommendation);
+            indexedRecommendations.add(indexedRecommendation);
+        }
 
-        return new CommandResult(message);
+        model.updateObservableRecommendationList();
+
+        return new CommandResult(model.getObservableRecommendationList().toString());
     }
 
     @Override

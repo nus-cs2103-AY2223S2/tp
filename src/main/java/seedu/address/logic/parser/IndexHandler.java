@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
+import seedu.address.model.recommender.Recommendation;
 
 /**
  * Assigns a valid contact index for a newly-added contact to EduMate.
@@ -38,6 +39,26 @@ public class IndexHandler {
     public Optional<Person> getPersonByIndex(ContactIndex index) {
         List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
+    }
+
+    public ContactIndex assignRecommendationIndex() {
+        List<Recommendation> personList = model.getObservableRecommendationList();
+        if (personList.isEmpty()) {
+            return new ContactIndex(1);
+        }
+        OptionalInt takenIndices = IntStream.iterate(1, x -> x + 1)
+                .takeWhile(integer -> personList.stream()
+                        .anyMatch(recommendation -> recommendation
+                                .getContactIndex().equals(new ContactIndex(integer)))).max();
+        Integer availableIndex = takenIndices.getAsInt() + 1;
+        return new ContactIndex(availableIndex);
+    }
+
+    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
+        List<Recommendation> recommendationList = model.getObservableRecommendationList();
+        return recommendationList.stream()
+                .filter(recommendation -> recommendation.getContactIndex().equals(index))
+                .findFirst();
     }
 
 }

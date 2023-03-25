@@ -76,6 +76,22 @@ public class Recommendation implements Comparable<Recommendation> {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof Recommendation)) {
+            return false;
+        }
+
+        Recommendation otherRecommendation = (Recommendation) other;
+        return otherRecommendation.location.equals(location)
+                && otherRecommendation.timePeriod.equals(timePeriod)
+                && otherRecommendation.isSaved == isSaved;
+    }
+
+    @Override
     public int compareTo(Recommendation other) {
         return Integer.compare(getClosenessToNoon(), other.getClosenessToNoon());
     }
