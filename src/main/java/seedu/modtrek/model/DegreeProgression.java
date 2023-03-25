@@ -102,7 +102,7 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     }
 
     public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
-        return modules.sortBySemYear();
+        return modules.sortByGrade();
     }
 
     //// util methods
