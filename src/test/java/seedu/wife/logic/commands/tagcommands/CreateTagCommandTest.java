@@ -19,7 +19,7 @@ import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.TagBuilder;
 
 /**
- * A class to test the NewTagCommand.
+ * A class to test the CreateTagCommand.
  */
 public class CreateTagCommandTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "The tag you are trying to create has been created before.";

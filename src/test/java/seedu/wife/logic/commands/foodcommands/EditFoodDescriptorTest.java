@@ -36,23 +36,33 @@ public class EditFoodDescriptorTest {
         assertFalse(DESC_MEIJI.equals(DESC_CHOCOLATE));
 
         // different name -> returns false
-        EditFoodDescriptor editedAmy = new EditFoodDescriptorBuilder(DESC_MEIJI).withName(VALID_NAME_CHOCOLATE).build();
-        assertFalse(DESC_MEIJI.equals(editedAmy));
+        EditFoodDescriptor editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withName(VALID_NAME_CHOCOLATE)
+                .build();
+        assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different phone -> returns false
-        editedAmy = new EditFoodDescriptorBuilder(DESC_MEIJI).withUnit(VALID_UNIT_CHOCOLATE).build();
-        assertFalse(DESC_MEIJI.equals(editedAmy));
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withUnit(VALID_UNIT_CHOCOLATE)
+                .build();
+        assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different email -> returns false
-        editedAmy = new EditFoodDescriptorBuilder(DESC_MEIJI).withQuantity(VALID_QUANTITY_CHOCOLATE).build();
-        assertFalse(DESC_MEIJI.equals(editedAmy));
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withQuantity(VALID_QUANTITY_CHOCOLATE)
+                .build();
+        assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different address -> returns false
-        editedAmy = new EditFoodDescriptorBuilder(DESC_MEIJI).withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).build();
-        assertFalse(DESC_MEIJI.equals(editedAmy));
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .build();
+        assertFalse(DESC_MEIJI.equals(editedChocolate));
 
         // different tags -> returns false
-        editedAmy = new EditFoodDescriptorBuilder(DESC_MEIJI).withTags(VALID_TAG_CHOCOLATE).build();
-        assertFalse(DESC_MEIJI.equals(editedAmy));
+        editedChocolate = new EditFoodDescriptorBuilder(DESC_MEIJI)
+                .withTags(VALID_TAG_CHOCOLATE)
+                .build();
+        assertFalse(DESC_MEIJI.equals(editedChocolate));
     }
 }
