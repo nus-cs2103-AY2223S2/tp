@@ -14,11 +14,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -26,6 +29,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditDescriptor;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 
@@ -35,6 +39,19 @@ import seedu.address.model.person.Volunteer;
 public class EditVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_volunteer";
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
             + "by the index number used in the displayed volunteer list. "
@@ -73,7 +90,6 @@ public class EditVolunteerCommand extends Command {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
@@ -96,7 +112,9 @@ public class EditVolunteerCommand extends Command {
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        model.updateFilteredVolunteerList(predicate);
 
         String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
         if (!model.checkIsSameRegion(null, editedVolunteer.getNric())) {
@@ -105,6 +123,8 @@ public class EditVolunteerCommand extends Command {
         if (!model.checkHasSuitableAvailableDates(null, editedVolunteer.getNric())) {
             finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
         }
+
+        model.refreshAllFilteredLists();
         return new CommandResult(finalMessage);
     }
 

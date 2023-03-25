@@ -197,6 +197,10 @@ class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    public void refreshAllFilteredLists() {
+        throw new AssertionError("This method should not be called.");
+    }
+
     @Override
     public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");

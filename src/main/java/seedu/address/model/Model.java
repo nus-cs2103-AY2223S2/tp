@@ -297,6 +297,11 @@ public interface Model {
     void updateFilteredPairList(Predicate<Pair> predicate);
 
     /**
+     * Refreshes all filtered lists to display everything.
+     */
+    void refreshAllFilteredLists();
+
+    /**
      * Checks whether regions of an elderly and a volunteer are the same.
      * The elderly and volunteer with the given Nric must exist in FriendlyLink.
      *

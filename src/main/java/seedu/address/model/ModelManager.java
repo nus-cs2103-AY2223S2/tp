@@ -125,14 +125,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteElderly(Elderly target) {
         friendlyLink.removeElderly(target);
+        refreshAllFilteredLists();
     }
 
     @Override
     public void addElderly(Elderly elderly) {
         friendlyLink.addElderly(elderly);
-        @SuppressWarnings("unchecked")
-        Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
-        updateFilteredElderlyList(predicate);
+        refreshAllFilteredLists();
     }
 
     @Override
@@ -176,14 +175,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteVolunteer(Volunteer target) {
         friendlyLink.removeVolunteer(target);
+        refreshAllFilteredLists();
     }
 
     @Override
     public void addVolunteer(Volunteer volunteer) {
         friendlyLink.addVolunteer(volunteer);
-        @SuppressWarnings("unchecked")
-        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
-        updateFilteredVolunteerList(predicate);
+        refreshAllFilteredLists();
     }
 
     @Override
@@ -214,27 +212,25 @@ public class ModelManager implements Model {
     @Override
     public void addPair(Nric elderlyNric, Nric volunteerNric) {
         friendlyLink.addPair(elderlyNric, volunteerNric);
-        @SuppressWarnings("unchecked")
-        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
-        updateFilteredPairList(predicate);
+        refreshAllFilteredLists();
     }
 
     @Override
     public void addPair(Pair pair) {
         friendlyLink.addPair(pair);
-        @SuppressWarnings("unchecked")
-        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
-        updateFilteredPairList(predicate);
+        refreshAllFilteredLists();
     }
 
     @Override
     public void deletePair(Pair target) {
         friendlyLink.removePair(target);
+        refreshAllFilteredLists();
     }
 
     @Override
     public void deletePair(Nric elderlyNric, Nric volunteerNric) {
         friendlyLink.removePair(elderlyNric, volunteerNric);
+        refreshAllFilteredLists();
     }
 
     @Override
@@ -304,6 +300,14 @@ public class ModelManager implements Model {
     @Override
     public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
         return friendlyLink.checkHasSuitableAvailableDates(elderlyNric, volunteerNric);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void refreshAllFilteredLists() {
+        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);
     }
 
     @Override
