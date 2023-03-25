@@ -1,4 +1,4 @@
-# Developer Guide
+# Wingman Developer Guide
 
 ## Table of Contents
 - **[Acknowledgements](#acknowledgements)**
@@ -9,16 +9,28 @@
     * [Model Component](#model-component)
     * [Storage Component](#storage-component)
 - **[Implementation](#implementation)**
-    * [Adding locations](#adding-locations--seq-diagram-focussed-on-ui-layer----ai-bo)
-        * [Motivation](#motivation-for-unique-id)
-        * [Implementation](#implementation-of-unique-id)
+    * [Adding XYZ](#adding-xyz)
+    * [Deleting XYZ](#deleting-xyz)
+    * [Linking XYZ to a flight](#linking-xyz-to-a-flight)
+    * [Unlinking XYZ from a flight](#unlinking-xyz-from-a-flight)
+    * [Displaying flights across all modes](#displaying-flights-across-all-modes)
 - **[Appendix: Requirements](#appendix--requirements)**
+
+<br>
+<br>
+<div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 Coming soon
 
+<br>
+
 ## Setting up, Getting started
 Coming soon
+
+<br>
+
+<div style="page-break-after: always;"></div>
 
 ## Architecture
 <img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
@@ -62,9 +74,14 @@ diagrams to depict the processes at each layer in greater detail.
 
 Description coming soon
 
+<br>
+<br>
+
+<div style="page-break-after: always;"></div>
+
 ## Implementation
 
-### Adding XYZ (seq. diagram focussed on UI layer)
+### Adding XYZ
 
 **How is this feature implemented?**
 
@@ -102,7 +119,10 @@ One alternative approach could be to use a more direct approach to add the new e
 
 Another alternative is to use a different design pattern, such as the builder pattern. In this approach, a builder object is responsible for constructing an object in stages, and the construction process can be further customized by calling specific builder methods. This approach can be useful when the entity being constructed has several configurable attributes that need to be set. However, in our case, the entities have fixed attributes, and the command pattern seems to be a more natural fit.
 
-### Deleting XYZ (seq. diagram focused on Logic layer)
+<br>
+
+<div style="page-break-after: always;"></div>
+### Deleting XYZ
 **How is this feature implemented?**
 
 The deleting feature is implemented in the same way for deleting crews, flights, locations, pilots, and planes from the
@@ -143,7 +163,11 @@ related commands only.
 
 Description coming soon
 
-### Linking XYZ to a flight (seq. diagram focussed on Model layer) 
+<br>
+
+<div style="page-break-after: always;"></div>
+
+### Linking XYZ to a flight
 
 **Rationale**
 
@@ -216,6 +240,10 @@ attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations 
 as discussed in the previous section.
 
+<br>
+
+<div style="page-break-after: always;"></div>
+
 ### Unlinking XYZ from a flight
 
 **How is this feature implemented?**
@@ -269,6 +297,10 @@ some methods to perform the opposite operation (particularly the `execute` funct
 One alternative implementation that was considered was to set the link as an attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations as discussed in the previous section.
 
+<br>
+
+<div style="page-break-after: always;"></div>
+
 ### Displaying flights across all modes
 Initially, there is only one `ItemListPanel` that displays an item list specific to each mode. 
 However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
@@ -301,6 +333,11 @@ we can keep the information displayed organised and clear to the user.
     * Pros: More organised and visually pleasant.
     * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
 
+<br>
+<br>
+
+<div style="page-break-after: always;"></div>
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -319,29 +356,50 @@ into consideration such that they can assign tasks to the most appropriate crew
 based on their location
 and availability while optimizing their staff’s physical well-being.
 
+<br>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (
 unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                                    | So that I can…​                                                        |
-| -------- |-----------------|-----------------------------------------------------------------| ---------------------------------------------------------------------- |
+| Priority | As a …​         | I want to …​                                                    | So that I can…​                                            |
+|----------|-----------------|-----------------------------------------------------------------|------------------------------------------------------------|
 | `* * *`  | airline manager | add new locations to the list of locations where we operate     | I can assign new departing locations and arrival locations |
-| `* * *`  | airline manager | list old locations from the locations where we were operating   |    I can view all the locations    |
-| `* * *`  | airline manager | remove old locations from the locations where we were operating | I can update departing locations and arrival locations |
-| `* * *`  | airline manager | add crew to our workforce                                       | I can assign them to flights |
-| `* * *`  | airline manager | list crew from our workforce                                    | I can view all the crew |
-| `* * *`  | airline manager | delete crew from our workforce                                  | I can remove them from flights |
+| `* * *`  | airline manager | list old locations from the locations where we were operating   | I can view all the locations                               |
+| `* * *`  | airline manager | remove old locations from the locations where we were operating | I can update departing locations and arrival locations     |
+| `* * *`  | airline manager | add crew to our workforce                                       | I can assign them to flights                               |
+| `* * *`  | airline manager | list crew from our workforce                                    | I can view all the crew                                    |
+| `* * *`  | airline manager | delete crew from our workforce                                  | I can remove them from flights                             |
 | `* * *`  | airline manager | add new planes to our fleet                                     | I can assign them to flights                               |
 | `* * *`  | airline manager | list planes from our fleet                                      | I can view all the planes in our fleet                     |
 | `* * *`  | airline manager | remove old planes from our fleet                                | I can update planes which can be used for flights          |
 | `* * *`  | airline manager | add new pilots to the crew list                                 | I can assign flights to pilots                             |
 | `* * *`  | airline manager | remove pilots from the locations                                | I can retire some pilots                                   |
-| `* * *`  | airline manager | add a new flight to the scheduled flights                       | know what flights are upcoming                 |
-| `* * *`  | airline manager | remove a flight from the scheduled flights                      | know what flights are upcoming                 |
-| `* * *`  | airline manager | list the scheduled flights                                      | view all the upcoming flights                  |
+| `* * *`  | airline manager | add a new flight to the scheduled flights                       | know what flights are upcoming                             |
+| `* * *`  | airline manager | remove a flight from the scheduled flights                      | know what flights are upcoming                             |
+| `* * *`  | airline manager | list the scheduled flights                                      | view all the upcoming flights                              |
+| `* * *`  | airline manager | link locations to flights                                       | know the departure and arrival locations for each flight   |
+| `* * *`  | airline manager | link planes to flights                                          | know what plane is assigned to what flight                 |
+| `* * *`  | airline manager | link pilots to flights                                          | know what pilots are flying which flights                  |
+| `* * *`  | airline manager | link crew to flights                                            | know which crew are assigned to which flight               |
+| `* * *`  | airline manager | unlink locations from flights                                   | change the departure and arrival locations for each flight |
+| `* * *`  | airline manager | unlink planes from flights                                      | change what plane is assigned to what flight               |
+| `* * *`  | airline manager | unlink pilots from flights                                      | change what pilots are flying which flights                |
+| `* * *`  | airline manager | unlink crew from flights                                        | change which crew are assigned to which flight             |
+| `* *`    | airline manager | link planes to locations                                        | know where each plane is located                           |
+| `* *`    | airline manager | link pilots to locations                                        | know where each pilot is located                           |
+| `* *`    | airline manager | link crew to locations                                          | know where each crew is located                            |
+| `* *`    | airline manager | unlink planes from locations                                    | change where a plane is located                            |
+| `* *`    | airline manager | unlink pilots from locations                                    | change where a pilot is located                            |
+| `* *`    | airline manager | unlink crew from locations                                      | change where a crew is located                             |
+
 
 *{More to be added}*
+
+<br>
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -472,6 +530,8 @@ is the `user`, unless specified otherwise)
       Use case resumes at step 2.
       *{More to be added}*
 
+<br>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -483,6 +543,8 @@ is the `user`, unless specified otherwise)
 7. Should be for a single user and should not have any shared file storage mechanism
 
 *{More to be added}*
+
+<br>
 
 ### Glossary
 

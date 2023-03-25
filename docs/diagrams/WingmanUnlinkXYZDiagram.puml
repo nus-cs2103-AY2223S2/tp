@@ -6,9 +6,6 @@ participant ":Logic" as Logic LOGIC_COLOR
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 end box
 
-LogicManager -> StorageManager : saveFlightManager(flightManager)
-activate StorageManager
-
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
@@ -18,6 +15,8 @@ participant ":StorageManager" as StorageManager STORAGE_COLOR
 participant ":JsonItemStorage" as JsonItemStorage STORAGE_COLOR
 end box
 
+LogicManager -> StorageManager : saveFlightManager(flightManager)
+activate StorageManager
 
 StorageManager -> JsonItemStorage : save(flightManager, filePath )
 activate JsonItemStorage
@@ -33,7 +32,6 @@ deactivate JsonHelper
 
 JsonItemStorage --> StorageManager :
 deactivate JsonItemStorage
-
 
 LogicManager <--StorageManager
 deactivate StorageManager
