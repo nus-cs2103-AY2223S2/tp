@@ -66,25 +66,25 @@ add /prefix_A value_A /prefix_B value_B
 ```
 This commands adds an entity of the current resource mode to Wingman's database. For example,
 if the user is currently in the `plane` mode, then this command will add a new
-`plane` to the database. It shall be noted, however, that the attributes that are specified in different modes are different. 
+`plane` to the database. It shall be noted, however, that the parameters that are specified in different modes are different. 
 
 Here are some examples of how the command works in each mode:
 
 #### Crew mode: `add /name Bob /rank 1`
-Attributes:
+Parameters:
 - `/name`: the name of the crew.
 - `/rank`: the rank of the crew.
 
 #### Flight mode: `add /code SQ324`
-Attributes:
+Parameter:
 - `/code` : the code for the flight.
 
 #### Location mode: `add /name Singapore`
-Attributes:
+Parameter:
 - `/name`: name of the location.
 
 #### Pilot mode: `add /name Bob /rank 1 /age 32 /gender 0 /fh 20100`
-Attributes:
+Parameters:
 - `/name`: the name of the pilot.
 - `/rank`: the rank of the pilot. Possible values:
   - `1`: Training Captain,
@@ -101,29 +101,185 @@ Attributes:
 - `/fh`: the flight hours of the pilot.
 
 #### Plane mode: `add /model A380 /age 12`
-Attributes:
+Parameters:
 - `/model`: model of the plane.
 - `/age`: age of the plane.
 
 <br>
 
-### `delete {index}`
 
-This command will delete the corresponding model from the database. For
-example, if the user wishes to delete the first plane, then he will need to
-make sure that the software is in the `plane` mode, and then he will need to
-type the command:
-
+### 2. Deleting a resource
 ```
-delete 1
+delete index_number
 ```
+This commands deletes an entity of the current resource mode from Wingman's database. For example,
+if the user is currently in the `plane` mode, then this command will delete the specified
+`plane` from the database.
 
-Then the plane would be removed from the fleet.
+This command has no variations across modes:
+
+#### All modes: `delete 3`
+Parameter:
+- `index_number`: the index number of the resource you wish to delete. Note that the indexing starts from 0.
+
+<br>
+
+
 
 ## Mode-specific Commands
 
-> This part is beyond the scope of v1.2, and we will update this once we build
-> features related to this part.
+The commands in this section are only available in some modes.
+
+### 1. Linking a resource to a location
+```
+linklocation /resource_prefix resource_index /loc location_index
+```
+This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
+
+This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
+For example, if the user is currently in the `plane` mode, then this command will link a `plane` 
+to a specified location entity in the database. It shall be noted, however,
+that the parameters that are specified in different modes are different.
+
+Here are some examples of how the command works in each mode:
+
+#### Crew mode: `linklocation /crew 0 /loc 1`
+Parameters:
+- `/crew`: the index of the crew to be linked.
+- `/loc`: the index of the location to which the crew is to be linked.
+
+#### Flight mode: `linklocation /flight 0 /loc 1`
+Parameter:
+- `/flight`: the index of the flight to be linked.
+- `/from`: the index of the location to which the flight is to be linked as departing from.
+- `/to`: the index of the location to which the flight is to be linked as arriving at.
+
+#### Pilot mode: `linklocation /pilot 0 /loc 1`
+Parameters:
+- `/pilot`: the index of the pilot to be linked.
+- `/loc`: the index of the location to which the pilot is to be linked.
+
+#### Plane mode: `linklocation /pl 0 /loc 1`
+Parameters:
+- `/pl`: the index of the plane to be linked.
+- `/loc`: the index of the location to which the plane is to be linked.
+
+<br>
+
+### 2. Unlinking a resource from a location
+```
+unlinklocation /resource_prefix resource_index /loc location_index
+```
+This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
+
+This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
+For example, if the user is currently in the `plane` mode, then this command will unlink a `plane`
+from the specified location entity in the database. It shall be noted, however,
+that the parameters that are specified in different modes are different.
+
+Here are some examples of how the command works in each mode:
+
+#### Crew mode: `unlinklocation /crew 0 /loc 1`
+Parameters:
+- `/crew`: the index of the crew to be unlinked.
+- `/loc`: the index of the location from which the crew is to be unlinked.
+
+#### Flight mode: `unlinklocation /flight 0 /loc 1`
+Parameter:
+- `/flight`: the index of the flight to be unlinked.
+- `/from`: the index of the departure location from which the flight is to be unlinked.
+- `/to`: the index of the arrival location from which the flight is to be unlinked.
+
+#### Pilot mode: `unlinklocation /pilot 0 /loc 1`
+Parameters:
+- `/pilot`: the index of the pilot to be unlinked.
+- `/loc`: the index of the location from which the pilot is to be unlinked.
+
+#### Plane mode: `unlinklocation /pl 0 /loc 1`
+Parameters:
+- `/pl`: the index of the plane to be unlinked.
+- `/loc`: the index of the location from which the plane is to be unlinked.
+
+<br>
+
+### 3. Linking a resource to a flight
+```
+link /resource_prefix resource_index /fl flight_index
+```
+This command is ONLY available in the following modes: `crew`, `pilot` and `plane`. 
+(Note that locations are linked to flights through the `flight` mode,
+using the `linklocation` command described [above](#1-linking-a-resource-to-a-location))
+
+This commands links an entity of the current resource mode to a specified flight in Wingman's database. For example,
+if the user is currently in the `plane` mode, then this command will link a `plane`
+to a specified flight in the database. It shall be noted, however, that the parameters that are specified in different modes are different.
+
+Here are some examples of how the command works in each mode:
+
+#### Crew mode: `link /csd 0 /sfa 1 /fa 2 /tr 4 /fl 2`
+Parameters:
+- `/csd`: the index of the crew to be linked as cabin service director for this flight.
+- `/sfa`: the index of the crew to be linked as senior flight attendant for this flight.
+- `/fa`: the index of the crew to be linked as flight attendant for this flight.
+- `/tr`: the index of the crew to be linked as trainee for this flight.
+- `/fl`: the flight to which the specified crew is to be linked.
+
+Note: In each command, you only need to fill up **at least** 1 crew related parameter.
+
+#### Pilot mode: `link /pf 0 /pm 1 /f1 2`
+Parameters:
+- `/pf`: the index of the flying pilot to be linked to the flight.
+- `/pm`: the index of the monitoring pilot to be linked to the flight.
+- `/fl`: the flight to which the specified pilots are to be linked.
+
+Note: In each command, you only need to fill up **at least** 1 pilot related parameter.
+
+#### Plane mode: `link /pu 0 /fl 1`
+Parameters:
+- `/pu`: the index of the plane to be linked as being used for the flight.
+- `/fl`: the flight to which the specified plane is to be linked.
+
+<br>
+
+### 4. Unlinking a resource from a flight
+```
+unlink /resource_prefix resource_index /fl flight_index
+```
+This command is ONLY available in the following modes: `crew`, `pilot` and `plane`.
+(Note that locations are unlinked from flights through the `flight` mode,
+using the `unlinklocation` command described [above](#2-unlinking-a-resource-from-a-location))
+
+This commands unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
+if the user is currently in the `plane` mode, then this command will unlink a `plane`
+from a specified flight in the database. It shall be noted, however,
+that the parameters that are specified in different modes are different.
+
+Here are some examples of how the command works in each mode:
+
+#### Crew mode: `unlink /csd 0 /sfa 1 /fa 2 /tr 4 /fl 2`
+Parameters:
+- `/csd`: the index of the crew to be unlinked as cabin service director for this flight.
+- `/sfa`: the index of the crew to be unlinked as senior flight attendant for this flight.
+- `/fa`: the index of the crew to be unlinked as flight attendant for this flight.
+- `/tr`: the index of the crew to be unlinked as trainee for this flight.
+- `/fl`: the flight from which the specified crew is to be unlinked.
+
+Note: In each command, you only need to fill up **at least** 1 crew related parameter.
+
+#### Pilot mode: `link /pf 0 /pm 1 /f1 2`
+Parameters:
+- `/pf`: the index of the flying pilot to be unlinked from the flight.
+- `/pm`: the index of the monitoring pilot to be unlinked from the flight.
+- `/fl`: the flight from which the specified pilots are to be linked.
+
+Note: In each command, you only need to fill up **at least** 1 pilot related parameter.
+
+#### Plane mode: `link /pu 0 /fl 1`
+Parameters:
+- `/pu`: the index of the plane to be unlinked as being used for the flight.
+- `/fl`: the flight from which the specified plane is to be linked.
+
+<br>
 
 ## Application Commands
 
