@@ -90,6 +90,8 @@ public class EditRecurringEventCommand extends Command {
 
         editedRecurringEvent.checkPeriod();
 
+        RecurringEventList.listConflictedEventWithIsolated(editedRecurringEvent, personToEdit.getIsolatedEventList());
+
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedRecurringEvent)
