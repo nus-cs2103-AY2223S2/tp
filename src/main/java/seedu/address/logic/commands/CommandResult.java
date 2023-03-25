@@ -11,7 +11,6 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-
     /** Light mode should be shown to the user. */
     private final boolean showLight;
 
