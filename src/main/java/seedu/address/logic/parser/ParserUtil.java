@@ -168,4 +168,14 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parseFileName(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
+    }
 }

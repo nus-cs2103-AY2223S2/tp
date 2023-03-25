@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -112,6 +113,14 @@ public class ModelManager implements Model {
     public void addEmployee(Employee employee) {
         executiveProDb.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+    }
+
+    @Override
+    public void batchAddEmployees(String fileName) {
+        Path file = Paths.get("data"," ");
+
+        String line = "";
+
     }
 
     @Override

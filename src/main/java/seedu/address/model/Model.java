@@ -78,6 +78,12 @@ public interface Model {
     void addEmployee(Employee employee);
 
     /**
+     * Batch Adds the employees from the user input.
+     * {@code fileName} must not already exist in the address book.
+     */
+    void batchAddEmployees(String fileName);
+
+    /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
      * {@code target} must exist in the address book.
      * The employee identity of {@code editedPerson} must not be the same as another
