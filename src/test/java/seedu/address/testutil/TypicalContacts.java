@@ -28,13 +28,13 @@ public class TypicalContacts {
             .build();
     public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer").withPhone("94822241")
             .build();
-    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("94824271")
+    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("948242712")
             .build();
     public static final Contact GEORGE = new ContactBuilder().withName("George Best").withPhone("94824421")
             .build();
 
     // Manually added
-    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("84824241")
+    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("848242412")
             .build();
     public static final Contact IDA = new ContactBuilder().withName("Ida Mueller").withPhone("84821311")
             .build();
