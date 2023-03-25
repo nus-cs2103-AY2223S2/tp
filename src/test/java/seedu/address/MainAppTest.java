@@ -1,10 +1,7 @@
 package seedu.address;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Config;
-import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.UserPrefsStorage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,8 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Config;
+import seedu.address.model.UserPrefs;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.UserPrefsStorage;
 
 public class MainAppTest {
     private final MainApp mainApp = new MainApp();
