@@ -24,9 +24,9 @@ public class ReturnCommand extends Command {
             + ": Returns a book identified by the index number used in the book listing from "
             + "the person identified by the index number used in the person listing. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "b/[BOOK] d/[DATE dd/mm/yyyy]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "b/2 d/22/09/2025";
+            + "b/[BOOK] \n"
+            + "Example: " + COMMAND_WORD + " 3 "
+            + "b/2";
 
     public static final String MESSAGE_RETURN_SUCCESS = "Person: %1$s returned Book: %2$s";
 
@@ -34,8 +34,8 @@ public class ReturnCommand extends Command {
     private final Index bookIndex;
 
     /**
-     * @param personIndex of the person in the filtered person list to lend book to
-     * @param bookIndex of the book to lend to the specified person
+     * @param personIndex of the person in the filtered person list to return a book
+     * @param bookIndex of the book to return
      */
     public ReturnCommand(Index personIndex, Index bookIndex) {
         requireAllNonNull(personIndex, bookIndex);

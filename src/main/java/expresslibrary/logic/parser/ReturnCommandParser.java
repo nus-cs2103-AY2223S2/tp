@@ -10,13 +10,13 @@ import expresslibrary.logic.commands.ReturnCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new BorrowCommand object
+ * Parses input arguments and creates a new ReturnCommand object
  */
 public class ReturnCommandParser implements Parser<ReturnCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the BorrowCommand
-     * and returns an BorrowCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ReturnCommand
+     * and returns an ReturnCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
