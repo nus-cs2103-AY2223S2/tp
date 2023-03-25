@@ -1,7 +1,7 @@
 # Wingman User Guide
 
 
-Wingman is a **modal** manager for managing airplanes, pilots, crews, flights, and locations.
+Wingman is a **modal** manager for managing crew, flights, locations, pilots, and planes.
 It seeks to provide a highly efficient way of resource management for airline managers.
 
 ## Table of Contents
@@ -37,12 +37,12 @@ If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
 
 ### Modal Editing
 
-Wingman offers 5 different modes through which you can manage your resources:
-- `location` mode: to manage the locations in which your airline operates
-- `plane` mode: to manage the planes that your airline operates
-- `flight` mode: to manage the flights that your airline operates
-- `pilot` mode: to manage the pilots that form your airline workforce
+Wingman offers 5 different resource modes through which you can manage your resources:
 - `crew` mode: to manage the crews that form your airline workforce
+- `flight` mode: to manage the flights that your airline operates
+- `location` mode: to manage the locations in which your airline operates
+- `pilot` mode: to manage the pilots that form your airline workforce
+- `plane` mode: to manage the planes that your airline operates
 
 The different modes offer similar and intuitive commands, with optimisations to cater to the subject
 that the mode is managing. This means you do not have to worry about memorising complex commands and instead
@@ -66,112 +66,46 @@ add /prefix_A value_A /prefix_B value_B
 ```
 This commands adds an entity of the current resource mode to Wingman's database. For example,
 if the user is currently in the `plane` mode, then this command will add a new
-`plane` to the database. It shall be noted, however, that the params that are used in different modes are different. 
+`plane` to the database. It shall be noted, however, that the attributes that are specified in different modes are different. 
 
-Here are some examples of this command in use:
+Here are some examples of how the command works in each mode:
 
-#### Add a `location`
+#### Crew mode: `add /name Bob /rank 1`
+Attributes:
+- `/name`: the name of the crew.
+- `/rank`: the rank of the crew.
 
-To add a `location` to the locations on which the airline is currently
-operating, the user will need to ensure that he is in the `location` mode.
+#### Flight mode: `add /code SQ324`
+Attributes:
+- `/code` : the code for the flight.
 
-Params:
+#### Location mode: `add /name Singapore`
+Attributes:
+- `/name`: name of the location.
 
-- `/name`: the name of the location.
-
-Example:
-
-```
-add /name SIN
-add /name ZRH
-add /name KUL
-add /name PVG
-add /name NKG
-```
-
-#### Add a `plane`
-
-To add a `plane` to the fleet, the user will need to ensure that he is in the
-`plane` mode.
-
-Params:
-
-- `/model`: the model of the plane.
-- `/mdate`: the date that this plane was manufactured. This should be of the
-  format `YYYY-MM-DD`, i.e. `2023-01-01`.
-
-Examples:
-
-```
-add /model B737 /mdate 2023-01-01
-add /model A380 /mdate 2012-07-21
-```
-
-#### Add a `flight`
-
-To add a `flight` to the fleet, the user will need to ensure that the software
-is in the `flight` mode.
-
-Params:
-
-- `/num`: the flight number of the flight.
-
-Examples:
-
-```
-add /num SQ830
-add /num LX200
-add /num NH802
-```
-
-#### Add a `pilot`
-
-To add a `pilot` to the fleet, the user will need to ensure that the software
-is in the `pilot` mode.
-
-Params:
-
+#### Pilot mode: `add /name Bob /rank 1 /age 32 /gender 0 /fh 20100`
+Attributes:
 - `/name`: the name of the pilot.
-
-Optional Params:
-
 - `/rank`: the rank of the pilot. Possible values:
-    - `1`: Training Captain,
-    - `2`: Captain,
-    - `3`: Senior,
-    - `4`: First Officer,
-    - `5`: Second Officer,
-    - `6`: Cadet.
+  - `1`: Training Captain,
+  - `2`: Captain,
+  - `3`: Senior,
+  - `4`: First Officer,
+  - `5`: Second Officer,
+  - `6`: Cadet.
 - `/age`: the age of the captain.
 - `/gender`: the gender of the pilot. Possible values:
-    - `male`
-    - `female`
-    - `other`
+  - `0`: male
+  - `1`: female
+  - `2`: other
 - `/fh`: the flight hours of the pilot.
 
-Examples:
+#### Plane mode: `add /model A380 /age 12`
+Attributes:
+- `/model`: model of the plane.
+- `/age`: age of the plane.
 
-```
-add /name Len Beong /rank 1
-add /name Hartin Menz /rank 2 /age 39 /gender male /fh 5000
-```
-
-#### Add a `crew`
-
-TO add a `crew` to the fleet, the user will need to ensure that the software is
-in the `crew` mode.
-
-Params:
-
-- `/name`: the name of the crew
-
-Optional Params:
-
-- `/age`: the age of the crew
-- `/gender`: the gender of the crew. Possible values:
-    - `male`
-    - `female`
-    - `other`
+<br>
 
 ### `delete {index}`
 
