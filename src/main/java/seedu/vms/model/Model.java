@@ -248,14 +248,11 @@ public interface Model {
 
 
     /**
-     * Handles the specified change in state of a patient. Returns a list of
-     * messages describing the changes in appointment that has ocurred.
+     * Handles the specified change in state of a patient.
      *
      * @param change - the change to handle.
-     * @return a list of messages describing the changes in appointment that
-     *      has ocurred.
      */
-    List<String> handlePatientChange(ValueChange<Patient> change);
+    void handlePatientChange(ValueChange<Patient> change);
 
 
     /**
@@ -272,12 +269,9 @@ public interface Model {
 
 
     /**
-     * Handles the specified change in state of a vaccination. Returns a list
-     * of messages describing the changes in appointment that has ocurred.
+     * Handles the specified change in state of a vaccination.
      *
      * @param change - the change to handle.
-     * @return a list of messages describing the changes in appointment that
-     *      has ocurred.
      */
-    List<String> handleVaccinationChange(ValueChange<VaxType> change);
+    void handleVaccinationChange(ValueChange<VaxType> change);
 }

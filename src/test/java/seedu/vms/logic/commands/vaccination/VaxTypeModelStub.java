@@ -218,7 +218,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public List<String> handlePatientChange(ValueChange<Patient> change) {
+    public void handlePatientChange(ValueChange<Patient> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
     }
@@ -230,7 +230,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+    public void handleVaccinationChange(ValueChange<VaxType> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
     }

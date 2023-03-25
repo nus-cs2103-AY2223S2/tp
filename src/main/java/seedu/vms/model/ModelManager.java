@@ -209,11 +209,10 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> handlePatientChange(ValueChange<Patient> change) {
+    public void handlePatientChange(ValueChange<Patient> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
-        return List.of();
     }
 
 
@@ -227,12 +226,11 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+    public void handleVaccinationChange(ValueChange<VaxType> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
         updateVaccinationDetail(change);
-        return List.of();
     }
 
     // =========== VaxTypeManager ==============================================================================
