@@ -1,4 +1,4 @@
-package vimification.logic.commands;
+package vimification.internal.commands;
 
 import javafx.collections.ObservableList;
 import vimification.model.LogicTaskList;

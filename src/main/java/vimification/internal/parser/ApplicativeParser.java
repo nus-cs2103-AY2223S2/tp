@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;

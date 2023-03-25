@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import vimification.logic.Logic;
+import vimification.internal.Logic;
 import vimification.model.task.Task;
 
 /**

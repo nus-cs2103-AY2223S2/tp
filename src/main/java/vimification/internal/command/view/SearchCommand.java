@@ -1,4 +1,4 @@
-package vimification.logic.commands.viewCommands;
+package vimification.internal.commands.view;
 
 import java.util.function.Predicate;
 

@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 @FunctionalInterface
 public interface CharPredicate {

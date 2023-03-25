@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 /**
  * Wrapper of a normal {@code String} instance. Instances of this class are used to represent slices

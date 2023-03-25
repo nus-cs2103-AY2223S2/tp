@@ -7,10 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import vimification.logic.Logic;
-import vimification.logic.commands.CommandException;
-import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParserException;
+import vimification.internal.Logic;
+import vimification.internal.commands.CommandException;
+import vimification.internal.commands.CommandResult;
+import vimification.internal.parser.ParserException;
 
 /**
  *

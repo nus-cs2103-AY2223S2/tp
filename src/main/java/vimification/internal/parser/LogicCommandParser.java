@@ -1,8 +1,8 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 import java.util.function.Function;
 
-import vimification.logic.commands.logicCommands.LogicCommand;
+import vimification.internal.commands.logic.LogicCommand;
 
 /**
  * Represents a parser that is able to parse user input into a {@code LogicCommand} of type

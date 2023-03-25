@@ -1,4 +1,4 @@
-package vimification.logic;
+package vimification.internal;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -7,11 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.Command;
-import vimification.logic.commands.CommandException;
-import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParserException;
-import vimification.logic.parser.VimificationParser;
+import vimification.internal.commands.Command;
+import vimification.internal.commands.CommandException;
+import vimification.internal.commands.CommandResult;
+import vimification.internal.parser.ParserException;
+import vimification.internal.parser.VimificationParser;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 import vimification.storage.Storage;
