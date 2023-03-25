@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User wants to review who are assigned to a task;
+:Enters the command;
+if () then ([VALID task name])
+    if () then ([isAssigned])
+        :Assigned persons
+            are displayed;
+    else ([isNotAssigned])
+        :Display an empty list;
+    endif
+else ([else])
+    :OfficeConnect shows user
+            the correct syntax;
+endif
+
+stop
+
+@enduml

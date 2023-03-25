@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package OfficeConnectModel <<Rectangle>>{
+Class "OfficeConnectModel" as Model
+Class "RepositoryModelManager<Task>" as tasks
+Class "RepositoryModelManager<AssignTask>" as assignTasks
+Class "<<interface>>\nReadOnlyRepository<T>" as ReadOnlyRepository
+Class "<<interface>>\nRelationship<T>" as Relationship
+Class Repository<T>
+Class RepositoryModelManager<T>
+
+Class UniqueItemList<T>
+Class Object<T>
+
+Model --> "1" assignTasks
+Model --> "1" tasks
+assignTasks ..up.|> RepositoryModelManager
+tasks .up...|> RepositoryModelManager
+
+
+}
+
+Class HiddenOutside #FFFFFF
+
+Repository .up.|> ReadOnlyRepository
+Object .up.|> Relationship
+
+RepositoryModelManager -left-> "1" Repository
+
+Repository *--> "1" UniqueItemList
+UniqueItemList --> "~* all" Object
+
+RepositoryModelManager -->"~* filtered" Object
+@enduml

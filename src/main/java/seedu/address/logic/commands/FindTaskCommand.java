@@ -14,14 +14,13 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
-
 /**
- * Review the list of persons assigned to a specified task.
+ * Finds the list of all tasks whose subject contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
  */
-public class ReviewTaskCommand extends Command {
-    public static final String COMMAND_WORD = "reviewtask";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Review person/s assigned to a task.\n"
-            + "Parameters: TASK_NAME \n"
+public class FindTaskCommand extends Command {
+    public static final String COMMAND_WORD = "findtask";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <TASK_NAME>\n"
             + "Example: " + COMMAND_WORD + " CS2103 TP";
 
     public static final String MESSAGE_PERSON_ASSIGNED = "%1$s has been assigned to the following person/s:";
@@ -30,16 +29,16 @@ public class ReviewTaskCommand extends Command {
     private final TitleContainsExactKeywordsPredicate predicate;
 
     /**
-     * Creates ReviewTask object with given taskIndex
+     * Creates FindTask object with given taskIndex
      */
-    public ReviewTaskCommand(TitleContainsExactKeywordsPredicate predicate) {
+    public FindTaskCommand(TitleContainsExactKeywordsPredicate predicate) {
         requireAllNonNull(predicate);
 
         this.predicate = predicate;
     }
 
     /**
-     * Executes ReviewTaskCommand
+     * Executes FindTaskCommand
      */
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
@@ -77,14 +76,13 @@ public class ReviewTaskCommand extends Command {
     private static ObservableList<AssignTask> getAssignedPersonList(OfficeConnectModel officeConnectModel, Id tId) {
         RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
         return personTaskModelManager
-                .getFilteredItemList()
-                .filtered(persontask -> persontask.getTaskId().equals(tId));
+                .filterItemList(persontask -> persontask.getTaskId().equals(tId));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReviewTaskCommand // instanceof handles nulls
-                && this.predicate.equals(((ReviewTaskCommand) other).predicate)); // state check
+                || (other instanceof FindTaskCommand // instanceof handles nulls
+                && this.predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 }

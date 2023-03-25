@@ -1,43 +1,93 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.mapping.AssignTask;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsExactKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.shared.Id;
+import seedu.address.model.task.Task;
+
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds all persons whose name contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
-
     public static final String COMMAND_WORD = "find";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <PERSON_NAME>\n"
+            + "Example: " + COMMAND_WORD + " John Cena";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_TASK_ASSIGNED = "%1$s has been assigned to the following tasks:";
+    public static final String MESSAGE_NO_TASK_ASSIGNED = "%1$s does not have any assigned tasks.";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsExactKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    /**
+     * Creates FindCommand object with given personIndex
+     */
+    public FindCommand(NameContainsExactKeywordsPredicate predicate) {
+        requireAllNonNull(predicate);
+
         this.predicate = predicate;
     }
 
+    /**
+     * Executes FindCommand
+     */
     @Override
-    public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
+        requireAllNonNull(model, officeConnectModel);
+
+        List<Person> personList = model.getAddressBook()
+                .getPersonList()
+                .filtered(predicate);
+
+        if (personList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
+        }
+
+        Person person = personList.get(0);
+        Id pId = person.getId();
+        Name name = person.getName();
+
+        ObservableList<AssignTask> assignedTaskList = getAssignedTaskList(officeConnectModel, pId);
+
+        displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList, pId);
+
+        if (assignedTaskList.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_NO_TASK_ASSIGNED, name));
+        } else {
+            return new CommandResult(String.format(MESSAGE_TASK_ASSIGNED, name));
+        }
+    }
+
+    private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel,
+                                                     ObservableList<AssignTask> assignedTaskList, Id pId) {
+        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
+        model.updateFilteredPersonList(person -> person.getId().equals(pId));
+        taskModelManager.updateFilteredItemList(task -> assignedTaskList.stream()
+                .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+    }
+
+    private static ObservableList<AssignTask> getAssignedTaskList(OfficeConnectModel officeConnectModel, Id pId) {
+        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
+        return personTaskModelManager.filterItemList(persontask -> persontask.getPersonId().equals(pId));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
