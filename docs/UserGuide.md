@@ -32,7 +32,7 @@ This user guide will help you get up to speed in no time!
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
-    * [View upcoming events](#view-upcoming-events)
+    * [View Upcoming Events](#view-upcoming-events)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
