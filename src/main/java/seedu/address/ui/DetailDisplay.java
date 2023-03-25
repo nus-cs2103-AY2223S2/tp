@@ -106,7 +106,28 @@ public class DetailDisplay extends UiPart<Region> {
         uploadButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                clearDetailDisplay();
+                hideAppointmentButton();
+                hideUploadButton();
+                hideGenerateButton();
+                hideViewDisplay();
                 filesManager.addFile();
+                medicalCondition.setText("click the person gain to see updated file list");
+            }
+        });
+    }
+
+    public void setGenerateButton(FilesManager filesManager) {
+        generateButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                clearDetailDisplay();
+                hideAppointmentButton();
+                hideUploadButton();
+                hideGenerateButton();
+                hideViewDisplay();
+                filesManager.generateMc();
+                medicalCondition.setText("click the person gain to see updated file list");
             }
         });
     }

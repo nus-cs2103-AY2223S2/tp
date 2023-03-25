@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.files.FilesManager;
@@ -36,6 +37,8 @@ public class FileCard extends UiPart<Region> {
     private Button view;
     @FXML
     private Button delete;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,6 +59,7 @@ public class FileCard extends UiPart<Region> {
             @Override
             public void handle(MouseEvent event) {
                 filesManager.deleteFile(file.getFileName());
+                file.delete();
             }
         });
     }

@@ -121,5 +121,7 @@ public class FilesManager {
                 .map(Path::toString)
                 .collect(Collectors.toList());
     }
-
+    public Person getPerson() {
+        return this.person;
+    }
 }
