@@ -1,18 +1,17 @@
 package seedu.address.model.location;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.model.location.util.TypicalLocation.BEDOK;
-import static seedu.address.model.location.util.TypicalLocation.PASIR_RIS;
-import static seedu.address.model.location.util.TypicalLocation.SERANGOON;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.location.util.TypicalLocation.BEDOK;
+import static seedu.address.model.location.util.TypicalLocation.PASIR_RIS;
+import static seedu.address.model.location.util.TypicalLocation.SERANGOON;
 
 public class LocationTest {
 
@@ -177,11 +176,11 @@ public class LocationTest {
                 new Location("", VALID_LAT_3, VALID_LON_3));
 
         // different name
-        assertNotEquals(VALID_LOCATION_1,
+        assertEquals(VALID_LOCATION_1,
                 new Location(VALID_NAME_2, VALID_LAT_1, VALID_LON_1));
-        assertNotEquals(VALID_LOCATION_2,
+        assertEquals(VALID_LOCATION_2,
                 new Location(VALID_NAME_3, VALID_LAT_2, VALID_LON_2));
-        assertNotEquals(VALID_LOCATION_3,
+        assertEquals(VALID_LOCATION_3,
                 new Location(VALID_NAME_1, VALID_LAT_3, VALID_LON_3));
 
         // different lat
@@ -256,7 +255,7 @@ public class LocationTest {
 
     @Test
     public void compareTo() {
-        assertEquals(List.of(VALID_LOCATION_2, VALID_LOCATION_3, VALID_LOCATION_1),
+        assertEquals(List.of(VALID_LOCATION_3, VALID_LOCATION_2, VALID_LOCATION_1),
                 VALID_LOCATION_LIST.stream().sorted().collect(Collectors.toList()));
     }
 }

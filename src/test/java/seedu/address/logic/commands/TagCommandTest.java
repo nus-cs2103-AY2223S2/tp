@@ -1,13 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
@@ -18,6 +11,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ModuleTag;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 public class TagCommandTest {
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
@@ -45,7 +44,7 @@ public class TagCommandTest {
         tags2.add(new ModuleTag("CS2106"));
         tags2.add(new ModuleTag("CS1234"));
         tags2.add(new ModuleTag("CS2345"));
-        assertEquals(personToEdit2.getImmutableModuleTags().toString(), tags2.toString());
+        assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
 
         UntagCommand untag2 = new UntagCommand(index2, modulesToAdd);
         untag2.execute(model);
@@ -71,7 +70,7 @@ public class TagCommandTest {
         tags1.add(new ModuleTag("CHC5338"));
         tags1.add(new ModuleTag("BT2103"));
         tags1.add(new ModuleTag("CS1234"));
-        assertEquals(personToEdit1.getImmutableModuleTags().toString(), tags1.toString());
+        assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
 
         UntagCommand untag1 = new UntagCommand(index1, moduleToAdd);
         untag1.execute(model);
@@ -101,7 +100,7 @@ public class TagCommandTest {
 
         Person userAct = model.getUser();
 
-        assertEquals(userAct.getImmutableModuleTags().toString(), tags.toString());
+        assertEquals(userAct.getImmutableModuleTags(), tags);
 
         UntagCommand untag = new UntagCommand(null, modulesToAdd);
         untag.execute(model);

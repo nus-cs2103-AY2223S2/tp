@@ -114,110 +114,97 @@
   },
   "persons": [
     {
-      "name": "Ang De Yi",
-      "email": "angdeyi@gmail.com",
-      "telegramHandle": "@angdeyi",
-      "address": "Teck Ghee",
-      "groups": [],
-      "phone": "3895as4665",
+      "name": "Goon Se-Rang",
+      "email": "weiyi@gmail.com",
+      "telegramHandle": "@weiyi",
+      "address": "one-north",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "88330807",
       "modules": [
         {
-          "moduleCode": "GMS6821",
-          "lessons": [
-            {
-              "startHour": 12,
-              "endHour": 13,
-              "day": "FRIDAY"
-            },
-            {
-              "startHour": 17,
-              "endHour": 19,
-              "day": "THURSDAY"
-            },
-            {
-              "startHour": 13,
-              "endHour": 15,
-              "day": "MONDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2103T",
-          "lessons": [
-            {
-              "startHour": 11,
-              "endHour": 13,
-              "day": "MONDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "PC5215",
-          "lessons": [
-            {
-              "startHour": 9,
-              "endHour": 10,
-              "day": "WEDNESDAY"
-            },
-            {
-              "startHour": 16,
-              "endHour": 17,
-              "day": "MONDAY"
-            },
-            {
-              "startHour": 14,
-              "endHour": 15,
-              "day": "TUESDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2113",
-          "lessons": [
-            {
-              "startHour": 9,
-              "endHour": 10,
-              "day": "FRIDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2103",
+          "moduleCode": "CS2220",
           "lessons": [
             {
               "startHour": 14,
               "endHour": 16,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 12,
+              "endHour": 14,
+              "day": "MONDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS4248",
+          "lessons": [
+            {
+              "startHour": 17,
+              "endHour": 18,
+              "day": "FRIDAY"
+            },
+            {
+              "startHour": 12,
+              "endHour": 13,
               "day": "TUESDAY"
             },
             {
-              "startHour": 19,
-              "endHour": 21,
+              "startHour": 12,
+              "endHour": 13,
               "day": "TUESDAY"
             }
           ]
         },
         {
-          "moduleCode": "CS2309",
+          "moduleCode": "CS1231",
           "lessons": [
             {
-              "startHour": 10,
-              "endHour": 11,
-              "day": "MONDAY"
+              "startHour": 14,
+              "endHour": 16,
+              "day": "FRIDAY"
             },
             {
-              "startHour": 16,
-              "endHour": 18,
-              "day": "THURSDAY"
-            },
+              "startHour": 19,
+              "endHour": 20,
+              "day": "WEDNESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2105",
+          "lessons": [
             {
               "startHour": 18,
-              "endHour": 19,
-              "day": "MONDAY"
+              "endHour": 20,
+              "day": "WEDNESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "GE2101",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 15,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "MA2289R",
+          "lessons": [
+            {
+              "startHour": 9,
+              "endHour": 11,
+              "day": "TUESDAY"
             }
           ]
         }
       ],
-      "index": 8
+      "index": 95
     }
   ]
 }

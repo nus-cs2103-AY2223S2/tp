@@ -48,6 +48,21 @@ public class Commitment {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof Commitment)) {
+            return false;
+        }
+
+        Commitment commitment = (Commitment) other;
+        return location.equals(commitment.location)
+                && timePeriod.equals(commitment.timePeriod);
+    }
+
+    @Override
     public String toString() {
         return "Commitment{"
                 + getDay()

@@ -1,20 +1,5 @@
 package seedu.address.model.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,6 +15,21 @@ import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Contains utility methods for populating {@code EduMate} with sample data.
@@ -136,7 +136,6 @@ public class SampleDataUtil {
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
         Set<ModuleTag> moduleTagSet = getModuleTagSetFromText(personDataList.get(6));
-        System.out.println(moduleTagSet);
 
         return new Person(name, phone, email, address,
                 telegramHandle, contactIndex, groupTagSet, moduleTagSet);

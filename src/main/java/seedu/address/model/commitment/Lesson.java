@@ -1,14 +1,12 @@
 package seedu.address.model.commitment;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 import org.joda.time.LocalTime;
-
 import seedu.address.model.location.Location;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
+
+import java.util.Objects;
 
 
 /**
@@ -65,9 +63,10 @@ public class Lesson extends Commitment {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Lesson)) {
             return false;
         }
+
         Lesson lesson = (Lesson) o;
         return super.equals(o)
                 && moduleCode.equals(lesson.getModuleCode());

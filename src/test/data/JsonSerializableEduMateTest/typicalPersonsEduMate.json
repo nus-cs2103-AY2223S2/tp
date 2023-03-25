@@ -9,302 +9,108 @@
       "User"
     ],
     "modules": [
-      "CS2100",
-      "CS2101",
-      "CS2102",
-      "CS2103",
-      "CS2104",
-      "CS2105",
-      "CS2106"
+      {
+        "moduleCode": "CS2105",
+        "lessons": [
+          {
+            "startHour": 12,
+            "endHour": 14,
+            "day": "TUESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "WEDNESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "EL1101E",
+        "lessons": [
+          {
+            "startHour": 14,
+            "endHour": 15,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 11,
+            "day": "MONDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103T",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 11,
+            "endHour": 13,
+            "day": "FRIDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 19,
+            "endHour": 21,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "TUESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2102",
+        "lessons": [
+          {
+            "startHour": 18,
+            "endHour": 19,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 11,
+            "day": "MONDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "THURSDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2107",
+        "lessons": [
+          {
+            "startHour": 17,
+            "endHour": 19,
+            "day": "MONDAY"
+          }
+        ]
+      }
     ],
     "index": 0
   },
-  "persons": [
-    {
-      "name": "Albert Park",
-      "email": "albertpark@gmail.com",
-      "telegramHandle": "@albertpark",
-      "address": "King Albert Park",
-      "groups": [
-        "TA"
-      ],
-      "phone": "89760441",
-      "index": 57,
-      "modules": [
-        "CS2105",
-        "CS2104",
-        "CS2103",
-        "CS1010",
-        "CHC5338",
-        "BT2103"
-      ]
-    },
-    {
-      "name": "Ang Mei Hua",
-      "email": "angmeihua@gmail.com",
-      "telegramHandle": "@angmeihua",
-      "address": "Mayflower",
-      "groups": [
-        "Study"
-      ],
-      "phone": "86203169",
-      "index": 95,
-      "modules": [
-        "CS2108",
-        "GEN2061",
-        "CS2107",
-        "DSA2102",
-        "CS2102",
-        "CS2106"
-      ]
-    },
-    {
-      "name": "Bart Lee",
-      "email": "bartlee@gmail.com",
-      "telegramHandle": "@bartlee",
-      "address": "Bartley",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "82630347",
-      "index": 20,
-      "modules": [
-        "CE2183",
-        "CS2108",
-        "PL3551R",
-        "CS2113",
-        "CS2107",
-        "CS3216"
-      ]
-    },
-    {
-      "name": "Clark Kee",
-      "email": "clarkkee@gmail.com",
-      "telegramHandle": "@clarkkee",
-      "address": "Clarke Quay",
-      "groups": [
-        "NUS"
-      ],
-      "phone": "81342028",
-      "index": 94,
-      "modules": [
-        "CS2103",
-        "CE2003",
-        "CS2105",
-        "IE4102",
-        "SC3206",
-        "CS2106"
-      ]
-    },
-    {
-      "name": "Dakota Dunman",
-      "email": "dakotadunman@gmail.com",
-      "telegramHandle": "@dakotadunman",
-      "address": "Dakota",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "86263617",
-      "index": 62,
-      "modules": [
-        "GE2102",
-        "QF3101",
-        "LLJ5203",
-        "CS2104",
-        "ST2132",
-        "CM3261"
-      ]
-    },
-    {
-      "name": "Edward Richards",
-      "email": "edwardrichards@gmail.com",
-      "telegramHandle": "@edwardrichards",
-      "address": "Kent Ridge",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "92463693",
-      "index": 83,
-      "modules": [
-        "CS2105",
-        "CS2309",
-        "CS2104",
-        "CS2100",
-        "ST3289",
-        "CE4103"
-      ]
-    },
-    {
-      "name": "Ford Canning",
-      "email": "fordcanning@gmail.com",
-      "telegramHandle": "@fordcanning",
-      "address": "Fort Canning",
-      "groups": [
-        "TA"
-      ],
-      "phone": "88032666",
-      "index": 76,
-      "modules": [
-        "CS2101",
-        "CS2103",
-        "CS2108",
-        "CS2030S",
-        "CS2102",
-        "CS2107"
-      ]
-    },
-    {
-      "name": "George Richards",
-      "email": "georgerichards@gmail.com",
-      "telegramHandle": "@georgerichards",
-      "address": "Kent Ridge",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "98796811",
-      "index": 100,
-      "modules": [
-        "CS4249",
-        "CS2105",
-        "GE2103",
-        "BT2101",
-        "CS2108",
-        "CS2103R"
-      ]
-    },
-    {
-      "name": "Hong Shan",
-      "email": "hongshan@gmail.com",
-      "telegramHandle": "@hongshan",
-      "address": "Redhill",
-      "groups": [
-        "Groupmate"
-      ],
-      "phone": "91345682",
-      "index": 97,
-      "modules": [
-        "MA2101",
-        "CS2104",
-        "CS2113",
-        "LSM3259",
-        "CE2407A",
-        "CS2107"
-      ]
-    },
-    {
-      "name": "Isaac Newton",
-      "email": "isaacnewton@gmail.com",
-      "telegramHandle": "@isaacnewton",
-      "address": "Newton",
-      "groups": [
-        "NS",
-        "TA"
-      ],
-      "phone": "93175044",
-      "index": 90,
-      "modules": [
-        "CE5315",
-        "CS2109S",
-        "CS2113T",
-        "CS2105",
-        "CS2107",
-        "CS2104"
-      ]
-    },
-    {
-      "name": "Ju Kun",
-      "email": "jukun@gmail.com",
-      "telegramHandle": "@jukun",
-      "address": "Joo Koon",
-      "groups": [
-        "Groupmate"
-      ],
-      "phone": "84709651",
-      "index": 7,
-      "modules": [
-        "CS2101",
-        "DSA2101",
-        "BN3301",
-        "CS2106",
-        "CS2108",
-        "CS2107"
-      ]
-    },
-    {
-      "name": "Kevin Ho",
-      "email": "kevinho@gmail.com",
-      "telegramHandle": "@kevinho",
-      "address": "Kovan",
-      "groups": [
-        "NUS"
-      ],
-      "phone": "99997496",
-      "index": 53,
-      "modules": [
-        "IS2101",
-        "CS2030S",
-        "LAC2201",
-        "YSC1207",
-        "CS2113T",
-        "CS2107"
-      ]
-    },
-    {
-      "name": "Lavender Crawford",
-      "email": "lavendercrawford@gmail.com",
-      "telegramHandle": "@lavendercrawford",
-      "address": "Lavender",
-      "groups": [
-        "Groupmate"
-      ],
-      "phone": "83340546",
-      "index": 11,
-      "modules": [
-        "BT2102",
-        "CS2113T",
-        "CS2113",
-        "CS4243",
-        "CS2100",
-        "IS2103"
-      ]
-    },
-    {
-      "name": "Mary Meng",
-      "email": "marymeng@gmail.com",
-      "telegramHandle": "@marymeng",
-      "address": "Marymount",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "93816073",
-      "index": 63,
-      "modules": [
-        "CS2103",
-        "CS2104",
-        "CS2106",
-        "LL4377V",
-        "CS2102",
-        "ID4106"
-      ]
-    },
-    {
-      "name": "Nicole Hai Wei Ting",
-      "email": "nicolehaiweiting@gmail.com",
-      "telegramHandle": "@nicolehaiweiting",
-      "address": "Nicoll Highway",
-      "groups": [
-        "CCA"
-      ],
-      "phone": "92574283",
-      "index": 52,
-      "modules": [
-        "NGN2001E",
-        "CS3203",
-        "LL5394",
-        "CS2105",
-        "CS3242",
-        "CS2107"
-      ]
-    }
-  ]
+  "persons": null
 }

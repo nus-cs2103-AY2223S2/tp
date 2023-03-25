@@ -1,13 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
@@ -18,6 +11,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ModuleTag;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 public class UntagCommandTest {
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
@@ -44,7 +43,7 @@ public class UntagCommandTest {
         tags2.add(new ModuleTag("CS2102"));
         tags2.add(new ModuleTag("CS2106"));
 
-        assertEquals(personToEdit2.getImmutableModuleTags().toString(), tags2.toString());
+        assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
 
 
         TagCommand tag2 = new TagCommand(index2, modulesToRemove);
@@ -71,7 +70,7 @@ public class UntagCommandTest {
         tags1.add(new ModuleTag("CHC5338"));
         tags1.add(new ModuleTag("BT2103"));
 
-        assertEquals(personToEdit1.getImmutableModuleTags().toString(), tags1.toString());
+        assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
 
         TagCommand tag1 = new TagCommand(index1, moduleToRemove);
         tag1.execute(model);
@@ -97,7 +96,7 @@ public class UntagCommandTest {
 
         Person userAct = model.getUser();
 
-        assertEquals(userAct.getImmutableModuleTags().toString(), tags.toString());
+        assertEquals(userAct.getImmutableModuleTags(), tags);
 
         TagCommand tag = new TagCommand(null, modulesToRemove);
         tag.execute(model);

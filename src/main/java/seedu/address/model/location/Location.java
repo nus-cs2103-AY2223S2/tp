@@ -1,9 +1,9 @@
 package seedu.address.model.location;
 
+import java.util.Objects;
+
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Objects;
 
 /**
  * Location object which contains a Latitude(lat), a Longitude(lon) and a name.
@@ -131,7 +131,6 @@ public class Location implements Comparable<Location> {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Location
-                && name.equals(((Location) other).name)
                 && Math.abs(lat - ((Location) other).lat) <= ALLOWABLE_ERROR
                 && Math.abs(lon - ((Location) other).lon) <= ALLOWABLE_ERROR);
     }

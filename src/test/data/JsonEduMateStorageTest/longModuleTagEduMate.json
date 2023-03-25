@@ -114,110 +114,19 @@
   },
   "persons": [
     {
-      "name": "Ang De Yi",
-      "email": "angdeyi@gmail.com",
-      "telegramHandle": "@angdeyi",
-      "address": "Teck Ghee",
-      "groups": [],
-      "phone": "3895as4665",
-      "modules": [
-        {
-          "moduleCode": "GMS6821",
-          "lessons": [
-            {
-              "startHour": 12,
-              "endHour": 13,
-              "day": "FRIDAY"
-            },
-            {
-              "startHour": 17,
-              "endHour": 19,
-              "day": "THURSDAY"
-            },
-            {
-              "startHour": 13,
-              "endHour": 15,
-              "day": "MONDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2103T",
-          "lessons": [
-            {
-              "startHour": 11,
-              "endHour": 13,
-              "day": "MONDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "PC5215",
-          "lessons": [
-            {
-              "startHour": 9,
-              "endHour": 10,
-              "day": "WEDNESDAY"
-            },
-            {
-              "startHour": 16,
-              "endHour": 17,
-              "day": "MONDAY"
-            },
-            {
-              "startHour": 14,
-              "endHour": 15,
-              "day": "TUESDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2113",
-          "lessons": [
-            {
-              "startHour": 9,
-              "endHour": 10,
-              "day": "FRIDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2103",
-          "lessons": [
-            {
-              "startHour": 14,
-              "endHour": 16,
-              "day": "TUESDAY"
-            },
-            {
-              "startHour": 19,
-              "endHour": 21,
-              "day": "TUESDAY"
-            }
-          ]
-        },
-        {
-          "moduleCode": "CS2309",
-          "lessons": [
-            {
-              "startHour": 10,
-              "endHour": 11,
-              "day": "MONDAY"
-            },
-            {
-              "startHour": 16,
-              "endHour": 18,
-              "day": "THURSDAY"
-            },
-            {
-              "startHour": 18,
-              "endHour": 19,
-              "day": "MONDAY"
-            }
-          ]
-        }
+      "name": "Melania Walker",
+      "email": "melaniawalker@gmail.com",
+      "telegramHandle": "@melaniawalker",
+      "address": "Promenade",
+      "groups": [
+        "Enemy"
       ],
-      "index": 8
+      "phone": "98235660",
+      "modules": [
+        "CS2100",
+        "DSAIS1101"
+      ],
+      "index": 62
     }
   ]
 }

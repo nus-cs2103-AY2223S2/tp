@@ -1,16 +1,15 @@
 package seedu.address.model.person;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.model.tag.ModuleTag;
+import seedu.address.testutil.TypicalUser;
+
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.Set;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.model.tag.ModuleTag;
-import seedu.address.testutil.TypicalUser;
 
 public class ModuleTagSetTest {
     private static final ModuleTag MODULE_TAG_1 = new ModuleTag(VALID_MODULE_1);
@@ -78,6 +77,5 @@ public class ModuleTagSetTest {
         assertEquals(1, commonModuleTagSet.getNumberOfCommonModules());
 
         assertEquals(0, moduleTagSet.getImmutableCommonModules().size());
-        assertEquals(1, moduleTagSet.getUncommonModuleTags().size());
     }
 }

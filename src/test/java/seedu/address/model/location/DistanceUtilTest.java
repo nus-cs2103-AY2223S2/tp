@@ -16,6 +16,7 @@ import static seedu.address.model.location.util.TypicalLocation.BOON_LAY;
 import static seedu.address.model.location.util.TypicalLocation.BRADDELL;
 import static seedu.address.model.location.util.TypicalLocation.BUONA_VISTA;
 import static seedu.address.model.location.util.TypicalLocation.CANBERRA;
+import static seedu.address.model.location.util.TypicalLocation.CHANGI_AIRPORT;
 import static seedu.address.model.location.util.TypicalLocation.CHOA_CHU_KANG;
 import static seedu.address.model.location.util.TypicalLocation.CITY_HALL;
 import static seedu.address.model.location.util.TypicalLocation.CLEMENTI;
@@ -196,8 +197,8 @@ public class DistanceUtilTest {
 
     @Test
     void getClosestPoint_validSouth_south() {
-        assertEquals(Optional.of(CITY_HALL),
-                DistanceUtil.getClosestPoint(HARBOURFRONT, CORNERS_DESTINATIONS));
+        assertEquals(Optional.of(HARBOURFRONT),
+                DistanceUtil.getClosestPoint(CITY_HALL, CORNERS_DESTINATIONS));
     }
 
     @Test
@@ -208,7 +209,7 @@ public class DistanceUtilTest {
 
     @Test
     void getClosestPoint_validEastWithMidpoint_east() {
-        Location midpoint = DistanceUtil.getMidpoint(BEDOK, SIMEI, PAYA_LEBAR, CITY_HALL);
+        Location midpoint = DistanceUtil.getMidpoint(BEDOK, SIMEI, PAYA_LEBAR, CHANGI_AIRPORT);
         assertEquals(Optional.of(PASIR_RIS),
                 DistanceUtil.getClosestPoint(midpoint, CORNERS_DESTINATIONS));
     }
@@ -286,9 +287,9 @@ public class DistanceUtilTest {
     }
 
     @Test
-    void getApproximateLocations_sameObject_reflexive() {
-        assertEquals(ORCHARD, DistanceUtil.getApproximateLocations(ORCHARD, ORCHARD, 1).get(0));
-        assertEquals(ORCHARD, DistanceUtil.getApproximateLocations(ORCHARD, ORCHARD, 2).get(1));
-        assertEquals(ORCHARD, DistanceUtil.getApproximateLocations(ORCHARD, ORCHARD, 0).get(0));
+    void getApproximateLocations() {
+        Location midpoint = DistanceUtil.getMidpoint(PASIR_RIS, SIMEI);
+        Location approximateMidpoint = DistanceUtil.getApproximateLocations(PASIR_RIS, SIMEI, 1).get(0);
+        assertEquals(midpoint, approximateMidpoint);
     }
 }

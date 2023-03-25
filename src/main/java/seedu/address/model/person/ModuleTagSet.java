@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.ModuleTag;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.model.tag.ModuleTag;
+import static java.util.Objects.requireNonNull;
 
 /**
  * This class was added to facilitate the Sort Command.
@@ -142,7 +142,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     public Set<ModuleTag> getUncommonModuleTags() {
         // finds modules that are not in common with the user.
         return modules.values().stream()
-                .filter(mt -> !containsKey(mt.tagName))
+                .filter(mt -> !commonModules.contains(mt))
                 .collect(Collectors.toSet());
     }
 

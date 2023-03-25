@@ -1,11 +1,11 @@
 package seedu.address.model.tag;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 public class ModuleTagTest {
     private static final String MODULE_TAG_STRING = "CS2103T";
@@ -23,14 +23,6 @@ public class ModuleTagTest {
         String invalidTagName = "";
         assertThrows(IllegalArgumentException.class, () -> new ModuleTag(invalidTagName));
     }
-
-    /*
-    @Test
-    public void isValidTagName_null_throwsNullPointerException() {
-        // null tag name
-        assertThrows(NullPointerException.class, () -> ModuleTag.isValidTagName(null));
-    }
-     */
 
     @Test
     public void isValidTagName_validTagName_true() {
@@ -66,8 +58,8 @@ public class ModuleTagTest {
     }
 
     @Test
-    public void hashCode_validTag_success() {
-        assertEquals(MODULE_TAG_STRING.hashCode(), MODULE_TAG.hashCode());
+    public void hashCode_sameTag_success() {
+        assertEquals(new ModuleTag(MODULE_TAG_STRING).hashCode(), MODULE_TAG.hashCode());
     }
 
     @Test

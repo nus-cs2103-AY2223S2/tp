@@ -1,14 +1,19 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.logging.Logger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Contains helper methods for testing command parsers.
  */
 public class CommandParserTestUtil {
+
+    private static final Logger logger = LogsCenter.getLogger(CommandParserTestUtil.class);
 
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
@@ -17,7 +22,11 @@ public class CommandParserTestUtil {
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
             Command expectedCommand) {
         try {
+            logger.info(String.format("Input: %s", userInput));
             Command command = parser.parse(userInput);
+            String message = String.format("Expected: %s\nActual: %s",
+                    expectedCommand.toString(), command.toString());
+            logger.info(message);
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
