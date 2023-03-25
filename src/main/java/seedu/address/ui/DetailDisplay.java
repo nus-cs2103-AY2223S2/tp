@@ -112,6 +112,7 @@ public class DetailDisplay extends UiPart<Region> {
                 hideGenerateButton();
                 hideViewDisplay();
                 filesManager.addFile();
+                medicalCondition.setText("click the person gain to see updated file list");
             }
         });
     }
@@ -120,8 +121,13 @@ public class DetailDisplay extends UiPart<Region> {
         generateButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                UploadSuccess success = new UploadSuccess();
-                success.show();
+                clearDetailDisplay();
+                hideAppointmentButton();
+                hideUploadButton();
+                hideGenerateButton();
+                hideViewDisplay();
+                filesManager.generateMc();
+                medicalCondition.setText("click the person gain to see updated file list");
             }
         });
     }
