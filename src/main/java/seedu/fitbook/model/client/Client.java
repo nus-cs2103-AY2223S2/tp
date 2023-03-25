@@ -2,8 +2,10 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -176,5 +178,28 @@ public class Client {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
+    public void appointmentValidityCheck(Set<Appointment> appointments) {
+        Iterator<Appointment> appointmentIterator = appointments.iterator();
+        int i = 0;
+        //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
+        while (i < this.appointments.size()) {
+            //System.out.println("hi");
+            Appointment temp = appointmentIterator.next();
+            if (temp.getDateTime().compareTo(LocalDateTime.now()) == -1) {
+                this.appointments.remove(temp);
+            }
+            i++;
+        }
+    }
+
+    public boolean isAppointmentEmpty(Client client) {
+        client.appointmentValidityCheck(client.getAppointments());
+        return client.getAppointments().isEmpty();
     }
 }

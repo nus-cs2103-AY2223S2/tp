@@ -135,10 +135,10 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
-            logger.info("The calorie is invalid.");
             calorie.setText(client.getCalorie().value + " cal");
             caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
+            logger.info("The calorie is invalid.");
             calorie.setManaged(false);
             caloriesIcon.setManaged(false);
         }
