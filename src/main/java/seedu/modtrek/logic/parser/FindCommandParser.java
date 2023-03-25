@@ -1,5 +1,6 @@
 package seedu.modtrek.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
@@ -13,7 +14,11 @@ import java.util.Set;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.CodePrefix;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
 import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -27,7 +32,9 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        if (args.trim().isEmpty()) {
+        requireNonNull(args);
+
+        if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -37,49 +44,54 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isModulePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
         String codePrefixString = argMultimap.getValue(PREFIX_CODE).orElse("");
         if (isModulePrefixPresent && codePrefixString.isEmpty()) {
-            throw new ParseException("Missing module code prefix after /m");
+            throw new ParseException(CodePrefix.MESSAGE_MISSING_DETAIL);
         }
         if (!codePrefixString.isEmpty()) {
             codePrefixString = ParserUtil.parseCodePrefix(codePrefixString).toString();
         }
+
         boolean isCreditPrefixPresent = argMultimap.getValue(PREFIX_CREDIT).isPresent();
         String creditString = argMultimap.getValue(PREFIX_CREDIT).orElse("");
         if (isCreditPrefixPresent && creditString.isEmpty()) {
-            throw new ParseException("Missing credit after /c");
+            throw new ParseException(Credit.MESSAGE_MISSING_DETAIL);
         }
         if (!creditString.isEmpty()) {
             creditString = ParserUtil.parseCredit(creditString).toString();
         }
+
         boolean isSemYearPresent = argMultimap.getValue(PREFIX_SEMYEAR).isPresent();
         String semYearString = argMultimap.getValue(PREFIX_SEMYEAR).orElse("");
         if (isSemYearPresent && semYearString.isEmpty()) {
-            throw new ParseException("Missing semyear after /y");
+            throw new ParseException(SemYear.MESSAGE_MISSING_DETAIL);
         }
         if (!semYearString.isEmpty()) {
             semYearString = ParserUtil.parseSemYear(semYearString).toString();
         }
+
         boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
         String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
         if (isGradePresent && gradeString.isEmpty()) {
-            throw new ParseException("Missing grade after /g");
+            throw new ParseException(Grade.MESSAGE_MISSING_DETAIL);
         }
         if (!gradeString.isEmpty()) {
             gradeString = ParserUtil.parseGrade(gradeString).toString();
         }
+
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         if (isTagPresent && argMultimap.getAllValues(PREFIX_TAG).contains("")) {
-            throw new ParseException("Missing tag after /t");
+            throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        ModuleCodePredicate moduleCodePredicate;
         if (!argMultimap.getPreamble().isEmpty()) {
             Code code = ParserUtil.parseCode(argMultimap.getPreamble());
-            ModuleCodePredicate moduleCodePredicate = new ModuleCodePredicate(code.toString(), "",
+            moduleCodePredicate = new ModuleCodePredicate(code.toString(), "",
                     "", "", new HashSet<>());
-            return new FindCommand(moduleCodePredicate);
+        } else {
+            moduleCodePredicate = new ModuleCodePredicate(codePrefixString, creditString,
+                    semYearString, gradeString, (HashSet<Tag>) tagList);
         }
-        ModuleCodePredicate moduleCodePredicate = new ModuleCodePredicate(codePrefixString, creditString,
-                semYearString, gradeString, (HashSet<Tag>) tagList);
         return new FindCommand(moduleCodePredicate);
     }
 

@@ -23,25 +23,27 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CODE);
-        try {
-            boolean isAll;
-            Set<Code> codes;
-            String flag = argumentMultimap.getPreamble();
-            if (flag.equals("all")) {
-                isAll = true;
-                codes = new HashSet<>();
-            } else if (flag.isEmpty() && argumentMultimap.getValue(PREFIX_CODE).isPresent()) {
-                isAll = false;
-                codes = ParserUtil.parseCodes(argumentMultimap.getAllValues(PREFIX_CODE));
-            } else {
-                throw new ParseException("Incorrect format");
-            }
-            return new DeleteCommand(isAll, codes);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CODE);
+
+        boolean isAll;
+        Set<Code> codes;
+        String flag = argMultimap.getPreamble();
+        boolean isCodePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
+        String codeString = argMultimap.getValue(PREFIX_CODE).orElse("");
+        if (isCodePrefixPresent && codeString.isEmpty()) {
+            throw new ParseException(Code.MESSAGE_MISSING_DETAIL);
         }
+        if (flag.equals("all")) {
+            isAll = true;
+            codes = new HashSet<>();
+        } else if (flag.isEmpty() && !codeString.isEmpty()) {
+            isAll = false;
+            codes = ParserUtil.parseCodes(argMultimap.getAllValues(PREFIX_CODE));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+        return new DeleteCommand(isAll, codes);
     }
 
 }

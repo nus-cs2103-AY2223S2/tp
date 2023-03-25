@@ -17,6 +17,9 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -31,29 +34,58 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        Code code;
-
-        try {
-            code = ParserUtil.parseCode(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        String preamble = argMultimap.getPreamble();
+        if (preamble.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        Code code = ParserUtil.parseCode(preamble);
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-        if (argMultimap.getValue(PREFIX_CODE).isPresent()) {
+
+        boolean isCodePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
+        String codeString = argMultimap.getValue(PREFIX_CODE).orElse("");
+        if (isCodePrefixPresent && codeString.isEmpty()) {
+            throw new ParseException(Code.MESSAGE_MISSING_DETAIL);
+        }
+        if (!codeString.isEmpty()) {
             editModuleDescriptor.setCode(ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get()));
         }
-        if (argMultimap.getValue(PREFIX_CREDIT).isPresent()) {
+
+        boolean isCreditPrefixPresent = argMultimap.getValue(PREFIX_CREDIT).isPresent();
+        String creditString = argMultimap.getValue(PREFIX_CREDIT).orElse("");
+        if (isCreditPrefixPresent && creditString.isEmpty()) {
+            throw new ParseException(Credit.MESSAGE_MISSING_DETAIL);
+        }
+        if (!creditString.isEmpty()) {
             editModuleDescriptor.setCredit(ParserUtil.parseCredit(argMultimap.getValue(PREFIX_CREDIT).get()));
         }
-        if (argMultimap.getValue(PREFIX_SEMYEAR).isPresent()) {
+
+        boolean isSemYearPresent = argMultimap.getValue(PREFIX_SEMYEAR).isPresent();
+        String semYearString = argMultimap.getValue(PREFIX_SEMYEAR).orElse("");
+        if (isSemYearPresent && semYearString.isEmpty()) {
+            throw new ParseException(SemYear.MESSAGE_MISSING_DETAIL);
+        }
+        if (!semYearString.isEmpty()) {
             editModuleDescriptor.setSemYear(ParserUtil.parseSemYear(argMultimap.getValue(PREFIX_SEMYEAR).get()));
         }
-        if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
+
+        boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
+        String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
+        if (isGradePresent && gradeString.isEmpty()) {
+            throw new ParseException(Grade.MESSAGE_MISSING_DETAIL);
+        }
+        if (!gradeString.isEmpty()) {
             editModuleDescriptor.setGrade(ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+        }
+
+        boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
+        if (isTagPresent && argMultimap.getAllValues(PREFIX_TAG).contains("")) {
+            throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
 
