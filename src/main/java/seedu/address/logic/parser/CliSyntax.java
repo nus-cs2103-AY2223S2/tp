@@ -43,5 +43,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_GRADEDELETE = new Prefix("gradedelete");
     public static final Prefix PREFIX_FIND = new Prefix("find");
     public static final Prefix PREFIX_ADDATTENDANCE = new Prefix("attendance");
+    public static final Prefix PREFIX_LIST = new Prefix("list");
 
 }

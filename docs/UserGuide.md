@@ -45,28 +45,30 @@ Without further ado, let's get started!
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `powerconnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
+2. Download the latest `powerconnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
+3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father` : Adds a student in class 1A named `Tan Ah Cow` to PowerConnect.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `student 1A delete in/13` : Deletes the student with index number 13 in class 1A
 
+    * `student 1A grade in/13 test/CA1 score/75 deadline/15/05/2023 weightage/20`: Adds a test named CA1, score of 75, deadline of 15/05/2023, weightage 20% to student index number 13 in class 1A
+    * `student 1A gradedelete in/13 test/CA1`: Deletes a test named CA1 for student in class 1A with index 13
     * `clear` : Deletes all contacts.
-
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+
+6. Refer to the [Features](#features) below for details of each command.
 
    <a name="features"/>
 
@@ -88,23 +90,14 @@ Without further ado, let's get started!
   e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
 
-* Items in `<>` brackets are the values that the user should fill in.
+* Items in `<>` brackets are the values that the user should fill in and is compulsory.
   e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
-
-
-* In the case of **COMPULSORY** parameters, there’s no need to type `XX/YY` where `XX` is the particular category and `YY` is the actual information for the `XX` category. <br>
-
-
-* Compulsory parameters are not bounded by square brackets <br>
 
 
 * All items in the square brackets are OPTIONAL.
 
   e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
 
-
-* In the user guide, all optional parameters are denoted by ..opt/.. meaning that any zero or more of the optional particulars specified above can be used
-  Eg. ..add..[..opt/..] means user can do …add..c/<CCA>..img/<IMG>..
 
 
 * General Particulars:
@@ -130,18 +123,22 @@ Without further ado, let's get started!
         - String value of student's class
     - Index Number <**INDEX_NUMBER**>
         - Numbers (integer)
-    - Academics
-        - Test <**TEST_NAME**>
-            - String value of test name
-        - Attendance <**ATTENDANCE**>
-            - Mark as present/ not present
-        - Homework <**HOMEWORK**>
-            - String value of homework name
-        - Grade <**GRADE**>
-            - String value of grade results
     - Parents/ Next-of-kin <**NOK**>
-      -String value of parent's name
+      - String value of parent's name
+    - Parents/ Next-of-kin phone number <**NOK_CONTACT_NUMBER**>
+        - Integer value of parent phone number
+    - Parents/ Next-of-kin relationhip to student <**NOK_RELATIONSHIP_TO_STUDENT**>
+        - String relationship of parent/ next-of-kin with student
   * Optional:
+      - Academics
+          - Test <**TEST_NAME**>
+              - String value of test name
+          - Attendance <**ATTENDANCE**>
+              - Mark as present/ not present
+          - Homework <**HOMEWORK**>
+              - String value of homework name
+          - Grade <**GRADE**>
+              - String value of grade results
       - Image [**img**]
       - CCA [**CCA**]
       - Comments [**com**]
@@ -200,7 +197,7 @@ Examples:
 * `student 1A grade in/13 hww/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-1. Test or Homework name is compulsory for the command to work.
+1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.
 2. hwdone is compulsory for homework.
 3. Score is out of 100
 4. Weightage is out of 100%
@@ -238,11 +235,11 @@ If an existing comment is already available for the selected student, the new co
 
 Shows a list of all students in the selected class in the database
 
-Format: `find <INDEX_NUMBER>  `
+Format: `list`
 
 Examples:
-* `student 3B find 26`
-* `student 3B find 27`
+* `student 1A list`
+* `student 1B list`
 
 **Expected Outcome:**
 
