@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -84,11 +84,11 @@ public class EditRecipeDescriptorBuilder {
      * Sets the {@code Ingredients} of the {@code EditRecipeDescriptor} that we are building.
      */
     public EditRecipeDescriptorBuilder withIngredients(String... ingredients) {
-        List<HashMap<Ingredient, IngredientQuantifier>> ingredientList = Stream.of(ingredients)
+        List<HashMap<Ingredient, IngredientInformation>> ingredientList = Stream.of(ingredients)
                 .map(IngredientBuilder::new)
                 .map(IngredientBuilder::build)
                 .collect(Collectors.toList());
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         ingredientList.forEach(ingredientTable::putAll);
         descriptor.setIngredients(ingredientTable);
         return this;

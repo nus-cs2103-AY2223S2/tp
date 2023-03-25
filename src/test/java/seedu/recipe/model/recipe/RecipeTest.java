@@ -31,7 +31,7 @@ import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.RecipeBuilder;
 
@@ -158,7 +158,7 @@ public class RecipeTest {
     //IngredientBuilder logic
     @Test
     public void getIngredients() {
-        Hashtable<Ingredient, IngredientQuantifier> cacioIngredients = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> cacioIngredients = new Hashtable<>();
         CACIO_INGREDIENTS.stream()
             .map(IngredientBuilder::build)
             .forEach(cacioIngredients::putAll);
@@ -177,9 +177,9 @@ public class RecipeTest {
         test.setIngredients(ingredientsToAdd);
         newIngredientList.addAll(List.of(ingredientsToAdd));
 
-        Hashtable<Ingredient, IngredientQuantifier> newIngredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> newIngredientTable = new Hashtable<>();
         newIngredientList.forEach(ingredientBuilder -> newIngredientTable.putAll(ingredientBuilder.build()));
-        Hashtable<Ingredient, IngredientQuantifier> testTable = test.getIngredients();
+        Hashtable<Ingredient, IngredientInformation> testTable = test.getIngredients();
 
         assertEquals(newIngredientTable, testTable);
     }
@@ -262,7 +262,7 @@ public class RecipeTest {
 
     @Test
     public void testHashCode() {
-        Hashtable<Ingredient, IngredientQuantifier> cacioIngredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> cacioIngredientTable = new Hashtable<>();
         CACIO_INGREDIENTS.stream()
                 .map(IngredientBuilder::build)
                 .forEach(cacioIngredientTable::putAll);

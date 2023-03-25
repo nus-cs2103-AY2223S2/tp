@@ -17,11 +17,11 @@ import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -77,7 +77,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // 4. Parse Ingredients
         List<IngredientBuilder> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         ingredients.forEach(ingredientBuilder -> ingredientTable.putAll(ingredientBuilder.build()));
         recipeDescriptor.setIngredients(ingredientTable);
 

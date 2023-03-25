@@ -18,7 +18,7 @@ import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -32,7 +32,7 @@ public class Recipe {
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+    private final Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
@@ -50,7 +50,7 @@ public class Recipe {
         return name;
     }
 
-    public Hashtable<Ingredient, IngredientQuantifier> getIngredients() {
+    public Hashtable<Ingredient, IngredientInformation> getIngredients() {
         return ingredientTable;
     }
 
@@ -66,7 +66,7 @@ public class Recipe {
         }
     }
 
-    public void setIngredients(Map<? extends Ingredient, ? extends IngredientQuantifier> ingredientMap) {
+    public void setIngredients(Map<? extends Ingredient, ? extends IngredientInformation> ingredientMap) {
         this.ingredientTable.putAll(ingredientMap);
     }
 

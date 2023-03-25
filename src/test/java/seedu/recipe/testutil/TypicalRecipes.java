@@ -8,16 +8,16 @@ import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
 import seedu.recipe.model.RecipeBook;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
-import seedu.recipe.model.util.IngredientUtil;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.model.util.IngredientUtil;
 
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
@@ -207,7 +207,7 @@ public class TypicalRecipes {
     private static final BiFunction<String, Object, String> tagAccumulator = (s, o) -> s + o.toString();
     private static final BiFunction<String, Object, String> ingredientAccumulator = (s, o) -> s + o.toString() + ",\n";
     private static final Supplier<String> ingredientTableString = () -> {
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         CACIO_INGREDIENTS.stream().map(IngredientBuilder::build).forEach(ingredientTable::putAll);
         return IngredientUtil.ingredientTableToString(ingredientTable);
     };

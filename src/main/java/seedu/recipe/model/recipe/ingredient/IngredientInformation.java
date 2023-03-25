@@ -9,7 +9,7 @@ import java.util.Optional;
  * within a Recipe instance.
  */
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-public class IngredientQuantifier {
+public class IngredientInformation {
     private final Optional<IngredientQuantity> quantity;
     private final Optional<String> estimatedQuantity;
     private final List<String> remarks;
@@ -25,7 +25,7 @@ public class IngredientQuantifier {
      * @param remarks Any remarks about the preparation of this ingredient or its specifics
      * @param substitutions Any possible ingredient substitutions.
      */
-    public IngredientQuantifier(
+    public IngredientInformation(
             IngredientQuantity quantity,
             String estimatedQuantity,
             String[] remarks,
@@ -75,11 +75,11 @@ public class IngredientQuantifier {
     @Override
     public boolean equals(Object o) {
         return o == this
-            || o instanceof IngredientQuantifier
-            && ((IngredientQuantifier) o).quantity.equals(this.quantity)
-            && ((IngredientQuantifier) o).estimatedQuantity.equals(this.estimatedQuantity)
-            && ((IngredientQuantifier) o).remarks.equals(this.remarks)
-            && ((IngredientQuantifier) o).substitutions.equals(this.substitutions);
+            || o instanceof IngredientInformation
+            && ((IngredientInformation) o).quantity.equals(this.quantity)
+            && ((IngredientInformation) o).estimatedQuantity.equals(this.estimatedQuantity)
+            && ((IngredientInformation) o).remarks.equals(this.remarks)
+            && ((IngredientInformation) o).substitutions.equals(this.substitutions);
     }
 
     @Override

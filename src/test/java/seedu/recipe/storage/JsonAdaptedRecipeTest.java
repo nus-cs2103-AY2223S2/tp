@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.storage.jsonadapters.JsonAdaptedIngredient;
 import seedu.recipe.storage.jsonadapters.JsonAdaptedName;
@@ -54,7 +54,7 @@ public class JsonAdaptedRecipeTest {
     private static final String INVALID_STEP = "";
 
     private static List<JsonAdaptedIngredient> getIngredientList() {
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         CACIO_INGREDIENTS.stream()
                 .map(IngredientBuilder::build)
                 .forEach(ingredientTable::putAll);

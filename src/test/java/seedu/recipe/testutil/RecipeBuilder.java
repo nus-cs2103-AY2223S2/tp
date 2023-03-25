@@ -6,14 +6,14 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -24,7 +24,7 @@ public class RecipeBuilder {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags = new HashSet<>();
-    private Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+    private Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
     private List<Step> steps = new ArrayList<>();
 
     /**
@@ -44,7 +44,7 @@ public class RecipeBuilder {
      * Creates a {@code RecipeBuilder} with the default details.
      */
     public RecipeBuilder(Name name, RecipePortion portion, RecipeDuration duration,
-                         Set<Tag> tags, Hashtable<Ingredient, IngredientQuantifier> ingredients, List<Step> steps) {
+                         Set<Tag> tags, Hashtable<Ingredient, IngredientInformation> ingredients, List<Step> steps) {
         this.name = name;
         this.portion = portion;
         this.duration = duration;

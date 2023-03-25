@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 
 
@@ -67,7 +67,7 @@ public class JsonAdaptedIngredient {
     /**
      * Converts a given {@code IngredientBuilder} into this class for Jackson use.
      */
-    public JsonAdaptedIngredient(Ingredient ingredient, IngredientQuantifier quantifier) {
+    public JsonAdaptedIngredient(Ingredient ingredient, IngredientInformation quantifier) {
         ingredientName = ingredient.getName();
         commonName = ingredient.getCommonName();
         ingredientQuantity = quantifier.getQuantity().map(Object::toString).orElse(null);
@@ -80,12 +80,12 @@ public class JsonAdaptedIngredient {
 
     /**
      * Converts this Jackson-friendly adapted ingredient object into the model's {@code Hashtable} mapping of
-     * {@code Ingredient}-{@code IngredientQuantifier} key-value pairs.
+     * {@code Ingredient}-{@code IngredientInformation} key-value pairs.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ingredient.
      */
-    public Hashtable<Ingredient, IngredientQuantifier> toModelType() throws IllegalValueException {
-        Hashtable<Ingredient, IngredientQuantifier> ingredientKeyValuePair = new Hashtable<>();
+    public Hashtable<Ingredient, IngredientInformation> toModelType() throws IllegalValueException {
+        Hashtable<Ingredient, IngredientInformation> ingredientKeyValuePair = new Hashtable<>();
         //Validate Ingredient
         Ingredient mainIngredient = Ingredient.of(ingredientName);
 
@@ -96,7 +96,7 @@ public class JsonAdaptedIngredient {
         }
 
         // Validate substitutions
-        IngredientQuantifier quantifier = new IngredientQuantifier(
+        IngredientInformation quantifier = new IngredientInformation(
                 quantity,
                 estimatedQuantity,
                 remarks.toArray(String[]::new),

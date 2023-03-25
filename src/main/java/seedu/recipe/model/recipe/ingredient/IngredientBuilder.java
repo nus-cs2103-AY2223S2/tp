@@ -60,8 +60,8 @@ public class IngredientBuilder {
      * instance to store.
      * @return The {@code HashMap} instance containing the key-value pair.
      */
-    public HashMap<Ingredient, IngredientQuantifier> build() {
-        HashMap<Ingredient, IngredientQuantifier> out = new HashMap<>();
+    public HashMap<Ingredient, IngredientInformation> build() {
+        HashMap<Ingredient, IngredientInformation> out = new HashMap<>();
 
         Ingredient mainIngredient = Ingredient.of(this.arguments.get(NAME_PREFIX).get(0));
         IngredientQuantity quantity = null;
@@ -98,7 +98,7 @@ public class IngredientBuilder {
             );
         }
         out.put(mainIngredient,
-            new IngredientQuantifier(
+            new IngredientInformation(
                 quantity,
                 estimatedQuantity,
                 remarks.toArray(String[]::new),

@@ -17,7 +17,7 @@ import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -133,7 +133,7 @@ public class JsonAdaptedRecipe {
         }
         res.setTags(tagList.toArray(Tag[]::new));
 
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         for (JsonAdaptedIngredient i : ingredients) {
             ingredientTable.putAll(i.toModelType());
         }

@@ -1,25 +1,25 @@
 package seedu.recipe.model.util;
 
-import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
-
 import java.util.Hashtable;
 import java.util.List;
-import java.util.SortedMap;
 import java.util.TreeMap;
+
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+
 
 /**
  * A set of utility methods for formatting Ingredients within a Recipe.
  */
 public class IngredientUtil {
     /**
-     * Given a table of Ingredient-IngredientQuantifier key-value pairs, formats them as a human-friendly String.
+     * Given a table of Ingredient-IngredientInformation key-value pairs, formats them as a human-friendly String.
      * @param ingredientTable The table of key-value pairs
      * @return The table formatted as a String.
      */
-    public static String ingredientTableToString(Hashtable<Ingredient, IngredientQuantifier> ingredientTable) {
+    public static String ingredientTableToString(Hashtable<Ingredient, IngredientInformation> ingredientTable) {
         StringBuilder stringBuilder = new StringBuilder();
-        TreeMap<Ingredient, IngredientQuantifier> sortedIngredientTable = new TreeMap<>(ingredientTable);
+        TreeMap<Ingredient, IngredientInformation> sortedIngredientTable = new TreeMap<>(ingredientTable);
         sortedIngredientTable.forEach((ingredient, quantifier) ->
             stringBuilder.append("- ")
                 .append(ingredientKeyValuePairToString(ingredient, quantifier))
@@ -29,12 +29,12 @@ public class IngredientUtil {
     }
 
     /**
-     * Creates a String representing an {@code Ingredient}-{@code IngredientQuantifier} key-value pair.
+     * Creates a String representing an {@code Ingredient}-{@code IngredientInformation} key-value pair.
      * @param ingredient The Ingredient key.
-     * @param quantifier The IngredientQuantifier value.
+     * @param quantifier The IngredientInformation value.
      * @return The String representation of both.
      */
-    public static String ingredientKeyValuePairToString(Ingredient ingredient, IngredientQuantifier quantifier) {
+    public static String ingredientKeyValuePairToString(Ingredient ingredient, IngredientInformation quantifier) {
         StringBuilder stringBuilder = new StringBuilder();
         quantifier.getQuantity()
                 .ifPresent(quantity -> stringBuilder

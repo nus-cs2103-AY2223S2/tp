@@ -10,14 +10,14 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.recipe.commons.util.CollectionUtil;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -29,7 +29,7 @@ public class RecipeDescriptor {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags;
-    private Hashtable<Ingredient, IngredientQuantifier> ingredients;
+    private Hashtable<Ingredient, IngredientInformation> ingredients;
     private List<Step> steps;
 
     public RecipeDescriptor() {
@@ -67,7 +67,7 @@ public class RecipeDescriptor {
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
-        Hashtable<Ingredient, IngredientQuantifier> updatedIngredients = getIngredients()
+        Hashtable<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
                 .map(Hashtable::new)
                 .orElse(recipeToEdit.getIngredients());
         newRecipe.setIngredients(updatedIngredients);
@@ -134,16 +134,16 @@ public class RecipeDescriptor {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
-    public Optional<Map<Ingredient, IngredientQuantifier>> getIngredients() {
+    public Optional<Map<Ingredient, IngredientInformation>> getIngredients() {
         return (ingredients != null) ? Optional.of(Collections.unmodifiableMap(ingredients)) : Optional.empty();
     }
 
-    public void setIngredients(Hashtable<Ingredient, IngredientQuantifier> ingredientTable) {
+    public void setIngredients(Hashtable<Ingredient, IngredientInformation> ingredientTable) {
         this.ingredients = ingredientTable;
     }
 
     public void setIngredients(List<IngredientBuilder> ingredients) {
-        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
         ingredients.forEach(ingredient -> ingredientTable.putAll(ingredient.build()));
         this.ingredients = ingredientTable;
     }
