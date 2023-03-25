@@ -71,7 +71,7 @@ public class IncreaseCommand extends Command {
     }
 
     /**
-     * Stores the quantity to increase to food Item with. A non-negative value will increase the
+     * Stores the quantity to increase the quantity of the food item with. A non-negative value will increase the
      * corresponding quantity of the food item by that value.
      */
     public static class IncreaseFoodDescriptor {
