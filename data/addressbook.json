@@ -32,9 +32,6 @@
   }, {
     "categoryName" : "test",
     "summary" : "test"
-  }, {
-    "categoryName" : "b",
-    "summary" : null
   } ],
   "expenses" : [ {
     "name" : "apples",

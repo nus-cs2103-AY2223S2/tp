@@ -27,7 +27,7 @@ public class AddCategoryCommand extends Command {
     private final Category toAdd;
 
     /**
-     * Creates an AddCategory to add the specified {@code Category}
+     * Creates an AddCategoryCommand to add the specified {@code Category}
      */
     public AddCategoryCommand(Category category) {
         requireNonNull(category);
