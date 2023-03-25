@@ -13,7 +13,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 /**
  * Parses input arguments and creates a new DeleteWardCommand object
  */
-public class DeleteWardCommandParser {
+public class DeleteWardCommandParser implements Parser<DeleteWardCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddWardCommand and returns an AddWardCommand
      * object for execution.

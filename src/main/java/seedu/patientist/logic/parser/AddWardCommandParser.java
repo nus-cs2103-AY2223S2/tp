@@ -12,7 +12,7 @@ import seedu.patientist.model.ward.Ward;
 /**
  * Parses input arguments and creates a new AddWardCommand object
  */
-public class AddWardCommandParser {
+public class AddWardCommandParser implements Parser<AddWardCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddWardCommand and returns an AddCommand
      * object for execution.
