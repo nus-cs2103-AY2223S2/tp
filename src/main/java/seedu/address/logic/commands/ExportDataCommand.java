@@ -12,6 +12,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.storage.JsonSerializableAddressBook;
 
 /**
  * Imports data from a JSON file.
@@ -48,7 +49,7 @@ public class ExportDataCommand extends Command {
             ReadOnlyAddressBook data = model.getAddressBook();
 
             FileUtil.createIfMissing(filePath);
-            JsonUtil.saveJsonFile(data, filePath);
+            JsonUtil.saveJsonFile(new JsonSerializableAddressBook(data), filePath);
         } catch (IOException e) {
             throw new CommandException("Error importing data");
         }
