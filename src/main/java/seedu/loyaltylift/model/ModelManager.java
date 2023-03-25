@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredCustomerOrders = new FilteredList<>(this.addressBook.getOrderList());
-        sortedCustomers = new SortedList<>(filteredCustomers);
+        sortedCustomers = new SortedList<>(filteredCustomers, Customer.SORT_NAME);
     }
 
     public ModelManager() {
