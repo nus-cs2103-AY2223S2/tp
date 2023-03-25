@@ -1,18 +1,18 @@
 package seedu.address.model.person.fields.subfields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.person.fields.Field;
 
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag extends Field {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -20,9 +20,8 @@ public class Tag {
      * @param tagName A valid tag name.
      */
     public Tag(String tagName) {
-        requireNonNull(tagName);
+        super(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
     }
 
     /**
@@ -32,30 +31,17 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if test string is contained within the value of the field.
-    */
-    public boolean contains(String test) {
-        return this.tagName.toUpperCase().contains(test.toUpperCase());
-    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+                && this.value.equals(((Tag) other).value)); // state check
     }
 
     @Override
-    public int hashCode() {
-        return tagName.hashCode();
-    }
-
-    /**
-     * Format state as text for viewing.
-     */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + this.value + ']';
     }
 
 }

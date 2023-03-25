@@ -1,6 +1,5 @@
 package seedu.address.model.person.fields;
 
-import java.util.Collections;
 import java.util.Set;
 
 import seedu.address.model.person.fields.subfields.NusMod;
@@ -8,29 +7,14 @@ import seedu.address.model.person.fields.subfields.NusMod;
 /**
  * Represents a Person's modules taken in the address book.
  */
-public class Modules {
+public class Modules extends SuperField<NusMod> {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
-    public final Set<NusMod> mods;
 
     public Modules(Set<NusMod> mods) {
-        this.mods = mods;
+        super(mods);
     }
 
-    /**
-     * Returns true if test string is contained within the value of any of the NUSMods.
-     */
-    public boolean contains(String test) {
-        if (!test.isEmpty() && this.mods.isEmpty()) {
-            return false;
-        }
-        for (NusMod mod: this.mods) {
-            if (mod.contains(test)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     //todo: Update modules to only be able to include mods that are a part of NUSMods.
     /**
@@ -41,15 +25,11 @@ public class Modules {
      */
     public static boolean isValidModules(Set<NusMod> mods) {
         for (NusMod mod : mods) {
-            if (!NusMod.isValidModName(mod.name)) {
+            if (!NusMod.isValidModName(mod.value)) {
                 return false;
             }
         }
         return true;
-    }
-
-    public Set<NusMod> getMods() {
-        return Collections.unmodifiableSet(mods);
     }
 
     @Override
@@ -57,6 +37,6 @@ public class Modules {
         return other == this // short circuit if same object
                 || (other instanceof Modules // instanceof handles nulls
                 // Uses Java's definition of equality between Sets.
-                && this.mods.equals(((Modules) other).mods)); // state check
+                && this.values.equals(((Modules) other).values)); // state check
     }
 }

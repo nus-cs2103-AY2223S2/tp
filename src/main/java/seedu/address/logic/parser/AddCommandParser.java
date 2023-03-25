@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -29,7 +28,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -55,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tags tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).orElse(""));
         Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).orElse(""));
         Modules modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULES));
@@ -63,7 +62,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         CommunicationChannel comms = ParserUtil.parseComms(argMultimap.getValue(PREFIX_COMMS).orElse(""));
         Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).orElse(""));
 
-        Person person = new Person(name, phone, email, address, gender, major, modules, race, tagList, comms, faculty);
+        Person person = new Person(name, phone, email, address, gender, major, modules, race, tags, comms, faculty);
 
         return new AddCommand(person);
     }
