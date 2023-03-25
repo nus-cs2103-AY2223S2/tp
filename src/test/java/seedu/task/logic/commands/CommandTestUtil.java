@@ -44,16 +44,12 @@ public class CommandTestUtil {
 
     public static final String INVALID_INDEX = "a";
 
-    public static final String DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DEFAULT;
-
-
-
     public static final String INDEX_1 = " " + VALID_SUBTASK_INDEX;
 
     public static final String INDEX_SUBTASK = " " + PREFIX_SUBTASK_INDEX + VALID_SUBTASK_INDEX;
 
     public static final String INVALID_SUBTASK_INDEX = " " + PREFIX_SUBTASK_INDEX;
-    public static final String BLANK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "";
+
 
     public static final String VALID_FROM_DATE = "2023-01-01 1800";
     public static final String VALID_TO_DATE = "2023-01-02 1800";
