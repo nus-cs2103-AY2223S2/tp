@@ -134,6 +134,7 @@ public class DrugListPanel extends UiPart<Region> {
      */
     private void updateDisplayedDrugDetail(Drug selectedDrug, Label[] details) {
         selectedTradeName.setText(selectedDrug.getTradeName().tradeName);
+        selectedTradeName.setPadding(new Insets(0, -10, 0, -10));
         selectedActiveIngredient.setText(selectedDrug.getActiveIngredient().value);
         selectedDirection.setText(selectedDrug.getDirection().value);
         selectedPurposes.setText(selectedDrug.getPurposes().purpose);
@@ -150,7 +151,7 @@ public class DrugListPanel extends UiPart<Region> {
      */
     private void setupStyle() {
         drugDetailContainer.setSpacing(10);
-        drugDetailContainer.setPadding(new Insets(10, 0, 0, 10));
+        drugDetailContainer.setPadding(new Insets(10, 0, 0, 20));
     }
 
 

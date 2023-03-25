@@ -1,6 +1,7 @@
 package seedu.careflow.logic.parser.patientparser;
 
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.careflow.logic.commands.patientcommands.AddCommand.MESSAGE_USAGE;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
@@ -56,11 +57,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                         );
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DOB, PREFIX_GENDER, PREFIX_IC,
-                PREFIX_DRUG_ALLERGY, PREFIX_EMERGENCY_CONTACT_NUMBER)
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DOB, PREFIX_GENDER, PREFIX_IC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    seedu.careflow.logic.commands.patientcommands.AddCommand.MESSAGE_USAGE));
+                    MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -72,9 +72,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
         DrugAllergy drugAllergy = ParserUtil.parseDrugAllergy(
-                argMultimap.getValue(PREFIX_DRUG_ALLERGY).get());
+                argMultimap.getValue(PREFIX_DRUG_ALLERGY).orElse(null));
         Phone emergencyContactNumber = ParserUtil.parsePhone(
-                argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).get());
+                argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).orElse(null));
         Patient patient = new Patient(name, phone, email, address, birthDate, gender, ic,
                 drugAllergy, emergencyContactNumber);
         return new AddCommand(patient);

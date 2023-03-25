@@ -145,6 +145,7 @@ public class PatientListPanel extends UiPart<Region> {
      */
     private void updateDisplayedPatientDetail(Patient selectedPatient, Label[] details) {
         selectedName.setText(selectedPatient.getName().fullName);
+        selectedName.setPadding(new Insets(0, -10, 0, -10));
         selectedPhone.setText(selectedPatient.getPhone().value);
         selectedAddress.setText(selectedPatient.getAddress().value);
         selectedEmail.setText(selectedPatient.getEmail().value);
@@ -152,7 +153,7 @@ public class PatientListPanel extends UiPart<Region> {
         selectedGender.setText(selectedPatient.getGender().value);
         selectedIc.setText(selectedPatient.getIc().value);
         DrugAllergy drugAllergy = selectedPatient.getDrugAllergy();
-        selectedDrugAllergy.setText(drugAllergy == null?"N.A.": drugAllergy.drugAllergy);
+        selectedDrugAllergy.setText(drugAllergy == null?"N.A.": drugAllergy.value);
         Phone emergenctContact = selectedPatient.getEmergencyContact();
         selectedEmergencyContact.setText(emergenctContact == null? "N.A.": emergenctContact.value);
         for (Label detail : details) {
@@ -166,7 +167,7 @@ public class PatientListPanel extends UiPart<Region> {
      */
     private void setupStyle() {
         patientDetailContainer.setSpacing(10);
-        patientDetailContainer.setPadding(new Insets(10, 0, 0, 10));
+        patientDetailContainer.setPadding(new Insets(10, 0, 0, 20));
     }
 
     /**
