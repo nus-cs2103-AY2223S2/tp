@@ -13,7 +13,9 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_STUDENT_ID = new Prefix("i/");
 
-    public static final Prefix PREFIX_SUBMISSION_MARK = new Prefix("m/");
+    public static final Prefix PREFIX_MARK = new Prefix("m/");
+
+    public static final Prefix PREFIX_LATE = new Prefix("late/");
 
     public static final Prefix PREFIX_PARTICIPATION_POINTS = new Prefix("pp/");
 

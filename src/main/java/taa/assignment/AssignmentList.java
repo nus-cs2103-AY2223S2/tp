@@ -20,11 +20,12 @@ public class AssignmentList {
      * @param assignmentName
      * @param sl
      */
-    public void add(String assignmentName, FilteredList<Student> sl) throws AssignmentNotFoundException {
+    public void add(String assignmentName, FilteredList<Student> sl, int totalMarks)
+            throws AssignmentNotFoundException {
         if (assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Duplicate assignment name: " + assignmentName);
         } else {
-            Assignment a = new Assignment(assignmentName, sl);
+            Assignment a = new Assignment(assignmentName, sl, totalMarks);
             assignments.add(a);
             assignmentMap.put(assignmentName, a);
         }
@@ -47,13 +48,14 @@ public class AssignmentList {
      * @param assignmentName
      * @param student
      * @param marks
+     * @param isLateSubmission
      */
-    public void grade(String assignmentName, Student student, int marks) throws AssignmentNotFoundException,
-            SubmissiontNotFoundException, InvalidGradeException {
+    public void grade(String assignmentName, Student student, int marks, boolean isLateSubmission)
+            throws AssignmentNotFoundException, SubmissiontNotFoundException, InvalidGradeException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {
-            assignmentMap.get(assignmentName).gradeSubmission(student, marks);
+            assignmentMap.get(assignmentName).gradeSubmission(student, marks, isLateSubmission);
         }
     }
 

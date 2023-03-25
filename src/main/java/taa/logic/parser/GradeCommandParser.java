@@ -1,8 +1,9 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_LATE;
+import static taa.logic.parser.CliSyntax.PREFIX_MARK;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
-import static taa.logic.parser.CliSyntax.PREFIX_SUBMISSION_MARK;
 
 import java.util.stream.Stream;
 
@@ -22,9 +23,9 @@ public class GradeCommandParser {
      */
     public GradeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_SUBMISSION_MARK);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_MARK, PREFIX_LATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_SUBMISSION_MARK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_MARK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
@@ -33,8 +34,9 @@ public class GradeCommandParser {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         int studentId = Integer.parseInt(argMultimap.getValue(PREFIX_STUDENT_ID).get());
-        int mark = Integer.parseInt(argMultimap.getValue(PREFIX_SUBMISSION_MARK).get());
-        return new GradeCommand(name.toString(), studentId, mark);
+        int mark = Integer.parseInt(argMultimap.getValue(PREFIX_MARK).get());
+        boolean isLateSubmission = arePrefixesPresent(argMultimap, PREFIX_LATE);
+        return new GradeCommand(name.toString(), studentId, mark, isLateSubmission);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

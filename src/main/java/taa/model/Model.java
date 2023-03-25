@@ -113,11 +113,11 @@ public interface Model {
      */
     void addStudentToTaggedClasses(Student student);
 
-    void addAssignment(String assignmentName) throws CommandException;
+    void addAssignment(String assignmentName, int totalMarks) throws CommandException;
 
     void deleteAssignment(String assignmentName) throws CommandException;
 
-    void grade(String assignmentName, int studentId, int marks) throws CommandException;
+    void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws CommandException;
 
     String listAssignments();
 
