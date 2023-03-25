@@ -27,7 +27,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
 
-public class ReviewTaskCommandTest {
+public class FindTaskCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -44,31 +44,31 @@ public class ReviewTaskCommandTest {
                 new TitleContainsExactKeywordsPredicate(Collections.singletonList("first"));
         TitleContainsExactKeywordsPredicate secondPredicate =
                 new TitleContainsExactKeywordsPredicate(Collections.singletonList("second"));
-        ReviewTaskCommand reviewFirstCommand = new ReviewTaskCommand(firstPredicate);
-        ReviewTaskCommand reviewSecondCommand = new ReviewTaskCommand(secondPredicate);
+        FindTaskCommand findFirstCommand = new FindTaskCommand(firstPredicate);
+        FindTaskCommand findSecondCommand = new FindTaskCommand(secondPredicate);
 
         // same object -> returns true
-        assertEquals(reviewFirstCommand, reviewFirstCommand);
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
-        ReviewTaskCommand reviewFirstCommandCopy = new ReviewTaskCommand(firstPredicate);
-        assertEquals(reviewFirstCommand, reviewFirstCommandCopy);
+        FindTaskCommand findFirstCommandCopy = new FindTaskCommand(firstPredicate);
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, reviewFirstCommand);
+        assertNotEquals(1, findFirstCommand);
 
         // null -> returns false
-        assertNotEquals(null, reviewFirstCommand);
+        assertNotEquals(null, findFirstCommand);
 
         // different predicate -> returns false
-        assertNotEquals(reviewFirstCommand, reviewSecondCommand);
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
-    public void execute_invalidKeywords_noTaskReviewed() {
+    public void execute_invalidKeywords_noTaskFound() {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK;
         TitleContainsExactKeywordsPredicate predicate = preparePredicate("Project Destroy");
-        ReviewTaskCommand command = new ReviewTaskCommand(predicate);
+        FindTaskCommand command = new FindTaskCommand(predicate);
         assertCommandFailure(command, model, expectedMessage);
         // Does not flush out the GUI when taking in invalid keywords
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
@@ -79,9 +79,9 @@ public class ReviewTaskCommandTest {
 
     @Test
     public void execute_validKeywords_noPersonAssigned() {
-        String expectedMessage = String.format(ReviewTaskCommand.MESSAGE_NO_PERSON_ASSIGNED, "Send email to client");
+        String expectedMessage = String.format(FindTaskCommand.MESSAGE_NO_PERSON_ASSIGNED, "Send email to client");
         TitleContainsExactKeywordsPredicate predicate = preparePredicate("Send email to client");
-        ReviewTaskCommand command = new ReviewTaskCommand(predicate);
+        FindTaskCommand command = new FindTaskCommand(predicate);
         Id tId = getAssignedTaskId(predicate);
 
         ObservableList<AssignTask> assignedPersonList = getAssignedPersonList(tId);

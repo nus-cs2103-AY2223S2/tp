@@ -33,7 +33,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
    * `list` : Lists all contacts.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
-   
+
    * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
@@ -265,28 +265,28 @@ Format: `unmark INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3...
 
-## Review tasks assigned to a Person: `review`
+## Find tasks assigned to a Person: `find`
 
 Shows a list of tasks assigned to an existing person in OfficeConnect.
 
-Format: `review NAME`
+Format: `find NAME`
 
-* Reviews the list of tasks that are assigned to the person with the specified name.
+* Finds the list of tasks that are assigned to the person with the specified name.
 
 Examples:
-- `review John Cena` displays all tasks that are assigned to him.
+- `find John Cena` displays all tasks that are assigned to him.
 
-## Review tasks assigned to a Person: `reviewtask`
+## Find tasks assigned to a Person: `findtask`
 
 
 Shows a list of persons assigned to an existing task in OfficeConnect.
 
-Format: `reviewtask TITLE`
+Format: `findtask TITLE`
 
-* Reviews the list of persons who are assigned to the task with the specified title.
+* Finds the list of persons who are assigned to the task with the specified title.
 
 Examples:
-- `reviewtask CS2103 TP` displays everyone who are assigned to this task.
+- `findtask CS2103 TP` displays everyone who are assigned to this task.
 
 ### Archiving data files `[coming in v1.3]`
 
@@ -307,17 +307,16 @@ _Details coming soon ..._
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Add Task**    | `addtask title/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask title/Draft proposal c/Complete proposal by 1st March st/false`                                        |
+| **Assign**      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                               |
 | **Clear**       | `clear`                                                                                                                                                              |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
 | **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
-| **Assign**      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                               |
+| **Find**        | `find NAME`<br> e.g., `find James Jake`                                                                                                                              |
+| **Find Task**   | `findtask TITLE`<br> e.g., `findtask CS2103 TP`                                                                                                                      |
 | **Mark Task**   | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                      |
 | **Unmark Task** | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                 |
 | **Help**        | `help`                                                                                                                                                               |
 | **List**        | `list`                                                                                                                                                               |
 | **List All**    | `listall`                                                                                                                                                            |
 | **List Task**   | `listtask`                                                                                                                                                           |
-| **Review**      | `review NAME`<br> e.g., `review James Jake`                                                                                                                          |
-| **Review Task** | `reviewtask TITLE`<br> e.g., `reviewtask CS2103 TP`                                                                                                                  |

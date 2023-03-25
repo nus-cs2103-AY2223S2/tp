@@ -26,7 +26,6 @@ OfficeConnect is a task management tool designed specifically for managerial rol
 - `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 - `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 - `delete INDEX`
-- `find KEYWORD [MORE_KEYWORDS]`
 - `list`
 - `addtask s/SUBJECT c/CONTENT st/STATUS`
 - `deletetask INDEX`
@@ -35,8 +34,8 @@ OfficeConnect is a task management tool designed specifically for managerial rol
 - `unmark INDEX`
 - `listtask`
 - `findtask KEYWORD [MORE_KEYWORDS]`
-- `review NAME`
-- `review SUBJECT`
+- `find NAME`
+- `findtask SUBJECT`
 - `clear`
 - `exit`
 
