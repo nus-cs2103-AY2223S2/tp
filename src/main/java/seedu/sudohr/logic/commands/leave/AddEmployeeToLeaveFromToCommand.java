@@ -21,11 +21,11 @@ import seedu.sudohr.model.leave.LeaveDate;
 public class AddEmployeeToLeaveFromToCommand extends Command {
     public static final String COMMAND_WORD = "addEmployeeLeaveFromTo";
 
-    public static final String DATE_CONSTRAINTS = "start date must be before end date and there can "
-            + "only be 7 days difference between start and end date";
+    public static final String DATE_CONSTRAINTS = "start date must be before end date and end date"
+            + "must be at most 6 days after start date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an employee's leave on days between two dates to SudoHR.\n";
+            + ": Adds an employee's leave on days from the start date to end date inclusive in SudoHR .\n";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on one of the days"
