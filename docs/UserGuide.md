@@ -301,7 +301,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |  [View Upcoming Events](#view-upcoming-events)  |                 `remind DAYS`            |                              `remind 2`                             |
 
 
-<div style="text-align: right; float: right;">
+<div style="position: fixed; bottom: 25px; right: 25px; z-index: 900">
   <a href="#top">Back to top</a>
 </div>
 <br>
