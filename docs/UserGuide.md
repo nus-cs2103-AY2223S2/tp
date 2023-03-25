@@ -1,44 +1,112 @@
 ---
 layout: page
-title: User Guide
+title: InternBuddy User Guide
 ---
-
-InternBuddy is a **desktop app for Computing undergraduate students to manage their internship applications**.
-It is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
-Interface (GUI). If you can type fast, InternBuddy can efficiently track your internship applications.
-
 * Table of Contents
-{:toc}
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## Introducing InternBuddy
+
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows you to complete internship management tasks much more efficiently via
+the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast typist
+who is seeking for a one-stop platform to systematically organise your internship applications,
+then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+
+InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
+<br/>
+<p align="center">
+  <img width="400" height="255" src="images/internbuddy-computer.png">
+</p>
+
+
+--------------------------------------------------------------------------------------------------------------------
+## About the User Guide
+
+### Objectives of the User Guide
+This user guide aims to provide comprehensive instructions for users to learn how to use InternBuddy,
+providing details on the installation process and features provided by InternBuddy. It also contains information
+for advanced users to customise the usage of InternBuddy for a tailored user experience.
+
+### Using the User Guide
+This uses guide uses a set of formatting standards and visuals to better communicate information.
+
+#### Information Box
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Provides useful information that supplements the main text
+</div>
+
+#### Tip Box
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  Suggestions on how to enhance your experience
+</div>
+
+#### Warning Box
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
+carefully before committing
+</div>
+
+#### Syntax Highlighting
+Commands, parameters, file paths and class names are highlighted.
+
+`command`, `PARAMETER`, `filepath.json`, `ClassName`
+
+
+#### Keyboard Actions
+Keyboard keys are indicated using rounded buttons.
+
+<button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** If you are unsure of whether you have Java 11 installed, or need help installing
+it, you can refer to <a href="#appendix">Appendix A</a>.
+
+</div>
+
 
 2. Download the latest `internbuddy.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for InternBuddy.
+3. Copy the file `internbuddy.jar` to the folder you want to use as the _home folder_ for InternBuddy.
+<div markdown="span" class="alert alert-primary">
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbuddy.jar`
-   command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+:information_source: **Info:** The home folder is the folder where you will navigate to in order to launch
+InternBuddy, and it is where your InternBuddy data file will be stored in.
+
+</div>
+
+4. Double-click on the file `internbuddy.jar` to launch InternBuddy. A GUI similar to Figure 1 should
+   appear in a few seconds. Note how the app contains some sample data.<br/><br/>
    ![Ui](images/Ui.png)
+   <p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+<br/>
 
-   * `list` : List All Internship Entries.
+5. You can interact with InternBuddy by typing into the box with the text `Enter command here...`, then pressing
+   <button>Enter</button> to execute your command. For example, typing help and pressing <button>Enter</button> will open
+   the help window.
 
-   * `add n/CompanyXYZ r/Software Engineer s/applied d/2023-03-03` : Adds an entry to track the internship
-      application for Company XYZ for the role of a Software Engineer.
 
-   * `delete 3` : Deletes the 3rd internship entry shown in the current list.
+6. Here are some other example commands you can try:
 
-   * `exit` : Exits the app.
+    - `list`: List all internship entries stored in InternBuddy
+    - `add n/Food Panda r/Web Developer s/Applied d/2023-04-01`: Adds a new internship entry into InternBuddy.
+    - `delete 3` : Deletes the 3rd internship entry of the current list displayed in InternBuddy.
+    - `exit` : Exits InternBuddy.
 
-6. Refer to the [Features](#features) below for details of each command.
+
+Do refer to [Features](#features) below for a comprehensive list of supported features and their associated details.
 
 --------------------------------------------------------------------------------------------------------------------
 
