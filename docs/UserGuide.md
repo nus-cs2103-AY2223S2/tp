@@ -30,13 +30,13 @@ Experienced users can delete the sample data and proceed with regular usage.
 
 ## Features
 
-## Help command: `help`
+### Help command: `help`
 
 Shows a link to the user guide to help new users get familiar with the commands for the application.
 
 Format: `help`
 
-## Add user contacts: `add`
+### Add user contacts: `add`
 
 Format: `add [name] [year/course] [phone number] [email] [address]` Optional to add: `t/TAGS`
 
@@ -58,7 +58,7 @@ Tags are categorised according to tag colors:
 * Module tags: `Dark green`
 * General tags: `default blue`
 
-## Delete user contacts: `delete`
+### Delete user contacts: `delete`
 
 Delete a contact.
 Format: `delete INDEX`
@@ -122,7 +122,7 @@ Format: `delete-image INDEX`
 Example:
 * `delete-image 2` deletes the image of the 2nd person in the address book.
 
-## Quick Import for admin contacts: `import`
+### Quick Import for admin contacts: `import`
 
 Import administrative contacts for relevant faculties.
 
