@@ -43,8 +43,10 @@ public class DirectNavCommand extends NavCommand {
 
         if (targetLectureName == null) {
             model.navigateTo(targetModuleCode);
+            listAtModule(targetModuleCode, model);
         } else if (model.hasLecture(targetModuleCode, targetLectureName)) {
             model.navigateTo(targetModuleCode, targetLectureName);
+            listAtLecture(targetModuleCode, targetLectureName, model);
         } else {
             throw new CommandException("The lecture name provided is invalid!");
         }
