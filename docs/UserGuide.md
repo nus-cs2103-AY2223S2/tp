@@ -796,7 +796,7 @@ Listed all shortlisted applicants
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
+* However, if two or more values of <code>NOTE</code> are provided, both parameter will be taken in.
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
