@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.loyaltylift.commons.core.GuiSettings;
 import seedu.loyaltylift.commons.core.LogsCenter;
 import seedu.loyaltylift.model.customer.Customer;
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
+    private final SortedList<Customer> sortedCustomers;
     private final FilteredList<Order> filteredOrders;
     private final FilteredList<Order> filteredCustomerOrders;
 
@@ -39,6 +42,7 @@ public class ModelManager implements Model {
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredCustomerOrders = new FilteredList<>(this.addressBook.getOrderList());
+        sortedCustomers = new SortedList<>(filteredCustomers);
     }
 
     public ModelManager() {
@@ -152,13 +156,18 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
-        return filteredCustomers;
+        return sortedCustomers;
     }
 
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredCustomerList(Comparator<Customer> comparator) {
+        sortedCustomers.setComparator(comparator);
     }
 
     //=========== Filtered Order List Accessors ==============================================================
