@@ -17,7 +17,25 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
   {:toc}
 
 
+--------------------------------------------------------------------------------------------------------------------
+## Introducing InternBuddy
+
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows users to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
+using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
+<br/>
+<p align="center">
+  <img width="400" height="255" src="images/internbuddy-computer.png">
+</p>
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## About the Developer Guide
+
+### Objectives of the Developer Guide
 This developer guide aims to provide developers with insights into the implementation details
 of InternBuddy and to explain the design considerations behind the different features. It
 utilises Unified Modeling Language (UML) diagrams created using [PlantUML](https://plantuml.com/)
@@ -30,41 +48,42 @@ that we went through in the initial development phase for requirements gathering
 Hopefully, interested developers would be able to easily set up the InternBuddy project and
 extends its functionality through this developer guide.
 
-## Using the Developer Guide
+
+### Using the Developer Guide
 This developer guide uses a set of formatting standards and syntax to better communicate
 information.
 
-### Information Box
+#### Information Box
 <div markdown="span" class="alert alert-primary">
 
-:info: **Info:** Provides useful information that supplements the main text
+:information_source: **Info:** Provides useful information that supplements the main text
 </div>
 
-### Tip Box
+#### Tip Box
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:**  Suggestions on how to enhance your experience
 </div>
 
-### Warning Box
+#### Warning Box
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
 carefully before committing
 </div>
 
-### Code Blocks
-Important code-related text and file paths are indicated using syntax highlighting.
+#### Syntax Highlighting
+Commands, parameters, file paths and class names are highlighted.
 
 `command`, `PARAMETER`, `filepath.json`, `ClassName`
 
 
-### Keyboard Actions
-Keyboard keys are indicated using rounded boxes.
+#### Keyboard Actions
+Keyboard keys are indicated using rounded buttons.
 
-<kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Enter</kbd> <kbd>&uarr;</kbd>
+<button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
-
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
