@@ -149,7 +149,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         } else if (argumentMultimapAtt.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
             return attCommand(studentClass, argumentMultimapAtt);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
-            if (arguments.equals(" " + PREFIX_FIND)) {
+            if (arguments.trim().equals(PREFIX_FIND.toString())) {
                 throw new ParseException(MESSAGE_BLANK_FIND);
             }
             return new StudentFindCommandParser().parse(studentClass + arguments);
