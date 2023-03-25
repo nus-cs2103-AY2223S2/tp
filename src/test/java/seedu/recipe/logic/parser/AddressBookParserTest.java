@@ -59,10 +59,7 @@ public class AddressBookParserTest {
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_RECIPE.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(descriptor));
-
-        EditCommand another = new EditCommand(INDEX_FIRST_RECIPE, descriptor);
-
-        // assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
     }
 
     @Test
