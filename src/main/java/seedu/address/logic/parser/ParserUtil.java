@@ -1,11 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
@@ -74,7 +72,8 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        // user can't type untagged
+        if (!Tag.isValidTagName(trimmedTag) || trimmedTag.toLowerCase().equals("untagged")) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
@@ -110,25 +109,6 @@ public class ParserUtil {
         } else {
             throw new ParseException(MESSAGE_INVALID_N_INPUT);
         }
-    }
-
-    /**
-     * Parses a String {@code userInput} into a {@code String} and returns it. Leading and trailing whitespaces
-     * will be trimmed.
-     * @throws ParseException if the specified String is not within the valid tags (EASY, MEDIUM, HARD).
-     */
-    public static String parseTagDuringReview(String userInput) throws ParseException {
-        requireNonNull(userInput);
-        String trimmedUserInput = userInput.trim().toUpperCase();
-        String tagName;
-        try {
-            Tag.TagName.valueOf(trimmedUserInput);
-            tagName = trimmedUserInput.toLowerCase();
-        } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TagCardDuringReviewCommand.MESSAGE_USAGE));
-        }
-        return tagName;
     }
 
 }

@@ -46,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
         question.setText(card.getQuestion().question);
         answer.setText(card.getAnswer().answer);
 
-        if (!card.getTag().equals(Tag.TagName.UNTAGGED)) {
+        if (!card.getTag().tagName.equals(Tag.TagName.UNTAGGED)) {
             tags.getChildren().add(new CardTag(card.getTagName()));
         }
     }

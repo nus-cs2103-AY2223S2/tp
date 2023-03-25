@@ -45,7 +45,7 @@ public class ReviewCard extends UiPart<Region> {
 
         answer.setText(EMPTY_STRING);
 
-        if (!card.getTag().equals(Tag.TagName.UNTAGGED)) {
+        if (!card.getTag().tagName.equals(Tag.TagName.UNTAGGED)) {
             tags.getChildren().add(new PersonCard.CardTag(card.getTagName()));
         }
 

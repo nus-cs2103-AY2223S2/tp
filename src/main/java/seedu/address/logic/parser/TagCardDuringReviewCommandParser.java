@@ -22,7 +22,7 @@ public class TagCardDuringReviewCommandParser implements Parser<TagCardDuringRev
      */
     public TagCardDuringReviewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String tagName = ParserUtil.parseTagDuringReview(args);
-        return new TagCardDuringReviewCommand(new Tag(tagName));
+        Tag tagName = ParserUtil.parseTag(args);
+        return new TagCardDuringReviewCommand(tagName);
     }
 }
