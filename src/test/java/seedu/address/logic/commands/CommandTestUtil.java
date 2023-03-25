@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -60,6 +61,7 @@ public class CommandTestUtil {
     public static final String DRUG_ALLERGY_DESC_BOB = " " + PREFIX_DRUG_ALLERGY + VALID_DRUG_ALLERGY_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String MEDICINE_DESC_PANADOL = " " + PREFIX_MEDICINE + VALID_MEDICINE_PANADOL;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "Z0000000A"; // 'Z' not allowed for NRIC start
@@ -69,6 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_DRUG_ALLERGY_DESC = " "
         + PREFIX_DRUG_ALLERGY; // empty string not allowed for drug allergies
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
