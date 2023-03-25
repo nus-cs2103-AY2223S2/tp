@@ -1,46 +1,74 @@
-# User Guide
+# Wingman User Guide
 
 
-Wingman is a **modal** manager for managing airplanes, pilots, crews, flights,
-and locations. It seeks to provide a highly efficient way of resource
-management for airline managers.
+Wingman is a **modal** manager for managing airplanes, pilots, crews, flights, and locations.
+It seeks to provide a highly efficient way of resource management for airline managers.
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+- **[How to use this guide?](#how-to-use-this-guide)**
+- **[Getting Started](#getting-started)**
+- **[Features](#features)**
+- **[Command summary](#command-summary)**
+- **[FAQ](#faq)**
+- **[Other information](#other-information)**
 
 -------------------------------------------------------------------------------
 
-## Modal Editing
+## How to use this guide?
 
-In Wingman, there are 5 different modes under which the app is operating:
+This user guide provides in-depth documentation on the multiple features that enable Wingman
+to assist you in managing your resources.
+We have also included a handy [command summary](#command-summary) where you can view all the commands at a glance.
+Refer to the next section to see how you can get started in just a few steps!
 
-- `location` mode: the mode in which an airline manager manages the
-  locations that the company is operating at.
-- `plane` mode: the mode in which an airline manager manages the planes
-  that the company is operating.
-- `flight` mode: the mode in which the airline manager manages the flights
-  that the company will carry out.
-- `pilot` mode: the mode in which the airline manager manages its pilots.
-- `crew` mode: the mode in which the airline manager manages its crews.
+## Getting Started
 
-Different modes offer similar APIs, with differences catered to the subject
-that the mode is managing. Users can switch to different modes by typing the
-corresponding mode name in the very beginning. For example:
+You can get started with Wingman in just 3 simple steps:
+1. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
+2. Open the terminal or command prompt (for Windows users) application in your device
+3. Run the following command: `java -jar Wingman.jar` in your terminal
 
+You should now be in the Wingman application. 
+If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
+
+<br>
+
+## Features
+
+### Modal Editing
+
+Wingman offers 5 different modes through which you can manage your resources:
+- `location` mode: to manage the locations in which your airline operates
+- `plane` mode: to manage the planes that your airline operates
+- `flight` mode: to manage the flights that your airline operates
+- `pilot` mode: to manage the pilots that form your airline workforce
+- `crew` mode: to manage the crews that form your airline workforce
+
+The different modes offer similar and intuitive commands, with optimisations to cater to the subject
+that the mode is managing. This means you do not have to worry about memorising complex commands and instead
+can dive right into the management of your airline.
+
+Users can switch effortlessly between different modes by typing in the following command:
 ```
-plane
+mode XYZ
 ```
+where XYZ can be any of the 5 mode names specified above.
 
-would switch the user to the plane mode.
+<br>
 
-## Shared Commands
+### Shared Commands
 
-### `add [{param_type} {param_val}]`
+The commands in this section are available across all 5 modes.
 
-This commands adds an entity of the current mode to the database. For example,
+### 1. Adding a resource
+```
+add /prefix_A value_A /prefix_B value_B
+```
+This commands adds an entity of the current resource mode to Wingman's database. For example,
 if the user is currently in the `plane` mode, then this command will add a new
-`plane` to the database. It shall be noted, however, that the params passed in
-in different modes are different.
+`plane` to the database. It shall be noted, however, that the params that are used in different modes are different. 
+
+Here are some examples of this command in use:
 
 #### Add a `location`
 
@@ -169,10 +197,6 @@ Then the plane would be removed from the fleet.
 
 This will exit the program.
 
-## FAQ
-
-Ask us questions so that we can have a FAQ.
-
 ## Command Summary
 
 | **Action** | **Format**                               | **Examples**    |
@@ -180,4 +204,11 @@ Ask us questions so that we can have a FAQ.
 | Add        | `add [{parameter_type} {parameter_val}]` | `add /name Bob` |
 | Delete     | `delete {index}`                         | `delete 1`      |
 | Exit       | `exit`                                   | `exit`          |
+
+
+## FAQ
+
+Ask us questions so that we can have a FAQ.
+
+## Other information
 
