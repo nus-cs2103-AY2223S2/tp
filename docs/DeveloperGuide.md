@@ -38,15 +38,17 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design
 
-<div markdown="span" class="alert alert-primary">
+[//]: # (<div markdown="span" class="alert alert-primary">)
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+[//]: # ()
+[//]: # (:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams]&#40;https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/&#41; folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides]&#40;https://se-education.org/guides/tutorials/plantUml.html&#41; to learn how to create and edit diagrams.)
+
+[//]: # (</div>)
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
-<div style="width:80%;margin:0;>
+<div style="width:80%;margin:0">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
