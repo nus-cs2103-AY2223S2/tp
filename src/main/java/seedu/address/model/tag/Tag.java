@@ -11,10 +11,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public enum Difficulty {
+        EASY,
+        MEDIUM,
+        HARD
+    }
 
-    public final String tagName;
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+
+    public final Difficulty tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -24,7 +29,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = Difficulty.valueOf(tagName.toUpperCase());
     }
 
     /**
@@ -32,7 +37,7 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         try {
-            TagCardDuringReviewCommandParser.Difficulty.valueOf(test);
+            Difficulty.valueOf(test.toUpperCase());
             return true;
         } catch (Exception e) {
             return false;
@@ -55,7 +60,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tagName.toString() + ']';
     }
 
 }

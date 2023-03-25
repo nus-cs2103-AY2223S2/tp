@@ -126,7 +126,7 @@ public class ParserUtil {
         String trimmedUserInput = userInput.trim().toUpperCase();
         String tagName;
         try {
-            TagCardDuringReviewCommandParser.Difficulty.valueOf(trimmedUserInput);
+            Tag.Difficulty.valueOf(trimmedUserInput);
             tagName = trimmedUserInput.toLowerCase();
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

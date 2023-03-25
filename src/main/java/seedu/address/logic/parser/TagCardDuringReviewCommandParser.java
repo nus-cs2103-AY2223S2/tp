@@ -12,12 +12,6 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCardDuringReviewCommandParser implements Parser<TagCardDuringReviewCommand> {
 
-    /**
-     * The Difficulty enum represents the difficulty levels that can be assigned to a card during review.
-     */
-    public enum Difficulty {
-        EASY, MEDIUM, HARD
-    }
 
     /**
      * Parses the user input and creates a new TagCardDuringReviewCommand object.

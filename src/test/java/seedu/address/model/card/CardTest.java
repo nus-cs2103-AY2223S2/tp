@@ -31,7 +31,7 @@ public class CardTest {
         assertFalse(LOOP.isSameCard(null));
 
         // same question and answer and deck, all other attributes different -> returns true
-        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        Card editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertTrue(LOOP.isSameCard(editedLoop));
 
         // different question, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class CardTest {
         assertFalse(LOOP.equals(editedLoop));
 
         // different tags -> returns false
-        editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertFalse(LOOP.equals(editedLoop));
     }
 

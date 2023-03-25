@@ -90,7 +90,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY)
                 .withAnswer(VALID_ANSWER_GRAVITY)
-                .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
+                .withTag(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_MEDIUM;
-        descriptor = new EditCardDescriptorBuilder().withTags(VALID_TAG_MEDIUM).build();
+        descriptor = new EditCardDescriptorBuilder().withTag(VALID_TAG_MEDIUM).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -137,7 +137,7 @@ public class EditCommandParserTest {
                 + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_HARD;
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM, VALID_TAG_HARD)
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_MEDIUM, VALID_TAG_HARD)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

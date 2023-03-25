@@ -63,10 +63,10 @@ public class EditCommandTest {
 
         CardBuilder cardInList = new CardBuilder(lastCard);
         Card editedCard = cardInList.withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withTags(VALID_TAG_HARD).build();
+                .withTag(VALID_TAG_HARD).build();
 
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTag(VALID_TAG_HARD).build();
         EditCommand editCommand = new EditCommand(indexLastCard, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);

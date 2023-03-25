@@ -36,7 +36,7 @@ public class AddCommandParserTest {
 
         AddCardDescriptor expectedCardDescriptor = new AddCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build(); // No deck specified
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_MEDIUM).build(); // No deck specified
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_PHOTOSYNTHESIS
@@ -53,7 +53,7 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         AddCardDescriptor expectedCardMultipleTags = new AddCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
-                .withTags(VALID_TAG_MEDIUM, VALID_TAG_HARD).build();
+                .withTag(VALID_TAG_MEDIUM, VALID_TAG_HARD).build();
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS
                 + TAG_DESC_MEDIUM + TAG_DESC_HARD, new AddCommand(expectedCardMultipleTags));
     }
