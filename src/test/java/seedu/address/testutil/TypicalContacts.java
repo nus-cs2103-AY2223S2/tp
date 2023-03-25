@@ -26,17 +26,17 @@ public class TypicalContacts {
             .build();
     public static final Contact DANIEL = new ContactBuilder().withName("Daniel Meier").withPhone("87652533")
             .build();
-    public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer").withPhone("94822241")
             .build();
-    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("948242712")
             .build();
-    public static final Contact GEORGE = new ContactBuilder().withName("George Best").withPhone("9482442")
+    public static final Contact GEORGE = new ContactBuilder().withName("George Best").withPhone("94824421")
             .build();
 
     // Manually added
-    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("848242412")
             .build();
-    public static final Contact IDA = new ContactBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Contact IDA = new ContactBuilder().withName("Ida Mueller").withPhone("84821311")
             .build();
 
     // Manually added - Contact's details found in {@code CommandTestUtil}

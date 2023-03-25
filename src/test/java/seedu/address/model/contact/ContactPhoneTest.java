@@ -28,14 +28,17 @@ public class ContactPhoneTest {
         // invalid phone numbers
         assertFalse(ContactPhone.isValidPhone("")); // empty string
         assertFalse(ContactPhone.isValidPhone(" ")); // spaces only
-        assertFalse(ContactPhone.isValidPhone("91")); // less than 3 numbers
+        assertFalse(ContactPhone.isValidPhone("91")); // less than 8 numbers
         assertFalse(ContactPhone.isValidPhone("phone")); // non-numeric
         assertFalse(ContactPhone.isValidPhone("9011p041")); // alphabets within digits
+        assertFalse(ContactPhone.isValidPhone("1234567")); // 7 numbers
+        assertFalse(ContactPhone.isValidPhone("1234567 ")); // 7 numbers with space
         assertFalse(ContactPhone.isValidPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(ContactPhone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(ContactPhone.isValidPhone("93121534"));
+        assertTrue(ContactPhone.isValidPhone("12345678"));
+        assertTrue(ContactPhone.isValidPhone("123456789")); // 9 numbers
         assertTrue(ContactPhone.isValidPhone("124293842033123")); // long phone numbers
     }
 }
