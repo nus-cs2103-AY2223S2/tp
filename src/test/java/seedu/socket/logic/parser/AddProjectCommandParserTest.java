@@ -44,7 +44,7 @@ public class AddProjectCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Project expectedProject = new ProjectBuilder(BRAVO).putMembers(new HashSet<>()).build();
+        Project expectedProject = new ProjectBuilder(BRAVO).withMembers(new HashSet<>()).build();
 
         // whitespace only preamble
         assertParseSuccess(
@@ -116,7 +116,7 @@ public class AddProjectCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero meeting
-        Project expectedProject = new ProjectBuilder(BRAVO).withProjectMeeting("").putMembers(new HashSet<>()).build();
+        Project expectedProject = new ProjectBuilder(BRAVO).withProjectMeeting("").withMembers(new HashSet<>()).build();
         assertParseSuccess(
                 parser,
                 PROJECT_NAME_DESC_BRAVO

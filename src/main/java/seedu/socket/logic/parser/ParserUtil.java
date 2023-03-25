@@ -247,15 +247,4 @@ public class ParserUtil {
         return new ProjectMeeting(trimmedName);
     }
 
-    /**
-     * Parses {@code Collection<String> meetings} into a {@code Set<ProjectMeeting>}.
-     */
-    public static Set<ProjectMeeting> parseMeetings(Collection<String> meetings) throws ParseException {
-        requireNonNull(meetings);
-        final Set<ProjectMeeting> meetingSet = new HashSet<>();
-        for (String meetingName : meetings) {
-            meetingSet.add(parseMeeting(meetingName));
-        }
-        return meetingSet;
-    }
 }
