@@ -119,7 +119,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/developerGuide/ModelDiagram.png" width="500" />
 ** TODO: update image **
 
 The `Model` component,
@@ -129,11 +129,15 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * depends on some classes in the `Storage` component (because the `Model` component requires `Storage` to save/retrieve objects that belong to the `Model`)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `FriendlyLink`, which `Person` (`Elderly` or `Volunteer`) references. This allows `FriendlyLink` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+This is the detailed implementation of `Person` in `Model`. 
+* Both `Elderly` and `Volunteer` inherit from the abstract class `Person`.
+* A `Pair` makes reference to one `Elderly` and one `Volunteer` each.
 
-</div>
+<br>
+
+<img src="images/developerGuide/PersonNew.png" width="250" />
+
 ** TODO: Update Image **
 
 ### Storage component

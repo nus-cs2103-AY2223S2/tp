@@ -1,0 +1,51 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model_Diagram <<Rectangle>>{
+Class "<<interface>>\nReadOnlyFriendlyLink" as ReadOnlyFriendlyLink
+Class "<<interface>>\nReadOnlyElderly" as ReadOnlyElderly
+Class "<<interface>>\nReadOnlyVolunteer" as ReadOnlyVolunteer
+Class "<<interface>>\nReadOnlyPair" as ReadOnlyPair
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class FriendlyLink
+Class ModelManager
+Class UserPrefs
+Class UniqueElderlyList
+Class UniqueVolunteerList
+Class UniquePairList
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+ReadOnlyFriendlyLink .up.|> ReadOnlyElderly
+ReadOnlyFriendlyLink .up.|> ReadOnlyVolunteer
+ReadOnlyFriendlyLink .up.|> ReadOnlyPair
+
+FriendlyLink .up.|> ReadOnlyFriendlyLink
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+
+ModelManager -left-> "1" FriendlyLink
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+FriendlyLink *-down-> "1" UniqueElderlyList
+FriendlyLink *-down-> "1" UniqueVolunteerList
+FriendlyLink *-down-> "1" UniquePairList
+
+Class Outside1 #FFFFFF
+UniqueElderlyList ..> Outside1
+
+Class Outside2 #FFFFFF
+UniqueVolunteerList ..> Outside2
+
+Class Outside3 #FFFFFF
+UniquePairList ..> Outside3
+
+@enduml
