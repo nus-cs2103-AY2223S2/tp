@@ -127,4 +127,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate);
+
+
+    /**
+     * Returns a unmodifiable view of the food description if {@code target} exists in the Wife.
+     */
+    void viewFood(Food target);
 }
