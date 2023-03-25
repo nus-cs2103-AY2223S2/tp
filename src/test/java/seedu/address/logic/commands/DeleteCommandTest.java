@@ -91,7 +91,7 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-    /*
+
     @Test
     public void execute_checkDeletionOfAssignments_success() {
         try {
@@ -106,7 +106,6 @@ public class DeleteCommandTest {
             throw new AssertionError("Execution of command should not fail.", e);
         }
     }
-    */
 
     @Test
     public void equals() {

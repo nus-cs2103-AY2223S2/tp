@@ -49,6 +49,10 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         this.repo.resetData(repo);
     }
 
+    public void setRepository(List<T> items) {
+        this.repo.setItems(items);
+    }
+
     public ReadOnlyRepository<T> getReadOnlyRepository() {
         return repo;
     }
