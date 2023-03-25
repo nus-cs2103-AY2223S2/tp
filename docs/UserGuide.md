@@ -1,3 +1,5 @@
+## User Guide
+
 ## Table of contents
 
 1. [About HMHero](#1-about-hmhero)
@@ -186,8 +188,9 @@ are already familiar with the application!
 
 ## 5. Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on [trying your first command](#54-trying-your-first-command).
-Of special note is the [Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, which covers essential knowledge to using
-HMHero's features.
+Of special note is the [Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, which covers essential knowledge to using HMHero's features.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 5.1 User Interface
 When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
@@ -225,6 +228,8 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 5.2.2 Notes
 
 A note in HMHero serves as a means of labelling the skills of an applicant. These tags
@@ -241,6 +246,8 @@ can include:
 
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 5.2.3 Flags
 Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
@@ -267,6 +274,8 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
@@ -283,6 +292,8 @@ section to see how Flags and Placeholders are used together.
 | NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
+[Back to Table of Contents](#table-of-contents)
+
 ### 5.3 Command Format
 You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
@@ -293,8 +304,9 @@ A command consists of:
 Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).
 [Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
-For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
+For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 
+[Back to Table of Contents](#table-of-contents)
 
 ### 5.4 Trying your First Command
 
@@ -406,6 +418,7 @@ Here is a checklist you can use before running a command:
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
 
+[Back to Table of Contents](#table-of-contents)
 
 ## 6. Commands
 
@@ -926,12 +939,15 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | TO BE UPDATED                                                                                                                                                                    | To be updated                                                               |
 
+[Back to Table of Contents](#table-of-contents)
 
 ### 7.2. Statistics Commands
 
 | Action                                  | Format   | Example |
 |-----------------------------------------|----------|---------|
 | Displays statistics collected by HMHero | `stats`  | `stats` | 
+
+[Back to Table of Contents](#table-of-contents)
 
 
 ### 7.3. General Commands
@@ -941,6 +957,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Shows a help dialog with a list of available commands | `help` | `help`  |
 | Exits HMHero                                          | `exit` | `exit`  |
 
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -980,6 +997,8 @@ Unable to exit/save HMHero to data file
 **Solution:**
 
 1. This error is due to `hmhero.jar` being started in a protected folder. (Examples of write-protected folders include`C:\WINDOWS\System32` in windows and the `/etc` dir in linux) <br> Please move the `hmhero.jar` file into another folder in your computer and start HMHero application from that folder.
+   
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -997,6 +1016,8 @@ Unable to exit/save HMHero to data file
 ### Q: How do I transfer my data to another computer?<br>
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 ## 10. Acknowledgements
 
@@ -1010,6 +1031,8 @@ Java dependencies:
 
 Documentation dependencies:
 * [PlantUML](https://plantuml.com/) for creating UML diagrams
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1103,4 +1126,3 @@ Documentation dependencies:
 ### U
 > #### URL
 > A hyperlink to a website.
-
