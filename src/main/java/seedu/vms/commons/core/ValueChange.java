@@ -1,31 +1,16 @@
 package seedu.vms.commons.core;
 
-import java.util.Objects;
 import java.util.Optional;
 
 
 /**
- * Represents a change in state of a value. A change will always contain an
- * {@code oldValue} but may not contain a {@code newValue}. If it does not
- * have a {@code newValue}, ie if {@link #getNewValue()} returns
- * {@code Optional.empty}, it signifies that the change is a deletion.
+ * Represents a change in state of a value.
  *
  * @param <T> the type of value being changed.
  */
 public class ValueChange<T> {
-    private final T oldValue;
+    private final Optional<T> oldValue;
     private final Optional<T> newValue;
-
-
-    /**
-     * Constructs a {@code ValueChange} without a new value.
-     *
-     * @param oldValue - the initial state of the value.
-     * @throws NullPointerException if {@code oldValue} is {@code null}.
-     */
-    public ValueChange(T oldValue) {
-        this(oldValue, null);
-    }
 
 
     /**
@@ -33,20 +18,22 @@ public class ValueChange<T> {
      *
      * @param oldValue - the initial state of the value.
      * @param newValue - the new state of the value (can be {@code null}).
-     * @throws NullPointerException if {@code oldValue} is {@code null}.
      */
     public ValueChange(T oldValue, T newValue) {
-        this.oldValue = Objects.requireNonNull(oldValue);
+        this.oldValue = Optional.ofNullable(oldValue);
         this.newValue = Optional.ofNullable(newValue);
     }
 
 
     /**
-     * Returns the initial state of the value being changed.
+     * Returns the old value wrapped in an {@code Optional}. If the change is
+     * only an addition, the change will not contain an old value and
+     * {@code Optional.empty} will be returned instead.
      *
-     * @return the initial state of the value being changed.
+     * @return the initial state of the value being changed wrapped in an
+     *      {@code Optional}.
      */
-    public T getOldValue() {
+    public Optional<T> getOldValue() {
         return oldValue;
     }
 
