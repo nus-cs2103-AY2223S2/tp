@@ -15,7 +15,7 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" HBox.hgrow="ALWAYS"/>
-  <ScrollPane fx:id="personList" prefWidth="423" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="scroll-pae=ne">
+  <ScrollPane fx:id="personList" prefWidth="423" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="scroll-pane">
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" >
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
