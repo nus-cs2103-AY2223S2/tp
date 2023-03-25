@@ -65,23 +65,43 @@ public class FilesManager {
     }
 
     /**
+     * Display file.
+     *
+     * @param fileName the file name
+     */
+    public void displayFile(String fileName) {
+        //String fileName = path.getFileName().toString();
+        String filePath = this.path + "/" + fileName;
+        Path path1 = Paths.get(filePath);
+        String extension = fileName.substring(
+                fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+            ImageReader imageReader = new ImageReader(path1);
+            imageReader.displayImage();
+        } else if (extension.equals("pdf")) {
+            PdfReader pdfReader = new PdfReader(path1);
+            pdfReader.displayPdf();
+        } else {
+            //adding custom exception of Wrong File type exception
+            System.out.println("Invlid file type");
+        }
+    }
+
+    public int numberOfFiles(Path drc) {
+        return files.size();
+    }
+
+    public List<String> getFileNames() {
+        return fileNames;
+    }
+
+    /**
      * Generate mc.
      */
     public void generateMc() {
         Path path2 = Paths.get(path);
         FileStorage.createDrc(path);
         create.createMcForm(Integer.toString(numberOfFiles(path2)));
-    }
-
-    public List<Path> getAllDirectories() {
-        List<Path> directories = new ArrayList<>();
-        try (Stream<Path> stream = Files.walk(reportsDir)) {
-            stream.filter(Files::isDirectory)
-                    .forEach(directories::add);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return directories;
     }
 
     private void setAllFiles() {
@@ -100,60 +120,6 @@ public class FilesManager {
                 .map(Path::getFileName)
                 .map(Path::toString)
                 .collect(Collectors.toList());
-    }
-
-    public List<String> getFileNames() {
-        return fileNames;
-    }
-
-
-    public int numberOfFiles(Path drc) {
-        return files.size();
-    }
-    public String getPathInString() {
-        return this.path;
-    }
-
-    /**
-     * Display file.
-     *
-     * @param path the path
-     */
-    public void displayFile(Path path) {
-        String fileName = path.getFileName().toString();
-        String extension = fileName.substring(
-                fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
-        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
-            ImageReader imageReader = new ImageReader(path);
-            imageReader.displayImage();
-        } else if (extension.equals("pdf")) {
-            PdfReader pdfReader = new PdfReader(path);
-            pdfReader.displayPdf();
-        } else {
-            //adding custom exception of Wrong File type exception
-            System.out.println("Invlid file type");
-        }
-    }
-
-    /**
-     * Display file.
-     *
-     * @param fileName the file name
-     */
-    public void viewFile(String fileName) {
-        Path filepath = Paths.get(fileName);
-        String extension = fileName.substring(
-            fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
-        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
-            ImageReader imageReader = new ImageReader(filepath);
-            imageReader.displayImage();
-        } else if (extension.equals("pdf")) {
-            PdfReader pdfReader = new PdfReader(filepath);
-            pdfReader.displayPdf();
-        } else {
-            //adding custom exception of Wrong File type exception
-            System.out.println("Invlid file type");
-        }
     }
 
 }
