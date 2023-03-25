@@ -6,12 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalSubtasks.ALICE_HOMEWORK;
-import static seedu.task.testutil.TypicalSubtasks.AMY_LAB;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -25,11 +21,8 @@ import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
-import seedu.task.model.TaskBook;
-import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueSubtaskList;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.testutil.SimpleTaskBuilder;
 import seedu.task.testutil.SubtaskBuilder;
@@ -38,47 +31,56 @@ public class DeleteSubtaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteSubtaskCommand((Index)null, (Index)null));
+        assertThrows(NullPointerException.class, () -> new DeleteSubtaskCommand((Index) null, (Index) null));
     }
 
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
         ModelStub modelStub = new ModelStubWithTask(validTask);
-        CommandResult commandResult = new DeleteSubtaskCommand(Index.fromOneBased(1), Index.fromOneBased(1)).execute(modelStub);
+        CommandResult commandResult = new DeleteSubtaskCommand(Index.fromOneBased(1),
+            Index.fromOneBased(1)).execute(modelStub);
 
-        assertEquals(String.format(DeleteSubtaskCommand.MESSAGE_SUCCESS, ALICE_HOMEWORK), commandResult.getFeedbackToUser());
+        assertEquals(String.format(DeleteSubtaskCommand.MESSAGE_SUCCESS, ALICE_HOMEWORK),
+            commandResult.getFeedbackToUser());
 
     }
 
     @Test
     public void execute_taskIndexOutOfBounds_throwsCommandException() {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
-        DeleteSubtaskCommand deleteSubtaskCommand = new DeleteSubtaskCommand(Index.fromOneBased(2), Index.fromOneBased(1));
+        DeleteSubtaskCommand deleteSubtaskCommand = new DeleteSubtaskCommand(Index.fromOneBased(2),
+            Index.fromOneBased(1));
         ModelStub modelStub = new ModelStubWithTask(validTask);
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> deleteSubtaskCommand.execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> deleteSubtaskCommand
+            .execute(modelStub));
     }
 
     @Test
     public void execute_subtaskIndexOutOfBounds_throwsCommandException() {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
-        DeleteSubtaskCommand deleteSubtaskCommand = new DeleteSubtaskCommand(Index.fromOneBased(1), Index.fromOneBased(2));
+        DeleteSubtaskCommand deleteSubtaskCommand = new DeleteSubtaskCommand(Index.fromOneBased(1),
+            Index.fromOneBased(2));
         ModelStub modelStub = new ModelStubWithTask(validTask);
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> deleteSubtaskCommand.execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> deleteSubtaskCommand
+            .execute(modelStub));
     }
 
     @Test
     public void equals() {
         Subtask alice = new SubtaskBuilder().withName("Alice").build();
         Subtask bob = new SubtaskBuilder().withName("Bob").build();
-        DeleteSubtaskCommand deleteAliceCommand = new DeleteSubtaskCommand(Index.fromOneBased(1), Index.fromOneBased(1));
-        DeleteSubtaskCommand deleteBobCommand = new DeleteSubtaskCommand(Index.fromOneBased(1),Index.fromOneBased(2));
+        DeleteSubtaskCommand deleteAliceCommand = new DeleteSubtaskCommand(Index.fromOneBased(1),
+            Index.fromOneBased(1));
+        DeleteSubtaskCommand deleteBobCommand = new DeleteSubtaskCommand(Index.fromOneBased(1),
+            Index.fromOneBased(2));
 
         // same object -> returns true
         assertTrue(deleteAliceCommand.equals(deleteAliceCommand));
 
         // same values -> returns true
-        DeleteSubtaskCommand deleteAliceCommandCopy = new DeleteSubtaskCommand(Index.fromOneBased(1), Index.fromOneBased(1));
+        DeleteSubtaskCommand deleteAliceCommandCopy = new DeleteSubtaskCommand(Index.fromOneBased(1),
+            Index.fromOneBased(1));
         assertTrue(deleteAliceCommand.equals(deleteAliceCommandCopy));
 
         // different types -> returns false

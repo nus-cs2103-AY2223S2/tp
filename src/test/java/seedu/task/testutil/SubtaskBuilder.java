@@ -3,7 +3,7 @@ package seedu.task.testutil;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.Subtask;
-import seedu.task.model.task.Task;
+
 
 /**
  * A utility class to help with building Task objects.
@@ -27,7 +27,7 @@ public class SubtaskBuilder {
     /**
      * Initializes the SimpleTaskBuilder with the data of {@code taskToCopy}.
      */
-    public SubtaskBuilder(Task taskToCopy) {
+    public SubtaskBuilder(Subtask taskToCopy) {
         name = taskToCopy.getName();
         description = taskToCopy.getDescription();
     }

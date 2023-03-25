@@ -2,12 +2,15 @@ package seedu.task.logic.parser;
 
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
+import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
+import seedu.task.logic.commands.AddCommand;
 import seedu.task.logic.commands.AddSubtaskCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.task.Description;
@@ -17,7 +20,7 @@ import seedu.task.model.task.Subtask;
 /**
  * Parse input to create a new AddSubtaskCommand object
  */
-public class AddSubtaskParser {
+public class AddSubtaskParser implements Parser<AddSubtaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -33,8 +36,7 @@ public class AddSubtaskParser {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddSubtaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSubtaskCommand.MESSAGE_USAGE));
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)) {

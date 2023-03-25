@@ -9,9 +9,6 @@ import static seedu.task.testutil.TypicalSubtasks.ALICE_HOMEWORK;
 import static seedu.task.testutil.TypicalSubtasks.AMY_LAB;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -25,11 +22,8 @@ import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
-import seedu.task.model.TaskBook;
-import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueSubtaskList;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.testutil.SimpleTaskBuilder;
 import seedu.task.testutil.SubtaskBuilder;
@@ -38,14 +32,15 @@ public class AddSubtaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddSubtaskCommand((Index) null,(Subtask) null));
+        assertThrows(NullPointerException.class, () -> new AddSubtaskCommand((Index) null, (Subtask) null));
     }
 
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
         ModelStub modelStub = new ModelStubWithTask(validTask);
-        CommandResult commandResult = new AddSubtaskCommand(Index.fromOneBased(1), AMY_LAB).execute(modelStub);
+        CommandResult commandResult = new AddSubtaskCommand(Index.fromOneBased(1),
+            AMY_LAB).execute(modelStub);
 
         assertEquals(String.format(AddSubtaskCommand.MESSAGE_SUCCESS, AMY_LAB), commandResult.getFeedbackToUser());
 
@@ -56,7 +51,8 @@ public class AddSubtaskCommandTest {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
         AddSubtaskCommand addSubtaskCommand = new AddSubtaskCommand(Index.fromOneBased(1), ALICE_HOMEWORK);
         ModelStub modelStub = new ModelStubWithTask(validTask);
-        assertThrows(CommandException.class, AddSubtaskCommand.MESSAGE_DUPLICATE_TASK, () -> addSubtaskCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddSubtaskCommand.MESSAGE_DUPLICATE_TASK, () -> addSubtaskCommand
+            .execute(modelStub));
     }
 
     @Test
@@ -64,7 +60,8 @@ public class AddSubtaskCommandTest {
         Task validTask = new SimpleTaskBuilder().withSubtasks(ALICE_HOMEWORK).build();
         AddSubtaskCommand addSubtaskCommand = new AddSubtaskCommand(Index.fromOneBased(2), AMY_LAB);
         AddSubtaskCommandTest.ModelStub modelStub = new AddSubtaskCommandTest.ModelStubWithTask(validTask);
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> addSubtaskCommand.execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () -> addSubtaskCommand
+            .execute(modelStub));
     }
 
 

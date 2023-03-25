@@ -1,35 +1,14 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_SUBTASK_INDEX;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.task.commons.core.index.Index;
-import seedu.task.logic.commands.AddCommand;
 import seedu.task.logic.commands.DeleteSubtaskCommand;
-import seedu.task.logic.commands.EditCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
-import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Date;
-import seedu.task.model.task.Deadline;
-import seedu.task.model.task.Description;
-import seedu.task.model.task.Effort;
-import seedu.task.model.task.Event;
-import seedu.task.model.task.Name;
-import seedu.task.model.task.SimpleTask;
-import seedu.task.model.task.Subtask;
-import seedu.task.model.task.Task;
+
 
 
 /**
@@ -49,7 +28,8 @@ public class DeleteSubtaskParser implements Parser<DeleteSubtaskCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SUBTASK_INDEX)
             || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSubtaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteSubtaskCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -59,7 +39,8 @@ public class DeleteSubtaskParser implements Parser<DeleteSubtaskCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             subtaskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SUBTASK_INDEX).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSubtaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteSubtaskCommand.MESSAGE_USAGE), pe);
         }
 
 

@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.core.index.IndexList;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.logic.commands.AddSubtaskCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
@@ -53,6 +54,7 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }

@@ -6,7 +6,6 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Set;
 
@@ -66,7 +65,8 @@ public class AddSubtaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()
+            || index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         Task taskToEdit = lastShownList.get(index.getZeroBased());
@@ -93,7 +93,7 @@ public class AddSubtaskCommand extends Command {
             SimpleTask newSimpleTask = new SimpleTask(name, description, tags, effort, subtasks);
             try {
                 newSimpleTask.addSubtask(subtask);
-            } catch(DuplicateTaskException e) {
+            } catch (DuplicateTaskException e) {
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
             return newSimpleTask;
@@ -104,7 +104,7 @@ public class AddSubtaskCommand extends Command {
             Event newEvent = new Event(name, description, tags, from, to, effort, subtasks);
             try {
                 newEvent.addSubtask(subtask);
-            } catch(DuplicateTaskException e) {
+            } catch (DuplicateTaskException e) {
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
             return newEvent;

@@ -89,8 +89,8 @@ public class SimpleTaskBuilder {
      * @return A SimpleTaskBuilder
      */
     public SimpleTaskBuilder withSubtasks(Subtask subtask) {
-       this.subtasks.addSubtask(subtask);
-       return this;
+        this.subtasks.addSubtask(subtask);
+        return this;
     }
 
     /**
