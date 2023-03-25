@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CARDS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_CARDS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
@@ -124,7 +123,7 @@ public class ModelManagerTest {
         assertNotEquals(modelManager, new ModelManager(masterDeck, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCardList( PREDICATE_SHOW_NO_CARDS);
+        modelManager.updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
