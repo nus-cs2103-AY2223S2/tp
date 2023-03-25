@@ -6,9 +6,7 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
@@ -21,7 +19,7 @@ public class Session {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public String sessionName;
-    public Group group;
+//    public Group group;
 //    private ObservableList<Student> students;
     private final Map<Student, Integer> attendance;
     private final UniqueStudentList students;
@@ -46,12 +44,20 @@ public class Session {
         return students.asUnmodifiableObservableList();
     }
 
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
     public String getSessionName() {
         System.out.println("########\n " +
                 "ATTENDANCE for" + sessionName);
         System.out.println(attendance.toString());
         System.out.println("########");
         return this.sessionName;
+    }
+
+    public Map<Student, Integer> getAttendance() {
+        return this.attendance;
     }
 
     public boolean isSameSession(Session otherSession) {
@@ -67,21 +73,15 @@ public class Session {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public void setGroup(Group group, UniqueStudentList students) {
-        this.group = group;
-//        group.getUnmodifiableStudentList();
-//        this.students = group.getUnmodifiableStudentList();
+    public void setStudents(UniqueStudentList students) {
+//        this.group = group;
         for (Student student : students) {
             if (!attendance.containsKey(student)) {
                 attendance.put(student, 0);
             }
-            this.students.add(student);
+            addStudent(student);
         }
         System.out.println(attendance.toString());
-    }
-
-    public Set<Student> getStudents() {
-        return attendance.keySet();
     }
 
     public void markPresent(Student student) {
@@ -103,6 +103,7 @@ public class Session {
         attendance.put(student, 0);
         System.out.println("marked: " + student + "\n" + attendance.get(student));
     }
+
     @Override
     public String toString() {
         return this.sessionName;

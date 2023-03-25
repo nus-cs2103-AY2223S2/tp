@@ -1,19 +1,54 @@
 package tfifteenfour.clipboard.logic.commands.deletecommand;
 
+import tfifteenfour.clipboard.commons.core.Messages;
+import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 public class DeleteSessionCommand extends DeleteCommand {
+    public static final String COMMAND_TYPE_WORD = "session";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
+            + ": Deletes a specified session."
+            + "Parameters: "
+            + "INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
+            + " " + " 1";
+
+    public static final String MESSAGE_SUCCESS = "Session deleted in %1$s: %2$s";
+
+    private final Index index;
+
+    public DeleteSessionCommand(Index index) {
+        this.index = index;
+    }
 
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+        requireNonNull(model);
 
-        // Command restriction example if on wrong page:
-        // if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
-        //   throw new CommandException("Wrong page. Navigate to course page to add course");
-        // }
+        if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
+            throw new CommandException("Wrong page. Navigate to session page to delete session");
+        }
 
-        return new CommandResult(this, "test", willModifyState);
+        Group selectedGroup = currentSelection.getSelectedGroup();
+        List<Session> lastShownList = selectedGroup.getUnmodifiableSessionList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
+
+        Session sessionToDelete = lastShownList.get(index.getZeroBased());
+        selectedGroup.deleteSession(sessionToDelete);
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, sessionToDelete, selectedGroup), willModifyState);
     }
 }

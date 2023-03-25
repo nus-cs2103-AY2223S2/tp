@@ -57,11 +57,15 @@ public class Group {
 
     public void addSession(Session session) {
         this.sessions.add(session);
-        session.setGroup(this, students);
+        session.setStudents(students);
     }
 
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
+    }
+
+    public void deleteSession(Session session) {
+        this.sessions.remove(session);
     }
 
     public String getGroupName() {
