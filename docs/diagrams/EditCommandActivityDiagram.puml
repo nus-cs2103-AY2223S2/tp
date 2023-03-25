@@ -3,10 +3,8 @@
 start
 :User executes command;
 
-if() then ([valid syntax])
-    :Executes edit command;
-
-    if() then ([valid arguments])
+if() then ([valid arguments])
+    if() then ([valid index])
         :Edit person in addressBook;
 
     else([else])

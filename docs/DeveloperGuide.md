@@ -158,10 +158,14 @@ This section describes some noteworthy details on how certain features are imple
 Users can edit a person's `Name`, `Phone`, `Email`, `Address`, `Group` and `Tag`.
 This is implemented using the `EditCommand`, `EditPersonDescriptor` and `EditCommandParser` classes.
 
-#### Current Implementation
-
 The `EditCommand` receives an index of the person to be edited and an editable `EditPersonDescriptor` class which
 consists of the updated fields of the person.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="200" />
 
 #### Sequence Diagram
 
@@ -177,12 +181,6 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the UniquePersonList and
    UniqueGroupList(If group is deleted).
 6. Execution of `EditCommand` results in a `CommandResult` created and returned back to the `LogicManager`. 
-
-#### Activity diagram
-
-The following activity diagram summarises what happens when a user executes an edit command:
-
-<img src="images/EditCommandActivityDiagram.png" width="200" />
 
 #### Design consideration
 
@@ -204,20 +202,68 @@ The following activity diagram summarises what happens when a user executes an e
    * Pros: Reduce coupling.
    * Cons: More commands for user to work with.
   
-* **[Current implementation] Alternative 2:** Edit the group attribute of a person using the existing edit command
-   * Pros: Easy to implement, lesser commands for user to remember
+* **[Current implementation] Alternative 2:** Edit the group attribute of a person using the existing edit command.
+   * Pros: Easy to implement, lesser commands for user to remember.
    * Cons: Easy for user to make an erroneous command.
 
 * **Justification**
   * As editing a group requires the same index as the existing `EditCommand`, it would be better to reuse the same
     command.
-  * Lesser commands for users to remember
+  * Lesser commands for users to remember.
 
 #### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
 * As editing for events require two index, `[INDEX_OF_PERSON]` and `[INDEX_OF_EVENT]`, it is different from the 
 existing command.
 * This significantly increases the chances of users inputting a wrong command
 * Hence, editing events using a separate command from the existing `EditCommand` is more convenient and appropriate.
+
+### \[Developed\] Group create
+
+Users can create/delete groups
+This is implemented using the `GroupCreateCommand`, `GroupCreateCommandParser` and 
+`UniqueGroupList` classes.
+
+The `GroupCreateCommand` receives a `Group` to be added into UniqueGroupList.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group create command:
+
+<img src="images/GroupCreateCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupCreateCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. The `AddressBookParser` then creates a GroupCreateCommandParser to parse the user input.
+3. If `GroupCreateCommandParser` parse the command successfully, GroupCreateCommand is created.
+4. The `GroupCreateCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` in the 
+UniqueGroupList(If group does not exist).
+6. Execution of `GroupCreateCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Creating multiple groups**
+* **Alternative 1:** Create multiple `Groups` using in one user command.
+    * Pros: Users can create multiple groups at once instead of creating each group one at a time.
+    * Cons: More bug-prone due to duplicate groups.
+
+* **[Current implementation] Alternative 2:** Only allow one group to be added in one user command.
+    * Note: If user input more than one group, only the last group will be added.
+    * Pros: Easy to implement.
+    * Pros: Less bug-prone as only one group has to be checked for validity.
+    * Cons: Users have to key in the `group_create` command multiple times if they want to create multiple groups.
+
+* **Justification**
+    * As the other parameters such as phone and number only take the last occurrence of an input, it is best to 
+standardise the same for groups as well.
+    * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
+
 
 ### \[Proposed\] Undo/redo feature
 

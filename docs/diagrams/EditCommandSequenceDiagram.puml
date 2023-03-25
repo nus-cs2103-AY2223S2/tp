@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant AddressBookParser as AddressBookParser LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -20,12 +20,6 @@ LogicManager -> AddressBookParser : parseCommand("edit 1 e/Bobjones@gmail.com")
 activate AddressBookParser
 
 create EditCommandParser
-AddressBookParser -> EditCommandParser
-activate EditCommandParser
-
-EditCommandParser --> AddressBookParser
-deactivate EditCommandParser
-
 AddressBookParser -> EditCommandParser : parse("1 e/Bobjones@gmail.com"")
 activate EditCommandParser
 
@@ -33,14 +27,11 @@ create EditCommand
 EditCommandParser -> EditCommand
 activate EditCommand
 
-EditCommand --> EditCommandParser : e
+EditCommand --> EditCommandParser
 deactivate EditCommand
 
 EditCommandParser --> AddressBookParser : e
 deactivate EditCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditCommandParser -[hidden]-> AddressBookParser
-destroy EditCommandParser
 
 AddressBookParser --> LogicManager : e
 deactivate AddressBookParser
