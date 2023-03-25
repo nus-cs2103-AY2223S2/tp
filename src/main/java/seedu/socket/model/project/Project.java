@@ -1,5 +1,6 @@
 package seedu.socket.model.project;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Person;
 
 /**
@@ -154,5 +156,20 @@ public class Project {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * Returns true if the {@code Name} belongs to a member of the {@code Project}.
+     * @param name {@code Name} to check.
+     * @return {@code true} if the {@code Name} belongs to a member of the {@code Project}.
+     */
+    public Boolean hasMember(Name name) {
+        requireNonNull(name);
+        for (Person member : members) {
+            if (member.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
