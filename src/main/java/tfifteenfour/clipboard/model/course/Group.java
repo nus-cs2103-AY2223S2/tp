@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Assignment;
-import tfifteenfour.clipboard.model.student.Session;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
@@ -16,14 +15,16 @@ public class Group {
 
     private String groupName;
     private final UniqueStudentList students;
+    private final UniqueSessionsList sessions;
 
     {
         students = new UniqueStudentList();
+        sessions = new UniqueSessionsList();
     }
 
     // Placeholder example only, dont use arraylist, need to use ObservableList for javafx to recognize
     // Convert to UniqueXXXlist, just like UniqueStudentsList class
-    private ArrayList<Session> sessions = new ArrayList<>();
+//    private ArrayList<Session> sessions = new ArrayList<>();
     private ArrayList<Assignment> assignments = new ArrayList<>();
     // ##############################################################
 
@@ -39,6 +40,13 @@ public class Group {
         return students.asModifiableObservableList();
     }
 
+    public ObservableList<Session> getUnmodifiableSessionList() {
+        return sessions.asUnmodifiableObservableList();
+    }
+
+
+
+
 
     public void addStudent(Student student) {
         this.students.add(student);
@@ -46,6 +54,7 @@ public class Group {
 
     public void addSession(Session session) {
         this.sessions.add(session);
+        session.setGroup(this);
     }
 
     public void addAssignment(Assignment assignment) {
@@ -68,6 +77,11 @@ public class Group {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
+    }
+
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return sessions.contains(session);
     }
 
     public static boolean isValidGroupName(String test) {
