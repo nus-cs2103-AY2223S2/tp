@@ -213,7 +213,14 @@ public class Person {
     }
 
     /**
-     * Returns true if the person contains one of the keywords in all the fields specified, returns false otherwise.
+     * Returns true if for all the fields specified,
+     * the person contains at least one of the keywords in the list of keywords for that field,
+     * returns false otherwise.
+     *
+     * For the more mathematically inclined,
+     * {∀field ∈ Fields: ∃keyword ∈ field.keywords s.t. Person.field.contains(keyword) == true}.
+     * where Fields is the fields specified in the FindCommand, field.keywords is the keywords associated with that
+     * field and Person.field is the field we are testing against.
      */
     public boolean contains(HashMap<PredicateKey, Set<String>> keywords) {
 

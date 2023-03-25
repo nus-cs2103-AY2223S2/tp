@@ -20,7 +20,11 @@ public abstract class Field {
     }
 
     /**
-     * Returns true if test string is contained within the value of the field.
+     * Returns true if at least one of the strings contained in test
+     * is contained within the value of the field.
+     *
+     * For the more mathematically inclined,
+     * {∃t ∈ test s.t. this.value.toUpperCase().contains(t.toUpperCase()) == true}.
      */
     public boolean contains(Set<String> test) {
         for (String t: test) {
