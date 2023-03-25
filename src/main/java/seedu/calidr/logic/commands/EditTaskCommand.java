@@ -21,6 +21,7 @@ import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 
@@ -100,9 +101,11 @@ public class EditTaskCommand extends Command {
             TodoDateTime updatedBy = editTodoDescriptor.getBy().orElse(todoToEdit.getBy());
             Description oldDescription = todoToEdit.getDescription().orElse(null);
             Description updatedDescription = editTodoDescriptor.getDescription().orElse(oldDescription);
+            Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
 
             ToDo updatedTodo = new ToDo(updatedTitle, updatedBy);
             updatedTodo.setDescription(updatedDescription);
+            updatedTodo.setPriority(updatedPriority);
 
             return updatedTodo;
 
@@ -118,9 +121,11 @@ public class EditTaskCommand extends Command {
             EventDateTimes updatedEventTimes = new EventDateTimes(updatedFromDateTime, updatedToDateTime);
             Description oldDescription = eventToEdit.getDescription().orElse(null);
             Description updatedDescription = editEventDescriptor.getDescription().orElse(oldDescription);
+            Priority updatedPriority = editEventDescriptor.getPriority().orElse(eventToEdit.getPriority());
 
             Event updatedEvent = new Event(updatedTitle, updatedEventTimes);
             updatedEvent.setDescription(updatedDescription);
+            updatedEvent.setPriority(updatedPriority);
 
             return updatedEvent;
 
@@ -141,6 +146,7 @@ public class EditTaskCommand extends Command {
         private TodoDateTime byDateTime;
         private LocalDateTime fromDateTime;
         private LocalDateTime toDateTime;
+        private Priority priority;
 
         public EditTaskDescriptor() {}
 
@@ -153,13 +159,15 @@ public class EditTaskCommand extends Command {
             setBy(toCopy.byDateTime);
             setFrom(toCopy.fromDateTime);
             setTo(toCopy.toDateTime);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, byDateTime, fromDateTime, toDateTime);
+            return CollectionUtil.isAnyNonNull(title, description, byDateTime,
+                    fromDateTime, toDateTime, priority);
         }
 
         public void setTitle(Title title) {
@@ -181,6 +189,10 @@ public class EditTaskCommand extends Command {
         public void setTo(LocalDateTime localDateTime) {
             this.toDateTime = localDateTime;
         }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
     }
 
 
@@ -192,6 +204,7 @@ public class EditTaskCommand extends Command {
         private Title title;
         private Description description;
         private TodoDateTime byDateTime;
+        private Priority priority;
 
         /**
          * Creates a new {@code EditTodoDescriptor} object with the
@@ -203,6 +216,8 @@ public class EditTaskCommand extends Command {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
             setBy(toCopy.byDateTime);
+            setPriority(toCopy.priority);
+
         }
 
         /**
@@ -213,6 +228,7 @@ public class EditTaskCommand extends Command {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
             setBy(toCopy.byDateTime);
+            setPriority(toCopy.priority);
 
         }
 
@@ -220,7 +236,8 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, byDateTime);
+            return CollectionUtil.isAnyNonNull(title,
+                    description, byDateTime, priority);
         }
 
         public void setTitle(Title title) {
@@ -247,6 +264,14 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(byDateTime);
         }
 
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -264,7 +289,8 @@ public class EditTaskCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
-                    && getBy().equals(e.getBy());
+                    && getBy().equals(e.getBy())
+                    && getPriority().equals(e.getPriority());
         }
     }
 
@@ -278,6 +304,7 @@ public class EditTaskCommand extends Command {
         private Description description;
         private LocalDateTime fromDateTime;
         private LocalDateTime toDateTime;
+        private Priority priority;
 
         /**
          * Creates a new {@code EditEventDescriptor} object with the
@@ -290,6 +317,7 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setFromDateTime(toCopy.fromDateTime);
             setToDateTime(toCopy.toDateTime);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -301,13 +329,15 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setFromDateTime(toCopy.fromDateTime);
             setToDateTime(toCopy.toDateTime);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, fromDateTime, toDateTime);
+            return CollectionUtil.isAnyNonNull(title, description, fromDateTime,
+                    toDateTime, priority);
         }
 
         public void setTitle(Title title) {
@@ -342,6 +372,14 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(toDateTime);
         }
 
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -360,7 +398,8 @@ public class EditTaskCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
                     && getFromDateTime().equals(e.getFromDateTime())
-                    && getToDateTime().equals(e.getToDateTime());
+                    && getToDateTime().equals(e.getToDateTime())
+                    && getPriority().equals(e.getPriority());
         }
     }
 
