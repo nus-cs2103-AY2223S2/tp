@@ -36,15 +36,11 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MODULE = "CS2!03T";
-<<<<<<< HEAD
     private static final String INVALID_CCA = "!NES";
     private static final String INVALID_CCA_POSITION = "*President*";
-=======
     private static final String INVALID_INSTAGRAM = "inst...agram";
     private static final String INVALID_TELEGRAM = "tele";
->>>>>>> bbfb43a7f5c7f92f93c7de5d92c844c799a65a30
     private static final String INVALID_BIRTHDAY = "Hello/01/2000";
-
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -53,15 +49,13 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_MODULE_1 = "CS2103T";
     private static final String VALID_MODULE_2 = "CS2101";
-<<<<<<< HEAD
     private static final String VALID_CCA_1 = "NES";
     private static final String VALID_CCA_2 = "ICS";
     private static final String VALID_CCA_POSITION_1 = "PRESIDENT";
     private static final String VALID_CCA_POSITION_2 = "DIRECTOR";
-=======
     private static final String VALID_INSTAGRAM = "john.doe";
     private static final String VALID_TELEGRAM = "some_tele123gram";
->>>>>>> bbfb43a7f5c7f92f93c7de5d92c844c799a65a30
+
     private static final String VALID_BIRTHDAY = "01/01/2000";
 
     private static final String WHITESPACE = " \t\r\n";
