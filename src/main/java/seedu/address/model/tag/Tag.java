@@ -36,7 +36,7 @@ public class Tag {
      * @return the corresponding color code for css
      */
     public String tagColor() {
-        return "#3e7b91";
+        return "#000080";
     }
 
     @Override
