@@ -1,25 +1,26 @@
 package seedu.patientist.logic.parser;
 
-import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
-
-import java.util.stream.Stream;
-
 import seedu.patientist.logic.commands.AddWardCommand;
+import seedu.patientist.logic.commands.DeleteWardCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.ward.Ward;
 
+import java.util.stream.Stream;
+
+import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
+
 /**
- * Parses input arguments and creates a new AddWardCommand object
+ * Parses input arguments and creates a new DeleteWardCommand object
  */
-public class AddWardCommandParser {
+public class DeleteWardCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddWardCommand and returns an AddCommand
+     * Parses the given {@code String} of arguments in the context of the AddWardCommand and returns an AddWardCommand
      * object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddWardCommand parse(String args) throws ParseException {
+    public DeleteWardCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
@@ -29,7 +30,7 @@ public class AddWardCommandParser {
 
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
 
-        return new AddWardCommand(ward);
+        return new DeleteWardCommand(ward.getWardName());
     }
 
     /**

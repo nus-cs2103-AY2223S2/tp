@@ -175,4 +175,11 @@ public class Ward {
     public String getWardName() {
         return wardName;
     }
+
+    /**
+     * Checks if ward is empty.
+     */
+    public boolean isEmpty() {
+        return patients.isEmpty() && staffs.isEmpty();
+    }
 }
