@@ -48,6 +48,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCards = new FilteredList<>(this.masterDeck.getCardList());
         filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
+        updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
     }
 
     public ModelManager() {
@@ -226,7 +227,7 @@ public class ModelManager implements Model {
 
         setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
-        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
     }
 
     @Override
@@ -311,7 +312,7 @@ public class ModelManager implements Model {
         if (selectedDeck != null) {
             updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
         } else {
-            updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+            updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
         }
     }
 

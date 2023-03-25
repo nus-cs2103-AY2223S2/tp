@@ -19,6 +19,7 @@ import seedu.address.model.tag.Tag;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
+    Predicate<Card> PREDICATE_SHOW_NO_CARDS = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

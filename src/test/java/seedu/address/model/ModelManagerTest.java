@@ -122,7 +122,7 @@ public class ModelManagerTest {
         //assertFalse(modelManager.equals(new ModelManager(masterDeck, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        modelManager.updateFilteredCardList( PREDICATE_SHOW_ALL_CARDS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
