@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_EM
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_BYTEDANCE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_BYTEDANCE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.TAG_DESC_HIGHSALARY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplications.BYTEDANCE;
 
@@ -81,7 +82,7 @@ public class ApplicationLogicManagerTest {
         // Execute add command
         String addApplicationCommand = AddApplicationCommand.COMMAND_WORD
                 + ROLE_DESC_BYTEDANCE + COMPANY_NAME_DESC_BYTEDANCE + COMPANY_EMAIL_DESC_BYTEDANCE
-                + STATUS_DESC_BYTEDANCE;
+                + STATUS_DESC_BYTEDANCE + TAG_DESC_HIGHSALARY;
         Application expectedApplication = new ApplicationBuilder(BYTEDANCE).build();
         ApplicationModelManager expectedModel = new ApplicationModelManager();
         expectedModel.addApplication(expectedApplication);
