@@ -57,6 +57,10 @@ public class Person {
         return name;
     }
 
+    public String getStringNameLowerCase() {
+        return name.fullName.toLowerCase();
+    }
+
     public Phone getPhone() {
         return phone;
     }

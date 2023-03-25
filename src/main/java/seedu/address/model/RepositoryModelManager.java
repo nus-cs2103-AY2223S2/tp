@@ -56,6 +56,10 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         return repo.getFilterData(predicate);
     }
 
+    public List<T> filterReadOnlyList(Predicate<T> predicate) {
+        return repo.getData().filtered(predicate);
+    }
+
 
     /**
      * Returns true if an item with the same identity as {@code item} exists in the repo.
@@ -96,6 +100,10 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     //=========== Filtered Person List Accessors =============================================================
     public ObservableList<T> filterItemList(Predicate<T> predicate) {
         return itemFilteredList.filtered(predicate);
+    }
+
+    public int getFilteredListSize() {
+        return itemFilteredList.size();
     }
 
     public ObservableList<T> getFilteredItemList() {

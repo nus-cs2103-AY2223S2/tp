@@ -8,9 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -29,7 +26,7 @@ import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsExactKeywordsPredicate;
+import seedu.address.model.person.NameContainsInOrderKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.PersonBuilder;
@@ -113,10 +110,10 @@ public class AddressBookParserTest {
     }
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keyword = "foo" + "bar" + "baz";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new NameContainsExactKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keyword));
+        assertEquals(new FindCommand(new NameContainsInOrderKeywordsPredicate(keyword)), command);
     }
 
     @Test

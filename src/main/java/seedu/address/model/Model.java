@@ -89,4 +89,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Filters the ReadOnly peron list by the given {@code predicate}.
+     */
+    ObservableList<Person> filterReadOnlyPersonList(Predicate<Person> predicate);
 }

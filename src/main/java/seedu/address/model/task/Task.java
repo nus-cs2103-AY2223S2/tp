@@ -54,6 +54,10 @@ public class Task implements Relationship<Task> {
         return title;
     }
 
+    public String getStringTitleLowerCase() {
+        return title.getValue().toLowerCase();
+    }
+
     public Content getContent() {
         return content;
     }

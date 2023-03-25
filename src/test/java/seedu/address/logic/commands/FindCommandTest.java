@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
-import seedu.address.model.person.NameContainsExactKeywordsPredicate;
+import seedu.address.model.person.NameContainsInOrderKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 
@@ -41,10 +40,10 @@ public class FindCommandTest {
             new RepositoryModelManager<>(new Repository<AssignTask>()));
     @Test
     public void equals() {
-        NameContainsExactKeywordsPredicate firstPredicate =
-                new NameContainsExactKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsExactKeywordsPredicate secondPredicate =
-                new NameContainsExactKeywordsPredicate(Collections.singletonList("second"));
+        NameContainsInOrderKeywordsPredicate firstPredicate =
+                new NameContainsInOrderKeywordsPredicate("first");
+        NameContainsInOrderKeywordsPredicate secondPredicate =
+                new NameContainsInOrderKeywordsPredicate("second");
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
@@ -68,7 +67,7 @@ public class FindCommandTest {
     @Test
     public void execute_invalidKeywords_noPersonFound() {
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON;
-        NameContainsExactKeywordsPredicate predicate = preparePredicate("invalidKeyword");
+        NameContainsInOrderKeywordsPredicate predicate = preparePredicate("invalidKeyword");
         FindCommand command = new FindCommand(predicate);
         assertCommandFailure(command, model, expectedMessage);
         // Does not flush out the GUI when taking in invalid keywords
@@ -78,8 +77,8 @@ public class FindCommandTest {
     }
     @Test
     public void execute_validKeywords_noTaskAssigned() {
-        String expectedMessage = String.format(FindCommand.MESSAGE_NO_TASK_ASSIGNED, "Alice Pauline");
-        NameContainsExactKeywordsPredicate predicate = preparePredicate("Alice Pauline");
+        String expectedMessage = String.format(FindCommand.MESSAGE_NO_PERSON_FOUND, "Alice Pauline");
+        NameContainsInOrderKeywordsPredicate predicate = preparePredicate("Alice Pauline");
         FindCommand command = new FindCommand(predicate);
 
         Id pId = getAssignedPersonId(predicate);
@@ -98,7 +97,7 @@ public class FindCommandTest {
                 officeConnectModel, expectedOfficeConnectModel);
     }
 
-    private Id getAssignedPersonId(NameContainsExactKeywordsPredicate predicate) {
+    private Id getAssignedPersonId(NameContainsInOrderKeywordsPredicate predicate) {
         List<Person> personList = model.getAddressBook()
                 .getPersonList()
                 .filtered(predicate);
@@ -112,10 +111,10 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsExactKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code NameContainsInOrderKeywordsPredicate}.
      */
-    private NameContainsExactKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsExactKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NameContainsInOrderKeywordsPredicate preparePredicate(String userInput) {
+        return new NameContainsInOrderKeywordsPredicate(userInput);
     }
 
 }
