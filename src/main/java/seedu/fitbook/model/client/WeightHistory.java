@@ -31,6 +31,14 @@ public class WeightHistory {
         return Collections.unmodifiableList(weights);
     }
 
+    public Pair<String, String> getLastEntry() {
+        if (weights.isEmpty()) {
+            //throw an exception
+            return null;
+        }
+        return weights.get(weights.size() - 1);
+    }
+
     /**
      * Adds a weight to the history.
      *

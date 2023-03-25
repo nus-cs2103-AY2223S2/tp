@@ -3,6 +3,7 @@ package seedu.fitbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
@@ -47,23 +48,13 @@ public class AddWeightCommand extends Command {
         }
         ObservableList<Client> clientList = model.getFilteredClientList();
         Client clientToAddWeight = clientList.get(targetIndex - 1);
-        System.out.println(clientToAddWeight.getWeightHistory());
 
-        clientToAddWeight.getWeight().getWeightHistory().addWeight(date, weightToAdd.value);
+        clientToAddWeight.getWeightHistory().addWeight(date, weightToAdd.value);
+        Pair<String, String> lastEntry = clientToAddWeight.getWeightHistory().getLastEntry();
+        String lastWeightValue = lastEntry.getValue();
+        Weight lastWeight = new Weight(lastWeightValue);
+        clientToAddWeight.setWeight(lastWeight);
 
-        Client updatedClient = new Client(
-                clientToAddWeight.getName(),
-                clientToAddWeight.getPhone(),
-                clientToAddWeight.getEmail(),
-                clientToAddWeight.getAddress(),
-                clientToAddWeight.getAppointments(),
-                clientToAddWeight.getWeight(),
-                clientToAddWeight.getGender(),
-                clientToAddWeight.getCalorie(),
-                clientToAddWeight.getGoal(),
-                clientToAddWeight.getTags());
-
-        model.setClient(clientToAddWeight, updatedClient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex, weightToAdd, date));
     }
 

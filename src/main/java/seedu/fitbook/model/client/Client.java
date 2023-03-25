@@ -2,6 +2,7 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import javafx.util.Pair;
@@ -17,9 +18,10 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+
     // Data fields
     private final Address address;
-    private final Weight weight;
+    private Weight weight;
     private final Gender gender;
     private final Goal goal;
     private final Set<Appointment> appointments = new HashSet<>();
@@ -43,6 +45,7 @@ public class Client {
         this.weight = weight;
         this.gender = gender;
         this.goal = goal;
+        this.weightHistory = new WeightHistory(new Pair<>(LocalDate.now().toString(), weight.value));
     }
 
     public Name getName() {
@@ -69,6 +72,10 @@ public class Client {
         return weight;
     }
 
+    public void setWeight(Weight newWeight) {
+        this.weight = newWeight;
+    }
+
     public Gender getGender() {
         return gender;
     }
@@ -79,10 +86,6 @@ public class Client {
 
     public WeightHistory getWeightHistory() {
         return weightHistory;
-    }
-
-    public void setWeightHistory(WeightHistory weightHistory) {
-        this.weightHistory = weightHistory;
     }
 
     public boolean isAppointmentEmpty() {
