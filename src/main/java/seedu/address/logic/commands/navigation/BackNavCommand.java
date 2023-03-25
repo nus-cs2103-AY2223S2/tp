@@ -23,10 +23,9 @@ public class BackNavCommand extends Command {
         model.navigateBack();
 
         NavigationContext navContext = model.getCurrentNavContext();
-
         list(navContext, model);
 
-        return new CommandResult(NavCommand.getSuccessfulNavMessage(model.getCurrentNavContext()));
+        return NavCommand.getSuccessfulCommandResult(navContext, model);
     }
 
     private void list(NavigationContext navContext, Model model) throws CommandException {

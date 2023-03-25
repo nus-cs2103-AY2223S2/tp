@@ -13,7 +13,7 @@ public class RootNavCommand extends NavCommand {
     public CommandResult execute(Model model) throws CommandException {
         model.navigateToRoot();
         listAtRoot(model);
-        return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
+        return getSuccessfulCommandResult(model.getCurrentNavContext(), model);
     }
 
     @Override

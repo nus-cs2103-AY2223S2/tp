@@ -39,7 +39,7 @@ public class RelativeNavCommand extends NavCommand {
             throw new CommandException(e.getMessage());
         }
 
-        return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
+        return getSuccessfulCommandResult(model.getCurrentNavContext(), model);
     }
 
     private void navigateToModFromRoot(Model model) throws CommandException {

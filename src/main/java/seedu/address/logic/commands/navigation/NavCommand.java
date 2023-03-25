@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,6 +29,10 @@ public abstract class NavCommand extends Command {
                     + "lecture_name] \n" + "Example: " + COMMAND_WORD + " /mod CS2040S /lec L1 \n";
 
     public static final String MESSAGE_NAV_SUCCESS = "You navigated to %s";
+
+    public static CommandResult getSuccessfulCommandResult(NavigationContext context, Model model) {
+        return new CommandResult(NavCommand.getSuccessfulNavMessage(context), context.toString());
+    }
 
     public static String getSuccessfulNavMessage(NavigationContext context) {
         return String.format(MESSAGE_NAV_SUCCESS, context);

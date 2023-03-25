@@ -15,7 +15,6 @@ import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
-
 /**
  * A Model stub where all methods not related to navigation throw {@code AssertionError}s.
  * <p>

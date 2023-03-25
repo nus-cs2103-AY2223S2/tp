@@ -51,7 +51,7 @@ public class DirectNavCommand extends NavCommand {
             throw new CommandException("The lecture name provided is invalid!");
         }
 
-        return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
+        return getSuccessfulCommandResult(model.getCurrentNavContext(), model);
     }
 
     @Override
