@@ -21,7 +21,7 @@ public class AddWardCommand extends Command {
             + PREFIX_WARD + "A03\n";
 
     public static final String MESSAGE_SUCCESS = "New ward added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This ward already exists in MedInfo";
+    public static final String MESSAGE_DUPLICATE_WARD = "This ward already exists in MedInfo";
 
     private final Ward toAdd;
 
@@ -38,7 +38,7 @@ public class AddWardCommand extends Command {
         requireNonNull(model);
 
         if (model.hasWard(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+            throw new CommandException(MESSAGE_DUPLICATE_WARD);
         }
 
         model.addWard(toAdd);
