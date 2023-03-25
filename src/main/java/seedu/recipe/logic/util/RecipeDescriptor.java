@@ -3,6 +3,7 @@ package seedu.recipe.logic.util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -14,6 +15,8 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -63,9 +66,13 @@ public class RecipeDescriptor {
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
-        IngredientBuilder[] updatedIngredients = getIngredients()
-                .orElse(recipeToEdit.getIngredients())
-                .toArray(IngredientBuilder[]::new);
+        Hashtable<Ingredient, IngredientQuantifier> updatedIngredients = getIngredients()
+                .map(l -> {
+                    Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+                    l.forEach(ingredientBuilder -> ingredientTable.putAll(ingredientBuilder.build()));
+                    return ingredientTable;
+                })
+                .orElse(recipeToEdit.getIngredients());
         newRecipe.setIngredients(updatedIngredients);
 
         Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);

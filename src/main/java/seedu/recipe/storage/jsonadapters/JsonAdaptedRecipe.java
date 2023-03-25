@@ -22,6 +22,7 @@ import seedu.recipe.model.tag.Tag;
  * Jackson-friendly version of {@link Recipe}.
  */
 @JsonPropertyOrder({"name", "portion", "duration", "tags", "ingredients", "steps"})
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 

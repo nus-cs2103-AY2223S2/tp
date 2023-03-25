@@ -11,6 +11,8 @@ public class Ingredient {
             + "singular hyphens, such as 'self-raising flour'.";
     private static final String WORD_GROUP = "[A-Za-z]+(\\-[A-Za-z]+)?";
     public static final String VALIDATION_REGEX = String.format("^%s(\\s+%s)*$", WORD_GROUP, WORD_GROUP);
+
+    //Data fields
     private final String name;
     private String commonName = "";
 
