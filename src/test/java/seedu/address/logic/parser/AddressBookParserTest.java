@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DESC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_START;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -94,13 +96,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addMeeting() throws Exception {
-        final String meeting = " 30-12-2020 15:30 16:30";
+        final String meeting_desc = "sample";
+        final String meeting_start = "30-12-2020 15:30";
+        final String meeting_end  = "30-12-2020 16:30";
         final Meeting sampleMeeting = new Meeting("sample",
             LocalDateTime.of(2020, 12, 30, 15, 30),
             LocalDateTime.of(2020, 12, 30, 16, 30)
         );
         AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(AddMeetingCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MEETING + meeting);
+            + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MEETING_DESC + meeting_desc + " "
+        + PREFIX_MEETING_START + meeting_start + " " + PREFIX_MEETING_END + meeting_end);
         assertEquals(new AddMeetingCommand(INDEX_FIRST_PERSON, sampleMeeting), command);
     }
 
