@@ -6,7 +6,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  * Represents an ingredient that is used in a {@code Recipe}.
  */
 public class Ingredient {
-    public static final String MESSAGE = "An ingredient should be made up of one or more groups of "
+    public static final String MESSAGE_CONSTRAINTS = "An ingredient should be made up of one or more groups of "
             + "whitespace separated alphabetic characters. These characters may also be separated by "
             + "singular hyphens, such as 'self-raising flour'.";
     private static final String WORD_GROUP = "[A-Za-z]+(\\-[A-Za-z]+)?";
@@ -28,7 +28,7 @@ public class Ingredient {
      */
     public static Ingredient of(String s) {
         assert s != null;
-        checkArgument(isValidIngredientName(s), MESSAGE);
+        checkArgument(isValidIngredientName(s), MESSAGE_CONSTRAINTS);
         return new Ingredient(s);
     }
 
@@ -38,7 +38,7 @@ public class Ingredient {
      */
     public void setCommonName(String s) {
         assert s != null;
-        checkArgument(isValidIngredientName(s), MESSAGE);
+        checkArgument(isValidIngredientName(s), MESSAGE_CONSTRAINTS);
         this.commonName = s;
     }
 
@@ -63,5 +63,13 @@ public class Ingredient {
             return String.format("%s (aka %s)", name, commonName);
         }
         return name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getCommonName() {
+        return this.commonName;
     }
 }

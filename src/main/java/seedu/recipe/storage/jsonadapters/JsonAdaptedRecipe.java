@@ -1,6 +1,7 @@
 package seedu.recipe.storage.jsonadapters;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,6 +17,8 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -84,10 +87,10 @@ public class JsonAdaptedRecipe {
                 source.getTags().stream()
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList()));
-        ingredients.addAll(
-                source.getIngredients().stream()
-                        .map(JsonAdaptedIngredient::new)
-                        .collect(Collectors.toList()));
+        //Set ingredients
+        source.getIngredients().forEach((ingredient, quantifier) ->
+                ingredients.add(new JsonAdaptedIngredient(ingredient, quantifier)));
+
         steps.addAll(
                 source.getSteps().stream()
                         .map(JsonAdaptedStep::new)
@@ -131,11 +134,11 @@ public class JsonAdaptedRecipe {
         }
         res.setTags(tagList.toArray(Tag[]::new));
 
-        List<IngredientBuilder> ingredientsList = new ArrayList<>();
+        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
         for (JsonAdaptedIngredient i : ingredients) {
-            ingredientsList.add(i.toModelType());
+            ingredientTable.putAll(i.toModelType());
         }
-        res.setIngredients(ingredientsList.toArray(IngredientBuilder[]::new));
+        res.setIngredients(ingredientTable);
 
         List<Step> stepList = new ArrayList<>();
         for (JsonAdaptedStep s : steps) {

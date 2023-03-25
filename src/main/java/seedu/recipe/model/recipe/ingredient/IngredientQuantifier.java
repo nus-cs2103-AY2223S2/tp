@@ -40,6 +40,9 @@ public class IngredientQuantifier {
         this.remarks = List.of(remarks);
 
         //Validated by Ingredient
+        for (Ingredient i: substitutions) {
+            assert i != null;
+        }
         this.substitutions = List.of(substitutions);
     }
 
