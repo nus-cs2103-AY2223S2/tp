@@ -32,6 +32,12 @@ public class VimificationParser implements LogicCommandParser<LogicCommand> {
         return INSTANCE.getInternalParser();
     }
 
+    /**
+     * Parses the user input and return its corresponding command.
+     *
+     * @param userInput
+     * @return
+     */
     @Override
     public LogicCommand parse(String userInput) {
         LOGGER.info(userInput);

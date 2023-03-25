@@ -1,5 +1,6 @@
 package vimification.taskui;
 
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -37,9 +38,8 @@ public class CommandInput extends UiPart<TextField> {
         boolean isEnterEvent = event.getCode().equals(KeyCode.ENTER);
         boolean isEscEvent = event.getCode().equals(KeyCode.ESCAPE);
 
-        if (isEscEvent) {
+        if (isEscEvent || isTextFieldEmpty()) {
             returnFocusToParent();
-            System.out.println("You escaped");
         }
 
         if (isEnterEvent) {
@@ -98,9 +98,10 @@ public class CommandInput extends UiPart<TextField> {
         }
     }
 
-    private void checkIsExitCommand(String result) {
-        boolean isExit = result.equals("wq!");
-        if (isExit) {
+    private void checkIsExitCommand(String commandString) {
+        List<String> exitCommands = List.of("wq!", "wq", "q!", "q");
+        boolean isExitCommand = exitCommands.contains(commandString);
+        if (isExitCommand) {
             Platform.exit();
         }
     }
@@ -110,11 +111,14 @@ public class CommandInput extends UiPart<TextField> {
         this.getRoot().setVisible(false);
     }
 
-
     @FXML
-    public void initialize() {
+    private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
         this.getRoot().setVisible(false);
+    }
+
+    private boolean isTextFieldEmpty() {
+        return getRoot().getText().equals("");
     }
 
 }
