@@ -59,15 +59,25 @@ Example:
 
 ## Add user contacts: `add`
 
-Format: `add [name] [year/course] [phone number] [email] [address]`
+Format: `add [name] [year/course] [phone number] [email] [address]` Optional to add: `t/TAGS`
 
-* User is *required* to enter name and course
-* Privacy information such as phone number and address can be optionals
+* User is *required* to enter **name, status, phone number, email, address**
+* Tags can be optional
 * If the account exists, user can add in related field of interests to share with others
 
 Example:
-* `add Shenghan Y2/Computer-science 0 punngol place 696a #12-348` will displays user's name, year/course
-  and address only
+* `add n/Shenghan s/Year2 Computer-science p/99999999 e/david@gmail.com a/punngol place 696a #12-348` will displays the 
+necessary basic information that are the user's name, year/course, phone number, email, address. Optional fields are tags,
+for which there are commitment/cca tags, module tags and lastly the general tags for users to enter non-specific typed tags.
+
+Example (with the addition of tags):
+* `add n/Shenghan s/Year2 Computer-science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+mt/cs2103` Note that the tags can be placed in any part of the command, and it will not break!
+
+Tags are categorised according to tag colors:
+* Commitment tags: `coral pink`
+* Module tags: `Dark green`
+* General tags: `default blue`
 
 ## Delete user contacts: `delete`
 
@@ -92,15 +102,15 @@ Format: `help`
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                 |
-|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME y/YEAR COURSE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho y/y2-science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                       |
-| **List**         | `list`                                                                                                                                                                                           |
-| **Help**         | `help`                                                                                                                                                                                           |
-| **Add-Image**    | `add-image INDEX [NAME-OF-IMAGE]` <br> e.g., `add-image 2 weekiat.png`                                                                                                                           |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                |                                                                                                                       |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                          |
+| Action           | Format, Examples                                                                                                                                                                                                                   |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME y/YEAR COURSE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho y/y2-science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                        |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                         |
+| **List**         | `list`                                                                                                                                                                                                                             |
+| **Help**         | `help`                                                                                                                                                                                                                             |
+| **Add-Image**    | `add-image INDEX [NAME-OF-IMAGE]` <br> e.g., `add-image 2 weekiat.png`                                                                                                                                                             |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                  |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                            |
 

@@ -15,7 +15,9 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
@@ -27,7 +29,13 @@ public class ArgumentMultimap {
      */
     public void put(Prefix prefix, String argValue) {
         List<String> argValues = getAllValues(prefix);
-        argValues.add(argValue);
+        if (prefix.toString().equals("mt/")) {
+            argValues.add("ModuleXXXXX" + argValue);
+        } else if (prefix.toString().equals("ct/")) {
+            argValues.add("CommitmentXXXXX" + argValue);
+        } else {
+            argValues.add(argValue);
+        }
         argMultimap.put(prefix, argValues);
     }
 
@@ -48,6 +56,7 @@ public class ArgumentMultimap {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
+        System.out.println(argMultimap.get(prefix));
         return new ArrayList<>(argMultimap.get(prefix));
     }
 
