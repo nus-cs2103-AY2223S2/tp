@@ -84,10 +84,11 @@ public class CommandTestUtil {
     public static final String VALID_NAME_B = "Banana Split";
     public static final String VALID_QUANTITY_A = "5";
     public static final String VALID_QUANTITY_B = "2";
+    public static final String VALID_STATUS_A_PENDING_DATE = "2022/01/09";
+    public static final String VALID_STATUS_A_PAID_DATE = "2022/03/26";
+    public static final String VALID_STATUS_B_PENDING_DATE = "2023/02/09";
     public static final String VALID_ADDRESS_A = "10 Summer Drive, Singapore 3098812";
     public static final String VALID_ADDRESS_B = "11 Fabordrive, Singapore 3001298";
-    public static final String VALID_STATUS_A = "Pending";
-    public static final String VALID_STATUS_B = "Paid";
     public static final String VALID_CREATED_DATE_A = "2023/01/09";
     public static final String VALID_CREATED_DATE_B = "2022/12/20";
     public static final String VALID_NOTE_A = "Note A";

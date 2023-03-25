@@ -79,13 +79,21 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a Status from a given string.
+     * Returns a new Status which StatusValue is Pending.
      */
-    public static Status getStatus(String status, LocalDate date) {
-        StatusValue statusValue = StatusValue.fromString(status);
+    public static Status getInitialStatus(String date) {
+        LocalDate statusDate = LocalDate.parse(date, StatusUpdate.DATE_FORMATTER);
         return new Status(List.of(
-                new StatusUpdate(statusValue, date)
+                new StatusUpdate(StatusValue.PENDING, statusDate)
         ));
+    }
+
+    /**
+     * Returns a new Status with StatueValue one ahead of the given Status.
+     */
+    public static Status getNextStatus(Status status, String date) {
+        LocalDate statusDate = LocalDate.parse(date, StatusUpdate.DATE_FORMATTER);
+        return status.newStatusWithNewUpdate(statusDate);
     }
 
     /**

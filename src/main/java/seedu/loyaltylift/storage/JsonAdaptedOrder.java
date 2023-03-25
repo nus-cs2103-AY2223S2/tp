@@ -107,6 +107,9 @@ public class JsonAdaptedOrder {
         for (JsonAdaptedStatusUpdate statusUpdate : statusUpdates) {
             modelStatusUpdates.add(statusUpdate.toModelType());
         }
+        if (!Status.isValidStatus(modelStatusUpdates)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
         final Status modelStatus = new Status(modelStatusUpdates);
 
         if (address == null) {

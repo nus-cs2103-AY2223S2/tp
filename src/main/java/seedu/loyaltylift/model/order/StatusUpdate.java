@@ -20,7 +20,16 @@ public class StatusUpdate implements Comparable<StatusUpdate> {
     }
 
     public StatusUpdate nextStatusUpdate(LocalDate date) {
+        // completed or cancelled should be the last stage
+        if (this.statusValue.equals(StatusValue.COMPLETED) ||
+            this.statusValue.equals(StatusValue.CANCELLED)) {
+            throw new IllegalStateException();
+        }
         return new StatusUpdate(this.statusValue.nextValue(), date);
+    }
+
+    public StatusUpdate nextStatusUpdate() {
+        return nextStatusUpdate(LocalDate.now());
     }
 
     public LocalDate getDate() {
@@ -34,6 +43,14 @@ public class StatusUpdate implements Comparable<StatusUpdate> {
     @Override
     public int compareTo(StatusUpdate o) {
         return this.statusValue.compareTo(o.statusValue);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatusUpdate  // instanceof handles nulls
+                && statusValue.equals(((StatusUpdate) other).statusValue)
+                && date.equals(((StatusUpdate) other).date)); // state check
     }
 
     @Override
