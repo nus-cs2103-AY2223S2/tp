@@ -167,7 +167,7 @@ Format: `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 
 **:information_source: Notes pairing**<br>
 
-* Pairing will only be successful if there are no clashes in availability that is specified by the elderly and volunteer.
+* A warning will be given if there are clashes in availability between the volunteer and elderly when pairing.
 
 </div>
 
