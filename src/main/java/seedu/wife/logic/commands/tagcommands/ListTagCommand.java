@@ -12,7 +12,10 @@ import seedu.wife.model.tag.Tag;
  */
 public class ListTagCommand extends Command {
     public static final String COMMAND_WORD = "listtag";
-    private static final String MESSAGE_SUCCESS = "Listed all tags.";
+    private static final String MESSAGE_SUCCESS = "Here are your existing tags: ";
+
+    private static final String MESSAGE_EMPTY_TAGS = "You have not created any tags! " +
+            "You may do so with the createtag command.";
 
     @Override
     public CommandResult execute(Model model) {
@@ -21,7 +24,15 @@ public class ListTagCommand extends Command {
         Object[] tags = model.getFilteredTagList().toArray();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are your existing tags: ");
+
+        if (tags.length == 0) {
+            sb.append(MESSAGE_EMPTY_TAGS).append(System.lineSeparator());
+            String emptyTags = sb.toString();
+            return new CommandResult(emptyTags);
+        }
+
+        sb.append(MESSAGE_SUCCESS);
+        sb.append(System.lineSeparator());
         for (Object tag : tags) {
             Tag thisTag = (Tag) tag;
             sb.append(thisTag.getTagName());
