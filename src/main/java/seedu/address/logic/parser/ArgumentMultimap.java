@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,14 +15,16 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
-    private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
+    private final Map<Prefix, List<String>> argMultimap = new LinkedHashMap<>();
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
      *
-     * @param prefix Prefix key with which the specified argument value is to be associated.
+     * @param prefix   Prefix key with which the specified argument value is to be associated.
      * @param argValue Argument value to be associated with the specified prefix key.
      */
     public void put(Prefix prefix, String argValue) {
