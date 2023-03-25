@@ -868,7 +868,7 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 **Format**: `help [COMMAND_WORD]`
 
 > Displays help for HMHero
-> 
+
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 COMMAND_WORD is strictly any of the following:
