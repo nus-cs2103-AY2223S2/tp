@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import vimification.commons.core.Index;
 import vimification.model.task.Task;
 
 /**
@@ -116,6 +117,10 @@ public class LogicTaskList {
      */
     public void unmark(int index) {
         tasks.get(index).unmark();
+    }
+
+    public void addTag(String newTag, Index index) {
+        tasks.get(index.getZeroBased()).addTag(newTag);
     }
 
     //// util methods

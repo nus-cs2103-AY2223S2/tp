@@ -2,10 +2,14 @@ package vimification.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+import java.util.HashSet;
+
 public abstract class Task {
 
     private String description;
     private boolean isDone;
+    private Set<String> tags;
 
     /**
      * Every field must be present and not null.
@@ -14,6 +18,7 @@ public abstract class Task {
         requireNonNull(description);
         this.description = description;
         this.isDone = isDone;
+        this.tags = new HashSet<>();
     }
 
     public String getDescription() {
@@ -39,6 +44,11 @@ public abstract class Task {
 
     public boolean containsKeyword(String keyword) {
         return description.contains(keyword);
+    }
+
+    public void addTag(String newTag) {
+        newTag = newTag.toLowerCase();
+        tags.add(newTag);
     }
 
     public abstract Task clone();
