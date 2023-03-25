@@ -228,12 +228,30 @@ Given below is an sequence diagram that illustrates the **Listing Patients** mec
 
 The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
 
-<!-- TODO describe the different search flags. That feature is still in progress -->
+The user can choose to add flags when searching, to search for the specific attributes of a Patient. If no flags are present, the mechanism will assume that it is searching the Patient's name.
 
 ##### Execution Sequence
 
-<!-- TODO add sample commands -->
-<!-- TODO describe the search flags parsing things, similar to the Add Patient Parsing -->
+Given below is an example usage scenario when a user enter `patient find --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --v covax` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `FindCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will throw a `ParseExeception` if there are no args present.
+    1. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
+    2. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
+    3. `ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
+    4. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
+    5. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
+    6. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
+4. After successfully parsing the args, the following will happen
+    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, PhoNameContainsKeywordsPredicatene, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>.
+    1a. If none of the flags are present, it will take the entire arg as a `setNameSearch`.
+    2. Then it will create an `FindCommand` with the new FindPatientDescriptor object.
+5. When `FindCommand#execute` is called, the following will happen.
+    1. It will check if the different attributes of FindPatientDescriptor is present.
+    2. It will find the patient by creating different `Optional<AttributePredicate>`.
+    3. The different predicates will be added into a `List<Predicate<Patient>>` and passed to `model#setPatientFilters` to display the filtered Patients.
+    4. `FindCommand` will then return `CommandMessage` to indicate it's success and the number of patients found.
 
 The activity diagram below illustrates the workflow of patient `FindCommand` that is described above.
 

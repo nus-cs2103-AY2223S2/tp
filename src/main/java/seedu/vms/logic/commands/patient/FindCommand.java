@@ -48,8 +48,8 @@ public class FindCommand extends Command {
     private final Optional<PhoneNumberPredicate> phonePredicate;
     private final Optional<DobPredicate> dobPredicate;
     private final Optional<BloodTypePredicate> bloodTypePredicate;
-    private final Optional<AllergyContainsKeywordsPredicate> allergyContainsKeywordsPredicate;
-    private final Optional<VaccineContainsKeywordsPredicate> vaccineContainsKeywordsPredicate;
+    private final Optional<AllergyContainsKeywordsPredicate> allergyPredicate;
+    private final Optional<VaccineContainsKeywordsPredicate> vaccinePredicate;
 
     /**
      * Existing FindCommand that was previously used to search using name only
@@ -61,8 +61,8 @@ public class FindCommand extends Command {
         this.phonePredicate = Optional.empty();
         this.dobPredicate = Optional.empty();
         this.bloodTypePredicate = Optional.empty();
-        this.allergyContainsKeywordsPredicate = Optional.empty();
-        this.vaccineContainsKeywordsPredicate = Optional.empty();
+        this.allergyPredicate = Optional.empty();
+        this.vaccinePredicate = Optional.empty();
     }
 
     /**
@@ -98,17 +98,17 @@ public class FindCommand extends Command {
         }
 
         if (findPatientDescriptor.getAllergies().isPresent()) {
-            this.allergyContainsKeywordsPredicate = Optional
+            this.allergyPredicate = Optional
                     .of(new AllergyContainsKeywordsPredicate(findPatientDescriptor.getAllergies().get()));
         } else {
-            this.allergyContainsKeywordsPredicate = Optional.empty();
+            this.allergyPredicate = Optional.empty();
         }
 
         if (findPatientDescriptor.getVaccines().isPresent()) {
-            this.vaccineContainsKeywordsPredicate = Optional
+            this.vaccinePredicate = Optional
                     .of(new VaccineContainsKeywordsPredicate(findPatientDescriptor.getVaccines().get()));
         } else {
-            this.vaccineContainsKeywordsPredicate = Optional.empty();
+            this.vaccinePredicate = Optional.empty();
         }
     }
 
@@ -116,7 +116,7 @@ public class FindCommand extends Command {
     public CommandMessage execute(Model model) {
         requireNonNull(model);
         List<Optional<? extends Predicate<Patient>>> optionalFilters = List.of(namePredicate, phonePredicate,
-                dobPredicate, bloodTypePredicate, allergyContainsKeywordsPredicate, vaccineContainsKeywordsPredicate);
+                dobPredicate, bloodTypePredicate, allergyPredicate, vaccinePredicate);
         List<Predicate<Patient>> filters = optionalFilters.stream()
                 .filter(Objects::nonNull)
                 .flatMap(Optional::stream)
@@ -134,10 +134,8 @@ public class FindCommand extends Command {
                         && phonePredicate.equals(((FindCommand) other).phonePredicate) // state check
                         && dobPredicate.equals(((FindCommand) other).dobPredicate) // state check
                         && bloodTypePredicate.equals(((FindCommand) other).bloodTypePredicate) // state check
-                        && allergyContainsKeywordsPredicate
-                                .equals(((FindCommand) other).allergyContainsKeywordsPredicate) // state check
-                        && vaccineContainsKeywordsPredicate
-                                .equals(((FindCommand) other).vaccineContainsKeywordsPredicate)); // state check
+                        && allergyPredicate.equals(((FindCommand) other).allergyPredicate) // state check
+                        && vaccinePredicate.equals(((FindCommand) other).vaccinePredicate)); // state check
     }
 
     /**
