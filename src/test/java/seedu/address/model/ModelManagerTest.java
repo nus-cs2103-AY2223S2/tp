@@ -2,8 +2,9 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CARDS;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_CARDS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.VARIABLE;
@@ -102,31 +103,31 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(masterDeck, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(masterDeck, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different masterDeck -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentMasterDeck, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentMasterDeck, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = LOOP.getQuestion().question.split("\\s+");
         modelManager.updateFilteredCardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-        //assertFalse(modelManager.equals(new ModelManager(masterDeck, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(masterDeck, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        modelManager.updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setMasterDeckFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(masterDeck, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(masterDeck, differentUserPrefs));
     }
 }

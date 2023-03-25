@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "CS2107";
 
     public static final String MESSAGE_SUCCESS = "New card added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the master deck";
+    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the this selected deck.";
     public static final String MESSAGE_NO_SELECTED_DECK = "A deck must be selected before a card can be added";
     private final AddCardDescriptor cardDescriptor;
 

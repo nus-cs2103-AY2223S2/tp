@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -18,27 +17,27 @@ public class DeckNamePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ReviewStatsPanel.class);
 
     @FXML
-    private ListView<Pair<String, String> > deckNameView;
+    private ListView<String> deckNameView;
 
     /**
      * Creates a {@code ReviewStatsPanel} with the given {@code ObservableList}.
      */
-    public DeckNamePanel(ObservableList<Pair<String, String> > deckNameList) {
+    public DeckNamePanel(ObservableList<String> deckNameList) {
         super(FXML);
         deckNameView.setItems(deckNameList);
-        deckNameView.setCellFactory(listView -> new DeckNamePanel.DeckNameViewCell());
+        deckNameView.setCellFactory(listView -> new DeckNameViewCell());
     }
 
-    class DeckNameViewCell extends ListCell<Pair<String, String>> {
+    static class DeckNameViewCell extends ListCell<String> {
         @Override
-        protected void updateItem(Pair<String, String> pair, boolean empty) {
-            super.updateItem(pair, empty);
-            if (empty || pair == null) {
+        protected void updateItem(String deckName, boolean empty) {
+            super.updateItem(deckName, empty);
+            if (empty || deckName == null) {
                 setGraphic(null);
                 setText(null);
 
             } else {
-                setGraphic(new DeckName(pair).getRoot());
+                setGraphic(new DeckName(deckName).getRoot());
                 setStyle("-fx-background-color: transparent");
             }
         }

@@ -3,28 +3,26 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.util.Pair;
 
 /**
  * Individual element of the review panel
  */
 public class DeckName extends UiPart<Region> {
     private static final String FXML = "DeckName.fxml";
+    private static final String EMPTY_STRING = "";
 
     @FXML
     private Label title;
-
     @FXML
     private Label description;
 
     /**
      * Creates a {@code ReviewStat} with the given {@code pair}.
      */
-    public DeckName(Pair<String, String> pair) {
+    public DeckName(String name) {
         super(FXML);
-        title.setText(pair.getKey());
-        description.setText(pair.getValue());
+        title.setText(name.equals(EMPTY_STRING) ? EMPTY_STRING : "Selected deck:");
+        description.setText(name);
     }
 
 }
-

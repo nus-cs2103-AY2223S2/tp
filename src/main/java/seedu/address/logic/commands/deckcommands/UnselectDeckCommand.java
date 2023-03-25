@@ -7,7 +7,6 @@ import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-
 /**
  * Selects a deck to operate on.
  */

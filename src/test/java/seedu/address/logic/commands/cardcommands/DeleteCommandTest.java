@@ -26,6 +26,10 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
+    {
+        model.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
+    }
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
@@ -34,6 +38,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
+        expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.deleteCard(cardToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

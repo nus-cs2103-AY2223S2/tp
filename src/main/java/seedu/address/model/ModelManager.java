@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
@@ -49,6 +48,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCards = new FilteredList<>(this.masterDeck.getCardList());
         filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
+        updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
     }
 
     public ModelManager() {
@@ -163,9 +163,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return masterDeck.equals(other.masterDeck)
                 && userPrefs.equals(other.userPrefs)
-                && filteredDecks.equals(other.filteredDecks);
+                && filteredDecks.equals(other.filteredDecks)
+                && filteredCards.equals(other.filteredCards); // todo: check equal selectedDeck and review
     }
-
 
     /* ==================================== PowerDeck Operations ==================================== */
 
@@ -210,12 +210,13 @@ public class ModelManager implements Model {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck toSelect = filteredDecks.get(zeroBasesIdx);
 
+        // Always unselect the previous deck before selecting a new deck
         if (selectedDeck != null) {
-            unselectDeck();
+            setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         }
 
         selectedDeck = toSelect.buildSelectedDeck();
-        setDeck(toSelect, selectedDeck); // update UniqueDeckList and GUI
+        setDeck(toSelect, selectedDeck); // also updates GUI to highlight blue card
 
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
@@ -226,7 +227,7 @@ public class ModelManager implements Model {
 
         setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
-        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
     }
 
     @Override
@@ -238,16 +239,7 @@ public class ModelManager implements Model {
     public String getSelectedDeckName() {
         return Optional.ofNullable(selectedDeck)
                 .map(Deck::getDeckName)
-                .orElse("None");
-    }
-
-    @Override
-    public ObservableList<Pair<String, String> > getDeckNameList() {
-        ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
-        placeholder.add(new Pair("Current Deck:", "No deck selected!"));
-        return Optional.ofNullable(selectedDeck)
-                .map(Deck::getDeckNameList)
-                .orElse(placeholder);
+                .orElse("No deck selected.");
     }
 
     @Override
@@ -296,16 +288,16 @@ public class ModelManager implements Model {
 
     @Override
     public boolean goToPrevCard() {
-        boolean check = this.currReview.goToPrevCard();
+        boolean isFirstCard = this.currReview.goToPrevCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
-        return check;
+        return isFirstCard;
     }
 
     @Override
     public boolean goToNextCard() {
-        boolean check = this.currReview.goToNextCard();
+        boolean isLastCard = this.currReview.goToNextCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
-        return check;
+        return isLastCard;
     }
 
     @Override
@@ -320,7 +312,7 @@ public class ModelManager implements Model {
         if (selectedDeck != null) {
             updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
         } else {
-            updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+            updateFilteredCardList(PREDICATE_SHOW_NO_CARDS);
         }
     }
 

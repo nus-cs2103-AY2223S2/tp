@@ -16,7 +16,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
@@ -170,13 +169,6 @@ public class AddDeckCommandTest {
         @Override
         public Optional<Deck> getSelectedDeck() {
             return Optional.of(new Deck("Default"));
-        }
-
-        @Override
-        public ObservableList<Pair<String, String>> getDeckNameList() {
-            ObservableList<Pair<String, String> > placeholder = FXCollections.observableArrayList();
-            placeholder.add(new Pair("Current Deck:", "No deck selected!"));
-            return placeholder;
         }
 
         @Override
