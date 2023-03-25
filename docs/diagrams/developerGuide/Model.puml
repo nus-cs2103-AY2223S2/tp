@@ -22,11 +22,11 @@ Class UniquePairList
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+FriendlyLink .left.|> ReadOnlyFriendlyLink
+
 ReadOnlyFriendlyLink .up.|> ReadOnlyElderly
 ReadOnlyFriendlyLink .up.|> ReadOnlyVolunteer
 ReadOnlyFriendlyLink .up.|> ReadOnlyPair
-
-FriendlyLink .up.|> ReadOnlyFriendlyLink
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
