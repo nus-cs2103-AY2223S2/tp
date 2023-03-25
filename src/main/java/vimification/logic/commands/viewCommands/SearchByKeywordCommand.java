@@ -20,5 +20,4 @@ public class SearchByKeywordCommand extends SearchCommand {
         setViewTaskList(viewTaskList);
         return new CommandResult(SUCCESS_MESSAGE_FORMAT);
     }
-
 }

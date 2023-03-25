@@ -9,7 +9,6 @@ public abstract class ViewCommand extends Command {
     private ObservableList<Task> viewTaskList;
 
     ViewCommand() {
-        super(true);
         viewTaskList = null;
     }
 
@@ -17,6 +16,7 @@ public abstract class ViewCommand extends Command {
         this.viewTaskList = list;
     }
 
+    @Override
     public ObservableList<Task> getViewTaskList() {
         return viewTaskList;
     }

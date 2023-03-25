@@ -1,20 +1,13 @@
 package vimification.logic.commands;
 
+import javafx.collections.ObservableList;
 import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
-    private boolean isViewCommand;
-
-    /**
-     * Constructs a command with the given flag to indicate whether it is a view command.
-     */
-    protected Command(boolean isViewCommand) {
-        this.isViewCommand = isViewCommand;
-    }
-
     // /**
     // * Executes the command and returns the result message.
     // *
@@ -24,4 +17,5 @@ public abstract class Command {
     // */
     public abstract CommandResult execute(LogicTaskList taskList) throws CommandException;
 
+    public abstract ObservableList<Task> getViewTaskList();
 }
