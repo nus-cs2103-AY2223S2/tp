@@ -1,5 +1,6 @@
 package seedu.patientist.ui;
 
+import java.util.HashSet;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,7 +17,8 @@ import seedu.patientist.logic.Logic;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.*;
+import seedu.patientist.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,6 +35,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+
+    private DetailsPopup detailsPopup;
+    private Person personToView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane detailsPopupPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        detailsPopup = new DetailsPopup(personToView);
+        detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -141,9 +152,9 @@ public class MainWindow extends UiPart<Stage> {
      * @param index The index of the person to view.
      */
     public void handleDetails(int index) {
-        Person personToView = logic.getFilteredPersonList().get(index);
-        DetailsPopup detailsStage = new DetailsPopup(personToView);
-        detailsStage.show();
+        personToView = logic.getFilteredPersonList().get(index);
+        detailsPopup = new DetailsPopup(personToView);
+        detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
     }
 
     /**
