@@ -42,10 +42,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
                     LectureName lectureName = new LectureName(lectureNameOptional.get());
                     VideoName videoName = new VideoName(preamble);
-                    return new DeleteVideoCommand(videoName, moduleCode, lectureName);
+                    return new DeleteVideoCommand(moduleCode, lectureName, videoName);
                 } else {
                     LectureName lectureName = new LectureName(preamble);
-                    return new DeleteLectureCommand(lectureName, moduleCode);
+                    return new DeleteLectureCommand(moduleCode, lectureName);
                 }
             } else {
                 ModuleCode[] moduleCodes = MultipleEventsParser.parseModuleCodes(preamble);

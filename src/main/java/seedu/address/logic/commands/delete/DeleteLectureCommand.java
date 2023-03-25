@@ -34,7 +34,7 @@ public class DeleteLectureCommand extends DeleteCommand {
      * @param targetLectureName Name of lecture to delete
      * @param moduleCode Module Code of module that lecture is within
      */
-    public DeleteLectureCommand(LectureName targetLectureName, ModuleCode moduleCode) {
+    public DeleteLectureCommand(ModuleCode moduleCode, LectureName targetLectureName) {
         this.moduleCode = moduleCode;
         this.targetLectureName = targetLectureName;
     }
