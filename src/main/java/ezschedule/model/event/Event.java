@@ -37,7 +37,13 @@ public class Event implements Comparable<Event> {
     }
 
     public String getCompletedStatus() {
-        return endTime.isPastTime() ? "Event completed" : "";
+        return date.isPastDate()
+                ? "Event completed"
+                : date.isFutureDate()
+                ? ""
+                : endTime.isPastTime()
+                ? "Event completed"
+                : "";
     }
 
     /**
@@ -50,7 +56,10 @@ public class Event implements Comparable<Event> {
         }
 
         return otherEvent != null
-            && otherEvent.getName().equals(getName());
+            && otherEvent.getName().equals(getName())
+            && otherEvent.getDate().equals(getDate())
+            && otherEvent.getStartTime().equals(getStartTime())
+            && otherEvent.getEndTime().equals(getEndTime());
     }
 
     @Override
