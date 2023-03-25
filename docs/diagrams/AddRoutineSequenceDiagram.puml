@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FitBookParser" as FitBookParser LOGIC_COLOR
+participant "u:AddRoutineCommand" as AddRoutineCommand LOGIC_COLOR
+end box
+
+box FitBookModel MODEL_COLOR_T1
+participant ":FitBookModel" as FitBookModel MODEL_COLOR
+
+end box
+[-> LogicManager : execute(addRoutine)
+activate LogicManager
+
+LogicManager -> FitBookParser : parseCommand(addRoutine)
+activate FitBookParser
+
+create AddRoutineCommand
+FitBookParser -> AddRoutineCommand
+activate AddRoutineCommand
+
+AddRoutineCommand --> FitBookParser
+deactivate AddRoutineCommand
+
+FitBookParser --> LogicManager : u
+deactivate FitBookParser
+
+LogicManager -> AddRoutineCommand : execute()
+activate AddRoutineCommand
+
+AddRoutineCommand -> FitBookModel : addRoutine(routine)
+activate FitBookModel
+
+FitBookModel --> AddRoutineCommand
+deactivate FitBookModel
+
+AddRoutineCommand --> LogicManager : result
+deactivate AddRoutineCommand
+AddRoutineCommand -[hidden]-> LogicManager : result
+destroy AddRoutineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

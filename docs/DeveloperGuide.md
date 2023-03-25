@@ -259,6 +259,60 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+### Add/Edit Routine feature
+
+The proposed add routine mechanism is facilitated by `FitBook`. It extends `FitBook` with a Routine storage, stored in a `exerciseroutine.json` file. Additionally, it implements the following operations:
+
+* `AddRoutineCommand#execute()` — Adds the new routine into the Exercise Routines of the FitBook.
+* `EditRoutineCommand#execute()` — Edits the target routine in the Exercise Routines of the FitBook.
+
+These operations are exposed in the `Command` interface as `Command:execute()`.
+
+Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine` will be initialized with the FitBook on start up, and the information from the Storage will be converted into 'JsonAdaptedRoutine' and 'JsonAdapatedRoutine' accordingly.
+
+![AddEditRoutineState0](images/AddEditRoutineState0.png)
+
+Step 2. The user executes `addRoutine r/Cardio …​` command to add the Routine in the FitBookExerciseRoutine. The `addRoutine` command calls `AddRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddCommand:execute()` to execute the command to add the New Routine in the Exercise Routine.
+
+![AddEditRoutineState1](images/AddEditRoutineState1.png)
+
+Step 3. The user executes `editRoutine 1 r/HIIT …​` to edit the 1st Routine (target Routine) in the Exercise Routine of FitBook. The `editRoutine` command also calls `EditRoutineCommandParser`, causing it to check if the command is appropriate and calling `EditCommand:execute()` to execute the command to be edited in the Exercise Routine.
+
+Step 2.5/3.5. These commands will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages for each command functionality.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddCommand:execute()` or `EditCommand:execute()`, so the updated Routine will not be saved in the FitBookExerciseRoutine .
+
+</div>
+
+![AddEditRoutineState2](images/AddEditRoutineState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `editRoutine` command is at index 4, pointing at an invalid Routine, it will return an error to the user, prompting the user that he/she has used an invalid routine index. 
+
+</div>
+
+The following sequence diagram shows how the addRoutine operation works:
+
+![AddRoutineSequenceDiagram](images/AddRoutineSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddRoutineCommand` should end at to destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How add & edit routine executes:**
+
+* **Alternative 1 (current choice):** Add or edit the Routine and save the entire model into the FitBookExerciseRoutine.
+    * Pros: Easy to implement.
+    * Cons: May cause some performance issues in terms of memory usage and speed.
+
+* **Alternative 2:** Individual command knows how to add/edit by
+  itself.
+    * Pros: Will use less memory (e.g. for `edit`, just allocate an array for any edits of the same routine before adding the latest edit of that routine only).
+    * Cons: Each command implementation must be correct which is hard to maintain.
+
 
 ### \[Proposed\] Undo/redo feature
 
