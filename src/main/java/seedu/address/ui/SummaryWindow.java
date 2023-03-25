@@ -59,7 +59,6 @@ public class SummaryWindow extends UiPart<Stage> {
     /**
      * Sets the value of the potential earnings
      */
-
     public static void setPotentialEarnings(int potentialEarnings) {
         System.out.println(potentialEarnings);
         SummaryWindow.POTENTIAL_EARNINGS = potentialEarnings;
