@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import seedu.address.logic.parser.TagCardDuringReviewCommandParser;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -29,7 +31,12 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            TagCardDuringReviewCommandParser.Difficulty.valueOf(test);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

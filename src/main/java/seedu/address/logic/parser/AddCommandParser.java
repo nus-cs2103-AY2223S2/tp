@@ -36,9 +36,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)); // always return a Set
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).orElse(null)); // get a tag, if no tag null
 
-        AddCardDescriptor cardDescriptor = new AddCardDescriptor(question, answer, tagList);
+        AddCardDescriptor cardDescriptor = new AddCardDescriptor(question, answer, tag);
 
         return new AddCommand(cardDescriptor);
     }
