@@ -1,12 +1,8 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
-import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
