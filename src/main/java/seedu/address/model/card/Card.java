@@ -34,6 +34,17 @@ public class Card {
         this.deck = deck;
     }
 
+    /**
+     * When tag is not given by user.
+     */
+    public Card(Question question, Answer answer, Deck deck) {
+        requireAllNonNull(question, answer, deck);
+        this.question = question;
+        this.answer = answer;
+        this.tag = new Tag("untagged");
+        this.deck = deck;
+    }
+
     public Question getQuestion() {
         return question;
     }

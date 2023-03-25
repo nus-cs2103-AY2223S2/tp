@@ -63,9 +63,6 @@ public class AddCardDescriptorBuilder {
      * @return the AddCardDescriptor instance
      */
     public AddCardDescriptor build() {
-        if (descriptor.getTag() == null) {
-            descriptor.setTag(new Tag("Untagged"));
-        }
         return descriptor;
     }
 

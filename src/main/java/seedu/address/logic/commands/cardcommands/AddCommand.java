@@ -147,6 +147,9 @@ public class AddCommand extends Command {
          * @return The new Card instance.
          */
         public Card buildCard() {
+            if (tag == null) {
+                return new Card(question, answer, deck);
+            }
             return new Card(question, answer, tag, deck);
         }
 
@@ -164,9 +167,13 @@ public class AddCommand extends Command {
 
             // state check
             AddCommand.AddCardDescriptor e = (AddCommand.AddCardDescriptor) other;
+            if (getTag() != null) {
+                return getQuestion().equals(e.getQuestion())
+                        && getAnswer().equals(e.getAnswer())
+                        && getTag().equals(e.getTag());
+            }
             return getQuestion().equals(e.getQuestion())
-                    && getAnswer().equals(e.getAnswer())
-                    && getTag().equals(e.getTag());
+                    && getAnswer().equals(e.getAnswer());
         }
     }
 }

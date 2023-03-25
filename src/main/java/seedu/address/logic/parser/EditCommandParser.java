@@ -44,7 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         // treated the same way as question and answer field, but allows null value
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            editCardDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).orElse("Untagged")));
+            editCardDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
         if (!editCardDescriptor.isAnyFieldEdited()) {
