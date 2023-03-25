@@ -13,16 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
@@ -88,6 +80,13 @@ public class ExecutiveProDbParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_setPicture() throws Exception {
+        SetPictureCommand command = (SetPictureCommand) parser.parseCommand(
+                SetPictureCommand.COMMAND_WORD + " " + "1");
+        assertEquals(new SetPictureCommand(EMPLOYEE_ID_ONE), command);
     }
 
     @Test
