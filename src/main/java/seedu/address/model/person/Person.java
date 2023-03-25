@@ -21,6 +21,8 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
+    private final DrugAllergy drugAllergy;
+
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
@@ -28,13 +30,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Nric nric, Name name, Phone phone, Email email, Address address,
+                  DrugAllergy drugAllergy, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.drugAllergy = drugAllergy;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +60,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public DrugAllergy getDrugAllergy() {
+        return drugAllergy;
     }
 
     /**
@@ -99,13 +107,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDrugAllergy().equals(getDrugAllergy())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, name, phone, email, address, tags);
+        return Objects.hash(nric, name, phone, email, address, drugAllergy, tags);
     }
 
     @Override
@@ -119,7 +128,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Drug Allergy: ")
+                .append(getDrugAllergy());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

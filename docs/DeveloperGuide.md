@@ -59,9 +59,9 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete i/T0123456A T0124563B`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/BetterArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -119,10 +119,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete i/T0123456A T0124563B")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete i/T0123456A T0124563B` Command](images/BetterDeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -346,13 +346,15 @@ These operations are exposed in the Model interface as methods with the same nam
 
 Given below is an example usage scenario and how the delete command works at each step
 
-Step 1. The clinical/hospital administrator has been informed of a patient's death and the patient's NRIC, S1234567A
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
 
-Step 2. The administrator executes `delete i/S1234567A`. The `DeleteCommand` is executed and for each `NRIC`
+Step 2. The administrator executes `delete i/T0123456A T0124563B`. The `DeleteCommand` is executed and for each `NRIC`
 in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
 which deletes the record in the system with the specified `NRIC`.
 
 The following sequence diagram shows how the delete command works:
+
+![BetterDeleteSequenceDiagram](images/BetterDeleteSequenceDiagram.png)
 
 #### Design considerations:
 
