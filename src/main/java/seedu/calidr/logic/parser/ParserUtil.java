@@ -301,6 +301,13 @@ public class ParserUtil {
         return pageType;
     }
 
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     *
+     * @param priorityString The string containing the priority.
+     * @return A {@code Priority} object representing the given priority.
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
     public static Priority parsePriority(String priorityString) throws ParseException {
         requireNonNull(priorityString);
 
