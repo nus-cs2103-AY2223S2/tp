@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.StringUtil;
-import seedu.fitbook.logic.commands.AddWeightCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Address;
 import seedu.fitbook.model.client.Appointment;

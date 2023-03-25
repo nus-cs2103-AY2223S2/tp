@@ -24,7 +24,17 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.CollectionUtil;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.*;
+import seedu.fitbook.model.client.Address;
+import seedu.fitbook.model.client.Appointment;
+import seedu.fitbook.model.client.Calorie;
+import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.Email;
+import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
+import seedu.fitbook.model.client.Name;
+import seedu.fitbook.model.client.Phone;
+import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
 import seedu.fitbook.model.tag.Tag;
 
 

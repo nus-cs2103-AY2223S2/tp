@@ -3,7 +3,6 @@ package seedu.fitbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
@@ -22,7 +21,7 @@ public class AddWeightCommand extends Command {
             + "Parameters: i/INDEX w/WEIGHT d/DATE\n"
             + "Example: " + COMMAND_WORD + " i/1 w/70 d/2023-03-10";
 
-    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s: %2$s" + "kg "+ "on %3$s";
+    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s: %2$s" + "kg " + "on %3$s";
 
     private final int targetIndex;
     private final Weight weightToAdd;
@@ -50,9 +49,7 @@ public class AddWeightCommand extends Command {
         Client clientToAddWeight = clientList.get(targetIndex - 1);
 
         clientToAddWeight.getWeightHistory().addWeight(date, weightToAdd.value);
-        Pair<String, String> lastEntry = clientToAddWeight.getWeightHistory().getLastEntry();
-        String lastWeightValue = lastEntry.getValue();
-        Weight lastWeight = new Weight(lastWeightValue);
+        Weight lastWeight = clientToAddWeight.getWeightHistory().getLastEntry();
         clientToAddWeight.setWeight(lastWeight);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex, weightToAdd, date));

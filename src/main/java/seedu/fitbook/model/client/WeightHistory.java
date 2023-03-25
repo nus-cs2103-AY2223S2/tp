@@ -1,9 +1,6 @@
 package seedu.fitbook.model.client;
 
-import javafx.util.Pair;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,26 +9,19 @@ import java.util.List;
  */
 public class WeightHistory {
 
-    public final List<Pair<String, String>> weights;
+    public final List<Weight> weights;
 
     /**
      * Constructs a {@code WeightHistory} with an initial weight.
      *
      * @param initialWeight The initial weight to add to the history.
      */
-    public WeightHistory(Pair<String, String> initialWeight) {
+    public WeightHistory(Weight initialWeight) {
         weights = new ArrayList<>();
         weights.add(initialWeight);
     }
 
-    /**
-     * Returns an unmodifiable list of weights in the history.
-     */
-    public List<Pair<String, String>> getWeights() {
-        return Collections.unmodifiableList(weights);
-    }
-
-    public Pair<String, String> getLastEntry() {
+    public Weight getLastEntry() {
         if (weights.isEmpty()) {
             //throw an exception
             return null;
@@ -46,15 +36,15 @@ public class WeightHistory {
      * @param date The date to associate with the weight.
      */
     public void addWeight(String date, String weight) {
-        Pair<String, String> weightPair = new Pair<>(date, weight);
-        weights.add(weightPair);
+        Weight dateWeight = new Weight(date, weight);
+        weights.add(dateWeight);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < weights.size(); i++) {
-            sb.append(weights.get(i).getValue()).append(":").append(weights.get(i).getKey()).append("\n");
+            sb.append(weights.get(i).toString()).append("\n");
         }
         return sb.toString();
     }
