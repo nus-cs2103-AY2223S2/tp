@@ -11,12 +11,12 @@ title: Developer Guide
 
 ## **1. Introduction**
 
-### 1.1 About sprINT
+### 1.1 About sprINT 
 
-**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt.
+**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. 
 
-Students often face a great administrative burden in keeping track of the high volume of job or internship
-applications. With sprINT, students can easily manage details of their internship applications, including the company,
+Students often face a great administrative burden in keeping track of the high volume of job or internship 
+applications. With sprINT, students can easily manage details of their internship applications, including the company, 
 contacts, status and task deadlines.
 
 ### 1.2 About this guide
@@ -25,7 +25,7 @@ This developer guide details the high-level software architecture and design dec
 It is intended for:
 
 * Advanced users who wish to get a better understanding of sprINT's features
-* Present and future developers, designers and testers of sprINT
+* Present and future developers, designers and testers of sprINT 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -198,7 +198,7 @@ application command from the user.
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
 2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for a specific purpose of 
+4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for the specific purpose of 
 parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
 6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
@@ -219,7 +219,7 @@ the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.
 
 </div> 
@@ -291,7 +291,6 @@ exception that was thrown and the error message will be displayed to the user.
 For a more graphical illustration of how an edit application command is processed, please refer to the following
 sequence diagram:
 
-
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
 
@@ -341,7 +340,6 @@ For a more graphical illustration of how an add application command is processed
 sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
-
 
 ### \[In Progress\] Sort feature
 
