@@ -225,7 +225,8 @@ public class ParserUtil {
      */
     public static LocalDateTime parseEnd(String start, String end) {
         LocalDateTime startTime = parseStart(start);
-        String[] endTimes = end.split(":");
+        String[] endDateTime = end.split(" ");
+        String[] endTimes = endDateTime[1].split(":");
         int endHour = Integer.parseInt(endTimes[0]);
         int endMin = Integer.parseInt(endTimes[1]);
         if (endHour - startTime.getHour() < 0) {
