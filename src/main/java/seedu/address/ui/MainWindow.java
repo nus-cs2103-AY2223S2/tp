@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -201,9 +203,25 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the file explorer to select a directory to export the application's data to.
+     */
     @FXML
     public void handleExport() {
-        logger.info("Export Button Clicked");
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Directory to Export to");
+        File backupFile = directoryChooser.showDialog(primaryStage);
+
+        if (backupFile == null) {
+            logger.info("No file selected");
+            return;
+        }
+
+        try {
+            this.logic.storeAddressBook(Paths.get(backupFile.getAbsolutePath(), "addressbook.json"));
+        } catch (IOException e) {
+            logger.info("Export Failed");
+        }
     }
 
     void show() {
