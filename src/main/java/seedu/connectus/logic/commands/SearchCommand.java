@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.model.Model;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 
 /**
@@ -20,7 +19,6 @@ public class SearchCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    // private final NameContainsKeywordsPredicate predicate;
     private final FieldsContainKeywordsPredicate predicate;
 
     public SearchCommand(FieldsContainKeywordsPredicate predicate) {

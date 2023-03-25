@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 
 public class SearchCommandParserTest {
 

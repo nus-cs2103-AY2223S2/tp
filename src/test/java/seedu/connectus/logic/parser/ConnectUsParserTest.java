@@ -24,7 +24,6 @@ import seedu.connectus.logic.commands.ListCommand;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.testutil.EditPersonDescriptorBuilder;
 import seedu.connectus.testutil.PersonBuilder;

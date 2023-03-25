@@ -86,7 +86,8 @@ public class StringUtilTest {
 
     @Test
     public void containsKeywordsListIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, ()
+                -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", null));
     }
 
     @Test
@@ -157,16 +158,17 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsKeywordsListIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsKeywordsListIgnoreCase("    ", "123"));
 
-        // Matches a partial word only
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        // Sentence word bigger than query word
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bb"));
+        // Query word bigger than sentence word
+        assertFalse(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bbbb"));
 
         // Matches word in the sentence, different upper/lower case letters
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc", "Bbb"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc@1", "CCc@1"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("  AAA   bBb   ccc  ", "aaa"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("Aaa", "aaa"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "  ccc  "));
 
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsKeywordsListIgnoreCase("AAA bBb ccc  bbb", "bbB"));

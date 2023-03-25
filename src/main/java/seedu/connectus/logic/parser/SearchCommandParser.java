@@ -7,7 +7,6 @@ import java.util.Arrays;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

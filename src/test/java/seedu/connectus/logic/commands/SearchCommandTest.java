@@ -19,7 +19,6 @@ import seedu.connectus.model.Model;
 import seedu.connectus.model.ModelManager;
 import seedu.connectus.model.UserPrefs;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
