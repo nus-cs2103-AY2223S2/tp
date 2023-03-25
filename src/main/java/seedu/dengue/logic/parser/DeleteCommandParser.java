@@ -5,6 +5,8 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
+import java.util.Optional;
+
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.DeleteCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
@@ -24,32 +26,40 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        // TODO: fix, not working to catch mix at the moment
-        try { // all indexes
-            // TODO: parseMultiIndex(args)
+        if (Character.isDigit(args.trim().charAt(0)) & args.contains("d/")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+        try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             try {
-                // TODO: does not catch index/prefix mix
-                //  bc tokeniser does not care abt indexes at front
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(args, PREFIX_DATE,
                                 PREFIX_STARTDATE, PREFIX_ENDDATE);
-                if (hasMixedDates(argMultimap)) {
+                if (hasMixedDates(argMultimap) | noDateProvided(argMultimap)) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             DeleteCommand.MESSAGE_USAGE));
-                } else {
-                    if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-                        String date = argMultimap.getValue(PREFIX_DATE).get();
-                        return new DeleteCommand(new Date(date));
-                    } else {
-                        String startDate = argMultimap.getValue(PREFIX_STARTDATE).get();
-                        String endDate = argMultimap.getValue(PREFIX_ENDDATE).get();
-                        Range<Date> range = new Range(new StartDate(startDate), new EndDate(endDate));
-                        return new DeleteCommand(range);
-                    }
                 }
+                if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+                    String date = argMultimap.getValue(PREFIX_DATE).get();
+                    if (dateHasIndex(date)) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                DeleteCommand.MESSAGE_USAGE));
+                    }
+                    return new DeleteCommand(new Date(date));
+                } else {
+                    String startDate = argMultimap.getValue(PREFIX_STARTDATE).get();
+                    String endDate = argMultimap.getValue(PREFIX_ENDDATE).get();
+                    if (dateHasIndex(startDate) | dateHasIndex(endDate)) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                DeleteCommand.MESSAGE_USAGE));
+                    }
+                    Range<Date> range = new Range(new StartDate(startDate), new EndDate(endDate));
+                    return new DeleteCommand(range);
+                }
+
             } catch (ParseException pe2) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe2);
@@ -61,6 +71,16 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         return argumentMultimap.getValue(PREFIX_DATE).isPresent() &
                 (argumentMultimap.getValue(PREFIX_STARTDATE).isPresent() |
                         argumentMultimap.getValue(PREFIX_ENDDATE).isPresent());
+    }
+
+    private static boolean noDateProvided(ArgumentMultimap argumentMultimap) {
+        return argumentMultimap.getValue(PREFIX_DATE).isEmpty() &
+                argumentMultimap.getValue(PREFIX_STARTDATE).isEmpty() &
+                argumentMultimap.getValue(PREFIX_ENDDATE).isEmpty();
+    }
+
+    private static boolean dateHasIndex(String date) {
+        return (date.split(" ").length > 1);
     }
 
 }

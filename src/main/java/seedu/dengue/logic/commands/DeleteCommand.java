@@ -31,10 +31,10 @@ public class DeleteCommand extends Command {
 
     // TODO: change / add message for indexes
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_DELETE_DATE_SUCCESS = "%1$s cases from %1$s deleted";
-    public static final String MESSAGE_DELETE_RANGE_SUCCESS = "%1$s cases from %1$s to %1$s deleted";
+    public static final String MESSAGE_DELETE_DATE_SUCCESS = "%1$s cases from %2$s deleted";
+    public static final String MESSAGE_DELETE_RANGE_SUCCESS = "%1$s cases from %2$s to %3$s deleted";
 
-    private final Optional<Index> targetIndex; // TODO: make list of indexes
+    private final Optional<Index> targetIndex; // TODO: turn into list of indexes
     private final Optional<Date> date;
     private final Optional<Range<Date>> range;
 
