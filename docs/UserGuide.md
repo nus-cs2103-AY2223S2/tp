@@ -249,7 +249,7 @@ patient list
 
 #### `find` - Locate a patient
 
-Finds patients whose names contain any of the given keywords. You can also include flags to search based on the patient's attributes.
+Finds patients whose names contain any of the given keywords. You can also include flags to search based on the patient's attributes. If no flags are given, the search string given will be assumed to be searching the patient's name. Multiple flags can be used concurrently!
 
 ##### Syntax
 
@@ -262,7 +262,7 @@ patient find --name <string> --phone <phone-number> --d <date> \
 ##### Example
 
 * `patient find john`
-* `patient find --b B+`
+* `patient find --name john --b B+`
 
 #### `update` - Update a patient
 
