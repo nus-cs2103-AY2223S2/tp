@@ -14,6 +14,9 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Student;
 
+/**
+ * Deletes a student from the roster.
+ */
 public class DeleteStudentCommand extends DeleteCommand {
     public static final String COMMAND_TYPE_WORD = "student";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
@@ -32,6 +35,12 @@ public class DeleteStudentCommand extends DeleteCommand {
         this.index = index;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     * @param model {@code Model} which the command should operate on.
+     * @param currentSelection of the {@code LogicManager}.
+     * @throws CommandException If an error occurs during command execution.
+     */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 

@@ -9,6 +9,10 @@ import tfifteenfour.clipboard.model.student.Assignment;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
+/**
+ * Represents a Course in the CLIpboard.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidGroupName(String)}
+ */
 public class Group {
     public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -72,6 +76,9 @@ public class Group {
         return this.groupName;
     }
 
+    /**
+     * Returns true if both groups are the same.
+     */
     public boolean isSameGroup(Group otherGroup) {
         if (otherGroup == this) {
             return true;
@@ -81,6 +88,9 @@ public class Group {
                 && otherGroup.getGroupName().equals(getGroupName());
     }
 
+    /**
+     * Returns true if course has specified student.
+     */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);

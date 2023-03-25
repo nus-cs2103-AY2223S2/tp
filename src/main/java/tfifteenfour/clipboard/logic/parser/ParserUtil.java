@@ -126,7 +126,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String courseCode} into a {@code <Course>}.
+     * Parses a {@code String course} into a {@code <Course>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code module code} is invalid.
@@ -141,7 +141,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String groupName} into a {@code <Group>}.
+     * Parses a {@code String group} into a {@code <Group>}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Group parseGroup(String groupName) throws ParseException {

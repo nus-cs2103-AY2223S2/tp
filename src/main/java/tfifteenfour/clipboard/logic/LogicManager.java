@@ -32,8 +32,6 @@ public class LogicManager implements Logic {
 
     private CurrentSelection currentSelection;
 
-
-
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */

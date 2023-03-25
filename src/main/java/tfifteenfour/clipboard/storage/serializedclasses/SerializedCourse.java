@@ -8,13 +8,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tfifteenfour.clipboard.model.course.Course;
 
+/**
+ * Serializes a course into json format
+ */
 public class SerializedCourse {
     private String courseCode;
     private List<SerializedGroup> groups = new ArrayList<>();
 
     /**
-     * Serializes a course into json format
-     * @param course
+     * Constructs a {@code SerializedCourse} with the given course.
      */
     public SerializedCourse(Course course) {
         this.courseCode = course.getCourseCode();
@@ -38,6 +40,9 @@ public class SerializedCourse {
         return groups;
     }
 
+    /**
+     * Converts this serialized course to a {@code Course} object
+     */
     public Course toModelType() {
         Course newCourse = new Course(courseCode);
         this.groups.stream().forEach(group -> newCourse.addGroup(group.toModelType()));

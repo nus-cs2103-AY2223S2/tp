@@ -118,7 +118,8 @@ public class CommandTestUtil {
         Roster expectedRoster = new Roster(actualModel.getRoster());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getUnmodifiableFilteredStudentList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, TEST_CURRENT_SELECTION));
+        assertThrows(CommandException.class,
+                expectedMessage, () -> command.execute(actualModel, TEST_CURRENT_SELECTION));
         assertEquals(expectedRoster, actualModel.getRoster());
         assertEquals(expectedFilteredList, actualModel.getUnmodifiableFilteredStudentList());
     }

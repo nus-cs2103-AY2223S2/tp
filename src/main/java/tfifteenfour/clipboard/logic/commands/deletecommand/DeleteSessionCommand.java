@@ -14,9 +14,8 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 
-
 /**
- * Deletes a specified session.
+ * Deletes a session from the roster.
  */
 public class DeleteSessionCommand extends DeleteCommand {
     public static final String COMMAND_TYPE_WORD = "session";
