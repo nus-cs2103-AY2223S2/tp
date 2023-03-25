@@ -24,14 +24,14 @@ public class HasPaid {
     /**
      * Marks the HasPaid object as present by setting its value to true.
      */
-    public void markPresent() {
+    public void markPaid() {
         this.hasPaid = true;
     }
 
     /**
      * Marks the HasPaid object as absent by setting its value to false.
      */
-    public void markAbsent() {
+    public void markUnpaid() {
         this.hasPaid = false;
     }
 
