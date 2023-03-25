@@ -948,7 +948,7 @@ testers are expected to do more *exploratory* testing.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A freelancing gig
 
-<div style="text-align: right; position: fixed">
+<div style="text-align: right; float: right">
   <a href="#top">Back to top</a>
 </div>
 <br>
