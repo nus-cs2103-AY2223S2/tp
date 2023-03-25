@@ -56,6 +56,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane detailDisplayPlaceholder;
+    @FXML
+    private FileCard fileCard;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -202,8 +204,9 @@ public class MainWindow extends UiPart<Stage> {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
                 FilesManager filesManager = new FilesManager(personToShow);
-                detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getFileNames())
+                detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getFileNames(), personToShow)
                         .getObservableFileList());
+                detailDisplay.setUploadButton(filesManager);
                 detailDisplay.showAppointmentButton();
                 detailDisplay.showGenerateButton();
                 detailDisplay.showUploadButton();
