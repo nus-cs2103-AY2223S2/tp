@@ -13,6 +13,7 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
     private final List<String> phones;
     private final List<String> emails;
     private final List<String> addresses;
+    private final List<String> incomes;
     private final List<String> tags;
 
     /**
@@ -25,11 +26,12 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
      * @param tags      Regexes for the tags field
      */
     public FieldsMatchRegexPredicate(List<String> names, List<String> phones, List<String> emails,
-                                     List<String> addresses, List<String> tags) {
+                                     List<String> addresses, List<String> incomes, List<String> tags) {
         this.names = names;
         this.phones = phones;
         this.emails = emails;
         this.addresses = addresses;
+        this.incomes = incomes;
         this.tags = tags;
     }
 
@@ -43,6 +45,7 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
                 && inRegexList(phones, person.getPhone().value)
                 && inRegexList(emails, person.getEmail().value)
                 && inRegexList(addresses, person.getAddress().value)
+                && inRegexList(addresses, person.getIncome().toString())
                 && (tags.isEmpty() || person.getTags().stream().anyMatch(tag -> inRegexList(tags, tag.tagName)));
     }
 
@@ -54,6 +57,7 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
                 && Objects.equals(phones, ((FieldsMatchRegexPredicate) other).phones)
                 && Objects.equals(emails, ((FieldsMatchRegexPredicate) other).emails)
                 && Objects.equals(addresses, ((FieldsMatchRegexPredicate) other).addresses)
+                && Objects.equals(incomes, ((FieldsMatchRegexPredicate) other).incomes)
                 && Objects.equals(tags, ((FieldsMatchRegexPredicate) other).tags));
     }
 
