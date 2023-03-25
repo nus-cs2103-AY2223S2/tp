@@ -73,4 +73,14 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Elderly person = new Elderly(name, phone, email, address, nric, age, region, risk, tagList, availableDates);
         return new AddElderlyCommand(person);
     }
+
+    /**
+     * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
+     *
+     * @param map the ArgumentMultimap to be validated.
+     * @return true if the ArgumentMultimap is valid, false otherwise.
+     */
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getPreamble().length() > 0);
+    }
 }
