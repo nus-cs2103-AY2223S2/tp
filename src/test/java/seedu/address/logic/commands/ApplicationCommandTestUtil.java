@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class ApplicationCommandTestUtil {
     public static final String VALID_DEADLINE = "31-12-2023";
     public static final String VALID_DESCRIPTION = "Online Assessment";
     public static final String VALID_DESCRIPTION_INTERVIEW = "Technical Interview";
+    public static final String VALID_TAG_HIGHSALARY = "highSalary";
+    public static final String VALID_TAG_SCHOOL = "school";
 
     public static final String ROLE_DESC_BYTEDANCE = " " + PREFIX_ROLE + VALID_ROLE_BYTEDANCE;
     public static final String ROLE_DESC_GRAB = " " + PREFIX_ROLE + VALID_ROLE_GRAB;
@@ -46,6 +49,8 @@ public class ApplicationCommandTestUtil {
     public static final String COMPANY_EMAIL_DESC_GRAB = " " + PREFIX_COMPANY_EMAIL + VALID_COMPANY_EMAIL_GRAB;
     public static final String STATUS_DESC_BYTEDANCE = " " + PREFIX_STATUS + VALID_STATUS_BYTEDANCE;
     public static final String STATUS_DESC_GRAB = " " + PREFIX_STATUS + VALID_STATUS_GRAB;
+    public static final String TAG_DESC_SCHOOL = " " + PREFIX_TAG + VALID_TAG_SCHOOL;
+    public static final String TAG_DESC_HIGHSALARY = " " + PREFIX_TAG + VALID_TAG_HIGHSALARY;
 
     // empty string not allowed for roles
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE;
@@ -55,6 +60,8 @@ public class ApplicationCommandTestUtil {
     public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_COMPANY_EMAIL + "bob!yahoo";
     // status must be within given range of values
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "waitlisted";
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
