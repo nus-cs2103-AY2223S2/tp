@@ -1,6 +1,7 @@
 package seedu.address.files;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -107,11 +108,13 @@ public class FilesManager {
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
-        try (Stream<Path> stream = Files.walk(directory)) {
-            stream.filter(Files::isRegularFile)
-                    .forEach(files::add);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!isEmptyDirectory()) {
+            try (Stream<Path> stream = Files.walk(directory)) {
+                stream.filter(Files::isRegularFile)
+                        .forEach(files::add);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -122,4 +125,15 @@ public class FilesManager {
                 .collect(Collectors.toList());
     }
 
+    private boolean isEmptyDirectory() {
+        Path directory = Paths.get(path);
+        if (Files.isDirectory(directory)) {
+            try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) {
+                return !directoryStream.iterator().hasNext();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }

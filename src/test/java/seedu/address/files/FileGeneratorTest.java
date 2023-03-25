@@ -71,6 +71,8 @@ class FileGeneratorTest {
             for (PDField field : acroForm.getFields()) {
                 if (field instanceof PDTextField) {
                     String fileName = field.getFullyQualifiedName();
+                    LocalDate now = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
                     switch (fileName) {
                     case "name":
                         assertEquals(person.getName().fullName, field.getValueAsString());
@@ -82,17 +84,14 @@ class FileGeneratorTest {
                         assertEquals(Integer.toString(days), field.getValueAsString());
                         break;
                     case "today":
-                        LocalDate now = LocalDate.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    case "startDate":
                         assertEquals(now.format(formatter), field.getValueAsString());
                         break;
-                    case "startDate":
-                        assertEquals("2019-11-11", field.getValueAsString());
-                        break;
                     case "endDate":
-                        assertEquals("2019-11-12", field.getValueAsString());
+                        LocalDate endDate = now.plusDays(days);
+                        assertEquals(endDate.format(formatter), field.getValueAsString());
                         break;
-                    case "DoctorName":
+                    case "Doctor Name":
                         assertEquals(doctorName, field.getValueAsString());
                         break;
                     default:
