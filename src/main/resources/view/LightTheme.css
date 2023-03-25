@@ -28,7 +28,9 @@
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
-
+.scroll-pane {
+    -fx-background: #e2e2e2
+}
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
