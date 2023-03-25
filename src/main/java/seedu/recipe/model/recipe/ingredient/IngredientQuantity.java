@@ -8,8 +8,9 @@ import seedu.recipe.model.recipe.exceptions.RecipeQuantityInvalidArgumentExcepti
 public class IngredientQuantity {
     public static final String MESSAGE_CONSTRAINTS =
             "The quantity field for a Recipe Ingredient should consist of this format: "
-            + "`{amount} {unit}`, and the unit should comprise of alphabetic characters, "
-            + "where the amount can either be a non-zero decimal, `A/a`, or `One/one`."
+            + "`{amount} {unit}`, where the amount can either be a non-zero decimal, i.e. `A/a` or `One/one`, "
+            + "and the unit should comprise of alphabetic characters, with minimal use of "
+            + "trailing periods ('.') and hyphens."
             + "i.e. `1 gram`, `1.5 L`, `A pinch of`, `One oz.`";
 
     private static final String ALPHA_AMOUNT_REGEX = "[aA]|[Oo]ne";
