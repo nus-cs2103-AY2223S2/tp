@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic;
 
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -15,11 +16,14 @@ public class CurrentSelection {
     private static final Course NON_EXISTENT_COURSE = new Course("NONEXISTENTCOURSE");
     private static final Group NON_EXISTENT_GROUP = new Group("NONEXISTENTGROUP");
     private static final Student NON_EXISTENT_STUDENT = emptyStudentBuilder();
+    private static final Session NON_EXISTENT_SESSION = new Session("NONEXISTENTSESSION");
+
     private PageType currentPage;
 
     private Course selectedCourse = NON_EXISTENT_COURSE;
     private Group selectedGroup = NON_EXISTENT_GROUP;
     private Student selectedStudent = NON_EXISTENT_STUDENT;
+    private Session selectedSession = NON_EXISTENT_SESSION;
 
     public CurrentSelection() {
         this.currentPage = PageType.COURSE_PAGE;
@@ -50,6 +54,11 @@ public class CurrentSelection {
         this.currentPage = PageType.STUDENT_PAGE;
     }
 
+    public void selectSession(Session session) {
+        this.selectedSession = session;
+        this.currentPage = PageType.SESSION_STUDENT_PAGE;
+    }
+
     public void selectStudent(Student student) {
         this.selectedStudent = student;
     }
@@ -68,6 +77,10 @@ public class CurrentSelection {
 
     public Student getSelectedStudent() {
         return this.selectedStudent;
+    }
+
+    public Session getSelectedSession() {
+        return this.selectedSession;
     }
 
     public void navigateBackFromGroupPage() {

@@ -1,9 +1,11 @@
-package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands.attendance;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;

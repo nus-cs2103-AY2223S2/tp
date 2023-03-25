@@ -108,6 +108,7 @@ public class SelectCommand extends Command {
         }
         Session selectedSession = sessionList.get(targetIndex.getZeroBased());
 
+        currentSelection.selectSession(selectedSession);
         // end of navigation, no longer need to call setters of currentSelection
         return selectedSession;
     }

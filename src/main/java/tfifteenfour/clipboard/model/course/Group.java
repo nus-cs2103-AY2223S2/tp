@@ -19,12 +19,15 @@ public class Group {
 
     {
         students = new UniqueStudentList();
+    }
+
+    {
         sessions = new UniqueSessionsList();
     }
 
+
     // Placeholder example only, dont use arraylist, need to use ObservableList for javafx to recognize
     // Convert to UniqueXXXlist, just like UniqueStudentsList class
-//    private ArrayList<Session> sessions = new ArrayList<>();
     private ArrayList<Assignment> assignments = new ArrayList<>();
     // ##############################################################
 
@@ -54,7 +57,7 @@ public class Group {
 
     public void addSession(Session session) {
         this.sessions.add(session);
-        session.setGroup(this);
+        session.setGroup(this, students);
     }
 
     public void addAssignment(Assignment assignment) {

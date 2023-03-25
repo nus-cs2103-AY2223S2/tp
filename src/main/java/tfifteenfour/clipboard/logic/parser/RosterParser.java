@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
-import tfifteenfour.clipboard.logic.commands.AttendanceCommand;
+import tfifteenfour.clipboard.logic.commands.attendance.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
@@ -17,6 +17,7 @@ import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.attendance.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
@@ -102,6 +103,9 @@ public class RosterParser {
 
         case AttendanceCommand.COMMAND_WORD:
             return new AttendanceCommandParser().parse(arguments);
+
+        case MarkPresentCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

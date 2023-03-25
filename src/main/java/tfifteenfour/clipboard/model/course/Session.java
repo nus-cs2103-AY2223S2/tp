@@ -1,9 +1,14 @@
 package tfifteenfour.clipboard.model.course;
 
+import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
@@ -17,7 +22,12 @@ public class Session {
 
     public String sessionName;
     public Group group;
-    private Map<Student, Integer> attendance;
+    private UniqueStudentList students;
+    private final Map<Student, Integer> attendance;
+
+    {
+        students = new UniqueStudentList();
+    }
 
     /**
      * Constructs a {@code Session}.
@@ -30,7 +40,15 @@ public class Session {
         attendance = new HashMap<>();
     }
 
+    public ObservableList<Student> getUnmodifiableStudentList() {
+        return students.asUnmodifiableObservableList();
+    }
+
     public String getSessionName() {
+        System.out.println("########\n " +
+                "ATTENDANCE for" + sessionName);
+        System.out.println(attendance.toString());
+        System.out.println("########");
         return this.sessionName;
     }
 
@@ -47,10 +65,39 @@ public class Session {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(Group group, UniqueStudentList students) {
         this.group = group;
+        this.students = students;
+        for (Student student : students) {
+            if (!attendance.containsKey(student)) {
+                attendance.put(student, 0);
+            }
+        }
+        System.out.println(attendance.toString());
     }
 
+    public Set<Student> getStudents() {
+        return attendance.keySet();
+    }
+
+    public void markPresent(Student student) {
+        requireNonNull(student);
+
+        if (!attendance.containsKey(student)) {
+            throw new StudentNotInSessionException();
+        }
+        attendance.put(student, 1);
+        System.out.println("marked: " + student + "\n" + attendance.get(student));
+    }
+
+    public void markAbsent(Student student) {
+        requireNonNull(student);
+
+        if (!attendance.containsKey(student)) {
+            throw new StudentNotInSessionException();
+        }
+        attendance.put(student, 0);
+    }
     @Override
     public String toString() {
         return this.sessionName;

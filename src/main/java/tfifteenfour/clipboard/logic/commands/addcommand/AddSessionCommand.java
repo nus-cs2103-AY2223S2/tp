@@ -42,6 +42,7 @@ public class AddSessionCommand extends AddCommand {
         }
 
         targetGroup.addSession(sessionToAdd);
+        System.out.println(targetGroup.getUnmodifiableSessionList());
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, sessionToAdd), willModifyState);
     }
 
