@@ -18,6 +18,9 @@ public class JsonAdaptedSubtaskTest {
 
     private static final String VALID_DESCRIPTION = ALICE_HOMEWORK.getDescription().toString();
 
+    private static final String NEGATIVE_HAS_DESCRIPTION = "false";
+    private static final String POSITIVE_HAS_DESCRIPTION = "true";
+
 
 
     @Test
@@ -29,7 +32,7 @@ public class JsonAdaptedSubtaskTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedSubtask task =
-            new JsonAdaptedSubtask(INVALID_NAME, VALID_DESCRIPTION);
+            new JsonAdaptedSubtask(INVALID_NAME, VALID_DESCRIPTION, POSITIVE_HAS_DESCRIPTION);
 
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -39,7 +42,7 @@ public class JsonAdaptedSubtaskTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedSubtask task =
 
-            new JsonAdaptedSubtask(null, VALID_DESCRIPTION);
+            new JsonAdaptedSubtask(null, VALID_DESCRIPTION, POSITIVE_HAS_DESCRIPTION);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -49,7 +52,7 @@ public class JsonAdaptedSubtaskTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedSubtask task =
 
-            new JsonAdaptedSubtask(VALID_NAME, INVALID_DESCRIPTION);
+            new JsonAdaptedSubtask(VALID_NAME, INVALID_DESCRIPTION, POSITIVE_HAS_DESCRIPTION);
 
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -59,7 +62,7 @@ public class JsonAdaptedSubtaskTest {
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedSubtask task =
 
-            new JsonAdaptedSubtask(VALID_NAME, null);
+            new JsonAdaptedSubtask(VALID_NAME, null, NEGATIVE_HAS_DESCRIPTION);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);

@@ -29,6 +29,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "Amy's description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
+    public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
 
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -39,7 +40,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_INDEX = "a";
 
-
+    public static final String DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DEFAULT;
 
 
 
@@ -48,6 +49,7 @@ public class CommandTestUtil {
     public static final String INDEX_SUBTASK = " " + PREFIX_SUBTASK_INDEX + VALID_SUBTASK_INDEX;
 
     public static final String INVALID_SUBTASK_INDEX = " " + PREFIX_SUBTASK_INDEX;
+    public static final String BLANK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;

@@ -49,6 +49,10 @@ public class Subtask {
             && otherTask.getName().equals(getName());
     }
 
+    public boolean hasDescription() {
+        return description.getHasDescription();
+    }
+
 
     /**
      * Returns true if both tasks have the same identity and data fields.

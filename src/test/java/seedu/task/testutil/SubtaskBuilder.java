@@ -48,6 +48,14 @@ public class SubtaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Description} of the {@code Task} that we are building.
+     */
+    public SubtaskBuilder withDescription() {
+        this.description = new Description();
+        return this;
+    }
+
 
     public Subtask build() {
         return new Subtask(name, description);

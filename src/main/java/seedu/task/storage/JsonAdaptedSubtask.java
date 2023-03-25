@@ -23,14 +23,18 @@ public class JsonAdaptedSubtask {
     private final String name;
     private final String description;
 
+    private final String hasDescription;
+
     /**
      * Constructs a {@code JsonAdaptedHomework} with the given homework details.
      */
     @JsonCreator
     public JsonAdaptedSubtask(@JsonProperty("name") String name,
-                               @JsonProperty("description") String description) {
+                              @JsonProperty("description") String description,
+                              @JsonProperty("hasDescription") String hasDescription) {
         this.name = name;
         this.description = description;
+        this.hasDescription = String.valueOf(hasDescription);
     }
 
     /**
@@ -39,6 +43,7 @@ public class JsonAdaptedSubtask {
     public JsonAdaptedSubtask(Subtask source) {
         this.name = source.getName().fullName;
         this.description = source.getDescription().value;
+        this.hasDescription = String.valueOf(source.hasDescription());
 
     }
 
@@ -66,15 +71,22 @@ public class JsonAdaptedSubtask {
         }
         final Name modelName = new Name(name);
 
-        if (description == null) {
+        if (description == null
+            || hasDescription.equals("null")) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
+        if (Boolean.parseBoolean(hasDescription)
+        && !Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(description);
+        final Description modelDescription;
 
+        if (Boolean.parseBoolean(hasDescription)) {
+            modelDescription = new Description(description);
+        } else {
+            modelDescription = new Description();
+        }
 
         Subtask subtask = new Subtask(modelName, modelDescription);
         return subtask;
