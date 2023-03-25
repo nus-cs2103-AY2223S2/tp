@@ -1,6 +1,5 @@
 package seedu.patientist.ui;
 
-import java.util.HashSet;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,8 +16,7 @@ import seedu.patientist.logic.Logic;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.*;
-import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
