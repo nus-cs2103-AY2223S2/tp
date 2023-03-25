@@ -1,6 +1,19 @@
 # PowerConnect User Guide
 
-PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
+Greetings! Welcome to PowerConnect! <br>
+
+Looking for a simple and all in one solution for your teaching needs? Look no futher. <br>
+
+PowerConnect is a fully customized platform for tuition teachers and school teachers with the primary focus on 
+tuition teachers now as we are still working to scale our features. School teachers, do still give us a try. While our 
+features are limited at this stage, we are working hard to scale them to better compete with other Learning Managment
+System (LMS) tools currently in the market. <br>
+
+We aim to make PowerConnect as simple as possible for you to use with a focus on command line interface where you don't
+have to navigate complex user menus to access the features you need, especially if you can type fast. <br>
+
+Without further ado, let's get started!
+
 
 ##### Table of Contents
 1. [Quick Start](#quickstart)
@@ -32,9 +45,9 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `powerconnect.jar` from [here]().
+1. Download the latest `powerconnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
