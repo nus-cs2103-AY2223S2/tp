@@ -160,7 +160,7 @@
 
 .cell_small_label {
     -fx-font-family: -fx-label-small-ff;
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
@@ -183,22 +183,19 @@
 }
 
 .result-display {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: -fx-label-small-ff;
     -fx-font-size: 13pt;
     -fx-text-fill: black;
     -fx-wrap-text: true;
 }
 
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
 #resultBox {
     -fx-border-color: -fx-dark-green;
-}
-
-#resultDisplay .content {
     -fx-background-color: -fx-morning-green;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-alignment: "top-left";
+    -fx-padding: 10;
 }
 
 .status-bar .label {

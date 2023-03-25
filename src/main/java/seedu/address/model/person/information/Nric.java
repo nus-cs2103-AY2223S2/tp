@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
 public class Nric {
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n" +
             "The structure of the NRIC should be @xxxxxxx#, where:\n"
             + "1. @ is a letter that can be \"S\", \"T\", \"F\", \"G\" or \"M\"\n"
             + "2. xxxxxxx is a 7-digit serial number\n"

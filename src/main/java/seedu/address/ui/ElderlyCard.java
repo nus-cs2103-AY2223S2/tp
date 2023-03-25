@@ -95,6 +95,9 @@ public class ElderlyCard extends UiPart<Region> {
         if (elderly.getTags().isEmpty()) {
             tagsBox.getChildren().removeAll(tagsBox.getChildren());
         }
+        if (available.toString().isEmpty()) {
+            availability.setVisible(false);
+        }
     }
 
     @Override

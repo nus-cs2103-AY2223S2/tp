@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n" +
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*

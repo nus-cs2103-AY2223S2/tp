@@ -12,7 +12,7 @@ import java.util.Arrays;
  * Guarantees: immutable;
  */
 public class AvailableDate {
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n" +
             "Please ensure the specified dates follow this format: YYYY-MM-DD";
     public static final String INVALID_DATES_SPECIFIED = "Invalid dates specified.";
     public static final String VALIDATION_REGEX =

@@ -10,7 +10,7 @@ import java.util.HashSet;
  */
 public class RiskLevel {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n" +
             "Risk level should only contain 3 types of values, low, medium or high";
 
     public final Risk riskStatus;

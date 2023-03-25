@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Guarantees: immutable; is valid as declared in {@link #isValidRegion(String)}
  */
 public class Region {
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n" +
             "Region should only contain 5 types of values, "
             + "north, northeast, east, west, central";
     public final Place region;
