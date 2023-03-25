@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS = "Status updates should not be empty";
-    public final List<StatusUpdate> statusUpdates;
+    private final List<StatusUpdate> statusUpdates;
 
     /**
      * Constructs a {@code Status} from a list of {@code StatusUpdate}.
