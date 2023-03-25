@@ -141,7 +141,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
                 (index, vaxType) -> new SimplifiedVaxTypeCard(index, vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
         detailedVaxTypeView = new DetailedView<>(
-                logic.detailVaxTypeProperty(),
+                logic.detailedVaxTypeProperty(),
                 vaxType -> new VaxTypeCard(vaxType).getRoot());
         detailedVaxTypePanel.getChildren().add(detailedVaxTypeView);
 

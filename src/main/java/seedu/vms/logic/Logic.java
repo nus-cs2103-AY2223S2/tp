@@ -66,5 +66,5 @@ public interface Logic {
     ObjectProperty<IdData<Patient>> detailedPatientProperty();
 
 
-    ObjectProperty<VaxType> detailVaxTypeProperty();
+    ObjectProperty<VaxType> detailedVaxTypeProperty();
 }

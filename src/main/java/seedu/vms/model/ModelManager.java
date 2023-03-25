@@ -36,7 +36,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<VaxType> detailVaxTypeProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<VaxType> detailedVaxTypeProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -286,14 +286,14 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<VaxType> detailVaxTypeProperty() {
-        return detailVaxTypeProperty;
+    public ObjectProperty<VaxType> detailedVaxTypeProperty() {
+        return detailedVaxTypeProperty;
     }
 
 
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
-        detailVaxTypeProperty.set(vaxType);
+        detailedVaxTypeProperty.set(vaxType);
     }
 
     // =========== KeywordManager ==============================================================================
@@ -388,10 +388,10 @@ public class ModelManager implements Model {
 
     private void updateVaccinationDetail(ValueChange<VaxType> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailVaxTypeProperty.get()))
+                .map(oldValue -> oldValue.equals(detailedVaxTypeProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailVaxTypeProperty.set(change.getNewValue().orElse(null));
+            detailedVaxTypeProperty.set(change.getNewValue().orElse(null));
         }
     }
 
