@@ -86,16 +86,16 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `InternshipCatalogueParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -238,6 +238,39 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Select command feature
+
+#### Implementation
+
+The `select` command feature is standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
+
+* Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
+* Obtains a list of all the `Event` belonging to that `Internship`.
+* Returns a `CommandResult` containing the `Internship` and its list of `Event`, to be passed to the UI for display.
+
+Given below is an example usage scenario and how the select command behaves at each step.
+
+Step 1. The user enters the `select` command into the CLI: `select 2`.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `select`, creating a `SelectCommandParser` and passing it `"2"` by calling its `parser()` method.
+
+Step 3. `SelectCommandParser` parses the index `2` of the selected internship and creates a `SelectCommand` instance with that index and returns it up to `LogicManager`.
+
+Step 4. `LogicManager` calls the `execute()` method of the `SelectCommand` instance, which invokes `getFilteredInternshipList()` on `Model` to get a list of internships, and obtains the internship at index `2`.
+
+Step 5. `SelectCommand` then passes that `Internship` instance through `updateSelectedInternship()` on `Model` which invokes `updateCurrent()` on `InternshipCatalogue` which updates its `currentInternship` field to that instance of `Internship`.
+
+Step 6. `SelectCommand` also invokes `updateFilteredEventList()` and `getFilteredEventList()` on `Model` to obtain the list of `Event` belonging to that instance of `Internship` as `ObservableList<Event>`.
+
+Step 7. Finally, a `CommandResult` is created containing that `Internship` and its `ObservableList<Event>` and it is returned to `LogicManager` for use in the UI.
+
+The following sequence diagram shows how the select command works:
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SelectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
