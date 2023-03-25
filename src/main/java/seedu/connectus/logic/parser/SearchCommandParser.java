@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
+import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 import seedu.connectus.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -25,9 +26,9 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] fieldKeywords = trimmedArgs.split("\\s+");
 
-        return new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new SearchCommand(new FieldsContainKeywordsPredicate(Arrays.asList(fieldKeywords)));
     }
 
 }
