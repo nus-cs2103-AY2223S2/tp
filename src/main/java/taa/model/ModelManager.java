@@ -227,8 +227,8 @@ public class ModelManager implements Model {
     //=========== AssignmentList Helpers =============================================================
 
     @Override
-    public void addAssignment(String assignmentName) throws CommandException {
-        assignmentList.add(assignmentName, filteredStudents);
+    public void addAssignment(String assignmentName, int totalMarks) throws CommandException {
+        assignmentList.add(assignmentName, filteredStudents, totalMarks);
         for (Student student : filteredStudents) {
             updateStudent(student);
         }
@@ -243,9 +243,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
+    public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission)
+            throws CommandException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
-        assignmentList.grade(assignmentName, student, marks);
+        assignmentList.grade(assignmentName, student, marks, isLateSubmission);
         updateStudent(student);
     }
 

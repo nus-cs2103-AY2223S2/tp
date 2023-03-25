@@ -173,7 +173,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void addAssignment(String toAdd) {
+        public void addAssignment(String toAdd, int totalMarks) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,7 +198,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void grade(String assignmentName, int studentId, int marks) {
+        public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) {
             throw new AssertionError("This method should not be called.");
         }
 

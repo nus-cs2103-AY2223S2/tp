@@ -1,6 +1,7 @@
 package taa.logic.parser;
 
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_MARK;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
@@ -9,6 +10,7 @@ import taa.commons.core.Messages;
 import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
+
 
 /**
  * Parses input arguments and creates a new AddStudentCommand object
@@ -23,7 +25,7 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
      */
     public AddAssignmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS_TAG, PREFIX_MARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -33,7 +35,15 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        return new AddAssignmentCommand(name.toString());
+        int totalMarks = 100;
+        if (arePrefixesPresent(argMultimap, PREFIX_MARK)) { // may have error if ppl just m/abc or m/, fix next time
+            totalMarks = Integer.parseInt(argMultimap.getValue(PREFIX_MARK).get());
+            if (totalMarks < 0) {
+                throw new ParseException("Marks cannot be negative.");
+            }
+        }
+
+        return new AddAssignmentCommand(name.toString(), totalMarks);
     }
 
     /**
