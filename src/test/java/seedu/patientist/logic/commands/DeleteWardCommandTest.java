@@ -1,7 +1,20 @@
 package seedu.patientist.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.patientist.testutil.Assert.assertThrows;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
@@ -14,17 +27,9 @@ import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.WardBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.patientist.testutil.Assert.assertThrows;
-import static seedu.patientist.testutil.TypicalPatients.BOB;
+
+
 
 public class DeleteWardCommandTest {
     @Test

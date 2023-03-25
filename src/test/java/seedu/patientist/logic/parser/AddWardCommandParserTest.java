@@ -6,6 +6,7 @@ import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseSuc
 import static seedu.patientist.testutil.WardBuilder.DEFAULT_NAME;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.WardBuilder;

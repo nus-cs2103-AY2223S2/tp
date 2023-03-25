@@ -1,14 +1,14 @@
 package seedu.patientist.logic.parser;
 
+import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.stream.Stream;
+
 import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.logic.commands.DeleteWardCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.ward.Ward;
-
-import java.util.stream.Stream;
-
-import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Parses input arguments and creates a new DeleteWardCommand object

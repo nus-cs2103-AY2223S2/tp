@@ -1,12 +1,11 @@
 package seedu.patientist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.ward.Ward;
-
-
-import static java.util.Objects.requireNonNull;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Deletes a ward identified using its name.
