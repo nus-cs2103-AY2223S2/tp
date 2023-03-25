@@ -1,18 +1,19 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalCategories.FOOD;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
-
+import seedu.address.model.expense.ExpenseInTimespanPredicate;
 
 
 public class ListCommandParserTest {
@@ -20,20 +21,47 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_categoryFieldPresent_success() {
-        ExpenseInCategoryPredicate predicate = null;
-        try {
-            predicate =
-                    new ExpenseInCategoryPredicate(ParserUtil.parseCategory("food"));
-        } catch (ParseException e) {
-            fail("Unexpected exception was thrown");
-        }
+        ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(FOOD);
         ListCommand expectedCommand = new ListCommand(Optional.of(predicate), Optional.empty());
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + FOOD.getCategoryName(), expectedCommand);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_CATEGORY + FOOD.getCategoryName(), expectedCommand);
 
         // no preamble
-        assertParseSuccess(parser, FOOD.getCategoryName(), expectedCommand);
+        assertParseSuccess(parser, PREFIX_CATEGORY + FOOD.getCategoryName(), expectedCommand);
+    }
+
+    @Test
+    public void parse_timespanFieldPresent_success() {
+        ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(LocalDate.now().withDayOfYear(1));
+        ListCommand expectedCommand = new ListCommand(Optional.empty(), Optional.of(predicate));
+
+        // whitespace only preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_TIMESPAN + "year", expectedCommand);
+
+        // no preamble
+        assertParseSuccess(parser, PREFIX_TIMESPAN + "year", expectedCommand);
+    }
+
+    @Test
+    public void parse_categoryTimespanPresent_success() {
+        ExpenseInTimespanPredicate timespanPredicate = new ExpenseInTimespanPredicate(LocalDate.now().withDayOfYear(1));
+        ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(FOOD);
+        ListCommand expectedCommand = new ListCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+
+        // whitespace only preamble
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + PREFIX_TIMESPAN + "year" + PREFIX_CATEGORY + FOOD.getCategoryName(),
+                expectedCommand);
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + PREFIX_CATEGORY + FOOD.getCategoryName() + PREFIX_TIMESPAN + "year",
+                expectedCommand);
+
+        // no preamble
+        assertParseSuccess(parser, PREFIX_TIMESPAN + "year" + PREFIX_CATEGORY + FOOD.getCategoryName(),
+                expectedCommand);
+        assertParseSuccess(parser, PREFIX_CATEGORY + FOOD.getCategoryName() + PREFIX_TIMESPAN + "year",
+                expectedCommand);
     }
 
     @Test

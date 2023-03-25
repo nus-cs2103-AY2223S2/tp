@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
@@ -95,7 +96,7 @@ public class ParserUtil {
         if (trimmedCategoryName.isEmpty()) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
-        if (categoryName.equals("miscellaneous")) {
+        if (trimmedCategoryName.equals("miscellaneous")) {
             return new MiscellaneousCategory();
         }
         return new UserDefinedCategory(trimmedCategoryName, "");
@@ -201,5 +202,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String timespan} into a {@code LocalDate}.
+     */
+    public static LocalDate parseTimespan(String timespan) throws ParseException {
+        assert timespan != null : "input should not be null";
+        requireNonNull(timespan);
+        String trimmedTimespan = timespan.trim();
+        LocalDate now = LocalDate.now();
+        if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
+            return now.with(DayOfWeek.MONDAY);
+        }
+        if (trimmedTimespan.equals("month") || trimmedTimespan.equals("m")) {
+            return now.withDayOfMonth(1);
+        }
+        if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
+            return now.withDayOfYear(1);
+        }
+        throw new ParseException("Not a valid date format (week, month, year)");
     }
 }
