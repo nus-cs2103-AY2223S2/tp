@@ -137,7 +137,7 @@ public class RecipeForm extends UiPart<Region> {
                 .collect(Collectors.joining(", ")));
         */
         //Ingredients
-        recipe.getIngredients().forEach(ingredient -> {
+        recipe.getIngredients().forEach((ingredient, information) -> {
             TextField ingredientField = new TextField(ingredient.toString());
             ingredientsBox.getChildren().add(ingredientField);
         });
