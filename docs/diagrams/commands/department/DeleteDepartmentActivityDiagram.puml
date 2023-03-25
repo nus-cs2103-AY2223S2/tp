@@ -1,0 +1,17 @@
+
+@startuml
+!pragma useVerticalIf on
+start
+:User enters deldep command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Command format is valid])elseif () then ([else])
+  :Error: Department does not exist in SudoHr;
+   stop
+ else ([Department exists in SudoHr])
+endif
+  :deldep command successfully executes.;
+stop
+
+@enduml

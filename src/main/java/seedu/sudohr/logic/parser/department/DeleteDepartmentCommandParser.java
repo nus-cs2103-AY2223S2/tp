@@ -12,7 +12,7 @@ import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
 
 /**
- * Parses input arguments and creates a new AddDepartmentCommand object
+ * Parses input arguments and creates a new DeleteDepartmentCommand object
  */
 public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCommand> {
 
@@ -35,9 +35,7 @@ public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCom
 
         String departmentNameInput = argMultimap.getValue(PREFIX_DEPARTMENT_NAME).get();
 
-        DepartmentName departmentName;
-
-        departmentName = ParserUtil.parseDepartmentName(departmentNameInput);
+        DepartmentName departmentName = ParserUtil.parseDepartmentName(departmentNameInput);
 
         return new DeleteDepartmentCommand(departmentName);
     }

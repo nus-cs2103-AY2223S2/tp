@@ -162,25 +162,108 @@ The attributes of an Employee are:
 
 ### Department-related features
 
-The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
+![DepartmentModelClassDiagram](./images/commands/department/DepartmentModelClassDiagram.png)
 
-
+The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHr.
 
 The attributes of a department are:
-* `name`: The name of the department, which is also the unique identifier for a department.
-* `employees`: The employees in a department, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
+* `DepartmentName`: The name of the department, which is also the unique identifier for a department.
+* `UniqueEmployeeList`: The employees in a department, the list must not contain duplicate employees.
+
+The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
 
 ### Adding a department
 
+The `adep` command adds a new `Department` in SudoHr.
+
+Activity Diagram:
+
+![AddDepartmentCommand](./images/commands/department/AddDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
 ![AddDepartmentCommand](./images/commands/department/AddDepartmentSequenceDiagram.png)
 
-The call stack is the same as a typical command during parsing. It requires the department name prefix: `n/`.
+#### Flow
 
-Upon execution, it first checks if the department contains the employee being added. This is done to prevent the addition of duplicates. After the check is done, the model adds the employee to the department. 
+1. The user enters the command, eg. `adep n/Sales`
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the department name.
+3. A `Department` object is constructed from the `DepartmentName` and handed over to the `AddDepartmentCommand`.
+4. The command is executed. It first checks if the department contains the employee being added. This is done to prevent the addition of duplicate
+employees in the same department.
+5. If there is no duplicate, the model adds the department to SudoHR. 
 
-After that, it returns the command result.
+After that, the command result is returned.
+
+#### Feature considerations
+
+When checking for duplicates in the `UniqueDepartmentList`, the `DepartmentName` of the department is used to uniquely
+identify each department. This is because it is illogical to have 2 departments with the same name, as the application
+is meant for use by a single company.
+
+If duplicate arguments are present in the same command, the last instance of the duplicated argument is taken in by the parser.
+
+### Editing a department
+
+The `edep` commands edits the department-level details of an existing `Department` in SudoHr. Currently, you can only
+edit the department name field as it is the only existing department-level detail.
+
+Activity Diagram:
+
+![EditDepartmentCommand](./images/commands/department/EditDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![EditDepartmentCommand](./images/commands/department/EditDepartmentSequenceDiagram.png)
+
+#### Flow
+
+1. The user enters the command, eg. `edep Marketing n/Sales`. Marketing is the new department name and Sales is the old department name.
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the new department name.
+3. A `EditDepartmentDescriptor` object is constructed from the `DepartmentName` and handed over to the `EditDepartmentCommand`.
+4. The command is executed. It first tries to find the department called Marketing.
+5. If the Marketing department exists, the command will then create the new department called Sales using the EditDepartmentDescriptor.
+The non-edited attributes from Marketing will be passed down to Sales.
+6. The command then checks if the edited department exists in SudoHR.
+8. If there is no duplicate, the model adds the department to SudoHR.
+
+After that, the command result is returned.
+
+#### Feature considerations
+
+The `EditDepartmentDescriptor` is used to store the details to be edited. This abstraction is used as not all fields
+may be edited for the `EditDepartmentCommand`, hence we use this class to figure out what to pass down during the
+construction of the new edited department. As of now, this class may be trivial but will prove more useful in the future
+when more department-level details are added (e.g. creation date, director, work type, etc.).
+
+It is also important to check if the name of the newly edited department clashes with any existing departments in
+SudoHR, as the name is the unique identifier for a department.
+
+### Deleting a department
+
+The `deldep` commands deletes an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![DeleteDepartmentCommand](./images/commands/department/DeleteDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![DeleteDepartmentCommand](./images/commands/department/DeleteDepartmentSequenceDiagram.png)
+
+#### Flow
+
+1. The user enters the command, eg. `deldep n/Sales`. Sales is the department to be deleted. 
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the new department name.
+3. The `DepartmentName` is passed down to the command.
+4. The command is executed. It first tries to find the department called Sales.
+5. If the Sales department exists, it will be deleted from SudoHR.
+
+After that, the command result is returned.
 
 ### Listing all departments
+
+The `listdep` command lists all the departments in SudoHR.
 
 ![ListDepartmentCommand](./images/commands/department/ListDepartmentSequenceDiagram.png)
 
@@ -188,7 +271,7 @@ The call stack is the same as a typical command except that it has no specified 
 
 Upon execution, it updates the department view.
 
-After that, it returns the command result.
+After that, the command result is returned.
 
 # Leave-related features
 

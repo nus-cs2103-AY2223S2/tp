@@ -1,0 +1,110 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":EditDepartmentCommandParser" as EditDepartmentCommandParser LOGIC_COLOR
+participant ":DepartmentName" as DepartmentName LOGIC_COLOR
+participant "editDepartmentDescriptor:EditDepartmentDescriptor" as EditDepartmentDescriptor LOGIC_COLOR
+participant "editedDepartment:Department" as Department LOGIC_COLOR
+participant "EditDepartmentCommand" as EditDepartmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edep Marketing n/Sales")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("edep Marketing n/Sales")
+activate SudoHrParser
+
+create EditDepartmentCommandParser
+SudoHrParser -> EditDepartmentCommandParser
+activate EditDepartmentCommandParser
+
+EditDepartmentCommandParser --> SudoHrParser
+deactivate EditDepartmentCommandParser
+
+SudoHrParser -> EditDepartmentCommandParser : parse("Marketing n/Sales")
+activate EditDepartmentCommandParser
+
+create DepartmentName
+EditDepartmentCommandParser -> DepartmentName
+activate DepartmentName
+
+DepartmentName -> EditDepartmentCommandParser
+deactivate
+
+create EditDepartmentDescriptor
+EditDepartmentCommandParser -> EditDepartmentDescriptor
+activate EditDepartmentDescriptor
+
+EditDepartmentDescriptor -> EditDepartmentCommandParser
+deactivate
+
+create EditDepartmentCommand
+EditDepartmentCommandParser -> EditDepartmentCommand
+activate EditDepartmentCommand
+
+EditDepartmentCommand --> EditDepartmentCommandParser
+deactivate EditDepartmentCommand
+
+EditDepartmentCommandParser --> SudoHrParser
+deactivate EditDepartmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditDepartmentCommandParser -[hidden]-> SudoHrParser
+destroy EditDepartmentCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> EditDepartmentCommand : execute()
+activate EditDepartmentCommand
+
+EditDepartmentCommand -> Model : getDepartment(name)
+activate Model
+
+Model --> EditDepartmentCommand
+deactivate Model
+
+EditDepartmentCommand -> EditDepartmentCommand : createEditedDepartment(departmentToEdit, editDepartmentDescriptor)
+activate EditDepartmentCommand
+
+create Department
+EditDepartmentCommand -> Department
+activate Department
+Department -> EditDepartmentCommand
+deactivate
+
+EditDepartmentCommand -> EditDepartmentCommand
+deactivate EditDepartmentCommand
+
+EditDepartmentCommand -> Model : hasDepartment(editedDepartment)
+activate Model
+
+Model --> EditDepartmentCommand
+deactivate Model
+
+EditDepartmentCommand -> Model : setDepartment(departmentToEdit, editedDepartment)
+activate Model
+
+Model --> EditDepartmentCommand
+deactivate Model
+
+create CommandResult
+EditDepartmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditDepartmentCommand
+deactivate CommandResult
+
+EditDepartmentCommand --> LogicManager : result
+deactivate EditDepartmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

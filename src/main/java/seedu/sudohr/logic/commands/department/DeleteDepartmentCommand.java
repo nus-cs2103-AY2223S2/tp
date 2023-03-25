@@ -37,15 +37,15 @@ public class DeleteDepartmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Department departmentToDelete = model.getDepartment(targetDepartment);
+        Department toDelete = model.getDepartment(targetDepartment);
 
-        if (departmentToDelete == null) {
+        if (toDelete == null) {
             throw new CommandException(MESSAGE_DEPARTMENT_NOT_EXIST);
         }
 
-        model.removeDepartment(departmentToDelete);
+        model.removeDepartment(toDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_DEPARTMENT_SUCCESS, departmentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_DEPARTMENT_SUCCESS, toDelete));
     }
 
     @Override
