@@ -106,7 +106,7 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         int indexOfPlane =
                 Integer.parseInt(planeIdOptional.get());
         Optional<Plane> planeOptional =
-                planeManagerLazy.get().getItemByIndex(indexOfPlane);
+                planeManagerLazy.get().getItemOptional(indexOfPlane);
         if (planeOptional.isEmpty()) {
             return false;
         }
@@ -123,7 +123,7 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         int indexOfFlight =
                 Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemByIndex(indexOfFlight);
+                flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }

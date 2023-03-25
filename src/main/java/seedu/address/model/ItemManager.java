@@ -16,7 +16,7 @@ import seedu.address.model.item.UniqueList;
  * that allows for the modification of the manager.
  */
 public class ItemManager<T extends Item> implements
-        ReadOnlyItemManager<T> {
+                                         ReadOnlyItemManager<T> {
 
     /**
      * The internal list responsible for holding the items.
@@ -131,14 +131,12 @@ public class ItemManager<T extends Item> implements
      * @throws IndexOutOfBoundException when the given index larger than size
      */
     public void removeItemByIndex(int index) throws IndexOutOfBoundException {
-        Optional<T> itemToRemove = getItemByIndex(index);
-        assert itemToRemove.isPresent() : "the item to remove cannot be absent.";
-
-        removeItem(itemToRemove.get().getId());
+        T itemToRemove = getItem(index);
+        removeItem(itemToRemove.getId());
     }
 
     @Override
-    public Optional<T> getItem(String id) {
+    public Optional<T> getItemOptional(String id) {
         for (T item : items) {
             if (item.getId().equals(id)) {
                 return Optional.of(item);
@@ -148,22 +146,22 @@ public class ItemManager<T extends Item> implements
     }
 
     @Override
-    public Optional<T> getItemByIndex(int idx) throws IndexOutOfBoundException {
-        if (idx > items.size() || items.size() == 0) {
-            throw new IndexOutOfBoundException(idx, items.size());
+    public Optional<T> getItemOptional(int index) {
+        try {
+            return Optional.of(items.get(index));
+        } catch (IndexOutOfBoundException e) {
+            return Optional.empty();
         }
+    }
 
-        int count = 0;
-        for (T item: items) {
-            if (count == idx) {
-                return Optional.of(item);
-            }
-            count = count + 1;
-        }
+    @Override
+    public T getItem(int index) throws IndexOutOfBoundException {
+        return items.get(index);
+    }
 
-        assert false : "Should not reach here. ";
-
-        return Optional.empty();
+    @Override
+    public T getItem(String id) {
+        return items.get(id);
     }
 
     @Override

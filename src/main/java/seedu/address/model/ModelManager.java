@@ -64,16 +64,19 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyItemManager<Pilot> pilotManager,
-                        ReadOnlyItemManager<Location> locationManager,
-                        ReadOnlyItemManager<Crew> crewManager,
-                        ReadOnlyItemManager<Plane> planeManager,
-                        ReadOnlyItemManager<Flight> flightManager) {
+    public ModelManager(
+            ReadOnlyUserPrefs userPrefs,
+            ReadOnlyItemManager<Pilot> pilotManager,
+            ReadOnlyItemManager<Location> locationManager,
+            ReadOnlyItemManager<Crew> crewManager,
+            ReadOnlyItemManager<Plane> planeManager,
+            ReadOnlyItemManager<Flight> flightManager
+    ) {
         requireAllNonNull(userPrefs);
 
-        logger.fine("Initializing with Wingman storage(pilot, location, crew, plane, flight)"
-                + " and user prefs " + userPrefs);
+        logger.fine(
+                "Initializing with Wingman storage(pilot, location, crew, plane, flight)"
+                        + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
 
@@ -103,7 +106,8 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new UserPrefs(), new ItemManager<>(),
                 new ItemManager<>(), new ItemManager<>(),
-                new ItemManager<>(), new ItemManager<>());
+                new ItemManager<>(), new ItemManager<>()
+        );
     }
 
     //=========== UserPrefs ==================================================================================
@@ -244,7 +248,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkPilot(String id) {
-        Optional<Pilot> temp = pilotManager.getItem(id);
+        Optional<Pilot> temp = pilotManager.getItemOptional(id);
 
         if (temp.isPresent()) {
             Pilot pilotToCheck = temp.get();
@@ -256,7 +260,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkPilotByIndex(int index) throws IndexOutOfBoundException {
-        Optional<Pilot> pilot = pilotManager.getItemByIndex(index);
+        Optional<Pilot> pilot = pilotManager.getItemOptional(index);
 
         if (pilot.isPresent()) {
             Pilot pilotToCheck = pilot.get();
@@ -283,7 +287,7 @@ public class ModelManager implements Model {
     @Override
     public Location getLocationById(String id) {
         Location locationToFind = null;
-        for (Location location: getFilteredLocationList()) {
+        for (Location location : getFilteredLocationList()) {
             if (location.getId().equals(id)) {
                 locationToFind = location;
             }
@@ -430,7 +434,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkCrew(String id) {
-        Optional<Crew> temp = crewManager.getItem(id);
+        Optional<Crew> temp = crewManager.getItemOptional(id);
 
         if (temp.isPresent()) {
             Crew crewToCheck = temp.get();
@@ -442,7 +446,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkCrewByIndex(int index) throws IndexOutOfBoundException {
-        Optional<Crew> crew = crewManager.getItemByIndex(index);
+        Optional<Crew> crew = crewManager.getItemOptional(index);
 
         if (crew.isPresent()) {
             Crew crewToCheck = crew.get();
@@ -516,7 +520,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkPlane(String id) {
-        Optional<Plane> temp = planeManager.getItem(id);
+        Optional<Plane> temp = planeManager.getItemOptional(id);
 
         if (temp.isPresent()) {
             Plane planeToCheck = temp.get();
@@ -528,7 +532,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean checkPlaneByIndex(int index) throws IndexOutOfBoundException {
-        Optional<Plane> plane = planeManager.getItemByIndex(index);
+        Optional<Plane> plane = planeManager.getItemOptional(index);
 
         if (plane.isPresent()) {
             Plane planeToCheck = plane.get();
@@ -555,7 +559,7 @@ public class ModelManager implements Model {
     @Override
     public Flight getFlightById(String id) {
         Flight flightToFind = null;
-        for (Flight flight: getFilteredFlightList()) {
+        for (Flight flight : getFilteredFlightList()) {
             if (flight.getId().equals(id)) {
                 flightToFind = flight;
             }
@@ -569,34 +573,39 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyItemManager<Flight> getFlightManager() {
         return flightManager;
-    };
+    }
+
     @Override
     public Path getFlightManagerFilePath() {
         return userPrefs.getFlightManagerFilePath();
-    };
+    }
+
     @Override
     public void setFlightManagerFilePath(Path flightManagerFilePath) {
         requireNonNull(flightManagerFilePath);
         userPrefs.setFlightManagerFilePath(flightManagerFilePath);
-    };
+    }
+
     @Override
     public void setFlightManager(ReadOnlyItemManager<Flight> flightManager) {
         this.flightManager.resetData(flightManager);
-    };
+    }
+
     @Override
     public boolean hasFlight(Flight flight) {
         requireNonNull(flight);
         return flightManager.hasItem(flight);
-    };
+    }
+
     @Override
     public void deleteFlight(Flight target) {
         flightManager.removeItem(target);
-    };
+    }
 
     @Override
     public void deleteFlight(String id) {
         flightManager.removeItem(id);
-    };
+    }
 
     @Override
     public void deleteFlightByIndex(int index) throws IndexOutOfBoundException {
@@ -607,25 +616,24 @@ public class ModelManager implements Model {
     public void addFlight(Flight flight) {
         requireNonNull(flight);
         flightManager.addItem(flight);
-    };
+    }
 
     @Override
     public void setFlight(Flight target, Flight editedFlight) {
         requireAllNonNull(target, editedFlight);
         flightManager.setItem(target, editedFlight);
-    };
+    }
 
     @Override
     public ObservableList<Flight> getFilteredFlightList() {
         return filteredFlights;
-    };
+    }
 
     @Override
     public void updateFilteredFlightList(Predicate<Flight> predicate) {
         requireNonNull(predicate);
         filteredFlights.setPredicate(predicate);
-    };
-
+    }
 
     //=========== Generic ========================================================
 
@@ -644,10 +652,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-                && pilotManager.equals(other.pilotManager)
-                && crewManager.equals(other.crewManager)
-                && planeManager.equals(other.planeManager)
-                && flightManager.equals(other.flightManager)
-                && locationManager.equals(other.locationManager);
+                       && pilotManager.equals(other.pilotManager)
+                       && crewManager.equals(other.crewManager)
+                       && planeManager.equals(other.planeManager)
+                       && flightManager.equals(other.flightManager)
+                       && locationManager.equals(other.locationManager);
     }
 }

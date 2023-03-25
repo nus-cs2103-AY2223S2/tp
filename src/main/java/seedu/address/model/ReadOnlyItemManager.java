@@ -34,17 +34,33 @@ public interface ReadOnlyItemManager<T extends Item> {
      * @param id the ID of the item to get
      * @return the item with the given ID
      */
-    Optional<T> getItem(String id);
+    Optional<T> getItemOptional(String id);
+
+    /**
+     * Returns the item with the given index.
+     *
+     * @param index the index of the item to get.
+     * @return the item at the given index.
+     */
+    Optional<T> getItemOptional(int index);
 
     /**
      * Returns the item at the given
      * index location.
      *
-     * @param idx the index of the item counting
-     *            from zero
+     * @param index the index of the item counting
+     *              from zero
      * @return the item at the given index
      */
-    Optional<T> getItemByIndex(int idx);
+    T getItem(int index);
+
+    /**
+     * Returns the item with the given id.
+     *
+     * @param id the id of the item.
+     * @return the item with the given id.
+     */
+    T getItem(String id);
 
     /**
      * Returns the number of items in the address book.

@@ -21,7 +21,6 @@ import seedu.address.model.location.Location;
  * The location could be a place where they reside.
  * To link a crew to a flight, the crew should reside in
  * the same location as the flight's starting location.
- *
  */
 public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrewToLocationCommand> {
     private static final String COMMAND_WORD = "linklocation";
@@ -42,7 +41,6 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
 
     /**
      * Creates a new link command factory with the model registered.
-     *
      */
     public LinkCrewToLocationCommandFactory() {
         this(GetUtil.getLazy(Model.class));
@@ -64,7 +62,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
      * Creates a new link crew command factory with the given crew manager
      * lazy and the flight manager lazy.
      *
-     * @param crewManagerLazy  the lazy instance of the crew manager.
+     * @param crewManagerLazy     the lazy instance of the crew manager.
      * @param locationManagerLazy the lazy instance of the location manager.
      */
     public LinkCrewToLocationCommandFactory(
@@ -79,7 +77,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
      * Creates a new link crew command factory with the given crew manager
      * and the location manager.
      *
-     * @param crewManager  the crew manager.
+     * @param crewManager     the crew manager.
      * @param locationManager the flight manager.
      */
     public LinkCrewToLocationCommandFactory(
@@ -116,7 +114,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         int indexOfCrew =
                 Integer.parseInt(crewIdOptional.get());
         Optional<Crew> crewOptional =
-                crewManagerLazy.get().getItemByIndex(indexOfCrew);
+                crewManagerLazy.get().getItemOptional(indexOfCrew);
         if (crewOptional.isEmpty()) {
             return false;
         }
@@ -133,7 +131,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         int indexOfLocation =
                 Integer.parseInt(locationIdOptional.get());
         Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemByIndex(indexOfLocation);
+                locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }

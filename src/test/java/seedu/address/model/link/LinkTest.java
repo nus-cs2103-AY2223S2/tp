@@ -44,7 +44,7 @@ public class LinkTest {
         testItem = new ItemStub("test-id");
         Mockito
                 .lenient()
-                .when(manager.getItem(any()))
+                .when(manager.getItemOptional(any()))
                 .thenReturn(Optional.of(testItem));
         contents = new HashMap<>();
         contents.put(CategoryStub.CATEGORY_A, new ArrayDeque<>());

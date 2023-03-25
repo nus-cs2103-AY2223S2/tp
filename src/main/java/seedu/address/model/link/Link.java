@@ -397,7 +397,7 @@ public class Link<K, T extends Item,
         keyValidOrThrow(key);
         return contents.get(key)
                        .stream()
-                       .map((id) -> managerLazy.get().getItem(id))
+                       .map((id) -> managerLazy.get().getItemOptional(id))
                        .collect(Collectors.toList());
     }
 
@@ -415,7 +415,7 @@ public class Link<K, T extends Item,
         final List<T> result = new ArrayList<>();
         final List<String> tbd = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = managerLazy.get().getItem(id);
+            final Optional<T> tmp = managerLazy.get().getItemOptional(id);
             if (tmp.isPresent()) {
                 result.add(tmp.get());
             } else {
@@ -438,7 +438,7 @@ public class Link<K, T extends Item,
         keyValidOrThrow(key);
         final List<T> result = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = managerLazy.get().getItem(id);
+            final Optional<T> tmp = managerLazy.get().getItemOptional(id);
             tmp.ifPresent(result::add);
         }
         return result;
