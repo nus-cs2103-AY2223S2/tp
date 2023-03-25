@@ -18,9 +18,20 @@ package "RecipeBook Storage" #F4F6F6{
 Class "<<interface>>\nRecipeBookStorage" as RecipeBookStorage
 Class JsonRecipeBookStorage
 Class JsonSerializableRecipeBook
+Package "JSON Adapters" {
 Class JsonAdaptedRecipe
+Class JsonAdaptedName
+Class JsonAdaptedRecipePortion
+Class JsonAdaptedPortionUnit
+Class JsonAdaptedRecipeDuration
+Class JsonAdaptedTimeUnit
 Class JsonAdaptedTag
+Class JsonAdaptedIngredient
+Class JsonAdaptedStep
 }
+}
+
+
 
 }
 
@@ -38,6 +49,13 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonRecipeBookStorage .up.|> RecipeBookStorage
 JsonRecipeBookStorage ..> JsonSerializableRecipeBook
 JsonSerializableRecipeBook --> "*" JsonAdaptedRecipe
-JsonAdaptedRecipe --> "*" JsonAdaptedTag
+JsonAdaptedRecipe *--> "1" JsonAdaptedName
+JsonAdaptedRecipe *--> "0..1" JsonAdaptedRecipePortion
+JsonAdaptedRecipePortion *--> "1" JsonAdaptedPortionUnit
+JsonAdaptedRecipe *--> "0..1" JsonAdaptedRecipeDuration
+JsonAdaptedRecipeDuration *--> "1" JsonAdaptedTimeUnit
+JsonAdaptedRecipe *--> "*" JsonAdaptedTag
+JsonAdaptedRecipe *---> "*" JsonAdaptedIngredient
+JsonAdaptedRecipe *--> "*" JsonAdaptedStep
 
 @enduml

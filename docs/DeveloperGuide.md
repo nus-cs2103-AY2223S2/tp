@@ -152,7 +152,7 @@ extension feature to this project.<br/><br/>
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
-Structure of the Storage Component: (tbc)
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **The `Storage` component:**
 
