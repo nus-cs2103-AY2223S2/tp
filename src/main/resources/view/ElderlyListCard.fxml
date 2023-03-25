@@ -63,10 +63,18 @@
                     </graphic>
                 </Label>
 
+                <Label fx:id="availability" styleClass="cell_small_label" text="\$availability" minWidth="-Infinity"
+                       HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/availability.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+
             </HBox>
 
-            <HBox spacing="10">
-
+            <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label fx:id="phone" minWidth="-Infinity" styleClass="cell_small_label" text="\$phone"
                        HBox.hgrow="ALWAYS">
                     <graphic>
@@ -97,7 +105,7 @@
             </HBox>
 
 
-            <HBox spacing="10">
+            <HBox spacing="10" fx:id="tagsBox">
                 <Label>
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">

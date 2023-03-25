@@ -458,8 +458,8 @@
 }
 
 #medicalTags {
-    -fx-hgap: 17;
-    -fx-vgap: 31;
+    -fx-hgap: 7;
+    -fx-vgap: 3;
 }
 
 #medicalTags .label {
