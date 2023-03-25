@@ -114,6 +114,12 @@ public class ModelManager implements Model {
         wife.setFood(target, editedFood);
     }
 
+    @Override
+    public void viewFood(Food target) {
+        requireNonNull(target);
+        wife.viewFood(target);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Food} backed by the internal list of
      * {@code versionedWife}

@@ -20,11 +20,16 @@ public class ListTagCommand extends Command {
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
         Object[] tags = model.getFilteredTagList().toArray();
 
-        // for testing purpose: to list all the tags
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are your existing tags: ");
         for (Object tag : tags) {
-            System.out.println((Tag) tag);
+            Tag thisTag = (Tag) tag;
+            sb.append(thisTag.getTagName());
+            sb.append(System.lineSeparator());
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        String allTags = sb.toString();
+
+        return new CommandResult(allTags);
     }
 }
