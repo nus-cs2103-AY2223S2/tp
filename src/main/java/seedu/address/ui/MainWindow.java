@@ -171,6 +171,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the quickstart window or focuses on it if it's already opened.
+     */
     @FXML
     public void handleQuickstart() {
         if (!quickstartWindow.isShowing()) {

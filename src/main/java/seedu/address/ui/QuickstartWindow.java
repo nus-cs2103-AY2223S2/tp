@@ -1,13 +1,12 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-
-import javafx.scene.*;
+import javafx.scene.Node;
 import javafx.scene.control.Pagination;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.util.*;
+import javafx.util.Callback;
 
 /**
  * Controller for a help page
