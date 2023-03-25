@@ -35,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_COURSE + "1 "
+            + PREFIX_YEAR + "2 "
             + PREFIX_GITHUB + "j0hn-Do3 "
             + PREFIX_LINKEDIN + "linkedin.com/in/j0hn-Do3 "
             + PREFIX_SKILL + "python "
@@ -62,8 +63,11 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
+        if (model.getFilteredPersonList().size() == 0) {
+            model.setProtagonist(toAdd);
+        }
         model.addPerson(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
