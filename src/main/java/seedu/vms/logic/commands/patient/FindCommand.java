@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.util.CollectionUtil;
@@ -16,6 +20,7 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
+import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.patient.predicates.BloodTypePredicate;
 import seedu.vms.model.patient.predicates.DobPredicate;
@@ -37,10 +42,10 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate namePredicate;
-    private final PhoneNumberPredicate phonePredicate;
-    private final DobPredicate dobPredicate;
-    private final BloodTypePredicate bloodTypePredicate;
+    private final Optional<NameContainsKeywordsPredicate> namePredicate;
+    private final Optional<PhoneNumberPredicate> phonePredicate;
+    private final Optional<DobPredicate> dobPredicate;
+    private final Optional<BloodTypePredicate> bloodTypePredicate;
 
     /**
      * Existing FindCommand that was previously used to search using name only
@@ -48,10 +53,10 @@ public class FindCommand extends Command {
      * @param namePredicate
      */
     public FindCommand(NameContainsKeywordsPredicate namePredicate) {
-        this.namePredicate = namePredicate;
-        this.phonePredicate = null;
-        this.dobPredicate = null;
-        this.bloodTypePredicate = null;
+        this.namePredicate = Optional.of(namePredicate);
+        this.phonePredicate = Optional.empty();
+        this.dobPredicate = Optional.empty();
+        this.bloodTypePredicate = Optional.empty();
     }
 
     /**
@@ -63,45 +68,40 @@ public class FindCommand extends Command {
     public FindCommand(FindPatientDescriptor findPatientDescriptor) {
         if (findPatientDescriptor.getNameSearch().isPresent()) {
             String[] nameKeywords = findPatientDescriptor.getNameSearch().get().split("\\s+");
-            this.namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            this.namePredicate = Optional.of(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
-            this.namePredicate = null;
+            this.namePredicate = Optional.empty();
         }
 
         if (findPatientDescriptor.getPhone().isPresent()) {
-            this.phonePredicate = new PhoneNumberPredicate(findPatientDescriptor.getPhone().get());
+            this.phonePredicate = Optional.of(new PhoneNumberPredicate(findPatientDescriptor.getPhone().get()));
         } else {
-            this.phonePredicate = null;
+            this.phonePredicate = Optional.empty();
         }
 
         if (findPatientDescriptor.getDob().isPresent()) {
-            this.dobPredicate = new DobPredicate(findPatientDescriptor.getDob().get());
+            this.dobPredicate = Optional.of(new DobPredicate(findPatientDescriptor.getDob().get()));
         } else {
-            this.dobPredicate = null;
+            this.dobPredicate = Optional.empty();
         }
 
         if (findPatientDescriptor.getBloodType().isPresent()) {
-            this.bloodTypePredicate = new BloodTypePredicate(findPatientDescriptor.getBloodType().get());
+            this.bloodTypePredicate = Optional.of(new BloodTypePredicate(findPatientDescriptor.getBloodType().get()));
         } else {
-            this.bloodTypePredicate = null;
+            this.bloodTypePredicate = Optional.empty();
         }
     }
 
     @Override
     public CommandMessage execute(Model model) {
         requireNonNull(model);
-        if (namePredicate != null) {
-            model.updateFilteredPatientList(namePredicate);
-        }
-        if (phonePredicate != null) {
-            model.updateFilteredPatientList(phonePredicate);
-        }
-        if (dobPredicate != null) {
-            model.updateFilteredPatientList(dobPredicate);
-        }
-        if (bloodTypePredicate != null) {
-            model.updateFilteredPatientList(bloodTypePredicate);
-        }
+        List<Optional<? extends Predicate<Patient>>> optionalFilters = List.of(namePredicate, phonePredicate,
+                dobPredicate, bloodTypePredicate);
+        List<Predicate<Patient>> filters = optionalFilters.stream()
+                .filter(Objects::nonNull)
+                .flatMap(Optional::stream)
+                .collect(Collectors.toList());
+        model.setPatientFilters(filters);
         return new CommandMessage(
                 String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
@@ -109,7 +109,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
+                || (other instanceof FindCommand // instanceof handles Optional.empty()s
                         && namePredicate.equals(((FindCommand) other).namePredicate) // state check
                         && phonePredicate.equals(((FindCommand) other).phonePredicate) // state check
                         && dobPredicate.equals(((FindCommand) other).dobPredicate) // state check

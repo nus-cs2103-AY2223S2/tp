@@ -193,5 +193,7 @@ public interface Model {
     void setKeywordManager(KeywordManager keywordManager);
 
 
+    void setPatientFilters(Collection<Predicate<Patient>> filters);
+
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
 }
