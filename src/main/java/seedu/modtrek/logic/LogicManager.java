@@ -2,6 +2,7 @@ package seedu.modtrek.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -61,6 +62,10 @@ public class LogicManager implements Logic {
 
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
+    }
+
+    public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+        return  model.getModuleGroups();
     }
 
     @Override

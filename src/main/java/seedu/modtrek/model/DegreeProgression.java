@@ -3,6 +3,7 @@ package seedu.modtrek.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.model.module.Module;
@@ -98,6 +99,10 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
      */
     public void removeModule(Module key) {
         modules.remove(key);
+    }
+
+    public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+        return modules.sortBySemYear();
     }
 
     //// util methods

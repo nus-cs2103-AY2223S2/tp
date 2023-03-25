@@ -113,6 +113,9 @@ public class MainWindow extends UiPart<Stage> {
                 resultsSection.displayAllModules(logic.getDegreeProgression().getModuleList());
             } else if (commandResult.isDisplayFilteredModules) {
                 resultsSection.displayFindModules(logic.getFilteredModuleList());
+            } else if (commandResult.getFeedbackToUser().contains("Listed modules by")) {
+                resultsSection.displaySortedModules(logic.getDegreeProgression().getModuleGroups(),
+                        "SemYear");
             } else {
                 // do nothing for `exit` and `help` commands
             }

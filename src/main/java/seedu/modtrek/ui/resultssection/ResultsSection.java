@@ -1,11 +1,14 @@
 package seedu.modtrek.ui.resultssection;
 
+import java.util.TreeMap;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import jdk.nashorn.api.tree.Tree;
 import seedu.modtrek.logic.Logic;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
@@ -116,9 +119,15 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays all the modules, sorted by a given category.
      */
-    public void displaySortedModules(
+    public void displaySortedModules(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort
             /* ObservableList<Module> modules sorted by a certain category, String category */) {
         // TODO: next iteration
+        headerTitle.setText("My Modules");
+        headerSubtitle.setText("sorted by" + sort);
+
+        footerButtonGroup.selectModuleListButton();
+        ModuleSection moduleListSection = new ModuleListSection(sortedLists);
+        renderSection(moduleListSection.getRoot());
     }
 
     /**

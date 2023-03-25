@@ -2,6 +2,7 @@ package seedu.modtrek.ui.modulesection;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,11 @@ public class ModuleList extends UiPart<Region> {
         displayModuleGroup(modules, isFilteredList);
     }
 
+    public ModuleList(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+        super(FXML);
+
+        displaySortedModuleGroup(moduleGroups);
+    }
     /**
      * Displays all module groups within a module list.
      * @param modules the list of modules
@@ -62,6 +68,13 @@ public class ModuleList extends UiPart<Region> {
         }
 
         for (Map.Entry<SemYear, ObservableList<Module>> entry : modsPerSemYear.entrySet()) {
+            ModuleGroup moduleGroup = new ModuleGroup(entry.getValue(), entry.getKey().toString());
+            moduleList.getChildren().add(moduleGroup.getRoot());
+        }
+    }
+
+    private void displaySortedModuleGroup(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+        for (Map.Entry<? extends Object, ObservableList<Module>> entry : moduleGroups.entrySet()) {
             ModuleGroup moduleGroup = new ModuleGroup(entry.getValue(), entry.getKey().toString());
             moduleList.getChildren().add(moduleGroup.getRoot());
         }

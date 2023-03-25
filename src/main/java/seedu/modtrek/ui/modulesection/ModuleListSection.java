@@ -1,5 +1,7 @@
 package seedu.modtrek.ui.modulesection;
 
+import java.util.TreeMap;
+
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Region;
 import seedu.modtrek.model.module.Module;
@@ -18,6 +20,16 @@ public class ModuleListSection extends ModuleSection {
         super();
 
         ModuleList moduleList = new ModuleList(modules, false);
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+
+        ModuleSectionSortNav nav = new ModuleSectionSortNav();
+        moduleSectionNav.getChildren().add(nav.getRoot());
+    }
+
+    public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedLists) {
+        super();
+
+        ModuleList moduleList = new ModuleList(sortedLists);
         moduleListPlaceholder.getChildren().add(moduleList.getRoot());
 
         ModuleSectionSortNav nav = new ModuleSectionSortNav();

@@ -5,6 +5,7 @@ import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,6 +112,69 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns TreeMap of Modules sorted by SemYear
+     *
+     * @return
+     */
+    public TreeMap<SemYear, ObservableList<Module>> sortBySemYear() {
+        TreeMap<SemYear, ObservableList<Module>> result = new TreeMap<>();
+        for (Module m : internalUnmodifiableList) {
+            SemYear currSemYear = m.getSemYear();
+            ObservableList<Module> existingSemYearList = result.get(currSemYear);
+            if (existingSemYearList == null) {
+                ObservableList<Module> currSemYearList = FXCollections.observableArrayList();
+                currSemYearList.add(m);
+                result.put(currSemYear, currSemYearList);
+            } else {
+                existingSemYearList.add(m);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns TreeMap of Modules sorted by Credit
+     *
+     * @return
+     */
+    public TreeMap<Credit, ObservableList<Module>> sortByCredit() {
+        TreeMap<Credit, ObservableList<Module>> result = new TreeMap<>();
+        for (Module m : internalUnmodifiableList) {
+            Credit currCredit = m.getCredit();
+            ObservableList<Module> existingCreditList = result.get(currCredit);
+            if (existingCreditList == null) {
+                ObservableList<Module> currCreditList = FXCollections.observableArrayList();
+                currCreditList.add(m);
+                result.put(currCredit, currCreditList);
+            } else {
+                existingCreditList.add(m);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns TreeMap of Modules sorted by Grade
+     *
+     * @return
+     */
+    public TreeMap<Grade, ObservableList<Module>> sortByGrade() {
+        TreeMap<Grade, ObservableList<Module>> result = new TreeMap<>();
+        for (Module m : internalUnmodifiableList) {
+            Grade currGrade = m.getGrade();
+            ObservableList<Module> existingGradeList = result.get(currGrade);
+            if (existingGradeList == null) {
+                ObservableList<Module> currGradeList = FXCollections.observableArrayList();
+                currGradeList.add(m);
+                result.put(currGrade, currGradeList);
+            } else {
+                existingGradeList.add(m);
+            }
+        }
+        return result;
     }
 
     @Override

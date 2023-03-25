@@ -1,6 +1,7 @@
 package seedu.modtrek.model;
 
 import java.nio.file.Path;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -117,6 +118,8 @@ public interface Model {
      * @return the filtered module list
      */
     ObservableList<Module> getFilteredModuleList();
+
+    TreeMap<? extends Object, ObservableList<Module>> getModuleGroups();
 
     /**
      * Updates the filter of the filtered Module list to filter by the given {@code predicate}.

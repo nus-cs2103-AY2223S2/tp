@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Objects;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -126,6 +128,11 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+        return degreeProgression.getModuleGroups();
     }
 
     @Override
