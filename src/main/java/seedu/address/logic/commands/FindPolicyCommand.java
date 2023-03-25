@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+/**
+ * Finds people with specified policy tag
+ */
 public class FindPolicyCommand extends Command{
     public static final String COMMAND_WORD = "findPolicy";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -25,6 +28,13 @@ public class FindPolicyCommand extends Command{
         this.predicate = predicate;
     }
 
+    /**
+     * Executes findPolicy command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult Object
+     * @throws CommandException when index specified is invalid or out of range
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -32,6 +42,12 @@ public class FindPolicyCommand extends Command{
         return new CommandResult(getSuccessMessage(model.getFilteredPersonList().size()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof FindPolicyCommand // instanceof handles nulls
+            && predicate.equals(((FindPolicyCommand) other).predicate)); // state check
+    }
 
     private String getSuccessMessage(int size) {
         if (size == 1) {

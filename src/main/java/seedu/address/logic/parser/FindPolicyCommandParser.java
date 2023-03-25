@@ -6,8 +6,16 @@ import seedu.address.logic.commands.FindPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindPolicyCommand object
+ */
 public class FindPolicyCommandParser implements Parser<FindPolicyCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns a FindPolicyCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public FindPolicyCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

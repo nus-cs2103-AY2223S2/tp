@@ -14,6 +14,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPolicyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListRegionCommand;
@@ -80,7 +81,8 @@ public class AddressBookParser {
         case RemoveMeetingCommand.COMMAND_WORD:
             return new RemoveMeetingCommandParser().parse(arguments);
 
-            
+        case FindPolicyCommand.COMMAND_WORD:
+            return new FindPolicyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
