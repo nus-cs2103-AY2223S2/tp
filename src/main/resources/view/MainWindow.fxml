@@ -32,7 +32,6 @@
                      <VBox fx:id="groupTabPlaceholder" prefHeight="75.0" prefWidth="75.0" />
                      <VBox fx:id="studentTabPlaceholder" prefHeight="75.0" prefWidth="75.0" />
                   </children></VBox>
-      
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="600.0" prefHeight="575.0" HBox.hgrow="ALWAYS">
               <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                 <Menu mnemonicParsing="false" text="File">
@@ -73,19 +72,16 @@
                         </VBox>
                      </children>
                   </HBox>
-      
                        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
-      
               <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
-      
               <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="671.0" VBox.vgrow="NEVER" />
             </VBox>
             </children>
