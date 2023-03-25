@@ -125,7 +125,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into a {@code <ModuleCode>}.
+     * Parses a {@code String course} into a {@code <Course>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code module code} is invalid.
@@ -139,6 +139,10 @@ public class ParserUtil {
         return new Course(trimmedCourse);
     }
 
+    /**
+     * Parses a {@code String group} into a {@code <Group>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static Group parseGroup(String groupName) throws ParseException {
         requireNonNull(groupName);
         String trimmedGroup = groupName.trim();

@@ -90,6 +90,7 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Student selectedStudent = studentList.get(targetIndex.getZeroBased());
+        currentSelection.selectStudent(selectedStudent);
 
         // end of navigation, no longer need to call setters of currentSelection
         return selectedStudent;

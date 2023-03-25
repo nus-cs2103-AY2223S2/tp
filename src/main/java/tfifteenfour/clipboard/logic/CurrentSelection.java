@@ -9,12 +9,15 @@ import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
 
-
+/**
+ * Class to keep track of current selections.
+ */
 public class CurrentSelection {
+
+    public static final Student NON_EXISTENT_STUDENT = emptyStudentBuilder();
 
     private static final Course NON_EXISTENT_COURSE = new Course("NONEXISTENTCOURSE");
     private static final Group NON_EXISTENT_GROUP = new Group("NONEXISTENTGROUP");
-    private static final Student NON_EXISTENT_STUDENT = emptyStudentBuilder();
     private PageType currentPage;
 
     private Course selectedCourse = NON_EXISTENT_COURSE;
@@ -40,11 +43,19 @@ public class CurrentSelection {
         return currentPage;
     }
 
+    /**
+     * Setter for selectedCourse.
+     * @param course to be set.
+     */
     public void selectCourse(Course course) {
         this.selectedCourse = course;
         this.currentPage = PageType.GROUP_PAGE;
     }
 
+    /**
+     * Setter for selectedGroup.
+     * @param group to be set.
+     */
     public void selectGroup(Group group) {
         this.selectedGroup = group;
         this.currentPage = PageType.STUDENT_PAGE;
@@ -70,13 +81,31 @@ public class CurrentSelection {
         return this.selectedStudent;
     }
 
+    /**
+     * Navigates current page from group page to course page.
+     */
     public void navigateBackFromGroupPage() {
         this.selectedCourse = NON_EXISTENT_COURSE;
         this.currentPage = PageType.COURSE_PAGE;
     }
 
+    /**
+     * Navigates current page from student page to group page.
+     */
     public void navigateBackFromStudentPage() {
         this.selectedGroup = NON_EXISTENT_GROUP;
         this.currentPage = PageType.GROUP_PAGE;
+    }
+
+    /**
+     * Resets current selected page to main course page.
+     */
+    public void navigateBackToCoursePage() {
+        navigateBackFromStudentPage();
+        navigateBackFromGroupPage();
+    }
+
+    public void emptySelectedStudent() {
+        selectedStudent = emptyStudentBuilder();
     }
 }

@@ -69,22 +69,32 @@ public class Course {
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats state as text for viewing.
      */
     public String toString() {
         return courseCode;
     }
 
+    /**
+     * Checks if course has specified group.
+     * @return true if group has specified group.
+     */
     public boolean hasGroup(Group group) {
         requireNonNull(group);
         return groups.contains(group);
     }
 
+    /**
+     * Adds group.
+     */
     public void addGroup(Group group) {
         groups.add(group);
     }
 
 
+    /**
+     * Returns true if both courses are the same.
+     */
     public boolean isSameCourse(Course otherCourse) {
         if (otherCourse == this) {
             return true;

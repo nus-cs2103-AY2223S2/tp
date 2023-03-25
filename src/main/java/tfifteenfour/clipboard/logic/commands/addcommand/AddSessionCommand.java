@@ -5,8 +5,17 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 
+/**
+ * Adds a session to the roster.
+ */
 public class AddSessionCommand extends AddCommand {
 
+    /**
+     * Executes the command and returns the result message.
+     * @param model {@code Model} which the command should operate on.
+     * @param currentSelection of the {@code LogicManager}.
+     * @throws CommandException If an error occurs during command execution.
+     */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
 
         // Command restriction example if on wrong page:

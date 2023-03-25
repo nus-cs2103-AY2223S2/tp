@@ -13,12 +13,14 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
+import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -40,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CourseListPanel courseListPanel;
-    //private StudentViewPanel studentViewPanel;
+    private StudentViewCard studentViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -63,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
     private HBox studentPanelPlaceholder;
 
     @FXML
-    private StackPane studentViewPanelPlaceholder;
+    private StackPane rightPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -150,6 +152,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    void show() {
+        primaryStage.show();
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -160,10 +166,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-    }
-
-    void show() {
-        primaryStage.show();
     }
 
     /**
@@ -178,10 +180,30 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    //public void refreshViewPane() {
-    //    studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
-    //    studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
-    //}
+    /**
+     * Navigates GUI back to main course page.
+     */
+    private void handleHome() {
+        showCoursePane();
+        closeViewPane();
+        logic.getCurrentSelection().navigateBackToCoursePage();
+    }
+
+    /**
+     * Displays currently viewed student in right pane.
+     */
+    public void refreshViewPane() {
+        studentViewCard = new StudentViewCard(logic.getCurrentSelection().getSelectedStudent());
+        rightPanelPlaceholder.getChildren().add(studentViewCard.getRoot());
+    }
+
+    /**
+     * Closes viewed student
+     */
+    public void closeViewPane() {
+        rightPanelPlaceholder.getChildren().clear();
+        logic.getCurrentSelection().emptySelectedStudent();
+    }
 
     //@FXML
     //private void handleUndo() {
@@ -219,9 +241,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleSelectCommand() {
         if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+
             showGroupPane(logic.getCurrentSelection().getSelectedCourse());
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
+                && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+
             showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+            refreshViewPane();
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+
+            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+
         }
     }
 
@@ -234,14 +266,13 @@ public class MainWindow extends UiPart<Stage> {
             showCoursePane();
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
             showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+            closeViewPane();
         }
     }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
-        if (commandResult.getCommand() instanceof HelpCommand) {
-            handleHelp();
 
-        } else if (commandResult.getCommand() instanceof SelectCommand) {
+        if (commandResult.getCommand() instanceof SelectCommand) {
             handleSelectCommand();
 
         } else if (commandResult.getCommand() instanceof BackCommand) {
@@ -249,11 +280,13 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof ExitCommand) {
             handleExit();
-        }
 
-        //} else if (commandResult.getCommand() instanceof ViewCommand
-        //        || (commandResult.getCommand() instanceof UploadCommand && studentViewPanel != null)) {
-        //    refreshViewPane();
+        } else if (commandResult.getCommand() instanceof HelpCommand) {
+            handleHelp();
+
+        } else if (commandResult.getCommand() instanceof HomeCommand) {
+            handleHome();
+        }
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {
         //handleUndo();

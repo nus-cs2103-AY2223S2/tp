@@ -11,7 +11,17 @@ import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.CourseNotFoundException;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 
-
+/**
+ * A list of courses that enforces uniqueness between its elements and does not allow nulls.
+ * A course is considered unique by comparing using {@code Course#isSameCourse(Course)}. As such,
+ * adding and updating of courses uses Course#isSameCourse(Course) for equality so as to ensure that
+ * the course being added or updated is unique in terms of identity in the UniqueCoursesList. However,
+ * the removal of a course uses Course#equals(Object) so as to ensure that the course with exactly
+ * the same fields will be removed.
+ * Supports a minimal set of list operations.
+ *
+ * @see Course#isSameCourse(Course)
+ */
 public class UniqueCoursesList implements Iterable<Course> {
 
     private final ObservableList<Course> internalList = FXCollections.observableArrayList();
