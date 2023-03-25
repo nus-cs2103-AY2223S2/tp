@@ -48,8 +48,36 @@ public class QuickstartWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Returns an image according to the current page number in Pagination.
+     *
+     * @param pageNum page number (index 0) being passed by the quickPaginator.
+     */
+    public static Image giveImage(int pageNum) {
+        switch (pageNum) {
+        case 0:
+            return QuickstartImages.QUICKSTART_FIRSTPAGE;
+        case 1:
+            return QuickstartImages.QUICKSTART_SECONDPAGE;
+        case 2:
+            return QuickstartImages.QUICKSTART_THIRDPAGE;
+        case 3:
+            return QuickstartImages.QUICKSTART_FOURTHPAGE;
+        case 4:
+            return QuickstartImages.QUICKSTART_FIFTHPAGE;
+        case 5:
+            return QuickstartImages.QUICKSTART_SIXTHPAGE;
+        case 6:
+            return QuickstartImages.QUICKSTART_SEVENTHPAGE;
+        case 7:
+            return QuickstartImages.QUICKSTART_EIGHTHPAGE;
+        default:
+            return QuickstartImages.QUICKSTART_FIRSTPAGE;
+        }
+    }
+
     public Image pageImageSet(Integer pageIndex) {
-        return QuickstartImages.giveImage(pageIndex);
+        return giveImage(pageIndex);
     }
 
     /**
