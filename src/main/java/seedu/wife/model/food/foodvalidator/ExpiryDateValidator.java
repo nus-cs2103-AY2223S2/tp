@@ -1,11 +1,11 @@
 package seedu.wife.model.food.foodvalidator;
 
+import static seedu.wife.commons.util.AppUtil.checkArgument;
+import static seedu.wife.model.food.ExpiryDate.VALID_DATE_FORMAT;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
-
-import static seedu.wife.commons.util.AppUtil.checkArgument;
 
 /**
  * Validator class to validate Expiry Date.
@@ -16,7 +16,6 @@ public class ExpiryDateValidator implements FoodValidator {
             + "Please insert using the format DD-MM-YYYY";
     public static final String MESSAGE_DATE_NOT_EXIST = "The date you entered does not exist.";
     public static final String MESSAGE_DATE_NOT_AFTER = "The date you entered should not be before today.";
-    public static final DateTimeFormatter validDateFormat = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     /**
      * Checks if the date format is valid.
@@ -36,7 +35,7 @@ public class ExpiryDateValidator implements FoodValidator {
      */
     public static boolean isDateExist(String date) {
         try {
-            LocalDate.parse(date, validDateFormat.withResolverStyle(ResolverStyle.STRICT));
+            LocalDate.parse(date, VALID_DATE_FORMAT.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeException de) {
             return false;
         }
@@ -50,15 +49,19 @@ public class ExpiryDateValidator implements FoodValidator {
      * @return True if the date is after the date of insertion, else false.
      */
     public static boolean isDateAfter(String date) {
-        LocalDate expiryDate = LocalDate.parse(date, validDateFormat);
+        LocalDate expiryDate = LocalDate.parse(date, VALID_DATE_FORMAT);
         LocalDate dateNow = LocalDate.now();
         return expiryDate.isAfter(dateNow);
     }
 
-    public static Void validate(String date) {
+    /**
+     * Validates the date before adding it into expiry date.
+     *
+     * @param date Date input by the user.
+     */
+    public static void validate(String date) {
         checkArgument(isValidDateFormat(date), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isDateExist(date), MESSAGE_DATE_NOT_EXIST);
         checkArgument(isDateAfter(date), MESSAGE_DATE_NOT_AFTER);
-        return null;
     }
 }
