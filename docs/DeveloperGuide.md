@@ -280,7 +280,7 @@ Given below is an example usage scenario and how **Editing a Patient** mechanism
 
 ### Deleting a Patient
 
-The **Deleting a Patients** mechanism is facilitated by `VMS`. It will find specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
+The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
 
 ##### Execution Sequence
 
@@ -293,7 +293,7 @@ Given below is an example usage scenario when a user enter `patient delete 5` as
 
 ### Clearing Patients
 
-The **Clearing Patients** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
+The **Clearing Patients** mechanism is facilitated by `VMS`. It will set the patient manager with a new empty patient manager, effectively clearing all the Patients
 
 ##### Execution Sequence
 
