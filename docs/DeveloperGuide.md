@@ -948,7 +948,7 @@ testers are expected to do more *exploratory* testing.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A freelancing gig
 
-<div style="position: fixed; bottom: 25px; right: 25px; background-color: #d8d8d8">
+<div style="position: fixed; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
 </div>
 <br>
