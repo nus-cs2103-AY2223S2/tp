@@ -1,15 +1,10 @@
----
-layout: page
-title: User Guide
----
 
-NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NextBigFish (NBF) is a 
+**desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-<<<<<<< HEAD
-### Viewing help : `help`
+ Viewing help : `help`
 =======
 * Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,9 +39,7 @@ NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use vi
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -54,8 +47,8 @@ NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use vi
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -66,24 +59,20 @@ NextBigFish (NBF) is a **desktop app for managing contacts, optimized for use vi
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
 
 ### Viewing help : `help` [coming soon]
->>>>>>> v1.2-help,edit
 
 Brings users to the help page.
 
 Format: `help`
 
-<<<<<<< HEAD
-### Adding a person: 'add'
+ Adding a person: 'add'
 =======
 ### Adding a person: `add` [coming soon]
->>>>>>> v1.2-help,edit
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE\_NUMBER e/EMAIL a/ADDRESS s/BUSINESS\_SIZE c/COMPANY\_NAME [x/ACTION] [d/DEADLINE] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/BUSINESS\_SIZE c/COMPANY\_NAME [x/ACTION] [d/DEADLINE] [t/TAG]`
 
 Examples:
 
@@ -194,7 +183,7 @@ Format: `find KEYWORD1 KEYWORD2 …`
 
 Examples:
 
-- 'find' followed by `KEYWORD1 KEYWORD2 …` returns all the
+- 'find' followed by `KEYWORD1 KEYWORD2 …` returns all the contacts with name containing `KEYWORDS`
 - 'find Betsy' followed by delete 1 deletes the 1st person in the results of the find command.
 
 
