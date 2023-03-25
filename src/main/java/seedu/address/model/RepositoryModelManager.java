@@ -99,12 +99,13 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     }
 
     //=========== Filtered Person List Accessors =============================================================
-
+    public ObservableList<T> filterItemList(Predicate<T> predicate) {
+        return itemFilteredList.filtered(predicate);
+    }
 
     public ObservableList<T> getFilteredItemList() {
         return itemFilteredList;
     }
-
 
     public FilteredList<T> getFilteredItemList(Predicate<T> predicate) {
         updateFilteredItemList(predicate);

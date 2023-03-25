@@ -31,7 +31,7 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
-!define USER_COLOR #000000
+!define USER_COLOR #FFFFFFF
 
 skinparam BackgroundColor #FFFFFFF
 
@@ -40,8 +40,8 @@ skinparam Shadowing false
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
-    BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
+    BorderColor #FFFFFFF
+    StereotypeFontColor #000000
     FontName Arial
 }
 
@@ -55,12 +55,12 @@ skinparam Sequence {
     MessageAlign center
     BoxFontSize 15
     BoxPadding 0
-    BoxFontColor #FFFFFF
+    BoxFontColor #000000
     FontName Arial
 }
 
 skinparam Participant {
-    FontColor #FFFFFFF
+    FontColor #000000
     Padding 20
 }
 
@@ -73,3 +73,4 @@ skinparam packageStyle Rectangle
 hide footbox
 hide members
 hide circle
+

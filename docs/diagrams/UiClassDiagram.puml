@@ -12,18 +12,21 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
+Class TaskListPanel
 Class PersonCard
+Class TaskCard
 Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
+package "Model And OfficeConnectModel" as Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
@@ -33,21 +36,26 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+TaskListPanel -down-> "*" TaskCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+TaskListPanel --|> UiPart
 PersonCard --|> UiPart
+TaskCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+TaskCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

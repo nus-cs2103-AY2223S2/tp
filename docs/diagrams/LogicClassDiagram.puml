@@ -16,7 +16,7 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
+package "Model and OfficeConnectModel" as Model{
 Class HiddenModel #FFFFFF
 }
 
