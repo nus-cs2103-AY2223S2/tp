@@ -141,7 +141,6 @@ This is the detailed implementation of `Person` in `Model`.
 
 <img src="images/developerGuide/PersonNew.png" width="250" />
 
-** TODO: Update Image **
 
 ### Storage component
 
