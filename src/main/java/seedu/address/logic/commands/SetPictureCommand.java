@@ -1,27 +1,26 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeId;
+import static java.util.Objects.requireNonNull;
 
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileView;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.PicturePath;
 
 /**
  * Sets the picture of an employee, identified using it's displayed index from the address book.
@@ -52,7 +51,7 @@ public class SetPictureCommand extends Command {
 
         // https://stackoverflow.com/questions/4096433/making-jfilechooser-show-image-thumbnails
         class ThumbNailView extends FileView {
-            public Icon getIcon(File f){
+            public Icon getIcon(File f) {
                 Icon icon = createImageIcon(f.getPath());
                 return icon;
             }
@@ -60,9 +59,9 @@ public class SetPictureCommand extends Command {
             private ImageIcon createImageIcon(String path) {
                 ImageIcon icon = new ImageIcon(path);
                 Image image = icon.getImage();
-                Image scaledImage = image.getScaledInstance( 16, 16,  Image.SCALE_SMOOTH ) ;
+                Image scaledImage = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
                 return new ImageIcon(scaledImage);
-            } 
+            }
         }
 
         for (Employee employee : lastShownList) {
@@ -82,15 +81,15 @@ public class SetPictureCommand extends Command {
                     throw new CommandException(MESSAGE_SET_PICTURE_FAILURE);
                 }
                 Path sourcePath = chooser.getSelectedFile().toPath();
-                String shortPath = "employeepictures/" + employeeToSetPicture.getName().fullName + ".png";
-                Path destPath = Paths.get("src/main/resources/" + shortPath);
+                PicturePath destPicturePath = new PicturePath("src/main/resources/employeepictures/"
+                        + employeeToSetPicture.getName().fullName + ".png");
+                Path destPath = destPicturePath.toPath();
                 try {
                     Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                    System.out.println(destPath);
+                    employeeToSetPicture.setPicturePath(destPicturePath);
                 } catch (IOException e) {
                     throw new CommandException(MESSAGE_IO_ERROR);
                 }
-                employeeToSetPicture.setPicturePath(destPath);
                 return new CommandResult(String.format(MESSAGE_SET_PICTURE_SUCCESS, employeeToSetPicture));
             }
         }

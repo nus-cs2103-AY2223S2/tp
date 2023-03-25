@@ -36,7 +36,7 @@
       <Label fx:id="department" styleClass="cell_small_label" />
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
         <image>
-          <Image url="/images/fail.png"/>
+          <Image url="/employeepictures/default.png"/>
         </image>
       </ImageView>
     </VBox>

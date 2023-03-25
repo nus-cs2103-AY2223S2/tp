@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -65,7 +69,6 @@ public class PersonListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Employee> change) {
                 Employee employee = personListView.getSelectionModel().getSelectedItem();
-                System.out.println("abcde");
                 setInformation(employee);
             }
         });
@@ -83,27 +86,16 @@ public class PersonListPanel extends UiPart<Region> {
         address.setText("Address: " + employee.getAddress().value);
         email.setText("Email: " + employee.getEmail().value);
         department.setText("Department: " + employee.getDepartment().value);
-        if (employee.getPicturePath() == null) {
-            Image image = new Image("images/fail.png");
-            imageView.setImage(null);
-            imageView.setImage(image);
-        } else {
-            // shortPath = employee.getPicturePath();
-            //Image image = new Image(shortPath);
-            //imageView.setImage(null);
-            //imageView.setImage(image);
 
-            File img = new File(employee.getPicturePath().toUri());
-            InputStream isImage = null;
-            try {
-                isImage = (InputStream) new FileInputStream(img);
-                imageView.setImage(new Image(isImage));
-                isImage.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        File img = new File(employee.getPicturePath().value);
+        try {
+            InputStream isImage = (InputStream) new FileInputStream(img);
+            imageView.setImage(new Image(isImage));
+            isImage.close();
+        } catch (FileNotFoundException e) {
+            // default image will be src/main/resources/employeepictures/default.png
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
