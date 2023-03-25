@@ -89,10 +89,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static ExpiryDate parseExpiryDate(String date) throws IllegalArgumentException {
+    public static ExpiryDate parseExpiryDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        return new ExpiryDate(trimmedDate);
+        try {
+            return new ExpiryDate(trimmedDate);
+        } catch (IllegalArgumentException ie) {
+            throw new ParseException(ie.getMessage());
+        }
     }
 
     /**

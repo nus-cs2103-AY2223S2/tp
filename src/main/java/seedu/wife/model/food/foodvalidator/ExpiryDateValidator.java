@@ -55,9 +55,10 @@ public class ExpiryDateValidator implements FoodValidator {
         return expiryDate.isAfter(dateNow);
     }
 
-    public static void validate(String date) {
+    public static Void validate(String date) {
         checkArgument(isValidDateFormat(date), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isDateExist(date), MESSAGE_DATE_NOT_EXIST);
         checkArgument(isDateAfter(date), MESSAGE_DATE_NOT_AFTER);
+        return null;
     }
 }
