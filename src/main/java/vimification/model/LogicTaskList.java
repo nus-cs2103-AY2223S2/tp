@@ -124,6 +124,12 @@ public class LogicTaskList {
         return new LogicTaskList(tasks.subList(start, end));
     }
 
+    /**
+     * Filter {@code LogicTaskList} based on predicate.
+     *
+     * @param pred
+     * @return
+     */
     public LogicTaskList filter(Predicate<Task> pred) {
         List<Task> filteredTasks = stream()
                 .filter(pred)

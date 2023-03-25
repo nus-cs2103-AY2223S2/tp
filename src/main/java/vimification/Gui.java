@@ -18,24 +18,25 @@ import vimification.logic.LogicManager;
 import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
-import vimification.storage.LogicTaskListStorage;
 import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonUserPrefsStorage;
+import vimification.storage.LogicTaskListStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
 import vimification.taskui.Ui;
 import vimification.taskui.UiManager;
 
+/**
+ * This class sets up the necessary code for the GUI to access the back-end.
+ */
 public class Gui extends Application {
+    private static final Logger logger = LogsCenter.getLogger(Gui.class);
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Config config;
-
-
-    private static final Logger logger = LogsCenter.getLogger(Gui.class);
 
     @Override
     public void init() throws Exception {

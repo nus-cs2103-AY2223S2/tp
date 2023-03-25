@@ -19,6 +19,12 @@ public class VimificationParser {
         return new VimificationParser();
     }
 
+    /**
+     * Parses the user input and return its corresponding command.
+     *
+     * @param userInput
+     * @return
+     */
     public LogicCommand parse(String userInput) {
         LOGGER.info(userInput);
         return INTERNAL_PARSER.parse(userInput);
