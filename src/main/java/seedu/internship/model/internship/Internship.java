@@ -49,6 +49,10 @@ public class Internship {
         return status;
     }
 
+    public int getStatusId() {
+        return status.statusId;
+    }
+
     public Description getDescription() {
         return description;
     }

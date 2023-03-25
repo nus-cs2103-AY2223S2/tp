@@ -3,10 +3,12 @@ package seedu.internship.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
+import static seedu.internship.model.internship.Statistics.EMPTY_STATISTICS;
 
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.internship.model.internship.Statistics;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
@@ -17,11 +19,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
+    private final ResultType resultType;
 
     /** Instance of internship to be viewed **/
     private final Internship internship;
@@ -29,39 +27,19 @@ public class CommandResult {
     /** Lists of Events to be viewed **/
     private final ObservableList<Event> events;
 
+    /** Statistical data of current application progress **/
+    private final Statistics statistics;
+
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with all specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Internship internship,
-                         ObservableList<Event> events) {
+    public CommandResult(String feedbackToUser, ResultType resultType, Internship internship,
+                         ObservableList<Event> events, Statistics statistics) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.resultType = resultType;
         this.internship = internship;
         this.events = events;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code internship},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, Internship internship) {
-        this(feedbackToUser, false, false, internship, EMPTY_UNIQUE_EVENTS_LIST);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code internship},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, Internship internship, ObservableList<Event> events) {
-        this(feedbackToUser, false, false, internship, events);
+        this.statistics = statistics;
     }
 
     /**
@@ -69,19 +47,57 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
+        this(feedbackToUser, ResultType.NO_CHANGE, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST, EMPTY_STATISTICS);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code resultType},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ResultType resultType) {
+        this(feedbackToUser, resultType, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST, EMPTY_STATISTICS);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code resultType}
+     * and {@code statistics}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ResultType resultType, Statistics statistics) {
+        this(feedbackToUser, resultType, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST, statistics);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code internship},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ResultType resultType, Internship internship) {
+        this(feedbackToUser, resultType, internship, EMPTY_UNIQUE_EVENTS_LIST, EMPTY_STATISTICS);
+    }
+
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHome} and
+     * {@code events}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ResultType resultType, ObservableList<Event> events) {
+        this(feedbackToUser, resultType, EMPTY_INTERNSHIP, events, EMPTY_STATISTICS);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHome},
+     * {@code internship} and {@code events}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ResultType resultType, Internship internship,
+                         ObservableList<Event> events) {
+        this(feedbackToUser, resultType, internship, events, EMPTY_STATISTICS);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
+    public ResultType getResultType() {
+        return resultType;
     }
 
     public Internship getInternship() {
@@ -96,9 +112,12 @@ public class CommandResult {
         return this.events.equals(EMPTY_UNIQUE_EVENTS_LIST);
     }
 
-
     public ObservableList<Event> getEvents() {
         return events;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     @Override
@@ -115,17 +134,15 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
 
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
+                && resultType.equals(otherCommandResult.resultType)
                 && internship.equals(otherCommandResult.internship)
-                && events.equals(events);
-
-
+                && events.equals(otherCommandResult.events)
+                && statistics.equals(otherCommandResult.statistics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, internship);
+        return Objects.hash(feedbackToUser, resultType, internship, events, statistics);
     }
 
 }
