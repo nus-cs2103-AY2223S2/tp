@@ -1,6 +1,6 @@
 ---
 layout: page
-title: InternBuddy User Guide
+title: User Guide
 ---
 * Table of Contents
   {:toc}
