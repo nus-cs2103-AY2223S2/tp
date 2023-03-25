@@ -22,16 +22,16 @@ import seedu.patientist.model.ward.Ward;
 public class JsonAdaptedWard {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ward's %s field is missing!";
     private final String name;
-    private final List<JsonAdaptedPerson> patients = new ArrayList<>();
-    private final List<JsonAdaptedPerson> staffs = new ArrayList<>();
+    private final List<JsonAdaptedPatient> patients = new ArrayList<>();
+    private final List<JsonAdaptedStaff> staffs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedWard(@JsonProperty("name") String name,
-                           @JsonProperty("patients") List<JsonAdaptedPerson> patients,
-                           @JsonProperty("staffs") List<JsonAdaptedPerson> staffs) {
+                           @JsonProperty("patients") List<JsonAdaptedPatient> patients,
+                           @JsonProperty("staffs") List<JsonAdaptedStaff> staffs) {
         this.name = name;
         if (patients != null) {
             this.patients.addAll(patients);
@@ -47,10 +47,10 @@ public class JsonAdaptedWard {
     public JsonAdaptedWard(Ward source) {
         name = source.getWardName();
         patients.addAll(source.getPatientsAsUnmodifiableObservableList().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedPatient::new)
                 .collect(Collectors.toList()));
         staffs.addAll(source.getStaffsAsUnmodifiableObservableList().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedStaff::new)
                 .collect(Collectors.toList()));
     }
 
@@ -63,11 +63,11 @@ public class JsonAdaptedWard {
         final List<Patient> wardPatients = new ArrayList<>();
         final List<Staff> wardStaffs = new ArrayList<>();
 
-        for (JsonAdaptedPerson patient : patients) {
+        for (JsonAdaptedPatient patient : patients) {
             wardPatients.add((Patient) patient.toModelType());
         }
 
-        for (JsonAdaptedPerson staff : staffs) {
+        for (JsonAdaptedStaff staff : staffs) {
             wardStaffs.add((Staff) staff.toModelType());
         }
 

@@ -7,6 +7,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.Set;
 
@@ -37,6 +38,7 @@ public class PatientUtil {
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         sb.append(PREFIX_ID + patient.getIdNumber().toString() + " ");
         sb.append(PREFIX_STATUS + patient.getPatientStatusDetails().getDetails() + " ");
+        sb.append(PREFIX_WARD + "Block A Ward 1" + " ");
         patient.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
