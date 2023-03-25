@@ -17,6 +17,7 @@ import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
+import tfifteenfour.clipboard.logic.commands.attendance.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendance.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
@@ -106,6 +107,9 @@ public class RosterParser {
 
         case MarkPresentCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case MarkAbsentCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

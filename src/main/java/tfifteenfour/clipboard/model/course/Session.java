@@ -22,12 +22,14 @@ public class Session {
 
     public String sessionName;
     public Group group;
-    private UniqueStudentList students;
+//    private ObservableList<Student> students;
     private final Map<Student, Integer> attendance;
+    private final UniqueStudentList students;
 
     {
         students = new UniqueStudentList();
     }
+
 
     /**
      * Constructs a {@code Session}.
@@ -67,11 +69,13 @@ public class Session {
 
     public void setGroup(Group group, UniqueStudentList students) {
         this.group = group;
-        this.students = students;
+//        group.getUnmodifiableStudentList();
+//        this.students = group.getUnmodifiableStudentList();
         for (Student student : students) {
             if (!attendance.containsKey(student)) {
                 attendance.put(student, 0);
             }
+            this.students.add(student);
         }
         System.out.println(attendance.toString());
     }
@@ -97,6 +101,7 @@ public class Session {
             throw new StudentNotInSessionException();
         }
         attendance.put(student, 0);
+        System.out.println("marked: " + student + "\n" + attendance.get(student));
     }
     @Override
     public String toString() {
