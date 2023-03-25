@@ -207,6 +207,10 @@ The Help Window looks like the following:
 
 ![help_window.png](images%2Fhelp_window.png)
 
+[Back to Table of Contents](#table-of-contents)
+
+---
+
 ### 5.2 Key Definitions
 
 #### 5.2.1 Applicant
@@ -224,6 +228,10 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
+[Back to Table of Contents](#table-of-contents)
+
+---
+
 #### 5.2.2 Notes
 
 A note in HMHero serves as a means of labelling the skills of an applicant. These tags
@@ -240,6 +248,10 @@ can include:
 
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
 
 #### 5.2.3 Flags
 Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
@@ -266,6 +278,10 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
+[Back to Table of Contents](#table-of-contents)
+
+---
+
 #### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
@@ -282,6 +298,10 @@ section to see how Flags and Placeholders are used together.
 | NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
+[Back to Table of Contents](#table-of-contents)
+
+---
+
 ### 5.3 Command Format
 You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
@@ -293,6 +313,10 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 [Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
 
 
 ### 5.4 Trying your First Command
@@ -406,6 +430,8 @@ Here is a checklist you can use before running a command:
 * [ ] I know the effects of not specifying each optional flag.
 
 [Back to Table of Contents](#table-of-contents)
+
+---
 
 
 ## 6. Commands
