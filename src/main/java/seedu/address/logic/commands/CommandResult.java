@@ -60,7 +60,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isTabSwitch() { return tabSwitch; }
+    public boolean isTabSwitch() {
+        return tabSwitch;
+    }
 
     @Override
     public boolean equals(Object other) {

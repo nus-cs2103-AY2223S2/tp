@@ -12,7 +12,7 @@ public class SwitchCommand extends Command {
             + ": Switches between score text tab and score chart tab.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SWITCH_SUCCESS = "Score list tab switched";
+    public static final String MESSAGE_SWITCH_SUCCESS = "Score list tab switched.";
 
     @Override
     public CommandResult execute(Model model) {
