@@ -47,7 +47,7 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
                 argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
         Role role = ApplicationParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ApplicationParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Application application = new Application(role, companyName, companyEmail, status, null, tagList);
 
