@@ -165,6 +165,14 @@ Format: `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes pairing**<br>
+
+* A warning will be given if there are clashes in availability between the volunteer and elderly when pairing.
+
+</div>
+
 Examples:
 * `add_pair enr/S2235243I vnr/t0123423a` pairs up the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
 * `add_pair enr/s1135243A vnr/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
