@@ -223,11 +223,35 @@ class TimetableTest {
         timeTable2.addLesson(THURSDAY_9PM_1HR_LESSON);
         timeTable2.addLesson(FRIDAY_8AM_1HR_LESSON);
         timeTable2.addLesson(FRIDAY_9AM_2HR_LESSON);
+
         assertDoesNotThrow(() -> timeTable.mergeTimetable(timeTable2));
 
+        // check free slots or not
         testSlotsFalse(0, 4, timeTable.getMondayClasses());
-        testSlotsTrue(4, 9, timeTable.getMondayClasses());
+        testSlotsTrue(4, 10, timeTable.getMondayClasses());
 
+        testSlotsTrue(0, 2, timeTable.getTuesdayClasses());
+        testSlotsFalse(2, 2, timeTable.getTuesdayClasses());
+        testSlotsTrue(4, 2, timeTable.getTuesdayClasses());
+        testSlotsFalse(6, 2, timeTable.getTuesdayClasses());
+        testSlotsTrue(8, 6, timeTable.getTuesdayClasses());
+
+        testSlotsTrue(0, 2, timeTable.getWednesdayClasses());
+        testSlotsFalse(2, 3, timeTable.getWednesdayClasses());
+        testSlotsTrue(5, 3, timeTable.getWednesdayClasses());
+        testSlotsFalse(8, 1, timeTable.getWednesdayClasses());
+        testSlotsTrue(9, 1, timeTable.getWednesdayClasses());
+        testSlotsFalse(10, 1, timeTable.getWednesdayClasses());
+        testSlotsTrue(11, 3, timeTable.getWednesdayClasses());
+
+        testSlotsTrue(0, 8, timeTable.getThursdayClasses());
+        testSlotsFalse(8, 2, timeTable.getThursdayClasses());
+        testSlotsTrue(10, 3, timeTable.getThursdayClasses());
+        testSlotsFalse(13, 1, timeTable.getThursdayClasses());
+
+        testSlotsFalse(0, 3, timeTable.getFridayClasses());
+        testSlotsTrue(3, 8, timeTable.getFridayClasses());
+        testSlotsFalse(11, 3, timeTable.getFridayClasses());
     }
 
     @Test
