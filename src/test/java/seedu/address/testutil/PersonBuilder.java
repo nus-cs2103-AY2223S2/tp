@@ -115,6 +115,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MedicalCondition} of the {@code Person} that we are building.
+     */
     public PersonBuilder withMedicalCond(String condition) {
         this.condition = new MedicalCondition(condition);
         return this;

@@ -134,15 +134,16 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullMedicalCond_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_AGE, VALID_TAGS, null);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_AGE, VALID_TAGS, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MedicalCondition.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_invalidMedicalCond_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_AGE, VALID_TAGS, INVALID_MEDICALCOND);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_AGE, VALID_TAGS, INVALID_MEDICALCOND);
         String expectedMessage = Age.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
