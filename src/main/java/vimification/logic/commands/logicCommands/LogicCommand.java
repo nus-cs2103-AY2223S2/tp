@@ -1,15 +1,18 @@
 package vimification.logic.commands.logicCommands;
 
+import java.util.Observable;
+
+import javafx.collections.ObservableList;
 import vimification.logic.commands.Command;
-import vimification.logic.commands.CommandResult;
-import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 public abstract class LogicCommand extends Command {
     protected static final String NOT_UNDOABLE_MESSAGE = "This command is not undoable.";
     protected static final String FINISHED_EXECUTION_MESSAGE =
             "This command has been executed. It cannot be executed again.";
 
-    LogicCommand() {
-        super(false);
+    @Override
+    public ObservableList<Task> getViewTaskList() {
+        return null;
     }
 }
