@@ -287,16 +287,16 @@ public class ModelManager implements Model {
 
     @Override
     public boolean goToPrevCard() {
-        boolean check = this.currReview.goToPrevCard();
+        boolean isFirstCard = this.currReview.goToPrevCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
-        return check;
+        return isFirstCard;
     }
 
     @Override
     public boolean goToNextCard() {
-        boolean check = this.currReview.goToNextCard();
+        boolean isLastCard = this.currReview.goToNextCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
-        return check;
+        return isLastCard;
     }
 
     @Override
