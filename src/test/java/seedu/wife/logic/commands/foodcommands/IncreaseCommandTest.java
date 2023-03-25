@@ -76,9 +76,6 @@ public class IncreaseCommandTest {
 
     @Test
     public void execute_negativeQuantitySpecifiedUnfilteredList_failure() {
-        Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
-        Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
-        FoodBuilder foodInList = new FoodBuilder(lastFood);
         String failureMessage = Quantity.MESSAGE_CONSTRAINTS;
         IncreaseCommandParser increaseCommandParser = new IncreaseCommandParser();
         try {

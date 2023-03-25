@@ -14,7 +14,7 @@ import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Food} objects to be used in tests.
  */
 public class TypicalFood {
     public static final Food CHOCOLATE = new FoodBuilder().withName("Breyls")
@@ -32,7 +32,7 @@ public class TypicalFood {
     private TypicalFood() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code WIFE} with all the typical food items.
      */
     public static Wife getTypicalWife() {
         Wife wife = new Wife();
