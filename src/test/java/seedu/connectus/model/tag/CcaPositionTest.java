@@ -22,4 +22,5 @@ public class CcaPositionTest {
         // null module name
         assertThrows(NullPointerException.class, () -> CcaPosition.isValidCcaPositionName(null));
     }
+
 }

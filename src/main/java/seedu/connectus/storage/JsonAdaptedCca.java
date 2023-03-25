@@ -44,4 +44,5 @@ class JsonAdaptedCca {
         }
         return new Cca(ccaName);
     }
+
 }
