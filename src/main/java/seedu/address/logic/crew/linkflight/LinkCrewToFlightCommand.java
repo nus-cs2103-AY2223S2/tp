@@ -1,4 +1,4 @@
-package seedu.address.logic.plane.unlinkplane;
+package seedu.address.logic.crew.linkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -7,26 +7,27 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.crew.FlightCrewType;
+import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
-import seedu.address.model.plane.FlightPlaneType;
-import seedu.address.model.plane.Plane;
 
 /**
- * The command that unlinks a plane from a flight
+ * The command that links a crew to a flight
  */
-public class UnlinkPlaneCommand implements Command {
+public class LinkCrewToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
-    private static final String PLANE_NOT_FOUND_EXCEPTION =
-            "Plane with id %s is not found.";
+    private static final String CREW_NOT_FOUND_EXCEPTION =
+            "Crew with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from flight %s.";
+            "Linked %s to flight %s.";
 
     /**
-     * The id of the plane
+     * The id of the crews
      */
-    private final Map<FlightPlaneType, Plane> planes;
+    private final Map<FlightCrewType, Crew> crews;
 
     /**
      * The id of the flight
@@ -36,22 +37,22 @@ public class UnlinkPlaneCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param planes the id of the planes.
+     * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public UnlinkPlaneCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
-        this.planes = planes;
+    public LinkCrewToFlightCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
+        this.crews = crews;
         this.flight = flight;
     }
 
     @Override
     public String toString() {
-        String result = planes.entrySet()
+        String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
                         "%s: %s",
                         entry.getKey(),
-                        entry.getValue().getModel()))
+                        entry.getValue().getName()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
@@ -59,13 +60,18 @@ public class UnlinkPlaneCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            for (Map.Entry<FlightPlaneType, Plane> entry : planes.entrySet()) {
-                flight.planeLink.delete(entry.getKey(), entry.getValue());
-                entry.getValue().setAvailable();
+            for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
+                flight.crewLink.putRevolve(entry.getKey(), entry.getValue());
+                entry.getValue().setUnavailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
+        } catch (IndexOutOfBoundException e) {
+            return new CommandResult(
+                    String.format("Error: %s", e.getMessage())
+            );
         }
         return new CommandResult(this.toString());
     }
+
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.pilot.linkpilot;
+package seedu.address.logic.pilot.linkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ import seedu.address.model.pilot.Pilot;
 /**
  * The command that links the pilot.
  */
-public class LinkPilotCommand implements Command {
+public class LinkPilotToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
         "Flight with id %s is not found.";
     private static final String PILOT_NOT_FOUND_EXCEPTION =
@@ -39,7 +39,7 @@ public class LinkPilotCommand implements Command {
      * @param pilots the id of the pilots.
      * @param flight the id of the flight.
      */
-    public LinkPilotCommand(Map<FlightPilotType, Pilot> pilots, Flight flight) {
+    public LinkPilotToFlightCommand(Map<FlightPilotType, Pilot> pilots, Flight flight) {
         this.pilots = pilots;
         this.flight = flight;
     }

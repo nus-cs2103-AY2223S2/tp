@@ -1,4 +1,4 @@
-package seedu.address.logic.plane.linkplane;
+package seedu.address.logic.plane.unlinkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,17 +12,16 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
-
 /**
- * The command that links a plane to a flight
+ * The command that unlinks a plane from a flight
  */
-public class LinkPlaneCommand implements Command {
+public class UnlinkPlaneToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
     private static final String PLANE_NOT_FOUND_EXCEPTION =
             "Plane with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Unlinked %s from flight %s.";
 
     /**
      * The id of the plane
@@ -40,7 +39,7 @@ public class LinkPlaneCommand implements Command {
      * @param planes the id of the planes.
      * @param flight the id of the flight.
      */
-    public LinkPlaneCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
+    public UnlinkPlaneToFlightCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
         this.planes = planes;
         this.flight = flight;
     }
@@ -61,8 +60,8 @@ public class LinkPlaneCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<FlightPlaneType, Plane> entry : planes.entrySet()) {
-                flight.planeLink.putRevolve(entry.getKey(), entry.getValue());
-                entry.getValue().setUnavailable();
+                flight.planeLink.delete(entry.getKey(), entry.getValue());
+                entry.getValue().setAvailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

@@ -1,4 +1,4 @@
-package seedu.address.logic.location.unlinklocation;
+package seedu.address.logic.flight.unlinklocation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import seedu.address.model.location.Location;
 /**
  * The factory that creates {@code UnlinkLocationCommand}.
  */
-public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocationCommand> {
+public class UnlinkFlightToLocationCommandFactory implements CommandFactory<UnlinkFlightToLocationCommand> {
     public static final String COMMAND_WORD = "unlink";
     public static final String FLIGHT_PREFIX = "/flight";
     public static final String LOCATION_DEPARTURE_PREFIX = "/from";
@@ -38,7 +38,7 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
     /**
      * Creates a new unlink command factory with the model registered.
      */
-    public UnlinkLocationCommandFactory() {
+    public UnlinkFlightToLocationCommandFactory() {
         this(GetUtil.getLazy(Model.class));
     }
 
@@ -47,7 +47,7 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
      *
      * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public UnlinkLocationCommandFactory(Lazy<Model> modelLazy) {
+    public UnlinkFlightToLocationCommandFactory(Lazy<Model> modelLazy) {
         this(
                 modelLazy.map(Model::getLocationManager),
                 modelLazy.map(Model::getFlightManager)
@@ -61,7 +61,7 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
      * @param locationManagerLazy  the lazy instance of the location manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
      */
-    public UnlinkLocationCommandFactory(
+    public UnlinkFlightToLocationCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
     ) {
@@ -76,7 +76,7 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
      * @param locationManager  the location manager.
      * @param flightManager the flight manager.
      */
-    public UnlinkLocationCommandFactory(
+    public UnlinkFlightToLocationCommandFactory(
             ReadOnlyItemManager<Location> locationManager,
             ReadOnlyItemManager<Flight> flightManager
     ) {
@@ -136,7 +136,7 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
 
 
     @Override
-    public UnlinkLocationCommand createCommand(
+    public UnlinkFlightToLocationCommand createCommand(
             CommandParam param
     ) throws ParseException, IndexOutOfBoundException {
         Optional<String> locationDepartureIdOptional =
@@ -160,6 +160,6 @@ public class UnlinkLocationCommandFactory implements CommandFactory<UnlinkLocati
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkLocationCommand(locations, flight);
+        return new UnlinkFlightToLocationCommand(locations, flight);
     }
 }

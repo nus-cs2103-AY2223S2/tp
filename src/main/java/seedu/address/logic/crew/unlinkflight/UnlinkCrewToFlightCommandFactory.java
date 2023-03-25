@@ -1,4 +1,4 @@
-package seedu.address.logic.crew.unlinkcrew;
+package seedu.address.logic.crew.unlinkflight;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ import seedu.address.model.flight.Flight;
 /**
  * The factory that creates {@code UnlinkCrewCommand}.
  */
-public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewCommand> {
+public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCrewToFlightCommand> {
     private static final String COMMAND_WORD = "unlink";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
@@ -43,7 +43,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
     /**
      * Creates a new unlink command factory with the model registered.
      */
-    public UnlinkCrewCommandFactory() {
+    public UnlinkCrewToFlightCommandFactory() {
         this(GetUtil.getLazy(Model.class));
     }
 
@@ -52,7 +52,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
      *
      * @param modelLazy the modelLazy used for the creation of the unlink command factory.
      */
-    public UnlinkCrewCommandFactory(Lazy<Model> modelLazy) {
+    public UnlinkCrewToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
                 modelLazy.map(Model::getCrewManager),
                 modelLazy.map(Model::getFlightManager)
@@ -66,7 +66,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
      * @param crewManagerLazy  the lazy instance of the crew manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
      */
-    public UnlinkCrewCommandFactory(
+    public UnlinkCrewToFlightCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
     ) {
@@ -81,7 +81,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
      * @param crewManager  the crew manager.
      * @param flightManager the flight manager.
      */
-    public UnlinkCrewCommandFactory(
+    public UnlinkCrewToFlightCommandFactory(
             ReadOnlyItemManager<Crew> crewManager,
             ReadOnlyItemManager<Flight> flightManager
     ) {
@@ -143,7 +143,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
 
 
     @Override
-    public UnlinkCrewCommand createCommand(CommandParam param) throws ParseException,
+    public UnlinkCrewToFlightCommand createCommand(CommandParam param) throws ParseException,
             IndexOutOfBoundException, NumberFormatException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
@@ -178,6 +178,6 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewComman
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkCrewCommand(crews, flight);
+        return new UnlinkCrewToFlightCommand(crews, flight);
     }
 }

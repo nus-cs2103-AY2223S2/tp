@@ -1,4 +1,4 @@
-package seedu.address.logic.pilot.unlinkpilot;
+package seedu.address.logic.flight.unlinklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,24 +9,26 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
-import seedu.address.model.pilot.FlightPilotType;
-import seedu.address.model.pilot.Pilot;
+import seedu.address.model.location.FlightLocationType;
+import seedu.address.model.location.Location;
+
+
 
 /**
- * The command that unlinks a pilot from a flight
+ * The command that unlinks locations from flights.
  */
-public class UnlinkPilotCommand implements Command {
+public class UnlinkFlightToLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
-    private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "Pilot with id %s is not found.";
+    private static final String LOCATION_NOT_FOUND_EXCEPTION =
+            "Location with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from flight %s.";
 
     /**
-     * The id of the pilot
+     * The id of the location
      */
-    private final Map<FlightPilotType, Pilot> pilots;
+    private final Map<FlightLocationType, Location> locations;
 
     /**
      * The id of the flight
@@ -34,19 +36,19 @@ public class UnlinkPilotCommand implements Command {
     private final Flight flight;
 
     /**
-     * Creates a new link command.
+     * Creates a new unlink command.
      *
-     * @param pilots the id of the pilots.
+     * @param locations the id of the locations.
      * @param flight the id of the flight.
      */
-    public UnlinkPilotCommand(Map<FlightPilotType, Pilot> pilots, Flight flight) {
-        this.pilots = pilots;
+    public UnlinkFlightToLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
+        this.locations = locations;
         this.flight = flight;
     }
 
     @Override
     public String toString() {
-        String result = pilots.entrySet()
+        String result = locations.entrySet()
                 .stream()
                 .map((entry) -> String.format(
                         "%s: %s",
@@ -59,9 +61,8 @@ public class UnlinkPilotCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            for (Map.Entry<FlightPilotType, Pilot> entry : pilots.entrySet()) {
-                flight.pilotLink.delete(entry.getKey(), entry.getValue());
-                entry.getValue().setAvailable();
+            for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
+                flight.locationLink.delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
