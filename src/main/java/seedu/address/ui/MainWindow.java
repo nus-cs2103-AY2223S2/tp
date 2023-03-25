@@ -207,6 +207,7 @@ public class MainWindow extends UiPart<Stage> {
                 detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getFileNames(), personToShow)
                         .getObservableFileList());
                 detailDisplay.setUploadButton(filesManager);
+                detailDisplay.setGenerateButton(filesManager);
                 detailDisplay.showAppointmentButton();
                 detailDisplay.showGenerateButton();
                 detailDisplay.showUploadButton();
@@ -232,5 +233,9 @@ public class MainWindow extends UiPart<Stage> {
 
     public void handleClickInPersonListPanel(String commandText) throws CommandException, ParseException {
         this.executeCommand(commandText);
+    }
+
+    public DetailDisplay getDetailDisplay() {
+        return detailDisplay;
     }
 }

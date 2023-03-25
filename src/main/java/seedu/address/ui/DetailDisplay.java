@@ -106,7 +106,22 @@ public class DetailDisplay extends UiPart<Region> {
         uploadButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                clearDetailDisplay();
+                hideAppointmentButton();
+                hideUploadButton();
+                hideGenerateButton();
+                hideViewDisplay();
                 filesManager.addFile();
+            }
+        });
+    }
+
+    public void setGenerateButton(FilesManager filesManager) {
+        generateButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                UploadSuccess success = new UploadSuccess();
+                success.show();
             }
         });
     }

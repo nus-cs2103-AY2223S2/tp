@@ -38,7 +38,7 @@ public class ObservableFile {
     public ObservableList<UiFile> getObservableFileList() {
         ObservableList<UiFile> fileList = FXCollections.observableArrayList();
         for (String s: listOfFileName) {
-            UiFile file = new UiFile(s, person);
+            UiFile file = new UiFile(s, person, fileList);
             fileList.add(file);
         }
         return fileList;
