@@ -40,12 +40,13 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
                     AddApplicationCommand.MESSAGE_USAGE));
         }
 
-        Role role = ApplicationParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         CompanyName companyName = ApplicationParserUtil.parseCompanyName(
                 argMultimap.getValue(PREFIX_COMPANY_NAME).get());
+        Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         CompanyEmail companyEmail = ApplicationParserUtil.parseCompanyEmail(
                 argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
-        Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        Role role = ApplicationParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Application application = new Application(role, companyName, companyEmail, status, null, tagList);
