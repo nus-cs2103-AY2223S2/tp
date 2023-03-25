@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.delete;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 
 /**
@@ -13,5 +14,6 @@ public abstract class DeleteCommand extends Command {
             + ":\n"
             + DeleteModuleCommand.MESSAGE_USAGE
             + DeleteLectureCommand.MESSAGE_USAGE
-            + DeleteVideoCommand.MESSAGE_USAGE;
+            + DeleteVideoCommand.MESSAGE_USAGE
+            + Messages.MESSAGE_CAN_DO_MULTIPLE;
 }

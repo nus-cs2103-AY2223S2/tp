@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
-import static seedu.address.testutil.TypicalModules.CS2040S;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,9 @@ public class DeleteModuleCommandTest {
 
         // tests string output
         assertEquals(actual,
-                new CommandResult(String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, CS2040S.getCode())));
+                new CommandResult(String.format(
+                        DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
+                        TypicalModules.getCs2040s().getCode())));
         // tests model
         assertEquals(model.getTracker().getModuleList(),
                 expectedModel.getTracker().getModuleList());
@@ -52,8 +53,8 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode modCs2040s = TypicalModules.CS2040S.getCode();
-        ModuleCode modSt2334 = TypicalModules.ST2334.getCode();
+        ModuleCode modCs2040s = TypicalModules.getCs2040s().getCode();
+        ModuleCode modSt2334 = TypicalModules.getSt2334().getCode();
 
         DeleteModuleCommand deleteCs2040sCommand = new DeleteModuleCommand(modCs2040s);
         DeleteModuleCommand deleteSt2334Command = new DeleteModuleCommand(modSt2334);

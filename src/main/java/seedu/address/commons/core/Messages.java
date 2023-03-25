@@ -22,8 +22,10 @@ public class Messages {
             + String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, "%2$s", "%3$s");
 
     public static final String MESSAGE_DO_NOT_EXIST = "%1$s do not exist";
-    public static final String MESSAGE_MODULES_DONT_EXIST = "Modules"
+    public static final String MESSAGE_MODULES_DONT_EXIST = "Modules "
             + String.format(MESSAGE_DO_NOT_EXIST, "%1$s");
+
+	public static final String MESSAGE_CAN_DO_MULTIPLE = "(can be comma \",\" separated to include multiple)";
 
     public static final String MESSAGE_MODULE_TAG_DOES_NOT_EXIST = "Tag %1$s of "
             + String.format(MESSAGE_MODULE_DOES_NOT_EXIST, "%2$s");

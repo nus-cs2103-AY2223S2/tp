@@ -9,6 +9,7 @@ import java.util.Optional;
 import seedu.address.logic.commands.delete.DeleteCommand;
 import seedu.address.logic.commands.delete.DeleteLectureCommand;
 import seedu.address.logic.commands.delete.DeleteModuleCommand;
+import seedu.address.logic.commands.delete.DeleteMultipleModulesCommand;
 import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
@@ -38,6 +39,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ModuleCode moduleCode = new ModuleCode(moduleCodeOptional.get());
 
                 if (lectureNameOptional.isPresent()) {
+
                     LectureName lectureName = new LectureName(lectureNameOptional.get());
                     VideoName videoName = new VideoName(preamble);
                     return new DeleteVideoCommand(videoName, moduleCode, lectureName);
@@ -46,11 +48,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     return new DeleteLectureCommand(lectureName, moduleCode);
                 }
             } else {
-                if (preamble.contains(",")) {
+                ModuleCode[] moduleCodes = MultipleEventsParser.parseModuleCodes(preamble);
 
+                if (moduleCodes.length > 1) {
+                    return new DeleteMultipleModulesCommand(moduleCodes);
+                } else {
+                    return new DeleteModuleCommand(moduleCodes[0]);
                 }
-                ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
-                return new DeleteModuleCommand(moduleCode);
             }
 
         } catch (ParseException pe) {
