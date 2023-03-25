@@ -7,7 +7,7 @@ import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.patientist.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.patientist.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.patientist.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +17,7 @@ import seedu.patientist.model.Model;
 import seedu.patientist.model.ModelManager;
 import seedu.patientist.model.UserPrefs;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.staff.Staff;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -34,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
-        //expectedModel.deletePerson(personToDelete); TODO: refer to API for new delete functionality
+        expectedModel.deleteStaff((Staff) personToDelete, expectedModel.getWard("Block A Ward 1"));
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -57,7 +58,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
-        //expectedModel.deletePerson(personToDelete); TODO: refer to API for new delete functionality
+        expectedModel.deleteStaff((Staff) personToDelete, expectedModel.getWard("Block A Ward 1"));
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
