@@ -1,9 +1,9 @@
-package vimification.internal.commands.view;
+package vimification.internal.command.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import vimification.internal.commands.CommandException;
-import vimification.internal.commands.CommandResult;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 

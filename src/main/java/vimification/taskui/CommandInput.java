@@ -8,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import vimification.internal.Logic;
-import vimification.internal.commands.CommandException;
-import vimification.internal.commands.CommandResult;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
 
 /**

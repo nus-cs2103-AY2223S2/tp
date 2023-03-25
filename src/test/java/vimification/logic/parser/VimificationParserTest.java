@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.internal.commands.logic.LogicCommand;
+import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
 

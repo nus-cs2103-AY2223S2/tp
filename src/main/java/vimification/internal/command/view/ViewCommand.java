@@ -1,7 +1,7 @@
-package vimification.internal.commands.view;
+package vimification.internal.command.view;
 
 import javafx.collections.ObservableList;
-import vimification.internal.commands.Command;
+import vimification.internal.command.Command;
 import vimification.model.task.Task;
 
 

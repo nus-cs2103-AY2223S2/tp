@@ -1,9 +1,9 @@
-package vimification.internal.commands.logic;
+package vimification.internal.command.logic;
 
 import static java.util.Objects.requireNonNull;
 
-import vimification.internal.commands.CommandException;
-import vimification.internal.commands.CommandResult;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -11,7 +11,6 @@ import vimification.model.task.Task;
  * Creates a new task and adds it to the task planner.
  */
 public class CreateCommand extends UndoableLogicCommand {
-
     public static final String COMMAND_WORD = "create";
     public static final String SUCCESS_MESSAGE_FORMAT = "New task created: %1$s";
     public static final String UNDO_MESSAGE =

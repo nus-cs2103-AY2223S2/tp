@@ -7,9 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import vimification.commons.core.LogsCenter;
-import vimification.internal.commands.Command;
-import vimification.internal.commands.CommandException;
-import vimification.internal.commands.CommandResult;
+import vimification.internal.command.Command;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
 import vimification.model.LogicTaskList;
