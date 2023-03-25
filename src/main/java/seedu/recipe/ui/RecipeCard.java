@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
 
+import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientKeyValuePairToString;
+
 /**
  * An UI component that displays information of a {@code Recipe}.
  */
@@ -76,7 +78,12 @@ public class RecipeCard extends UiPart<Region> {
 
         //Ingredients
         recipe.getIngredients()
-                .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
+            .forEach((ingredient, quantifier) -> ingredients
+                .getChildren()
+                .add(
+                    new Label(ingredientKeyValuePairToString(ingredient, quantifier))
+                )
+            );
 
         //Steps
         recipe.getSteps()
