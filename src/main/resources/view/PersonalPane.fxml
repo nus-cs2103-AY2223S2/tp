@@ -5,19 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 
-<?import javafx.scene.text.Text?>
 <HBox id="personalPane" fx:id="personalPane" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200"/>
         </columnConstraints>
         <VBox GridPane.columnIndex="0" alignment="CENTER">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
 
-            <ImageView fx:id="imageView" fitWidth="150" preserveRatio="true">
+            <ImageView fx:id="imageView" fitWidth="200" fitHeight="160" preserveRatio="true">
             </ImageView>
             <VBox alignment="CENTER">
                 <Label fx:id="id" styleClass="cell_big_label">

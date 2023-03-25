@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.ImageUtil;
@@ -68,7 +69,12 @@ public class PersonalPane extends UiPart<Region> {
         status.setText(person.getStatus().fullStatusDetail);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        address.setWrapText(true);
+        if (address.getText().length() > 35) {
+            address.setWrapText(true);
+        }
+        if (address.isWrapText()) {
+            address.setTranslateY(10);
+        }
         email.setText(person.getEmail().value);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
