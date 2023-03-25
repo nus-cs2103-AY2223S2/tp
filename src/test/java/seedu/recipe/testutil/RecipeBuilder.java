@@ -1,8 +1,8 @@
 package seedu.recipe.testutil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +24,7 @@ public class RecipeBuilder {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags = new HashSet<>();
-    private Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+    private HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
     private List<Step> steps = new ArrayList<>();
 
     /**
@@ -44,7 +44,7 @@ public class RecipeBuilder {
      * Creates a {@code RecipeBuilder} with the default details.
      */
     public RecipeBuilder(Name name, RecipePortion portion, RecipeDuration duration,
-                         Set<Tag> tags, Hashtable<Ingredient, IngredientInformation> ingredients, List<Step> steps) {
+                         Set<Tag> tags, HashMap<Ingredient, IngredientInformation> ingredients, List<Step> steps) {
         this.name = name;
         this.portion = portion;
         this.duration = duration;

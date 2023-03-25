@@ -1,7 +1,7 @@
 package seedu.recipe.storage.jsonadapters;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,13 +80,13 @@ public class JsonAdaptedIngredient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted ingredient object into the model's {@code Hashtable} mapping of
+     * Converts this Jackson-friendly adapted ingredient object into the model's {@code HashMap} mapping of
      * {@code Ingredient}-{@code IngredientInformation} key-value pairs.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ingredient.
      */
-    public Hashtable<Ingredient, IngredientInformation> toModelType() throws IllegalValueException {
-        Hashtable<Ingredient, IngredientInformation> ingredientKeyValuePair = new Hashtable<>();
+    public HashMap<Ingredient, IngredientInformation> toModelType() throws IllegalValueException {
+        HashMap<Ingredient, IngredientInformation> ingredientKeyValuePair = new HashMap<>();
         //Validate Ingredient
         Ingredient mainIngredient = Ingredient.of(ingredientName);
         if (commonName != null) {
@@ -101,12 +101,12 @@ public class JsonAdaptedIngredient {
 
         // Validate substitutions
         IngredientInformation info = new IngredientInformation(
-                quantity,
-                estimatedQuantity,
-                remarks.toArray(String[]::new),
-                substitutions.stream()
-                        .map(JsonAdaptedSubstitutionIngredient::toModelType)
-                        .toArray(Ingredient[]::new)
+            quantity,
+            estimatedQuantity,
+            remarks.toArray(String[]::new),
+            substitutions.stream()
+                .map(JsonAdaptedSubstitutionIngredient::toModelType)
+                .toArray(Ingredient[]::new)
         );
         ingredientKeyValuePair.put(mainIngredient, info);
         return ingredientKeyValuePair;

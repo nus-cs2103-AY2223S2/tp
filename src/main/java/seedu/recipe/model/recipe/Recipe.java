@@ -6,8 +6,8 @@ import static seedu.recipe.model.util.IngredientUtil.ingredientTableToString;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -32,7 +32,7 @@ public class Recipe {
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+    private final HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
@@ -50,7 +50,7 @@ public class Recipe {
         return name;
     }
 
-    public Hashtable<Ingredient, IngredientInformation> getIngredients() {
+    public HashMap<Ingredient, IngredientInformation> getIngredients() {
         return ingredientTable;
     }
 

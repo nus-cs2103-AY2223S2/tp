@@ -2,8 +2,8 @@ package seedu.recipe.logic.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +29,7 @@ public class RecipeDescriptor {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags;
-    private Hashtable<Ingredient, IngredientInformation> ingredients;
+    private HashMap<Ingredient, IngredientInformation> ingredients;
     private List<Step> steps;
 
     public RecipeDescriptor() {
@@ -67,8 +67,8 @@ public class RecipeDescriptor {
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
-        Hashtable<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
-                .map(Hashtable::new)
+        HashMap<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
+                .map(HashMap::new)
                 .orElse(recipeToEdit.getIngredients());
         newRecipe.setIngredients(updatedIngredients);
 
@@ -138,12 +138,12 @@ public class RecipeDescriptor {
         return (ingredients != null) ? Optional.of(Collections.unmodifiableMap(ingredients)) : Optional.empty();
     }
 
-    public void setIngredients(Hashtable<Ingredient, IngredientInformation> ingredientTable) {
+    public void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientTable) {
         this.ingredients = ingredientTable;
     }
 
     public void setIngredients(List<IngredientBuilder> ingredients) {
-        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
         ingredients.forEach(ingredient -> ingredientTable.putAll(ingredient.build()));
         this.ingredients = ingredientTable;
     }

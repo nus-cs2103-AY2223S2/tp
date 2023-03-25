@@ -19,8 +19,8 @@ import static seedu.recipe.testutil.TypicalRecipes.GRILLED_CHEESE;
 import static seedu.recipe.testutil.TypicalRecipes.MASALA_DOSA;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -158,7 +158,7 @@ public class RecipeTest {
     //IngredientBuilder logic
     @Test
     public void getIngredients() {
-        Hashtable<Ingredient, IngredientInformation> cacioIngredients = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> cacioIngredients = new HashMap<>();
         CACIO_INGREDIENTS.stream()
             .map(IngredientBuilder::build)
             .forEach(cacioIngredients::putAll);
@@ -177,9 +177,9 @@ public class RecipeTest {
         test.setIngredients(ingredientsToAdd);
         newIngredientList.addAll(List.of(ingredientsToAdd));
 
-        Hashtable<Ingredient, IngredientInformation> newIngredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> newIngredientTable = new HashMap<>();
         newIngredientList.forEach(ingredientBuilder -> newIngredientTable.putAll(ingredientBuilder.build()));
-        Hashtable<Ingredient, IngredientInformation> testTable = test.getIngredients();
+        HashMap<Ingredient, IngredientInformation> testTable = test.getIngredients();
 
         assertEquals(newIngredientTable, testTable);
     }
@@ -262,7 +262,7 @@ public class RecipeTest {
 
     @Test
     public void testHashCode() {
-        Hashtable<Ingredient, IngredientInformation> cacioIngredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> cacioIngredientTable = new HashMap<>();
         CACIO_INGREDIENTS.stream()
                 .map(IngredientBuilder::build)
                 .forEach(cacioIngredientTable::putAll);

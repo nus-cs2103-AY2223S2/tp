@@ -1,6 +1,6 @@
 package seedu.recipe.model.util;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -17,7 +17,7 @@ public class IngredientUtil {
      * @param ingredientTable The table of key-value pairs
      * @return The table formatted as a String.
      */
-    public static String ingredientTableToString(Hashtable<Ingredient, IngredientInformation> ingredientTable) {
+    public static String ingredientTableToString(HashMap<Ingredient, IngredientInformation> ingredientTable) {
         StringBuilder stringBuilder = new StringBuilder();
         TreeMap<Ingredient, IngredientInformation> sortedIngredientTable = new TreeMap<>(ingredientTable);
         sortedIngredientTable.forEach((ingredient, info) ->

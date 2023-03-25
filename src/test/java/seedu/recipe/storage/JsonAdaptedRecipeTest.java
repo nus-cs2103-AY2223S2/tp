@@ -12,7 +12,7 @@ import static seedu.recipe.testutil.TypicalRecipes.CACIO_PORTION;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_STEPS;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,7 +54,7 @@ public class JsonAdaptedRecipeTest {
     private static final String INVALID_STEP = "";
 
     private static List<JsonAdaptedIngredient> getIngredientList() {
-        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
         CACIO_INGREDIENTS.stream()
                 .map(IngredientBuilder::build)
                 .forEach(ingredientTable::putAll);

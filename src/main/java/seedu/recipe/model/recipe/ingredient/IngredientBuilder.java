@@ -11,8 +11,8 @@ import static seedu.recipe.model.recipe.ingredient.IngredientParser.SUBSTITUTION
 import static seedu.recipe.model.recipe.ingredient.IngredientParser.parse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +32,7 @@ public class IngredientBuilder {
 
     public final String name;
 
-    private final Hashtable<Prefix, List<String>> arguments;
+    private final HashMap<Prefix, List<String>> arguments;
 
     /**
      * Constructs a {@code IngredientBuilder}.
@@ -41,7 +41,7 @@ public class IngredientBuilder {
      */
     public IngredientBuilder(String name) {
         requireNonNull(name);
-        Hashtable<Prefix, List<String>> tokens = parse(name);
+        HashMap<Prefix, List<String>> tokens = parse(name);
         checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.arguments = tokens;
@@ -51,17 +51,17 @@ public class IngredientBuilder {
      * Returns true if a given string is a valid ingredient.
      */
     public static boolean isValidIngredient(String test) {
-        Hashtable<Prefix, List<String>> tokens = parse(test);
+        HashMap<Prefix, List<String>> tokens = parse(test);
         return tokens.containsKey(NAME_PREFIX);
     }
 
     /**
      * Generates and returns a Key-Value pair for the enclosing {@code Recipe}
      * instance to store.
-     * @return The {@code Hashtable} instance containing the key-value pair.
+     * @return The {@code HashMap} instance containing the key-value pair.
      */
-    public Hashtable<Ingredient, IngredientInformation> build() {
-        Hashtable<Ingredient, IngredientInformation> ingredientKeyValuePair = new Hashtable<>();
+    public HashMap<Ingredient, IngredientInformation> build() {
+        HashMap<Ingredient, IngredientInformation> ingredientKeyValuePair = new HashMap<>();
         ingredientKeyValuePair.put(createMainIngredient(), createInformation());
         return ingredientKeyValuePair;
     }

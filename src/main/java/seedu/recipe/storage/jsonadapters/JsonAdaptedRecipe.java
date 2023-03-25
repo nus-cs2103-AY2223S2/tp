@@ -1,7 +1,7 @@
 package seedu.recipe.storage.jsonadapters;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -133,7 +133,7 @@ public class JsonAdaptedRecipe {
         }
         res.setTags(tagList.toArray(Tag[]::new));
 
-        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
         for (JsonAdaptedIngredient i : ingredients) {
             ingredientTable.putAll(i.toModelType());
         }

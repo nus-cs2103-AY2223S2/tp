@@ -1,6 +1,6 @@
 package seedu.recipe.testutil;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -206,7 +206,7 @@ public class TypicalRecipes {
     private static final BinaryOperator<String> combiner = (leftString, rightString) -> leftString + rightString;
     private static final BiFunction<String, Object, String> tagAccumulator = (s, o) -> s + o.toString();
     private static final Supplier<String> ingredientTableString = () -> {
-        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
         CACIO_INGREDIENTS.stream().map(IngredientBuilder::build).forEach(ingredientTable::putAll);
         return IngredientUtil.ingredientTableToString(ingredientTable);
     };

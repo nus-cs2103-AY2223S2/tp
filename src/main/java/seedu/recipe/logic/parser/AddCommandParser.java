@@ -8,7 +8,7 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -77,7 +77,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // 4. Parse Ingredients
         List<IngredientBuilder> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
-        Hashtable<Ingredient, IngredientInformation> ingredientTable = new Hashtable<>();
+        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
         ingredients.forEach(ingredientBuilder -> ingredientTable.putAll(ingredientBuilder.build()));
         recipeDescriptor.setIngredients(ingredientTable);
 
