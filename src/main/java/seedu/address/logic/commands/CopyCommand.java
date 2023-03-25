@@ -1,6 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATOON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -25,12 +34,23 @@ public class CopyCommand extends Command {
             + ": Copies the information of the person identified by "
             + "the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "[" + PREFIX_NAME + "] "
+            + "[" + PREFIX_PHONE + "] "
+            + "[" + PREFIX_EMAIL + "] "
+            + "[" + PREFIX_ADDRESS + "] "
+            + "[" + PREFIX_RANK + "] "
+            + "[" + PREFIX_UNIT + "] "
+            + "[" + PREFIX_COMPANY + "] "
+            + "[" + PREFIX_PLATOON + "] "
+            + "[" + PREFIX_TAG + "]...\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + " " + PREFIX_RANK;
 
     public static final String MESSAGE_COPY_SUCCESS = "Successfully copied information to clipboard!";
 
     public static final String MESSAGE_NO_CLIPBOARD_FOUND = "Clipboard does not exist in your environment! "
             + "Displaying information for you:\n\n";
+
+    public static final String MESSAGE_NO_FIELDS_SELECTED = "At least 1 field to copy must be provided!";
 
     private final Index targetIndex;
     private final CopyInformationSelector copyInformationSelector;
@@ -133,16 +153,16 @@ public class CopyCommand extends Command {
         /**
          * All fields are selected to be copied.
          */
-        public void copyAllInformation() {
-            this.name = true;
-            this.phone = true;
-            this.email = true;
-            this.address = true;
-            this.rank = true;
-            this.unit = true;
-            this.company = true;
-            this.platoon = true;
-            this.tags = true;
+        public void copyAllInformation(boolean toCopy) {
+            this.name = toCopy;
+            this.phone = toCopy;
+            this.email = toCopy;
+            this.address = toCopy;
+            this.rank = toCopy;
+            this.unit = toCopy;
+            this.company = toCopy;
+            this.platoon = toCopy;
+            this.tags = toCopy;
         }
 
         public void copyName(boolean toCopy) {

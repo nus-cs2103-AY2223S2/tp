@@ -16,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.CopyCommand.CopyInformationSelector;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,7 +43,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         }
         CopyInformationSelector copyInformationSelector = new CopyInformationSelector();
         if (argMultimap.getValue(PREFIX_ALL).isPresent()) {
-            copyInformationSelector.copyAllInformation();
+            copyInformationSelector.copyAllInformation(true);
         } else {
             copyInformationSelector.copyName(argMultimap.getValue(PREFIX_NAME).isPresent());
             copyInformationSelector.copyPhone(argMultimap.getValue(PREFIX_PHONE).isPresent());
@@ -57,7 +56,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             copyInformationSelector.copyTags(argMultimap.getValue(PREFIX_TAG).isPresent());
         }
         if (!copyInformationSelector.isAnyFieldSelected()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(CopyCommand.MESSAGE_NO_FIELDS_SELECTED);
         }
         return new CopyCommand(index, copyInformationSelector);
     }
