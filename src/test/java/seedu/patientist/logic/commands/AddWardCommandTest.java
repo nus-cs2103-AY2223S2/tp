@@ -24,57 +24,57 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
-import seedu.patientist.testutil.PatientBuilder;
+import seedu.patientist.testutil.WardBuilder;
 
-public class AddCommandTest {
-
+public class AddWardCommandTest {
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddWardCommand(null));
     }
 
     @Test
-    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patient validPatient = new PatientBuilder().build();
+    public void execute_wardAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingWardAdded modelStub = new ModelStubAcceptingWardAdded();
+        Ward validWard = new WardBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandResult commandResult = new AddWardCommand(validWard).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
+        assertEquals(String.format(AddWardCommand.MESSAGE_SUCCESS, validWard), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validWard), modelStub.wardsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Patient validPatient = new PatientBuilder().build();
-        AddCommand addCommand = new AddCommand(validPatient);
-        ModelStub modelStub = new ModelStubWithPerson(validPatient);
+    public void execute_duplicateWard_throwsCommandException() {
+        Ward validWard = new WardBuilder().build();
+        AddWardCommand addWardCommand = new AddWardCommand(validWard);
+        ModelStub modelStub = new ModelStubWithWard(validWard);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddWardCommand.MESSAGE_DUPLICATE_WARD, () ->
+                addWardCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Patient alice = new PatientBuilder().withName("Alice").build();
-        Patient bob = new PatientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Ward ward1 = new WardBuilder().withName("Ward1").build();
+        Ward ward2 = new WardBuilder().withName("Ward2").build();
+        AddWardCommand addWardCommand1 = new AddWardCommand(ward1);
+        AddWardCommand addWardCommand2 = new AddWardCommand(ward2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addWardCommand1.equals(addWardCommand1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddWardCommand addWardCommandCopy = new AddWardCommand(ward1);
+        assertTrue(addWardCommand1.equals(addWardCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addWardCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addWardCommand1.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addWardCommand1.equals(addWardCommand2));
     }
 
     /**
@@ -111,11 +111,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //@Override
-        //public void addPerson(Person person) {
-        //throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public void setPatientist(ReadOnlyPatientist patientist) {
             throw new AssertionError("This method should not be called.");
@@ -146,11 +141,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //@Override
-        //public void deleteStaff(Staff target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public void deleteStaff(Staff target, Ward ward) {
             throw new AssertionError("This method should not be called.");
@@ -160,16 +150,6 @@ public class AddCommandTest {
         public void deletePatient(Patient target, Ward ward) {
             throw new AssertionError("This method should not be called.");
         }
-
-        //@Override
-        //public void deletePerson(Person target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
-        //@Override
-        //public void deletePerson(Person target, Ward ward) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public void addPatient(Patient patient, Ward ward) {
@@ -201,11 +181,6 @@ public class AddCommandTest {
 
         }
 
-        //@Override
-        //public void setPerson(Person target, Person editedPerson) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public boolean hasWard(Ward ward) {
             throw new AssertionError("This method should not be called.");
@@ -227,6 +202,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Ward getWard(String wardName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -240,38 +220,41 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithWard extends ModelStub {
+        private final Ward ward;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithWard(Ward ward) {
+            requireNonNull(ward);
+            this.ward = ward;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasWard(Ward ward) {
+            requireNonNull(ward);
+            return this.ward.equals(ward);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingWardAdded extends ModelStub {
+        final ArrayList<Ward> wardsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasWard(Ward ward) {
+            return false;
         }
 
-        //@Override
-        //public void addPerson(Person person) {
-        //requireNonNull(person);
-        //personsAdded.add(person);
-        //}
+        @Override
+        public Ward getWard(String wardName) {
+            return new Ward(wardName);
+        }
+
+        @Override
+        public void addWard(Ward ward) {
+            wardsAdded.add(ward);
+        }
 
         @Override
         public ReadOnlyPatientist getPatientist() {

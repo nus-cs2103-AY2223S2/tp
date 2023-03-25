@@ -22,6 +22,7 @@ import seedu.patientist.model.ward.WardList;
 public class Patientist implements ReadOnlyPatientist {
 
     private final WardList wards;
+    private final ObservableList<Person> personsInPatientist;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,6 +33,7 @@ public class Patientist implements ReadOnlyPatientist {
      */
     {
         wards = new WardList();
+        personsInPatientist = FXCollections.observableArrayList();
     }
 
     public Patientist() {}
@@ -255,12 +257,16 @@ public class Patientist implements ReadOnlyPatientist {
 
     @Override
     public ObservableList<Person> getPersonList() {
-        ObservableList<Person> tempList = FXCollections.observableArrayList();
+        return FXCollections.unmodifiableObservableList(this.personsInPatientist);
+    }
+
+    @Override
+    public void updatePersonList() {
+        this.personsInPatientist.setAll();
         for (Ward ward : wards) {
-            tempList.addAll(ward.getStaffsAsUnmodifiableObservableList());
-            tempList.addAll(ward.getPatientsAsUnmodifiableObservableList());
+            this.personsInPatientist.addAll(ward.getStaffsAsUnmodifiableObservableList());
+            this.personsInPatientist.addAll(ward.getPatientsAsUnmodifiableObservableList());
         }
-        return FXCollections.unmodifiableObservableList(tempList);
     }
 
     @Override

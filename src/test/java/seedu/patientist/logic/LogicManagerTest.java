@@ -9,6 +9,8 @@ import static seedu.patientist.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.patientist.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.patientist.logic.commands.CommandTestUtil.PID_DESC_AMY;
 import static seedu.patientist.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.patientist.logic.commands.CommandTestUtil.VALID_WARD_AMY;
+import static seedu.patientist.logic.commands.CommandTestUtil.WARD_DESC_AMY;
 import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPatients.AMY;
 
@@ -19,7 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.commands.exceptions.CommandException;
@@ -29,6 +31,7 @@ import seedu.patientist.model.ModelManager;
 import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.UserPrefs;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.ward.Ward;
 import seedu.patientist.storage.JsonPatientistStorage;
 import seedu.patientist.storage.JsonUserPrefsStorage;
 import seedu.patientist.storage.StorageManager;
@@ -79,13 +82,17 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
+        Ward ward = new Ward(VALID_WARD_AMY);
+        model.addWard(ward);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + PID_DESC_AMY + STATUS_DESC_AMY;
+        String addCommand = AddPatientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                            + ADDRESS_DESC_AMY + PID_DESC_AMY + STATUS_DESC_AMY + WARD_DESC_AMY;
         Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        //expectedModel.addPerson(expectedPatient);
+        Ward expectedWard = new Ward(VALID_WARD_AMY);
+        expectedModel.addWard(expectedWard);
+        expectedModel.addPatient(expectedPatient, expectedWard);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

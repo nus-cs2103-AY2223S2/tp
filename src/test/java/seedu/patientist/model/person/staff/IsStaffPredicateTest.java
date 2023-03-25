@@ -2,8 +2,8 @@ package seedu.patientist.model.person.staff;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.patientist.testutil.TypicalStaff.AMY;
 import static seedu.patientist.testutil.TypicalPatients.BOB;
+import static seedu.patientist.testutil.TypicalStaff.AMY;
 
 import org.junit.jupiter.api.Test;
 

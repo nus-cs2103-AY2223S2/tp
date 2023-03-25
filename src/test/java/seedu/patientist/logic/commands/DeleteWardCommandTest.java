@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.testutil.Assert.assertThrows;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,59 +25,62 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
-import seedu.patientist.testutil.StaffBuilder;
+import seedu.patientist.testutil.WardBuilder;
 
-public class AddStaffCommandTest {
 
+
+
+
+public class DeleteWardCommandTest {
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddWardCommand(null));
     }
 
     @Test
-    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStaffAdded modelStub = new ModelStubAcceptingStaffAdded();
-        Staff validStaff = new StaffBuilder().build();
+    public void execute_wardDeletedByModel_deleteSuccessful() throws Exception {
+        Ward ward = new Ward("Ward1");
+        ModelStubAcceptingWardAdded modelStub = new ModelStubAcceptingWardAdded(ward);
 
-        CommandResult commandResult = new AddStaffCommand(validStaff).execute(modelStub);
+        CommandResult commandResult = new DeleteWardCommand("Ward1").execute(modelStub);
 
-        assertEquals(String.format(AddStaffCommand.MESSAGE_SUCCESS, validStaff), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStaff), modelStub.staffAdded);
+        assertEquals(String.format(DeleteWardCommand.MESSAGE_DELETE_WARD_SUCCESS, ward),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(), modelStub.wardsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Staff validStaff = new StaffBuilder().build();
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff);
-        ModelStub modelStub = new ModelStubWithPerson(validStaff);
+    public void execute_wardNotEmpty_throwsCommandException() {
+        Ward validWard = new WardBuilder().withName("Ward1").withPatient(BOB).build();
+        DeleteWardCommand deleteWardCommand = new DeleteWardCommand(validWard.getWardName());
+        ModelStub modelStub = new ModelStubAcceptingWardAdded(validWard);
 
-        assertThrows(CommandException.class,
-                AddStaffCommand.MESSAGE_DUPLICATE_PERSON, () -> addStaffCommand.execute(modelStub));
+        assertThrows(CommandException.class, DeleteWardCommand.MESSAGE_NON_EMPTY_WARD, () ->
+                deleteWardCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Staff alex = new StaffBuilder().withName("Alex").build();
-        Staff billy = new StaffBuilder().withName("Billy").build();
-        AddStaffCommand addStaffAlexCommand = new AddStaffCommand(alex);
-        AddStaffCommand addStaffBillyCommand = new AddStaffCommand(billy);
+        DeleteWardCommand deleteWardCommand1 = new DeleteWardCommand("ward1");
+        DeleteWardCommand deleteWardCommand2 = new DeleteWardCommand("ward2");
 
         // same object -> returns true
-        assertTrue(addStaffAlexCommand.equals(addStaffAlexCommand));
+        assertTrue(deleteWardCommand1.equals(deleteWardCommand1));
 
         // same values -> returns true
-        AddStaffCommand addStaffAlexCommandCopy = new AddStaffCommand(alex);
-        assertTrue(addStaffAlexCommand.equals(addStaffAlexCommandCopy));
+        DeleteWardCommand deleteWardCommandCopy = new DeleteWardCommand("ward1");
+        assertTrue(deleteWardCommand1.equals(deleteWardCommandCopy));
 
         // different types -> returns false
-        assertFalse(addStaffAlexCommand.equals(1));
+        assertFalse(deleteWardCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addStaffAlexCommand.equals(null));
+        assertFalse(deleteWardCommand1.equals(null));
 
         // different person -> returns false
-        assertFalse(addStaffAlexCommand.equals(addStaffBillyCommand));
+        assertFalse(deleteWardCommand1.equals(deleteWardCommand2));
     }
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -108,14 +112,9 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public void setPatientistFilePath(Path addressBookFilePath) {
+        public void setPatientistFilePath(Path patientistFilePath) {
             throw new AssertionError("This method should not be called.");
         }
-
-        //@Override
-        //public void addPerson(Person person) {
-        //throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public void setPatientist(ReadOnlyPatientist patientist) {
@@ -147,11 +146,6 @@ public class AddStaffCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //@Override
-        //public void deleteStaff(Staff target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public void deleteStaff(Staff target, Ward ward) {
             throw new AssertionError("This method should not be called.");
@@ -161,16 +155,6 @@ public class AddStaffCommandTest {
         public void deletePatient(Patient target, Ward ward) {
             throw new AssertionError("This method should not be called.");
         }
-
-        //@Override
-        //public void deletePerson(Person target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
-        //@Override
-        //public void deletePerson(Person target, Ward ward) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public void addPatient(Patient patient, Ward ward) {
@@ -194,20 +178,13 @@ public class AddStaffCommandTest {
 
         @Override
         public void transferPatient(Patient patient, Ward original, Ward target) {
-            throw new AssertionError("This method should not be called.");
 
         }
 
         @Override
         public void transferStaff(Staff staff, Ward original, Ward target) {
-            throw new AssertionError("This method should not be called.");
 
         }
-
-        //@Override
-        //public void setPerson(Person target, Person editedPerson) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public boolean hasWard(Ward ward) {
@@ -246,40 +223,30 @@ public class AddStaffCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Staff staff;
-
-        ModelStubWithPerson(Staff staff) {
-            requireNonNull(staff);
-            this.staff = staff;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.staff.isSamePerson(person);
-        }
-    }
-
-    /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingStaffAdded extends ModelStub {
-        final ArrayList<Staff> staffAdded = new ArrayList<>();
+    private class ModelStubAcceptingWardAdded extends ModelStub {
+        final ArrayList<Ward> wardsAdded;
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
+        ModelStubAcceptingWardAdded(Ward ward) {
+            requireNonNull(ward);
+            this.wardsAdded = new ArrayList<>(Arrays.asList(ward));
         }
 
-        //@Override
-        //public void addPerson(Person person) {
-        //requireNonNull(person);
-        //staffAdded.add((Staff) person);
-        //}
+        @Override
+        public boolean hasWard(Ward ward) {
+            return true;
+        }
+
+        @Override
+        public Ward getWard(String wardName) {
+            return wardsAdded.get(0);
+        }
+
+        @Override
+        public void deleteWard(Ward ward) {
+            wardsAdded.remove(ward);
+        }
 
         @Override
         public ReadOnlyPatientist getPatientist() {
@@ -287,4 +254,3 @@ public class AddStaffCommandTest {
         }
     }
 }
-

@@ -16,7 +16,7 @@ import seedu.patientist.model.person.staff.Staff;
  */
 public class Ward {
 
-    private static final String MESSAGE_CONSTRAINTS = "Ward name cannot be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Ward name cannot be blank";
 
     private final UniquePersonList patients;
     private final UniquePersonList staffs;
@@ -174,5 +174,12 @@ public class Ward {
 
     public String getWardName() {
         return wardName;
+    }
+
+    /**
+     * Checks if ward is empty.
+     */
+    public boolean isEmpty() {
+        return patients.isEmpty() && staffs.isEmpty();
     }
 }

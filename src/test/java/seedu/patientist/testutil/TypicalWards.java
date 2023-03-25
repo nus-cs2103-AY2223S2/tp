@@ -18,16 +18,21 @@ import seedu.patientist.model.ward.Ward;
  * A utility class containing a list of {@code Ward} objects to be used in tests.
  */
 public class TypicalWards {
-    public static final Ward BLOCK_A_WARD_1 = new WardBuilder().withName("Block A Ward 1")
-            .withPatient(AMY).withPatient(CHARLIE).withStaff(CHARLES).build();
-
-    public static final Ward BLOCK_A_WARD_2 = new WardBuilder().withName("Block A Ward 2")
-            .withPatient(ADAM).withPatient(BOB).withStaff(DACIA).build();
 
     private TypicalWards() {}
 
     public static List<Ward> getTypicalWards() {
-        return new ArrayList<>(Arrays.asList(BLOCK_A_WARD_1, BLOCK_A_WARD_2));
+        return new ArrayList<>(Arrays.asList(getBlockAWard1(), getBlockAWard2()));
+    }
+
+    public static Ward getBlockAWard1() {
+        return new WardBuilder().withName("Block A Ward 1")
+                .withPatient(AMY).withPatient(CHARLIE).withStaff(CHARLES).build();
+    }
+
+    public static Ward getBlockAWard2() {
+        return new WardBuilder().withName("Block A Ward 2")
+                .withPatient(ADAM).withPatient(BOB).withStaff(DACIA).build();
     }
 
     /**
@@ -35,8 +40,8 @@ public class TypicalWards {
      */
     public static Patientist getTypicalPatientist() {
         Patientist pt = new Patientist();
-        pt.addWard(BLOCK_A_WARD_1);
-        pt.addWard(BLOCK_A_WARD_2);
+        pt.addWard(getBlockAWard1());
+        pt.addWard(getBlockAWard2());
         return pt;
     }
 }

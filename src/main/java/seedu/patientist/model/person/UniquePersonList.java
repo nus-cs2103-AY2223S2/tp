@@ -103,6 +103,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if internal list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

@@ -8,6 +8,7 @@ import seedu.patientist.commons.core.Messages;
 import seedu.patientist.commons.core.index.Index;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
+import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Person;
 
 /**
@@ -40,7 +41,8 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        //model.deletePerson(personToDelete); TODO: global deletes have been removed. Refer to new API
+        Patientist patientist = (Patientist) model.getPatientist();
+        patientist.removePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

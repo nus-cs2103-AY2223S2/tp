@@ -21,4 +21,6 @@ public interface ReadOnlyPatientist {
 
     ObservableList<Person> getStaffListInWard(Ward ward);
 
+    void updatePersonList();
+
 }

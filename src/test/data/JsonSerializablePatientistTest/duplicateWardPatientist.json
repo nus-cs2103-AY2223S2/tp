@@ -9,7 +9,11 @@
       "address" : "Blk 30 Geylang Street 29, #06-40",
       "status" : "",
       "tagged" : [ "Patient" ]
-    }, {
+    }],
+    "staffs" : []
+  }, {
+    "name" : "Block A Ward 1",
+    "patients" : [ {
       "name" : "Alex Yeoh",
       "id" : "A12345A",
       "phone" : "87438807",

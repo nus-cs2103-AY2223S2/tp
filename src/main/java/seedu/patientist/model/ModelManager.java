@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.patientist = new Patientist(patientist);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.patientist.getPersonList());
+        this.patientist.updatePersonList();
     }
 
     public ModelManager() {
@@ -222,8 +223,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return patientist.equals(other.patientist)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && userPrefs.equals(other.userPrefs);
     }
 
 }
