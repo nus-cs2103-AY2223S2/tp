@@ -1,12 +1,14 @@
 package seedu.vms.model;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -53,6 +55,58 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+
+    /*
+     * ========================================================================
+     * Keywords
+     * ========================================================================
+     */
+
+    void setKeywordManager(KeywordManager keywordManager);
+
+    /** Returns the {@code KeywordManager} the model is using. */
+    KeywordManager getKeywordManager();
+
+
+    /**
+     * Parses the specified user command.
+     *
+     * @param userCommand - the user command to parse.
+     * @return the {@code ParseResult} that results from the parsed user
+     *      command.
+     * @throws ParseException if the user command cannot be parsed.
+     */
+    ParseResult parseCommand(String userCommand) throws ParseException;
+
+    /**
+     * Adds the given keyword.
+     * {@code keyword} must not already exist in the keyword manager.
+     */
+    void addKeyword(Keyword keyword);
+
+    /**
+     * Deletes the given keyword.
+     * The keyword must exist in the keyword manager.
+     */
+    void deleteKeyword(int id);
+
+
+    /** Returns an unmodifiable view of the filtered keyword list */
+    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
+
+    /**
+     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredKeywordList(Predicate<Keyword> predicate);
+
+
+    /*
+     * ========================================================================
+     * Patients
+     * ========================================================================
+     */
+
     /**
      * Replaces patient manager data with the data in {@code patientManager}.
      */
@@ -87,33 +141,56 @@ public interface Model {
     void setPatient(int id, Patient editedPatient);
 
     /**
-     * Replaces the given appointment {@code target} with {@code editedAppointment}.
-     * {@code target} must exist in the appointment manager.
-     * The appointment identity of {@code editedAppointment} must not be the same as
-     * another existing appointment in the appointment manager.
-     */
-    void setAppointment(int id, Appointment editedAppointment);
-
-    /** Returns an unmodifiable view of the filtered patient list */
-    ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
-
-    /** Returns an unmodifiable view of the filtered vaccination type map. */
-    ObservableMap<String, VaxType> getFilteredVaxTypeMap();
-
-    /** Returns an unmodifiable view of the filtered appointment map. */
-    ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
-
-    /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
-    /**
-     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+    /** Returns an unmodifiable view of the filtered patient list */
+    ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
+
+
+    /*
+     * ========================================================================
+     * Vaccination
+     * ========================================================================
      */
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+
+    void setVaxTypeManager(VaxTypeManager manager);
+
+
+    /** Returns the {@code VaxTypeManager} the model is using. */
+    VaxTypeManager getVaxTypeManager();
+
+    /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
+    VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
+
+    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+
+
+    void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
+
+    /** Returns an unmodifiable view of the filtered vaccination type map. */
+    ObservableMap<String, VaxType> getFilteredVaxTypeMap();
+
+
+    ObjectProperty<VaxType> detailVaxTypeProperty();
+
+
+    void setDetailedVaxType(VaxType vaxType);
+
+
+    /*
+     * ========================================================================
+     * Appointment
+     * ========================================================================
+     */
+
+    void setAppointmentManager(AppointmentManager manager);
+
+    /** Returns the {@code AppointmentManager} the model is using. */
+    AppointmentManager getAppointmentManager();
 
     /**
      * Adds the given appointment.
@@ -127,27 +204,13 @@ public interface Model {
      */
     void deleteAppointment(int id);
 
-
-    /** Returns an unmodifiable view of the filtered keyword list */
-    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
-
     /**
-     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment manager.
+     * The appointment identity of {@code editedAppointment} must not be the same as
+     * another existing appointment in the appointment manager.
      */
-    void updateFilteredKeywordList(Predicate<Keyword> predicate);
-
-    /**
-     * Adds the given keyword.
-     * {@code keyword} must not already exist in the keyword manager.
-     */
-    void addKeyword(Keyword keyword);
-
-    /**
-     * Deletes the given keyword.
-     * The keyword must exist in the keyword manager.
-     */
-    void deleteKeyword(int id);
+    void setAppointment(int id, Appointment editedAppointment);
 
     /**
      * Marks the given appointment as completed.
@@ -161,45 +224,60 @@ public interface Model {
      */
     void unmarkAppointment(int id);
 
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
-    /** Returns the {@code VaxTypeManager} the model is using. */
-    VaxTypeManager getVaxTypeManager();
-
-    /** Returns the {@code AppointmentManager} the model is using. */
-    AppointmentManager getAppointmentManager();
-
-    /** Returns the {@code KeywordManager} the model is using. */
-    KeywordManager getKeywordManager();
-
-    /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
-    VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
-
-    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+    /** Returns an unmodifiable view of the filtered appointment map. */
+    ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
 
 
     /**
-     * Parses the specified user command.
+     * Validates if a patient change will result in appointments to be deleted.
+     * Returns a list of messages of the deletion change that will happen if
+     * the specified change were to occur. If no deletion change in appointment
+     * will happen, an empty {@code List} will be returned.
      *
-     * @param userCommand - the user command to parse.
-     * @return the {@code ParseResult} that results from the parsed user
-     *      command.
-     * @throws ParseException if the user command cannot be parsed.
+     * @param change - the change in state of a patient to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
      */
-    ParseResult parseCommand(String userCommand) throws ParseException;
+    List<String> validatePatientChange(ValueChange<Patient> change);
 
 
-    void setVaxTypeManager(VaxTypeManager manager);
-
-    void setAppointmentManager(AppointmentManager manager);
-
-    void setKeywordManager(KeywordManager keywordManager);
-
-
-    void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
-
-
-    ObjectProperty<VaxType> detailVaxTypeProperty();
+    /**
+     * Handles the specified change in state of a patient. Returns a list of
+     * messages describing the changes in appointment that has ocurred.
+     *
+     * @param change - the change to handle.
+     * @return a list of messages describing the changes in appointment that
+     *      has ocurred.
+     */
+    List<String> handlePatientChange(ValueChange<Patient> change);
 
 
-    void setDetailedVaxType(VaxType vaxType);
+    /**
+     * Validates if a vaccination change will result in appointments to be
+     * deleted. Returns a list of messages of the deletion change that will
+     * happen if the specified change where to occur. If no deletion change in
+     * appointment will happen, an empty {@code List} will be returned.
+     *
+     * @param change - the change in state of vaccination to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
+     */
+    List<String> validateVaccinationChange(ValueChange<VaxType> change);
+
+
+    /**
+     * Handles the specified change in state of a vaccination. Returns a list
+     * of messages describing the changes in appointment that has ocurred.
+     *
+     * @param change - the change to handle.
+     * @return a list of messages describing the changes in appointment that
+     *      has ocurred.
+     */
+    List<String> handleVaccinationChange(ValueChange<VaxType> change);
 }
