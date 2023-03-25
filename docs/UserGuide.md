@@ -501,13 +501,14 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified 
-search of the full name, phone or both!</li>
-    <li> This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero, 
-executing `Thomas Lee` will only find `Thomas Lee`. </li>
-    <li> This also means that if the `PHONE` `91918153` and `9191` is in HMHero, executing `91918153` will only find
-`PHONE` `91918153`. </li>
-    <li> If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually! 
+    <li> The <code>find</code> command only finds `Applicants` which has a name, phone or both that fully matches 
+the specified search of the full name, phone or both!</li>
+    <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
+executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
+    <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
+executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
+    <li> If you try to find <code>Applicants</code> using both <code>NAME</code> and <code>PHONE</code>,
+it will work the same as finding individually! 
 </li>
 </ul> </div>
 
@@ -572,7 +573,7 @@ list
 **Command Output Box:**
 ```
 Listed all applicants
-- Total Applicants: 4
+Total Applicants: 4
 - Applied: 1
 - Shortlisted: 1
 - Accepted: 1
@@ -601,8 +602,8 @@ Listed all applicants
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified 
-search.</li> 
+    <li> The <code>delete</code> command only deletes <code>Applicant</code> which has a name and phone 
+that fully matches the specified search.</li> 
 </ul> </div>
 
 
@@ -648,13 +649,14 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li>The `advance` command only advances `Applicant` which has a name and phone that fully matches 
-the specified search.</li> 
-    <li> The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
+    <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
+fully matches the specified search.</li> 
+    <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
 </li> 
-    <li> However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED` 
-to `status` `ACCEPTED`. </li>
-    <li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
+    <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
+</code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
+    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
         <ul>
             <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
             <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
@@ -662,7 +664,7 @@ For example, “05” would represent May. </li>
             <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
             <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
             For example, "15" would represent 15th hour of the day. </li>
-            <li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the 
+            <li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 50th minute of the 
 hour.</li>
         </ul> 
     </li> 
@@ -712,10 +714,11 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified 
-search.</li> 
-    <li> The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
-to `status` `REJECTED`.
+    <li> The <code>reject</code> command only rejects <code>Applicant</code> which has a name and phone that 
+fully matches the specified search.</li> 
+    <li> The <code>NAME</code> and <code>PHONE</code> is required to reject <code>Applicant</code> from <code>status
+</code> <code>APPLIED</code>, <code>SHORTLISTED</code> and <code>ACCEPTED</code> to <code>status</code> <code>REJECTED
+</code>.
     </li> 
 </ul> </div>
 
