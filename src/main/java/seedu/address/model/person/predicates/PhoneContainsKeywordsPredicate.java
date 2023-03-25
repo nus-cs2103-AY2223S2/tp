@@ -1,4 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Person;
+
 
 import java.util.function.Predicate;
 
@@ -12,7 +16,7 @@ public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
         this.keyword = keyword;
     }
     public boolean test(Person person) {
-        return keyword.matches(person.getPhone().value);
+        return StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
     }
 
     @Override

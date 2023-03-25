@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -43,7 +45,7 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof Tag // instanceof handles nulls
-            && tagName.equals(((Tag) other).tagName)); // state check
+            && tagName.equalsIgnoreCase(((Tag) other).tagName)); // state check
     }
 
     @Override
