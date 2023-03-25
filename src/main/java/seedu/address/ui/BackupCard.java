@@ -13,7 +13,7 @@ public class BackupCard extends UiPart<Region> {
 
     private static final String FXML = "BackupCard.fxml";
 
-    private final String SLOT = "Save slot: ";
+    private final String SLOT = "Backup slot: ";
 
     private final String DESC = "Description: ";
 
