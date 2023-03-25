@@ -56,7 +56,8 @@ class JsonAdaptedTask {
                            @JsonProperty("to") String to,
                            @JsonProperty("effort") Long effort,
                            @JsonProperty("subtasks") List<JsonAdaptedSubtask> subtaskList,
-                           @JsonProperty("alertWindow") String alertWindow) {
+                           @JsonProperty("alertWindow") String alertWindow,
+                           @JsonProperty("hasDescription") String hasDescription) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
