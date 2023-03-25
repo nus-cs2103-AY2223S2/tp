@@ -22,10 +22,12 @@ import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
+import seedu.vms.model.patient.predicates.AllergyContainsKeywordsPredicate;
 import seedu.vms.model.patient.predicates.BloodTypePredicate;
 import seedu.vms.model.patient.predicates.DobPredicate;
 import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.predicates.PhoneNumberPredicate;
+import seedu.vms.model.patient.predicates.VaccineContainsKeywordsPredicate;
 
 /**
  * Finds and lists all patients in patient manager whose name contains any of the argument keywords.
@@ -46,6 +48,8 @@ public class FindCommand extends Command {
     private final Optional<PhoneNumberPredicate> phonePredicate;
     private final Optional<DobPredicate> dobPredicate;
     private final Optional<BloodTypePredicate> bloodTypePredicate;
+    private final Optional<AllergyContainsKeywordsPredicate> allergyContainsKeywordsPredicate;
+    private final Optional<VaccineContainsKeywordsPredicate> vaccineContainsKeywordsPredicate;
 
     /**
      * Existing FindCommand that was previously used to search using name only
@@ -57,6 +61,8 @@ public class FindCommand extends Command {
         this.phonePredicate = Optional.empty();
         this.dobPredicate = Optional.empty();
         this.bloodTypePredicate = Optional.empty();
+        this.allergyContainsKeywordsPredicate = Optional.empty();
+        this.vaccineContainsKeywordsPredicate = Optional.empty();
     }
 
     /**
@@ -90,13 +96,27 @@ public class FindCommand extends Command {
         } else {
             this.bloodTypePredicate = Optional.empty();
         }
+
+        if (findPatientDescriptor.getAllergies().isPresent()) {
+            this.allergyContainsKeywordsPredicate = Optional
+                    .of(new AllergyContainsKeywordsPredicate(findPatientDescriptor.getAllergies().get()));
+        } else {
+            this.allergyContainsKeywordsPredicate = Optional.empty();
+        }
+
+        if (findPatientDescriptor.getVaccines().isPresent()) {
+            this.vaccineContainsKeywordsPredicate = Optional
+                    .of(new VaccineContainsKeywordsPredicate(findPatientDescriptor.getVaccines().get()));
+        } else {
+            this.vaccineContainsKeywordsPredicate = Optional.empty();
+        }
     }
 
     @Override
     public CommandMessage execute(Model model) {
         requireNonNull(model);
         List<Optional<? extends Predicate<Patient>>> optionalFilters = List.of(namePredicate, phonePredicate,
-                dobPredicate, bloodTypePredicate);
+                dobPredicate, bloodTypePredicate, allergyContainsKeywordsPredicate, vaccineContainsKeywordsPredicate);
         List<Predicate<Patient>> filters = optionalFilters.stream()
                 .filter(Objects::nonNull)
                 .flatMap(Optional::stream)
@@ -113,7 +133,11 @@ public class FindCommand extends Command {
                         && namePredicate.equals(((FindCommand) other).namePredicate) // state check
                         && phonePredicate.equals(((FindCommand) other).phonePredicate) // state check
                         && dobPredicate.equals(((FindCommand) other).dobPredicate) // state check
-                        && bloodTypePredicate.equals(((FindCommand) other).bloodTypePredicate)); // state check
+                        && bloodTypePredicate.equals(((FindCommand) other).bloodTypePredicate) // state check
+                        && allergyContainsKeywordsPredicate
+                                .equals(((FindCommand) other).allergyContainsKeywordsPredicate) // state check
+                        && vaccineContainsKeywordsPredicate
+                                .equals(((FindCommand) other).vaccineContainsKeywordsPredicate)); // state check
     }
 
     /**

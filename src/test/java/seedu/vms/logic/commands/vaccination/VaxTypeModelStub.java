@@ -23,7 +23,6 @@ import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
-
 /**
  * Stub {@code Model} to test vaccination commands.
  */
@@ -205,6 +204,12 @@ public class VaxTypeModelStub implements Model {
     public void setKeywordManager(KeywordManager manager) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
+    }
+
+    @Override
+    public void setPatientFilters(Collection<Predicate<Patient>> filters) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPatientFilters'");
     }
 
     @Override
