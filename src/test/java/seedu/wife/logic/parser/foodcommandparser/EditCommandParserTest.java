@@ -6,7 +6,7 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_MEIJI;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_THIRD_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_THIRD_FOOD;
 
 import org.junit.jupiter.api.Test;
 
