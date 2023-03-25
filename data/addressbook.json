@@ -1,56 +1,54 @@
 {
   "categories" : [ {
-    "categoryName" : "a",
-    "summary" : "ijifnbinbsg"
-  }, {
-    "categoryName" : "b",
-    "summary" : "sjibtsbgr"
-  }, {
-    "categoryName" : "fbjsgbg",
+    "categoryName" : "fruits",
     "summary" : ""
   }, {
-    "categoryName" : "sbfad",
+    "categoryName" : "entertainment",
     "summary" : ""
   }, {
-    "categoryName" : "agbrsbb",
+    "categoryName" : "food",
     "summary" : ""
   }, {
-    "categoryName" : "argaebsb",
+    "categoryName" : "tech",
     "summary" : ""
   }, {
-    "categoryName" : "new cat",
-    "summary" : "safag"
+    "categoryName" : "wqfoavj",
+    "summary" : ""
+  }, {
+    "categoryName" : "hello",
+    "summary" : ""
+  }, {
+    "categoryName" : "qvneivn",
+    "summary" : ""
+  }, {
+    "categoryName" : "wefjw",
+    "summary" : ""
+  }, {
+    "categoryName" : "HelloTest",
+    "summary" : "abcdefg"
   } ],
   "expenses" : [ {
-    "name" : "fgsgbsgns",
-    "amount" : "4.8",
-    "date" : "2023-03-15",
+    "name" : "apples",
+    "amount" : "5.0",
+    "date" : "2023-03-10",
     "category" : {
-      "categoryName" : "fbjsgbg",
+      "categoryName" : "fruits",
       "summary" : ""
     }
   }, {
-    "name" : "adfbb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
+    "name" : "chicken rice",
+    "amount" : "8.0",
+    "date" : "2023-02-02",
     "category" : {
-      "categoryName" : "sbfad",
+      "categoryName" : "food",
       "summary" : ""
     }
   }, {
-    "name" : "argaeb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
+    "name" : "hello",
+    "amount" : "340.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "agbrsbb",
-      "summary" : ""
-    }
-  }, {
-    "name" : "sadfvbq",
-    "amount" : "6.79",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "argaebsb",
+      "categoryName" : "food",
       "summary" : ""
     }
   }, {

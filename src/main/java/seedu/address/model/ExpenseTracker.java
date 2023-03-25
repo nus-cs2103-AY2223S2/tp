@@ -87,22 +87,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
-     * Returns true if a category with the given name exists in the list.
-     * @param categoryName The name of the category to check for existence in the
-     *                     list.
-     * @return true if a category with the given name exists in the list and false
-     *         otherwise.
-     */
-    public boolean hasCategoryName(String categoryName) {
-        for (Category c : categories.asUnmodifiableList()) {
-            if (Objects.equals(c.getCategoryName(), categoryName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Adds a category to the expense tracker.
      * The category must not already exist in the expense tracker.
      */
@@ -136,9 +120,9 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         return Objects.hash(categories, expenses);
     }
 
-    public Category getCategoryInstance(String categoryName) {
+    public Category getCategoryInstance(Category category) {
         for (Category c : categories.asUnmodifiableList()) {
-            if (Objects.equals(c.getCategoryName(), categoryName)) {
+            if (category.isSameCategory(c)) {
                 return c;
             }
         }

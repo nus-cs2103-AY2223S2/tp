@@ -20,8 +20,8 @@ public class AddCategoryCommandTest {
         requireNonNull(model);
         model.addCategory(toAdd);
         model.addCategory(toAdd2);
-        assertEquals(model.getCategories().get(0), toAdd);
-        assertEquals(model.getCategories().get(1), toAdd2);
+        assertEquals(model.getFilteredCategoryList().get(0), toAdd);
+        assertEquals(model.getFilteredCategoryList().get(1), toAdd2);
     }
 
     @Test

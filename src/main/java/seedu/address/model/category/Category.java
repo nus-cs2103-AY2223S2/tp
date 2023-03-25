@@ -43,8 +43,7 @@ public abstract class Category {
         if (this == toCheck) {
             return true;
         }
-
-        return toCheck != null && toCheck.getCategoryName().equals(this.getCategoryName());
+        return toCheck != null && toCheck.getCategoryName().equalsIgnoreCase(this.getCategoryName());
     }
 
     @Override
@@ -59,12 +58,8 @@ public abstract class Category {
 
         Category otherTypecasted = (Category) other;
 
-        if (this.getCategoryName().equals(otherTypecasted.getCategoryName())
-                && this.getSummary().equals(otherTypecasted.getSummary())) {
-            return true;
-        }
-
-        return false;
+        return this.getCategoryName().equals(otherTypecasted.getCategoryName())
+                && this.getSummary().equals(otherTypecasted.getSummary());
     }
 
     @Override

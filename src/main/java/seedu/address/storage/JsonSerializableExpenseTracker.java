@@ -79,8 +79,7 @@ class JsonSerializableExpenseTracker {
     }
 
     private Category getAssociatedCategory(Expense expense, ExpenseTracker expenseTracker) {
-        Category checkIfExists = expenseTracker.getCategoryInstance(expense.getCategory().getCategoryName());
-        return checkIfExists;
+        return expenseTracker.getCategoryInstance(expense.getCategory());
     }
 
 }

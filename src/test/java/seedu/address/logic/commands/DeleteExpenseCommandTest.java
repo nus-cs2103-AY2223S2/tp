@@ -30,7 +30,7 @@ public class DeleteExpenseCommandTest {
         deleteExpenseCommand.execute(model);
         ModelStub expectedModel = new ModelStub();
         expectedModel.addExpense(expenseToDelete2);
-        assertEquals(expectedModel.getExpenses(), model.getExpenses());
+        assertEquals(expectedModel.getFilteredExpenseList(), model.getFilteredExpenseList());
     }
 
     @Test

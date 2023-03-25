@@ -141,13 +141,56 @@
     -fx-background-color: #0A0B39;
 }
 
-
-
 .results_header {
     -fx-font-family: "Inter Bold";
     -fx-font-size: 26px;
     -fx-text-fill: white;
 }
+
+.stats_header {
+    -fx-font-family: "Inter Regular";
+    -fx-font-size: 12px;
+    -fx-text-fill: #606DA0;
+}
+
+.stats_advice {
+    -fx-font-family: "Inter Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #606DA0;
+}
+
+.stat_box {
+    -fx-background-color: #0A0B39;
+    -fx-background-radius: 8px;
+}
+
+.change_indicator {
+    -fx-font-family: "Inter Regular";
+    -fx-font-size: 12px;
+}
+
+.change_indicator.positive_change_indicator {
+    -fx-text-fill: #00FFB2;
+    -fx-background-color: #003C40;
+}
+
+.change_indicator.negative_change_indicator {
+    -fx-text-fill: #FF0000;
+    -fx-background-color: #34001D;
+}
+
+.change_indicator_background_positive {
+    -fx-background-color: #003C40;
+    -fx-background-radius: 6px;
+    -fx-padding: 10 12 10 12
+}
+
+.change_indicator_background_negative {
+    -fx-background-color: #34001D;
+    -fx-background-radius: 6px;
+    -fx-padding: 10 12 10 12
+}
+
 
 .filter_name {
     -fx-text-fill: #606DA0;
@@ -159,6 +202,12 @@
     -fx-text-fill: #606DA0;
 }
 
+.statDetail {
+   -fx-font-family: "Inter Bold";
+   -fx-font-size: 20px;
+   -fx-text-fill: white;
+}
+
 .results_count {
     -fx-text-fill: #0F51F0;
 }
@@ -166,6 +215,7 @@
 .date_filter {
     -fx-text-fill: #0F51F0;
 }
+
 
 
 .cell_label {
