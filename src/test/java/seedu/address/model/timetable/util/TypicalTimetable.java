@@ -25,6 +25,7 @@ import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_6PM_1HR
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.Timetable;
 
@@ -114,7 +115,7 @@ public class TypicalTimetable {
  */
 class TimetableBuilder {
 
-    private List<Lesson> lessons;
+    private List<Commitment> lessons;
 
     public TimetableBuilder() {
         lessons = new ArrayList<>();
@@ -127,7 +128,7 @@ class TimetableBuilder {
 
     public Timetable build() {
         Timetable timetable = new Timetable();
-        lessons.stream().forEach(timetable::addLesson);
+        lessons.forEach(timetable::<Commitment>addCommitment);
         return timetable;
     }
 

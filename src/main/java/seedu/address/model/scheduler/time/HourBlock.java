@@ -10,6 +10,8 @@ import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 import seedu.address.model.scheduler.time.util.TimeUtil;
 
+import static java.util.Objects.requireNonNull;
+
 
 /**
  * Represents an hour timeslot in a Timetable.
@@ -73,6 +75,7 @@ public class HourBlock extends TimePeriod {
      * @param commitment
      */
     public void setCommitment(Commitment commitment) {
+        requireNonNull(commitment);
         if (!isFree()) {
             throw new CommitmentClashException(ALREADY_FILLED_MESSAGE);
         } else if (canFitCommitment(commitment)) {
