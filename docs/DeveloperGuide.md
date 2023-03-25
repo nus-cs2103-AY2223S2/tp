@@ -1,5 +1,3 @@
-# Wingman Developer Guide
-
 ## Table of Contents
 - **[Acknowledgements](#acknowledgements)**
 - **[Setting up, getting started](#setting-up-getting-started)**
@@ -9,79 +7,149 @@
     * [Model Component](#model-component)
     * [Storage Component](#storage-component)
 - **[Implementation](#implementation)**
-    * [Adding XYZ](#adding-xyz)
-    * [Deleting XYZ](#deleting-xyz)
-    * [Linking XYZ to a flight](#linking-xyz-to-a-flight)
-    * [Unlinking XYZ from a flight](#unlinking-xyz-from-a-flight)
-    * [Displaying flights across all modes](#displaying-flights-across-all-modes)
+  1. [Adding XYZ](#1-adding-xyz)
+  2. [Deleting XYZ](#2-deleting-xyz)
+  3. [Linking XYZ to a flight](#3-linking-xyz-to-a-flight)
+  4. [Unlinking XYZ from a flight](#4-unlinking-xyz-from-a-flight)
+  5. [Displaying flights across all modes](#5-displaying-flights-across-all-modes)
 - **[Appendix: Requirements](#appendix--requirements)**
 
-<br>
-<br>
+
 <div style="page-break-after: always;"></div>
 
 ## Acknowledgements
-Coming soon
-
-<br>
+Wingman was built atop the codebase for AB3. Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
+albeit involving different implementations and classes.
 
 ## Setting up, Getting started
 Coming soon
 
-<br>
 
 <div style="page-break-after: always;"></div>
 
 ## Architecture
+<p align="center">
 <img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
+</p>
 
-Description coming soon
+The Architecture Diagram above explains the high-level design of Wingman which is similar to AB-3.
 
+Given below is a quick overview of main components and how they interact with each other.
+
+Main components of the architecture:
+
+Main has two classes called Main and MainApp. It is responsible for,
+
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+Commons represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* UI: The UI of the App.
+* Logic: The command executor.
+* Model: Holds the data of the App in memory and defines the different entities.
+* Storage: Reads data from, and writes data to, the hard disk.
+
+<div style="page-break-after: always;"></div>
 
 ### UI Component
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+<p align="center">
 <img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
+</p>
 
-Description coming soon
+The UI consists of a `MainWindow` that is made up of parts
+e.g.`CommandBox`, `ResultDisplay`, `FlightListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
+The `UI` component uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`FlightListPanel`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/FlightListPanel.java)
+is specified in [`FlightListPanel.fxml`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/resources/view/FlightListPanel.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic Component
+<p align="center">
 <img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
+</p>
 
-Description coming soon
+Description coming soon - to be updated after adjusting for code duplication
 
+<div style="page-break-after: always;"></div>
 
 ### Model Component
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+<p align="center">
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
+</p>
 
-Description coming soon
+The `Model` component,
 
+* stores Wingman data i.e., all `Item` objects (which are contained in a `UniquePersonList` object).
+  * `Item` here refers to `Flight`, `Pilot`, `Plane`, `Location` and `Crew`
+* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list
+which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed'
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences.
+This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components
+(as the `Model` represents data entities of the domain,
+they should make sense on their own without depending on other components)
+
+
+<div style="page-break-after: always;"></div>
 
 ### Storage Component
+<p align="center">
 <img src="images/WingmanStorageClassDiagram.png" width="616" alt="UI Class diagram">
+</p>
 
-Description coming soon
+The `Storage` component,
+* can save both Wingman data and user preference data in json format,
+and read them back into corresponding objects.
+* depends on some classes in the `Model` component
+(because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+
+<div style="page-break-after: always;"></div>
 
 ### Overall Sequence
+<p align="center">
 <img src="images/WingmanArchitectureSequenceDiagram.png" width="1005" alt="Architecture Sequence diagram">
+</p>
 
 This sequence diagram provides an overview of the different layers involved in executing an example command.
 The example used here is the command to add a plane of the following specifications - (Model: A380, Age: 12).
 This sequence is similar for most commands and the subsequent descriptions of Wingman's features include more detailed
 diagrams to depict the processes at each layer in greater detail.
 
+<div style="page-break-after: always;"></div>
+
 ### Example Activity Diagram
+<p align="center">
 <img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
+</p>
 
-Description coming soon
+This activity diagram represents the path a user will take when trying to link a resource entity, XYZ
+to a flight. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew` entity.
 
-<br>
-<br>
 
 <div style="page-break-after: always;"></div>
 
 ## Implementation
 
-### Adding XYZ
+### 1. Adding XYZ
 
 **How is this feature implemented?**
 
@@ -95,7 +163,7 @@ into the system
 object, which can be executed to complete the task
 
 When a user enters the command
-```agsl
+```
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
 
@@ -119,10 +187,10 @@ One alternative approach could be to use a more direct approach to add the new e
 
 Another alternative is to use a different design pattern, such as the builder pattern. In this approach, a builder object is responsible for constructing an object in stages, and the construction process can be further customized by calling specific builder methods. This approach can be useful when the entity being constructed has several configurable attributes that need to be set. However, in our case, the entities have fixed attributes, and the command pattern seems to be a more natural fit.
 
-<br>
 
 <div style="page-break-after: always;"></div>
-### Deleting XYZ
+
+### 2. Deleting XYZ
 **How is this feature implemented?**
 
 The deleting feature is implemented in the same way for deleting crews, flights, locations, pilots, and planes from the
@@ -133,7 +201,9 @@ This feature is enabled by the following classes in particular:
 - `DeleteXYZCommandFactory` - The factory class that creates a {@code DeleteXYZCommand}
 
 When a user enters the command:
-> delete {XYZ identifier}
+```
+delete {XYZ identifier}
+```
 
 the input goes through the UI layer where `logic.execute(input)` is called which passes control to the logic layer.
 
@@ -163,11 +233,10 @@ related commands only.
 
 Description coming soon
 
-<br>
 
 <div style="page-break-after: always;"></div>
 
-### Linking XYZ to a flight
+### 3. Linking XYZ to a flight
 
 **Rationale**
 
@@ -240,11 +309,10 @@ attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations 
 as discussed in the previous section.
 
-<br>
 
 <div style="page-break-after: always;"></div>
 
-### Unlinking XYZ from a flight
+### 4. Unlinking XYZ from a flight
 
 **How is this feature implemented?**
 
@@ -260,7 +328,9 @@ This feature is enabled by the following classes in particular:
 - `Flight` - The class defining a flight object in Wingman
 
 When a user enters the command:
-> unlink /XYZprefix {XYZ identifier} /fl {flight identifier}
+```
+unlink /XYZprefix {XYZ identifier} /fl {flight identifier}
+```
 
 this command is passed from the UI layer to the logic layer similar to the way described above, in the
 'Adding XYZ' section.
@@ -297,11 +367,10 @@ some methods to perform the opposite operation (particularly the `execute` funct
 One alternative implementation that was considered was to set the link as an attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations as discussed in the previous section.
 
-<br>
 
 <div style="page-break-after: always;"></div>
 
-### Displaying flights across all modes
+### 5. Displaying flights across all modes
 Initially, there is only one `ItemListPanel` that displays an item list specific to each mode. 
 However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
 necessary for ease of selecting and linking to a specific flight.
@@ -314,7 +383,10 @@ In the implementation as seen in the image below, the `MainWindow` can be filled
 
 `FlightListPanel`: displays information about each `Flight` using a `FlightCard` in a `ListView`.
 
-<img src="images/WingmanUI.png" width="400px">
+<p align="center">
+<img src="images/WingmanUI.png" width="600px" alt="Wingman UI">
+</p>
+
 
 By having separate list panels, it will be easier to customise the display of different Item types if required by ui improvements.
 
@@ -333,8 +405,6 @@ we can keep the information displayed organised and clear to the user.
     * Pros: More organised and visually pleasant.
     * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
 
-<br>
-<br>
 
 <div style="page-break-after: always;"></div>
 
@@ -350,7 +420,9 @@ we can keep the information displayed organised and clear to the user.
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Airline managers will be able to take labor, welfare, and
+**Value proposition**: 
+
+Airline managers will be able to take labor, welfare, and
 resource optimization
 into consideration such that they can assign tasks to the most appropriate crew
 based on their location
@@ -397,7 +469,6 @@ unlikely to have) - `*`
 
 *{More to be added}*
 
-<br>
 
 <div style="page-break-after: always;"></div>
 
@@ -528,9 +599,11 @@ is the `user`, unless specified otherwise)
     * 3a1. Wingman shows an error message and an example of a correct command.
 
       Use case resumes at step 2.
-      *{More to be added}*
+      
+*{More to be added}*
 
-<br>
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -542,7 +615,6 @@ is the `user`, unless specified otherwise)
 6. Should work without requiring an installer or a remote server
 7. Should be for a single user and should not have any shared file storage mechanism
 
-*{More to be added}*
 
 <br>
 
