@@ -386,6 +386,18 @@ The following sequence diagram shows how the find operation works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
+#### Design considerations:
+
+**Aspect: How to export the client details :**
+
+* **Alternative 1 (current choice):** Obtains the client list from the model and writes to the csv file which is facilitated by `PrintWriter`
+    * Pros: Code is modular, and easy to implement.
+    * Cons: this implementation is specific to exporting client details to a CSV file, cannot be adapted to other types of exports and the use of static methods makes it difficult to extend or modify the behavior of the command.
+
+* **Alternative 2:** Allows the user to specify which client to export by providing the index of the client. Use a `CsvUtil` class to handle the file I/O operations and list generation.
+
+    * Pros: The file I/O operations are abstracted away in a separate utility class, which improves modularity and readability.
+    * Cons: This implementation may be more complex and harder to understand for someone unfamiliar with the code.
 
 ### \[Proposed\] Undo/redo feature
 
