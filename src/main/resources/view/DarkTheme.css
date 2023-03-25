@@ -188,6 +188,10 @@
      -fx-background-color: derive(#a1826d, 50%);
 }
 
+.module-tab .label {
+    -fx-font-family: "Satoshi Black";
+}
+
 .pane-with-border {
      -fx-background-color: derive(#a1826d, 50%);
      -fx-border-color: derive(#a1826d, 50%);
@@ -198,6 +202,10 @@
 
 .status-bar {
     -fx-background-color: derive(#a1826d, 50%);
+}
+
+.page-bar {
+    -fx-background-color: #a1826d
 }
 
 .result-display {
