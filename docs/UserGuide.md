@@ -289,13 +289,13 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 | [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
 |             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
 |       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
-|       [Unmark Event](#unmark-event)        |                `unmark INDEX`                 |                                  `unmark 2`                                   |
+|          [Unmark Event](#unmark-event)          |                `unmark INDEX`                 |                                  `unmark 2`                                   |
 |     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  |
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
-|       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-| [View Total Revenue](#view-total-revenue)       |                  `revenue`               |                              `revenue`                               |
-| [View upcoming events](#view-upcoming-events)   |                 `remind DAYS`            |                              `remind 2`                             |
+|         [Edit an Event](#edit-an-event)         |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
+|    [View Total Revenue](#view-total-revenue)    |                  `revenue`               |                              `revenue`                               |
+|  [View Upcoming Events](#view-upcoming-events)  |                 `remind DAYS`            |                              `remind 2`                             |
 
 [Back to top](#)
 
