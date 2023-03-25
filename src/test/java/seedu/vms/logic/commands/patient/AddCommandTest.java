@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.ValueChange;
@@ -33,7 +34,7 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.testutil.PatientBuilder;
 
@@ -184,11 +185,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addKeyword(Keyword keyword) {
             throw new AssertionError("This method should not be called.");
         }
@@ -228,7 +224,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
         }
@@ -264,13 +260,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<String> validatePatientChange(ValueChange<Patient> change) {
+        public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
         }
 
         @Override
-        public List<String> handlePatientChange(ValueChange<Patient> change) {
+        public void handlePatientChange(ValueChange<IdData<Patient>> change) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
         }
@@ -282,9 +278,45 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+        public void handleVaccinationChange(ValueChange<VaxType> change) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
+        }
+
+        @Override
+        public ObjectProperty<VaxType> detailedVaxTypeProperty() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
+        }
+
+        @Override
+        public void setDetailedVaxType(VaxType vaxType) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
+        }
+
+        @Override
+        public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addVaccination'");
+        }
+
+        @Override
+        public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
+        }
+
+        @Override
+        public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
+        }
+
+        @Override
+        public void setDetailedPatient(IdData<Patient> patient) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
         }
     }
 

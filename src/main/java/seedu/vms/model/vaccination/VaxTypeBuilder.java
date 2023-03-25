@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
@@ -117,7 +118,7 @@ public class VaxTypeBuilder {
      * @throws IllegalValueException if the a vaccination type might be
      *      replaced.
      */
-    public VaxType create(VaxTypeManager manager) throws IllegalValueException {
+    public ValueChange<VaxType> create(VaxTypeManager manager) throws IllegalValueException {
         if (manager.contains(refName.toString()) || manager.contains(name.toString())) {
             throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_TYPE, name.toString()));
         }
@@ -134,7 +135,7 @@ public class VaxTypeBuilder {
      *      present or if the vaccination type is being renamed to one that
      *      already exists.
      */
-    public VaxType update(VaxTypeManager manager) throws IllegalValueException {
+    public ValueChange<VaxType> update(VaxTypeManager manager) throws IllegalValueException {
         if (!manager.contains(refName.toString())) {
             throw new IllegalValueException(String.format(MESSAGE_MISSING_TYPE, refName.toString()));
         }
@@ -145,7 +146,7 @@ public class VaxTypeBuilder {
     }
 
 
-    private VaxType build(VaxTypeManager manager) throws IllegalValueException {
+    private ValueChange<VaxType> build(VaxTypeManager manager) throws IllegalValueException {
         Optional<VaxType> refVaxType = manager.get(refName.toString());
 
         HashSet<GroupName> grps = setGrps.orElse(refVaxType
@@ -169,10 +170,10 @@ public class VaxTypeBuilder {
             throw new IllegalValueException(errMessage.get());
         }
 
-        VaxType vaxType = new VaxType(name, grps, minAge, maxAge, ingredients, historyReqs);
-        manager.remove(refName.toString());
-        manager.add(vaxType);
-        return vaxType;
+        VaxType newValue = new VaxType(name, grps, minAge, maxAge, ingredients, historyReqs);
+        VaxType oldValue = manager.remove(refName.toString()).orElse(null);
+        manager.add(newValue);
+        return new ValueChange<>(oldValue, newValue);
     }
 
 

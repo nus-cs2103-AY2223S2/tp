@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.core.ValueChange;
 
 
 /**
@@ -82,8 +83,8 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      *
      * @param value - the value to add.
      */
-    public void add(T value) {
-        dataMap.add(value);
+    public IdData<T> add(T value) {
+        return dataMap.add(value);
     }
 
 
@@ -94,8 +95,8 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      *
      * @param data - the data to add.
      */
-    public void add(IdData<T> data) {
-        dataMap.add(data);
+    public IdData<T> add(IdData<T> data) {
+        return dataMap.add(data);
     }
 
 
@@ -110,10 +111,10 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      * @throws java.util.NoSuchElementException if there are no mappings to the
      *      specified id.
      */
-    public void set(int id, T value) {
+    public ValueChange<IdData<T>> set(int id, T value) {
         Objects.requireNonNull(value);
 
-        dataMap.set(id, value);
+        return dataMap.set(id, value);
     }
 
 
@@ -122,8 +123,8 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      *
      * @param id - the ID of the data to remove.
      */
-    public void remove(int id) {
-        dataMap.remove(id);
+    public IdData<T> remove(int id) {
+        return dataMap.remove(id);
     }
 
 

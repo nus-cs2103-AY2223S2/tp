@@ -3,6 +3,7 @@ package seedu.vms.logic;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.IdData;
@@ -60,4 +61,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
+    ObjectProperty<IdData<Patient>> detailedPatientProperty();
+
+
+    ObjectProperty<VaxType> detailedVaxTypeProperty();
 }

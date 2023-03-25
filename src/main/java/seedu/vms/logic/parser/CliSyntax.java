@@ -6,6 +6,14 @@ package seedu.vms.logic.parser;
 public class CliSyntax {
     public static final String DELIMITER = "--";
 
+    /*
+     * ========================================================================
+     * Vaccination
+     * ========================================================================
+     */
+
+    public static final Prefix PREFIX_FORCE = new Prefix("force");
+
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n");
     public static final Prefix PREFIX_PHONE = new Prefix("p");

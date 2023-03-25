@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.LimitExceededException;
 
 
@@ -53,10 +54,10 @@ public class IdDataMap<T> {
      * @throws LimitExceededException if the number of data has reached its
      *      limit.
      */
-    public void add(T value) throws LimitExceededException {
+    public IdData<T> add(T value) throws LimitExceededException {
         Objects.requireNonNull(value);
         IdData<T> data = new IdData<>(getNextId(), value);
-        add(data);
+        return add(data);
     }
 
 
@@ -66,13 +67,14 @@ public class IdDataMap<T> {
      *
      * @param data - the data to add.
      */
-    public void add(IdData<T> data) throws LimitExceededException {
+    public IdData<T> add(IdData<T> data) throws LimitExceededException {
         Objects.requireNonNull(data);
         if (!isValidId(data.getId())) {
             throw new LimitExceededException();
         }
         internalMap.put(data.getId(), data);
         nextId = Math.max(nextId, data.getId());
+        return data;
     }
 
 
@@ -85,13 +87,14 @@ public class IdDataMap<T> {
      * @param value - the value to set.
      * @throws NoSuchElementException if the ID is not present.
      */
-    public void set(int id, T value) {
+    public ValueChange<IdData<T>> set(int id, T value) {
         if (!internalMap.containsKey(id)) {
             // TODO: this exception is unhandled by utilising methods.
             throw new NoSuchElementException(String.format("ID [%d] not found", id));
         }
-        IdData<T> data = new IdData<>(id, value);
-        internalMap.put(id, data);
+        IdData<T> newValue = new IdData<>(id, value);
+        IdData<T> oldValue = internalMap.put(id, newValue);
+        return new ValueChange<>(oldValue, newValue);
     }
 
 
