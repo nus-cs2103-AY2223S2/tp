@@ -18,7 +18,8 @@ public class Ward {
     public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
             + "and it should not be blank";
 
-    public static final String WARD_FULL_MESSAGE_CONSTRAINTS = "The ward cannot be assigned to more patients than its capacity.";
+    public static final String WARD_FULL_MESSAGE_CONSTRAINTS =
+        "The ward cannot be assigned to more patients than its capacity.";
 
     /*
      * The first character of the ward must not be a whitespace,
@@ -26,7 +27,7 @@ public class Ward {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private final Name name;
+    public final String value;
     private final Capacity capacity;
 
     private UniquePatientList patients;
@@ -36,10 +37,24 @@ public class Ward {
      *
      * @param name A valid name.
      */
-    public Ward(Name name, Capacity capacity) {
+    public Ward(String name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.value = name;
+        this.capacity = new Capacity(10);
+        patients = new UniquePatientList();
+    }
+
+    /**
+     * Constructs a {@code Ward}.
+     *
+     * @param name A valid name.
+     * @param capacity A specified capacity.
+     */
+    public Ward(String name, Capacity capacity) {
+        requireNonNull(name);
+        checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.capacity = capacity;
         patients = new UniquePatientList();
     }
@@ -47,6 +62,10 @@ public class Ward {
     /**
      * Returns true if a given string is a valid ward.
      */
+    public static boolean isValidWard(String name) {
+        return name.matches(VALIDATION_REGEX);
+
+    }
     public static boolean isValidWard(Name name) {
         return name.toString().matches(VALIDATION_REGEX);
     }
@@ -59,8 +78,8 @@ public class Ward {
         return patients2.size() <= capacity.getValue();
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return value;
     }
 
     public Capacity getCapacity() {
@@ -73,10 +92,6 @@ public class Ward {
 
     public boolean isFull() {
         return getOccupancy() >= capacity.getValue();
-    }
-
-    public String getNameString() {
-        return name.toString();
     }
 
     public String getCapacityString() {
@@ -94,7 +109,6 @@ public class Ward {
      * {@code patients} must not contain duplicate patients.
      */
     public void setPatients(List<Patient> patients) {
-        checkArgument(isValidPatients(patients), WARD_FULL_MESSAGE_CONSTRAINTS);
         this.patients.setPatients(patients);
     }
 
@@ -123,7 +137,6 @@ public class Ward {
      * The patient must not already exist in the address book.
      */
     public void addPatient(Patient p) {
-        checkArgument(isFull(), WARD_FULL_MESSAGE_CONSTRAINTS);
         patients.add(p);
     }
 
@@ -155,6 +168,7 @@ public class Ward {
         return patients.asUnmodifiableObservableList().size() + " patients";
     }
 
+
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
     }
@@ -163,7 +177,7 @@ public class Ward {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ward // instanceof handles nulls
-                        && patients.equals(((Ward) other).patients));
+                        && getName().equals(((Ward) other).getName()));
     }
 
     @Override

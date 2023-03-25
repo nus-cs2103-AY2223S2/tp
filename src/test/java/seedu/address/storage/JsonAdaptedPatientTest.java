@@ -12,7 +12,7 @@ import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
-import seedu.address.model.patient.Ward;
+import seedu.address.model.ward.Ward;
 
 public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
