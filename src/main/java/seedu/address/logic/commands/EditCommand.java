@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.medicine.Medicine;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
@@ -47,7 +49,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -60,7 +63,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -106,9 +109,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DrugAllergy updatedAllergy = editPersonDescriptor.getDrugAllergy().orElse(personToEdit.getDrugAllergy());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
 
         return new Person(updatedNric, updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedAllergy, updatedTags);
+                updatedAddress, updatedAllergy, updatedTags, updatedMedicines);
     }
 
     @Override
@@ -141,8 +145,10 @@ public class EditCommand extends Command {
         private Address address;
         private DrugAllergy drugAllergy;
         private Set<Tag> tags;
+        private Set<Medicine> medicines;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setDrugAllergy(toCopy.drugAllergy);
             setTags(toCopy.tags);
+            setMedicines(toCopy.medicines);
         }
 
         /**
@@ -230,6 +237,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code medicines} to this object's {@code medicines}.
+         * A defensive copy of {@code medicines} is used internally.
+         */
+        public void setMedicines(Set<Medicine> medicines) {
+            this.medicines = (medicines != null) ? new HashSet<>(medicines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code medicines} is null.
+         */
+        public Optional<Set<Medicine>> getMedicines() {
+            return (medicines != null) ? Optional.of(Collections.unmodifiableSet(medicines)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -251,7 +275,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDrugAllergy().equals(e.getDrugAllergy())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getMedicines().equals(e.getMedicines());
         }
     }
 }
