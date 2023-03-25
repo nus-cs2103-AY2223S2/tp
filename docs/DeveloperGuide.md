@@ -64,6 +64,7 @@ Keyboard keys are indicated using rounded boxes.
 
 <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Enter</kbd> <kbd>&uarr;</kbd>
 
+--------------------------------------------------------------------------------------------------------------------
 
 
 ## **Setting up, getting started**
@@ -71,6 +72,23 @@ Keyboard keys are indicated using rounded boxes.
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
+After setting up and launching InternBuddy, you would see a GUI. The following diagram illustrates the main parts
+of InternBuddy's GUI, which are referenced throughout this developer guide.
+
+
+![Graphical User Interface](images/gui-markup.png)
+
+| Part            | Usage                                                                                        |
+|-----------------|----------------------------------------------------------------------------------------------|
+| Input Box       | You can type in your commands here to interact with InternBuddy.                             |
+| Results Display | This is where the results of your command will be displayed.                                 |
+| List Panel      | Displays a list of internship entries.                                                       |
+| View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
+| Location Bar    | States where your InternBuddy data file is located on your computer.                         |
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
