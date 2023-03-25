@@ -18,8 +18,9 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
 /**
  * Jackson-friendly version of {@link Session}.
  */
+
+// Warning: Unused class, ignore
 class JsonAdaptedSession {
-    // TODO: Figure out how to convert attendance
     private final String sessionName;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedStudent> keys = new ArrayList<>();

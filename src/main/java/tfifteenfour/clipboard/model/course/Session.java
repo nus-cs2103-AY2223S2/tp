@@ -55,15 +55,11 @@ public class Session {
      * @return An unmodifiable list of the students who are in the session.
      */
     public ObservableList<Student> getUnmodifiableStudentList() {
+        UniqueStudentList students = new UniqueStudentList();
+        for (Student student : attendance.keySet()) {
+            students.add(student);
+        }
         return students.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Adds a student to the list of students who are in the session.
-     * @param student The student to be added.
-     */
-    public void addStudent(Student student) {
-        this.students.add(student);
     }
 
     /**
@@ -118,9 +114,8 @@ public class Session {
             if (!attendance.containsKey(student)) {
                 attendance.put(student, 0);
             }
-            addStudent(student);
         }
-        System.out.println(attendance.toString());
+        System.out.println(attendance.keySet());
     }
 
     /**
