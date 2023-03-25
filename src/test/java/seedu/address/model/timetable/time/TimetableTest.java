@@ -8,15 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_7PM_3HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_8AM_1HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_9AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_10AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_8AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_ANOTHER_8AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_11AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_4PM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_5PM_4HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_9PM_1HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_10AM_1HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_10AM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_2PM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_10AM_3HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_2PM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_4PM_1HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_6PM_1HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_A;
+import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_B;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_A;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_B;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_C;
@@ -196,6 +204,42 @@ class TimetableTest {
         assertTrue(arrayListAllEqualsTest(timetable1.getThursdayClasses(), timetable2.getThursdayClasses()));
         assertFalse(arrayListAllEqualsTest(timetable1.getFridayClasses(), timetable2.getFridayClasses()));
 
+    }
+
+    @Test
+    public void merge_zeroConflictTimetables_mergedTimetable() {
+        Timetable timeTable = new Timetable();
+        timeTable.addLesson(MONDAY_8AM_2HR_LESSON);
+        timeTable.addLesson(TUESDAY_10AM_2HR_LESSON);
+        timeTable.addLesson(WEDNESDAY_10AM_3HR_LESSON);
+        timeTable.addLesson(WEDNESDAY_6PM_1HR_LESSON);
+        timeTable.addLesson(THURSDAY_4PM_2HR_LESSON);
+        timeTable.addLesson(FRIDAY_7PM_3HR_LESSON);
+
+        Timetable timeTable2 = new Timetable();
+        timeTable2.addLesson(MONDAY_10AM_2HR_LESSON);
+        timeTable2.addLesson(TUESDAY_2PM_2HR_LESSON);
+        timeTable2.addLesson(WEDNESDAY_4PM_1HR_LESSON);
+        timeTable2.addLesson(THURSDAY_9PM_1HR_LESSON);
+        timeTable2.addLesson(FRIDAY_8AM_1HR_LESSON);
+        timeTable2.addLesson(FRIDAY_9AM_2HR_LESSON);
+        assertDoesNotThrow(() -> timeTable.mergeTimetable(timeTable2));
+
+        testSlotsFalse(0, 4, timeTable.getMondayClasses());
+        testSlotsTrue(4, 9, timeTable.getMondayClasses());
+
+    }
+
+    @Test
+    public void merge_zeroConflictDenseTimetables_mergedTimetable() {
+        Timetable timeTable = new Timetable();
+        Timetable timetable2 = new Timetable();
+        assertDoesNotThrow(() -> timeTable.mergeTimetable(timetable2));
+    }
+
+    @Test
+    public void merge_fullConflictTimetables_assertionThrown() {
+        assertThrows(AssertionError.class, () -> FULL_CONFLICT_TIMETABLE_A.mergeTimetable(FULL_CONFLICT_TIMETABLE_B));
     }
 
 }

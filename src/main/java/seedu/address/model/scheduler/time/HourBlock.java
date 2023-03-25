@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.commitment.Lesson;
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 import seedu.address.model.scheduler.time.util.TimeUtil;
@@ -19,7 +19,7 @@ public class HourBlock extends TimePeriod {
     public static final String WRONG_TIME_MESSAGE = "Timing does not match!";
     public static final String ALREADY_FILLED_MESSAGE = "Slot is already filled by a class!";
 
-    private Optional<Lesson> lesson = Optional.empty();
+    private Optional<Commitment> commitment = Optional.empty();
 
     public HourBlock(LocalTime startTime, Day schoolDay) {
         super(startTime, startTime.plusHours(1), schoolDay);
@@ -30,7 +30,7 @@ public class HourBlock extends TimePeriod {
      */
     public HourBlock(HourBlock hourBlock) {
         super(hourBlock.getStartTime(), hourBlock.getEndTime(), hourBlock.getSchoolDay());
-        this.lesson = hourBlock.getLesson();
+        this.commitment = hourBlock.getCommitment();
     }
 
     public LocalTime getStartTime() {
@@ -60,23 +60,23 @@ public class HourBlock extends TimePeriod {
         return Hours.ONE;
     }
 
-    public Optional<Lesson> getLesson() {
-        return lesson;
+    public Optional<Commitment> getCommitment() {
+        return commitment;
     }
 
     public boolean isFree() {
-        return lesson.isEmpty();
+        return commitment.isEmpty();
     }
 
     /**
      * Sets this slot to hold the current lesson.
-     * @param lesson
+     * @param commitment
      */
-    public void setLesson(Lesson lesson) {
+    public void setCommitment(Commitment commitment) {
         if (!isFree()) {
             throw new CommitmentClashException(ALREADY_FILLED_MESSAGE);
-        } else if (canFitLesson(lesson)) {
-            this.lesson = Optional.ofNullable(lesson);
+        } else if (canFitCommitment(commitment)) {
+            this.commitment = Optional.ofNullable(commitment);
         } else {
             throw new WrongTimeException(WRONG_TIME_MESSAGE);
         }
@@ -85,12 +85,12 @@ public class HourBlock extends TimePeriod {
     /**
      * Verifies if the timeslot is suitable to input that lesson.
      */
-    public boolean canFitLesson(Lesson lesson) {
+    public boolean canFitCommitment(Commitment commitment) {
         // timeslot must either start match with start or end match with end
         // or that timeslot start is after lesson start AND timeslot end is before lesson end.
-        LocalTime lessonStartTime = lesson.getStartTime();
-        LocalTime lessonEndTime = lesson.getEndTime();
-        if (!lesson.getDay().equals(getSchoolDay())) {
+        LocalTime lessonStartTime = commitment.getStartTime();
+        LocalTime lessonEndTime = commitment.getEndTime();
+        if (!commitment.getDay().equals(getSchoolDay())) {
             return false;
         }
         if (getStartTime().isEqual(lessonStartTime) || getEndTime().isEqual(lessonEndTime)) {
@@ -103,10 +103,10 @@ public class HourBlock extends TimePeriod {
 
     @Override
     public String toString() {
-        return String.format("[%s, %s]\nClass: %s",
+        return String.format("[%s, %s]\nClass: %s\n%s",
             TimeUtil.formatLocalTime(getStartTime()),
             TimeUtil.formatLocalTime(getEndTime()),
-            lesson.isPresent() ? lesson.get() : "NO LESSON!");
+            commitment.isPresent() ? commitment.get() : "NO COMMITMENT!", getSchoolDay());
     }
 
     @Override
@@ -121,6 +121,6 @@ public class HourBlock extends TimePeriod {
             return false;
         }
         HourBlock hourBlock = (HourBlock) o;
-        return lesson.equals(hourBlock.getLesson());
+        return commitment.equals(hourBlock.getCommitment());
     }
 }

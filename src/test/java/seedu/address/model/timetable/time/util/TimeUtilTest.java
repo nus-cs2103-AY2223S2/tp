@@ -21,6 +21,8 @@ import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 import static seedu.address.model.timetable.util.TypicalTime.TWO_PM;
 import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_A;
 import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_B;
+import static seedu.address.model.timetable.util.TypicalTimetable.NO_CONFLICT_TIMETABLE;
+import static seedu.address.model.timetable.util.TypicalTimetable.NO_CONFLICT_TIMETABLE_B;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_A;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_B;
 import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_C;
@@ -345,7 +347,69 @@ class TimeUtilTest {
     }
 
     @Test
-    public void testFormating_success() {
+    public void checkClash_empty_false() {
+        List<TimePeriod> emptyList = List.of();
+        assertFalse(TimeUtil.hasAnyClash(emptyList));
+    }
+
+    @Test
+    public void checkClash_fourTimePeriods1_noClash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY),
+            new HourBlock(THREE_PM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(THREE_PM, FOUR_PM, Day.WEDNESDAY));
+        assertFalse(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fourTimePeriods_clash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY),
+            new HourBlock(THREE_PM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY),
+            new TimeBlock(THREE_PM, FOUR_PM, Day.MONDAY));
+        assertTrue(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fiveTimePeriods1_clash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY),
+            new HourBlock(THREE_PM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(THREE_PM, FOUR_PM, Day.MONDAY), new HourBlock(ONE_PM, Day.MONDAY));
+        assertTrue(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fiveTimePeriods2_clash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY),
+            new HourBlock(EIGHT_AM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(FIVE_PM, SIX_PM, Day.MONDAY), new TimeBlock(TWELVE_PM, THREE_PM, Day.MONDAY));
+        assertTrue(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fiveTimePeriods3_clash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(ELEVEN_AM, TWO_PM, Day.MONDAY),
+            new HourBlock(EIGHT_AM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(FIVE_PM, SIX_PM, Day.MONDAY), new TimeBlock(TWELVE_PM, THREE_PM, Day.MONDAY));
+        assertTrue(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fiveTimePeriods4_clash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(TWO_PM, FIVE_PM, Day.MONDAY),
+            new HourBlock(EIGHT_AM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(FIVE_PM, SIX_PM, Day.MONDAY), new TimeBlock(TWELVE_PM, THREE_PM, Day.MONDAY));
+        assertTrue(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void checkClash_fiveTimePeriods4_noClash() {
+        List<TimePeriod> timePeriods = List.of(new TimeBlock(TWO_PM, FIVE_PM, Day.THURSDAY),
+            new HourBlock(EIGHT_AM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
+            new TimeBlock(FIVE_PM, SIX_PM, Day.MONDAY), new TimeBlock(TWELVE_PM, THREE_PM, Day.MONDAY));
+        assertFalse(TimeUtil.hasAnyClash(timePeriods));
+    }
+
+    @Test
+    public void testFormatting_success() {
         assertEquals("8 AM", TimeUtil.formatLocalTime(EIGHT_AM));
         assertEquals("9 AM", TimeUtil.formatLocalTime(NINE_AM));
         assertEquals("10 AM", TimeUtil.formatLocalTime(TEN_AM));
@@ -361,5 +425,14 @@ class TimeUtilTest {
         assertEquals("8 PM", TimeUtil.formatLocalTime(EIGHT_PM));
         assertEquals("9 PM", TimeUtil.formatLocalTime(NINE_PM));
         assertEquals("10 PM", TimeUtil.formatLocalTime(TEN_PM));
+    }
+
+    @Test
+    public void checkClash_timetable_clash() {
+        // EP : Has conflict
+        assertTrue(TimeUtil.hasConflict(FULL_CONFLICT_TIMETABLE_A, FULL_CONFLICT_TIMETABLE_B));
+
+        // EP : No conflict: Dense
+        assertFalse(TimeUtil.hasConflict(NO_CONFLICT_TIMETABLE, NO_CONFLICT_TIMETABLE_B));
     }
 }
