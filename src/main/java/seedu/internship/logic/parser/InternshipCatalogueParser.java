@@ -6,13 +6,7 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.AddCommand;
-import seedu.internship.logic.commands.Command;
-import seedu.internship.logic.commands.DeleteCommand;
-import seedu.internship.logic.commands.ExitCommand;
-import seedu.internship.logic.commands.HelpCommand;
-import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.*;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +47,8 @@ public class InternshipCatalogueParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
