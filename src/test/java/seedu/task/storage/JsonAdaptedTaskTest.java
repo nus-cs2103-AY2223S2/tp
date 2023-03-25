@@ -28,9 +28,6 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DATE = "2 Feb 2023";
     private static final long INVALID_EFFORT = -1;
 
-    private static final String NEGATIVE_HAS_DESCRIPTION = "false";
-    private static final String POSITIVE_HAS_DESCRIPTION = "true";
-
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
