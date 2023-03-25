@@ -91,6 +91,19 @@ class JsonAdaptedPerson {
     }
 
     public JsonAdaptedPerson(String name, String phone, String email, String address,
+                             String age, List<JsonAdaptedTag> tagged, String medicalCondition) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+    }
+
+    public JsonAdaptedPerson(String name, String phone, String email, String address,
                              String age, String time, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -172,6 +185,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        }
+
+        if (medicalCondition == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MedicalCondition.class.getSimpleName()));
+        }
+        if (!MedicalCondition.isValidCondition(medicalCondition)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
 
