@@ -28,7 +28,7 @@ public class AddCategoryParser implements Parser<AddCategoryCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCategoryCommand.MESSAGE_USAGE));
         }
-        String summary = null;
+        String summary = "";
         if (arePrefixesPresent(argMultimap, PREFIX_SUMMARY)) {
             summary = argMultimap.getValue(PREFIX_SUMMARY).get();
         }
