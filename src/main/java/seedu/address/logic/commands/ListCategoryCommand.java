@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CATEGORY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import seedu.address.model.Model;
 
@@ -16,9 +16,9 @@ public class ListCategoryCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredCategoryList(PREDICATE_SHOW_ALL_CATEGORY);
-        return new CommandResult(MESSAGE_SUCCESS);
+    public CommandResult execute(Model dataModel) {
+        requireNonNull(dataModel);
+        dataModel.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+        return new CommandResult(MESSAGE_SUCCESS, false);
     }
 }

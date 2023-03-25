@@ -43,17 +43,17 @@ public class AddExpenseCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(Model dataModel) throws CommandException {
+        requireNonNull(dataModel);
         Category newCategory = newExpense.getCategory();
-        Category existingCategory = model.getCategoryInstance(newCategory.getCategoryName());
+        Category existingCategory = dataModel.getCategoryInstance(newCategory);
         if (existingCategory != null) {
             newExpense.setCategory(existingCategory);
         } else {
-            model.addCategory(newCategory);
+            dataModel.addCategory(newCategory);
         }
-        model.addExpense(newExpense);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newExpense));
+        dataModel.addExpense(newExpense);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newExpense), true);
     }
 
     @Override

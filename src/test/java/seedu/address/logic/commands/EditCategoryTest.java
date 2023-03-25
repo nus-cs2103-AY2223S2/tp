@@ -24,7 +24,7 @@ public class EditCategoryTest {
         editCategoryCommand.execute(model);
         ModelStub expectedModel = new ModelStub();
         expectedModel.addCategory(toDelete2);
-        assertEquals(expectedModel.getCategories(), model.getCategories());
+        assertEquals(expectedModel.getFilteredCategoryList(), model.getFilteredCategoryList());
     }
 
     @Test

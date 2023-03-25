@@ -35,17 +35,17 @@ public class DeleteCategoryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Category> lastShownList = model.getFilteredCategoryList();
+    public CommandResult execute(Model dataModel) throws CommandException {
+        requireNonNull(dataModel);
+        List<Category> lastShownList = dataModel.getFilteredCategoryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Category categoryToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteCategory(categoryToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CATEGORY_SUCCESS, categoryToDelete));
+        dataModel.deleteCategory(categoryToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_CATEGORY_SUCCESS, categoryToDelete), false);
     }
 
     @Override

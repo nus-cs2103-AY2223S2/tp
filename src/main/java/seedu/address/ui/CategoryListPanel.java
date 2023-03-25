@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
+import seedu.address.model.expense.Expense;
 
 /**
  * Panel containing the list of categories.
@@ -16,6 +17,7 @@ import seedu.address.model.category.Category;
 public class CategoryListPanel extends UiPart<Region> {
     private static final String FXML = "CategoryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CategoryListPanel.class);
+    private final ObservableList<Expense> expenseObservableList;
 
     @FXML
     private ListView<Category> categoryListView;
@@ -23,10 +25,17 @@ public class CategoryListPanel extends UiPart<Region> {
     /**
      * Creates a {@code CategoryListPanel} with the given {@code ObservableList}.
      */
-    public CategoryListPanel(ObservableList<Category> categoryList) {
+    public CategoryListPanel(ObservableList<Category> categoryList, ObservableList<Expense> expenseList) {
         super(FXML);
+        this.expenseObservableList = expenseList;
         categoryListView.setItems(categoryList);
         categoryListView.setCellFactory(listView -> new CategoryListViewCell());
+    }
+
+    private int getAssociatedExpenseCount(Category category) {
+        return (int) expenseObservableList.stream()
+                .filter(e -> e.getCategory().isSameCategory(category))
+                .count();
     }
 
     /**
@@ -41,7 +50,7 @@ public class CategoryListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CategoryCard(category, getIndex() + 1).getRoot());
+                setGraphic(new CategoryCard(category, getIndex() + 1, getAssociatedExpenseCount(category)).getRoot());
             }
         }
     }

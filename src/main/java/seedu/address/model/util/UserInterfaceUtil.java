@@ -31,13 +31,14 @@ public class UserInterfaceUtil {
         return "$" + priceString;
     }
 
+
     /**
      * Returns the input string with the first letter capitalized and the rest of the letters in lower case.
      * @param input the string to be capitalized
      * @return a string with the first letter capitalized
      */
     public static String capitalizeFirstLetter(final String input) {
-        return Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase();
+        return Character.toUpperCase(input.charAt(0)) + input.substring(1);
     }
 }
 

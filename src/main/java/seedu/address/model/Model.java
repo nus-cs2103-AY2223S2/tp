@@ -9,7 +9,7 @@ import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
 /**
- * The API of the Model component.
+ * The API of the DataModel component.
  */
 public interface Model {
 
@@ -84,11 +84,6 @@ public interface Model {
     boolean hasExpense(Expense expense);
 
     /**
-     * Gets a count of the number of expenses in the currently filtered expense list
-     */
-    int getFilteredExpenseListCount();
-
-    /**
      * Updates the filter of the filtered expense list to filter by the given
      * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -132,8 +127,8 @@ public interface Model {
     /**
      * Returns a reference to the instance of category
      * matching the category name in the category list
-     * @param categoryName the category name to check for
+     * @param category the category to check for
      * @return the category instance if it exists, and null if it does not
      */
-    Category getCategoryInstance(String categoryName);
+    Category getCategoryInstance(Category category);
 }

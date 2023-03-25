@@ -35,13 +35,13 @@ public class AddCategoryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        if (model.hasCategory(toAdd)) {
+    public CommandResult execute(Model dataModel) throws CommandException {
+        requireNonNull(dataModel);
+        if (dataModel.hasCategory(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
         }
-        model.addCategory(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        dataModel.addCategory(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false);
     }
 
     @Override

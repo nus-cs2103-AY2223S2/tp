@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AnalyticModelManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ResultsHeader resultsHeader;
     private ResultsDetails resultsDetails;
+    private StatisticsPanel statisticsPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultsDetailsPlaceholder;
+
+    @FXML
+    private StackPane statisticsPlaceholder;
 
 
     /**
@@ -130,8 +134,11 @@ public class MainWindow extends UiPart<Stage> {
         resultsHeader = new ResultsHeader();
         resultsHeaderPlaceholder.getChildren().add(resultsHeader.getRoot());
 
-        resultsDetails = new ResultsDetails(logic.getExpenseListCount(), "All", true);
+        resultsDetails = new ResultsDetails(logic.getFilteredExpenseList(), logic.getFilteredCategoryList());
         resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
+
+        statisticsPanel = new StatisticsPanel(new AnalyticModelManager(logic.getExpenseTracker()));
+        statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -188,13 +195,13 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         if (isExpenseList) {
             resultsHeader.setHeader(true, "All");
-            resultsDetails.setDetails(logic.getExpenseListCount(), "All", true);
+            resultsDetails.switchDetails("All", true);
             expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
             listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
         } else {
             resultsHeader.setHeader(false, "");
-            resultsDetails.setDetails(logic.getExpenseListCount(), "", false);
-            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList());
+            resultsDetails.switchDetails("All", false);
+            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
             listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
         }
     }
@@ -211,13 +218,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (Objects.equals(commandText, "lcat")) {
-                switchListPanel(false);
-            }
-
-            if (Objects.equals(commandText, "list")) {
-                switchListPanel(true);
-            }
+            switchListPanel(commandResult.isExpenseCommand());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

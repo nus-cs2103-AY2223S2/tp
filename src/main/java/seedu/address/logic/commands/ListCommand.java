@@ -6,12 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
+import seedu.address.model.expense.ExpenseInTimespanPredicate;
 
 /**
  * List all the expenses in the expense tracker.
@@ -29,7 +28,7 @@ public class ListCommand extends Command {
             + PREFIX_TIMESPAN + "week ";
 
     private final Optional<ExpenseInCategoryPredicate> categoryPredicate;
-    private final Optional<Predicate<Expense>> timespanPredicate;
+    private final Optional<ExpenseInTimespanPredicate> timespanPredicate;
 
     /**
      * Creates a ListCommand to list out {@code Expense} by given filters
@@ -37,7 +36,7 @@ public class ListCommand extends Command {
      * @param timespanPredicate Predicate to filter by recency
      */
     public ListCommand(Optional<ExpenseInCategoryPredicate> categoryPredicate,
-                       Optional<Predicate<Expense>> timespanPredicate) {
+                       Optional<ExpenseInTimespanPredicate> timespanPredicate) {
         this.categoryPredicate = categoryPredicate;
         this.timespanPredicate = timespanPredicate;
     }
@@ -53,9 +52,8 @@ public class ListCommand extends Command {
         if (timespanPredicate.isPresent()) {
             model.updateFilteredExpensesList(timespanPredicate.get());
         }
-        // TODO: change to expenses listed overview
         return new CommandResult(
-                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()));
+                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()), true);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.testutil.TypicalCategories.FOOD;
+import static seedu.address.testutil.TypicalCategories.TECH;
 import static seedu.address.testutil.TypicalExpenses.CHERRY;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
+import seedu.address.model.expense.ExpenseInTimespanPredicate;
 import seedu.address.testutil.TypicalExpenses;
 
 
@@ -52,19 +55,45 @@ public class ListCommandTest {
     @Test
     public void execute_listFilterByCategory_showsCategory() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
-        ExpenseInCategoryPredicate predicate = null;
-        try {
-            predicate = preparePredicate("food");
-        } catch (ParseException e) {
-            fail("Unexpected exception was thrown");
-        }
+        ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(FOOD);
+
         ListCommand command = new ListCommand(Optional.of(predicate), Optional.empty());
         expectedModel.updateFilteredExpensesList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA), model.getFilteredExpenseList());
     }
 
-    private ExpenseInCategoryPredicate preparePredicate(String userInput) throws ParseException {
+    @Test
+    public void execute_listFilterByTimespan_showsExpenses() {
+        String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
+        ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
+
+        ListCommand command = new ListCommand(Optional.empty(), Optional.of(predicate));
+        expectedModel.updateFilteredExpensesList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalExpenses.GRAPE, TypicalExpenses.DURIAN), model.getFilteredExpenseList());
+    }
+
+    @Test
+    public void execute_listFilterByCategoryByTimespan_showsExpense() {
+        String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 1);
+        ExpenseInTimespanPredicate timespanPredicate =
+                new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
+        ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(TECH);
+
+        ListCommand command = new ListCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+        expectedModel.updateFilteredExpensesList(categoryPredicate);
+        expectedModel.updateFilteredExpensesList(timespanPredicate);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalExpenses.DURIAN), model.getFilteredExpenseList());
+    }
+
+    private ExpenseInCategoryPredicate prepareCategoryPredicate(String userInput) throws ParseException {
         return new ExpenseInCategoryPredicate(ParserUtil.parseCategory(userInput));
+    }
+
+    private ExpenseInTimespanPredicate prepareTimespanPredicate(String userInput) throws ParseException {
+        return new ExpenseInTimespanPredicate(ParserUtil.parseTimespan(userInput));
     }
 }
