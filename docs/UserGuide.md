@@ -155,7 +155,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd application in the internship book.
 * `find Google` followed by `delete 1` deletes the 1st application in the results of the `find` command.
 
-### Clearing all entries : `clear` `[coming soon]`
+### Sorting internship applications by specified order: `sort`
+
+Sorts internship applications in the order you want. 
+
+Format: `sort ORDER`: `sort alphabetical` or `sort deadline`
+
+Currently, there are two orders you can choose:
+1. `sort alphabetical` sorts applications by their company names in alphabetical order. Should
+there be multiple applications to the same company, they will be ranked alphabetically by their roles.
+2. `sort deadline` sorts applications by 
+
+### Clearing all entries : `clear` 
 
 Clears all entries from the internship book.
 
@@ -203,3 +214,4 @@ _Details coming soon ..._
 | **Find**   | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered` |
 | **List**   | `list`                                                                                                                                      |
 | **Help**   | `help`                                                                                                                                      |
+| **Sort**   | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                    |
