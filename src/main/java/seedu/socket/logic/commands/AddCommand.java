@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to SOCket. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to SOCket.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_PROFILE + "GITHUBPROFILE] "
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_LANGUAGE + "LANGUAGE]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... (restrict to 10 tags)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PROFILE + "john-doe "
