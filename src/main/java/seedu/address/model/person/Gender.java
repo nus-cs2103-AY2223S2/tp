@@ -7,12 +7,6 @@ public class Gender {
     public static final String MESSAGE_CONSTRAINTS =
             "Gender can indicated either by Male, Female or others";
 
-    public enum types {
-        MALE,
-        FEMALE,
-        OTHERS
-    }
-
     public final String gender;
 
     /**
@@ -47,6 +41,11 @@ public class Gender {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
                 && gender.equals(((Gender) other).gender)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.gender.hashCode();
     }
 
 }

@@ -20,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
 
     // Data fields
     private final Address address;
@@ -28,12 +29,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Gender gender, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, gender, tags);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.gender = gender;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -52,6 +54,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public Address getAddress() {
@@ -119,7 +125,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

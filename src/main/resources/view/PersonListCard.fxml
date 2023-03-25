@@ -28,6 +28,7 @@
         </Label>
 	  <Label fx:id="nric" styleClass="cell_big_label" text="\$nric" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
