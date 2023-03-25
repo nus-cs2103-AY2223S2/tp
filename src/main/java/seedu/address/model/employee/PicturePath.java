@@ -15,10 +15,9 @@ public class PicturePath {
     public static final String MESSAGE_CONSTRAINTS =
             "All employee pictures should be stored in src/main/resources/employeepictures in .png format.";
 
-    /*
-     * The filepath must start with "src/main/resources/employeepictures/" and the file name must end in ".png".
-     */
-    public static final String VALIDATION_REGEX = "^src/main/resources/employeepictures/.*\\.png$";
+    // The filepath must start with "src/main/resources/employeepictures/" and the file name must end in ".png".
+    public static final String VALID_DIRECTORY = "src/main/resources/employeepictures/";
+    public static final String VALID_EXTENSION = ".png";
 
     public final String value;
 
@@ -37,7 +36,7 @@ public class PicturePath {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidPicturePath(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return (test.startsWith(VALID_DIRECTORY) && test.endsWith(VALID_EXTENSION));
     }
 
     /**

@@ -20,7 +20,7 @@ public class PicturePathTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidPicturePath() {
         // null address
         assertThrows(NullPointerException.class, () -> PicturePath.isValidPicturePath(null));
 

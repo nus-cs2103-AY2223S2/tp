@@ -49,54 +49,40 @@ public class SetPictureCommand extends Command {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
         Employee employeeToSetPicture;
 
-        // https://stackoverflow.com/questions/4096433/making-jfilechooser-show-image-thumbnails
-        class ThumbNailView extends FileView {
-            public Icon getIcon(File f) {
-                Icon icon = createImageIcon(f.getPath());
-                return icon;
-            }
-
-            private ImageIcon createImageIcon(String path) {
-                ImageIcon icon = new ImageIcon(path);
-                Image image = icon.getImage();
-                Image scaledImage = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-                return new ImageIcon(scaledImage);
-            }
-        }
-
         for (Employee employee : lastShownList) {
             if (employee.getEmployeeId().equals(employeeId)) {
                 employeeToSetPicture = employee;
-
-                JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                        "JPG, JPEG, or PNG images", "jpg", "jpeg", "png");
-                ThumbNailView thumbNailView = new ThumbNailView();
-                chooser.setFileFilter(filter);
-                chooser.setFileView(thumbNailView);
-                chooser.setDialogTitle("Choose input file");
-
-                int returnVal = chooser.showOpenDialog(null);
-                if (returnVal != JFileChooser.APPROVE_OPTION) {
-                    throw new CommandException(MESSAGE_SET_PICTURE_FAILURE);
-                }
-                Path sourcePath = chooser.getSelectedFile().toPath();
-                PicturePath destPicturePath = new PicturePath("src/main/resources/employeepictures/"
-                        + employeeToSetPicture.getName().fullName + ".png");
+                Path sourcePath = chooseSourcePicture();
+                PicturePath destPicturePath = new PicturePath(PicturePath.VALID_DIRECTORY
+                        + employeeToSetPicture.getName().fullName + PicturePath.VALID_EXTENSION);
                 Path destPath = destPicturePath.toPath();
                 try {
                     Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                    employeeToSetPicture.setPicturePath(destPicturePath);
                 } catch (IOException e) {
                     throw new CommandException(MESSAGE_IO_ERROR);
                 }
+                employeeToSetPicture.setPicturePath(destPicturePath);
                 return new CommandResult(String.format(MESSAGE_SET_PICTURE_SUCCESS, employeeToSetPicture));
             }
         }
         throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
+    private Path chooseSourcePicture() throws CommandException {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, JPEG, or PNG images", "jpg", "jpeg", "png");
+        ThumbNailView thumbNailView = new ThumbNailView();
+        chooser.setFileFilter(filter);
+        chooser.setFileView(thumbNailView);
+        chooser.setDialogTitle("Choose input file");
 
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal != JFileChooser.APPROVE_OPTION) {
+            throw new CommandException(MESSAGE_SET_PICTURE_FAILURE);
+        }
+        return chooser.getSelectedFile().toPath();
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -104,4 +90,25 @@ public class SetPictureCommand extends Command {
                 || (other instanceof SetPictureCommand // instanceof handles nulls
                 && employeeId.equals(((SetPictureCommand) other).employeeId)); // state check
     }
+
+    //@@author abenx162-reused
+    // Reused from https://stackoverflow.com/questions/4096433/making-jfilechooser-show-image-thumbnails
+    // with minor modifications
+    /**
+     * A FileView that provides a filechooser with 16x16 icons for representing files.
+     */
+    public static class ThumbNailView extends FileView {
+        public Icon getIcon(File f) {
+            Icon icon = createImageIcon(f.getPath());
+            return icon;
+        }
+
+        private ImageIcon createImageIcon(String path) {
+            ImageIcon icon = new ImageIcon(path);
+            Image image = icon.getImage();
+            Image scaledImage = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+            return new ImageIcon(scaledImage);
+        }
+    }
+    //@@author
 }
