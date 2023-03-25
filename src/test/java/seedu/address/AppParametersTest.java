@@ -1,6 +1,7 @@
 package seedu.address;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -18,10 +19,19 @@ public class AppParametersTest {
     private final AppParameters expected = new AppParameters();
 
     @Test
+    public void equals() {
+        assertEquals(expected, expected);
+        // Tests for incompatible types for code coverage in equals method
+        assertNotEquals(expected, 1);
+    }
+
+    @Test
     public void parse_validConfigPath_success() {
         parametersStub.namedParameters.put("config", "config.json");
         expected.setConfigPath(Paths.get("config.json"));
-        assertEquals(expected, AppParameters.parse(parametersStub));
+        AppParameters test = AppParameters.parse(parametersStub);
+        assertEquals(expected, test);
+        assertEquals(expected.hashCode(), test.hashCode());
     }
 
     @Test
