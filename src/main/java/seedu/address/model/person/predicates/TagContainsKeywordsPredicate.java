@@ -1,11 +1,11 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Set;
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

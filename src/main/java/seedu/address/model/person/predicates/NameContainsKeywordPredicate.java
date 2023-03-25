@@ -9,15 +9,24 @@ import seedu.address.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class NameContainsKeywordPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private final String keyword;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    /**
+     * Constructor that takes in a list of keywords
+     * @param keywords The list of keywords for the predicate
+     */
+    public NameContainsKeywordPredicate(List<String> keywords) {
         this.keywords = keywords;
         this.keyword = null;
     }
-    public NameContainsKeywordsPredicate(String keyword) {
+
+    /**
+     * Constructor that takes in a singular {@code String} keyword
+     * @param keyword The keyword for the predicate
+     */
+    public NameContainsKeywordPredicate(String keyword) {
         this.keywords = null;
         this.keyword = keyword;
     }
@@ -34,8 +43,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof NameContainsKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((NameContainsKeywordPredicate) other).keyword)); // state check
     }
 
 }

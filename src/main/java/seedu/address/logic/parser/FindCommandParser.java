@@ -1,15 +1,25 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.person.predicates.*;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
+import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.StatusContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -17,12 +27,12 @@ import seedu.address.model.person.predicates.*;
 public class FindCommandParser implements Parser<FindCommand> {
 
     private Prefix[] possiblePrefixes = {
-            PREFIX_NAME,
-            PREFIX_STATUS,
-            PREFIX_PHONE,
-            PREFIX_EMAIL,
-            PREFIX_ADDRESS,
-            PREFIX_TAG
+        PREFIX_NAME,
+        PREFIX_STATUS,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_TAG
     };
 
     /**
@@ -51,15 +61,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 }
                 Predicate<Person> currentPredicate = null;
                 if (p == PREFIX_NAME) {
-                    currentPredicate = new NameContainsKeywordsPredicate(arg);
+                    currentPredicate = new NameContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_STATUS) {
                     currentPredicate = new StatusContainsKeywordsPredicate(arg);
                 } else if (p == PREFIX_PHONE) {
                     currentPredicate = new PhoneContainsKeywordsPredicate(arg);
                 } else if (p == PREFIX_EMAIL) {
-                    currentPredicate = new EmailContainsKeywordsPredicate(arg);
+                    currentPredicate = new EmailContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_ADDRESS) {
-                    currentPredicate = new AddressContainsKeywordsPredicate(arg);
+                    currentPredicate = new AddressContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_TAG) {
                     currentPredicate = new TagContainsKeywordsPredicate(arg);
                 }
