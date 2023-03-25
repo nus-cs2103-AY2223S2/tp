@@ -20,12 +20,14 @@ public class StringUtil {
      * @param text - the text to test.
      * @param patterns - the patterns to search for.
      * @return {@code true} if the given text matches the given list of
-     *      patterns and {@code false} otherwise.
+     *         patterns and {@code false} otherwise or patterns are empty.
      */
     public static boolean isMatching(String text, Collection<String> patterns) {
+        if (patterns.isEmpty()) {
+            return false;
+        }
         return text.toUpperCase().matches(compilePattern(patterns));
     }
-
 
     private static String compilePattern(Collection<String> patterns) {
         StringBuilder builder = new StringBuilder();
@@ -36,7 +38,6 @@ public class StringUtil {
         builder.append(".*");
         return builder.toString();
     }
-
 
     private static String convertRegexChars(String pattern) {
         return pattern
