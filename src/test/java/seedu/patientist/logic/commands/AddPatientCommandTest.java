@@ -26,11 +26,11 @@ import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.PatientBuilder;
 
-public class AddCommandTest {
+public class AddPatientCommandTest {
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));
     }
 
     @Test
@@ -38,33 +38,33 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient validPatient = new PatientBuilder().build();
-        AddCommand addCommand = new AddCommand(validPatient);
+        AddPatientCommand addPatientCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PERSON, () -> addPatientCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Patient alice = new PatientBuilder().withName("Alice").build();
         Patient bob = new PatientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddPatientCommand addAliceCommand = new AddPatientCommand(alice);
+        AddPatientCommand addBobCommand = new AddPatientCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddPatientCommand addAliceCommandCopy = new AddPatientCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

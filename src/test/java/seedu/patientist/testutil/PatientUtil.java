@@ -10,7 +10,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.EditCommand;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.tag.Tag;
@@ -23,7 +23,7 @@ public class PatientUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Patient patient) {
-        return AddCommand.COMMAND_WORD + " " + getPatientDetails(patient);
+        return AddPatientCommand.COMMAND_WORD + " " + getPatientDetails(patient);
     }
 
     /**

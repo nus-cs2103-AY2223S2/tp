@@ -16,7 +16,7 @@ import seedu.patientist.testutil.PatientBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddPatientCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
         //expectedModel.addPerson(validPatient);
 
-        assertCommandSuccess(new AddCommand(validPatient), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
+        assertCommandSuccess(new AddPatientCommand(validPatient), model,
+                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient personInList = (Patient) model.getPatientist().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

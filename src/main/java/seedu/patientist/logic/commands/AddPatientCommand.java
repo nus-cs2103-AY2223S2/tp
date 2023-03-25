@@ -17,9 +17,9 @@ import seedu.patientist.model.ward.Ward;
 /**
  * Adds a person to the patientist book.
  */
-public class AddCommand extends Command {
+public class AddPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addpat";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the patientist book. "
                                                + "Parameters: "
@@ -50,7 +50,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(String ward, Patient patient) {
+    public AddPatientCommand(String ward, Patient patient) {
         requireNonNull(patient);
         wardToAdd = ward;
         toAdd = patient;
@@ -76,7 +76,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddPatientCommand // instanceof handles nulls
+                    && toAdd.equals(((AddPatientCommand) other).toAdd));
     }
 }

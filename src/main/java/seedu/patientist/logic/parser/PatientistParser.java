@@ -6,7 +6,7 @@ import static seedu.patientist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.AddStaffCommand;
 import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.logic.commands.ClearCommand;
@@ -51,7 +51,7 @@ public class PatientistParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddPatientCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case AddStaffCommand.COMMAND_WORD:

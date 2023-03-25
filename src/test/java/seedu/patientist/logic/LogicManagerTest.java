@@ -19,7 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.commands.exceptions.CommandException;
@@ -81,8 +81,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + PID_DESC_AMY + STATUS_DESC_AMY;
+        String addCommand = AddPatientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                            + ADDRESS_DESC_AMY + PID_DESC_AMY + STATUS_DESC_AMY;
         Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         //expectedModel.addPerson(expectedPatient);

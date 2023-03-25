@@ -37,7 +37,7 @@ import static seedu.patientist.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.IdNumber;
@@ -47,7 +47,7 @@ import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.testutil.PatientBuilder;
 
-public class AddCommandParserTest {
+public class AddPatientCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
@@ -56,30 +56,30 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple tags - all accepted
         Patient expectedPersonMultipleTags = new PatientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + STATUS_DESC_BOB,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddPatientCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -87,12 +87,12 @@ public class AddCommandParserTest {
         // zero tags
         Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + STATUS_DESC_AMY, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_AMY + STATUS_DESC_AMY, new AddPatientCommand(expectedPatient));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -152,6 +152,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
     }
 }
