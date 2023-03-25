@@ -5,22 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.vms.testutil.TypicalPatients.CARL;
-import static seedu.vms.testutil.TypicalPatients.ELLE;
-import static seedu.vms.testutil.TypicalPatients.FIONA;
 import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 
 /**
