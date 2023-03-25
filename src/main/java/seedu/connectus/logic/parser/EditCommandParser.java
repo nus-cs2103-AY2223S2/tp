@@ -2,7 +2,20 @@ package seedu.connectus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.connectus.logic.parser.CliSyntax.*;
+
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
+
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,7 +46,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_SOCMED, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_MODULE, PREFIX_CCA, PREFIX_CCA_POSITION);
+                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_MODULE,
+            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
+
 
         Index index;
 
@@ -59,8 +74,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
-        if (argMultimap.getValue(PREFIX_SOCMED).isPresent()) {
-            editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap.getValue(PREFIX_SOCMED).get()));
+        {
+            editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);

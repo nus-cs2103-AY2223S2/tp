@@ -231,23 +231,32 @@ public class ParserUtil {
         return ccaPositionSet;
     }
 
-    private static Instagram parseInstagram(String instagram) {
+    private static Instagram parseInstagram(String instagram) throws ParseException {
         if (instagram == null || instagram.isEmpty()) {
             return null;
+        }
+        if (!Instagram.isValid(instagram)) {
+            throw new ParseException(Instagram.MESSAGE_CONSTRAINTS);
         }
         return Instagram.of(instagram);
     }
 
-    private static Telegram parseTelegram(String telegram) {
+    private static Telegram parseTelegram(String telegram) throws ParseException {
         if (telegram == null || telegram.isEmpty()) {
             return null;
+        }
+        if (!Telegram.isValid(telegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return Telegram.of(telegram);
     }
 
-    private static WhatsApp parseWhatsApp(String whatsApp) {
+    private static WhatsApp parseWhatsApp(String whatsApp) throws ParseException {
         if (whatsApp == null || whatsApp.isEmpty()) {
             return null;
+        }
+        if (!WhatsApp.isValidWhatsApp(whatsApp)) {
+            throw new ParseException(WhatsApp.MESSAGE_CONSTRAINTS);
         }
         return WhatsApp.of(whatsApp);
     }
@@ -256,18 +265,17 @@ public class ParserUtil {
      * Parses a {@code String socialMedia} into an {@code SocialMedia}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static SocialMedia parseSocialMedia(String socialMediaArgs) {
-        if (socialMediaArgs == null || socialMediaArgs.isBlank()) {
-            return null;
-        }
+    public static SocialMedia parseSocialMedia(ArgumentMultimap argMultimap) throws ParseException {
+        var instagram = argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM);
+        var telegram = argMultimap.getValue(PREFIX_SOCMED_TELEGRAM);
+        var whatsapp = argMultimap.getValue(PREFIX_SOCMED_WHATSAPP);
 
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(" " + socialMediaArgs.trim(),
-                PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
+        var socialMedia = new SocialMedia(
+            instagram.isPresent() ? ParserUtil.parseInstagram(instagram.get()) : null,
+            telegram.isPresent() ? ParserUtil.parseTelegram(telegram.get()) : null,
+            whatsapp.isPresent() ? ParserUtil.parseWhatsApp(whatsapp.get()) : null
+        );
 
-        return SocialMedia.create()
-            .withInstagram(ParserUtil.parseInstagram(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).orElse("")))
-            .withTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).orElse("")))
-            .withWhatsapp(ParserUtil.parseWhatsApp(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).orElse("")));
+        return socialMedia.isBlank() ? null : socialMedia;
     }
 }

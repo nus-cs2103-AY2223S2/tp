@@ -10,6 +10,9 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -23,7 +26,6 @@ import seedu.connectus.model.person.Email;
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
-import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
@@ -42,7 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_SOCMED, PREFIX_TAG, PREFIX_MODULE, PREFIX_CCA, PREFIX_CCA_POSITION);
+            PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_TAG, PREFIX_MODULE,
+            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP,  PREFIX_CCA, PREFIX_CCA_POSITION);
+
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -72,14 +76,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             person.setAddress(address);
         }
 
-        if (argMultimap.getValue(PREFIX_SOCMED).isPresent()) {
-            SocialMedia socialMedia = ParserUtil.parseSocialMedia(argMultimap.getValue(PREFIX_SOCMED).get());
-            if (socialMedia == null || socialMedia.isBlank()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-            }
-            person.setSocialMedia(socialMedia);
+        {
+            person.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
-
 
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
