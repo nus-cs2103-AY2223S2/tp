@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
 /**
@@ -147,6 +148,12 @@ public class FitBookModelManager implements FitBookModel {
     }
 
     @Override
+    public void addExercise(Routine routine, Exercise exercise) {
+        fitBookExerciseRoutine.addExercise(routine, exercise);
+        updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
+    }
+
+    @Override
     public void setRoutine(Routine target, Routine editedRoutine) {
         requireAllNonNull(target, editedRoutine);
         fitBookExerciseRoutine.setRoutine(target, editedRoutine);
@@ -184,6 +191,12 @@ public class FitBookModelManager implements FitBookModel {
     public void updateFilteredRoutineList(Predicate<Routine> predicate) {
         requireNonNull(predicate);
         filteredRoutines.setPredicate(predicate);
+    }
+
+    @Override
+    public void removeExercise(Routine routine, int targetIndex) {
+        requireAllNonNull(routine, targetIndex);
+        fitBookExerciseRoutine.removeExercise(routine, targetIndex);
     }
 
     @Override

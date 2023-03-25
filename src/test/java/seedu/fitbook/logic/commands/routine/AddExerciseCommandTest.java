@@ -1,24 +1,19 @@
 package seedu.fitbook.logic.commands.routine;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
-import seedu.fitbook.logic.commands.AddRoutineCommand;
-import seedu.fitbook.logic.commands.CommandResult;
-import seedu.fitbook.logic.commands.exceptions.CommandException;
-import seedu.fitbook.model.FitBookExerciseRoutine;
+import seedu.fitbook.commons.core.index.Index;
+import seedu.fitbook.logic.commands.AddExerciseCommand;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
@@ -26,59 +21,37 @@ import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
-import seedu.fitbook.testutil.routine.RoutineBuilder;
 
-public class AddRoutineCommandTest {
-
-    @Test
-    public void constructor_nullRoutine_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddRoutineCommand(null));
-    }
+public class AddExerciseCommandTest {
 
     @Test
-    public void execute_routineAcceptedByFitBookModelExerciseRoutine_addSuccessful() throws Exception {
-        FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded modelStub =
-                new FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded();
-        Routine validRoutine = new RoutineBuilder().build();
-
-        CommandResult commandResult = new AddRoutineCommand(validRoutine).execute(modelStub);
-
-        assertEquals(String.format(AddRoutineCommand.MESSAGE_SUCCESS, validRoutine), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validRoutine), modelStub.routinesAdded);
-    }
-
-    @Test
-    public void execute_duplicateRoutine_throwsCommandException() {
-        Routine validRoutine = new RoutineBuilder().build();
-        AddRoutineCommand addRoutineCommand = new AddRoutineCommand(validRoutine);
-        FitBookExerciseRoutineModelStub modelStub = new FitBookExerciseRoutineModelStubWithRoutine(validRoutine);
-
-        assertThrows(CommandException.class, AddRoutineCommand.MESSAGE_DUPLICATE_ROUTINE, () ->
-                addRoutineCommand.execute(modelStub));
+    public void constructor_nullExercise_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddExerciseCommand(null, null));
     }
 
     @Test
     public void equals() {
-        Routine cardio = new RoutineBuilder().withRoutineName("Cardio").build();
-        Routine strength = new RoutineBuilder().withRoutineName("Strength").build();
-        AddRoutineCommand addRoutineCardioCommand = new AddRoutineCommand(cardio);
-        AddRoutineCommand addRoutineStrengthCommand = new AddRoutineCommand(strength);
+        Index index = Index.fromZeroBased(1);
+        Index index2 = Index.fromZeroBased(2);
+        Exercise exerciseToAdd = new Exercise("push ups");
+        AddExerciseCommand addExerciseCommand = new AddExerciseCommand(index, exerciseToAdd);
+        AddExerciseCommand addExercise2Command = new AddExerciseCommand(index2, exerciseToAdd);
 
         // same object -> returns true
-        assertTrue(addRoutineCardioCommand.equals(addRoutineCardioCommand));
+        assertTrue(addExerciseCommand.equals(addExerciseCommand));
 
         // same values -> returns true
-        AddRoutineCommand addRoutineCardioCommandCopy = new AddRoutineCommand(cardio);
-        assertTrue(addRoutineCardioCommand.equals(addRoutineCardioCommandCopy));
+        AddExerciseCommand addExerciseCommandCopy = new AddExerciseCommand(index, exerciseToAdd);
+        assertTrue(addExerciseCommand.equals(addExerciseCommandCopy));
 
         // different types -> returns false
-        assertFalse(addRoutineCardioCommand.equals(1));
+        assertFalse(addExerciseCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addRoutineCardioCommand.equals(null));
+        assertFalse(addExerciseCommand.equals(null));
 
         // different routine -> returns false
-        assertFalse(addRoutineCardioCommand.equals(addRoutineStrengthCommand));
+        assertFalse(addExerciseCommand.equals(addExercise2Command));
     }
 
     /**
@@ -182,11 +155,6 @@ public class AddRoutineCommandTest {
         }
 
         @Override
-        public void addExercise(Routine routine, Exercise exercise) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setRoutine(Routine target, Routine editedRoutine) {
             throw new AssertionError("This method should not be called.");
         }
@@ -205,15 +173,19 @@ public class AddRoutineCommandTest {
         public void removeExercise(Routine routineToDelete, int zeroBased) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addExercise(Routine routine, Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A FitBookExerciseRoutineModel stub that contains a single routine.
      */
-    private class FitBookExerciseRoutineModelStubWithRoutine extends FitBookExerciseRoutineModelStub {
+    private class FitBookExerciseRoutineModelStubWithExercise extends FitBookExerciseRoutineModelStub {
         private final Routine routine;
 
-        FitBookExerciseRoutineModelStubWithRoutine(Routine routine) {
+        FitBookExerciseRoutineModelStubWithExercise(Routine routine) {
             requireNonNull(routine);
             this.routine = routine;
         }
@@ -223,31 +195,10 @@ public class AddRoutineCommandTest {
             requireNonNull(routine);
             return this.routine.isSameRoutine(routine);
         }
-    }
-
-    /**
-     * A FitBookExerciseRoutineModel stub that always accept the routine being added.
-     */
-    private class FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded
-            extends FitBookExerciseRoutineModelStub {
-        final ArrayList<Routine> routinesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasRoutine(Routine routine) {
+        public void addExercise(Routine routine, Exercise exercise) {
             requireNonNull(routine);
-            return routinesAdded.stream().anyMatch(routine::isSameRoutine);
-        }
-
-        @Override
-        public void addRoutine(Routine routine) {
-            requireNonNull(routine);
-            routinesAdded.add(routine);
-        }
-
-        @Override
-        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
-            return new FitBookExerciseRoutine();
+            requireNonNull(exercise);
+            routine.addExercise(exercise);
         }
     }
-
 }
