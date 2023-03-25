@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,10 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
-    private final float horizontalWrap = 432;
-    private final float xInit = 90;
-    private final float yInit = 702;
-
     private Person selectedPerson;
 
     /*
@@ -124,18 +121,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         PDPage page = new PDPage();
         document.addPage(page);
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
-        contentStream = wrapText(key.getName().fullName, horizontalWrap, xInit, yInit, PDType1Font.HELVETICA_BOLD, 18, contentStream, document);
+
+        float horizontalWrap = 432;
+        float xInit = 90;
+        float yInit = 702;
+        PDFont fontBold = PDType1Font.HELVETICA_BOLD;
+
+        List<Object> name = wrapText(key.getName().fullName, horizontalWrap, xInit, yInit, fontBold, 20, contentStream, document);
+        contentStream = (PDPageContentStream) name.get(0);
+        yInit = (float) name.get(2) - 2 * textHeight(fontBold, 20);
+
+        List<Object> taskListString = wrapText("Task List", horizontalWrap, xInit, yInit, fontBold, 18, contentStream, document);
+        contentStream = (PDPageContentStream) taskListString.get(0);
+        yInit = (float) taskListString.get(2) - textHeight(fontBold, 18);
+
         contentStream.close();
         return document;
     }
 
+
     public PDPageContentStream setUpContentStream(PDPageContentStream contentStream, PDFont font, int fontSize, float x, float y, PDDocument document) throws IOException {
-        if (y <= 92) {
-            contentStream.close();
-            PDPage newPage = new PDPage();
-            document.addPage(newPage);
-            contentStream = new PDPageContentStream(document, newPage);
-        }
         contentStream.beginText();
         contentStream.setFont(font, fontSize);
         contentStream.moveTextPositionByAmount(x, y);
@@ -162,7 +167,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return count;
     }
 
-    public PDPageContentStream wrapText(String text, float wrap, float xInit, float yInit, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document) throws IOException {
+    public PDPageContentStream handleNextPage(PDPageContentStream contentStream, PDDocument document) throws IOException {
+        contentStream.close();
+        PDPage newPage = new PDPage();
+        document.addPage(newPage);
+        contentStream = new PDPageContentStream(document, newPage);
+        return contentStream;
+    }
+
+    public List<Object> wrapText(String text, float wrap, float xInit, float yInit, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document) throws IOException {
         String[] textSplit = text.split(" ");
         float x = xInit;
         float y = yInit;
@@ -185,12 +198,21 @@ public class AddressBook implements ReadOnlyAddressBook {
                 x = xInit;
                 lengthUsed = textLength(curString, font, fontSize);
             }
+            if (y <= 92) {
+                handleNextPage(contentStream, document);
+                x = xInit;
+                y = yInit;
+            }
             contentStream = setUpContentStream(contentStream, font, fontSize, x, y, document);
             contentStream.drawString(curString);
             contentStream.endText();
             x += textLength(curString, font, fontSize);
         }
-        return contentStream;
+        List<Object> next = new ArrayList<>();
+        next.add(contentStream);
+        next.add(x);
+        next.add(y);
+        return next;
     }
 
     //// util methods
