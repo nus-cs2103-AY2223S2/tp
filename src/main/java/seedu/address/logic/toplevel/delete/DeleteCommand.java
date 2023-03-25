@@ -1,11 +1,9 @@
 package seedu.address.logic.toplevel.delete;
 
-import java.util.Optional;
 
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
-import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
@@ -29,6 +27,13 @@ public class DeleteCommand<T extends Item> implements Command {
      */
     private final GetManagerFunction<T> getManagerFunction;
 
+    /**
+     * The command that deletes an item.
+     *
+     * @param itemIndex          the index of the item
+     * @param getManagerFunction the function for getting the manager.
+     * @param deleteFunction     the function for deleting the item.
+     */
     public DeleteCommand(
             int itemIndex,
             GetManagerFunction<T> getManagerFunction,

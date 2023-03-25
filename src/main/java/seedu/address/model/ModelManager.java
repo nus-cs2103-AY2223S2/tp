@@ -575,14 +575,10 @@ public class ModelManager implements Model {
         return flightManager;
     }
 
-    ;
-
     @Override
     public Path getFlightManagerFilePath() {
         return userPrefs.getFlightManagerFilePath();
     }
-
-    ;
 
     @Override
     public void setFlightManagerFilePath(Path flightManagerFilePath) {
@@ -590,14 +586,10 @@ public class ModelManager implements Model {
         userPrefs.setFlightManagerFilePath(flightManagerFilePath);
     }
 
-    ;
-
     @Override
     public void setFlightManager(ReadOnlyItemManager<Flight> flightManager) {
         this.flightManager.resetData(flightManager);
     }
-
-    ;
 
     @Override
     public boolean hasFlight(Flight flight) {
@@ -605,21 +597,15 @@ public class ModelManager implements Model {
         return flightManager.hasItem(flight);
     }
 
-    ;
-
     @Override
     public void deleteFlight(Flight target) {
         flightManager.removeItem(target);
     }
 
-    ;
-
     @Override
     public void deleteFlight(String id) {
         flightManager.removeItem(id);
     }
-
-    ;
 
     @Override
     public void deleteFlightByIndex(int index) throws IndexOutOfBoundException {
@@ -632,31 +618,22 @@ public class ModelManager implements Model {
         flightManager.addItem(flight);
     }
 
-    ;
-
     @Override
     public void setFlight(Flight target, Flight editedFlight) {
         requireAllNonNull(target, editedFlight);
         flightManager.setItem(target, editedFlight);
     }
 
-    ;
-
     @Override
     public ObservableList<Flight> getFilteredFlightList() {
         return filteredFlights;
     }
-
-    ;
 
     @Override
     public void updateFilteredFlightList(Predicate<Flight> predicate) {
         requireNonNull(predicate);
         filteredFlights.setPredicate(predicate);
     }
-
-    ;
-
 
     //=========== Generic ========================================================
 

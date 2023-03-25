@@ -142,8 +142,8 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
 
 
     @Override
-    public UnlinkCrewToFlightCommand createCommand(CommandParam param) throws ParseException,
-                                                                              IndexOutOfBoundException, NumberFormatException {
+    public UnlinkCrewToFlightCommand createCommand(CommandParam param)
+            throws ParseException, IndexOutOfBoundException, NumberFormatException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =

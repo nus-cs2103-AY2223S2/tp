@@ -14,7 +14,8 @@ public interface DeleteFunction<T extends Item> {
     /**
      * Deletes the item with the given id and returns the deleted item.
      *
-     * @param item: the item to be deleted.
+     * @param model the model.
+     * @param item  the item to be deleted.
      * @throws CommandException if deletion fails.
      */
     void delete(Model model, T item) throws CommandException;
