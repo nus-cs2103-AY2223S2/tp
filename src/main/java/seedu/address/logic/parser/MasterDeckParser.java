@@ -130,6 +130,9 @@ public class MasterDeckParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
         case UnselectDeckCommand.COMMAND_WORD:
             return new UnselectDeckCommand();
 
