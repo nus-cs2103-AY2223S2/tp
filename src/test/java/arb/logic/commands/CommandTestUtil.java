@@ -57,6 +57,8 @@ public class CommandTestUtil {
     public static final String VALID_SORTING_OPTION_TITLE = "name";
     public static final String VALID_SORTING_OPTION_TITLE_ALIAS = "n";
 
+    public static final String VALID_SORTING_OPTION_PRICE = "price";
+    public static final String VALID_SORTING_OPTION_PRICE_ALIAS = "pr";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_ALIAS_AMY = " " + PREFIX_NAME.getAlias() + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
