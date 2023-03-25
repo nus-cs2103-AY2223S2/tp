@@ -501,8 +501,8 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> The <code>find</code> command only finds `Applicants` which has a name, phone or both that fully matches 
-the specified search of the full name, phone or both!</li>
+    <li> The <code>find</code> command only finds <code>Applicants</code> which has a name, phone or both 
+that fully matches the specified search of the full name, phone or both!</li>
     <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
 executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
     <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
@@ -716,9 +716,8 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 <ul>
     <li> The <code>reject</code> command only rejects <code>Applicant</code> which has a name and phone that 
 fully matches the specified search.</li> 
-    <li> The <code>NAME</code> and <code>PHONE</code> is required to reject <code>Applicant</code> from <code>status
-</code> <code>APPLIED</code>, <code>SHORTLISTED</code> and <code>ACCEPTED</code> to <code>status</code> <code>REJECTED
-</code>.
+    <li> The <code>NAME</code> and <code>PHONE</code> is required to reject <code>Applicant</code> from <code>status</code> 
+<code>APPLIED</code>, <code>SHORTLISTED</code> and <code>ACCEPTED</code> to <code>status</code> <code>REJECTED</code>.
     </li> 
 </ul> </div>
 
