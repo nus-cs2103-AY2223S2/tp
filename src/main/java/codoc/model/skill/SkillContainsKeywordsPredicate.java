@@ -1,5 +1,8 @@
 package codoc.model.skill;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -36,6 +39,11 @@ public class SkillContainsKeywordsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof SkillContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((SkillContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return PREFIX_SKILL + keywords.stream().reduce("", String::concat);
     }
 }
 

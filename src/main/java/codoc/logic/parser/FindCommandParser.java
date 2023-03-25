@@ -24,6 +24,16 @@ import codoc.model.skill.SkillContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    private class PredicateStringPair {
+        private Predicate<Person> predicate;
+        private String string;
+
+        private PredicateStringPair(Predicate<Person> predicate, String string) {
+            this.predicate = predicate;
+            this.string = string;
+        }
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -58,7 +68,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         combinedPredicate = addSkillPredicate(argMultimap, combinedPredicate);
 
         return new FindCommand(
-                combinedPredicate
+                combinedPredicate,
+                trimmedArgs
         );
     }
     private Predicate<Person> addNamePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {

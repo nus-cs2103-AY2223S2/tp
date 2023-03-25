@@ -23,17 +23,22 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alice bob charlie y/2 3 c/computer business";
 
     private final Predicate<Person> predicate;
+    private final String userInput;
 
-    public FindCommand(Predicate<Person> predicate) {
+    public FindCommand(Predicate<Person> predicate, String userInput) {
         this.predicate = predicate;
+        this.userInput = userInput;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        String s = model.updateFilteredPersonList(predicate, userInput);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                //String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                //String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, userInput);
+                s);
+
     }
 
     @Override

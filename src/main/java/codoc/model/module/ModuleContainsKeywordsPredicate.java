@@ -1,5 +1,8 @@
 package codoc.model.module;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
+import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -54,5 +57,9 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof ModuleContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ModuleContainsKeywordsPredicate) other).keywords)); // state check
+    }
+    @Override
+    public String toString() {
+        return PREFIX_MOD + keywords.stream().reduce("", String::concat);
     }
 }

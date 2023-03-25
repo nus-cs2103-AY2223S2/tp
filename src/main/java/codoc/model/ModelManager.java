@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private Person protagonist;
     private String currentTab;
     private final ArrayList<Predicate<Person>> predicateArrayList = new ArrayList<>();
+    private String userInputs = "";
 
     /**
      * Initializes a ModelManager with the given codoc and userPrefs.
@@ -113,7 +114,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         codoc.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, "");
     }
 
     @Override
@@ -135,15 +136,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public String updateFilteredPersonList(Predicate<Person> predicate, String userInput) {
         if (predicate == PREDICATE_SHOW_ALL_PERSONS) {
             predicateArrayList.clear();
+            userInputs = "";
         }
         requireNonNull(predicate);
         predicateArrayList.add(predicate);
+        userInputs += " " + userInput + "\n";
         Predicate<Person> combinePredicate = predicateArrayList.stream().reduce(person -> true, Predicate::and);
-        logger.log(Level.INFO, "Number of predicates = " + predicateArrayList.size());
+        //logger.log(Level.INFO, "Number of predicates = " + predicateArrayList.size());
+        logger.log(Level.INFO, "Number of predicates = " + userInputs);
         filteredPersons.setPredicate(combinePredicate);
+        return userInputs;
     }
 
     //=========== Protagonist ================================================================================
