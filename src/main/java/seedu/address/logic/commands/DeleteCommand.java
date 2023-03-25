@@ -48,8 +48,7 @@ public class DeleteCommand extends Command {
         Id pId = personToDelete.getId();
         List<Id> taskIdList = getTaskIdList(officeConnectModel, pId);
 
-        RepositoryModelManager<AssignTask> assignTaskModelManager = officeConnectModel.getAssignTaskModelManager();
-        taskIdList.forEach(tId -> assignTaskModelManager.deleteItem(new AssignTask(pId, tId)));
+        taskIdList.forEach(tId -> officeConnectModel.deleteAssignTaskModelManagerItem(new AssignTask(pId, tId)));
 
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
