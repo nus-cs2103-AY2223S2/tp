@@ -1,5 +1,9 @@
 package tfifteenfour.clipboard.logic.commands.deletecommand;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
@@ -7,14 +11,13 @@ import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Deletes a specified session.
+ */
 public class DeleteSessionCommand extends DeleteCommand {
     public static final String COMMAND_TYPE_WORD = "session";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
@@ -28,10 +31,22 @@ public class DeleteSessionCommand extends DeleteCommand {
 
     private final Index index;
 
+    /**
+     * Creates a {@code DeleteSessionCommand} to delete the session at the specified {@code Index}.
+     * @param index Index of the session to be deleted.
+     */
     public DeleteSessionCommand(Index index) {
         this.index = index;
     }
 
+    /**
+     * Deletes the session specified by the index from the selected group in the model.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @param currentSelection Current selection of course and group.
+     * @return Result of the command execution.
+     * @throws CommandException If the selected page is not a session page or if the index is invalid.
+     */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 

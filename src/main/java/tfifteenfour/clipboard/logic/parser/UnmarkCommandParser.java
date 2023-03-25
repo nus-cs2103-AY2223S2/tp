@@ -1,8 +1,7 @@
 package tfifteenfour.clipboard.logic.parser;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.attendance.MarkAbsentCommand;
-import tfifteenfour.clipboard.logic.commands.attendance.MarkPresentCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;

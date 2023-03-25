@@ -1,4 +1,8 @@
-package tfifteenfour.clipboard.logic.commands.attendance;
+package tfifteenfour.clipboard.logic.commands.attendancecommand;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
@@ -10,10 +14,13 @@ import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
+
+
+/**
+ * Command that allows the user to view the sessions of a selected group
+ */
 public class AttendanceCommand extends Command {
     public static final String COMMAND_WORD = "attendance";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -25,12 +32,22 @@ public class AttendanceCommand extends Command {
 
     /**
      * Creates a AttendanceCommand to select a group at the specified index
+     *
+     * @param targetIndex the index of the group to select
      */
     public AttendanceCommand(Index targetIndex) {
         super(false);
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the command to select a group and view its sessions
+     *
+     * @param model the model to execute the command on
+     * @param currentSelection the current selection of the user
+     * @return a CommandResult indicating the result of the command
+     * @throws CommandException if there is an error executing the command
+     */
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
@@ -44,7 +61,14 @@ public class AttendanceCommand extends Command {
         return new CommandResult(this, String.format("Viewing session of : %s", selectedGroup), willModifyState);
     }
 
-
+    /**
+     * Handles the selection of a group and updates the current selection
+     *
+     * @param model the model to execute the command on
+     * @param currentSelection the current selection of the user
+     * @return the selected group
+     * @throws CommandException if there is an error executing the command
+     */
     private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
         List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
@@ -56,6 +80,12 @@ public class AttendanceCommand extends Command {
         return selectedGroup;
     }
 
+    /**
+     * Checks if this AttendanceCommand is equal to another object
+     *
+     * @param other the object to compare to
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

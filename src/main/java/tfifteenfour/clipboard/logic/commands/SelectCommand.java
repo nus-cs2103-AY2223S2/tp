@@ -104,7 +104,7 @@ public class SelectCommand extends Command {
     private Session handleSelectSession(Model model, CurrentSelection currentSelection) throws CommandException {
         List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableSessionList();
         if (targetIndex.getZeroBased() >= sessionList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
         Session selectedSession = sessionList.get(targetIndex.getZeroBased());
 

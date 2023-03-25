@@ -1,4 +1,8 @@
-package tfifteenfour.clipboard.logic.commands.attendance;
+package tfifteenfour.clipboard.logic.commands.attendancecommand;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
@@ -11,28 +15,34 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
-public class MarkPresentCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+/**
+ * Command to mark a student as absent in a selected session.
+ */
+public class MarkAbsentCommand extends Command {
+
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the selected student at the index number as present. \n"
+            + ": Marks the attendance of the selected student at the index number as absent. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Marked student as present: %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
 
     private final Index targetIndex;
 
-    public MarkPresentCommand(Index targetIndex) {
+    /**
+     * Creates a MarkAbsentCommand to mark the student at the specified index as absent.
+     */
+    public MarkAbsentCommand(Index targetIndex) {
         super(true);
         this.targetIndex = targetIndex;
     }
 
+    @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
@@ -47,7 +57,7 @@ public class MarkPresentCommand extends Command {
         }
 
         Student studentToMark = studentList.get(targetIndex.getZeroBased());
-        session.markPresent(studentToMark);
+        session.markAbsent(studentToMark);
 
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentToMark), willModifyState);
     }
@@ -58,11 +68,12 @@ public class MarkPresentCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MarkPresentCommand)) {
+        if (!(other instanceof MarkAbsentCommand)) {
             return false;
         }
 
-        MarkPresentCommand e = (MarkPresentCommand) other;
+        MarkAbsentCommand e = (MarkAbsentCommand) other;
         return targetIndex.equals(e.targetIndex);
     }
+
 }

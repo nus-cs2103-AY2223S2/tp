@@ -1,14 +1,16 @@
 package tfifteenfour.clipboard.model.course;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
-import java.util.HashMap;
-import java.util.Map;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Session in the CLIpboard.
@@ -18,10 +20,18 @@ public class Session {
     public static final String MESSAGE_CONSTRAINTS = "Session names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public String sessionName;
-//    public Group group;
-//    private ObservableList<Student> students;
+    private final String sessionName;
+
+    /**
+     * A map that stores the attendance record for each student in the session.
+     * The key is the Student object, and the value is an integer indicating the attendance status:
+     * 0 for absent, 1 for present.
+     */
     private final Map<Student, Integer> attendance;
+
+    /**
+     * A list that stores the students who attended the session.
+     */
     private final UniqueStudentList students;
 
     {
@@ -30,9 +40,9 @@ public class Session {
 
 
     /**
-     * Constructs a {@code Session}.
+     * Constructs a {@code Session} with the given session name.
      *
-     * @param sessionName A valid session name.
+     * @param sessionName The name of the session.
      */
     public Session(String sessionName) {
         requireNonNull(sessionName);
@@ -40,26 +50,47 @@ public class Session {
         attendance = new HashMap<>();
     }
 
+    /**
+     * Returns an unmodifiable list of the students who are in the session.
+     * @return An unmodifiable list of the students who are in the session.
+     */
     public ObservableList<Student> getUnmodifiableStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
+    /**
+     * Adds a student to the list of students who are in the session.
+     * @param student The student to be added.
+     */
     public void addStudent(Student student) {
         this.students.add(student);
     }
 
+    /**
+     * Returns the name of the session.
+     * @return The name of the session.
+     */
     public String getSessionName() {
-        System.out.println("########\n " +
-                "ATTENDANCE for" + sessionName);
+        System.out.println("########\n "
+                + "ATTENDANCE for" + sessionName);
         System.out.println(attendance.toString());
         System.out.println("########");
         return this.sessionName;
     }
 
+    /**
+     * Returns the attendance record for each student in the session.
+     * @return A map that stores the attendance record for each student in the session.
+     */
     public Map<Student, Integer> getAttendance() {
         return this.attendance;
     }
 
+    /**
+     * Checks if the given Session object is the same as this Session object.
+     * @param otherSession The Session object to be compared with this Session object.
+     * @return True if the given Session object is the same as this Session object, false otherwise.
+     */
     public boolean isSameSession(Session otherSession) {
         if (otherSession == this) {
             return true;
@@ -69,12 +100,20 @@ public class Session {
                 && otherSession.getSessionName().equals(getSessionName());
     }
 
+    /**
+     * Checks if the given string is a valid session name.
+     * @param test The string to be tested.
+     * @return True if the given string is a valid session name, false otherwise.
+     */
     public static boolean isValidSessionName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Sets the list of students who are in the session.
+     * @param students The list of students who are in the session.
+     */
     public void setStudents(UniqueStudentList students) {
-//        this.group = group;
         for (Student student : students) {
             if (!attendance.containsKey(student)) {
                 attendance.put(student, 0);
@@ -84,24 +123,36 @@ public class Session {
         System.out.println(attendance.toString());
     }
 
-    public void markPresent(Student student) {
+    /**
+     * Marks the given student as present in this session.
+     *
+     * @param student The student to mark as present.
+     * @throws StudentNotInSessionException If the given student is not enrolled in this session.
+     */
+    public void markPresent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();
         }
         attendance.put(student, 1);
-        System.out.println("marked: " + student + "\n" + attendance.get(student));
+        System.out.println("Marked student " + student.getName() + " present in session " + sessionName);
     }
 
-    public void markAbsent(Student student) {
+    /**
+     * Marks the given student as absent in this session.
+     *
+     * @param student The student to mark as absent.
+     * @throws StudentNotInSessionException If the given student is not enrolled in this session.
+     */
+    public void markAbsent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();
         }
         attendance.put(student, 0);
-        System.out.println("marked: " + student + "\n" + attendance.get(student));
+        System.out.println("Marked student " + student.getName() + " absent in session " + sessionName);
     }
 
     @Override

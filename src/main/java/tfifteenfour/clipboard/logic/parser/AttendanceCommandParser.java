@@ -1,12 +1,20 @@
 package tfifteenfour.clipboard.logic.parser;
 
-import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.attendance.AttendanceCommand;
-import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import tfifteenfour.clipboard.commons.core.index.Index;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
+import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses input arguments and creates a new AttendanceCommand object.
+ */
 public class AttendanceCommandParser implements Parser<AttendanceCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AttendanceCommand
+     * and returns an AttendanceCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AttendanceCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
@@ -14,5 +22,6 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE), pe);
-        }    }
+        }
+    }
 }
