@@ -18,13 +18,6 @@ public class CommitmentTag extends Tag {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof CommitmentTag
-            && tagName.equals(((CommitmentTag) other).tagName));
-    }
-
-    @Override
     public String toString() {
         return " [Commitment: " + tagName.split("XXXXX")[1] + "] ";
     }

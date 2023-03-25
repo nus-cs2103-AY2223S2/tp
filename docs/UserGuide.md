@@ -6,7 +6,7 @@
   * Adding a person: `add`
   * Deleting a person: `delete`
   * Listing all contacts: `list`
-  * Locating persons by name/tags: `find`
+  * Locating persons by keywords: `find`
   * Add an image for contacts: `add-image`
   * Delete an image for contacts: `delete-image`
   * Quick import admin contacts: `import`
@@ -76,18 +76,32 @@ List all contacts in the address book.
 
 Format: `list`
 
-### Locating persons by name/tags: `find`
+### Locating persons by keywords: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose contact details contain any of the given keywords based on the
+prefix specified.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [PREFIX]/KEYWORD [MORE [PREFIX]/KEYWORD]...`
 
 * The search is case-insensitive e.g. `hans` will match `Hans`
-* The order of the keywords does not matter e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search) e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+* The search will filter by the `PREFIX` provided, e.g. `n/` searches through the
+  names of the contacts, `p/` searches through the phone number of the contacts, `t/`
+  searches through the tags of the contact, etc...
+* Each prefix must be followed by one and only one keyword. See below for example usage.
+* The search is done via the logical ***AND*** operator, i.e. `find n/john t/cs` will return
+  the list of contacts where his name is `john` and has a tag that contains `cs`.
+* The following shows a list of allowed prefixes:
+  1. `n/` which represents the name
+  2. `s/` which represents the status
+  3. `p/` which represents the phone number
+  4. `e/` which represents the email
+  5. `a/` which represents the address
+  6. `t/` which represents the tags
+
+Example:
+
+`find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
+has a tag labeled `cs2103`, and whose emails contain `gmail`.
 
 ### Add an image for contacts
 
@@ -108,7 +122,7 @@ Examples:
 
 * `list` followed by `add-image 2 C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
 
-## Delete an Image for contacts
+### Delete an Image for contacts
 
 Delete the image of a contact.
 
