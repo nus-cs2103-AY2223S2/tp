@@ -3,89 +3,54 @@
   "wards" : [ {
     "name" : "Block A Ward 1",
     "patients" : [ {
-      "name" : "Alex Yeoh",
-      "id" : "A12345A",
-      "phone" : "87438807",
-      "email" : "alexyeoh@example.com",
-      "address" : "Blk 30 Geylang Street 29, #06-40",
-      "status" : "",
-      "tagged" : [ "Patient" ]
-    }, {
-      "name" : "Charlotte Oliveiro",
-      "id" : "A12345C",
-      "phone" : "93210283",
-      "email" : "charlotte@example.com",
-      "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
-      "status" : "",
-      "tagged" : [ "Patient" ]
-    }, {
-      "name" : "Irfan Ibrahim",
-      "id" : "A12345E",
-      "phone" : "92492021",
-      "email" : "irfan@example.com",
-      "address" : "Blk 47 Tampines Street 20, #17-35",
-      "status" : "",
-      "tagged" : [ "Patient" ]
-    } ],
-    "staffs" : [ {
       "name" : "Amy Bee",
       "id" : "A12345678B",
       "phone" : "11111111",
       "email" : "amy@example.com",
       "address" : "Block 312, Amy Street 1",
       "status" : "",
-      "tagged" : [ "Staff" ]
+      "tagged" : [ "Patient" ]
     }, {
+      "name" : "Charlie Sandler",
+      "id" : "G487659645D",
+      "phone" : "2136784",
+      "email" : "charlie@example.com",
+      "address" : "123, abc, #08-111",
+      "status" : "Doing good",
+      "tagged" : [ "Patient" ]
+    }],
+    "staffs" : [ {
       "name" : "Charles Lee",
       "id" : "G487659645D",
       "phone" : "2136784",
       "email" : "leecharles@example.com",
-      "address" : "123, ABC, #08-111",
-      "status" : "",
+      "address" : "123, abc, #08-111",
       "tagged" : [ "Staff" ]
     } ]
   }, {
-    "name" : "Block B Ward 2",
+    "name" : "Block A Ward 2",
     "patients" : [ {
-      "name" : "Bernice Yu",
-      "id" : "A12345B",
-      "phone" : "99272758",
-      "email" : "berniceyu@example.com",
-      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
-      "status" : "",
+      "name" : "Adam Sandler",
+      "id" : "G73829173B",
+      "phone" : "94351253",
+      "email" : "adam@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "status" : "Doing fine",
       "tagged" : [ "Patient" ]
     }, {
-      "name" : "David Li",
-      "id" : "A12345D",
-      "phone" : "91031282",
-      "email" : "lidavid@example.com",
-      "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
-      "status" : "",
-      "tagged" : [ "Patient" ]
-    }, {
-      "name" : "Roy Balakrishnan",
-      "id" : "A12345F",
-      "phone" : "92624417",
-      "email" : "royb@example.com",
-      "address" : "Blk 45 Aljunied Street 85, #11-31",
-      "status" : "",
-      "tagged" : [ "Patient" ]
-    } ],
-    "staffs" : [ {
       "name" : "Bob Choo",
       "id" : "Y78932734N",
       "phone" : "222222222",
       "email" : "bob@example.com",
       "address" : "Block 123, Bobby Street 3",
-      "status" : "",
-      "tagged" : [ "Staff" ]
-    }, {
+      "tagged" : [ "Patient" ]
+    }],
+    "staffs" : [  {
       "name" : "Dacia Chin",
       "id" : "L73825263J",
       "phone" : "96128393",
       "email" : "daciachin@example.com",
       "address" : "970, Hindhede St, #07-27",
-      "status" : "",
       "tagged" : [ "Staff" ]
     } ]
   } ]
