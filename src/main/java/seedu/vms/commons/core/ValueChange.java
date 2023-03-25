@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public class ValueChange<T> {
     public static final String MESSAGE_ADDITION = "%s added";
-    public static final String MESSAGE_DELETION = "@s deleted";
+    public static final String MESSAGE_DELETION = "%s deleted";
     public static final String MESSAGE_UPDATE = "%s updated";
     public static final String MESSAGE_NO_CHANGE = "Nothing changed";
 

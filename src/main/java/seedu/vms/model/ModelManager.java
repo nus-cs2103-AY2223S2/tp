@@ -3,7 +3,6 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -232,11 +231,8 @@ public class ModelManager implements Model {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
-        ArrayList<String> messages = new ArrayList<>();
-
-        messages.addAll(updateVaccinationDetail(change));
-
-        return messages;
+        updateVaccinationDetail(change);
+        return List.of();
     }
 
     // =========== VaxTypeManager ==============================================================================
@@ -374,12 +370,13 @@ public class ModelManager implements Model {
     // =========== Misc methods ================================================================================
 
 
-    private List<String> updateVaccinationDetail(ValueChange<VaxType> change) {
-        if (!change.getOldValue().isPresent()) {
-            return List.of();
+    private void updateVaccinationDetail(ValueChange<VaxType> change) {
+        boolean isUpdated = change.getOldValue()
+                .map(oldValue -> oldValue.equals(detailVaxTypeProperty.get()))
+                .orElse(false);
+        if (isUpdated || change.getNewValue().isPresent()) {
+            detailVaxTypeProperty.set(change.getNewValue().orElse(null));
         }
-        detailVaxTypeProperty.setValue(change.getNewValue().orElse(null));
-        return List.of("Vaccination detail card updated");
     }
 
 
