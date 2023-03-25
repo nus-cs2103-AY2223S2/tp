@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ModelState;
@@ -66,4 +66,9 @@ public interface Logic {
     ObservableList<Pair<String, String>> getDeckNameList();
 
     ObservableList<Pair<String, String>> getReviewDeckNameList();
+
+    /**
+     * Removes all the card and deck data of users.
+     */
+    void factoryReset();
 }

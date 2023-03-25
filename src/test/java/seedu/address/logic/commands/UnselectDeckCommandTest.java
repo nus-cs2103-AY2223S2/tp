@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

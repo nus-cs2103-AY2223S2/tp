@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -19,7 +22,7 @@ import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -237,6 +240,26 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Creates a confirmation pop-up
+     */
+    public void handleClear() {
+        /* Creates a confirmation alert */
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Are you sure you want to clear all data?");
+
+        /* Creates buttons */
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        /* Checks user's answer */
+        Optional<ButtonType> answer = alert.showAndWait();
+        answer.filter(response -> response == buttonYes).ifPresent(unused -> logic.factoryReset());
+    }
+
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -253,6 +276,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
             }
 
             if (commandResult.isStartReview()) {
