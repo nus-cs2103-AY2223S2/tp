@@ -254,6 +254,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPatientFilters(Collection<Predicate<Patient>> filters) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
+        }
+
+        @Override
         public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");

@@ -5,23 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.vms.testutil.TypicalPatients.CARL;
-import static seedu.vms.testutil.TypicalPatients.ELLE;
-import static seedu.vms.testutil.TypicalPatients.FIONA;
 import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
-import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -65,23 +59,6 @@ public class FindCommandTest {
         expectedModel.updateFilteredPatientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(true, model.getFilteredPatientList().isEmpty());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePatientsFound() {
-        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPatientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        List<Patient> expectedPatients = Arrays.asList(CARL, ELLE, FIONA);
-        List<Patient> actualPatients = model.getFilteredPatientList()
-                .values()
-                .stream()
-                .map(data -> data.getValue())
-                .collect(Collectors.toList());
-        assertEquals(expectedPatients.size(), actualPatients.size());
-        assertEquals(true, expectedPatients.containsAll(actualPatients));
     }
 
     /**

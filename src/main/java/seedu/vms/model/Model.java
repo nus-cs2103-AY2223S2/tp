@@ -148,6 +148,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
 
+    void setPatientFilters(Collection<Predicate<Patient>> filters);
 
     /**
      * Returns the detailed patient property.

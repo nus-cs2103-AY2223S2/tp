@@ -18,12 +18,14 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.commands.patient.EditCommand;
+import seedu.vms.logic.commands.patient.FindCommand;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
+import seedu.vms.testutil.FindPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -73,6 +75,7 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPatientDescriptor DESC_AMY;
     public static final EditCommand.EditPatientDescriptor DESC_BOB;
+    public static final FindCommand.FindPatientDescriptor FIND_AMY;
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -81,6 +84,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withDob(VALID_DOB_BOB).withBloodType(VALID_BLOODTYPE_BOB)
                 .withAllergies(VALID_ALLERGY_SEAFOOD, VALID_ALLERGY_GLUTEN).build();
+        FIND_AMY = new FindPatientDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withDob(VALID_DOB_AMY).withBloodType(VALID_BLOODTYPE_AMY)
+                .withAllergies(VALID_ALLERGY_GLUTEN).build();
     }
 
     /**

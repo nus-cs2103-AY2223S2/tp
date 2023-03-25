@@ -336,6 +336,11 @@ public class ModelManager implements Model {
         filteredPatientMap.filter(predicate);
     }
 
+    @Override
+    public void setPatientFilters(Collection<Predicate<Patient>> filters) {
+        filteredPatientMap.filter(filters);
+    }
+
     // =========== Filtered VaxType Map Accessors ==============================================================
 
     @Override
