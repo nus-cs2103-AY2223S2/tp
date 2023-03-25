@@ -54,8 +54,7 @@ public class UnassignCommand extends Command {
         Project projectToUnassign = lastShownList.get(index.getZeroBased());
         Set<Person> members = projectToUnassign.getMembers();
         Set<Person> newMembers = new HashSet<>();
-        Boolean isMember = projectToUnassign.hasMember(name);
-        if (!isMember) {
+        if (!projectToUnassign.hasMember(name)) {
             throw new CommandException(String.format(MESSAGE_NOT_IN_PROJECT, name));
         }
         for (Person member : members) {
