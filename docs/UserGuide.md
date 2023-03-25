@@ -164,7 +164,8 @@ Format: `sort ORDER`: `sort alphabetical` or `sort deadline`
 Currently, there are two orders you can choose:
 1. `sort alphabetical` sorts applications by their company names in alphabetical order. Should
 there be multiple applications to the same company, they will be ranked alphabetically by their roles.
-2. `sort deadline` sorts applications by 
+2. `sort deadline` sorts applications by the deadline of their upcoming task. Earlier deadlines will be higher
+up in the list.
 
 ### Clearing all entries : `clear` 
 
@@ -175,6 +176,7 @@ Format: `clear`
 ### Exiting the program : `exit`
 
 Exits the program.
+Alternatively, you can exit the program by clicking the top-right X button to close the window.
 
 Format: `exit`
 
@@ -207,11 +209,12 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                            |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`      |
+| **Add**    | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`  |
 | **Clear**  | `clear`                                                                                                                                     |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                         |
-| **Edit**   | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg`            |
+| **Edit**   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg`        |
+| **Exit**   | `exit`                                                                                                                                      |
 | **Find**   | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered` |
 | **List**   | `list`                                                                                                                                      |
 | **Help**   | `help`                                                                                                                                      |
-| **Sort**   | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                    |
+| **Sort**   | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                   |
