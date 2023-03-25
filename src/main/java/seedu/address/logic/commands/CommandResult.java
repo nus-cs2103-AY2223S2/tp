@@ -11,9 +11,14 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /**
-     * Help information should be shown to the user.
-     */
+
+    /** Light mode should be shown to the user. */
+    private final boolean showLight;
+
+    /** Dark mode should be shown to the user. */
+    private final boolean showDark;
+
+    /** Help information should be shown to the user. */
     private final boolean showHelp;
 
     /**
@@ -29,11 +34,13 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showLight, boolean showDark) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showBackups = false;
+        this.showDark = showDark;
+        this.showLight = showLight;
     }
 
     /**
@@ -45,6 +52,8 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.showBackups = showBackups;
+        this.showDark = false;
+        this.showLight = false;
     }
 
     /**
@@ -52,7 +61,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -85,12 +94,21 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showLight == otherCommandResult.showLight
+                && showDark == otherCommandResult.showDark;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showLight, showDark);
     }
 
+    public boolean isShowLight() {
+        return showLight;
+    }
+
+    public boolean isShowDark() {
+        return showDark;
+    }
 }
