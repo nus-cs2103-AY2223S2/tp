@@ -15,20 +15,20 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class MarkPresentCommand extends Command {
+public class MarkAbsentCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the selected student at the index number as present. \n"
+            + ": Marks the attendance of the selected student at the index number as absent. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Marked student as present: %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
 
     private final Index targetIndex;
 
-    public MarkPresentCommand(Index targetIndex) {
+    public MarkAbsentCommand(Index targetIndex) {
         super(true);
         this.targetIndex = targetIndex;
     }
@@ -47,7 +47,7 @@ public class MarkPresentCommand extends Command {
         }
 
         Student studentToMark = studentList.get(targetIndex.getZeroBased());
-        session.markPresent(studentToMark);
+        session.markAbsent(studentToMark);
 
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentToMark), willModifyState);
     }
@@ -58,11 +58,11 @@ public class MarkPresentCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MarkPresentCommand)) {
+        if (!(other instanceof MarkAbsentCommand)) {
             return false;
         }
 
-        MarkPresentCommand e = (MarkPresentCommand) other;
+        MarkAbsentCommand e = (MarkAbsentCommand) other;
         return targetIndex.equals(e.targetIndex);
     }
 }
