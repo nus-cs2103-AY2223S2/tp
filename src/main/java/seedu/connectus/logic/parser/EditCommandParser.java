@@ -15,7 +15,6 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
