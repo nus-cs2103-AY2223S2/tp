@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.joda.time.LocalTime;
 
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.Day;
@@ -46,7 +47,7 @@ public class Timetable {
         } else {
             for (int i = lesson.getStartTime().getHourOfDay() - 8;
                  i < lesson.getEndTime().getHourOfDay() - 8; i++) {
-                availableSlots.get(i).setLesson(lesson);
+                availableSlots.get(i).setCommitment(lesson);
             }
         }
     }
@@ -60,9 +61,9 @@ public class Timetable {
         for (Day day : Day.values()) {
             ArrayList<HourBlock> dayEvents = schedule.get(day);
             for (int i = 0; i < schedule.size(); i++) {
-                if (dayEvents.get(i).getLesson().isPresent()) {
-                    Lesson lesson = dayEvents.get(i).getLesson().get();
-                    this.schedule.get(day).get(i).setLesson(lesson);
+                if (dayEvents.get(i).getCommitment().isPresent()) {
+                    Commitment lesson = dayEvents.get(i).getCommitment().get();
+                    this.schedule.get(day).get(i).setCommitment(lesson);
                 }
             }
         }
