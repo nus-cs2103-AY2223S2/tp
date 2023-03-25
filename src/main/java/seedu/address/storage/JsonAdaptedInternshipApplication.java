@@ -18,7 +18,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
@@ -29,6 +36,13 @@ public class JsonAdaptedInternshipApplication {
     private final String companyName;
     private final String jobTitle;
     private final List<String> reviews = new ArrayList<>();
+    private final List<String> programmingLanguages = new ArrayList<>();
+    private final List<String> qualifications = new ArrayList<>();
+    private final String location;
+    private final String salary;
+    private final List<String> notes = new ArrayList<>();
+    private final String rating;
+    private final List<String> reflections = new ArrayList<>();
     private final List<String> contact = new ArrayList<>();
     private final String status;
     private final String interviewDate;
@@ -40,6 +54,13 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
                                             @JsonProperty("review") List<String> reviews,
+                                            @JsonProperty("programmingLanguage") List<String> programmingLanguages,
+                                            @JsonProperty("qualification") List<String> qualifications,
+                                            @JsonProperty("location") String location,
+                                            @JsonProperty("salary") String salary,
+                                            @JsonProperty("note") List<String> notes,
+                                            @JsonProperty("rating") String rating,
+                                            @JsonProperty("reflection") List<String> reflections,
                                             @JsonProperty("status") String status,
                                             @JsonProperty("interviewDate") String interviewDate,
                                             @JsonProperty("contact") List<String> contact) {
@@ -47,6 +68,21 @@ public class JsonAdaptedInternshipApplication {
         this.jobTitle = jobTitle;
         if (reviews != null) {
             this.reviews.addAll(reviews);
+        }
+        if (programmingLanguages != null) {
+            this.programmingLanguages.addAll(programmingLanguages);
+        }
+        if (qualifications != null) {
+            this.qualifications.addAll(qualifications);
+        }
+        this.location = location;
+        this.salary = salary;
+        if (notes != null) {
+            this.notes.addAll(notes);
+        }
+        this.rating = rating;
+        if (reflections != null) {
+            this.reflections.addAll(reflections);
         }
         if (contact != null) {
             this.contact.addAll(contact);
@@ -63,6 +99,21 @@ public class JsonAdaptedInternshipApplication {
         jobTitle = source.getJobTitle().fullName;
         reviews.addAll(source.getReviews().stream()
                 .map(Review::toString)
+                .collect(Collectors.toList()));
+        programmingLanguages.addAll(source.getProgrammingLanguages().stream()
+                            .map(ProgrammingLanguage::toString)
+                            .collect(Collectors.toList()));
+        qualifications.addAll(source.getQualifications().stream()
+                        .map(Qualification::toString)
+                        .collect(Collectors.toList()));
+        location = source.getLocation().value;
+        salary = source.getSalary().value;
+        notes.addAll(source.getNotes().stream()
+                .map(Note::toString)
+                .collect(Collectors.toList()));
+        rating = source.getRating().value;
+        reflections.addAll(source.getReflections().stream()
+                .map(Reflection::toString)
                 .collect(Collectors.toList()));
         if (source.getContact() != null) {
             contact.add(source.getContact().getPhone().value);
@@ -87,7 +138,7 @@ public class JsonAdaptedInternshipApplication {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                                                             CompanyName.class.getSimpleName()));
         }
-        if (!CompanyName.isValidName(companyName)) {
+        if (!CompanyName.isValidCompanyName(companyName)) {
             throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         final CompanyName modelCompanyName = new CompanyName(companyName);
@@ -106,6 +157,45 @@ public class JsonAdaptedInternshipApplication {
             reviewList.add(new Review(review));
         }
         final Set<Review> modelReviews = new HashSet<>(reviewList);
+
+        final List<ProgrammingLanguage> programmingLanguageList = new ArrayList<>();
+        for (String programmingLanguage : programmingLanguages) {
+            programmingLanguageList.add(new ProgrammingLanguage(programmingLanguage));
+        }
+        final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(programmingLanguageList);
+
+        final List<Qualification> qualificationList = new ArrayList<>();
+        for (String qualification : qualifications) {
+            qualificationList.add(new Qualification(qualification));
+        }
+        final Set<Qualification> modelQualifications = new HashSet<>(qualificationList);
+
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+        final Location modelLocation = new Location(location);
+
+        if (!Salary.isValidSalary(salary)) {
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        final Salary modelSalary = new Salary(salary);
+
+        final List<Note> noteList = new ArrayList<>();
+        for (String note : notes) {
+            noteList.add(new Note(note));
+        }
+        final Set<Note> modelNotes = new HashSet<>(noteList);
+
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
+
+        final List<Reflection> reflectionList = new ArrayList<>();
+        for (String reflection : reflections) {
+            reflectionList.add(new Reflection(reflection));
+        }
+        final Set<Reflection> modelReflections = new HashSet<>(reflectionList);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -133,11 +223,13 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelContact, modelStatus,
-                    modelInterviewDate);
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelProgrammingLanguages,
+                modelQualifications, modelLocation, modelSalary, modelNotes, modelRating, modelReflections,
+                modelContact, modelStatus, modelInterviewDate);
         }
 
-        return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews,
-                                                    null, modelStatus, modelInterviewDate);
+        return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelProgrammingLanguages,
+                modelQualifications, modelLocation, modelSalary, modelNotes, modelRating, modelReflections,
+                null, modelStatus, modelInterviewDate);
     }
 }

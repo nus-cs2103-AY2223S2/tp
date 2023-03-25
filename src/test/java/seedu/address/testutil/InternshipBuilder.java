@@ -1,12 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Review;
 /**
  * A utility class to help with building InternshipApplication objects.
  */
@@ -16,14 +12,12 @@ public class InternshipBuilder {
 
     private CompanyName companyName;
     private JobTitle jobTitle;
-    private Set<Review> reviews;
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
      */
     public InternshipBuilder() {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
-        reviews = new HashSet<>();
     }
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
@@ -31,7 +25,6 @@ public class InternshipBuilder {
     public InternshipBuilder(InternshipApplication internshipToCopy) {
         companyName = internshipToCopy.getCompanyName();
         jobTitle = internshipToCopy.getJobTitle();
-        reviews = new HashSet<>(internshipToCopy.getReviews());
     }
 
     /**
@@ -51,6 +44,6 @@ public class InternshipBuilder {
     }
 
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews);
+        return new InternshipApplication(companyName, jobTitle);
     }
 }
