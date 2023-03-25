@@ -189,7 +189,8 @@ class JsonAdaptedPerson {
         }
 
         if (medicalCondition == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MedicalCondition.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalCondition.class.getSimpleName()));
         }
         if (!MedicalCondition.isValidCondition(medicalCondition)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
