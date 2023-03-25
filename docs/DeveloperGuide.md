@@ -11,12 +11,12 @@ title: Developer Guide
 
 ## **1. Introduction**
 
-### 1.1 About sprINT 
+### 1.1 About sprINT
 
-**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. 
+**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt.
 
-Students often face a great administrative burden in keeping track of the high volume of job or internship 
-applications. With sprINT, students can easily manage details of their internship applications, including the company, 
+Students often face a great administrative burden in keeping track of the high volume of job or internship
+applications. With sprINT, students can easily manage details of their internship applications, including the company,
 contacts, status and task deadlines.
 
 ### 1.2 About this guide
@@ -25,7 +25,7 @@ This developer guide details the high-level software architecture and design dec
 It is intended for:
 
 * Advanced users who wish to get a better understanding of sprINT's features
-* Present and future developers, designers and testers of sprINT 
+* Present and future developers, designers and testers of sprINT
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,15 +299,16 @@ sequence diagram:
 
 #### About
 The "find" command is a tool that enables users to search for a specific application within the internship book.
+
 Users can locate the application by providing its index and optionally using the parameters "r/", "c/", and "s/" to 
 refine their search. These parameters correspond to the role, company, and status fields in the internship book
 , allowing for customized searches. Without any of the required prefixes, it will do a global search for the search
 keyword in all fields of the applications.
 
 #### Usage
-To find an application in sprINT, simply issue the command in the following format:
+To find an application in sprINT, issue the command in the following format:
 
-find [r/role] [c/companyName] [s/status]
+`find [r/role] [c/companyName] [s/status]`
 
 Here's a breakdown of what each prefix means:
 
@@ -315,7 +316,7 @@ Here's a breakdown of what each prefix means:
 - `c/` - this prefix is used to find the company name in the internship.
 - `s/` - this prefix is used to find the status of your application, such as "interested", "applied", "rejected", or "offered".
 
-#### [Work in Progress] Implementation
+#### Implementation
 The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
 Given below are the steps that illustrate the interaction between the components when it receives a valid add
@@ -327,28 +328,14 @@ application command from the user.
 4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for a specific purpose of
    parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
-6. The `FindApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
-the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
-must provide in the input when using the add application feature.
-
-</div>   
-
-7. These fields will then be used to create an `Application` instance.
-8. The newly created `Application` instance will then be used to create an `FindApplicationCommand`. This command instances
-   is returned back to `ApplicationLogicManager`.
+6. The `FindApplicationCommandParser` then identifies the different prefixes (if any) in the string and creates a list of keywords.
+7. The `parse()` method will return a `FindApplicationCommand(new NameContainsKeywordsPredicate(keywords))`.
+8. This `FindApplicationCommand` is returned back to `ApplicationLogicManager`.
 9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
    the logic behind adding the associated application instance to the existing `InternshipBook`.
 10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
-exception that was thrown and the error message will be displayed to the user.
-
-</div> 
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
@@ -361,7 +348,7 @@ sequence diagram:
 #### About
 sprINT offers the options to sort the applications list in two ways:
 - `sort deadline` will sort by the deadline of upcoming tasks
-- `sort alphabetical` will sort by the alphabetical order of the internship roles; if there are two internship roles 
+- `sort alphabetical` will sort by the alphabetical order of the internship roles; if there are two internship roles
 that are the same, the tiebreaker will be the alphabetical order of the company name
 
 #### Implementation
@@ -498,57 +485,6 @@ When a user enters the `add-task` command:
     * Cons:
       * Increases code redundancy.
       * Violates Single Responsibility Principle.
-
-
-### Clear Applications Feature
-
-#### About
-
-The clear applications command is a feature in sprINT. This command allows users to remove all previously inserted
-applications from the system, providing a fresh start for new application entries. With this feature, users can
-easily reset their application history and begin again with a clean slate.
-
-#### Usage
-
-To use the clear applications command, simply enter `clear` in the command line interface. Upon executing the command,
-sprINT will remove all previously inserted applications from the system, leaving a blank slate for the user to begin anew.
-It is important to note that this action cannot be undone, so use this command with caution. This feature is especially
-useful for users who have completed their internships or want to start afresh with a new internship cycle.
-With the clear applications command, sprINT provides an efficient and simple way to manage internship applications.
-
-#### Implementation
-
-The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
-
-Given below are the steps that illustrate the interaction between the components when it receives a valid add
-application command from the user.
-
-1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. Upon parsing the `clear` Command Keyword, the `InternshipBookParser` creates a `ClearApplicationsCommand`. This command instance
-   is returned back to `ApplicationLogicManager`.
-5. The `ApplicationLogicManager` then calls the `execute()` method of the `ClearApplicationsCommand`. This initializes the execution
-   the logic behind resetting the entire `InternshipBook`.
-6. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
-    the execution of the command.
-7. The Ui component displays the contents of the `CommandResult` to the User.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `clear` command executed successfully,
-the CommandResult will display the newly updated application list to the user, which would be empty in this case.
-If an error occurred during execution, the corresponding exception that was thrown and the error message will be displayed to the user.
-</div> 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `clear` command must be used with
-extreme caution, as it might potentially lead to highly undesirable outcomes. As a safety precaution, we do not delete
-the original instance of the `InternshipBook` immediately after executing a `clear` command. Users will have the
-opportunity to revert back to the previous state using the `undo` command.
-</div> 
-
-For a more graphical illustration of how an add application command is processed, please refer to the following
-sequence diagram:
-
-![ClearApplicationsSequenceDiagram](images/ClearApplicationsSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
