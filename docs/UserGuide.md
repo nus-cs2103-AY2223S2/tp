@@ -220,15 +220,17 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/addressbook.json
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
-### Import data from CSV : `[coming in v1.3]`
+### Import data from CSV : `import`
 
 Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
 
-_Details coming soon ..._
+Format: `import`
 
-### Export data to CSV `export`
+### Export data to CSV : `export`
 
 Opens a file chooser to select a directory where you can save the data to a CSV file.
+
+If you wish to export to a new file which does not exist, you may type its intended name in the **File Name** box and click **Save**. This will create the new CSV file with the exported data.
 
 Format: `export`
 
