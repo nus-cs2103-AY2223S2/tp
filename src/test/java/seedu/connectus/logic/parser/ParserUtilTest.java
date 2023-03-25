@@ -2,6 +2,9 @@ package seedu.connectus.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.connectus.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.connectus.testutil.Assert.assertThrows;
 import static seedu.connectus.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -18,6 +21,9 @@ import seedu.connectus.model.person.Address;
 import seedu.connectus.model.person.Email;
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Phone;
+import seedu.connectus.model.socialmedia.Instagram;
+import seedu.connectus.model.socialmedia.Telegram;
+import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
@@ -28,6 +34,8 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MODULE = "CS2!03T";
+    private static final String INVALID_INSTAGRAM = "inst...agram";
+    private static final String INVALID_TELEGRAM = "tele";
     private static final String INVALID_BIRTHDAY = "Hello/01/2000";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -38,6 +46,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_MODULE_1 = "CS2103T";
     private static final String VALID_MODULE_2 = "CS2101";
+    private static final String VALID_INSTAGRAM = "john.doe";
+    private static final String VALID_TELEGRAM = "some_tele123gram";
     private static final String VALID_BIRTHDAY = "01/01/2000";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -200,6 +210,50 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    @Test
+    public void parseInstagram_invalidValue_throwsParseException() {
+        var argMultimap = new ArgumentMultimap();
+        argMultimap.put(PREFIX_SOCMED_INSTAGRAM, INVALID_INSTAGRAM);
+        assertThrows(ParseException.class, () -> ParserUtil.parseSocialMedia(argMultimap));
+    }
+
+    @Test
+    public void parseInstagram_validValue_returnsInstagram() throws Exception {
+        var argMultimap = new ArgumentMultimap();
+        var instagram = Instagram.of(VALID_INSTAGRAM);
+        argMultimap.put(PREFIX_SOCMED_INSTAGRAM, VALID_INSTAGRAM);
+        assertEquals(ParserUtil.parseSocialMedia(argMultimap).getInstagram(), instagram);
+    }
+
+    @Test
+    public void parseTelegram_invalidValue_throwsParseException() {
+        var argMultimap = new ArgumentMultimap();
+        argMultimap.put(PREFIX_SOCMED_TELEGRAM, INVALID_TELEGRAM);
+        assertThrows(ParseException.class, () -> ParserUtil.parseSocialMedia(argMultimap));
+    }
+
+    @Test
+    public void parseTelegram_validValue_returnsTelegram() throws Exception {
+        var argMultimap = new ArgumentMultimap();
+        var telegram = Telegram.of(VALID_TELEGRAM);
+        argMultimap.put(PREFIX_SOCMED_TELEGRAM, VALID_TELEGRAM);
+        assertEquals(ParserUtil.parseSocialMedia(argMultimap).getTelegram(), telegram);
+    }
+
+    @Test
+    public void parseWhatsapp_invalidValue_throwsParseException() {
+        var argMultimap = new ArgumentMultimap();
+        argMultimap.put(PREFIX_SOCMED_WHATSAPP, INVALID_PHONE);
+        assertThrows(ParseException.class, () -> ParserUtil.parseSocialMedia(argMultimap));
+    }
+
+    @Test
+    public void parseWhatsApp_validValue_returnsWhatsApp() throws Exception {
+        var argMultimap = new ArgumentMultimap();
+        var whatsApp = WhatsApp.of(VALID_PHONE);
+        argMultimap.put(PREFIX_SOCMED_WHATSAPP, VALID_PHONE);
+        assertEquals(ParserUtil.parseSocialMedia(argMultimap).getWhatsapp(), whatsApp);
+    }
 
     @Test
     public void parseModule_null_throwsNullPointerException() {
