@@ -73,8 +73,8 @@ public class ListAssignment extends Command {
             model.updateFilteredPersonList(p -> assign == assignTaskObservable
                 .stream().anyMatch(a -> a.getPersonId().equals(p.getId())));
         }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, getAssignString(assign), type + "(s)"));
+        String typeMsg = type.equals("") ? "person(s) and task(s)" : type + "(s)";
+        return new CommandResult(String.format(MESSAGE_SUCCESS, getAssignString(assign), typeMsg));
     }
 
 
