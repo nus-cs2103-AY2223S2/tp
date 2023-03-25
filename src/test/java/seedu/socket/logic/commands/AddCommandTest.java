@@ -53,6 +53,19 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_exceedsTagsRestriction_throwsCommandException() {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder()
+                .withTags("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11").build();
+
+        AddCommand addCommand = new AddCommand(validPerson);
+
+        assertThrows(CommandException.class,
+                String.format(AddCommand.MESSAGE_EXCEED_TAG,
+                        validPerson.getTags().size()), () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void testEquals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
