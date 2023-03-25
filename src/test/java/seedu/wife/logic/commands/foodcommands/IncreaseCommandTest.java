@@ -67,6 +67,7 @@ public class IncreaseCommandTest {
             IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2");
             assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
         } catch (ParseException ignored) {
+            assert false;
         }
     }
 
@@ -81,7 +82,7 @@ public class IncreaseCommandTest {
             IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2 q/0");
             assertCommandFailure(increaseCommand, model, failureMessage);
         } catch (ParseException ignored) {
-
+            assert true;
         }
 
     }
