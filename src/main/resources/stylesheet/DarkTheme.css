@@ -9,24 +9,20 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-weight: bold;
     -fx-text-fill: #555555;
-    -fx-opacity: 0.9;
+    -fx-opacity: 1;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-weight: lighter;
-    -fx-text-fill: white;
     -fx-opacity: 1;
 }
+
 
 .text-field {
     -fx-font-size: 12pt;
@@ -138,6 +134,10 @@
 .cell_small_label {
     -fx-font-weight: lighter;
     -fx-font-size: 14px;
+    -fx-text-fill: #F7F8F8;
+}
+
+.field_label {
     -fx-text-fill: #F7F8F8;
 }
 
@@ -386,13 +386,20 @@
     -fx-background-radius: 0;
 }
 
-#drugList {
+#patientDetailDisplay {
     -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
 }
-#patientList {
+
+#drugDetailDisplay {
     -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
 }
-#detailDisplay {
+
+#patientDetailContainer {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+    -fx-background-radius: 0;
+}
+
+#drugDetailContainer {
     -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
     -fx-background-radius: 0;
 }
