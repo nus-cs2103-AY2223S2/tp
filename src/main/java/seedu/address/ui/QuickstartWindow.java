@@ -34,13 +34,12 @@ public class QuickstartWindow extends UiPart<Stage> {
     public QuickstartWindow(Stage root) {
         super(FXML, root);
         ImageView initImageView = new ImageView();
-        initImageView.setX(4.0);
-        initImageView.setY(4.0);
-        initImageView.setFitHeight(421.0);
-        initImageView.setFitWidth(686.0);
         initImageView.setPickOnBounds(true);
         initImageView.setPreserveRatio(true);
+        initImageView.setFitHeight(466.0);
+        initImageView.setFitWidth(670.0);
         ImageView quickImageView = initImageView;
+        quickImageView.setImage(pageImageSet(0));
         quickPagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
