@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class RecipeDescriptor {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags;
-    private List<IngredientBuilder> ingredients;
+    private Hashtable<Ingredient, IngredientQuantifier> ingredients;
     private List<Step> steps;
 
     public RecipeDescriptor() {
@@ -67,11 +68,7 @@ public class RecipeDescriptor {
         newRecipe.setTags(updatedTags);
 
         Hashtable<Ingredient, IngredientQuantifier> updatedIngredients = getIngredients()
-                .map(l -> {
-                    Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
-                    l.forEach(ingredientBuilder -> ingredientTable.putAll(ingredientBuilder.build()));
-                    return ingredientTable;
-                })
+                .map(Hashtable::new)
                 .orElse(recipeToEdit.getIngredients());
         newRecipe.setIngredients(updatedIngredients);
 
@@ -137,12 +134,18 @@ public class RecipeDescriptor {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
-    public Optional<List<IngredientBuilder>> getIngredients() {
-        return (ingredients != null) ? Optional.of(Collections.unmodifiableList(ingredients)) : Optional.empty();
+    public Optional<Map<Ingredient, IngredientQuantifier>> getIngredients() {
+        return (ingredients != null) ? Optional.of(Collections.unmodifiableMap(ingredients)) : Optional.empty();
+    }
+
+    public void setIngredients(Hashtable<Ingredient, IngredientQuantifier> ingredientTable) {
+        this.ingredients = ingredientTable;
     }
 
     public void setIngredients(List<IngredientBuilder> ingredients) {
-        this.ingredients = (ingredients != null) ? new ArrayList<>(ingredients) : null;
+        Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
+        ingredients.forEach(ingredient -> ingredientTable.putAll(ingredient.build()));
+        this.ingredients = ingredientTable;
     }
 
     public Optional<List<Step>> getSteps() {

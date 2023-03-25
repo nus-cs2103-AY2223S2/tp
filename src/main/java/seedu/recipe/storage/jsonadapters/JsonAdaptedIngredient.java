@@ -1,10 +1,14 @@
 package seedu.recipe.storage.jsonadapters;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.IngredientBuilder;
@@ -12,10 +16,6 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link IngredientBuilder}.
@@ -70,12 +70,8 @@ public class JsonAdaptedIngredient {
     public JsonAdaptedIngredient(Ingredient ingredient, IngredientQuantifier quantifier) {
         ingredientName = ingredient.getName();
         commonName = ingredient.getCommonName();
-        if (quantifier.getQuantity().isPresent()) {
-            ingredientQuantity = quantifier.getQuantity().get().toString();
-        } else {
-            ingredientQuantity = null;
-        }
-        estimatedQuantity = quantifier.getEstimatedQuantity().orElse("");
+        ingredientQuantity = quantifier.getQuantity().map(Object::toString).orElse(null);
+        estimatedQuantity = quantifier.getEstimatedQuantity().orElse(null);
         remarks.addAll(quantifier.getRemarks());
         substitutions.addAll(quantifier.getSubstitutions().stream()
                 .map(JsonAdaptedSubstitutionIngredient::new)

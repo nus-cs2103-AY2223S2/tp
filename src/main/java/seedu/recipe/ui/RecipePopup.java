@@ -1,5 +1,7 @@
 package seedu.recipe.ui;
 
+import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientKeyValuePairToString;
+
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -15,7 +17,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
 
-import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientKeyValuePairToString;
 
 /**
  * Represents the UI component that pops up and displays the detailed view of a Recipe.

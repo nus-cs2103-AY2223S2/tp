@@ -20,6 +20,7 @@ import static seedu.recipe.testutil.TypicalRecipes.MASALA_DOSA;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -28,6 +29,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.RecipeBuilder;
 
@@ -167,7 +170,15 @@ public class RecipeTest {
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setIngredients(ingredientsToAdd);
         newIngredientList.addAll(List.of(ingredientsToAdd));
-        assertEquals(newIngredientList, test.getIngredients());
+
+        Hashtable<Ingredient, IngredientQuantifier> newIngredientTable = new Hashtable<>();
+        newIngredientList.forEach(ingredientBuilder -> newIngredientTable.putAll(ingredientBuilder.build()));
+        Hashtable<Ingredient, IngredientQuantifier> testTable = test.getIngredients();
+
+        newIngredientTable.forEach((ingredient, quantifier) -> {
+            assertTrue(testTable.contains(ingredient));
+            assertEquals(quantifier, testTable.get(ingredient));
+        });
     }
 
     //IngredientBuilder logic
