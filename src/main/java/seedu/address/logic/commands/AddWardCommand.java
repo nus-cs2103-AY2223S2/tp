@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CAPACITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,9 +17,10 @@ public class AddWardCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ward to MedInfo. \n"
             + "Parameters: "
-            + PREFIX_WARD + "WARDNUMBER\n"
+            + PREFIX_NAME + "WARDNAME "
+            +" [optional]" + PREFIX_CAPACITY + "CAPACITY \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_WARD + "A03\n";
+            + PREFIX_NAME + "A03 " + PREFIX_CAPACITY + "100\n";
 
     public static final String MESSAGE_SUCCESS = "New ward added: %1$s";
     public static final String MESSAGE_DUPLICATE_WARD = "This ward already exists in MedInfo";

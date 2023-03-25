@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_WARD = new Prefix("w/");
     public static final Prefix PREFIX_DISCHARGE = new Prefix("d/");
+    public static final Prefix PREFIX_CAPACITY = new Prefix("c/");
 }

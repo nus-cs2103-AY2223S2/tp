@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddWardCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ward.Capacity;
 import seedu.address.model.ward.Ward;
 
 
@@ -23,20 +26,22 @@ public class AddWardCommandParser implements Parser<AddWardCommand> {
      */
     public AddWardCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WARD);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CAPACITY);
 
-        System.out.println(arePrefixesPresent(argMultimap, PREFIX_WARD));
-        System.out.println(argMultimap.getPreamble().isEmpty());
-
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_WARD)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWardCommand.MESSAGE_USAGE));
         }
 
-        String wardName = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get());
-        Ward ward = new Ward(wardName);
+        if (!arePrefixesPresent(argMultimap, PREFIX_CAPACITY)) {
+            String wardName = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
+            Ward ward = new Ward(wardName);
+            return new AddWardCommand(ward);
+        }
 
+        String wardName = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
+        Capacity wardCapacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
+        Ward ward = new Ward(wardName, wardCapacity);
         return new AddWardCommand(ward);
     }
 
