@@ -1,4 +1,4 @@
-## Table of contents
+## UserGuide
 
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
