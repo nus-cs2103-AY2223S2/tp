@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BLANK_FIND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDATTENDANCE;
@@ -19,6 +20,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
@@ -48,6 +50,7 @@ import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentGradeCommand;
 import seedu.address.logic.commands.student.StudentGradeDeleteCommand;
+import seedu.address.logic.commands.student.StudentListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -61,6 +64,7 @@ import seedu.address.model.person.Sex;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
+import seedu.address.model.person.student.ClassContainsKeywordsPredicate;
 import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
@@ -105,8 +109,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_ADDRESS);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT, PREFIX_ADD,
-                        PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
+                ArgumentTokenizer.tokenize(arguments, PREFIX_LIST, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT,
+                        PREFIX_ADD, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
                         PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
                         PREFIX_ADDRESS);
@@ -145,7 +149,13 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         } else if (argumentMultimapAtt.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
             return attCommand(studentClass, argumentMultimapAtt);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
+            if (arguments.trim().equals(PREFIX_FIND.toString())) {
+                throw new ParseException(MESSAGE_BLANK_FIND);
+            }
             return new StudentFindCommandParser().parse(studentClass + arguments);
+        } else if (argMultimap.getValue(PREFIX_LIST).isPresent()) {
+            return new StudentListCommand(Class.of(studentClass),
+                    new ClassContainsKeywordsPredicate(Class.of(studentClass)));
         } else {
             //Rest of logic (Need to  edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));

@@ -148,4 +148,6 @@ public interface Model {
      * @param predicate must not be null.
      */
     void updateFilteredParentList(Predicate<Parent> predicate);
+
+    void updateFilteredStudentListFind(Predicate<Student> predicate, Class sc);
 }
