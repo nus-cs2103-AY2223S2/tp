@@ -5,8 +5,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
+// import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -27,8 +28,8 @@ public class Elderly extends Person {
      * Every field must be present and not null.
      */
     public Elderly(Name name, Phone phone, Email email, Address address,
-                   Nric nric, Age age, Region region, RiskLevel riskLevel, Set<Tag> tags) {
-        this(name, phone, email, address, nric, age, region, riskLevel, tags, new HashSet<>());
+                   Nric nric, BirthDate birthDate, Region region, RiskLevel riskLevel, Set<Tag> tags) {
+        this(name, phone, email, address, nric, birthDate, region, riskLevel, tags, new HashSet<>());
     }
 
 
@@ -36,9 +37,9 @@ public class Elderly extends Person {
      * Every field must be present and not null.
      */
     public Elderly(Name name, Phone phone, Email email, Address address,
-            Nric nric, Age age, Region region,
+            Nric nric, BirthDate birthDate, Region region,
                    RiskLevel riskLevel, Set<Tag> tags, Set<AvailableDate> availableDates) {
-        super(name, phone, email, address, nric, age, region, tags, availableDates);
+        super(name, phone, email, address, nric, birthDate, region, tags, availableDates);
         this.riskLevel = riskLevel;
     }
 
@@ -69,7 +70,7 @@ public class Elderly extends Person {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(), getRiskLevel(), getTags(), getAvailableDates());
+                getNric(), getBirthDate(), getRegion(), getRiskLevel(), getTags(), getAvailableDates());
     }
 
     @Override
@@ -85,7 +86,7 @@ public class Elderly extends Person {
                 .append("; NRIC: ")
                 .append(getNric())
                 .append("; Age: ")
-                .append(getAge())
+                .append(getBirthDate().getAge())
                 .append("; Region: ")
                 .append(getRegion())
                 .append("; RiskLevel: ")
