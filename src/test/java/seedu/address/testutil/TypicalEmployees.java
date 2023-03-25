@@ -1,22 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.ExecutiveProDb;
 import seedu.address.model.employee.Employee;
 
@@ -25,38 +13,52 @@ import seedu.address.model.employee.Employee;
  */
 public class TypicalEmployees {
 
-    public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+    public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline").withPhone("94351253")
+            .withEmail("alice@example.com").withAddress("123, Jurong West Ave 6, #08-111")
+            .withDepartment("Sales").withPicturePath("src/main/resources/employeepictures/default.png")
             .withTags("friends").build();
-    public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+    public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier").withPhone("98765432")
+            .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
+            .withDepartment("Sales").withPicturePath("src/main/resources/employeepictures/default.png")
             .withTags("owesMoney", "friends").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .withDepartment("Sales").withPicturePath("src/main/resources/employeepictures/default.png").build();
     public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street")
+            .withDepartment("Marketing").withPicturePath("src/main/resources/employeepictures/default.png")
+            .withTags("friends").build();
     public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withDepartment("Marketing").withPicturePath("src/main/resources/employeepictures/default.png").build();
     public static final Employee FIONA = new EmployeeBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo")
+            .withDepartment("Marketing").withPicturePath("src/main/resources/employeepictures/default.png").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withDepartment("Marketing").withPicturePath("src/main/resources/employeepictures/default.png").build();
 
     // Manually added
     public static final Employee HOON = new EmployeeBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india")
+            .withDepartment("Sales").withPicturePath("src/main/resources/employeepictures/default.png").build();
     public static final Employee IDA = new EmployeeBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave")
+            .withDepartment("Marketing").withPicturePath("src/main/resources/employeepictures/default.png").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Employee AMY = new EmployeeBuilder().withName(VALID_NAME_AMY)
-            .withEmployeeId(VALID_EMPLOYEE_ID_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Employee BOB = new EmployeeBuilder().withName(VALID_NAME_BOB)
-            .withEmployeeId(VALID_EMPLOYEE_ID_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Employee AMY = new EmployeeBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+            .withEmployeeId(CommandTestUtil.VALID_EMPLOYEE_ID_AMY).withPhone(CommandTestUtil.VALID_PHONE_AMY)
+            .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
+            .withDepartment(CommandTestUtil.VALID_DEPARTMENT_AMY)
+            .withPicturePath(CommandTestUtil.VALID_PICTURE_PATH_AMY)
+            .withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+    public static final Employee BOB = new EmployeeBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+            .withEmployeeId(CommandTestUtil.VALID_EMPLOYEE_ID_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+            .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+            .withDepartment(CommandTestUtil.VALID_DEPARTMENT_BOB)
+            .withPicturePath(CommandTestUtil.VALID_PICTURE_PATH_BOB)
+            .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
