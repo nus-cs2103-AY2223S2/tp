@@ -124,7 +124,6 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/developerGuide/ModelDiagram.png" width="500" />
-** TODO: update image **
 
 The `Model` component,
 
@@ -142,7 +141,6 @@ This is the detailed implementation of `Person` in `Model`.
 
 <img src="images/developerGuide/PersonNew.png" width="250" />
 
-** TODO: Update Image **
 
 ### Storage component
 
