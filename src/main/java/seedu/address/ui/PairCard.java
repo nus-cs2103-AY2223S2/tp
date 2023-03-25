@@ -41,7 +41,6 @@ public class PairCard extends UiPart<Region> {
     public PairCard(Pair pair, int displayedIndex) {
         super(FXML);
         this.pair = pair;
-        id.setText(displayedIndex + ". ");
         elderlyName.setText(pair.getElderly().getName().fullName);
         volunteerName.setText(pair.getVolunteer().getName().fullName);
     }

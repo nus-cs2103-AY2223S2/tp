@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -17,12 +16,6 @@
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
         <Label fx:id="elderlyName" text="\$first" styleClass="cell_big_label" />
         <Label styleClass="cell_small_label" text="paired with volunteer:" />
         <Label fx:id="volunteerName" text="\$first" styleClass="cell_big_label" />

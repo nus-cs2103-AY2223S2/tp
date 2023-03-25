@@ -5,7 +5,7 @@
     -fx-light-green: #D4E5B1;
     -fx-morning-green: #F0FFE3;
 
-    -fx-tag-color: #3e7b91;
+    -fx-tag-color: #457C51;
 
     -fx-border-radius-default: 10;
     -fx-background-radius-default: 10;
@@ -164,6 +164,9 @@
     -fx-text-fill: #010504;
 }
 
+.cell-title {
+}
+
 .stack-pane {
     -fx-border-radius: 10;
     -fx-background-radius: 10;
@@ -171,8 +174,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: -fx-light-green;
-     -fx-border-color:  -fx-light-green;
+    -fx-background-color: -fx-light-green;
+    -fx-border-color: -fx-light-green;
 }
 
 .status-bar {
