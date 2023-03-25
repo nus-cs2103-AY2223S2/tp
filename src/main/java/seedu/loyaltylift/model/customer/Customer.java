@@ -20,7 +20,9 @@ import seedu.loyaltylift.model.tag.Tag;
 public class Customer {
 
     // Comparators
-    public static final Comparator<Customer> SORT_NAME = (a, b) -> a.name.fullName.compareTo(b.name.fullName);
+    public static final Comparator<Customer> SORT_NAME = Comparator.comparing(c -> c.name.fullName);
+    public static final Comparator<Customer> SORT_POINTS = Comparator.comparingInt((Customer c) -> c.points.value)
+            .reversed().thenComparing(SORT_NAME);
 
     // Identity fields
     private final Name name;

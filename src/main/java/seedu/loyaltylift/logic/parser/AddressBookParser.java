@@ -73,7 +73,7 @@ public class AddressBookParser {
             return new FindCustomerCommandParser().parse(arguments);
 
         case ListCustomerCommand.COMMAND_WORD:
-            return new ListCustomerCommand();
+            return new ListCustomerCommandParser().parse(arguments);
 
         case MarkCustomerCommand.COMMAND_WORD:
             return new MarkCustomerCommandParser().parse(arguments);

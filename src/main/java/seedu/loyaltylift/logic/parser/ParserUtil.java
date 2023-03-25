@@ -3,15 +3,18 @@ package seedu.loyaltylift.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
@@ -220,5 +223,22 @@ public class ParserUtil {
         requireNonNull(note);
         String trimmedNote = note.trim();
         return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String sortOption} into a {@code Comparator<T>}.
+     * @throws ParseException if the given {@code attribute} is invalid.
+     */
+    public static Comparator<Customer> parseSortOption(String sortOption) throws ParseException {
+        requireNonNull(sortOption);
+        String trimmedAttribute = sortOption.trim();
+        switch (trimmedAttribute) {
+        case "name":
+            return Customer.SORT_NAME;
+        case "points":
+            return Customer.SORT_POINTS;
+        default:
+            throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_SORT);
+        }
     }
 }
