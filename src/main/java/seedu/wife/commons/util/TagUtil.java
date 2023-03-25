@@ -38,25 +38,40 @@ public class TagUtil {
             }).orElse(new HashSet<Tag>());
 
         // Constructs string representation of the match status
-        String messageFoodWithTag = matchMessage;
-        String messageNoFoodWithTag = noMatchMessage;
+        HashSet<Tag> matchTag = new HashSet<Tag>();
+        HashSet<Tag> noMatchTag = new HashSet<Tag>();
         for (Tag tag : conditionTags) {
             if (filteredFoodtags.contains(tag)) {
-                messageFoodWithTag += "\n" + tag;
+                matchTag.add(tag);
             } else if (!filteredFoodtags.contains(tag)) {
-                messageNoFoodWithTag += "\n" + tag;
+                noMatchTag.add(tag);
             }
         }
 
         String result = "";
-        if (!messageFoodWithTag.equals(matchMessage)) {
-            result += messageFoodWithTag + "\n\n";
+        if (matchTag.size() > 0) {
+            result += matchMessage + "\n" + tagsToString(matchTag) + "\n";
         }
 
-        if (!messageNoFoodWithTag.equals(noMatchMessage)) {
-            result += messageNoFoodWithTag;
+        if (noMatchTag.size() > 0) {
+            result += noMatchMessage + "\n" + tagsToString(noMatchTag);
         }
 
         return result;
+    }
+
+    /**
+     * Returns a string representation for a set of tags.
+     * @param tags
+     * @return a string representation for a set of tags.
+     */
+    public static String tagsToString(Set<Tag> tags) {
+        String setString = "";
+
+        for (Tag tag : tags) {
+            setString += tag + "\n";
+        }
+
+        return setString;
     }
 }
