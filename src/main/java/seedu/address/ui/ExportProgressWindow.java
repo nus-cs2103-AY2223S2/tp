@@ -142,20 +142,46 @@ public class ExportProgressWindow extends UiPart<Stage> {
 
             String studentName = this.person.getName().fullName;
             String[] studentNameSplit = studentName.split(" ");
+            int wrap = 43;
+            int xInit = 90;
+            int yInit = 700;
+            int x = 90;
+            int y = 700;
+            int fontSize = 18;
 
             for(int i = 0; i < studentNameSplit.length; i++) {
-
+                int charUsed = 0;
+                x = xInit;
+                while(charUsed < wrap && i < studentNameSplit.length) {
+                    String curString = studentNameSplit[i];
+                    contentStream.beginText();
+                    contentStream.setFont(boldFont, fontSize);
+                    contentStream.moveTextPositionByAmount(x, y);
+                    logger.info(String.valueOf(x));
+                    logger.info(String.valueOf(y));
+                    if (curString.length() > wrap) {
+                        contentStream.drawString(curString.substring(0, wrap));
+                        studentNameSplit[i] = "-" + curString.substring(wrap, curString.length());
+                        logger.info(curString);
+                        logger.info(studentNameSplit[i]);
+                        charUsed += curString.substring(0, wrap).length();
+                        logger.info(String.valueOf(charUsed));
+                        i--;
+                    } else {
+                        contentStream.drawString(curString + " ");
+                        charUsed += curString.length() + 1;
+                    }
+                    contentStream.endText();
+                    x += boldFont.getStringWidth(curString + " ") / 1000 * fontSize;
+                    i++;
+                }
+                i--;
+                y -= boldFont.getFontDescriptor().getCapHeight() / 1000 * fontSize;
             }
 
             contentStream.beginText();
-            contentStream.setFont(boldFont, 18);
-            contentStream.moveTextPositionByAmount( 100, 700);
-            contentStream.showText(this.person.getName().fullName);
-            contentStream.endText();
-
-            contentStream.beginText();
             contentStream.setFont(font, 14);
-            contentStream.moveTextPositionByAmount(100, 600);
+            contentStream.moveTextPositionByAmount(90, 600);
             contentStream.showText("Task List");
             contentStream.endText();
 
