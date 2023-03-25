@@ -17,7 +17,7 @@ import java.util.List;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;

@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.addCommand;
+package tfifteenfour.clipboard.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -17,7 +17,7 @@ import tfifteenfour.clipboard.model.student.Student;
 
 public class AddStudentCommand extends AddCommand {
     public static final String COMMAND_TYPE_WORD = "student";
-	public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -45,21 +45,21 @@ public class AddStudentCommand extends AddCommand {
     }
 
     @Override
-	public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
-		requireNonNull(model);
+    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+        requireNonNull(model);
 
-		if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
-			throw new CommandException("Wrong page. Navigate to student page to add student");
-		}
+        if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+            throw new CommandException("Wrong page. Navigate to student page to add student");
+        }
 
-		Group targetGroup = currentSelection.getSelectedGroup();
-		if (targetGroup.hasStudent(studentToAdd)) {
-			throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
-		}
+        Group targetGroup = currentSelection.getSelectedGroup();
+        if (targetGroup.hasStudent(studentToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
 
-		targetGroup.addStudent(studentToAdd);
-		return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, studentToAdd), willModifyState);
-	}
+        targetGroup.addStudent(studentToAdd);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, studentToAdd), willModifyState);
+    }
 
     @Override
     public boolean equals(Object other) {

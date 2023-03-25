@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.addCommand;
+package tfifteenfour.clipboard.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
 
@@ -11,9 +11,9 @@ import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 
 public class AddGroupCommand extends AddCommand {
-	public static final String COMMAND_TYPE_WORD = "group";
-	public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
-			+ ": Adds a group to the selected course. "
+    public static final String COMMAND_TYPE_WORD = "group";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
+            + ": Adds a group to the selected course. "
             + "Parameters: "
             + "GROUP_NAME\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
@@ -22,29 +22,29 @@ public class AddGroupCommand extends AddCommand {
     public static final String MESSAGE_SUCCESS = "New group added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the course";
 
-	private final Group groupToAdd;
+    private final Group groupToAdd;
 
-	public AddGroupCommand(Group group) {
-		this.groupToAdd = group;
-	}
+    public AddGroupCommand(Group group) {
+        this.groupToAdd = group;
+    }
 
-	public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
-		requireNonNull(model);
+    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+        requireNonNull(model);
 
-		if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
-			throw new CommandException("Wrong page. Navigate to group page to add group");
-		}
+        if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+            throw new CommandException("Wrong page. Navigate to group page to add group");
+        }
 
-		Course targetCourse = currentSelection.getSelectedCourse();
-		if (targetCourse.hasGroup(groupToAdd)) {
-			throw new CommandException(MESSAGE_DUPLICATE_GROUP);
-		}
+        Course targetCourse = currentSelection.getSelectedCourse();
+        if (targetCourse.hasGroup(groupToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+        }
 
-		targetCourse.addGroup(groupToAdd);
-		return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetCourse, groupToAdd), willModifyState);
-	}
+        targetCourse.addGroup(groupToAdd);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetCourse, groupToAdd), willModifyState);
+    }
 
-	@Override
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddGroupCommand // instanceof handles nulls

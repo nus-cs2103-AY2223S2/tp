@@ -15,12 +15,18 @@ public class BackCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the selected item at the index number in the current displayed list.\n"
             + "Example: " + COMMAND_WORD;
+    private CurrentSelection currentSelection;
 
     /**
      * Creates a BackCommand to select a student at the specified index
      */
-    public BackCommand() {
+    public BackCommand(CurrentSelection currentSelection) {
         super(false);
+        this.currentSelection = currentSelection;
+    }
+
+    public CurrentSelection getPreviousSelection() {
+        return currentSelection;
     }
 
     @Override
@@ -29,17 +35,17 @@ public class BackCommand extends Command {
 
         switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE: // back not possible
-			throw new CommandException("Cannot go back any further");
+            throw new CommandException("Cannot go back any further");
 
         case GROUP_PAGE:
             // if you are on group page now, go back to course page
-			currentSelection.navigateBackFromGroupPage();
+            currentSelection.navigateBackFromGroupPage();
             return new CommandResult(this, String.format("Back to course page"), willModifyState);
 
         case STUDENT_PAGE:
             currentSelection.navigateBackFromStudentPage();
             return new CommandResult(this, String.format("Back to group page of %s",
-					currentSelection.getSelectedCourse()), willModifyState);
+                    currentSelection.getSelectedCourse()), willModifyState);
         default:
             throw new CommandException("Unable to select");
         }

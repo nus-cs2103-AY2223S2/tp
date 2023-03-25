@@ -7,7 +7,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteStudentCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

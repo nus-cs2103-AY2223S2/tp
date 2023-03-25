@@ -11,15 +11,15 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.stream.Stream;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddCourseCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddGroupCommand;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteCourseCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteGroupCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteSessionCommand;
-import tfifteenfour.clipboard.logic.commands.deleteCommand.DeleteStudentCommand;
-import tfifteenfour.clipboard.logic.commands.studentCommands.ViewCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddCourseCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddGroupCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCourseCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteGroupCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteSessionCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -95,7 +95,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     private Student parseStudentInfo(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
+                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL)
                 || !CommandTargetType.isValidAddType(argMultimap.getPreamble())) {

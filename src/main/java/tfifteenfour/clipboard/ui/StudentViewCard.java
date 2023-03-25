@@ -91,7 +91,7 @@ public class StudentViewCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof StudentListCard)) {
             return false;
         }
 

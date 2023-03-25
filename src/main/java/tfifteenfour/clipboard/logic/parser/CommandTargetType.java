@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.logic.parser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 public enum CommandTargetType {
-	MODULE("course"),
+    MODULE("course"),
     GROUP("group"),
     SESSION("session"),
     STUDENT("student");

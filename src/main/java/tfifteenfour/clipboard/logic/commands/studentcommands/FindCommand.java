@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.studentCommands;
+package tfifteenfour.clipboard.logic.commands.studentcommands;
 
 import static java.util.Objects.requireNonNull;
 

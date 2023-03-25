@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.logic.CurrentSelection;
-import tfifteenfour.clipboard.logic.commands.addCommand.AddStudentCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;

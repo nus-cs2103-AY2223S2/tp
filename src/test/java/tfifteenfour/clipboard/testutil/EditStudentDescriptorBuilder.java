@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import tfifteenfour.clipboard.logic.commands.studentCommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
