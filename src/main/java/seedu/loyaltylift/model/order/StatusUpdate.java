@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import static java.util.Objects.requireNonNull;
 
-public class StatusUpdate {
+public class StatusUpdate implements Comparable<StatusUpdate> {
 
     public final StatusValue statusValue;
     public final LocalDate date;
@@ -29,5 +29,15 @@ public class StatusUpdate {
 
     public StatusValue getStatusValue() {
         return this.statusValue;
+    }
+
+    @Override
+    public int compareTo(StatusUpdate o) {
+        return this.statusValue.compareTo(o.statusValue);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %s", statusValue, date.format(DATE_FORMATTER));
     }
 }

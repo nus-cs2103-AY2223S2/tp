@@ -1,7 +1,10 @@
 package seedu.loyaltylift.model.order;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
@@ -14,7 +17,7 @@ public class Status {
 
     public Status(List<StatusUpdate> statusUpdates) {
         requireNonNull(statusUpdates);
-        this.statusUpdates = List.copyOf(statusUpdates);
+        this.statusUpdates = List.copyOf(statusUpdates.stream().sorted().collect(Collectors.toList()));
     }
 
     public Status() {
@@ -44,5 +47,10 @@ public class Status {
 
     public StatusUpdate getLatestStatus() {
         return statusUpdates.get(statusUpdates.size() - 1);
+    }
+
+    @Override
+    public String toString() {
+        return statusUpdates.toString();
     }
 }
