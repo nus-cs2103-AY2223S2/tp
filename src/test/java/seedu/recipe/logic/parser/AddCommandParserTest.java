@@ -63,14 +63,14 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
                         + INGREDIENT_DESC_CORNDOGS + STEP_DESC_SOUP + TAG_DESC_SOUP,
-                new AddCommand(expectedRecipeMultipleIngredients));
+                new AddCommand(expectedRecipeManyIngredients));
 
         Recipe expectedRecipeManySteps = new RecipeBuilder(SOUP).withSteps(VALID_STEPS_SOUP,
                         VALID_STEPS_CORNDOGS)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + STEP_DESC_SOUP
                         + STEP_DESC_CORNDOGS + INGREDIENT_DESC_SOUP + TAG_DESC_SOUP,
-                new AddCommand(expectedRecipeMultipleSteps));
+                new AddCommand(expectedRecipeManySteps));
     }
 
 
