@@ -152,6 +152,14 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     public void deleteBook(Book key) {
         books.remove(key);
     }
+
+    /**
+     * Returns {@code book} from this {@code ExpressLibrary}.
+     * {@code book} must exist in the express library.
+     */
+    public Book getBook(Book book) {
+        return books.get(book);
+    }
     //// util methods
 
     @Override

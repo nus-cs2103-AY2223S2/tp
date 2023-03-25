@@ -24,6 +24,7 @@ class JsonSerializableExpressLibrary {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_BOOK = "Books list contains duplicate book(s).";
+    public static final String MESSAGE_BORROWED_BOOK_NOT_FOUND = "Borrowed book was not found in book list.";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedBook> books = new ArrayList<>();
@@ -47,7 +48,7 @@ class JsonSerializableExpressLibrary {
      */
     public JsonSerializableExpressLibrary(ReadOnlyExpressLibrary source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        books.addAll(source.getBookList().stream().filter(book -> !book.getIsBorrowed())
+        books.addAll(source.getBookList().stream()
                 .map(JsonAdaptedBook::new).collect(Collectors.toList()));
     }
 
@@ -58,6 +59,15 @@ class JsonSerializableExpressLibrary {
      */
     public ExpressLibrary toModelType() throws IllegalValueException {
         ExpressLibrary expressLibrary = new ExpressLibrary();
+
+        for (JsonAdaptedBook jsonAdaptedBook : books) {
+            Book book = jsonAdaptedBook.toModelType();
+            if (expressLibrary.hasBook(book)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
+            }
+            expressLibrary.addBook(book);
+        }
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (expressLibrary.hasPerson(person)) {
@@ -66,29 +76,23 @@ class JsonSerializableExpressLibrary {
             expressLibrary.addPerson(person);
             if (person.borrowedAtLeastOneBook()) {
                 Set<Book> books = person.getBooks();
-                for (Book book : books) {
-                    if (book == null) {
+                for (Book borrowedBook : books) {
+                    if (borrowedBook == null) {
                         throw new IllegalValueException(JsonAdaptedBook.INVALID_FORMAT_MESSAGE_FORMAT);
                     }
-                    LocalDate borrowDate = book.getBorrowDate();
-                    LocalDate dueDate = book.getDueDate();
+                    if (!expressLibrary.hasBook(borrowedBook)) {
+                        throw new IllegalValueException(MESSAGE_BORROWED_BOOK_NOT_FOUND);
+                    }
+                    Book origBook = expressLibrary.getBook(borrowedBook);
+                    LocalDate borrowDate = borrowedBook.getBorrowDate();
+                    LocalDate dueDate = borrowedBook.getDueDate();
                     if (borrowDate == null || dueDate == null) {
                         throw new IllegalValueException(JsonAdaptedBook.INVALID_FORMAT_MESSAGE_FORMAT);
                     }
-                    if (expressLibrary.hasBook(book)) {
-                        throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
-                    }
-                    book.loanBookTo(person, borrowDate, dueDate);
-                    expressLibrary.addBook(book);
+                    borrowedBook.loanBookTo(person, borrowDate, dueDate);
+                    expressLibrary.setBook(origBook, borrowedBook);
                 }
             }
-        }
-        for (JsonAdaptedBook jsonAdaptedBook : books) {
-            Book book = jsonAdaptedBook.toModelType();
-            if (expressLibrary.hasBook(book)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
-            }
-            expressLibrary.addBook(book);
         }
         return expressLibrary;
     }

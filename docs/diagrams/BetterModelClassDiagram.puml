@@ -6,16 +6,27 @@ skinparam classBackgroundColor MODEL_COLOR
 
 ExpressLibrary *-right-> "1" UniquePersonList
 ExpressLibrary *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+ExpressLibrary *-down-> "1" UniqueBookList
+UniqueTagList -down-> "*" Tag
+UniquePersonList -down-> Person
+UniqueBookList -down-> Book
 
-UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
+class HiddenClass #FFFFFF
+
 
 Person -up-> "*" Tag
-
+Book -> Person
+Person -> Book
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+
+Book *--> Title
+Book *--> Author
+Book *--> Isbn
+
+UniqueBookList -[hidden]right-> UniquePersonList
+Person -[hidden]up-> UniqueTagList
+Book -[hidden]up-> HiddenClass
 @enduml

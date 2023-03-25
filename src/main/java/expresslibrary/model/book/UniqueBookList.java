@@ -12,10 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of books that enforces uniqueness between its elements and does not allow nulls.
- * A book is considered unique by comparing using {@code Book#isSameBook(Book)}. As such, adding and updating of
- * books uses Book#isSameBook(Book) for equality so as to ensure that the book being added or updated is
- * unique in terms of identity in the UniqueBookList. However, the removal of a book uses Book#equals(Object) so
+ * A list of books that enforces uniqueness between its elements and does not
+ * allow nulls.
+ * A book is considered unique by comparing using {@code Book#isSameBook(Book)}.
+ * As such, adding and updating of
+ * books uses Book#isSameBook(Book) for equality so as to ensure that the book
+ * being added or updated is
+ * unique in terms of identity in the UniqueBookList. However, the removal of a
+ * book uses Book#equals(Object) so
  * as to ensure that the book with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -25,8 +29,8 @@ import javafx.collections.ObservableList;
 public class UniqueBookList implements Iterable<Book> {
 
     private final ObservableList<Book> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Book> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Book> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent book as the given argument.
@@ -34,6 +38,20 @@ public class UniqueBookList implements Iterable<Book> {
     public boolean contains(Book toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameBook);
+    }
+
+    /**
+     * Returns the book that matches the given argument, or null if no such book
+     * exists.
+     */
+    public Book get(Book book) {
+        requireNonNull(book);
+        for (Book b : internalList) {
+            if (b.isSameBook(book)) {
+                return b;
+            }
+        }
+        return null;
     }
 
     /**
@@ -51,7 +69,8 @@ public class UniqueBookList implements Iterable<Book> {
     /**
      * Replaces the book {@code target} in the list with {@code editedBook}.
      * {@code target} must exist in the list.
-     * The book identity of {@code editedBook} must not be the same as another existing book in the list.
+     * The book identity of {@code editedBook} must not be the same as another
+     * existing book in the list.
      */
     public void setBook(Book target, Book editedBook) {
         requireAllNonNull(target, editedBook);

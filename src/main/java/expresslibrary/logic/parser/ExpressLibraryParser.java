@@ -6,17 +6,17 @@ import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import expresslibrary.logic.commands.AddCommand;
+import expresslibrary.logic.commands.AddPersonCommand;
 import expresslibrary.logic.commands.BorrowCommand;
 import expresslibrary.logic.commands.ClearCommand;
 import expresslibrary.logic.commands.Command;
-import expresslibrary.logic.commands.DeleteCommand;
-import expresslibrary.logic.commands.EditCommand;
+import expresslibrary.logic.commands.DeletePersonCommand;
+import expresslibrary.logic.commands.EditPersonCommand;
 import expresslibrary.logic.commands.ExitCommand;
-import expresslibrary.logic.commands.FindCommand;
+import expresslibrary.logic.commands.FindPersonCommand;
 import expresslibrary.logic.commands.HelpCommand;
 import expresslibrary.logic.commands.ListBookCommand;
-import expresslibrary.logic.commands.ListCommand;
+import expresslibrary.logic.commands.ListPersonCommand;
 import expresslibrary.logic.commands.ReturnCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
@@ -47,23 +47,23 @@ public class ExpressLibraryParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddPersonCommand.COMMAND_WORD:
+            return new AddPersonCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditPersonCommand.COMMAND_WORD:
+            return new EditPersonCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeletePersonCommand.COMMAND_WORD:
+            return new DeletePersonCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindPersonCommand.COMMAND_WORD:
+            return new FindPersonCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPersonCommand.COMMAND_WORD:
+            return new ListPersonCommand();
 
         case ListBookCommand.COMMAND_WORD:
             return new ListBookCommand();
