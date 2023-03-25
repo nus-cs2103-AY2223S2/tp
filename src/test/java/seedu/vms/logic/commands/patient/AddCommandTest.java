@@ -9,12 +9,14 @@ import static seedu.vms.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.parser.ParseResult;
@@ -265,6 +267,30 @@ public class AddCommandTest {
         public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
+        }
+
+        @Override
+        public List<String> validatePatientChange(ValueChange<Patient> change) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
+        }
+
+        @Override
+        public List<String> handlePatientChange(ValueChange<Patient> change) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
+        }
+
+        @Override
+        public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
+        }
+
+        @Override
+        public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
         }
     }
 

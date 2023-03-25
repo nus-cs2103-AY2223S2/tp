@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.VmsParser;
@@ -190,6 +192,42 @@ public class ModelManager implements Model {
     @Override
     public void setAppointmentManager(AppointmentManager manager) {
         appointmentManager.resetData(manager);
+    }
+
+
+    @Override
+    public List<String> validatePatientChange(ValueChange<Patient> change) {
+        //TODO: Implement this
+        // implementation should be in appointment manager instead of here
+        // as LogicManager is just a facade class.
+        return List.of();
+    }
+
+
+    @Override
+    public List<String> handlePatientChange(ValueChange<Patient> change) {
+        //TODO: Implement this
+        // implementation should be in appointment manager instead of here
+        // as LogicManager is just a facade class.
+        return List.of();
+    }
+
+
+    @Override
+    public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
+        //TODO: Implement this
+        // implementation should be in appointment manager instead of here
+        // as LogicManager is just a facade class.
+        return List.of();
+    }
+
+
+    @Override
+    public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+        //TODO: Implement this
+        // implementation should be in appointment manager instead of here
+        // as LogicManager is just a facade class.
+        return List.of();
     }
 
     // =========== VaxTypeManager ==============================================================================

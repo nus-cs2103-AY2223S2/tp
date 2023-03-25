@@ -1,10 +1,12 @@
 package seedu.vms.logic.commands.vaccination;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -215,6 +217,30 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
         filteredMapView.setFilters(filters);
+    }
+
+    @Override
+    public List<String> validatePatientChange(ValueChange<Patient> change) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
+    }
+
+    @Override
+    public List<String> handlePatientChange(ValueChange<Patient> change) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
+    }
+
+    @Override
+    public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
+    }
+
+    @Override
+    public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
     }
 
 }
