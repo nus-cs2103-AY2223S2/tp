@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook userPrefs, and backupData
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBackupData backupData) {
         requireAllNonNull(addressBook, userPrefs);
@@ -46,6 +46,9 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
