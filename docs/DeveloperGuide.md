@@ -59,9 +59,9 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete i/T0123456A T0124563B`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/BetterArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -119,10 +119,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete i/T0123456A T0124563B")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete i/T0123456A T0124563B` Command](images/BetterDeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -145,7 +145,7 @@ How the parsing works:
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/NricModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
@@ -161,7 +161,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterNricModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -191,9 +191,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Backup/Load backp feature
+### Backup/Load feature
 
-### \[Proposed\] Undo/redo feature
+The backup feature is facilitated by BackupCommand.
+
+<img src="images/BackupSequenceDiagram.png" />
+
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -292,6 +296,80 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Adding Nric as identifier
+
+#### Proposed Implementation
+
+The proposed `Nric` field is done similar to the implementation of the `Name` field.
+
+Previously, name was used as the unique identifier for a `Person` object, where we check for equality between
+two `Person` objects by name matching. As we acknowledge that in a clinical/hospital system, several patients may have
+the same name, `Nric` was identified as a better unique identification choice.
+
+The following additional constraints will be applied:
+
+1. `Nric` will be mandatory field when adding a new `Person`.
+2. `Nric` has to be in the following format: `@xxxxxxx#`
+    1. `@` has to be one of the following: `S`, `T`, `F`, `G`, or `M`
+    2. `xxxxxxx` is a 7-digit serial number, each `x` can be any number `0-9`
+    3. `#` can be any capital alphabet `A-Z`, and the field cannot be blank.
+3. `Nric` must be unique, the system will not allow the addition of a new person otherwise
+
+Given below is an updated `Model` component diagram.
+
+<img src="images/NricModelClassDiagram.png" width="450" />
+
+#### Design considerations:
+
+**Aspect: Mutability of `Nric` field:**
+
+* **Alternative 1 (current choice):** `Nric` is mutable.
+    * Pros: Easy to make corrections if entered wrongly, no need to type the entire `add` command again
+    * Cons: `Nric` never changes for a person, it may not make sense to make it mutable.
+
+* **Alternative 2:** `Nric` is immutable.
+    * Pros: Will ensure no tampering of identifier for a `Person` object.
+    * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
+        * This can have heavier consequences if much more data is added before the mistake is noticed.
+
+### Delete patient record by NRIC feature
+
+#### Implementation
+
+The implemented delete mechanism is facilitated by `DeleteCommandParser`. It extends `AddressBookParser` and implements
+the following operations:
+
+* `DeleteCommandParser#parse()` — Parses user input into `ArrayList<NRIC>` and creates a `DeleteCommand` object
+
+These operations are exposed in the Model interface as methods with the same name e.g.
+`Model#deletePerson()`.
+
+Given below is an example usage scenario and how the delete command works at each step
+
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
+
+Step 2. The administrator executes `delete i/T0123456A T0124563B`. The `DeleteCommand` is executed and for each `NRIC`
+in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
+which deletes the record in the system with the specified `NRIC`.
+
+The following sequence diagram shows how the delete command works:
+
+![BetterDeleteSequenceDiagram](images/BetterDeleteSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Deletion criteria**
+
+* **Alternative 1 (current choice):** Deletion by `NRIC`.
+    * Pros: Very efficient as program will search for the record with specified `NRIC` and delete it.
+    * Cons: Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for
+      the top few records displayed.
+
+* **Alternative 2:** Deletion by INDEX.
+    * Pros: More convenient for clinical administrator to type out INDEX for the top few displayed records.
+    * Cons: If the record we are searching for does not appear in the top few records, we would have to execute a find
+      command and then get corresponding INDEX to carry out deletion.
+
 ### Light / Dark Theme
 
 #### Proposed Implementation
@@ -321,6 +399,12 @@ The following activity diagram summarizes what happens when a user executes thes
 * **Alternative 2:** One CSS file containing the information of two modes.
     * Pros: Less resource space and no need to change the file path.
     * Cons: Not easy to implement and require more FXML changes.
+
+### \[Proposed\] Find command
+
+Proposed Implementation
+
+_{Explain here how the find feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -417,16 +501,16 @@ otherwise)
 1. Administrator requests to clear all data in the system.
 2. HS clears all the data in the system. Use case ends.
 
-**Use case: UC5 - Search for patients by health conditions**
+**Use case: UC5 - Search for patients by address**
 
 **MSS**
 
-1. Administrator wants to search for patients based on a certain health condition.
-2. HS provides a list of all patients with the specified health condition. Use case ends.
+1. Administrator wants to search for patient by his address
+2. HS provides a list of all people staying in the given address
 
 **Extensions**
 
-* 1a. No such patient has the specified health condition. Use case ends.
+* 1a. No such patient has the specified address. Use case ends.
 
 **Use case: UC6 - Search for patients by medicine**
 

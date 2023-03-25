@@ -33,6 +33,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="address" prefHeight="13.0" prefWidth="211.0" styleClass="cell_small_label" text="\$address" />
+      <Label fx:id="drugAllergy" prefHeight="13.0" prefWidth="211.0" styleClass="cell_small_label" text="\$drugAllergy" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

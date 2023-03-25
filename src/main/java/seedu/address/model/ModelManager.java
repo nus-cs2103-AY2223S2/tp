@@ -15,6 +15,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.backup.Backup;
+import seedu.address.commons.exceptions.CannotRedoAddressBookException;
+import seedu.address.commons.exceptions.CannotUndoAddressBookException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAdaptedBackup;
@@ -25,7 +27,7 @@ import seedu.address.storage.JsonAdaptedBackup;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final BackupData backupData;
     private final FilteredList<Person> filteredPersons;
@@ -38,14 +40,14 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.backupData = new BackupData(backupData);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new BackupData());
+        this(new VersionedAddressBook(new AddressBook()), new UserPrefs(), new BackupData());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -120,6 +122,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        commitAddressBook();
     }
 
     @Override
@@ -136,12 +139,14 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        commitAddressBook();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        commitAddressBook();
     }
 
     @Override
@@ -149,6 +154,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        commitAddressBook();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -169,6 +175,39 @@ public class ModelManager implements Model {
         } else {
             filteredPersons.setPredicate(predicate);
         }
+    }
+
+    @Override
+    public void undoAddressBook() {
+        try {
+            addressBook.undo();
+        } catch (CannotUndoAddressBookException e) {
+            logger.warning("No undoable state found.");
+        }
+    }
+
+    @Override
+    public void redoAddressBook() {
+        try {
+            addressBook.redo();
+        } catch (CannotRedoAddressBookException e) {
+            logger.warning("No redoable state found.");
+        }
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return addressBook.canRedo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        addressBook.commit();
     }
 
     @Override
@@ -194,5 +233,4 @@ public class ModelManager implements Model {
     public Person findPersonByNric(Nric nric) {
         return addressBook.findPersonByNric(nric);
     }
-
 }
