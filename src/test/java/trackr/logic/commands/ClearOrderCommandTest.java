@@ -8,6 +8,7 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.order.ClearOrderCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -16,7 +17,7 @@ import trackr.model.UserPrefs;
 public class ClearOrderCommandTest {
 
     @Test
-    public void execute_emptyOrderList_success() {
+    public void execute_emptyOrderList_success() throws ParseException {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -27,7 +28,7 @@ public class ClearOrderCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyOrderList_success() {
+    public void execute_nonEmptyOrderList_success() throws ParseException {
         Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),

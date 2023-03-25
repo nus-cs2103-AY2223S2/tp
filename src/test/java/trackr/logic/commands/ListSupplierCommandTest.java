@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.ListSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -33,7 +34,7 @@ public class ListSupplierCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
+    public void execute_listIsNotFiltered_showsSameList() throws ParseException {
         assertCommandSuccess(new ListSupplierCommand(),
                 model,
                 String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER.toString().toLowerCase()),
@@ -41,7 +42,7 @@ public class ListSupplierCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_listIsFiltered_showsEverything() throws ParseException {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
         assertCommandSuccess(new ListSupplierCommand(),
                 model,

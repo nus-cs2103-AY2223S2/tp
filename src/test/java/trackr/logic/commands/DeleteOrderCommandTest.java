@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.DeleteOrderCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -31,7 +32,7 @@ public class DeleteOrderCommandTest {
             getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredOrderList_success() {
+    public void execute_validIndexUnfilteredOrderList_success() throws ParseException {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
@@ -56,7 +57,7 @@ public class DeleteOrderCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredOrderList_success() {
+    public void execute_validIndexFilteredOrderList_success() throws ParseException {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
