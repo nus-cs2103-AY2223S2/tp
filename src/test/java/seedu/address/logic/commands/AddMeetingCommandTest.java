@@ -48,7 +48,7 @@ public class AddMeetingCommandTest {
         AddMeetingCommand sampleAddMeetingCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, meeting);
         CommandResult actualSuccessMessage = sampleAddMeetingCommand.execute(model);
 
-        assertEquals(String.format(MESSAGE_ADD_MEETING_SUCCESS, samplePerson),
+        assertEquals(String.format(MESSAGE_ADD_MEETING_SUCCESS, samplePerson.getName()),
             actualSuccessMessage.getFeedbackToUser());
     }
 
