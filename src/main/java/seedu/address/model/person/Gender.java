@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's gender in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
+ */
 public class Gender {
     public static final String MESSAGE_CONSTRAINTS =
             "Gender can indicated either by Male, Female or others";
@@ -20,14 +24,17 @@ public class Gender {
         this.gender = gender;
     }
 
+    /**
+     * Returns true if a given string is a valid gender.
+     */
     public static boolean isValidGender(String gender) {
         switch (gender.toLowerCase()) {
-            case "male":
-            case "female":
-            case "others":
-                return true;
-            default:
-                return false;
+        case "male":
+        case "female":
+        case "others":
+            return true;
+        default:
+            return false;
         }
     }
 

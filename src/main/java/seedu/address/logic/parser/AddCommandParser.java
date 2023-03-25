@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -43,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
-
+                PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
