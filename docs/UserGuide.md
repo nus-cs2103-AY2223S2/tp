@@ -129,6 +129,46 @@ APPLICATION STATUS: APPLIED
 CONTACT: BOBTHEMANAGER@GMAIL.COM
 ~~~
 
+### Editing Details of internship : `edit`
+
+Edit details of the internship selected by ID.
+
+Format: `edit ID p/[POSITION] c/[COMPANY] s/[STATUS] d/[DESCRIPTION] t/[TAGS]`
+
+* `ID`: Identification number of the Internship.
+* `[POSITION]`: Name of Internship Position (optional).
+* `[COMPANY]` : Name of hiring company (optional).
+* `[STATUS]` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`) (optional).
+* `[DESCRIPTION]`: Additional details of the internship application (optional).
+* `[TAGS]`: Labels for the internship application (optional).
+* After keying in the `edit` command, along with the selected fields the user wishes to edit, TinS will update the
+  corresponding fields of the internship application accordingly.
+
+Example: <br>
+After keying in the `edit` command followed by an existing `ID` and the fields `STATUS` and `DESCRIPTION`, TinS
+will update the `STATUS` and `DESCRIPTION` fields of the internship application with the specified `ID`, then display
+the newly updated internship application
+
+~~~
+// input
+edit 1 s/1 d/Learn C++
+~~~
+~~~
+//initial
+INTERNSHIP ID: 1
+POSITION: SOFTWARE ENGINEER
+COMPANY NAME: GOOGLE
+APPLICATION STATUS: INTERESTED
+DESCRIPTION: Should apply
+
+//output
+INTERNSHIP ID: 1
+POSITION: SOFTWARE ENGINEER
+COMPANY NAME: GOOGLE
+APPLICATION STATUS: APPLIED
+Description: Learn C++
+~~~
+
 ### Deleting a person : `delete`
 
 Deletes an internship along with its details.
