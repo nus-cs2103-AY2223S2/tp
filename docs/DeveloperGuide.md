@@ -496,6 +496,54 @@ The following is a more detailed explanation on how 'FindCommand' works.
         * Command becomes too flexible (e.g. a find command like "find n/google ltd" will return `Internship` objects that not just has the word "Google", like "Google Ltd", in their names but "ltd" as well, like "Apple Ltd", "Meta Ltd" and more)
 
 
+### Upcoming Feature
+
+#### Implementation
+The following sequence diagram provides an overview on how the `upcoming` operation works.
+
+![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `upcoming` operation.
+1. When the user enters an `upcoming` command, a `UpcomingCommand` object is created.
+3. Following which, the `UpcomingCommand#execute(Model model)` method is called which eventually calls the`updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipU` object as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
+   
+
+
+#### Design Considerations
+
+###### Whether to make all fields in the `add` command compulsory
+1. **Alternative 1 (chosen): Make only essential fields compulsory**
+    * Pros: More user-centric as not all users want to enter the optional information,
+      which is not exactly critical in tracking internships.
+    * Cons: More work is to be done in code implementation. For example, the absence of optional
+      fields should not cause a `ParseException`, and there is a need to include a
+      default value of `NA` for input without any `Comment`.
+2. **Alternative 2: Make all fields compulsory**
+    * Pros: Easier to implement as there is no need to differentiate between compulsory
+      and optional fields during command parsing, and it is easier to compare between
+      different `Internship` since we just require an exact match of all fields.
+    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
+      are forced to input something for the `Add` command to work.
+
+###### Whether to update the right UI panel according to the `add` command
+
+1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
+    * Pros: Better visual indication that the `add` command has been successfully executed.
+      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
+      the new entry will be placed at the bottom of the left UI panel, which is not visible
+      if the user's scroll position is at the top of the left UI panel. Therefore, updating
+      the right panel enhances visual indication to the user that the `Internship` has been
+      successfully added.
+    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
+      to update the selected `Internship` in the `Model` component in order to update
+      the right panel.
+
+2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
+    * Pros: No additional code is required in the `execute` method of `AddCommand`.
+    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
+      UI panel may not be visible since it is added to the bottom. Without scrolling, users
+      have to rely on the Results Display box to determine if the `AddCommand` is successful.
+
 _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
