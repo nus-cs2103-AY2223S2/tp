@@ -36,8 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private RoleListPanel roleListPanel;
     private ResultDisplay resultDisplay;
-    private RoleDisplay roleDisplay;
-    private StringDisplay stringDisplay;
     private HelpWindow helpWindow;
 
     @FXML
@@ -183,14 +181,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult<?> commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getOutput());
 
-            resultDisplay.clear();
             if (commandResult.getOutput() instanceof String) {
                 logger.info("Output type: String");
-                resultDisplay.clear();
                 resultDisplay.place(StringDisplay.of((String) commandResult.getOutput()));
             } else if (commandResult.getOutput() instanceof Role) {
                 logger.info("Output type: Role");
-                resultDisplay.clear();
                 resultDisplay.place(RoleDisplay.of((Role) commandResult.getOutput()));
             }
 
