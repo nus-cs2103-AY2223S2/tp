@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -96,6 +97,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String drugAllergy} into a {@code DrugAllergy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code drugAllergy} is invalid.
+     */
+    public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
+        requireNonNull(drugAllergy);
+        String trimmedAllergy = drugAllergy.trim();
+        if (!Address.isValidAddress(trimmedAllergy)) {
+            throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
+        }
+        return new DrugAllergy(trimmedAllergy);
     }
 
     /**
