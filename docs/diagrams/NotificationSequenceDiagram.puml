@@ -14,8 +14,8 @@ participant ":BackgroundNotificationScheduler" as BackgroundNotificationSchedule
 end box
 
 box Timer #BA68C8
-participant ":Timer 1" as Timer1 #7B1FA2
-participant ":Timer 2" as Timer2 #7B1FA2
+participant ":Timer" as Timer1 #7B1FA2
+participant ":Timer" as Timer2 #7B1FA2
 end box
 
 box TimerTask #EF9A9A

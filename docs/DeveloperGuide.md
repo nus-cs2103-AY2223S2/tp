@@ -361,20 +361,24 @@ after the last slot timing, no notification for upcoming jobs will be displayed 
 
 Given below is an example of the usage scenario and how the Notification feature behaves at each step.
 
-Step 1. The user launches the application. `UiManager` will create an instance of `NotificationManager`. 
+Step 1. The user launches the application. `UiManager` will create an instance of `NotificationManager`.
+
 Step 2. The instance of `NotificationManager` will then call `NotificationManager#checkReminderList()` and `NotificationManager#checkNowSchedule()`, which will display the corresponding notifications
+
 Step 3. An instance of `BackgroundNotificationScheduler` will be created and its `BackgroundNotificationScheduler#run()` function will be called to schedule the 2 `TimerTask`.
+
 Step 4. At the appropriate timings, `NotificationManager#checkReminderList()` and `NotificationManager#checkNextSchedule()` will run and display the appropriate notifications accordingly.
 
 The following sequence diagram shows how the Notification feature works:
 ![NotificationSequenceDiagram](images/NotificationSequenceDiagram.png)
 
 Design considerations:
-Aspect: How background notifications run its checks:
+
+**Aspect: How background notifications run its checks:**
 * **Alternative 1 (current choice):** `TimerTask` and `Timer`
   * Pros: Easy to implement. Better OOP.
   * Cons: Cannot run random checks against the current time or date.
-*  **Alternative 2**: `Thread`
+* **Alternative 2**: `Thread`
   * Pros: Allows random checks against the current time or date.
   * Cons: May slow down the app, or worst case scenario, hang the app.
 
