@@ -30,7 +30,7 @@ public class SortApplicationCommand extends ApplicationCommand {
             + COMMAND_WORD
             + " alphabetical: Sorts applications in alphabetical order.\n"
             + COMMAND_WORD
-            + " deadline: Sorts applications in order of deadline of their upcoming task";
+            + " deadline: Sorts applications in order of deadline of their upcoming task.";
 
     public static final String MESSAGE_CONSTRAINTS = "You can only sort alphabetically or by deadline.\n"
             + "You also need to specify the order after the command word sort.";

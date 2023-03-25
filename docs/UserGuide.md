@@ -99,7 +99,8 @@ Examples:
 
 ### Listing all internship applications : `list`
 
-Shows a list of all internship applications.
+Shows a list of all internship applications, in the order of when they are added. Application
+entries that are added more recently will be shown on top.
 
 Format: `list`
 
