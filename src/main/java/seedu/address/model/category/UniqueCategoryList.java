@@ -54,6 +54,14 @@ public class UniqueCategoryList implements Iterable<Category> {
     }
 
     /**
+     * Delete all Category.
+     */
+    public void clear() {
+        internalListOfCategories.clear();
+        internalUnmodifiableList.clear();
+    }
+
+    /**
      * Replaces the category {@code target} in the list with {@code editedCategory}.
      * {@code target} must exist in the list.
      * The category identity of {@code editedCategory} must not be

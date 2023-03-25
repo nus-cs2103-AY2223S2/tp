@@ -92,6 +92,14 @@ public class ExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Delete all expense.
+     */
+    public void clear() {
+        internalListOfExpenses.clear();
+        internalUnmodifiableList.clear();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableList() {

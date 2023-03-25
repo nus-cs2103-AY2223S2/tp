@@ -127,7 +127,7 @@
                   <Region minWidth="30.0" HBox.hgrow="SOMETIMES" />
                   <VBox alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" styleClass="stats_header" text="BUDGET UTLISED">
+                        <Label alignment="CENTER" styleClass="stats_header" text="BUDGET UTILISED">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin></Label>
