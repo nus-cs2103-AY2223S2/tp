@@ -45,8 +45,13 @@
                </padding></VBox>
             <HBox alignment="TOP_CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-                   <VBox styleClass="pane-with-border" HBox.hgrow="NEVER">
-                       <StackPane fx:id="patientListPanelPlaceholder" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="410.0" VBox.vgrow="ALWAYS" />
+                   <VBox spacing="5.0" styleClass="pane-with-border" HBox.hgrow="NEVER">
+                       <StackPane fx:id="patientListPanelPlaceholder" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="410.0" VBox.vgrow="NEVER" />
+                     <ScrollPane VBox.vgrow="ALWAYS">
+                        <content>
+                           <VBox fx:id="detailedPatientPanel" />
+                        </content>
+                     </ScrollPane>
                    </VBox>
 
                    <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="pane-with-border" HBox.hgrow="NEVER">

@@ -295,6 +295,12 @@ public class LogicManager implements Logic {
 
 
     @Override
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+        return model.detailedPatientProperty();
+    }
+
+
+    @Override
     public ObjectProperty<VaxType> detailVaxTypeProperty() {
         return model.detailVaxTypeProperty();
     }

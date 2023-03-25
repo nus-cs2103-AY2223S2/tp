@@ -212,13 +212,13 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public List<String> validatePatientChange(ValueChange<Patient> change) {
+    public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
     }
 
     @Override
-    public void handlePatientChange(ValueChange<Patient> change) {
+    public void handlePatientChange(ValueChange<IdData<Patient>> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
     }
@@ -256,6 +256,18 @@ public class VaxTypeModelStub implements Model {
     @Override
     public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
         return builder.update(manager);
+    }
+
+    @Override
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
+    }
+
+    @Override
+    public void setDetailedPatient(IdData<Patient> patient) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
     }
 
 }

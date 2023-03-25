@@ -149,6 +149,15 @@ public interface Model {
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
 
 
+    /**
+     * Returns the detailed patient property.
+     */
+    ObjectProperty<IdData<Patient>> detailedPatientProperty();
+
+
+    void setDetailedPatient(IdData<Patient> patient);
+
+
     /*
      * ========================================================================
      * Vaccination
@@ -244,7 +253,7 @@ public interface Model {
      * @return a list of messages describing the deletion change that will
      *      occur if the specified change were to happen.
      */
-    List<String> validatePatientChange(ValueChange<Patient> change);
+    List<String> validatePatientChange(ValueChange<IdData<Patient>> change);
 
 
     /**
@@ -252,7 +261,7 @@ public interface Model {
      *
      * @param change - the change to handle.
      */
-    void handlePatientChange(ValueChange<Patient> change);
+    void handlePatientChange(ValueChange<IdData<Patient>> change);
 
 
     /**

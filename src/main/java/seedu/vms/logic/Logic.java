@@ -63,5 +63,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
 
+    ObjectProperty<IdData<Patient>> detailedPatientProperty();
+
+
     ObjectProperty<VaxType> detailVaxTypeProperty();
 }

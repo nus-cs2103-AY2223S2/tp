@@ -35,6 +35,7 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
     private final ObjectProperty<VaxType> detailVaxTypeProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
@@ -146,20 +147,36 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePatient(int id) {
-        patientManager.remove(id);
+        IdData<Patient> oldValue = patientManager.remove(id);
+        ValueChange<IdData<Patient>> change = new ValueChange<>(oldValue, null);
+        handlePatientChange(change);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        patientManager.add(patient);
+        IdData<Patient> newValue = patientManager.add(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        handlePatientChange(new ValueChange<>(null, newValue));
     }
 
     @Override
     public void setPatient(int id, Patient editedPatient) {
         requireAllNonNull(editedPatient);
 
-        patientManager.set(id, editedPatient);
+        ValueChange<IdData<Patient>> change = patientManager.set(id, editedPatient);
+        handlePatientChange(change);
+    }
+
+
+    @Override
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+        return detailedPatientProperty;
+    }
+
+
+    @Override
+    public void setDetailedPatient(IdData<Patient> data) {
+        detailedPatientProperty.set(data);
     }
 
     // =========== AppointmentManager ==========================================================================
@@ -200,7 +217,7 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> validatePatientChange(ValueChange<Patient> change) {
+    public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
@@ -209,10 +226,11 @@ public class ModelManager implements Model {
 
 
     @Override
-    public void handlePatientChange(ValueChange<Patient> change) {
+    public void handlePatientChange(ValueChange<IdData<Patient>> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
+        updatePatientDetail(change);
     }
 
 
@@ -374,6 +392,16 @@ public class ModelManager implements Model {
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
             detailVaxTypeProperty.set(change.getNewValue().orElse(null));
+        }
+    }
+
+
+    private void updatePatientDetail(ValueChange<IdData<Patient>> change) {
+        boolean isUpdated = change.getOldValue()
+                .map(oldValue -> oldValue.equals(detailedPatientProperty.get()))
+                .orElse(false);
+        if (isUpdated || change.getNewValue().isPresent()) {
+            detailedPatientProperty.set(change.getNewValue().orElse(null));
         }
     }
 
