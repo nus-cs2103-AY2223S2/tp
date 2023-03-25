@@ -2,13 +2,18 @@ package seedu.address.files;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -103,17 +108,26 @@ public class PdfReader implements FileReader<PDDocument> {
             //Set the DPI for rendering the PDF
             int dpi = Toolkit.getDefaultToolkit().getScreenResolution();
 
+            //Create a panel to hold the images of the pages
+            JPanel panel = new JPanel(new GridLayout(0, 1));
+            JScrollPane scrollPane = new JScrollPane(panel);
+
             //Loop through each page in the PDF and render it as an image
             for (int i = 0; i < doc.getNumberOfPages(); i++) {
                 BufferedImage image = renderer.renderImageWithDPI(i, dpi, ImageType.RGB);
 
-                //Display the image in a new window
-                JFrame frame = new JFrame();
+                //Add the image to the panel
                 JLabel label = new JLabel(new ImageIcon(image));
-                frame.getContentPane().add(label, BorderLayout.CENTER);
-                frame.pack();
-                frame.setVisible(true);
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                panel.add(label);
             }
+            //Display the images in a new window
+            JFrame frame = new JFrame();
+            frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+
             //Close the PDF document
             doc.close();
         } catch (IOException e) {

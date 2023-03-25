@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
 //import java.util.ArrayList;
 //import java.util.List;
 import javax.swing.JFileChooser;
@@ -115,7 +116,7 @@ public class FileStorage {
      * extensions are copied to the "reports/{username}/" directory, where
      * {username} is replaced with the username of the current user. If the target
      * directory does not exist, it is created. Existing files with the same name
-     * in the target directory are replaced. Files with unsupported extensions are
+     * in the target directory are replaced. Files with unsupported extensions and file Limit of more than 10mb are
      * ignored, and a message is printed to the console.
      * <p>
      * This method should be called from the Event Dispatch Thread (EDT) to ensure
@@ -136,15 +137,24 @@ public class FileStorage {
                 String userDirPath = "reports/" + this.username + "/";
                 File userDir = new File(userDirPath);
                 checkDir(userDir);
+                long maxSize = 10 * 1024 * 1024; // 10 MB in bytes
+
                 for (File selectedFile : selectedFiles) { // loop through each selected file
                     String fileName = selectedFile.getName();
                     String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+
                     if (extension.equalsIgnoreCase("pdf") || extension.equalsIgnoreCase("jpg")
                             || extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("png")) {
                         Path srcPath = selectedFile.toPath();
                         Path destPath = Paths.get(userDirPath + fileName);
                         try {
-                            Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+                            BasicFileAttributes attr = Files.readAttributes(srcPath, BasicFileAttributes.class);
+                            long fileSize = attr.size();
+                            if (fileSize <= maxSize) {
+                                Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+                            } else {
+                                System.out.println("File size exceeds 10 MB limit");
+                            }
                         } catch (IOException e) {
                             System.out.println("Error copying file");
                         }
