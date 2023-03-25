@@ -189,7 +189,7 @@ public class ParserUtil {
         if (telegram == null || telegram.isEmpty()) {
             return null;
         }
-        if (!Instagram.isValid(telegram)) {
+        if (!Telegram.isValid(telegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return Telegram.of(telegram);
