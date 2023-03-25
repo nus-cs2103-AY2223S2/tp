@@ -296,4 +296,9 @@ public interface Model {
      */
     void updateFilteredPairList(Predicate<Pair> predicate);
 
+    /**
+     * Refreshes all filtered lists to display everything.
+     */
+    void refreshAllFilteredLists();
+
 }
