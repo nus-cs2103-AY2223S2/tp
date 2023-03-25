@@ -2,6 +2,7 @@ package seedu.address.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -20,14 +21,15 @@ public class Csv {
     private int numOfRows;
 
     /**
-     * Constructs a CSV object using a CSVReader.
+     * Constructs a CSV object from a given CSV file.
      *
-     * @param csvReader capable of reading the given CSV file.
+     * @param csvFileReader capable of reading the given CSV file.
      * @throws IOException thrown if error occurs due to reading the file.
      */
-    public Csv(CSVReader csvReader) throws IOException {
-        requireNonNull(csvReader);
+    public Csv(FileReader csvFileReader) throws IOException {
+        requireNonNull(csvFileReader);
 
+        CSVReader csvReader = new CSVReader(csvFileReader);
         csvNestedArray = csvReader.readAll();
         headers = Arrays.asList(csvNestedArray.get(0));
         numOfCols = headers.size();
@@ -112,6 +114,14 @@ public class Csv {
         }
         assert false : "Given header should be valid, but was not found";
         throw new NoSuchElementException();
+    }
+
+    public int getNumOfCols() {
+        return numOfCols;
+    }
+
+    public int getNumOfRows() {
+        return numOfRows;
     }
 
 }
