@@ -1,6 +1,5 @@
 package seedu.recipe.testutil;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
@@ -84,7 +83,7 @@ public class EditRecipeDescriptorBuilder {
      * Sets the {@code Ingredients} of the {@code EditRecipeDescriptor} that we are building.
      */
     public EditRecipeDescriptorBuilder withIngredients(String... ingredients) {
-        List<HashMap<Ingredient, IngredientInformation>> ingredientList = Stream.of(ingredients)
+        List<Hashtable<Ingredient, IngredientInformation>> ingredientList = Stream.of(ingredients)
                 .map(IngredientBuilder::new)
                 .map(IngredientBuilder::build)
                 .collect(Collectors.toList());

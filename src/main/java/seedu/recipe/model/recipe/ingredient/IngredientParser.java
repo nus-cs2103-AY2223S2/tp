@@ -3,7 +3,7 @@ package seedu.recipe.model.recipe.ingredient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -29,7 +29,7 @@ public class IngredientParser {
      *
      * @param args The raw IngredientBuilder instance.
      */
-    public static HashMap<Prefix, List<String>> parse(String args) {
+    public static Hashtable<Prefix, List<String>> parse(String args) {
         List<PrefixPosition> positions = findAllPositions(args,
                 AMOUNT_PREFIX, COMMON_NAME_PREFIX,
                 ESTIMATE_PREFIX, NAME_PREFIX, REMARK_PREFIX, SUBSTITUTION_PREFIX);
@@ -44,7 +44,7 @@ public class IngredientParser {
 
     private static List<PrefixPosition> findPosition(String args, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
-        int startPos = args.indexOf(prefix.getPrefix());
+        int startPos = args.indexOf(prefix.getPrefix() + " ");
         while (startPos != -1) {
             PrefixPosition position = new PrefixPosition(prefix, startPos);
             positions.add(position);
@@ -53,8 +53,8 @@ public class IngredientParser {
         return positions;
     }
 
-    private static HashMap<Prefix, List<String>> extractAllArguments(String args, List<PrefixPosition> positions) {
-        HashMap<Prefix, List<String>> out = new HashMap<>();
+    private static Hashtable<Prefix, List<String>> extractAllArguments(String args, List<PrefixPosition> positions) {
+        Hashtable<Prefix, List<String>> out = new Hashtable<>();
 
         //Sort positions
         positions.sort(Comparator.comparingInt(p -> p.startPos));

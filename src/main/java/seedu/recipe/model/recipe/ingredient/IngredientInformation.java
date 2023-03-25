@@ -3,6 +3,7 @@ package seedu.recipe.model.recipe.ingredient;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Represents a container for the values stored with respect to an Ingredient,
@@ -38,13 +39,17 @@ public class IngredientInformation {
                 .filter(s -> s.matches("^\\S+(\\s+\\S+)*$"));
 
         //List::of is unmodifiable by default
-        this.remarks = List.of(remarks);
+        List<String> remarkList = List.of(remarks);
+        remarkList = remarkList.stream()
+                .filter(r -> r != null && r.matches("^\\S+(\\s+\\S+)*$"))
+                .collect(Collectors.toList());
+        this.remarks = remarkList;
 
         //Validated by Ingredient
-        for (Ingredient i: substitutions) {
-            assert i != null;
-        }
-        this.substitutions = List.of(substitutions);
+        List<Ingredient> substituteIngredients = List.of(substitutions);
+        substituteIngredients.forEach(Objects::requireNonNull);
+
+        this.substitutions = substituteIngredients;
     }
 
     public Optional<IngredientQuantity> getQuantity() {
@@ -65,11 +70,12 @@ public class IngredientInformation {
 
     @Override
     public String toString() {
-        return "{"
-            + quantity.map(v -> "Q: " + v).orElse("Q: []") + "; "
-            + "E: " + estimatedQuantity + "; "
-            + "S: " + substitutions + "; "
-            + "R: " + remarks + "}\n";
+        return String.format("{Q: %s; E: %s; S: %s; R: %s}",
+            quantity.map(v -> "" + v).orElse("<>"),
+            estimatedQuantity.map(v -> "" + v).orElse("<>"),
+            substitutions,
+            remarks
+        );
     }
 
     @Override

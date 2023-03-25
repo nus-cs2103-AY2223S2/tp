@@ -11,8 +11,8 @@ import static seedu.recipe.model.recipe.ingredient.IngredientParser.SUBSTITUTION
 import static seedu.recipe.model.recipe.ingredient.IngredientParser.parse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +32,7 @@ public class IngredientBuilder {
 
     public final String name;
 
-    private final HashMap<Prefix, List<String>> arguments;
+    private final Hashtable<Prefix, List<String>> arguments;
 
     /**
      * Constructs a {@code IngredientBuilder}.
@@ -41,7 +41,7 @@ public class IngredientBuilder {
      */
     public IngredientBuilder(String name) {
         requireNonNull(name);
-        HashMap<Prefix, List<String>> tokens = parse(name);
+        Hashtable<Prefix, List<String>> tokens = parse(name);
         checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.arguments = tokens;
@@ -51,21 +51,32 @@ public class IngredientBuilder {
      * Returns true if a given string is a valid ingredient.
      */
     public static boolean isValidIngredient(String test) {
-        HashMap<Prefix, List<String>> tokens = parse(test);
+        Hashtable<Prefix, List<String>> tokens = parse(test);
         return tokens.containsKey(NAME_PREFIX);
     }
 
     /**
      * Generates and returns a Key-Value pair for the enclosing {@code Recipe}
      * instance to store.
-     * @return The {@code HashMap} instance containing the key-value pair.
+     * @return The {@code Hashtable} instance containing the key-value pair.
      */
-    public HashMap<Ingredient, IngredientInformation> build() {
-        HashMap<Ingredient, IngredientInformation> out = new HashMap<>();
+    public Hashtable<Ingredient, IngredientInformation> build() {
+        Hashtable<Ingredient, IngredientInformation> ingredientKeyValuePair = new Hashtable<>();
+        ingredientKeyValuePair.put(createMainIngredient(), createInformation());
+        return ingredientKeyValuePair;
+    }
 
+    private Ingredient createMainIngredient() {
         Ingredient mainIngredient = Ingredient.of(this.arguments.get(NAME_PREFIX).get(0));
+        if (arguments.containsKey(COMMON_NAME_PREFIX)) { //First common name
+            String commonName = arguments.get(COMMON_NAME_PREFIX).get(0);
+            mainIngredient.setCommonName(commonName);
+        }
+        return mainIngredient;
+    }
+
+    private IngredientInformation createInformation() {
         IngredientQuantity quantity = null;
-        String commonName = "";
         String estimatedQuantity = "";
         List<String> remarks = new ArrayList<>();
         Set<Ingredient> substitutes = new HashSet<>();
@@ -76,36 +87,29 @@ public class IngredientBuilder {
         if (arguments.containsKey(ESTIMATE_PREFIX)) { //First estimated name
             estimatedQuantity = arguments.get(ESTIMATE_PREFIX).get(0);
         }
-        if (arguments.containsKey(COMMON_NAME_PREFIX)) { //First common name
-            commonName = arguments.get(COMMON_NAME_PREFIX).get(0);
-            mainIngredient.setCommonName(commonName);
-        }
-        if (arguments.containsKey(REMARK_PREFIX)) {
+        if (arguments.containsKey(REMARK_PREFIX)) { //Remarks
             //Invalid remarks will fail silently, and not get added.
             //TODO: Add logging here
             List<String> remarkList = arguments.get(REMARK_PREFIX);
             remarks.addAll(remarkList.stream()
-                    .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
-                    .collect(Collectors.toList()
-            ));
+                .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
+                .collect(Collectors.toList()
+                ));
         }
-        if (arguments.containsKey(SUBSTITUTION_PREFIX)) {
+        if (arguments.containsKey(SUBSTITUTION_PREFIX)) { //Substitutions
             //Invalid substitutions will indicate to the system via errors thrown by Ingredient.
             substitutes.addAll(arguments.get(SUBSTITUTION_PREFIX)
-                    .stream()
-                    .map(Ingredient::of)
-                    .collect(Collectors.toList())
+                .stream()
+                .map(Ingredient::of)
+                .collect(Collectors.toList())
             );
         }
-        out.put(mainIngredient,
-            new IngredientInformation(
-                quantity,
-                estimatedQuantity,
-                remarks.toArray(String[]::new),
-                substitutes.toArray(Ingredient[]::new)
-            )
+        return new IngredientInformation(
+            quantity,
+            estimatedQuantity,
+            remarks.toArray(String[]::new),
+            substitutes.toArray(Ingredient[]::new)
         );
-        return out;
     }
 
     @Override

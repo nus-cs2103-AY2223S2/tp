@@ -3,6 +3,7 @@ package seedu.recipe.storage.jsonadapters;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -69,7 +70,7 @@ public class JsonAdaptedIngredient {
      */
     public JsonAdaptedIngredient(Ingredient ingredient, IngredientInformation info) {
         ingredientName = ingredient.getName();
-        commonName = ingredient.getCommonName();
+        commonName = Optional.of(ingredient.getCommonName()).filter(i -> i.length() != 0).orElse(null);
         ingredientQuantity = info.getQuantity().map(Object::toString).orElse(null);
         estimatedQuantity = info.getEstimatedQuantity().orElse(null);
         remarks.addAll(info.getRemarks());
@@ -88,6 +89,9 @@ public class JsonAdaptedIngredient {
         Hashtable<Ingredient, IngredientInformation> ingredientKeyValuePair = new Hashtable<>();
         //Validate Ingredient
         Ingredient mainIngredient = Ingredient.of(ingredientName);
+        if (commonName != null) {
+            mainIngredient.setCommonName(commonName);
+        }
 
         //Validate quantity
         IngredientQuantity quantity = null;
