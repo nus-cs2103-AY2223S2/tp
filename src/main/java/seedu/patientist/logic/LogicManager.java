@@ -2,11 +2,9 @@ package seedu.patientist.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.logic.commands.Command;

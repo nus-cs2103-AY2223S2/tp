@@ -1,5 +1,6 @@
 package seedu.patientist.logic.commands;
 
+import static seedu.patientist.logic.commands.CommandTestUtil.VALID_WARD_AMY;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
@@ -29,17 +30,18 @@ public class AddPatientCommandIntegrationTest {
     public void execute_newPerson_success() {
         Patient validPatient = new PatientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
-        //expectedModel.addPerson(validPatient);
+        Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
+        expectedModel.addPatient(validPatient, expectedModel.getWard(VALID_WARD_AMY));
 
-        assertCommandSuccess(new AddPatientCommand(validPatient), model,
+        assertCommandSuccess(new AddPatientCommand(VALID_WARD_AMY, validPatient), model,
                 String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient personInList = (Patient) model.getPatientist().getPersonList().get(0);
-        assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
+        Patient personInList = (Patient) model.getPatientist().getPersonList().get(1);
+        assertCommandFailure(new AddPatientCommand("Block A Ward 1", personInList), model,
+                AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

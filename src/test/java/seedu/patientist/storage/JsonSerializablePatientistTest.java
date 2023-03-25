@@ -40,7 +40,7 @@ public class JsonSerializablePatientistTest {
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializablePatientist dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializablePatientist.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializablePatientist.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializablePatientist.MESSAGE_DUPLICATE_WARD,
                 dataFromFile::toModelType);
     }
 

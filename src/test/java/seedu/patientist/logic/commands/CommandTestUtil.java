@@ -9,6 +9,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.patientist.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_AMY = "Doing fine";
     public static final String VALID_STATUS_BOB = "Feeling dizzy";
 
+    public static final String VALID_WARD_AMY = "Block A Ward 1";
+    public static final String VALID_WARD_BOB = "Block B Ward 2";
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -55,8 +59,9 @@ public class CommandTestUtil {
     public static final String PID_DESC_AMY = " " + PREFIX_ID + VALID_PID_AMY;
     public static final String PID_DESC_BOB = " " + PREFIX_ID + VALID_PID_BOB;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
-    public static final String STATUS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_STATUS_BOB;
-
+    public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
+    public static final String WARD_DESC_AMY = " " + PREFIX_WARD + VALID_WARD_AMY;
+    public static final String WARD_DESC_BOB = " " + PREFIX_WARD + VALID_WARD_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -66,6 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PID_DESC = " " + PREFIX_ID + "@3544"; // PID must be alnum
+    public static final String INVALID_WARD_DESC = " " + PREFIX_ID + ""; // PID must be alnum
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -5,16 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.testutil.Assert.assertThrows;
-import static seedu.patientist.testutil.TypicalWards.BLOCK_A_WARD_1;
-import static seedu.patientist.testutil.TypicalWards.BLOCK_A_WARD_2;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
 import static seedu.patientist.testutil.TypicalPatients.AMY;
 import static seedu.patientist.testutil.TypicalPatients.BOB;
 import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
 import static seedu.patientist.testutil.TypicalStaff.CHARLES;
 import static seedu.patientist.testutil.TypicalStaff.DACIA;
+import static seedu.patientist.testutil.TypicalWards.getBlockAWard1;
+import static seedu.patientist.testutil.TypicalWards.getBlockAWard2;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.person.exceptions.PersonNotFoundException;
 import seedu.patientist.testutil.WardBuilder;
@@ -33,7 +34,7 @@ public class WardTest {
 
     @Test
     public void contains_personInWard_true() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
         assertTrue(blockAWard1Copy.containsStaff(CHARLES));
         assertTrue(blockAWard1Copy.containsPatient(AMY));
         assertTrue(blockAWard1Copy.containsPerson(CHARLIE));
@@ -41,11 +42,11 @@ public class WardTest {
 
     @Test
     public void contains_personNotInWard_false() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
-        assertFalse(BLOCK_A_WARD_2.containsStaff(CHARLES));
+        assertFalse(getBlockAWard2().containsStaff(CHARLES));
         assertFalse(blockAWard1Copy.containsPatient(BOB));
-        assertFalse(BLOCK_A_WARD_2.containsPerson(CHARLIE));
+        assertFalse(getBlockAWard2().containsPerson(CHARLIE));
 
         Ward emptyWard = new Ward("empty test ward");
         assertFalse(emptyWard.containsPerson(DACIA));
@@ -55,7 +56,7 @@ public class WardTest {
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         Ward emptyWard = new Ward("empty test ward");
         assertThrows(NullPointerException.class, () -> emptyWard.addPatient(null));
@@ -64,7 +65,7 @@ public class WardTest {
 
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         Ward emptyWard = new Ward("empty test ward");
         emptyWard.addStaff(DACIA);
@@ -85,7 +86,7 @@ public class WardTest {
 
     @Test
     public void delete_nullPerson_throwsNullPointerException() {
-        Ward blockAWard2Copy = new WardBuilder(BLOCK_A_WARD_2).build();
+        Ward blockAWard2Copy = new WardBuilder(getBlockAWard1()).build();
 
         assertThrows(NullPointerException.class, () -> blockAWard2Copy.deletePatient(null));
         assertThrows(NullPointerException.class, () -> blockAWard2Copy.deleteStaff(null));
@@ -97,7 +98,7 @@ public class WardTest {
 
     @Test
     public void delete_personNotInList_throwsPersonNotFoundException() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         assertThrows(PersonNotFoundException.class, () -> blockAWard1Copy.deletePatient(BOB));
         assertThrows(PersonNotFoundException.class, () -> blockAWard1Copy.deleteStaff(DACIA));
@@ -109,7 +110,7 @@ public class WardTest {
 
     @Test
     public void delete_personInList_success() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         assertTrue(blockAWard1Copy.containsPerson(AMY));
         blockAWard1Copy.deletePerson(AMY);
@@ -124,7 +125,7 @@ public class WardTest {
 
     @Test
     public void set_nullPerson_throwsNullPointerException() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         assertThrows(NullPointerException.class, () -> blockAWard1Copy.setPatient(null, AMY));
         assertThrows(NullPointerException.class, () -> blockAWard1Copy.setStaff(null, CHARLES));
@@ -134,7 +135,7 @@ public class WardTest {
 
     @Test
     public void set_targetNotInList_throwsPersonNotFoundException() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         assertThrows(PersonNotFoundException.class, () -> blockAWard1Copy.setStaff(DACIA, DACIA));
         assertThrows(PersonNotFoundException.class, () -> blockAWard1Copy.setPatient(ADAM, BOB));
@@ -142,7 +143,7 @@ public class WardTest {
 
     @Test
     public void set_success() {
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
 
         blockAWard1Copy.setStaff(CHARLES, DACIA);
         assertTrue(blockAWard1Copy.containsPerson(DACIA));
@@ -152,13 +153,13 @@ public class WardTest {
 
     @Test
     public void equals() {
-        assertEquals(BLOCK_A_WARD_1, BLOCK_A_WARD_1);
-        assertNotEquals(BLOCK_A_WARD_1, BLOCK_A_WARD_2);
+        assertEquals(getBlockAWard1(), getBlockAWard1());
+        assertNotEquals(getBlockAWard1(), getBlockAWard2());
 
-        Ward blockAWard1Copy = new WardBuilder(BLOCK_A_WARD_1).build();
-        assertEquals(BLOCK_A_WARD_1, blockAWard1Copy);
+        Ward blockAWard1Copy = new WardBuilder(getBlockAWard1()).build();
+        assertEquals(getBlockAWard1(), blockAWard1Copy);
 
         blockAWard1Copy.deleteStaff(CHARLES);
-        assertEquals(BLOCK_A_WARD_1, blockAWard1Copy);
+        assertEquals(getBlockAWard1(), blockAWard1Copy);
     }
 }

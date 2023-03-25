@@ -1,15 +1,14 @@
 package seedu.patientist.model.ward;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.patientist.testutil.TypicalWards.BLOCK_A_WARD_1;
-import static seedu.patientist.testutil.TypicalWards.BLOCK_A_WARD_2;
 
-import seedu.patientist.model.person.Person;
-import seedu.patientist.testutil.WardBuilder;
 import org.junit.jupiter.api.Test;
 
+import seedu.patientist.model.person.Person;
+
+
 public class WardListTest {
-    WardList wardList = new WardList();
+    private WardList wardList = new WardList();
 
     @Test
     public void contains_null_throwsNullPointerException() {

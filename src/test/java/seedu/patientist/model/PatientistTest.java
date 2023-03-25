@@ -98,8 +98,23 @@ public class PatientistTest {
         }
 
         @Override
+        public void updatePersonList() {
+            return;
+        }
+
+        @Override
         public ObservableList<Ward> getWardList() {
             return wards;
+        }
+
+        @Override
+        public ObservableList<Person> getPatientListInWard(Ward ward) {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Person> getStaffListInWard(Ward ward) {
+            return null;
         }
     }
 

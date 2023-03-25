@@ -77,6 +77,7 @@ public class AddPatientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPatientCommand // instanceof handles nulls
-                    && toAdd.equals(((AddPatientCommand) other).toAdd));
+                    && toAdd.equals(((AddPatientCommand) other).toAdd)
+                    && wardToAdd.equals(((AddPatientCommand) other).wardToAdd));
     }
 }

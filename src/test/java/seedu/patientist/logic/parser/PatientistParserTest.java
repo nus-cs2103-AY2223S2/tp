@@ -37,7 +37,7 @@ public class PatientistParserTest {
     public void parseCommand_add() throws Exception {
         Patient patient = new PatientBuilder().build();
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
-        assertEquals(new AddPatientCommand(patient), command);
+        assertEquals(new AddPatientCommand("Block A Ward 1", patient), command);
     }
 
     @Test
