@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertAssignTaskCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -10,7 +11,7 @@ import static seedu.address.model.util.TypicalPersons.ALICE;
 import static seedu.address.model.util.TypicalPersons.BENSON;
 import static seedu.address.model.util.TypicalPersons.CARL;
 import static seedu.address.model.util.TypicalPersons.DANIEL;
-import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalTasks.CHECK_BALANCES;
 import static seedu.address.model.util.TypicalTasks.COMPLETE_SLIDES;
 import static seedu.address.model.util.TypicalTasks.SEND_EMAIL_TO_CLIENT;
 import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
@@ -21,19 +22,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
 public class DeleteTaskCommandTest {
-
-    private final Model modelAb = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private final OfficeConnectModel model = new OfficeConnectModel(
         new RepositoryModelManager<>(getTypicalTaskRepository()),
@@ -91,17 +86,18 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_checkDeletionOfAssignments_success() {
-        try {
-            DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
-            deleteTaskCommand.execute(modelAb, model);
+        Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        AssignTask assignmentToDelete1 = new AssignTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
+        AssignTask assignmentToDelete2 = new AssignTask(DANIEL.getId(), SEND_EMAIL_TO_CLIENT.getId());
 
-            Repository<AssignTask> repo = new Repository<>();
-            repo.addItem(new AssignTask(BENSON.getId(), COMPLETE_SLIDES.getId()));
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-            assertEquals(model.getAssignTaskModelManager().getReadOnlyRepository(), repo);
-        } catch (CommandException e) {
-            throw new AssertionError("Execution of command should not fail.", e);
-        }
+        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete1);
+        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete2);
+
+        assertAssignTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -142,7 +138,7 @@ public class DeleteTaskCommandTest {
     private Repository<AssignTask> getPersonTaskRepository() {
         AssignTask mapping1 = new AssignTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
         AssignTask mapping2 = new AssignTask(BENSON.getId(), COMPLETE_SLIDES.getId());
-        AssignTask mapping3 = new AssignTask(CARL.getId(), SEND_EMAIL_TO_CLIENT.getId());
+        AssignTask mapping3 = new AssignTask(CARL.getId(), CHECK_BALANCES.getId());
         AssignTask mapping4 = new AssignTask(DANIEL.getId(), SEND_EMAIL_TO_CLIENT.getId());
 
         Repository<AssignTask> ptl = new Repository<>();

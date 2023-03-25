@@ -86,6 +86,15 @@ public class OfficeConnectModel {
     }
 
     /**
+     * Deletes assignment from assign task model manager
+     * @param assignTask assignment to be deleted
+     */
+    public void deleteAssignTaskModelManagerItem(AssignTask assignTask) {
+        assignTaskModelManager.deleteItem(assignTask);
+    }
+
+
+    /**
      * Checks the given index is within the filter task list range
      *
      * @param index to check
