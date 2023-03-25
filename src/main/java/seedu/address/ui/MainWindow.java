@@ -29,6 +29,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private int tabNumber = 0;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -133,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.findCheckedPerson());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
+        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson(), tabNumber);
         scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
     }
 
@@ -196,10 +197,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isTabSwitch()) {
+                tabNumber = (tabNumber == 0) ? 1 : 0;
+            }
+
             taskListPanel = new TaskListPanel(logic.findCheckedPerson());
             taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-            scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
+            scoreListPanel = new ScoreListPanel(logic.findCheckedPerson(), tabNumber);
             scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
 
             return commandResult;

@@ -13,6 +13,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -41,11 +42,13 @@ public class ScoreListPanel extends UiPart<Region> {
     private Axis xAxis;
     @FXML
     private Axis yAxis;
+    @FXML
+    private TabPane fullTabs;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      */
-    public ScoreListPanel(Person person) {
+    public ScoreListPanel(Person person, int tabNumber) {
         super(FXML);
 
         name.setText("No student being checked now");
@@ -62,6 +65,8 @@ public class ScoreListPanel extends UiPart<Region> {
                 nameChart.setText("No score chart for " + person.getName().fullName);
             }
         }
+
+        fullTabs.getSelectionModel().select(tabNumber);
     }
 
     private void newChart(Person person) {
