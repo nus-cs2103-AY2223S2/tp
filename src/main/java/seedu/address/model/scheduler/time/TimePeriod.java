@@ -51,7 +51,9 @@ public abstract class TimePeriod {
         if (other.getSchoolDay().equals(this.schoolDay)) {
             return (startTime.isBefore(other.getEndTime()) && endTime.isAfter(other.getEndTime()))
                 || (startTime.isBefore(other.getStartTime()) && endTime.isAfter(other.getStartTime()))
-                || (startTime.isAfter(other.getStartTime())) && endTime.isBefore(other.getEndTime());
+                || (startTime.isAfter(other.getStartTime())) && endTime.isBefore(other.getEndTime())
+                || (startTime.isEqual(other.getStartTime()))
+                || (endTime.isEqual(other.getEndTime()));
         }
         return false;
     }
@@ -62,6 +64,15 @@ public abstract class TimePeriod {
     public boolean isStraightBefore(TimePeriod otherTimePeriod) {
         return this.getEndTime().isEqual(otherTimePeriod.getStartTime())
                 && isSameDay(otherTimePeriod);
+    }
+
+    /**
+     * Checks only TimePeriod by time and day, not reference or class
+     */
+    public boolean isSameTimeFrame(TimePeriod other) {
+        return other.isSameDay(other)
+            && other.getStartTime().equals(startTime)
+            && other.getEndTime().isEqual(endTime);
     }
 
     /**

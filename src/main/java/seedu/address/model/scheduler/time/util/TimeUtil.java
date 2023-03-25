@@ -1,10 +1,11 @@
 package seedu.address.model.scheduler.time.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javafx.util.Pair;
 
 import org.joda.time.LocalTime;
 
@@ -13,6 +14,7 @@ import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.util.MathUtil;
 
 /**
  * Contains utils functions for Timetable related jobs.
@@ -97,13 +99,13 @@ public class TimeUtil {
      * and not activity.
      */
     public static boolean hasAnyClash(List<TimePeriod> timePeriods) {
-        List<TimePeriod> second = List.copyOf(timePeriods);
-        TimePeriod[][] allTimePeriodPairs = timePeriods.stream()
-            .flatMap(ai -> second.stream().map(bi -> new TimePeriod[] {ai, bi}))
-            .toArray(TimePeriod[][]::new);
-        Stream<TimePeriod[]> cartesianProductTimePeriodStream = Arrays.stream(allTimePeriodPairs)
-            .filter(pair -> pair[0].equals(pair[1])) // exclude <A,A>
-            .filter(pair -> pair[0].hasClash(pair[1]));
+        List<Pair<Integer, TimePeriod>> indexedTimePeriods = MathUtil.<TimePeriod>indexObjects(timePeriods);
+        List<Pair<Integer, TimePeriod>> second = List.copyOf(indexedTimePeriods);
+        List<List<Pair<Integer, TimePeriod>>> cartesianProductPairs =
+            MathUtil.<Pair<Integer, TimePeriod>>getCartesianProduct(indexedTimePeriods, second);
+        Stream<List<Pair<Integer, TimePeriod>>> cartesianProductTimePeriodStream = cartesianProductPairs.stream()
+            .filter(listPair -> !listPair.get(0).getKey().equals(listPair.get(1).getKey()))
+            .filter(listPair -> listPair.get(0).getValue().hasClash(listPair.get(1).getValue()));
         return cartesianProductTimePeriodStream.findAny().isPresent();
     }
 

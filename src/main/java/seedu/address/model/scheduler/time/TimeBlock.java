@@ -49,7 +49,8 @@ public class TimeBlock extends TimePeriod {
 
     @Override
     public String toString() {
-        return String.format("[%s, %s]",
+        return String.format("%s[%s, %s]",
+            getSchoolDay(),
             TimeUtil.formatLocalTime(getStartTime()),
             TimeUtil.formatLocalTime(getEndTime()));
     }

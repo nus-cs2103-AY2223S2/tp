@@ -103,10 +103,10 @@ public class HourBlock extends TimePeriod {
 
     @Override
     public String toString() {
-        return String.format("[%s, %s]\nClass: %s",
+        return String.format("[%s, %s]\nClass: %s\n%s",
             TimeUtil.formatLocalTime(getStartTime()),
             TimeUtil.formatLocalTime(getEndTime()),
-            lesson.isPresent() ? lesson.get() : "NO LESSON!");
+            lesson.isPresent() ? lesson.get() : "NO LESSON!", getSchoolDay());
     }
 
     @Override
