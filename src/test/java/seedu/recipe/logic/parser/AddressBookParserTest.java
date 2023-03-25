@@ -62,7 +62,7 @@ public class AddressBookParserTest {
 
         EditCommand another = new EditCommand(INDEX_FIRST_RECIPE, descriptor);
 
-//        assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
+        // assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
     }
 
     @Test
