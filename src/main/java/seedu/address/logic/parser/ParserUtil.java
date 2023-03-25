@@ -217,7 +217,7 @@ public class ParserUtil {
             f.createNewFile();
             f.delete();
         } catch(IOException e) {
-            throw new ParseException("Invalid file name!");
+            throw new ParseException("File name should follow general file naming conventions\nAvoid special characters");
         }
         return fileName;
     }
@@ -228,7 +228,7 @@ public class ParserUtil {
         if (Files.isWritable(path) && Files.isDirectory(path)) {
             return filePath;
         } else {
-            throw new ParseException("Invalid directory!");
+            throw new ParseException("Path to directory is invalid!");
         }
     }
 
