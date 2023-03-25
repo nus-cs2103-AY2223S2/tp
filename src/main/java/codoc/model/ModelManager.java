@@ -143,12 +143,11 @@ public class ModelManager implements Model {
         }
         requireNonNull(predicate);
         predicateArrayList.add(predicate);
-        userInputs += " " + userInput + "\n";
+        userInputs = userInput + "\n" + userInputs;
         Predicate<Person> combinePredicate = predicateArrayList.stream().reduce(person -> true, Predicate::and);
-        //logger.log(Level.INFO, "Number of predicates = " + predicateArrayList.size());
-        logger.log(Level.INFO, "Number of predicates = " + userInputs);
+        logger.log(Level.INFO, "Number of predicates = " + predicateArrayList.size());
         filteredPersons.setPredicate(combinePredicate);
-        return userInputs;
+        return "> " + userInputs.trim();
     }
 
     //=========== Protagonist ================================================================================

@@ -29,12 +29,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         private String string;
 
         private PredicateStringPair() {
-            this.predicate = person -> true;;
+            this.predicate = person -> true;
             this.string = "";
         }
 
         private void appendString(String s) {
-            this.string = this.string.concat(s);
+            this.string = this.string.concat(" ").concat(s);
         }
         private void combinePredicate(Predicate<Person> namePredicate) {
             this.predicate = this.predicate.and(namePredicate);
