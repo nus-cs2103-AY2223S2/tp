@@ -35,7 +35,7 @@ public class ViewVehicleCommand extends Command {
         // TODO: Show all nested objects associated with vehicle
         return new CommandResult(
                 String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current, vehicleOwner),
-                ResultType.LISTED_VEHICLES);
+                Tab.VEHICLES);
     }
 
     @Override

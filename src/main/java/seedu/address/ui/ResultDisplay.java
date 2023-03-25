@@ -32,8 +32,10 @@ public class ResultDisplay extends UiPart<Region> {
 
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
-        resultDisplay.getChildren().add(new Text(feedbackToUser));
-//        resultDisplay.setText(feedbackToUser);
+        resultDisplay.getChildren().clear();
+        Text feedbackText = new Text(feedbackToUser);
+        feedbackText.getStyleClass().add("text");
+        resultDisplay.getChildren().add(feedbackText);
     }
 
 }

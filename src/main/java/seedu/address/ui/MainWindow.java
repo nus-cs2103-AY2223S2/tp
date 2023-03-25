@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -47,13 +49,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane listPanelPlaceholder;
+    private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane vehicleListPanelPlaceholder;
+
+    @FXML
+    private StackPane serviceListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabs;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,26 +126,28 @@ public class MainWindow extends UiPart<Stage> {
     private void initCustomerListPanel() {
         customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
                 logic.getCustomerVehicleMap());
-        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
     }
 
-    private void initVehicleListPanel() {
+   private void initVehicleListPanel() {
         vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
                 logic.getVehicleDataMap());
-        listPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
+       vehicleListPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
     }
 
     private void initServiceListPanel() {
         serviceListPanel = new ServiceListPanel(logic.getFilteredServiceList(),
                 logic.getServiceDataMap());
-        listPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
+        serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-         initCustomerListPanel();
+        initCustomerListPanel();
+        initVehicleListPanel();
+        initServiceListPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -191,6 +204,13 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    private void updateSelectedTab(CommandResult commandResult) {
+        int tabIndex = commandResult.getType().ordinal();
+        if (!tabs.getSelectionModel().isSelected(tabIndex) && commandResult.getType() != Tab.UNCHANGED) {
+            tabs.getSelectionModel().select(tabIndex);
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -201,22 +221,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-//            listPanelPlaceholder.getChildren().clear();
-
-            // Handle UI Updates
-//            switch (commandResult.getType()) {
-//            case LISTED_CUSTOMERS:
-//                initCustomerListPanel();
-//                break;
-//            case LISTED_VEHICLES:
-//                initVehicleListPanel();
-//                break;
-//            case LISTED_SERVICES:
-//                initServiceListPanel();
-//                break;
-//            default:
-//            }
+            updateSelectedTab(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

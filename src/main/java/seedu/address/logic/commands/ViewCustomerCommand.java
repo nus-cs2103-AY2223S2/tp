@@ -31,7 +31,7 @@ public class ViewCustomerCommand extends Command {
         Customer current = model.getFilteredCustomerList().get(0);
         // TODO: Show all nested objects associated with customer
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current), ResultType.LISTED_CUSTOMERS);
+                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current), Tab.CUSTOMERS);
     }
 
     @Override
