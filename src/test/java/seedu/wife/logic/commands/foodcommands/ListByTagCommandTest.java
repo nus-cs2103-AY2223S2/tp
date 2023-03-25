@@ -15,7 +15,7 @@ import seedu.wife.model.UserPrefs;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListByTagCommand.
  */
 public class ListByTagCommandTest {
 
