@@ -279,13 +279,38 @@ Given below is an example usage scenario and how **Editing a Patient** mechanism
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 
 ### Deleting a Patient
-<!-- TODO -->
+
+The **Deleting a Patients** mechanism is facilitated by `VMS`. It will find specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
 
 ##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient delete 5` as a command.
+
 <!-- TODO -->
 
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
+
+### Clearing Patients
+
+The **Clearing Patients** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient clear` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. `PatientParser` will invoke `ClearCommand` directly without intemediary parser commands as `ClearCommand` does not accept any argument.
+4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
+
+The activity diagram below illustrates the workflow of patient `ClearCommand` that is described above.
+
+<img src="images/patient/ClearPatientActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Clearing Patients** mechanism behaves at every step.
+
+<img src="images/patient/ClearPatientSequenceDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
