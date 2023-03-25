@@ -62,6 +62,11 @@ public interface Model {
     boolean hasEvent(Event event);
 
     /**
+     * Returns true if another event exists at the given time in the Scheduler.
+     */
+    boolean hasEventAtTime(Event event);
+
+    /**
      * Deletes the given event.
      * The event must exist in the scheduler.
      */
