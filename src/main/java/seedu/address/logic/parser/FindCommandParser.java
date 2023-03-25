@@ -18,6 +18,7 @@ import java.util.List;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.PredicateKey;
 
 
 /**
@@ -48,50 +49,16 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE)
             );
         }
-        List<String> names = argMultimap.getAllValues(PREFIX_NAME);
-        if (!names.isEmpty()) {
-            pred.withName(names);
-        }
-        List<String> phones = argMultimap.getAllValues(PREFIX_PHONE);
-        if (!phones.isEmpty()) {
-            pred.withPhone(phones);
-        }
-        List<String> emails = argMultimap.getAllValues(PREFIX_EMAIL);
-        if (!emails.isEmpty()) {
-            pred.withEmail(emails);
-        }
-        List<String> address = argMultimap.getAllValues(PREFIX_ADDRESS);
-        if (!address.isEmpty()) {
-            pred.withAddress(address);
-        }
-        List<String> genders = argMultimap.getAllValues(PREFIX_GENDER);
-        if (!genders.isEmpty()) {
-            pred.withGender(genders);
-        }
-        List<String> majors = argMultimap.getAllValues(PREFIX_MAJOR);
-        if (!majors.isEmpty()) {
-            pred.withMajor(majors);
-        }
-        List<String> races = argMultimap.getAllValues(PREFIX_RACE);
-        if (!races.isEmpty()) {
-            pred.withRace(races);
-        }
-        List<String> comms = argMultimap.getAllValues(PREFIX_COMMS);
-        if (!comms.isEmpty()) {
-            pred.withComms(comms);
-        }
-        List<String> mods = argMultimap.getAllValues(PREFIX_MODULES);
-        if (!mods.isEmpty()) {
-            pred.withModules(mods);
-        }
-        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-        if (!tags.isEmpty()) {
-            pred.withTag(tags);
-        }
 
-        List<String> faculties = argMultimap.getAllValues(PREFIX_FACULTY);
-        if (!faculties.isEmpty()) {
-            pred.withFaculty(faculties);
+        List<PredicateKey> predicateKeys = List.of(PredicateKey.NAME, PredicateKey.ADDRESS, PredicateKey.COMMS,
+                PredicateKey.EMAIL, PredicateKey.GENDER, PredicateKey.MAJOR, PredicateKey.MODULES, PredicateKey.PHONE,
+                PredicateKey.RACE, PredicateKey.TAG, PredicateKey.FACULTY);
+
+        for (PredicateKey key : predicateKeys) {
+            List<String> keywords = argMultimap.getAllValues(key.prefix);
+            if (!keywords.isEmpty()) {
+                pred.withField(key, keywords);
+            }
         }
 
         return new FindCommand(pred);

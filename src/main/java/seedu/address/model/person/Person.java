@@ -12,12 +12,14 @@ import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
+import seedu.address.model.person.fields.Field;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.SuperField;
 import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
@@ -213,158 +215,46 @@ public class Person {
     /**
      * Returns true if the person contains one of the keywords in all the fields specified, returns false otherwise.
      */
-    public boolean contains(HashMap<String, Set<String>> keywords) {
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.NAMEKEY)
-                && !this.nameContains(keywords.get(PersonContainsKeywordsPredicate.NAMEKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.ADDRESSKEY)
-                && !this.addressContains(keywords.get(PersonContainsKeywordsPredicate.ADDRESSKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.COMMSKEY)
-                && !this.commsContains(keywords.get(PersonContainsKeywordsPredicate.COMMSKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.EMAILKEY)
-                && !this.emailContains(keywords.get(PersonContainsKeywordsPredicate.EMAILKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.GENDERKEY)
-                && !this.genderContains(keywords.get(PersonContainsKeywordsPredicate.GENDERKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.MAJORKEY)
-                && !this.majorContains(keywords.get(PersonContainsKeywordsPredicate.MAJORKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.MODULESKEY)
-                && !this.moduleContains(keywords.get(PersonContainsKeywordsPredicate.MODULESKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.PHONEKEY)
-                && !this.phoneContains(keywords.get(PersonContainsKeywordsPredicate.PHONEKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.RACEKEY)
-                && !this.raceContains(keywords.get(PersonContainsKeywordsPredicate.RACEKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.TAGKEY)
-                && !this.tagsContains(keywords.get(PersonContainsKeywordsPredicate.TAGKEY))) {
-            return false;
-        }
-        if (keywords.containsKey(PersonContainsKeywordsPredicate.FACULTYKEY)
-                && !this.facultyContains(keywords.get(PersonContainsKeywordsPredicate.FACULTYKEY))) {
-            return false;
+    public boolean contains(HashMap<PredicateKey, Set<String>> keywords) {
+
+        HashMap<PredicateKey, Field> fieldMap = new HashMap<>();
+        fieldMap.put(PredicateKey.NAME, this.name);
+        fieldMap.put(PredicateKey.ADDRESS, this.address);
+        fieldMap.put(PredicateKey.COMMS, this.comms);
+        fieldMap.put(PredicateKey.EMAIL, this.email);
+        fieldMap.put(PredicateKey.GENDER, this.gender);
+        fieldMap.put(PredicateKey.MAJOR, this.major);
+        fieldMap.put(PredicateKey.PHONE, this.phone);
+        fieldMap.put(PredicateKey.RACE, this.race);
+        fieldMap.put(PredicateKey.FACULTY, this.faculty);
+
+        for (PredicateKey key : keywords.keySet()) {
+            Field field = fieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
         }
 
+        HashMap<PredicateKey, SuperField<? extends Field>> superFieldMap = new HashMap<>();
+        superFieldMap.put(PredicateKey.TAG, this.tags);
+        superFieldMap.put(PredicateKey.MODULES, this.modules);
+
+        for (PredicateKey key : keywords.keySet()) {
+            SuperField<? extends Field> field = superFieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
+        }
         return true;
     }
 
-    private boolean tagsContains(Set<String> test) {
-        if (!test.isEmpty() && this.tags.values.isEmpty()) {
-            return false;
-        }
-        for (String t: test) {
-            for (Tag tag: this.tags.values) {
-                if (tag.contains(t)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
-    private boolean nameContains(Set<String> test) {
-        for (String t: test) {
-            if (this.name.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean addressContains(Set<String> test) {
-        for (String t: test) {
-            if (this.address.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean commsContains(Set<String> test) {
-        for (String t: test) {
-            if (this.comms.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean emailContains(Set<String> test) {
-        for (String t: test) {
-            if (this.email.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean genderContains(Set<String> test) {
-        for (String t: test) {
-            if (this.gender.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean majorContains(Set<String> test) {
-        for (String t: test) {
-            if (this.major.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean moduleContains(Set<String> test) {
-        for (String t: test) {
-            if (this.modules.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean phoneContains(Set<String> test) {
-        for (String t: test) {
-            if (this.phone.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean raceContains(Set<String> test) {
-        for (String t: test) {
-            if (this.race.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean facultyContains(Set<String> test) {
-        for (String t: test) {
-            if (this.faculty.contains(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

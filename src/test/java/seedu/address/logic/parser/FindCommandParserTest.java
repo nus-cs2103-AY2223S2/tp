@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.PredicateKey;
 
 public class FindCommandParserTest {
 
@@ -24,7 +25,8 @@ public class FindCommandParserTest {
     public void parse_validNameArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PersonContainsKeywordsPredicate().withName(Arrays.asList("Alice", "bob")));
+                new FindCommand(new PersonContainsKeywordsPredicate()
+                        .withField(PredicateKey.NAME, (Arrays.asList("Alice", "bob"))));
         assertParseSuccess(parser, " n/Alice n/bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -36,7 +38,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withAddress(Arrays.asList("Serangoon", "Central")));
+                        .withField(PredicateKey.ADDRESS, Arrays.asList("Serangoon", "Central")));
         assertParseSuccess(parser, " a/Serangoon a/Central", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -48,7 +50,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withEmail(Arrays.asList("@gmail", ".com")));
+                        .withField(PredicateKey.EMAIL, Arrays.asList("@gmail", ".com")));
         assertParseSuccess(parser, " e/@gmail e/.com", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -60,7 +62,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withGender(Arrays.asList("ma", "le")));
+                        .withField(PredicateKey.GENDER, Arrays.asList("ma", "le")));
         assertParseSuccess(parser, " g/ma g/le", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -72,7 +74,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withMajor(Arrays.asList("comsci", "psych")));
+                        .withField(PredicateKey.MAJOR, Arrays.asList("comsci", "psych")));
         assertParseSuccess(parser, " m/comsci m/psych", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -84,7 +86,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withModules(Arrays.asList("CS2103T", "CS2040S")));
+                        .withField(PredicateKey.MODULES, Arrays.asList("CS2103T", "CS2040S")));
         assertParseSuccess(parser, " mt/CS2103T mt/CS2040S", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -96,7 +98,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withPhone(Arrays.asList("123123", "9542")));
+                        .withField(PredicateKey.PHONE, Arrays.asList("123123", "9542")));
         assertParseSuccess(parser, " p/123123 p/9542", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -108,7 +110,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withRace(Arrays.asList("Chi", "Malay")));
+                        .withField(PredicateKey.RACE, Arrays.asList("Chi", "Malay")));
         assertParseSuccess(parser, " r/Chi r/Malay", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -120,7 +122,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate()
-                        .withTag(Arrays.asList("123123", "9542")));
+                        .withField(PredicateKey.TAG, Arrays.asList("123123", "9542")));
         assertParseSuccess(parser, " t/123123 t/9542", expectedFindCommand);
 
         // multiple whitespaces between keywords

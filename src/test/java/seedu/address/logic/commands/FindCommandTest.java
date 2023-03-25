@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.PredicateKey;
 import seedu.address.model.user.UserData;
 
 /**
@@ -31,9 +32,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         PersonContainsKeywordsPredicate firstPredicate =
-                new PersonContainsKeywordsPredicate().withName(Collections.singletonList("first"));
+                new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME, Collections.singletonList("first"));
         PersonContainsKeywordsPredicate secondPredicate =
-                new PersonContainsKeywordsPredicate().withName(Collections.singletonList("second"));
+                new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME, Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -58,7 +59,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PersonContainsKeywordsPredicate predicate = preparePredicate("");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -79,7 +80,8 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new PersonContainsKeywordsPredicate().withName((Arrays.asList(userInput.split("\\s+"))));
+        return new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME,
+                Arrays.asList(userInput.split("\\s+")));
     }
 
     //TODO: Test if Find command works for different fields.

@@ -19,16 +19,16 @@ public class PersonContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         PersonContainsKeywordsPredicate firstPredicate = new PersonContainsKeywordsPredicate()
-                .withName(firstPredicateKeywordName);
+                .withField(PredicateKey.NAME, firstPredicateKeywordName);
         PersonContainsKeywordsPredicate secondPredicate = new PersonContainsKeywordsPredicate()
-                .withName(secondPredicateKeywordList);
+                .withField(PredicateKey.NAME, secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         PersonContainsKeywordsPredicate firstPredicateCopy = new PersonContainsKeywordsPredicate()
-                .withName(firstPredicateKeywordName);
+                .withField(PredicateKey.NAME, firstPredicateKeywordName);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,22 +45,22 @@ public class PersonContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate()
-                .withName(Collections.singleton("Alice"));
+                .withField(PredicateKey.NAME, Collections.singleton("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new PersonContainsKeywordsPredicate()
-                .withName(Collections.singleton("Alice"))
-                .withAddress(Collections.singleton("Bob"));
+                .withField(PredicateKey.NAME, Collections.singleton("Alice"))
+                .withField(PredicateKey.ADDRESS, Collections.singleton("Bob"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").withAddress("Bob").build()));
 
         // Only one matching keyword
         predicate = new PersonContainsKeywordsPredicate()
-                .withName((Arrays.asList("Bob", "Carol")));
+                .withField(PredicateKey.NAME, (Arrays.asList("Bob", "Carol")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new PersonContainsKeywordsPredicate().withName(Arrays.asList("aLIce", "bOB"));
+        predicate = new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME, Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
@@ -68,19 +68,19 @@ public class PersonContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate()
-                .withName(Collections.emptyList());
+                .withField(PredicateKey.NAME, Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new PersonContainsKeywordsPredicate().withName(List.of("Carol"));
+        predicate = new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME, List.of("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new PersonContainsKeywordsPredicate()
-                .withName(List.of("Bob"))
-                .withPhone(List.of("12345"))
-                .withEmail(List.of("alice@email.com"))
-                .withAddress(List.of("Main Street"));
+                .withField(PredicateKey.NAME, List.of("Bob"))
+                .withField(PredicateKey.PHONE, List.of("12345"))
+                .withField(PredicateKey.EMAIL, List.of("alice@email.com"))
+                .withField(PredicateKey.ADDRESS, List.of("Main Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
