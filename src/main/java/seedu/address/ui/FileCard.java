@@ -49,9 +49,7 @@ public class FileCard extends UiPart<Region> {
         view.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String completeFileName = filesManager.getPathInString().trim()
-                    + "/" + file.getFileName().trim();
-                filesManager.viewFile(completeFileName);
+                filesManager.displayFile(file.getFileName());
             }
         });
         delete.setOnMouseClicked(new EventHandler<MouseEvent>() {

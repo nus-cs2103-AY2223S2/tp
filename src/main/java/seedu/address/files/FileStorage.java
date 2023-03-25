@@ -38,9 +38,28 @@ public class FileStorage {
     }
 
     /**
-     * Delete drc.
+     * Checks if the specified directory exists and creates it if necessary.
+     * <p>
+     * This method checks if the given directory exists. If it does not exist,
+     * the method creates the directory along with any necessary parent directories.
      *
-     * @param path the path
+     * @param userDir The directory to be checked and created if necessary.
+     */
+    public static void checkDir(File userDir) {
+        if (!userDir.exists()) {
+            userDir.mkdirs();
+        }
+    }
+
+    /**
+     * Deletes a directory and all its contents.
+     * <p>
+     * This method checks if the specified directory exists. If it does, the method
+     * iterates through all the files in the directory and deletes each one. Finally,
+     * the directory itself is deleted. If the directory does not exist, the method
+     * does nothing.
+     *
+     * @param path The path of the directory to be deleted.
      */
     public static void deleteDrc(String path) {
         File directory = new File(path);
@@ -53,9 +72,12 @@ public class FileStorage {
     }
 
     /**
-     * Delete file.
+     * Deletes a file at the specified path.
+     * <p>
+     * This method checks if the specified file exists. If it does, the method
+     * deletes the file. If the file does not exist, the method does nothing.
      *
-     * @param path the uri
+     * @param path The path of the file to be deleted.
      */
     public static void deleteFile(String path) {
         File file = new File(path);
@@ -65,8 +87,40 @@ public class FileStorage {
     }
 
     /**
-     * Upload file.
+     * Determines if the given file is an image file based on its extension.
+     * <p>
+     * This method checks if the file has one of the following extensions (case-insensitive):
+     * JPG, JPEG, PNG, BMP, or GIF. If the file has one of these extensions, it is
+     * considered to be an image file, and the method returns true. Otherwise, it
+     * returns false.
      *
+     * @param file The file to be checked for being an image file.
+     * @return true if the file is an image file, false otherwise.
+     */
+    public static boolean isImageFile(File file) {
+        String fileName = file.getName();
+        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+        return extension.equalsIgnoreCase("jpg")
+                || extension.equalsIgnoreCase("jpeg")
+                || extension.equalsIgnoreCase("png")
+                || extension.equalsIgnoreCase("bmp")
+                || extension.equalsIgnoreCase("gif");
+    }
+
+    /**
+     * Uploads selected PDF and image files to the user's reports directory.
+     * <p>
+     * This method presents a file dialog allowing the user to select multiple
+     * files with extensions: PDF, JPG, JPEG, and PNG. Selected files with valid
+     * extensions are copied to the "reports/{username}/" directory, where
+     * {username} is replaced with the username of the current user. If the target
+     * directory does not exist, it is created. Existing files with the same name
+     * in the target directory are replaced. Files with unsupported extensions are
+     * ignored, and a message is printed to the console.
+     * <p>
+     * This method should be called from the Event Dispatch Thread (EDT) to ensure
+     * proper GUI interaction. The SwingUtilities.invokeLater() method is used to
+     * achieve this.
      */
     public void uploadFile() {
         SwingUtilities.invokeLater(() -> {
@@ -102,21 +156,7 @@ public class FileStorage {
         });
     }
 
-    /**
-     * Is image file boolean.
-     *
-     * @param file the file
-     * @return the boolean
-     */
-    public static boolean isImageFile(File file) {
-        String fileName = file.getName();
-        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-        return extension.equalsIgnoreCase("jpg")
-                || extension.equalsIgnoreCase("jpeg")
-                || extension.equalsIgnoreCase("png")
-                || extension.equalsIgnoreCase("bmp")
-                || extension.equalsIgnoreCase("gif");
-    }
+
     /*
     private void imgToPdf(File file) {
         if (isImageFile(file)) {
@@ -141,16 +181,5 @@ public class FileStorage {
         }
     }
     */
-
-    /**
-     * Check dir.
-     *
-     * @param userDir the user dir
-     */
-    public static void checkDir(File userDir) {
-        if (!userDir.exists()) {
-            userDir.mkdirs();
-        }
-    }
 
 }
