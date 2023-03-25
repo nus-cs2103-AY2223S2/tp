@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
+import static seedu.address.logic.parser.ParserUtil.parseDate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,7 +44,7 @@ public class FindTimeCommandParser implements Parser<FindTimeCommand> {
         boolean isDateSpecified = argumentMultimap.getValue(PREFIX_STARTDATETIME).isPresent();
         LocalDate date;
         if (isDateSpecified) {
-            date = LocalDateTime.parse(argumentMultimap.getValue(PREFIX_STARTDATETIME).get()).toLocalDate();
+            date = parseDate(argumentMultimap.getValue(PREFIX_STARTDATETIME).get()).toLocalDate();
         } else {
             date = LocalDate.now();
         }
