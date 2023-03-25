@@ -1,12 +1,6 @@
 ---
 layout: page
 title: Developer Guide
-output:
-   toc: true
-    toc_float: true
-    toc_depth: 2
-    collapsed: true
-    smooth_scroll: true
 ---
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
