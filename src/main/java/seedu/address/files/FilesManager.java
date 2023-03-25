@@ -124,7 +124,7 @@ public class FilesManager {
                 .map(Path::toString)
                 .collect(Collectors.toList());
     }
-
+    
     private boolean isEmptyDirectory() {
         Path directory = Paths.get(path);
         if (Files.isDirectory(directory)) {
@@ -135,5 +135,9 @@ public class FilesManager {
             }
         }
         return false;
+    }
+    public Person getPerson() {
+        return this.person;
+
     }
 }

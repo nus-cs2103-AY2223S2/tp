@@ -21,6 +21,7 @@ public class FileList extends UiPart<Region> {
     @FXML
     private ListView<UiFile> viewDisplay;
     private MainWindow mainWindow;
+    private DetailDisplay detailDisplay;
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -29,6 +30,7 @@ public class FileList extends UiPart<Region> {
         viewDisplay.setItems(fileList);
         viewDisplay.setCellFactory(listView -> new FileListViewCell());
         this.mainWindow = mainWindow;
+        this.detailDisplay = mainWindow.getDetailDisplay();
     }
     @FXML
     private void displayFile() throws CommandException, ParseException {
