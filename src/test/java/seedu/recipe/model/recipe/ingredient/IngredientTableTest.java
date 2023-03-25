@@ -1,4 +1,4 @@
-package seedu.recipe.model.recipe;
+package seedu.recipe.model.recipe.ingredient;
 
 import org.junit.jupiter.api.Test;
 

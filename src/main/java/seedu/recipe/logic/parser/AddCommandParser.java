@@ -17,7 +17,7 @@ import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;

@@ -1,7 +1,7 @@
 package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientTableToString;
+import static seedu.recipe.model.util.IngredientUtil.ingredientTableToString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import java.util.Set;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.tag.Tag;
 

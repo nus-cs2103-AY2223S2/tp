@@ -1,6 +1,6 @@
 package seedu.recipe.ui;
 
-import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientKeyValuePairToString;
+import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
 
 import java.util.Comparator;
 import java.util.Optional;

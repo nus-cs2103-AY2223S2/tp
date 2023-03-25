@@ -1,4 +1,4 @@
-package seedu.recipe.model.recipe;
+package seedu.recipe.model.recipe.ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 
 public class IngredientBuilderTest {
     private static final String VALID_INTEGER = "-a 1 -n watermelon";

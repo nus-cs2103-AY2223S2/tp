@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.recipe.commons.util.CollectionUtil;
-import seedu.recipe.model.recipe.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;

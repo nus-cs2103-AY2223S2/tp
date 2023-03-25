@@ -1,4 +1,4 @@
-package seedu.recipe.model.recipe;
+package seedu.recipe.model.recipe.ingredient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
@@ -18,9 +18,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.recipe.logic.parser.Prefix;
-import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
-import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 
 /**
  * Represents a recipe's ingredient in the recipe book.
@@ -120,7 +117,8 @@ public class IngredientBuilder {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IngredientBuilder // instanceof handles nulls
-                && name.equals(((IngredientBuilder) other).name)); // state check
+                && name.equals(((IngredientBuilder) other).name)) // state check
+                && arguments.equals(((IngredientBuilder) other).arguments);
     }
 
     @Override

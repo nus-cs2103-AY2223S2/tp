@@ -1,4 +1,7 @@
-package seedu.recipe.model.recipe.ingredient;
+package seedu.recipe.model.util;
+
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 
 import java.util.Hashtable;
 import java.util.List;

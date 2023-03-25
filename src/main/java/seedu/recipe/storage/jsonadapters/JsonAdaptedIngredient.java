@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantity;

@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientQuantifier;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.RecipeBuilder;
