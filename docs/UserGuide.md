@@ -81,40 +81,40 @@ if you are currently in the `plane` mode, then this command will add a new
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `add /name Bob /rank 1`
+##### Crew mode: `add /n Bob /r 1`
 Parameters:
-- `/name`: the name of the crew.
-- `/rank`: the rank of the crew.
+- `/n`: the name of the crew.
+- `/r`: the rank of the crew.
 
-##### Flight mode: `add /code SQ324`
+##### Flight mode: `add /c SQ324`
 Parameter:
-- `/code` : the code for the flight.
+- `/c` : the code for the flight.
 
-##### Location mode: `add /name Singapore`
+##### Location mode: `add /n Singapore`
 Parameter:
-- `/name`: name of the location.
+- `/n`: name of the location.
 
-##### Pilot mode: `add /name Bob /rank 1 /age 32 /gender 0 /fh 20100`
+##### Pilot mode: `add /n Bob /r 1 /a 32 /g 0 /fh 20100`
 Parameters:
-- `/name`: the name of the pilot.
-- `/rank`: the rank of the pilot. Possible values:
+- `/n`: the name of the pilot.
+- `/r`: the rank of the pilot. Possible values:
   - `1`: Training Captain,
   - `2`: Captain,
   - `3`: Senior,
   - `4`: First Officer,
   - `5`: Second Officer,
   - `6`: Cadet.
-- `/age`: the age of the captain.
-- `/gender`: the gender of the pilot. Possible values:
+- `/a`: the age of the captain.
+- `/g`: the gender of the pilot. Possible values:
   - `0`: male
   - `1`: female
   - `2`: other
 - `/fh`: the flight hours of the pilot.
 
-##### Plane mode: `add /model A380 /age 12`
+##### Plane mode: `add /m A380 /a 12`
 Parameters:
-- `/model`: model of the plane.
-- `/age`: age of the plane.
+- `/m`: model of the plane.
+- `/a`: age of the plane.
 
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
 The response box describes the addition that was made and the new entity should be displayed in the left list.
@@ -343,15 +343,15 @@ All your changes to your resources will be saved for you to get back to when you
 
 ## Command Summary
 
-| **Action**      | **Format**                                                           | **Examples**                       |
-|-----------------|----------------------------------------------------------------------|------------------------------------|
-| Add             | `add /prefix_A value_A /prefix_B value_B`                            | `add /name Bob /rank 2`            |
-| Delete          | `delete resource_index`                                              | `delete 1`                         |
-| Link location   | `linklocation /resource_prefix resource_index /loc location_index`   | `linklocation /crew 0 /loc 1`      |
-| Unlink location | `unlinklocation /resource_prefix resource_index /loc location_index` | `unlinklocation /flight 0 /loc 1`  |
-| Link flight     | `link /resource_prefix resource_index /fl flight_index`              | `link /pf 0 /pm 1 /f1 2`           |
-| Unlink flight   | `unlink /resource_prefix resource_index /fl flight_index`            | `unlink /pu 0 /fl 1`               |
-| Exit            | `exit`                                                               | `exit`                             |
+| **Action**      | **Format**                                                           | **Examples**                      |
+|-----------------|----------------------------------------------------------------------|-----------------------------------|
+| Add             | `add /prefix_A value_A /prefix_B value_B`                            | `add /n Bob /r 2`                 |
+| Delete          | `delete resource_index`                                              | `delete 1`                        |
+| Link location   | `linklocation /resource_prefix resource_index /loc location_index`   | `linklocation /crew 0 /loc 1`     |
+| Unlink location | `unlinklocation /resource_prefix resource_index /loc location_index` | `unlinklocation /flight 0 /loc 1` |
+| Link flight     | `link /resource_prefix resource_index /fl flight_index`              | `link /pf 0 /pm 1 /f1 2`          |
+| Unlink flight   | `unlink /resource_prefix resource_index /fl flight_index`            | `unlink /pu 0 /fl 1`              |
+| Exit            | `exit`                                                               | `exit`                            |
 
 
 <div style="page-break-after: always;"></div>
