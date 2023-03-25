@@ -33,8 +33,6 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
 
-    public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
-
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
