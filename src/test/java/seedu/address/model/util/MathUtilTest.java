@@ -1,11 +1,13 @@
 package seedu.address.model.util;
 
-import javafx.util.Pair;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import javafx.util.Pair;
 
 class MathUtilTest {
 

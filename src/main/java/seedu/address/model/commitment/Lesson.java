@@ -1,13 +1,10 @@
 package seedu.address.model.commitment;
 
-import java.util.ArrayList;
-
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
 import seedu.address.model.scheduler.Module;
 import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
 
 
 

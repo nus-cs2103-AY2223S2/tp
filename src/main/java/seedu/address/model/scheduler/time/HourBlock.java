@@ -1,5 +1,7 @@
 package seedu.address.model.scheduler.time;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import org.joda.time.Hours;
@@ -9,8 +11,6 @@ import seedu.address.model.commitment.Commitment;
 import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
 import seedu.address.model.scheduler.time.util.TimeUtil;
-
-import static java.util.Objects.requireNonNull;
 
 
 /**
