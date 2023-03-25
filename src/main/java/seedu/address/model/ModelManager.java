@@ -4,16 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedBackup;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -88,17 +92,27 @@ public class ModelManager implements Model {
 
     @Override
     public void addBackupToBackupData(Backup backup) {
-        backupData.addBackup(backup);
+        JsonAdaptedBackup jsonBackup = new JsonAdaptedBackup(backup);
+        backupData.addBackup(jsonBackup);
     }
 
     @Override
-    public void removeBackupFromBackupData(Backup backup) {
-        backupData.deleteBackup(backup);
+    public void removeBackupFromBackupData(String index) throws IndexOutOfBoundsException {
+        JsonAdaptedBackup jsonBackup = backupData.getBackup(index);
+        backupData.deleteBackup(jsonBackup);
     }
 
     @Override
     public BackupData getBackupData() {
         return this.backupData;
+    }
+
+    @Override
+    public ObservableList<Backup> getBackupList() throws IllegalValueException {
+        ObservableList<Backup> observableBackups = FXCollections.observableArrayList();
+        List<Backup> backups = backupData.getRawBackups();
+        observableBackups.addAll(backups);
+        return observableBackups;
     }
 
     //=========== AddressBook ================================================================================

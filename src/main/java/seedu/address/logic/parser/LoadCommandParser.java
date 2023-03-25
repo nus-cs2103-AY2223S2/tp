@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC;
+
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code LoadCommand} object
  */
-public class LoadCommandParser {
+public class LoadCommandParser implements Parser<LoadCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code LoadCommand}
      * and returns a {@code LoadCommand} object for execution.
@@ -21,7 +21,6 @@ public class LoadCommandParser {
      */
     public LoadCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESC);
 
         Index index;
         try {

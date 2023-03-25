@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-import seedu.address.model.backup.Backup;
+import seedu.address.storage.JsonAdaptedBackup;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ReadOnlyBackupData {
 
-    List<Backup> getBackups();
+    List<JsonAdaptedBackup> getJsonAdaptedBackups();
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -21,11 +22,12 @@ public class BackupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Backs up the file to a specified slot "
-            + "Existing backup file be overwritten.\n"
+            + "Existing backup file will be overwritten.\n"
             + "Parameters: INDEX (must be an integer between 1 and 10) "
-            + "[INDEX]\n"
+            + "[" + PREFIX_DESC + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD
-            + " 3";
+            + " 3"
+            + PREFIX_DESC + "day 1";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
@@ -58,7 +60,8 @@ public class BackupCommand extends Command {
         } catch (IOException ex) {
             throw new CommandException(SAVE_ERROR);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, backup.getBackupIndex().getOneBased()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, backup.getBackupIndex().getOneBased())
+                , false, false, true);
     }
 
     @Override

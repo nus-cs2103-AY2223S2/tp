@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -61,7 +62,8 @@ public interface Model {
     /**
      * Removes a backup from BackupData
      */
-    void removeBackupFromBackupData(Backup backup);
+
+    void removeBackupFromBackupData(String index) throws IndexOutOfBoundsException;
 
     BackupData getBackupData();
 
@@ -112,4 +114,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     Person findPersonByNric(Nric nric);
+
+    /**
+     * Returns an unmodifiable view of the backup list
+     */
+    ObservableList<Backup> getBackupList() throws IllegalValueException;
 }

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
@@ -88,6 +90,14 @@ public class Backup {
      */
     public LocalDateTime getBackupTime() {
         return this.backupTime;
+    }
+
+    /**
+     * Returns the timestamp of a backup as a string
+     */
+    public String backupTimeToString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.backupTime.format(formatter);
     }
 
     @Override
