@@ -23,22 +23,24 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alice bob charlie y/2 3 c/computer business";
 
     private final Predicate<Person> predicate;
-    private final String userInput;
+    private final String userInputs;
 
-    public FindCommand(Predicate<Person> predicate, String userInput) {
+    /**
+     * @param predicate to filter out contacts
+     * @param userInputs inputs that were used to create the predicate
+     */
+    public FindCommand(Predicate<Person> predicate, String userInputs) {
         this.predicate = predicate;
-        this.userInput = userInput;
+        this.userInputs = userInputs;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        String s = model.updateFilteredPersonList(predicate, userInput);
+        String appliedPredicates = model.updateFilteredPersonList(predicate, userInputs);
         return new CommandResult(
-                //String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
-                //String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, userInput);
-                s);
-
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW.concat("\n").concat(appliedPredicates),
+                        model.getFilteredPersonList().size()));
     }
 
     @Override

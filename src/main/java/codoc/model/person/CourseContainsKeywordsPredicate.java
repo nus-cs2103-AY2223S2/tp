@@ -1,7 +1,6 @@
 package codoc.model.person;
 
 import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
-import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.function.Predicate;

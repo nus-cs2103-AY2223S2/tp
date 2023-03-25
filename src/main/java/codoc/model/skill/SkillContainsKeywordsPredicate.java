@@ -1,6 +1,5 @@
 package codoc.model.skill;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.List;
