@@ -97,9 +97,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseUnit_validValueWithWhitespace_returnsTrimmedUnit() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        String unitWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Unit expectedUnit = new Unit(VALID_NAME);
-        assertEquals(expectedUnit, ParserUtil.parseUnit(phoneWithWhitespace));
+        assertEquals(expectedUnit, ParserUtil.parseUnit(unitWithWhitespace));
     }
 
     @Test
@@ -114,7 +114,7 @@ public class ParserUtilTest {
 
 
     @Test
-    public void parseQuantity_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY));
     }
@@ -144,9 +144,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseExpiryDate_validValueWithWhitespace_returnsTrimmedExpiryDate() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EXPIRY_DATE + WHITESPACE;
+        String expiryDateWithWhitespace = WHITESPACE + VALID_EXPIRY_DATE + WHITESPACE;
         ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EXPIRY_DATE);
-        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(emailWithWhitespace));
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(expiryDateWithWhitespace));
     }
 
     @Test

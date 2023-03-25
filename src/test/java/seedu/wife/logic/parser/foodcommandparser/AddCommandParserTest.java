@@ -26,11 +26,11 @@ import static seedu.wife.testutil.TypicalFood.MEIJI;
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.commands.foodcommands.AddCommand;
-import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandParserTest {
@@ -104,7 +104,8 @@ public class AddCommandParserTest {
 
         // invalid expiry date
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
-                + INVALID_EXPIRY_DATE_DESC + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, ExpiryDate.MESSAGE_CONSTRAINTS);
+                + INVALID_EXPIRY_DATE_DESC + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE,
+                ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE

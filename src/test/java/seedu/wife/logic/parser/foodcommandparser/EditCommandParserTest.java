@@ -31,10 +31,10 @@ import org.junit.jupiter.api.Test;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
-import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -82,7 +82,7 @@ public class EditCommandParserTest {
         // invalid quantity
         assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS);
         // invalid expiry date
-        assertParseFailure(parser, "1" + INVALID_EXPIRY_DATE_DESC, ExpiryDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_EXPIRY_DATE_DESC, ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
 
         // invalid unit followed by valid quantity
         assertParseFailure(parser, "1" + INVALID_UNIT_DESC + QUANTITY_DESC_MEIJI, Unit.MESSAGE_CONSTRAINTS);

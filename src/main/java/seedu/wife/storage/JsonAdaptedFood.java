@@ -15,6 +15,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.model.tag.Tag;
 
 /**
@@ -103,8 +104,8 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ExpiryDate.class.getSimpleName()));
         }
-        if (!ExpiryDate.isValid(expiryDate)) {
-            throw new IllegalValueException(ExpiryDate.FORMAT_MESSAGE_CONSTRAINTS);
+        if (!ExpiryDateValidator.isValidDateFormat(expiryDate)) {
+            throw new IllegalValueException(ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
         }
         final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
