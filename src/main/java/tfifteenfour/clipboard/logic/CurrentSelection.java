@@ -97,4 +97,9 @@ public class CurrentSelection {
         this.selectedGroup = NON_EXISTENT_GROUP;
         this.currentPage = PageType.GROUP_PAGE;
     }
+
+    public void navigateBackFromSessionStudentPage() {
+        this.selectedSession = NON_EXISTENT_SESSION;
+        this.currentPage = PageType.SESSION_PAGE;
+    }
 }
