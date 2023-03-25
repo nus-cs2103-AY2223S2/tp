@@ -217,26 +217,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTeamName_InvalidTeam_throwsParseException() {
+    public void parseTeamName_invalidTeam_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 ParserUtil.parseTeamName(INVALID_TEAM));
     }
 
     @Test
-    public void parseTeamDesc_InvalidDesc_throwsParseException() {
+    public void parseTeamDesc_invalidDesc_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 ParserUtil.parseTeamDesc(INVALID_TEAMDESC));
     }
 
     @Test
-    public void parseTeamName_ValidTeam_returnsTeamSet() throws Exception {
+    public void parseTeamName_validTeam_returnsTeamSet() throws Exception {
         TeamName actualDesc = ParserUtil.parseTeamName(VALID_TEAM_1);
         TeamName expectedDesc = new TeamName(VALID_TEAM_1);
         assertEquals(expectedDesc, actualDesc);
     }
 
     @Test
-    public void parseTeamDesc_ValidDesc_returnsTeamSet() throws Exception {
+    public void parseTeamDesc_validDesc_returnsTeamSet() throws Exception {
         Desc actualDesc = ParserUtil.parseTeamDesc(VALID_TEAMDESC_1);
         Desc expectedDesc = new Desc(VALID_TEAMDESC_1);
         assertEquals(expectedDesc, actualDesc);
