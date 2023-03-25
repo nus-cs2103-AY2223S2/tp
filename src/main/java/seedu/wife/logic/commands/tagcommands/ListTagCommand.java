@@ -14,8 +14,8 @@ public class ListTagCommand extends Command {
     public static final String COMMAND_WORD = "listtag";
     private static final String MESSAGE_SUCCESS = "Here are your existing tags: ";
 
-    private static final String MESSAGE_EMPTY_TAGS = "You have not created any tags! " +
-            "You may do so with the createtag command.";
+    private static final String MESSAGE_EMPTY_TAGS = "You have not created any tags! "
+            + "You may do so with the createtag command.";
 
     @Override
     public CommandResult execute(Model model) {

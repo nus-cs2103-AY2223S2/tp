@@ -6,7 +6,6 @@ import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.commons.util.StringUtil;
-import seedu.wife.logic.commands.tagcommands.TagFoodCommand;
 import seedu.wife.logic.commands.tagcommands.UntagFoodCommand;
 import seedu.wife.logic.parser.ArgumentMultimap;
 import seedu.wife.logic.parser.ArgumentTokenizer;
@@ -15,6 +14,9 @@ import seedu.wife.logic.parser.Parser;
 import seedu.wife.logic.parser.ParserUtil;
 import seedu.wife.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UntagFoodCommand object
+ */
 public class UntagFoodCommandParser implements Parser<UntagFoodCommand> {
     @Override
     public UntagFoodCommand parse(String args) throws ParseException {
