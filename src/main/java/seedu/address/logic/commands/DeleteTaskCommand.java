@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
- * Deletes a task identified using it's displayed index from a specified person's task list.
+ * Deletes a task identified by its displayed index from a specified person's task list.
  */
 public class DeleteTaskCommand extends Command {
 
