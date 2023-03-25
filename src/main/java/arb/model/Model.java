@@ -153,6 +153,16 @@ public interface Model {
      */
     void setProject(Project target, Project editedProject);
 
+    /**
+     * Sets the {@code project} to be linked to a client.
+     */
+    void setToLinkProject(Project project);
+
+    /**
+     * Link a project to {@code client}.
+     */
+    void linkProjectToClient(Client client);
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 

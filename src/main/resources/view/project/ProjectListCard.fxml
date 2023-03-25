@@ -29,6 +29,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+      <Label fx:id="forClient" styleClass="cell_small_label" text="\$for client" />
       <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
     </VBox>

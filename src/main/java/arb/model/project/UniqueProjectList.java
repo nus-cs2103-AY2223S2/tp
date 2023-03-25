@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import arb.model.client.Client;
 import arb.model.project.exceptions.DuplicateProjectException;
 import arb.model.project.exceptions.ProjectNotFoundException;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ public class UniqueProjectList implements Iterable<Project> {
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Project currentlyLinking = null;
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.
@@ -95,6 +97,24 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
         internalList.setAll(projects);
+    }
+
+    /**
+     * Links {@code currentlyLinking} to {@code client}. Asserts that
+     * {@code currentlyLinking} is not null.
+     */
+    public void linkProjectToClient(Client client) {
+        assert currentlyLinking != null;
+        currentlyLinking.linkToClient(client);
+        setProject(currentlyLinking, currentlyLinking);
+        currentlyLinking = null;
+    }
+
+    /** 
+     * Sets {@code currentlyLinking} to {@code project}.
+     */
+    public void setToLinkProject(Project project) {
+        currentlyLinking = project;
     }
 
     /**

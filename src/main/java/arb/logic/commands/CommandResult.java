@@ -19,17 +19,22 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should enter link mode. */
+    private final boolean enterLinkMode;
+
     /** What type of list should be shown to the user. */
     private final ListType listToBeShown;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ListType listToBeShown) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean enterLinkMode,
+            ListType listToBeShown) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.listToBeShown = listToBeShown;
         this.exit = exit;
+        this.enterLinkMode = enterLinkMode;
     }
 
     /**
@@ -37,7 +42,15 @@ public class CommandResult {
      * {@code listToBeShown}, with all other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, ListType listToBeShown) {
-        this(feedbackToUser, false, false, listToBeShown);
+        this(feedbackToUser, false, false, false, listToBeShown);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code listToBeShown} and {@code enterLinkMode}, with all other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean enterLinkMode, ListType listToBeShown) {
+        this(feedbackToUser, false, false, enterLinkMode, listToBeShown);
     }
 
     public String getFeedbackToUser() {
@@ -50,6 +63,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean shouldEnterLinkMode() {
+        return enterLinkMode;
     }
 
     public ListType getListToBeShown() {
@@ -71,12 +88,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
+                && enterLinkMode == otherCommandResult.enterLinkMode
                 && listToBeShown == otherCommandResult.listToBeShown;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, listToBeShown);
+        return Objects.hash(feedbackToUser, showHelp, exit, enterLinkMode, listToBeShown);
     }
 
 }

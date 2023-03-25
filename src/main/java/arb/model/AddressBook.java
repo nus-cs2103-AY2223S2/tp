@@ -176,6 +176,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         tagMappings.deleteProjectTags(key);
     }
 
+    /**
+     * Sets the {@code project} that should be linked to a client.
+     */
+    public void setToLinkProject(Project project) {
+        projects.setToLinkProject(project);
+    }
+
+    /** 
+     * Links a project to {@code client}.
+     */
+    public void linkProjectToClient(Client client) {
+        projects.linkProjectToClient(client);
+    }
+
     //// util methods
 
     @Override

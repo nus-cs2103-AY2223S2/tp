@@ -21,7 +21,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.NONE);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, ListType.NONE);
     }
 
     public static boolean isCommandWord(String commandWord) {

@@ -163,6 +163,18 @@ public class ModelManager implements Model {
         addressBook.setProject(target, editedProject);
     }
 
+    @Override
+    public void setToLinkProject(Project project) {
+        requireNonNull(project);
+        addressBook.setToLinkProject(project);
+    }
+
+    @Override
+    public void linkProjectToClient(Client client) {
+        requireNonNull(client);
+        addressBook.linkProjectToClient(client);
+    }
+
     //=========== Filtered Client List Accessors ============================================================
 
     /**
