@@ -34,7 +34,7 @@ import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
@@ -85,7 +85,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCustomerCommand command = (FindCustomerCommand) parser.parseCommand(
                 FindCustomerCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCustomerCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCustomerCommand(new CustomerNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

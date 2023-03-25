@@ -19,7 +19,7 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -153,7 +153,7 @@ public class CommandTestUtil {
 
         Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
-        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCustomerList(new CustomerNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCustomerList().size());
     }
