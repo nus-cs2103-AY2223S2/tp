@@ -109,6 +109,14 @@ public class Scheduler {
     }
 
     /**
+     * Get all Time Periods that everyone is free on that school day.
+     */
+    public List<TimePeriod> getAllTimings(Day schoolDay) {
+        List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(schoolDay, schedules);
+        return new ArrayList<>(TimeUtil.mergeTimeSlots(availableHourBlocks));
+    }
+
+    /**
      * Get all Hour Blocks that everyone is free.
      */
     public List<HourBlock> getAllHourBlocks() {
@@ -118,14 +126,6 @@ public class Scheduler {
             blocks.addAll(availableHourBlocks);
         }
         return blocks;
-    }
-
-    /**
-     * Get all Time Periods that everyone is free on that school day.
-     */
-    public List<TimePeriod> getAllTimings(Day schoolDay) {
-        List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(schoolDay, schedules);
-        return new ArrayList<>(TimeUtil.mergeTimeSlots(availableHourBlocks));
     }
 
     public List<Timetable> getSchedules() {

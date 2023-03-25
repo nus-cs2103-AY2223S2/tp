@@ -16,7 +16,7 @@ import seedu.address.model.scheduler.time.util.TimeUtil;
  * Represents a timetable for a person.
  */
 public class Timetable {
-    public static final Integer[] startTimings = new Integer[] {
+    public static final Integer[] START_TIMINGS = new Integer[] {
         8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
     };
 
@@ -29,7 +29,7 @@ public class Timetable {
         this.schedule = new HashMap<>();
         for (Day day : Day.values()) {
             ArrayList<HourBlock> grid = new ArrayList<>();
-            for (Integer hour : startTimings) {
+            for (Integer hour : START_TIMINGS) {
                 grid.add(new HourBlock(new LocalTime(hour, 0), day));
             }
             schedule.put(day, grid);

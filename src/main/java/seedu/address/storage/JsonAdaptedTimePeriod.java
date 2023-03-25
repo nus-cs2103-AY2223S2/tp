@@ -16,7 +16,7 @@ import seedu.address.model.scheduler.time.TimePeriod;
  */
 public class JsonAdaptedTimePeriod {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "TimePeriod's %s field is missing!";
-    private static final Integer[] START_TIMINGS = Timetable.startTimings;
+    private static final Integer[] START_TIMINGS = Timetable.START_TIMINGS;
     private static final int EARLIEST_TIMING = START_TIMINGS[0];
     private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
     protected final int startTime;

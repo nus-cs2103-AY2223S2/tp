@@ -147,7 +147,7 @@ public class SampleDataUtil {
         for (String lessonAsStr : trimmedText.split(",")) {
             try {
                 moduleTags.add(ParserUtil.parseModuleTag(lessonAsStr.trim()));
-            } catch(ParseException pe) {
+            } catch (ParseException pe) {
                 continue;
             }
         }

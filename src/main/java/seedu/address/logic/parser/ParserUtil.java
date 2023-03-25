@@ -237,7 +237,7 @@ public class ParserUtil {
     public static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
         try {
             int hour = Integer.parseInt(localTimeAsStr);
-            if (!Arrays.asList(Timetable.startTimings).contains(hour)) {
+            if (!Arrays.asList(Timetable.START_TIMINGS).contains(hour)) {
                 throw new ParseException("Invalid time");
             }
             return new LocalTime(hour, 0);

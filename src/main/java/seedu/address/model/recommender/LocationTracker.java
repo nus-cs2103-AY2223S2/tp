@@ -22,7 +22,7 @@ import seedu.address.model.scheduler.time.HourBlock;
  * Follows a person around and can predict a person's location given a timing.
  */
 public class LocationTracker {
-    private static final Integer[] START_TIMINGS = Timetable.startTimings;
+    private static final Integer[] START_TIMINGS = Timetable.START_TIMINGS;
     private static final int EARLIEST_TIMING = START_TIMINGS[0];
     private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
     private static final int NUMBER_OF_HOURS = START_TIMINGS.length;
