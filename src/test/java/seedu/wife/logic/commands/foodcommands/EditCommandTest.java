@@ -10,9 +10,9 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,14 +49,13 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
 
-        FoodBuilder FoodInList = new FoodBuilder(lastFood);
-        Food editedFood = FoodInList.withName(VALID_NAME_CHOCOLATE).withUnit(VALID_UNIT_CHOCOLATE)
+        FoodBuilder foodInList = new FoodBuilder(lastFood);
+        Food editedFood = foodInList.withName(VALID_NAME_CHOCOLATE).withUnit(VALID_UNIT_CHOCOLATE)
                 .withTags(VALID_TAG_CHOCOLATE).build();
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_CHOCOLATE)
@@ -70,8 +69,6 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
-
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {

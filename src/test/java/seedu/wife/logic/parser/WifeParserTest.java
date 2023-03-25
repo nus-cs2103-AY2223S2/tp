@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
 
 import java.util.Arrays;
 import java.util.List;
