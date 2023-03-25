@@ -401,7 +401,7 @@ class TimeUtilTest {
     }
 
     @Test
-    public void checkClash_fiveTimePeriods4_no_Clash() {
+    public void checkClash_fiveTimePeriods4_noClash() {
         List<TimePeriod> timePeriods = List.of(new TimeBlock(TWO_PM, FIVE_PM, Day.THURSDAY),
             new HourBlock(EIGHT_AM, Day.MONDAY), new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY),
             new TimeBlock(FIVE_PM, SIX_PM, Day.MONDAY), new TimeBlock(TWELVE_PM, THREE_PM, Day.MONDAY));

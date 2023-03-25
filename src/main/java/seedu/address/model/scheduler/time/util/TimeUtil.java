@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javafx.util.Pair;
-
 import org.joda.time.LocalTime;
 
+import javafx.util.Pair;
 import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 import seedu.address.model.util.MathUtil;
+
 
 /**
  * Contains utils functions for Timetable related jobs.
