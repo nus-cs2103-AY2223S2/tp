@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -12,6 +13,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 public class AddPatientWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AddPatientWindow.class);
@@ -19,6 +25,7 @@ public class AddPatientWindow extends UiPart<Stage> {
 
     private final ErrorMessageDisplay errorMessageDisplay;
     private final TagsHandler tagsHandler;
+    private final CommandBox.CommandExecutor commandExecutor;
 
     @FXML
     private TextField address;
@@ -47,14 +54,15 @@ public class AddPatientWindow extends UiPart<Stage> {
     @FXML
     private TextField time;
 
-    public AddPatientWindow(Stage stage, String customerWindowHeaderName) {
+    public AddPatientWindow(CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         errorMessageDisplay = new ErrorMessageDisplay(errorMessagePlaceholder);
-        tagsHandler = new TagsHandler(tagField, tags, errorDisplay);
+        tagsHandler = new TagsHandler(tagField, tags, errorMessageDisplay);
+        this.commandExecutor = commandExecutor;
     }
 
     @FXML
-    private void closeAddPatientWindow() {
+    public void closeAddPatientWindow() {
         name.clear();
         age.clear();
         medicalCondition.clear();
@@ -74,6 +82,81 @@ public class AddPatientWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    public boolean isShowing() {
+        return getRoot().isShowing();
+    }
 
+    public void requestFocus() {
+        getRoot().requestFocus();
+    }
+
+    String getPatientNameInput() {
+        return name.getText();
+    }
+
+    String getPatientAddressInput() {
+        return address.getText();
+    }
+
+    String getPatientPhoneInput() {
+        return phone.getText();
+    }
+
+    String getPatientEmailInput() {
+        return email.getText();
+    }
+
+    String getPatientTimeInput() {
+        return time.getText();
+    }
+
+    String getPatientMedicalConditionInput() {
+        return medicalCondition.getText();
+    }
+
+    String getPatientAgeInput() {
+        return age.getText();
+    }
+
+    HashSet<String> getCustomerTagsInput() {
+        return tagsHandler.getTags();
+    }
+
+    private String getAddPatientCommand() {
+        String addPatientCommandInput = AddCommand.COMMAND_WORD + " ";
+        addPatientCommandInput += PREFIX_NAME + getPatientNameInput() + " ";
+        addPatientCommandInput += PREFIX_PHONE + getPatientPhoneInput() + " ";
+        addPatientCommandInput += PREFIX_EMAIL + getPatientEmailInput() + " ";
+        addPatientCommandInput += PREFIX_ADDRESS + getPatientAddressInput() + " ";
+
+
+        HashSet<String> uniqueTags = getCustomerTagsInput();
+
+        for (String tag : uniqueTags) {
+            addPatientCommandInput += PREFIX_TAG + tag + " ";
+        }
+
+        if (!getPatientTimeInput().isBlank()) {
+            addPatientCommandInput += PREFIX_SCHEDULE + getPatientTimeInput() + " ";
+        }
+        if (!getPatientMedicalConditionInput().isBlank()) {
+            addPatientCommandInput += PREFIX_MEDICAL + getPatientMedicalConditionInput() + " ";
+        }
+        if (!getPatientTimeInput().isBlank()) {
+            addPatientCommandInput += PREFIX_ADDRESS + getPatientAgeInput() + " ";
+        }
+
+        return addPatientCommandInput;
+    }
+
+    public void handleAddPatientCommandInput() {
+        String addPatientCommandInput = getAddPatientCommand();
+        try {
+            commandExecutor.execute(addPatientCommandInput);
+            closeAddPatientWindow();
+        } catch (CommandException | ParseException e) {
+            errorMessageDisplay.setError(e.getMessage());
+        }
+    }
 
 }
