@@ -3,14 +3,14 @@ package seedu.address.ui;
 import javafx.scene.image.Image;
 
 public class QuickstartImages {
-    public static final Image quickstartFirstPage = new Image("/image/quickstart-1.png");
-    public static final Image quickstartSecondPage = new Image("/image/quickstart-2.png");
-    public static final Image quickstartThirdPage = new Image("/image/quickstart-3.png");
-    public static final Image quickstartFourthPage = new Image("/image/quickstart-4.png");
-    public static final Image quickstartFifthPage = new Image("/image/quickstart-5.png");
-    public static final Image quickstartSixthPage = new Image("/image/quickstart-6.png");
-    public static final Image quickstartSeventhPage = new Image("/image/quickstart-7.png");
-    public static final Image quickstartEighthPage = new Image("/image/quickstart-8.png");
+    public static final Image quickstartFirstPage = new Image("/images/quickstart-1.png");
+    public static final Image quickstartSecondPage = new Image("/images/quickstart-2.png");
+    public static final Image quickstartThirdPage = new Image("/images/quickstart-3.png");
+    public static final Image quickstartFourthPage = new Image("/images/quickstart-4.png");
+    public static final Image quickstartFifthPage = new Image("/images/quickstart-5.png");
+    public static final Image quickstartSixthPage = new Image("/images/quickstart-6.png");
+    public static final Image quickstartSeventhPage = new Image("/images/quickstart-7.png");
+    public static final Image quickstartEighthPage = new Image("/images/quickstart-8.png");
 
     /**
      * Returns an image according to the current page number in Pagination.

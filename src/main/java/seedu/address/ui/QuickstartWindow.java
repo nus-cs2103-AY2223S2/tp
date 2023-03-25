@@ -1,12 +1,13 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+
+import javafx.scene.*;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-
+import javafx.util.*;
 
 /**
  * Controller for a help page
@@ -17,9 +18,6 @@ public class QuickstartWindow extends UiPart<Stage> {
 
     @FXML
     private Pagination quickPagination;
-
-    @FXML
-    private ImageView quickImageView;
 
     /**
      * Creates a new QuickstartWindow.
@@ -35,12 +33,25 @@ public class QuickstartWindow extends UiPart<Stage> {
      */
     public QuickstartWindow(Stage root) {
         super(FXML, root);
-//        quickPagination.setPageFactory((Integer pageIndex) -> pageImageSet(pageIndex));
+        ImageView initImageView = new ImageView();
+        initImageView.setX(4.0);
+        initImageView.setY(4.0);
+        initImageView.setFitHeight(421.0);
+        initImageView.setFitWidth(686.0);
+        initImageView.setPickOnBounds(true);
+        initImageView.setPreserveRatio(true);
+        ImageView quickImageView = initImageView;
+        quickPagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer pageIndex) {
+                quickImageView.setImage(pageImageSet(pageIndex));
+                return quickImageView;
+            }
+        });
     }
 
-    public ImageView pageImageSet(int pageIndex) {
-        quickImageView.setImage(QuickstartImages.giveImage(pageIndex));
-        return quickImageView;
+    public Image pageImageSet(Integer pageIndex) {
+        return QuickstartImages.giveImage(pageIndex);
     }
 
     /**
