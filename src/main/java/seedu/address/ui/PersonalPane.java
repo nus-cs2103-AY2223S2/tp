@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.ImageUtil;
 
 /**
@@ -69,7 +70,23 @@ public class PersonalPane extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(this::createLabel);
+
     }
+
+    /**
+     * Creates labels based on the types to be displayed.
+     *
+     * @param tag takes in a tag type to extract information from within
+     */
+    private void createLabel(Tag tag) {
+        Label label = new Label(tag.tagName.contains("XXXXX")
+            ? tag.tagName.split("XXXXX")[1]
+            : tag.tagName);
+        String colour = tag.tagColor();
+        label.setStyle("-fx-background-color: " + colour + ";");
+        tags.getChildren().add(label);
+    }
+
 }

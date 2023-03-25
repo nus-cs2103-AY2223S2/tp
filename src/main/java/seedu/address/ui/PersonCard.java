@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.ImageUtil;
 
 /**
@@ -76,9 +77,40 @@ public class PersonCard extends UiPart<Region> {
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(this::createLabel);
     }
+
+    /**
+     * @param tagLabel shows the tag name
+     * @return the input string with the front indicator removed
+     */
+    private String setLabel(String tagLabel) {
+        String[] parts = tagLabel.split("XXXXX");
+        String str = "";
+        switch (parts[0]) {
+        case "Module":
+        case "Commitment":
+            str = parts[1];
+            break;
+        default:
+            str = tagLabel;
+        }
+        return str;
+    }
+
+    /**
+     * Creates labels based on the types to be displayed.
+     *
+     * @param tag takes in a tag type to extract information from within
+     */
+    private void createLabel(Tag tag) {
+        Label label = new Label(setLabel(tag.tagName));
+        String colour = tag.tagColor();
+        label.setStyle("-fx-background-color: " + colour + ";");
+        tags.getChildren().add(label);
+    }
+
 
     @FXML
     private void showPersonalPane() {
@@ -101,6 +133,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }
