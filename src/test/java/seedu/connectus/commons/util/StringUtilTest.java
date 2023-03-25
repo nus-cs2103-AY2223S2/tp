@@ -76,6 +76,37 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
     }
 
+    //---------------- Tests for containsKeywordsListIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsKeywordsListIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+                -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsKeywordsListIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsKeywordsListIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+                -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", "aaa BBB"));
+    }
+
+    @Test
+    public void containsKeywordsListIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsKeywordsListIgnoreCase(null, "abc"));
+    }
+
     /*
      * Valid equivalence partitions for word:
      *   - any word
@@ -93,10 +124,7 @@ public class StringUtilTest {
      *   - last word in sentence
      *   - middle word in sentence
      *   - matches multiple words
-     *
-     * Possible scenarios returning false:
-     *   - query word matches part of a sentence word
-     *   - sentence word matches part of the query word
+     *   - partial word
      *
      * The test method below tries to verify all above with a reasonably low number of test cases.
      */
@@ -121,6 +149,29 @@ public class StringUtilTest {
 
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    }
+
+    @Test
+    public void containsKeywordsListIgnoreCase_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsKeywordsListIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsKeywordsListIgnoreCase("    ", "123"));
+
+        // Sentence word bigger than query word
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bb"));
+        // Query word bigger than sentence word
+        assertFalse(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "bbbb"));
+
+        // Matches word in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc", "Bbb"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bBb ccc@1", "CCc@1"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("  AAA   bBb   ccc  ", "aaa"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("Aaa", "aaa"));
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("aaa bbb ccc", "  ccc  "));
+
+        // Matches multiple words in sentence
+        assertTrue(StringUtil.containsKeywordsListIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
     //---------------- Tests for getDetails --------------------------------------

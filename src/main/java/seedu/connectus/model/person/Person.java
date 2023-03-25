@@ -92,6 +92,11 @@ public class Person {
         return socialMedia;
     }
 
+    public String getAllFieldsAsString() {
+        return String.format("%s %s %s %s %s %s %s %s",
+                name, phone, email, address, birthday, socialMedia, tags, modules);
+    }
+
     /**
      * Returns an immutable tag set, which throws
      * {@code UnsupportedOperationException}
