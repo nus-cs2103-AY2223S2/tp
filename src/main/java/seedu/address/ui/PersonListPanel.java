@@ -32,7 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
         this.logic = logic;
         personListView.setItems(logic.getFilteredPersonList());
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        this.exportProgressWindow = new ExportProgressWindow(null);
+        this.exportProgressWindow = new ExportProgressWindow(null, this.logic);
     }
 
     public void hideExportProgressWindow() {

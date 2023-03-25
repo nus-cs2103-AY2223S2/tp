@@ -2,8 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -201,6 +207,29 @@ public class ParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
+    }
+
+    public static String parseFileName(Optional<String> fileNameOpt) throws ParseException {
+        String fileName = fileNameOpt.isEmpty() ? "" : fileNameOpt.get();
+        fileName += ".pdf";
+        File f = new File(fileName);
+        try {
+            f.createNewFile();
+            f.delete();
+        } catch(IOException e) {
+            throw new ParseException("Invalid file name!");
+        }
+        return fileName;
+    }
+
+    public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
+        String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
+        Path path = Paths.get(filePath);
+        if (Files.isWritable(path) && Files.isDirectory(path)) {
+            return filePath;
+        } else {
+            throw new ParseException("Invalid directory!");
+        }
     }
 
 }

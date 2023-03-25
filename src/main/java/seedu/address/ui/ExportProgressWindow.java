@@ -2,12 +2,14 @@ package seedu.address.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -16,18 +18,24 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
  * Controller for an export student's progress page
  */
 public class ExportProgressWindow extends UiPart<Stage> {
+
+    public static final String MESSAGE_SUCCESS = "%1$s's progress report exported in %2$s";
     private static final Logger logger = LogsCenter.getLogger(ExportProgressWindow.class);
     private static final String FXML = "ExportProgressWindow.fxml";
 
     private Person person;
 
     private Stage root;
+    private Logic logic;
 
     private String defaultFileName;
 
@@ -35,19 +43,20 @@ public class ExportProgressWindow extends UiPart<Stage> {
     private Button saveAsButton;
 
     @FXML
-    private Label exportMessage;
+    private TextArea resultDisplay;
 
     /**
      * Creates a new ExportProgressWindow.
      *
      * @param root Stage to use as the root of the ExportProgressWindow.
      */
-    public ExportProgressWindow(Stage root, Person person) {
+    public ExportProgressWindow(Stage root, Person person, Logic logic) {
         super(FXML, root);
         this.root = root;
         this.person = person;
+        this.logic = logic;
         if (this.person != null) {
-            exportMessage.setText("Export " + this.person.getName().fullName + "'s progress");
+            resultDisplay.setText("Export " + this.person.getName().fullName + "'s progress");
             saveAsButton.setDisable(false);
         }
 //        root.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -60,8 +69,8 @@ public class ExportProgressWindow extends UiPart<Stage> {
     /**
      * Creates a new ExportProgressWindow.
      */
-    public ExportProgressWindow(Person person) {
-        this(new Stage(), person);
+    public ExportProgressWindow(Person person, Logic logic) {
+        this(new Stage(), person, logic);
     }
 
     /**
@@ -83,8 +92,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing export progress report page.");
-        logger.log(Level.INFO, "opening progress report page");
+        logger.info("Showing export progress report page.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -112,7 +120,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
 
     public ExportProgressWindow setCheckedPerson(Person person) {
         this.person = person;
-        exportMessage.setText("Export " + person.getName().fullName + "'s progress");
+        resultDisplay.setText("Export " + person.getName().fullName + "'s progress");
         saveAsButton.setDisable(false);
         return this;
     }
@@ -131,69 +139,17 @@ public class ExportProgressWindow extends UiPart<Stage> {
 
         if (selectedFile != null) {
             saveAsButton.setDisable(true);
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage();
-            document.addPage(page);
-
-            PDFont boldFont = PDType1Font.HELVETICA_BOLD;
-            PDFont font = PDType1Font.HELVETICA;
-
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-            String studentName = this.person.getName().fullName;
-            String[] studentNameSplit = studentName.split(" ");
-            int wrap = 43;
-            int xInit = 90;
-            int yInit = 700;
-            int x = 90;
-            int y = 700;
-            int fontSize = 18;
-
-            for(int i = 0; i < studentNameSplit.length; i++) {
-                int charUsed = 0;
-                x = xInit;
-                while(charUsed < wrap && i < studentNameSplit.length) {
-                    String curString = studentNameSplit[i];
-                    contentStream.beginText();
-                    contentStream.setFont(boldFont, fontSize);
-                    contentStream.moveTextPositionByAmount(x, y);
-                    logger.info(String.valueOf(x));
-                    logger.info(String.valueOf(y));
-                    if (curString.length() > wrap) {
-                        contentStream.drawString(curString.substring(0, wrap));
-                        studentNameSplit[i] = "-" + curString.substring(wrap, curString.length());
-                        logger.info(curString);
-                        logger.info(studentNameSplit[i]);
-                        charUsed += curString.substring(0, wrap).length();
-                        logger.info(String.valueOf(charUsed));
-                        i--;
-                    } else {
-                        contentStream.drawString(curString + " ");
-                        charUsed += curString.length() + 1;
-                    }
-                    contentStream.endText();
-                    x += boldFont.getStringWidth(curString + " ") / 1000 * fontSize;
-                    i++;
-                }
-                i--;
-                y -= boldFont.getFontDescriptor().getCapHeight() / 1000 * fontSize;
-            }
-
-            contentStream.beginText();
-            contentStream.setFont(font, 14);
-            contentStream.moveTextPositionByAmount(90, 600);
-            contentStream.showText("Task List");
-            contentStream.endText();
-
-            contentStream.close();
-
             try {
-                document.save(selectedFile.getPath());
+                logic.exportProgress(this.person, selectedFile.getPath());
+                String commandResult = String.format(MESSAGE_SUCCESS, this.person.getName().fullName, selectedFile.getPath());
+                logger.info("Result: " + commandResult);
+                resultDisplay.setText(commandResult);
+                saveAsButton.setDisable(false);
             } catch (IOException e) {
-                logger.log(Level.INFO, "file is currently used by another process");
+                logger.info("Error: " + e.getMessage());
+                resultDisplay.setText("Error!\n" + e.getMessage());
+                saveAsButton.setDisable(false);
             }
-            document.close();
-            saveAsButton.setDisable(false);
         }
     }
 }

@@ -19,11 +19,11 @@
 }
 
 #exportMessageContainer {
-    -fx-background-color: #605BF1;
+    -fx-background-color: #EFEEFC;
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: white;
 }
 
 .scroll-bar .thumb {
@@ -32,24 +32,43 @@
     -fx-background-radius: 4;
 }
 
+.scroll-bar .track {
+    -fx-background-color: white;
+}
+
 .scroll-bar:vertical {
-    -fx-background-color:transparent;
-    -fx-pref-width: 18;
+    -fx-background-insets: 0 -2 0 0;
     -fx-padding: 0 2 0 2;
 }
 
 .scroll-bar:horizontal {
-    -fx-background-color:transparent;
+    -fx-background-color:white;
     -fx-pref-height: 18;
     -fx-padding: 2 0 2 0;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color:transparent;
+    -fx-background-color: white;
+    -fx-border-color: white;
     -fx-padding: 0 0 0 0;
 }
 
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
     -fx-shape: " ";
+}
+
+.result-display {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14pt;
+    -fx-text-fill: white;
+    -fx-background-color: #605BF1;
+    -fx-background-radius: 4;
+    -fx-control-inner-background: #605BF1;
+    -fx-border-width: 0px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.result-display .label {
+    -fx-text-fill: white !important;
 }

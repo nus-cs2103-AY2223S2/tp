@@ -3,12 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import org.apache.pdfbox.pdmodel.PDDocument;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -114,6 +116,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void exportProgress(Person target, String completePath) throws IOException {
+        requireAllNonNull(target, completePath);
+        PDDocument document = addressBook.exportProgress(target);
+        document.save(completePath);
+        document.close();
     }
 
     //=========== Filtered Person List Accessors =============================================================

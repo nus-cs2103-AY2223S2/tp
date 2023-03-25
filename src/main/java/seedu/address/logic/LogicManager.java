@@ -83,4 +83,9 @@ public class LogicManager implements Logic {
     public Person findCheckedPerson() {
         return model.findSelectedPerson();
     }
+
+    @Override
+    public void exportProgress(Person target, String completePath) throws IOException {
+        model.exportProgress(target, completePath);
+    }
 }

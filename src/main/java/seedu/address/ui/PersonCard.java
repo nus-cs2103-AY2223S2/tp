@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -31,6 +32,7 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
     private ExportProgressWindow exportProgressWindow;
+    private Logic logic;
     @FXML
     private HBox cardPane;
     @FXML
