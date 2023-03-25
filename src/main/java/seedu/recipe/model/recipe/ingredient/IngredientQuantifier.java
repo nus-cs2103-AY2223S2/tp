@@ -9,7 +9,7 @@ import java.util.Optional;
  */
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class IngredientQuantifier {
-    private final Optional<IngredientQuantity> quantityContainer;
+    private final Optional<IngredientQuantity> quantity;
     private final Optional<String> estimatedQuantity;
     private final List<String> remarks;
     private final List<Ingredient> substitutions;
@@ -30,7 +30,7 @@ public class IngredientQuantifier {
             String[] remarks,
             Ingredient[] substitutions
     ) {
-        this.quantityContainer = Optional.ofNullable(quantity);
+        this.quantity = Optional.ofNullable(quantity);
 
         //Ensure non-empty
         this.estimatedQuantity = Optional.ofNullable(estimatedQuantity)
@@ -43,10 +43,26 @@ public class IngredientQuantifier {
         this.substitutions = List.of(substitutions);
     }
 
+    public Optional<IngredientQuantity> getQuantity() {
+        return this.quantity;
+    }
+
+    public Optional<String> getEstimatedQuantity() {
+        return this.estimatedQuantity;
+    }
+
+    public List<String> getRemarks() {
+        return this.remarks;
+    }
+
+    public List<Ingredient> getSubstitutions() {
+        return this.substitutions;
+    }
+
     @Override
     public String toString() {
         return "{"
-            + quantityContainer.map(v -> "Q: " + v).orElse("Q: []") + "; "
+            + quantity.map(v -> "Q: " + v).orElse("Q: []") + "; "
             + "E: " + estimatedQuantity + "; "
             + "S: " + substitutions + "; "
             + "R: " + remarks + "}\n";

@@ -1,6 +1,7 @@
 package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.recipe.model.recipe.ingredient.IngredientUtil.ingredientTableToString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -28,7 +30,6 @@ public class Recipe {
     // Identity field
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<IngredientBuilder> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
     private final Hashtable<Ingredient, IngredientQuantifier> ingredientTable = new Hashtable<>();
 
@@ -48,8 +49,12 @@ public class Recipe {
         return name;
     }
 
-    public List<IngredientBuilder> getIngredients() {
-        return ingredients;
+    public Hashtable<Ingredient, IngredientQuantifier> getIngredients() {
+        return ingredientTable;
+    }
+
+    public Set<Ingredient> getIngredientList() {
+        return ingredientTable.keySet();
     }
 
     public void setIngredients(IngredientBuilder... ingredients) {
@@ -58,8 +63,10 @@ public class Recipe {
                 ingredientBuilder.build()
             );
         }
-        // To be deprecated
-        this.ingredients.addAll(List.of(ingredients));
+    }
+
+    public void setIngredientTable(Map<? extends Ingredient, ? extends IngredientQuantifier> ingredientMap) {
+        this.ingredientTable.putAll(ingredientMap);
     }
 
     public RecipePortion getPortion() {
@@ -151,7 +158,7 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, portion, duration, tags, ingredients, steps);
+        return Objects.hash(name, portion, duration, tags, ingredientTable, steps);
     }
 
     @Override
@@ -170,9 +177,9 @@ public class Recipe {
             tags.forEach(stringBuilder::append);
         }
 
-        if (!ingredients.isEmpty()) {
-            stringBuilder.append(";\nIngredients: ");
-            ingredients.forEach(i -> stringBuilder.append(i).append(",\n"));
+        if (!ingredientTable.isEmpty()) {
+            stringBuilder.append(";\nIngredients:\n");
+            stringBuilder.append(ingredientTableToString(ingredientTable));
         }
 
         if (!steps.isEmpty()) {

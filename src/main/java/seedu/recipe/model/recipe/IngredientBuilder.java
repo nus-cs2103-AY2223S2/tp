@@ -85,6 +85,7 @@ public class IngredientBuilder {
         }
         if (arguments.containsKey(REMARK_PREFIX)) {
             //Invalid remarks will fail silently, and not get added.
+            //TODO: Add logging here
             List<String> remarkList = arguments.get(REMARK_PREFIX);
             remarks.addAll(remarkList.stream()
                     .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
