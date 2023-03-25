@@ -40,7 +40,7 @@ public abstract class PilotSyntax {
     /**
      * The set of all prefixes of a pilot.
      */
-    public static final Set<String> prefixes = Set.of(
+    public static final Set<String> PREFIXES = Set.of(
             PREFIX_NAME,
             PREFIX_AGE,
             PREFIX_RANK,

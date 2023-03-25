@@ -22,7 +22,7 @@ public abstract class PlaneSyntax {
     /**
      * The prefixes.
      */
-    public static final Set<String> prefixes = Set.of(
+    public static final Set<String> PREFIXES = Set.of(
             PREFIX_MODEL,
             PREFIX_AGE
     );

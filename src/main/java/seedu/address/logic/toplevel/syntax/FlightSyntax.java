@@ -18,7 +18,7 @@ public abstract class FlightSyntax {
     /**
      * The prefixes.
      */
-    public static final Set<String> prefixes = Set.of(PREFIX_CODE);
+    public static final Set<String> PREFIXES = Set.of(PREFIX_CODE);
 
     /**
      * Creates a flights.

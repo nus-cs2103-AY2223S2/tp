@@ -23,7 +23,7 @@ public abstract class CrewSyntax {
     /**
      * The prefixes of a crew.
      */
-    public static final Set<String> prefixes = Set.of(
+    public static final Set<String> PREFIXES = Set.of(
             PREFIX_NAME,
             PREFIX_RANK
     );

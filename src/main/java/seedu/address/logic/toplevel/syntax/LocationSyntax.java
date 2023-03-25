@@ -18,7 +18,7 @@ public abstract class LocationSyntax {
     /**
      * The prefixes.
      */
-    public static final Set<String> prefixes = Set.of(PREFIX_NAME);
+    public static final Set<String> PREFIXES = Set.of(PREFIX_NAME);
 
     /**
      * Creates a location.
