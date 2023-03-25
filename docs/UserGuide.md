@@ -35,6 +35,7 @@ Experienced users can delete the sample data and proceed with regular usage.
 ## Help command: `help`
 
 Shows a link to the user guide to help new users get familiar with the commands for the application.
+
 Format: `help`
 
 ## Add user contacts: `add`
