@@ -545,10 +545,48 @@ the original instance of the `InternshipBook` immediately after executing a `cle
 opportunity to revert back to the previous state using the `undo` command.
 </div> 
 
-For a more graphical illustration of how an add application command is processed, please refer to the following
+For a more graphical illustration of how a clear application command is processed, please refer to the following
 sequence diagram:
 
 ![ClearApplicationsSequenceDiagram](images/ClearApplicationsSequenceDiagram.png)
+
+
+### Exit SprINT
+
+#### About
+
+The exit command is a feature in sprINT. This command allows users to close the desktop application safely,
+terminating any running processes and freeing up system resources. With this feature, users can efficiently exit
+the application without any risk of data loss or system instability.
+
+#### Usage
+
+To use the exit command, simply enter `exit` in the command line interface. Upon executing the command, sprINT will
+safely close the desktop application, freeing up any system resources used by the program. Since SprINT saves data
+and changes upon each received user command, Users do not have to worry about unsaved or possible loss of data
+when exiting sprINT.
+
+#### Implementation
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. Upon parsing the `exit` Command Keyword, the `InternshipBookParser` creates a `ExitSprintCommand`. This command instance
+   is returned back to `ApplicationLogicManager`.
+5. The `ApplicationLogicManager` then calls the `execute()` method of the `ExitSprintCommand`.
+6. An instance of `CommandResult` is created and returned to the Ui component.
+7. The Ui component detects the `CommandResult` initiated from an `ExitSprintCommand`, and then handles the closure
+of the desktop application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All `CommandResult` instances have an
+`exit` boolean field. The boolean value indicates whether the CommandResult corresponds to that of an `exit` command.
+This is what allows the Ui Component, `MainWindow`, to detect that a request to close the application has been issued
+from the user.
+</div> 
+
+For a more graphical illustration of how an exit application command is processed, please refer to the following
+sequence diagram:
+
+![ExitSprintSequenceDiagram](images/ExitSprintSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

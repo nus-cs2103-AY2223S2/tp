@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box UI/GUI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box ApplicationLogic LOGIC_COLOR_T1
+participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant "d:ExitSprintCommand" as ExitSprintCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : User keys in "exit" command
+activate MainWindow
+
+MainWindow -> ApplicationLogicManager : execute("clear")
+activate ApplicationLogicManager
+
+ApplicationLogicManager -> InternshipBookParser : parseCommand("clear")
+activate InternshipBookParser
+
+create ExitSprintCommand
+InternshipBookParser -> ExitSprintCommand
+activate ExitSprintCommand
+
+ExitSprintCommand --> InternshipBookParser : clearCommand
+deactivate ExitSprintCommand
+
+InternshipBookParser --> ApplicationLogicManager : clearCommand
+deactivate InternshipBookParser
+
+ApplicationLogicManager -> ExitSprintCommand : execute()
+activate ExitSprintCommand
+
+create CommandResult
+ExitSprintCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExitSprintCommand : exitResult
+deactivate CommandResult
+
+ExitSprintCommand --> ApplicationLogicManager : exitResult
+deactivate ExitSprintCommand
+
+MainWindow <--ApplicationLogicManager
+deactivate ApplicationLogicManager
+
+[<--MainWindow : GUI closes application
+deactivate MainWindow
+@enduml
