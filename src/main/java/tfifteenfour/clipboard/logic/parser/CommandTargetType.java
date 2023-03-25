@@ -2,6 +2,9 @@ package tfifteenfour.clipboard.logic.parser;
 
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
+/**
+ * Handles which entity a command is targeted at
+ */
 public enum CommandTargetType {
     MODULE("course"),
     GROUP("group"),
@@ -18,6 +21,9 @@ public enum CommandTargetType {
         return this.type;
     }
 
+    /**
+     * Placeholder
+     */
     public static CommandTargetType fromString(String type) throws ParseException {
         for (CommandTargetType sc : CommandTargetType.values()) {
             if (sc.getType().equalsIgnoreCase(type)) {
@@ -28,6 +34,9 @@ public enum CommandTargetType {
         throw new ParseException("Unrecognised category for command: " + type);
     }
 
+    /**
+     * Placeholder
+     */
     public static boolean isValidAddType(String type) throws ParseException {
         for (CommandTargetType sc : CommandTargetType.values()) {
             if (sc.getType().equalsIgnoreCase(type)) {

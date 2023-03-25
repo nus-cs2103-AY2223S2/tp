@@ -9,6 +9,9 @@ import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
 
+/**
+ * Serializes a student to JSON format.
+ */
 public class SerializedStudent {
     private String name;
     private String phone;
@@ -17,6 +20,9 @@ public class SerializedStudent {
     private String remark;
     // private List<Tag> tags;
 
+    /**
+     * Constructs a {@code SerializedStudent} with the given student.
+     */
     public SerializedStudent(Student student) {
         this.name = student.getName().toString();
         this.phone = student.getPhone().toString();
@@ -58,6 +64,9 @@ public class SerializedStudent {
     //     return tags;
     // }
 
+    /**
+     * Converts this serialized student to a {@code Student} object
+     */
     public Student toModelType() {
         return new Student(new Name(name), new Phone(phone),
                 new Email(email), new StudentId(studentId),

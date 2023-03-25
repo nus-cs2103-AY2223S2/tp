@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.logic.commands.deletecommand;
 import tfifteenfour.clipboard.logic.commands.Command;
 
 /**
- * Adds a student to the address book.
+ * Abstract command class to delete an object from the roster.
  */
 public abstract class DeleteCommand extends Command {
 

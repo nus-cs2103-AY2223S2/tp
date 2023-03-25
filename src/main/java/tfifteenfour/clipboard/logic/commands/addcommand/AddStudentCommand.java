@@ -15,6 +15,9 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.student.Student;
 
+/**
+ * Adds a student to the roster.
+ */
 public class AddStudentCommand extends AddCommand {
     public static final String COMMAND_TYPE_WORD = "student";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD

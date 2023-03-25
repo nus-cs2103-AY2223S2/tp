@@ -28,6 +28,9 @@ public class ArgumentTokenizer {
         return extractArguments(argsString, positions);
     }
 
+    /**
+     * Removes whitespaces in a String input and returns the split String as elements in an array.
+     */
     public static String[] tokenizeString(String input) {
         String[] tokens = input.split("\\s+");
         return tokens;

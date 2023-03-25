@@ -9,9 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
 
+/**
+ * Serializes a Roster to JSON format.
+ */
 public class SerializedRoster {
     private List<SerializedCourse> courses = new ArrayList<>();
 
+    /**
+     * Constructs a {@code SerializedRoster} with the given roster.
+     */
     public SerializedRoster(ReadOnlyRoster roster) {
         this.courses = roster.getUnmodifiableCourseList().stream()
                 .map(course -> new SerializedCourse(course))
@@ -25,6 +31,9 @@ public class SerializedRoster {
         return courses;
     }
 
+    /**
+     * Converts this serialized roster to a {@code Roster} object
+     */
     public Roster toModelType() {
         Roster newRoster = new Roster();
         courses.stream().forEach(course -> newRoster.addCourse(course.toModelType()));

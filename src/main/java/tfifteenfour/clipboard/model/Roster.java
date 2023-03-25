@@ -77,6 +77,9 @@ public class Roster implements ReadOnlyRoster {
         return students.contains(student);
     }
 
+    /**
+     * Returns true if a course with the same identity as {@code course} exists in the address book.
+     */
     public boolean hasCourse(Course course) {
         requireNonNull(course);
         return courses.contains(course);
