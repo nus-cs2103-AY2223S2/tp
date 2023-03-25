@@ -7,11 +7,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Dengue Hotspot Tracker" minWidth="600" minHeight="500" onCloseRequest="#handleExit">
+         title="Dengue Hotspot Tracker" minWidth="640" minHeight="480" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/dengue_tracker.png" />
   </icons>
@@ -22,7 +23,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox prefHeight="500.0" prefWidth="600.0">
+      <VBox prefHeight="480.0" prefWidth="640.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -45,12 +46,22 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="150" prefWidth="150" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="20" bottom="10" left="20" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <HBox prefHeight="480.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border"
+                     minWidth="400" prefWidth="400" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="20" bottom="10" left="20" />
+            </padding>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+
+          <StackPane fx:id="overviewDisplayPlaceholder" styleClass="pane-with-border"
+                     minWidth="200" prefWidth="200" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+          </StackPane>
+        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
