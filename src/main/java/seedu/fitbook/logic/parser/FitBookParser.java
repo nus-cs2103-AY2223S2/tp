@@ -7,12 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.AddExerciseCommand;
 import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.commands.AddWeightCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.ClearRoutinesCommand;
 import seedu.fitbook.logic.commands.Command;
 import seedu.fitbook.logic.commands.DeleteCommand;
+import seedu.fitbook.logic.commands.DeleteExerciseCommand;
 import seedu.fitbook.logic.commands.DeleteRoutineCommand;
 import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
@@ -100,6 +102,12 @@ public class FitBookParser {
 
         case DeleteRoutineCommand.COMMAND_WORD:
             return new DeleteRoutineCommandParser().parse(arguments);
+
+        case AddExerciseCommand.COMMAND_WORD:
+            return new AddExerciseCommandParser().parse(arguments);
+
+        case DeleteExerciseCommand.COMMAND_WORD:
+            return new DeleteExerciseCommandParser().parse(arguments);
 
         case AddWeightCommand.COMMAND_WORD:
             return new AddWeightCommandParser().parse(arguments);

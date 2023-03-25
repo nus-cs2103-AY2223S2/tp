@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
 /**
@@ -119,6 +120,8 @@ public interface FitBookModel {
      */
     void addRoutine(Routine routine);
 
+    void addExercise(Routine routine, Exercise exercise);
+
     /**
      * Replaces the given routine {@code target} with {@code editedRoutine}.
      * {@code target} must exist in the exercise routine.
@@ -135,4 +138,6 @@ public interface FitBookModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoutineList(Predicate<Routine> predicate);
+
+    void removeExercise(Routine routineToDelete, int zeroBased);
 }

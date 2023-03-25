@@ -45,6 +45,7 @@ public class Appointment implements Comparable<Appointment> {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String appointment) {
+        assert appointment != null : "appointment is null";
         try {
             DateTimeFormatter formatter =
                     DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT);
@@ -94,5 +95,4 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment other) {
         return this.localDateTime.compareTo(other.localDateTime);
     }
-
 }
