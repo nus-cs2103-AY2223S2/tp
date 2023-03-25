@@ -64,7 +64,6 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        //model.addPerson(toAdd); TODO: simply just adding person is not meaningful anymore.
         if (!model.hasWard(new Ward(wardToAdd))) {
             throw new CommandException(String.format(MESSAGE_WARD_NOT_FOUND, wardToAdd));
         }

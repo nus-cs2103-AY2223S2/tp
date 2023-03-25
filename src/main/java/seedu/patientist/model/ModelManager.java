@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.patientist = new Patientist(patientist);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.patientist.getPersonList());
+        this.patientist.updatePersonList();
     }
 
     public ModelManager() {
