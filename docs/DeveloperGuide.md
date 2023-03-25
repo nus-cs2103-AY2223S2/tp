@@ -153,7 +153,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Add Feature
+### Add Feature : `add`
 
 #### Implementation
 This section explains the implementation of the `add` feature.
@@ -162,7 +162,7 @@ employee into the ExecutivePro database.
 
 Below is a sequence diagram and the explanation of `add` command.
 
-![AddCommand](images/AddCommandSequenceDiagram.png)
+![AddCommand](images/AddSequenceDiagram.png)
 
 Step 1. Users will enter the command `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25
 d/Marketing`.
@@ -178,7 +178,30 @@ a message indicating duplicate person will be shown.
 
 Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
 
-### Delete Feature
+### Edit Feature : `edit`
+
+#### Implementation
+This section explains the implementation of the `edit` feature.
+The command takes in a first parameter which is the unique employee ID, then one or more other employee details that the user wants to edit.
+Executing the command edits the details of the employee into the ExecutivePro database.
+
+Below is a sequence diagram and the explanation of `edit` command.
+
+![AddCommand](images/EditSequenceDiagram.png)
+
+Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `EditCommandParser`
+to parse the user input. This creates a `EditCommand` object containing a `EditEmployeeDescriptor` object that contains the new details.
+
+Step 3. The `execute` method of `EditCommand` will be called, it returns a `CommandResult`object.
+
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
+a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+
+### Delete Feature : `delete`
 
 #### Implementation
 
@@ -187,7 +210,7 @@ The command takes in one parameter which is the employee ID, executing the comma
 with that specific employee ID
 Below is a sequence diagram and the explanation of `delete` command.
 
-![DeleteCommand](images/DeleteCommand.png)
+![DeleteCommand](images/DeleteSequenceDiagram.png)
 
 Step 1. Users will enter the command `delete 1`.
 
@@ -215,7 +238,7 @@ When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contai
 
 Below is a sequence diagram and the explanation of the `list` command.
 
-![ListCommand](images/ListCommand.png)
+![ListCommand](images/ListSequenceDiagram.png)
 
 Step 1. User enters the command `list`.
 
@@ -237,7 +260,7 @@ This command changes the appearance of ExecutivePro's GUI to the specified theme
 The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
 The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
 
-![ListCommand](images/ThemeCommand.png)
+![ListCommand](images/ThemeSequenceDiagram.png)
 
 Step 1. User enters a valid command, e.g. `theme light`.
 
@@ -248,6 +271,33 @@ Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then call
 Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+
+### Find Feature: `find`
+This command displays all employees whose full names partially or fully match the keyword inpuuted by the user.  
+
+#### Implementation
+
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+
+Below is a sequence diagram and the explanation of the `find` command.
+
+![FindCommand](images/FindSequenceDiagram.png)
+
+Step 1. User enters the command `find James Li`.
+
+Step 2. `LogicManager#execute` method is called on the user input.
+This prompts the `ExecutiveProParser` to parse the user input, which then returns a `FindCommand` object.
+
+Step 3. The `execute` method of this `FindCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that filters out all the Employees who names don't match any of the given keywords - _James_ or _Li_.
+
+Step 4. The `FilteredList` now only contains those employees which satisfy the `Predicate` by matching the given keywords.
+
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of matching employees to the user.
+
+#### Future Considerations 
+
+Add functionality to find employees based on other details such as Department, Roles etc.
 
 ### \[Proposed\] Undo/redo feature
 
