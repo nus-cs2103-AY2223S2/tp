@@ -99,7 +99,7 @@ public class DeleteCommand extends Command {
                 numDeleted++;
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted, date.get().toString()));
+        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted, date.get()));
     }
 
     public CommandResult executeRange(Model model, List<Person> lastShownList) {
@@ -114,7 +114,7 @@ public class DeleteCommand extends Command {
             }
         }
         return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
-                numDeleted, range.get().getStart().toString(), range.get().getEnd().toString()));
+                numDeleted, range.get().getStart(), range.get().getEnd()));
     }
 
     @Override
