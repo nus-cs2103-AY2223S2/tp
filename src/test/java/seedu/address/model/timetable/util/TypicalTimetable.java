@@ -88,6 +88,25 @@ public class TypicalTimetable {
             .withLesson(THURSDAY_9PM_1HR_LESSON)
             .build();
 
+    public static final Timetable EMPTY_TIMETABLE = new TimetableBuilder().build();
+
+    public static final Timetable NO_CONFLICT_TIMETABLE = new TimetableBuilder()
+        .withLesson(MONDAY_8AM_2HR_LESSON)
+        .withLesson(TUESDAY_10AM_2HR_LESSON)
+        .withLesson(WEDNESDAY_10AM_3HR_LESSON)
+        .withLesson(WEDNESDAY_6PM_1HR_LESSON)
+        .withLesson(THURSDAY_4PM_2HR_LESSON)
+        .withLesson(FRIDAY_7PM_3HR_LESSON)
+        .build();
+
+    public static final Timetable NO_CONFLICT_TIMETABLE_B = new TimetableBuilder()
+        .withLesson(MONDAY_10AM_2HR_LESSON)
+        .withLesson(TUESDAY_2PM_2HR_LESSON)
+        .withLesson(WEDNESDAY_4PM_1HR_LESSON)
+        .withLesson(THURSDAY_9PM_1HR_LESSON)
+        .withLesson(FRIDAY_8AM_1HR_LESSON)
+        .withLesson(FRIDAY_9AM_2HR_LESSON)
+        .build();
 }
 
 /**

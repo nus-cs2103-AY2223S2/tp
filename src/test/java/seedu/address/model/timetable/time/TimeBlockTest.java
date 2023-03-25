@@ -382,4 +382,61 @@ class TimeBlockTest {
         assertEquals(timeBlock1, timeBlock1);
         assertEquals(timeBlock1.toString(), timeBlock1.toString());
     }
+
+    @Test
+    public void clashCheck_sameObject_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY);
+        assertTrue(timeBlock.hasClash(timeBlock));
+    }
+
+    @Test
+    public void clashCheck_sameObjectDifferentDay_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY);
+        TimeBlock timeBlock1 = new TimeBlock(ONE_PM, TWO_PM, Day.MONDAY);
+        assertFalse(timeBlock.hasClash(timeBlock1));
+    }
+
+    @Test
+    public void clashCheck_t1BiggerThent2_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY);
+        TimeBlock timeBlock1 = new TimeBlock(TWELVE_PM, THREE_PM, Day.TUESDAY);
+        assertTrue(timeBlock.hasClash(timeBlock1));
+    }
+
+    @Test
+    public void clashCheck_t1SmallerThent2_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY);
+        TimeBlock timeBlock1 = new TimeBlock(TWELVE_PM, THREE_PM, Day.TUESDAY);
+        assertTrue(timeBlock1.hasClash(timeBlock));
+    }
+
+    @Test
+    public void clashCheck_t1StartEarlierEndLaterThent2_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, THREE_PM, Day.TUESDAY);
+        TimeBlock timeBlock1 = new TimeBlock(TWELVE_PM, TWO_PM, Day.TUESDAY);
+        assertTrue(timeBlock1.hasClash(timeBlock));
+        assertTrue(timeBlock.hasClash(timeBlock1));
+    }
+
+    @Test
+    public void clashCheck_t1StartLaterEndLaterThent2_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, THREE_PM, Day.TUESDAY);
+        TimeBlock timeBlock1 = new TimeBlock(TWO_PM, FOUR_PM, Day.TUESDAY);
+        assertTrue(timeBlock1.hasClash(timeBlock));
+        assertTrue(timeBlock.hasClash(timeBlock1));
+    }
+
+    @Test
+    public void clashCheck_timeBlockHourBlock_clash() {
+        TimeBlock timeBlock = new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY);
+        HourBlock timeBlock1 = new HourBlock(ONE_PM, Day.TUESDAY);
+        assertTrue(timeBlock1.hasClash(timeBlock));
+        assertTrue(timeBlock.hasClash(timeBlock1));
+        assertTrue(timeBlock1.isSameTimeFrame(timeBlock));
+    }
+
+    @Test
+    public void equalityCheck_null_false() {
+        assertNotEquals(new TimeBlock(ONE_PM, TWO_PM, Day.TUESDAY), null);
+    }
 }
