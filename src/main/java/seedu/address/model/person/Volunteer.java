@@ -40,7 +40,8 @@ public class Volunteer extends Person {
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Phone phone, Email email, Address address,
-                     Nric nric, BirthDate birthDate, Region region, Set<Tag> tags, Set<MedicalQualificationTag> medicalTags) {
+                     Nric nric, BirthDate birthDate, Region region,
+                     Set<Tag> tags, Set<MedicalQualificationTag> medicalTags) {
         this(name, phone, email, address, nric, birthDate, region, tags, medicalTags, new HashSet<>());
     }
 

@@ -51,7 +51,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
 
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_NRIC_ELDERLY,
-                PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG};
+            PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG};
         Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 8);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
@@ -72,7 +72,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Elderly person = new Elderly(name, phone, email, address, nric, birthDate, region, risk, tagList, availableDates);
+        Elderly person = new Elderly(name, phone, email,
+                address, nric, birthDate, region, risk, tagList, availableDates);
         return new AddElderlyCommand(person);
     }
 

@@ -93,7 +93,7 @@ public abstract class JsonAdaptedPerson {
         return new Nric(nric);
     }
 
-    public BirthDate getModelBirthDate (String missingFieldMessageFormat) throws IllegalValueException {
+    public BirthDate getModelBirthDate(String missingFieldMessageFormat) throws IllegalValueException {
         if (birthDate == null) {
             throw new IllegalValueException(String.format(missingFieldMessageFormat, BirthDate.class.getSimpleName()));
         }

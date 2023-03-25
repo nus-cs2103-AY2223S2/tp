@@ -63,7 +63,7 @@ public class VolunteerCard extends UiPart<Region> {
         nric.setText(volunteer.getNric().value);
         phone.setText(volunteer.getPhone().value);
         address.setText(volunteer.getAddress().value);
-        age.setText(volunteer.getAge().value);
+        age.setText(String.valueOf(volunteer.getBirthDate().getAge()));
         email.setText(volunteer.getEmail().value);
         region.getChildren().add(
                 new Label(volunteer.getRegion().region.name())

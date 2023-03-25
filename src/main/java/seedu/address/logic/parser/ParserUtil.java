@@ -157,6 +157,14 @@ public class ParserUtil {
         return new Age(trimmedage);
     }
 
+    /**
+     * Parses a {@code String birthDate} into an {@code BirthDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param birthDate BirthDate of the person
+     * @return {@code BirthDate} object.
+     * @throws ParseException If the given {@code birthDate} is invalid.
+     */
     public static BirthDate parseBirthDate(String birthDate) throws ParseException {
         requireNonNull(birthDate);
         String trimmedBod = birthDate.trim();

@@ -63,7 +63,7 @@ public class ElderlyCard extends UiPart<Region> {
         nric.setText(elderly.getNric().value);
         phone.setText(elderly.getPhone().value);
         address.setText(elderly.getAddress().value);
-        age.setText(elderly.getAge().value);
+        age.setText(String.valueOf(elderly.getBirthDate().getAge()));
         email.setText(elderly.getEmail().value);
         region.getChildren().add(
                 new Label(elderly.getRegion().region.name())
