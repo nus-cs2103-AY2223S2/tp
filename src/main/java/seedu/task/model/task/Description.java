@@ -9,10 +9,12 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Description must contain at least one character";
+
     public static final String DEFAULT_VALUE = "No Description";
     public final String value;
 
     private boolean hasDescription = false;
+
 
     /**
      * Constructs a {@code Description} with default description.
@@ -20,6 +22,7 @@ public class Description {
     public Description() {
         value = DEFAULT_VALUE;
     }
+
 
     /**
       * Constructs a {@code Description}.

@@ -21,7 +21,9 @@ import seedu.task.model.task.exceptions.InvalidEffortException;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DESCRIPTION = "";
+    private static final String INVALID_DESCRIPTION = ""; // to be used with POSITIVE_HAS_DESCRIPTION.
+    private static final String NEGATIVE_HAS_DESCRIPTION = "false";
+    private static final String POSITIVE_HAS_DESCRIPTION = "true";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DATE = "2 Feb 2023";
     private static final long INVALID_EFFORT = -1;
@@ -57,6 +59,7 @@ public class JsonAdaptedTaskTest {
                         VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW,
                         POSITIVE_HAS_DESCRIPTION);
 
+
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -64,8 +67,8 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask task =
-
                 new JsonAdaptedTask(null, VALID_DESCRIPTION, VALID_TAGS,
+
                         EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW,
                         POSITIVE_HAS_DESCRIPTION);
 
@@ -80,6 +83,7 @@ public class JsonAdaptedTaskTest {
                 new JsonAdaptedTask(VALID_NAME, INVALID_DESCRIPTION, VALID_TAGS,
                         EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW,
                         POSITIVE_HAS_DESCRIPTION);
+
 
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -104,6 +108,7 @@ public class JsonAdaptedTaskTest {
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
                         INVALID_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK,
                         VALID_WINDOW, POSITIVE_HAS_DESCRIPTION);
+
 
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -196,6 +201,7 @@ public class JsonAdaptedTaskTest {
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, invalidTags, EMPTY_DATE,
                         EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW, POSITIVE_HAS_DESCRIPTION);
 
+
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 
@@ -204,6 +210,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE,
                         INVALID_EFFORT, VALID_SUBTASK, VALID_WINDOW, POSITIVE_HAS_DESCRIPTION);
+
         assertThrows(InvalidEffortException.class, task::toModelType);
     }
 
