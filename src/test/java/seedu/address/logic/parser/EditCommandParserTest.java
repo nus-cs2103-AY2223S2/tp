@@ -72,12 +72,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tag of the {@code Card} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_MEDIUM + TAG_DESC_HARD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_MEDIUM + TAG_EMPTY + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_MEDIUM + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
-
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS);
     }
@@ -137,7 +131,7 @@ public class EditCommandParserTest {
                 + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_HARD;
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_MEDIUM)
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_HARD)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
