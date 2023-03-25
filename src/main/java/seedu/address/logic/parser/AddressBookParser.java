@@ -19,6 +19,7 @@ import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindDoctorCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -82,6 +83,9 @@ public class AddressBookParser {
 
         case FindDoctorCommand.COMMAND_WORD:
             return new FindDoctorCommandParser().parse(arguments);
+
+        case FindPatientCommand.COMMAND_WORD:
+            return new FindPatientCommandParser().parse(arguments);
 
         case ListDoctorCommand.COMMAND_WORD:
             return new ListDoctorCommand();

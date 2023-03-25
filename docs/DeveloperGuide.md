@@ -25,7 +25,146 @@ The documentation for Design is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Implementation
+## **Implementation**
+
+### Add Doctor Feature
+
+### What it does
+
+Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the list. If a record of the same doctor already exists in the list, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
+
+### Implementation
+
+Upon entry of the add doctor command, an `AddDoctorCommand` class is created. The `AddDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the add doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` to save a doctor.
+
+Step 3. The doctor is added to the model’s list of doctors if valid.
+
+The following sequence diagram illustrates how the add doctor operation works:
+
+![](images/AddDoctorSequenceDiagram.png)
+
+### Add Patient Feature
+
+### What it does
+
+Adds a patient to the bottom of the list of currently existing patients. Users are able to add any valid patient to the list. If a record of the same patient already exists in the list, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
+
+### Implementation
+
+Upon entry of the add patient command, an `AddPatientCommand` class is created. The `AddPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Patient` object is added to the model’s list of patients if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the add doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` to save a patient.
+
+Step 3. The patient is added to the model’s list of patients if valid.
+
+The following sequence diagram illustrates how the add doctor operation works:
+
+![](images/AddPatientSequenceDiagram.png)
+
+### Edit Doctor Feature
+
+### What it does
+
+Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be 
+updated to the input values and all other values will remain the same. The doctor to be edited can be specified through
+the doctor's index.
+
+Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
+
+### Implementation
+
+Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
+the abstract `Command` class and implements the `execute()` method. The `EditDoctorDescriptor` is created with the arguments given
+by the user. A new `Doctor` object is created with the new arguments, with the attributes of the old `Doctor` object copied over
+if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`. 
+The `EditDoctorCommand` is created using the `EditDoctorDescriptor`. Upon execution of `EditDoctorCommand`, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
+
+The following activity diagram illustrates the user flow for editing a doctor:
+
+![](images/EditDoctorActivityDiagram.png)
+
+Given below is an example usage scenario of how the add doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `edit-doc n/Simon` to edit a doctor.
+
+Step 3. The doctor is edited and saved to the model’s list of doctors if valid.
+
+The following sequence diagram illustrates how the edit doctor operation works:
+
+![](images/EditDoctorSequenceDiagram.png)
+
+### Delete Features
+
+---
+
+### Delete Doctor Feature
+
+### What it does
+
+Deletes a doctor at the specified **one-based index** of list of currently existing/found doctors. Users are able to delete any doctor in the list. If an index larger than or equal to the size of the doctor’s list is provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `del-doc 1`
+
+### Implementation
+
+Upon entry of the delete doctor command, a `DeleteDoctorCommand` class is created. The `DeleteDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `del-doc 1` to delete the doctor at index 1 (one-based indexing).
+
+Step 3. The doctor at this index is removed if the index provided is valid.
+
+The following sequence diagram illustrates how the delete doctor operation works:
+
+![](images/DeleteDoctorSequenceDiagram.png)
+
+
+### Delete Patient Feature
+
+### What it does
+
+Deletes a patient at the specified **one-based index** of list of currently existing/found patient. Users are able to delete any patient in the list. If an index larger than or equal to the size of the patient’s list is provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `del-ptn 1`
+
+### Implementation
+
+Upon entry of the delete doctor command, a `DeletePatientCommand` class is created. The `DeletePatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `del-ptn 1` to delete the patient at index 1 (one-based indexing).
+
+Step 3. The patient at this index is removed if the index provided is valid.
+
+The following sequence diagram illustrates how the delete patient operation works:
+
+![](images/DeletePatientSequenceDiagram.png)
+
+### GUI Features
+
+---
 
 ### Enlarged Info Card feature
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
