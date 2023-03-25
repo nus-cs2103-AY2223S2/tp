@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:id="popupContent" style="-fx-background-color: #5B5D88;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fx:id="popupContent" style="-fx-background-color: #5B5D88;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #5B5D88;">
          <children>
