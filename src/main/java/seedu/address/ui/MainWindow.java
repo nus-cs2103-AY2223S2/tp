@@ -254,10 +254,13 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
-            if (commandResult.isShowImport()) {
-                handleImport();
-            }
+            // TODO: Basically bring this in when we have the GUI popup for it
+            // if (commandResult.isShowImport()) {
+            //     handleImport();
+            // }
+            // if (commandResult.isShowExport()) {
+            //     handleExport();
+            // }
 
             if (commandResult.isExit()) {
                 handleExit();
