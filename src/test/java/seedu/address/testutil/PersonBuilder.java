@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private DrugAllergy drugAllergy;
     private Set<Tag> tags;
+    private Set<Medicine> medicines;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,6 +47,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         drugAllergy = new DrugAllergy(DEFAULT_DRUG_ALLERGY);
         tags = new HashSet<>();
+        medicines = new HashSet<>();
     }
 
     /**
@@ -58,6 +61,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         drugAllergy = personToCopy.getDrugAllergy();
         tags = new HashSet<>(personToCopy.getTags());
+        medicines = new HashSet<>(personToCopy.getMedicines());
     }
 
     /**
@@ -79,8 +83,16 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code medicines} into a {@code Set<Medicine>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withMedicines(String... medicines) {
+        this.medicines = SampleDataUtil.getMedicineSet(medicines);
         return this;
     }
 
@@ -117,7 +129,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(nric, name, phone, email, address, drugAllergy, tags);
+        return new Person(nric, name, phone, email, address, drugAllergy, tags, medicines);
     }
 
 }

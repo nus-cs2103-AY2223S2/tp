@@ -89,7 +89,7 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Medicine> personMedicines = new ArrayList();
+        final List<Medicine> personMedicines = new ArrayList<>();
         for (JsonAdaptedMedicine medicine : medicines) {
             personMedicines.add(medicine.toModelType());
         }
@@ -146,7 +146,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Medicine> modelMedicines = new HashSet<>(personMedicines);
-        return new Person(modelNric, modelName, modelPhone, modelEmail, modelAddress, modelAllergy, modelTags, modelMedicines);
+        return new Person(modelNric, modelName, modelPhone, modelEmail,
+                modelAddress, modelAllergy, modelTags, modelMedicines);
     }
 
 }

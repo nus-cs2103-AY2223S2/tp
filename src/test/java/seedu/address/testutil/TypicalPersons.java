@@ -38,7 +38,8 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withDrugAllergy("NKDA")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withMedicines("Paracetamol").build();
     public static final Person CARL = new PersonBuilder().withNric("S3456789C")
             .withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
@@ -81,7 +82,8 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersons() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
