@@ -12,6 +12,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 <img src="images/BoAi01.png" width="200px">
 
+[[webpage](https://albertboai.com/)]
 [[github](https://github.com/BoAi01)]
 [[portfolio](team/boai01.md)]
 
