@@ -56,6 +56,13 @@ mode XYZ
 ```
 where XYZ can be any of the 5 mode names specified above.
 
+<img src="images/ModeCrewLanding.jpg" width="2032" alt="Switching to mode crew">
+
+As shown in the image above, upon successfully switching to a mode, Wingman will
+display the current mode's name in the status bar in the bottom left corner of the window.
+The window also displays 2 lists, the left one displaying the entities belonging to the current resource mode
+and the right one displaying all the flights that these entities can be linked to.
+
 <br>
 
 ### Shared Commands
@@ -110,6 +117,11 @@ Parameters:
 - `/model`: model of the plane.
 - `/age`: age of the plane.
 
+If the command is valid, upon pressing enter, your application window will be updated as shown below.
+The response box describes the addition that was made and the new entity should be displayed in the left list.
+
+<img src="images/AddSuccessPage.jpg" width="2032" alt="Successful plane addition page">
+
 <br>
 
 
@@ -128,7 +140,13 @@ This command has no variations across modes:
 
 #### All modes: `delete 3`
 Parameter:
-- `index_number`: the index number of the resource you wish to delete. Note that the indexing starts from 0.
+- `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 0.
+
+You can obtain the index number of an entity from its position in the displayed list.
+For instance, Flight Attendant Mary will have an index number of 1 in the image below.
+(The index number will be displayed in future updates)
+
+<img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
 
 <br>
 
@@ -175,6 +193,10 @@ Parameters:
 Parameters:
 - `/pl`: the index of the plane to be linked.
 - `/loc`: the index of the location to which the plane is to be linked.
+
+If the command is valid, Wingman will return a response describing the link that has been made, as shown below:
+
+<img src="images/LinkLocationSuccess.jpg" width="2032" alt="Successful link of plane to location">
 
 <br>
 
@@ -299,6 +321,12 @@ Note: In each command, you only need to fill up **at least** 1 pilot related par
 Parameters:
 - `/pu`: the index of the plane to be unlinked as being used for the flight.
 - `/fl`: the flight from which the specified plane is to be linked.
+
+If the command is valid, Wingman will return a response describing how the specified link has been removed.
+Wingman will also update the lists in your window, to remove the specified link.
+
+<img src="images/UnlinkSuccessful.jpg" width="2032" alt="Successful link of plane to location">
+
 
 <br>
 
