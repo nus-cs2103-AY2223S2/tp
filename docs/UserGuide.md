@@ -1,7 +1,5 @@
 # User Guide
 
----
-
 * Quick Start
 * Features
   * Viewing help: `help`
@@ -25,7 +23,7 @@
 4. Run the application. The following GUI will appear upon first use of the application. 
 ![GUI upon first use](images/GUIOnInitialUsage.png)
    
-5. The application is initially loaded with sample data for new users to try out the [features](##Features) listed below.
+5. The application is initially loaded with sample data for new users to try out the [features](#Features) listed below.
 Experienced users can delete the sample data and proceed with regular usage.
    
 ---
