@@ -1,13 +1,13 @@
 package seedu.address.model.commitment;
 
+import java.util.Objects;
+
 import org.joda.time.LocalTime;
+
 import seedu.address.model.location.Location;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
-
-import java.util.Objects;
-
 
 /**
  * Represents a typical NUS lesson.
@@ -23,11 +23,17 @@ public class Lesson extends Commitment {
         this.moduleCode = moduleCode;
     }
 
+    /**
+     * Constructs a lesson.
+     */
     public Lesson(String moduleCode, Location location, TimePeriod timePeriod) {
         super(location, timePeriod);
         this.moduleCode = moduleCode;
     }
 
+    /**
+     * Constructs a lesson.
+     */
     public Lesson(TimePeriod timePeriod) {
         super(Location.NUS, timePeriod);
         this.moduleCode = "";

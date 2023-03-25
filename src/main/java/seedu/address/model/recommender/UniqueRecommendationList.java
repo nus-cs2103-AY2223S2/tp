@@ -12,11 +12,14 @@ import seedu.address.model.recommender.exceptions.DuplicateRecommendationExcepti
 import seedu.address.model.recommender.exceptions.RecommendationNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Recommendation#isSameRecommendation(Recommendation)}. As such, adding and updating of
- * persons uses Recommendation#isSameRecommendation(Recommendation) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueRecommendationList. However, the removal of a person uses Recommendation#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of recommendations that enforces uniqueness between its elements and does not allow nulls.
+ * A recommendation is considered unique by comparing using
+ * {@code Recommendation#isSameRecommendation(Recommendation)}. As such, adding and updating of
+ * recommendations uses Recommendation#isSameRecommendation(Recommendation)
+ * for equality so as to ensure that the recommendation being added or updated is
+ * unique in terms of identity in the UniqueRecommendationList.
+ * However, the removal of a recommendation uses Recommendation#equals(Object) so
+ * as to ensure that the recommendation with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +32,7 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent recommendation as the given argument.
      */
     public boolean contains(Recommendation toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +40,8 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a recommendation to the list.
+     * The recommendation must not already exist in the list.
      */
     public void add(Recommendation toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +52,10 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedRecommendation}.
+     * Replaces the recommendation {@code target} in the list with {@code editedRecommendation}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedRecommendation} must not be the same as another existing person in the list.
+     * The recommendation identity of {@code editedRecommendation}
+     * must not be the same as another existing recommendation in the list.
      */
     public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
         requireAllNonNull(target, editedRecommendation);
@@ -69,8 +73,8 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent recommendation from the list.
+     * The recommendation must exist in the list.
      */
     public void remove(Recommendation toRemove) {
         requireNonNull(toRemove);
@@ -79,22 +83,25 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
         }
     }
 
+    /**
+     * Replaces the Recommendations with a new one.
+     */
     public void setRecommendations(UniqueRecommendationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code recommendations}.
+     * {@code recommendations} must not contain duplicate recommendations.
      */
-    public void setRecommendations(List<Recommendation> persons) {
-        requireAllNonNull(persons);
-        if (!recommendationsAreUnique(persons)) {
+    public void setRecommendations(List<Recommendation> recommendations) {
+        requireAllNonNull(recommendations);
+        if (!recommendationsAreUnique(recommendations)) {
             throw new DuplicateRecommendationException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(recommendations);
     }
 
     /**
@@ -122,7 +129,7 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code recommendations} contains only unique recommendations.
      */
     private boolean recommendationsAreUnique(List<Recommendation> recommendations) {
         for (int i = 0; i < recommendations.size() - 1; i++) {

@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalTime;
@@ -9,8 +11,9 @@ import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 
-import java.util.Arrays;
-
+/**
+ * Json object to convert TimePeriods.
+ */
 public class JsonAdaptedTimePeriod {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "TimePeriod's %s field is missing!";
     private static final Integer[] START_TIMINGS = Timetable.startTimings;
@@ -33,12 +36,18 @@ public class JsonAdaptedTimePeriod {
         this.schoolDay = schoolDay;
     }
 
+    /**
+     * Constructor for a {@code JsonAdaptedTimePeriod} object.
+     */
     public JsonAdaptedTimePeriod(TimePeriod timePeriod) {
         startTime = timePeriod.getStartTime().getHourOfDay();
         endTime = timePeriod.getEndTime().getHourOfDay();
         schoolDay = timePeriod.getSchoolDay().name();
     }
 
+    /**
+     * Converts the json object into a TimePeriod object.
+     */
     public TimePeriod toModelType() throws IllegalValueException {
         if (startTime < EARLIEST_TIMING || startTime > LATEST_TIMING) {
             throw new IllegalValueException(

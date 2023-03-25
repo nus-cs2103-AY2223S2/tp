@@ -3,12 +3,16 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalTime;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.TimeBlock;
 
+/**
+ * Json object for converting Lessons.
+ */
 public class JsonAdaptedLesson {
     private final Integer startHour;
     private final Integer endHour;

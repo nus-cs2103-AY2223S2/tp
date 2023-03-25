@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.ModuleTag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * This class was added to facilitate the Sort Command.

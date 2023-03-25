@@ -1,7 +1,5 @@
 package seedu.address.model.location.util;
 
-import seedu.address.model.location.Location;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import seedu.address.model.location.Location;
 
 /**
  * Handles the computations between locations.

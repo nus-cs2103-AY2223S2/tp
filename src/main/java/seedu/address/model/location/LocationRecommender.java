@@ -1,11 +1,15 @@
 package seedu.address.model.location;
 
-import seedu.address.model.location.util.DistanceUtil;
-import seedu.address.model.location.util.LocationDataUtil;
-
 import java.util.Collection;
 import java.util.List;
 
+import seedu.address.model.location.util.DistanceUtil;
+import seedu.address.model.location.util.LocationDataUtil;
+
+/**
+ * Recommends a location based on a collection of locations
+ * and a collection of destinations
+ */
 public class LocationRecommender {
 
     private Collection<Location> destinations;

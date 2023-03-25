@@ -1,7 +1,5 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.commitment.Lesson;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -12,6 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import seedu.address.model.commitment.Lesson;
 
 /**
  * Represents a ModuleTag in the address book.

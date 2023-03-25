@@ -3,9 +3,9 @@ package seedu.address.model.recommender;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -18,6 +18,9 @@ import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 
+/**
+ * Follows a person around and can predict a person's location given a timing.
+ */
 public class LocationTracker {
     private static final Integer[] START_TIMINGS = Timetable.startTimings;
     private static final int EARLIEST_TIMING = START_TIMINGS[0];
@@ -26,6 +29,9 @@ public class LocationTracker {
     private final Person person;
     private final HashMap<Day, ArrayList<Optional<Location>>> locations;
 
+    /**
+     * Constructor for a {@code LocationTracker} object.
+     */
     public LocationTracker(Person person) {
         this.person = person;
         locations = new HashMap<>();
@@ -34,26 +40,38 @@ public class LocationTracker {
         fillUnknown();
     }
 
+    /**
+     * Creates an empty locations list.
+     */
     private void initialiseWithEmptyLocations() {
         for (Day day : Day.values()) {
             locations.put(day, new ArrayList<>(Collections.nCopies(NUMBER_OF_HOURS, Optional.empty())));
         }
     }
 
+    /**
+     * Uses the person schedule to populate the locations list.
+     */
     private void initialiseWithSchedule() {
         for (Map.Entry<Day, ArrayList<HourBlock>> entry : person.getTimetable().getSchedule().entrySet()) {
             ArrayList<Optional<Location>> dayLocations = locations.get(entry.getKey());
 
             entry.getValue().stream()
-                    .filter(hourBlock -> hourBlock.getLesson().isPresent())
+                    .filter(hourBlock -> hourBlock.getCommitment().isPresent())
                     .forEach(hourBlock -> setHourBlock(dayLocations, hourBlock));
         };
     }
 
+    /**
+     * Converts an hour block into a more manageable index.
+     */
     private int getIndexFromHourBlock(HourBlock hourBlock) {
         return hourBlock.getStartTime().getHourOfDay() - EARLIEST_TIMING;
     }
 
+    /**
+     * Gets the location from the hour block, and fills in the Location list.
+     */
     private void setHourBlock(ArrayList<Optional<Location>> dayLocations, HourBlock hourBlock) {
         int indexOfHourBlock = getIndexFromHourBlock(hourBlock);
         assert indexOfHourBlock >= 0 && indexOfHourBlock < NUMBER_OF_HOURS;
@@ -61,19 +79,31 @@ public class LocationTracker {
         dayLocations.set(indexOfHourBlock, getLocationFromHourBlock(hourBlock));
     }
 
+    /**
+     * Gets the location from the hour block.
+     */
     private Optional<Location> getLocationFromHourBlock(HourBlock hourBlock) {
-        return hourBlock.getLesson().map(Commitment::getLocation);
+        return hourBlock.getCommitment().map(Commitment::getLocation);
     }
 
+    /**
+     * Gets the location of the person given a timing, consisting of the day as well.
+     */
     public Optional<Location> getLocation(HourBlock hourBlock) {
         return getLocation(hourBlock.getSchoolDay(), hourBlock.getStartTime().getHourOfDay());
     }
 
+    /**
+     * Gets the location of the person given a day and hour.
+     */
     private Optional<Location> getLocation(Day day, int hour) {
         assert hour >= EARLIEST_TIMING && hour <= LATEST_TIMING;
         return locations.get(day).get(hour - EARLIEST_TIMING);
     }
 
+    /**
+     * Fills the unknown locations based on the last known and next known locations.
+     */
     private void fillUnknown() {
         for (List<Optional<Location>> dayLocations : locations.values()) {
             List<Pair<Location, Integer>> knownLocationIndices = findKnownLocationIndices(dayLocations);
@@ -81,6 +111,9 @@ public class LocationTracker {
         }
     }
 
+    /**
+     * Finds the indices of times when we know the person's location.
+     */
     private List<Pair<Location, Integer>> findKnownLocationIndices(List<Optional<Location>> dayLocations) {
         List<Integer> knownIndices = IntStream.range(0, dayLocations.size() - 1)
                 .filter(i -> dayLocations.get(i).isPresent())
@@ -95,6 +128,10 @@ public class LocationTracker {
         return knownLocationIndices;
     }
 
+    /**
+     * Looks for the last known and next known locations.
+     * Uses these to fill up the unknown locations.
+     */
     private void fillUnknownWithKnown(
             List<Pair<Location, Integer>> knownLocationIndices, List<Optional<Location>> dayLocations) {
         Location homeAddress = person.getAddress().getValue();
@@ -109,6 +146,9 @@ public class LocationTracker {
         fillUnknownWithStartEnd(currLocationIndex, endPair, dayLocations);
     }
 
+    /**
+     * Fills a range of unknown locations with known ones.
+     */
     private void fillUnknownWithStartEnd(
             Pair<Location, Integer> startLocationIndex,
             Pair<Location, Integer> endLocationIndex,
@@ -130,7 +170,13 @@ public class LocationTracker {
         fillWithApproximateLocations(dayLocations, fillLocations, startIndex);
     }
 
-    private void fillWithApproximateLocations(List<Optional<Location>> dayLocations, List<Location> fillLocations, int startIndex) {
+    /**
+     * Fills a range of empty locations with known ones.
+     */
+    private void fillWithApproximateLocations(
+            List<Optional<Location>> dayLocations,
+            List<Location> fillLocations,
+            int startIndex) {
         for (int i = 0; i < fillLocations.size(); i++) {
             int indexToFill = i + startIndex + 1;
             assert dayLocations.get(indexToFill).isEmpty();

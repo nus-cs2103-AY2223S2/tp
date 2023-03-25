@@ -1,5 +1,14 @@
 package seedu.address.model.recommender;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
@@ -10,15 +19,9 @@ import seedu.address.model.scheduler.Scheduler;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
+/**
+ * Recommends meetup times and locations.
+ */
 public class Recommender {
 
     private static final Logger logger = LogsCenter.getLogger(Recommender.class);
@@ -35,6 +38,9 @@ public class Recommender {
         locationTrackers = new HashSet<>();
     }
 
+    /**
+     * Returns a list of recommendations.
+     */
     public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
         initialise(contactIndices, destinations);
         List<HourBlock> timingRecommendations = sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
@@ -63,15 +69,21 @@ public class Recommender {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Sets up the {@code LocationRecommender}, {@code Scheduler}
+     * and {@code LocationTracker} for each person.
+     */
     private void initialise(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
         lr.initialise(destinations);
         sc.initialise(contactIndices);
         locationTrackers = sc.getParticipants().stream()
                 .map(LocationTracker::new)
                 .collect(Collectors.toSet());
-//        System.out.println(locationTrackers.toString());
     }
 
+    /**
+     * Gets location from hour block.
+     */
     private Set<Location> getLocationsFromHourBlock(HourBlock hourBlock) {
         return locationTrackers.stream()
                 .map(lt -> lt.getLocation(hourBlock))
@@ -80,12 +92,18 @@ public class Recommender {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a list of recommendation based on a particular timing.
+     */
     private List<Recommendation> recommendFromLocationsHourBlock(List<Location> locations, HourBlock hourBlock) {
         return locations.stream()
                 .map(l -> new Recommendation(l, hourBlock))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Filters out duplicate timings or locations.
+     */
     private List<Recommendation> filterRecommendations(List<Recommendation> recommendations) {
         Set<TimePeriod> timePeriods = new HashSet<>();
         Set<Location> locations = new HashSet<>();
