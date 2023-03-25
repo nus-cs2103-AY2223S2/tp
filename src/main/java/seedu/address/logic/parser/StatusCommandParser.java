@@ -37,7 +37,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
             }
 
             String statusText = argMultimap.getValue(PREFIX_STATUS_ASSIGN).get();
-            if (!LeadStatusName.isValidLeadStatus(statusText)) {
+            if (!LeadStatusName.isValidLeadStatusName(statusText)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LeadStatus.MESSAGE_CONSTRAINTS));
             }
 
