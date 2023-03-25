@@ -214,17 +214,16 @@ public class MainWindow extends UiPart<Stage> {
                     newFillInnerParts();
                     isShowBackup = false;
                 }
-            if (commandResult.isShowLight()) {
-                applyLightTheme();
-            }
+                if (commandResult.isShowLight()) {
+                    applyLightTheme();
+                }
 
-            if (commandResult.isShowDark()) {
-                applyDarkTheme();
+                if (commandResult.isShowDark()) {
+                    applyDarkTheme();
+                }
             }
-
             return commandResult;
-        }
-     } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
@@ -245,14 +244,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Sets theme to Light Theme. */
+    /**
+     * Sets theme to Light Theme.
+     */
     @FXML
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
-    /** Sets theme to Dark Theme. */
+    /**
+     * Sets theme to Dark Theme.
+     */
     @FXML
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
