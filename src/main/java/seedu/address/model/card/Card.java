@@ -144,8 +144,7 @@ public class Card {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
                 .append("; Answer: ")
-                .append(getAnswer())
-                .append(getDeck());
+                .append(getAnswer());
 
         if (getTag() != null) {
             builder.append(getTag());

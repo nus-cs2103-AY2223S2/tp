@@ -55,7 +55,7 @@ public class AddCommandParserTest {
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
                 .withTag(VALID_TAG_MEDIUM).build();
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS
-                + TAG_DESC_MEDIUM + TAG_DESC_HARD, new AddCommand(expectedCardMultipleTags));
+                + TAG_DESC_MEDIUM, new AddCommand(expectedCardMultipleTags));
     }
 
 
@@ -100,7 +100,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS
-                + INVALID_TAG_DESC + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_PHOTOSYNTHESIS
