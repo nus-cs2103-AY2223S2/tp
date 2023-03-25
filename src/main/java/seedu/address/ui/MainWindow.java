@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.theme.Theme.constructTheme;
+
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -17,6 +20,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.theme.Theme;
+import seedu.address.ui.theme.ThemeException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private Theme theme;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -62,9 +68,10 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
+        GuiSettings guiSettings = logic.getGuiSettings();
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
+        applyTheme(constructTheme(guiSettings.getTheme()));
 
         helpWindow = new HelpWindow();
     }
@@ -120,6 +127,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        applyTheme(Theme.DARK);
     }
 
     void newFillInnerParts() {
@@ -166,7 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), theme.toString());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -185,6 +194,7 @@ public class MainWindow extends UiPart<Stage> {
             ParseException, IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            System.out.println(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -196,6 +206,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
             if (commandResult.isShowBackups()) {
                 fillInnerPartsBackup();
                 isShowBackup = true;
@@ -204,6 +215,13 @@ public class MainWindow extends UiPart<Stage> {
                     newFillInnerParts();
                     isShowBackup = false;
                 }
+
+            if (commandResult.isShowLight()) {
+                applyLightTheme();
+            }
+
+            if (commandResult.isShowDark()) {
+                applyDarkTheme();
             }
 
             return commandResult;
@@ -213,4 +231,33 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    private void applyTheme(Theme newTheme) {
+        ObservableList<String> uiTheme = primaryStage.getScene().getStylesheets();
+        uiTheme.clear();
+        try {
+            String switchedTheme = newTheme.getTheme();
+            uiTheme.add(switchedTheme);
+            uiTheme.add(Theme.EXTENSION.getTheme());
+            theme = newTheme;
+            logger.info(String.format(Theme.SUCCESS_MESSAGE, theme));
+        } catch (ThemeException e) {
+            logger.info(e.getMessage());
+        }
+    }
+
+    /** Sets theme to Light Theme. */
+    @FXML
+    public void applyLightTheme() {
+        applyTheme(Theme.LIGHT);
+        resultDisplay.setFeedbackToUser("Switched to light mode!");
+    }
+
+    /** Sets theme to Dark Theme. */
+    @FXML
+    public void applyDarkTheme() {
+        applyTheme(Theme.DARK);
+        resultDisplay.setFeedbackToUser("Switched to dark mode!");
+    }
+
 }
