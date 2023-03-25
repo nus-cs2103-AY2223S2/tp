@@ -1,6 +1,7 @@
 package seedu.address.files;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,8 +36,6 @@ public class FilesManager {
     public FilesManager(Person person) {
         this.person = person;
         store = new FileStorage(person.getName().fullName);
-        create = new FileGenerator(person,
-                "Handsome", "description", 20);
         path = "reports/" + person.getName().fullName;
         setAllFiles();
         setFileNames();
@@ -98,20 +97,24 @@ public class FilesManager {
     /**
      * Generate mc.
      */
-    public void generateMc() {
+    public void generateMc(String doctorName, String description, int days) {
         Path path2 = Paths.get(path);
         FileStorage.createDrc(path);
+        create = new FileGenerator(person,
+                doctorName, description, days);
         create.createMcForm(Integer.toString(numberOfFiles(path2)));
     }
 
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
-        try (Stream<Path> stream = Files.walk(directory)) {
-            stream.filter(Files::isRegularFile)
-                    .forEach(files::add);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!isEmptyDirectory()) {
+            try (Stream<Path> stream = Files.walk(directory)) {
+                stream.filter(Files::isRegularFile)
+                        .forEach(files::add);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -121,7 +124,20 @@ public class FilesManager {
                 .map(Path::toString)
                 .collect(Collectors.toList());
     }
+
+    private boolean isEmptyDirectory() {
+        Path directory = Paths.get(path);
+        if (Files.isDirectory(directory)) {
+            try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) {
+                return !directoryStream.iterator().hasNext();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
     public Person getPerson() {
         return this.person;
+
     }
 }
