@@ -244,7 +244,7 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
     5. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
 4. After successfully parsing the args, the following will happen
-    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, PhoNameContainsKeywordsPredicatene, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>.
+    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, PhoNameContainsKeywordsPredicatene, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`.
     1a. If none of the flags are present, it will take the entire arg as a `setNameSearch`.
     2. Then it will create an `FindCommand` with the new FindPatientDescriptor object.
 5. When `FindCommand#execute` is called, the following will happen.
@@ -283,16 +283,16 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
 4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
 5. When `EditCommand#execute` is called, the following will happen.
-    1. It will ensure that the Index given is within the list, else it will throw a CommandExeception 
+    1. It will ensure that the Index given is within the list, else it will throw a CommandExeception
     2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
-    3. Then `model#setPatient` will be called to add the new Patient into the model. 
+    3. Then `model#setPatient` will be called to add the new Patient into the model.
     4. `EditCommand` will then return `CommandMessage` to indicate it's success.
 
 The activity diagram below illustrates the workflow of patient `EditCommand` that is described above.
 
 <img src="images/patient/EditPatientActivityDiagram.png" width="550" />
 
-Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step. 
+Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step.
 
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 
