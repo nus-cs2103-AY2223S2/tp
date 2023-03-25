@@ -48,6 +48,15 @@ public class TagUtil {
             }
         }
 
-        return messageFoodWithTag + "\n\n" + messageNoFoodWithTag;
+        String result = "";
+        if (!messageFoodWithTag.equals(matchMessage)) {
+            result += messageFoodWithTag + "\n\n";
+        }
+
+        if (!messageNoFoodWithTag.equals(noMatchMessage)) {
+            result += messageNoFoodWithTag;
+        }
+
+        return result;
     }
 }
