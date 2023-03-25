@@ -48,7 +48,7 @@ public class ProjectUtil {
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.toString()).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
-                .append(price.getPrice().toString()).append(" "));
+                .append(price.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

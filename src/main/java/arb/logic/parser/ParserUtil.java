@@ -137,12 +137,14 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+        if (trimmedDeadline.isEmpty()) {
+            return null;
+        }
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
     }
-
 
     /**
      * Parses a {@code String tag} into a {@code Price}.
@@ -153,6 +155,9 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
+        if (trimmedPrice.isEmpty()) {
+            return null;
+        }
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
