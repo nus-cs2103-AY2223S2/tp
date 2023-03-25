@@ -3,6 +3,7 @@ package seedu.wife.logic.commands.foodcommands;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_INCREASE;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +19,13 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.testutil.FoodBuilder;
 import seedu.wife.testutil.IncreaseFoodDescriptorBuilder;
-import seedu.wife.testutil.TypicalFood;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code IncreaseCommand}.
  */
 public class IncreaseCommandTest {
 
-    private Model model = new ModelManager(TypicalFood.getTypicalWife(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWife(), new UserPrefs());
 
     @Test
     public void execute_quantitySpecifiedUnfilteredList_success() {
