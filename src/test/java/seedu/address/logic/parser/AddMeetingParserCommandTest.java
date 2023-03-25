@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_START;
@@ -18,7 +17,7 @@ import seedu.address.model.person.Meeting;
 
 public class AddMeetingParserCommandTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
-    private final String nonEmptyDescription= "NotEmpty";
+    private final String nonEmptyDescription = "NotEmpty";
     private final String startDateTime = "09-11-2001 11:30";
     private final String endDateTime = "09-11-2001 12:30";
 

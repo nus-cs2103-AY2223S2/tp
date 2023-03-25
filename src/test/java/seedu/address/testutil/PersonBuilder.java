@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,6 +24,9 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final LocalDateTime DEFAULT_START = LocalDateTime.of(2023, 3, 25, 12, 0);
+    public static final LocalDateTime DEFAULT_END = LocalDateTime.of(2023, 3, 25, 15, 0);
+    public static final Meeting DEFAULT_MEETING = new Meeting("DEFAULT", DEFAULT_START, DEFAULT_END);
 
     private Name name;
     private Phone phone;
@@ -42,6 +44,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         meetings = new ArrayList<>();
+        meetings.add(DEFAULT_MEETING);
         tags = new HashSet<>();
     }
 

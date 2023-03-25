@@ -87,6 +87,9 @@ public class Person {
         return meetings;
     }
 
+    public Meeting getMeeting(int index) {
+        return this.meetings.get(index);
+    }
     public void setMeeting(int index, Meeting m) {
         this.meetings.set(index, m);
     }

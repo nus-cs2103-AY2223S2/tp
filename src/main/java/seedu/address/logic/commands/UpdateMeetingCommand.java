@@ -28,7 +28,7 @@ public class UpdateMeetingCommand extends Command {
         + "or if the end is before the start.\n"
         + "Parameters: [INDEX] [MEETINGINDEX] md/ [DESCRIPTION] ms/ [DATE START] me/ [TIME END]\n"
         + "Example: " + COMMAND_WORD + "1 2 md/ Policy discussion ms/ 30-03-2020 20:10 me/ 22:10";
-    public static final String MESSAGE_ADD_MEETING_SUCCESS = "Meeting of Person updated: %1$s";
+    public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting of Person updated: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -88,7 +88,7 @@ public class UpdateMeetingCommand extends Command {
         }
         personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedMeeting));
+        return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS, editedMeeting));
     }
 
     /**
@@ -103,7 +103,11 @@ public class UpdateMeetingCommand extends Command {
         requireNonNull(personUnderInspection);
         requireNonNull(meetingToCheck);
         ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
-        for (Meeting meeting : currentMeetings) {
+        for (int i = 0; i < currentMeetings.size(); i++) {
+            if (i == meetingIndex.getZeroBased()) {
+                continue;
+            }
+            Meeting meeting = currentMeetings.get(i);
             if (meetingToCheck.checkTimeClash(meeting)) {
                 return true;
             }

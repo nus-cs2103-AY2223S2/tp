@@ -114,11 +114,23 @@ public class Meeting implements Comparable<Meeting> {
         return start;
     }
 
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
     public LocalDateTime getEnd() {
         return end;
     }
 
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 }

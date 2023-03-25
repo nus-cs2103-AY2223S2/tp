@@ -68,7 +68,7 @@ public class AddMeetingCommandTest {
 
     @Test
     public void clashInMeetingsTest() throws Exception {
-        Meeting sampleMeeting = new Meeting( "clashOfMeetings",
+        Meeting sampleMeeting = new Meeting("clashOfMeetings",
             LocalDateTime.of(2023, 03, 14, 16, 00),
             LocalDateTime.of(2023, 03, 14, 17, 30)
         );
