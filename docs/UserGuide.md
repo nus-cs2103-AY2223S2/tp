@@ -46,9 +46,11 @@ Wingman offers 5 different resource modes through which you can manage your reso
 
 The different modes offer similar and intuitive commands, with optimisations to cater to the subject
 that the mode is managing. This means you do not have to worry about memorising complex commands and instead
-can dive right into the management of your airline.
+can dive right into the management of your airline. As a result of Wingman's modal design, you will be
+able to complete a variety of management tasks through singular commands. These commands are detailed
+in the subsequent [sections](#shared-commands).
 
-Users can switch effortlessly between different modes by typing in the following command:
+To switch between different modes simply enter the following command:
 ```
 mode XYZ
 ```
@@ -58,14 +60,17 @@ where XYZ can be any of the 5 mode names specified above.
 
 ### Shared Commands
 
-The commands in this section are available across all 5 modes.
+The commands in this section are available across ALL 5 modes.
 
 ### 1. Adding a resource
+
+Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
+to Wingman, for you to manage the resource. 
 ```
 add /prefix_A value_A /prefix_B value_B
 ```
 This commands adds an entity of the current resource mode to Wingman's database. For example,
-if the user is currently in the `plane` mode, then this command will add a new
+if you are currently in the `plane` mode, then this command will add a new
 `plane` to the database. It shall be noted, however, that the parameters that are specified in different modes are different. 
 
 Here are some examples of how the command works in each mode:
@@ -109,11 +114,14 @@ Parameters:
 
 
 ### 2. Deleting a resource
+
+Use this command when you wish to remove a resource entity (e.g. a pilot that has retired)
+from Wingman, so as to keep your database of resources up to date.
 ```
 delete index_number
 ```
 This commands deletes an entity of the current resource mode from Wingman's database. For example,
-if the user is currently in the `plane` mode, then this command will delete the specified
+if you are currently in the `plane` mode, then this command will delete the specified
 `plane` from the database.
 
 This command has no variations across modes:
@@ -131,13 +139,17 @@ Parameter:
 The commands in this section are only available in some modes.
 
 ### 1. Linking a resource to a location
+
+Use this command when you wish to link a resource entity to a location 
+(e.g. a pilot that has just landed in Dubai can have his location set as Dubai, so you are able to identify
+the correct pilots when filtering the pilots by location).
 ```
 linklocation /resource_prefix resource_index /loc location_index
 ```
 This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
 
 This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
-For example, if the user is currently in the `plane` mode, then this command will link a `plane` 
+For example, if you are currently in the `plane` mode, then this command will link a `plane` 
 to a specified location entity in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
 
@@ -167,13 +179,16 @@ Parameters:
 <br>
 
 ### 2. Unlinking a resource from a location
+Use this command when you wish to unlink a resource entity from a location
+(e.g. when a plane has departed from Milan, you can unlink it from Milan,
+so you get the correct information when filtering planes by location).
 ```
 unlinklocation /resource_prefix resource_index /loc location_index
 ```
 This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
 
 This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
-For example, if the user is currently in the `plane` mode, then this command will unlink a `plane`
+For example, if you are currently in the `plane` mode, then this command will unlink a `plane`
 from the specified location entity in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
 
@@ -203,6 +218,9 @@ Parameters:
 <br>
 
 ### 3. Linking a resource to a flight
+
+Use this command when you wish to link a resource entity to a flight (e.g. when assigning pilots to flights,
+you can use this command to link each pilot to a flight).
 ```
 link /resource_prefix resource_index /fl flight_index
 ```
@@ -211,7 +229,7 @@ This command is ONLY available in the following modes: `crew`, `pilot` and `plan
 using the `linklocation` command described [above](#1-linking-a-resource-to-a-location))
 
 This commands links an entity of the current resource mode to a specified flight in Wingman's database. For example,
-if the user is currently in the `plane` mode, then this command will link a `plane`
+if you are currently in the `plane` mode, then this command will link a `plane`
 to a specified flight in the database. It shall be noted, however, that the parameters that are specified in different modes are different.
 
 Here are some examples of how the command works in each mode:
@@ -242,6 +260,9 @@ Parameters:
 <br>
 
 ### 4. Unlinking a resource from a flight
+
+Use this command when you wish to unlink a resource entity from a flight (e.g. when a flight has been cancelled,
+you can use this command to unlink the crew members from the flight).
 ```
 unlink /resource_prefix resource_index /fl flight_index
 ```
@@ -250,7 +271,7 @@ This command is ONLY available in the following modes: `crew`, `pilot` and `plan
 using the `unlinklocation` command described [above](#2-unlinking-a-resource-from-a-location))
 
 This commands unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
-if the user is currently in the `plane` mode, then this command will unlink a `plane`
+if you are currently in the `plane` mode, then this command will unlink a `plane`
 from a specified flight in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
 
@@ -266,7 +287,7 @@ Parameters:
 
 Note: In each command, you only need to fill up **at least** 1 crew related parameter.
 
-#### Pilot mode: `link /pf 0 /pm 1 /f1 2`
+#### Pilot mode: `unlink /pf 0 /pm 1 /f1 2`
 Parameters:
 - `/pf`: the index of the flying pilot to be unlinked from the flight.
 - `/pm`: the index of the monitoring pilot to be unlinked from the flight.
@@ -274,7 +295,7 @@ Parameters:
 
 Note: In each command, you only need to fill up **at least** 1 pilot related parameter.
 
-#### Plane mode: `link /pu 0 /fl 1`
+#### Plane mode: `unlink /pu 0 /fl 1`
 Parameters:
 - `/pu`: the index of the plane to be unlinked as being used for the flight.
 - `/fl`: the flight from which the specified plane is to be linked.
@@ -283,22 +304,31 @@ Parameters:
 
 ## Application Commands
 
-### `exit`
-
-This will exit the program.
+### 1. Exiting from Wingman
+```
+exit
+```
+This will close the application window and exit the program. 
+All your changes to your resources will be saved for you to get back to when you reopen the application.
 
 ## Command Summary
 
-| **Action** | **Format**                               | **Examples**    |
-|------------|------------------------------------------|-----------------|
-| Add        | `add [{parameter_type} {parameter_val}]` | `add /name Bob` |
-| Delete     | `delete {index}`                         | `delete 1`      |
-| Exit       | `exit`                                   | `exit`          |
+| **Action**      | **Format**                                                           | **Examples**                       |
+|-----------------|----------------------------------------------------------------------|------------------------------------|
+| Add             | `add /prefix_A value_A /prefix_B value_B`                            | `add /name Bob /rank 2`            |
+| Delete          | `delete resource_index`                                              | `delete 1`                         |
+| Link location   | `linklocation /resource_prefix resource_index /loc location_index`   | `linklocation /crew 0 /loc 1`      |
+| Unlink location | `unlinklocation /resource_prefix resource_index /loc location_index` | `unlinklocation /flight 0 /loc 1`  |
+| Link flight     | `link /resource_prefix resource_index /fl flight_index`              | `link /pf 0 /pm 1 /f1 2`           |
+| Unlink flight   | `unlink /resource_prefix resource_index /fl flight_index`            | `unlink /pu 0 /fl 1`               |
+| Exit            | `exit`                                                               | `exit`                             |
 
 
 ## FAQ
 
-Ask us questions so that we can have a FAQ.
+### 1. Why is Wingman not opening when I run the `java -jar` command?
+- You might be running the command in the wrong directory.
+Navigate to the directory where you downloaded the application file and run the same command again. 
 
 ## Other information
 
