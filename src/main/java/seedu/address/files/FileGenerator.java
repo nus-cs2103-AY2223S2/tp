@@ -67,6 +67,8 @@ public class FileGenerator {
             for (PDField field: fieldList) {
                 if (field instanceof PDTextField) {
                     String fileName = field.getFullyQualifiedName();
+                    LocalDate now = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
                     switch (fileName) {
                     case "name":
                         field.setValue(person.getName().fullName);
@@ -78,18 +80,14 @@ public class FileGenerator {
                         field.setValue(Integer.toString(days));
                         break;
                     case "today":
-                        // Fill in the date fields
-                        LocalDate now = LocalDate.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    case "startDate":
                         field.setValue(now.format(formatter));
                         break;
-                    case "startDate":
-                        field.setValue("2019-11-11");
-                        break;
                     case "endDate":
-                        field.setValue("2019-11-12");
+                        LocalDate endDate = now.plusDays(days);
+                        field.setValue(endDate.format(formatter));
                         break;
-                    case "DoctorName":
+                    case "Doctor Name":
                         field.setValue(doctorName);
                         break;
                     default:

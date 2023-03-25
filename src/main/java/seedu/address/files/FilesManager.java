@@ -35,8 +35,6 @@ public class FilesManager {
     public FilesManager(Person person) {
         this.person = person;
         store = new FileStorage(person.getName().fullName);
-        create = new FileGenerator(person,
-                "Handsome", "description", 20);
         path = "reports/" + person.getName().fullName;
         setAllFiles();
         setFileNames();
@@ -98,9 +96,11 @@ public class FilesManager {
     /**
      * Generate mc.
      */
-    public void generateMc() {
+    public void generateMc(String doctorName, String description, int days) {
         Path path2 = Paths.get(path);
         FileStorage.createDrc(path);
+        create = new FileGenerator(person,
+                doctorName, description, days);
         create.createMcForm(Integer.toString(numberOfFiles(path2)));
     }
 
