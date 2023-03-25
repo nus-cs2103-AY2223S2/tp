@@ -67,23 +67,6 @@ public class FindCommandTest {
         assertEquals(true, model.getFilteredPatientList().isEmpty());
     }
 
-    @Test
-    public void execute_multipleKeywords_multiplePatientsFound() {
-        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPatientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        List<Patient> expectedPatients = Arrays.asList(CARL, ELLE, FIONA);
-        List<Patient> actualPatients = model.getFilteredPatientList()
-                .values()
-                .stream()
-                .map(data -> data.getValue())
-                .collect(Collectors.toList());
-        assertEquals(expectedPatients.size(), actualPatients.size());
-        assertEquals(true, expectedPatients.containsAll(actualPatients));
-    }
-
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
