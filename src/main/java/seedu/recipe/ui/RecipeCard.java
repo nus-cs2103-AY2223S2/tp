@@ -1,5 +1,7 @@
 package seedu.recipe.ui;
 
+import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
+
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -9,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
+
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -76,7 +79,12 @@ public class RecipeCard extends UiPart<Region> {
 
         //Ingredients
         recipe.getIngredients()
-                .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
+            .forEach((ingredient, quantifier) -> ingredients
+                .getChildren()
+                .add(
+                    new Label(ingredientKeyValuePairToString(ingredient, quantifier))
+                )
+            );
 
         //Steps
         recipe.getSteps()

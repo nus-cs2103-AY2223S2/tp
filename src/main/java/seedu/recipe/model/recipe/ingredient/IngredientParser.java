@@ -44,7 +44,7 @@ public class IngredientParser {
 
     private static List<PrefixPosition> findPosition(String args, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
-        int startPos = args.indexOf(prefix.getPrefix());
+        int startPos = args.indexOf(prefix.getPrefix() + " ");
         while (startPos != -1) {
             PrefixPosition position = new PrefixPosition(prefix, startPos);
             positions.add(position);

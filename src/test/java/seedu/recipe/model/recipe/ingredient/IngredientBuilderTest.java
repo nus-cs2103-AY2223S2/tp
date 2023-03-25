@@ -1,4 +1,4 @@
-package seedu.recipe.model.recipe;
+package seedu.recipe.model.recipe.ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
