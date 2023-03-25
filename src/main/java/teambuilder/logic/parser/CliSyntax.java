@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MAJOR = new Prefix("m/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_TEAM = new Prefix("T/");
+    public static final Prefix PREFIX_TEAMNAME = new Prefix("tn/");
+    public static final Prefix PREFIX_TEAMDESC = new Prefix("td/");
 
 }
