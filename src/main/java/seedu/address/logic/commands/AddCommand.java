@@ -22,25 +22,24 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_DRUG_ALLERGY + "DRUG ALLERGIES "
-            + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NRIC + "S1234567A "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "diabetic"
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_MEDICINE + "Lantus"
-            + PREFIX_MEDICINE + "Soliqua 100/33";
+        + "Parameters: "
+        + PREFIX_NRIC + "NRIC "
+        + PREFIX_NAME + "NAME "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_ADDRESS + "ADDRESS "
+        + PREFIX_DRUG_ALLERGY + "DRUG ALLERGIES "
+        + "[" + PREFIX_TAG + "TAG]..."
+        + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NRIC + "S1234567A "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_PHONE + "98765432 "
+        + PREFIX_EMAIL + "johnd@example.com "
+        + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+        + PREFIX_TAG + "Diabetic "
+        + PREFIX_MEDICINE + "Lantus "
+        + PREFIX_MEDICINE + "Soliqua 100/33";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -70,7 +69,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddCommand // instanceof handles nulls
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
