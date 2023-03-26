@@ -74,9 +74,23 @@ Adds a student to the list, along with their education level and any student-spe
 
 Examples:
 
-- `add n/Shaun a/123 NUS Street o/Good in Japanese`
-- `add n/Shao Hong o/Good in German`
-- `add n/Wen Li a/696 PGPR o/毎日3回うんこをとります`
+- `add n/Shaun a/123 NUS Street r/Good in Japanese t/submitted`
+- `add n/Shao Hong edu/Bachelors y2 r/Good in German s/German`
+- `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/696 PGPR r/毎日3回うんこをとります`
+
+<div align=center>
+
+![add before](images/user-guide/add_before.jpg)  
+_**Above: Before entering `add` command**_
+
+</div>
+
+<div align=center>
+
+![add after](images/user-guide/add_after.jpg)  
+_**Above: After entering `add` command**_
+
+</div>
 
 ### Delete a student: `delete`
 
