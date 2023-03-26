@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -11,12 +12,14 @@ import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
+import seedu.address.model.person.fields.Field;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.SuperField;
 import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
@@ -210,6 +213,57 @@ public class Person {
     }
 
     /**
+     * Returns true if for all the fields specified,
+     * there exists a keyword linked to that field, where that person's field contains that keyword,
+     * returns false otherwise.
+     *
+     * For the more mathematically inclined,
+     * {∀field ∈ Fields: ∃keyword ∈ field.keywords s.t. Person.field.contains(keyword) == true}.
+     * where Fields is the fields specified in the FindCommand, field.keywords is the keywords associated with that
+     * field and Person.field is the field we are testing against.
+     */
+    public boolean contains(HashMap<PredicateKey, Set<String>> keywords) {
+
+        HashMap<PredicateKey, Field> fieldMap = new HashMap<>();
+        fieldMap.put(PredicateKey.NAME, this.name);
+        fieldMap.put(PredicateKey.ADDRESS, this.address);
+        fieldMap.put(PredicateKey.COMMS, this.comms);
+        fieldMap.put(PredicateKey.EMAIL, this.email);
+        fieldMap.put(PredicateKey.GENDER, this.gender);
+        fieldMap.put(PredicateKey.MAJOR, this.major);
+        fieldMap.put(PredicateKey.PHONE, this.phone);
+        fieldMap.put(PredicateKey.RACE, this.race);
+        fieldMap.put(PredicateKey.FACULTY, this.faculty);
+
+        for (PredicateKey key : keywords.keySet()) {
+            Field field = fieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
+        }
+
+        HashMap<PredicateKey, SuperField<? extends Field>> superFieldMap = new HashMap<>();
+        superFieldMap.put(PredicateKey.TAG, this.tags);
+        superFieldMap.put(PredicateKey.MODULES, this.modules);
+
+        for (PredicateKey key : keywords.keySet()) {
+            SuperField<? extends Field> field = superFieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -270,5 +324,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

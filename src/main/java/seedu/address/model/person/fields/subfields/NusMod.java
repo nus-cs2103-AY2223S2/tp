@@ -58,6 +58,7 @@ public class NusMod extends Field {
         return MODULE_MAP.containsKey(trimmedMod);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return this == other

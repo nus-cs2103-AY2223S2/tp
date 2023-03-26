@@ -15,6 +15,8 @@ public class Modules extends SuperField<NusMod> {
         super(mods);
     }
 
+
+    //todo: Update modules to only be able to include mods that are a part of NUSMods.
     /**
      * Checks whether all the mods are valid NUSMods
      *

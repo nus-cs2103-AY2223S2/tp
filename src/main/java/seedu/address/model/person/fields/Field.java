@@ -2,6 +2,8 @@ package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
 /**
  * Represents a mono-field class that all fields in Person should inherit from.
  */
@@ -18,10 +20,22 @@ public abstract class Field {
     }
 
     /**
-     * Returns true if test string is contained within the value of the field.
+     * Returns true if at least one of the strings contained in test
+     * is contained within the value of the field.
+     *
+     * For the more mathematically inclined,
+     * {∃t ∈ test s.t. this.value.toUpperCase().contains(t.toUpperCase()) == true}.
      */
-    public boolean contains(String test) {
-        return this.value.toUpperCase().contains(test.toUpperCase());
+    public boolean contains(Set<String> test) {
+        for (String t: test) {
+            if (t.isEmpty()) {
+                continue;
+            }
+            if (this.value.toUpperCase().contains(t.toUpperCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -33,6 +33,7 @@ public class Major extends Field {
         return trimmedMajor.matches(VALIDATION_REGEX);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

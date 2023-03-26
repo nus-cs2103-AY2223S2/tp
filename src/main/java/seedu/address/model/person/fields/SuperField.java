@@ -19,9 +19,12 @@ public abstract class SuperField<T extends Field> {
     }
 
     /**
-     * Returns true if there exist a value in values that contains the test string. False if not.
+     * Returns true if at least one of the strings contained in test
+     * is contained within the value of the field.
+     * For the more mathematically inclined,
+     * {∃v ∈ values s.t. v.contains(test) == true}.
      */
-    public boolean contains(String test) {
+    public boolean contains(Set<String> test) {
         for (T value: values) {
             if (value.contains(test)) {
                 return true;

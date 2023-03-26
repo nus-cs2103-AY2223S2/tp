@@ -31,7 +31,7 @@ import seedu.address.model.person.fields.Tags;
 /**
  * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
  */
-public abstract class EditPersonCommandParser {
+public abstract class PersonCommandParser {
 
     public abstract Optional<Index> parseIndex(String index) throws ParseException;
 
@@ -101,6 +101,7 @@ public abstract class EditPersonCommandParser {
     }
 
 
+
     private Optional<Modules> parseModulesForEdit(Collection<String> mods) throws ParseException {
         assert mods != null;
 
@@ -125,6 +126,5 @@ public abstract class EditPersonCommandParser {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
 

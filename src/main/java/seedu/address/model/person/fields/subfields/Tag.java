@@ -31,6 +31,7 @@ public class Tag extends Field {
         return test.matches(VALIDATION_REGEX);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

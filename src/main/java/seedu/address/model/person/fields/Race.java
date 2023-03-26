@@ -32,6 +32,7 @@ public class Race extends Field {
         return trimmedRace.matches(VALIDATION_REGEX);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
