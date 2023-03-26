@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -31,7 +31,7 @@ public abstract class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String nric;
-    private final String age;
+    private final String birthDate;
     private final String region;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAvailableDate> availableDates = new ArrayList<>();
@@ -42,7 +42,7 @@ public abstract class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+            @JsonProperty("nric") String nric, @JsonProperty("birthDate") String birthDate,
             @JsonProperty("region") String region,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("tagged") List<JsonAdaptedAvailableDate> availableDates) {
@@ -51,7 +51,7 @@ public abstract class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.nric = nric;
-        this.age = age;
+        this.birthDate = birthDate;
         this.region = region;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -72,7 +72,7 @@ public abstract class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         nric = source.getNric().value;
-        age = source.getAge().value;
+        birthDate = source.getBirthDate().birthDate.toString();
         region = String.valueOf(source.getRegion().region);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -93,14 +93,14 @@ public abstract class JsonAdaptedPerson {
         return new Nric(nric);
     }
 
-    public Age getModelAge(String missingFieldMessageFormat) throws IllegalValueException {
-        if (age == null) {
-            throw new IllegalValueException(String.format(missingFieldMessageFormat, Age.class.getSimpleName()));
+    public BirthDate getModelBirthDate(String missingFieldMessageFormat) throws IllegalValueException {
+        if (birthDate == null) {
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, BirthDate.class.getSimpleName()));
         }
-        if (!Age.isValidAge(age)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        if (!BirthDate.isValidBirthDate(birthDate)) {
+            throw new IllegalValueException(BirthDate.MESSAGE_CONSTRAINTS);
         }
-        return new Age(age);
+        return new BirthDate(birthDate);
     }
 
     protected Region getModelRegion(String missingFieldMessageFormat) throws IllegalValueException {

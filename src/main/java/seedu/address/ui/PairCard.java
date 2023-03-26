@@ -54,7 +54,7 @@ public class PairCard extends UiPart<Region> {
         elderlyName.setText(pair.getElderly().getName().fullName);
         elderlyNric.setText(pair.getElderly().getNric().toString());
         volunteerName.setText(pair.getVolunteer().getName().fullName);
-        volunteerNric.setText(pair.getElderly().getNric().toString());
+        volunteerNric.setText(pair.getVolunteer().getNric().toString());
 
         // Create a VBox to hold the content of the popover
         VBox vbox = new VBox();

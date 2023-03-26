@@ -4,12 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTH_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
@@ -29,8 +29,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_STRONG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -56,7 +56,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -109,7 +109,7 @@ public class EditElderlyCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
-        assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid age
+        assertParseFailure(parser, "1" + INVALID_BIRTH_DATE_DESC, BirthDate.MESSAGE_CONSTRAINTS); // invalid age
         assertParseFailure(parser, "1" + INVALID_REGION_DESC, Region.MESSAGE_CONSTRAINTS); // invalid region
         assertParseFailure(parser, "1" + INVALID_RISK_DESC, RiskLevel.MESSAGE_CONSTRAINTS); // invalid risk level
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -129,7 +129,7 @@ public class EditElderlyCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY + VALID_REGION_AMY
+                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_BIRTH_DATE_AMY + VALID_REGION_AMY
                 + VALID_RISK_LEVEL_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -137,12 +137,12 @@ public class EditElderlyCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_SINGLE + REGION_DESC_AMY
-                + NRIC_PERSON_DESC_AMY + EMAIL_DESC_AMY + AGE_DESC_AMY + ADDRESS_DESC_AMY
+                + NRIC_PERSON_DESC_AMY + EMAIL_DESC_AMY + BIRTH_DATE_DESC_AMY + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY + TAG_DESC_STRONG + RISK_DESC_AMY;
 
         EditDescriptor descriptor = new EditDescriptorBuilder()
                 .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withNric(VALID_NRIC_AMY).withBirthDate(VALID_BIRTH_DATE_AMY)
                 .withRegion(VALID_REGION_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
@@ -197,8 +197,8 @@ public class EditElderlyCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // age
-        userInput = targetIndex.getOneBased() + AGE_DESC_AMY;
-        descriptor = new EditDescriptorBuilder().withAge(VALID_AGE_AMY).build();
+        userInput = targetIndex.getOneBased() + BIRTH_DATE_DESC_AMY;
+        descriptor = new EditDescriptorBuilder().withBirthDate(VALID_BIRTH_DATE_AMY).build();
         expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -226,13 +226,13 @@ public class EditElderlyCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_STRONG + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_STRONG
-                + NRIC_PERSON_DESC_AMY + NRIC_PERSON_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB
+                + NRIC_PERSON_DESC_AMY + NRIC_PERSON_DESC_BOB + BIRTH_DATE_DESC_AMY + BIRTH_DATE_DESC_BOB
                 + REGION_DESC_AMY + REGION_DESC_BOB
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_SINGLE;
 
         EditDescriptor descriptor = new EditDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withNric(VALID_NRIC_BOB).withBirthDate(VALID_BIRTH_DATE_BOB)
                 .withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE).build();
 

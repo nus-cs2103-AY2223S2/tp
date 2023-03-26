@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -42,7 +42,7 @@ public class ElderlyTest {
 
         // same name, same nric, all other attributes different -> returns true
         Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withBirthDate(VALID_BIRTH_DATE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_SINGLE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
@@ -51,7 +51,7 @@ public class ElderlyTest {
         editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).withNric(VALID_NRIC_BOB)
                 .withRegion(VALID_REGION_BOB)
-                .withRiskLevel(VALID_RISK_LEVEL_BOB).withAge(VALID_AGE_BOB).build();
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).withBirthDate(VALID_BIRTH_DATE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns true
@@ -116,7 +116,7 @@ public class ElderlyTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different age -> returns false
-        editedAlice = new ElderlyBuilder(ALICE).withAge(VALID_AGE_BOB).build();
+        editedAlice = new ElderlyBuilder(ALICE).withBirthDate(VALID_BIRTH_DATE_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
         // different nric -> returns false

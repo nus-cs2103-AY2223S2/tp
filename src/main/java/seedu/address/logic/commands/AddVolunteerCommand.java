@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -40,8 +40,8 @@ public class AddVolunteerCommand extends Command {
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
         COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
         COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_tag>");
-        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
+        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_qualification>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
     }
 
@@ -52,7 +52,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_NRIC_VOLUNTEER + "NRIC "
-            + PREFIX_AGE + "AGE "
+            + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
             + "[" + PREFIX_TAG + "TAG] "
@@ -63,7 +63,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NRIC_VOLUNTEER + "S1234567A "
-            + PREFIX_AGE + "20 "
+            + PREFIX_BIRTH_DATE + "2002-12-01 "
             + PREFIX_REGION + "NORTH "
             + PREFIX_MEDICAL_TAG + "CPR BASIC "
             + PREFIX_TAG + "new "

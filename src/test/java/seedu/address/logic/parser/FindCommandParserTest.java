@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_ADDRESS;
-import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_AGE;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_AVAILABLE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_BIRTHDATE;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_DIGITS;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_EMAIL;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_MEDICAL_QUALIFICATION;
@@ -45,7 +45,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         List<Predicate<Person>> sharedPredicateList = Arrays.asList(PREDICATE_HAS_NAME, PREDICATE_HAS_ADDRESS,
-                PREDICATE_HAS_NRIC, PREDICATE_HAS_DIGITS, PREDICATE_HAS_AGE, PREDICATE_HAS_EMAIL, PREDICATE_HAS_REGION,
+                PREDICATE_HAS_NRIC, PREDICATE_HAS_DIGITS, PREDICATE_HAS_BIRTHDATE,
+                PREDICATE_HAS_EMAIL, PREDICATE_HAS_REGION,
                 PREDICATE_HAS_TAG, PREDICATE_HAS_AVAILABLE_DATE);
         List<Predicate<Elderly>> elderlyPredicateList = Collections.singletonList(PREDICATE_HAS_RISKLEVEL);
         List<Predicate<Volunteer>> volunteerPredicateList =
@@ -55,23 +56,23 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(sharedPredicateList, elderlyPredicateList, Collections.emptyList());
         String userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 nr/S9673908G p/94351253 "
-                + "ag/20 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12";
+                + "bd/1990-01-01 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // multiple whitespaces between fields
         userInput = " n/Alice Pauline        a/123, Jurong West Ave 6, #08-111     nr/S9673908G p/94351253 "
-                + "ag/20    e/alice@example.com t/friends         r/medium re/central   dr/2023-05-01, 2023-05-12";
+                + "bd/1990-01-01    e/alice@example.com t/friends    r/medium re/central   dr/2023-05-01, 2023-05-12";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // fields in any order
         userInput = " r/medium n/Alice Pauline dr/2023-05-01, 2023-05-12 re/central nr/S9673908G "
-                + "ag/20 e/alice@example.com p/94351253 t/friends a/123, Jurong West Ave 6, #08-111";
+                + "bd/1990-01-01 e/alice@example.com p/94351253 t/friends a/123, Jurong West Ave 6, #08-111";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // all possible fields
         expectedFindCommand = new FindCommand(sharedPredicateList, elderlyPredicateList, volunteerPredicateList);
         userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 nr/S9673908G p/94351253 "
-                + "ag/20 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12 "
+                + "bd/1990-01-01 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12 "
                 + "mt/cpr basic";
         assertParseSuccess(parser, userInput, expectedFindCommand);
     }

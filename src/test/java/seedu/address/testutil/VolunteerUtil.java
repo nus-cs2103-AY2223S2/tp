@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
@@ -36,7 +36,7 @@ public class VolunteerUtil {
         sb.append(PREFIX_EMAIL).append(volunteer.getEmail().value).append(" ");
         sb.append(PREFIX_ADDRESS).append(volunteer.getAddress().value).append(" ");
         sb.append(PREFIX_NRIC_VOLUNTEER).append(volunteer.getNric().value).append(" ");
-        sb.append(PREFIX_AGE).append(volunteer.getAge().value).append(" ");
+        sb.append(PREFIX_BIRTH_DATE).append(volunteer.getBirthDate().birthDate.toString()).append(" ");
         sb.append(PREFIX_REGION).append(volunteer.getRegion()).append(" ");
         volunteer.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
