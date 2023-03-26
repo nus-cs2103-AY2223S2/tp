@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +18,7 @@ public class Customer extends Person {
 
     private final int id;
     private final Set<Integer> vehicleIds = new HashSet<>();
-    // TODO: Service History list, ensure its HashSet of service ids*
+    private final Set<Integer> appointmentIds = new HashSet<>();
 
     /**
      * {@inheritDoc}
@@ -35,6 +36,17 @@ public class Customer extends Person {
         super(name, phone, email, address, tags);
         this.id = id;
         this.vehicleIds.addAll(vehicleIds);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Customer(int id, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Set<Integer> vehicleIds, Set<Integer> appointmentIds) {
+        super(name, phone, email, address, tags);
+        this.id = id;
+        this.vehicleIds.addAll(vehicleIds);
+        this.appointmentIds.addAll(appointmentIds);
     }
 
     /**
@@ -71,6 +83,33 @@ public class Customer extends Person {
      */
     public void removeVehicle(Vehicle vehicle) {
         this.vehicleIds.remove(vehicle.getId());
+    }
+
+    /**
+     * This method returns a list of appointments which the Customer has.
+     *
+     * @return a list of appointments this customer has.
+     */
+    public List<Integer> getAppointmentIds() {
+        return new ArrayList<>(this.appointmentIds);
+    }
+
+    /**
+     * This method adds an appointment tied to the Customer.
+     *
+     * @param appointment The appointment to add.
+     */
+    public void addAppointment(Appointment appointment) {
+        this.appointmentIds.add(appointment.getId());
+    }
+
+    /**
+     * This method removes an appointment tied to the Customer.
+     *
+     * @param appointment The appointment to add.
+     */
+    public void removeAppointment(Appointment appointment) {
+        this.appointmentIds.remove(appointment.getId());
     }
 
     /**

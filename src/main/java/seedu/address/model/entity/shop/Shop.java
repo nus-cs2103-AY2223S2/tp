@@ -29,13 +29,8 @@ public class Shop implements ReadOnlyShop {
     private final UniqueVehicleList vehicles = new UniqueVehicleList();
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
     private final ServiceList services = new ServiceList();
-
-    //TODO: Implement immutable list for appointments
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
-
-    //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
-    //NOTE: Cannot convert to final due to setParts(newData.getPartMap());
-    private PartMap partMap = new PartMap();
+    private final PartMap partMap = new PartMap();
 
     /**
      * Constructor for class Shop.
@@ -143,6 +138,25 @@ public class Shop implements ReadOnlyShop {
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
+
+    /**
+     * Wrapper function to also check if appointment already added
+     * but using appointment param
+     *
+     * @param appointment Appointment to check
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Replaces the contents of the appointment list with {@code appointments}.
+     * {@code appointments} must not contain appointment customers.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
     // --------------------------------------------------
     //// part-level operations
     @Override
@@ -183,7 +197,7 @@ public class Shop implements ReadOnlyShop {
      * Replaces the contents of the part map with {@code parts}.
      */
     public void setParts(PartMap parts) {
-        this.partMap = parts;
+        this.partMap.replace(parts);
     }
 
     // --------------------------------------------------
@@ -404,6 +418,7 @@ public class Shop implements ReadOnlyShop {
         setParts(newData.getPartMap());
         setServices(newData.getServiceList());
         setTechnicians(newData.getTechnicianList());
+        setAppointments(newData.getAppointmentList());
     }
 
     //// Delete operations

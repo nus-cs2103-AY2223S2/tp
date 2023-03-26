@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,11 +61,11 @@ public class SampleDataUtil {
             new Customer(IdGenerator.generateCustomerId(), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("regular"), getIntegerSet(1, 2)),
+                getTagSet("regular"), getIntegerSet(1, 2), getIntegerSet(1, 2, 3, 4)),
             new Customer(IdGenerator.generateCustomerId(), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("difficult", "new driver"), getIntegerSet(3)),
+                getTagSet("difficult", "new driver"), getIntegerSet(3), getIntegerSet(5, 6)),
             new Customer(IdGenerator.generateCustomerId(), new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
@@ -74,8 +76,23 @@ public class SampleDataUtil {
                 getTagSet("regular"), getIntegerSet(6)),
             new Customer(IdGenerator.generateCustomerId(), new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), new HashSet<>(), new HashSet<>()),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new HashSet<>(), new HashSet<>(),
+                    getIntegerSet(7)),
             };
+    }
+
+    public static Appointment[] getSampleAppointments() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+
+        return new Appointment[] {
+                new Appointment(IdGenerator.generateAppointmentId(), 1, LocalDateTime.parse("10/12/2022 02:00 PM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 1, LocalDateTime.parse("21/12/2022 02:30 PM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 1, LocalDateTime.parse("15/02/2023 03:00 PM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 1, LocalDateTime.parse("01/05/2023 06:00 PM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 2, LocalDateTime.parse("19/06/2022 12:30 PM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 2, LocalDateTime.parse("25/04/2023 11:00 AM", dtf)),
+                new Appointment(IdGenerator.generateAppointmentId(), 5, LocalDateTime.parse("28/05/2023 05:45 PM", dtf)),
+        };
     }
 
     public static Vehicle[] getSampleVehicles() {
@@ -169,6 +186,7 @@ public class SampleDataUtil {
         for (Customer sampleCustomer : getSampleCustomers()) {
             sampleSh.addCustomer(sampleCustomer);
         }
+
         for (Vehicle sampleVehicle : getSampleVehicles()) {
             sampleSh.addVehicle(sampleVehicle);
         }
@@ -178,8 +196,13 @@ public class SampleDataUtil {
             Integer value = entry.getValue();
             sampleSh.addPart(key, value);
         }
+
         for (Service sampleService : getSampleServices()) {
             sampleSh.addService(sampleService);
+        }
+
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleSh.addAppointment(sampleAppointment);
         }
         return sampleSh;
     }
