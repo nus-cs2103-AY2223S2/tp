@@ -3,7 +3,6 @@ package seedu.fitbook.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -51,6 +50,14 @@ public class Weight {
      */
     public static boolean isValidWeight(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getWeight() {
+        return value;
     }
 
     @Override

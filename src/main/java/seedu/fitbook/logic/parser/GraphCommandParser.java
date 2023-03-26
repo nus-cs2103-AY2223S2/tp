@@ -1,46 +1,36 @@
 package seedu.fitbook.logic.parser;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 
 import java.util.stream.Stream;
 
-import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.AddWeightCommand;
+import seedu.fitbook.logic.commands.GraphCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
-import seedu.fitbook.model.client.Date;
-import seedu.fitbook.model.client.Weight;
 
 /**
  * Parses input arguments and creates a new AddRoutineCommand object
  */
-public class AddWeightCommandParser implements Parser<AddWeightCommand> {
+public class GraphCommandParser implements Parser<GraphCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddRoutineCommand
      * and returns an AddRoutineCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddWeightCommand parse(String args) throws ParseException {
+    public GraphCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_WEIGHT, PREFIX_DATE);
-        if (!arePrefixesPresent(argMultimap, PREFIX_WEIGHT, PREFIX_DATE)) {
+                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX);
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE));
-        }
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE), pe);
         }
 
         //handle invalid input here
-        Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        int clientIndex = Integer.parseInt(argMultimap.getValue(PREFIX_CLIENT_INDEX).get().trim());
 
-        return new AddWeightCommand(index, weight, date);
+        return new GraphCommand(clientIndex);
     }
 
     /**
