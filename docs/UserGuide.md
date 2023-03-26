@@ -27,7 +27,7 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 
    - `list` : Lists all patients.
 
-   - `add nric/S1234567A` : Adds a patient named `John Doe` to MedInfo.
+   - `add nric/S1234567A name/John Doe` : Adds a patient named `John Doe` to MedInfo.
 
    - `delete 1` : Deletes the first patient on the currently displayed list
 
@@ -44,10 +44,10 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
+  e.g. in `add nric/NRIC name/NAME`, `NRIC` and `NAME` are parameters which can be used as `add nric/S1234567A name/John Doe`.
 
 - Items in square brackets are optional.<br>
-  e.g `name/NAME [s/STATUS]` can be used as `n/John Doe s/GREEN` or as `name/John Doe`.
+  e.g `name/NAME [s/STATUS]` can be used as `name/John Doe s/GREEN` or as `name/John Doe`.
 
 [//]: # 'Might be used in future features'
 [//]: # '- Items with `…`​ after them can be used multiple times including zero times.<br>'
@@ -75,7 +75,7 @@ Format: `help`
 
 ### Adding a patient to the system: `add`
 
-Adds the patient (NRIC, name and condition).
+Adds the patient (NRIC, name and status).
 
 Format: `add nric/NRIC name/NAME [s/STATUS]​`
 
@@ -199,6 +199,6 @@ _Details coming soon ..._
 | **Delete**   | `delete INDEX`<br> e.g., `delete 1`                                                        |
 | **Edit**     | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
 | **Find**     | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
-| **Add Ward** | `addward name/NAME [c/CAPACITY` <br> e.g., `addward name/S1234567A c/25`                   |
+| **Add Ward** | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
 | **List**     | `list`                                                                                     |
 | **Help**     | `help`                                                                                     |
