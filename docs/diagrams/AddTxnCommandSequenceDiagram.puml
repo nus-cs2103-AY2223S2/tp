@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "AddTxnCommandParser" as AddTxnCommandParser LOGIC_COLOR
+participant "a:AddTxnCommand" as AddTxnCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("addtxn td/...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addtxn td/...")
+activate AddressBookParser
+
+AddressBookParser -> AddTxnCommandParser
+activate AddTxnCommandParser
+AddTxnCommandParser --> AddressBookParser
+deactivate AddTxnCommandParser
+
+AddressBookParser -> AddTxnCommandParser: parse("td/...")
+activate AddTxnCommandParser
+
+create AddTxnCommand
+AddressBookParser -> AddTxnCommand
+activate AddTxnCommand
+
+AddTxnCommand --> AddressBookParser: a
+deactivate AddTxnCommand
+
+AddTxnCommandParser --> AddressBookParser: a
+deactivate AddTxnCommandParser
+
+AddTxnCommandParser -[hidden]-> AddressBookParser
+deactivate AddTxnCommandParser
+
+AddressBookParser --> LogicManager: a
+deactivate AddressBookParser
+
+AddTxnCommand -> AddTxnCommandParser : execute()
+activate AddTxnCommand
+
+AddTxnCommand -> Model: addTransaction("td/...")
+activate Model
+
+Model --> AddTxnCommand
+deactivate Model
+
+create CommandResult
+AddTxnCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTxnCommand
+deactivate CommandResult
+
+AddTxnCommand --> LogicManager : result
+deactivate AddTxnCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

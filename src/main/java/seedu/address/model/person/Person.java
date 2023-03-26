@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.model.tag.Tag;
@@ -33,12 +34,15 @@ public class Person {
 
     private final Remark remark;
     private final LeadStatus status;
+    private final Task task;
+
     /**
      * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark);
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task) {
+        requireAllNonNull(name, gender, phone, email, company, industry,
+                occupation, jobTitle, address, tags, remark, task);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -51,16 +55,17 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
+        this.task = task;
     }
 
     /**
      * Constructor for a person with a given LeadStatus.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags,
-                     LeadStatus status) {
-        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark,
-                status);
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task,
+                  LeadStatus status) {
+        requireAllNonNull(name, gender, phone, email, company, industry,
+                occupation, jobTitle, address, tags, remark, task, status);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -73,6 +78,7 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = status;
+        this.task = task;
 
     }
 
@@ -118,6 +124,47 @@ public class Person {
 
     public LeadStatus getStatus() {
         return status;
+    }
+
+    public Task getTask() {
+        return this.task;
+    }
+
+    /**
+     * Returns the value of a person's attribute
+     *
+     * @param attribute Attribute of a contact.
+     * @return value of attribute.
+     */
+    public String getAttribute(String attribute) throws IllegalValueException {
+        switch(attribute) {
+        case "name":
+            return name.toString();
+        case "gender":
+            return gender.toString();
+        case "phone number":
+            return phone.toString();
+        case "email":
+            return email.toString();
+        case "address":
+            return address.toString();
+        case "company":
+            return company.toString();
+        case "industry":
+            return industry.toString();
+        case "occupation":
+            return occupation.toString();
+        case "job title":
+            return jobTitle.toString();
+        case "remark":
+            return remark.toString();
+        case "status":
+            return status.getStatusName().getLabel();
+        case "task":
+            return task.toString();
+        default:
+            throw new IllegalValueException("Attribute does not exists!");
+        }
     }
 
     /**
@@ -195,7 +242,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append(" Remark: ")
-                .append(getRemark());
+                .append(getRemark())
+                .append(" Task: ")
+                .append(getTask());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

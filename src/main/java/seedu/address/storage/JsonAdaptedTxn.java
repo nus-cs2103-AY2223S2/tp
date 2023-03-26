@@ -7,8 +7,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 /**
  * Jackson-friendly version of {@link Transaction}.
@@ -18,7 +18,7 @@ public class JsonAdaptedTxn {
 
     private final String description;
     private final String owner;
-    private final String status;
+    private final JsonAdaptedTxnStatus status;
     private final String value;
 
     /**
@@ -27,7 +27,7 @@ public class JsonAdaptedTxn {
     @JsonCreator
     public JsonAdaptedTxn(@JsonProperty("description") String description,
              @JsonProperty("owner") String owner,
-             @JsonProperty("status") String status,
+             @JsonProperty("status") JsonAdaptedTxnStatus status,
              @JsonProperty("value") String value) {
         this.description = description;
         this.owner = owner;
@@ -41,7 +41,7 @@ public class JsonAdaptedTxn {
     public JsonAdaptedTxn(Transaction source) {
         description = source.getDescription().value;
         owner = source.getOwner().value;
-        status = source.getStatus().value;
+        status = new JsonAdaptedTxnStatus(source.getStatus());
         value = source.getValue().value;
     }
 
@@ -73,10 +73,7 @@ public class JsonAdaptedTxn {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TxnStatus.class.getSimpleName()));
         }
-        if (!TxnStatus.isValidTxnStatus(status)) {
-            throw new IllegalValueException(TxnStatus.MESSAGE_CONSTRAINTS);
-        }
-        final TxnStatus modelStatus = new TxnStatus(status);
+        final TxnStatus modelStatus = status.toModelType();
 
         if (value == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Value.class.getSimpleName()));

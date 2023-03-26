@@ -10,20 +10,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
-import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
-
-
+import seedu.address.model.transaction.status.TxnStatus;
 
 public class JsonAdaptedTxnTest {
     private static final String INVALID_DESC = "";
     private static final String INVALID_OWNER = "@@@";
-    private static final String INVALID_STATUS = "iuuno";
+    private static final String INVALID_STATUS = "pending";
     private static final String INVALID_VALUE = "abd";
 
     private static final String VALID_DESC = COFFEE_MACHINES_B.getDescription().toString();
     private static final String VALID_OWNER = COFFEE_MACHINES_B.getOwner().toString();
-    private static final String VALID_STATUS = COFFEE_MACHINES_B.getStatus().toString();
+    private static final JsonAdaptedTxnStatus VALID_STATUS = new JsonAdaptedTxnStatus(COFFEE_MACHINES_B.getStatus());
     private static final String VALID_VALUE = COFFEE_MACHINES_B.getValue().toString();
 
 
@@ -62,14 +60,6 @@ public class JsonAdaptedTxnTest {
         JsonAdaptedTxn txn =
                 new JsonAdaptedTxn(VALID_DESC, null, VALID_STATUS, VALID_VALUE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Owner.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, txn::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidStatus_throwsIllegalValueException() {
-        JsonAdaptedTxn txn =
-                new JsonAdaptedTxn(VALID_DESC, VALID_OWNER, INVALID_STATUS, VALID_VALUE);
-        String expectedMessage = TxnStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, txn::toModelType);
     }
 

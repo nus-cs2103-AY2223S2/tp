@@ -1,10 +1,5 @@
 package seedu.address.model.transaction.status;
 
-
-import seedu.address.model.Status;
-import seedu.address.model.StatusName;
-import seedu.address.model.person.status.LeadStatusName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -14,7 +9,8 @@ import static seedu.address.model.transaction.status.TxnStatusName.isValidStatus
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
+
+import seedu.address.model.Status;
 
 /**
  * Status of Transaction
@@ -39,6 +35,9 @@ public class TxnStatus extends Status {
         this.timestamp = Instant.now();
     }
 
+    /**
+     * Construct a {@code TxnStatus}, with a pre-defined timestamp, given a valid String key for a TxnStatusName.
+     */
     public TxnStatus(String statusName, String timestampInIso) {
         requireAllNonNull(statusName, timestampInIso);
         checkArgument(isValidStatusName(statusName), MESSAGE_CONSTRAINTS);
@@ -76,10 +75,16 @@ public class TxnStatus extends Status {
     public String getInstantInIso() {
         return timestamp.toString();
     }
+
+    /**
+     *  Returns the String representation pair of a TxnStatus name and timestamp forms a valid
+     *  TxnStatus.
+     */
     public static boolean isValidTxnStatus(String name, String timestamp) {
         return TxnStatusName.isValidStatusName(name)
                 && Status.isValidTimestamp(timestamp);
     }
+
 
     @Override
     public String toString() {

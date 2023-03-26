@@ -2,10 +2,13 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.status.LeadStatus;
 
+/**
+ * Jackson-friendly version of {@link LeadStatus}.
+ */
 public class JsonAdaptedLeadStatus {
 
     public static final String INVALID_FORMAT_MESSAGE = "LeadStatus is invalid!";
@@ -23,11 +26,19 @@ public class JsonAdaptedLeadStatus {
         this.timestamp = timestamp;
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedLeadStatus} with the given {@code LeadStatus}.
+     */
     public JsonAdaptedLeadStatus(LeadStatus ls) {
         statusName = ls.getStatusName().getLabel();
-        timestamp = ls.getInstantInISO();
+        timestamp = ls.getInstantInIso();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted LeadStatus object into the model's {@code LeadStatus} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted LeadStatus.
+     */
     public LeadStatus toModelType() throws IllegalValueException {
         if (!LeadStatus.isValidLeadStatus(statusName, timestamp)) {
             throw new IllegalValueException(INVALID_FORMAT_MESSAGE);

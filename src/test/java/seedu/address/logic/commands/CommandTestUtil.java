@@ -55,6 +55,8 @@ public class CommandTestUtil {
 
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_TASK_AMY = "Cook dinner.";
+    public static final String VALID_TASK_BOB = "Eat dinner.";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -106,6 +108,9 @@ public class CommandTestUtil {
     public static final String INVALID_LEAD_STATUS_LABEL = " " + PREFIX_STATUS_ASSIGN + "Contacted"; // is not defined
 
     public static final String VALID_TXN_DESC_COFFEE_MACHINES = "20 HotPot CoffeePots for The Pot Company";
+    public static final String VALID_TXN_VALUE_COFFEE_MACHINES = "6600";
+    public static final String VALID_TXN_OWNER_COFFEE_MACHINES = "Tom Petey";
+    public static final String VALID_TXN_STATUS_COFFEE_MACHINES = "Closed";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)

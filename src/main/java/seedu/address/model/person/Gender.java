@@ -14,8 +14,11 @@ public class Gender {
 
     /* The input should be "male" or "female" */
     public static final String VALIDATION_REGEX = ".*\\bmale\\b|.*\\bfemale\\b";
+    public static final String SYMBOL_MALE = "(M)";
+    public static final String SYMBOL_FEMALE = "(F)";
 
     public final String value;
+    public final String symbol;
 
     /**
      * Constructs a {@code Gender}.
@@ -26,6 +29,7 @@ public class Gender {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
         this.value = gender;
+        this.symbol = gender.equals("male") ? SYMBOL_MALE : SYMBOL_FEMALE;
     }
 
     /**

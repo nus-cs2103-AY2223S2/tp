@@ -5,12 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.address.model.StatusName;
-
 /**
  * Valid status names for transaction statuses, and mappings to their symbols.
  */
-public enum TxnStatusName implements StatusName {
+public enum TxnStatusName {
     CLOSED("Closed", "C"),
     OPEN("Open", "O");
 

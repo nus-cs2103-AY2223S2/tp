@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -13,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.testutil.PersonBuilder;
@@ -56,6 +58,23 @@ public class PersonTest {
     public void defaultLeadStatusIsUncontacted() {
         Person person = new PersonBuilder().build();
         assertTrue(person.getStatus().equals(new LeadStatus(LeadStatusName.UNCONTACTED.getLabel())));
+    }
+
+    @Test
+    public void getAttribute() throws IllegalValueException {
+        Person person = new PersonBuilder().build();
+        assertThrows(IllegalValueException.class, () -> person.getAttribute("surname"));
+        assertEquals(person.getName().toString(), person.getAttribute("name"));
+        assertEquals(person.getGender().toString(), person.getAttribute("gender"));
+        assertEquals(person.getPhone().toString(), person.getAttribute("phone number"));
+        assertEquals(person.getEmail().toString(), person.getAttribute("email"));
+        assertEquals(person.getCompany().toString(), person.getAttribute("company"));
+        assertEquals(person.getIndustry().toString(), person.getAttribute("industry"));
+        assertEquals(person.getOccupation().toString(), person.getAttribute("occupation"));
+        assertEquals(person.getJobTitle().toString(), person.getAttribute("job title"));
+        assertEquals(person.getAddress().toString(), person.getAttribute("address"));
+        assertEquals(person.getRemark().toString(), person.getAttribute("remark"));
+        assertEquals(person.getStatus().getStatusName().getLabel(), person.getAttribute("status"));
     }
 
     @Test

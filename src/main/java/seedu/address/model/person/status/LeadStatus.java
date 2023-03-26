@@ -38,6 +38,10 @@ public class LeadStatus extends Status {
         this.timestamp = Instant.now();
     }
 
+    /**
+     * Creates a LeadStatus given a valid String LeadStatusName and String representation
+     * of a timestamp.
+     */
     public LeadStatus(String statusName, String timestampInIso) {
         requireAllNonNull(statusName, timestampInIso);
         checkArgument(isValidStatusName(statusName), MESSAGE_CONSTRAINTS);
@@ -68,6 +72,10 @@ public class LeadStatus extends Status {
         return this.timestamp.toString();
     }
 
+    /**
+     *  Returns the String representation pair of a LeadStatus name and timestamp forms a valid
+     *  LeadStatus.
+     */
     public static boolean isValidLeadStatus(String name, String timestamp) {
         return LeadStatusName.isValidStatusName(name)
                 && Status.isValidTimestamp(timestamp);

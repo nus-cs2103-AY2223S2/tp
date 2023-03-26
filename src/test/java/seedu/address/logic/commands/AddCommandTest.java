@@ -163,6 +163,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortPersonList(String attribute) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableList<Transaction> getFilteredTransactionList() {
             throw new AssertionError("This method should not be called.");
         }

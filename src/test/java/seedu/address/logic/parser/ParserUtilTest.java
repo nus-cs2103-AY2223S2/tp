@@ -26,8 +26,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
-import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -59,7 +59,7 @@ public class ParserUtilTest {
     private static final String VALID_DESCRIPTION = "Rent cost";
     private static final String VALID_OWNER = "Apple Inc";
     private static final String VALID_VALUE = "10000.12";
-    private static final String VALID_STATUS = "closed";
+    private static final String VALID_STATUS = "Closed";
 
 
     private static final String WHITESPACE = " \t\r\n";

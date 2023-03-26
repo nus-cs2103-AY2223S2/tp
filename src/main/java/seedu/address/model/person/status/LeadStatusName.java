@@ -5,12 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.address.model.StatusName;
-
 /**
  * Valid status names for lead statuses, and mappings to their symbols.
  */
-public enum LeadStatusName implements StatusName {
+public enum LeadStatusName {
     UNCONTACTED("Uncontacted", "U"),
     WORKING("Working", "W"),
     QUALIFIED("Qualified", "Q"),

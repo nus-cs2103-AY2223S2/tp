@@ -38,9 +38,7 @@ public class EditTxnCommandParser implements Parser<EditTxnCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTxnCommand.MESSAGE_USAGE), pe);
         }
-        
         EditTxnCommand.EditTxnDescriptor editTxnDescriptor = new EditTxnDescriptor();
-        
         if (argMultimap.getValue(PREFIX_TXN_DESCRIPTION).isPresent()) {
             editTxnDescriptor.setDescription(ParserUtil.parseDescription(
                     argMultimap.getValue(PREFIX_TXN_DESCRIPTION).get()));
