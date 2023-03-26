@@ -1,5 +1,6 @@
 package seedu.wife.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.wife.storage.JsonAdaptedFood.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.wife.testutil.Assert.assertThrows;
 import static seedu.wife.testutil.TypicalFood.MEIJI;
@@ -32,18 +33,21 @@ public class JsonAdaptedFoodTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    /*
     @Test
     public void toModelType_validFoodDetails_returnsFood() throws Exception {
         JsonAdaptedFood food = new JsonAdaptedFood(MEIJI);
         assertEquals(MEIJI, food.toModelType());
     }
-    */
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedFood food =
-                new JsonAdaptedFood(INVALID_NAME, VALID_UNIT, VALID_QUANTITY, VALID_EXPIRY_DATE, VALID_TAGS);
+        JsonAdaptedFood food = new JsonAdaptedFood(
+            INVALID_NAME,
+            VALID_UNIT,
+            VALID_QUANTITY,
+            VALID_EXPIRY_DATE,
+            VALID_TAGS
+        );
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
@@ -57,8 +61,13 @@ public class JsonAdaptedFoodTest {
 
     @Test
     public void toModelType_invalidUnit_throwsIllegalValueException() {
-        JsonAdaptedFood food =
-                new JsonAdaptedFood(VALID_NAME, INVALID_UNIT, VALID_QUANTITY, VALID_EXPIRY_DATE, VALID_TAGS);
+        JsonAdaptedFood food = new JsonAdaptedFood(
+            VALID_NAME,
+            INVALID_UNIT,
+            VALID_QUANTITY,
+            VALID_EXPIRY_DATE,
+            VALID_TAGS
+        );
         String expectedMessage = Unit.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
