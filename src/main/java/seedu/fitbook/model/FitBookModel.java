@@ -1,6 +1,7 @@
 package seedu.fitbook.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -140,4 +141,5 @@ public interface FitBookModel {
     void updateFilteredRoutineList(Predicate<Routine> predicate);
 
     void removeExercise(Routine routineToDelete, int zeroBased);
+
 }

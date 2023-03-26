@@ -23,7 +23,7 @@ import seedu.fitbook.model.routines.Routine;
  */
 public class ExportRoutineCommand extends Command {
 
-    public static final String COMMAND_WORD = "exportRoutine";
+    public static final String COMMAND_WORD = "exportRoutines";
     public static final String MESSAGE_SUCCESS = "RoutineFile has been exported.";
     public static final String MESSAGE_FAILURE = "File could not be exported. Ensure the csv file is not opened in the "
             + "background ";

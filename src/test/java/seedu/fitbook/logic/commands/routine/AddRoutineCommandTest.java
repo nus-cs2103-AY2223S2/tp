@@ -9,6 +9,7 @@ import static seedu.fitbook.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -205,6 +206,7 @@ public class AddRoutineCommandTest {
         public void removeExercise(Routine routineToDelete, int zeroBased) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
