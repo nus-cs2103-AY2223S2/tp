@@ -20,6 +20,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -259,5 +260,16 @@ public class ParserUtil {
         //add is valid days
         input.trim();
         return Integer.parseInt(input);
+    }
+
+    /**
+     * @param number the NRIC number of the patient's
+     * @return the Nric
+     * @throws ParseException the parse exception
+     */
+    public static Nric parseNric(String number) throws ParseException {
+        requireNonNull(number);
+        String trimmed = number.trim();
+        return new Nric(number);
     }
 }

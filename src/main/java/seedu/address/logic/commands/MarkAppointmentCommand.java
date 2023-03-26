@@ -17,6 +17,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -69,8 +70,9 @@ public class MarkAppointmentCommand extends Command {
         Age updatedAge = personToEdit.getAge();
         LocalDateTime updatedTime = personToEdit.getTime();
         MedicalCondition updatedMedicalCondition = personToEdit.getMedicalCondition();
+        Nric nric = personToEdit.getNric();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAge,
-                updatedTags, updatedTime, updatedMedicalCondition, appointmentToAdd);
+                updatedTags, updatedTime, updatedMedicalCondition, appointmentToAdd, nric);
     }
 }
