@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.commands.AddCommand;
+import seedu.recipe.logic.commands.AddFormCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
@@ -23,11 +24,14 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.ui.CommandBox.CommandExecutor;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+
+    //private static final CommandExecutor commandExecutor;
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -47,6 +51,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
                                            PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
+
+        /* 
+        // If no arguments are provided, return an AddFormCommand object
+        if (args.length() == 0) {
+            return new AddFormCommand(CommandExecutor);
+        }
+        */
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
