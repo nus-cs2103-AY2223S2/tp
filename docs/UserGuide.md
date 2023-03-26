@@ -50,7 +50,7 @@ If you are a receptionist at a GP clinic and are comfortable typing, CareFlow ca
      * For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
      * For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `enter` to run the application. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
-   * ![](images/UGscreenshots/careflow_home.png) 
+   * ![](images/UGscreenshots/careflow_home.png)
 7. Type some command in the command box at the bottom and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
    * `p list` : Lists all patients.

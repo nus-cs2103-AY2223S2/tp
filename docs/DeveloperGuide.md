@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. If the input field is invalid
 
     * 2c1. the user is informed of this, and correct format for the command is displayed.
-     
+
       Use case resume at step 2.
 
 **Use case: UC02 - Delete a patient**
@@ -487,7 +487,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resume at step 2.
 
-* 2b. If the trade name is already in use 
+* 2b. If the trade name is already in use
 
     * 2b1. the user is informed that he or she must choose a different trade name.
 
@@ -505,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case:  UC07 - List all drugs**
 
-* Similar to UC03 
+* Similar to UC03
 
 **Use case:  UC08 - Find the drugs**
 
