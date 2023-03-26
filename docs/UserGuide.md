@@ -65,8 +65,8 @@ Format: `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DIAGNOSIS] [t/TAG
 
 
 Examples:
-* `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/cancer`
-* `add n/Betsy Crowe i/T0012345B e/betsycrowe@example.com a/Newgate Prison p/1234567 d/diabetes d/osteoporosis`
+* `add i/T0012345A n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Diabetic`
+* `add i/T0012345B n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Dyslexic d/Osteoporotic`
 
 
 
@@ -91,10 +91,13 @@ Format: `delete i/NRIC`
 Examples:
 * `delete i/T0012345A` delete the patient with NRIC T0012345A from patient records system
 
-### Find persons by name or address: `find`
+### Find persons by nric, name, address or tags: `find`
 
 
-Find persons according to a particular attribute stated followed by the change. Eg. name(n/), address(a/), nric(i/)
+Find persons according to a particular attribute stated followed by the change. 
+
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
+
 Format: `find attribute/keyword [MORE_KEYWORDS]`
 
 
@@ -110,7 +113,8 @@ Examples:
 * `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
 * `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
 * `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
-  
+* `find t/Diabetic` returns all persons with the tag `Diabetic`
+* `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 
 ### Clearing all data: `clear`
 Purges all data from the database
@@ -181,7 +185,7 @@ Format: `redo`
 | **Clear all** | `clear`                                                                                                                                                                                         |
 | **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
 | **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                                 |
+| **Find**      | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                     |
 | **Backup**    | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                           |
 | **Save**      | `save INDEX_NO` <br/> e.g. save 3                                                                                                                                                               |
 | **List**      | `list`                                                                                                                                                                                          |
