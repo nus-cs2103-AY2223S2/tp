@@ -226,7 +226,12 @@ Examples:
 
 ### Clearing all projects: `clearpj`
 
+Clears all the projects in SOCket.
+
+Format: `clearpj`
+
 ### Sorting projects (by other fields): `sortpj`
+
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 Format: `sortpj [CATEGORY]`
 * If no category is provided, the projects are sorted by their deadlines alphanumerically
@@ -236,6 +241,7 @@ Format: `sortpj [CATEGORY]`
 ### Assign a person to a project: `assign`
 
 ### Unassign a person from a project: `unassign`
+
 Removes the specified person from the specified project.
 
 Format: `unassign INDEX n/NAME`
