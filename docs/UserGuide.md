@@ -118,9 +118,18 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## Data Management
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install CoDoc in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+
+**Q**: Where is the data file stored?<br>
+**A**: CoDoc data are saved as a JSON file `[JAR file location]/data/codoc.json`. Advanced users are welcome to update data directly by editing that data file.
+
+:warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
+
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## FAQ
+
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## Command Summary 
