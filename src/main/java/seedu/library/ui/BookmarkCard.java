@@ -1,11 +1,16 @@
 package seedu.library.ui;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,6 +20,7 @@ import seedu.library.model.bookmark.Bookmark;
  * An UI component that displays information of a {@code Bookmark}.
  */
 public class BookmarkCard extends UiPart<Region> {
+
 
     private static final String FXML = "BookmarkListCard.fxml";
 
@@ -42,36 +48,40 @@ public class BookmarkCard extends UiPart<Region> {
     private Label genre;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Button b1;
+
     @FXML
     private Hyperlink link;
+    @FXML
+    private ImageView vol;
+    @FXML
+    private ImageView chap;
+    @FXML
+    private ImageView page;
+    @FXML
+    private Label chaptert;
+    @FXML
+    private Label paget;
+
+
 
 
     /**
      * Creates a {@code BookmarkCode} with the given {@code Bookmark} and index to display.
      */
-    public BookmarkCard(Bookmark bookmark, int displayedIndex) {
+    public BookmarkCard(Bookmark bookmark, int displayedIndex) throws IOException {
         super(FXML);
+        InputStream svol = new FileInputStream("src/main/resources/images/volume.png");
+        InputStream schap = new FileInputStream("src/main/resources/images/chapter.png");
+        InputStream spage = new FileInputStream("src/main/resources/images/page.png");
         this.bookmark = bookmark;
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
-
-        progress.setText(bookmark.getProgress().toString());
-        b1.setText(bookmark.getProgress().toString());
-
-        if (bookmark.getProgress().toString().toUpperCase().equals("FINISHED")) {
-            b1.setStyle("-fx-background-color: #55b92a");
-        } else if (bookmark.getProgress().toString().toUpperCase().equals("READING")) {
-            b1.setStyle("-fx-background-color: #d9e16c");
-        } else if (bookmark.getProgress().toString().toUpperCase().equals("NOT STARTED")) {
-            b1.setStyle("-fx-background-color: #cd4545");
-        } else {
-            b1.setVisible(false);
-        }
-
-        b1.setDisable(true);
-
+        progress.setText(bookmark.getProgress().getVolume());
+        chaptert.setText(bookmark.getProgress().getChapter());
+        paget.setText(bookmark.getProgress().getPage());
+        vol.setImage(new Image(svol));
+        chap.setImage(new Image(schap));
+        page.setImage(new Image(spage));
         author.setText(bookmark.getAuthor().value);
         genre.setText(bookmark.getGenre().value);
         bookmark.getTags().stream()

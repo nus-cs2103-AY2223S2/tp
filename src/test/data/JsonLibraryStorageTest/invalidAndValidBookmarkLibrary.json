@@ -2,12 +2,12 @@
   "bookmarks": [ {
     "title": "Valid Bookmark",
     "phone": "9482424",
-    "genre": "hans@example.com",
+    "genre": "Action",
     "author": "4th street"
   }, {
     "title": "Bookmark With Invalid Phone Field",
     "phone": "948asdf2424",
-    "genre": "hans@example.com",
+    "genre": "Fantasy",
     "author": "4th street"
   } ]
 }

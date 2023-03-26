@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `LibraryParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `LibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `LibraryParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Bookmark` objects (which are contained in a `UniqueBookmarkList` object).
+* stores the currently 'selected' `Bookmark` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Bookmark>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -141,12 +141,12 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `LibraryStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.library.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,17 +158,17 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedLibrary`. It extends `Library` with an undo/redo history, stored internally as an `libraryStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedLibrary#commit()` — Saves the current address book state in its history.
+* `VersionedLibrary#undo()` — Restores the previous address book state from its history.
+* `VersionedLibrary#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitLibrary()`, `Model#undoLibrary()` and `Model#redoLibrary()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedLibrary` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -264,7 +264,7 @@ is then created into a URI object when `GoToCommand` is executed
 
 The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
 
-* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+* **Alternative 1 (current choice):** url stored as string and URI object to open site only created in `GoToCommand`.
     * Pros: Easy to implement, easier storage
     * Cons: May have security due to parsing or encoding errors
 
@@ -332,6 +332,53 @@ The main reason is to simplify the logic for parsing user input.
 A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
 then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
 prefixes to differentiate them, but parsing becomes more complex.
+
+### Find Feature
+
+#### Implementation
+
+The `FindCommand` allows user to find an existing bookmark by searching for a specific `Title`, `Genre`, `Tag`, and/or 
+`Author`.
+
+User can use the `find` command followed by optional prefixes of the field they want to search by and the word they 
+want to search for. The prefixes are `n/` for `Title`, `g/` for `Genre`, `t/` for `Tag`, and `a/` for `Author`. 
+An example of a user input would be: `find g/ Fantasy`. User inputs are parsed in `FindCommandParser` which will 
+split the input based on the prefixes. 
+
+Some limitations of the user input includes:
+1. There must be at least 1 prefix provided
+   * User cannot use `find` without specifying a field that they want to search for
+2. The `genre` and `tag` provided must be valid
+   * User can only search for `genre` and `tags` that already exist in the list of `Genre` and `Tag`
+   * Searching for invalid `genre`/`tag` would give an error message informing the user that the `genre`/`tag` does not
+     exist
+
+#### Design considerations:
+
+**Aspect: Which fields of bookmark can `find` searched for?:**
+
+Currently, `find` allows user to search by `title`, `genre`, `tag` and `author`.
+
+The main reason is that it is intuitive to use these fields to identify one bookmark from another.
+
+A considered field to be included in `find` is the `progress` field. However, it seems counter-intuitive to search a 
+bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
+unlikely to search for a bookmark using `progress`.
+
+### [Proposed] Rating Field
+#### Implementation
+The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
+in the `Bookmark` class.
+
+
+
+#### Design considerations:
+
+##### Aspect: How should `Rating` be represented?
+The `Rating` field is represented by integer values from 1 to 5. This allows for a simple and intuitive way to rate
+books in the `Library`.
+
+
 
 ### \[Proposed\] Data archiving
 
