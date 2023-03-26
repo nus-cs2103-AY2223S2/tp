@@ -219,6 +219,229 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Item-related Features
+
+#### General Consideration Design
+
+The design of `Food` class follows closely to the original `Person` class in AB3, with some modifications made to fit
+the usage of WIFE.
+
+- `Person` class was renamed to `Food` with its attribute modified as mentioned above.
+- Addition of individual tags storage for each item to store their associated `Tag`.
+
+All foods are stored in the `UniqueFoodList`.
+
+#### Adding a Food
+
+The `add` command adds a new `Food` in WIFE.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `AddCommand`. `AddCommandParser` is used
+to parse and check whether the user input for each attribute `Food` is valid. After which an `AddCommand` object is 
+created with the new `Food` object.
+The second stage requires AddCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies a set of attributes for the new `Food` when adding a new `Food`.
+2. If any of the attributes is empty, an error response is returned and users will be prompted to key in the command 
+   with all necessary attributes being inserted.
+3. If any of the inserted attributes is invalid, an error response is returned and users will be prompted to key in the 
+   command with valid attributes.
+4. If the `Food` inserted by the user has the same name and expiry date as another `Food` in the `Model`, an error is 
+   returned to inform the user that there is a duplicated copy of `Food` in the `UniqueFoodList`.
+5. Completion of step 4 without any exceptions will result in successful addition of a new `Food` in WIFE and stored in
+   `UniqueFoodList`
+
+The following sequence diagram shows how the `add` command.
+
+*insert sequence diagram*
+
+#### Editing a Food
+
+The `edit` command edits the attribute of selected `Food` in WIFE. The selected `Food` is specified
+by retrieving from the one-indexed food list.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `EditCommand`. `EditCommandParser` is used
+to parse and check whether the user input for the new attribute of `Food` is valid. After which an `EditCommand` object is
+created with new `Food` with updated attributes.
+The second stage requires EditCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies the food index that represents the `Food` to be edited.
+2. If the index provided is a negative or zero index, an error response is returned and users will be 
+   prompted to enter a valid index.
+3. The user specifies the new attribute(s) for the `Food` when editing the `Food`. There must be at least one attribute
+   provided when editing `Food`.
+4. If any of the attributes is empty, an error response is returned and users will be prompted to key in the command
+   with all necessary attributes being inserted.
+5. If any of the inserted attributes is invalid, an error response is returned and users will be prompted to key in the
+   command with valid attributes.
+6. If the `Food` inserted by the user has the same name and expiry date as another `Food` in the `Model`, an error is
+   returned to inform the user that there is a duplicated copy of `Food` in the `UniqueFoodList`.
+7. Completion of step 6 without any exceptions will result in successful addition of a new `Food` in WIFE and stored in
+   `UniqueFoodList`
+
+The following sequence diagram shows how the `add` command.
+
+*insert sequence diagram*
+
+#### \[Implementing\] Increase/Decrease quantity of a food item.
+
+**Overview**
+
+The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular food item.
+Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a food item.
+The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed food item respectively.
+
+**Design considerations**
+
+* **Alternative 1:** The command parameter will be the new quantity of the food item to edit
+    * Pros:
+        * Easily implemented. The command parameter will be set as the new quantity of the item.
+    * Cons:
+        * May not be intuitive for the user, as the command is to increase/decrease the quantity.
+        * Can be unnecessarily complicated for the user, i.e entering a higher quantity than the current quantity for
+          `inc` and vice versa.
+        * Does not significantly value-add to the product as compared to just using the edit command.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the quantity to increase/decrease the
+  quantity of the food item by.
+    * Pros:
+        * Intuitive for the user to key in the quantity they want to increase/decrease by.
+    * Cons:
+        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
+        * Users will have to use separate commands to increase and decrease quantity.
+
+Another aspect that was considered when implementing this feature was having a default quantity to increase and decrease
+if no quantity was specified. We realised it was intuitive for users to make the default increment or decrement set to
+1, easing convenience for the user.
+
+**Implementation**
+<div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
+new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
+
+The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
+to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a
+`IncreaseFoodDescriptor` instance to modify the current food item.
+
+The second stage requires IncreaseCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies an index of the food item to be edited.
+2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+3. If no specific quantity is specified, the quantity of the indexed food item will be increased by one.
+4. If a specific quantity is specified, the quantity of the indexed food item will be increased by that value.
+5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
+   key in the command with a valid quantity.
+
+
+The following activity diagram shows the usage of the `inc` command.
+
+**insert activity diagram
+
+#### \[Implementing\] View details of a food item.
+
+**Overview**
+The view feature is meant to be a shorthand for users to view the details of a particular food item.
+Traditionally, to view the details of an item, the user would use the list command to view the details of a food item.
+The user can now specify `view` to view more details of the indexed food item.
+
+The following UML diagram shows `view` and its associated class.
+
+**Design considerations**
+
+* **Alternative 1 (Current implementation):** The command view with the index of the food item to view the details of.
+    * Pros:
+        * Intuitive for the user to key in the quantity they want to increase/decrease by.
+    * Cons:
+        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
+        * Feels like a hacky solution to the problem.
+        * Does not significantly value-add to the product as compared to just using the edit command.
+
+* **Alternative 2 :** Have a ui switcher to switch between the different views i.e. list view and details view.
+  * Pros:
+    * Code should be easier to maintain, or add new views in the future.
+  * Cons:
+    * Difficulty in implementing the switcher.
+    * Difficulty in implementing the different views.
+
+**Implementation**
+The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
+to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
+view from the list view to the details view.
+
+**Usage Scenario**
+
+1. The user specifies an index of the food item to be viewed.
+2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+3. If no specific quantity is specified, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+4. If a specific quantity is specified, the item will be displayed in the view.
+5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
+   key in the command with a valid index.
+
+The following activity diagram shows the usage of the `view` command.
+
+**insert activity diagram
+
+
+#### \[Implemented\] List Food by tag.
+
+**Overview**
+The List by tag feature is meant to be a list all the food by the specified tags.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
+**Design considerations**
+
+* **Alternative 1:** The command parameter will be the tag name of the food to display
+    * Pros:
+        * Easily implemented. The command parameter will show the food with the specified tag name
+    * Cons:
+        * May not be convenient for the user, as the command allows only 1 tag name at a time.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to display.
+    * Pros:
+        * Convenient for the user to key in multiple tag names to display.
+    * Cons:
+        * Parameter for multiple tag names must be checked that it is not empty
+        * Users will have to use separate commands by `n/` which maybe a hassle
+
+_{more aspects and alternatives to be added}_
+
+**Implementation**
+The first stage of the implementation is parsing the user input to `ListByTagCommand`. `ListByTagCommandParser` is used
+to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
+tag name.
+
+The second stage requires ListByTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tags of the food item to be displayed.
+2. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
+3. If a valid tag is specified, the list indexed food item with the specified tags will be displayed.
+4. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
+   key in the command with a valid quantity.
+
+The following activity diagram shows the usage of the `listbytag` command.
+
+**insert activity diagram
+
 ### \[Implemented\] Tag-related Features
 
 #### Overview
@@ -257,10 +480,11 @@ The following UML diagram shows `Tag` and its associated class.
       
 _{more aspects and alternatives to be added}_
 
-#### Feature 1 - `createtag`:
-The `createtag` command creates a new tag in WIFE which can be used to create a new tag that can be used to classify 
-food items in food lists. Once the tag is created using this command, the tag can be applied to food items using the 
-`tag` command.
+#### Creating a new Tag
+
+User can create a new pre-defined `Tag` in WIFE with the `createtag` command. The `createtag` command creates a new tag 
+in WIFE which can be used to create a new tag that can be used to classify food items in food lists. Once the tag is 
+created using this command, the tag can be applied to food items using the `tag` command.
 
 **Implementation**
 
@@ -285,9 +509,10 @@ The second stage requires CreateTagCommand#execute() to be called.
 
 The following sequence diagram shows how the `createtag` command.
 
-<img src="images/CreateTagSequenceDiagram.png" width="574" />
+<img src="images/CreateTagSequenceDiagram.png" width="700" />
 
-#### Feature 2 - `deltag`:
+#### Deleting a Tag
+
 The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
 
 **Implementation**
@@ -299,159 +524,37 @@ The first stage of the implementation is parsing the user input to `DeleteTagCom
 1. The user specifies tag name(s) for the tag(s) to be deleted.
 2. If the tag name is empty, an error response is returned and users will be prompted to key in the command with the valid tag name.
 3. If all tag name(s) are invalid, an error response is returned and users will be prompted to key in the command with a valid tag name.
-4. If some tag name(s) are invalid, invalid tag names will be ignore and valid tag names will be processed.
-5. Completion of step 4 without any exceptions will result in successful deleteion of specified `Tag` in WIFE and `Food` with specified tag(s) will have that tag(s) removed
+4. If some tag name(s) are invalid, invalid tag names will be ignored and valid tag names will be processed.
+5. Completion of step 4 without any exceptions will result in successful deletion of specified `Tag` in WIFE and `Food` with specified tag(s) will have that tag(s) removed
 
 The following sequence diagram shows how the `deltag` command.
 
 **insert sequence diagram
 
-### \[Implementing\] Increase/Decrease quantity of a food item.
+#### Tagging a Food
 
-#### Overview
-The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular food item.
-Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a food item.
-The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed food item respectively.
-
-#### Design considerations:
-
-* **Alternative 1:** The command parameter will be the new quantity of the food item to edit
-    * Pros:
-        * Easily implemented. The command parameter will be set as the new quantity of the item.
-    * Cons:
-        * May not be intuitive for the user, as the command is to increase/decrease the quantity.
-        * Can be unnecessarily complicated for the user, i.e entering a higher quantity than the current quantity for
-          `inc` and vice versa.
-        * Does not significantly value-add to the product as compared to just using the edit command.
-
-* **Alternative 2 (Current implementation):** The command parameter will be the quantity to increase/decrease the
-quantity of the food item by.
-    * Pros:
-        * Intuitive for the user to key in the quantity they want to increase/decrease by.
-    * Cons:
-        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
-        * Users will have to use separate commands to increase and decrease quantity.
-
-Another aspect that was considered when implementing this feature was having a default quantity to increase and decrease
-if no quantity was specified. We realised it was intuitive for users to make the default increment or decrement set to
-1, easing convenience for the user.
-
-**Implementation** 
-<div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
-new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
-
-The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
-to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a 
-`IncreaseFoodDescriptor` instance to modify the current food item.
-
-The second stage requires IncreaseCommand#execute() to be called.
-
-**Usage Scenario**
-
-1. The user specifies an index of the food item to be edited.
-2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
-   the command with the valid index.
-3. If no specific quantity is specified, the quantity of the indexed food item will be increased by one.
-4. If a specific quantity is specified, the quantity of the indexed food item will be increased by that value.
-5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
-   key in the command with a valid quantity.
-
-
-The following activity diagram shows the usage of the `inc` command.
-
-**insert activity diagram
-
-### \[Implementing\] View details of a food item.
-
-#### Overview
-The view feature is meant to be a shorthand for users to view the details of a particular food item.
-Traditionally, to view the details of an item, the user would use the list command to view the details of a food item.
-The user can now specify `view` to view more details of the indexed food item.
-
-The following UML diagram shows `view` and its associated class.
-
-#### Design considerations:
-
-* **Alternative 1 (Current implementation):** The command view with the index of the food item to view the details of.
-    * Pros:
-        * Intuitive for the user to key in the quantity they want to increase/decrease by.
-    * Cons:
-        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
-        * Feels like a hacky solution to the problem.
-        * Does not significantly value-add to the product as compared to just using the edit command.
-
-* **Alternative 2 :** Have a ui switcher to switch between the different views i.e. list view and details view.
-      * Pros:
-         * Code should be easier to maintain, or add new views in the future.
-      * Cons:
-         * Difficulty in implementing the switcher.
-         * Difficulty in implementing the different views.
-
-**Implementation** 
-The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
-to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
-view from the list view to the details view.
-
-**Usage Scenario**
-
-1. The user specifies an index of the food item to be viewed.
-2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
-   the command with the valid index.
-3. If no specific quantity is specified, an error response is returned and users will be prompted to key in
-   the command with the valid index.
-4. If a specific quantity is specified, the item will be displayed in the view.
-5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
-   key in the command with a valid index.
-
-The following activity diagram shows the usage of the `view` command.
-
-**insert activity diagram
-
-
-### \[Implemented\] List Food by tag.
-
-#### Overview
-The List by tag feature is meant to be a list all the food by the specified tags.
-
-The following UML diagram shows `Tag` and its associated class.
-
-*** insert uml
-
-#### Design considerations:
-
-* **Alternative 1:** The command parameter will be the tag name of the food to display
-    * Pros:
-        * Easily implemented. The command parameter will show the food with the specified tag name
-    * Cons:
-        * May not be convenient for the user, as the command allows only 1 tag name at a time.
-
-* **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to display.
-    * Pros:
-        * Convenient for the user to key in multiple tag names to display.
-    * Cons:
-        * Parameter for multiple tag names must be checked that it is not empty
-        * Users will have to use separate commands by `n/` which maybe a hassle
-
-_{more aspects and alternatives to be added}_
+User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can simply
+be done using the command `tag`. This tagging function allows user to easily classify their `Food` in 
+the fridge.
 
 **Implementation**
-The first stage of the implementation is parsing the user input to `ListByTagCommand`. `ListByTagCommandParser` is used
-to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
-tag name.
 
-The second stage requires ListByTagCommand#execute() to be called.
+The first stage of the implementation is parsing the user input to `TagFoodCommand`. `TagFoodCommandParser` is used
+to parse and check whether the user input is valid. After which a `TagFoodCommand` object is created with the specified
+index and tag name.
+The second stage requires TagFoodCommand#execute() to be called.
 
 **Usage Scenario**
 
-1. The user specifies tags of the food item to be displayed.
-2. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
-3. If a valid tag is specified, the list indexed food item with the specified tags will be displayed.
-4. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
-   key in the command with a valid quantity.
-
-The following activity diagram shows the usage of the `listbytag` command.
-
-**insert activity diagram
+1. The user specifies the index of the food to be tagged and the name of the tag.
+2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+3. If no specific tag name is specified, an error response is returned and users will be prompted to key in
+   the command with a tag name.
+4. If the tag name specified does not exist in WIFE, an error response is returned and users will need to create the tag
+   before having access to the tag.
+5. Completion of step 4 without any exception will result in successful tagging of the food with the
+   specified tag.
 
 ### \[Implemented\] Dynamic Help
 
