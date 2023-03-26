@@ -547,7 +547,77 @@ The following gives a more detailed explanation of the `upcoming` operation.
 
 
 ### Delete Internship Entries - `delete`
-[TODO by Christopher]
+#### Implementation
+The following sequence diagram provides an overview on how the `delete` operation works.
+
+![AddSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `delete` operation.
+
+1. When the user enters a `delete` command, the  `DeleteCommandParser` parses the user's input. It uses regex to check if the 
+argument is a set of integers separated by white spaces. Otherwise, it attempts to parse the arguments as a set of prefixed
+parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE]`). Hence there are 2 cases:
+
+#### Case 1: The argument is a set of integers
+1. A list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
+2. The parser will check if the integers are all positive integers and not exceeding the length of the list.
+3. For each positive integer `i` in the argument, the corresponding `Internship` object will be deleted using `model.deleteInternship(internshipToDelete)`. This
+method deletes the internship from the underlying `ObservableList` of `Internship` objects.
+
+#### Case 2: The argument is a set of prefixed parameters
+1. The parser checks for if the following optional arguments exist:
+   - `n/` followed by the company's name
+   - `r/` followed by the role applied
+   - `s/` followed by the status of the internship application
+   - `d/` followed by date
+2. A list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
+3. For each `Internship` object in the list that matches all the conditions, it will be deleted using `model.deleteInternship(internshipToDelete)`
+### Design Considerations
+
+**Aspect: Whether to use an AND relationship or OR relationship for predicate matching**
+
+* **Alternative 1 (current choice):**  Use an AND relationship
+    * Pros:
+        * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
+    * Cons:
+        * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
+
+* **Alternative 2:** Use an OR relationship
+    * Pros:
+        * The current `delete` command takes in no arguments.
+    * Cons:
+        * Less fine-grained control over `delete`.
+
+**Aspect: Whether to add this enhancement to `clear` or `delete` command**
+
+* **Alternative 1 (current choice):** Enhance the `delete` command
+    * Pros:
+        * Combine all delete features into one keyword.
+    * Cons:
+        * Delete now has 2 formats, and this may be a source of confusion.
+
+* **Alternative 2:**  Enhance the `clear` command
+    * Pros:
+        * The current `clear` command takes in no arguments, so it is much easier to implement.
+    * Cons:
+        * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
+
+**Aspect: Whether to merge both formats**
+
+* **Alternative 1 (current choice):** Separate both formats
+    * Pros:
+        * Combine all delete features into one keyword, which may be easier to remember.
+    * Cons:
+        * Delete now has 2 formats, and this may be a source of confusion for beginners.
+
+* **Alternative 2:**  Combine both formats
+    * Pros:
+        * Offers extreme fine-grained control over what to delete for expert users.
+    * Cons:
+        * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case
+      is to mass delete internships that are no longer required.
+        * Difficult to define a suitable interpretation of the parameters. For example, in the command `delete 1 2 n/Google`, 
+      the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
 
 
 ### \[Proposed\] Undo/Redo Actions - `undo`/`redo`
@@ -717,63 +787,6 @@ The following is a more detailed explanation on how 'FindCommand' works.
         * Command is much more flexible
     * Cons:
         * Command becomes too flexible (e.g. a find command like "find n/google ltd" will return `Internship` objects that not just has the word "Google", like "Google Ltd", in their names but "ltd" as well, like "Apple Ltd", "Meta Ltd" and more)
-
-### Clear Feature
-
-#### Implementation
-The following sequence diagram provides an overview on how the `clear` operation works.
-
-![AddSequenceDiagram](images/ClearSequenceDiagram.png)
-
-The following gives a more detailed explanation of the `clear` operation.
-
-1. When the user enters a `clear` command, the  `ClearCommandParser` parses the user's input.
-2. It checks for if the following optional arguments exist:
-  - `n/` followed by the company's name
-  - `r/` followed by the role applied
-  - `s/` followed by the status of the internship application
-  - `t/` followed by tags for the entry
-
-Note that all arguments are optional. An `InternshipContainsKeywordPredicate` is created. If there are no arguments,  `InternshipContainsKeywordPredicate` will return `True` if its `isEmpty()` method is called. Otherwise, it will return `False`. 
-
-Furthermore, the predicate tests if an internship matches all its conditions (cond1 AND cons2 AND...). There are 2 cases depending on whether the predicate is empty:
-
-#### Case 1: The predicate is empty
-1. A new `InterBuddy` object is created. This object contains all user data related to internship entires. It will replace the existing `InternBuddy` object in `ModelManager` using the method `ModelManager.setInternBuddy()`.
-
-#### Case 2: The predicate is not empy
-1. `ModelManager.deleteInternshipByPredicate(Predicate<Internship> predicate)` is called with the previously created `InternshipContainsKeywordPredicate` object as its argument. It will delelete all internships entries matching the predicate.
-
-
-### Design Considerations
-
-**Aspect: Whether to use an AND relationship or OR relationship for predicate matching**
-
-* **Alternative 1 (current choice):**  Use an AND relationship
-    * Pros:
-        * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
-    * Cons:
-        * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
-
-* **Alternative 2:** Use an OR relationship
-    * Pros:
-        * The current `clear` command takes in no arguments.
-    * Cons:
-        * Less fine-grained control over `clear`.
-
-**Aspect: Whether to add this enhancement to `clear` or `delete` command**
-
-* **Alternative 1 (current choice):**  Enhance the `clear` command
-    * Pros:
-        * The current `clear` command takes in no arguments, so it is much easier to implement.
-    * Cons:
-        * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
-
-* **Alternative 2:** Enhance the `delete` command
-    * Pros:
-        * Combine all delete features into one keyword.
-    * Cons:
-        * We need to manage boths indexes and keywords, and this may be a source of confusion. For example, in the command `delete 1 2 n/Google`, the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
 
 _{more aspects and alternatives to be added}_
 
