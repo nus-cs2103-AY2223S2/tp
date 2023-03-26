@@ -19,9 +19,9 @@ improving the efficiency of grocery shopping.
 
 2. Download the latest `wife.jar` from [here]().
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -75,6 +75,7 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * find
   * inc
   * list
+  * listbytag
   * view
 
 - Tag Commands:
@@ -82,7 +83,6 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * untag
   * createtag
   * deltag
-  * listbytag
   * listtag
 
 - General Commands:
@@ -132,9 +132,22 @@ Example:
 
 `list` returns
 ```shell
-  1. Spinach
-  2. Meiji Milk
-  3. Awfully Chocolate
+  listed all food
+```
+
+### Listing all food items by their tag(s) : `listbytag`
+
+Shows a list of all food item in WIFE by specified tag(s).
+
+Format: `listbytag n/TAG NAME...`
+
+Example:
+
+`listbytag n/Vegetables n/Healthy` returns
+```shell
+Listed all food with the following tags:
+[Vegetables]
+[Healthy]
 ```
 
 ### Tagging a food item: `tag`
@@ -212,8 +225,37 @@ Examples:
 
 `delete 1` returns
 ```shell
-  The below item has been deleted for you:
-  Meiji Milk
+  Deleted Food: Broccoli (expires on: 03-03-2033)
+```
+
+### Deleting a food item by their tag(s) : `delbytag`
+
+Deletes food item from WIFE by specified tag(s).
+
+Format: `delbytag n/TAG NAME...`
+
+Examples:
+
+`delbytag n/Healthy n/Dairy` returns
+```shell
+Deleted Food:
+Broccoli (expires on: 03-03-2033)
+Meiji Milk (expires on: 03-03-2033)
+```
+
+### Deleting a food item by their tag(s) : `deltag`
+
+Deletes specified defined tags from WIFE. It also removes all the tags that are tagged on the food item, if any.
+
+Format: `deltag n/TAG NAME...`
+
+Examples:
+
+`deltag n/Healthy n/Dairy` returns
+```shell
+Tag successfully deleted:
+[Dairy]
+[Healthy]
 ```
 
 ### Exiting the program : `exit`
