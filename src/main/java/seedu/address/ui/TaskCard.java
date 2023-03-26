@@ -60,7 +60,7 @@ public class TaskCard extends UiPart<Region> {
             break;
 
         case LATE:
-            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/uncheck.png")));
             break;
 
         case COMPLETE:

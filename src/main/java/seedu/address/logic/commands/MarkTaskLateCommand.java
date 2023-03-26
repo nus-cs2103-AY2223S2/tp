@@ -51,7 +51,7 @@ public class MarkTaskLateCommand extends Command {
         }
 
         Person personToMarkTask = lastShownList.get(studentIndex.getZeroBased());
-        TaskList personTaskList = personToMarkTask.getTaskList();
+        List<Task> personTaskList = personToMarkTask.getFilteredTaskList();
 
         if (taskIndex.getZeroBased() >= personTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

@@ -114,8 +114,10 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    //=========== Task ================================================================================
+
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task list of this person.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -123,8 +125,8 @@ public class Person {
     }
 
     /**
-     * Adds a task to the list.
-     * The task must not already exist in the list.
+     * Adds a task to this person's task list.
+     * The task must not already exist in their task list.
      */
     public void addTask(Task t) {
         requireNonNull(t);
@@ -132,9 +134,9 @@ public class Person {
     }
 
     /**
-     * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     * Replaces the given task {@code target} in this person's task list with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -143,17 +145,53 @@ public class Person {
     }
 
     /**
-     * Removes {@code key} from this {@code taskList}.
-     * {@code key} must exist in the list.
+     * Removes {@code key} from this person's task list.
+     * {@code key} must exist in the task list.
      */
     public void removeTask(Task key) {
         requireNonNull(key);
         taskList.remove(key);
     }
 
-    //=========== Score ================================================================================
     /**
-     * Returns true if a score with the same identity as {@code score} exists in the person.
+     * Marks {@code task} in this person's task list as complete.
+     * {@code task} must exist in the task list.
+     */
+    public void markTaskAsComplete(Task task) {
+        requireNonNull(task);
+        taskList.markTaskAsComplete(task);
+    }
+
+    /**
+     * Marks {@code task} in this person's task list as inprogress.
+     * {@code task} must exist in the task list.
+     */
+    public void markTaskAsInProgress(Task task) {
+        requireNonNull(task);
+        taskList.markTaskAsInProgress(task);
+    }
+
+    /**
+     * Marks {@code task} in this person's task list as late.
+     * {@code task} must exist in the task list.
+     */
+    public void markTaskAsLate(Task task) {
+        requireNonNull(task);
+        taskList.markTaskAsLate(task);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    public ObservableList<Task> getFilteredTaskList() {
+        FilteredList<Task> filteredTasks = new FilteredList<>(this.getTaskListAsObservableList());
+        return filteredTasks;
+    }
+
+    //=========== Score ================================================================================
+
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the score list of this person.
      */
     public boolean hasScore(Score score) {
         requireNonNull(score);
@@ -161,7 +199,8 @@ public class Person {
     }
 
     /**
-     * Returns true if a score with the same identity as {@code score} exists in the address book.
+     * Adds a score to this person's score list.
+     * The score must not already exist in their score list.
      */
     public void addScore(Score score) {
         scoreList.add(score);
@@ -174,10 +213,11 @@ public class Person {
     public ScoreList getScoreList() {
         return scoreList;
     }
+
     /**
-     * Replaces the given score {@code target} in the list with {@code editedScore}.
-     * {@code target} must exist in the list.
-     * The score identity of {@code editedScore} must not be the same as another existing score in the list.
+     * Replaces the given score {@code target} in this person's score list with {@code editedScore}.
+     * {@code target} must exist in the score list.
+     * The score identity of {@code editedScore} must not be the same as another existing score in the score list.
      */
     public void setScore(Score target, Score editedScore) {
         requireNonNull(editedScore);
@@ -186,8 +226,8 @@ public class Person {
     }
 
     /**
-     * Removes {@code key} from this {@code scoreList}.
-     * {@code key} must exist in the list.
+     * Removes {@code key} from this person's score list.
+     * {@code key} must exist in the score list.
      */
     public void removeScore(Score key) {
         scoreList.remove(key);
@@ -199,14 +239,6 @@ public class Person {
     public ObservableList<Score> getFilteredScoreList() {
         FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
         return filteredScores;
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Task}
-     */
-    public ObservableList<Task> getFilteredTaskList() {
-        FilteredList<Task> filteredTasks = new FilteredList<>(this.getTaskListAsObservableList());
-        return filteredTasks;
     }
 
     /**
