@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.core.GuiSettings;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.predicate.FilterPredicate;
 import seedu.dengue.testutil.DengueHotspotTrackerBuilder;
 
 public class ModelManagerTest {

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.predicate.FilterPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

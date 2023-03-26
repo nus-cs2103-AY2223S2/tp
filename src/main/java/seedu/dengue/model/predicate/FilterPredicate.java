@@ -1,9 +1,10 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.dengue.commons.util.StringUtil;
+import seedu.dengue.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dengue.model.predicate.FilterPredicate;
 import seedu.dengue.testutil.PersonBuilder;
 
 public class FilterPredicateTest {

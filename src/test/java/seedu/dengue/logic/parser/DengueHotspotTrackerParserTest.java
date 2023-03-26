@@ -23,7 +23,7 @@ import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.predicate.FilterPredicate;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 import seedu.dengue.testutil.PersonBuilder;

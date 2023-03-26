@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.predicate.FilterPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
