@@ -12,7 +12,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as AddressBook MODEL_COLOR
-participant "deliveryToView:Person" as Person MODEL_COLOR
 end box
 
 AddressBookParser -> ViewCommandParser : parseCommand("view 1")
@@ -32,32 +31,9 @@ ViewCommand -> AddressBook : getFilteredPersonList()
 activate AddressBook
 AddressBook --> ViewCommand : lastShownList
 deactivate AddressBook
-ViewCommand -> Person : getParcels()
-activate Person
-Person --> ViewCommand
-deactivate Person
-ViewCommand -> Person : getName()
-activate Person
-Person --> ViewCommand
-deactivate Person
-ViewCommand -> Person : getAddress()
-activate Person
-Person --> ViewCommand
-deactivate Person
-ViewCommand -> Person : getEmail()
-activate Person
-Person --> ViewCommand
-deactivate Person
-ViewCommand -> Person : getPhone()
-activate Person
-Person --> ViewCommand
-deactivate Person
-ViewCommand -> Person : getDeliveryStatus()
-activate Person
-Person --> ViewCommand
-deactivate Person
+
 create CommandResult
-ViewCommand -> CommandResult : CommandResult(detailsOfDelivery)
+ViewCommand -> CommandResult : CommandResult(MESSAGE_SUCCESS, true, deliveryToView, id)
 activate CommandResult
 CommandResult --> ViewCommand
 deactivate CommandResult
