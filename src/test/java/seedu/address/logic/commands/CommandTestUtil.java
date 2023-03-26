@@ -31,6 +31,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -128,6 +129,69 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel} for assignTasks
+     */
+    public static void assertAssignTaskCommandSuccess(Command command, OfficeConnectModel actualModel,
+                                                      CommandResult expectedCommandResult,
+                                                      OfficeConnectModel expectedModel) {
+        try {
+            CommandResult result = command.execute(new ModelManager(), actualModel);
+            assertEquals(expectedCommandResult, result);
+            RepositoryModelManager<AssignTask> actualModelAssignTaskModelManager =
+                    actualModel.getAssignTaskModelManager();
+            RepositoryModelManager<AssignTask> expectedModelAssignTaskModelManager =
+                    expectedModel.getAssignTaskModelManager();
+            assertEquals(actualModelAssignTaskModelManager, expectedModelAssignTaskModelManager);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel} for assignTasks
+     */
+    public static void assertAssignTaskCommandSuccess(Command command, Model model, OfficeConnectModel actualModel,
+                                                      CommandResult expectedCommandResult,
+                                                      OfficeConnectModel expectedModel) {
+        try {
+            CommandResult result = command.execute(model, actualModel);
+            assertEquals(expectedCommandResult, result);
+            RepositoryModelManager<AssignTask> actualModelAssignTaskModelManager =
+                    actualModel.getAssignTaskModelManager();
+            RepositoryModelManager<AssignTask> expectedModelAssignTaskModelManager =
+                    expectedModel.getAssignTaskModelManager();
+            assertEquals(actualModelAssignTaskModelManager, expectedModelAssignTaskModelManager);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {#assertAssignTaskCommandSuccess(Command, OfficeConnectModel, String, OfficeConnectModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertAssignTaskCommandSuccess(Command command, OfficeConnectModel actualModel,
+                                                      String expectedMessage, OfficeConnectModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertAssignTaskCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {#assertAssignTaskCommandSuccess(Command, Model, OfficeConnectModel, String,
+     * OfficeConnectModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertAssignTaskCommandSuccess(Command command, Model model, OfficeConnectModel actualModel,
+                                                      String expectedMessage, OfficeConnectModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertAssignTaskCommandSuccess(command, model, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel} for tasks
      */
     public static void assertTaskCommandSuccess(Command command, OfficeConnectModel actualModel,
@@ -143,6 +207,7 @@ public class CommandTestUtil {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
+
 
     /**
      * Convenience wrapper to {#assertTaskCommandSuccess(Command, OfficeConnectModel, String, OfficeConnectModel)}

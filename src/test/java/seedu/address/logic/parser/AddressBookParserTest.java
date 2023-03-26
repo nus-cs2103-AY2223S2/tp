@@ -4,12 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.model.util.TypicalPersons.TAG_DESC_LOGISTICS;
+import static seedu.address.model.util.TypicalPersons.VALID_TAG_LOGISTICS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +21,7 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -29,8 +29,9 @@ import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsExactKeywordsPredicate;
+import seedu.address.model.person.NameContainsInOrderKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.PersonBuilder;
 import seedu.address.model.util.TaskBuilder;
@@ -107,16 +108,22 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_filter() throws Exception {
+        FilterCommand filterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + TAG_DESC_LOGISTICS);
+        assertEquals(new FilterCommand(new Tag(VALID_TAG_LOGISTICS)), filterCommand);
+    }
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keyword = "foo" + "bar" + "baz";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new NameContainsExactKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keyword));
+        assertEquals(new FindCommand(new NameContainsInOrderKeywordsPredicate(keyword)), command);
     }
 
     @Test

@@ -49,11 +49,20 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         this.repo.resetData(repo);
     }
 
+    public void setRepository(List<T> items) {
+        this.repo.setItems(items);
+    }
+
     public ReadOnlyRepository<T> getReadOnlyRepository() {
         return repo;
     }
+
     public List<T> filter(Predicate<T> predicate) {
         return repo.getFilterData(predicate);
+    }
+
+    public List<T> filterReadOnlyList(Predicate<T> predicate) {
+        return repo.getData().filtered(predicate);
     }
 
 
@@ -94,12 +103,17 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     }
 
     //=========== Filtered Person List Accessors =============================================================
+    public ObservableList<T> filterItemList(Predicate<T> predicate) {
+        return itemFilteredList.filtered(predicate);
+    }
 
+    public int getFilteredListSize() {
+        return itemFilteredList.size();
+    }
 
     public ObservableList<T> getFilteredItemList() {
         return itemFilteredList;
     }
-
 
     public FilteredList<T> getFilteredItemList(Predicate<T> predicate) {
         updateFilteredItemList(predicate);
