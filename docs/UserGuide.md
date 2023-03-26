@@ -27,14 +27,51 @@ Open a command terminal, `cd` into the folder you put the jar file in, and use t
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 
-# Features
-- Adding a role: 'add'
-- Deleting a role: 'delete'
-- Ranking the roles
-- Viewing details for a role: 'view'
-- Save data
-- ....
-  (role means internship role)
+## Features
+
+This section guides you on how to use features available in TechTrack.
+
+<div markdown="block" class="alert alert-info">
+
+
+**The features of TechTrack can be split into 3 main categories:**
+
+* [Creating Role Info](#creating-patient-info)
+* [Retrieving Role Info](#retrieving-patient-info)
+* [General Commands](#general-commands)
+
+<sub><sup>[back to top](#back-to-topt)</sup></sub>
+
+## Creating Role Info
+The commands in this segment are focused on creating, editing and removing data to and from the application.
+These commands are:
+
+* [Adding a Role](#adding-role)
+* [Editing a Role](#editing-role)
+* [Deleting a Role](#deleting-role)
+* [Viewing a role ](#viewing-role)
+* [Sorting a role by deadline](#sorting-role-deadline)
+* [Sorting a role by salary](#sorting-role-salary)
+
+### Adding a role: `add`
+
+Adds a role to TechTrack.
+
+Format: `add {Prefix}/{Parameter}…​`
+
+**The prefixes and their respective parameters are as follows:**
+
+| Required | Prefix | Parameter           | Restrictions                                                             |
+|----------|--------|---------------------|--------------------------------------------------------------------------|
+| `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                                 |
+| `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                      |
+| `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.        |
+| `Yes`    | coy    | COMPANY             | Follow comapny format                                                    |
+| `Yes`    | jd     | JOB DESCRIPTION     |                                                                          |
+| `No`     | t      | TAGS                |                                                                          |
+| `No`     | $      | SALARY              | Positive integer only.                    **Compulsory for inpatients**. |
+| `No`     | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over      |
+| `No`     | x      | EXPERIENCE REQUIRED | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                            |
 
 
 ### Adding a role:
@@ -57,6 +94,16 @@ FORMAT: list
 Saves data to a text file whenever there is a command that changes the role and gets the data when the program is run again.
 FORMAT: bye
 
+### Sorting by Deadline
+
+Sort the closest deadline first (e.g. deadline asc) 
+
+![Deadline](images/DeadlineCommand1.png)
+
+Sort the latest deadline first (e.g. deadline desc)
+
+![Deadline](images/DeadlineCommand2.png)
+
 ## FAQ
 Q: How do I transfer my data to another Computer?
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
@@ -64,11 +111,11 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format, Examples                            |
-|----------|---------------------------------------------|
-| add      |add roleID (e.g. add 221574)                 |
-| delete   |delete roleID (e.g. delete 221574)           |
-| list     |list                                         |
-| rank     |rank roleID LEVEL (e.g. rank 221574 4)       |
-| bye      |bye                                          |
-|----------|---------------------------------------------|
+| Action   | Format, Examples                       |
+|----------|----------------------------------------|
+| add      | add roleID (e.g. add 221574)           |
+| delete   | delete roleID (e.g. delete 221574)     |
+| list     | list                                   |
+| rank     | rank roleID LEVEL (e.g. rank 221574 4) |
+| exit     | bye                                    |
+| deadline | asc/desc (e.g. deadline asc)           |
