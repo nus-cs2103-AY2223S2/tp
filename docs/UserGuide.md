@@ -2,12 +2,12 @@
 layout: page
 title: User Guide
 ---
-## Table of Contents
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introducing InternBuddy
+## **Introducing InternBuddy**
 
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
 It is optimized for typing where it allows you to complete internship management tasks much more efficiently via
@@ -24,7 +24,7 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 
 
 --------------------------------------------------------------------------------------------------------------------
-## About the User Guide
+## **About the User Guide**
 
 ### Objectives of the User Guide
 This user guide aims to provide comprehensive instructions for users to learn how to use InternBuddy,
@@ -68,7 +68,7 @@ Keyboard keys are indicated using rounded buttons.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick Start
+## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your computer
 <div markdown="span" class="alert alert-primary">
@@ -112,7 +112,7 @@ InternBuddy, and it is where your InternBuddy data file will be stored in.
 Do refer to [Features](#features) below for a comprehensive list of supported features and their associated details.
 
 --------------------------------------------------------------------------------------------------------------------
-## Exploring the Graphical User Interface
+## **Exploring the Graphical User Interface**
 
 ![Graphical User Interface](images/gui-markup.png)
 <p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
@@ -137,7 +137,7 @@ Do refer to [Features](#features) below for a comprehensive list of supported fe
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Command Information
+## **Command Information**
 
 ### Notes about Commands and Parameters
 
@@ -228,7 +228,7 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 <p style="text-align: center;">Figure 6: Description of dates</p>
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## **Features**
 
 ### Listing all Internships : `list`
 Shows the list of all internship entries that you have stored in InternBuddy.
@@ -339,7 +339,7 @@ Done with tracking your internships for the day? Exit InternBuddy using the `exi
 
 Format: `exit`
 
-### Saving Your Internship Data
+### Saving your Internship Data
 
 Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
 in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
@@ -352,7 +352,7 @@ where you placed `internbuddy.json`. There is no need to save manually.
 </div>
 
 
-### Loading the data
+### Loading the Data
 
 InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
 manually.
@@ -372,7 +372,7 @@ with the content in `internbuddy.json` unless you are confident in doing so. If 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install InternBuddy in the other computer and overwrite the file `internbuddy.json` that it creates with the
@@ -383,7 +383,7 @@ file `internbuddy.json` that is stored on your existing computer.
 that we are exploring and hope to implement in the future!
 
 --------------------------------------------------------------------------------------------------------------------
-## Command Summary
+## **Command Summary**
 
 | Action                        | Format, Examples                                                                                                                    |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -404,7 +404,7 @@ that we are exploring and hope to implement in the future!
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Appendix A: Installing Java 11
+## **Appendix A: Installing Java 11**
 Follow the following steps to set up Java 11 in your computer.
 1. Open up a terminal on your computer.
     - For Windows users, click on the `Windows` icon at the bottom left of your computer. Then, type in `terminal` in
@@ -418,7 +418,7 @@ Follow the following steps to set up Java 11 in your computer.
    You may then return to Step 1 to check whether you have the correct version of Java installed.
 
 --------------------------------------------------------------------------------------------------------------------
-## Appendix B: Customising the Data File
+## **Appendix B: Customising the Data File**
 If you are an advanced user of InternBuddy, you can directly edit the contents of your data through the `internbuddy.json`
 file without using the GUI.
 
@@ -469,7 +469,7 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 
 | Term                           | Definition                                                                                                                                                                                                              |
@@ -484,7 +484,7 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 <p style="text-align: center;">Figure XX: Glossary for InternBuddy's User Guide</p>
 
 --------------------------------------------------------------------------------------------------------------------
-## Acknowledgements
+## **Acknowledgements**
 
 * InternBuddy is written in **Java 11**.
 * It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by

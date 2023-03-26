@@ -2,13 +2,13 @@
 layout: page
 title: Developer Guide
 ---
-## Table of Contents
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Introducing InternBuddy
+## **Introducing InternBuddy**
 
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
 It is optimized for typing where it allows users to complete internship management tasks much more efficiently
@@ -23,7 +23,7 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 
 
 --------------------------------------------------------------------------------------------------------------------
-## About the Developer Guide
+## **About the Developer Guide**
 
 ### Objectives of the Developer Guide
 This developer guide aims to provide developers with insights into the implementation details
@@ -237,7 +237,7 @@ Figure 8 below illustrates the interactions within the `Logic` component for the
 
 
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** The lifeline for
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for
 `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -278,7 +278,7 @@ which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` th
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** An alternative (arguably, a more OOP)
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** An alternative (arguably, a more OOP)
 model is given below. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
 to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
@@ -319,7 +319,7 @@ Classes used by multiple components are in the `seedu.internship.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to a limitation of PlantUML, the lifeline
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** Due to a limitation of PlantUML, the lifeline
 for objects in sequence diagrams would always reach the end of the diagrams. However, it is worthy to note that for objects
 with destroy markers (X), their lifelines would have ended at the markers.
 
@@ -467,7 +467,7 @@ The following gives a more detailed explanation of the `view` operation.
 [TODO by Christopher]
 
 
-### \[Proposed\] Undo/redo feature - `undo`/`redo`
+### \[Proposed\] Undo/Redo Actions - `undo`/`redo`
 
 #### Proposed Implementation
 
@@ -513,7 +513,7 @@ Step 3. The user executes `add n/Tesla …​` to add a new internship. The `add
 
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
 
 </div>
 
@@ -527,7 +527,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 <br/>
 
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -544,7 +544,7 @@ Figure XX is a sequence diagram that shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores InternBuddy to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest InternBuddy state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest InternBuddy state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -579,7 +579,7 @@ Figure XX summarizes what happens when a user executes a new command:
 
 
 
-#### Design Considerations:
+#### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -594,7 +594,7 @@ Figure XX summarizes what happens when a user executes a new command:
 
 
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Data Archiving
 
 To be explored in v2.0...
 
@@ -607,7 +607,7 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -1378,7 +1378,7 @@ optional parameter must be specified.
    **Expected**: InternBuddy closes.
 
 
-### Save data
+### Save Data
 
 1. Missing Data File
 
