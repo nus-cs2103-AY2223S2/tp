@@ -93,6 +93,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
      * Parses the {@code medicines} into a {@code Set<Medicine>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withMedicines(String... medicines) {

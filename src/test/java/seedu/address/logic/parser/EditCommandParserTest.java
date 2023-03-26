@@ -118,7 +118,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withMedicines(VALID_MEDICINE_PANADOL).build();
+            .withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).withMedicines(VALID_MEDICINE_PANADOL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -178,9 +178,9 @@ public class EditCommandParserTest {
             + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC)
-                .build();
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC)
+            .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

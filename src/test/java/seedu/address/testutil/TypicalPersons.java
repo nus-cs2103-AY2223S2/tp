@@ -28,57 +28,65 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withNric("S1234567A")
-            .withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withDrugAllergy("NKDA")
-            .withTags("friends").build();
+        .withName("Alice Pauline")
+        .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+        .withPhone("94351253")
+        .withDrugAllergy("NKDA")
+        .withGender("female")
+        .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withNric("S2345678B")
-            .withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withDrugAllergy("NKDA")
-            .withTags("owesMoney", "friends")
-            .withMedicines("Paracetamol").build();
+        .withName("Benson Meier")
+        .withAddress("311, Clementi Ave 2, #02-25")
+        .withEmail("johnd@example.com").withPhone("98765432")
+        .withDrugAllergy("NKDA")
+        .withTags("owesMoney", "friends")
+        .withGender("male")
+        .withMedicines("Paracetamol").build();
     public static final Person CARL = new PersonBuilder().withNric("S3456789C")
-            .withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street")
-            .withDrugAllergy("Penicilin").build();
+        .withName("Carl Kurz").withPhone("95352563")
+        .withEmail("heinz@example.com").withAddress("wall street")
+        .withGender("male")
+        .withDrugAllergy("Penicilin").build();
     public static final Person DANIEL = new PersonBuilder().withNric("S0123456D")
-            .withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street")
-            .withDrugAllergy("Aspirin Panadol").withTags("friends").build();
+        .withName("Daniel Meier").withPhone("87652533")
+        .withEmail("cornelia@example.com").withAddress("10th street")
+        .withDrugAllergy("Aspirin Panadol")
+        .withGender("male").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withNric("S0000000E")
-            .withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave")
-            .withDrugAllergy("NKDA").build();
-
+        .withName("Elle Meyer").withPhone("9482224")
+        .withEmail("werner@example.com").withAddress("michegan ave")
+        .withGender("female")
+        .withDrugAllergy("NKDA").build();
     public static final Person FIONA = new PersonBuilder().withNric("S1111111F")
-            .withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withDrugAllergy("Aspirin Panadol").build();
+        .withName("Fiona Kunz").withPhone("9482427")
+        .withEmail("lydia@example.com").withAddress("little tokyo")
+        .withGender("female")
+        .withDrugAllergy("Aspirin Panadol").build();
     public static final Person GEORGE = new PersonBuilder().withNric("S2222222G")
-            .withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street")
-            .withDrugAllergy("Lidocaine").build();
+        .withName("George Best").withPhone("9482442")
+        .withEmail("anna@example.com").withAddress("4th street")
+        .withGender("male")
+        .withDrugAllergy("Lidocaine").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("S3333333H")
-            .withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india")
-            .withDrugAllergy("Phenytoin Panadol").build();
+        .withName("Hoon Meier").withPhone("8482424")
+        .withEmail("stefan@example.com").withAddress("little india")
+        .withGender("male")
+        .withDrugAllergy("Phenytoin Panadol").build();
     public static final Person IDA = new PersonBuilder().withNric("T4444444I")
-            .withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave")
-            .withDrugAllergy("Carbamazepine").build();
+        .withName("Ida Mueller").withPhone("8482131")
+        .withEmail("hans@example.com").withAddress("chicago ave")
+        .withGender("female")
+        .withDrugAllergy("Carbamazepine").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withTags(VALID_TAG_DIABETIC).build();
+        .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withTags(VALID_TAG_DIABETIC).build();
     public static final Person BOB = new PersonBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
+        .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

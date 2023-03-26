@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -175,7 +175,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy, tags, medicines);
+            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
         }
 
         public void setNric(Nric nric) {
@@ -218,7 +218,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-
         public void setGender(Gender gender) {
             this.gender = gender;
         }
@@ -226,6 +225,7 @@ public class EditCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
+
         public void setDrugAllergy(DrugAllergy drugAllergy) {
             this.drugAllergy = drugAllergy;
         }

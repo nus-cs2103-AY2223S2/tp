@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -77,7 +77,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_DRUG_ALLERGY_DESC = " "
-            + PREFIX_DRUG_ALLERGY; // empty string not allowed for drug allergies
+        + PREFIX_DRUG_ALLERGY; // empty string not allowed for drug allergies
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "M"; // missing full spelling
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
@@ -90,13 +90,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withGender(VALID_GENDER_AMY)
-                .withTags(VALID_TAG_DIABETIC).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withGender(VALID_GENDER_AMY)
+            .withTags(VALID_TAG_DIABETIC).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
-                .withGender(VALID_GENDER_BOB).withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
+            .withGender(VALID_GENDER_BOB).withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
 
     }
 
