@@ -4,14 +4,11 @@ import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
-import java.util.stream.Stream;
-
 import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.logic.parser.ArgumentMultimap;
 import seedu.sudohr.logic.parser.ArgumentTokenizer;
 import seedu.sudohr.logic.parser.Parser;
 import seedu.sudohr.logic.parser.ParserUtil;
-import seedu.sudohr.logic.parser.Prefix;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.LeaveDate;
@@ -31,7 +28,7 @@ public class DeleteEmployeeFromLeaveCommandParser implements Parser<DeleteEmploy
     public DeleteEmployeeFromLeaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_EMPLOYEE);
 
-        if (!arePrefixesPresent(argMultimap,
+        if (!ParserUtil.arePrefixesPresent(argMultimap,
                 PREFIX_DATE,
                 PREFIX_EMPLOYEE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,14 +40,5 @@ public class DeleteEmployeeFromLeaveCommandParser implements Parser<DeleteEmploy
         Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_EMPLOYEE).get());
 
         return new DeleteEmployeeFromLeaveCommand(employeeId, leaveDate);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

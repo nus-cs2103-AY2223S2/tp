@@ -25,6 +25,7 @@ import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveFromToCommand;
 import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.department.AddDepartmentCommandParser;
@@ -41,6 +42,7 @@ import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveFromToCommandParser;
 import seedu.sudohr.logic.parser.leave.DeleteEmployeeFromLeaveCommandParser;
 import seedu.sudohr.logic.parser.leave.ListEmployeeInLeaveCommandParser;
 
@@ -130,6 +132,9 @@ public class SudoHrParser {
 
         case ListEmployeeInLeaveCommand.COMMAND_WORD:
             return new ListEmployeeInLeaveCommandParser().parse(arguments);
+
+        case AddEmployeeToLeaveFromToCommand.COMMAND_WORD:
+            return new AddEmployeeToLeaveFromToCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
