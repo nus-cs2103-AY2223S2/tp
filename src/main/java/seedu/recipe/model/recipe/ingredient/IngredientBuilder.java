@@ -1,6 +1,5 @@
 package seedu.recipe.model.recipe.ingredient;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 import static seedu.recipe.model.recipe.ingredient.IngredientParser.AMOUNT_PREFIX;
 import static seedu.recipe.model.recipe.ingredient.IngredientParser.COMMON_NAME_PREFIX;
@@ -30,20 +29,20 @@ public class IngredientBuilder {
             + "`[-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...\n"
             + "i.e. `-a 1 oz. -n butter -r cubed -s margarine`";
 
-    public final String name;
+    public final String commandString;
 
     private final HashMap<Prefix, List<String>> arguments;
 
     /**
      * Constructs a {@code IngredientBuilder}.
      *
-     * @param name A valid ingredient number.
+     * @param commandString A valid ingredient number.
      */
-    public IngredientBuilder(String name) {
-        requireNonNull(name);
-        HashMap<Prefix, List<String>> tokens = parse(name);
+    public IngredientBuilder(String commandString) {
+        checkArgument(commandString != null, "An IngredientBuilder instance should not have a `null` command string.");
+        HashMap<Prefix, List<String>> tokens = parse(commandString);
         checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.commandString = commandString;
         this.arguments = tokens;
     }
 
@@ -51,6 +50,7 @@ public class IngredientBuilder {
      * Returns true if a given string is a valid ingredient.
      */
     public static boolean isValidIngredient(String test) {
+        checkArgument(test != null, "An IngredientBuilder instance should not have a `null` command string.");
         HashMap<Prefix, List<String>> tokens = parse(test);
         return tokens.containsKey(NAME_PREFIX);
     }
@@ -114,19 +114,19 @@ public class IngredientBuilder {
 
     @Override
     public String toString() {
-        return name;
+        return commandString;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IngredientBuilder // instanceof handles nulls
-                && name.equals(((IngredientBuilder) other).name)) // state check
+                && commandString.equals(((IngredientBuilder) other).commandString)) // state check
                 && arguments.equals(((IngredientBuilder) other).arguments);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return commandString.hashCode();
     }
 }

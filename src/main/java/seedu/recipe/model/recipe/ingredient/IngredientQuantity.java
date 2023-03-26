@@ -13,18 +13,35 @@ public class IngredientQuantity {
             + "trailing periods ('.') and hyphens."
             + "i.e. `1 gram`, `1.5 L`, `A pinch of`, `One oz.`";
 
+    //"A", "a", "One", "one"
     private static final String ALPHA_AMOUNT_REGEX = "[aA]|[Oo]ne";
+
+    //"1 to 2", "3 - 5", "3-5"
     private static final String RANGE_REGEX = "\\d+\\s*(\\-|to)\\s*\\d+";
+
+    //The above two, or a non-zero digit/decimal/fraction
     private static final String AMOUNT_REGEX = String.format(
             "([1-9][0-9]*|[0-9]+[\\./][0-9]*[1-9]|%s|%s)", ALPHA_AMOUNT_REGEX, RANGE_REGEX);
+
+    //The above patterns, followed by at least one group of whitespace separated alphabet groups
     private static final String VALIDATION_REGEX = String.format("^%s(\\s+[A-Za-z]+\\.?)*", AMOUNT_REGEX);
 
     private final String amount;
 
+    /**
+     * Instantiates an IngredientQuantity instance around
+     * a String representing a valid Ingredient Quantity amount.
+     * @param amount The String amount to be stored.
+     */
     private IngredientQuantity(String amount) {
         this.amount = amount;
     }
 
+    /**
+     * Tests and validates sample String patterns to check if they form valid Recipe Ingredient Quantities.
+     * @param candidate The sample pattern String to test.
+     * @return True if it is valid, False otherwise.
+     */
     private static boolean isValidRecipeQuantity(String candidate) {
         assert candidate != null;
         if (!candidate.matches(VALIDATION_REGEX)) {

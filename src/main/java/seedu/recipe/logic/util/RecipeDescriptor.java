@@ -139,7 +139,6 @@ public class RecipeDescriptor {
     }
 
     public void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientTable) {
-        assert ingredientTable != null;
         this.ingredients = ingredientTable;
     }
 

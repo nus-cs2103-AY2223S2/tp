@@ -21,7 +21,7 @@ public class IngredientBuilderTest {
 
     @Test
     public void null_name() {
-        assertThrows(NullPointerException.class, () -> new IngredientBuilder(null));
+        assertThrows(IllegalArgumentException.class, () -> new IngredientBuilder(null));
     }
 
     @Test
