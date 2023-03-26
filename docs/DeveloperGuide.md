@@ -162,11 +162,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 The activity diagram is as such:
 
-[Add in later]()
-
-The sequence diagram to show the interactions between different components during an `add` command is as such:
-
-[Add in later]()
+![Add activity diagram](diagrams/AddApplicantActivityDiagram.puml)
 
 #### Feature Details
 
@@ -183,6 +179,14 @@ to inform the user.
 
 #### Feature Considerations
 
+When checking for duplicates in the `UniquePersonList` inside `Model`, any `Person` cannot have the same name and phone
+as another. While it is unlikely applicants have the same full name, it is still possible in reality. However, it is 
+impossible for unique applicants to share the same number. Thus, HMHero checks name and phone number when checking for
+duplicates.
+
+When implementing this feature, we restricted users to only add applicants into the `APPLIED` status. This is because
+we wanted HMHero to adhere to the flow of the hiring process. Allowing users to add applicants into specific statuses
+could introduce confusion to how `add` command is used.
 
 
 #### Advancing an Applicant
@@ -240,14 +244,14 @@ Here is the activity diagram showing the process of the `advance` command:
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
-1. If the name and phone is not provided, an error is thrown and the user is prompted to
+2. If the name and phone is not provided, an error is thrown and the user is prompted to
 enter the command correctly via an error message.
-1. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
-1. The applicant is cross-referenced in the `Model` to check if it exists.
+3. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
+4. The applicant is cross-referenced in the `Model` to check if it exists.
 If it does not, then an error is raised to inform the user.
-1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
+5. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
 the user is prompted to enter the command correctly via an error message.
-2. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
+6. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
 
 ##### Feature Considerations
 
@@ -262,7 +266,25 @@ a default behaviour when rejecting an applicant's status.
 
 #### Overview
 
+The `find` command filters applicants based on fields specified by the user. 
+Fields have to be denoted by flags. Allowed fields for filtering are `name`, `phone` and `note`.
+
+The activity diagram is as such:
+
+![FindCommandActivityDiagram](diagrams/FindCommandActivityDiagram.puml)
+
 #### Feature Details
+1. The user specifies one or more fields to filter through the applicant list.
+2. If the user specifies more than one field, the filtered applicant list has to match all fields.
+3. If the user specifies a field more than once, only the last argument is considered when filtering applicants.
+
+#### Feature considerations
+The UI displays a `FilteredList` obtained from an immutable applicant list.
+The `FindCommandParser` creates the `Predicate` used to filter the applicant list. When the `FindCommand` is executed,
+the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI shows the new `FilteredList`.
+
+Applicant fields required as an input is mandatory to reduce user confusion 
+and facilitate finding applicants based on multiple fields.
 
 
 #### Editing an Applicant
@@ -318,93 +340,6 @@ The `list` command displays the full list by HMHero.
 The five statistics were chosen as a baseline and they are a good starting point for users to help 
 track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
 the total numbers of applicants for each status.
-
-
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedHMHero`. It extends `HMHero` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedHMHero#commit()` — Saves the current address book state in its history.
-* `VersionedHMHero#undo()` — Restores the previous address book state from its history.
-* `VersionedHMHero#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitHMHero()`, `Model#undoHMHero()` and `Model#redoHMHero()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedHMHero` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitHMHero()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitHMHero()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHMHero()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHMHero()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial HMHero state, then there are no previous HMHero states to restore. The `undo` command uses `Model#canUndoHMHero()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoHMHero()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone HMHero states to restore. The `redo` command uses `Model#canRedoHMHero()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitHMHero()`, `Model#undoHMHero()` or `Model#redoHMHero()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitHMHero()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
