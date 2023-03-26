@@ -21,6 +21,8 @@ public class SummaryCommand extends Command {
         SummaryWindow.setSize(size);
         int potentialEarnings = model.getAddressBook().getPotentialEarnings();
         SummaryWindow.setPotentialEarnings(potentialEarnings);
+        String tags = model.getAddressBook().getTags();
+        SummaryWindow.setTags(tags);
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
     }
 }

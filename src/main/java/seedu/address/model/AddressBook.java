@@ -3,14 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -153,6 +151,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         return totalValue;
     }
+
+    /**
+     * Returns the a string containing all tags.
+     */
+    @Override
+    public String getTags() {
+        Iterator<Person> personIterator = persons.iterator();
+        Set<Tag> tags = new HashSet<>();
+        String tagsInString = "";
+        while (personIterator.hasNext()) {
+            tags.addAll(personIterator.next().getTags());
+        }
+        Iterator<Tag> tagIterator = tags.iterator();
+        while (tagIterator.hasNext()) {
+            Tag temp = tagIterator.next();
+            if (tagIterator.hasNext()) {
+                tagsInString += temp + ", ";
+            } else {
+                tagsInString += temp;
+            }
+        }
+        return tagsInString;
+    };
 
     //// util methods
 

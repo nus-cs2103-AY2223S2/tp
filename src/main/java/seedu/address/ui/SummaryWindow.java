@@ -22,6 +22,7 @@ public class SummaryWindow extends UiPart<Stage> {
     private static final String FXML = "SummaryWindow.fxml";
     private static int SIZE;
     private static int POTENTIAL_EARNINGS;
+    private static String TAGS;
     @FXML
     private Label countMessage;
 
@@ -30,6 +31,9 @@ public class SummaryWindow extends UiPart<Stage> {
 
     @FXML
     private Label potentialEarnings;
+
+    @FXML
+    private Label tags;
     /**
      * Creates a new HelpWindow.
      *
@@ -53,16 +57,21 @@ public class SummaryWindow extends UiPart<Stage> {
      * Set size of list.
      */
     public static void setSize(int size) {
-        System.out.println(size);
         SummaryWindow.SIZE = size;
     }
     /**
-     * Sets the value of the potential earnings
+     * Sets the value of the potential earnings.
      */
     public static void setPotentialEarnings(int potentialEarnings) {
-        System.out.println(potentialEarnings);
         SummaryWindow.POTENTIAL_EARNINGS = potentialEarnings;
     }
+    /**
+     * Sets the value of tags.
+     */
+    public static void setTags(String tags) {
+        SummaryWindow.TAGS = tags;
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -84,7 +93,7 @@ public class SummaryWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing summary page of the application.");
         countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
-        tagMessage.setText(TAG_MESSAGE + SummaryWindow.SIZE);
+        tagMessage.setText(TAG_MESSAGE + SummaryWindow.TAGS);
         potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + SummaryWindow.POTENTIAL_EARNINGS);
         getRoot().show();
         getRoot().centerOnScreen();
