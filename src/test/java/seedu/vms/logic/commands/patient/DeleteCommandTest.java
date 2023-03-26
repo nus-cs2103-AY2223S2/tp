@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.vms.logic.commands.CommandTestUtil.showPatientAtIndex;
-import static seedu.vms.testutil.TypicalIndexes.INDEX_NINE_NINE_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.vms.testutil.TypicalIndexes.INDEX_NINE_NINE_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
