@@ -117,10 +117,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Updates the filter of the favorited person list to filter by the latest favorites.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFavoritedPersonList();
 }

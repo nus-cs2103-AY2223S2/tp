@@ -59,11 +59,7 @@ public class FavoriteCommand extends Command {
         }
 
         model.setPerson(personToFavorite, editedPerson);
-        model.updateFavoritedPersonList();
         model.commit(model.getAddressBook());
-
-
-        model.updateFavoritedPersonList();
 
         return new CommandResult(String.format(MESSAGE_FAVORITE_SUCCESS, personToFavorite));
     }

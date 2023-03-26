@@ -157,11 +157,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFavoritedPersonList() {
-        favoritedPersons.setPredicate(PREDICATE_SHOW_FAVORITED);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
