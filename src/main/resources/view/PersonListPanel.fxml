@@ -34,11 +34,7 @@
       <Label fx:id="address" styleClass="cell_small_label"  />
       <Label fx:id="email" styleClass="cell_small_label"  />
       <Label fx:id="department" styleClass="cell_small_label"/>
-        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="/employeepictures/default.png"/>
-            </image>
-        </ImageView>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
     </VBox>
   </ScrollPane>
 </HBox>
