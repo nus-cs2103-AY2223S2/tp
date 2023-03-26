@@ -41,7 +41,7 @@
               <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
             </VBox.margin>
           </Button>
-          <Button fx:id="submitButton" mnemonicParsing="false" text="Import" onAction="#handleExport">
+          <Button fx:id="submitButton" mnemonicParsing="false" text="Export" onAction="#handleExport">
             <VBox.margin>
               <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
             </VBox.margin>
