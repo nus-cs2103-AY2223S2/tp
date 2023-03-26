@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -16,13 +16,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -88,10 +86,9 @@ public class EditVolunteerCommand extends Command {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
         }
 
         requireNonNull(model);
@@ -111,7 +108,7 @@ public class EditVolunteerCommand extends Command {
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        model.refreshAllFilteredLists();
         return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
 

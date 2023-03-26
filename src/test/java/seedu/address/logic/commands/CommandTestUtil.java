@@ -33,12 +33,16 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
+import seedu.address.model.person.predicates.AvailableDatesWithinRangePredicate;
 import seedu.address.model.person.predicates.BirthDateEqualPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
+import seedu.address.model.person.predicates.MedicalQualificationContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NricContainsKeywordPredicate;
 import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
+import seedu.address.model.person.predicates.RegionIsEqualPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
+import seedu.address.model.person.predicates.SkillLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
 
@@ -149,6 +153,15 @@ public class CommandTestUtil {
             new NricContainsKeywordPredicate<>(ALICE.getNric().value);
     public static final RiskLevelIsEqualPredicate<Elderly> PREDICATE_HAS_RISKLEVEL =
             new RiskLevelIsEqualPredicate<>(BOB.getRiskLevel().riskStatus);
+    public static final RegionIsEqualPredicate<Person> PREDICATE_HAS_REGION =
+            new RegionIsEqualPredicate<>(ALICE.getRegion().region);
+    public static final MedicalQualificationContainsKeywordPredicate<Volunteer> PREDICATE_HAS_MEDICAL_QUALIFICATION =
+            new MedicalQualificationContainsKeywordPredicate<>(ALICE.getMedicalTags().iterator().next().tagName);
+    public static final SkillLevelIsEqualPredicate<Volunteer> PREDICATE_HAS_SKILL_LEVEL =
+            new SkillLevelIsEqualPredicate<>(ALICE.getMedicalTags().iterator().next().getQualificationLevel());
+    public static final AvailableDatesWithinRangePredicate<Person> PREDICATE_HAS_AVAILABLE_DATE =
+            new AvailableDatesWithinRangePredicate<>(ALICE.getAvailableDates().iterator().next().getStartDate(),
+                    ALICE.getAvailableDates().iterator().next().getEndDate());
     public static final TagIsEqualPredicate<Person> PREDICATE_HAS_TAG =
             new TagIsEqualPredicate<>(ALICE.getTags().iterator().next().tagName);
 

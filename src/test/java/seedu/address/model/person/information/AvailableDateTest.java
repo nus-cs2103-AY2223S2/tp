@@ -23,7 +23,7 @@ class AvailableDateTest {
     @Test
     public void isValidDate() {
         // null address
-        assertThrows(NullPointerException.class, () -> AvailableDate.isValidDate(null));
+        assertThrows(NullPointerException.class, () -> AvailableDate.isValidDate(null, null));
 
         // invalid birth date
         assertFalse(AvailableDate.isValidDate("")); // empty string

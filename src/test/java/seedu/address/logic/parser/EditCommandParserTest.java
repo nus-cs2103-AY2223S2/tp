@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TO_EDIT_NRIC;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
@@ -76,7 +76,7 @@ public class EditCommandParserTest {
                 String.format(MESSAGE_INVALID_TO_EDIT_NRIC, MESSAGE_CONSTRAINTS));
 
         // no field specified
-        assertParseFailure(parser, VALID_NRIC_AMY, MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, VALID_NRIC_AMY, MESSAGE_NO_FIELD_PROVIDED);
 
         // no nric and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

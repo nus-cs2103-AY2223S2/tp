@@ -90,7 +90,8 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code startDate} and {@code endDate} into a {@code Set<AvailableDate>} and set it
+     * to the {@code Person} that we are building.
      */
     public T withAvailableDates(String startDate, String endDate) {
         this.availableDates.add(SampleDataUtil.getAvailableDate(startDate, endDate));

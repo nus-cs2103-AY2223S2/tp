@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -99,7 +99,7 @@ public class EditCommandTest {
         Nric validNric = TypicalVolunteers.getTypicalVolunteers().get(0).getNric();
         EditCommand editCommand = new EditCommand(validNric, new EditDescriptor());
 
-        assertCommandFailure(editCommand, model, MESSAGE_NOT_EDITED);
+        assertCommandFailure(editCommand, model, MESSAGE_NO_FIELD_PROVIDED);
     }
     @Test
     public void execute_invalidNric_throwsCommandException() {
