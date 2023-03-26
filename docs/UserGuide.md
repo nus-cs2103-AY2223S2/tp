@@ -40,8 +40,12 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 **weekly tasks**, such as feeding and cleaning. 
 
 Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
-*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below and get started.
+*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
 
+This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to 
+cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior 
+knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping 
+equipment.
 
 --------------------------------------------------------------------------------------------------------------------
 
