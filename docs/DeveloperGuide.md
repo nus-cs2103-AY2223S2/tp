@@ -400,7 +400,41 @@ The following gives a more detailed explanation of the `add` operation.
 
 
 ### Edit an Internship - `edit`
-[TODO by Shawn]
+### Edit feature
+
+#### Implementation
+
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+
+The following is a more detailed explanation on how `EditCommand` works.
+
+1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
+2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
+3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
+4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
+5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
+
+#### Design considerations:
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
+    * Pros:
+        * Maintains immutability of `Internship` class
+    * Cons:
+        * May be less efficient than alternative 2
+
+* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
+    * Pros:
+        * Will use less memory (no new `internship` object will be created).
+        * Saves time since there is no need to create the new object.
+    * Cons:
+        * Reduces the defensiveness of the code and class
+
 
 
 ### View an Internship - `view`
@@ -461,8 +495,37 @@ The following gives a more detailed explanation of the `view` operation.
 [TODO by Kai Xun]
 
 ### Get Upcoming Events and Deadlines - `upcoming`
-[TODO by Shawn]
 
+#### Implementation
+The following sequence diagram provides an overview on how the `upcoming` operation works.
+
+![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `upcoming` operation.
+1. When the user enters an `upcoming` command, an `UpcomingCommand` object is created.
+2. Following which, `FilteredList<Internship>` stored inside the model will be updated by checking each internship entry against a predicate.
+3. The predicate checks whether both of the following conditions are met: 
+- The `STATUS` of the internship must be one of the following:
+  - `NEW`
+  - `ASSESSMENT`
+  - `INTERVIEW`
+  - `OFFERED`
+- The `DATE` must be within the upcoming week.
+
+#### Design Considerations
+
+###### Whether to include all possible statuses of internship
+1. **Alternative 1 (chosen): The predicate for the `upcoming` command should limit to internships that have the status `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
+    * Pros: Makes more sense practically as these statuses have dates that are tied to an event or deadline:
+      * `NEW` - Application deadline
+      * `ASSESSMENT` - Date of Assessment
+      * `INTERVIEW` - Date of Interview
+      * `Offered` - Deadline of offer acceptance
+    * Cons: If the instructions for using the command are not clearly explained in the user guide, users may have difficulty understanding the output that is generated
+2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
+    * Pros: May be more intuitive for users to understand
+    * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
+   
 ### Delete Internship Entries - `delete`
 #### Implementation
 The following sequence diagram provides an overview on how the `delete` operation works.
@@ -668,47 +731,6 @@ Figure XX summarizes what happens when a user executes a new command:
 
 To be explored in v2.0...
 
-### Edit feature
-
-#### Implementation
-
-
-The following sequence diagram shows how the edit operation works:
-
-![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-
-The following is a more detailed explanation on how `EditCommand` works.
-
-1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
-2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
-3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
-4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
-5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
-
-#### Design considerations:
-
-**Aspect: How edit executes:**
-
-* **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
-    * Pros: 
-      * Maintains immutability of `Internship` class
-    * Cons: 
-      * May be less efficient than alternative 2
-
-* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
-    * Pros: 
-      * Will use less memory (no new `internship` object will be created). 
-      * Saves time since there is no need to create the new object.
-    * Cons: 
-      * Reduces the defensiveness of the code and class
-
-
-_{more aspects and alternatives to be added}_
 
 ### Find feature
 
