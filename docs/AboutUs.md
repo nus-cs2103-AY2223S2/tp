@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Jun Hao
 
-<img src="images/junhao247.png" width="200px">
+<img src="images/PPP/junhao247.png" width="200px">
 
 [[github](https://github.com/junhao247)]
 [[portfolio](team/junhao247.md)]
@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Yan Ling
 
-<img src="images/yanlings.png" width="200px">
+<img src="images/PPP/yanlings.png" width="200px">
 
 [[github](https://github.com/yanlings)]
 [[portfolio](team/yanling.md)]
@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Guo Yulong
 
-<img src="images/gyulong1.png" width="200px">
+<img src="images/PPP/gyulong1.png" width="200px">
 
 [[github](http://github.com/gyulong1)] [[portfolio](team/gyulong1.md)]
 
@@ -40,7 +40,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ang Ben Xuan
 
-<img src="images/abenx162.png" width="200px">
+<img src="images/PPP/abenx162.png" width="200px">
 
 [[github](https://github.com/abenx162)] [[portfolio](team/abenx162.md)]
 
@@ -50,7 +50,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Panav Dua
 
-<img src="images/panavdua.png" width="200px">
+<img src="images/PPP/panavdua.png" width="200px">
 
 [[github](http://github.com/panavdua)]
 [[portfolio](team/panavdua.md)]
