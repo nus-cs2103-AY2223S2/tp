@@ -133,6 +133,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given doctor {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing doctor in the address book.
+     */
+    public void setDoctor(Doctor target, Doctor editedPerson) {
+        requireNonNull(editedPerson);
+
+        persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Replaces the given patient {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The patient identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setPatient(Patient target, Patient editedPerson) {
+        requireNonNull(editedPerson);
+
+        persons.setPerson(target, editedPerson);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

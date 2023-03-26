@@ -12,13 +12,21 @@ import seedu.address.model.tag.Tag;
  */
 public class Doctor extends Person {
     public Doctor(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
-                  ArrayList<Appointment> patientAppointments) {
-        super(name, phone, email, nric, address, tags, patientAppointments);
+                  ArrayList<Appointment> patientAppointments, Role role) {
+        super(name, phone, email, nric, address, tags, patientAppointments, role);
     }
 
-    @Override
-    public boolean isDoctor() {
-        return true;
+    /**
+     * Returns true if both Doctors have the same NRIC.
+     * This defines a weaker notion of equality between two doctors.
+     */
+    public boolean isSameDoctor(Doctor otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getNric().equals(getNric());
     }
 }
 
