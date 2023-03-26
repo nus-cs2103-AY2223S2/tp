@@ -27,10 +27,11 @@ public class DeleteTagFromPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified"
         + "by the index number used in the displayed person list. \n"
         + "Parameters: PERSON_INDEX (must be a positive integer) "
-        + "[" + PREFIX_TAG + "TAG_INDEX]"
+        + "[" + PREFIX_TAG + "TAG_INDEX] "
         + "[" + PREFIX_MODULE + "MODULE_INDEX]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_TAG + "1 "
         + PREFIX_MODULE + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag from Person: %1$s";

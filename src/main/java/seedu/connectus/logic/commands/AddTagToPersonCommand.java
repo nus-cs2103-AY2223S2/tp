@@ -27,10 +27,11 @@ public class AddTagToPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag (or module) to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_MODULE + "MODULE] "
-        + "[" + PREFIX_TAG + "TAG]"
+        + "[" + PREFIX_TAG + "TAG] "
+        + "[" + PREFIX_MODULE + "MODULE]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_TAG + "friend "
         + PREFIX_MODULE + "CS1231";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added %2$s to Person: %1$s";
