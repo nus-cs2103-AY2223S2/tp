@@ -93,7 +93,7 @@ public class Event {
 
     public boolean isClash(Event otherEvent) {
         return !this.equals(otherEvent) &&
-                (this.start.isEqualTime(otherEvent.start)
+                (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
                 || this.end.isBetween(otherEvent.start, otherEvent.end));
     }

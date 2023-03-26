@@ -210,6 +210,7 @@ Examples: `event delete 1` entered after `select 1` deletes the first event in t
 Displays all events with clashing timings.
 
 Format: `clash`
+![clash_function](images/ug-clash.png)
 
 ### Exiting the program : `exit`
 
