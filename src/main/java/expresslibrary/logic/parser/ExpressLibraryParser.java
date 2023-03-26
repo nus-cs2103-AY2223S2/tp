@@ -17,6 +17,7 @@ import expresslibrary.logic.commands.FindPersonCommand;
 import expresslibrary.logic.commands.HelpCommand;
 import expresslibrary.logic.commands.ListBookCommand;
 import expresslibrary.logic.commands.ListPersonCommand;
+import expresslibrary.logic.commands.ReturnCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
 /**
@@ -69,6 +70,9 @@ public class ExpressLibraryParser {
 
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);
+
+        case ReturnCommand.COMMAND_WORD:
+            return new ReturnCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

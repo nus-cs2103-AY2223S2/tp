@@ -4,7 +4,6 @@ import static expresslibrary.commons.util.CollectionUtil.requireAllNonNull;
 import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import expresslibrary.commons.core.Messages;
@@ -17,38 +16,32 @@ import expresslibrary.model.person.Person;
 /**
  * Lends a book to a person in the express library.
  */
-public class BorrowCommand extends Command {
+public class ReturnCommand extends Command {
 
-    public static final String COMMAND_WORD = "borrow";
+    public static final String COMMAND_WORD = "return";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lends a book identified by the index number used in the book listing to "
-            + "the person identified by the index number used in the last person listing. \n"
+            + ": Returns a book identified by the index number used in the book listing from "
+            + "the person identified by the index number used in the person listing. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "b/[BOOK] d/[DATE dd/mm/yyyy]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "b/2 d/22/09/2025";
+            + "b/[BOOK] \n"
+            + "Example: " + COMMAND_WORD + " 3 "
+            + "b/2";
 
-    public static final String MESSAGE_INVALID_DATE = "Date must be provided in the form dd/mm/yyyy";
-    public static final String MESSAGE_EARLY_DATE = "Due date must be after today's date";
-
-    public static final String MESSAGE_BORROW_SUCCESS = "Person: %1$s borrowed Book: %2$s";
+    public static final String MESSAGE_RETURN_SUCCESS = "Person: %1$s returned Book: %2$s";
 
     private final Index personIndex;
     private final Index bookIndex;
-    private final LocalDate dueDate;
 
     /**
-     * @param personIndex of the person in the filtered person list to lend book to
-     * @param bookIndex of the book to lend to the specified person
-     * @param dueDate of the book stating when it should be returned
+     * @param personIndex of the person in the filtered person list to return a book
+     * @param bookIndex of the book to return
      */
-    public BorrowCommand(Index personIndex, Index bookIndex, LocalDate dueDate) {
-        requireAllNonNull(personIndex, bookIndex, dueDate);
+    public ReturnCommand(Index personIndex, Index bookIndex) {
+        requireAllNonNull(personIndex, bookIndex);
 
         this.personIndex = personIndex;
         this.bookIndex = bookIndex;
-        this.dueDate = dueDate;
     }
 
     @Override
@@ -64,33 +57,35 @@ public class BorrowCommand extends Command {
         }
 
         Person personToEdit = personList.get(personIndex.getZeroBased());
-        Book bookToBorrow = bookList.get(bookIndex.getZeroBased());
+        Book bookToReturn = bookList.get(bookIndex.getZeroBased());
 
-        // Checkout bookToBorrow (due date, borrower, borrowDate)
-        assert bookToBorrow != null;
-        if (bookToBorrow.getIsBorrowed()) {
-            throw new CommandException(Messages.MESSAGE_BOOK_BORROWED);
+        assert bookToReturn != null;
+        // Check if book ISN'T borrowed
+        if (!bookToReturn.getIsBorrowed()) {
+            throw new CommandException(Messages.MESSAGE_BOOK_NOT_BORROWED);
         }
 
-        Book origBook = model.getBook(bookToBorrow);
+        // Check if the book's borrower matches the person specified
+        if (!bookToReturn.getBorrower().isSamePerson(personToEdit)) {
+            throw new CommandException(Messages.MESSAGE_BOOK_INVALID_BORROWER);
+        }
+
+        Book origBook = model.getBook(bookToReturn);
 
         // Create the person copy
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getBooks(), personToEdit.getTags());
 
-        // Update person with borrowed book
-        editedPerson.borrowBook(bookToBorrow);
-
-        // Update book's field with borrower
-        bookToBorrow.loanBookTo(editedPerson, LocalDate.now(), dueDate);
+        editedPerson.returnBook(bookToReturn);
+        bookToReturn.returnBook();
 
         model.setPerson(personToEdit, editedPerson);
-        model.setBook(origBook, bookToBorrow);
+        model.setBook(origBook, bookToReturn);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson, bookToBorrow));
+        return new CommandResult(generateSuccessMessage(personToEdit, bookToReturn));
     }
 
     /**
@@ -98,7 +93,7 @@ public class BorrowCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit, Book bookToBorrow) {
-        return String.format(MESSAGE_BORROW_SUCCESS, personToEdit, bookToBorrow);
+        return String.format(MESSAGE_RETURN_SUCCESS, personToEdit, bookToBorrow);
     }
 
     @Override
@@ -109,12 +104,12 @@ public class BorrowCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BorrowCommand)) {
+        if (!(other instanceof ReturnCommand)) {
             return false;
         }
 
         // state check
-        BorrowCommand e = (BorrowCommand) other;
+        ReturnCommand e = (ReturnCommand) other;
         return personIndex.equals(e.personIndex)
                 && bookIndex.equals(e.bookIndex);
     }
