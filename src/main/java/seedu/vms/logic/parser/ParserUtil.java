@@ -216,6 +216,8 @@ public class ParserUtil {
         if (argParts.size() > 1) {
             retrieverType = argParts.get(0);
             retrieverValue = argParts.get(1);
+        } else if (retrieverValue.matches("\\d+")) {
+            retrieverType = RETRIEVER_TYPE_INDEX;
         }
 
         return formVaxRetriever(retrieverType.strip(), retrieverValue.strip());
