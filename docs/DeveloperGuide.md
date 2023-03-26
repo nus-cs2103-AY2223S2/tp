@@ -35,6 +35,11 @@ title: Developer Guide
      * [Tag](#tag)
          * [Group Tag](#group-tag)
          * [Module Tag](#module-tag)
+     * [Time](#time)
+       * [Day](#day)
+       * [TimePeriod](#timeperiod)
+     * [Timetable](#timetable)
+       * [Module](#module)
      * [Utils](#utils)
        * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
@@ -396,6 +401,30 @@ The `Model` component,
 #### **Group Tag**
 #### **Module Tag**
 
+### **Time**
+
+We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
+objects which is then used elsewhere in the codebase.
+
+<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
+</div>
+
+#### **Day**
+
+`Day` is an enumeration class in Java and it only contains the 5 weekdays: `MONDAY`,
+` TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`
+
+#### **HourBlock**
+
+`HourBlock` is an object which represents an hour of time.
+
+#### **TimeBlock**
+`TimeBlock` is an object which can represent any (non-negative) hour of time.
+
+### **Timetable**
+
 ### **Utils**
 #### **Sample Data Util**
 
@@ -710,7 +739,7 @@ However, we will be referring to all 3 commands generally as `meet`. All 3 comma
 recommendations as certain locations are only appropriate for certain activities.
 </div>
 
-This feature is utilises the [`Recommender`](#recommender-component)
+This feature is utilises the [`Recommender`](#recommenders)
 
 #### LocationUtil
 {to be filled by Hafeez}
