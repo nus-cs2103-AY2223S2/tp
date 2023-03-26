@@ -35,6 +35,7 @@
 !define COMMAND_COLOR #8B8000
 !define USER_COLOR #000000
 
+!define ENTITY_COLOR #023020
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
