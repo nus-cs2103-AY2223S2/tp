@@ -73,7 +73,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
         DrugAllergy drugAllergy = ParserUtil.parseDrugAllergy(
                 argMultimap.getValue(PREFIX_DRUG_ALLERGY).orElse(null));
-        Phone emergencyContactNumber = ParserUtil.parsePhone(
+        Phone emergencyContactNumber = ParserUtil.parseEmergencyContact(
                 argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).orElse(null));
         Patient patient = new Patient(name, phone, email, address, birthDate, gender, ic,
                 drugAllergy, emergencyContactNumber);
