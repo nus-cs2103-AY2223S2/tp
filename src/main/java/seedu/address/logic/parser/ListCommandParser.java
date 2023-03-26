@@ -40,6 +40,8 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return false;
+        String preamble = map.getPreamble().toLowerCase();
+        System.out.println(preamble);
+        return preamble.equals("paired") || preamble.equals("unpaired");
     }
 }
