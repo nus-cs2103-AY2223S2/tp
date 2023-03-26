@@ -8,7 +8,6 @@ import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
-import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
 
 /**
@@ -18,6 +17,7 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
     public static final String MESSAGE_USAGE = "Invalid index";
+    public static final String MESSAGE_SUCCESS = "Successfully viewed a delivery!";
 
     private final Index index;
 
@@ -38,20 +38,7 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person deliveryToView = lastShownList.get(index.getZeroBased());
-        StringBuilder parcelsToPrint = new StringBuilder("");
-        for (Parcel p : deliveryToView.getParcels()) {
-            parcelsToPrint.append(p.toString());
-            parcelsToPrint.append(" ");
-        }
-        String detailsOfDelivery = deliveryToView.getName().toString() + "\n"
-                + deliveryToView.getAddress().toString() + "\n"
-                + deliveryToView.getEmail().toString() + "\n"
-                + deliveryToView.getPhone().toString() + "\n"
-                + "Parcels:" + "\n"
-                + parcelsToPrint + "\n"
-                + deliveryToView.getDeliveryStatus().toString() + "\n";
-        // this is temporary
-        return new CommandResult(detailsOfDelivery);
+        return new CommandResult(MESSAGE_SUCCESS, true, deliveryToView, index.getZeroBased());
     }
 
     @Override

@@ -54,9 +54,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        deliveryStatus.setText(person.getDeliveryStatus().toString());
+        deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
         AtomicInteger parcelIndex = new AtomicInteger();
         person.getParcels().stream()
                 .sorted(Comparator.comparing(parcel -> parcel.parcelName))
@@ -71,9 +70,6 @@ public class PersonCard extends UiPart<Region> {
                     }
                     parcels.getChildren().add(label);
                 });
-        deliveryStatus.setText(person.getDeliveryStatus().toString());
-        deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
-        noOfDeliveryAttempts.setText(String.format("Number of Attempts: %d", person.getNoOfDeliveryAttempts()));
     }
 
     @Override
