@@ -53,7 +53,7 @@ public class AddCardDescriptorBuilder {
      * that we are building.
      */
     public AddCardDescriptorBuilder withTag(String tag) {
-        descriptor.setTag(new Tag(tag));
+        descriptor.setTag(new Tag(Tag.TagName.valueOf(tag.toUpperCase())));
         return this;
     }
 

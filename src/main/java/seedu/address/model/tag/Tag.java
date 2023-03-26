@@ -1,7 +1,6 @@
 package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in the master deck.
@@ -19,8 +18,10 @@ public class Tag {
         HARD
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either Easy, Medium, or Hard";
-    public static final String VALIDATION_REGEX = "\\b(easy|medium|hard)\\b";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either Easy, Medium, or Hard. "
+            + "Tag is case-insensitive.";
+
+    public static final String VALIDATION_REGEX = "(?i)\\b(easy|medium|hard)\\b";
 
     public final TagName tagName;
 

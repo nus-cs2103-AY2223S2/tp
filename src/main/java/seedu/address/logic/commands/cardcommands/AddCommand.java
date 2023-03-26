@@ -163,11 +163,11 @@ public class AddCommand extends Command {
             }
 
             // state check
-            AddCommand.AddCardDescriptor e = (AddCommand.AddCardDescriptor) other;
+            AddCommand.AddCardDescriptor otherDesc = (AddCommand.AddCardDescriptor) other;
 
-            return question.equals(e.question)
-                    && answer.equals(e.answer)
-                    && tag.equals(e.tag);
+            return question.equals(otherDesc.question)
+                    && answer.equals(otherDesc.answer)
+                    && tag == null ? otherDesc.tag == null : tag.equals(otherDesc.tag);
         }
     }
 }

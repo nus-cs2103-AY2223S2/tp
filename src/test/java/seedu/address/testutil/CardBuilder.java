@@ -15,7 +15,7 @@ public class CardBuilder {
     public static final String DEFAULT_ANSWER = "A default question is a standard, "
             + "common question used to provide basic information or understanding";
 
-    public static final String DEFAULT_TAG = "Hard";
+    public static final Tag.TagName DEFAULT_TAG = Tag.TagName.HARD;
     public static final String DEFAULT_DECK = "Default";
     private Question question;
     private Answer answer;
@@ -55,7 +55,7 @@ public class CardBuilder {
      * Sets the {@code Tag} of the {@code Card} that we are building.
      */
     public CardBuilder withTag(String tagName) {
-        this.tag = new Tag(tagName);
+        this.tag = new Tag(Tag.TagName.valueOf(tagName.toUpperCase()));
         return this;
     }
 

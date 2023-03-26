@@ -1,8 +1,10 @@
 package seedu.address.model.card;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.tag.Tag.TagName.UNTAGGED;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -30,7 +32,7 @@ public class Card {
         requireAllNonNull(question, answer, deck);
         this.question = question;
         this.answer = answer;
-        this.tag = tag;
+        this.tag = Optional.of(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
     }
 

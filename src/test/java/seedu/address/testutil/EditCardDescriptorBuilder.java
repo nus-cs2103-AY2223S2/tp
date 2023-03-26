@@ -53,7 +53,7 @@ public class EditCardDescriptorBuilder {
      * Sets the {@code Tag} of the {@code EditCardDescriptor} that we are building.
      */
     public EditCardDescriptorBuilder withTag(String tagName) {
-        descriptor.setTag(new Tag(tagName));
+        descriptor.setTag(new Tag(Tag.TagName.valueOf(tagName.toUpperCase())));
         return this;
     }
 
