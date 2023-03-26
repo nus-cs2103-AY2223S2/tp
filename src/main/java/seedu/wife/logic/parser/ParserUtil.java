@@ -91,10 +91,11 @@ public class ParserUtil {
     public static ExpiryDate parseExpiryDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!ExpiryDate.isValid(trimmedDate)) {
-            throw new ParseException(ExpiryDate.FORMAT_MESSAGE_CONSTRAINTS);
+        try {
+            return new ExpiryDate(trimmedDate);
+        } catch (IllegalArgumentException ie) {
+            throw new ParseException(ie.getMessage());
         }
-        return new ExpiryDate(trimmedDate);
     }
 
     /**

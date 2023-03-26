@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,27 +13,31 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.wife.logic.commands.foodcommands.AddCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteCommand;
+import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.FindCommand;
 import seedu.wife.logic.commands.foodcommands.ListCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
 import seedu.wife.logic.commands.generalcommands.HelpCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
+import seedu.wife.model.food.Food;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
+import seedu.wife.testutil.EditFoodDescriptorBuilder;
+import seedu.wife.testutil.FoodBuilder;
+import seedu.wife.testutil.FoodUtil;
 
 public class WifeParserTest {
 
     private final WifeParser parser = new WifeParser();
 
-    /*
-        @Test
-        public void parseCommand_add() throws Exception {
-            Food food = new FoodBuilder().build();
-            AddCommand command = (AddCommand) parser.parseCommand(FoodUtil.getAddCommand(food));
-            assertEquals(new AddCommand(food), command);
-        }
-        */
+    @Test
+    public void parseCommand_add() throws Exception {
+        Food food = new FoodBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(FoodUtil.getAddCommand(food));
+        assertEquals(new AddCommand(food), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -55,16 +59,15 @@ public class WifeParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_FOOD), command);
     }
 
-    /*
-        @Test
-        public void parseCommand_edit() throws Exception {
-            Food food = new FoodBuilder().build();
-            EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder(food).build();
-            EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                    + INDEX_FIRST_FOOD.getOneBased() + " " + FoodUtil.getEditFoodDescriptorDetails(descriptor));
-            assertEquals(new EditCommand(INDEX_FIRST_FOOD, descriptor), command);
-        }
-        */
+
+    @Test
+    public void parseCommand_edit() throws Exception {
+        Food food = new FoodBuilder().build();
+        EditCommand.EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder(food).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_FOOD.getOneBased() + " " + FoodUtil.getEditFoodDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_FOOD, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {

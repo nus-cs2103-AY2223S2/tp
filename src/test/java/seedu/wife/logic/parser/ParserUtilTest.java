@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.parser.exceptions.ParseException;
+import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Name;
+import seedu.wife.model.food.Quantity;
+import seedu.wife.model.food.Unit;
 import seedu.wife.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -86,22 +89,18 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseUnit(INVALID_UNIT));
     }
 
-    /*
     @Test
     public void parseUnit_validValueWithoutWhitespace_returnsUnit() throws Exception {
         Unit expectedUnit = new Unit(VALID_UNIT);
         assertEquals(expectedUnit, ParserUtil.parseUnit(VALID_UNIT));
     }
-    */
 
-    /*
     @Test
     public void parseUnit_validValueWithWhitespace_returnsTrimmedUnit() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        String unitWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Unit expectedUnit = new Unit(VALID_NAME);
-        assertEquals(expectedUnit, ParserUtil.parseUnit(phoneWithWhitespace));
+        assertEquals(expectedUnit, ParserUtil.parseUnit(unitWithWhitespace));
     }
-    */
 
     @Test
     public void parseQuantity_null_throwsNullPointerException() {
@@ -113,22 +112,19 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY));
     }
 
-    /*
+
     @Test
-    public void parseQuantity_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY));
     }
-    */
 
-    /*
     @Test
     public void parseQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
         String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY + WHITESPACE;
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
-    */
 
     @Test
     public void parseExpiryDate_null_throwsNullPointerException() {
@@ -140,22 +136,18 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseExpiryDate(INVALID_EXPIRY_DATE));
     }
 
-    /*
     @Test
     public void parseExpiryDate_validValueWithoutWhitespace_returnsExpiryDate() throws Exception {
         ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EXPIRY_DATE);
         assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(VALID_EXPIRY_DATE));
     }
-    */
 
-    /*
     @Test
     public void parseExpiryDate_validValueWithWhitespace_returnsTrimmedExpiryDate() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EXPIRY_DATE + WHITESPACE;
+        String expiryDateWithWhitespace = WHITESPACE + VALID_EXPIRY_DATE + WHITESPACE;
         ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EXPIRY_DATE);
-        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(emailWithWhitespace));
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(expiryDateWithWhitespace));
     }
-    */
 
     @Test
     public void parseTag_null_throwsNullPointerException() {

@@ -1,7 +1,7 @@
 package seedu.wife.logic.commands.generalcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import seedu.wife.model.Wife;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyWife_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyWife_success() {
         Model model = new ModelManager(getTypicalWife(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalWife(), new UserPrefs());
         expectedModel.setWife(new Wife());

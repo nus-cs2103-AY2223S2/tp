@@ -27,11 +27,11 @@ public class TagFoodCommandParser implements Parser<TagFoodCommand> {
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "test"));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagFoodCommand.MESSAGE_USAGE));
         }
 
         String tagName = ParserUtil.parseTagName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()).toString();
-        System.out.println(tagName);
+
         return new TagFoodCommand(tagName, idx);
     }
 }
