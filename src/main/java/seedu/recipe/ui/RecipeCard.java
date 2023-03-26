@@ -1,5 +1,7 @@
 package seedu.recipe.ui;
 
+import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
+
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -9,8 +11,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.recipe.logic.Logic;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+
 
 /**
  * A UI component that displays information of a {@code Recipe}.
@@ -60,6 +64,7 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private FlowPane steps;
 
+    Logic logic;
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
      * @param recipe the {@code Recipe} to display
@@ -87,7 +92,13 @@ public class RecipeCard extends UiPart<Region> {
         //Ingredients
         ingredientsTitle.setText("Ingredients:");
         recipe.getIngredients()
-                .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
+            .forEach((ingredient, information) -> ingredients
+                .getChildren()
+                .add(
+                    new Label(ingredientKeyValuePairToString(ingredient, information))
+                )
+            );
+
         //Steps
         stepsTitle.setText("Steps:");
         recipe.getSteps()
@@ -125,7 +136,7 @@ public class RecipeCard extends UiPart<Region> {
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
                 try {
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex);
+                    RecipeForm form = new RecipeForm(recipe, displayedIndex, logic);
                     form.display();
                 } catch (Exception e) {
                     System.out.println(e);
