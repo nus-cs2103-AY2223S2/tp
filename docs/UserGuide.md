@@ -123,7 +123,7 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
-**Notes about the command format:**
+**:information_source: Notes about the command format:**
 
 - Words encapsulated in `{}` are the parameters to be supplied by the user.\
   e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
@@ -547,7 +547,7 @@ Examples: `find content /byTag /mod CS2040S /lec Week 2` will show video `Vid 1`
 
 ### Warning
 
-If your changes to the data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
+:warning: If your changes to the data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
 
 ---
 
