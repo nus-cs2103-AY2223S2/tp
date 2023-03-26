@@ -25,12 +25,12 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listPerson` : Lists all contacts.
 
-   * `add 1 n/Bob Tan p/97450597 e/btan@mail.com`: 
+   * `addPerson 1 n/Bob Tan p/97450597 e/btan@mail.com`: 
    Adds a contact named `Bob Tan` to records
 
-   * `delete 3` : Deletes the 3rd user shown in the current list.
+   * `deletePerson 3` : Deletes the 3rd user shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -47,7 +47,8 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addPerson n/NAME`, `NAME` is a parameter which can be used as 
+`addPerson n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -68,91 +69,90 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 ### Person Commands
 
-### Adding a user: `add`
+### Adding a user: `addPerson`
 
 Adds a user to the records
 
-Format: `add i/STUDENT_ID n/NAME p/PHONE_NUMBER e/EMAIL [b/BOOK]…​`
+Format: `addPerson i/STUDENT_ID n/NAME p/PHONE_NUMBER e/EMAIL [b/BOOK]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add i/A0123456M n/Bob Tan p/91112222 e/btan@mail.com b/A_Book`
+* `addPerson i/A0123456M n/Bob Tan p/91112222 e/btan@mail.com b/A_Book`
 
-### Deleting a person : `delete`
+### Deleting a person : `deletePerson`
 
 Delete a student given a student ID.
 
-Format: `delete STUDENT_ID`
+Format: `deletePerson STUDENT_ID`
 
 * Deletes the person at the specified STUDENT_ID.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the user records.
+* `listPerson` followed by `deletePerson 2` deletes the 2nd person in the user records.
 
-### Listing all users : `list`
+### Listing all users : `listPerson`
 
 Shows a list of all users in the user records.
 
-Format: `list`
+Format: `listPerson`
 
-### Editing a person : `edit`
+### Editing a person : `editPerson`
 
 
-[//]: # (Edits an existing person in the address book.)
+Edits an existing person in the address book.
 
-[//]: # (Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`)
-
-[//]: # ()
-[//]: # (* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​)
-
-[//]: # (* At least one of the optional fields must be provided.)
-
-[//]: # (* Existing values will be updated to the input values.)
-
-[//]: # (* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.)
-
-[//]: # (* You can remove all the person’s tags by typing `t/` without)
-
-[//]: # (    specifying any tags after it.)
+Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 [//]: # ()
-[//]: # (Examples:)
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 
-[//]: # (*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.)
+* At least one of the optional fields must be provided.
 
-[//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
+* Existing values will be updated to the input values.
 
-### Locating persons by name: `find` 
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 
-_Details coming soon ..._
+* You can remove all the person’s tags by typing `t/` without
+ specifying any tags after it.
 
-[//]: # (Finds persons whose names contain any of the given keywords.)
+
+Examples:
+
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Locating persons by name: `findPerson` 
+
+[//]: # (_Details coming soon ..._)
+
+Finds persons whose names contain any of the given keywords.
 
 [//]: # ()
-[//]: # (Format: `find KEYWORD [MORE_KEYWORDS]`)
+Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 
 [//]: # ()
-[//]: # (* The search is case-insensitive. e.g `hans` will match `Hans`)
+* The search is case-insensitive. e.g `hans` will match `Hans`
 
-[//]: # (* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`)
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 
-[//]: # (* Only the name is searched.)
+* Only the name is searched.
 
 [//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
 
-[//]: # (* Persons matching at least one keyword will be returned &#40;i.e. `OR` search&#41;.)
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
 
-[//]: # (  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-[//]: # ()
-[//]: # (Examples:)
 
-[//]: # (* `find John` returns `john` and `John Doe`)
+Examples:
+
+* `findPerson John` returns `john` and `John Doe`
 
 [//]: # (* `find alex david` returns `Alex Yeoh`, `David Li`<br>)
 
@@ -170,11 +170,11 @@ Format: `listBook`
 
 ### Clearing all entries : `clear`
 
-_Details coming soon ..._
+[//]: # (_Details coming soon ..._)
 
-[//]: # (Clears all entries from the address book.)
+Clears all entries from the address book.
 
-[//]: # (Format: `clear`)
+Format: `clear`
 
 ### Exiting the program : `exit`
 
