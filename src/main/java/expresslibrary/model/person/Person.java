@@ -17,14 +17,6 @@ import expresslibrary.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
-    private final Address address;
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-    private final Set<Book> books = new HashSet<>();
-    private final Set<Tag> tags = new HashSet<>();
-
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -33,6 +25,14 @@ public class Person {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    // Identity fields
+    private final Address address;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+    private final Set<Book> books = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.

@@ -21,7 +21,7 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-import expresslibrary.model.person.Person;
+//import expresslibrary.model.person.Person;
 
 /**
  * Edits the details of an existing book in the express library.

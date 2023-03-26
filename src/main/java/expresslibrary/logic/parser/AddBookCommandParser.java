@@ -8,8 +8,8 @@ import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 import java.util.stream.Stream;
 
 import expresslibrary.commons.util.DateUtil;
@@ -19,7 +19,7 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-import expresslibrary.model.person.Person;
+//import expresslibrary.model.person.Person;
 
 /**
  * Parses input arguments and creates a new AddBookCommand object
@@ -36,8 +36,8 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN,
                 PREFIX_BORROW_DATE, PREFIX_DUE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN, PREFIX_BORROW_DATE
-                , PREFIX_DUE_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN, PREFIX_BORROW_DATE,
+                PREFIX_DUE_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookCommand.MESSAGE_USAGE));
         }
