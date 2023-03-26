@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the internship identified by the index number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
 
@@ -40,6 +40,11 @@ public class DeleteCommand extends Command {
         }
 
         Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // If Deleted Internship equals to the selected Internship
+        if (internshipToDelete == model.getSelectedInternship()) {
+            model.clearSelectedInternship();
+        }
         model.deleteInternship(internshipToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
     }
