@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_AUTHOR + "J. R. R. Tolkien "
             + PREFIX_PROGRESS + "1 1 1 "
             + PREFIX_GENRE + "Fantasy "
-            + PREFIX_RATING + "5"
+            + PREFIX_RATING + "5 "
             + PREFIX_URL + "https://allnovel.net/the-hobbit.html "
             + PREFIX_TAG + "Literature Reading "
             + PREFIX_TAG + "Holiday reading list";
