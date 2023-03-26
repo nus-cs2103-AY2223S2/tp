@@ -59,7 +59,9 @@ public class DeleteStudentCommand extends DeleteCommand {
         Name studentNameToDelete = studentToDelete.getName();
         selectedGroup.deleteStudent(studentToDelete);
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, selectedGroup, studentNameToDelete), willModifyState);
+        return new CommandResult(this,
+                String.format(MESSAGE_SUCCESS, selectedGroup, studentNameToDelete),
+                willModifyState);
     }
 
     @Override
