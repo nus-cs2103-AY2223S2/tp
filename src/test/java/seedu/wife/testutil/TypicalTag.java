@@ -5,6 +5,10 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_NEW;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_USED;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.wife.model.tag.Tag;
 
 /**
@@ -26,4 +30,8 @@ public class TypicalTag {
     public static final Tag USED_TAG = new TagBuilder()
             .withTagName(VALID_TAG_USED)
             .build();
+
+    public static List<Tag> getTypicalTag() {
+        return new ArrayList<Tag>(Arrays.asList(NEW_TAG, USED_TAG, DAIRY_TAG, CHOCOLATE_TAG));
+    }
 }

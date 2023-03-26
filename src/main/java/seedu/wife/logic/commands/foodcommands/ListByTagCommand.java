@@ -12,7 +12,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Lists all food in WIFE to the user based on specified tag.
+ * Lists all food in the WIFE to the user by specified tags.
  */
 public class ListByTagCommand extends Command {
 

@@ -6,10 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.wife.commons.core.Messages;
+import seedu.wife.commons.util.TagUtil;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.CommandResult;
-import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
@@ -23,11 +22,11 @@ public class DeleteByTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes food that has specified tags.\n"
-            + "Example: "
+            + "Example: \n"
             + COMMAND_WORD + " n/vegetable\n"
             + COMMAND_WORD + " n/vegetable n/dairy n/grains";
 
-    public static final String DELETE_FOOD_SUCCESS_MESSAGE = "Deleted Food:";
+    public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Deleted Food:";
 
     private final Set<Tag> targetTags;
 
@@ -49,27 +48,26 @@ public class DeleteByTagCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         List<Food> foodList = List.copyOf(model.getFoodList());
-        String deletedFoodSuccessMessage = DELETE_FOOD_SUCCESS_MESSAGE;
-        boolean throwError = true;
-
+        String deletedFoodSuccessMessage = MESSAGE_DELETE_FOOD_SUCCESS;
 
         for (Tag tag : this.targetTags) {
             for (Food food : foodList) {
                 Set<Tag> foodTags = food.getTags();
 
                 if (foodTags.contains(tag)) {
-                    throwError = false;
                     deletedFoodSuccessMessage = deletedFoodSuccessMessage + "\n" + food;
                     model.deleteFood(food);
                 }
             }
         }
 
-        if (throwError) {
-            throw new CommandException(String.format(Messages.MESSAGE_TAG_NOT_FOUND, this.targetTags));
+        if (deletedFoodSuccessMessage.equals(MESSAGE_DELETE_FOOD_SUCCESS)) {
+            deletedFoodSuccessMessage =
+                "Nothing to delete with the following tag:\n"
+                + TagUtil.tagsToString(targetTags);
         }
 
         return new CommandResult(deletedFoodSuccessMessage);
