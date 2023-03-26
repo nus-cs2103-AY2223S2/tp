@@ -9,28 +9,24 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Finds and lists all persons in HMHero whose name contains any of the argument keywords.
+ * Finds and lists all persons in HMHero whose note contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindCommand extends Command {
+public class SkillCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords such as name, phone number, note (case-insensitive) and displays them as a "
+            + "the specified keywords such as NOTE (case-insensitive) and displays them as a "
             + "list with index numbers.\n"
-            + "Parameters: Format 1: KEYWORDS(either NAME or PHONE NUMBER)\n "
-            + "Format 2: n/NAME p/PHONE NUMBER note/NOTE_1 note/NOTE_2\n"
-            + "Any combination of prefixes are allowed for Format 2. Using more prefixes narrows down the target. \n"
-            + "Example for Format 1: " + COMMAND_WORD + " alice bob charlie OR 12345678\n"
-            + "Example for Format 2: " + COMMAND_WORD + "n/alice bob p/12345678";
+            + "Parameters: KEYWORDS(NOTES)\n "
+            + "Example: " + COMMAND_WORD + " python";
 
     private final Predicate<Person> findPredicate;
 
-    public FindCommand(Predicate<Person> findPredicate) {
+    public SkillCommand(Predicate<Person> findPredicate) {
         this.findPredicate = findPredicate;
     }
-
 
     @Override
     public CommandResult execute(Model model) {
@@ -45,10 +41,12 @@ public class FindCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof FindCommand)) {
+
+        if (!(other instanceof SkillCommand)) {
             return false;
         }
-        FindCommand otherCmd = (FindCommand) other;
+
+        SkillCommand otherCmd = (SkillCommand) other;
         return this.findPredicate.equals(otherCmd.findPredicate);
     }
 }
