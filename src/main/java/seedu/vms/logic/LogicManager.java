@@ -51,6 +51,8 @@ public class LogicManager implements Logic {
     private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
     private volatile boolean isExecuting = true;
 
+    private Runnable closeAction = () -> {};
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -151,8 +153,14 @@ public class LogicManager implements Logic {
     }
 
 
-    private synchronized void completeExecution(List<CommandMessage> results, Optional<Command> followUp) {
-        onExecutionComplete.accept(results);
+    private synchronized void completeExecution(List<CommandMessage> messages, Optional<Command> followUp) {
+        onExecutionComplete.accept(messages);
+        for (CommandMessage message : messages) {
+            if (message.isExit()) {
+                closeAction.run();
+                return;
+            }
+        }
         if (followUp.isPresent()) {
             new Thread(() -> attemptProcess(
                     () -> execute(followUp.get()))).start();
@@ -303,5 +311,11 @@ public class LogicManager implements Logic {
     @Override
     public ObjectProperty<VaxType> detailedVaxTypeProperty() {
         return model.detailedVaxTypeProperty();
+    }
+
+
+    @Override
+    public void setCloseAction(Runnable closeAction) {
+        this.closeAction = closeAction;
     }
 }

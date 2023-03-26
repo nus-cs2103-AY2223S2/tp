@@ -1,5 +1,6 @@
 package seedu.vms.ui;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -65,6 +66,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        logic.setCloseAction(() -> Platform.runLater(this::handleExit));
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
