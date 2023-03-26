@@ -135,6 +135,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 ## Command Summary 
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Additional Resources
