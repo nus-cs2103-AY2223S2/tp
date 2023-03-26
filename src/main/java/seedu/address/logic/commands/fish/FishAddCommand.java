@@ -21,7 +21,8 @@ import seedu.address.model.tank.Tank;
 public class FishAddCommand extends FishCommand {
     public static final String FISH_COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + FISH_COMMAND_WORD + ": Adds a fish to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + FISH_COMMAND_WORD
+            + ": Adds a fish to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_LAST_FED_DATE + "LAST FED DATE "
@@ -29,7 +30,7 @@ public class FishAddCommand extends FishCommand {
             + PREFIX_FEEDING_INTERVAL + "FEEDING INTERVAL "
             + PREFIX_TANK + "TANK INDEX"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD  + " " + FISH_COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " "
             + PREFIX_NAME + "Johnny "
             + PREFIX_LAST_FED_DATE + "01/01/2023 "
             + PREFIX_SPECIES + "Guppy "

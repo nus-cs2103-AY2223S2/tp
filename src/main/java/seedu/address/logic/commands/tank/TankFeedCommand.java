@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

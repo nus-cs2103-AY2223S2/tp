@@ -331,7 +331,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Sets the lastFedDate field of all fishes in this {@code tankToFeed} with new LastFedDate object with {@code newDate}.
+     * Sets the lastFedDate field of all fishes in this {@code tankToFeed}
+     * with new LastFedDate object with {@code newDate}.
      */
     @Override
     public void setLastFedDateFishes(Tank tankToFeed, String newDate) {
