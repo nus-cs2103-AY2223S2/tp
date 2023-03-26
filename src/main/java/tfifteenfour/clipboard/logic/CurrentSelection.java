@@ -132,6 +132,8 @@ public class CurrentSelection {
      * Resets current selected page to main course page.
      */
     public void navigateBackToCoursePage() {
+        navigateBackFromSessionStudentPage();
+        navigateBackFromSessionPage();
         navigateBackFromStudentPage();
         navigateBackFromGroupPage();
     }
