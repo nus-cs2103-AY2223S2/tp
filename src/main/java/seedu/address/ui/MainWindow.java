@@ -45,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private StudentListPanel studentListPanel;
     private ParentListPanel parentListPanel;
-    private ResultDisplay resultDisplay;
+    private static ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
@@ -169,6 +169,9 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+    public static void editResultDisplay(String feedback) {
+        resultDisplay.setFeedbackToUser(feedback);
     }
 
     /**

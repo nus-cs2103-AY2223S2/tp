@@ -203,7 +203,7 @@ Examples:
 4. Weightage is out of 100%
 </div>
 
-<a name = "gradedelete">
+<a name = "gradedelete" />
 
 ### Deleting a grade for student : `gradedelete`
 
@@ -240,12 +240,8 @@ Format: `list`
 Examples:
 * `student 1A list`
 * `student 1B list`
-
-**Expected Outcome:**
-
-* `<student Name> <id> <image> <nok name> <nok email> <nok number>`
-* `ChanAhKow 21 ChanAhKow.png ChanMaiWoon chanmaiwoon@gmail.com 91234567`
-  <a name = "editstudent" /> <br><br>
+  
+<a name = "editstudent" /> <br><br>
 
 ### Edit Student:  `edit`
 
