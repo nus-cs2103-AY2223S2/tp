@@ -6,7 +6,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditContactDescriptor objects.
  */
 public class EditContactDescriptorBuilder {
     private EditContactCommand.EditContactDescriptor descriptor;
@@ -20,7 +20,7 @@ public class EditContactDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditContactDescriptor} with fields containing {@code contact}'s details
      */
     public EditContactDescriptorBuilder(Contact contact) {
         descriptor = new EditContactCommand.EditContactDescriptor();
@@ -29,7 +29,7 @@ public class EditContactDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditContactDescriptor} that we are building.
      */
     public EditContactDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -37,7 +37,7 @@ public class EditContactDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditContactDescriptor} that we are building.
      */
     public EditContactDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
