@@ -386,7 +386,53 @@ person's IsolatedEventList.
         * Users can just add one isolated event instead of adding the isolated event multiple times.
     * Cons:
         * Harder to implement finding free time slots.
-        
+
+### \[Developed\] Editing Isolated Event
+This feature allows the user to edit a specific isolated event in the person's isolated event list.
+
+### Activity Diagram
+The following activity diagram summarises what happens when a user executes an `ie_edit` command:
+
+<img src="images/EditIsolatedEventCommandActivityDiagram.png" width="1000" />
+
+### Sequence diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/EditIsolatedEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+   `ie_edit 1 1 ie/biking`, it calls the `AddressBookParser` class to parse the
+   user command.
+2. Since the user command has the `ie_edit` command word, it is a valid command. The `AddressBookParser` creates an
+   `EditIsolatedEventCommandParser` to parse the user input.
+3. The `EditIsolatedEventCommandParser` will checks if the command is valid through the `parse()` method.
+   If it parses the command successfully, `EditIsolatedEventCommand` is created.
+4. The `EditIsolatedEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `EditIsolatedEventCommand` instance which edit the isolated event to the 
+respective field requested. 
+6. Execution of `EditIsolatedEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we edit isolated event using the existing EditCommand**
+
+* **Alternative 1:** Use existing EditCommand for users' to edit isolated event.
+    * Pros:
+        * Fewer things to implement and reduce the instances of duplicating code.
+    * Cons:
+        * More prone to bugs.
+
+* **[Current implementation] Alternative 2:** Create a separate command to edit isolated event.
+    * Pros:
+        * Easier to debug.
+    * Cons:
+        * Some part of the code is the same as EditCommand.
+
 ### \[Proposed\] Undo/redo feature
 
 
