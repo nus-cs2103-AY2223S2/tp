@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -232,8 +233,8 @@ public class EditEventCommand extends Command {
         private String name;
         private LocalDate eventDate;
         private List<Person> students;
-        private List<File> attachments;
         private List<Note> notes;
+        private List<File> attachments = new ArrayList<>();
 
         public EditEventDescriptor() {}
 

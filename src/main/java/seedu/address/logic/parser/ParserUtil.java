@@ -21,6 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Performance;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -339,4 +340,17 @@ public class ParserUtil {
         }
         return new Performance(trimmedPerformance);
     }
+
+    /**
+     * Parses a {@code String remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
 }

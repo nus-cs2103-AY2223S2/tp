@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Event;
 
 /**
  * Parses input arguments and creates a new EditEventCommand object
@@ -34,12 +33,11 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         boolean isLab;
         boolean isConsultation;
 
-        Event newEvent;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditEventCommand.MESSAGE_USAGE), pe);
         }
 
         if (!argMultimap.getValue(PREFIX_TUTORIAL).isPresent()
@@ -52,31 +50,26 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
             editEventDescriptor.setEventName(ParserUtil.parseTutorialName(
                     argMultimap.getValue(PREFIX_TUTORIAL).get()));
-            //newEvent = new Tutorial(ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get()));
             isTutorial = true;
             isLab = false;
             isConsultation = false;
         } else if (argMultimap.getValue(PREFIX_LAB).isPresent()) {
             editEventDescriptor.setEventName(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get()));
-            //newEvent = new Lab(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get()));
             isTutorial = false;
             isLab = true;
             isConsultation = false;
         } else {
             editEventDescriptor.setEventName(ParserUtil.parseLabName(
                     argMultimap.getValue(PREFIX_CONSULTATION).get()));
-            //newEvent = new Consultation(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_CONSULTATION).get()));
             isTutorial = false;
             isLab = false;
             isConsultation = true;
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
-            //newEvent.changeDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
             editEventDescriptor.setAttachments(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
-            //newEvent.addAttachment(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,13 +42,15 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label attachments;
     @FXML
-    private Label progressBar;
-    @FXML
     private Label attendance;
+    @FXML
+    private Label progressBarCount;
     @FXML
     private ImageView attachmentLogo;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ProgressBar progressBar;
 
     /**
      * Adds an event with a unique index
@@ -91,6 +94,12 @@ public class EventCard extends UiPart<Region> {
             profile.setFitWidth(size);
             profile.setFitHeight(size);
             studentProfiles.getChildren().addAll(profile);
+        }
+
+        //Update progress bar
+
+        if (event.countStudents() > 0) {
+            progressBar.setProgress((double) event.countStudents() / 20);
         }
 
         //bind a click to open the attachment (only works for single attachment for now
