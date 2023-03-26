@@ -36,7 +36,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<Role> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Role> lastShownList = model.getFilteredRoleList();
 
@@ -46,7 +46,7 @@ public class ViewCommand extends Command {
 
         Role roleToView = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(roleToView);
+        return new CommandResult<>(roleToView);
     }
 
     @Override
