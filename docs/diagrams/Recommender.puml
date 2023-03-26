@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+package Recommender {
+    class Recommender
+    class Scheduler
+    class LocationRecommender
+}
+
+LocationRecommender -u-> Recommender
+Scheduler -u-> Recommender
+LocationRecommender ..> Scheduler
+@enduml

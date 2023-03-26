@@ -36,7 +36,8 @@ title: Developer Guide
        * [Group Tag](#group-tag)
        * [Module Tag](#module-tag)
    * [Utils](#utils)
-       * [Sample Data Util](#sample-data-util)
+     * [MathUtil](#math-util)
+     * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
    * [Commands](#commands)
        * [Add Command](#add-command)
@@ -50,8 +51,11 @@ title: Developer Guide
        * [Exit Command](#exit-command)
        * [Meet Command](#meet-command)
    * [Parsers](#parsers)
-       * [Argument Multimap](#argument-multimap)
-       * [Prefix](#prefix)
+     * [Argument Multimap](#argument-multimap)
+     * [Prefix](#prefix)
+   * [Recommender Component](#recommender-component)
+     * [Scheduler](#scheduler)
+     * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
 5. [Testing](#5-testing)
@@ -706,20 +710,12 @@ However, we will be referring to all 3 commands generally as `meet`. All 3 comma
 recommendations as certain locations are only appropriate for certain activities.
 </div>
 
-This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
+This feature is utilises the [`Recommender`](#recommender-component)
 
 #### LocationUtil
 {to be filled by Hafeez}
-#### Scheduler
-The Scheduler uses the participants' schedule to find common time periods that everyone
-would be free so that a meetup could be scheduled.
 
-The scheduler will always recommend timeslots and rank them in descending time duration that
-the participants could meet up.
 
-##### What needs to be fixed:
-Integration with the `LocationUtil` so that we can find the exact location of every participant
-before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
 
 ### **Organise Command**
 
@@ -731,7 +727,7 @@ The `organise` command will set a meetup with the time and place for all partici
 
 The `Scheduler` will check if the timing is a suitable for every participant to meet.
 
-### **Parsers**
+## **Parsers**
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -771,6 +767,49 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ---
+
+## **Recommender Component**
+
+**API** : `Recommender.java` {to be filled in}
+
+<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.6</b> Class Diagram for Recommender Module
+</div>
+<br>
+
+The `Recommender` component,
+* consists of 2 sub-components (modules) : `LocationRecommender` and `Scheduler`
+* recommends timing and location of meetups for relevant participants and the user.
+
+How the `Recommender` Component works:
+1. User enters a `meet/eat/study` command.
+2. Triggers the `Scheduler` to recommend common available timings amongst users and participants.
+3. `Scheduler` passes the recommended timings to `LocationRecommender`
+4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
+their `Location` at that particular timing.
+5. Feedbacks to user the recommended meetup locations and timings.
+
+#### Scheduler
+The `Scheduler`'s role is to recommend timings in which the user and all participants are available.
+The Scheduler uses the participants' schedule to find common time periods that everyone
+will be free so that a meetup could be scheduled.
+
+<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.6.1</b> Activity Diagram for Scheduler</code>
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Very Important Re-emphasis** <br>
+The scheduler will always recommend timeslots and **rank them in descending time** duration that
+the participants could meet up.
+</div>
+
+#### Location Recommender
+
+{to be filled by Hafeez}
 
 ## **Common Classes**
 
