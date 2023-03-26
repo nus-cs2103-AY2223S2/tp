@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -107,6 +108,7 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     ObservableList<Appointment> getFilteredAppointmentList();
+    ObservableList<Appointment> getSortedAppointmentList();
 
     PartMap getPartMap();
 
@@ -125,14 +127,8 @@ public interface Model {
      * Returns an unmodifiable view of the filtered customer list
      */
     ObservableList<Customer> getFilteredCustomerList();
+    ObservableList<Customer> getSortedCustomerList();
 
-    /**
-     * Updates the filter of the filtered customer list to filter by the given
-     * {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
 
     /**
      * Adds customer to the shop
@@ -158,6 +154,7 @@ public interface Model {
      * Returns an unmodifiable view of the filtered vehicle list
      */
     ObservableList<Vehicle> getFilteredVehicleList();
+    ObservableList<Vehicle> getSortedVehicleList();
 
     /**
      * Adds vehicle to the shop
@@ -181,6 +178,7 @@ public interface Model {
      * Returns an unmodifiable view of the filtered service list
      */
     ObservableList<Service> getFilteredServiceList();
+    ObservableList<Service> getSortedServiceList();
 
     /**
      * Adds service
@@ -222,6 +220,7 @@ public interface Model {
     boolean hasPart(String partName);
 
     ObservableList<Technician> getFilteredTechnicianList();
+    ObservableList<Technician> getSortedTechnicianList();
 
     /**
      * Adds Technician
@@ -237,11 +236,23 @@ public interface Model {
      */
     boolean hasTechnician(int technicianId);
 
+    /**
+     * Updates the filter of the filtered customer list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
+    void updateSortedCustomerList(Comparator<? super Customer> comparator);
+
     void updateFilteredTechnicianList(Predicate<Technician> predicate);
+    void updateSortedTechnicianList(Comparator<? super Technician> comparator);
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+    void updateSortedVehicleList(Comparator<? super Vehicle> comparator);
 
     void updateFilteredServiceList(Predicate<Service> predicate);
+    void updateSortedServiceList(Comparator<? super Service> comparator);
 
     void updatePartsMap();
 

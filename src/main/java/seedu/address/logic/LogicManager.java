@@ -17,11 +17,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.storage.Storage;
 
 /**
@@ -96,13 +98,60 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Customer> getSortedCustomerList() {
+        return model.getSortedCustomerList();
+    }
+
+    @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
         return model.getFilteredVehicleList();
     }
 
     @Override
+    public ObservableList<Vehicle> getSortedVehicleList() {
+        return model.getSortedVehicleList();
+    }
+
+    @Override
     public ObservableList<Service> getFilteredServiceList() {
         return model.getFilteredServiceList();
+    }
+
+    @Override
+    public ObservableList<Service> getSortedServiceList() {
+        return this.model.getSortedServiceList();
+    }
+
+    /**
+     * @return Unmodifiable view of the filtered list of appointments
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    /**
+     * @return Unmodifiable view of the sorted list of appointments
+     */
+    @Override
+    public ObservableList<Appointment> getSortedAppointmentList() {
+        return model.getSortedAppointmentList();
+    }
+
+    /**
+     * @return Unmodifiable view of the filtered list of technicians
+     */
+    @Override
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return model.getFilteredTechnicianList();
+    }
+
+    /**
+     * @return Unmodifiable view of the sorted list of technicians
+     */
+    @Override
+    public ObservableList<Technician> getSortedTechnicianList() {
+        return model.getSortedTechnicianList();
     }
 
     @Override

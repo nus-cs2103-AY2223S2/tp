@@ -9,6 +9,11 @@ public enum ResultType {
     LISTED_VEHICLES,
     LISTED_SERVICES,
     VIEW_VEHICLE,
+    SORT_CUSTOMERS,
+    SORT_VEHICLES,
+    SORT_SERVICES,
+    SORT_TECHNICIANS,
+    SORT_APPOINTMENTS,
     OTHERS;
 
     @Override

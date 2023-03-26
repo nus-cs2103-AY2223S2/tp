@@ -10,11 +10,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * API of the Logic component
@@ -60,11 +62,46 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of customers */
     ObservableList<Customer> getFilteredCustomerList();
 
+    /**
+     * @return Unmodifiable view of the sorted list of customers
+     */
+    ObservableList<Customer> getSortedCustomerList();
+
     /** Returns an unmodifiable view of the filtered list of vehicles */
     ObservableList<Vehicle> getFilteredVehicleList();
 
+    /**
+     * @return Unmodifiable view of the sorted list of vehicles
+     */
+    ObservableList<Vehicle> getSortedVehicleList();
+
     /** Returns an unmodifiable view of the filtered list of services */
     ObservableList<Service> getFilteredServiceList();
+
+    /**
+     * @return Unmodifiable view of the sorted list of services
+     */
+    ObservableList<Service> getSortedServiceList();
+
+    /**
+     * @return Unmodifiable view of the filtered list of appointments
+     */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * @return Unmodifiable view of the sorted list of appointments
+     */
+    ObservableList<Appointment> getSortedAppointmentList();
+
+    /**
+     * @return Unmodifiable view of the filtered list of technicians
+     */
+    ObservableList<Technician> getFilteredTechnicianList();
+
+    /**
+     * @return Unmodifiable view of the sorted list of technicians
+     */
+    ObservableList<Technician> getSortedTechnicianList();
 
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();

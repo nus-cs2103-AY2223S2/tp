@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -110,20 +114,20 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    private void initCustomerListPanel() {
-        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
+    private void initCustomerListPanel(ObservableList<Customer> list) {
+        customerListPanel = new CustomerListPanel(list,
                 logic.getCustomerVehicleMap());
         listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
     }
 
-    private void initVehicleListPanel() {
-        vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
+    private void initVehicleListPanel(ObservableList<Vehicle> list) {
+        vehicleListPanel = new VehicleListPanel(list,
                 logic.getVehicleDataMap());
         listPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
     }
 
-    private void initServiceListPanel() {
-        serviceListPanel = new ServiceListPanel(logic.getFilteredServiceList(),
+    private void initServiceListPanel(ObservableList<Service> list) {
+        serviceListPanel = new ServiceListPanel(list,
                 logic.getServiceDataMap());
         listPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
     }
@@ -132,7 +136,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        initCustomerListPanel();
+        initCustomerListPanel(logic.getFilteredCustomerList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -204,14 +208,22 @@ public class MainWindow extends UiPart<Stage> {
             // Handle UI Updates
             switch (commandResult.getType()) {
             case LISTED_CUSTOMERS:
-                initCustomerListPanel();
+                initCustomerListPanel(this.logic.getFilteredCustomerList());
                 break;
             case LISTED_VEHICLES:
-                initVehicleListPanel();
+                initVehicleListPanel(this.logic.getFilteredVehicleList());
                 break;
             case LISTED_SERVICES:
-                initServiceListPanel();
+                initServiceListPanel(this.logic.getFilteredServiceList());
                 break;
+            case SORT_CUSTOMERS:
+                initCustomerListPanel(this.logic.getSortedCustomerList());
+                break;
+            case SORT_VEHICLES:
+                initVehicleListPanel(this.logic.getSortedVehicleList());
+                break;
+            case SORT_SERVICES:
+                initServiceListPanel(this.logic.getSortedServiceList());
             default:
             }
 

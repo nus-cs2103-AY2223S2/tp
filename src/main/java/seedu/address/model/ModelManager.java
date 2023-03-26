@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Customer;
@@ -33,10 +35,15 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Customer> filteredCustomers;
+    private final SortedList<Customer> sortedCustomers;
     private final FilteredList<Technician> filteredTechnicians;
+    private final SortedList<Technician> sortedTechnicians;
     private final FilteredList<Service> filteredServices;
+    private final SortedList<Service> sortedServices;
     private final FilteredList<Vehicle> filteredVehicles;
+    private final SortedList<Vehicle> sortedVehicles;
     private final FilteredList<Appointment> filteredAppointment;
+    private final SortedList<Appointment> sortedAppointments;
 
     private final PartMap partMap;
     private final Shop shop;
@@ -60,11 +67,22 @@ public class ModelManager implements Model {
 
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
         filteredCustomers = new FilteredList<>(this.shop.getCustomerList());
+        sortedCustomers = new SortedList<>(filteredCustomers);
+
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
+        sortedTechnicians = new SortedList<>(filteredTechnicians);
+
         filteredServices = new FilteredList<>(this.shop.getServiceList());
+        sortedServices = new SortedList<>(filteredServices);
+
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
+        sortedVehicles = new SortedList<>(filteredVehicles);
+
         filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        sortedAppointments = new SortedList<>(filteredAppointment);
+
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
@@ -205,9 +223,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
-        requireNonNull(predicate);
-        filteredCustomers.setPredicate(predicate);
+    public ObservableList<Customer> getSortedCustomerList() {
+        return this.sortedCustomers;
     }
 
     // ==== For Vehicles ==
@@ -215,6 +232,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
         return filteredVehicles;
+    }
+
+    @Override
+    public ObservableList<Vehicle> getSortedVehicleList() {
+        return this.sortedVehicles;
     }
 
     /**
@@ -248,7 +270,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Service> getFilteredServiceList() {
-        return filteredServices;
+        return this.filteredServices;
+    }
+
+    @Override
+    public ObservableList<Service> getSortedServiceList() {
+        return this.sortedServices;
     }
 
     /**
@@ -287,6 +314,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -297,6 +325,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointment;
+    }
+
+    @Override
+    public ObservableList<Appointment> getSortedAppointmentList() {
+        return sortedAppointments;
     }
 
     // ==== For Part ==
@@ -327,10 +360,16 @@ public class ModelManager implements Model {
         return filteredTechnicians;
     }
 
+    @Override
+    public ObservableList<Technician> getSortedTechnicianList() {
+        return sortedTechnicians;
+    }
+
     // ==== For Technician ==
     @Override
     public void addTechnician(Technician technician) {
         this.shop.addTechnician(technician);
+        updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
     }
 
     @Override
@@ -380,6 +419,16 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    @Override
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+        requireNonNull(predicate);
+        filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedCustomerList(Comparator<? super Customer> comparator) {
+        this.sortedCustomers.sort(comparator);
+    }
 
     @Override
     public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
@@ -388,9 +437,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateSortedTechnicianList(Comparator<? super Technician> comparator) {
+        this.sortedTechnicians.sort(comparator);
+    }
+
+    @Override
     public void updateFilteredServiceList(Predicate<Service> predicate) {
         requireNonNull(predicate);
         filteredServices.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedServiceList(Comparator<? super Service> comparator) {
+        this.sortedServices.sort(comparator);
     }
 
     @Override
@@ -403,6 +462,11 @@ public class ModelManager implements Model {
     public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedVehicleList(Comparator<? super Vehicle> comparator) {
+        this.sortedVehicles.sort(comparator);
     }
 
     //    @Override
