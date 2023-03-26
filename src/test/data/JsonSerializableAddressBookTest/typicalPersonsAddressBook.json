@@ -1,3 +1,5 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons": [
     {
       "nric": "S1234567A",
@@ -80,4 +82,4 @@
       "tagged": []
     }
   ]
-
+}
