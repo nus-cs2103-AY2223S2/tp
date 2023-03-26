@@ -11,7 +11,7 @@ public class Credit {
     public static final String MESSAGE_CONSTRAINTS =
             "Credit should only be a number and only 1-2 digits long.";
 
-    public static final String MESSAGE_MISSING_DETAIL = "Missing credit after /m.";
+    public static final String MESSAGE_MISSING_DETAIL = "Missing credit after /c.";
 
     private static final String VALIDATION_REGEX = "\\d{1,2}";
 

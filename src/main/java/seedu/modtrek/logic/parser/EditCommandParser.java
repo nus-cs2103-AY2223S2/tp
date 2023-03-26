@@ -74,19 +74,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editModuleDescriptor.setSemYear(ParserUtil.parseSemYear(argMultimap.getValue(PREFIX_SEMYEAR).get()));
         }
 
-        boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
-        String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
-        if (isGradePresent && gradeString.isEmpty()) {
-            throw new ParseException(Grade.MESSAGE_MISSING_DETAIL);
-        }
-        if (!gradeString.isEmpty()) {
+        if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
             editModuleDescriptor.setGrade(ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
         }
 
-        boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
-        if (isTagPresent && argMultimap.getAllValues(PREFIX_TAG).contains("")) {
-            throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
-        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
 
         if (!editModuleDescriptor.isAnyFieldEdited()) {

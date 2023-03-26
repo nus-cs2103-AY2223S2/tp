@@ -36,12 +36,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        if (!argMultimap.getPreamble().isEmpty() || args.isEmpty()) {
+        if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR)) {
             throw new ParseException(AddCommand.MESSAGE_MISSING_PREFIXES);
+        }
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         String codeString = argMultimap.getValue(PREFIX_CODE).get();
@@ -62,11 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         SemYear semYear = ParserUtil.parseSemYear(semYearString);
 
-        boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
         String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
-        if (isGradePresent && gradeString.isEmpty()) {
-            throw new ParseException(Grade.MESSAGE_MISSING_DETAIL);
-        }
         Grade grade = ParserUtil.parseGrade(gradeString);
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();

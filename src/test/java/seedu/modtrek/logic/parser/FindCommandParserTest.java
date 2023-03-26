@@ -6,6 +6,7 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.TAG_DESC_CS1101S;
+import static seedu.modtrek.logic.parser.CliSyntax.*;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -14,42 +15,42 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.*;
 import seedu.modtrek.model.tag.Tag;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private final FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ",
+        assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_emptyArgAfterPrefixCode_throwsParseException() {
-        assertParseFailure(parser, " /m", "Missing module code prefix after /m");
+        assertParseFailure(parser, " " + PREFIX_CODE, CodePrefix.MESSAGE_MISSING_DETAIL);
     }
 
     @Test
     public void parse_emptyArgAfterPrefixCredit_throwsParseException() {
-        assertParseFailure(parser, " /c", "Missing credit after /c");
+        assertParseFailure(parser, " " + PREFIX_CREDIT, Credit.MESSAGE_MISSING_DETAIL);
     }
 
     @Test
     public void parse_emptyArgAfterPrefixSemYear_throwsParseException() {
-        assertParseFailure(parser, " /y", "Missing semyear after /y");
+        assertParseFailure(parser, " " + PREFIX_SEMYEAR, SemYear.MESSAGE_MISSING_DETAIL);
     }
 
     @Test
     public void parse_emptyArgAfterPrefixGrade_throwsParseException() {
-        assertParseFailure(parser, " /g", "Missing grade after /g");
+        assertParseFailure(parser, " " + PREFIX_GRADE, Grade.MESSAGE_MISSING_DETAIL);
     }
 
     @Test
     public void parse_emptyArgAfterPrefixTag_throwsParseException() {
-        assertParseFailure(parser, " /t", "Missing tag after /t");
+        assertParseFailure(parser, " " + PREFIX_TAG, Tag.MESSAGE_MISSING_DETAIL);
     }
 
     @Test

@@ -24,8 +24,7 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.modtrek.logic.parser.CliSyntax.*;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
@@ -48,15 +47,15 @@ class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
         // no module specified
-        assertParseFailure(parser, PREFIX_CODE + " " + VALID_CODE_CS1101S, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + PREFIX_CODE + " " + VALID_CODE_CS1101S, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, VALID_CODE_CS1101S, EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, " " + VALID_CODE_CS1101S, EditCommand.MESSAGE_NOT_EDITED);
 
         // no module and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -65,30 +64,30 @@ class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, VALID_CODE_CS1101S + VALID_CREDIT_CS1101S, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + VALID_CODE_CS1101S + VALID_CREDIT_CS1101S, Code.MESSAGE_CONSTRAINTS);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, VALID_CODE_CS1101S + "/i " + VALID_CREDIT_CS1101S, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + VALID_CODE_CS1101S + "/i " + VALID_CREDIT_CS1101S, Code.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_CODE_DESC,
-                Code.MESSAGE_CONSTRAINTS); // invalid name
+                Code.MESSAGE_CONSTRAINTS); // invalid code
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_CREDIT_DESC,
-                Credit.MESSAGE_CONSTRAINTS); // invalid phone
+                Credit.MESSAGE_CONSTRAINTS); // invalid credit
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_SEMYEAR_DESC,
-                SemYear.MESSAGE_CONSTRAINTS); // invalid email
+                SemYear.MESSAGE_CONSTRAINTS); // invalid sem-year
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_GRADE_DESC,
-                Grade.MESSAGE_CONSTRAINTS); // invalid address
+                Grade.MESSAGE_CONSTRAINTS); // invalid grade
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
+        // invalid credit followed by valid sem-year
         assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_CREDIT_DESC
                 + SEMYEAR_DESC_CS1101S, Credit.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid credit followed by invalid credit. The test case for invalid credit followed by valid credit
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, VALID_CODE_CS1101S + CREDIT_DESC_MA2002
                 + INVALID_CREDIT_DESC, Credit.MESSAGE_CONSTRAINTS);
@@ -109,8 +108,17 @@ class EditCommandParserTest {
     }
 
     @Test
+    public void parse_missingValue_failure() {
+        assertParseFailure(parser, VALID_CODE_CS1101S + " " + PREFIX_CODE,
+                Code.MESSAGE_MISSING_DETAIL);
+        assertParseFailure(parser, VALID_CODE_CS1101S + " " + PREFIX_CREDIT,
+                Credit.MESSAGE_MISSING_DETAIL);
+        assertParseFailure(parser, VALID_CODE_CS1101S + " " + PREFIX_SEMYEAR,
+                SemYear.MESSAGE_MISSING_DETAIL);
+    }
+
+    @Test
     public void parse_allFieldsSpecified_success() {
-        Module targetModule = CS1101S;
         String userInput = VALID_CODE_CS1101S + CREDIT_DESC_MA2002 + TAG_DESC_CS1101S
                 + SEMYEAR_DESC_CS1101S + GRADE_DESC_CS1101S + CODE_DESC_CS1101S + TAG_DESC_MA2002;
 
@@ -126,7 +134,6 @@ class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Module targetModule = CS1101S;
         String userInput = VALID_CODE_CS1101S + CREDIT_DESC_MA2002 + SEMYEAR_DESC_CS1101S;
 
         EditCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
@@ -139,27 +146,26 @@ class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
-        Module targetModule = CS1101S;
+        // code
         String userInput = VALID_CODE_CS1101S + CODE_DESC_CS1101S;
         EditCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
                 .withCode(VALID_CODE_CS1101S).build();
         EditCommand expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // credit
         userInput = VALID_CODE_CS1101S + CREDIT_DESC_CS1101S;
         descriptor = new EditModuleDescriptorBuilder().withCredit(VALID_CREDIT_CS1101S).build();
         expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // sem-year
         userInput = VALID_CODE_CS1101S + SEMYEAR_DESC_CS1101S;
         descriptor = new EditModuleDescriptorBuilder().withSemYear(VALID_SEMYEAR_CS1101S).build();
         expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // grade
         userInput = VALID_CODE_CS1101S + GRADE_DESC_CS1101S;
         descriptor = new EditModuleDescriptorBuilder().withGrade(VALID_GRADE_CS1101S).build();
         expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
@@ -174,7 +180,6 @@ class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Module targetModule = CS1101S;
         String userInput = VALID_CODE_CS1101S + CREDIT_DESC_CS1101S + GRADE_DESC_CS1101S
                 + SEMYEAR_DESC_CS1101S
                 + TAG_DESC_MA2002 + CREDIT_DESC_CS1101S + GRADE_DESC_CS1101S + SEMYEAR_DESC_CS1101S
@@ -194,7 +199,6 @@ class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Module targetModule = CS1101S;
         String userInput = VALID_CODE_CS1101S + INVALID_CREDIT_DESC + CREDIT_DESC_MA2002;
         EditCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
                 .withCredit(VALID_CREDIT_MA2002).build();
@@ -209,18 +213,6 @@ class EditCommandParserTest {
                 .withSemYear(VALID_SEMYEAR_MA2002)
                 .withGrade(VALID_GRADE_MA2002).build();
         expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Module targetModule = CS1101S;
-        String userInput = VALID_CODE_CS1101S + TAG_EMPTY;
-
-        EditCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
-                .withTags().build();
-        EditCommand expectedCommand = new EditCommand(new Code(VALID_CODE_CS1101S), descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
