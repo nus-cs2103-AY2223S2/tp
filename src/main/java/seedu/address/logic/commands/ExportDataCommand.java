@@ -27,7 +27,7 @@ public class ExportDataCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "C:\\Users\\User\\Desktop\\data.json";
 
-    public static final String MESSAGE_SUCCESS = "Data imported from file.";
+    public static final String MESSAGE_SUCCESS = "Data exported successfully.";
 
     private final Path filePath;
 

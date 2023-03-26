@@ -189,20 +189,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleExport() {
-        // DirectoryChooser directoryChooser = new DirectoryChooser();
-        // directoryChooser.setTitle("Select Directory to Export to");
-        // File backupFile = directoryChooser.showDialog(primaryStage);
-
-        // if (backupFile == null) {
-        //     logger.info("No file selected");
-        //     return;
-        // }
-
-        // try {
-        //     this.logic.storeAddressBook(Paths.get(backupFile.getAbsolutePath(), "addressbook.json"));
-        // } catch (IOException e) {
-        //     logger.info("Export Failed");
-        // }
         if (!exportWindow.isShowing()) {
             exportWindow.show();
         } else {
