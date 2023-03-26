@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -12,7 +9,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -39,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ImportWindow importWindow;
+    private ExportWindow exportWindow;
     private TaskListPanel taskListPanel;
     private ScoreListPanel scoreListPanel;
 
@@ -86,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         importWindow = new ImportWindow(this.logic);
+        exportWindow = new ExportWindow(this.logic);
     }
 
     public Stage getPrimaryStage() {
@@ -191,19 +189,24 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleExport() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Select Directory to Export to");
-        File backupFile = directoryChooser.showDialog(primaryStage);
+        // DirectoryChooser directoryChooser = new DirectoryChooser();
+        // directoryChooser.setTitle("Select Directory to Export to");
+        // File backupFile = directoryChooser.showDialog(primaryStage);
 
-        if (backupFile == null) {
-            logger.info("No file selected");
-            return;
-        }
+        // if (backupFile == null) {
+        //     logger.info("No file selected");
+        //     return;
+        // }
 
-        try {
-            this.logic.storeAddressBook(Paths.get(backupFile.getAbsolutePath(), "addressbook.json"));
-        } catch (IOException e) {
-            logger.info("Export Failed");
+        // try {
+        //     this.logic.storeAddressBook(Paths.get(backupFile.getAbsolutePath(), "addressbook.json"));
+        // } catch (IOException e) {
+        //     logger.info("Export Failed");
+        // }
+        if (!exportWindow.isShowing()) {
+            exportWindow.show();
+        } else {
+            exportWindow.focus();
         }
     }
 

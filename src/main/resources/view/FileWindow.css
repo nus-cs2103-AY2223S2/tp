@@ -13,18 +13,18 @@
     -fx-padding: 0 0 0 0;
 }
 
-#importButton {
+.containerButton {
     -fx-background-color: #d1ceee;
     -fx-font-size: 16pt;
     -fx-text-fill: #5058a3;
     -fx-background-radius: 10;
 }
 
-#importButton:hover {
+.containerButton:hover {
     -fx-background-color: #dad8e9;
 }
 
-#importButton:armed {
+.containerButton:armed {
     -fx-background-color: #d1ceee;
 }
 
