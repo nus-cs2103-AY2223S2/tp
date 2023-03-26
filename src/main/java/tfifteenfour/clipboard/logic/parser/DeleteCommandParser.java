@@ -64,7 +64,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         case GROUP:
             return new DeleteGroupCommand(index);
         case SESSION:
-            return new DeleteSessionCommand();
+            return new DeleteSessionCommand(index);
         case STUDENT:
             return new DeleteStudentCommand(index);
         default:

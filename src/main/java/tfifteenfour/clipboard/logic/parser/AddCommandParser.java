@@ -18,12 +18,14 @@ import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -52,7 +54,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             Group group = parseGroupInfo(args);
             return new AddGroupCommand(group);
         case SESSION:
-            return new AddSessionCommand();
+            Session session = parseSessionInfo(args);
+            return new AddSessionCommand(session);
         case STUDENT:
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);
@@ -80,6 +83,16 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Group group = ParserUtil.parseGroup(tokens[2]);
         return group;
+    }
+
+    private Session parseSessionInfo(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length != 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
+        }
+
+        Session session = ParserUtil.parseSession(tokens[2]);
+        return session;
     }
 
     private Student parseStudentInfo(String args) throws ParseException {

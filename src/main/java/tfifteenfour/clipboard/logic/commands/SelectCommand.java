@@ -11,6 +11,7 @@ import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -56,6 +57,11 @@ public class SelectCommand extends Command {
         case STUDENT_PAGE:
             Student selectedStudent = handleSelectStudent(model, currentSelection);
             return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
+
+        case SESSION_PAGE:
+            Session selectedSession = handleSelectSession(model, currentSelection);
+            return new CommandResult(this, String.format("Viewing: %s", selectedSession), willModifyState);
+
         default:
             throw new CommandException("Unable to select");
         }
@@ -94,6 +100,18 @@ public class SelectCommand extends Command {
 
         // end of navigation, no longer need to call setters of currentSelection
         return selectedStudent;
+    }
+
+    private Session handleSelectSession(Model model, CurrentSelection currentSelection) throws CommandException {
+        List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableSessionList();
+        if (targetIndex.getZeroBased() >= sessionList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
+        Session selectedSession = sessionList.get(targetIndex.getZeroBased());
+
+        currentSelection.selectSession(selectedSession);
+        // end of navigation, no longer need to call setters of currentSelection
+        return selectedSession;
     }
 
     @Override

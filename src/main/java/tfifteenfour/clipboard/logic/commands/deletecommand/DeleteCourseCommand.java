@@ -51,7 +51,7 @@ public class DeleteCourseCommand extends DeleteCommand {
         List<Course> lastShownList = model.getUnmodifiableFilteredCourseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
 
         Course courseToDelete = lastShownList.get(index.getZeroBased());

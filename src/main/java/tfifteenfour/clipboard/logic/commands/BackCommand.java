@@ -46,6 +46,17 @@ public class BackCommand extends Command {
             currentSelection.navigateBackFromStudentPage();
             return new CommandResult(this, String.format("Back to group page of %s",
                     currentSelection.getSelectedCourse()), willModifyState);
+
+        case SESSION_PAGE:
+            currentSelection.navigateBackFromSessionPage();
+            return new CommandResult(this, String.format("Back to group page of %s",
+                    currentSelection.getSelectedCourse()), willModifyState);
+
+        case SESSION_STUDENT_PAGE:
+            currentSelection.navigateBackFromSessionStudentPage();
+            return new CommandResult(this, String.format("Back to session page of %s",
+                    currentSelection.getSelectedGroup()), willModifyState);
+
         default:
             throw new CommandException("Unable to select");
         }

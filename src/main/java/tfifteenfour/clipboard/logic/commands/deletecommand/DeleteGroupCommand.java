@@ -52,7 +52,7 @@ public class DeleteGroupCommand extends DeleteCommand {
         List<Group> lastShownList = selectedCourse.getUnmodifiableGroupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
 
         Group groupToDelete = lastShownList.get(index.getZeroBased());
