@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
@@ -77,13 +78,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Helper function for resetData().
      * Fixes any discrepancies and inconsistencies in patient-ward relationships
      * when reading from data.
+     * Adds wards if patient's ward not found.
+     * Does not remove wards in any case, occupancy just remains at 0.
      */
     private void fixData() {
         for (Patient patient:patients) {
             Boolean wardExists = false;
             String wardName = patient.getWard();
             for (Ward ward:wards) {
-                if (wardName == ward.value) {
+                if (wardName.equals(ward.value)) {
                     wardExists = true;
                     if (!ward.hasPatient(patient)) {
                         ward.addPatient(patient);
@@ -166,9 +169,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The ward must not already exist in the address book.
      */
     public void addWard(Ward ward) {
-        if (!hasWard(ward)) {
-            wards.add(ward);
-        }
+        wards.add(ward);
     }
 
     /**
@@ -203,11 +204,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Patient> getPatientList() {
+        fixData();
         return patients.asUnmodifiableObservableList();
     }
 
     @Override
     public ObservableList<Ward> getWardList() {
+        fixData();
         return wards.asUnmodifiableObservableList();
     }
 

@@ -39,6 +39,7 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public UniqueWardList() {
         Ward waitingRoom = new Ward("Waiting Room");
+
         add(waitingRoom);
     }
 
@@ -64,10 +65,9 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public void add(Ward toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateWardException();
+        if (!contains(toAdd)) {
+            internalList.add(toAdd);
         }
-        internalList.add(toAdd);
     }
 
     /**

@@ -177,7 +177,7 @@ public class Ward {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ward // instanceof handles nulls
-                        && getName().equals(((Ward) other).getName()));
+                        && value.equals(((Ward) other).value));
     }
 
     @Override
