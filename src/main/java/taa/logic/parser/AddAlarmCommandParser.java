@@ -1,14 +1,15 @@
 package taa.logic.parser;
 
+import java.util.stream.Stream;
+
+import taa.logic.parser.exceptions.ParseException;
+import taa.model.Alarm;
+
 import static taa.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static taa.logic.parser.CliSyntax.PREFIX_TIME;
 
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
-import taa.logic.parser.exceptions.ParseException;
-import taa.model.Alarm;
-
-import java.util.stream.Stream;
 
 /**
  * Defines the parser for the add alarm command.
