@@ -372,7 +372,7 @@
                       <Insets left="20.0" />
                     </HBox.margin>
                   </Button>
-                  <ImageView fitHeight="78.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="helpImage" fitHeight="78.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                       <Image url="@../../../../docs/images/internbuddy-help.png" />
                     </image>

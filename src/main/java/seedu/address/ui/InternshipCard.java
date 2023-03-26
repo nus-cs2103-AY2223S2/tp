@@ -118,13 +118,13 @@ public class InternshipCard extends UiPart<Region> {
     public static HashMap<String, Color> setupColours() {
         //Hashmap that stores the colours associated with each status
         HashMap<String, Color> colorMap = new HashMap<String, Color>();
-        colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
-        colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
-        colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
-        colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
-        colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
+        colorMap.put(ACCEPTED, Color.rgb(42, 174, 79, 1.0));
         colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
-        colorMap.put(ACCEPTED, Color.rgb(10, 50, 20, 1.0));
+        colorMap.put(OFFERED, Color.rgb(42, 174, 166, 1.0));
+        colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
+        colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
+        colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
+        colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
         return colorMap;
     }
 
@@ -139,23 +139,23 @@ public class InternshipCard extends UiPart<Region> {
     public static String getDateLabel(String statusString) {
         String dateLabel;
         switch (statusString) {
-        case APPLIED:
-            dateLabel = "Date Applied: ";
-            break;
-        case ASSESSMENT:
-            dateLabel = "Date of Assessment: ";
-            break;
-        case INTERVIEW:
-            dateLabel = "Date of Interview: ";
-            break;
-        case OFFERED:
-            dateLabel = "Deadline of Offer Acceptance: ";
+        case ACCEPTED:
+            dateLabel = "Date of Acceptance: ";
             break;
         case REJECTED:
             dateLabel = "Date of Notice of Rejection: ";
             break;
-        case ACCEPTED:
-            dateLabel = "Date of Acceptance: ";
+        case OFFERED:
+            dateLabel = "Deadline of Offer Acceptance: ";
+            break;
+        case INTERVIEW:
+            dateLabel = "Date of Interview: ";
+            break;
+        case ASSESSMENT:
+            dateLabel = "Date of Assessment: ";
+            break;
+        case APPLIED:
+            dateLabel = "Date Applied: ";
             break;
         default:
             dateLabel = "Deadline of Application: ";

@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -22,6 +24,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Button copyButton;
+    @FXML
+    private ImageView helpImage;
 
     /**
      * Creates a new HelpWindow.
@@ -59,6 +63,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+        helpImage.setImage(new Image(this.getClass().getResourceAsStream("/images/internbuddy-help.png")));
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -112,5 +117,9 @@ public class HelpWindow extends UiPart<Stage> {
                 assert (false);
             }
         }
+    }
+
+    public ImageView getHelpImage() {
+        return this.helpImage;
     }
 }

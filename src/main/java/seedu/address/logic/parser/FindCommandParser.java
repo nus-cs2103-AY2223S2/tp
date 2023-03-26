@@ -8,8 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
@@ -18,6 +20,8 @@ import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static final Logger logger = LogsCenter.getLogger(FindCommandParser.class);
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -30,6 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
+            FindCommandParser.logger.info("User inputted find command with non-empty preamble.");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -39,6 +44,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 && !argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && !argMultimap.getValue(PREFIX_DATE).isPresent()
                 && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            FindCommandParser.logger.info("User inputted find command with no fields");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

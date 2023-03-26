@@ -80,7 +80,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'internbuddy.jar'
 }
 
 //@@author eugenetangkj-reused
@@ -139,6 +139,10 @@ test {
             test.exclude 'seedu/address/ui/**'
         }
     }
+}
+
+tasks.withType(JavaExec) {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

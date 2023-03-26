@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":cr:CommandResult" as CommandResult LOGIC_COLOR
 participant ":EditInternshipDescriptor" as Descriptor LOGIC_COLOR
 end box
 
@@ -38,16 +38,16 @@ EditCommand -> Descriptor
 activate Descriptor
 Descriptor --> EditCommand :
 deactivate Descriptor
-EditCommand --> EditCommandParser : "e:EditCommand"
+EditCommand --> EditCommandParser : e
 deactivate EditCommand
 
-EditCommandParser --> InternBuddyParser : "e:EditCommand"
+EditCommandParser --> InternBuddyParser : e
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditCommandParser -[hidden]-> InternBuddyParser
 destroy EditCommandParser
 
-InternBuddyParser --> LogicManager : "e:EditCommand"
+InternBuddyParser --> LogicManager : e
 deactivate InternBuddyParser
 
 LogicManager -> EditCommand : execute()
@@ -71,9 +71,10 @@ activate CommandResult
 CommandResult --> EditCommand
 deactivate CommandResult
 
-EditCommand --> LogicManager : result
+EditCommand --> LogicManager : cr
 deactivate EditCommand
 
 [<--LogicManager
+destroy EditCommand
 deactivate LogicManager
 @enduml
