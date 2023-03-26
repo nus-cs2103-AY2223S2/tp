@@ -19,8 +19,7 @@ efficient, and effective, so that NPOs can focus on making a difference in their
 
 ## Purpose of Guide
 
-This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as
-a refresher for any experienced or returning users, allowing you to make the most out of PennyWise.
+This guide aims to teach those new to FriendlyLink how to navigate and utilise the application.
 
 ## How to use this User Guide
 
@@ -35,7 +34,7 @@ This provides some additional information that you are recommended to know.
 ### Tip Box
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
-This provides some quick and convenient hacks that you can use to optimize your experience with PennyWise.
+This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
 ### Danger Box
