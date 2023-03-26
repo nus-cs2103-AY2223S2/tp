@@ -115,7 +115,7 @@ Example: <br>
 
 ### Finding Internships: `find`
 Finds Internships by Position, Company, Status.
-Format: `find [p/ POSITION] [c/ COMPANY] [s/ STATUS]`
+Format: `find p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS]`
 
 * After keying in the `find` command, the program will filter the internship catalogue accordingly.
 * To revert the list back to the original, just simply enter the `list` command.
