@@ -3,9 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
@@ -59,11 +61,36 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     //// employee-level operations
 
     /**
-     * Returns true if an employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if an employee with the same identity as {@code employee} exists in the database.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return employees.contains(employee);
+        return employees.asUnmodifiableObservableList().stream().anyMatch(existingEmployee ->
+                existingEmployee.getName().equals(employee.getName())
+                        && existingEmployee.getPhone().equals(employee.getPhone())
+                        && existingEmployee.getEmail().equals(employee.getEmail())
+                        && existingEmployee.getAddress().equals(employee.getAddress())
+                        && existingEmployee.getDepartment().equals(employee.getDepartment())
+        );
+    }
+
+
+
+    /**
+     * Returns an Optional object that may contain the Employee with a given employee ID {@code employeeId}.
+     */
+    public Optional<Employee> getEmployee(EmployeeId employeeId) {
+        requireNonNull(employeeId);
+        ObservableList<Employee> allEmployees = this.getEmployeeList();
+        List<Employee> filteredEmployees = allEmployees.filtered(employee ->
+                employee.getEmployeeId().equals(employeeId));
+        assert(filteredEmployees.size() <= 1);
+
+        if (filteredEmployees.size() == 1) {
+            return Optional.ofNullable(filteredEmployees.get(0));
+        } else {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -73,6 +100,7 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     public void addEmployee(Employee p) {
         employees.add(p);
     }
+
 
     /**
      * Replaces the given employee {@code target} in the list with {@code editedPerson}.

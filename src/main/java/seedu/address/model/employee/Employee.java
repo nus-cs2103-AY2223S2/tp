@@ -24,10 +24,11 @@ public class Employee {
     // Data fields
     private final Address address;
     private final Department department;
+    private PicturePath picturePath;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except picturePathString.
      */
     public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
                     Department department, Set<Tag> tags) {
@@ -38,16 +39,33 @@ public class Employee {
         this.email = email;
         this.address = address;
         this.department = department;
+        this.picturePath = new PicturePath("src/main/resources/employeepictures/default.png");
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
+                    Department department, PicturePath picturePath, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, address, department, tags);
+        this.name = name;
+        this.employeeId = employeeId;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.department = department;
+        this.picturePath = picturePath;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
     }
+
     public EmployeeId getEmployeeId() {
         return this.employeeId;
     }
-
 
     public Phone getPhone() {
         return phone;
@@ -63,6 +81,14 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public PicturePath getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(PicturePath picturePath) {
+        this.picturePath = picturePath;
     }
 
     /**
@@ -96,7 +122,11 @@ public class Employee {
         }
 
         return otherEmployee != null
-                && otherEmployee.getName().equals(getName());
+                && otherEmployee.getName().equals(getName())
+                && otherEmployee.getPhone().equals(getPhone())
+                && otherEmployee.getEmail().equals(getEmail())
+                && otherEmployee.getAddress().equals(getAddress())
+                && otherEmployee.getDepartment().equals(getDepartment());
     }
 
     /**

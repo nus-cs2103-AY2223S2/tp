@@ -54,9 +54,6 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
         employeeId.setText("Employee ID: " + employee.getEmployeeId().value);
-        phone.setText(employee.getPhone().value);
-        address.setText(employee.getAddress().value);
-        email.setText(employee.getEmail().value);
         department.setText(employee.getDepartment().value);
         employee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

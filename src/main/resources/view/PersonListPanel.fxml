@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,12 +12,10 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ScrollPane?>
 
-
-
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" HBox.hgrow="ALWAYS"/>
-  <ScrollPane fx:id="personList" prefWidth="425" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" styleClass="pane-with-border" >
+  <ScrollPane fx:id="personList" prefWidth="423" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="scroll-pane">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" >
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
@@ -35,6 +34,7 @@
       <Label fx:id="address" styleClass="cell_small_label"  />
       <Label fx:id="email" styleClass="cell_small_label"  />
       <Label fx:id="department" styleClass="cell_small_label"/>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
     </VBox>
   </ScrollPane>
 </HBox>

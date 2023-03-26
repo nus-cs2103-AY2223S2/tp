@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -8,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
@@ -44,6 +51,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
+    private ImageView imageView;
+    @FXML
     private FlowPane tags;
 
 
@@ -77,9 +86,18 @@ public class PersonListPanel extends UiPart<Region> {
         address.setText("Address: " + employee.getAddress().value);
         email.setText("Email: " + employee.getEmail().value);
         department.setText("Department: " + employee.getDepartment().value);
+
+        File img = new File(employee.getPicturePath().value);
+        try {
+            InputStream isImage = (InputStream) new FileInputStream(img);
+            imageView.setImage(new Image(isImage));
+            isImage.close();
+        } catch (FileNotFoundException e) {
+            // default image will be src/main/resources/employeepictures/default.png
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
@@ -94,6 +112,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(employee, getIndex() + 1).getRoot());
+                setInformation(employee);
             }
         }
     }

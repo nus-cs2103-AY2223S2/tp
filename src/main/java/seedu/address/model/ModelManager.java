@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 /**
  * Represents the in-memory model of the ExecutivePro data.
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final ExecutiveProDb executiveProDb;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
+    private final FilteredList<Employee> allEmployees;
 
     /**
      * Initializes a ModelManager with the given executiveProDb and userPrefs.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.executiveProDb = new ExecutiveProDb(executiveProDb);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
+        allEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
     }
 
     public ModelManager() {
@@ -94,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Employee> getEmployee(EmployeeId employeeId) {
+        requireNonNull(employeeId);
+        return executiveProDb.getEmployee(employeeId);
+    }
+
+    @Override
     public void deleteEmployee(Employee target) {
         executiveProDb.removeEmployee(target);
     }
@@ -105,10 +116,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void batchAddEmployees(String fileName) {
+        Path file = Paths.get("data", " ");
+
+        String line = "";
+
+    }
+
+    @Override
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
         executiveProDb.setEmployee(target, editedEmployee);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Employee> getFullEmployeeList() {
+        return allEmployees;
     }
 
     //=========== Filtered Person List Accessors =============================================================
