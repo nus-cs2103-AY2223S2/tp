@@ -1,19 +1,26 @@
 package vimification.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Task {
 
     private String description;
     private boolean isDone;
+    private Priority priority;
 
     /**
      * Every field must be present and not null.
      */
-    Task(String description, boolean isDone) {
-        requireNonNull(description);
+    Task(String description, boolean isDone, Priority priority) {
+        requireAllNonNull(description, priority);
         this.description = description;
         this.isDone = isDone;
+        this.priority = priority;
+    }
+
+    Task(String description, boolean isDone) {
+        this(description, isDone, Priority.UNKNOWN);
     }
 
     public String getDescription() {
