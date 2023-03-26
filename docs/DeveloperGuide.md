@@ -470,9 +470,9 @@ The following gives a more detailed explanation of the `view` operation.
 
 The proposed undo/redo mechanism is facilitated by `VersionedInternBuddy`. It extends `InternBuddy` with an undo/redo history, stored internally as an `internBuddyStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedInternBuddy#commit()` — Saves the current address book state in its history.
-* `VersionedInternBuddy#undo()` — Restores the previous address book state from its history.
-* `VersionedInternBuddy#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInternBuddy#commit()` — Saves the current InternBuddy state in its history.
+* `VersionedInternBuddy#undo()` — Restores the previous InternBuddy state from its history.
+* `VersionedInternBuddy#redo()` — Restores a previously undone InternBuddy state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitInternBuddy()`, `Model#undoInternBuddy()` and `Model#redoInternBuddy()` respectively.
 
@@ -480,15 +480,35 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedInternBuddy` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center">
+  <img src="images/UndoRedoState0.png"/>
+</p>
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+<p style="text-align: center;">Figure XX: Step 1 of the undo/redo mechanism</p>
+<br/>
 
-![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitInternBuddy()`, causing another modified address book state to be saved into the `internBuddyStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 2. The user executes `delete 5` command to delete the 5th internship in InternBuddy. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of InternBuddy after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted InternBuddy state.
+
+<p align="center">
+  <img src="images/UndoRedoState1.png"/>
+</p>
+
+<p style="text-align: center;">Figure XX: Step 2 of the undo/redo mechanism</p>
+<br/>
+
+
+Step 3. The user executes `add n/Tesla …​` to add a new internship. The `add` command also calls `Model#commitInternBuddy()`, causing another modified InternBuddy state to be saved into the `internBuddyStateList`.
+
+<p align="center">
+  <img src="images/UndoRedoState2.png"/>
+</p>
+
+<p style="text-align: center;">Figure XX: Step 3 of the undo/redo mechanism</p>
+<br/>
+
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
 
@@ -496,44 +516,71 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternBuddy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center">
+  <img src="images/UndoRedoState3.png"/>
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
+<p style="text-align: center;">Figure XX: Step 4 of the undo/redo mechanism</p>
+<br/>
+
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
 
-The following sequence diagram shows how the undo operation works:
+Figure XX is a sequence diagram that shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center">
+  <img src="images/UndoSequenceDiagram.png"/>
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<p style="text-align: center;">Figure XX: Sequence diagram for the undo command</p>
+<br/>
+
+
+The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores InternBuddy to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest InternBuddy state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify InternBuddy, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest address book state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<p align="center">
+  <img src="images/UndoRedoState4.png"/>
+</p>
 
-</div>
+<p style="text-align: center;">Figure XX: Step 5 of the undo/redo mechanism</p>
+<br/>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all InternBuddy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Tesla …​` command. This is the behavior that most modern desktop applications follow.
 
-Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+<p align="center">
+  <img src="images/UndoRedoState5.png"/>
+</p>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p style="text-align: center;">Figure XX: Step 6 of the undo/redo mechanism</p>
+<br/>
 
-The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+Figure XX summarizes what happens when a user executes a new command:
+
+<p align="center">
+  <img src="images/CommitActivityDiagram.png" width="250" />
+</p>
+
+<p style="text-align: center;">Figure XX: Activity diagram for the activity of a user executing a new command</p>
+<br/>
+
+
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire InternBuddy.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -542,11 +589,11 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+To be explored in v2.0...
 
 ### Edit feature
 
@@ -1188,6 +1235,9 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    `INDEX` parameter is missing.
 
 
+### Copy an Internship to Clipboard
+[More test cases for `copy` will be added...]
+
 ### Find Internship Entries
 
 1. `find n/Amazon`
@@ -1220,7 +1270,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Results Display. This is because `Interviewing`
    is not a valid value for the `STATUS` parameter.
 
-[To add more test cases for combination of parameters...]
+[More test cases will be added for combination of parameters...]
 
 
 ### Get internship entries with upcoming events or deadlines
@@ -1272,7 +1322,7 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
 optional parameter must be specified.
 
 
-[To add more test cases for mixing of parameters and for filtered internship list ]
+[More test cases will be added for mixing of parameters and for filtered internship list... ]
 
 
 ### Clear All Internships
