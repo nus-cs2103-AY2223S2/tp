@@ -38,10 +38,12 @@ public class MainWindow extends UiPart<Stage> {
             + "\n5. view {index}"
             + "\n6. salary asc/desc"
             + "\n7. deadline asc/desc"
-            + "\n8. list"
-            + "\n9. clear"
-            + "\n10. help"
-            + "\n11. exit";
+            + "\n8. company {company}"
+            + "\n9. tag {tag}"
+            + "\n10. list"
+            + "\n11. clear"
+            + "\n12. help"
+            + "\n13. exit";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
