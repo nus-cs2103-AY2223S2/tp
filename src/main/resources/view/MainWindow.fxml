@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Dengue Hotspot Tracker" minWidth="640" minHeight="480" onCloseRequest="#handleExit">
+         title="Dengue Hotspot Tracker" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/dengue_tracker.png" />
   </icons>
@@ -23,7 +23,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox prefHeight="480.0" prefWidth="640.0">
+      <VBox prefWidth="800" prefHeight="600">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -46,9 +46,9 @@
           </padding>
         </StackPane>
 
-        <HBox prefHeight="480.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+        <HBox prefWidth="800" prefHeight="600" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" styleClass="pane-with-border"
-                     minWidth="400" prefWidth="400" HBox.hgrow="ALWAYS">
+                     minWidth="450" prefWidth="450" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="20" bottom="10" left="20" />
             </padding>
@@ -56,7 +56,7 @@
           </VBox>
 
           <StackPane fx:id="overviewDisplayPlaceholder" styleClass="pane-with-border"
-                     minWidth="200" prefWidth="200" HBox.hgrow="ALWAYS">
+                     minWidth="300" prefWidth="300" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
