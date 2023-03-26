@@ -162,7 +162,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 The activity diagram is as such:
 
-![Add activity diagram](diagrams/AddApplicantActivityDiagram.puml)
+![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
 
 #### Feature Details
 
@@ -340,6 +340,17 @@ The `list` command displays the full list by HMHero.
 The five statistics were chosen as a baseline and they are a good starting point for users to help 
 track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
 the total numbers of applicants for each status.
+
+#### Showing all shortlisted applicants
+
+##### Overview
+The `interview` command displays the list of all shortlisted applicants, sorted by earliest interview date.
+
+##### Feature Details
+1. The user calls the `interview` command.
+2. The applicant list is filtered for shortlisted applicants.
+3. The resulting filtered applicant list is sorted by interview date, from earliest to latest.
+4. HMHero displays the resulting `SortedList` to the user.
 
 
 --------------------------------------------------------------------------------------------------------------------
