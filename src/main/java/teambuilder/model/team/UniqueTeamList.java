@@ -70,9 +70,6 @@ public class UniqueTeamList implements Iterable<Team> {
             }
         }
 
-        for (Team team: internalList) {
-            System.out.println(team.getMembers());
-        }
 
     }
 
