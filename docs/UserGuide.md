@@ -221,6 +221,7 @@ _Details coming soon ..._
 
 
 ## Command Summary 
+
 | Parameters         | Description                       |
 |--------------------|-----------------------------------|
 | view m             | view person's list of modules     |
