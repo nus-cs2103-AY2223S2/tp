@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+Actor User as user
+Participant "UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Parser" as parser PARSER_COLOR
+Participant ":Command" as command COMMAND_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : "delete 1"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : parseCommand("delete 1")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> parser** : DeleteCommandParser()
+
+parser++ PARSER_COLOR
+logic <-[PARSER_COLOR]- parser --
+
+logic -[LOGIC_COLOR]> parser++ PARSER_COLOR : parse("1")
+parser -[PARSER_COLOR]> command** : DeleteCommand(1)
+command ++ COMMAND_COLOR
+parser <-[COMMAND_COLOR]- command --
+logic <-[PARSER_COLOR]- parser--
+
+logic -[LOGIC_COLOR]> command ++ COMMAND_COLOR: execute(model)
+command -[COMMAND_COLOR]> model++ MODEL_COLOR : deleteEntity(entityToDelete)
+command <-[MODEL_COLOR]- model --
+logic <-[COMMAND_COLOR]- command --
+
+ref over logic, parser : **Storage**
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+
+@enduml
