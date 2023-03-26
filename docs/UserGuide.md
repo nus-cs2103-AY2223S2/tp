@@ -267,7 +267,7 @@ Examples:
 
 Made a mistake, or wish to update your internship entry? The `edit` command modifies an internship entry from your list of existing entries.
 
-Format: ` edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
 
 * The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the [List Panel](#exploring-the-graphical-user-interface)  displayed using the `list` command.
 * You have to provide at least one of the optional parameters
@@ -281,7 +281,7 @@ Format: ` edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] 
 </div>
 
 Examples:
-* `edit 2 s/assessment r/Software Developer`Sets the status and role of the second internship entry as `Assessment` and `Software Developer` respectively.
+* `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `Assessment` and `Software Developer` respectively.
 * `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional parameter.
 * `edit 2 t/Java t/Go` Sets the tags of the second internship entry as Java and Go. (Existing tags will be removed)
 * `edit 2 t/` Removes all the tags of the second internship entry.
@@ -533,14 +533,14 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 ## **Glossary**
 
 
-| Term                           | Definition                                                                                                                                                                                                              |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                                    |
-| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                                       |
-| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                            |
-| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                                |
-| Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                     |
-| Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used. |
+| Term                           | Definition                                                                                                                                                                                                                                                                                                                           |
+|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                                                                                                                                                 |
+| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                                                                                                                                                    |
+| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                                                                                                                                         |
+| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                                                                                                                                             |
+| Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                                                                                                                                  |
+| Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used.                                                                                                              |
 
 <p style="text-align: center;">Figure XX: Glossary for InternBuddy's User Guide</p>
 
