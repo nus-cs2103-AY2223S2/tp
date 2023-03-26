@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic.commands.attendancecommand;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.Messages;
@@ -32,12 +33,12 @@ public class MarkAbsentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
 
-    private final Index targetIndex;
+    private final Index[] targetIndex;
 
     /**
      * Creates a MarkAbsentCommand to mark the student at the specified index as absent.
      */
-    public MarkAbsentCommand(Index targetIndex) {
+    public MarkAbsentCommand(Index... targetIndex) {
         super(true);
         this.targetIndex = targetIndex;
     }
@@ -52,14 +53,18 @@ public class MarkAbsentCommand extends Command {
 
         Session session = currentSelection.getSelectedSession();
         List<Student> studentList = session.getUnmodifiableStudentList();
-        if (targetIndex.getZeroBased() >= studentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        StringBuilder studentMarked = new StringBuilder();
+
+        for (int i = 0; i < targetIndex.length; i++) {
+            if (targetIndex[i].getZeroBased() >= studentList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            } else {
+                Student studentToMark = studentList.get(targetIndex[i].getZeroBased());
+                session.markAbsent(studentToMark);
+                studentMarked.append(studentToMark);
+            }
         }
-
-        Student studentToMark = studentList.get(targetIndex.getZeroBased());
-        session.markAbsent(studentToMark);
-
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentToMark), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentMarked), willModifyState);
     }
 
     @Override
@@ -73,7 +78,9 @@ public class MarkAbsentCommand extends Command {
         }
 
         MarkAbsentCommand e = (MarkAbsentCommand) other;
-        return targetIndex.equals(e.targetIndex);
+        Arrays.sort(targetIndex);
+        Arrays.sort(e.targetIndex);
+        return Arrays.equals(targetIndex, e.targetIndex);
     }
 
 }

@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,6 +37,24 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static Index[] parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        String[] indexArray = oneBasedIndexes.split(",");
+        String[] trimmedArray = new String[indexArray.length];
+        Index[] trimmedIndexes = new Index[indexArray.length];
+
+        for (int i = 0; i < indexArray.length; i++) {
+            trimmedArray[i] = indexArray[i].trim();
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedArray[i])) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+        }
+
+        for (int i = 0; i < indexArray.length; i++) {
+            trimmedIndexes[i] = Index.fromOneBased(Integer.parseInt(trimmedArray[i]));
+        }
+        return trimmedIndexes;
     }
 
     /**

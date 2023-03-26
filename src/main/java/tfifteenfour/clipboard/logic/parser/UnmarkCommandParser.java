@@ -12,7 +12,7 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMA
 public class UnmarkCommandParser implements Parser<MarkAbsentCommand> {
     public MarkAbsentCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index[] index = ParserUtil.parseMultipleIndex(args);
             return new MarkAbsentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
