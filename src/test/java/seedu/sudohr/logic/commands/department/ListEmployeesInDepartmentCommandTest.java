@@ -49,6 +49,7 @@ public class ListEmployeesInDepartmentCommandTest {
         DepartmentName departmentName = HUMAN_RESOURCES_DEPARTMENT_NAME;
         String expectedMessage = String.format(ListEmployeesInDepartmentCommand.MESSAGE_SUCCESS, departmentName);
         expectedModel.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+        expectedModel.updateFilteredDepartmentList(unused -> false);
         ListEmployeesInDepartmentCommand command = new ListEmployeesInDepartmentCommand(departmentName);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

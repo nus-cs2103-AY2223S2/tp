@@ -41,7 +41,6 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
-
         filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
         filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList());
@@ -352,7 +351,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
-                && filteredEmployees.equals(other.filteredEmployees);
+                && filteredEmployees.equals(other.filteredEmployees)
+                && filteredDepartments.equals(other.filteredDepartments)
+                && filteredLeaves.equals(other.filteredLeaves);
     }
 
 }

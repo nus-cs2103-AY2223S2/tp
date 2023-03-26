@@ -27,7 +27,15 @@ public class ListEmployeeDepartmentCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsSameList() {
+    public void execute_listIsFiltered_shows2Departments() {
+        expectedModel.updateFilteredDepartmentList(new DepartmentContainsEmployeePredicate(new Id("102")));
+        assertCommandSuccess(new ListEmployeeDepartmentCommand(new DepartmentContainsEmployeePredicate(new Id("102"))),
+                model, String.format(Messages.MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 2), expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_shows1Departmentt() {
+        expectedModel.updateFilteredDepartmentList(new DepartmentContainsEmployeePredicate(new Id("101")));
         assertCommandSuccess(new ListEmployeeDepartmentCommand(new DepartmentContainsEmployeePredicate(new Id("101"))),
                 model, String.format(Messages.MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 1), expectedModel);
     }
