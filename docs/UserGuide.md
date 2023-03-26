@@ -35,6 +35,8 @@ This user guide will help you get up to speed in no time!
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
     * [Clear all Events](#clear-all-events)
+    * [Open help window](#open-help-window)
+    * [Find Event](#find-event)
 
     </details>
 - [FAQ](#faq)
@@ -281,6 +283,31 @@ Clears all events in Paidlancers.
 
 - Clears all events in the event book.
 
+### Open help window: `help` <a id = "open-help-window"></a>
+
+Opens the help window.
+
+**Format**: `help`
+
+- Opens the help window in the UI.
+
+### Find Event: `find` <a id = "find-event"></a>
+
+Finds event(s) from the event book based on the given search string.
+
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
+
+- Finds the event using the specified `KEYWORD`
+  - The `KEYWORD` refers to the string to search the event list for.
+  - `[]` are optional parameters.
+  - `find` will return all events that contain the `KEYWORD` in their name.
+  - `find` is case-insensitive.
+
+**Example**:
+- `find wedding`
+  - This command will find and list all events that contains 'wedding' in its name.
+- `find wedding dinner`
+  - This command will find and list all events that contains 'wedding' or 'dinner' in its name.
 
 ### Saving the data
 
@@ -296,20 +323,21 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
-|                    Commands                     |                                 Command Format                                 |                                                     Example Usage                                                     |
-|:-----------------------------------------------:|:------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-|         [Add a Contact](#add-a-contact)         |                          `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
+|                    Commands                    |                                 Command Format                                 |                                                     Example Usage                                                     |
+|:----------------------------------------------:|:------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+|         [Add a Contact](#add-a-contact)        |                          `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
 | [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                           |                                               `linkcontact 2 91234567`                                                |
-|             [View Rate](#view-rate)             |                                  `rate INDEX`                                  |                                                       `rate 2`                                                        |
-|       [Marks Event as Done](#mark-event)        |                                  `mark INDEX`                                  |                                                       `mark 2`                                                        |
-|          [Unmark Event](#unmark-event)          |                                 `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
-|     [Create a new Event](#create-new-event)     |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`      | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
-|       [View Event List](#list-all-events)       |                                     `list`                                     |                                                        `list`                                                         |
-|       [Delete an Event](#delete-an-event)       |                                 `delete INDEX`                                 |                                                      `delete 2`                                                       |
-|         [Edit an Event](#edit-an-event)         | `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
-|    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                    |                                                       `revenue`                                                       |
-|  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                  |                                                      `remind 2`                                                       |
-|      [Clear all Events](#clear-all-events)      |                                    `clear`                                     |                                                        `clear`                                                        |
+|             [View Rate](#view-rate)            |                                  `rate INDEX`                                  |                                                       `rate 2`                                                        |
+|       [Marks Event as Done](#mark-event)       |                                  `mark INDEX`                                  |                                                       `mark 2`                                                        |
+|          [Unmark Event](#unmark-event)         |                                 `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
+|     [Create a new Event](#create-new-event)    |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`      | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
+|       [View Event List](#list-all-events)      |                                     `list`                                     |                                                        `list`                                                         |
+|       [Delete an Event](#delete-an-event)      |                                 `delete INDEX`                                 |                                                      `delete 2`                                                       |
+|         [Edit an Event](#edit-an-event)        | `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
+|    [View Total Revenue](#view-total-revenue)   |                                   `revenue`                                    |                                                       `revenue`                                                       |
+|  [View Upcoming Events](#view-upcoming-events) |                                 `remind DAYS`                                  |                                                      `remind 2`                                                       |
+|      [Clear all Events](#clear-all-events)     |                                    `clear`                                     |                                                        `clear`                                                        |
+|           [Find Event](#find-event)            |                         `find KEYWORD [MORE_KEYWORDS]`                         |                                                 `find wedding dinner`                                                 |
 
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
