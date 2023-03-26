@@ -141,7 +141,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -243,14 +243,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### New Contact feature
 
-### Implementation
+The `newcontact` feature allows for users to add new contacts to their contact list.
 
-The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
-A new contact created will be added to the contact list which will be saved in a JSON file.
+#### Implementation
 
-### Design considerations:
+The `newcontact` feature is facilitated by the `Contact` class. The feature is implemented as follows:
+- encapsulate two attributes of a contact with the help of `ContactName` and `ContactPhone` class.
+- Phone number should only be numerical and shall not be shorter than 8 digits.
+- A contact is unique to its `ContactPhone`, having the same phone number will result in an error.
+- Once a new contact is created it will be added to the contact list which will be saved in a JSON file.
 
-**Aspect: How new contact is created:**
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
     * Pros: More levels of abstraction to prevent the accidental change of information.
