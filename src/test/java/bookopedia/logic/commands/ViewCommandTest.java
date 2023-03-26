@@ -45,7 +45,7 @@ public class ViewCommandTest {
     }
 
     @Test
-    public void execute_SuccessMessageCorrect() throws CommandException {
+    public void execute_successMessageCorrect() throws CommandException {
         List<Person> listOfTypicalPersons = model.getFilteredPersonList();
         Index validIndex = Index.fromZeroBased(0);
         Person testTypicalPerson = listOfTypicalPersons.get(validIndex.getZeroBased());
