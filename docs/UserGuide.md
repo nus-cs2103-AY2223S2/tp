@@ -222,9 +222,11 @@ Format: `setnotec INDEX nt/NOTE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The note refers to the customer's new note.
 * Any existing note will be overwritten.
+* A customer's note can be removed by setting an empty note.
 
 Examples:
 * `listc` followed by `setnotec 2 nt/Very friendly!` sets the 2nd customer's note as "Very friendly!".
+* `listc` followed by `setnotec 2 nt/` removes the 2nd customer's note.
 * `findc Betsy` followed by `setnotec 1 nt/Vegetarian` sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
 
 ### Appending a customer's note : `appendnotec`
@@ -333,9 +335,11 @@ Format: `setnoteo INDEX nt/NOTE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The note refers to the order's new note.
 * Any existing note will be overwritten.
+* An order's note can be removed by setting an empty note.
 
 Examples:
 * `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
+* `listc` followed by `setnotec 2 nt/` removes the 2nd order's note.
 * `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
 
 ### Appending an order's note : `appendnoteo`
