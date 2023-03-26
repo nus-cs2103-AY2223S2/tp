@@ -29,7 +29,7 @@ public class IngredientBuilder {
             + "`[-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...\n"
             + "i.e. `-a 1 oz. -n butter -r cubed -s margarine`";
 
-    public final String commandString;
+    private final String commandString;
 
     private final HashMap<Prefix, List<String>> arguments;
 
@@ -66,6 +66,11 @@ public class IngredientBuilder {
         return ingredientKeyValuePair;
     }
 
+    /**
+     * Parses the prefix table for the fields pertaining to an Ingredient instance, creates, and returns a new
+     * Ingredient instance around those fields.
+     * @return The new Ingredient instance.
+     */
     private Ingredient createMainIngredient() {
         Ingredient mainIngredient = Ingredient.of(this.arguments.get(NAME_PREFIX).get(0));
         if (arguments.containsKey(COMMON_NAME_PREFIX)) { //First common name
@@ -75,6 +80,11 @@ public class IngredientBuilder {
         return mainIngredient;
     }
 
+    /**
+     * Parses the prefix table for the fields pertaining to an IngredientInformation instance, creates,
+     * and returns an IngredientInformation instance around those fields.
+     * @return The IngredientInformation instance.
+     */
     private IngredientInformation createInformation() {
         IngredientQuantity quantity = null;
         String estimatedQuantity = "";
