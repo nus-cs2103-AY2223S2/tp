@@ -204,6 +204,10 @@ public class ParserUtil {
         requireNonNull(datePair);
 
         String[] dates = datePair.split(",");
+
+        if (dates.length != 2) {
+            throw new ParseException(AvailableDate.INVALID_NUMBER_OF_DATES);
+        }
         String startDate = dates[0];
         String endDate = dates[1];
 

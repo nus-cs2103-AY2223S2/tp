@@ -16,7 +16,7 @@ public class Messages {
     public static final String MESSAGE_NRIC_NOT_EXIST = "There is no such person with the given NRIC";
     public static final String MESSAGE_DUPLICATE_ELDERLY = "This elderly already exists in the database";
     public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the database";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_FIELD_PROVIDED = "At least one field must be provided.";
     public static final String MESSAGE_ELDERLY_NOT_FOUND =
             "The elderly with NRIC %1$s does not exist in FriendlyLink";
     public static final String MESSAGE_VOLUNTEER_NOT_FOUND =
