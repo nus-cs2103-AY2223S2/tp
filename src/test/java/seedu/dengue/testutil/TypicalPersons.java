@@ -91,7 +91,8 @@ public class TypicalPersons {
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPostal(VALID_POSTAL_AMY)
             .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY).withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPostal(VALID_POSTAL_BOB)
-            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE)
+            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB)
+            .withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
