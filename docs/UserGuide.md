@@ -92,6 +92,38 @@ _**Above: After entering `add` command**_
 
 </div>
 
+### Editing a student: `edit`
+
+Edits a student's info _(all info except remark)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
+
+> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [s/SUBJECT]...`
+
+<div markdown="span" class="alert alert-info">
+
+:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#adding-remark-to-student-remark) command for editing remarks.
+
+</div>
+
+Examples:
+
+- `edit 2 n/Shaun Tan r/Not good in Japanese`
+- `edit 1 n/Lao Hong`
+- `edit 3 a/ p/` _(removes student's address & phone number)_
+
+<div align=center>
+
+![edit before](images/user-guide/edit_before.jpg)  
+_**Above: Before entering `edit` command**_
+
+</div>
+
+<div align=center>
+
+![edit after](images/user-guide/edit_after.jpg)  
+_**Above: After entering `edit` command**_
+
+</div>
+
 ### Editing remark of student: `remark`
 
 Edits a student's remark.
