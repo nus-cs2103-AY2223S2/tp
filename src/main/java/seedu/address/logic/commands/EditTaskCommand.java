@@ -147,12 +147,20 @@ public class EditTaskCommand extends Command {
         public void setTitle(Title title) {
             this.title = title;
         }
+
+        public void setTitle(String title) {
+            this.title = new Title(title);
+        }
+
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
         public void setContent(Content content) {
             this.content = content;
+        }
+        public void setContent(String content) {
+            this.content = new Content(content);
         }
         public Optional<Content> getContent() {
             return Optional.ofNullable(content);
