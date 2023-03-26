@@ -2,17 +2,13 @@ package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_BORROW_DATE;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_DUE_DATE;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.time.LocalDate;
 //import java.util.HashSet;
 //import java.util.Set;
 import java.util.stream.Stream;
 
-import expresslibrary.commons.util.DateUtil;
 import expresslibrary.logic.commands.AddBookCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.book.Author;
@@ -33,11 +29,9 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddBookCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN,
-                PREFIX_BORROW_DATE, PREFIX_DUE_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN, PREFIX_BORROW_DATE,
-                PREFIX_DUE_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_ISBN)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookCommand.MESSAGE_USAGE));
         }
@@ -45,10 +39,8 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
         Isbn isbn = ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN).get());
-        LocalDate borrowDate = DateUtil.parseDate(argMultimap.getValue(PREFIX_BORROW_DATE).get());
-        LocalDate dueDate = DateUtil.parseDate(argMultimap.getValue(PREFIX_DUE_DATE).get());
 
-        Book book = new Book(title, author, isbn, borrowDate, dueDate);
+        Book book = new Book(title, author, isbn);
 
         return new AddBookCommand(book);
     }
