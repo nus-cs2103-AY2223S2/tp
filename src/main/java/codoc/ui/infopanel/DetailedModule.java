@@ -23,15 +23,14 @@ public class DetailedModule extends DetailedInfo {
     @FXML
     private ListView<Module> moduleListView;
 
-    private MainWindow mainWindow;
+    private Person protagonist;
 
     /**
      * Creates a {@code DetailedModule} tab with the given {@code protagonist}.
      */
-    public DetailedModule(MainWindow mainWindow) {
+    public DetailedModule(Person protagonist) {
         super(FXML);
-        this.mainWindow = mainWindow;
-        Person protagonist = mainWindow.getLogic().getProtagonist();
+        this.protagonist = protagonist;
         ObservableList<Module> modules = FXCollections.observableArrayList();
         protagonist.getModules().stream()
                 .sorted(Comparator.comparing((Module module) -> module.moduleName).reversed())
@@ -40,21 +39,6 @@ public class DetailedModule extends DetailedInfo {
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
         // Took forever to get this to work but now ListView sets max height based on number of items
         moduleListView.setPrefHeight((52 * modules.size()) + 2);
-    }
-
-    @FXML
-    private void viewContactTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view c");
-    }
-
-    @FXML
-    private void viewModulesTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view m");
-    }
-
-    @FXML
-    private void viewSkillsTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view s");
     }
 
     /**

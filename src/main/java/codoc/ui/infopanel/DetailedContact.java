@@ -23,33 +23,17 @@ public class DetailedContact extends DetailedInfo {
     @FXML
     private Label linkedin;
 
-    private MainWindow mainWindow;
+    private Person protagonist;
 
     /**
      * Creates a {@code DetailedContact} tab with the given {@code protagonist}.
      */
-    public DetailedContact(MainWindow mainWindow) {
+    public DetailedContact(Person protagonist) {
         super(FXML);
-        this.mainWindow = mainWindow;
-        Person protagonist = mainWindow.getLogic().getProtagonist();
+        this.protagonist = protagonist;
         github.setText(protagonist.getGithub().value);
         email.setText(protagonist.getEmail().value);
         linkedin.setText(protagonist.getLinkedin().value);
-    }
-
-    @FXML
-    private void viewContactTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view c");
-    }
-
-    @FXML
-    private void viewModulesTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view m");
-    }
-
-    @FXML
-    private void viewSkillsTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view s");
     }
 
 }

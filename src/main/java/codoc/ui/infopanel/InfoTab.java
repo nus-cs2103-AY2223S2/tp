@@ -3,8 +3,11 @@ package codoc.ui.infopanel;
 import java.util.logging.Logger;
 
 import codoc.commons.core.LogsCenter;
+import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import codoc.ui.MainWindow;
+import codoc.ui.UiEventListener;
 import codoc.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +23,7 @@ public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
     private final Logger logger = LogsCenter.getLogger(InfoTab.class);
+    private UiEventListener<?> clickListener;
 
     private DetailedInfo detailedInfo;
 
@@ -38,25 +42,24 @@ public class InfoTab extends UiPart<Region> {
     /**
      * Creates a {@code InfoTab} with the given {@code protagonist} and {@code tab}.
      */
-    public InfoTab(MainWindow mainWindow) {
+    public InfoTab(Person protagonist, String tab) {
 
         super(FXML);
-        Person protagonist = mainWindow.getLogic().getProtagonist();
-        String tab = mainWindow.getLogic().getCurrentTab();
         logger.info("Setting up Info Panel...");
 
         if (tab != null) {
             if (tab.equals("c")) {
                 logger.info("[Info Panel]: Creating DetailedContact...");
-                detailedInfo = new DetailedContact(mainWindow);
+                detailedInfo = new DetailedContact(protagonist);
             } else if (tab.equals("m")) {
                 logger.info("[Info Panel]: Creating DetailedModule...");
-                detailedInfo = new DetailedModule(mainWindow);
+                detailedInfo = new DetailedModule(protagonist);
             } else {
                 logger.info("[Info Panel]: Creating DetailedSkill...");
-                detailedInfo = new DetailedSkill(mainWindow);
+                detailedInfo = new DetailedSkill(protagonist);
             }
         }
+        detailedInfo.setListener((MainWindow.ClickListener) clickListener);
 
         if (protagonist != null) {
             String profilePicturePath = protagonist.getProfilePicture().profilePicturePath;
@@ -74,5 +77,30 @@ public class InfoTab extends UiPart<Region> {
             logger.info("[Info Panel]: Protagonist not found. Showing default placeholders");
         }
     }
+
+    /**
+     * Set UiEventListener for InfoTab.
+     * @param listener
+     */
+    public void setClickListener(UiEventListener<?> listener) {
+        this.clickListener = listener;
+    }
+
+    @FXML
+    private void viewContactTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view c");
+    }
+
+    @FXML
+    private void viewModulesTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view m");
+    }
+
+    @FXML
+    private void viewSkillsTab() throws CommandException, ParseException {
+        mainWindow.clickExecuteCommand("view s");
+    }
+
+
 
 }
