@@ -50,7 +50,7 @@ help you manage and keep track of your internship applications faster than tradi
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
 * Items in square brackets are optional.<br>
-  e.g `[TAG]` means that the user input is optional. User can press the enter key to skip the input.
+  e.g `[TAG]` means that the user input is optional.
 
 </div>
 
@@ -137,13 +137,6 @@ the newly updated internship application
 edit 1 s/1 d/Learn C++
 ~~~
 ~~~
-//initial
-INTERNSHIP ID: 1
-POSITION: SOFTWARE ENGINEER
-COMPANY NAME: GOOGLE
-APPLICATION STATUS: INTERESTED
-DESCRIPTION: Should apply
-
 //output
 INTERNSHIP ID: 1
 POSITION: SOFTWARE ENGINEER
