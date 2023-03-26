@@ -102,7 +102,10 @@ Format: `help`
 Adds a patient to the address book:
 * Enter the patient's name, phone number, email, and address.
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* You can also add patient's age, medical condition, time and NRIC for first meeting.
+* You can also add patient's age, medical condition, time for first meeting. 
+* NRIC can be added to uniquely identify the patient which will assist for generating MC
+* NRIC need to be in the correct format. (E.g. S9935010Y, T0012345B,)
+* NRIC cannot be in (X12345 or any other kind of strings)
 * To record a patient's other information, add them as additional tags to the patient's profile.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION nric/S9935010Y`
@@ -113,7 +116,7 @@ A patient can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 t/criminal m/cough`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 t/criminal m/cough nric/S9935010Y`
 
 The first example contains strictly required information to identify a patient.
 
