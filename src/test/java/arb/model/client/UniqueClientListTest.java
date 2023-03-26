@@ -24,7 +24,7 @@ public class UniqueClientListTest {
 
     @Test
     public void contains_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.contains((Client) null));
     }
 
     @Test

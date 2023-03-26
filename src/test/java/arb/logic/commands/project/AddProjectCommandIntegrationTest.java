@@ -4,6 +4,8 @@ import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.testutil.TypicalProjects.getTypicalAddressBook;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +35,9 @@ public class AddProjectCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject), ListType.CLIENT, ListType.PROJECT, model,
-                String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), expectedModel);
+        assertCommandSuccess(new AddProjectCommand(validProject, Optional.empty()), ListType.CLIENT,
+                ListType.PROJECT, model, String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject),
+                expectedModel);
     }
 
     @Test
@@ -44,14 +47,15 @@ public class AddProjectCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject), ListType.PROJECT, ListType.PROJECT, model,
-                String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), expectedModel);
+        assertCommandSuccess(new AddProjectCommand(validProject, Optional.empty()), ListType.PROJECT,
+                ListType.PROJECT, model, String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject),
+                expectedModel);
     }
 
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project projectInList = model.getAddressBook().getProjectList().get(0);
-        assertCommandFailure(new AddProjectCommand(projectInList), ListType.CLIENT, model,
+        assertCommandFailure(new AddProjectCommand(projectInList, Optional.empty()), ListType.CLIENT, model,
                 AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
