@@ -63,6 +63,13 @@ public class Leave implements Comparable<Leave> {
     }
 
     /**
+     * Gets the number of employees on leave on this date.
+     */
+    public int getNumberOnLeave() {
+        return employees.size();
+    }
+
+    /**
      * Returns true if leave has a specific employee {@code employee} as an attendee.
      */
     public boolean hasEmployee(Employee employee) {
