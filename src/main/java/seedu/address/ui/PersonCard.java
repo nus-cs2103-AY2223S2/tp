@@ -63,14 +63,14 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         gender.setText(person.getGender().gender);
-        drugAllergy.setText(person.getDrugAllergy().value);
+        drugAllergy.setText(drugAllergies + person.getDrugAllergy().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getMedicines().stream()
-                .sorted(Comparator.comparing(medicine -> medicine.medicineName))
-                .forEach(medicine -> medicines.getChildren().add(new Label(medicine.medicineName)));
+            .sorted(Comparator.comparing(medicine -> medicine.medicineName))
+            .forEach(medicine -> medicines.getChildren().add(new Label(medicine.medicineName)));
     }
 
     @Override
@@ -88,6 +88,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }
