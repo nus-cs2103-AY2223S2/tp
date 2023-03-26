@@ -38,7 +38,7 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         nric = source.getPatientNric().toString();
         booking = source.getBooking().toString();
-        drNric = source.getPatientNric().toString();
+        drNric = source.getDrNric().toString();
     }
 
     /**
