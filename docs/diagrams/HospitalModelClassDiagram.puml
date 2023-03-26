@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package HospitalModel <<Rectangle>>{
 Class Hospital
 Class Name
 Class Phone
@@ -14,7 +14,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Hospital
 
 Hospital *--> "1" Name
-Hospital *--> "    1 hotline"  Phone
+Hospital *--> " hotline 1"  Phone
 
 Name -[hidden]right-> Phone
 

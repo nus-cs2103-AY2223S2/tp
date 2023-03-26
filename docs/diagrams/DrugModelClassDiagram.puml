@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package DrugModel <<Rectangle>>{
 Class Drug
 Class ActiveIngredient
 Class Direction
