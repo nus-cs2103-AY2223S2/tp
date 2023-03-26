@@ -102,7 +102,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() { return appointments; }
+        public ObservableList<Appointment> getAppointmentList() {
+            return appointments;
+        }
     }
 
 }
