@@ -83,6 +83,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private VBox studentTabPlaceholder;
 
+    @FXML
+    private HBox navigationBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -210,7 +212,18 @@ public class MainWindow extends UiPart<Stage> {
         closeViewPane();
         closeGroupTab();
         closeStudentTab();
+        closeNavigationBar();
         logic.getCurrentSelection().navigateBackToCoursePage();
+    }
+
+    private void refreshNavigationBar() {
+        NavigationBar navigationBar = new NavigationBar(logic);
+        navigationBarPlaceholder.getChildren().clear();
+        navigationBarPlaceholder.getChildren().add(navigationBar.getRoot());
+    }
+
+    private void closeNavigationBar() {
+        navigationBarPlaceholder.getChildren().clear();
     }
 
     /**
@@ -299,6 +312,7 @@ public class MainWindow extends UiPart<Stage> {
             showGroupPane(logic.getCurrentSelection().getSelectedCourse());
             closeModuleTab();
             showGroupTab();
+            refreshNavigationBar();
 
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
                 && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
@@ -311,6 +325,7 @@ public class MainWindow extends UiPart<Stage> {
             showStudentPane(logic.getCurrentSelection().getSelectedGroup());
             closeGroupTab();
             showStudentTab();
+            refreshNavigationBar();
 
         }
     }
@@ -324,11 +339,13 @@ public class MainWindow extends UiPart<Stage> {
             showCoursePane();
             showModuleTab();
             closeGroupTab();
+            refreshNavigationBar();
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
             showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
             showGroupTab();
             closeViewPane();
             closeStudentTab();
+            refreshNavigationBar();
         }
     }
 
