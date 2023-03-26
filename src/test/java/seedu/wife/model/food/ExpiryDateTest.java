@@ -1,12 +1,11 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.wife.model.food.foodvalidator.ExpiryDateValidator.isValidDateFormat;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.wife.model.food.ExpiryDate;
 
 public class ExpiryDateTest {
 
@@ -24,14 +23,14 @@ public class ExpiryDateTest {
     @Test
     public void isValid() {
         // null ExpiryDate
-        assertThrows(NullPointerException.class, () -> ExpiryDate.isValid(null));
+        assertThrows(NullPointerException.class, () -> isValidDateFormat(null));
 
         // invalid ExpiryDatees
-        assertFalse(ExpiryDate.isValid("")); // empty string
-        assertFalse(ExpiryDate.isValid(" ")); // spaces only
+        assertFalse(isValidDateFormat("")); // empty string
+        assertFalse(isValidDateFormat(" ")); // spaces only
 
         // valid ExpiryDatees
-        assertTrue(ExpiryDate.isValid("13-11-2024"));
-        assertTrue(ExpiryDate.isValid("13-11-2026")); // long ExpiryDate
+        assertTrue(isValidDateFormat("13-11-2024"));
+        assertTrue(isValidDateFormat("13-11-2026")); // long ExpiryDate
     }
 }

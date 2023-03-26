@@ -1,4 +1,4 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,11 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.model.food.NameContainsKeywordsPredicate;
 import seedu.wife.testutil.FoodBuilder;
 
 public class NameContainsKeywordsPredicateTest {
-
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
