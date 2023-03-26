@@ -69,8 +69,8 @@ public class BookmarkListPanel extends UiPart<Region> {
             return bookmarks.get(0);
         } catch (IndexOutOfBoundsException e) {
             String[] sampleProgress = {"1", "32", "56"};
-            return new Bookmark(new Title("Alex Yeoh"), new Progress(sampleProgress), new Genre("alexyeoh@example.com"),
-                    new Author("Blk 30 Geylang Street 29, #06-40"), new Url(""),
+            return new Bookmark(new Title("Attack on Titans"), new Progress(sampleProgress), new Genre("Fantasy"),
+                    new Author("Hajime Isayama"), new Url(""),
 
                     SampleDataUtil.getTagSet("friends"));
 
