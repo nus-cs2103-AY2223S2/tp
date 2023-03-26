@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
@@ -15,7 +16,7 @@ import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
-
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 
 
 /**
@@ -51,7 +52,7 @@ public class MarkPresentCommand extends Command {
         }
 
         Session session = currentSelection.getSelectedSession();
-        List<Student> studentList = session.getUnmodifiableStudentList();
+        ObservableList<StudentWithAttendance> studentList = session.getUnmodifiableStudentList();
         StringBuilder studentMarked = new StringBuilder();
 
         for (int i = 0; i < targetIndex.length; i++) {
