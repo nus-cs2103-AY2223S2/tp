@@ -12,4 +12,9 @@ public enum Priority {
     public int level() {
         return level;
     }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase().replace('_', ' ');
+    }
 }
