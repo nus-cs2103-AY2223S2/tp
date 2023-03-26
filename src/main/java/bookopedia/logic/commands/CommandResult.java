@@ -1,5 +1,7 @@
 package bookopedia.logic.commands;
 
+import bookopedia.model.person.Person;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -16,14 +18,28 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private final boolean view;
+    private final Person person;
+    private final int id;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean view, Person person, int id) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.view = view;
+        this.person = person;
+        this.id = id;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * specified {@code view} and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean view, Person person, int id) {
+        this(feedbackToUser, false, false, view, person, id);
     }
 
     /**
@@ -31,7 +47,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, null, -1);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +60,17 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+    public boolean isView() {
+        return view;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

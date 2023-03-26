@@ -51,7 +51,7 @@ public class ViewCommand extends Command {
                 + parcelsToPrint + "\n"
                 + deliveryToView.getDeliveryStatus().toString() + "\n";
         // this is temporary
-        return new CommandResult(detailsOfDelivery);
+        return new CommandResult(detailsOfDelivery, true, deliveryToView, index.getZeroBased());
     }
 
     @Override

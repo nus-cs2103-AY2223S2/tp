@@ -8,6 +8,7 @@ import bookopedia.logic.Logic;
 import bookopedia.logic.commands.CommandResult;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.exceptions.ParseException;
+import bookopedia.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "TestWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane viewDisplayPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +125,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        if (logic.getFilteredPersonList().size() != 0) {
+            Person defaultPerson = logic.getFilteredPersonList().get(0);
+            ViewDisplay viewDisplay = new ViewDisplay(defaultPerson, 0);
+            viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
+        }
     }
 
     /**
@@ -163,6 +173,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleView(Person person, int id) {
+        viewDisplayPlaceHolder.getChildren().clear();
+        ViewDisplay viewDisplay = new ViewDisplay(person, id);
+        viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +201,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                Person personToView = commandResult.getPerson();
+                int idToView = commandResult.getId();
+                handleView(personToView, idToView);
             }
 
             return commandResult;
