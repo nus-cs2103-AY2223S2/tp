@@ -2,10 +2,7 @@
 layout: page
 title: CareFlow User Guide
 ---
-<link rel="stylesheet" type="text/css" media="all" href="docs/assets/css/ug.css"/>
 <a id="top"></a>
-<a class="top-link" href="#top">↑</a>
-
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
 
 If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline you with daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
@@ -14,7 +11,7 @@ If you are a receptionist at a GP clinic and are comfortable typing, CareFlow ca
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java 11 installed in your Computer.
    * [Installing Java 11 on Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
@@ -78,10 +75,9 @@ e.g. in add -n NAME, NAME is a parameter which can be used as add -n John Doe.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER CASE` are the parameters that you need to supply to the system.
@@ -91,7 +87,7 @@ e.g. in add -n NAME, NAME is a parameter which can be used as add -n John Doe.
 
 [Back to top](#top)
 
-# General Operations
+## General Operations
 ### View help : `g help`
 Shows all valid command formats and their functionalities.
 
@@ -322,22 +318,22 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 
 [Back to top](#top)
 
-### Archiving data files `[coming in v2.0]`
+## Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
+**A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
 
 [Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+# Command Summary
 
 | Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -346,7 +342,7 @@ _Details coming soon ..._
 | **Add patient**               | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <br> e.g., `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` |
 | **Delete patient by index**   | `p delete PATIENT_INDEX` <br> e.g., `delete -i 3`                                                                                                                                                                                                                                               |
 | **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <br> e.g., `delete -ic T0021248C`                                                                                                                                                                                                                                   |
-| **Update patient by name**    | `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`                                                                                      |                                                                                                                                                                                                                                  |
+| **Update patient by name**    | `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`                                                                                      |
 | **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
 | **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
@@ -357,4 +353,5 @@ _Details coming soon ..._
 | **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                                                                 |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                                                                       |
 | **List drug**                 | `d list`                                                                                                                                                                                                                                                                                        |
+
 [Back to top](#top)
