@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
+import static seedu.address.testutil.TypicalEvents.SPORTS_DAY;
+import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -48,7 +50,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withEventSet(SPORTS_DAY)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Event> newEvent = Arrays.asList(CARNIVAL);
@@ -76,8 +79,8 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withEventSet(SPORTS_DAY).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -100,6 +103,34 @@ public class AddressBookTest {
     public void hasEvent_eventInAddressBook_returnsTrue() {
         addressBook.addEvent(CARNIVAL);
         assertTrue(addressBook.hasEvent(CARNIVAL));
+    }
+
+    @Test
+    public void removeEvent_soleEventInAddressBook_removesEvent() {
+        addressBook.addEvent(CARNIVAL);
+        addressBook.removeEvent(CARNIVAL);
+        AddressBook expectedAddressBook = new AddressBook();
+        assertEquals(expectedAddressBook, addressBook);
+    }
+
+    @Test
+    public void removeEvent_multipleEventsInAddressBook_removesEvent() {
+        addressBook.addEvent(CARNIVAL);
+        addressBook.addEvent(WEDDING_DINNER);
+        addressBook.removeEvent(CARNIVAL);
+        AddressBook expectedAddressBook = new AddressBook();
+        expectedAddressBook.addEvent(WEDDING_DINNER);
+        assertEquals(expectedAddressBook, addressBook);
+    }
+
+    @Test
+    public void removeEvent_eventNotInAddressBook_throwsEventNotFoundException() {
+        assertThrows(EventNotFoundException.class, () -> addressBook.removeEvent(CARNIVAL));
+    }
+
+    @Test
+    public void removeEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeEvent(null));
     }
 
     /**

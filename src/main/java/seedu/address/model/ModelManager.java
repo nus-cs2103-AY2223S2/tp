@@ -9,9 +9,12 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.SortEventType;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventComparator;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,6 +27,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+
+    private final SortedList<Event> sortedEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +43,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
 
+        sortedEvents = new SortedList<>(filteredEvents);
     }
 
     public ModelManager() {
@@ -116,6 +122,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEventFromPersonList(Event eventToDelete) {
+        requireNonNull(eventToDelete);
+        addressBook.deleteEventFromPersonList(eventToDelete);
+    }
+
+    @Override
+    public void setEventFromPersonList(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEventFromPersonList(target, editedEvent);
+    }
+
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return addressBook.hasEvent(event);
@@ -124,7 +142,19 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_EVENTS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        addressBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -137,6 +167,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -152,7 +183,21 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        return filteredEvents;
+        return sortedEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        sortedEvents.setComparator(null);
+        filteredEvents.setPredicate(predicate);
+    }
+
+    //=========== Sort Event List Accessors =============================================================
+    @Override
+    public void sortEventList(SortEventType sortEventType) {
+        requireNonNull(sortEventType);
+        sortedEvents.setComparator(EventComparator.getComparator(sortEventType));
     }
 
     //=========== Utils =============================================================
@@ -174,7 +219,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredEvents.equals(other.filteredEvents);
-
+                && filteredEvents.equals(other.filteredEvents)
+                && sortedEvents.equals(other.sortedEvents);
     }
 }

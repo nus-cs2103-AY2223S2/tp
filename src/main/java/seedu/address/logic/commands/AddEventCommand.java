@@ -27,6 +27,7 @@ public class AddEventCommand extends Command {
             + PREFIX_END_DATE_TIME + "23-07-2023 22:00 ";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
 
     private final Event toAdd;
 
@@ -41,6 +42,10 @@ public class AddEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasEvent(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
 
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

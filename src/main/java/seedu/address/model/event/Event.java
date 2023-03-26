@@ -45,7 +45,9 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+                && otherEvent.getName().equals(getName())
+                && otherEvent.getStartDateTime().equals(getStartDateTime())
+                && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
     /**
