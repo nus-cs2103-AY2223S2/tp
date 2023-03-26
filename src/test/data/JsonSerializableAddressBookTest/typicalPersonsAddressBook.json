@@ -8,7 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "drugAllergy" : "NKDA",
     "gender" : "female",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "Diabetic" ]
   }, {
     "nric": "S2345678B",
     "name" : "Benson Meier",
@@ -17,7 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "drugAllergy" : "NKDA",
     "gender" : "male",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "Osteoporotic", "Diabetic" ]
   }, {
     "nric": "S3456789C",
     "name" : "Carl Kurz",
@@ -26,7 +26,7 @@
     "address" : "wall street",
     "drugAllergy" : "Penicilin",
     "gender" : "male",
-    "tagged" : [ ]
+    "tagged" : [ "Asthmatic" ]
   }, {
     "nric": "S0123456D",
     "name" : "Daniel Meier",
@@ -35,7 +35,7 @@
     "address" : "10th street",
     "drugAllergy" : "Aspirin Panadol",
     "gender" : "male",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "Epileptic" ]
   }, {
     "nric": "S0000000E",
     "name" : "Elle Meyer",
@@ -44,7 +44,7 @@
     "address" : "michegan ave",
     "drugAllergy" : "NKDA",
     "gender" : "female",
-    "tagged" : [ ]
+    "tagged" : [ "Arthritic" ]
   }, {
     "nric": "S1111111F",
     "name" : "Fiona Kunz",
@@ -53,7 +53,7 @@
     "address" : "little tokyo",
     "drugAllergy" : "Aspirin Panadol",
     "gender" : "female",
-    "tagged" : [ ]
+    "tagged" : [ "Diabetic" ]
   }, {
     "nric": "S2222222G",
     "name" : "George Best",
@@ -62,6 +62,6 @@
     "address" : "4th street",
     "drugAllergy" : "Lidocaine",
     "gender" : "male",
-    "tagged" : [ ]
+    "tagged" : [ "Diabetic" ]
   } ]
 }
