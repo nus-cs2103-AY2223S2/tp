@@ -50,7 +50,7 @@ public class CommandTestUtil {
     public static final String VALID_POSTAL_IDA = "848213";
     public static final String VALID_DATE_ALICE = "2023-03-05";
     public static final String VALID_DATE_AMY = "2001-01-01";
-    public static final String VALID_DATE_BENSON = "2022=03-05";
+    public static final String VALID_DATE_BENSON = "2022-03-05";
     public static final String VALID_DATE_BOB = "2002-02-02";
     public static final String VALID_DATE_CARL = "2023-02-02";
     public static final String VALID_DATE_DANIEL = "2023-01-01";
@@ -64,7 +64,7 @@ public class CommandTestUtil {
     public static final String VALID_AGE_BENSON = "85";
     public static final String VALID_AGE_BOB = "22";
     public static final String VALID_AGE_CARL = "35";
-    public static final String VALID_AGE_DANIEL = "100";
+    public static final String VALID_AGE_DANIEL = "143";
     public static final String VALID_AGE_ELLE = "65";
     public static final String VALID_AGE_FIONA = "5";
     public static final String VALID_AGE_GEORGE = "12";
