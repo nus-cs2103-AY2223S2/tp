@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -22,6 +23,8 @@ class JsonAdaptedTask {
 
     private final String tank;
 
+    private final String priority;
+
     private final String isReminder;
 
     /**
@@ -30,9 +33,11 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description,
                            @JsonProperty("tank") String tank,
+                           @JsonProperty("priority") String priority,
                            @JsonProperty("isReminder") String isReminder) {
         this.description = description;
         this.tank = tank;
+        this.priority = priority;
         this.isReminder = isReminder;
     }
 
@@ -42,6 +47,11 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
 
         description = source.getDescription().description;
+        if (source.hasPriority()) {
+            priority = source.getPriority().priority;
+        } else {
+            priority = null;
+        }
         isReminder = String.valueOf(source.getIsReminder());
         if (source.isTankRelatedTask()) {
             tank = source.getTank().getTankName().fullTankName;
@@ -68,12 +78,18 @@ class JsonAdaptedTask {
         if (this.tank != null) {
             modelTank = new Tank(new TankName(this.tank), new AddressBook());
         }
+
+        Priority modelPriority = null;
+        if (this.priority != null) {
+            modelPriority = new Priority(this.priority);
+        }
+
         final Description modelDescription = new Description(description);
 
         if (isReminder.equals("true")) {
             TaskFeedingReminder task = new TaskFeedingReminder(modelDescription, modelTank);
             return task;
         }
-        return new Task(modelDescription, modelTank);
+        return new Task(modelDescription, modelTank, modelPriority);
     }
 }

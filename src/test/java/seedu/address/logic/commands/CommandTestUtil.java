@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
@@ -30,11 +31,11 @@ import seedu.address.testutil.EditFishDescriptorBuilder;
 public class CommandTestUtil {
 
     /* Sorting */
-    public static final String SORT_NAME = "n";
-    public static final String SORT_LAST_FED_DATE = "lfd";
-    public static final String SORT_SPECIES = "s";
-    public static final String SORT_FEEDING = "fi";
-    public static final String SORT_TANK = "tk";
+    public static final String SORT_NAME = " " + PREFIX_SORT_BY + "n";
+    public static final String SORT_LAST_FED_DATE = " " + PREFIX_SORT_BY + "lfd";
+    public static final String SORT_SPECIES = " " + PREFIX_SORT_BY + "s";
+    public static final String SORT_FEEDING = " " + PREFIX_SORT_BY + "fi";
+    public static final String SORT_TANK = " " + PREFIX_SORT_BY + "tk";
 
     /* Tank additions */
     public static final String VALID_TANK_INDEX = "1";

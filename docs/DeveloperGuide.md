@@ -287,8 +287,8 @@ Specifically, it currently sorts by the five compulsory fields of a fish:
 * Tank
 
 Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
-a `SortedList` is created based off the same `AddressBook`. Hence, when we perform sorting operations, we are able to manipulate
-the original list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
+a `SortedList` is created based off the same `Filteredlist`. Hence, when we perform sorting operations, we are able to manipulate
+the filtered list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 

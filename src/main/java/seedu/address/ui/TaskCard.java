@@ -22,7 +22,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private FlowPane tags;
+    private Label tags;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -32,6 +32,10 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().description);
+
+        if (task.hasPriority()) {
+            tags.getChildren().add(new Label("Priority: " + task.getPriority().priority));
+        }
         if (task.isTankRelatedTask()) {
             tags.getChildren().add(new Label(task.getTank().getTankName().fullTankName));
         }
