@@ -65,7 +65,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | n/Bob Sim            | change name to Bob Sim                           |
    | m+/AY2223S2 CS2109S  | add AY2223S2 CS2109S to Bob Sim's set of modules |
    | s+/python            | add PYTHON to Bob Sim's set of skills            |
-6. **find** Bob in list of persons
+6. **find** Bob in list of persons -> [find command](#find)
     <br>`find n/Bob Sim y/2 c/Accounting m/AY2223S2 CS2109S s/PYTHON`<br>
 
    | Parameters         | Description                                 |
@@ -86,7 +86,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Downloading CoDoc
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
-   * If no, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
+   * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
 2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/tag/v1.3.trial).
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
