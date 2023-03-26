@@ -19,7 +19,7 @@ public class JsonAdaptedDailyPlanTest {
     private static final long VALID_CURRENT_WORKLOAD = 30;
     private static final long INVALID_CURRENT_WORKLOAD = -1;
     private static final long ZERO_WORKLOAD = 0;
-    private static String VALID_DATE = "2023-04-12";
+    private static final String VALID_DATE = "2023-04-12";
     private static final List<JsonAdaptedTask> VALID_TASKS = MAY1.getTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
