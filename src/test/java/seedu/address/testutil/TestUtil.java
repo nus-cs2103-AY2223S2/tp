@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -136,7 +136,8 @@ public class TestUtil {
         descriptor.getAddress().ifPresent(address ->
                 sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.value).append(" "));
-        descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.value).append(" "));
+        descriptor.getBirthDate().ifPresent(date ->
+                sb.append(PREFIX_BIRTH_DATE).append(date.birthDate.toString()).append(" "));
         descriptor.getRegion().ifPresent(region -> sb.append(PREFIX_REGION).append(region).append(" "));
         descriptor.getRiskLevel().ifPresent(riskLevel ->
                 sb.append(PREFIX_RISK).append(riskLevel).append(" "));

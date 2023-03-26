@@ -75,7 +75,7 @@ Danger zone! Do pay attention to the information here carefully.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `add_elderly n/John Doe a/Linden Drive enr/S0312312A ag/76 r/LOW re/NORTH` : Adds an elderly named `John Doe`, NRIC `S0312312A` to FriendlyLink.
+    * `add_elderly n/John Doe a/Linden Drive enr/S0312312A ag/76 r/LOW re/NORTH p/97128012 e/john@gmail.com` : Adds an elderly named `John Doe`with NRIC `S0312312A` to FriendlyLink.
 
     * `delete_elderly S0312312A` : Deletes the elderly with NRIC `S0312312A`.
 
@@ -133,8 +133,7 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
-* `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123 enr/S1234567C bd/1953-01-08 re/NORTH r/HIGH t/lonely `
-* `add_elderly n/Sally Black ag/70 enr/S8457677M`
+* `add_volunteer n/John Wk e/johnwk@example.com a/New york p/1234561 vnr/T1254567D re/CENTRAL mt/CPR BASIC ag/63`
 
 #### Adding a volunteer: `add_volunteer`
 
@@ -427,7 +426,6 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 ## Advanced Details
 
 ### Prefixes
-
 * Prefixes should be entered in all lower case (e.g. n/Abdul instead of N/Abdul)
 * Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
 
@@ -457,6 +455,9 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 * For volunteer, medical qualificaiton must be in the format `SKILL_NAME LEVEL`.
 * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
 * Exmaple: `CPR BASIC`, `AED INTERMEDIATE`.
+
+### Tags
+* Only alphanumeric characters are allowed.
 
 ### Duplicate Entries
 * Person (Elderly and Volunteers)

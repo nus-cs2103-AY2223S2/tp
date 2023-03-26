@@ -14,9 +14,7 @@ title: Developer Guide
 
 * AddressBook Level-3 [documentation](https://se-education.org/addressbook-level3/)
 * AddressBook Level-3 [code](https://github.com/nus-cs2103-AY2223S2/tp)
-*
-
-Agolia [Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions)
+* Agolia [Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions)
 
 --------------------------------------------------------------------------------------------------------------------
 
