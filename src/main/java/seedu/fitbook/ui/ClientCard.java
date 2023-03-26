@@ -1,12 +1,17 @@
 package seedu.fitbook.ui;
 
 import java.util.Comparator;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.fitbook.AppParameters;
+import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
 /**
@@ -15,6 +20,8 @@ import seedu.fitbook.model.client.Client;
 public class ClientCard extends UiPart<Region> {
 
     private static final String FXML = "ClientListCard.fxml";
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -50,6 +57,23 @@ public class ClientCard extends UiPart<Region> {
     private Label goal;
     @FXML
     private Label calorie;
+    @FXML
+    private ImageView genderList;
+    @FXML
+    private ImageView phoneIcon;
+    @FXML
+    private ImageView addressIcon;
+    @FXML
+    private ImageView genderIcon;
+    @FXML
+    private ImageView emailIcon;
+    @FXML
+    private ImageView weightIcon;
+    @FXML
+    private ImageView goalIcon;
+    @FXML
+    private ImageView caloriesIcon;
+
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -57,14 +81,19 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
+        String genderText;
+        if (client.getGender().value.equals("M") || client.getGender().value.equals("m")) {
+            genderText = "maleIcon";
+        } else {
+            genderText = "femaleIcon";
+        }
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
-        gender.setText("Gender: " + client.getGender().value);
-        goal.setText("Goal: " + client.getGoal().value);
+        setGoalCondition(client, goal);
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
@@ -72,6 +101,29 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        genderList.setImage(
+                new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
+        phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
+        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
+        weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
+    }
+
+    /**
+     * Sets the goal to be displayed.
+     * If goal value is "client has not added a goal" , remove display.
+     *
+     * @param client The current client.
+     * @param goal The client's goal.
+     */
+    private void setGoalCondition(Client client, Label goal) {
+        if (!client.getGoal().value.equals("client has not added a goal")) {
+            goal.setText(client.getGoal().value);
+            goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
+        } else {
+            goal.setManaged(false);
+            goalIcon.setManaged(false);
+        }
     }
 
     /**
@@ -83,9 +135,12 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
-            calorie.setText("Rec Calories intake: " + client.getCalorie().value + " cal");
+            logger.info("The calorie is invalid.");
+            calorie.setText(client.getCalorie().value + " cal");
+            caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
             calorie.setManaged(false);
+            caloriesIcon.setManaged(false);
         }
     }
 

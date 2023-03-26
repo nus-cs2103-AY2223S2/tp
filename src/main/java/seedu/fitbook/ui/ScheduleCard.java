@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -41,6 +43,8 @@ public class ScheduleCard extends UiPart<Region> {
     private Label appointments;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView personIcon;
 
     /**
      * Creates a {@code ScheduleCard} with the given {@code Client} and index to display.
@@ -56,7 +60,7 @@ public class ScheduleCard extends UiPart<Region> {
         }
 
         //Display the appointments
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
         StringBuilder sb = new StringBuilder();
         for (LocalDateTime dateTime : dateTimeList) {
             sb.append(dateTime.format(f));
@@ -81,6 +85,7 @@ public class ScheduleCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
+        personIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/personIcon.png")));
     }
 
     @Override

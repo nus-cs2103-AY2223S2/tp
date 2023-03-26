@@ -55,7 +55,7 @@
 
         <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
           <children>
-          <VBox fx:id="clientList" minWidth="340" prefHeight="200" prefWidth="500" styleClass="pane-with-border" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+          <VBox fx:id="clientList" minWidth="340" prefHeight="200" prefWidth="600" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
@@ -73,7 +73,7 @@
             </Pane>
             <StackPane fx:id="clientListPanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
           </VBox>
-            <VBox fx:id="scheduleList" minWidth="340" prefHeight="200" prefWidth="600" styleClass="pane-with-border" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+            <VBox fx:id="scheduleList" minWidth="340" prefHeight="200" prefWidth="600" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
@@ -99,7 +99,7 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
           </padding>
           <VBox.margin>
-            <Insets />
+            <Insets bottom="5.0" left="5.0" right="10.0" top=" 0.0" />
           </VBox.margin>
         </StackPane>
 
