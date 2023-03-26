@@ -15,10 +15,10 @@ import seedu.address.model.Model;
 import seedu.address.model.OperationMode;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
-import seedu.address.model.item.Item;
 import seedu.address.storage.Storage;
 
 /**

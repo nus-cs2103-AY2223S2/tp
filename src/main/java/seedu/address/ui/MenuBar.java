@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.OperationMode;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
@@ -20,7 +19,8 @@ public class MenuBar extends UiPart<Region> {
      */
     public MenuBar() {
         super(FXML);
-        modeStatus.setText("Flight                                 Crew                                   Plane                                 Pilot                                   Location                                 ");
+        modeStatus.setText("Flight                                 Crew                                   Plane       " +
+                "                          Pilot                                   Location                                 ");
     }
 
 }
