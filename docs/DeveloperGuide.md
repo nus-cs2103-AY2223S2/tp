@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to sort the list by a category.
-4.  SOCket sorts alphanumerically by that category and displays the sorted list.
+4.  SOCket sorts the contacts by that category and displays the sorted contact list.
 
     Use case ends.
 
@@ -774,30 +774,9 @@ Use case ends.
 
 **Use case: UC19 Sorting project list**
 
-**MSS**
-
-1. User opens SOCket
-2. SOCket displays the project list.
-3. User requests to sort the project list by a category.
-4. SOCket sorts alphanumerically by that category and displays the sorted list.
-
-   Use case ends.
-
-**Extensions**
-* 2a. The list is empty.
-
-  Use case ends.
-* 3a. The given category is invalid.
-
-    * 3a1. SOCket shows an error message.
-
-      Use case resumes at step 2.
-  
-* 3b No category is given.
-
-    * 3b1. SOCket sorts the list by the deadline and displays the sorted list.
-
-      Use case ends.
+Similar to **UC04 Sort Contacts**, except,
+* the list being sorted is the list of projects instead of contacts
+* the default sort when no category is provided is by the deadline of the project instead of the name.
 
 **Use case: UC20 Assigning a member from a project**
 
