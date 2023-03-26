@@ -37,7 +37,8 @@
         <Label fx:id="experience" styleClass="cell_small_label" text="\$experience" />
       </VBox>
 
-<!--      <VBox alignment="TOP_CENTER" minHeight="105" minWidth="200" maxWidth="200" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">-->
+<!--      <VBox alignment="TOP_CENTER" minHeight="105" minWidth="200" maxWidth="200"
+                HBox.hgrow="ALWAYS" GridPane.columnIndex="0">-->
 <!--        <padding>-->
 <!--          <Insets top="15" right="15" bottom="15" left="15" />-->
 <!--        </padding>-->
@@ -47,7 +48,8 @@
 <!--        <Label fx:id="website" styleClass="cell_small_label" text="\$website" />-->
 <!--      </VBox>-->
 
-<!--      <VBox alignment="TOP_RIGHT" minHeight="105" minWidth="300" maxWidth="300" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">-->
+<!--      <VBox alignment="TOP_RIGHT" minHeight="105" minWidth="300" maxWidth="300"
+                HBox.hgrow="ALWAYS" GridPane.columnIndex="0">-->
 <!--        <padding>-->
 <!--          <Insets top="15" right="15" bottom="5" left="5" />-->
 <!--        </padding>-->
