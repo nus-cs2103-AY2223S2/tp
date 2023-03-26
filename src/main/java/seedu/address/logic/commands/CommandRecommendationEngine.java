@@ -33,7 +33,7 @@ import seedu.address.logic.parser.StatsCommandParser;
  * https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions
  */
 public class CommandRecommendationEngine {
-    public static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
+    public static final Map<String, CommandInfo> COMMAND_INFO_MAP = new LinkedHashMap<>();
     private static final String INVALID_COMMAND_MESSAGE = "No such command exists!"
             + " Please refer to our user guide for the list of valid commands.";
     private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
@@ -108,7 +108,7 @@ public class CommandRecommendationEngine {
      * @param commandInfo Command info to add
      */
     private static void registerCommandInfo(CommandInfo commandInfo) {
-        commandInfoMap.put(commandInfo.getCmdWord(), commandInfo);
+        COMMAND_INFO_MAP.put(commandInfo.getCmdWord(), commandInfo);
     }
 
     /**
@@ -175,10 +175,10 @@ public class CommandRecommendationEngine {
     }
 
     private CommandInfo findMatchingCommandInfo(String commandWord) {
-        return commandInfoMap.keySet()
+        return COMMAND_INFO_MAP.keySet()
                 .stream()
                 .filter(command -> command.startsWith(commandWord))
-                .map(commandInfoMap::get)
+                .map(COMMAND_INFO_MAP::get)
                 .findFirst()
                 .orElse(null);
     }
@@ -254,7 +254,7 @@ public class CommandRecommendationEngine {
      * @return A boolean value indicating if the set of arguments specified is valid.
      */
     public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
-        CommandInfo commandInfo = commandInfoMap.get(command);
+        CommandInfo commandInfo = COMMAND_INFO_MAP.get(command);
         Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
         return argumentValidator.apply(argumentMultimap);
     }
