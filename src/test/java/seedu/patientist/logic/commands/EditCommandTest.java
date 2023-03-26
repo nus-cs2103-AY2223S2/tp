@@ -12,7 +12,7 @@ import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.patientist.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.patientist.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.patientist.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import org.junit.jupiter.api.Test;
 

@@ -88,11 +88,12 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddPatientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                             + ADDRESS_DESC_AMY + PID_DESC_AMY + STATUS_DESC_AMY + WARD_DESC_AMY;
-        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withTags("Patient").build();
         ModelManager expectedModel = new ModelManager();
         Ward expectedWard = new Ward(VALID_WARD_AMY);
         expectedModel.addWard(expectedWard);
         expectedModel.addPatient(expectedPatient, expectedWard);
+        expectedModel.getPatientist().updatePersonList();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

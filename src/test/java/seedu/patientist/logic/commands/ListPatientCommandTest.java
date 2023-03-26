@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
+import static seedu.patientist.testutil.TypicalPatients.AMY;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
 import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
 import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
@@ -35,12 +37,12 @@ public class ListPatientCommandTest {
 
     @Test
     public void execute_onlyPatients_found() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         IsPatientPredicate predicate = new IsPatientPredicate();
         ListPatientsCommand command = new ListPatientsCommand();
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ADAM, CHARLIE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(AMY, CHARLIE, ADAM, BOB), model.getFilteredPersonList());
     }
 
 }

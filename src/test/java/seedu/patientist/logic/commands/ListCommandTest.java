@@ -3,7 +3,7 @@ package seedu.patientist.logic.commands;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.patientist.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
