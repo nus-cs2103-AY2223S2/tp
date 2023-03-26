@@ -13,6 +13,11 @@ public class ErrorMessageDisplay {
     @FXML
     private final Label errorMessageLabel;
 
+    /**
+     * Constructor for ErrorMessageDisplay.
+     *
+     * @param errorMessagePlaceholder Placeholder for error message display.
+     */
     public ErrorMessageDisplay(HBox errorMessagePlaceholder) {
         this.errorMessagePlaceholder = errorMessagePlaceholder;
         errorMessageLabel = new Label();

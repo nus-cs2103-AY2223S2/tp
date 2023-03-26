@@ -1,7 +1,15 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.HashSet;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -19,19 +27,19 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A pop-up window that handles the add function.
  */
 public class AddPatientWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AddPatientWindow.class);
+    private static final String ERROR_BLANK_TAG_NAME = "Tag name should not be blank!";
+    private static final String ERROR_DUPLICATED_TAG_NAME = "This tag has already been added! "
+            + "Please add a different tag.";
     private static final String FXML = "AddPatientWindow.fxml";
     private final ErrorMessageDisplay errorMessageDisplay;
     private final CommandBox.CommandExecutor commandExecutor;
     private Stage addStage;
-    private static final String ERROR_BLANK_TAG_NAME = "Tag name should not be blank!";
-    private static final String ERROR_DUPLICATED_TAG_NAME = "This tag has already been added!";
     private final HashSet<String> uniqueTags;
 
     @FXML
@@ -62,6 +70,12 @@ public class AddPatientWindow extends UiPart<Stage> {
     private TextField time;
 
 
+    /**
+     * Constructor for AddPatientWindow.
+     *
+     * @param commandExecutor CommandExecutor that is used to execute corresponding commands.
+     * @param addStage Stage for the AddPatientWindow.
+     */
     public AddPatientWindow(CommandBox.CommandExecutor commandExecutor, Stage addStage) {
         super(FXML, addStage);
         this.addStage = addStage;
@@ -79,22 +93,24 @@ public class AddPatientWindow extends UiPart<Stage> {
     //@@author lxz333
     //Reused from https://github.com/AY2223S1-CS2103T-W11-3/tp
     // with minor modifications
+
+    /**
+     * Handle the tag input in the tagField.
+     */
     public void handleAddTag() {
         String tagName = tagField.getText().trim();
 
         if (tagName.isEmpty()) {
             errorMessageDisplay.setError(ERROR_BLANK_TAG_NAME);
-            return;
         }
 
         if (!Tag.isValidTagName(tagName)) {
             errorMessageDisplay.setError(Tag.MESSAGE_CONSTRAINTS);
-            return;
         }
 
         if (uniqueTags.add(tagName)) {
-            HBox newTag = constructNewTag(tagName);
-            tags.getChildren().add(newTag);
+            HBox newTagLabel = constructNewTag(tagName);
+            tags.getChildren().add(newTagLabel);
             errorMessageDisplay.clearError();
         } else {
             errorMessageDisplay.setError(ERROR_DUPLICATED_TAG_NAME);

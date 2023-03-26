@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Collections;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -33,7 +32,8 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow, CommandBox.CommandExecutor commandExecutor) {
+    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow,
+                           CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.addPatientWindow = new AddPatientWindow(commandExecutor, new Stage());
         personListView.setItems(personList);
