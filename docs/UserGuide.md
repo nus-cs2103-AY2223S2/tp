@@ -318,13 +318,13 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 
 [Back to top](#top)
 
-### Archiving data files `[coming in v2.0]`
+## Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -333,7 +333,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+# Command Summary
 
 | Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
