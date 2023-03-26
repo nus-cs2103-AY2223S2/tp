@@ -149,7 +149,7 @@ The `HospitalRecord` stores a list of `Hospital` objects, which each:
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="diagrams/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both patient and drug data and user preference data in json format, and read them back into corresponding objects.
