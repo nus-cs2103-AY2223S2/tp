@@ -218,10 +218,13 @@ public class UniqueModuleList implements Iterable<Module> {
     public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
         switch (sort) {
         case GRADE:
+            moduleGroups = sortByGrade();
             return sortByGrade();
         case CREDIT:
+            moduleGroups = sortByCredit();
             return sortByCredit();
         default:
+            moduleGroups = sortBySemYear();
             return sortBySemYear();
         }
     }
