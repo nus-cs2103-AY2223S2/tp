@@ -6,6 +6,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "drugAllergy" : "NKDA",
+    "gender" : "female",
     "tagged": [ "friends" ]
   }, {
     "nric": "S1234567A",
@@ -13,6 +14,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "drugAllergy" : "NKDA",
+    "gender" : "female",
     "address": "4th street"
   } ]
 }
