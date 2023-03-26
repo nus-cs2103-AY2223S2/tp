@@ -58,6 +58,9 @@
                      <children>
                           <VBox fx:id="studentList" minWidth="300.0" HBox.hgrow="ALWAYS">
                       <StackPane fx:id="leftPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="300.0" VBox.vgrow="ALWAYS" />
+                           <padding>
+                              <Insets top="8.0" />
+                           </padding>
                     </VBox>
                         <VBox alignment="TOP_RIGHT" minWidth="300.0" HBox.hgrow="ALWAYS">
                            <children>

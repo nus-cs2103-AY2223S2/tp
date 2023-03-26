@@ -23,6 +23,7 @@ public class Session {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String sessionName;
+    private Boolean isSelected;
 
     /**
      * A map that stores the attendance record for each student in the session.
@@ -39,6 +40,7 @@ public class Session {
         requireNonNull(sessionName);
         this.sessionName = sessionName;
         attendance = new HashMap<>();
+        isSelected = false;
     }
 
     /**
@@ -139,6 +141,18 @@ public class Session {
         }
         attendance.put(student, 0);
         System.out.println("Marked student " + student.getName() + " absent in session " + sessionName);
+    }
+
+    public void selectSession() {
+        isSelected = true;
+    }
+
+    public void unselectSession() {
+        isSelected = false;
+    }
+
+    public boolean getSelectionStatus() {
+        return isSelected;
     }
 
     @Override

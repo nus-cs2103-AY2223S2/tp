@@ -27,11 +27,18 @@ public class NavigationBar extends UiPart<Region> {
         if (currentSelection.getCurrentPage() == PageType.GROUP_PAGE) {
             status.setText(currentSelection.getSelectedCourse().getCourseCode());
 
-        } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE) {
+        } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE
+                || currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
             String courseCode = currentSelection.getSelectedCourse().getCourseCode();
             String groupName = currentSelection.getSelectedGroup().getGroupName();
 
             status.setText(courseCode + " > " + groupName);
+        } else if (currentSelection.getCurrentPage() == PageType.SESSION_STUDENT_PAGE) {
+            String courseCode = currentSelection.getSelectedCourse().getCourseCode();
+            String groupName = currentSelection.getSelectedGroup().getGroupName();
+            String sessionName = currentSelection.getSelectedSession().getSessionName();
+
+            status.setText(courseCode + " > " + groupName + " > " + sessionName);
         }
     }
 }

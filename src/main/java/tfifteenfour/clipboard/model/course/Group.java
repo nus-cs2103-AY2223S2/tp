@@ -142,6 +142,14 @@ public class Group {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Unselects all sessions in a group. For GUI purpose.
+     */
+    public void unMarkAllSessions() {
+        for (Session session: this.getUnmodifiableSessionList()) {
+            session.unselectSession();
+        }
+    }
     @Override
     public String toString() {
         return this.groupName;
