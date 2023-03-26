@@ -14,12 +14,10 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
     private final Rank rank;
@@ -27,6 +25,7 @@ public class Person {
     private final Company company;
     private final Platoon platoon;
     private final Set<Tag> tags = new HashSet<>();
+    private Boolean isFavorite = false;
 
     /**
      * Every field must be present and not null.
@@ -83,6 +82,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(Boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 
     /**

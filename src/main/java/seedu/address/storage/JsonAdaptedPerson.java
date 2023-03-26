@@ -38,6 +38,7 @@ class JsonAdaptedPerson {
     private final String company;
     private final String platoon;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private boolean isFavorite = false;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -76,6 +77,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isFavorite = source.getIsFavorite();
     }
 
     /**
@@ -155,8 +157,11 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank,
+
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank,
                 modelUnit, modelCompany, modelPlatoon, modelTags);
+        newPerson.setIsFavorite(isFavorite);
+        return newPerson;
     }
 
 }
