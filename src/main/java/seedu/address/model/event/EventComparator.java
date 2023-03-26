@@ -33,7 +33,7 @@ public class EventComparator {
     private static final Comparator<Event> END_DATE_TIME_COMPARATOR = new Comparator<Event>() {
         @Override
         public int compare(Event o1, Event o2) {
-            return o2.getEndDateTime().getDateTime().compareTo(o1.getEndDateTime().getDateTime());
+            return o1.getEndDateTime().getDateTime().compareTo(o2.getEndDateTime().getDateTime());
         }
     };
 
