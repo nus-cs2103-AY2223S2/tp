@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Module lastModule = model.getFilteredModuleList().get(indexLastModule.getZeroBased());
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
-        Module editedModule = moduleInList.withName(VALID_NAME_BOB).withType(VALID_TYPE_BOB)
+        Module editedModule = moduleInList.withName(VALID_NAME_BOB).withResource(VALID_RESOURCE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withResource(VALID_RESOURCE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastModule, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);

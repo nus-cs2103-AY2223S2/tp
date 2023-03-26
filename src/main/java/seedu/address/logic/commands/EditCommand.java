@@ -5,10 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.Collections;
@@ -27,9 +27,9 @@ import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,16 +44,16 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TYPE + "TYPE] "
+            + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_RESOURCE + "RESOURCE] "
+            + "[" + PREFIX_TEACHER + "TEACHER] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_TEACHER + "TEACHER] ...\n"
+            + "[" + PREFIX_REMARK + "REMARK] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TYPE + "91234567 "
-            + PREFIX_TIMESLOT + "johndoe@example.com";
+            + PREFIX_RESOURCE + "www.google.com "
+            + PREFIX_TIMESLOT + "Mon 12 - 2pm";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -103,14 +103,14 @@ public class EditCommand extends Command {
         assert moduleToEdit != null;
 
         Name updatedName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
-        Type updatedType = editModuleDescriptor.getType().orElse(moduleToEdit.getType());
+        Resource updatedResource = editModuleDescriptor.getResource().orElse(moduleToEdit.getResource());
         TimeSlot updatedTimeSlot = editModuleDescriptor.getTimeSlot().orElse(moduleToEdit.getTimeSlot());
         Address updatedAddress = editModuleDescriptor.getAddress().orElse(moduleToEdit.getAddress());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
         Remark updatedRemark = editModuleDescriptor.getRemark().orElse(moduleToEdit.getRemark());
         Deadline updatedDeadline = editModuleDescriptor.getDeadline().orElse(moduleToEdit.getDeadline());
         Teacher updatedTeacher = editModuleDescriptor.getTeacher().orElse(moduleToEdit.getTeacher());
-        return new Module(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
+        return new Module(updatedName, updatedResource, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
                 updatedDeadline, updatedTeacher);
     }
 
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
      */
     public static class EditModuleDescriptor {
         private Name name;
-        private Type type;
+        private Resource resource;
         private TimeSlot timeSlot;
         private Address address;
         private Set<Tag> tags;
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
          */
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
             setName(toCopy.name);
-            setType(toCopy.type);
+            setResource(toCopy.resource);
             setTimeSlot(toCopy.timeSlot);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -167,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, type, timeSlot, address, tags, remark, deadline, teacher);
+            return CollectionUtil.isAnyNonNull(name, resource, timeSlot, address, tags, remark, deadline, teacher);
         }
 
         public void setName(Name name) {
@@ -178,12 +178,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setType(Type type) {
-            this.type = type;
+        public void setResource(Resource resource) {
+            this.resource = resource;
         }
 
-        public Optional<Type> getType() {
-            return Optional.ofNullable(type);
+        public Optional<Resource> getResource() {
+            return Optional.ofNullable(resource);
         }
 
         public void setTimeSlot(TimeSlot timeSlot) {
@@ -259,7 +259,7 @@ public class EditCommand extends Command {
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getType().equals(e.getType())
+                    && getResource().equals(e.getResource())
                     && getTimeSlot().equals(e.getTimeSlot())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())

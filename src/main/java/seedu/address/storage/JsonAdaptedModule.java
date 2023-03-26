@@ -15,9 +15,9 @@ import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +28,7 @@ class JsonAdaptedModule {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
     private final String name;
-    private final String type;
+    private final String resource;
     private final String timeSlot;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -40,12 +40,12 @@ class JsonAdaptedModule {
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("type") String type,
+    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("resource") String resource,
             @JsonProperty("timeSlot") String timeSlot, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
             @JsonProperty("deadline") String deadline, @JsonProperty("teacher") String teacher) {
         this.name = name;
-        this.type = type;
+        this.resource = resource;
         this.timeSlot = timeSlot;
         this.address = address;
         if (tagged != null) {
@@ -61,7 +61,9 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
-        type = source.getType().value;
+        resource = source.getResource().value;
+        timeSlot = source.getTimeSlot().value;
+        resource = source.getResource().value;
         timeSlot = source.getTimeSlot().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -91,13 +93,14 @@ class JsonAdaptedModule {
         }
         final Name modelName = new Name(name);
 
-        if (type == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
+        if (resource == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Resource.class.getSimpleName()));
         }
-        if (!Type.isValidType(type)) {
-            throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
+        if (!Resource.isValidResource(resource)) {
+            throw new IllegalValueException(Resource.MESSAGE_CONSTRAINTS);
         }
-        final Type modelType = new Type(type);
+        final Resource modelResource = new Resource(resource);
 
         if (timeSlot == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -124,7 +127,7 @@ class JsonAdaptedModule {
         final Remark modelRemark = new Remark(remark);
         final Deadline modelDeadline = new Deadline(deadline);
         final Teacher modelTeacher = new Teacher(teacher);
-        return new Module(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark,
+        return new Module(modelName, modelResource, modelTimeSlot, modelAddress, modelTags, modelRemark,
                 modelDeadline, modelTeacher);
     }
 

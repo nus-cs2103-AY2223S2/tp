@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.ALICE;
 import static seedu.address.testutil.TypicalModules.BOB;
@@ -32,7 +32,7 @@ public class ModuleTest {
         assertFalse(ALICE.isSameModule(null));
 
         // same name, all other attributes different -> returns true
-        Module editedAlice = new ModuleBuilder(ALICE).withType(VALID_TYPE_BOB).withTimeSlot(VALID_TIMESLOT_BOB)
+        Module editedAlice = new ModuleBuilder(ALICE).withResource(VALID_RESOURCE_BOB).withTimeSlot(VALID_TIMESLOT_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameModule(editedAlice));
 
@@ -73,7 +73,7 @@ public class ModuleTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different type -> returns false
-        editedAlice = new ModuleBuilder(ALICE).withType(VALID_TYPE_BOB).build();
+        editedAlice = new ModuleBuilder(ALICE).withResource(VALID_RESOURCE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different timeSlot -> returns false

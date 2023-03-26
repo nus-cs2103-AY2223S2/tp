@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_TIMESLOT, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESOURCE, PREFIX_TIMESLOT, PREFIX_ADDRESS,
+                        PREFIX_TAG, PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
 
         Index index;
 
@@ -50,8 +50,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
-            editModuleDescriptor.setType(ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get()));
+        if (argMultimap.getValue(PREFIX_RESOURCE).isPresent()) {
+            editModuleDescriptor.setResource(ParserUtil.parseResource(argMultimap.getValue(PREFIX_RESOURCE).get()));
         }
         if (argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
             editModuleDescriptor.setTimeSlot(ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).get()));

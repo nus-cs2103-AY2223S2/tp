@@ -16,19 +16,19 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Name;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_TYPE = "+651234";
+    private static final String INVALID_RESOURCE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TIMESLOT = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_TYPE = "123456";
+    private static final String VALID_RESOURCE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_TIMESLOT = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseType_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseType((String) null));
+    public void parseResource_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseResource((String) null));
     }
 
     @Test
-    public void parseType_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseType(INVALID_TYPE));
+    public void parseResource_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseResource(INVALID_RESOURCE));
     }
 
     @Test
-    public void parseType_validValueWithoutWhitespace_returnsType() throws Exception {
-        Type expectedType = new Type(VALID_TYPE);
-        assertEquals(expectedType, ParserUtil.parseType(VALID_TYPE));
+    public void parseResource_validValueWithoutWhitespace_returnsResource() throws Exception {
+        Resource expectedResource = new Resource(VALID_RESOURCE);
+        assertEquals(expectedResource, ParserUtil.parseResource(VALID_RESOURCE));
     }
 
     @Test
-    public void parseType_validValueWithWhitespace_returnsTrimmedType() throws Exception {
-        String typeWithWhitespace = WHITESPACE + VALID_TYPE + WHITESPACE;
-        Type expectedType = new Type(VALID_TYPE);
-        assertEquals(expectedType, ParserUtil.parseType(typeWithWhitespace));
+    public void parseResource_validValueWithWhitespace_returnsTrimmedResource() throws Exception {
+        String resourceWithWhitespace = WHITESPACE + VALID_RESOURCE + WHITESPACE;
+        Resource expectedResource = new Resource(VALID_RESOURCE);
+        assertEquals(expectedResource, ParserUtil.parseResource(resourceWithWhitespace));
     }
 
     @Test

@@ -4,6 +4,9 @@ package seedu.address.model.module;
  * Represents the Teacher of the Module's Lecture or Tutorial.
  */
 public class Teacher {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Teacher should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
     /**
@@ -16,6 +19,12 @@ public class Teacher {
         //requireNonNull(deadline);
         value = teacher;
     }
+    /**
+     * Returns if a given string is a valid deadline.
+     */
+    public static boolean isValidTeacher(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     @Override
     public String toString() {
@@ -25,8 +34,8 @@ public class Teacher {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.module.Deadline // instanceof handles nulls
-                && value.equals(((seedu.address.model.module.Deadline) other).value)); // state check
+                || (other instanceof seedu.address.model.module.Teacher // instanceof handles nulls
+                && value.equals(((seedu.address.model.module.Teacher) other).value)); // state check
     }
 
     @Override

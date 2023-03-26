@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
  * Represents a Module's deadline.
  */
 public class Deadline {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadline should be of format \"ddMMyyyy HH:mm\" (Example: 230223 18:00)";
     public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}[:][0-9]{2}$";
 
     public final LocalDateTime value;
@@ -23,7 +25,7 @@ public class Deadline {
     }
 
     /**
-     * Returns if a given string is a valid timeSlot.
+     * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
         if (test.equals("None.")) {

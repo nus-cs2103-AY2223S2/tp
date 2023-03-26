@@ -8,8 +8,8 @@ import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditModuleDescriptorBuilder {
     public EditModuleDescriptorBuilder(Module module) {
         descriptor = new EditModuleDescriptor();
         descriptor.setName(module.getName());
-        descriptor.setType(module.getType());
+        descriptor.setResource(module.getResource());
         descriptor.setTimeSlot(module.getTimeSlot());
         descriptor.setAddress(module.getAddress());
         descriptor.setTags(module.getTags());
@@ -50,8 +50,8 @@ public class EditModuleDescriptorBuilder {
     /**
      * Sets the {@code Type} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditModuleDescriptorBuilder withType(String type) {
-        descriptor.setType(new Type(type));
+    public EditModuleDescriptorBuilder withResource(String type) {
+        descriptor.setResource(new Resource(type));
         return this;
     }
 
