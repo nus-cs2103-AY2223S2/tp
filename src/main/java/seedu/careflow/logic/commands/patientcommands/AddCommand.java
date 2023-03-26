@@ -17,7 +17,6 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.patient.Patient;
-import seedu.careflow.ui.Ui;
 
 /**
  * Adds a patient to the patient records
@@ -69,7 +68,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Ui ui, CareFlowModel careFlowModel) throws CommandException {
+    public CommandResult execute(CareFlowModel careFlowModel) throws CommandException {
         requireNonNull(careFlowModel);
 
         if (careFlowModel.hasPatient(patientToAdd)) {

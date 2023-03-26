@@ -7,7 +7,6 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.DrugInventory;
-import seedu.careflow.ui.Ui;
 
 /**
  * Empties the existing Drug inventory
@@ -18,7 +17,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Drug inventory has been cleared!";
 
     @Override
-    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
+    public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
         model.setDrugInventory(new DrugInventory());
         return new CommandResult(MESSAGE_SUCCESS);

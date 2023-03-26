@@ -20,7 +20,6 @@ import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
 import seedu.careflow.storage.CareFlowStorage;
-import seedu.careflow.ui.Ui;
 
 /**
  * The main LogicManager of the CareFlow application.
@@ -32,7 +31,6 @@ public class CareFlowLogicManager implements CareFlowLogic {
     private final CareFlowModel model;
     private final CareFlowStorage storage;
     private final CareFlowParser careFlowParser;
-    private Ui ui;
 
     /**
      * Constructs a {@code CareFlowLogicManager} with the given {@code CareFlowModel} and {@code Storage}.
@@ -43,17 +41,12 @@ public class CareFlowLogicManager implements CareFlowLogic {
         this.careFlowParser = new CareFlowParser();
     }
 
-    public void setUi(Ui ui) {
-        this.ui = ui;
-    }
-
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
         Command command = careFlowParser.parseCommand(commandText);
-        System.out.println(ui);
-        commandResult = command.execute(ui, model);
+        commandResult = command.execute(model);
 
         try {
             storage.savePatientRecord(model.getPatientRecord());
@@ -62,11 +55,6 @@ public class CareFlowLogicManager implements CareFlowLogic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);
         }
         return commandResult;
-    }
-
-    @Override
-    public Ui getUI() {
-        return this.ui;
     }
 
     @Override

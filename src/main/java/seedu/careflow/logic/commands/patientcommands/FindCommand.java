@@ -8,7 +8,6 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
-import seedu.careflow.ui.Ui;
 
 /**
  * Finds a patient from the patient records
@@ -29,7 +28,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Ui ui, CareFlowModel model) {
+    public CommandResult execute(CareFlowModel model) {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
         return new CommandResult(

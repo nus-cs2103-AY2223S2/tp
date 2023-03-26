@@ -4,18 +4,31 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.careflow.model.drug.Drug;
+import seedu.careflow.model.patient.Patient;
+
+
 /**
  * Represents the result of a command execution.
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    private String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private boolean showHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private boolean exit;
+
+    private boolean displayPatient;
+
+    private boolean displayDrug;
+
+    private Patient selectedPatient;
+
+    private Drug selectedDrug;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +37,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.displayPatient = false;
+        this.displayDrug = false;
     }
 
     /**
@@ -34,8 +49,46 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code selectedPatient, feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(Patient selectedPatient, String feedbackToUser) {
+        this.selectedPatient = selectedPatient;
+        this.displayPatient = true;
+        this.feedbackToUser = feedbackToUser;
+        this.displayDrug = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code selectedDrug, feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(Drug selectedDrug, String feedbackToUser) {
+        this.selectedDrug = selectedDrug;
+        this.displayDrug = true;
+        this.feedbackToUser = feedbackToUser;
+        this.displayPatient = true;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isDisplayPatient() {
+        return displayPatient;
+    }
+
+    public boolean isDisplayDrug() {
+        return displayDrug;
+    }
+
+    public Patient getSelectedPatient() {
+        return this.selectedPatient;
+    }
+
+    public Drug getSelectedDrug() {
+        return this.selectedDrug;
     }
 
     public boolean isShowHelp() {

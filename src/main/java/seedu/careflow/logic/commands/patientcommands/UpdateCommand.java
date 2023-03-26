@@ -30,7 +30,6 @@ import seedu.careflow.model.patient.Ic;
 import seedu.careflow.model.patient.Name;
 import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.patient.Phone;
-import seedu.careflow.ui.Ui;
 
 /**
  * Update the details of an existing person in the careflow.
@@ -78,7 +77,7 @@ public class UpdateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Ui ui, CareFlowModel careFlowModel) throws CommandException {
+    public CommandResult execute(CareFlowModel careFlowModel) throws CommandException {
         requireNonNull(careFlowModel);
         List<Patient> lastShownList = careFlowModel.getFilteredPatientList();
 

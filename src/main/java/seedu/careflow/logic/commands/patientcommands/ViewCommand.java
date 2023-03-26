@@ -14,7 +14,6 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.patient.Patient;
-import seedu.careflow.ui.Ui;
 
 /**
  * Views a patient from the patient records
@@ -55,15 +54,14 @@ public class ViewCommand extends Command {
      * @return The command result if deletion is successful
      * @throws CommandException If an error occurred during deletion
      */
-    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
+    public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
         List<Patient> patientList = model.getFilteredPatientList();
         if (targetIndex.getZeroBased() >= patientList.size() || targetIndex.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         } else {
             Patient patientToView = patientList.get(targetIndex.getZeroBased());
-            ui.showSelectedPatient(patientToView);
-            return new CommandResult(String.format(MESSAGE_VIEW_PATIENT_SUCCESS, patientToView));
+            return new CommandResult(patientToView, String.format(MESSAGE_VIEW_PATIENT_SUCCESS, patientToView));
         }
     }
 }

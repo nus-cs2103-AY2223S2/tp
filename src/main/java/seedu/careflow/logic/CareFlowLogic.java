@@ -13,7 +13,6 @@ import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
-import seedu.careflow.ui.Ui;
 
 /**
  * API of the CareFlow Logic component
@@ -32,8 +31,6 @@ public interface CareFlowLogic {
      * Returns the PatientRecord
      */
     ReadOnlyPatientRecord getPatientRecord();
-
-    Ui getUI();
 
     /**
      * Returns the DrugInventory
@@ -66,7 +63,6 @@ public interface CareFlowLogic {
      */
     GuiSettings getGuiSettings();
 
-    void setUi(Ui ui);
     /**
      * Set the user prefs' GUI settings.
      */
