@@ -129,4 +129,13 @@ public class ParserUtil {
         }
         return dateSet;
     }
+
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+        String trimmedDays = days.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(days);
+    }
 }
