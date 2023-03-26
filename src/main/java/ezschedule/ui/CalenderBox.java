@@ -3,6 +3,7 @@ package ezschedule.ui;
 import java.util.List;
 
 import ezschedule.model.event.Event;
+import ezschedule.model.event.EventMatchesDatePredicate;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -11,13 +12,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * A UI component that displays information of {@code Event} in the calender.
+ * A UI component that displays information of {@code Event} in the calendar.
  */
 public class CalenderBox extends UiPart<Region> {
 
     private static final String FXML = "CalenderBox.fxml";
 
-    private final List<Event> events;
+    private List<Event> events;
+    private Calender.FilterExecutor filterExecutor;
 
     @FXML
     private StackPane calenderBoxPane;
@@ -28,14 +30,23 @@ public class CalenderBox extends UiPart<Region> {
     @FXML
     private Rectangle calenderHighlight;
 
-    public CalenderBox(String date, List<Event> events) {
+    /**
+     * Creates an empty {@code CalenderBox}.
+     */
+    public CalenderBox() {
+        super(FXML);
+    }
+
+    /**
+     * Creates a {@code CalenderBox} with the given {@code List<Event>} and date to display.
+     */
+    public CalenderBox(String date, List<Event> events, Calender.FilterExecutor filterExecutor) {
         super(FXML);
         this.events = events;
-        if (date != null) {
-            setDate(date);
-            setBackgroundColor();
-            setEvents();
-        }
+        this.filterExecutor = filterExecutor;
+        setDate(date);
+        setBackgroundColor();
+        setEvents();
     }
 
     /**
@@ -43,7 +54,9 @@ public class CalenderBox extends UiPart<Region> {
      */
     @FXML
     public void handleListEvents() {
-
+        if (events != null) {
+            filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(events.get(0).getDate()));
+        }
     }
 
     private void setDate(String date) {

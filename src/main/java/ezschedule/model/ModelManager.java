@@ -123,15 +123,15 @@ public class ModelManager implements Model {
 
     //=========== Event List Accessors =============================================================
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedScheduler}
+     */
     @Override
     public ObservableList<Event> getEventList() {
         return scheduler.getEventList();
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedScheduler}
-     */
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;

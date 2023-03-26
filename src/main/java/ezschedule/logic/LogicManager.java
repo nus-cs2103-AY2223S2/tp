@@ -2,6 +2,7 @@ package ezschedule.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import ezschedule.commons.core.GuiSettings;
@@ -67,6 +68,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        model.updateFilteredEventList(predicate);
     }
 
     @Override
