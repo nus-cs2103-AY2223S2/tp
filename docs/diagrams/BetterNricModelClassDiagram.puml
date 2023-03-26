@@ -18,4 +18,5 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> DrugAllergy
+Person *--> Gender
 @enduml
