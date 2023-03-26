@@ -47,7 +47,8 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic, ResultDisplay resultDisplay) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic,
+                           ResultDisplay resultDisplay) {
         super(FXML);
         this.allData = null;
         this.favData = null;
@@ -114,12 +115,14 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
+    /**
+     * Binds UI's clicked selection with selected contact in Logic and Model.
+     * @param clickedIndex
+     */
     private void bindClickedIndex(int clickedIndex) {
         Index oneBased = Index.fromOneBased(clickedIndex);
         logic.setSelectedPerson(oneBased);
         logic.setSelectedIndex(oneBased);
-//        resultDisplay.setFeedbackToUser("");
     }
 
     private int getIndexOffset() {

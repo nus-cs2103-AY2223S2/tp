@@ -9,8 +9,6 @@ import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.result.ResultDisplay;
 
-import java.util.ResourceBundle;
-
 /**
  * Panel for the address book.
  */

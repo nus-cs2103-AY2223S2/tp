@@ -13,7 +13,6 @@ import seedu.address.ui.body.calendar.CalendarPanel;
 import seedu.address.ui.body.user.UserPanel;
 import seedu.address.ui.result.ResultDisplay;
 
-import javax.xml.transform.Result;
 
 /**
  * A UI component representing the body section of the app with tabs.
