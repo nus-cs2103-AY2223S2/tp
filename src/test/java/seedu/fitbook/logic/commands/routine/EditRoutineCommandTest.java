@@ -37,10 +37,10 @@ import seedu.fitbook.testutil.routine.RoutineBuilder;
  */
 public class EditRoutineCommandTest {
 
+    private static final String DEFAULT_EXERCISE_PLANK = "Plank";
+    private static final String DEFAULT_EXERCISE_RUN = "4x5 1km Run";
     private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
             getTypicalFitBookExerciseRoutine(), new UserPrefs());
-    private final String DEFAULT_EXERCISE_PLANK = "Plank";
-    private final String DEFAULT_EXERCISE_RUN = "4x5 1km Run";
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
