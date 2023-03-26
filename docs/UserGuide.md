@@ -52,9 +52,9 @@ equipment.
 # Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest fishahoy.jar from here.
+2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for Fish Ahoy!.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fishahoy.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
