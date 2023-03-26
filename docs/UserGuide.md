@@ -115,26 +115,14 @@ Example: <br>
 
 ### Finding Internships: `find`
 Finds Internships by Position, Company, Status.
-Format: `find [p/ POSITION] [c/ COMPANY] [s/ STATUS]`
+Format: `find p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS]`
 
 * After keying in the `find` command, the program will filter the internship catalogue accordingly.
 * To revert the list back to the original, just simply enter the `list` command.
 
-=======
-1. SOFTWARE ENGINEER, GOOGLE
-2. DATA ANALYST, SHOPBACK
-3. SOFTWARE ENGINEER, GRAB
-4. DATA SCIENTIST, ARTEFACT
-~~~
-
-~~~
-// input
-find p/ SOFTWARE ENGINEER
-~~~
-Result
-~~~
-1. SOFTWARE ENGINEER, GOOGLE
-2. SOFTWARE ENGINEER, GRAB
+Example: Default TinS has 6 internship listings. `find c/GovTech` would return the list of internships with company name
+GovTech.
+![find_internship](images/ug-find.png)
 
 ### Viewing Details of a Particular Internship : `select`
 
@@ -222,6 +210,7 @@ Examples: `event delete 1` entered after `select 1` deletes the first event in t
 Displays all events with clashing timings.
 
 Format: `clash`
+![clash_function](images/ug-clash.png)
 
 ### Exiting the program : `exit`
 
