@@ -19,14 +19,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
-import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
@@ -175,6 +174,26 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /**
+     * Executes the command based on the given {@code commandText} and returns the result.
+     * Updates the UI components based on the command result.
+     *
+     * @param commandText the command text to execute.
+     * @return the resulting {@code CommandResult} after executing the command.
+     * @throws CommandException if the command execution fails.
+     * @throws ParseException if the command text cannot be parsed.
+     */
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = commandExecutor.execute(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            throw e;
+        }
+    }
+    
+    /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
      * in a map of changed values.
@@ -219,16 +238,7 @@ public class RecipeForm extends UiPart<Region> {
                 changedValues.put(key, currentValue);
             }
         }
-        /*
-        ...
-        model.saveRecipe(recipe);
-        EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
-        cardPane.fireEvent(editEvent);
-        */
         try {
-            System.out.println(changedValues);
-            //EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex, changedValues);
-            //handleEditRecipeEvent(editEvent);
             handleEditRecipeEvent(displayedIndex, changedValues);
             closeForm();
         } catch (Exception e) {
@@ -237,70 +247,11 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Handles the EditRecipeEvent by executing the appropriate edit command
-     * based on the provided event data. Updates the recipe with the changed values
-     * specified in the event.
+     * Handles the edit recipe event by updating the recipe with the changed values.
      *
-     * @param event the EditRecipeEvent containing the index of the recipe to be edited
-     *              and a map of the changed values.
+     * @param index        The index of the recipe to be edited.
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private void handleEditRecipeEvent(EditRecipeEvent event) {
-        assert event != null : "EditRecipeEvent cannot be null";
-        int recipeIndex = event.getRecipeIndex();
-        Map<String, String> changedValues = event.getChangedValues();
-        try {
-            StringBuilder commands = new StringBuilder();
-
-            // Add the index of the item to edit.
-            commands.append(recipeIndex);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (changedValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(changedValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (changedValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(changedValues.get("duration"));
-            }
-            
-            // Check if the ingredients have been changed and append the ingredients prefix and value.
-            if (changedValues.containsKey("ingredients")) {
-                String[] ingredients = changedValues.get("ingredients").split(", ");
-                for (String ingredient : ingredients) {
-                    commands.append(" i/");
-                    commands.append(ingredient);
-                }
-            }
-
-            // Check if the steps have been changed and append the steps prefix and value.
-            if (changedValues.containsKey("steps")) {
-                String[] steps = changedValues.get("steps").split(", ");
-                for (String step : steps) {
-                    commands.append(" s/");
-                    commands.append(step);
-                }
-            }
-
-            // Check if the tags have been changed and append the tags prefix and value.
-            if (changedValues.containsKey("tags")) {
-                String[] tags = changedValues.get("tags").split(", ");
-                for (String tag : tags) {
-                    commands.append(" t/");
-                    commands.append(tag);
-                }
-            }
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "edit " + commands.toString(); // 1-indexed
-            System.out.println(commandText);
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: " + recipeIndex);
-        }
-    }
-
     private void handleEditRecipeEvent(int index, Map<String, String> changedValues ) {
         try {
             StringBuilder commands = new StringBuilder();
@@ -355,6 +306,12 @@ public class RecipeForm extends UiPart<Region> {
         }
     }
 
+    /**
+     * Returns the next TextField below the current TextField within the same parent VBox, if any.
+     *
+     * @param currentTextField The current TextField.
+     * @return The next TextField below the current TextField or null if there's no TextField below it.
+     */
     private TextField getNextTextField(TextField currentTextField) {
         VBox parentBox = (VBox) currentTextField.getParent();
         int currentIndex = parentBox.getChildren().indexOf(currentTextField);
@@ -370,31 +327,49 @@ public class RecipeForm extends UiPart<Region> {
         return null;
     }
 
+    /**
+     * Creates a dynamic TextField with the specified initial text.
+     * The TextField will support UP, DOWN, and TAB navigation.
+     * If the TextField is the last in the VBox and gains focus, a new empty TextField will be added below it.
+     * If the TextField loses focus and is the last in the VBox and empty, it will be removed.
+     *
+     * @param text The initial text for the TextField.
+     * @return The created dynamic TextField.
+     */
     private TextField createDynamicTextField(String text) {
         TextField textField = new TextField(text);
 
+        //Keyboard listener for navigation
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             int currentIndex = ((VBox) textField.getParent()).getChildren().indexOf(textField);
-            switch (event.getCode()) {
-            case UP:
+            if (event.getCode() == KeyCode.UP) {
+                // Condition 1: UP key pressed
                 if (currentIndex > 0) {
                     TextField prevField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex - 1);
                     prevField.requestFocus();
                 }
-                break;
-            case DOWN:
-            //To-Do: Lump together with tab
-                break;
-            case TAB:
+            } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
                 TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
-                nextField.requestFocus();
+        
+                // Condition 2.1: DOWN key pressed
+                if (event.getCode() == KeyCode.DOWN) {
+                    nextField.requestFocus();
+                }
+                // Condition 2.2: TAB key pressed
+                else if (event.getCode() == KeyCode.TAB) {
+                    // If it is a new placeholder row and there's another TextField after it, skip to the field after
+                    if (nextField.getText().isEmpty() && currentIndex + 2 < ((VBox) textField.getParent()).getChildren().size()) {
+                        nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 2);
+                    }
+                    nextField.requestFocus();
+                }
                 event.consume();
-                break;
-            default:
-                break;
+            } else {
+                // Default: Do nothing
             }
         });
-
+        
+        //Textfield listener for automatically adding/removing new input rows
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textField.getParent();
             int lastIndex = parentBox.getChildren().size() - 1;
@@ -404,7 +379,7 @@ public class RecipeForm extends UiPart<Region> {
                 // Check if it's the last TextField in the VBox
                 if (parentBox.getChildren().indexOf(textField) == lastIndex) {
                     TextField newField = createDynamicTextField("");
-                    parentBox.getChildren().add(newField);
+                    parentBox.getChildren().add(newField); 
                 }
             } else {
                 // Check if any other TextField has gained focus or the focus owner is not a TextField
@@ -455,28 +430,5 @@ public class RecipeForm extends UiPart<Region> {
         });
         window.setScene(scene);
         window.showAndWait();
-    }
-
-    /**
-     * Executes the command based on the given {@code commandText} and returns the result.
-     * Updates the UI components based on the command result.
-     *
-     * @param commandText the command text to execute.
-     * @return the resulting {@code CommandResult} after executing the command.
-     * @throws CommandException if the command execution fails.
-     * @throws ParseException if the command text cannot be parsed.
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = commandExecutor.execute(commandText);
-            //logger.info("Result: " + commandResult.getFeedbackToUser());
-            //resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            return commandResult;
-        } catch (Exception e) {
-            //logger.info("Invalid command: " + commandText);
-            //resultDisplay.setFeedbackToUser(e.getMessage());
-            System.out.println(e.getMessage());
-            throw e;
-        }
     }
 }
