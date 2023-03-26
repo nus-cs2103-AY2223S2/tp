@@ -3,6 +3,7 @@ package bookopedia.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,9 @@ public class CommandResultTest {
         // is exit
         assertTrue(commandResultExitOnly.isExit());
         assertFalse(commandResultShowHelpOnly.isExit());
+        assertFalse(commandResult.isView());
+        assertEquals(commandResult.getId(), -1);
+        assertNull(commandResult.getPerson());
     }
 
     @Test
