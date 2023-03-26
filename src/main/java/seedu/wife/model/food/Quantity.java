@@ -54,15 +54,16 @@ public class Quantity {
     public Quantity increaseQuantity(Quantity increasedQuantity) {
         return new Quantity(String.valueOf(this.quantity + increasedQuantity.getValue()));
     }
+
     @Override
-    public String toString() {
-        return this.quantity.toString();
+    public boolean equals(Object otherQuantity) {
+        return otherQuantity == this
+                || (otherQuantity instanceof Quantity
+                && quantity.equals(((Quantity) otherQuantity).quantity));
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Quantity
-                && quantity.equals(((Quantity) other).quantity));
+    public String toString() {
+        return this.quantity.toString();
     }
 }

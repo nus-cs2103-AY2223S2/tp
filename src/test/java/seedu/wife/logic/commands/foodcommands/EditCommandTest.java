@@ -60,6 +60,7 @@ public class EditCommandTest {
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_CHOCOLATE)
                 .withUnit(VALID_UNIT_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE).build();
+
         EditCommand editCommand = new EditCommand(indexLastFood, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
