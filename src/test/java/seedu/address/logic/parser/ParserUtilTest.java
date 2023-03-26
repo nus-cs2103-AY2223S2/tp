@@ -114,13 +114,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    void parseNumCardsPerReview_validValues_returnsNumCardInteger() throws Exception {
+        String inputAll = "all";
+        assertEquals(-1, ParserUtil.parseNumCardsPerReview(inputAll));
+
+        String inputTen = "10";
+        assertEquals(10, ParserUtil.parseNumCardsPerReview(inputTen));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    void parseNumCardsPerReview_invalidValues_throwsParseException() throws Exception {
+        String inputString = "helloWorld";
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputString));
+
+        String inputFloat = "10.5";
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputFloat));
     }
+
 
 }

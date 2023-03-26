@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.tag.Tag.*;
+
 import seedu.address.logic.commands.cardcommands.EditCommand;
 import seedu.address.logic.commands.cardcommands.EditCommand.EditCardDescriptor;
 import seedu.address.model.card.Answer;
@@ -53,7 +55,7 @@ public class EditCardDescriptorBuilder {
      * Sets the {@code Tag} of the {@code EditCardDescriptor} that we are building.
      */
     public EditCardDescriptorBuilder withTag(String tagName) {
-        descriptor.setTag(new Tag(Tag.TagName.valueOf(tagName.toUpperCase())));
+        descriptor.setTag(new Tag(TagName.valueOf(tagName.toUpperCase())));
         return this;
     }
 

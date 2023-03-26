@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.tag.Tag.*;
+
 import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
@@ -53,7 +55,7 @@ public class AddCardDescriptorBuilder {
      * that we are building.
      */
     public AddCardDescriptorBuilder withTag(String tag) {
-        descriptor.setTag(new Tag(Tag.TagName.valueOf(tag.toUpperCase())));
+        descriptor.setTag(new Tag(TagName.valueOf(tag.toUpperCase())));
         return this;
     }
 
