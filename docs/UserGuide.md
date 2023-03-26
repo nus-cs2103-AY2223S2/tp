@@ -180,23 +180,52 @@ Format: `clear`
 
 Review mode is started when `review INDEX` has been entered on the main mode.
 
-### Flipping the Powercard: `flip`
+### Ending the Review: `endReview`
 
-Flips the Powercard to check the answer.
+Ends the review.
+Changes current mode to Deck mode.
+
+Format: `endReview`
+
+### Next Card: `]`
+
+Displays the next Powercard.
+
+Format: `]`
+
+### Previous Card: `[`
+
+Displays the previous Powercard.
 
 Format: `[`
 
-### Marking the Powercard as correct: `correct`
+### Flipping the Powercard: `\ `
+
+Flips the Powercard to check the answer.
+
+Format: `\ `
+
+### Marking the Powercard as correct: `'`
 
 Marks the current Powercard as correct.
 
 Format: `'`
 
-### Marking the Powercard as wrong: `wrong`
+### Marking the Powercard as wrong: `;`
 
 Marks the current PowerCard as wrong.
 
 Format: `;`
+
+### Tagging a Powercard: `tag`
+
+Tags the current PowerCard as either Easy, Medium, or Hard.
+
+Format: `tag ENUM`
+
+Examples:
+* `tag Easy`
+* `tag hard`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -229,20 +258,44 @@ _Details coming soon ..._
 
 ## Command summary
 
+### Main mode
+
 Action | Format, Examples
 --------|------------------
 Add deck | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`
 Edit deck | `editDeck d\DECK_NAME` <br /> e.g., `editDeck d\Physics`
+Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
+Unselect Deck | `unselect`
+Review      | `review`
+Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
+Clear       | `clear`
+Help        | `help`
+Exit        | `exit`
+
+### Deck mode
+
+Action | Format, Examples
+--------|------------------
 List     | `list`
 Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
 Unselect Deck | `unselect`
-Add card    | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
+Add Card    | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
 Edit Card   | `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `edit 1 q\What is chemical symbol for Caarbon? a\C t\Hard`
 Review      | `review`
 Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
 Clear       | `clear`
-Flip        | `[`
+Help        | `help`
+Exit        | `exit`
+
+### Review mode
+
+Action | Format, Examples
+--------|------------------
+End Review | `endReview`
+Previous Card | `[`
+Next Card | `]`
+Flip        | `\`
 Correct     | `'`
 Wrong       | `;`
-Help        | `help`
+Tag        | `tag`
 Exit        | `exit`
