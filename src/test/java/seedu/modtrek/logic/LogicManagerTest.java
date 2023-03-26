@@ -58,12 +58,14 @@ public class LogicManagerTest {
         String validCommandModule = "find CS1101S";
         assertCommandSuccess(validCommandModule, String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
                 model.getFilteredModuleList().size()), model);
-        assertEquals(logic.getFiltersList(), new ArrayList<>());
+        List<String> filtersList = new ArrayList<>();
+        filtersList.add("CS1101S");
+        assertEquals(logic.getFiltersList(), filtersList);
 
         String validCommandPrefix = "find /m CS /g A";
         assertCommandSuccess(validCommandPrefix, String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
                 model.getFilteredModuleList().size()), model);
-        List<String> filtersList = new ArrayList<>();
+        filtersList.clear();
         filtersList.add("/m CS");
         filtersList.add("/g A");
         assertEquals(logic.getFiltersList(), filtersList);

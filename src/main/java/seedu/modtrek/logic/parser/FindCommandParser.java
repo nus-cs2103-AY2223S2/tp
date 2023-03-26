@@ -99,6 +99,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             Code code = ParserUtil.parseCode(argMultimap.getPreamble());
             moduleCodePredicate = new ModuleCodePredicate(code.toString(), "",
                     "", "", new HashSet<>());
+            filtersList.clear();
+            filtersList.add(code.toString());
         } else {
             moduleCodePredicate = new ModuleCodePredicate(codePrefixString, creditString,
                     semYearString, gradeString, (HashSet<Tag>) tagList);
