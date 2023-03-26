@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands

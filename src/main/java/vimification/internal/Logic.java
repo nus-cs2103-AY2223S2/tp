@@ -1,9 +1,9 @@
-package vimification.logic;
+package vimification.internal;
 
 import javafx.collections.ObservableList;
-import vimification.logic.commands.CommandException;
-import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParserException;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
+import vimification.internal.parser.ParserException;
 import vimification.model.task.Task;
 
 /**

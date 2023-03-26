@@ -1,9 +1,9 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 import java.util.logging.Logger;
 
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.LogicCommand;
+import vimification.internal.command.logic.LogicCommand;
 
 public class VimificationParser implements LogicCommandParser<LogicCommand> {
 
