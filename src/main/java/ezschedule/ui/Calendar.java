@@ -17,12 +17,13 @@ import javafx.scene.text.Text;
 /**
  * A UI component for the calendar.
  */
-public class Calender extends UiPart<Region> {
+public class Calendar extends UiPart<Region> {
 
-    private static final String FXML = "Calender.fxml";
+    private static final String FXML = "Calendar.fxml";
 
     private final ObservableList<Event> eventList;
     private final FilterExecutor filterExecutor;
+    private final ZonedDateTime today;
     private ZonedDateTime date;
     private int monthMaxDate;
 
@@ -36,11 +37,12 @@ public class Calender extends UiPart<Region> {
     /**
      * Creates a {@code Calender} with the given {@code ObservableList}{@code CommandExecutor}}.
      */
-    public Calender(ObservableList<Event> eventList, FilterExecutor filterExecutor) {
+    public Calendar(ObservableList<Event> eventList, FilterExecutor filterExecutor) {
         super(FXML);
         this.eventList = eventList;
         this.filterExecutor = filterExecutor;
         date = ZonedDateTime.now();
+        today = ZonedDateTime.now();
         monthMaxDate = date.getMonth().maxLength();
         drawCalendar();
     }
@@ -113,11 +115,11 @@ public class Calender extends UiPart<Region> {
                     if (currentDate <= monthMaxDate) {
                         String date = String.valueOf(currentDate);
                         List<Event> eventsForCurrentDate = eventsForMonthMap.get(currentDate);
-                        calendar.getChildren().add(
-                                new CalenderBox(date, eventsForCurrentDate, filterExecutor).getRoot());
+                        calendar.getChildren().add(new CalendarBox(
+                                isToday(currentDate), date, eventsForCurrentDate, filterExecutor).getRoot());
                     }
                 } else {
-                    calendar.getChildren().add(new CalenderBox().getRoot());
+                    calendar.getChildren().add(new CalendarBox().getRoot());
                 }
             }
         }
@@ -131,6 +133,12 @@ public class Calender extends UiPart<Region> {
 
     private boolean isLeapYear() {
         return date.getYear() % 4 != 0 && monthMaxDate == 29;
+    }
+
+    private boolean isToday(int currentDate) {
+        return today.getYear() == date.getYear()
+                && today.getMonth() == date.getMonth()
+                && today.getDayOfMonth() == currentDate;
     }
 
     /**

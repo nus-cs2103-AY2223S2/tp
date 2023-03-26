@@ -29,12 +29,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Stage primaryStage;
     private final Logic logic;
-
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
-    private final HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -46,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
     @FXML
-    private StackPane calenderPlaceholder;
+    private StackPane calendarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        Calender calender = new Calender(logic.getEventList(), logic::updateFilteredEventList);
-        calenderPlaceholder.getChildren().add(calender.getRoot());
+        Calendar calendar = new Calendar(logic.getEventList(), logic::updateFilteredEventList);
+        calendarPlaceholder.getChildren().add(calendar.getRoot());
     }
 
     /**

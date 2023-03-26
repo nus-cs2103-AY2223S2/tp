@@ -8,44 +8,46 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
  * A UI component that displays information of {@code Event} in the calendar.
  */
-public class CalenderBox extends UiPart<Region> {
+public class CalendarBox extends UiPart<Region> {
 
-    private static final String FXML = "CalenderBox.fxml";
+    private static final String FXML = "CalendarBox.fxml";
 
     private List<Event> events;
-    private Calender.FilterExecutor filterExecutor;
+    private Calendar.FilterExecutor filterExecutor;
 
     @FXML
-    private StackPane calenderBoxPane;
+    private StackPane calendarBoxPane;
     @FXML
-    private Text calenderDate;
+    private Text calendarDate;
     @FXML
-    private VBox calenderEvents;
+    private VBox calendarEvents;
     @FXML
-    private Rectangle calenderHighlight;
+    private Rectangle calendarHighlight;
 
     /**
      * Creates an empty {@code CalenderBox}.
      */
-    public CalenderBox() {
+    public CalendarBox() {
         super(FXML);
     }
 
     /**
      * Creates a {@code CalenderBox} with the given {@code List<Event>} and date to display.
      */
-    public CalenderBox(String date, List<Event> events, Calender.FilterExecutor filterExecutor) {
+    public CalendarBox(boolean isToday, String date, List<Event> events, Calendar.FilterExecutor filterExecutor) {
         super(FXML);
         this.events = events;
         this.filterExecutor = filterExecutor;
         setDate(date);
         setBackgroundColor();
+        setHighlightForToday(isToday);
         setEvents();
     }
 
@@ -60,11 +62,17 @@ public class CalenderBox extends UiPart<Region> {
     }
 
     private void setDate(String date) {
-        calenderDate.setText(date);
+        calendarDate.setText(date);
     }
 
     private void setBackgroundColor() {
-        calenderEvents.setStyle("-fx-background-color:GRAY");
+        calendarEvents.setStyle("-fx-background-color:GRAY");
+    }
+
+    private void setHighlightForToday(boolean isToday) {
+        if (isToday) {
+            calendarHighlight.setStroke(Color.RED);
+        }
     }
 
     private void setEvents() {
@@ -72,12 +80,12 @@ public class CalenderBox extends UiPart<Region> {
             for (int i = 0; i < events.size(); i++) {
                 if (i >= 1) {
                     Text moreEvents = new Text("...");
-                    calenderEvents.getChildren().add(moreEvents);
+                    calendarEvents.getChildren().add(moreEvents);
                     break;
                 }
                 String eventName = getEventName(events.get(i));
                 Text event = new Text(eventName);
-                calenderEvents.getChildren().add(event);
+                calendarEvents.getChildren().add(event);
             }
         }
     }
