@@ -45,6 +45,8 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 [^ Scroll back up to *Tables of Contents*](#table-of-contents)
 ## Command Summary 
 [^ Scroll back up to *Tables of Contents*](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ## Additional Resources
 ### How To Check Java Version
 [^ Scroll back up to *Downloading CoDoc*](#downloading-codoc)
