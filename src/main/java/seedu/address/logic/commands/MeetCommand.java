@@ -11,7 +11,7 @@ import seedu.address.logic.recommender.Recommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.recommender.Recommendation;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.

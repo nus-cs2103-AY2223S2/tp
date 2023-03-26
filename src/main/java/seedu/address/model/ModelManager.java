@@ -17,7 +17,7 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.recommender.Recommendation;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Represents the in-memory model of the address book data.

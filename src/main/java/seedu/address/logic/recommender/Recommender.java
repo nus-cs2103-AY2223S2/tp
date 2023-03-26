@@ -16,7 +16,7 @@ import seedu.address.logic.recommender.location.LocationTracker;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.recommender.Recommendation;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimePeriod;
 import seedu.address.model.timingrecommender.TimingRecommender;

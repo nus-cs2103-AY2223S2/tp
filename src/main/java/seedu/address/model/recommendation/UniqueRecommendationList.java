@@ -1,4 +1,4 @@
-package seedu.address.model.recommender;
+package seedu.address.model.recommendation;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.recommender.exceptions.DuplicateRecommendationException;
-import seedu.address.model.recommender.exceptions.RecommendationNotFoundException;
+import seedu.address.model.recommendation.exceptions.DuplicateRecommendationException;
+import seedu.address.model.recommendation.exceptions.RecommendationNotFoundException;
 
 /**
  * A list of recommendations that enforces uniqueness between its elements and does not allow nulls.

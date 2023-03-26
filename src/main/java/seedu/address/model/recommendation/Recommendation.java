@@ -1,4 +1,4 @@
-package seedu.address.model.recommender;
+package seedu.address.model.recommendation;
 
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;

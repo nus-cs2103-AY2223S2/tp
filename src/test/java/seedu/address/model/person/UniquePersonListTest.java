@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.recommender.exceptions.DuplicateRecommendationException;
-import seedu.address.model.recommender.exceptions.RecommendationNotFoundException;
+import seedu.address.model.recommendation.exceptions.DuplicateRecommendationException;
+import seedu.address.model.recommendation.exceptions.RecommendationNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {

@@ -32,7 +32,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.recommender.Recommendation;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalUser;
 

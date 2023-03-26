@@ -22,8 +22,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.recommender.Recommendation;
-import seedu.address.model.recommender.exceptions.DuplicateRecommendationException;
+import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.recommendation.exceptions.DuplicateRecommendationException;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalUser;
 

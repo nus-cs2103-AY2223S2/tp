@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.recommender.Recommendation;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Assigns a valid contact index for a newly-added contact to EduMate.
