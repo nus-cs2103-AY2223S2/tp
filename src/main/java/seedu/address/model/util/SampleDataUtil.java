@@ -7,7 +7,6 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
 import seedu.address.model.ward.Ward;
-import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

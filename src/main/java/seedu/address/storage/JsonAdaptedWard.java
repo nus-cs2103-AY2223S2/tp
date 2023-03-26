@@ -2,8 +2,9 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Name;
 import seedu.address.model.ward.Capacity;
 import seedu.address.model.ward.Ward;
 
@@ -55,7 +56,8 @@ class JsonAdaptedWard {
         final String modelName = name;
 
         if (capacity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Capacity.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Capacity.class.getSimpleName()));
         }
         if (!Capacity.isValidCapacity(capacity)) {
             throw new IllegalValueException(Capacity.MESSAGE_CONSTRAINTS);

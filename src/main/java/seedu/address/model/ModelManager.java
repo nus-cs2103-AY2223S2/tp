@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.ward.Ward;
-import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.

@@ -26,13 +26,16 @@ public class TypicalPatients {
 
     // Patients
     public static final Patient ALEX = new PatientBuilder().withNric("S1334567A")
-            .withName("Alex Smith").withStatus("GRAY").withWard("Waiting Room").withDischarge("12/02/2023 1400").build();
+            .withName("Alex Smith").withStatus("GRAY").withWard("Waiting Room")
+            .withDischarge("12/02/2023 1400").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
-            .withName("Benson Tillman").withStatus("GRAY").withWard("Waiting Room").withDischarge("12/02/2023 1500").build();
+            .withName("Benson Tillman").withStatus("GRAY").withWard("Waiting Room")
+            .withDischarge("12/02/2023 1500").build();
     public static final Patient CARL = new PatientBuilder().withNric("S2468024G")
             .withName("Carl Leigh").withStatus("GREEN").withWard("Class A").withDischarge("12/02/2023 1600").build();
     public static final Patient DANIEL = new PatientBuilder().withNric("S1244567A")
-            .withName("Daniel Wellington").withStatus("YELLOW").withWard("Class B").withDischarge("13/02/2023 1400").build();
+            .withName("Daniel Wellington").withStatus("YELLOW").withWard("Class B")
+            .withDischarge("13/02/2023 1400").build();
     public static final Patient ELLE = new PatientBuilder().withNric("S1235567A")
             .withName("Elle Schmidt").withStatus("GREEN").withWard("Class C").withDischarge("13/02/2023 1500").build();
     public static final Patient FIONA = new PatientBuilder().withNric("S6969696B")
@@ -41,7 +44,7 @@ public class TypicalPatients {
             .withName("George Townsend").withStatus("RED").withWard("ICU").withDischarge("14/02/2023 1400").build();
 
     // Wards
-    public static final Ward WaitingRoom = new Ward("Waiting Room");
+    public static final Ward WR = new Ward("Waiting Room");
     public static final Ward A = new Ward("Class A");
     public static final Ward B = new Ward("Class B");
     public static final Ward C = new Ward("Class C");
@@ -84,6 +87,6 @@ public class TypicalPatients {
     }
 
     public static List<Ward> getTypicalWards() {
-        return new ArrayList<>(Arrays.asList(WaitingRoom, A, B, C, ICU));
+        return new ArrayList<>(Arrays.asList(WR, A, B, C, ICU));
     }
 }

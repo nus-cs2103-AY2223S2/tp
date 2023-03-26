@@ -72,7 +72,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPatients(newData.getPatientList());
         setWards(newData.getWardList());
-//        fixData();
     }
 
     //// patient-level operations
