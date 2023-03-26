@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="1100" minWidth="1400" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
+<fx:root minHeight="1100" minWidth="1700" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/app_icon.png"/>
@@ -39,7 +39,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="200" prefHeight="200" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="50" prefHeight="200" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="10" left="25" right="25" top="10"/>
           </padding>

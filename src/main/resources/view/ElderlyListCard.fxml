@@ -20,7 +20,7 @@
     </Label>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS" prefWidth="400"/>
+            <ColumnConstraints hgrow="ALWAYS" prefWidth="350"/>
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="3">
             <padding>
