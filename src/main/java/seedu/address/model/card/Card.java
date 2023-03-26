@@ -32,7 +32,7 @@ public class Card {
         requireAllNonNull(question, answer, deck);
         this.question = question;
         this.answer = answer;
-        this.tag = Optional.of(tag).orElse(new Tag(UNTAGGED));
+        this.tag = Optional.ofNullable(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
     }
 
