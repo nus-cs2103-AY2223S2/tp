@@ -38,6 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
+    private final QuickstartWindow quickstartWindow;
+
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -45,6 +47,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem quickMenuItem;
+
+    @FXML
+    private MenuItem baseMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -77,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        quickstartWindow = new QuickstartWindow();
 
         Image customCursorImage = new Image("/images/cursor.png");
         this.customCursor = new ImageCursor(customCursorImage);
@@ -172,6 +181,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the quickstart window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleQuickstart() {
+        if (!quickstartWindow.isShowing()) {
+            quickstartWindow.show();
+        } else {
+            quickstartWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -186,6 +207,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        quickstartWindow.hide();
+        assert (!(helpWindow.isShowing() && quickstartWindow.isShowing() && primaryStage.isShowing()));
     }
 
     /**
@@ -205,6 +228,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowQuickstart()) {
+                handleQuickstart();
             }
 
             return commandResult;

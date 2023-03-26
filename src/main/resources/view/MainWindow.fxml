@@ -25,10 +25,13 @@
       <VBox fx:id="mainVbox">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem fx:id="baseMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Quickstart">
+            <MenuItem fx:id="quickMenuItem" mnemonicParsing="false" onAction="#handleQuickstart" text="Quickstart" />
           </Menu>
         </MenuBar>
 
