@@ -11,11 +11,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seedu.address.model.job.Role;
 
-
+/**
+ * A customizable display for Roles. Will be displayed in ResultDisplay.
+ */
 public final class RoleDisplay {
 
     private RoleDisplay() {}
 
+    /**
+     * Creates a custom RoleDisplay based on the provided Role.
+     * @param roleToDisplay The role to be displayed in the UI.
+     * @return A VBox Node to be displayed in the UI.
+     */
     public static Node of(Role roleToDisplay) {
         Label role = new Label(roleToDisplay.getName().fullName + " @ ");
         role.getStyleClass().add("role-display-headers");

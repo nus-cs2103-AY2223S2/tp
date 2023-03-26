@@ -19,6 +19,10 @@ public class ResultDisplay extends UiPart<Region> {
         super("ResultDisplay.fxml");
     }
 
+    /**
+     * Clears children nodes and places an item in the pane.
+     * @param item A node to be placed in the pane.
+     */
     public void place(Node item) {
         pane.getChildren().clear();
         pane.getChildren().add(item);

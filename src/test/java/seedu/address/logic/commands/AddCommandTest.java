@@ -36,7 +36,7 @@ public class AddCommandTest {
         ModelStubAcceptingRoleAdded modelStub = new ModelStubAcceptingRoleAdded();
         Role validRole = new RoleBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validRole).execute(modelStub);
+        CommandResult<String> commandResult = new AddCommand(validRole).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRole), commandResult.getOutput());
         assertEquals(Arrays.asList(validRole), modelStub.rolesAdded);
