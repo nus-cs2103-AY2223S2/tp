@@ -9,8 +9,8 @@ import seedu.address.model.contact.Phone;
  */
 public class ContactBuilder {
 
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "companya@gmail.com";
+    public static final String DEFAULT_PHONE = "55555555";
+    public static final String DEFAULT_EMAIL = "meta@example.com";
 
     private Phone phone;
     private Email email;

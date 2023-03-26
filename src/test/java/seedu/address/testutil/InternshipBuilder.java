@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.JobTitle;
@@ -17,6 +18,7 @@ public class InternshipBuilder {
     private CompanyName companyName;
     private JobTitle jobTitle;
     private Set<Review> reviews;
+    private Contact contact;
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
      */
@@ -32,6 +34,7 @@ public class InternshipBuilder {
         companyName = internshipToCopy.getCompanyName();
         jobTitle = internshipToCopy.getJobTitle();
         reviews = new HashSet<>(internshipToCopy.getReviews());
+        contact = internshipToCopy.getContact();
     }
 
     /**
@@ -50,7 +53,15 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Contact} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withContact(Contact contact) {
+        this.contact = contact;
+        return this;
+    }
+
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact);
     }
 }
