@@ -400,7 +400,7 @@ public class RecipeForm extends UiPart<Region> {
                 if (parentBox.getChildren().indexOf(textField) == lastIndex
                         && textField.getText().isEmpty()
                         && (focusChangedToDifferentVBox || focusChangedToNonTextField)) {
-                    parentBox.getChildren().remove(lastIndex);
+                    parentBox.getChildren().remove(textField);
                 }
             }
         });
