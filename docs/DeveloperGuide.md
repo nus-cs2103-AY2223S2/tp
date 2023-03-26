@@ -219,15 +219,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-
 ### \[Implemented\] Tag-related Features
 
 #### Overview
-The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will 
-modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item within 
-WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will 
-add/remove the corresponding `Tag` object to/from the `Set<Tag>` stored within `Food` This allows for efficient tagging and 
-organization of items across multiple lists.
+The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will
+modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item
+within WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will
+add/remove the corresponding `Tag` object to/from the `Set<Tag>` stored within `Food` This allows for efficient tagging 
+and organization of items across multiple lists.
 
 The following UML diagram shows `Tag` and its associated class.
 

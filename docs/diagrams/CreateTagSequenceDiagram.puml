@@ -77,5 +77,4 @@ deactivate CreateTagCommand
 [<-- LogicManager
 deactivate LogicManager
 
-
 @enduml
