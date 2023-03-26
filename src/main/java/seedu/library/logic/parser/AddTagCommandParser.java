@@ -6,7 +6,6 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.library.logic.commands.AddCommand;
 import seedu.library.logic.commands.AddTagCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.tag.Tag;
