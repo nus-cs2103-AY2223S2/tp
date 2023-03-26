@@ -38,7 +38,8 @@ public class UniqueWardList implements Iterable<Ward> {
      * Initializes wardlist with default Waiting Room ward with capacity of 30 inside.
      */
     public UniqueWardList() {
-        Ward waitingRoom = new Ward("Waiting Room");
+        WardName waitingRoomName = new WardName("Waiting Room");
+        Ward waitingRoom = new Ward(waitingRoomName);
         add(waitingRoom);
     }
 

@@ -9,6 +9,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 import seedu.address.model.ward.UniqueWardList;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 /**
  * Wraps all data at the address-book level
@@ -81,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void fixData() {
         for (Patient patient:patients) {
             Boolean wardExists = false;
-            String wardName = patient.getWard();
+            WardName wardName = patient.getWard();
             for (Ward ward:wards) {
                 if (wardName == ward.value) {
                     wardExists = true;
