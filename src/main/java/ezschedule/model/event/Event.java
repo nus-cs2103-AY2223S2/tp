@@ -138,7 +138,7 @@ public class Event implements Comparable<Event> {
                 .append(getDate())
                 .append("\nStart Time: ")
                 .append(getStartTime())
-                .append("\nEnd End: ")
+                .append("\nEnd Time: ")
                 .append(getEndTime());
         return sb.toString();
     }

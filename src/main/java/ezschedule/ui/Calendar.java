@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import ezschedule.model.event.Event;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
@@ -44,6 +45,7 @@ public class Calendar extends UiPart<Region> {
         date = ZonedDateTime.now();
         today = ZonedDateTime.now();
         monthMaxDate = date.getMonth().maxLength();
+        eventList.addListener((ListChangeListener<Event>) c -> refreshCalendar());
         drawCalendar();
     }
 
@@ -59,6 +61,11 @@ public class Calendar extends UiPart<Region> {
     void forwardOneMonth() {
         date = date.plusMonths(1);
         monthMaxDate = date.getMonth().maxLength();
+        calendar.getChildren().clear();
+        drawCalendar();
+    }
+
+    private void refreshCalendar() {
         calendar.getChildren().clear();
         drawCalendar();
     }
@@ -105,7 +112,7 @@ public class Calendar extends UiPart<Region> {
 
     private void drawCalenderBoxes(Map<Integer, List<Event>> eventsForMonthMap) {
         int dateOffset = ZonedDateTime.of(date.getYear(), date.getMonthValue(), 1, 0,
-                0, 0, 0, date.getZone()).getDayOfWeek().getValue();
+                0, 0, 0, date.getZone()).getDayOfWeek().getValue() % 7;
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -131,14 +138,14 @@ public class Calendar extends UiPart<Region> {
         return event.getDate().getYear() == year && event.getDate().getMonth() == month;
     }
 
-    private boolean isLeapYear() {
-        return date.getYear() % 4 != 0 && monthMaxDate == 29;
-    }
-
     private boolean isToday(int currentDate) {
         return today.getYear() == date.getYear()
                 && today.getMonth() == date.getMonth()
                 && today.getDayOfMonth() == currentDate;
+    }
+
+    private boolean isLeapYear() {
+        return date.getYear() % 4 != 0 && monthMaxDate == 29;
     }
 
     /**

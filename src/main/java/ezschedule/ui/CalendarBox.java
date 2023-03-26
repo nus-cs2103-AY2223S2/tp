@@ -46,7 +46,6 @@ public class CalendarBox extends UiPart<Region> {
         this.events = events;
         this.filterExecutor = filterExecutor;
         setDate(date);
-        setBackgroundColor();
         setHighlightForToday(isToday);
         setEvents();
     }
@@ -65,10 +64,6 @@ public class CalendarBox extends UiPart<Region> {
         calendarDate.setText(date);
     }
 
-    private void setBackgroundColor() {
-        calendarEvents.setStyle("-fx-background-color:GRAY");
-    }
-
     private void setHighlightForToday(boolean isToday) {
         if (isToday) {
             calendarHighlight.setStroke(Color.RED);
@@ -77,6 +72,7 @@ public class CalendarBox extends UiPart<Region> {
 
     private void setEvents() {
         if (events != null) {
+            calendarEvents.setStyle("-fx-background-color:GRAY");
             for (int i = 0; i < events.size(); i++) {
                 if (i >= 1) {
                     Text moreEvents = new Text("...");
