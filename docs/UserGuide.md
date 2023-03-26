@@ -76,9 +76,9 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="tasks"></h2>
 
-##Features<h2 id="tasks"></h2>
-
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -200,6 +200,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <h2 id="FAQ"></h2>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -207,6 +208,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <h2 id="summary"></h2>
+
 ## Command summary
 
 | Action                        | Format, Examples                                                  |
