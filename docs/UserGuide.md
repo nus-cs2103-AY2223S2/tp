@@ -61,21 +61,21 @@ Adds a role to TechTrack.
 
 Format: `add {Prefix}/{Parameter}…​`
 
-Example: `add r/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
+Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
 
 **The prefixes and their respective parameters are as follows:**
 
-| Required | Prefix | Parameter           | Restrictions                                                        |
-|----------|--------|---------------------|---------------------------------------------------------------------|
-| `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                            |
-| `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                 |
-| `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.   |
-| `Yes`    | coy    | COMPANY             | Follow company format                                               |
-| `Yes`    | jd     | JOB DESCRIPTION     | At least 1 alphanumeric character                                   |
-| `No`     | t      | TAGS                | -                                                                   |
-| `Yes`    | $      | SALARY              | Positive integers only.                                             |
+| Required | Prefix | Parameter            | Restrictions                                                        |
+|----------|--------|----------------------|---------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                            |
+| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                                 |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.   |
+| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                  |
+| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                  |
+| `No`     | t      | TAGS                 | -                                                                   |
+| `Yes`    | $      | SALARY               | Positive integers only.                                             |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
-| `Yes`    | x      | EXPERIENCE REQUIRED | At least 1 alphanumeric character                                   |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 alphanumeric character                                   |
 
 
 ### Editing a Role: `edit`:
@@ -83,8 +83,8 @@ Edit any parameters of a preexisting role.
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
-Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 
-e/johndoe@example.com jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`
+Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
+$/4000 d/2023-10-20 x/Javascript - 1 Year`
 
 ### Deleting a role `delete`:
 Deletes the role from the current list of roles. Uses a 1-based index.

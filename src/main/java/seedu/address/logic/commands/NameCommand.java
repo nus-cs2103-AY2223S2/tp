@@ -10,18 +10,18 @@ import seedu.address.model.job.NameContainsKeywordsPredicate;
  * Finds and lists all roles in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class NameCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "name";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all roles whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n \n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n \n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " Software Engineer Analyst";
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public NameCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof NameCommand // instanceof handles nulls
+                && predicate.equals(((NameCommand) other).predicate)); // state check
     }
 }

@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
@@ -23,18 +23,20 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a role to TechTrack. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a role to TechTrack. \n"
             + "Parameters: "
-            + PREFIX_ROLE + "ROLE "
+            + PREFIX_NAME + "NAME "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]..."
+            + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_SALARY + "SALARY "
-            + PREFIX_DEADLINE + "DEADLINE \n \n"
+            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_EXPERIENCE + "EXPERIENCE \n \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "Software Engineer "
+            + PREFIX_NAME + "Software Engineer "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_COMPANY + "Google "
