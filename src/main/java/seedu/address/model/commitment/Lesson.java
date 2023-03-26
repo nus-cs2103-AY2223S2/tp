@@ -26,6 +26,7 @@ public class Lesson extends Commitment {
      * Constructs a lesson.
      */
     public Lesson(Module module, LocalTime startTime, LocalTime endTime, Day schoolDay, Location location) {
+        super(startTime, endTime, schoolDay);
         this.day = schoolDay;
         this.module = module;
         this.startTime = startTime;
@@ -76,17 +77,6 @@ public class Lesson extends Commitment {
                 && endTime.isEqual(lesson.getEndTime())
                 && location.equals(lesson.getLocation())
                 && module.equals(lesson.getModule());
-    }
-
-    /**
-     * Checks if there is a sequence of timeslots to fit lesson.
-     */
-    public boolean canFitLessonIntoDaySchedule(ArrayList<HourBlock> slots) {
-        boolean canFit = true;
-        for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
-            canFit &= slots.get(i).isFree();
-        }
-        return canFit;
     }
 
     @Override

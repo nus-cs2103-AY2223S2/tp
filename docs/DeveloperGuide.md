@@ -52,7 +52,7 @@ title: Developer Guide
      * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
-     * [Recommenders](#recommender)
+     * [Recommenders](#recommenders)
        * [Scheduler](#scheduler)
        * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
@@ -782,6 +782,7 @@ will be free so that a meetup could be scheduled.
 </div>
 
 <div markdown="span" class="alert alert-info">
+
 
 :information_source: **Very Important Re-emphasis** <br>
 The scheduler will always recommend timeslots and **rank them in descending time** duration that
