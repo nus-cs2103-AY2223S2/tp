@@ -88,9 +88,9 @@ public class ModelManager implements Model {
 
         customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
-                this.shop.getServiceList());
+            this.shop.getServiceList());
         serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
-                this.shop.getVehicleList());
+            this.shop.getVehicleList());
     }
 
     public ModelManager() {
@@ -100,9 +100,9 @@ public class ModelManager implements Model {
     private void resetMaps() {
         this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList());
         this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
-                this.shop.getServiceList());
+            this.shop.getServiceList());
         this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
-                this.shop.getVehicleList());
+            this.shop.getVehicleList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -164,6 +164,7 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -419,6 +420,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
@@ -459,6 +461,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateSortedAppointmentList(Comparator<? super Appointment> comparator) {
+        this.sortedAppointments.sort(comparator);
+    }
+
+    @Override
     public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
@@ -468,6 +475,7 @@ public class ModelManager implements Model {
     public void updateSortedVehicleList(Comparator<? super Vehicle> comparator) {
         this.sortedVehicles.sort(comparator);
     }
+
 
     //    @Override
     //    public void updateFilteredPartList(Predicate<Part> predicate) {
@@ -501,8 +509,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
 }

@@ -119,7 +119,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     // ==== For Customers ==
 
@@ -253,6 +252,9 @@ public interface Model {
 
     void updateFilteredServiceList(Predicate<Service> predicate);
     void updateSortedServiceList(Comparator<? super Service> comparator);
+
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+    void updateSortedAppointmentList(Comparator<? super Appointment> comparator);
 
     void updatePartsMap();
 
