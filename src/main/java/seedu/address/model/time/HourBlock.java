@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler.time;
+package seedu.address.model.time;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,10 +8,9 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.commitment.Commitment;
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
-import seedu.address.model.scheduler.time.util.TimeUtil;
-
+import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 /**
  * Represents an hour timeslot in a Timetable.

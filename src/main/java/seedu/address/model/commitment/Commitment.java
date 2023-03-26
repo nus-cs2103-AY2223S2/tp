@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.joda.time.LocalTime;
 
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
 
 /**
  * Represents a commitment.
@@ -29,13 +29,11 @@ public class Commitment {
      * Checks if there is a sequence of timeslots to fit a commitment.
      */
     public boolean canFitIntoDaySchedule(ArrayList<HourBlock> slots) {
-        System.out.println(slots);
         boolean canFit = true;
         for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
             System.out.println(String.format("%s, %s", i, slots.get(i)));
             canFit &= slots.get(i).isFree();
         }
-        System.out.println(canFit);
         return canFit;
     }
 

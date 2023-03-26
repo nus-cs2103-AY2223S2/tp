@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler;
+package seedu.address.model.timetable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,10 +8,10 @@ import org.joda.time.LocalTime;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commitment.Commitment;
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.util.TimeUtil;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 /**
  * Represents a timetable for a person.
