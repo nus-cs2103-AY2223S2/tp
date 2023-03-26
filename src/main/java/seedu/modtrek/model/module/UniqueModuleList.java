@@ -125,7 +125,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public TreeMap<SemYear, ObservableList<Module>> sortBySemYear() {
         TreeMap<SemYear, ObservableList<Module>> result = new TreeMap<>();
-        for (Module m : internalUnmodifiableList) {
+        for (Module m : internalList) {
             SemYear currSemYear = m.getSemYear();
             ObservableList<Module> existingSemYearList = result.get(currSemYear);
             if (existingSemYearList == null) {
@@ -146,7 +146,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public TreeMap<Credit, ObservableList<Module>> sortByCredit() {
         TreeMap<Credit, ObservableList<Module>> result = new TreeMap<>();
-        for (Module m : internalUnmodifiableList) {
+        for (Module m : internalList) {
             Credit currCredit = m.getCredit();
             ObservableList<Module> existingCreditList = result.get(currCredit);
             if (existingCreditList == null) {
@@ -167,7 +167,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public TreeMap<Grade, ObservableList<Module>> sortByGrade() {
         TreeMap<Grade, ObservableList<Module>> result = new TreeMap<>();
-        for (Module m : internalUnmodifiableList) {
+        for (Module m : internalList) {
             Grade currGrade = m.getGrade();
             ObservableList<Module> existingGradeList = result.get(currGrade);
             if (existingGradeList == null) {
