@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PerformanceCommand;
 import seedu.address.logic.commands.PhotoCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +81,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortStudentCommand.COMMAND_WORD:
+            return new SortStudentCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

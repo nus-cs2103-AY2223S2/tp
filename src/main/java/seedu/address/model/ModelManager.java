@@ -6,12 +6,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.comparators.AddressComparator;
+import seedu.address.logic.comparators.EmailComparator;
+import seedu.address.logic.comparators.NameComparator;
+import seedu.address.logic.comparators.PerformanceComparator;
+import seedu.address.logic.comparators.RemarkComparator;
+
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
@@ -26,7 +34,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Consultation> filteredConsultations;
@@ -238,6 +246,32 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+
+    public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+        requireNonNull(metric);
+        SortedList<Person> sortedData = new SortedList<>(filteredPersons);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(increasingOrder);
+            break;
+        case "email":
+            comparator = new EmailComparator(increasingOrder);
+            break;
+        case "name":
+            comparator = new NameComparator(increasingOrder);
+            break;
+        case "address":
+            comparator = new AddressComparator(increasingOrder);
+            break;
+        default:
+            comparator = new RemarkComparator(increasingOrder);
+        }
+        sortedData.setComparator(comparator);
+
+        filteredPersons = new FilteredList<>(sortedData);
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================
