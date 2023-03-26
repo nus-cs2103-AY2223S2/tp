@@ -42,7 +42,7 @@
         </StackPane>
             <HBox minHeight="-Infinity" prefHeight="200.0" VBox.vgrow="ALWAYS">
                <children>
-              <VBox fx:id="personList" minWidth="500.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <VBox fx:id="personList" minWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
@@ -53,7 +53,7 @@
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
                      <children>
-                        <StackPane fx:id="transactionListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="transactionListPanelPlaceholder" minWidth="400.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
