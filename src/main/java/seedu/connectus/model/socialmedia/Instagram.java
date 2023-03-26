@@ -10,7 +10,7 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 public class Instagram {
 
     private static final String SPECIAL_CHARACTERS = ".";
-    public static final String MESSAGE_CONSTRAINTS = "Instagram username should of the format john.123.doe "
+    public static final String MESSAGE_CONSTRAINTS = "Instagram usernames should be of the format john.123.doe "
             + "and adhere to the following constraints:\n"
             + "1. The username should only contain alphanumeric characters and the special character, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
