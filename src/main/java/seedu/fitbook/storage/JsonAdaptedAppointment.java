@@ -14,7 +14,7 @@ class JsonAdaptedAppointment {
     private final String appointmentName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointmentName}.
      */
     @JsonCreator
     public JsonAdaptedAppointment(String appointmentName) {
@@ -22,7 +22,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
         appointmentName = source.appointmentTime;
@@ -34,7 +34,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Appointment} object.
+     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */

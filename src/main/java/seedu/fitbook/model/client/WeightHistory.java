@@ -13,20 +13,38 @@ public class WeightHistory {
 
     /**
      * Constructs a {@code WeightHistory} with an initial weight.
-     *
-     * @param initialWeight The initial weight to add to the history.
      */
     public WeightHistory(Weight initialWeight) {
         weights = new ArrayList<>();
         weights.add(initialWeight);
     }
 
+    /**
+     * Constructs a {@code WeightHistory} with a copy of a list of weights.
+     */
+    public WeightHistory(List<Weight> weightHistory) {
+        weights = weightHistory;
+    }
+
+    /**
+     * Returns the last entry of {@code weight}.
+     */
     public Weight getLastEntry() {
+        int lastEntry = weights.size() - 1;
         if (weights.isEmpty()) {
             //throw an exception
             return null;
         }
-        return weights.get(weights.size() - 1);
+        return weights.get(lastEntry);
+    }
+
+    /**
+     * Returns a {@code Dates} with a copy of
+     */
+    public List<Date> getListDates() {
+        List<Date> dates = new ArrayList<>();
+        weights.forEach(weight -> dates.add(weight.date));
+        return dates;
     }
 
     /**
@@ -35,7 +53,7 @@ public class WeightHistory {
      * @param weight The weight to add.
      * @param date The date to associate with the weight.
      */
-    public void addWeight(String date, String weight) {
+    public void addWeight(Date date, String weight) {
         Weight dateWeight = new Weight(date, weight);
         weights.add(dateWeight);
     }

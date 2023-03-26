@@ -4,6 +4,7 @@ import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -47,6 +48,26 @@ public class Client {
         this.gender = gender;
         this.goal = goal;
         this.weightHistory = new WeightHistory(new Weight(weight.value));
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Client(Name name, Phone phone, Email email, Address address, Set<Appointment> appointments,
+                  Weight weight, Gender gender, Calorie calorie, Goal goal, Set<Tag> tags, List<Weight> weightHistory) {
+        requireAllNonNull(
+                name, phone, email, address, appointments, weight, gender, calorie, goal, tags, weightHistory);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.calorie = calorie;
+        this.appointments.addAll(appointments);
+        this.tags.addAll(tags);
+        this.weight = weight;
+        this.gender = gender;
+        this.goal = goal;
+        this.weightHistory = new WeightHistory(weightHistory);
     }
 
     public Name getName() {
@@ -146,7 +167,8 @@ public class Client {
                 && otherClient.getAppointments().equals(getAppointments())
                 && otherClient.getTags().equals(getTags())
                 && otherClient.getGoal().equals(getGoal())
-                && otherClient.getCalorie().equals(getCalorie());
+                && otherClient.getCalorie().equals(getCalorie())
+                && otherClient.getWeightHistory().equals(getWeightHistory());
     }
 
     @Override

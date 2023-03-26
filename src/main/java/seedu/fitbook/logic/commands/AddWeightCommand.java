@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.Messages;
+import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.Date;
 import seedu.fitbook.model.client.Weight;
 
 /**
@@ -19,21 +21,23 @@ public class AddWeightCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a weight to a client in the FitBook.\n"
             + "Parameters: i/INDEX w/WEIGHT d/DATE\n"
-            + "Example: " + COMMAND_WORD + " i/1 w/70 d/2023-03-10";
+            + "Example: " + COMMAND_WORD + " 1 w/70 d/10-03-2024 19:00";
 
-    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s: %2$s" + "kg " + "on %3$s";
+    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s:" + "kg " + "on %3$s";
 
-    private final int targetIndex;
+    private final Index index;
     private final Weight weightToAdd;
-    private final String date;
+    private final Date date;
 
     /**
      * Creates an AddWeightCommand to add the specified {@code Weight} to the client at the specified index.
      */
-    public AddWeightCommand(int targetIndex, Weight weightToAdd, String date) {
+    public AddWeightCommand(Index index, Weight weightToAdd, Date date) {
+        requireNonNull(index);
         requireNonNull(weightToAdd);
-        assert(targetIndex > 0);
-        this.targetIndex = targetIndex;
+        requireNonNull(date);
+
+        this.index = index;
         this.weightToAdd = weightToAdd;
         this.date = date;
     }
@@ -42,28 +46,28 @@ public class AddWeightCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
 
-        if (targetIndex > model.getFilteredClientList().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_INDEX);
+        if (index.getZeroBased() > model.getFilteredClientList().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         ObservableList<Client> clientList = model.getFilteredClientList();
-        Client clientToAddWeight = clientList.get(targetIndex - 1);
+        Client clientToAddWeight = clientList.get(index.getZeroBased());
 
         clientToAddWeight.getWeightHistory().addWeight(date, weightToAdd.value);
         Weight lastWeight = clientToAddWeight.getWeightHistory().getLastEntry();
         clientToAddWeight.setWeight(lastWeight);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex, weightToAdd, date));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(), weightToAdd, date.toString()));
     }
 
-    public Integer getIndex() {
-        return targetIndex;
+    public Index getIndex() {
+        return index;
     }
 
     public Weight getWeightToAdd() {
         return weightToAdd;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

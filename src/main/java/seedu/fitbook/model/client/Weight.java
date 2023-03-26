@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Client's Weight in FitBook.
@@ -16,7 +18,7 @@ public class Weight {
             "Weight should only contain positive numbers and cannot be 0";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
     public final String value;
-    private final String date;
+    public final Date date;
 
     /**
      * Constructs a {@code Weight}.
@@ -27,7 +29,8 @@ public class Weight {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
         value = weight;
-        date = LocalDate.now().toString();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        date = new Date(LocalDateTime.now().format(dateTimeFormatter));
     }
 
     /**
@@ -35,7 +38,7 @@ public class Weight {
      *
      * @param newWeight A valid weight.
      */
-    public Weight(String newDate, String newWeight) {
+    public Weight(Date newDate, String newWeight) {
         requireNonNull(newWeight);
         requireNonNull(newDate);
         checkArgument(isValidWeight(newWeight), MESSAGE_CONSTRAINTS);

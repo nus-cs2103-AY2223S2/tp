@@ -40,6 +40,8 @@ class JsonAdaptedClient {
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedWeightHistory> weightHistories = new ArrayList<>();
+    private final List<JsonAdaptedWeightDate> weightHistoriesDate = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -48,9 +50,11 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-            @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("weight") String weight,
+            @JsonProperty("weightHistory") List<JsonAdaptedWeightHistory> weightHistory,
+            @JsonProperty("weightDateTime") List<JsonAdaptedWeightDate> weightDateTime,
+            @JsonProperty("gender") String gender, @JsonProperty("goal") String goal,
+            @JsonProperty("calorie") String calorie, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,6 +68,12 @@ class JsonAdaptedClient {
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (weightHistory != null) {
+            this.weightHistories.addAll(weightHistory);
+        }
+        if (weightDateTime != null) {
+            this.weightHistoriesDate.addAll(weightDateTime);
         }
     }
 
@@ -85,6 +95,12 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        weightHistories.addAll(source.getWeightHistory().weights.stream()
+                .map(JsonAdaptedWeightHistory::new)
+                .collect(Collectors.toList()));
+        weightHistoriesDate.addAll(source.getWeightHistory().getListDates().stream()
+                .map(JsonAdaptedWeightDate::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -95,13 +111,20 @@ class JsonAdaptedClient {
     public Client toFitBookModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
         final List<Appointment> clientAppointments = new ArrayList<>();
+        final List<Weight> clientWeightHistory = new ArrayList<>();
+        for (int i = 0; i < weightHistories.size(); i++) {
+            JsonAdaptedWeightHistory jsonAdaptedWeightHistory = weightHistories.get(i);
+            JsonAdaptedWeightDate jsonAdaptedWeightDate = weightHistoriesDate.get(i);
+            clientWeightHistory.add(
+                    new Weight(jsonAdaptedWeightDate.toFitBookModelType(),
+                    jsonAdaptedWeightHistory.toFitBookModelType()));
+        }
         for (JsonAdaptedAppointment appointment : appointments) {
             clientAppointments.add(appointment.toFitBookModelType());
         }
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toFitBookModelType());
         }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -164,8 +187,9 @@ class JsonAdaptedClient {
         final Goal modelGoal = new Goal(goal);
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
+        final List<Weight> modelWeightHistory = new ArrayList<>(clientWeightHistory);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelCalorie, modelGoal, modelTags);
+                modelWeight, modelGender, modelCalorie, modelGoal, modelTags, modelWeightHistory);
 
     }
 

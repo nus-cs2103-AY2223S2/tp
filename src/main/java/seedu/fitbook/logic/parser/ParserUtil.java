@@ -14,6 +14,7 @@ import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Address;
 import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Calorie;
+import seedu.fitbook.model.client.Date;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
 import seedu.fitbook.model.client.Goal;
@@ -276,5 +277,23 @@ public class ParserUtil {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
         return new Weight(trimmedWeight);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDateFormat(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_DATE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
     }
 }
