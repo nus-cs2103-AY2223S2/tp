@@ -57,6 +57,8 @@ public class InternshipCatalogueParser {
             return new FindCommandParser().parse(arguments);
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
+        case ClashCommand.COMMAND_WORD:
+            return new ClashCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

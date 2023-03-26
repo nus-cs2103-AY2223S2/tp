@@ -120,21 +120,9 @@ Format: `find p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS]`
 * After keying in the `find` command, the program will filter the internship catalogue accordingly.
 * To revert the list back to the original, just simply enter the `list` command.
 
-=======
-1. SOFTWARE ENGINEER, GOOGLE
-2. DATA ANALYST, SHOPBACK
-3. SOFTWARE ENGINEER, GRAB
-4. DATA SCIENTIST, ARTEFACT
-~~~
-
-~~~
-// input
-find p/ SOFTWARE ENGINEER
-~~~
-Result
-~~~
-1. SOFTWARE ENGINEER, GOOGLE
-2. SOFTWARE ENGINEER, GRAB
+Example: Default TinS has 6 internship listings. `find c/GovTech` would return the list of internships with company name
+GovTech.
+![find_internship](images/ug-find.png)
 
 ### Viewing Details of a Particular Internship : `select`
 
