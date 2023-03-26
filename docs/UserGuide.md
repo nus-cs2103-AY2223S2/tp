@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
+CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is `optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
 1. [Quick Start](#quick-start)
@@ -21,7 +21,8 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
    9. [exit](#exit--exit)
 5. [Data Management](#data-management)
 6. [FAQ](#faq)
-7. [Command Summary](#command-summary)
+7. [Upcoming Features](#)
+8. [Command Summary](#command-summary)
 8. [Additional Resources](#additional-resources)
    1. [How To Check Java Version](#how-to-check-java-version)
    2. [How to Open CoDoc](#how-to-open-codoc)
@@ -143,6 +144,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 `exit`<br>
 * Exits the program.
 * Equivalent to clicking the close button via the GUI.
+<br>
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
@@ -164,6 +166,18 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
+## Upcoming Features
+
+### Automated bulk edits `[coming in v2.0]`
+_Details coming soon ..._
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+
+
 ## Command Summary 
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
@@ -172,8 +186,8 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Additional Resources
 ### How To Check Java Version
+[ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
 ### How to Open CoDoc
-
 [ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
