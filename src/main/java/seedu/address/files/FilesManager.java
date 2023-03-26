@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -108,7 +109,7 @@ public class FilesManager {
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
-        if (!isEmptyDirectory()) {
+        if (!isEmptyDirectory() && Files.exists(directory) && Files.isDirectory(directory)) {
             try (Stream<Path> stream = Files.walk(directory)) {
                 stream.filter(Files::isRegularFile)
                         .forEach(files::add);
@@ -119,10 +120,14 @@ public class FilesManager {
     }
 
     private void setFileNames() {
-        fileNames = files.stream()
-                .map(Path::getFileName)
-                .map(Path::toString)
-                .collect(Collectors.toList());
+        if (files != null) {
+            fileNames = files.stream()
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toList());
+        } else {
+            fileNames = Collections.emptyList();
+        }
     }
 
     private boolean isEmptyDirectory() {
