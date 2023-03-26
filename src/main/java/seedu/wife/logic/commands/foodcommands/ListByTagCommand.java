@@ -32,6 +32,7 @@ public class ListByTagCommand extends Command {
      * Constructor to create a new ListByTag object.
      */
     public ListByTagCommand(Tag targetTag) {
+        requireNonNull(targetTag);
         this.targetTags = new HashSet<Tag>();
         this.targetTags.add(targetTag);
     }
@@ -40,6 +41,7 @@ public class ListByTagCommand extends Command {
      * Constructor to create a new ListByTag object.
      */
     public ListByTagCommand(Set<Tag> targetTag) {
+        requireNonNull(targetTag);
         this.targetTags = targetTag;
     }
 

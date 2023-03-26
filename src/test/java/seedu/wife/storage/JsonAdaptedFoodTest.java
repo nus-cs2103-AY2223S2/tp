@@ -15,6 +15,7 @@ import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 
 public class JsonAdaptedFoodTest {
     private static final String INVALID_NAME = "M@iji";
@@ -88,7 +89,7 @@ public class JsonAdaptedFoodTest {
     public void toModelType_invalidExpiryDate_throwsIllegalValueException() {
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, VALID_UNIT, VALID_QUANTITY, INVALID_EXPIRY_DATE, VALID_TAGS);
-        String expectedMessage = ExpiryDate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
 
