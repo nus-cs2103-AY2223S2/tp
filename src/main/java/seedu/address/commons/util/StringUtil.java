@@ -8,6 +8,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Set;
 
+import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,6 +60,34 @@ public class StringUtil {
 
         return tags.stream()
                 .map(Tag::toString)
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     * Ignores case, but a full word match is required.
+     * <br>
+     * examples:
+     * <pre>
+     *       containsWordIgnoreCase("ABc def", "abc") == true
+     *       containsWordIgnoreCase("ABc def", "DEF") == true
+     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     * </pre>
+     * @param sentence cannot be null
+     * @param word     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsStatusIgnoreCase(LeadStatus leadStatus, String keywordStatus) {
+        requireNonNull(leadStatus);
+        requireNonNull(keywordStatus);
+
+        String preppedWord = keywordStatus.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String preppedStatus = leadStatus.toString();
+        String[] wordsInPreppedStatus = preppedStatus.split(" - ");
+
+        return Arrays.stream(wordsInPreppedStatus)
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
