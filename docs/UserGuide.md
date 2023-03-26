@@ -155,6 +155,29 @@ Examples:
 `status 1` or `status David` Returns the status of ID `1` or the status of `David`
 `status David closed-won` Assigns the status of `David` to be `closed-won`
 
+### Finding a contact tag: `findlead`
+
+Search for a contact based on their tags.
+
+Format: `findlead [<valid lead status>]`
+
+The user can use either the long form or short form method to search
+UNCONTACTED("Uncontacted", "U"),
+WORKING("Working", "W"),
+QUALIFIED("Qualified", "Q"),
+UNQUALIFIED("Unqualified", "X");
+
+* The search is case-insensitive. e.g `[friends]` will match `[Friends]`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full tags will be matched e.g. `friend` will not match `friends`
+* Persons matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `findtag [friends]` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findtag [friends]`  -  returns the contact with valid and associated tag, `Dewy Thompson` or `Majorie Dewy`
+
+
 
 ### Finding a contact tag: `findtag`
 
