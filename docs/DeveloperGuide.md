@@ -6,6 +6,12 @@ title: Developer Guide
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Teaching Assistant Assistant
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
+
+<img src="https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png" width="580"/>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
@@ -250,7 +256,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage many contacts, groups and classes
+* has a need to manage many students, groups and classes
 * relatively more tech-savvy than the average population, able to perform complex tasks on digital platforms
 * prefers typing to mouse interactions
 * need to be able to easily aggregate and analyze students' statistics
@@ -500,16 +506,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Prerequisites: List all students in the class using the `classlist Tutorial_T01` command. Multiple students in the list.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `delete_student 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete_student 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases … }_
