@@ -11,7 +11,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 # Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2). 
+2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
 3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
 
@@ -122,7 +122,7 @@ Edited Listing: Noodle seller; JobDescription: Cooks tasty noodles; Applicants: 
 An valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
 messages shown below will be displayed.
 ```ignorelang
-Invalid command format! 
+Invalid command format!
 edit: Edits a listing in the listing book. by the index number used in the displayed listing book. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
 [a/APPLICANT (optional)]...
@@ -157,7 +157,7 @@ Listing: Chicken farmer; JobDescription: farms chickens; Applicants: topsy mcdda
 **Possible Error:**
 If an index is invalid or absent, an error message such as the one below will be displayed.
 ```ignorelang
-Invalid command format! 
+Invalid command format!
 delete: Deletes the listing identified by the index number used in the displayed listing book.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
@@ -200,13 +200,13 @@ If no listings match the keyword(s), the following message will show:
 **Possible Error**
 If no keyword is provided, an error message will display:
 ```ignorelang
-Invalid command format! 
+Invalid command format!
 find: Finds all listings whose titles contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 Parameters: KEYWORD [MORE_KEYWORDS]...
 Example: find chicken rice
 ```
 
-## Sorting job listings: `sort` 
+## Sorting job listings: `sort`
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
@@ -235,7 +235,7 @@ Listings have been sorted.
 **Possible Error:**
 If the `field` is not present, an error message will show:
 ```ignorelang
-Invalid command format! 
+Invalid command format!
 sort: Sorts the listing displayed according to the specified field.
 Parameters: f/FIELD_COMPARED(none, title, description, applicants)
 Example: sort f/applicants
