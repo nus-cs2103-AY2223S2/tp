@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.Memento;
 import teambuilder.logic.commands.exceptions.CommandException;
