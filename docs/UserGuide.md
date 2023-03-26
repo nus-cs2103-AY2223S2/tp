@@ -6,9 +6,8 @@ title: User Guide
 <img src="images/logo.png">
 </p>
 
-Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
-* Table of Contents<br>
+# Table of Contents
+  * [Introduction](#introduction)
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Help](#viewing-help--help)
@@ -21,6 +20,7 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
       * [Deleting a fish `fish delete`](#deleting-a-fish-delete-fish)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
       * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)
+      * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-delete-task)
@@ -30,20 +30,40 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Introduction
+
+Welcome to the *Fish Ahoy! User Guide*! <br>
+
+*Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
+Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
+
+*Fish Ahoy!* **simplifies** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
+**weekly tasks**, such as feeding and cleaning. 
+
+Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
+*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
+
+This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to 
+cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior 
+knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping 
+equipment.
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest fishahoy.jar from here.
+2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for Fish Ahoy!.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fishahoy.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-   ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-   * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
 
 
 6. Refer to the [Features](#Features) below for details of each command.
@@ -67,6 +87,16 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 ## Tanks
+
+Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the 
+first requirement of fish keeping. (Can't have a fish without a tank!) Similarly, *Fish Ahoy!* also requires you to add
+a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
+customize them with their own names and add in their respective fishes! <br>
+
+Currently, there are three operations around tanks:
+* [Adding a tank `tank add`](#adding-a-tank-add)
+* [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
+* [Listing tanks `list tanks`](#listing-tanks-list-tanks)
 
 ### Adding a tank: `add`
 
@@ -115,6 +145,31 @@ Format: `list fishes`
 Lists all fishes in a specific tank.
 
 Format: `list fish /tank <TANK_NAME>`
+
+### Sorting fishes: `fish sort`
+
+Sorts fishes by attributes and displays the results. This does not affect the data permanently. <br>
+
+Use this command to view the fish at once by the attribute you want. This can be helpful if you need to see which fish 
+has not been fed in a long time, or see which fish you need to attend to first. It can also be used to organize the 
+results to your liking.  
+
+Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
+
+Prefixes:
+* `by/` - Specifies attribute by which to sort fish. Possible attributes:
+  * `n`- Name
+  * `lfd` - Last Fed Date
+  * `s` - Species
+  * `fi` - Feeding Interval
+  * `tk` - Tank Name
+
+Optional Prefixes:
+* `tk/` - If added, will display a sorting by tank. For example, `fish sort by/n` will sort **all** the fishes by name 
+  and display the results. In comparison,`fish sort by/n tk/2` will **only** sort the fishes in the 2nd tank by name and 
+  display the results.
+  
+
 
 ## Tasks
 
