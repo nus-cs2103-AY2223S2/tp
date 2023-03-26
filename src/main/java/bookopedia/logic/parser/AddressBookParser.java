@@ -17,6 +17,7 @@ import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.commands.HelpCommand;
 import bookopedia.logic.commands.ListCommand;
 import bookopedia.logic.commands.MarkCommand;
+import bookopedia.logic.commands.MarkParcelCommand;
 import bookopedia.logic.commands.SortCommand;
 import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
@@ -77,6 +78,9 @@ public class AddressBookParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case MarkParcelCommand.COMMAND_WORD:
+            return new MarkParcelCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);

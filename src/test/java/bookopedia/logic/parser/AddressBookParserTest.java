@@ -24,15 +24,19 @@ import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.commands.HelpCommand;
 import bookopedia.logic.commands.ListCommand;
 import bookopedia.logic.commands.MarkCommand;
+import bookopedia.logic.commands.MarkParcelCommand;
+import bookopedia.logic.commands.SortCommand;
 import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.ParcelStatus;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 import bookopedia.model.person.Person;
 import bookopedia.testutil.EditPersonDescriptorBuilder;
 import bookopedia.testutil.PersonBuilder;
 import bookopedia.testutil.PersonUtil;
+
 
 public class AddressBookParserTest {
 
@@ -115,9 +119,23 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_markParcel() throws Exception {
+        ParcelStatus parcelStatus = ParcelStatus.FRAGILE;
+        MarkParcelCommand command = (MarkParcelCommand) parser.parseCommand(MarkParcelCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + CliSyntax.PREFIX_PARCEL
+                + INDEX_FIRST_PERSON.getOneBased() + " " + CliSyntax.PREFIX_STATUS + parcelStatus);
+        assertEquals(new MarkParcelCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON, parcelStatus), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
     }
 
     @Test

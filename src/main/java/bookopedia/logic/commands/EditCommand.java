@@ -198,8 +198,8 @@ public class EditCommand extends Command {
             return Optional.ofNullable(deliveryStatus);
         }
 
-        public void setNoOfDeliveryAttempts(int NoOfDeliveryAttempts) {
-            this.noOfDeliveryAttempts = NoOfDeliveryAttempts;
+        public void setNoOfDeliveryAttempts(int noOfDeliveryAttempts) {
+            this.noOfDeliveryAttempts = noOfDeliveryAttempts;
         }
 
         public Optional<Integer> getNoOfDeliveryAttempts() {

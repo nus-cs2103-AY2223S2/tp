@@ -108,6 +108,32 @@ Examples:
 * `mark 1 s/fail` Marks the 1st delivery as failed.
 * `mark 1 s/done` Marks the 1st delivery as done.
 
+### Mark parcel: `mark_pc`
+
+Mark a parcel from a delivery with a status.
+
+Format: `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS`
+
+* `INDEX_OF_DELIVERY` indicates which delivery you are choosing your parcel from.
+* `INDEX_OF_PARCEL` indicates which parcel you want to mark.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+* `STATUS` must be of the following
+    * `fragile` for a fragile parcel
+      * indicated in red
+    * `bulky` for a bulky parcel
+      * indicated in blue
+
+![fragile & bulky colouring example](images/fragile_bulky.png)
+* Parcel `lazada0` is not fragile and not bulky
+* Parcel `lazada1` is fragile but not bulky
+* Parcel `lazada2` is bulky but not fragile
+* Parcel `lazada3` is both fragile and bulky
+
+Examples:
+* `mark 1 pc/1 s/fragile` Marks the 1st parcel of the 1st delivery as fragile.
+* `mark 1 pc/2 s/bulky` Marks the 2nd parcel of the 1st delivery as bulky.
+* `mark 2 pc/1 s/fragile` Marks the 1st parcel of the 2nd delivery as fragile.
+
 ### Viewing a delivery : `view`
 
 View more details about a delivery.

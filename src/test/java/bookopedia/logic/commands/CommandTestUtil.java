@@ -5,6 +5,7 @@ import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
+import static bookopedia.logic.parser.CliSyntax.PREFIX_STATUS;
 import static bookopedia.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_PARCEL_LAZADA = "lazada";
     public static final String VALID_PARCEL_SHOPEE = "shopee";
     public static final String VALID_DELIVERY_STATUS = "otw";
+    public static final String VALID_PARCEL_STATUS = "fragile";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,13 +51,17 @@ public class CommandTestUtil {
     public static final String PARCEL_DESC_SHOPEE = " " + PREFIX_PARCEL + VALID_PARCEL_SHOPEE;
     public static final String PARCEL_DESC_LAZADA = " " + PREFIX_PARCEL + VALID_PARCEL_LAZADA;
     public static final String DELIVERY_STATUS_OTW = " " + PREFIX_PARCEL + VALID_DELIVERY_STATUS;
+    public static final String PARCEL_STATUS_FRAGILE = " " + PREFIX_PARCEL + VALID_PARCEL_STATUS;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_PARCEL_DESC = " " + PREFIX_PARCEL + "lazada*"; // '*' not allowed in parcels
-    public static final String INVALID_DELIVERY_STATUS_DESC = " " + PREFIX_PARCEL + "complete"; // not a valid status
+    // not a valid delivery status
+    public static final String INVALID_DELIVERY_STATUS_DESC = " " + PREFIX_STATUS + "complete";
+    // not a valid parcel status
+    public static final String INVALID_PARCEL_STATUS_DESC = " " + PREFIX_STATUS + "light";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
