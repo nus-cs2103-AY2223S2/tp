@@ -222,11 +222,17 @@ _Details coming soon ..._
 
 ## Command Summary 
 
-| Parameters         | Description                       |
-|--------------------|-----------------------------------|
-| view m             | view person's list of modules     |
-| view s             | view person's list of skills      |
-| view c             | view person's contact information |
+| Actions                          | Description                                                                                                                                 |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a person                     | add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob l/linkedin.com/in/bom-sim-086g93847 m/ay2223s2 CS2103T m/AY2223S2 cs2101 s/python s/java |
+| Clear all persons                | clear                                                                                                                                       |
+| Delete person at index 3         | delete 3                                                                                                                                    |
+| Edit contact in the right panel  | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
+| Find by attributes               | find n/David c/2 m/CS2109S s/java                                                                                                           |
+| List the full list of contacts   | list                                                                                                                                        |
+| View contact                     | view 3                                                                                                                                      |
+| View tab                         | view c, view m, view s                                                                                                                      |
+| View user guide and command list | help                                                                                                                                        |
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
