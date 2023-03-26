@@ -1,12 +1,11 @@
 package expresslibrary.logic.commands;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_BOOK_FOUND_OVERVIEW;
-import static expresslibrary.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static expresslibrary.testutil.TypicalBooks.DUNE;
 import static expresslibrary.testutil.TypicalBooks.EMMA;
 import static expresslibrary.testutil.TypicalBooks.GREAT_GATSBY;
+import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

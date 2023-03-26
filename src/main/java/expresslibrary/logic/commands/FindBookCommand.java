@@ -1,12 +1,11 @@
 package expresslibrary.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 
 import expresslibrary.commons.core.Messages;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.Model;
 import expresslibrary.model.book.BookNameContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the findBook Command
