@@ -93,18 +93,17 @@ public abstract class Person {
     }
 
     /**
-     * Returns true if both persons have the same name and nric.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      *
      * @param otherPerson Person to be compared to.
-     * @return True if both persons have the same name and nric and false otherwise.
+     * @return True if both persons have the same nric and false otherwise.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
         return otherPerson != null
-                && otherPerson.getName().equals(name)
                 && otherPerson.getNric().equals(nric);
     }
 
