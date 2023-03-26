@@ -18,6 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_LAB = new Prefix("Lab/");
     public static final Prefix PREFIX_CONSULTATION = new Prefix("Consultation/");
     public static final Prefix PREFIX_RECUR = new Prefix("Recur/");
+    public static final Prefix PREFIX_SORT_STUDENT = new Prefix("sort student/");
     public static final Prefix PREFIX_COUNT = new Prefix("-n ");
     public static final Prefix PREFIX_DATE = new Prefix("-date ");
     public static final Prefix PREFIX_FILE = new Prefix("-file ");
