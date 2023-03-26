@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_ADDRESS;
-import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_AGE;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_AVAILABLE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_BIRTHDATE;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_DIGITS;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_EMAIL;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_MEDICAL_QUALIFICATION;
@@ -41,10 +41,10 @@ public class FindCommandTest {
     private final List<Predicate<Person>> listWithTwoPersonPredicate =
             Arrays.asList(PREDICATE_HAS_EMAIL, PREDICATE_HAS_NRIC);
     private final List<Predicate<Person>> listWithFourPersonPredicate =
-            Arrays.asList(PREDICATE_HAS_ADDRESS, PREDICATE_HAS_TAG, PREDICATE_HAS_AGE, PREDICATE_HAS_DIGITS);
+            Arrays.asList(PREDICATE_HAS_ADDRESS, PREDICATE_HAS_TAG, PREDICATE_HAS_BIRTHDATE, PREDICATE_HAS_DIGITS);
     private final List<Predicate<Person>> listWithAllPersonPredicate =
             Arrays.asList(PREDICATE_HAS_NAME, PREDICATE_HAS_ADDRESS, PREDICATE_HAS_NRIC,
-                    PREDICATE_HAS_DIGITS, PREDICATE_HAS_AGE, PREDICATE_HAS_TAG, PREDICATE_HAS_EMAIL,
+                    PREDICATE_HAS_DIGITS, PREDICATE_HAS_BIRTHDATE, PREDICATE_HAS_TAG, PREDICATE_HAS_EMAIL,
                     PREDICATE_HAS_REGION, PREDICATE_HAS_AVAILABLE_DATE);
     private final List<Predicate<Elderly>> listWithAllElderlyOnlyPredicate =
             Collections.singletonList(PREDICATE_HAS_RISKLEVEL);
