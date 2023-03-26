@@ -24,6 +24,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 7. [Command Summary](#command-summary)
 8. [Additional Resources](#additional-resources)
    1. [How To Check Java Version](#how-to-check-java-version)
+   2. [How to Open CoDoc](#how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
@@ -92,7 +93,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    For example,
    1. Create a new folder in your Desktop—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
-4. Open a command terminal
+4. Open a command terminal -> [How to Open CoDoc](#how-to-open-codoc)
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
    3. A window similar to the one below should appear in a few seconds.
@@ -171,6 +172,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Additional Resources
 ### How To Check Java Version
+### How to Open CoDoc
 
 [ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
 
