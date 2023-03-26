@@ -22,19 +22,20 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=glozxi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added soon
+  * Managed releases `v1.2`, `v1.2b` and `v1.3` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * to be added soon
+  * Modified commands to add and edit events to have event timings
 
 * **Documentation**:
   * User Guide:
-    * to be added soon
+    * Added documentation for `remind` command (Pull request [#133](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/133))
   * Developer Guide:
-    * to be added soon
+    * Adde implementation details of the `remind` feature
 
 * **Community**:
-  * to be added soon
+  * PRs reviewed (with non-trivial review comments): [#44](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/44), [#55](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/55), [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127), [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137), [#139](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/139), [#146](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/146)
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/4), [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/222))
 
 * **Tools**:
   * to be added soon
