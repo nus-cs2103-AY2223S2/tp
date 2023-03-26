@@ -2,10 +2,8 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -184,27 +182,4 @@ public class Client {
         appointments.remove(appointment);
     }
 
-    /**
-     * Removes appointments that has expired. (passed current date and time).
-     * @param appointments The set of appointments.
-     */
-    public void appointmentValidityCheck(Set<Appointment> appointments) {
-        Iterator<Appointment> appointmentIterator = appointments.iterator();
-        int i = 0;
-        while (i < this.appointments.size()) {
-            Appointment temp = appointmentIterator.next();
-            if (temp.getDateTime().compareTo(LocalDateTime.now()) == -1) {
-                this.appointments.remove(temp);
-            }
-            i++;
-        }
-    }
-
-    /**
-     * adds an appointment to the appointment set
-     * @param appointment
-     */
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
-    }
 }
