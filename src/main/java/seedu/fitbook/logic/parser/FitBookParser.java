@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.fitbook.logic.commands.AddCommand;
 import seedu.fitbook.logic.commands.AddExerciseCommand;
 import seedu.fitbook.logic.commands.AddRoutineCommand;
+import seedu.fitbook.logic.commands.AddWeightCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.ClearRoutinesCommand;
 import seedu.fitbook.logic.commands.Command;
@@ -107,6 +108,9 @@ public class FitBookParser {
 
         case DeleteExerciseCommand.COMMAND_WORD:
             return new DeleteExerciseCommandParser().parse(arguments);
+
+        case AddWeightCommand.COMMAND_WORD:
+            return new AddWeightCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
