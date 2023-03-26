@@ -101,10 +101,10 @@ Format: `help`
 Adds a patient to the address book:
 * Enter the patient's name, phone number, email, and address.
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* You can also add patient's age, medical condition and time for first meeting.
+* You can also add patient's age, medical condition, time and NRIC for first meeting.
 * To record a patient's other information, add them as additional tags to the patient's profile.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION nric/S9935010Y`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
