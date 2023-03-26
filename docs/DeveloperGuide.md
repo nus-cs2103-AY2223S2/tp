@@ -75,7 +75,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/developerGuide/UIClassDiagram.png)
+![Structure of the UI Component](images/developerGuide/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ElderlyListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -244,8 +244,6 @@ and removes it from the database.
 If the deleted Elderly or Volunteer has existing pairing, the associated
 pairs will be automatically removed as well.
 
-<img src="images/developerGuide/PersonAndPair.png" width="500" />
-
 ### Edit by index & NRIC
 
 In FriendlyLink, there are 2 methods to  choose which elderly/volunteer to edit:
@@ -330,27 +328,32 @@ The pairs are stored in a list similar to persons.
 * Allows for filtering to display a subset of pairs in the UI.
 * Allows for identifying a pair by index.
 
-<img src="images/developerGuide/Pair.png" width="350" />
-
 Two pairs are identical if they have the same elderly and volunteer NRIC.
 
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
 ### Storage
+This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
+
+Elderly, volunteers and pairs are stored in separate files to reduces the impact of a corrupted file, since it will only affect either elderly or volunteers.
+
+#### Persons
+
+Persons saved contains all their attributes such as name, NRIC, in JSON format.
+* Single value attributes are stored as key value pairs, such as name and Nric.
+* Multiple value attributes such as tag aand available date sets are stored as JSON lists.
 
 #### Pairs
 
-Pairs saved only contains the NRIC of the elderly and volunteer.
+Pairs saved only contains the NRIC of the elderly and volunteer in JSON format.
 
-Reasons
-
+**Reasons**
 * Reduce space needed to store pairs
 * Reduce chance of inconsistent data between a person and the corresponding pair,
 * Reduce number of files to amend manually when updating person information.
 
-Implications
-
+**Implications**
 * A pair is reconstructed on startup by searching the model for the corresponding person.
 * Elderly and volunteer files need to be read into the model before pair files.
 
