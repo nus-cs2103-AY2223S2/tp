@@ -101,6 +101,10 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         cards.tagCard(target, tag);
     }
 
+    public void flipCard(Card target) {
+        cards.flipCard(target);
+    }
+
     /**
      * Removes {@code key} from this {@code Deck}.
      * {@code key} must exist in the MasterDeck.
