@@ -1,5 +1,7 @@
 package seedu.modtrek.ui;
 
+import static seedu.modtrek.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -9,8 +11,6 @@ import javafx.stage.Stage;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.commons.util.StringUtil;
 import seedu.modtrek.logic.Logic;
-
-import static seedu.modtrek.commons.util.AppUtil.getImage;
 
 /**
  * The manager of the UI component.

@@ -1,5 +1,7 @@
 package seedu.modtrek.ui.resultssection;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -48,7 +50,7 @@ public class ResultsSection extends UiPart<Region> {
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
                 displayProgress(logic.getDegreeProgression()), () ->
                 displayAllModules(logic.getDegreeProgression().getModuleList()), () ->
-                displayFindModules(logic.getFilteredModuleList()));
+                displayFindModules(logic.getFilteredModuleList(), logic.getFiltersList()));
 
         displayProgress(logic.getDegreeProgression());
     }
@@ -101,7 +103,7 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays the modules that satisfy a given search query.
      */
-    public void displayFindModules(ObservableList<Module> modules /* replace with modules filtered by search query */) {
+    public void displayFindModules(ObservableList<Module> modules, List<String> filters) {
         footerButtonGroup.selectModuleSearchButton();
 
         body.getChildren().clear();
@@ -109,7 +111,7 @@ public class ResultsSection extends UiPart<Region> {
         headerTitle.setText("Module Search");
         headerSubtitle.setText("find a module");
 
-        ModuleSection moduleSearchSection = new ModuleSearchSection(modules);
+        ModuleSection moduleSearchSection = new ModuleSearchSection(modules, filters);
         renderSection(moduleSearchSection.getRoot());
     }
 

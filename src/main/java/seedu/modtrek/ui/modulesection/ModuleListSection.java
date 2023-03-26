@@ -33,7 +33,7 @@ public class ModuleListSection extends ModuleSection {
     private class ModuleSectionSortNav extends UiPart<Region> {
         private static final String FXML = "modulesection/ModuleSectionSortNav.fxml";
 
-        private final String[] SELECTION = new String[] {"Year", "Code", "Credits", "Grade", "Tag"};
+        private final String[] selection = new String[] {"Year", "Code", "Credits", "Grade", "Tag"};
 
         @FXML
         private ComboBox sortDropdown;
@@ -47,7 +47,7 @@ public class ModuleListSection extends ModuleSection {
         private void setListeners(/* Logic logic */) {
             sortDropdown.setOnAction((event) -> {
                 int selectedIndex = sortDropdown.getSelectionModel().getSelectedIndex();
-                String selectedItem = SELECTION[selectedIndex];
+                String selectedItem = selection[selectedIndex];
 
                 switch (selectedItem) {
                 case "Year":

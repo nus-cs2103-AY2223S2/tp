@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
             } else if (commandResult.isDisplayAllModules) {
                 resultsSection.displayAllModules(logic.getDegreeProgression().getModuleList());
             } else if (commandResult.isDisplayFilteredModules) {
-                resultsSection.displayFindModules(logic.getFilteredModuleList());
+                resultsSection.displayFindModules(logic.getFilteredModuleList(), logic.getFiltersList());
             } else {
                 // do nothing for `exit` and `help` commands
             }
