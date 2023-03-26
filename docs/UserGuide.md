@@ -30,12 +30,12 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
 Currently, our contact list is empty. Let's try adding a fictitious contact into our list to familiarise ourselves with CoDoc. Don't worry, we will remove this fictitious contact at the end.
-1. **add** a new contact -> [add command](#add)
+1. **add** a new person -> [add command](#add)
    <br>`add n/Bob y/2 c/1 e/e0823741@nus.edu`<br>
 
    | Parameters         | Description                                             |
-   |--------------------|---------------------------------------------------------|
-   | n/Bob              | name is Bob                                             |
+   |---------------------------------------------------------|---------------------------------------------------------|
+   | n/Bob              | person name is Bob                                      |
    | y/2                | year of study is 2                                      |
    | c/1                | course enrolled is Accounting—index 1 on the left panel |
    | e/e0823741@nus.edu | email is e0823741@nus.edu                               |
@@ -181,8 +181,8 @@ _Details coming soon ..._
 
 ## Command Summary 
 | Actions                           | Example                                                                                                                                     |
-|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Add person                        | add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob l/linkedin.com/in/bom-sim-086g93847 m/ay2223s2 CS2103T m/AY2223S2 cs2101 s/python s/java |
+|-----------------------------------|----------------------------------------------|
+| Add person                        | add n/Bo m/AY2223S2 cs2101 s/python s/java |
 | Clear all persons                 | clear                                                                                                                                       |
 | Delete a person                   | delete 3                                                                                                                                    |
 | Edit contact in the right panel   | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
