@@ -8,13 +8,15 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
+
 /**
  * A utility class to help with building Department objects.
  */
 
 public class DepartmentBuilder {
 
-    public static final String DEFAULT_NAME = "Human Resources";
+    public static final String DEFAULT_NAME = DEPARTMENT_NAME_FIRST.fullName;
 
     private DepartmentName name;
     private Set<Employee> employees;
