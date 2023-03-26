@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_SUCCESS = "Filter students accordingly.";
-    public static final int fullScore = 100;
 
     public static String group;
     public static String metric;
@@ -16,7 +17,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all address book students.\n "
             + "Parameters: The group of students you wish to sort (either all, lab, tutorial or consultation), "
-            + "the metric to be sorted (performance only for now), "
+            + "the metric to be sorted (performance or urgency), "
             + "and the desired threshold value (0 to 100)\n"
             + "For example, 'filter all performance 40' is a command you can type";
 
@@ -45,8 +46,19 @@ public class FilterCommand extends Command {
             break;
         }
          */
-        model.updateFilteredPersonList((person) ->
-                person.getPerformance().calculateUrgency() >= fullScore - this.threshold);
+
+        model.updateFilteredPersonList((person) -> filterMetric(person));
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    public boolean filterMetric(Person person) {
+        switch (this.metric) {
+        case "performance":
+            return person.getPerformance().getPerformanceValue() <= this.threshold;
+        case "urgency":
+            return person.getPerformance().calculateUrgency() >= this.threshold;
+        default:
+            return true;
+        }
     }
 }
