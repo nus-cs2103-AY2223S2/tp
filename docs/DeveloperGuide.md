@@ -13,30 +13,9 @@ Codebase foundation by AB3.
 
 ---
 
-# Setting up, getting started
+## **Setting up, getting started**
 
-## Setting up the project on your computer
-
-<aside>
-❗ Caution: Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
-
-</aside>
-
-First, **fork** this repo, and **clone** the fork into your computer.
-
-If you plan to use IntelliJ IDEA (highly recommended):
-
-1. **Configure the JDK**: Follow the guide *[[se-edu/guides] IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html)* to ensure Intellij is configured to use **JDK 11**.
-2. **Import the project as a Gradle project**: Follow the guide *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the project into IDEA. 
-
-<aside>
-💡 Note: Importing a Gradle project is slightly different from importing a normal Java project.
-
-</aside>
-
-1. **Verify the setup**:
-    1. Run the `seedu.address.Main` and try a few commands.
-    2. [Run the tests](https://se-education.org/addressbook-level3/Testing.html) to ensure they all pass.
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Before writing code
 
