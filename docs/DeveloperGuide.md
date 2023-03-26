@@ -369,7 +369,12 @@ In the scenario where the user's system's clipboard is not accessible, the reque
 
 #### New army fields: Current implementation
 
-New army-specific fields include Rank, Unit, Company, and Platoon. Rank is compulsory, hence its implementation is similar to that of other compulsory fields like Name. Unit, Company, and Platoon are optional as a military personnel might not always be assigned to a unit, company, or platoon. For these, fields, implementation is similar to the Tag field as tags are optional as well. When new users are being created and Unit, Company, and Platoon fields are not specified, they will automatically be set to "N/A" at first.
+The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
+
+- We made the `rank` field compulsory since we are only dealing with army personnel (i.e., everyone should have a `rank`).
+  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"3SG"` or `"2LT"` -- we intend to expand this list to include all valid ranks in the future.
+- We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
+  - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
 ### \[Proposed\] Data archiving
 
