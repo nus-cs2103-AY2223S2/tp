@@ -13,6 +13,7 @@ sprite $rake [16x16/8] {
 
 start
 :User executes command;
+
 switch (mode)
 case ( Main )
   :Check validity of command <$rake>;
@@ -21,5 +22,6 @@ case ( Deck )
 case ( Review )
   :Check validity of command <$rake>;
 endswitch
+
 stop
 @enduml

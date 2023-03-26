@@ -33,7 +33,7 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyMasterDeck
 ModelManager -down-> "1" MasterDeck
 ModelManager -right-> "1" UserPrefs
-ModelManager -left-> "1" Review
+ModelManager -left-> "0..1" Review
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 MasterDeck *--> "1" UniqueCardList
