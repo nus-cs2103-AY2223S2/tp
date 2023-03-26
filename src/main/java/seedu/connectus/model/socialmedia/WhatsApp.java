@@ -11,7 +11,7 @@ import seedu.connectus.model.person.Phone;
  */
 public class WhatsApp {
 
-    public static final String MESSAGE_CONSTRAINTS = "WhatsApp user identifier is a phone number. "
+    public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number. "
             + Phone.MESSAGE_CONSTRAINTS;
 
     public final String value;
