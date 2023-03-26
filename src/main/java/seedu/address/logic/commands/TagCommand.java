@@ -4,19 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 
-import org.joda.time.LocalTime;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
-import seedu.address.model.commitment.Lesson;
-import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.tag.ModuleTag;
 
 /**

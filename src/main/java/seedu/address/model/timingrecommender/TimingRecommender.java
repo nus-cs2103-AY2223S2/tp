@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler;
+package seedu.address.model.timingrecommender;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,39 +13,42 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.util.TimeUtil;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 /**
- * Represents an automatic scheduler.
+ * Represents an automatic timingrecommender.
  */
-public class Scheduler {
-    private static final Logger logger = LogsCenter.getLogger(Scheduler.class);
+
+public class TimingRecommender {
+
+    private static final Logger logger = LogsCenter.getLogger(TimingRecommender.class);
     private List<Timetable> schedules;
     private Model model;
     private List<Person> participants;
 
     /**
-     * Constructs a scheduler.
+     * Constructs a timingrecommender.
      * @param model
      */
-    public Scheduler(Model model) {
+    public TimingRecommender(Model model) {
         this.model = model;
         this.schedules = new ArrayList<>();
         this.participants = new ArrayList<>();
     }
 
     /**
-     * Initialises the scheduler with all the participants.
+     * Initialises the timingrecommender with all the participants.
      * @param participantIndices
      */
-    public Scheduler initialise(Collection<ContactIndex> participantIndices) {
+    public TimingRecommender initialise(Collection<ContactIndex> participantIndices) {
         // for each contact person, query person from model.
         // Each person's schedule would be constructed
         // and appended to the schedules
-        logger.info(String.format("Attempting to query %d indices from Model in Scheduler",
+        logger.info(String.format("Attempting to query %d indices from Model in TimingRecommender",
             participantIndices.size()));
         addParticipants(participantIndices);
         return this;

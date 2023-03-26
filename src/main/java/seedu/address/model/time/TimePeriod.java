@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler.time;
+package seedu.address.model.time;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
-import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
+import seedu.address.model.time.exceptions.WrongTimeException;
 
 /**
  * Represents a period in time.

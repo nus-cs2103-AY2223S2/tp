@@ -7,8 +7,8 @@ import org.joda.time.LocalTime;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.TimeBlock;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimeBlock;
 
 /**
  * Json object for converting Lessons.

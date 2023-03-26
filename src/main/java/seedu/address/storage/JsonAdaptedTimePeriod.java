@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalTime;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.TimeBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.timetable.Timetable;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Jackson-friendly version of {@link TimePeriod}.

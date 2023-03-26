@@ -15,9 +15,9 @@ import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.LocationRecommender;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.Scheduler;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.timingrecommender.TimingRecommender;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Recommends meetup times and locations.
@@ -27,14 +27,14 @@ public class Recommender {
     private static final Logger logger = LogsCenter.getLogger(Recommender.class);
     private static final int RECOMMENDATION_LIMIT = 20;
     private final LocationRecommender lr;
-    private final Scheduler sc;
+    private final TimingRecommender sc;
     private final Model model;
     private Set<LocationTracker> locationTrackers;
 
     public Recommender(Model model) {
         this.model = model;
         lr = new LocationRecommender();
-        sc = new Scheduler(model);
+        sc = new TimingRecommender(model);
         locationTrackers = new HashSet<>();
     }
 
@@ -70,7 +70,7 @@ public class Recommender {
     }
 
     /**
-     * Sets up the {@code LocationRecommender}, {@code Scheduler}
+     * Sets up the {@code LocationRecommender}, {@code TimingRecommender}
      * and {@code LocationTracker} for each person.
      */
     private void initialise(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {

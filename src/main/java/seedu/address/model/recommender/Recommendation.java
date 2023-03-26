@@ -2,7 +2,7 @@ package seedu.address.model.recommender;
 
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * A meetup suggestion consisting of a location and time period.

@@ -1,9 +1,10 @@
 package seedu.address.model.timetable.util;
 
 import org.joda.time.LocalTime;
+
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.time.Day;
 
 
 /**

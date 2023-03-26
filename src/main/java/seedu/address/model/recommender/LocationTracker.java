@@ -14,9 +14,9 @@ import seedu.address.model.commitment.Commitment;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.person.Person;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Follows a person around and can predict a person's location given a timing.

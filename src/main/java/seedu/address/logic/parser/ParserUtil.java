@@ -24,9 +24,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.TimeBlock;
+import seedu.address.model.timetable.Timetable;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimeBlock;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 

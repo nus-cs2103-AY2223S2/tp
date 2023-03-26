@@ -4,7 +4,9 @@ title: User Guide
 ---
 # EduMate User Guide
 
-EduMate is a desktop app designed for NUS students to manage their academic and social lives.
+#### Greetings! Are you a _busy NUS Student_ who wants to efficiently manage your **academic** and **social** life?
+We understand that University is a great place for bright minds like you to network and make long-lasting 
+friends. We built this personalised desktop app to help **YOU** do just that!
 
 ## Using this Guide
 If this is the first time you are using this user guide, we highly recommend you to read the [Overview](#overview) section. Otherwise,
@@ -66,7 +68,9 @@ The following subsections explain the overarching functionality of EduMate, as w
 
 ### What is EduMate?
 
-{to be filled}
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It works as an address book
+but has other interesting features as well. It works mostly by commands and can behave like a
+Command Line Interface (CLI).
 
 ### Understanding the Symbols and Colours
 
@@ -103,7 +107,7 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 Here is everything you need to install and set up EduMate. For the best possible experience, we recommend that you run the application on the following supported operating systems:
 
 * Windows
-* macOS
+* macOS (Both Intel and M1/M2 Chips)
 * Linux
 
 Do also ensure that you have Java `11` or above installed in your Computer. If you don’t already have Java `11` or above on your system, head over to [Oracle’s Java download page](https://www.oracle.com/java/technologies/downloads/). To check whether your Java version is compatible with EduMate, please refer to [this section]().
@@ -556,17 +560,22 @@ Examples:
 
 #### Suggest places to meet with your contacts `meet`
 
-Edits the profile of a contact.
+Suggests a meetup location **and** timing that is optimal for you and your friend group to meetup for
+social, academic or other general meetings.
 
 <div markdown="block" class="alert alert-info">
 
 You can use this command if:
-*
+* You want to schedule a meetup for academic, social or other general purposes.
+* You find it difficult to agree on a timing and location that is suitable for all your friends to
+meet and you require a recommendation.
 
 </div>
 
 Formats:
-*
+* `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
+* `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
+* `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
 
 What you should see:<br>
 {GUI}<br>
@@ -586,7 +595,7 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 **A**: Yes, you can add multiple tags to a single user by using the "Module Tagging" feature multiple times.
 
 **Q**: Can I edit my own profile?
-**A**: It will not be in v1.02, but it may be possible for future iterations.
+**A**: Yes you may! Refer to [Editing a Contact's Details](#edit-a-contacts-details-edit)
 
 
 ## Summary

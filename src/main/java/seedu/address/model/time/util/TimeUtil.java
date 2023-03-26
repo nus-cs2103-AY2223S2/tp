@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler.time.util;
+package seedu.address.model.time.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,12 @@ import java.util.stream.Stream;
 import org.joda.time.LocalTime;
 
 import javafx.util.Pair;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimeBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.util.MathUtil;
-
+import seedu.address.commons.util.MathUtil;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Contains utils functions for Timetable related jobs.
@@ -101,11 +100,14 @@ public class TimeUtil {
     public static boolean hasAnyClash(List<TimePeriod> timePeriods) {
         List<Pair<Integer, TimePeriod>> indexedTimePeriods = MathUtil.<TimePeriod>indexObjects(timePeriods);
         List<Pair<Integer, TimePeriod>> second = List.copyOf(indexedTimePeriods);
+
         List<List<Pair<Integer, TimePeriod>>> cartesianProductPairs =
             MathUtil.<Pair<Integer, TimePeriod>>getCartesianProduct(indexedTimePeriods, second);
+
         Stream<List<Pair<Integer, TimePeriod>>> cartesianProductTimePeriodStream = cartesianProductPairs.stream()
-            .filter(listPair -> !listPair.get(0).getKey().equals(listPair.get(1).getKey()))
+            .filter(listPair -> !listPair.get(0).getKey().equals(listPair.get(1).getKey())) // remove {A, A} sets
             .filter(listPair -> listPair.get(0).getValue().hasClash(listPair.get(1).getValue()));
+
         return cartesianProductTimePeriodStream.findAny().isPresent();
     }
 

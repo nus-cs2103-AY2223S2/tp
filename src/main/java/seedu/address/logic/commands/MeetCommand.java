@@ -2,11 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -61,11 +59,10 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recommendation> recommendations = new Recommender(model).recommend(indices, locations);
-        List<Recommendation> indexedRecommendations = new ArrayList<>();
 
         for (Recommendation recommendation : recommendations) {
             Recommendation indexedRecommendation = model.addRecommendation(recommendation);
-            indexedRecommendations.add(indexedRecommendation);
+            model.addRecommendation(indexedRecommendation);
         }
 
         model.updateObservableRecommendationList();

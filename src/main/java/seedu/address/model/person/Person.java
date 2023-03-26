@@ -9,8 +9,8 @@ import java.util.Set;
 
 import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
+import seedu.address.model.timetable.Timetable;
+import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -151,7 +151,7 @@ public class Person {
         for (ModuleTag moduleTag : moduleTags) {
             for (Lesson lesson : moduleTag.getImmutableLessons()) {
                 try {
-                    timetable.addLesson(lesson);
+                    timetable.addCommitment(lesson);
                 } catch (CommitmentClashException cce) {
                     continue;
                 }
