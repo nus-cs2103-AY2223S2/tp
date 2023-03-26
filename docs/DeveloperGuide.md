@@ -202,14 +202,24 @@ The `LogicManager` executes the `SelectCommand`, which communicates with the `Mo
 
 ![Class Diagram of `select`](images/SelectClassDiagram.png)
 
+The following sequence diagram illustrates the execution of a successful select command.
+Low-level details of the parsing of select command in logic is omitted as it has been described [above](#logic-component)
+
+![Sequence Diagram of successful `select`](images/SelectSequenceDiagram.png)
+
+Upon execution, the `selectedIndex` and `selectedPerson` fields of AddressBook would be updated, allowing the GUI to access it
+and display changes accordingly.
+
 #### Design considerations:
 
 There are two ways to select a contact:
 * **Method 1:** Click on the contact in the current displayed contact list
 * **Method 2:** Use the `select` command
 
-Currently, the state of select is NOT shared between the two methods. (Future implementation: bind the two methods)
-> **Example:** If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 does not "deselect" contact..
+Consequently, the state of the selected person and index needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
+> **Example:** 
+> - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already select.
+> - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
 
 
 ### \[Proposed\] Undo/redo feature
