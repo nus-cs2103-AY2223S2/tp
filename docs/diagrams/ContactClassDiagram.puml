@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class Contact
+Class ContactName
+Class ContactPhone
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Contact
+
+Contact *--> ContactName
+Contact *--> ContactPhone
+
+@enduml

@@ -4,48 +4,67 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventBook;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventBook;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code EventBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+
+    public static Contact[] getSampleContacts() {
+        return new Contact [] {
+            new Contact(new ContactName("Gladious Lee"), new ContactPhone("92348274")),
+            new Contact(new ContactName("Sofia Neistat"), new ContactPhone("81274623")),
+            new Contact(new ContactName("Tan Pei Ming"), new ContactPhone("91120392"))
+        };
+    }
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new Name("Wedding Lunch Photography"), new Rate("120"),
+                new Address("York Hotel ballroom"),
+                new Time("05-05-2023 11:00"), new Time("05-05-2023 14:30"),
+                getTagSet("carousell")),
+            new Event(new Name("Wedding Dinner Photobooth"), new Rate("80"),
+                new Address("3 rich avenue SG 991203"),
+                new Time("08-05-2023 19:00"), new Time("08-05-2023 22:30"),
+                getTagSet("photobooth", "carousell")),
+            new Event(new Name("Barista at Chanel launch"), new Rate("100"),
+                new Address("Open area @ Orchard Road"),
+                new Time("02-05-2023 11:00"), new Time("02-05-2023 18:00"),
+                getTagSet("barista")),
+            new Event(new Name("Wedding Lunch Live Singing"), new Rate("280"),
+                new Address("Raffles Hotel Jubilee Ballroom"),
+                new Time("15-05-2023 11:00"), new Time("15-05-2023 14:00"),
+                getTagSet("family"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyEventBook getSampleEventBook() {
+        EventBook sampleAb = new EventBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyContactList getSampleContactList() {
+        ContactList sampleCl = new ContactList();
+        for (Contact sampleContact : getSampleContacts()) {
+            sampleCl.addContact(sampleContact);
+        }
+        return sampleCl;
     }
 
     /**

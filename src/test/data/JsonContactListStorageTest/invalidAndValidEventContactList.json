@@ -1,0 +1,9 @@
+{
+  "contacts": [ {
+    "name": "Valid Event",
+    "phone": "9482424",
+  }, {
+    "name": "Event With Invalid Phone Field",
+    "phone": "948asdf2424"
+  } ]
+}
