@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all employees in address book whose name contains any of the argument keywords.
@@ -28,13 +28,13 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        int listSize = model.getFilteredPersonList().size();
+        model.updateFilteredEmployeeList(predicate);
+        int listSize = model.getFilteredEmployeeList().size();
         if (listSize == 0) {
-            return new CommandResult(Messages.MESSAGE_NO_PERSONS_FOUND);
+            return new CommandResult(Messages.MESSAGE_NO_EMPLOYEES_FOUND);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, listSize));
+                String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, listSize));
     }
 
     @Override

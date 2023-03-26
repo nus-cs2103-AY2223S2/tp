@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,13 +9,16 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.BatchExportCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Department;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.EmployeeId;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Department;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,7 +49,7 @@ public class ParserUtil {
      */
     public static EmployeeId parseEmployeeId(String employeeId) throws ParseException {
         String trimmedEmployeeId = employeeId.trim();
-        if (!EmployeeId.isValidNumber(trimmedEmployeeId)) {
+        if (!EmployeeId.isValidEmployeeId(trimmedEmployeeId)) {
             throw new ParseException(MESSAGE_INVALID_EMPLOYEE_ID);
         }
         return new EmployeeId(trimmedEmployeeId);
@@ -112,6 +116,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String theme} into usable form.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code theme} is invalid.
+     */
+    public static String parseTheme(String theme) throws ParseException {
+        requireNonNull(theme);
+        String trimmedTheme = theme.trim();
+        if (!ThemeCommand.isValidTheme(trimmedTheme)) {
+            throw new ParseException(ThemeCommand.MESSAGE_INVALID_THEME);
+        }
+        return trimmedTheme;
+    }
+
+    /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -152,4 +171,24 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parseFileName(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
+    }
+    public static String parseExport(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
+    }
+
 }

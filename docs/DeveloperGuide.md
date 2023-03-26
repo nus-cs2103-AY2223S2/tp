@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a employee).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -153,12 +153,158 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Add Feature : `add`
+
+#### Implementation
+This section explains the implementation of the `add` feature.
+The command takes in one parameter which is the employee name, executing the command leads to the addition of an
+employee into the ExecutivePro database.
+
+Below is a sequence diagram and the explanation of `add` command.
+
+![AddCommand](images/AddSequenceDiagram.png)
+
+Step 1. Users will enter the command `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25
+d/Marketing`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `AddCommandParser`
+to parse the user input. This creates a `AddCommand` object.
+
+Step 3. The `execute` method of `AddCommand` will be called, it returns a `CommandResult`object.
+
+Step 4. This adds the `employee` from the list to the model. The `employeeId` will be set and if there
+currently exists an `employee` object with the same field data, a `CommandException` will be thrown and
+a message indicating duplicate person will be shown.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+
+### Edit Feature : `edit`
+
+#### Implementation
+This section explains the implementation of the `edit` feature.
+The command takes in a first parameter which is the unique employee ID, then one or more other employee details that the user wants to edit.
+Executing the command edits the details of the employee into the ExecutivePro database.
+
+Below is a sequence diagram and the explanation of `edit` command.
+
+![AddCommand](images/EditSequenceDiagram.png)
+
+Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `EditCommandParser`
+to parse the user input. This creates a `EditCommand` object containing a `EditEmployeeDescriptor` object that contains the new details.
+
+Step 3. The `execute` method of `EditCommand` will be called, it returns a `CommandResult`object.
+
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
+a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+
+### Delete Feature : `delete`
+
+#### Implementation
+
+This section explains the implementation of the `delete` feature.
+The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee
+with that specific employee ID
+Below is a sequence diagram and the explanation of `delete` command.
+
+![DeleteCommand](images/DeleteSequenceDiagram.png)
+
+Step 1. Users will enter the command `delete 1`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `DeleteCommandParser` to
+parse the user input.
+This creates a `DeleteCommand` object.
+
+Step 3. The `execute` method of `DeleteCommand` will be called, it returns a `CommandResult`object.
+
+
+Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
+`CommandException` will be thrown and a message indicating invalid Employee ID will be returned. However,
+if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted
+from the database.
+
+Step 5. `storage#saveAddressBook()` is then called, and updates the storage to remove the employee.
+
+### List Feature: `list`
+This command displays the details of all employees in order of their employee ID.
+
+#### Implementation
+
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+
+Below is a sequence diagram and the explanation of the `list` command.
+
+![ListCommand](images/ListSequenceDiagram.png)
+
+Step 1. User enters the command `list`.
+
+Step 2. `LogicManager#execute` method is called on the user input.
+This prompts the `ExecutiveProParser` to parse the user input, which then returns a `ListCommand` object.
+
+Step 3. The `execute` method of this `ListCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that always evaluates to `true` for any `Employee`.
+
+Step 4. Every `Employee` now satisfies the `Predicate`, so the `FilteredList` updates to contain every employee in the source list.
+
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of all employees to the user.
+
+### Change Theme Feature: `theme`
+This command changes the appearance of ExecutivePro's GUI to the specified theme.
+`theme light` displays black text on a light background, while `theme dark` displays white text on a dark background.
+
+#### Implementation
+
+The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
+The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
+
+![ListCommand](images/ThemeSequenceDiagram.png)
+
+Step 1. User enters a valid command, e.g. `theme light`.
+
+Step 2. `LogicManager` parses and executes the command, and returns to the `MainWindow` a `CommandResult` object containing the specified theme "light".
+
+Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then calls its own `handleChangeTheme` method with this theme.
+
+Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
+
+Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+
+### Find Feature: `find`
+This command displays all employees whose full names partially or fully match the keyword inpuuted by the user.  
+
+#### Implementation
+
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+
+Below is a sequence diagram and the explanation of the `find` command.
+
+![FindCommand](images/FindSequenceDiagram.png)
+
+Step 1. User enters the command `find James Li`.
+
+Step 2. `LogicManager#execute` method is called on the user input.
+This prompts the `ExecutiveProParser` to parse the user input, which then returns a `FindCommand` object.
+
+Step 3. The `execute` method of this `FindCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that filters out all the Employees who names don't match any of the given keywords - _James_ or _Li_.
+
+Step 4. The `FilteredList` now only contains those employees which satisfy the `Predicate` by matching the given keywords.
+
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of matching employees to the user.
+
+#### Future Considerations 
+
+Add functionality to find employees based on other details such as Department, Roles etc.
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an
+undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -172,11 +318,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +330,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +375,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -435,17 +581,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a employee
 
-1. Deleting a person while all persons are being shown
+1. Deleting a employee while all employees are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
