@@ -10,6 +10,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.CopyCommand;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
@@ -119,6 +120,9 @@ public class RosterParser {
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
+
+        case CopyCommand.COMMAND_WORD:
+            return new CopyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
