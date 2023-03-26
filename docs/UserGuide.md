@@ -80,7 +80,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addPerson i/A0123456M n/Bob Tan p/91112222 e/btan@mail.com b/A_Book`
+* `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32 b/Harry Potter`
 
 ### Deleting a person : `deletePerson`
 
