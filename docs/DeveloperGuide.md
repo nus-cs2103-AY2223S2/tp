@@ -332,6 +332,32 @@ Given below is an updated `Model` component diagram.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
 
+### Adding Health Conditions
+
+The proposed implementation of separate `Conditions` object to encapsulate health conditions of a patient.
+
+E.g., Diabetic, Dyslexic, Osteporotic.
+
+The addition of this field will allow staff to quickly filter by conditions, or quickly glance at a patient to
+identify what known conditions he/she has.
+
+#### Design considerations:
+
+**Aspect: Implementing a new object to represent conditions:**
+
+* **Alternative 1 (current choice):** Convert `Tag` objects to health conditions.
+    * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of 
+            HospiSearch. The highlighting of the tags can be repurposed to show a quick view of known conditions
+            a patient has.
+    * Cons: If a patient has many pre-existing conditions, this may end up as visual clutter. Furthermore, we may
+            wish for other details to be highlighted instead of health conditions.
+
+* **Alternative 2:** Implement `Conditions` as a separate object
+    * Pros: We can still tag a patient with details other than health conditions. The functionality of `Tag` will
+            not be deprecated.
+    * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
+            as obvious as well compared to the current display of tags.
+
 ### Find patient record by NRIC, Health conditions, Medicine feature
 
 ###Implementation
@@ -373,8 +399,6 @@ The following sequence diagram shows how the delete command works:
 * **Alternative 2:** Find by any `Attribute`. Eg. `Address`, `Phone` etc.
     * Pros: More convenient for clinical administrator to search by any attributes that he deem easy to type
     * Cons: Unlikely for the clinical administrator to use other attributes to find a particular patient.
-
-
 
 ### Delete patient record by NRIC feature
 
