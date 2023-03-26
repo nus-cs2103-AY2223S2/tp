@@ -23,7 +23,7 @@ public class TimetableDateCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "2023-03-15";
 
-    public static final String SHOWING_TIMETABLE_MESSAGE = "Show timetable of the according week.";
+    public static final String SHOWING_TIMETABLE_MESSAGE = "Show timetable of the week containing day: %s.";
 
     public static final SortbyTime SORTER = new SortbyTime();
     private final LocalDate jobDate;
@@ -48,11 +48,11 @@ public class TimetableDateCommand extends Command {
         model.updateSortedDeliveryJobListByDate();
         model.updateWeekDeliveryJobList(jobDate);
 
-        System.out.println("helu");
         System.out.println(model.getSortedDeliveryJobList());
         System.out.println(model.getSortedDeliveryJobListByDate());
         System.out.print(model.getWeekDeliveryJobList());
-        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
+        String showTimetableMessage = String.format(SHOWING_TIMETABLE_MESSAGE, jobDate.toString());
+        return new CommandResult(showTimetableMessage, false, true, false, false, false);
     }
 
 }

@@ -143,12 +143,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void updateSortedDeliveryJobListByDate(){
+    public void updateSortedDeliveryJobListByDate() {
         model.updateSortedDeliveryJobListByDate();
     };
 
     @Override
-    public void updateWeekDeliveryJobList(LocalDate focusDate){
+    public void updateWeekDeliveryJobList(LocalDate focusDate) {
         model.updateWeekDeliveryJobList(focusDate);
     };
 

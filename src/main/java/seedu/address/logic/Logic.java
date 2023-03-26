@@ -2,7 +2,6 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
