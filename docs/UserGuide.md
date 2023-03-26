@@ -265,7 +265,26 @@ Examples:
 
 ### Editing an Internship : `edit`
 
-[TODO by Shawn]
+Made a mistake, or wish to update your internship entry? The `edit` command modifies an internship entry from your list of existing entries.
+
+Format: ` edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
+
+* The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the [List Panel](#exploring-the-graphical-user-interface)  displayed using the `list` command.
+* You have to provide at least one of the optional parameters
+* You can remove all of an internship’s tags by typing `t/` without specifying any other tags after it. 
+* You can reset the comment of an internship to the default value of `NA` by typing `c/` without specifying any comments after it.
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  When editing tags, the existing tags of the internship will be removed i.e adding of tags is not cumulative.
+
+</div>
+
+Examples:
+* `edit 2 s/assessment r/Software Developer`Sets the status and role of the second internship entry as `Assessment` and `Software Developer` respectively.
+* `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional parameter.
+* `edit 2 t/Java t/Go` Sets the tags of the second internship entry as Java and Go. (Existing tags will be removed)
+* `edit 2 t/` Removes all the tags of the second internship entry.
 
 
 ### Viewing an Internship : `view`
@@ -302,7 +321,18 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 [TODO by Kai Xun]
 
 ### Getting Upcoming Events and Deadlines : `upcoming`
-[TODO by Shawn]
+Want to view your upcoming events and deadlines? You can do so using the `upcoming` command.
+
+Format: `upcoming`
+* The `upcoming` command provides the list of internships that have events (interviews/assessments) or deadlines (application deadline/offer acceptance deadline) within the upcoming week
+* In other words, it gives you the list of internships that have a `STATUS` of `NEW/OFFERED/ASSESSMENT/INTERVIEW`, and the `DATE`  falls within the upcoming week.
+* Upcoming week is defined as the current day and the 6 days that follow it.
+
+
+Examples: 
+* `upcoming` If today's date is 5 January 2023, it will list all internships that have a `STATUS`of `NEW/OFFERED/ASSESSMENT/INTERVIEW` and `DATE` is from 5 January 2023 to 11 January 2023 inclusive.
+
+
 
 ### Deleting Internships : `delete`
 [TODO by Christopher]
