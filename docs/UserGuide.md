@@ -1,13 +1,19 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
-GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+* Table of Contents
+  {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 # Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `goodmatch.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). //change the link for this
-3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
+3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
 
 
 A GUI similar to the one below should appear in a few seconds.
@@ -18,12 +24,12 @@ A GUI similar to the one below should appear in a few seconds.
 
 Some example commands you can try:
     - add something here
-6. Refer to the [Features](https://www.notion.so/User-Guide-23950683b3cc4950a36706df6ae00bf4) below for details of each command.
+6. Refer to the [Features](https://www.notion.so/User-Guide-23950683b3cc4950a36706df6ae00bf4) below for details of each command.
 
 # Features
 
-<aside>
-ℹ️ ************************Notes about the command format:************************
+
+ℹ️ **Notes about the command format:**
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.e.g. in `add t/TITLE`, `TITLE` is a parameter which can be used as `add t/Chicken Rice Uncle`.
 - Items in square brackets are optional.e.g `t/TITLE [a/APPLICANT]...` can be used as `t/Chicken Rice Uncle a/John Tan` or as `t/Chicken Rice Uncle`.
@@ -31,7 +37,7 @@ Some example commands you can try:
 - Parameters can be in any order.e.g. if the command specifies `t/TITLE d/DESCRIPTION`, `d/DESCRIPTION t/TITLE` is also acceptable.
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.e.g. if you specify `t/Chicken Rice Uncle t/Chicken Rice Auntie`, only `t/Chicken Rice Uncle` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</aside>
+
 
 ## Viewing help: `help`
 
@@ -39,19 +45,26 @@ Shows a message explaining how to access the help page.
 
 ![Help Message](./images/helpMessage.png)
 
-****************Format:**************** `help`
+**Format:** `help`
 
-## Listing all job listings: `list`
+## Viewing all job listings: `view`
 
 Lists out all the jobs that are currently in the listing book.
 
-**Format:** `list`
+**Format:** `view`
+
+**Expected Output:**
+- You should see all the listings that are currently in your listing book, as well as the confirmation message:
+```ignorelang
+Listed all listings
+```
 
 ## Adding a job listing: `add`
 
 Adds a listing to the listing book.
 
-**Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT]...`
+**Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT]...`
+
 
 **Tips:**
 
@@ -62,13 +75,27 @@ Adds a listing to the listing book.
 - `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele`
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
+**Expected Output:**
+You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+```ignorelang
+New listing added: Chicken Rice Uncle; JobDescription: Cooks tasty chicken rice; Applicants: Nicholas, Tom, Adele
+```
+
+**Possible Error:**
+If the above format is not followed, an error message will display:
+```ignorelang
+Invalid Command Format!
+add: Adds a listing to the listing book. Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
+Example: add t/Cool job title d/Informative job description a/John a/Sam
+```
+
 ## Editing a job listing: `edit`
 
 Edits the details of a job listing.
 
 **Format:** `edit NUMBER t/TITLE d/DESCRIPTION [a/APPLICANTS...]`
 
-********Tips:********
+**Tips:**
 
 - Ensure that `NUMBER` is valid (ie. its is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. eg. if the command entered is:
@@ -77,69 +104,151 @@ Edits the details of a job listing.
 
     then only the title and the description of task 1 will be edited (the applicants will remain unchanged)
 
-
-**************Examples:**************
+**Examples:**
 
 - `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
 - `edit 2 t/Videographer d/Films videos`
+
+**Expected Output:**
+
+You will see a confirmation message showing the edited job title, description and applicants (if any).
+An example is shown below:
+```ignorelang
+Edited Listing: Noodle seller; JobDescription: Cooks tasty noodles; Applicants: Johnson
+```
+
+**Possible Error:**
+
+An valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
+messages shown below will be displayed.
+```ignorelang
+Invalid command format!
+edit: Edits a listing in the listing book. by the index number used in the displayed listing book. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
+[a/APPLICANT (optional)]...
+Example: edit 1 t/Cool job title a/John a/Sam
+```
+```ignorelang
+The listing index provided is invalid
+```
+
 
 ## Deleting a job listing: `delete`
 
 Deletes a job listing from the listing book.
 
-**************Format:************** `delete NUMBER`
+**Format:** `delete NUMBER`
 
-********Tips:********
+**Tips:**
 
 - Ensure that `NUMBER` is valid (ie. its is non-negative and not greater than the number of tasks) or an error will occur!
 
-******************Examples:******************
+**Examples:**
 
 - `delete 1`
+
+**Expected Output:"**
+
+A confirmation message will show, along with the details of the listing. An example message is shown below:
+```ignorelang
+Listing: Chicken farmer; JobDescription: farms chickens; Applicants: topsy mcddaddy, column verctoa has been deleted!
+```
+
+**Possible Error:**
+If an index is invalid or absent, an error message such as the one below will be displayed.
+```ignorelang
+Invalid command format!
+delete: Deletes the listing identified by the index number used in the displayed listing book.
+Parameters: INDEX (must be a positive integer)
+Example: delete 1
+```
+```ignorelang
+The listing index provided is invalid
+```
+
 
 ## Locating job listings by title: `find`
 
 Finds job listings whose titles contain any of the given keywords.
 
-**Format:** `find KEYWORD [MORE_KEYWORDS]`
+**Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-**********Tips:**********
+**Tips:**
 
-- The search is case-insensitive. e.g `software` will match `Software`
-- The order of the keywords does not matter. e.g. `Software Developer` will match `Developer Software`
+- The search is case-insensitive. eg. `software` will match `Software`
+- The order of the keywords does not matter. e.g. `Software Developer` will match `Developer Software`
 - Only the title is searched.
-- Only full words will be matched e.g. `Engineer` will not match `Engineering`
-- Job listings matching at least one keyword will be returned (i.e. `OR` search). e.g. `Software Developer` will return `Software Engineer`, `Microservices Developer`
+- Only full words will be matched e.g. `Engineer` will not match `Engineering`
+- Job listings matching at least one keyword will be returned (i.e. `OR` search). e.g. `Software Developer` will return `Software Engineer`, `Microservices Developer`
 
 **Examples:**
 
-- `find Software` returns `software` and `Software Developer`
-- `find Software Engineer` returns `Software Developer`, `Chemical Engineer`
+- `find Software` returns `software` and `Software Developer`
+- `find Software Engineer` returns `Software Developer` and `Chemical Engineer`
+
+**Expected Output**:
+A confirmation message will display. The message indicates the number of listings which match the given keyword(s).
+An example is shown below.
+```ignorelang
+1 listings shown!
+```
+If no listings match the keyword(s), the following message will show:
+```ignorelang
+0 listings shown!
+```
+
+**Possible Error**
+If no keyword is provided, an error message will display:
+```ignorelang
+Invalid command format!
+find: Finds all listings whose titles contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+Parameters: KEYWORD [MORE_KEYWORDS]...
+Example: find chicken rice
+```
 
 ## Sorting job listings: `sort`
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
-**Format:** `sort by/[POSSIBLE_FIELDS]`
+**Format:** `sort f/[FIELD]`
 
-- The possible fields are: `expiry date` , `title` , `num_of_applicants` , `description` , `...`
-- String fields are sorted in lexicographical order
-- Date fields are sorted by date and time
-- Number fields are sorted by value
+- The possible fields are: `title` , `description` , `applicants`
+
+
+**Tips:**
+- The `title` field sorts the listings in alphabetical order of their title fields.
+- The `description` field sorts the listings in alphabetical order of their listings.
+- The `applicants` field sorts the listings in increasing number of applicants.
+- Note that if more than one field is provided, the last field will be taken into consideration.
 
 **Examples:**
 
-- `sort by/num_of_applicants`
+- `sort f/title`
+- `sort f/description`
 
+**Expected Output:**
+A confirmation message will show:
+```ignorelang
+Listings have been sorted.
+```
+
+**Possible Error:**
+If the `field` is not present, an error message will show:
+```ignorelang
+Invalid command format!
+sort: Sorts the listing displayed according to the specified field.
+Parameters: f/FIELD_COMPARED(none, title, description, applicants)
+Example: sort f/applicants
+```
 ###
 
-## Filtering job listings: `filter`
+## Filtering job listings: `filter` [coming soon!]
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
 **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
 
-**********Tips:**********
+**Tips:**
 
 - The possible fields are: `expiry date`  , `num_of_applicants`  , `...`
 - Fields have to be numerical
@@ -151,74 +260,24 @@ Sort job listings by the field specified by the user and display the sorted list
 
 ## Tagging a job listing [coming soon]
 
-Adds tags to
+Add tags to a job listing for easy reference.
 
-| Recruiter | add tag indicating relevant hiring department to the job listing |  |
-| --- | --- | --- |
-| Recruiter | view the tag attached to the job listing |  |
-| Recruiter | change the tag attached to the job listing |  |
 
-## Add applicant information [coming soon]
 
-Type **`new`**
-
-| As a recruiter who receives thousands of applications each day. | store all information about my applicants | I don't lose track of any applicants. |
-| --- | --- | --- |
-
-## Viewing applicants for each job listing [coming soon]
-
-| Recruiter | view applicants for each job listing | I know who has applied for each job |
-| --- | --- | --- |
-
-## Adding applicants to each job listing [coming soon]
-
-| Recruiter | add applicants to job listing |  |
-| --- | --- | --- |
-| Recruiter | prevent applicants from applying to the same job more than once | the list of applicants is not cluttered |
-
-## Viewing applicant details [coming soon]
-
-| Recruiter | view applicant details | I can make sure it’s updated |
-| --- | --- | --- |
-
-## Removing applicants from each job listing [coming soon]
-
-| Recruiter | remove disqualified applicant | the database stays clean |
-| --- | --- | --- |
-
-## Updating applicant details and status [coming soon]
-
-| Recruiter | update applicant status | it’s easy for me to track the progress of each applicant |
-| --- | --- | --- |
-| Recruiter | update applicant details | each applicant’s info is updated |
-
-## Viewing all applicants [coming soon]
-
-| Recruiter | view all applicants |  |
-| --- | --- | --- |
-
-### By name
-
-### By number of applicants
-
-### By tag
-
-| A recruiter from a particular department | filter the job listings according to the tag |  |
-| --- | --- | --- |
-
-## Exiting the program [coming soon]
-
-## Saving the data [coming soon]
-
-| Recruiter | come back to the programme and continue from where I left off | I won't lose my progress |
-| --- | --- | --- |
-
-## Importing the data [coming soon]
 
 ---
 
 # FAQ
-
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GoodMatch home folder.
 ---
 
 # Command summary
+| Action     | Format, Examples                                                                                                                     |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| **add**    | `add t/TITLE d/DESCRIPTION [a/APPLICANTS]` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele` |
+| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                  |
+| **edit**   | `edit [t/TITLE] d/DESCRIPTION [a/APPLICANTS]`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles`                                |
+| **find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                       |
+| **view**   | `view`                                                                                                                               |
+| **help**   | `help`                                                                                                                               |
