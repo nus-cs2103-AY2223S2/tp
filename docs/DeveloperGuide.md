@@ -162,12 +162,12 @@ The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w1
 
 The sequence of the `add` command is as follows:
 
-1. `add INPUT` is entered.<br>
-2. `Logic Manger` calls the `ConnectUsParser#parseCommand` with the `INPUT`.<br>
-3. `ConnectUsParser` parses the command word, creating an instance of `AddCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.<br>
-4. `AddCommandParser` creates the corresponding `Person` object. This `Person` object is taken as the input of a new `AddCommand` object created by `AddCommandParser`.<br>
-5. `Logic Manager` executes `AddCommand#execute`, adding the `Person` to the model through `AddCommand` calling `Model#addPerson`.<br>
-6. `AddCommand` returns a `Command Result` with the result of the execution.
+1. The command `add INPUT` is entered by the user (e.g. `add n/Jason`).
+2. `Logic Manger` calls the `ConnectUsParser#parseCommand` with the `INPUT`.
+3. `ConnectUsParser` parses the command word, creating an instance of `AddCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.
+4. `AddCommandParser` creates the corresponding `Person` object. This `Person` object is taken as the input of a new `AddCommand` object created by `AddCommandParser`.
+5. `Logic Manager` executes `AddCommand#execute`, adding the `Person` to the model through `AddCommand` calling `Model#addPerson`.
+6. A `Command Result` is returned with the result of the execution.
 
 If duplicate parameters are entered (e.g. `add n/Jason p/91234567 p/12345678`, where the phone parameter is entered twice), only the last instance, `p/12345678` will be taken.
 
@@ -179,9 +179,36 @@ The following sequence diagram shows how `add` works:
 
 The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
 
-![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsSequenceDiagram.png)
+![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
+### Edit Command
+The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
+The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
+
+The sequence of the `edit` command is as follows:
+
+1. The command `edit INPUT` is entered by the user, where the `INPUT` is an integer index followed by fields to edit (e.g. `edit 1 n/John Doe`).
+2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
+3. `ConnectUsParser` parses the command word. creating an instance of `EditCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.
+4. `EditCommandParser` creates the corresponding `EditPersonDescriptor` object. This `EditPersonDescriptor` object is taken as the input of a new `EditCommand` object created by `EditCommandParser`.
+5. `Logic Manager` executes `EditPerson#execute`, creating a `Person` from the aforementioned`EditPersonDescriptor` object and adding this `Person` to the model through `Model#setPerson`.
+6. `Model#updateFilteredPersonList` is called to update the list of `Person` objects.
+7. A `Command Result` is returned with the result of the execution.
+
+The following sequence diagram shows how `edit` works:
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
+
+### [To Add] Delete Command
+
+### [To Add] Help Command
+
+### [To Add] Adding Additional Tags
+
+### [To Add] Deleting Individual Tags
 
 --------------------------------------------------------------------------------------------------------------------
 
