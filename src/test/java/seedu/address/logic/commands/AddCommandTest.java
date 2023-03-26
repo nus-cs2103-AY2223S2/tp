@@ -116,6 +116,17 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Batch Adds the employees from the user input.
+         * {@code fileName} must not already exist in the address book.
+         *
+         * @param fileName
+         */
+        @Override
+        public void batchAddEmployees(String fileName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setExecutiveProDb(ReadOnlyExecutiveProDb newData) {
             throw new AssertionError("This method should not be called.");

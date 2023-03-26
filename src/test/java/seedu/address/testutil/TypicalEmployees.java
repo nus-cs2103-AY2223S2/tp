@@ -78,4 +78,9 @@ public class TypicalEmployees {
     public static List<Employee> getTypicalEmployees() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    public static List<Employee> getRemainingEmployees() {
+
+        return new ArrayList<>(Arrays.asList(HOON, IDA));
+    }
 }
