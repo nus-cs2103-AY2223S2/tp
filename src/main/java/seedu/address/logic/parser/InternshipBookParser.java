@@ -18,7 +18,9 @@ import seedu.address.logic.commands.ExitSprintCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SortApplicationCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,6 +53,16 @@ public class InternshipBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //=========== Miscellaneous Commands =========================================================================
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case ExitSprintCommand.COMMAND_WORD:
+            return new ExitSprintCommand();
+
         //=========== Application Commands ===========================================================================
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
@@ -63,9 +75,6 @@ public class InternshipBookParser {
 
         case EditApplicationCommand.COMMAND_WORD:
             return new EditApplicationCommandParser().parse(arguments);
-
-        case ExitSprintCommand.COMMAND_WORD:
-            return new ExitSprintCommand();
 
         case FindApplicationCommand.COMMAND_WORD:
             return new FindApplicationCommandParser().parse(arguments);

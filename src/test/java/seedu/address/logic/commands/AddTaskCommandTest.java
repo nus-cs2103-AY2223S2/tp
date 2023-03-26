@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
@@ -28,6 +29,7 @@ import seedu.address.testutil.EditApplicationDescriptorBuilder;
 
 public class AddTaskCommandTest {
     private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
@@ -44,7 +46,8 @@ public class AddTaskCommandTest {
                 .withTask(VALID_DEADLINE, VALID_DESCRIPTION).build();
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(addTaskCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     /*
@@ -59,7 +62,8 @@ public class AddTaskCommandTest {
                 .withTask(VALID_DEADLINE, VALID_DESCRIPTION).build();
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(addTaskCommand, model, commandHistory,
+        Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     @Test
@@ -70,7 +74,7 @@ public class AddTaskCommandTest {
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(indexApplicationToAddTask, descriptor);
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_TASK_EXISTS);
-        assertCommandFailure(addTaskCommand, model, expectedMessage);
+        assertCommandFailure(addTaskCommand, model, commandHistory, expectedMessage);
     }
 
     @Test

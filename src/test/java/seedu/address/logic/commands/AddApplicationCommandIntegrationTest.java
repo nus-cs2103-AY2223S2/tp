@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalApplications.getTypicalInternshipBoo
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
 import seedu.address.model.UserPrefs;
@@ -20,6 +21,7 @@ import seedu.address.testutil.ApplicationBuilder;
 public class AddApplicationCommandIntegrationTest {
 
     private ApplicationModel model;
+    private CommandHistory commandHistory = new CommandHistory();
 
     @BeforeEach
     public void setUp() {
@@ -32,8 +34,9 @@ public class AddApplicationCommandIntegrationTest {
 
         ApplicationModel expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.addApplication(validApplication);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new AddApplicationCommand(validApplication), model,
+        assertCommandSuccess(new AddApplicationCommand(validApplication), model, commandHistory,
                 String.format(AddApplicationCommand.MESSAGE_SUCCESS, validApplication), expectedModel);
     }
 
@@ -41,7 +44,7 @@ public class AddApplicationCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Application appInList = model.getInternshipBook().getApplicationList().get(0);
         assertCommandFailure(new AddApplicationCommand(appInList),
-                model, AddApplicationCommand.MESSAGE_DUPLICATE_APPLICATION);
+                model, commandHistory, AddApplicationCommand.MESSAGE_DUPLICATE_APPLICATION);
     }
 
 }

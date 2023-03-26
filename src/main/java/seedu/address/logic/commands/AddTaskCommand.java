@@ -10,6 +10,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
@@ -49,7 +50,7 @@ public class AddTaskCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getSortedApplicationList();
 
@@ -66,6 +67,8 @@ public class AddTaskCommand extends ApplicationCommand {
 
         model.setApplication(applicationToAddTask, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication.getTask()));
     }
 

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
 //import seedu.address.model.InternshipBook;
@@ -22,6 +23,7 @@ import seedu.address.model.UserPrefs;
 
 public class DeleteTaskCommandTest {
     private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     /*
     @Test
@@ -69,7 +71,8 @@ public class DeleteTaskCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicationList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTaskCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,7 +82,8 @@ public class DeleteTaskCommandTest {
 
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInternshipBook().getApplicationList().size());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTaskCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     /*
@@ -88,7 +92,7 @@ public class DeleteTaskCommandTest {
         Index indexApplicationToRemoveTask = INDEX_FIRST_APPLICATION;
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(indexApplicationToRemoveTask);
         String expectedMessage = DeleteTaskCommand.MESSAGE_TASK_DOES_NOT_EXIST;
-        assertCommandFailure(deleteTaskCommand, model, expectedMessage);
+        assertCommandFailure(deleteTaskCommand, model, commandHistory, expectedMessage);
     }
      */
 

@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.InternshipBook;
@@ -83,25 +84,43 @@ public class ApplicationCommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
+                                            CommandHistory actualCommandHistory,
                                             CommandResult expectedCommandResult, ApplicationModel expectedModel) {
+        actualCommandHistory.addCommand(command.toString());
+        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
+
+        if (command instanceof AddApplicationCommand || command instanceof ClearApplicationCommand
+                || command instanceof DeleteApplicationCommand || command instanceof EditApplicationCommand) {
+            expectedCommandHistory.setLastCommandAsModify();
+        }
+
+        if (command instanceof UndoCommand) {
+            expectedCommandHistory.getPreviousModifyCommand();
+        }
+
+        if (command instanceof RedoCommand) {
+            expectedCommandHistory.getNextModifyCommand();
+        }
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, actualCommandHistory);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+            assertEquals(expectedCommandHistory, actualCommandHistory);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(ApplicationCommand, ApplicationModel,
+     * Convenience wrapper to {@link #assertCommandSuccess(ApplicationCommand, ApplicationModel, CommandHistory,
      * CommandResult, ApplicationModel)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
+                                            CommandHistory actualCommandHistory,
                                             String expectedMessage, ApplicationModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -111,15 +130,17 @@ public class ApplicationCommandTestUtil {
      * - the internship book, filtered application list and selected application in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(ApplicationCommand command, ApplicationModel actualModel,
-                                            String expectedMessage) {
+                                            CommandHistory actualCommandHistory, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InternshipBook expectedInternshipBook = new InternshipBook(actualModel.getInternshipBook());
         List<Application> expectedFilteredList = new ArrayList<>(actualModel.getFilteredApplicationList());
+        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, actualCommandHistory));
         assertEquals(expectedInternshipBook, actualModel.getInternshipBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredApplicationList());
+        assertEquals(expectedCommandHistory, actualCommandHistory);
     }
     /**
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
@@ -133,6 +154,49 @@ public class ApplicationCommandTestUtil {
         model.updateFilteredApplicationList(new NameContainsKeywordsPredicate(Arrays.asList(companyName)));
 
         assertEquals(1, model.getFilteredApplicationList().size());
+    }
+
+
+    /**
+     * Update {@code model}'s so that it only shows the first internship.
+     */
+    public static void findFirstInternship(ApplicationModel model) {
+        Application firstInternship = model.getFilteredApplicationList().get(0);
+        model.updateFilteredApplicationList(x -> x.equals(firstInternship));
+    }
+
+    /**
+     * Deletes the first internship in {@code model}'s filtered list from {@code model}'s address book.
+     */
+    public static void deleteFirstInternship(ApplicationModel model) {
+        Application firstInternship = model.getFilteredApplicationList().get(0);
+        model.deleteApplication(firstInternship);
+        model.commitInternshipBookChange();
+    }
+
+    /**
+     * Deletes the first internship in {@code model}'s filtered list from {@code model}'s address book.
+     */
+    public static void deleteFirstInternship(ApplicationModel model, CommandHistory commandHistory) {
+        deleteFirstInternship(model);
+        commandHistory.addCommand("delete 1");
+        commandHistory.setLastCommandAsModify();
+    }
+
+    /**
+     * Undo previous commands in {@code model}.
+     */
+    public static void undoPreviousCommand(ApplicationModel model) {
+        model.undoInternshipBook();
+    }
+
+    /**
+     * Undo previous commands in {@code model}.
+     */
+    public static void undoPreviousCommand(ApplicationModel model, CommandHistory commandHistory) {
+        undoPreviousCommand(model);
+        commandHistory.addCommand("undo");
+        commandHistory.getPreviousModifyCommand();
     }
 
 }

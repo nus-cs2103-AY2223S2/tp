@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
@@ -28,6 +29,7 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandTest {
     private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     /*
     @Test
@@ -36,7 +38,7 @@ public class EditTaskCommandTest {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexApplicationToEditTask, editTaskDescriptor);
 
-        assertCommandFailure(editTaskCommand, model, EditTaskCommand.MESSAGE_TASK_DOES_NOT_EXIST);
+        assertCommandFailure(editTaskCommand, model, commandHistory, EditTaskCommand.MESSAGE_TASK_DOES_NOT_EXIST);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -82,7 +84,7 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -106,7 +108,7 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
     */
 
@@ -115,7 +117,8 @@ public class EditTaskCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicationList().size() + 1);
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(editTaskCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     @Test
@@ -127,7 +130,8 @@ public class EditTaskCommandTest {
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(editTaskCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
     @Test

@@ -120,9 +120,9 @@ public class ApplicationParserUtilTest {
 
     @Test
     public void parseRole_validValueWithWhitespace_returnsTrimmedRole() throws Exception {
-        String RoleWithWhitespace = WHITESPACE + VALID_ROLE + WHITESPACE;
+        String roleWithWhitespace = WHITESPACE + VALID_ROLE + WHITESPACE;
         Role expectedRole = new Role(VALID_ROLE);
-        assertEquals(expectedRole, ApplicationParserUtil.parseRole(RoleWithWhitespace));
+        assertEquals(expectedRole, ApplicationParserUtil.parseRole(roleWithWhitespace));
     }
 
     @Test

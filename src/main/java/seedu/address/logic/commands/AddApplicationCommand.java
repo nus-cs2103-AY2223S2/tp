@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -47,13 +48,15 @@ public class AddApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
         model.addApplication(toAdd);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
