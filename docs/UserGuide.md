@@ -86,7 +86,7 @@ Examples:
 
 Deletes a person at the specified person list index.
 
-Format: `deletePerson STUDENT_ID`
+Format: `deletePerson INDEX`
 
 * Deletes the person at the specified STUDENT_ID.
 * The index refers to the index number shown in the displayed person list.
