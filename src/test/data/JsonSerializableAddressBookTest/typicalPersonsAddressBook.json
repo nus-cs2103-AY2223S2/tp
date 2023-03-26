@@ -81,12 +81,7 @@
     "performance" : "20",
     "tagged" : [ ]
   } ],
-  "tutorials" : [ {
-    "name" : "tut",
-    "eventDate" : "2023-03-16",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  } ],
-  "labs" : [ ]
+  "tutorials" : [ ],
+  "labs" : [ ],
+  "consultations": [ ]
 }

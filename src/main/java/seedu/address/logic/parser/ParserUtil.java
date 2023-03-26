@@ -252,6 +252,9 @@ public class ParserUtil {
     public static String parseRecurName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
         return trimmedName;
     }
 

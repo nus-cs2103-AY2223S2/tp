@@ -210,7 +210,12 @@ public abstract class Event {
         return attachments.size();
     }
 
+    /**
+     * Ensures only 1 file can be added
+     * @param file
+     */
     public void addAttachment(File file) {
+        attachments.clear();
         attachments.add(file);
     }
 

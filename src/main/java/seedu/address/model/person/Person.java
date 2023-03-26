@@ -28,6 +28,21 @@ public class Person implements Comparable<Person> {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Initiates a null person object without null error.
+     */
+    public Person() {
+        name = new Name();
+        phone = new Phone();
+        email = new Email();
+        photo = new Photo();
+
+        // Data fields
+        address = new Address();
+        performance = new Performance();
+        remark = new Remark();
+    }
+
+    /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Photo photo, Address address,
