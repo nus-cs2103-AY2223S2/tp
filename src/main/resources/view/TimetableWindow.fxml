@@ -25,7 +25,7 @@
             <URL value="@Extensions.css" />
          </stylesheets>
 
-         <VBox fx:id="timetable" minHeight="600.0" minWidth="800.0">
+         <VBox minHeight="600.0" minWidth="800.0">
             <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                <Menu mnemonicParsing="false" text="File">
                   <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -44,7 +44,7 @@
                </padding>
             </StackPane>
 
-            <AnchorPane>
+            <AnchorPane fx:id="timetableContainer">
                <children>
                   <HBox layoutX="230.0" layoutY="14.0" minHeight="41.0" minWidth="340.0" prefHeight="41.0" prefWidth="340.0">
                      <children>

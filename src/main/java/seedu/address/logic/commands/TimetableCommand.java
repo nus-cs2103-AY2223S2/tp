@@ -6,6 +6,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.sorters.SortbyTime;
 
+import java.time.LocalDate;
+
 /**
  * Format full timetable instructions for every command for display.
  */
@@ -25,9 +27,11 @@ public class TimetableCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        /*model.updateSortedDeliveryJobList(SORTER);
-        model.getSortedDeliveryJobListByDate();
-        model.updateSortedDeliveryJobListByDate(); */
+        model.updateFocusDate(LocalDate.now());
+        model.updateSortedDeliveryJobList(SORTER);
+        model.updateSortedDeliveryJobListByDate();
+        model.updateWeekDeliveryJobList(LocalDate.now());
+
 
         return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
     }

@@ -35,9 +35,9 @@ import seedu.address.ui.main.StatusBarFooter;
 /**
  * Controller for a timetable page
  */
-public class TimetableWindow extends UiPart<Stage> implements Initializable {
+public class TimetableDetailPanel extends UiPart<Stage> /*implements Initializable*/ {
 
-    private static final String FXML = "TimetableWindow.fxml";
+    private static final String FXML = "TimetablePanel.fxml";
     public static final SortbyTime SORTER = new SortbyTime();
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
@@ -45,30 +45,11 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     private LocalDate focusDate;
     private int focusDayOfWeek;
 
-    // Independent Ui parts residing in this Ui container
-    private ResultDisplay resultDisplay;
-
-    @FXML
-    private VBox timetable;
-
     @FXML
     private Text year;
 
     @FXML
     private Text month;
-
-    @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
-
-    @FXML
-    private StackPane timetablePlaceholder;
-
     @FXML
     private StackPane deliveryJobListPanelPlaceholder1;
 
@@ -114,22 +95,23 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     /**
      * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public TimetableWindow(Stage primaryStage, Logic logic) {
-        super(FXML, primaryStage);
+    public TimetableDetailPanel(LocalDate focusDate, Logic logic) {
+        super(FXML);
 
         // Set dependencies
-        this.primaryStage = primaryStage;
         this.logic = logic;
+        this.focusDate = focusDate;
+        this.focusDayOfWeek = focusDate.getDayOfWeek().getValue();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
     }
 
-    @Override
+    /*@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         focusDate = LocalDate.now();
         focusDayOfWeek = focusDate.getDayOfWeek().getValue();
-    }
+    }*/
 
     /**
      * Shows the timetable window.
@@ -188,15 +170,6 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         month.setText(String.valueOf(focusDate.getMonth()));
 
         setDayText();
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         logic.updateSortedDeliveryJobListByDate();
         logic.setWeekDeliveryJobList(focusDate);
@@ -264,12 +237,12 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
                     slotList.getItems().add(slotPane); */
 
-                    //deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
-                    //panelPlaceholder.getChildren().add(slotList);
-                //}
-           // }
+        //deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
+        //panelPlaceholder.getChildren().add(slotList);
+        //}
+        // }
 
-        }
+    }
         /*slotList.setMinWidth(102);
         slotList.setMinHeight(305);
         panelPlaceholder.getChildren().add(slotList);*/
@@ -351,25 +324,4 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }
-
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = logic.executeTimetableCommand(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
-        }
-    }
-
 }
