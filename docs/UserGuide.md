@@ -118,7 +118,6 @@ Searches for roles with the provided companies.
 Format: `company {keywords}...`
 
 Example: `company Google`
-![Company](images/CompanyCommand1.png)
 
 ### Find roles by tags
 Searches for roles with the provided tags.
@@ -178,6 +177,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | view     | view roleID (e.g. view 221574)          |
 | list     | list                                    |
 | exit     | bye                                     |
-| deadline | asc/desc (e.g. deadline asc)            |
+| deadline | deadline asc/desc (e.g. deadline asc)   |
+| salary   | salary asc/desc (e.g. salary asc)       |
 | company  | company {keyword} (e.g. company google) |
 | tags     | tags {keyword} (e.g. tags AWS tech)     |
