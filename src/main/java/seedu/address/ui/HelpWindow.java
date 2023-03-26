@@ -17,7 +17,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Here are the list of commands available: "
-            + "\n1. add r/{ROLE} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
+            + "\n1. add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
             + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
             + "\n2. edit {index} [r/{ROLE}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"

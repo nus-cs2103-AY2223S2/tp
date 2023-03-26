@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
@@ -53,8 +53,8 @@ public class CommandTestUtil {
     public static final String VALID_EXPERIENCE_AMY = "Javascript - 1 Years";
     public static final String VALID_EXPERIENCE_BOB = "C - 2 Years";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_ROLE + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_ROLE + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_CONTACT + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_CONTACT + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -72,7 +72,7 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
     public static final String EXPERIENCE_DESC_AMY = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_AMY;
     public static final String EXPERIENCE_DESC_BOB = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_BOB;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_ROLE + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_COMPANY; // empty string not allowed for addresses

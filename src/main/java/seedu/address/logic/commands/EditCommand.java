@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed role list. "
             + "Existing values will be overwritten by the input values.\n \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ROLE + "NAME] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_COMPANY + "ADDRESS] "

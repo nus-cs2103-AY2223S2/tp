@@ -21,9 +21,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.job.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code NameCommand}.
  */
-public class FindCommandTest {
+public class NameCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -34,14 +34,14 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        NameCommand findFirstCommand = new NameCommand(firstPredicate);
+        NameCommand findSecondCommand = new NameCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        NameCommand findFirstCommandCopy = new NameCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,7 +58,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noRoleFound() {
         String expectedMessage = String.format(MESSAGE_ROLES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        NameCommand command = new NameCommand(predicate);
         expectedModel.updateFilteredRoleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredRoleList());
@@ -68,7 +68,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleRolesFound() {
         String expectedMessage = String.format(MESSAGE_ROLES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        NameCommand command = new NameCommand(predicate);
         expectedModel.updateFilteredRoleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredRoleList());
