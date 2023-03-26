@@ -155,7 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 ### \[Developed\] Group create
 
-Users can create groups
+The group create feature allows users to create group. Only one group can be created at a time.
 This is implemented using the `GroupCreateCommand`, `GroupCreateCommandParser` and
 `UniqueGroupList` classes.
 
@@ -177,9 +177,10 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
    parse the user command.
 2. If the user command has the group create `COMMAND_WORD`, the `AddressBookParser` creates a `GroupCreateCommandParser`
 to parse the user input.
-3. If `GroupCreateCommandParser` parse the command successfully, `GroupCreateCommand` is created.
+3. If `GroupCreateCommandParser` parse the command successfully, it creates a `GroupCreateCommand` and initialise it
+with a `Group`.
 4. The `GroupCreateCommand` instance is then returned to the `LogicManager`
-5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` in the
+5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` into the
    `UniqueGroupList` (If group does not exist).
 6. Execution of `GroupCreateCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
 
@@ -207,7 +208,8 @@ to parse the user input.
 
 ### \[Developed\] Group delete
 
-Users can delete groups
+The group delete feature allows users to delete a group and remove persons from that group. 
+Only one group can be deleted at a time. 
 
 This is implemented using the `GroupDeleteCommand`, `GroupDeleteCommandParser` and
 `UniqueGroupList` classes.
@@ -230,7 +232,8 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
    parse the user command.
 2. If the user command has the group delete `COMMAND_WORD`, the `AddressBookParser` creates a `GroupDeleteCommandParser` 
 to parse the user input.
-3. If `GroupDeleteCommandParser` parse the command successfully, `GroupDeleteCommand` is created.
+3. If `GroupDeleteCommandParser` parse the command successfully, it creates a `GroupDeleteCommand` and initialise it 
+with an `Index`.
 4. The `GroupDeleteCommand` instance is then returned to the `LogicManager`
 5. The `LogicManager` then executes the `GroupDeleteCommand` instance which deletes the `Group` from the
    `UniqueGroupList` (If the group exist).
@@ -239,12 +242,12 @@ to parse the user input.
 #### Design consideration
 
 **Aspect: Deleting multiple groups**
-* **Alternative 1:** Delete multiple `Groups` in one user command.
+* **Alternative 1:** Delete multiple `Group` in one user command.
     * Pros: 
       * Users can delete multiple groups at once instead of deleting each group one at a time.
     * Cons: 
       * More bug-prone due to multiple index given by user
-      * Once a group is delete, the index will shift, this will cause errors.
+      * Once a group is deleted, the index will shift, this will cause errors.
 
 * **[Current implementation] Alternative 2:** Only allow one group to be deleted in one user command.
     * Pros: 
@@ -258,6 +261,38 @@ to parse the user input.
   based on index would result in the wrong group deleted.
     * Handling the offset of the index due to a group deleted is challenging as users may not key in the index in
   numerical order.
+
+### \[Developed\] Find group(s)
+
+The find group feature allows users to find group(s) and persons who are in those group(s).
+
+This is implemented using the `GroupFindCommand`, `GroupFindCommandParser`, `UniqueGroupList` and `UniquePersonList` 
+classes.
+
+The `GroupFindCommand` receives a group and member predicate,
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group find command:
+
+<img src="images/GroupFindCommandActivityDiagram.png" width="300" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupFindCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group find `COMMAND_WORD`, the `AddressBookParser` creates a `GroupFindCommandParser`
+   to parse the user input.
+3. If `GroupFindCommandParser` parse the command successfully, it creates`GroupFindCommand` and initialise it with
+`GroupNameContainsKeywordsPredicate` and `MemberOfGroupPredicate`.
+4. The `GroupFindCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupFindCommand` instance which filters the `UniqueGroupList` and 
+`UniquePersonList` based on the group and member predicate
+6. Execution of `GroupFindCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
 
 ### \[Developed\] Editing a person
 
@@ -286,10 +321,11 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
    parse the user command.
 2. If the user command has the edit `COMMAND_WORD`, the `AddressBookParser`  creates an `EditCommandParser` 
 to parse the user input.
-3. If `EditCommandParser` parse the command successfully, `EditCommand` is created.
+3. If `EditCommandParser` parse the command successfully, it creates a `EditCommand` and initialise it with 
+`EditPersonDescriptor`, `Index` and a boolean (shouldMerge).
 4. The `EditCommand` instance is then returned to the `LogicManager`
-5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the UniquePersonList and
-   UniqueGroupList(If group is deleted).
+5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the `UniquePersonList`. 
+If shouldMerge is true, it adds on groups and tags (if specified), otherwise it overwrites existing tags/groups.
 6. Execution of `EditCommand` results in a `CommandResult` created and returned back to the `LogicManager`. 
 
 #### Design consideration
@@ -330,7 +366,7 @@ to parse the user input.
     command.
   * Lesser commands for users to remember.
 
-#### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
+#### Differences between editing a person and a person's event(s)
 * As editing for events require two index, `[INDEX_OF_PERSON]` and `[INDEX_OF_EVENT]`, it is different from the 
 existing command.
 * This significantly increases the chances of users inputting a wrong command
