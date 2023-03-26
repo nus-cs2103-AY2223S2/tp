@@ -1,8 +1,8 @@
-<a id="top"></a>
 ---
 layout: page
 title: CareFlow User Guide
 ---
+<a id="top"></a>
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
 
 If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline you with daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
