@@ -117,7 +117,7 @@ public class ModelManager implements Model {
 
     @Override
     public void batchAddEmployees(String fileName) {
-        Path file = Paths.get("data"," ");
+        Path file = Paths.get("data", " ");
 
         String line = "";
 
