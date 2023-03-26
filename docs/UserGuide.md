@@ -122,7 +122,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 **A**: Install CoDoc in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
 **Q**: Where is the data file stored?<br>
-**A**: CoDoc data are saved as a JSON file at ***[JAR file location]/data/codoc.json***. Advanced users are welcome to update data directly by editing that data file.
+**A**: CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
 :warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 
@@ -135,6 +135,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 ## Command Summary 
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
 
 ## Additional Resources
 ### How To Check Java Version
