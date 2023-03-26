@@ -23,7 +23,8 @@ public class SortEventCommand extends Command {
             + SortEventType.SORT_BY_END_DATE_TIME.getSortEventTypeString()
             + ": " + SortEventType.SORT_BY_END_DATE_TIME.getDescription() + "\n"
             + "Example: " + COMMAND_WORD + " " + SortEventType.SORT_BY_START_DATE_TIME.getSortEventTypeString();
-    public static final String MESSAGE_SUCCESS = "Sorts all events in the address book successfully";
+
+    public static final String MESSAGE_SUCCESS = "Sorted all events in the address book successfully";
     public static final String MESSAGE_TOO_FEW_EVENTS = "Too few events in the current list to sort";
 
     private final SortEventType sortEventType;
