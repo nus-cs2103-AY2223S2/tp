@@ -58,16 +58,17 @@ public class UserPanel extends UiPart<Region> {
                 new PersonDetailCard.DetailCardData("Gender", user.getGender().toString()),
                 new PersonDetailCard.DetailCardData("Race", user.getRace().toString()),
                 new PersonDetailCard.DetailCardData("Communication channels", user.getComms().toString()),
-                new PersonDetailCard.DetailCardData("Major", user.getMajor().toString()))
+                new PersonDetailCard.DetailCardData("Major", user.getMajor().toString()),
+                new PersonDetailCard.DetailCardData("Faculty", user.getFaculty().toString()))
                 .map(PersonDetailCard::new)
                 .map(PersonDetailCard::getRoot).collect(Collectors.toCollection(LinkedList::new));
 
         // Adds card for modules taken, if any
         boolean hasModules = user.getModules() != null
-                && user.getModules().mods != null
-                && !user.getModules().mods.isEmpty();
+                && user.getModules().values != null
+                && !user.getModules().values.isEmpty();
         if (hasModules) {
-            regions.add(new PersonModulesCard("Modules", user.getModules().mods).getRoot());
+            regions.add(new PersonModulesCard("Modules", user.getModules().values).getRoot());
         }
 
         return regions;

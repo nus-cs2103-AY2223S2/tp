@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditUserCommandParser extends EditPersonCommandParser implements Parser<EditUserCommand> {
+public class EditUserCommandParser extends PersonCommandParser implements Parser<EditUserCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -21,7 +21,7 @@ public class EditUserCommandParser extends EditPersonCommandParser implements Pa
      */
     public EditUserCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        EditPersonDescriptor editPersonDescriptor = this.parseForTags(args);
+        PersonDescriptor editPersonDescriptor = this.parseForTags(args);
 
         return new EditUserCommand(editPersonDescriptor);
     }

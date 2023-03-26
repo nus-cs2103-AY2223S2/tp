@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
@@ -27,12 +26,12 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
  */
-public abstract class EditPersonCommandParser {
+public abstract class PersonCommandParser {
 
     public abstract Optional<Index> parseIndex(String index) throws ParseException;
 
@@ -43,7 +42,7 @@ public abstract class EditPersonCommandParser {
      * and returns an EditPersonDescriptor for edit commands to use.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditPersonDescriptor parseForTags(String args) throws ParseException {
+    public PersonDescriptor parseForTags(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
@@ -51,7 +50,7 @@ public abstract class EditPersonCommandParser {
                         PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS, PREFIX_FACULTY);
 
         Optional<Index> index;
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        PersonDescriptor editPersonDescriptor = new PersonDescriptor();
 
         try {
             index = this.parseIndex(argMultimap.getPreamble());
@@ -102,6 +101,7 @@ public abstract class EditPersonCommandParser {
     }
 
 
+
     private Optional<Modules> parseModulesForEdit(Collection<String> mods) throws ParseException {
         assert mods != null;
 
@@ -117,7 +117,7 @@ public abstract class EditPersonCommandParser {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Tags> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -126,6 +126,5 @@ public abstract class EditPersonCommandParser {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
 
