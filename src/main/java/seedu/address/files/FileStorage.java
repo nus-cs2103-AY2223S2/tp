@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
-//import java.util.ArrayList;
-//import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,7 +16,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FileStorage {
 
+    private static final long DEFAULT_FILE_SIZE = 10 * 1024 * 1024;
     private String username;
+
     /**
      * Instantiates a new File storage.
      *
@@ -125,45 +125,64 @@ public class FileStorage {
      */
     public void uploadFile() {
         SwingUtilities.invokeLater(() -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileFilter(new FileNameExtensionFilter(
-                    "PDF and Image files", "pdf", "jpg", "jpeg", "png"));
-            fileChooser.setMultiSelectionEnabled(true);
+            JFileChooser fileChooser = configFileChooser();
             int result = fileChooser.showOpenDialog(null);
 
-            //delete reject file if wrong extension not .pdf or .img
             if (result == JFileChooser.APPROVE_OPTION) {
                 File[] selectedFiles = fileChooser.getSelectedFiles();
                 String userDirPath = "reports/" + this.username + "/";
                 File userDir = new File(userDirPath);
                 checkDir(userDir);
-                long maxSize = 10 * 1024 * 1024; // 10 MB in bytes
-
-                for (File selectedFile : selectedFiles) { // loop through each selected file
-                    String fileName = selectedFile.getName();
-                    String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-
-                    if (extension.equalsIgnoreCase("pdf") || extension.equalsIgnoreCase("jpg")
-                            || extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("png")) {
-                        Path srcPath = selectedFile.toPath();
-                        Path destPath = Paths.get(userDirPath + fileName);
-                        try {
-                            BasicFileAttributes attr = Files.readAttributes(srcPath, BasicFileAttributes.class);
-                            long fileSize = attr.size();
-                            if (fileSize <= maxSize) {
-                                Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                            } else {
-                                System.out.println("File size exceeds 10 MB limit");
-                            }
-                        } catch (IOException e) {
-                            System.out.println("Error copying file");
-                        }
-                    } else {
-                        System.out.println("Wrong File type");
-                    }
-                }
+                copySelectedFiles(selectedFiles, userDirPath, DEFAULT_FILE_SIZE);
             }
         });
+    }
+
+    private JFileChooser configFileChooser() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter(
+                "PDF and Image files", "pdf", "jpg", "jpeg", "png"));
+        fileChooser.setMultiSelectionEnabled(true);
+        return fileChooser;
+    }
+
+    private String getFileExtension(String fileName) {
+        return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    private boolean isAllowedFileType(String extension) {
+        return extension.equalsIgnoreCase("pdf")
+                || extension.equalsIgnoreCase("jpg")
+                || extension.equalsIgnoreCase("jpeg")
+                || extension.equalsIgnoreCase("png");
+    }
+
+    private void copySelectedFiles(File[] selectedFiles, String userDirPath, long maxSize) {
+
+        for (File selectedFile : selectedFiles) { // loop through each selected file
+            String fileName = selectedFile.getName();
+            String extension = getFileExtension(fileName);
+
+            if (isAllowedFileType(extension)) {
+                Path srcPath = selectedFile.toPath();
+                Path destPath = Paths.get(userDirPath + fileName);
+
+                try {
+                    BasicFileAttributes attr = Files.readAttributes(srcPath, BasicFileAttributes.class);
+                    long fileSize = attr.size();
+
+                    if (fileSize <= maxSize) {
+                        Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        System.out.println("File size exceeds 10 MB limit");
+                    }
+                } catch (IOException e) {
+                    System.out.println("Error copying file");
+                }
+            } else {
+                System.out.println("Wrong File type");
+            }
+        }
     }
 
 }
