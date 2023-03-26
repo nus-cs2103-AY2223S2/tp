@@ -111,34 +111,29 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/experimental/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores Reroll data i.e., all `Entity` objects (which are contained in a `UniqueEntityList` object).
+* stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+**Note:** `RerollAllEntities`, the class which stores all entities, is abstracted from `Reroll`, to support future functionality outside of entity list manipulation.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/experimental/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both Reroll data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `RerollStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -337,54 +332,49 @@ The user stories are not limited to those in this list. More can be added in the
 
 **MSS**
 
-1. User requests to list entities based on classification
-2. Reroll shows a list of entities
-3. User enters edit mode for specified entity
-4. User requests to replace specified field with new value
-5. Reroll edits the specified entity and display it
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User requests to replace specified field with new value
+4. Reroll edits the specified entity and display it
 
-   Steps 4-5 are repeated for as many fields as required.
-6. User exits edit mode
+   Steps 3-4 are repeated for as many fields as required.
+5. User exits edit mode
 
     Use case ends  
 
 **Extensions**
 
-* 2a.The list is empty.
-
-    Use case ends
-* 3a. The given name is invalid
-  * 3a1. Reroll shows an error message.
+* 2a. The specifications of the entity are invalid
+  * 2a1. Reroll shows an error message.
   
-    Use case resumes at step 2
-* 4a. The given fields are invalid
-  * 4a.1 Reroll shows an error message and exits edit mode
+    Use case resumes at step 1
+* 3a. The given fields are invalid
+  * 3a.1 Reroll shows an error message and exits edit mode
   
-    Use case resumes at step 2
+    Use case resumes at step 1
 
 
-**Use case: Delete an entity**
+**Use case: Add item to inventory of entity**
 
 **MSS**
 
-1.  User requests to list entities based on classification
-2.  Reroll shows a list of entities
-3.  User requests to delete a specific entity in the list by name
-4.  Reroll deletes the entity
-
-    Use case ends.
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User request to add specified item
+4. Reroll adds specified item to entity's inventory
+    
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The specifications of the entity are invalid
+  * 2a1. Reroll shows an error message.
 
-  Use case ends.
-
-* 3a. The given name is invalid.
-
-    * 3a1. Reroll shows an error message.
-
-      Use case resumes at step 2.
+    Use case resumes at step 1
+* 3a. Item does not exist in Reroll
+  * 3a1. Reroll shows an error message and exits edit mode
+  
+    Use case resumes at step 1
 
 *{More to be added}*
 
