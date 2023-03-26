@@ -373,7 +373,7 @@ public class RecipeForm extends UiPart<Region> {
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textField.getParent();
             int lastIndex = parentBox.getChildren().size() - 1;
-        
+
             // Check if the TextField has gained focus
             if (newValue) {
                 // Check if it's the last TextField in the VBox
