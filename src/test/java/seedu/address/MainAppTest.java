@@ -3,6 +3,7 @@ package seedu.address;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,7 +30,9 @@ public class MainAppTest {
 
     @Test
     public void initConfig_missingFile_returnsDefaultConfig() {
-        initConfigHelper(Paths.get("missingConfig.json"));
+        Path missing = Paths.get("missingConfig.json");
+        initConfigHelper(missing);
+        new File(missing.toUri()).delete();
     }
 
     @Test
