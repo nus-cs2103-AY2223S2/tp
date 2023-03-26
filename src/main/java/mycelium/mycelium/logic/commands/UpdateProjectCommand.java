@@ -96,7 +96,7 @@ public class UpdateProjectCommand extends Command {
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
         Project updatedProject = createUpdatedProject(target.get(), desc);
-        model.addProject(updatedProject);
+        model.setProject(target.get(), updatedProject);
         return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject),
             new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
     }
