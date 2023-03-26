@@ -6,7 +6,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1_UPPERCASE;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -56,10 +56,10 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPostal(VALID_POSTAL_BOB)
-                .withVariants(VALID_VARIANT_DENV1).build();
+                .withVariants(VALID_VARIANT_DENV1_UPPERCASE).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPostal(VALID_POSTAL_BOB).withVariants(VALID_VARIANT_DENV1).build();
+                .withPostal(VALID_POSTAL_BOB).withVariants(VALID_VARIANT_DENV1_UPPERCASE).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

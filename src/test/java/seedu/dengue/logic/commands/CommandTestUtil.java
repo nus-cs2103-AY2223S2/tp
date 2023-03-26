@@ -26,16 +26,55 @@ import seedu.dengue.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_BENSON = "Benson Meier";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CARL = "Carl Kurz";
+    public static final String VALID_NAME_DANIEL = "Daniel Meier";
+    public static final String VALID_NAME_ELLE = "Elle Meyer";
+    public static final String VALID_NAME_FIONA = "Fiona Kunz";
+    public static final String VALID_NAME_GEORGE = "George Best";
+    public static final String VALID_NAME_HOON = "Hoon Meier";
+    public static final String VALID_NAME_IDA = "Ida Mueller";
+    public static final String VALID_POSTAL_ALICE = "943512";
     public static final String VALID_POSTAL_AMY = "111111";
+    public static final String VALID_POSTAL_BENSON = "987654";
     public static final String VALID_POSTAL_BOB = "222222";
+    public static final String VALID_POSTAL_CARL = "953525";
+    public static final String VALID_POSTAL_DANIEL = "876525";
+    public static final String VALID_POSTAL_ELLE = "948222";
+    public static final String VALID_POSTAL_FIONA = "948247";
+    public static final String VALID_POSTAL_GEORGE = "948244";
+    public static final String VALID_POSTAL_HOON = "848242";
+    public static final String VALID_POSTAL_IDA = "848213";
+    public static final String VALID_DATE_ALICE = "2023-03-05";
     public static final String VALID_DATE_AMY = "2001-01-01";
+    public static final String VALID_DATE_BENSON = "2022-03-05";
     public static final String VALID_DATE_BOB = "2002-02-02";
+    public static final String VALID_DATE_CARL = "2023-02-02";
+    public static final String VALID_DATE_DANIEL = "2023-01-01";
+    public static final String VALID_DATE_ELLE = "2022-12-31";
+    public static final String VALID_DATE_FIONA = "2022-01-05";
+    public static final String VALID_DATE_GEORGE = "2023-01-05";
+    public static final String VALID_DATE_HOON = "1850-01-02";
+    public static final String VALID_DATE_IDA = "1996-10-01";
+    public static final String VALID_AGE_ALICE = "21";
     public static final String VALID_AGE_AMY = "11";
+    public static final String VALID_AGE_BENSON = "85";
     public static final String VALID_AGE_BOB = "22";
-    public static final String VALID_VARIANT_DENV1 = "DENV1";
-    public static final String VALID_VARIANT_DENV2 = "DENV2";
+    public static final String VALID_AGE_CARL = "35";
+    public static final String VALID_AGE_DANIEL = "143";
+    public static final String VALID_AGE_ELLE = "65";
+    public static final String VALID_AGE_FIONA = "5";
+    public static final String VALID_AGE_GEORGE = "12";
+    public static final String VALID_AGE_HOON = "1";
+    public static final String VALID_AGE_IDA = "27";
+    public static final String VALID_VARIANT_DENV1_UPPERCASE = "DENV1";
+    public static final String VALID_VARIANT_DENV2_UPPERCASE = "DENV2";
+    public static final String VALID_VARIANT_DENV3_UPPERCASE = "DENV3";
+    public static final String VALID_VARIANT_DENV4_UPPERCASE = "DENV4";
+    public static final String VALID_VARIANT_DENV1_LOWERCASE = "denv4";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,14 +84,14 @@ public class CommandTestUtil {
     public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
     public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
-    public static final String VARIANT_DESC_DENV2 = " " + PREFIX_VARIANT + VALID_VARIANT_DENV2;
-    public static final String VARIANT_DESC_DENV1 = " " + PREFIX_VARIANT + VALID_VARIANT_DENV1;
+    public static final String VARIANT_DESC_DENV2 = " " + PREFIX_VARIANT + VALID_VARIANT_DENV2_UPPERCASE;
+    public static final String VARIANT_DESC_DENV1 = " " + PREFIX_VARIANT + VALID_VARIANT_DENV1_UPPERCASE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_POSTAL_DESC = " " + PREFIX_POSTAL + "911a"; // 'a' not allowed in postals
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE; // empty string not allowed for age
-    public static final String INVALID_VARIANT_DESC = " " + PREFIX_VARIANT + "severe"; // "severe" is an invalid variant
+    public static final String INVALID_VARIANT_DESC = " " + PREFIX_VARIANT + "severe"; // "severe" is not a variant
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -63,10 +102,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
-                .withVariants(VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
-                .withVariants(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE).build();
     }
 
     /**
