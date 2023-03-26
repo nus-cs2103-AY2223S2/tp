@@ -32,19 +32,19 @@ import seedu.address.model.person.Person;
  */
 public class RemoveMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final RemoveMeetingCommand standardCommand = new RemoveMeetingCommand(INDEX_FIRST_PERSON,
         INDEX_FIRST_MEETING);
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private void populateMeetings() {
         Person samplePerson1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person samplePerson2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Meeting m1 = new Meeting(
+        Meeting m1 = new Meeting("m1",
             LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
         );
-        Meeting m2 = new Meeting(
+        Meeting m2 = new Meeting("m2",
             LocalDateTime.of(2023, 03, 14, 16, 30),
             LocalDateTime.of(2023, 03, 14, 17, 30)
         );

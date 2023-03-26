@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+Participant ":Address" as ui UI_COLOR
+Participant ":Region" as logic LOGIC_COLOR
+
+-[USER_COLOR]> ui : Address(address)
+activate ui UI_COLOR
+
+ui -[LOGIC_COLOR]> logic : getRegionFromAddress(address)
+activate logic LOGIC_COLOR
+logic -[LOGIC_COLOR]> logic : Detect Region
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+@enduml
