@@ -336,7 +336,59 @@ existing command.
 * This significantly increases the chances of users inputting a wrong command
 * Hence, editing events using a separate command from the existing `EditCommand` is more convenient and appropriate.
 
+### \[Developed\] Adding Isolated Event
+
+Users can add an isolated/non-recurring event. This is implemented using `AddIsolatedEventCommand`, 
+`AddIsolatedEventCommandParser` and `IsolatedEventList` classes. 
+
+The `AddIsolatedEventCommand` receives an isolated event to be added into the person's `IsolatedEventList`.
+
+#### Activity diagram
+The following activity diagram summarises what happens when a user executes an `event_create` command:
+
+<img src="images/AddIsolatedEventCommandActivityDiagram.png" width="200" />
+
+### Sequence diagram 
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/AddIsolatedEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command 
+`event_create 1 ie/biking f/26/03/2023 14:00 t/26/03/2023 15:00`, it calls the `AddressBookParser` class to parse the 
+user command. 
+2. Since the user command has the `event_create` command word, it is a valid command. The `AddressBookParser` creates an 
+   `AddIsolatedEventCommandParser` to parse the user input. 
+3. The `AddIsolatedEventCommandParser` will checks if the command is valid through the `parse()` method. 
+If it parses the command successfully, `AddIsolatedEventCommand` is created.
+4. The `AddIsolatedEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `AddIsolatedEventCommand` instance which add the isolated event to the requested 
+person's IsolatedEventList. 
+6. Execution of `AddIsolatedEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we allow isolated event's duration to span over multiple days**
+
+* **Alternative 1:** Only allows isolated event to start and end on the same day.
+    * Pros:
+        * Easy implementation and will be easier to implement find free time slots.
+    * Cons:
+        * There will be instances when users will have event that span over multiple days such as travelling. Hence, 
+      it will reduce the user-friendliness if we restrict isolated events to be only one day long. 
+
+* **[Current implementation] Alternative 2:** Allows isolated events' duration to span over two or more days.
+    * Pros:
+        * Users can just add one isolated event instead of adding the isolated event multiple times.
+    * Cons:
+        * Harder to implement finding free time slots.
+        
 ### \[Proposed\] Undo/redo feature
+
 
 #### Proposed Implementation
 
