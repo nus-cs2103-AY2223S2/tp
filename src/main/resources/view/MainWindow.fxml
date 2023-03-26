@@ -58,16 +58,16 @@
         </StackPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         <HBox VBox.vgrow="ALWAYS">
-          <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <tabs>
-              <Tab text="Students">
+              <Tab fx:id="studentTab" text="Students">
                 <content>
                       <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                       </VBox>
                 </content>
               </Tab>
-              <Tab text="Events (Tutorials, Labs, Consultations)">
+              <Tab fx:id="eventTab" text="Events (Tutorials, Labs, Consultations)">
                 <content>
                       <VBox fx:id="eventList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
