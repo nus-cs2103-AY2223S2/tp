@@ -36,7 +36,7 @@
         <HBox>
           <Label alignment="TOP_LEFT" fx:id="feedbackLabel" text="no files imported"/>
         </HBox>
-        
+
         <HBox alignment="TOP_RIGHT" minHeight="32.0" minWidth="400.0" spacing="10">
           <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" onAction="#hide">
             <VBox.margin>
@@ -50,7 +50,7 @@
           </Button>
         </HBox>
 
-        
+
         <opaqueInsets>
           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </opaqueInsets>
