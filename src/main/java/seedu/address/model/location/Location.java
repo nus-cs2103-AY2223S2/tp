@@ -26,8 +26,7 @@ public class Location implements Item {
             Map.of(FlightLocationType.LOCATION_DEPARTURE, 1,
                     FlightLocationType.LOCATION_ARRIVAL, 1
             );
-    private static final String NAME_STRING = "Name";
-    private static final String ID_STRING = "ID";
+
     private final Link<CrewLocationType, Crew, ReadOnlyItemManager<Crew>> crewLink;
     private final Link<PilotLocationType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
     private final Link<PlaneLocationType, Plane, ReadOnlyItemManager<Plane>> planeLink;
@@ -105,7 +104,7 @@ public class Location implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", NAME_STRING, name));
+                String.format("%s", name));
     }
 
     /**

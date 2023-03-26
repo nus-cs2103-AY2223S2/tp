@@ -187,7 +187,7 @@ public class Pilot implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", NAME_STRING, name),
+                String.format("%s", name),
                 String.format("%s: %s", GENDER_STRING, gender),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", RANK_STRING, rank),

@@ -21,7 +21,6 @@ import seedu.address.model.plane.Plane;
  * Represents a flight object in wingman
  */
 public class Flight implements Item {
-    private static final String CODE_STRING = "Code";
     public final Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
     public final Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink;
     public final Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> planeLink;
@@ -125,7 +124,7 @@ public class Flight implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", CODE_STRING, code),
+                String.format("%s", code),
                 String.format("%s: %s", "Pilots", pilotLink.toString()),
                 String.format("%s: %s", "Crews", crewLink.toString()),
                 String.format("%s: %s", "Plane", planeLink.toString()),

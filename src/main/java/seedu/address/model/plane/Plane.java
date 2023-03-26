@@ -29,8 +29,6 @@ public class Plane implements Item {
                     PlaneLocationType.LOCATION_USING, 1000000
             );
 
-    private static final String UUID_STRING = "UUID";
-    private static final String MODEL_STRING = "Model";
     private static final String AGE_STRING = "Age";
     private static final String AVAILABILITY_STRING = "Status";
     private final String id;
@@ -129,7 +127,7 @@ public class Plane implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", MODEL_STRING, model),
+                String.format("%s", model),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
         );
