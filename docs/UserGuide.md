@@ -66,12 +66,12 @@ Format: `add {Prefix}/{Parameter}…​`
 | `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                                 |
 | `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                      |
 | `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.        |
-| `Yes`    | coy    | COMPANY             | Follow comapny format                                                    |
+| `Yes`    | coy    | COMPANY             | Follow company format                                                    |
 | `Yes`    | jd     | JOB DESCRIPTION     |                                                                          |
 | `No`     | t      | TAGS                |                                                                          |
-| `No`     | $      | SALARY              | Positive integer only.                    **Compulsory for inpatients**. |
-| `No`     | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over      |
-| `No`     | x      | EXPERIENCE REQUIRED | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                            |
+| `Yes`    | $      | SALARY              | Positive integer only.                    **Compulsory for inpatients**. |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over      |
+| `Yes`    | x      | EXPERIENCE REQUIRED | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                            |
 
 
 ### Adding a role:
