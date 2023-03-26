@@ -27,13 +27,15 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `list` : Lists all Bookmarks.
 
-   * `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy u/http://classics.mit.edu/Homer/odyssey.html t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
    * `clear` : Deletes all Bookmarks.
    
-   * `goto 1` : Goto url of the 1st Bookmark shown in the current list.
+
+   * `goto 1` : Opens the url of 1st Bookmark shown in current list.
+
    
    * `exit` : Exits the app.
 
@@ -116,9 +118,12 @@ Examples:
 
 ### Locating bookmarks by title: `find`
 
+
 Find bookmarks whose specified fields contain the given keywords.
 
+
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
+
 
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
@@ -147,17 +152,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
 * `find n/ Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
-### Going to a url : `goto
+### Going to a url : `goto`
 
 Opens up specified bookmark's url in default browser
 
-Format: 'goto INDEX'
+Format: `goto INDEX`
 
 * Opens the url of bookmark at the specified `INDEX`.
 * The index refers to the index number shown in the displayed bookmark list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-* Examples:
+Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
 * `find n/ Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
@@ -180,7 +185,7 @@ MyLib data are saved in the hard disk automatically after any command that chang
 
 ### Editing the data file
 
-MyLib data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MyLib data are saved as a JSON file `[JAR file location]/data/library.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyLib will discard all data and start with an empty data file at the next run.

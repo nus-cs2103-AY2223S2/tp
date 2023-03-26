@@ -1,5 +1,6 @@
 package seedu.library.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -66,12 +67,12 @@ public class BookmarkListPanel extends UiPart<Region> {
     public Bookmark getFirstItem() {
         try {
             Bookmark item = bookmarks.get(0);
-            return bookmarks.get(0);
+            return item;
         } catch (IndexOutOfBoundsException e) {
+            // just a default bookmark change
             String[] sampleProgress = {"1", "32", "56"};
             return new Bookmark(new Title("Attack on Titans"), new Progress(sampleProgress), new Genre("Fantasy"),
                     new Author("Hajime Isayama"), new Url(""),
-
                     SampleDataUtil.getTagSet("friends"));
 
         }
@@ -86,14 +87,18 @@ public class BookmarkListPanel extends UiPart<Region> {
      */
     class BookmarkListViewCell extends ListCell<Bookmark> {
         @Override
-        protected void updateItem(Bookmark bookmark, boolean empty) {
+        protected void updateItem(Bookmark bookmark, boolean empty)  {
             super.updateItem(bookmark, empty);
-
-            if (empty || bookmark == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new BookmarkCard(bookmark, getIndex() + 1).getRoot());
+            try {
+                if (empty || bookmark == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setGraphic(new BookmarkCard(bookmark, getIndex() + 1).getRoot());
+                }
+            }
+            catch (IOException e) {
+                System.out.println("IO exception");
             }
         }
     }

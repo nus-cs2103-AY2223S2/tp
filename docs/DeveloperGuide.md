@@ -264,7 +264,7 @@ is then created into a URI object when `GoToCommand` is executed
 
 The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
 
-* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+* **Alternative 1 (current choice):** url stored as string and URI object to open site only created in `GoToCommand`.
     * Pros: Easy to implement, easier storage
     * Cons: May have security due to parsing or encoding errors
 
