@@ -27,7 +27,7 @@ public class Session {
      * The key is the Student object, and the value is an integer indicating the attendance status:
      * 0 for absent, 1 for present.
      */
-    private final Map<Student, Integer> attendance;
+    private Map<Student, Integer> attendance;
 
     /**
      * Constructs a {@code Session} with the given session name.
@@ -100,11 +100,11 @@ public class Session {
      * @param students The list of students who are in the session.
      */
     public void setStudents(UniqueStudentList students) {
+        Map<Student, Integer> newAttendance = new HashMap<>();
         for (Student student : students) {
-            if (!attendance.containsKey(student)) {
-                attendance.put(student, 0);
-            }
+            newAttendance.put(student, attendance.getOrDefault(student, 0));
         }
+        attendance = newAttendance;
         System.out.println(attendance.keySet());
     }
 
