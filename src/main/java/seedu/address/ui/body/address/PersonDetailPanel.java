@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.ui.UiPart;
 
 /**
@@ -88,7 +89,7 @@ public class PersonDetailPanel extends UiPart<Region> {
     private Collection<Label> getTagLabels(Person person) {
         return person.getSetOfTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.value))
-                .map(tag -> tag.value)
+                .map(Tag::truncateValue)
                 .map(Label::new)
                 .collect(Collectors.toList());
     }

@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.ui.UiPart;
 
 /**
@@ -96,19 +97,16 @@ public class PersonCard extends UiPart<Region> {
         tagsList.clear();
         tagsList.addAll(person.getSetOfTags().stream()
                 .sorted(Comparator.comparing(Object::toString))
-                .map(tag -> new Label(tag.value))
+                .map(Tag::truncateValue)
+                .map(Label::new)
                 .collect(Collectors.toList()));
-        if (hasTags()) {
+        if (!tagsList.isEmpty()) {
             summary.add(tags);
         }
     }
 
     private boolean hasPhone() {
         return phone.getText() != null && !phone.getText().isBlank();
-    }
-
-    private boolean hasTags() {
-        return !tags.getChildren().isEmpty();
     }
 
     @Override
