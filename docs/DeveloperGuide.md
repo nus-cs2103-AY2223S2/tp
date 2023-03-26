@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project utilises the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,11 +235,66 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Projects
+
+#### Implementation
+There is a new type of data that can be stored in the application: Projects. These are implemented as a model class, similar to `Client`. They contain information about the project's `Title`, `Status`, `Deadline` (optional), and `Price`(optional), each of which are implemented as separate classes.
+
+A new project can be created using the `add-project`/`ap` command by providing necessary and, optionally, optional details of the project. The project can also be edited for any fields, which will create a new project with the updated details to replace the current one. This also means that project details are guaranteed to be immutable.
+
+Each of the project detail classes have their own validation check that is run upon construction of the object, which is done in the parser (specifically, the `arb.logic.parser.project.AddProjectCommandParser`).
+
+### Sorting
+
+#### Implementation
+Sorting is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+
+The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
+
+For the client list, it is only sorted with a `Comparator` that compares the names of the clients.
+
+For the project list, it can be sorted either by deadline or name. When the user executes a `sort` command, they can input which option they wish to sort by, which is parsed by `SortProjectCommandParser`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Done Status
 
+#### Implementation
+
+The displaying of the "DONE" status is facilitated by the `markAsDone()`
+method in the Project class. 
+
+The Done status is highlighted in the UI when the project is done. 
+The ProjectCard class has been updated to run the aforementioned `markAsDone()`
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
+
+### Not Done Status
+
+#### Implementation
+
+The displaying of the "NOT DONE" status is facilitated by the `markAsUndone()`
+method in the Project class.
+
+The Not Done status is highlighted in the UI when the project is not done and not overdue.
+The ProjectCard class has been updated to run the aforementioned `markAsUndone()`
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
+
+### Overdue Status
+
+#### Implementation
+The displaying of the "OVERDUE" status is facilitated by the isOverdue method 
+in the Project class. The isOverdue method returns a boolean after using the 
+compareTo method in the Deadline class which checks the current date 
+against the deadline date of the project, i.e. check if a project's deadline 
+is past the current date.
+
+The Overdue status is highlighted in the UI when any project is past its deadline. 
+The ProjectCard class has been updated to run the aforementioned isOverdue 
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE. 
+The OVERDUE status is shown for existing projects in the list that are overdue, and 
+if a user adds a project with a deadline with a data that has already past.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -401,6 +457,10 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Clients**: A person who has commissioned the user
+* **Project**: A piece of (art)work to be completed
+* **Contact info**: Email, Phone Number, Social media
+* **Project status**: How close to completion a project is
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,28 @@
+{
+  "_comment": "AddressBook save file which contains the same ClientProject values as in TypicalProjects#getTypicalAddressBook()",
+  "clients" : [ ],
+  "projects" : [ {
+    "title": "Portrait Commission",
+    "deadline": "2pm 2025-02-01",
+    "status": "false",
+    "price": "2",
+    "tagged": [ "painting", "traditional" ]
+    }, {
+    "title": "Crayon Drawing",
+    "deadline": "3pm tomorrow",
+    "status": "false",
+    "price": "0.35",
+    "tagged": [ "paper", "crayons"]
+  }, {
+    "title": "Digital Drawing",
+    "deadline": null,
+    "status": "false",
+    "price": null
+  }, {
+    "title": "Sculpture Project",
+    "deadline": null,
+    "status": "false",
+    "price": null,
+    "tagged": [ "clay" ]
+  }]
+}
