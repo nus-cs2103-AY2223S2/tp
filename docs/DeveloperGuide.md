@@ -400,7 +400,41 @@ The following gives a more detailed explanation of the `add` operation.
 
 
 ### Edit an Internship - `edit`
-[TODO by Shawn]
+### Edit feature
+
+#### Implementation
+
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+
+The following is a more detailed explanation on how `EditCommand` works.
+
+1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
+2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
+3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
+4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
+5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
+
+#### Design considerations:
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
+    * Pros:
+        * Maintains immutability of `Internship` class
+    * Cons:
+        * May be less efficient than alternative 2
+
+* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
+    * Pros:
+        * Will use less memory (no new `internship` object will be created).
+        * Saves time since there is no need to create the new object.
+    * Cons:
+        * Reduces the defensiveness of the code and class
+
 
 
 ### View an Internship - `view`
@@ -461,7 +495,56 @@ The following gives a more detailed explanation of the `view` operation.
 [TODO by Kai Xun]
 
 ### Get Upcoming Events and Deadlines - `upcoming`
-[TODO by Shawn]
+
+#### Implementation
+The following sequence diagram provides an overview on how the `upcoming` operation works.
+
+![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
+
+The following gives a more detailed explanation of the `upcoming` operation.
+1. When the user enters an `upcoming` command, an `UpcomingCommand` object is created.
+2. Following which, `FilteredList<Internship>` stored inside the model will be updated by checking each internship entry against a predicate.
+3. The predicate checks whether both of the following conditions are met: 
+- The `STATUS` of the internship must be one of the following:
+  - `NEW`
+  - `ASSESSMENT`
+  - `INTERVIEW`
+  - `OFFERED`
+- The `DATE` must be within the upcoming week 
+
+#### Design Considerations
+
+###### Whether the include  
+1. **Alternative 1 (chosen): Upcoming command should only limit to internships with status of `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
+    * Pros: More user-centric as not all users want to enter the optional information,
+      which is not exactly critical in tracking internships.
+    * Cons: As the status are closely tied to the interpretation of the `DATE`, may require the user to be clearer
+2. **Alternative 2: Any status**
+    * Pros: Easier to implement as there is no need to differentiate between compulsory
+      and optional fields during command parsing, and it is easier to compare between
+      different `Internship` since we just require an exact match of all fields.
+    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
+      are forced to input something for the `Add` command to work.
+
+###### Whether to update the right UI panel according to the `add` command
+
+1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
+    * Pros: Better visual indication that the `add` command has been successfully executed.
+      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
+      the new entry will be placed at the bottom of the left UI panel, which is not visible
+      if the user's scroll position is at the top of the left UI panel. Therefore, updating
+      the right panel enhances visual indication to the user that the `Internship` has been
+      successfully added.
+    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
+      to update the selected `Internship` in the `Model` component in order to update
+      the right panel.
+
+2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
+    * Pros: No additional code is required in the `execute` method of `AddCommand`.
+    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
+      UI panel may not be visible since it is added to the bottom. Without scrolling, users
+      have to rely on the Results Display box to determine if the `AddCommand` is successful.
+
 
 ### Delete Internship Entries - `delete`
 [TODO by Christopher]
@@ -598,47 +681,6 @@ Figure XX summarizes what happens when a user executes a new command:
 
 To be explored in v2.0...
 
-### Edit feature
-
-#### Implementation
-
-
-The following sequence diagram shows how the edit operation works:
-
-![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-
-The following is a more detailed explanation on how `EditCommand` works.
-
-1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
-2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
-3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
-4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
-5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
-
-#### Design considerations:
-
-**Aspect: How edit executes:**
-
-* **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
-    * Pros: 
-      * Maintains immutability of `Internship` class
-    * Cons: 
-      * May be less efficient than alternative 2
-
-* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
-    * Pros: 
-      * Will use less memory (no new `internship` object will be created). 
-      * Saves time since there is no need to create the new object.
-    * Cons: 
-      * Reduces the defensiveness of the code and class
-
-
-_{more aspects and alternatives to be added}_
 
 ### Find feature
 
@@ -732,55 +774,6 @@ Furthermore, the predicate tests if an internship matches all its conditions (co
         * Combine all delete features into one keyword.
     * Cons:
         * We need to manage boths indexes and keywords, and this may be a source of confusion. For example, in the command `delete 1 2 n/Google`, the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
-
-
-### Upcoming Feature
-
-#### Implementation
-The following sequence diagram provides an overview on how the `upcoming` operation works.
-
-![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
-
-The following gives a more detailed explanation of the `upcoming` operation.
-1. When the user enters an `upcoming` command, a `UpcomingCommand` object is created.
-3. Following which, the `UpcomingCommand#execute(Model model)` method is called which eventually calls the`updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipU` object as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
-   
-
-
-#### Design Considerations
-
-###### Whether to make all fields in the `add` command compulsory
-1. **Alternative 1 (chosen): Make only essential fields compulsory**
-    * Pros: More user-centric as not all users want to enter the optional information,
-      which is not exactly critical in tracking internships.
-    * Cons: More work is to be done in code implementation. For example, the absence of optional
-      fields should not cause a `ParseException`, and there is a need to include a
-      default value of `NA` for input without any `Comment`.
-2. **Alternative 2: Make all fields compulsory**
-    * Pros: Easier to implement as there is no need to differentiate between compulsory
-      and optional fields during command parsing, and it is easier to compare between
-      different `Internship` since we just require an exact match of all fields.
-    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
-      are forced to input something for the `Add` command to work.
-
-###### Whether to update the right UI panel according to the `add` command
-
-1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
-    * Pros: Better visual indication that the `add` command has been successfully executed.
-      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
-      the new entry will be placed at the bottom of the left UI panel, which is not visible
-      if the user's scroll position is at the top of the left UI panel. Therefore, updating
-      the right panel enhances visual indication to the user that the `Internship` has been
-      successfully added.
-    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
-      to update the selected `Internship` in the `Model` component in order to update
-      the right panel.
-
-2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
-    * Pros: No additional code is required in the `execute` method of `AddCommand`.
-    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
-      UI panel may not be visible since it is added to the bottom. Without scrolling, users
-      have to rely on the Results Display box to determine if the `AddCommand` is successful.
 
 _{more aspects and alternatives to be added}_
 
