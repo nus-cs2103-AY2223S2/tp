@@ -35,7 +35,8 @@ public class ListLeaveCommandTest {
 
     @Test
     public void execute_emptyLeaveAdded_showsEverythingButEmptyLeave() {
-        Leave leaveWithNoEmployees = new LeaveBuilder().build();
+        Leave leaveWithNoEmployees = new LeaveBuilder()
+                .build();
         model.addLeave(leaveWithNoEmployees);
         assertCommandSuccess(new ListLeaveCommand(), model, ListLeaveCommand.MESSAGE_SUCCESS, expectedModel);
     }
