@@ -285,6 +285,24 @@ Examples
 
 -----------------------------------------
 
+### Listing persons: `list`
+
+Shows a list of all persons in the address book or paired and unpaired persons if specified.
+
+Format: `list [paired/unpaired]`
+
+* All persons will be listed if "paired" or "unpaired" is not specified after the list word
+* `[paired/unpaired]` is case-insensitive e.g. `pAIReD` will match `paired`.
+* Pair list will always list all pairs when the command executes.
+
+Examples:
+
+* `list`
+* `list paired`
+* `list unpaired`
+
+-----------------------------------------
+
 ### Finding people and their related pairs: `find`
 
 Finds any elderly or volunteers matching **all** of the specified fields, and pairings that they are involved in.
