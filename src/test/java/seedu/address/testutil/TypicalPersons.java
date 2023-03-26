@@ -68,6 +68,7 @@ public class TypicalPersons {
         .withGender("male")
         .withDrugAllergy("Lidocaine").build();
 
+
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("S3333333H")
         .withName("Hoon Meier").withPhone("8482424")
