@@ -27,7 +27,10 @@ public class ListDepartmentCommandTest {
 
     @Test
     public void execute_listIsEmptiedFirst_showsEverything() {
+        System.out.println(model.getFilteredDepartmentList().size());
         model.updateFilteredDepartmentList(unused -> false);
+        System.out.println(model.getFilteredDepartmentList().size());
+        System.out.println(expectedModel.getFilteredDepartmentList().size());
         assertCommandSuccess(new ListDepartmentCommand(), model, ListDepartmentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

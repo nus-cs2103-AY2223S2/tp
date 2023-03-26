@@ -352,7 +352,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
-                && filteredEmployees.equals(other.filteredEmployees);
+                && filteredEmployees.equals(other.filteredEmployees)
+                && filteredDepartments.equals(other.filteredDepartments);
     }
-
 }
