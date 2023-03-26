@@ -12,11 +12,12 @@ Class Purpose
 CLass SideEffect
 Class StorageCount
 Class TradeName
+Class UniqueDrugList
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Drug
-
+Class DrugInventory
+DrugInventory *--> UniqueDrugList
+UniqueDrugList -right-> Drug
 Drug *--> "1" TradeName
 Drug *--> "1" ActiveIngredient
 Drug *--> "1" Direction

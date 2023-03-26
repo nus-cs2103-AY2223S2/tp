@@ -8,10 +8,12 @@ Package HospitalModel <<Rectangle>>{
 Class Hospital
 Class Name
 Class Phone
+Class UniqueHospitalList
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Hospital
+Class HospitalRecord
+HospitalRecord *--> UniqueHospitalList
+UniqueHospitalList -right-> Hospital
 
 Hospital *--> "1" Name
 Hospital *--> " hotline 1"  Phone

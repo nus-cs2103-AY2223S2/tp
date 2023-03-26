@@ -14,10 +14,12 @@ Class DateOfBirth
 Class Gender
 Class Ic
 Class DrugAllergy
+Class UniquePatientList
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Patient
+Class PatientRecord
+PatientRecord *--> UniquePatientList
+UniquePatientList -right-> Patient
 
 Patient *--> "1" Name
 Patient *--> "1" Phone
