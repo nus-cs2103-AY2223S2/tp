@@ -1,5 +1,6 @@
 package seedu.modtrek.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
@@ -30,18 +31,48 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Code code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
-        Credit credit = ParserUtil.parseCredit(argMultimap.getValue(PREFIX_CREDIT).get());
-        SemYear semYear = ParserUtil.parseSemYear(argMultimap.getValue(PREFIX_SEMYEAR).get());
-        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse(""));
+        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR)) {
+            throw new ParseException(AddCommand.MESSAGE_MISSING_PREFIXES);
+        }
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        String codeString = argMultimap.getValue(PREFIX_CODE).get();
+        if (codeString.isEmpty()) {
+            throw new ParseException(Code.MESSAGE_MISSING_DETAIL);
+        }
+        Code code = ParserUtil.parseCode(codeString);
+
+        String creditString = argMultimap.getValue(PREFIX_CREDIT).get();
+        if (creditString.isEmpty()) {
+            throw new ParseException(Credit.MESSAGE_MISSING_DETAIL);
+        }
+        Credit credit = ParserUtil.parseCredit(creditString);
+
+        String semYearString = argMultimap.getValue(PREFIX_SEMYEAR).get();
+        if (semYearString.isEmpty()) {
+            throw new ParseException(SemYear.MESSAGE_MISSING_DETAIL);
+        }
+        SemYear semYear = ParserUtil.parseSemYear(semYearString);
+
+        String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
+        Grade grade = ParserUtil.parseGrade(gradeString);
+
+        boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
+        if (isTagPresent && argMultimap.getAllValues(PREFIX_TAG).contains("")) {
+            throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Module module = new Module(code, credit, semYear, tagList, grade);
