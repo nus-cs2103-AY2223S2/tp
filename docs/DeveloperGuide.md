@@ -69,11 +69,11 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,20 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+
+The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user. 
+
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
+
+![Subclasses of Page abstract class](images/PageClasses.png)
+
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI. 
+
+![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
+
+
+
 
 ### Logic component
 
@@ -153,6 +166,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### View Calendar feature
+The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX. 
+
+It is facilitated by `CalendarPage`, which upon creation will initialize a `Calendar`, a CalendarFX class that will then store all events it receives from the `Model` interface via a `CommandResult` into the `Calendar`. Then, the `Calendar` will be displayed in a `MonthPage`, a CalendarFX view that showcases all events by month in a grids.
+
+The following sequence diagram depicts the interactions between different components following the `execute("calendar")` API call . 
+
+![Sequence Diagram for execute("calendar")](images/ViewCalendarSequenceDiagram.png)
+
+To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
+
 
 ### \[Proposed\] Undo/redo feature
 
