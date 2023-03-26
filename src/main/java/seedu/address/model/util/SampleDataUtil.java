@@ -20,6 +20,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.prescription.Prescription;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,30 +31,31 @@ public class SampleDataUtil {
         return new Person[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Nric("S1234567X"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    Prescription.EMPTY_PRESCRIPTION, getTagSet("friends"), new ArrayList<>()),
+                    Prescription.EMPTY_PRESCRIPTION, getTagSet("friends"), new ArrayList<>(),
+                            new Role("Patient")),
             new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Nric("T1234567Z"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     new Prescription(new Medication("10 Paracetamol"), new Cost("0")),
-                    getTagSet("colleagues", "friends"), new ArrayList<>()),
+                    getTagSet("colleagues", "friends"), new ArrayList<>(), new Role("Patient")),
             new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Nric("F1234567A"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new Prescription(new Medication("10 Paracetamol 500mg"), new Cost("10")),
-                    getTagSet("neighbours"), new ArrayList<>()),
+                    getTagSet("neighbours"), new ArrayList<>(), new Role("Patient")),
             new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Nric("G1234567L"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new Prescription(new Medication("12 Histamine; 2 water"), new Cost("100")),
-                    getTagSet("family"), new ArrayList<>()),
+                    getTagSet("family"), new ArrayList<>(), new Role("Patient")),
             new Patient(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Nric("M1234567K"), new Address("Blk 47 Tampines Street 20, #17-35"),
                     new Prescription(new Medication("1 Steroid Cream;2 water"), new Cost("100.01")),
-                    getTagSet("classmates"), new ArrayList<>()),
+                    getTagSet("classmates"), new ArrayList<>(), new Role("Patient")),
             new Patient(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Nric("S1234567B"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new Prescription(new Medication("1 drugA; 2 drug B ; 3 drug C"), new Cost("0.01")),
-                    getTagSet("colleagues"), new ArrayList<>()),
+                    getTagSet("colleagues"), new ArrayList<>(), new Role("Patient")),
             new Doctor(new Name("Jane Chew"), new Phone("93424232"), new Email("janec@example.com"),
                     new Nric("S3523567R"), new Address("Blk 11 Eunos Street 1, #14-09"),
-                    getTagSet("colleagues"), new ArrayList<>())
+                    getTagSet("colleagues"), new ArrayList<>(), new Role("Doctor"))
         };
     }
 

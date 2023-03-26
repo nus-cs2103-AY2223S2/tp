@@ -86,8 +86,8 @@ public class PrescribeCommand extends Command {
         Patient editedPerson = new Patient(
                 patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),
                 patientToEdit.getAddress(), prescription, patientToEdit.getTags(),
-                patientToEdit.getPatientAppointments()
-        );
+                patientToEdit.getPatientAppointments(),
+                patientToEdit.getRole());
 
         model.setPerson(patientToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
