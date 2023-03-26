@@ -101,11 +101,14 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: white;
+    -fx-background-color: #DAE3E6;
+    -fx-border-color: derive(#DAE3E6, 10%) #DAE3E6 derive(#DAE3E6, 10%) #DAE3E6;
+    -fx-border-width: 3;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: white;
+    -fx-background-color: #DAE3E6;
+    -fx-border-color: derive(#DAE3E6, 10%) #DAE3E6 derive(#DAE3E6, 10%) #DAE3E6;
 }
 
 .list-cell:filled:selected {
