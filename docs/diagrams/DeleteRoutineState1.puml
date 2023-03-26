@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "deleteRoutine 4 "
+
+package Routines <<rectangle>> {
+    class Routine1 as "__index 1:Routine__"
+    class Routine2 as "__index 2:Routine__"
+    class Routine3 as "__index 3:Routine__"
+    class Routine4 as "__:null__"
+}
+
+Routine1 -[hidden]right-> Routine2
+Routine2 -[hidden]right-> Routine3
+Routine3 -[hidden]right-> Routine4
+
+class Pointer as "Current Index" #FF0000
+class Error as "ParseException"
+Pointer -up-> Routine4 : Out of index range >
+CommandParser -up-> Pointer
+Pointer --> Error : Cause >
+@enduml
