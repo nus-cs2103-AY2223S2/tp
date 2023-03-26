@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.course.Session;
-import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * Panel containing the list of sessions.

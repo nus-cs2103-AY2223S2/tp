@@ -2,7 +2,6 @@ package tfifteenfour.clipboard.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -30,7 +29,6 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
-import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
