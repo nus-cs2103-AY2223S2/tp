@@ -12,6 +12,7 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -26,8 +27,7 @@ public class DeleteStudentCommand extends DeleteCommand {
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " " + "1";
 
-    public static final String MESSAGE_SUCCESS = "Student deleted in %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_GROUP = "This student already exists in the group";
+    public static final String MESSAGE_SUCCESS = "Deleted student in %1$s: %2$s";
 
     private final Index index;
 
@@ -56,8 +56,10 @@ public class DeleteStudentCommand extends DeleteCommand {
         }
 
         Student studentToDelete = lastShownList.get(index.getZeroBased());
+        Name studentNameToDelete = studentToDelete.getName();
+        selectedGroup.deleteStudent(studentToDelete);
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentToDelete, selectedGroup), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, selectedGroup, studentNameToDelete), willModifyState);
     }
 
     @Override

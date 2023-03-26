@@ -84,10 +84,19 @@ public class Course {
     }
 
     /**
-     * Adds group.
+     * Adds the given group to this course.
+     * @param group Group to be added.
      */
     public void addGroup(Group group) {
         groups.add(group);
+    }
+
+    /**
+     * Deletes the given group from this course.
+     * @param group Group to be deleted.
+     */
+    public void deleteGroup(Group group) {
+        groups.remove(group);
     }
 
 

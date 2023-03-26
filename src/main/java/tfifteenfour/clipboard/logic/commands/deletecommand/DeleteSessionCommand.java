@@ -26,7 +26,7 @@ public class DeleteSessionCommand extends DeleteCommand {
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " " + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Session deleted in %1$s: %2$s";
+    public static final String MESSAGE_SUCCESS = "Deleted session in %1$s: %2$s";
 
     private final Index index;
 
