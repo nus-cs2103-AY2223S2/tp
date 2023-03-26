@@ -29,7 +29,12 @@ public class Address {
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
-
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Address() {
+        this.value = "N/A";
+    }
     /**
      * Returns true if a given string is a valid email.
      */

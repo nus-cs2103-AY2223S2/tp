@@ -69,7 +69,7 @@ public class EmployeeBuilder {
 
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withName(String name) {
         this.name = new Name(name);
@@ -77,7 +77,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code EmployeeId} of the {@code Person} that we are building.
+     * Sets the {@code EmployeeId} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withEmployeeId(String employeeId) {
         this.employeeId = new EmployeeId(employeeId);
@@ -85,7 +85,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Employee} that we are building.
      */
     public EmployeeBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -93,7 +93,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -101,7 +101,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -109,7 +109,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -117,7 +117,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Department} of the {@code Person} that we are building.
+     * Sets the {@code Department} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withDepartment(String department) {
         this.department = new Department(department);
@@ -125,7 +125,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code PicturePath} of the {@code Person} that we are building.
+     * Sets the {@code PicturePath} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withPicturePath(String picturePath) {
         this.picturePath = new PicturePath(picturePath);
@@ -136,4 +136,29 @@ public class EmployeeBuilder {
         return new Employee(name, employeeId, phone, email, address, department, picturePath, tags);
     }
 
+    /**
+     * Sets the {@code Email} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withEmptyEmail() {
+        this.email = new Email();
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public EmployeeBuilder withEmptyAddress() {
+        this.address = new Address();
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building.
+     */
+    public EmployeeBuilder withEmptyPhone() {
+        this.phone = new Phone();
+        return this;
+    }
 }

@@ -30,6 +30,8 @@ public class BatchAddCommand extends Command {
             + "Parameters: filename (file must be placed into the data folder of the repository and in CSV format) \n"
             + "Example: " + COMMAND_WORD + " executivepro.csv";
     public static final String MESSAGE_WORKS = "Batch added employees. %d employees were added.";
+    public static final String MESSAGE_FILE_NOT_FOUND = "File Not Found";
+
     private final String fileName;
     private Path filePath;
 
@@ -78,7 +80,7 @@ public class BatchAddCommand extends Command {
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException exception) {
-            throw new CommandException("File Not Found");
+            throw new CommandException(MESSAGE_FILE_NOT_FOUND);
         } catch (IOException exception) {
             throw new CommandException(exception.getMessage());
         } catch (ParseException exception) {
