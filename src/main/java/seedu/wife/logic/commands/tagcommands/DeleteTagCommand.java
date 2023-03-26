@@ -65,7 +65,7 @@ public class DeleteTagCommand extends Command {
                 deletedTagSuccessMessage += "\n" + tag;
             }
         }
-        
+
         // Refreshes the list.
         model.updateFilteredFoodList(PREDICATE_SHOW_NO_FOODS);
         model.updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);

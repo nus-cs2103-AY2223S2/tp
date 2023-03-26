@@ -1,11 +1,10 @@
 package seedu.wife.logic.parser.tagcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
-
 
 import org.junit.jupiter.api.Test;
 
