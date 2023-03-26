@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="750.0" minWidth="1000.0" onCloseRequest="#handleExit" title="SalesPUNCH" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="800.0" onCloseRequest="#handleExit" title="SalesPUNCH" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -40,24 +40,24 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <SplitPane dividerPositions="0.55" prefHeight="160.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-              <items>
-              <VBox fx:id="personList" minWidth="500.0" styleClass="pane-with-border" SplitPane.resizableWithParent="false">
+            <HBox minHeight="-Infinity" prefHeight="200.0" VBox.vgrow="ALWAYS">
+               <children>
+              <VBox fx:id="personList" minWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="personListPanelPlaceholder" minWidth="480.0" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox fx:id="transactionList" layoutX="10.0" layoutY="10.0" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                  <VBox fx:id="transactionList" minWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
                      <children>
-                        <StackPane fx:id="transactionListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="transactionListPanelPlaceholder" minWidth="400.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-              </items>
-            </SplitPane>
+               </children>
+            </HBox>
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
