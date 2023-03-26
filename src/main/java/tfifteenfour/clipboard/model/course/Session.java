@@ -98,6 +98,7 @@ public class Session {
      * @param students The list of students who are in the session.
      */
     public void setStudents(UniqueStudentList students) {
+        assert attendance != null : "Attendance should not be null!";
         Map<Student, Integer> newAttendance = new HashMap<>();
         for (Student student : students) {
             newAttendance.put(student, attendance.getOrDefault(student, 0));
