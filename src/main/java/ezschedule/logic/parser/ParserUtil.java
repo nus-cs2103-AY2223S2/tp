@@ -7,6 +7,7 @@ import ezschedule.commons.util.StringUtil;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Name;
+import ezschedule.model.event.RecurFactor;
 import ezschedule.model.event.Time;
 
 /**
@@ -73,5 +74,20 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code recurFactor} is invalid.
+     */
+    public static RecurFactor parseRecurFactor(String recurFactor) throws ParseException {
+        requireNonNull(recurFactor);
+        String trimmedRecurFactor = recurFactor.trim();
+        if (!RecurFactor.isValidRecurFactor(trimmedRecurFactor)) {
+            throw new ParseException(RecurFactor.MESSAGE_CONSTRAINTS);
+        }
+        return new RecurFactor(trimmedRecurFactor);
     }
 }
