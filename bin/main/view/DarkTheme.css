@@ -349,7 +349,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Overpass";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
