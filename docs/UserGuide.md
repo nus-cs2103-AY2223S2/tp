@@ -67,30 +67,39 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 
 ## Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page, as well as a quick rundown of what commands can be used.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-## Adding a category: `cat`
+## Adding a category: `addcat`
 
 Adds a new expense category. If the category already exists, this command will not execute.
 
-Format: `cat CATEGORY_NAME`
+Format: `addcat c/CATEGORY_NAME s/SUMMARY`
+
+| Parameter       | Description                                         |
+|-----------------|-----------------------------------------------------|
+| `CATEGORY_NAME` | Title of the category to be added.                  |
+| `SUMMARY`        | Short summary of what this category keeps track of. |
+
+
 Examples:
-* `cat groceries` creates a new `Groceries` category
-* `cat entertainment` creates a new `Entertainment` category
+* `addcat c/Groceries s/for living` creates a new `Groceries` category with the summary of `for living`.
+* `addcat c/Entertainment s/for fun!` creates a new `Entertainment` category with the summary of `for fun!`.
 
 ## Deleting a category: `delcat`
 
 Deletes an expense category at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed categories list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* If expenses previously categorised under the specified category will no longer be part of that category and remain uncategorized
-
 Format: `delcat INDEX`
+
+| Parameter | Description                                                                                                                                                                                                                                                                               |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | The index number shown in the displayed categories list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...<br/><br/>Expenses previously categorised under the category at the specified index will no longer be part of that category, and will be re-categorized under the `MISC` category.<br/> |
+
+
 Examples:
 * `lcat` followed by `delcat 2` deletes the second category in the log
 * `lcat` followed by `delcat 1` deletes the first category in the log
@@ -98,14 +107,34 @@ Examples:
 
 ## Adding an expense: `add`
 
-Adds an expense to the log.
+Adds an expense to the expense tracker.
 
 Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
+
+| Parameter       | Description                                                                                                                                                                       |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CATEGORY_NAME` | The category which the expense should be classified under.<br/><br/>If there is no such category, a new category will be created with the specified category name.                |
+| `ITEM_NAME`     | Name of the expense being added.                                                                                                                                                  |
+| `PRICE`         | The price of the expense being added.<br/><br/>The specified price should be a `double`, e.g. 4, 4.50.                                                                            |
+| `DATE`           | The date of the expense being added.<br/><br/> This is an optional input, and if left unspecified, the date of which the command is issued will be the expense's date by default. |
 
 Examples:
 * `add c/groceries n/milk p/4.50 `
 * `add c/entertainment p/20 n/movie night d/14/2/23`
 
+## Deleting an expense : `delete`
+
+Deletes an expense at the specified `INDEX` from the expense tracker.
+
+Format: `delete INDEX`
+
+| Parameter | Description                                                                                                                                                                                                                                                                               |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | The index number shown in the displayed categories list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...<br/><br/>Expenses previously categorised under the category at the specified index will no longer be part of that category, and will be re-categorized under the `MISC` category.<br/> |
+
+Examples:
+* `list` followed by `delete 2` deletes the second expense in the log
+* `find movie` followed by `delete 1` deletes the first expense in the results of the `find` command
 
 ## Listing Categories: `lcat`
 Shows a list of categories in the log.
@@ -114,24 +143,53 @@ Format: `lcat`
 
 ## Listing expenses : `list`
 
-Shows a list of expenses in the log.
+Shows a list of expenses in the expense tracker based on the specified `CATEGORY_NAME` and `TIMEFRAME`.
 
-### List all expenses
-Format: `list -t`
+If `CATEGORY_NAME` and `TIMEFRAME` are left unspecified, all expenses in the expense tracker will be listed.
 
-### List expenses filtered by categories
-Format: `list -c c/CATEGORY_NAME [c/CATEGORY_NAME]…​`
+Format: `list [c/CATEGORY_NAME] [t/TIMEFRAME]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list -c` can have 1 or more categories to filter by
-</div>
+| Parameter       | Description                                                                                                               |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------|
+| `CATEGORY_NAME` | The category of which expenses are classed under.<br/><br/>Optional to specify.                                           |
+| `TIMEFRAME`      | The timeframe of which expenses were added. <br/><br/>The timeframes available are:<br/>1. week <br/>2. month<br/>3. year |
 
-### List expenses from the past week
-Format: `list -w`
+Examples:
+* `list c/Groceries t/week`
+* `list c/Entertainment t/month`
 
-## Editing an expense : `edit`
+## Editing a category : `ecat`
 
-- To be implemented in next iteration
+Edits the category at the specified `INDEX`
+
+Format: `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]`
+
+Both `CATEGORY_NAME` and `SUMMARY` are optional by themselves, but at least one of them MUST be specified in addition
+to `INDEX`, otherwise the command will not go through.
+
+| Parameter       | Description                                                                                       |
+|-----------------|---------------------------------------------------------------------------------------------------|
+| `INDEX`         | The index of the category to be edited.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...  |
+| `CATEGORY_NAME` | The new name of the category being edited at the specified index.<br/><br/>Optional parameter.    |
+| `SUMMARY`        | The new summary of the category being edited at the specified index.<br/><br/>Optional parameter. |
+
+
+## Editing an expense : `eexp`
+
+Edits the expense at the specified `INDEX`
+
+Format: `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`
+
+Every parameter except for `INDEX` is optional by themselves, but at least one of other parameters MUST be
+specified, otherwise the command will not go through.
+
+| Parameter       | Description                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------|
+| `INDEX`         | The index of the expense to be edited.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ... |
+| `CATEGORY_NAME` | The new category name of the expense to be changed to.<br/><br/>Optional parameter.             |
+| `EXPENSE_NAME`  | The new expense name of the expense to be changed to.<br/><br/>Optional parameter.              |
+| `DATE`          | The new date of the expense to be changed to.<br/><br/>Optional parameter.                      |
+| `PRICE`          | The new price of the expense to be changed to.<br/><br/>Optional parameter.                     |
 
 ## Search for an expense by name: `find`
 
@@ -143,7 +201,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `ramen Dinner` will match `Dinner ramen`
 * Only the name of the expense is searched
 * Only full words will be matched e.g. `dinn` will not match `dinner`
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
+* Expenses matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `movie dinner` will return `dinner with Alex`, `movie with friends`
 
 Examples:
@@ -157,21 +215,6 @@ Date: 2023-03-03, Category: Groceries, Name: Milk, Price: $4.00
 ```
 * `find kfc milk` returns `Milk` and `KFC`
 * `find mcdonald's` returns `McDonald's`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-## Deleting an expense : `del`
-
-Deletes the specified expense from the log.
-
-Format: `delete INDEX`
-
-* Deletes the expense at the specified `INDEX`
-* The index refers to the index number shown in the displayed expense list
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the second expense in the log
-* `find movie` followed by `delete 1` deletes the first expense in the results of the `find` command
 
 ## Clearing all entries : `clear`
 
