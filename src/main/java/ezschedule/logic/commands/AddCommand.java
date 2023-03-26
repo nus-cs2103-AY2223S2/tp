@@ -28,6 +28,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler";
+    public static final String MESSAGE_EVENT_EXIST_AT_TIME = "Another event already exists in at the chosen time";
 
     private final Event toAdd;
 
@@ -45,6 +46,8 @@ public class AddCommand extends Command {
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        } else if (model.hasEventAtTime(toAdd)) {
+            throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
         }
 
         model.addEvent(toAdd);

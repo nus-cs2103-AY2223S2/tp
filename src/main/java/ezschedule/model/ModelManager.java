@@ -94,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEventAtTime(Event event) {
+        requireNonNull(event);
+        return scheduler.hasEventAtTime(event);
+    }
+
+    @Override
     public void deleteEvent(Event target) {
         scheduler.removeEvent(target);
     }

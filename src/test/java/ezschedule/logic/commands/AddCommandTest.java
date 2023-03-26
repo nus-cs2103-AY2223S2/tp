@@ -129,6 +129,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasEventAtTime(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -182,6 +187,12 @@ public class AddCommandTest {
         public boolean hasEvent(Event event) {
             requireNonNull(event);
             return eventsAdded.stream().anyMatch(event::isSameEvent);
+        }
+
+        @Override
+        public boolean hasEventAtTime(Event event) {
+            requireNonNull(event);
+            return eventsAdded.stream().anyMatch(event::isEventOverlap);
         }
 
         @Override

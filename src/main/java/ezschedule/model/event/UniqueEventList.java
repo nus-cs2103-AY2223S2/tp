@@ -38,7 +38,15 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Adds a event to the list.
+     * Returns true if the list contains an event at the given date and time.
+     */
+    public boolean existsAtTime(Event toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isEventOverlap);
+    }
+
+    /**
+     * Adds an event to the list.
      * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
