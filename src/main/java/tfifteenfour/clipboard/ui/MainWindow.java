@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -23,10 +24,13 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
@@ -213,6 +217,7 @@ public class MainWindow extends UiPart<Stage> {
         closeGroupTab();
         closeStudentTab();
         closeNavigationBar();
+        logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
         logic.getCurrentSelection().navigateBackToCoursePage();
     }
 
@@ -273,6 +278,16 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
+    private void showSessionPane(Group group) {
+        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableSessionList());
+        leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+    }
+
+    private void showAttendancePane(Session session) {
+        AttendanceListPanel attendanceListPanel = new AttendanceListPanel(session.getUnmodifiableStudentList());
+        rightPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+    }
+
     private void showModuleTab() {
         moduleTabPlaceholder.getChildren().clear();
         moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
@@ -327,6 +342,11 @@ public class MainWindow extends UiPart<Stage> {
             showStudentTab();
             refreshNavigationBar();
 
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {
+            logic.getCurrentSelection().getSelectedSession().selectSession();
+            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+            showAttendancePane(logic.getCurrentSelection().getSelectedSession());
+            refreshNavigationBar();
         }
     }
 
@@ -346,8 +366,19 @@ public class MainWindow extends UiPart<Stage> {
             closeViewPane();
             closeStudentTab();
             refreshNavigationBar();
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
+            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+            rightPanelPlaceholder.getChildren().clear();
+            refreshNavigationBar();
         }
     }
+
+    private void handleAttendance() {
+        showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+        refreshNavigationBar();
+    }
+
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
 
@@ -365,6 +396,9 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof HomeCommand) {
             handleHome();
+
+        } else if (commandResult.getCommand() instanceof AttendanceCommand) {
+            handleAttendance();
         }
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {

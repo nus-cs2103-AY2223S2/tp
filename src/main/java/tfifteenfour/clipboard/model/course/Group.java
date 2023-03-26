@@ -142,6 +142,11 @@ public class Group {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public void unMarkAllSessions() {
+        for (Session session: this.getUnmodifiableSessionList()) {
+            session.unselectSession();
+        }
+    }
     @Override
     public String toString() {
         return this.groupName;

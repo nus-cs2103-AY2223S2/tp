@@ -60,4 +60,7 @@
          </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets top="8.0" />
+   </padding>
 </VBox>
