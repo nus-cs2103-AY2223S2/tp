@@ -1,5 +1,9 @@
 package tfifteenfour.clipboard.logic.commands.editcommand;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
@@ -12,10 +16,6 @@ import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 public class EditGroupCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "group";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -25,6 +25,7 @@ public class EditGroupCommand extends EditCommand {
             + " 1 T01";
 
     public static final String MESSAGE_SUCCESS = "Edited group: %1$s to %2$s";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the course";
 
     private final Index index;
     private final Group newGroup;
@@ -43,11 +44,13 @@ public class EditGroupCommand extends EditCommand {
             throw new CommandException("Wrong page. Navigate to group page to edit group");
         }
 
-        Course selectCourse = currentSelection.getSelectedCourse();
-        List<Group> lastShownList = selectCourse.getModifiableGrouplist();
+        Course selectedCourse = currentSelection.getSelectedCourse();
+        List<Group> lastShownList = selectedCourse.getModifiableGrouplist();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
+        } else if (selectedCourse.hasGroup(newGroup)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
         Group GroupToEdit = lastShownList.get(index.getZeroBased());

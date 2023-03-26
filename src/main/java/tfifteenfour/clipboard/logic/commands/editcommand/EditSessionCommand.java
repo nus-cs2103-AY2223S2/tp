@@ -42,12 +42,12 @@ public class EditSessionCommand extends EditCommand {
             throw new CommandException("Wrong page. Navigate to session page to edit session");
         }
 
-        Group selectGroup = currentSelection.getSelectedGroup();
-        List<Session> lastShownList = selectGroup.getModifiableSessionList();
+        Group selectedGroup = currentSelection.getSelectedGroup();
+        List<Session> lastShownList = selectedGroup.getModifiableSessionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
-        } else if (selectGroup.hasSession(newSession)) {
+        } else if (selectedGroup.hasSession(newSession)) {
             throw new CommandException(MESSAGE_DUPLICATE_SESSION);
         }
 
