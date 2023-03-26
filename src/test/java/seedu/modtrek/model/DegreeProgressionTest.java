@@ -108,6 +108,11 @@ public class DegreeProgressionTest {
         public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
             return null;
         }
+
+        @Override
+        public String getSort() {
+            return null;
+        }
     }
 
 }
