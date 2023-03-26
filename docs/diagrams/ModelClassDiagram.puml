@@ -29,22 +29,21 @@ Class Hospital
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> CareFlowModel
 
-HospitalRecord .up.|> ReadOnlyHospitalRecord
+CareFlowModelManager .up.|> CareFlowModel
 PatientRecord .up.|> ReadOnlyPatientRecord
 DrugInventory .up.|> ReadOnlyDrugInventory
+HospitalRecord .up.|> ReadOnlyHospitalRecord
 UserPrefs .up.|> ReadOnlyUserPrefs
-CareFlowModelManager .up.|> CareFlowModel
 
-CareFlowModel ..> ReadOnlyUserPrefs
+CareFlowModel ..> ReadOnlyPatientRecord
 CareFlowModel ..> ReadOnlyDrugInventory
 CareFlowModel ..> ReadOnlyHospitalRecord
-CareFlowModel ..> ReadOnlyPatientRecord
+CareFlowModel ..> ReadOnlyUserPrefs
 
 CareFlowModelManager --> "1" PatientRecord
 CareFlowModelManager --> "1" HospitalRecord
 CareFlowModelManager --> "1" DrugInventory
 CareFlowModelManager --> "1" UserPrefs
-
 
 PatientRecord *--> "1" UniquePatientList
 UniquePatientList --> "~* all" Patient
@@ -59,8 +58,4 @@ UniqueDrugList --> "~* all" Drug
 'CareFlowModelManager -->"~* filtered" Drug
 'CareFlowModelManager -->"~* filtered" Hospital
 
-ReadOnlyPatientRecord -[hidden]right-> ReadOnlyHospitalRecord
-ReadOnlyHospitalRecord -[hidden]right-> CareFlowModelManager
-CareFlowModelManager -[hidden]right-> ReadOnlyDrugInventory
-ReadOnlyDrugInventory -[hidden]right-> ReadOnlyUserPrefs
 @enduml
