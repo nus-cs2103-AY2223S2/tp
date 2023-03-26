@@ -2,6 +2,10 @@ package seedu.address.ui;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * This class contains HelpCommand that is used to generate the helpTable
+ * in the Help window.
+ */
 public class HelpCommand {
 
     private final SimpleStringProperty command;

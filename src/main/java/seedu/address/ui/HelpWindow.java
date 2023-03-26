@@ -2,26 +2,26 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import javafx.scene.text.Font;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
+    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final String FXML = "HelpWindow.fxml";
     private final ObservableList<HelpCommand> data =
             FXCollections.observableArrayList(
                     new HelpCommand("Add", "add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS\n"),
@@ -32,18 +32,15 @@ public class HelpWindow extends UiPart<Stage> {
                     new HelpCommand("Find", "find [search term] [r/ROLE] [c/COMPANY_NAME] [s/STATUS]\n"),
                     new HelpCommand("Help", "help\n")
             );
-
-    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
     @FXML
     private Button copyButton;
     @FXML
+    private TableColumn<HelpCommand, String> commandColumn;
+    @FXML
+    private TableColumn<HelpCommand, String> formatColumn;
+    @FXML
     private TableView<HelpCommand> helpTable;
-    @FXML
-    public TableColumn<HelpCommand, String> commandColumn;
-    @FXML
-    public TableColumn<HelpCommand, String> formatColumn;
+
 
     /**
      * Creates a new HelpWindow.
