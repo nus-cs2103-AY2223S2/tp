@@ -158,9 +158,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Add Feature
+### Add Feature
 
-### Implementation Details
+#### Implementation Details
 
 The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`. <br>
 
@@ -179,7 +179,7 @@ The `Student` object is composed of attributes:
 * `Remark`: Remarks/notes the tutor has about the student.
 * `Tags`: Qualities a student has.
 
-### Proposed Implementation
+#### Proposed Implementation
 The `add` command has the following fields:
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
 > Unless stated as`[COMPULSORY]`, the field is optional.
@@ -196,12 +196,12 @@ Here is a sequence diagram showing the interactions between components when `add
 
 ![add_sequence](images/AddSequenceDiagram.png)
 
-### Feature details
+#### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
 3. If the input passes the validation check, a new `Student` entry is created and stored in the `AddressBook`.
 
-### General Design Considerations
+#### General Design Considerations
 
 The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. 
 Hence, resulting in a similar implementation of the `add` feature. </br>
@@ -225,18 +225,18 @@ When adding a student entry, these were the alternatives considered.
         * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
         * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
 
-## Delete feature
+### Delete feature
 
-### Implementation Details
+#### Implementation Details
 
 The `delete` implementation is identical to the implementation in AB3's codebase.
 
-### Proposed Implementation
+#### Proposed Implementation
 The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). 
 However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
 
 
-### Design Considerations
+#### Design Considerations
 Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, 
 we believe that if a single invalid `INDEX` is given, the system should generate an error message  
 
@@ -255,9 +255,9 @@ we believe that if a single invalid `INDEX` is given, the system should generate
     * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is 
     needed to re-enter the entry or `undo` the command.
 
-## Edit Feature
+### Edit Feature
 
-### Implementation Details
+#### Implementation Details
 
 The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
 This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
@@ -279,12 +279,12 @@ Here is a sequence diagram showing the interactions between components when `edi
 
 ![edit_sequence](images/EditSequenceDiagram.png)
 
-### Feature details
+#### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
 3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
 
-### General Design Considerations
+#### General Design Considerations
 When editing a student entry, whether a new `Student` object should be created.
 * **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
     * Pros:
@@ -299,9 +299,9 @@ When editing a student entry, whether a new `Student` object should be created.
         * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
 
 
-## Find feature
+### Find feature
 
-### Implementation Details
+#### Implementation Details
 
 The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`. <br>
 
@@ -312,7 +312,7 @@ The reason for implementing this feature with `Predicate<Person>` is that it can
 Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
 // TODO sequence diagram
 
-### Feature details
+#### Feature details
 Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
 > Take a person's name to be `Michelle Yeoh`. <br>
 > An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh". <br>
@@ -332,7 +332,7 @@ Furthermore, users are also allowed to specify the field that they want to find 
 
 This allows the user to narrow down their `find` results even more.
 
-### General Design Considerations
+#### General Design Considerations
 The implementation of `find` is built on top of the original AB3 codebase's `find` command.
 We felt that the default `find` feature was too restrictive, after considering the fields in an entry our users might be more interested in
  ie. `Education` or `Address`.<br>
@@ -360,16 +360,16 @@ Our implementation has some additions such as:
     * Users will not be able to search keywords for a particular attribute.
     * The resulting filtered list will span across multiple different fields, where all attributes in all fields containing the specified keyword will be displayed.
 
-## List feature
+### List feature
 
-### Implementation Details
+#### Implementation Details
 The `list` implementation is identical to the implementation in AB3's codebase.
 // TODO sequence diagram
-### Design Consideration
+#### Design Consideration
 // TODO
-### \[Proposed\] Sort feature
+#### \[Proposed\] Sort feature
 
-### Proposed Implementation
+#### Proposed Implementation
 
 The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
 * `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
@@ -383,7 +383,7 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
 1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
 2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
 
-### Design Considerations:
+#### Design Considerations:
 **Aspect: Command format:**
 * **Alternative 1:** `sort`
   * Pros:
@@ -402,19 +402,19 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
   
 _{more aspects to be added}_
 
-## Remark feature
+### Remark feature
 
-#### Feature Implementation Details
+##### Feature Implementation Details
 The current implementation provides users with two different methods of entering a remark for a student.
 1. `remark INDEX r/REMARK` where `INDEX` is the `Student` entry in the list, and `REMARK` is the remark to be added.
 2. Adding the remark through the [add feature](#Add-feature)
 
-#### Proposed Implementation
+##### Proposed Implementation
 
 The proposed remark mechanism will be facilitated by a pop-up text box. This will allows users to format their remarks however they like, 
 rather than being restricted to a single line in the command line (current implementation).
 
-### General Design Considerations
+#### General Design Considerations
 In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs). <br>
 Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
@@ -455,14 +455,14 @@ Additionally, the command line only provides a restricted view and input option 
     * Remarks are limited to the view of `PersonCard` and size of the window.
     * Remarks that are too long will be cut off and not visible.
 
-### Show feature
+#### Show feature
 
-### Implementation Details
+#### Implementation Details
 The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature. <br>
 Remarks longer than the width of `PersonListCard` in `PersonListPanel` 
 will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
 
-### General Design Considerations
+#### General Design Considerations
 **Aspect: Display output**
 * **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
   * Pros:
@@ -479,9 +479,9 @@ will not be visible. Hence, `show` allows users to view the full remark in the `
   * Cons:
     * Harder to implement
   
-### \[Proposed\] Undo/redo feature
+#### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+##### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -544,7 +544,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
