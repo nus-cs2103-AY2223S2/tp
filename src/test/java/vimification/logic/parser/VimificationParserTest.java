@@ -21,6 +21,11 @@ public class VimificationParserTest {
                 EXPECTED_EXCEPTION_CLASS,
                 () -> VimificationParser.getInstance().parse(input));
         assertEquals("Unknown command", ex.getMessage());
+        String input1 = "i hello world";
+        ex = assertThrows(
+                EXPECTED_EXCEPTION_CLASS,
+                () -> VimificationParser.getInstance().parse(input1));
+        assertEquals("Unable to parse input: " + input1, ex.getMessage());
     }
 
     @Test

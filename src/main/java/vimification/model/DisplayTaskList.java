@@ -25,7 +25,7 @@ public class DisplayTaskList {
         return result;
     }
 
-    public int length() {
+    public int size() {
         return displayList.size();
     }
 
@@ -36,10 +36,10 @@ public class DisplayTaskList {
     @Override
     public String toString() {
         String result = "";
-        for (int i = 0; i < length(); i++) {
+        for (int i = 0; i < size(); i++) {
             String prefix = i + 1 < 10 ? "0" : "";
             result += prefix + (i + 1) + ". " + get(i).toString();
-            if (i < length() - 1) {
+            if (i < size() - 1) {
                 result += "\n";
             }
         }

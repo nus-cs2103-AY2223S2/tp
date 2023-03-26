@@ -8,6 +8,7 @@ import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
 public class SearchByKeywordCommand extends SearchCommand {
+    public static final String COMMAND_WORD = "search by keyword";
 
     public SearchByKeywordCommand(String keyword) {
         super(task -> task.containsKeyword(keyword));

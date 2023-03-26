@@ -16,13 +16,13 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code word}. Ignores case, but a full word
      * match is required. <br>
      * examples:
-     * 
+     *
      * <pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      * </pre>
-     * 
+     *
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
@@ -57,7 +57,7 @@ public class StringUtil {
      * {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input e.g. empty string, "-1", "0", "+1", and
      * " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
-     * 
+     *
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
@@ -65,8 +65,8 @@ public class StringUtil {
 
         try {
             int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by
-                                                    // Integer#parseInt(String)
+            // "+1" is successfully parsed by Integer#parseInt(String)
+            return value > 0 && !s.startsWith("+");
         } catch (NumberFormatException nfe) {
             return false;
         }

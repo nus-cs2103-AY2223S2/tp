@@ -6,7 +6,7 @@ import vimification.model.task.Task;
 
 public abstract class SearchCommand extends ViewCommand {
     public static final String COMMAND_WORD = "search";
-    public static final String SUCCESS_MESSAGE_FORMAT = "These are your search results:";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Here are your search results:";
 
     private final Predicate<Task> pred;
 
