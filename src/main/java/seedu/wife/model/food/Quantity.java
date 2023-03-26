@@ -66,11 +66,4 @@ public class Quantity {
     public String toString() {
         return this.quantity.toString();
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Quantity
-                && quantity.equals(((Quantity) other).quantity));
-    }
 }
