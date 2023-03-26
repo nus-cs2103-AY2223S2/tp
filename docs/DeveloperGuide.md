@@ -70,11 +70,11 @@ Details coming soon...
 
 ---
 
-# Appendix: Requirements
+## **Appendix: Requirements**
 
-## Product scope
+### Product scope
 
-**************************Target user profile: Recruiters (Private or from small businesses)**************************
+**Target user profile: Recruiters (Private or from small businesses)**
 
 - Has a need to manage a significant number of job listings.
 - Prefer desktop apps over other types.
@@ -82,9 +82,9 @@ Details coming soon...
 - Prefers typing to mouse interactions.
 - Is reasonably comfortable using CLI apps
 
-**************************************Value proposition:************************************** All-in-one app that is free for managing job listings with an intuitive user experience
+**Value proposition**: All-in-one app that is free for managing job listings with an intuitive user experience
 
-## User stories
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -123,11 +123,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 *{More to be added}*
 
-## Use cases
+### Use cases
 
 (For all use cases below, the **System** is the `ListingBook` and the **Actor** is the `Recruiter` unless specified otherwise)
 
-### **Use case: Delete a Listing**
+**Use case: Delete a Listing**
 
 **MSS**
 
@@ -150,7 +150,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 
 
-### **Use case: List all job listings**
+**Use case: List all job listings**
 
 **MSS**
 
@@ -166,7 +166,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     Use case ends.
 
 
-### **Use case: Add a new job listing**
+**Use case: Add a new job listing**
 
 **MSS**
 
@@ -193,7 +193,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     - 2d1. ListingBook shows an error message.
     - Use case resumes at step 1.
 
-### **Use case: Update a job listing**
+**Use case: Update a job listing**
 
 **MSS**
 
@@ -230,7 +230,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     - 3e1. ListingBook shows an error message.
     - Use case resumes at step 2.
 
-### **Use case: Find a job listing**
+**Use case: Find a job listing**
 
 **MSS**
 
@@ -249,7 +249,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     Use case ends.
 
 
-### **Use case: Sort job listings**
+**Use case: Sort job listings**
 
 **MSS**
 
@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-### **Use case: Filter job listings**
+**Use case: Filter job listings**
 
 **MSS**
 
@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
     
-### **Use case: Delete an applicant from a job listing**
+**Use case: Delete an applicant from a job listing**
 
 **MSS**
 
@@ -321,7 +321,7 @@ Use case ends.
   - Steps 1c1-1c2 are repeated until the data entered are correct.
   - Use case resumes from step 2.
 
-### **Use case: Edit an applicant from a job listing**
+**Use case: Edit an applicant from a job listing**
 
 **MSS**
 
@@ -345,7 +345,7 @@ Use case ends.
     - Steps 1c1-1c2 are repeated until the data entered are correct.
     - Use case resumes from step 2.
 
-## Non-Functional Requirements
+### Non-Functional Requirements
 
 1. Should work on any *mainstream OS* as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 listings without a noticeable sluggishness in performance for typical usage.
@@ -353,7 +353,7 @@ Use case ends.
 4. Should be maintainable and have a clear code structure and documentation, so new updates and bug fixes can be easily implemented.
 5. Should be easy to use with clear instructions and meaningful error messages.
 
-## Glossary
+### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
