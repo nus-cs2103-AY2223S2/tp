@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,7 +11,7 @@
 
 <ScrollPane fx:id="pageContainer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox>
+      <VBox spacing="10.0">
          <children>
             <VBox>
                <children>
@@ -28,6 +29,9 @@
             </VBox>
             <Accordion fx:id="clashesBox" />
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" top="30.0" />
+         </padding>
       </VBox>
    </content>
 </ScrollPane>

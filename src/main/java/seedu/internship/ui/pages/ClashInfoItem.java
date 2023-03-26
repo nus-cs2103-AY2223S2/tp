@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ClashInfoItem extends UiPart<Region> {
-    private static final String FXML = "ClashInfoPage.fxml";
+    private static final String FXML = "ClashInfoItem.fxml";
     private final Logger logger = LogsCenter.getLogger(ClashInfoPage.class);
 
     private List<Event> clashingEvents;
@@ -54,6 +54,7 @@ public class ClashInfoItem extends UiPart<Region> {
         } else {
             start.setManaged(true);
             startLabel.setManaged(true);
+            start.setText(mainEvent.getStart().toString());
             endLabel.setText("End: ");
             end.setText(mainEvent.getEnd().toString());
         }
@@ -72,7 +73,7 @@ public class ClashInfoItem extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                String companyAndPosition = String.format("[%s, %s]",
+                String companyAndPosition = String.format("[%s, %s] ",
                         event.getInternship().getCompany(),
                         event.getInternship().getPosition());
                 setGraphic(new Label(companyAndPosition + event.getName()));

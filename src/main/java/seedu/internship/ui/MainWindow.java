@@ -16,6 +16,7 @@ import seedu.internship.logic.Logic;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.ui.pages.ClashInfoPage;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -192,6 +193,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (!commandResult.isEmptyInternship()) {
                 internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
+                internshipInfoPanelPlaceholder.getChildren().clear();
+                internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
             }
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -199,6 +202,13 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isEmptyInternship()) {
+                ClashInfoPage clashInfoPage = new ClashInfoPage(commandResult.getClashingEvents());
+                internshipInfoPanelPlaceholder.getChildren().clear();
+                internshipInfoPanelPlaceholder.getChildren().add(clashInfoPage.getRoot());
+
             }
 
             return commandResult;

@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static java.util.Objects.isNull;
+
 
 public class ClashInfoPage extends Page {
 
@@ -40,7 +42,7 @@ public class ClashInfoPage extends Page {
 
     public ClashInfoPage(HashMap<Event, List<Event>> clashes) {
         super(FXML);
-        clashes = this.clashes;
+        this.clashes = clashes;
         setHeadContent();
         setBodyContent();
     }
@@ -68,7 +70,7 @@ public class ClashInfoPage extends Page {
 
         for (Event event : clashes.keySet()) {
             // generate a list of Labels
-            String companyAndPosition = String.format("[%s, %s]",
+            String companyAndPosition = String.format("[%s, %s] ",
                     event.getInternship().getCompany(),
                     event.getInternship().getPosition());
             TitledPane pane = new TitledPane(companyAndPosition + event.getName(),
