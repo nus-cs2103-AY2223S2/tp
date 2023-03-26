@@ -42,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label medication;
+    private Label prescription;
     @FXML
     private FlowPane tags;
 
@@ -73,7 +73,7 @@ public class PersonCard extends UiPart<Region> {
 
         if (person.isPatient()) {
             Patient patient = (Patient) person;
-            medication.setText(patient.getMedication().value);
+            prescription.setText(patient.getPrescription().toString());
             appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
         }
     }

@@ -25,12 +25,12 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,10 +110,11 @@ public class EditCommand extends Command {
 
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
-            Medication updatedMedication = editPersonDescriptor.getMedication().orElse(patientToEdit.getMedication());
+            Prescription updatedPrescription = editPersonDescriptor.getPrescription()
+                    .orElse(patientToEdit.getPrescription());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedMedication,
-                    updatedTags, patientAppointments);
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress,
+                    updatedPrescription, updatedTags, patientAppointments);
         }
 
         if (personToEdit.isDoctor()) {
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
         private Email email;
         private Nric nric;
         private Address address;
-        private Medication medication = new Medication("");
+        private Prescription prescription;
         private Set<Tag> tags;
         private ArrayList<Appointment> appointments;
 
@@ -170,7 +171,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
-            setMedication(toCopy.medication);
+            setPrescription(toCopy.prescription);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
         }
@@ -214,12 +215,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setMedication(Medication medication) {
-            this.medication = medication;
+        public void setPrescription(Prescription prescription) {
+            this.prescription = prescription;
         }
 
-        public Optional<Medication> getMedication() {
-            return Optional.ofNullable(medication);
+        public Optional<Prescription> getPrescription() {
+            return Optional.ofNullable(prescription);
         }
 
         public void setNric(Nric nric) {
@@ -286,7 +287,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
-                    && getMedication().equals(e.getMedication())
+                    && getPrescription().equals(e.getPrescription())
                     && getTags().equals(e.getTags());
         }
     }

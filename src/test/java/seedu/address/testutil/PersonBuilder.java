@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Medication;
+import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
@@ -48,7 +48,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
-        medication = new Medication(DEFAULT_MEDICATION);
+        medication = new Medication(DEFAULT_MEDICATION, );
         tags = new HashSet<>();
         appointments = new ArrayList<>();
     }
@@ -116,7 +116,7 @@ public class PersonBuilder {
      * Sets the {@code Medication} of the {@code Person} that we are building.
      */
     public PersonBuilder withMedication(String medication) {
-        this.medication = new Medication(medication);
+        this.medication = new Medication(medication, );
         return this;
     }
 

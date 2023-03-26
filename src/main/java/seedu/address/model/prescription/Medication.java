@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.prescription;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -25,8 +25,10 @@ public class Medication {
 
     public final String value;
 
+    public static final Medication EMPTY_MEDICATION = new Medication("");
+
     /**
-     * Constructs an {@code Medication}.
+     * Constructs a {@code Medication}.
      *
      * @param medication A valid medication.
      */
@@ -44,7 +46,7 @@ public class Medication {
     }
 
     /**
-     * Returns true if Medication value is an empty string.
+     * @return true if its an empty medication
      */
     public boolean isEmpty() {
         return value.length() == 0;

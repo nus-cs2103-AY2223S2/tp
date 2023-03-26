@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.PrescribeCommand;
-import seedu.address.model.person.Medication;
+import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Nric;
 
 class PrescribeCommandParserTest {
@@ -25,9 +25,9 @@ class PrescribeCommandParserTest {
     @Test
     public void parse_validArgs_returnsPrescribeCommand() {
         assertParseSuccess(parser, NRIC_DESC_AMY + MEDICATION_DESC_AMY,
-                new PrescribeCommand(validNric, new Medication(VALID_MEDICATION_AMY)));
+                new PrescribeCommand(validNric, new Medication(VALID_MEDICATION_AMY, )));
         assertParseSuccess(parser, NRIC_DESC_AMY + MEDICATION_DESC_BOB,
-                new PrescribeCommand(validNric, new Medication(VALID_MEDICATION_BOB)));
+                new PrescribeCommand(validNric, new Medication(VALID_MEDICATION_BOB, )));
     }
 
     @Test

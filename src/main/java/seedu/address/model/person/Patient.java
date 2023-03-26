@@ -1,11 +1,16 @@
 package seedu.address.model.person;
 
+import static javafx.beans.binding.Bindings.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 
+import javax.swing.text.html.Option;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.prescription.Medication;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,21 +19,21 @@ import seedu.address.model.tag.Tag;
  */
 public class Patient extends Person {
     private final ArrayList<Appointment> patientAppointments;
-    private final Medication medication;
+    private final Prescription prescription;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Medication medication,
+    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Prescription prescription,
                    Set<Tag> tags, ArrayList<Appointment> patientAppointments) {
         super(name, phone, email, nric, address, tags, patientAppointments);
         requireAllNonNull(name, phone, email, address, tags, patientAppointments);
-        this.medication = medication;
+        this.prescription = prescription;
         this.patientAppointments = patientAppointments;
     }
 
-    public Medication getMedication() {
-        return medication;
+    public Prescription getPrescription() {
+        return prescription;
     }
 
     /**
@@ -54,7 +59,7 @@ public class Patient extends Person {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getNric().equals(getNric())
                 && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getMedication().equals(getMedication())
+                && otherPatient.getPrescription().equals(getPrescription())
                 && otherPatient.getTags().equals(getTags())
                 && otherPatient.getPatientAppointments().equals(getPatientAppointments());
     }
@@ -63,10 +68,8 @@ public class Patient extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
 
-        if (!getMedication().isEmpty()) {
-            builder.append("; Medication: ")
-                    .append(getMedication());
-        }
+        builder.append("; Prescription: ")
+                .append(getPrescription());
 
         ArrayList<Appointment> appointments = getPatientAppointments();
         if (!appointments.isEmpty()) {

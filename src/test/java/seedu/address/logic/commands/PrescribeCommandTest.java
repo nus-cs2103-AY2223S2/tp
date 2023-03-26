@@ -6,21 +6,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.PrescribeCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Medication;
+import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -30,8 +26,8 @@ public class PrescribeCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Nric amyNric = new Nric(VALID_NRIC_AMY);
     private Nric bobNric = new Nric(VALID_NRIC_BOB);
-    private Medication amyMedication = new Medication(VALID_MEDICATION_AMY); // " " format
-    private Medication bobMedication = new Medication(VALID_MEDICATION_BOB); // "qty medication" format
+    private Medication amyMedication = new Medication(VALID_MEDICATION_AMY, ); // " " format
+    private Medication bobMedication = new Medication(VALID_MEDICATION_BOB, ); // "qty medication" format
 
     @Test
     public void constructor_null_throwsNullPointerException() {
