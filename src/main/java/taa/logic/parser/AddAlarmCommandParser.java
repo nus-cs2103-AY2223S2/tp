@@ -5,10 +5,10 @@ import static taa.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.stream.Stream;
 
-import taa.logic.parser.exceptions.ParseException;
-import taa.model.Alarm;
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
+import taa.logic.parser.exceptions.ParseException;
+import taa.model.Alarm;
 
 /**
  * Defines the parser for the add alarm command.
