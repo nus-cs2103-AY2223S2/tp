@@ -55,10 +55,6 @@ public class Session {
      * @return The name of the session.
      */
     public String getSessionName() {
-        System.out.println("########\n "
-                + "ATTENDANCE for" + sessionName);
-        System.out.println(attendance.toString());
-        System.out.println("########");
         return this.sessionName;
     }
 
@@ -94,7 +90,9 @@ public class Session {
     }
 
     /**
-     * Sets the list of students who are in the session.
+     * Sets the list of students who are in the session.This will create a new hashMap and assign it
+     * to {@code attendance} instead of modifying {@code attendance}.
+     *
      * @param students The list of students who are in the session.
      */
     public void setStudents(UniqueStudentList students) {
@@ -115,6 +113,7 @@ public class Session {
      */
     public void markPresent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
+        assert attendance != null : "Attendance should not be null!";
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();
@@ -131,6 +130,7 @@ public class Session {
      */
     public void markAbsent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
+        assert attendance != null : "Attendance should not be null!";
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();

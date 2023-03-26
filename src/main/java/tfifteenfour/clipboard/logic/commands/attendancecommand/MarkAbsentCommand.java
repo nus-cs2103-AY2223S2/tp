@@ -26,9 +26,9 @@ public class MarkAbsentCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the selected student at the index number as absent. \n"
+            + ": Marks the selected student at the index number as absent. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 1,2,3,4,5";
 
     public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
 
