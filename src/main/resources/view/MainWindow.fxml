@@ -12,6 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Wingman App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -51,7 +53,8 @@
 <!--            </padding>-->
           </StackPane>
         </HBox>
-      <HBox spacing="10" style="-fx-background-color:#DAE3E6" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+
+      <ListView orientation="HORIZONTAL" style="-fx-background-color: #DAE3E6" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
         <padding>
           <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
@@ -90,8 +93,7 @@
           </padding>
           <StackPane fx:id="locationListPanelPlaceholder" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS"/>
         </VBox>
-
-      </HBox >
+      </ListView >
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
 
       </VBox>
