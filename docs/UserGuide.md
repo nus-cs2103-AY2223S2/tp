@@ -62,7 +62,7 @@ Exits the program.
 
 ### Listing all students: `list`
 
-Shows a list of the saved all students.
+Shows a list of the saved all students. Useful for resetting the list after using commands that modifies the list _(eg. [`find`](#findfilter-students-find))_.
 
 > Format: `list`
 
@@ -223,6 +223,37 @@ _**Above: Before entering `show` command**_
 
 ![show after](images/user-guide/show_after.jpg)  
 _**Above: After entering `show` command**_
+
+</div>
+
+### Find/filter students: `find`
+
+Find/filter students based on their name.
+
+> Format: `find KEYWORD1 KEYWORD2`
+
+<div markdown="span" class="alert alert-info">
+
+:bulb: **Note:** `find` can find for partial matches of the keywords _(eg. `find Sh` will display the students named "Shao Hong" & "Shaun")_.
+
+</div>
+
+Examples:
+
+- `find Shao Hong` will display the student named "Shao Hong"
+- `find Sh` will display the students named "Shao Hong" & "Shaun"
+
+<div align=center>
+
+![find before](images/user-guide/find_before.jpg)  
+_**Above: Before entering `find` command**_
+
+</div>
+
+<div align=center>
+
+![find after](images/user-guide/find_after.jpg)  
+_**Above: After entering `find` command**_
 
 </div>
 
