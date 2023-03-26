@@ -292,8 +292,6 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 > ❗ **Caution:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
 
----
-
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -306,8 +304,6 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | Delete | `delete INDEX`<br>eg. `delete 3`                                                                |
 | Exit   | `exit`, `bye`, `quit`                                                                           |
 | List   | `list`                                                                                          |
-
----
 
 [↑ Back to top](#table-of-contents)
 
