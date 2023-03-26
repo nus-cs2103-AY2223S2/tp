@@ -24,10 +24,16 @@ Implemented the findtag feature
 Implemented the unit tests for findtag
 UG for findtag feature
 
+Wrote the findlead feature
+Wrote the findall feature
+
 Contributions to the DG
   In terms of what
 
 * **Project management**:
+
+Setup the codecov and github repo organisation
+Approve and comment on teammate PRs
 
 * **Enhancements to existing features**:
   * example
