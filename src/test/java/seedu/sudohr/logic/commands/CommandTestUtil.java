@@ -7,9 +7,11 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
@@ -95,6 +97,21 @@ public class CommandTestUtil {
 
     public static final String INVALID_LEAVE_DATE_DESC = " " + PREFIX_DATE + "12/23/24";
     public static final String INVALID_INDEX_DESC = " " + PREFIX_ID + "3k21309";
+
+    public static final String VALID_START_LEAVE_DATE = "2022-03-02";
+    public static final String VALID_SECOND_DAY_LEAVE_DATE = "2022-03-03";
+    public static final String VALID_THIRD_DAY_LEAVE_DATE = "2022-03-04";
+    public static final String VALID_END_LEAVE_DATE = "2022-03-05";
+    public static final String INVALID_END_LEAVE_DATE_BEFORE_START = "2022-03-01";
+    public static final String INVALID_END_LEAVE_DATE_MORE_THAN_SEVEN = "2022-03-09";
+
+    public static final String DATE_DESC_START_LEAVE_DATE = " " + PREFIX_START_DATE + "2022-03-02";
+    public static final String DATE_DESC_END_LEAVE_DATE = " " + PREFIX_END_DATE + "2022-03-05";
+    public static final String INVALID_DESC_END_LEAVE_DATE_BEFORE_START = " " + PREFIX_END_DATE + "2022-03-01";
+    public static final String INVALID_DESC_END_LEAVE_DATE_MORE_THAN_SEVEN = " " + PREFIX_END_DATE + "2022-03-08";
+    public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "12/23/24";
+    public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE + "12/23/24";
+
     // '&' not allowed in names
     public static final String INVALID_DEPARTMENT_NAME_DESC = " " + PREFIX_DEPARTMENT_NAME + "Engineering&";
 
@@ -158,6 +175,7 @@ public class CommandTestUtil {
         assertEquals(expectedSudoHr, actualModel.getSudoHr());
         assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
      * {@code model}'s SudoHR.

@@ -33,6 +33,13 @@ public class UniqueEmployeeList implements Iterable<Employee> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns number of employees being tracked.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Returns an employee with the specified ID.
      */
     public Employee get(Id id) {

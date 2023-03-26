@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
@@ -17,6 +18,7 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
+import seedu.sudohr.model.leave.LeaveSortedByDateComparator;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Department> filteredDepartments;
     private final FilteredList<Leave> filteredLeaves;
+    private final SortedList<Leave> sortedLeaves;
 
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
@@ -44,6 +47,7 @@ public class ModelManager implements Model {
         filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
         filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList());
+        sortedLeaves = new SortedList<>(this.filteredLeaves, new LeaveSortedByDateComparator());
     }
 
     public ModelManager() {
@@ -241,7 +245,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Leave> getFilteredLeaveList() {
-        return filteredLeaves;
+        return sortedLeaves;
     }
 
     @Override
@@ -355,5 +359,4 @@ public class ModelManager implements Model {
                 && filteredDepartments.equals(other.filteredDepartments)
                 && filteredLeaves.equals(other.filteredLeaves);
     }
-
 }

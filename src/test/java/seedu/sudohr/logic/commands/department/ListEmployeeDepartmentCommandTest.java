@@ -1,5 +1,6 @@
 package seedu.sudohr.logic.commands.department;
 
+import static seedu.sudohr.commons.core.Messages.MESSAGE_DEPARTMENTS_LISTED_OVERVIEW;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND;
@@ -8,7 +9,6 @@ import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
@@ -26,18 +26,19 @@ public class ListEmployeeDepartmentCommandTest {
         expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
     }
 
+    // BUGGED
     @Test
     public void execute_listIsFiltered_shows2Departments() {
         expectedModel.updateFilteredDepartmentList(new DepartmentContainsEmployeePredicate(new Id("102")));
         assertCommandSuccess(new ListEmployeeDepartmentCommand(new DepartmentContainsEmployeePredicate(new Id("102"))),
-                model, String.format(Messages.MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 2), expectedModel);
+                model, String.format(MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 2), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_shows1Departmentt() {
         expectedModel.updateFilteredDepartmentList(new DepartmentContainsEmployeePredicate(new Id("101")));
         assertCommandSuccess(new ListEmployeeDepartmentCommand(new DepartmentContainsEmployeePredicate(new Id("101"))),
-                model, String.format(Messages.MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 1), expectedModel);
+                model, String.format(MESSAGE_DEPARTMENTS_LISTED_OVERVIEW, 1), expectedModel);
     }
 
     @Test
