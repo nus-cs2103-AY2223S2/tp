@@ -127,24 +127,27 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* Model Stores Independent Entities(`Internship` and `Events`) which interact with each other to give the features of intern's ship
+* For each entity :
+  * model stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
+  * model stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+  
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+#### Relationship Between `Internship` and `Event` entities
+Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two .
+Also to make insertions and deletions of events easier , each event instance stores the internship instance it is associated with.Due to this ,
+extra precuations are taken during internship deletions , making sure the corresponding events are deleted as well.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
-
+<img src="images/InternshipEventModelClassDiagram.png" width="250" />
 
 ### Storage component
 
@@ -168,6 +171,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### View Calendar feature
+
+#### Implementation
+
 The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX. 
 
 It is facilitated by `CalendarPage`, which upon creation will initialize a `Calendar`, a CalendarFX class that will then store all events it receives from the `Model` interface via a `CommandResult` into the `Calendar`. Then, the `Calendar` will be displayed in a `MonthPage`, a CalendarFX view that showcases all events by month in a grids.
@@ -178,86 +184,30 @@ The following sequence diagram depicts the interactions between different compon
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
+### Add Event feature 
+The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
 
-### \[Proposed\] Undo/redo feature
+#### Implementation
+ 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`. 
 
-#### Proposed Implementation
+ 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The Activity Diagram for Add event is 
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The Sequence Diagram for the adding the event is
+![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 

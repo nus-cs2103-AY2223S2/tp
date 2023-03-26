@@ -159,7 +159,26 @@ Deletes an internship along with its details.
 Format: `delete ID`
 * Deletes the person at the specified `ID` in the Internship List Panel.
 
+
+### Adding an Event : `event add`
+Adds an Event along with its details to the selected internship.
+
+> NOTE: Before adding an event , you have to select an internship using `select ID`
+
+Format: 
+
+* If you want to add an `event`: 
+
+`event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>`
+
+* If you want to add an `deadline`:
+
+`event add na/<event name> en/<event end datetime> de/<event description>`
+
 Examples:
+```
+event add na/Technical Interview st/10/09/2023 1500 en/10/09/2023 1700 de/On Zoom
+```
 
 ### Exiting the program : `exit`
 
