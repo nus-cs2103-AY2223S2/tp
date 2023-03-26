@@ -337,54 +337,49 @@ The user stories are not limited to those in this list. More can be added in the
 
 **MSS**
 
-1. User requests to list entities based on classification
-2. Reroll shows a list of entities
-3. User enters edit mode for specified entity
-4. User requests to replace specified field with new value
-5. Reroll edits the specified entity and display it
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User requests to replace specified field with new value
+4. Reroll edits the specified entity and display it
 
-   Steps 4-5 are repeated for as many fields as required.
-6. User exits edit mode
+   Steps 3-4 are repeated for as many fields as required.
+5. User exits edit mode
 
     Use case ends  
 
 **Extensions**
 
-* 2a.The list is empty.
-
-    Use case ends
-* 3a. The given name is invalid
-  * 3a1. Reroll shows an error message.
+* 2a. The specifications of the entity are invalid
+  * 2a1. Reroll shows an error message.
   
-    Use case resumes at step 2
-* 4a. The given fields are invalid
-  * 4a.1 Reroll shows an error message and exits edit mode
+    Use case resumes at step 1
+* 3a. The given fields are invalid
+  * 3a.1 Reroll shows an error message and exits edit mode
   
-    Use case resumes at step 2
+    Use case resumes at step 1
 
 
-**Use case: Delete an entity**
+**Use case: Add item to inventory of entity**
 
 **MSS**
 
-1.  User requests to list entities based on classification
-2.  Reroll shows a list of entities
-3.  User requests to delete a specific entity in the list by name
-4.  Reroll deletes the entity
-
-    Use case ends.
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User request to add specified item
+4. Reroll adds specified item to entity's inventory
+    
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The specifications of the entity are invalid
+  * 2a1. Reroll shows an error message.
 
-  Use case ends.
-
-* 3a. The given name is invalid.
-
-    * 3a1. Reroll shows an error message.
-
-      Use case resumes at step 2.
+    Use case resumes at step 1
+* 3a. Item does not exist in Reroll
+  * 3a1. Reroll shows an error message and exits edit mode
+  
+    Use case resumes at step 1
 
 *{More to be added}*
 
