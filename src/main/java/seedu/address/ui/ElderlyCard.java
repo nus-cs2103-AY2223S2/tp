@@ -70,6 +70,7 @@ public class ElderlyCard extends UiPart<Region> {
         address.setText(elderly.getAddress().value);
         age.setText(elderly.getAge().value);
         email.setText(elderly.getEmail().value);
+
         StringBuilder available = new StringBuilder();
         if (elderly.getAvailableDates().size() != 0) {
             for (AvailableDate dates : elderly.getAvailableDates()) {
@@ -97,6 +98,9 @@ public class ElderlyCard extends UiPart<Region> {
         }
         if (available.toString().isEmpty()) {
             availability.setVisible(false);
+        }
+        if (displayedIndex == 0) {
+            id.setVisible(false);
         }
     }
 

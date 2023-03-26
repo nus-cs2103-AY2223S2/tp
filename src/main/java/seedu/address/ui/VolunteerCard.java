@@ -99,6 +99,14 @@ public class VolunteerCard extends UiPart<Region> {
         if (volunteer.getMedicalTags().isEmpty()) {
             medicalTagsBox.getChildren().removeAll(medicalTagsBox.getChildren());
         }
+
+        if (available.toString().isEmpty()) {
+            availability.setVisible(false);
+        }
+
+        if (displayedIndex == 0) {
+            id.setVisible(false);
+        }
     }
 
     @Override

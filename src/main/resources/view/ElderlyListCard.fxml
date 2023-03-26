@@ -26,7 +26,7 @@
             <padding>
                 <Insets bottom="5" left="5" right="5" top="5"/>
             </padding>
-            <HBox styleClass="cell-title" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT">
                 <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minWidth="200">
                     <Label fx:id="name" prefHeight="17.0" styleClass="cell_big_label" wrapText="true"
                            text="\$first"/>

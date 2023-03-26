@@ -233,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             label.setMinHeight(50);
             popup.setAutoHide(true);
             popup.setHideOnEscape(true);
-            popup.show(primaryStage, 0, primaryStage.getHeight());
+            popup.show(primaryStage, 10, primaryStage.getHeight());
             throw e;
         }
     }
