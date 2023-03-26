@@ -155,6 +155,35 @@ Example: <br/>
 Spinach {VEGETABLES}
 ```
 
+### Untagging a food item: `untag`
+
+Remove a tag from a specified food item in your fridge.
+
+Format: `untag <index> n/<tag name>`
+- Remove `Tag Name` from the food item with index `Index`
+- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+
+Example:
+`untag 1 n/vegetables` displays
+```
+Vegetables successfully untagged from Spinach
+```
+
+### Listing your tags: `listtag`
+
+List all the tags that you have created.
+
+Format: `listtag`
+
+Example:
+`listtag` displays
+```
+Here are your existing tags: 
+Dairy
+Meat
+Vegetables
+```
+
 ### Updating a food item : `update`
 
 Update  food items in your fridge.
