@@ -355,7 +355,7 @@ Examples:
 
 ### Locating orders by name: `findo`
 
-Finds persons whose names contain any of the given keywords.
+Finds orders whose names contain any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
@@ -363,7 +363,7 @@ Format: `findo KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `chocolate cake` will match ` cake chocolate`.
 * Only the order name is searched.
 * Only full words will be matched e.g. `chocolate` will not match `chocolatey`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chocolate cake` will return `chocolate muffin`, `crepe cake`
 
 Examples:
