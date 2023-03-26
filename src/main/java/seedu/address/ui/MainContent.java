@@ -23,29 +23,20 @@ public class MainContent extends UiPart<Region> {
     private HBox mainContent;
 
     /**
-     * Constructs a {@code MainContent} with the given {@code fishListPanel} and {@code taskListPanel}.
+     * Constructs a {@code MainContent} with the given
+     * {@code tankListPanel}, {@code fishListPanel} and {@code taskListPanel}.
      */
-    public MainContent(FishListPanel fishListPanel, TaskListPanel taskListPanel) {
-        super(FXML);
-        HBox.setHgrow(fishListPanel.getRoot(), Priority.ALWAYS);
-        HBox.setHgrow(taskListPanel.getRoot(), Priority.ALWAYS);
-        mainContent.getChildren().setAll(fishListPanel.getRoot(), taskListPanel.getRoot());
-    }
-
-    /**
-     * Constructs a {@code MainContent} with the given {@code tankListPanel} and {@code taskListPanel}.
-     */
-    public MainContent(TankListPanel tankListPanel, TaskListPanel taskListPanel) {
+    public MainContent(TankListPanel tankListPanel, FishListPanel fishListPanel, TaskListPanel taskListPanel) {
         super(FXML);
         HBox.setHgrow(tankListPanel.getRoot(), Priority.ALWAYS);
+        HBox.setHgrow(fishListPanel.getRoot(), Priority.ALWAYS);
         HBox.setHgrow(taskListPanel.getRoot(), Priority.ALWAYS);
-        mainContent.getChildren().setAll(tankListPanel.getRoot(), taskListPanel.getRoot());
+        mainContent.getChildren().setAll(tankListPanel.getRoot(), fishListPanel.getRoot(), taskListPanel.getRoot());
     }
 
-    public void setPanels(UiPart<Region> leftPanel, UiPart<Region> rightPanel) {
-        HBox.setHgrow(leftPanel.getRoot(), Priority.ALWAYS);
-        HBox.setHgrow(rightPanel.getRoot(), Priority.ALWAYS);
-        mainContent.getChildren().setAll(leftPanel.getRoot(), rightPanel.getRoot());
+    public void setMiddlePanel(UiPart<Region> newPanel) {
+        mainContent.getChildren().set(1, newPanel.getRoot());
+
     }
 
     @Override
@@ -64,6 +55,5 @@ public class MainContent extends UiPart<Region> {
         MainContent content = (MainContent) other;
         return mainContent.equals(content.mainContent);
     }
-
 }
 //@@author

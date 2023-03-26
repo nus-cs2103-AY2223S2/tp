@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         sortedFishListPanel = new FishListPanel(logic.getSortedFishList());
         tankListPanel = new TankListPanel(logic.getFilteredTankList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        mainContent = new MainContent(tankListPanel, taskListPanel);
+        mainContent = new MainContent(tankListPanel, fishListPanel, taskListPanel);
         mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -179,18 +179,14 @@ public class MainWindow extends UiPart<Stage> {
     private void handleGuiChange() {
         GuiSettings.GuiMode newMode = logic.getGuiSettings().getGuiMode();
         switch (newMode) {
-        case DISPLAY_TANKS_TASKS:
-            mainContent.setPanels(tankListPanel, taskListPanel);
+        case DISPLAY_FISHES:
+            mainContent.setMiddlePanel(fishListPanel);
             break;
-        case DISPLAY_FISHES_TASKS:
-            mainContent.setPanels(fishListPanel, taskListPanel);
-            break;
-        case DISPLAY_SORTED_FISHES_TASKS:
-            mainContent.setPanels(sortedFishListPanel, taskListPanel);
+        case DISPLAY_SORTED_FISHES:
+            mainContent.setMiddlePanel(sortedFishListPanel);
             break;
         default:
-            mainContent.setPanels(tankListPanel, taskListPanel); // Default mode
-            break;
+            break; // just keep the current mode
         }
     }
 

@@ -39,7 +39,7 @@ public class FishSortCommand extends FishCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.sortFilteredFishList(fishComparator);
-        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES_TASKS);
+        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES);
         return new CommandResult(MESSAGE_VIEW_FISH_SUCCESS, false, false, true);
     }
 
