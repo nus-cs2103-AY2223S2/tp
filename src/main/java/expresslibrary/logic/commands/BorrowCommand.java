@@ -72,6 +72,8 @@ public class BorrowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_BOOK_BORROWED);
         }
 
+        Book origBook = model.getBook(bookToBorrow);
+
         // Create the person copy
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -84,6 +86,7 @@ public class BorrowCommand extends Command {
         bookToBorrow.loanBookTo(editedPerson, LocalDate.now(), dueDate);
 
         model.setPerson(personToEdit, editedPerson);
+        model.setBook(origBook, bookToBorrow);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
 

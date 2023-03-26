@@ -140,6 +140,11 @@ public class ModelManager implements Model {
         expressLibrary.deleteBook(key);
     }
 
+    @Override
+    public Book getBook(Book book) {
+        return expressLibrary.getBook(book);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 

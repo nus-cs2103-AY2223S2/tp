@@ -66,13 +66,22 @@ public class ReturnCommand extends Command {
         }
 
         // Check if the book's borrower matches the person specified
-        if (bookToReturn.getBorrower() != personToEdit) {
+        if (!bookToReturn.getBorrower().isSamePerson(personToEdit)) {
             throw new CommandException(Messages.MESSAGE_BOOK_INVALID_BORROWER);
         }
 
-        personToEdit.returnBook(bookToReturn);
+        Book origBook = model.getBook(bookToReturn);
+
+        // Create the person copy
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getBooks(), personToEdit.getTags());
+
+        editedPerson.returnBook(bookToReturn);
         bookToReturn.returnBook();
 
+        model.setPerson(personToEdit, editedPerson);
+        model.setBook(origBook, bookToReturn);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
 
