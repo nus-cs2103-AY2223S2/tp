@@ -75,11 +75,7 @@ public class TypicalDoctors {
         AddressBook ab = new AddressBook();
         for (Doctor doctor : getTypicalDoctors()) {
             ab.addDoctor(doctor);
-            if (doctor.hasPatients()) {
-                doctor.getPatients().forEach((Patient patient) -> {
-                    ab.addPatient(patient);
-                });
-            }
+            doctor.getPatients().forEach(ab::addPatient);
         }
         Patient unassignedPatient = getUnassignedPatient();
         ab.addPatient(unassignedPatient);

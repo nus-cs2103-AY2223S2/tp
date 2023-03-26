@@ -71,6 +71,17 @@ public class Doctor extends Person {
     }
 
     /**
+     * Removes a patient if it exists in doctor's patient list.
+     *
+     * @param patient a patient.
+     */
+    public void removePatientIfAssigned(Patient patient) {
+        if (this.hasPatient(patient)) {
+            patients.remove(patient);
+        }
+    }
+
+    /**
      * Returns true if both doctors have the same name.
      * This defines a weaker notion of equality between two doctors.
      */
