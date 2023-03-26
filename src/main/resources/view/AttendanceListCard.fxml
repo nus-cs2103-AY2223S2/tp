@@ -38,7 +38,7 @@
             <RowConstraints />
         </rowConstraints>
     </GridPane>
-    <VBox style="-fx-background-color: #d8a75f; -fx-background-radius: 5;">
+    <VBox style="-fx-background-color: #b56d5e; -fx-background-radius: 5;">
         <children>
             <Label fx:id="studentId" style="-fx-background-radius: 3;" styleClass="cell_small_label" text="\$studentId" textFill="WHITE" />
         </children>

@@ -38,7 +38,7 @@ public class NavigationBar extends UiPart<Region> {
             String groupName = currentSelection.getSelectedGroup().getGroupName();
             String sessionName = currentSelection.getSelectedSession().getSessionName();
 
-            status.setText(courseCode + " > " + groupName + " > " + sessionName);
+            status.setText(courseCode + " > " + groupName + " > " + sessionName + " > Attendance");
         }
     }
 }

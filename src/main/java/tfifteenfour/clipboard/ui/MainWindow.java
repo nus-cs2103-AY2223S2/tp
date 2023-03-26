@@ -23,9 +23,9 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
-import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
@@ -374,7 +374,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void handleAttendance() {
+    private void handleSessionCommand() {
         showSessionPane(logic.getCurrentSelection().getSelectedGroup());
         refreshNavigationBar();
     }
@@ -397,8 +397,8 @@ public class MainWindow extends UiPart<Stage> {
         } else if (commandResult.getCommand() instanceof HomeCommand) {
             handleHome();
 
-        } else if (commandResult.getCommand() instanceof AttendanceCommand) {
-            handleAttendance();
+        } else if (commandResult.getCommand() instanceof SessionCommand) {
+            handleSessionCommand();
 
         } else if (commandResult.getCommand() instanceof MarkAbsentCommand
                 || commandResult.getCommand() instanceof MarkPresentCommand) {
