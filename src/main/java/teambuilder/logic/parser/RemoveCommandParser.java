@@ -1,12 +1,11 @@
 package teambuilder.logic.parser;
 
-import teambuilder.commons.core.index.Index;
+import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import teambuilder.logic.commands.DeleteCommand;
 import teambuilder.logic.commands.RemoveCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.team.TeamName;
-
-import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new RemoveCommand object

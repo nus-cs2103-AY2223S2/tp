@@ -1,5 +1,8 @@
 package teambuilder.model.team;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,11 +11,9 @@ import teambuilder.model.tag.Tag;
 import teambuilder.model.team.exceptions.DuplicateTeamException;
 import teambuilder.model.team.exceptions.TeamNotFoundException;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A list of teams that enforces uniqueness between its elements and does not allow nulls.
+ */
 public class UniqueTeamList implements Iterable<Team> {
 
     private final ObservableList<Team> internalList = FXCollections.observableArrayList();
@@ -50,11 +51,13 @@ public class UniqueTeamList implements Iterable<Team> {
         }
     }
 
+    /**
+     * Add or delete person from TeamList depending on presence or absence of team tag respectively.
+     */
     public void updatePersonInTeams(Person person) {
         requireNonNull(person);
         Object[] allTeamTags = person.getTeams().toArray();
 
-        // Add or delete person from TeamList depending on presence or absence of team tag respectively
         for (Team team: internalList) {
             boolean isPresent = false;
             for (Object tag : allTeamTags) {
@@ -73,10 +76,12 @@ public class UniqueTeamList implements Iterable<Team> {
 
     }
 
+    /**
+     * delete person from all teams in TeamList.
+     */
     public void removeFromAllTeams(Person person) {
         requireNonNull(person);
 
-        // delete person from all teams in TeamList
         for (Team team: internalList) {
             team.removePerson(person.getName());
         }

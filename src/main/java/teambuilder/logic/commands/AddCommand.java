@@ -8,6 +8,8 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import teambuilder.commons.core.Memento;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
@@ -15,8 +17,6 @@ import teambuilder.model.Model;
 import teambuilder.model.person.Person;
 import teambuilder.model.tag.Tag;
 import teambuilder.model.team.Team;
-
-import java.util.List;
 
 /**
  * Adds a person to the address book.

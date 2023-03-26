@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import teambuilder.model.person.Name;
-import teambuilder.model.person.Person;
 import teambuilder.model.tag.Tag;
 
 /**

@@ -1,18 +1,16 @@
 package teambuilder.logic.commands;
 
-import teambuilder.commons.core.Memento;
-import teambuilder.commons.core.Messages;
-import teambuilder.commons.core.index.Index;
-import teambuilder.commons.util.HistoryUtil;
-import teambuilder.logic.commands.exceptions.CommandException;
-import teambuilder.model.Model;
-import teambuilder.model.person.Person;
-import teambuilder.model.team.Team;
-import teambuilder.model.team.TeamName;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import teambuilder.commons.core.Memento;
+import teambuilder.commons.core.Messages;
+import teambuilder.commons.util.HistoryUtil;
+import teambuilder.logic.commands.exceptions.CommandException;
+import teambuilder.model.Model;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.TeamName;
 
 /**
  * Removes a team identified using its name from the address book.
