@@ -1,15 +1,10 @@
 package seedu.address.model.commitment;
 
-import java.util.ArrayList;
-
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
-import seedu.address.model.timetable.Module;
 import seedu.address.model.time.Day;
-import seedu.address.model.time.HourBlock;
-
-
+import seedu.address.model.timetable.Module;
 
 /**
  * Represents a typical NUS lesson.

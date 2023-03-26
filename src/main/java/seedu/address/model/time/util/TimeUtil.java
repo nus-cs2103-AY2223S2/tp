@@ -8,13 +8,12 @@ import java.util.stream.Stream;
 import org.joda.time.LocalTime;
 
 import javafx.util.Pair;
+import seedu.address.commons.util.MathUtil;
 import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
 import seedu.address.model.timetable.Timetable;
-import seedu.address.model.time.HourBlock;
-import seedu.address.commons.util.MathUtil;
-
 
 /**
  * Contains utils functions for Timetable related jobs.
