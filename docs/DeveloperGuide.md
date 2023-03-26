@@ -175,16 +175,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### View Calendar feature
+The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
+It is accessible by the command `calendar`.
 
 #### Implementation
+Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
-The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX. 
+Step 1. The user enters `calendar` command into the CommandBox.
 
-It is facilitated by `CalendarPage`, which upon creation will initialize a `Calendar`, a CalendarFX class that will then store all events it receives from the `Model` interface via a `CommandResult` into the `Calendar`. Then, the `Calendar` will be displayed in a `MonthPage`, a CalendarFX view that showcases all events by month in a grids.
+Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
 
-The following sequence diagram depicts the interactions between different components following the `execute("calendar")` API call . 
+Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
 
-![Sequence Diagram for execute("calendar")](images/ViewCalendarSequenceDiagram.png)
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.   
+
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`. 
+
+Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`. 
+
+Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
+
+Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
+
+Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`. 
+
+Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
+Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
+
+Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
+
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI. 
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
