@@ -152,7 +152,7 @@ Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `findPerson John` returns `john` and `John Doe`
+* `findPerson John` returns `john` , `John Doe` and `johnston`.
 
 [//]: # (* `findPerson alex david` returns `Alex Yeoh`, `David Li`<br>)
 
