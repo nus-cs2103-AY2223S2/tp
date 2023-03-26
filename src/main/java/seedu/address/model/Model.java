@@ -46,6 +46,16 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the user prefs' theme
+     */
+    String getCssFilePath();
+
+    /**
+     * Sets the user prefs' theme
+     */
+    void setCssFilePath(String cssFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
