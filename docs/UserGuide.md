@@ -305,10 +305,41 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 [TODO by Shawn]
 
 ### Deleting Internships : `delete`
-[TODO by Christopher]
+The `delete` command can delete multiple internships quickly, keeping your screen nice and tidy. There are 2 formats of the `delete` command.
+
+Format 1: `delete INDEX ...`
+* Deletes an internship at the index specified by the `list` or `find` command.
+* If multiple `INDEX` are provided, multiple internships can be deleted.
+* `INDEX` must be an integer greater than or equal to 1, as explained in [Figure 4](#descriptions-prefixes-and-constraints-for-parameters).
+* At least 1 `INDEX` must be provided.
+
+Examples:
+* `delete 1` Assuming that you have at least one internship displayed in the
+[List Panel](#exploring-the-graphical-user-interface), this command deletes the first internship in the List Panel.
+* `delete 1 3` Assuming that you have at least three internship displayed in the
+[List Panel](#exploring-the-graphical-user-interface), this command deletes the first and third internships in the List Panel.
+* If you run `delete 1` after `find` and not `list`, it will delete the first entry as displayed by  `find`, not `list`. Likewise, if you run `delete 1` after `list`, it will delete the first entry as displayed by `list`.
+
+![Delete Command](images/ug-delete-example.png)
+   <p style="text-align: center;">Figure XX: Example of the delete command in action</p>
+
+Format 2: `delete [n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE]`
+* Deletes all internships in the current display list that matches all the parameters.
+* At least 1 parameter must be provided, and at most one of each parameter (`COMPANY_NAME`, `ROLE`, `STATUS`, `DATE`) can be provided.
+
+Examples:
+* `delete` Displays an error because no parameters are provided
+* `delete n/Google` Deletes all internships with the company name 'google'. Note that case matching is insensitive, so internships with the company name 'Google' or 'gOOgle' will be deleted. However, matching must be exact.
+* `delete n/Google r/software engineer` Deletes all internship with the company name 'google' **AND** the role 'software engineer'. Internships that do not fulfil both conditions will not be deleted. For example, the internship with company name 'google' and role as 'data engineer' will not be deleted. 
 
 ### Clearing all Internships : `clear`
-[TODO by Christopher]
+The `clear` command deletes all entries permanently from InternBuddy.
+
+Format: `clear`
+
+Example:
+![Clear Command](images/ug-clear-example.png)
+   <p style="text-align: center;">Figure XX: Example of the clear command in action</p>
 
 
 ### Getting Help : `help`
