@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_FEEDING_INTERVAL = new Prefix("fi/");
     public static final Prefix PREFIX_TAG = new Prefix("tg/");
     public static final Prefix PREFIX_TANK = new Prefix("tk/");
+    public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
 
     /* Task prefixes */
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");

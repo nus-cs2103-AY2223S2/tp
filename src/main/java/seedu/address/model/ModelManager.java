@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFish = new FilteredList<>(this.addressBook.getFishList());
-        sortedFish = new SortedList<>(this.addressBook.getFishList());
+        sortedFish = new SortedList<>(filteredFish);
         this.taskList = new TaskList(taskList);
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         this.tankList = new TankList(tankList);

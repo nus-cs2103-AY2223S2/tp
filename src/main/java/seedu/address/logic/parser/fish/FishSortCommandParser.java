@@ -1,12 +1,20 @@
 package seedu.address.logic.parser.fish;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.fish.FishSortCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Fish;
 
@@ -39,23 +47,44 @@ public class FishSortCommandParser implements Parser<FishSortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FishSortCommand parse(String args) throws ParseException {
-        if (args.isEmpty()) {
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_TANK);
+        if (!arePrefixesPresent(argMultimap, PREFIX_SORT_BY)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishSortCommand.MESSAGE_USAGE));
         }
-        switch (args.trim().toLowerCase()) {
+        // Checks for a value, skips if no tankIndex was given
+        String index = argMultimap.getValue(PREFIX_TANK).orElse(null);
+        Index tankIndex = null;
+        if (index != null) {
+            tankIndex = ParserUtil.parseIndex(index);
+        }
+
+        String sortBy = argMultimap.getValue(PREFIX_SORT_BY).get();
+
+        switch (sortBy) {
         case "n":
-            return new FishSortCommand(NAME_COMPARATOR);
+            return new FishSortCommand(NAME_COMPARATOR, tankIndex);
         case "lfd":
-            return new FishSortCommand(LAST_FED_COMPARATOR);
+            return new FishSortCommand(LAST_FED_COMPARATOR, tankIndex);
         case "s":
-            return new FishSortCommand(SPECIES_COMPARATOR);
+            return new FishSortCommand(SPECIES_COMPARATOR, tankIndex);
         case "fi":
-            return new FishSortCommand(FEEDING_COMPARATOR);
+            return new FishSortCommand(FEEDING_COMPARATOR, tankIndex);
         case "tk":
-            return new FishSortCommand(TANK_COMPARATOR);
+            return new FishSortCommand(TANK_COMPARATOR, tankIndex);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     FishSortCommand.MESSAGE_USAGE));
         }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
