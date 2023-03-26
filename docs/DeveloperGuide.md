@@ -107,7 +107,7 @@ The Sequence Diagram below illustrates the interactions within the `CareFlowLogi
 
 Here are the other classes in `CareFlowLogic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `CareFlowParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CareFlowParser` returns as a `Command` object.
@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/careflow/model/CareFlowModel.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" />
 
 The `Model` component,
 * stores a `UserPref` object that represents the user's preferences.
@@ -126,19 +126,22 @@ The `Model` component,
 * does not depend on any of the other three components (as the `CareFlowModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-<img src="images/PatientModelClassDiagram.png" width="450" />
+<img src="images/PatientModelClassDiagram.png" />
+
 The `PatientRecord` stores a list of `Patient` objects, which each:
 * stores details of a patient: `Name`, `Phone`, `Email`, `Address`, `DateOfBirth`, `Gender` and `Ic` .
 * `DrugAllergy` might left blank if the patient does not have drug allergy.
 * Each patient may have two associated phone numbers: a required phone number, which is the patient's own phone number, and an optional phone number, which is the phone number of the patient's emergency contact.
 
 
-<img src="images/DrugModelClassDiagram.png" width="450" />
+<img src="images/DrugModelClassDiagram.png" />
+
 The `DrugInventory` stores a list of `Patient` objects, which each:
 * stores details of a drug: `TradeName`, `ActiveIngredient`, `Direction`, `Purpose`, `SideEffect` and `StorageCount`.
 
 
-<img src="images/HospitalModelClassDiagram.png" width="450" />
+<img src="images/HospitalModelClassDiagram.png" />
+
 The `HospitalRecord` stores a list of `Hospital` objects, which each:
 * stores the Hospital information: `Name` and `Phone` which is the hotline of the hospital.
 <div markdown="span" class="alert alert-info">:information_source: **Note:**The hospital data is predefined and not editable by users, as it is hard-coded in our system<br>

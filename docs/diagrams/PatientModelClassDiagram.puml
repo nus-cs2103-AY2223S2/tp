@@ -22,29 +22,21 @@ PatientRecord *--> UniquePatientList
 UniquePatientList -right-> Patient
 
 Patient *--> "1" Name
-Patient *--> "1" Phone
-Patient *--> "0..1" Phone
-note on link
-Represents
-emergency
-contact
-phone
-number
-of patient.
-endnote
 Patient *--> "1" Email
 Patient *--> "1" Address
 Patient *--> "1" DateOfBirth
 Patient *--> "1" Gender
 Patient *--> "1" Ic
 Patient *--> "0..1" DrugAllergy
+Patient *--> "1" Phone
+Patient *--> "\lEmergency\ncontact\n0..1" Phone :\n\n\n\n
 
 Name -[hidden]right-> Email
 Email -[hidden]right-> Address
-Address -[hidden]right-> Phone
-Phone -[hidden]right-> DateOfBirth
+Address -[hidden]right-> DateOfBirth
 DateOfBirth -[hidden]right-> Gender
 Gender -[hidden]right-> Ic
 Ic -[hidden]right-> DrugAllergy
+DrugAllergy -[hidden]right-> Phone
 
 @enduml
