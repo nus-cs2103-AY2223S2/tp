@@ -2,38 +2,37 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Shows all event pairs with clashing timings in TinS.
  */
-public class DeleteCommand extends Command {
+public class ClashCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "clash";
+    public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "All clashing Internships listed.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the internship identified by the index number used in the displayed internship list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+    public List<List<Event>> clashingEvents;
+    public List<Event>
 
-    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
+    public ClashCommand() {
+        clashingEvents = new ArrayList<>();
 
-    private final Index targetIndex;
-
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
     }
+    public
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
+        List<Event> eventList = model.getFilteredEventList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
