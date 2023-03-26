@@ -194,6 +194,21 @@ Examples:
 * `list` followed by `delete 2 3` deletes the 2nd person and 3rd in the address book.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
+### Uploading an Index File for a Patient: `upload`
+
+The upload index command allows you to upload an index file for a specific patient.
+This index file can contain additional information about the patient, such as medical history, 
+test results, or treatment plans [Files allowed are PDF and images]
+
+Format: `upload INDEX`
+* Uploads an index file for the patient at the specified INDEX. 
+* The index refers to the index number shown in the displayed patient list. 
+* The index must be a positive integer 1, 2, 3, …​
+* File must be type PDF or Image
+* 
+Examples: 
+* To upload an index file for the patient at index 2, type:upload 2
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the patient list.
