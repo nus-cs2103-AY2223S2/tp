@@ -13,7 +13,7 @@ public class IsSameCardPredicate implements Predicate<Card> {
 
     @Override
     public boolean test(Card card) {
-        return card.equals(this.card);
+        return card.isSameCard(this.card);
     }
 
     @Override
