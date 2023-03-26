@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="450.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="eventInfoBox" fillWidth="false" prefWidth="100.0" spacing="5.0" style="-fx-border-color: black;">
+         <children>
+            <HBox>
+               <children>
+                  <Label fx:id="startLabel" text="Start: " />
+                  <Label fx:id="start" text="\\$start" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="endLabel" text="End: " />
+                  <Label fx:id="end" text="\\$end" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></VBox>
+      <Label text="Clashes with: ">
+         <padding>
+            <Insets left="2.0" />
+         </padding></Label>
+      <ListView fx:id="clashList" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>

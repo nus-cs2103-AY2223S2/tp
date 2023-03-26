@@ -116,6 +116,10 @@ public class CommandResult {
         return events;
     }
 
+    public HashMap<Event, List<Event>> getClashingEvents() {
+        return hash;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
