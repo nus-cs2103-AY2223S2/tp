@@ -8,6 +8,7 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_SUCCESS = "Filter students accordingly.";
+    public static final int fullScore = 100;
 
     public static String group;
     public static String metric;
@@ -44,7 +45,8 @@ public class FilterCommand extends Command {
             break;
         }
          */
-        model.updateFilteredPersonList((person) -> person.getPerformance().calculateUrgency() > 50);
+        model.updateFilteredPersonList((person) ->
+                person.getPerformance().calculateUrgency() >= fullScore - this.threshold);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
