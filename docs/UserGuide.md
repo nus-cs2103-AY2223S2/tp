@@ -101,19 +101,15 @@ Examples:
 - `add n/Shao Hong edu/Bachelors y2 r/Good in German s/German`
 - `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/696 PGPR r/毎日3回うんこをとります`
 
-<div align=center>
+<p align=center>
+    <img alt="add before" src="images/user-guide/add_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>add</code> command</i>
+</p>
 
-![add before](images/user-guide/add_before.jpg)  
-_**Above: Before entering `add` command**_
-
-</div>
-
-<div align=center>
-
-![add after](images/user-guide/add_after.jpg)  
-_**Above: After entering `add` command**_
-
-</div>
+<p align=center>
+    <img alt="add after" src="images/user-guide/add_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>add</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -137,19 +133,15 @@ Examples:
 - `edit 1 n/Lao Hong`
 - `edit 3 a/ p/` _(removes student's address & phone number)_
 
-<div align=center>
+<p align=center>
+    <img alt="edit before" src="images/user-guide/edit_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>edit</code> command</i>
+</p>
 
-![edit before](images/user-guide/edit_before.jpg)  
-_**Above: Before entering `edit` command**_
-
-</div>
-
-<div align=center>
-
-![edit after](images/user-guide/edit_after.jpg)  
-_**Above: After entering `edit` command**_
-
-</div>
+<p align=center>
+    <img alt="edit after" src="images/user-guide/edit_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>edit</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -167,19 +159,15 @@ Examples:
 - `remark 1 r/Bad in German`
 - `remark 3` _(removes student's remark)_
 
-<div align=center>
+<p align=center>
+    <img alt="remark before" src="images/user-guide/remark_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
+</p>
 
-![remark before](images/user-guide/remark_before.jpg)  
-_**Above: Before entering `remark` command**_
-
-</div>
-
-<div align=center>
-
-![remark after](images/user-guide/remark_after.jpg)  
-_**Above: After entering `remark` command**_
-
-</div>
+<p align=center>
+    <img alt="remark after" src="images/user-guide/remark_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -199,19 +187,15 @@ Examples:
 
 - `list` followed by `delete 2` deletes the 2nd student in the address book.
 
-<div align=center>
+<p align=center>
+    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
+</p>
 
-![delete before](images/user-guide/delete_before.jpg)  
-_**Above: Before entering `delete` command**_
-
-</div>
-
-<div align=center>
-
-![delete after](images/user-guide/delete_after.jpg)  
-_**Above: After entering `delete` command**_
-
-</div>
+<p align=center>
+    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -227,19 +211,15 @@ Examples:
 
 - `show 2`
 
-<div align=center>
+<p align=center>
+    <img alt="show before" src="images/user-guide/show_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>show</code> command</i>
+</p>
 
-![show before](images/user-guide/show_before.jpg)  
-_**Above: Before entering `show` command**_
-
-</div>
-
-<div align=center>
-
-![show after](images/user-guide/show_after.jpg)  
-_**Above: After entering `show` command**_
-
-</div>
+<p align=center>
+    <img alt="show after" src="images/user-guide/show_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>show</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -255,19 +235,15 @@ Examples:
 
 - `show 2`
 
-<div align=center>
+<p align=center>
+    <img alt="show before" src="images/user-guide/show_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>show</code> command</i>
+</p>
 
-![show before](images/user-guide/show_before.jpg)  
-_**Above: Before entering `show` command**_
-
-</div>
-
-<div align=center>
-
-![show after](images/user-guide/show_after.jpg)  
-_**Above: After entering `show` command**_
-
-</div>
+<p align=center>
+    <img alt="show after" src="images/user-guide/show_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>show</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -290,19 +266,15 @@ Examples:
 - `find Shao Hong` will display the student named "Shao Hong"
 - `find Sh` will display the students named "Shao Hong" & "Shaun"
 
-<div align=center>
+<p align=center>
+    <img alt="find before" src="images/user-guide/find_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>find</code> command</i>
+</p>
 
-![find before](images/user-guide/find_before.jpg)  
-_**Above: Before entering `find` command**_
-
-</div>
-
-<div align=center>
-
-![find after](images/user-guide/find_after.jpg)  
-_**Above: After entering `find` command**_
-
-</div>
+<p align=center>
+    <img alt="find after" src="images/user-guide/find_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>find</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
