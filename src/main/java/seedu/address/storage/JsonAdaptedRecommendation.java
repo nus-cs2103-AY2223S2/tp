@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
 import seedu.address.model.recommender.Recommendation;
-import seedu.address.model.time.TimePeriod;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Jackson-friendly version of {@link ModuleTag}.

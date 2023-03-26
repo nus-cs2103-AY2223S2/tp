@@ -1,4 +1,4 @@
-package seedu.address.model.recommender;
+package seedu.address.logic.recommender.location;
 
 import java.util.ArrayList;
 import java.util.Collections;

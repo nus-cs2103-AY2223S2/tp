@@ -1,6 +1,13 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
@@ -11,12 +18,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ModuleTag;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 public class TagCommandTest {
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());

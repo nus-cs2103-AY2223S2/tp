@@ -69,6 +69,8 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Gives access from outside classes to this set.
      */
     public void remove(ModuleTag moduleTag) {
+        assert canRemove(moduleTag);
+
         String tagName = moduleTag.tagName;
         if (!containsKey(tagName)) {
             return;
@@ -87,9 +89,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Gives access from outside classes to this set.
      */
     public void removeAll(Collection<? extends ModuleTag> moduleTags) {
-        for (ModuleTag tag : moduleTags) {
-            this.remove(tag);
-        }
+        moduleTags.stream()
+                .filter(this::canRemove)
+                .forEach(this::remove);
     }
 
     /**
@@ -97,6 +99,14 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public boolean containsKey(String tagName) {
         return modules.containsKey(tagName);
+    }
+
+    /**
+     * Returns whether the tag can be removed.
+     */
+    public boolean canRemove(ModuleTag moduleTag) {
+        return modules.containsKey(moduleTag.tagName)
+                && modules.get(moduleTag.tagName).containsLessons(moduleTag.getImmutableLessons());
     }
 
     /**

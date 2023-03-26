@@ -1,10 +1,5 @@
 package seedu.address.model.location;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -12,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.location.util.TypicalLocation.BEDOK;
 import static seedu.address.model.location.util.TypicalLocation.PASIR_RIS;
 import static seedu.address.model.location.util.TypicalLocation.SERANGOON;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
 
 public class LocationTest {
 

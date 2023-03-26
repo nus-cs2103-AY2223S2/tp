@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.recommender.Recommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommender.Recommendation;
-import seedu.address.model.recommender.Recommender;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.

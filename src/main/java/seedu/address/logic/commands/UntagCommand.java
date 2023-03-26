@@ -9,12 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.ModuleTag;
-import seedu.address.model.time.Day;
-import seedu.address.model.timetable.Module;
 
 /**
  * Removes modules from an existing person in the address book.
@@ -50,35 +47,38 @@ public class UntagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Person personToEdit = getPersonToEdit(model);
 
-        if (index == null) {
-            return removeUserTags(model);
+        personToEdit.removeModuleTags(moduleTags);
+
+        if (personToEdit instanceof User) {
+            return setUserCommonModuleTags(model, (User) personToEdit);
         }
-        return removePersonTags(model);
+
+        return setPersonCommonModuleTags(model, personToEdit);
+    }
+
+    private Person getPersonToEdit(Model model) throws CommandException {
+        if (index == null) {
+            return model.getUser();
+        }
+
+        IndexHandler indexHandler = new IndexHandler(model);
+        return indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
     }
 
     /**
      * Removes tags from person at given index.
      * @param model {@code Model} which the command should operate on.
+     * @param personToEdit {@code Person} which has been edited.
      * @return feedback message of the operation result for display.
-     * @throws CommandException if an error occurs during command execution.
      */
-    public CommandResult removePersonTags(Model model) throws CommandException {
-        IndexHandler indexHandler = new IndexHandler(model);
-
-        Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
-
-        ModuleTagSet oldModules = personToEdit.getModuleTags();
-
-        oldModules.removeAll(this.moduleTags);
-
+    public CommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
         personToEdit.setCommonModules(userModuleTags);
 
-        model.updateObservablePersonList();
-        removeLessons(personToEdit, oldModules);
         return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
@@ -88,20 +88,13 @@ public class UntagCommand extends Command {
     /**
      * Removes tags from the user.
      * @param model {@code Model} which the command should operate on
+     * @param editedUser {@code User} which has been edited.
      * @return feedback message of the operation result for display.
-     * @throws CommandException if an error occurs during command execution.
      */
-    public CommandResult removeUserTags(Model model) throws CommandException {
-        User editedUser = model.getUser();
-
-        ModuleTagSet userModuleTags = editedUser.getModuleTags();
-
-        userModuleTags.removeAll(this.moduleTags);
-
+    public CommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        removeLessons(editedUser, userModuleTags);
         return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
                 + "Modules: " + editedUser.getImmutableModuleTags().toString()));
@@ -127,11 +120,5 @@ public class UntagCommand extends Command {
         }
         return false;
 
-    }
-
-    private void removeLessons(Person editedPerson, ModuleTagSet moduleTagSet) throws CommandException {
-        for (ModuleTag tag: moduleTags) {
-            moduleTagSet.remove(tag);
-        }
     }
 }

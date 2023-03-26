@@ -82,6 +82,13 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
     }
 
     /**
+     * Checks whether the module tag contains all of the lessons provided.
+     */
+    public boolean containsLessons(Collection<? extends Lesson> lessons) {
+        return this.lessons.containsAll(lessons);
+    }
+
+    /**
      * Adds a lesson to the module tag.
      */
     public void addLesson(Lesson lesson) {

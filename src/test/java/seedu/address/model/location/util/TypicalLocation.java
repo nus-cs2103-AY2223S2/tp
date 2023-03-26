@@ -2,6 +2,9 @@ package seedu.address.model.location.util;
 
 import seedu.address.model.location.Location;
 
+/**
+ * Typical locations you would find around Singapore.
+ */
 public class TypicalLocation {
 
     public static final Location NUS = new LocationBuilder().build();

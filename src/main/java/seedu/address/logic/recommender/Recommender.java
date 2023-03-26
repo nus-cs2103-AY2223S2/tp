@@ -1,4 +1,4 @@
-package seedu.address.model.recommender;
+package seedu.address.logic.recommender;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,13 +11,15 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.recommender.location.LocationRecommender;
+import seedu.address.logic.recommender.location.LocationTracker;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
-import seedu.address.model.location.LocationRecommender;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.timingrecommender.TimingRecommender;
+import seedu.address.model.recommender.Recommendation;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimePeriod;
+import seedu.address.model.timingrecommender.TimingRecommender;
 
 /**
  * Recommends meetup times and locations.
@@ -31,6 +33,9 @@ public class Recommender {
     private final Model model;
     private Set<LocationTracker> locationTrackers;
 
+    /**
+     * Constructs a {@code Recommender} object
+     */
     public Recommender(Model model) {
         this.model = model;
         lr = new LocationRecommender();
@@ -43,10 +48,11 @@ public class Recommender {
      */
     public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
         initialise(contactIndices, destinations);
-        List<HourBlock> timingRecommendations = sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
-                .stream().map(TimePeriod::fragmentIntoHourBlocks)
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
+        List<HourBlock> timingRecommendations =
+                sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
+                        .stream().map(TimePeriod::fragmentIntoHourBlocks)
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList());
 
         logger.info(String.format("%d timings recommended", timingRecommendations.size()));
 

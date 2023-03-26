@@ -1,8 +1,11 @@
 package seedu.address.model.timetable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.joda.time.LocalTime;
 
@@ -10,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commitment.Commitment;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
 import seedu.address.model.time.util.TimeUtil;
 import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
@@ -39,6 +43,22 @@ public class Timetable {
     }
 
     /**
+     * Construcs a Timetable with some commitments.
+     * @param commitments The commitments to add in the timetable.
+     */
+    public Timetable(Collection<? extends Commitment> commitments) {
+        this();
+
+        List<TimePeriod> timePeriods = commitments.stream()
+                .map(Commitment::getTimePeriod)
+                .collect(Collectors.toList());
+
+        assert !TimeUtil.hasAnyClash(timePeriods);
+
+        commitments.forEach(this::addCommitment);
+    }
+
+    /**
      * Adds a commitment to the schedule.
      */
     public <T extends Commitment> void addCommitment(T commitment) {
@@ -52,6 +72,26 @@ public class Timetable {
                 availableSlots.get(i).setCommitment(commitment);
             }
         }
+    }
+
+    /**
+     * Removes a commitment from the schedule.
+     */
+    public <T extends Commitment> void removeCommitment(T commitment) {
+        Day day = commitment.getDay();
+        ArrayList<HourBlock> availableSlots = schedule.get(day);
+
+        for (int i = commitment.getStartTime().getHourOfDay() - 8;
+             i < commitment.getEndTime().getHourOfDay() - 8; i++) {
+            availableSlots.get(i).removeCommitment();
+        }
+    }
+
+    /**
+     * Returns whether the timetable can fit the commitment.
+     */
+    public boolean canFitCommitment(Commitment commitment) {
+        return commitment.canFitIntoDaySchedule(schedule.get(commitment.getDay()));
     }
 
     /**

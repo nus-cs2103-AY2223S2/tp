@@ -1,11 +1,5 @@
 package seedu.address.model.location;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.location.util.DistanceUtil;
-
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.location.util.TypicalLocation.ADMIRALTY;
@@ -42,6 +36,13 @@ import static seedu.address.model.location.util.TypicalLocation.TOA_PAYOH;
 import static seedu.address.model.location.util.TypicalLocation.TUAS_CRESCENT;
 import static seedu.address.model.location.util.TypicalLocation.WOODLANDS;
 import static seedu.address.model.location.util.TypicalLocation.YISHUN;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.location.util.DistanceUtil;
 
 public class DistanceUtilTest {
 

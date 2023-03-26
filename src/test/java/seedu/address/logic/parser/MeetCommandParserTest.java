@@ -1,18 +1,19 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.MeetCommand;
-import seedu.address.model.location.util.LocationDataUtil;
-import seedu.address.model.person.ContactIndex;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.MeetCommand;
+import seedu.address.model.location.util.LocationDataUtil;
+import seedu.address.model.person.ContactIndex;
 
 public class MeetCommandParserTest {
 

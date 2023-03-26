@@ -2,15 +2,16 @@ package seedu.address.storage;
 
 import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.timetable.Timetable;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Jackson-friendly version of {@link TimePeriod}.
