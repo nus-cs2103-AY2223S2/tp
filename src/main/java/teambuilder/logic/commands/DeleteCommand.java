@@ -45,6 +45,7 @@ public class DeleteCommand extends Command {
         Memento old = model.save();
         HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + personToDelete);
 
+        model.removeFromAllTeams(personToDelete);
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

@@ -111,7 +111,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     //// team-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a team with the same identity as {@code team} exists in the address book.
      */
     public boolean hasTeam(Team team) {
         requireNonNull(team);
@@ -119,7 +119,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     }
 
     /**
-     * Adds a person to the address book.
+     * Adds a team to the address book.
      * The person must not already exist in the address book.
      */
     public void addTeam(Team team) {
@@ -132,6 +132,14 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
      */
     public void removeTeam(Team key) {
         teams.remove(key);
+    }
+
+    public void updatePersonInTeams(Person person) {
+        teams.updatePersonInTeams(person);
+    }
+
+    public void removeFromAllTeams(Person person) {
+        teams.removeFromAllTeams(person);
     }
 
     //// util methods

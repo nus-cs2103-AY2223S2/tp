@@ -4,11 +4,12 @@ package teambuilder.model.team;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import teambuilder.model.person.Person;
-import teambuilder.model.person.exceptions.PersonNotFoundException;
+import teambuilder.model.tag.Tag;
 import teambuilder.model.team.exceptions.DuplicateTeamException;
 import teambuilder.model.team.exceptions.TeamNotFoundException;
 
 import java.util.Iterator;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
@@ -48,6 +49,43 @@ public class UniqueTeamList implements Iterable<Team> {
             throw new TeamNotFoundException();
         }
     }
+
+    public void updatePersonInTeams(Person person) {
+        requireNonNull(person);
+        Object[] allTeamTags = person.getTeams().toArray();
+
+        // Add or delete person from TeamList depending on presence or absence of team tag respectively
+        for (Team team: internalList) {
+            boolean isPresent = false;
+            for (Object tag : allTeamTags) {
+                Tag castedTag = (Tag) tag;
+                if (castedTag.getName().equals(team.toString())) {
+                    team.addPerson(person.getName());
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent) {
+                team.removePerson(person.getName());
+            }
+        }
+
+        for (Team team: internalList) {
+            System.out.println(team.getMembers());
+        }
+
+    }
+
+    public void removeFromAllTeams(Person person) {
+        requireNonNull(person);
+
+        // delete person from all teams in TeamList
+        for (Team team: internalList) {
+            team.removePerson(person.getName());
+        }
+
+    }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

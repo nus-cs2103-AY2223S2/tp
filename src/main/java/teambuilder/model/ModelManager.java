@@ -141,6 +141,16 @@ public class ModelManager implements Model {
         addressBook.removeTeam(target);
     }
 
+    @Override
+    public void updatePersonInTeams(Person person) {
+        addressBook.updatePersonInTeams(person);
+    }
+
+    @Override
+    public void removeFromAllTeams(Person person) {
+        addressBook.removeFromAllTeams(person);
+    }
+
     //=========== Filtered Team List Accessors ===============================================================
 
     /**

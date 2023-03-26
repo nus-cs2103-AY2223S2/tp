@@ -96,6 +96,16 @@ public interface Model extends Originator {
      */
     void addTeam(Team team);
 
+    /**
+     * Adds person to the team, based on its team tags.
+     */
+    void updatePersonInTeams(Person person);
+
+    /**
+     * Removes person from all teams
+     */
+    void removeFromAllTeams(Person person);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getSortedPersonList();
 
