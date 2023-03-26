@@ -1,8 +1,9 @@
 package seedu.address.model.entity;
 
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,38 +58,18 @@ public class Mob extends Entity {
     }
 
     @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(
-                getName(),
-                stats.getStrength(),
-                stats.getDexterity(),
-                stats.getIntelligence(),
-                getChallengeRating(),
-                getLegendaryStatus(),
-                getTags()
-        );
-    }
-
-    @Override
-    public String toString() {
-        String characterDetails = String.format(
-                "Name: %s | Str: %d | Dex: %d | Int: %d | CR: %.1f | Legendary: %b",
-                getName(),
-                stats.getStrength(),
-                stats.getDexterity(),
-                stats.getIntelligence(),
-                getChallengeRating(),
-                getLegendaryStatus()
-        );
-
-        final StringBuilder builder = new StringBuilder(characterDetails);
-
+    public List<Pair<String, String>> getFields() {
         Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append(" | Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        final StringBuilder serializedTags = new StringBuilder();
+        tags.forEach(serializedTags::append);
+        return List.of(
+                new Pair<>("Name", getName().toString()),
+                new Pair<>("Str", String.valueOf(stats.getStrength())),
+                new Pair<>("Dex", String.valueOf(stats.getDexterity())),
+                new Pair<>("Int", String.valueOf(stats.getIntelligence())),
+                new Pair<>("CR", String.valueOf(getChallengeRating())),
+                new Pair<>("Legendary", String.valueOf(getLegendaryStatus())),
+                new Pair<>("Tags", serializedTags.toString())
+        );
     }
 }

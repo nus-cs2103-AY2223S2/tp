@@ -30,13 +30,6 @@ public class EntityDetailsPanel extends UiPart<Region> {
     public void updateEntityDetails(Entity entity) {
         entityNameLabel.setText(entity.getName().fullName);
         entityClassificationLabel.setText("[" + entity.getClass().getSimpleName() + "]");
-        String detailsText = "";
-        System.out.println(entity.toString());
-        String[] entityDetails = entity.toString().split("\\|");
-        for (int i = 1; i < entityDetails.length; i++) {
-            System.out.println(entityDetails[i]);
-            detailsText += entityDetails[i].trim() + "\n";
-        }
-        entityDetailsLabel.setText(detailsText);
+        entityDetailsLabel.setText(entity.toString());
     }
 }
