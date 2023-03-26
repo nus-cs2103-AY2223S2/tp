@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.lang.Math.floor;
-import static java.lang.Math.max;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -12,12 +10,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javafx.collections.ObservableList;
 import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -31,9 +30,8 @@ import seedu.address.model.task.TaskList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
-    private final UniquePersonList persons;
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
+    private final UniquePersonList persons;
     private Person selectedPerson;
 
     /*
@@ -121,6 +119,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return selectedPerson;
     }
 
+    /**
+     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code AddressBook}.
+     */
     public PDDocument exportProgress(Person key) throws IOException {
         requireAllNonNull(key);
         PDDocument document = new PDDocument();
@@ -137,27 +138,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         PDFont fontItalic = PDType1Font.HELVETICA_OBLIQUE;
         PDFont font = PDType1Font.HELVETICA;
 
-        List<Object> name = wrapText(key.getName().fullName + "'s Progress Report", horizontalWrap, xInit, yInit, fontBold, 20, contentStream, document, margin, -1, List.of());
+        List<Object> name = wrapText(key.getName().fullName + "'s Progress Report", horizontalWrap, xInit, yInit,
+                fontBold, 20, contentStream, document, margin, -1, List.of());
         contentStream = (PDPageContentStream) name.get(0);
         yInit = (float) name.get(2) - textHeight(fontBold, 20, margin / 2);
 
-        List<Object> date = wrapText("Date created: " + LocalDate.now(), horizontalWrap, xInit, yInit, fontItalic, 12, contentStream, document, margin, -1, List.of());
+        List<Object> date = wrapText("Date created: " + LocalDate.now(), horizontalWrap, xInit, yInit, fontItalic,
+                12, contentStream, document, margin, -1, List.of());
         contentStream = (PDPageContentStream) date.get(0);
         yInit = (float) date.get(2) - 3 * textHeight(fontBold, 20, 0);
 
-        List<Object> taskListString = wrapText("Task List", horizontalWrap, xInit, yInit, fontBold, 18, contentStream, document, margin, -1, List.of());
+        List<Object> taskListString = wrapText("Task List", horizontalWrap, xInit, yInit, fontBold, 18,
+                contentStream, document, margin, -1, List.of());
         contentStream = (PDPageContentStream) taskListString.get(0);
         yInit = (float) taskListString.get(2) - 2 * textHeight(fontBold, 18, 0);
 
-        List<Object> taskTable = createTaskTable(key.getTaskList(), xInit, yInit, fontBold, 16, font, 14, contentStream, document, horizontalWrap, margin);
+        List<Object> taskTable = createTaskTable(key.getTaskList(), xInit, yInit, fontBold, 16, font,
+                14, contentStream, document, horizontalWrap, margin);
         contentStream = (PDPageContentStream) taskTable.get(0);
         yInit = (float) taskTable.get(2);
 
-        List<Object> scoreListString = wrapText("Score List", horizontalWrap, xInit, yInit, fontBold, 18, contentStream, document, margin, -1, List.of());
+        List<Object> scoreListString = wrapText("Score List", horizontalWrap, xInit, yInit, fontBold, 18,
+                contentStream, document, margin, -1, List.of());
         contentStream = (PDPageContentStream) scoreListString.get(0);
         yInit = (float) scoreListString.get(2) - 2 * textHeight(fontBold, 18, 0);
 
-        List<Object> scoreTable = createScoreTable(key.getScoreList(), xInit, yInit, fontBold, 16, font, 14, contentStream, document, horizontalWrap, margin);
+        List<Object> scoreTable = createScoreTable(key.getScoreList(), xInit, yInit, fontBold, 16, font,
+                14, contentStream, document, horizontalWrap, margin);
         contentStream = (PDPageContentStream) scoreTable.get(0);
         yInit = (float) scoreTable.get(2);
 
@@ -165,15 +172,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return document;
     }
 
-    public List<Object> createTaskTable(TaskList tasks, float x, float y, PDFont fontBold, int fontSizeBold, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float wrap, float margin) throws IOException {
+    private List<Object> createTaskTable(TaskList tasks, float x, float y, PDFont fontBold, int fontSizeBold,
+                                         PDFont font, int fontSize, PDPageContentStream contentStream,
+                                         PDDocument document, float wrap, float margin) throws IOException {
         List<String> headers = Arrays.asList("Status", "Name");
         List<String> maxContentWidthString = Arrays.asList("In Progress", "");
         float yInitTable = (float) (y + textHeight(fontBold, fontSizeBold, 0) / 2 + margin);
-        List<Object> tableHeaders = createTableRow(headers, maxContentWidthString, x, y, fontBold, fontSizeBold, contentStream, document, wrap, margin, yInitTable);
+        List<Object> tableHeaders = createTableRow(headers, maxContentWidthString, x, y, fontBold, fontSizeBold,
+                contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableHeaders.get(0);
         y = (float) tableHeaders.get(2) - textHeight(fontBold, fontSizeBold, 0) / 2 - 2 * margin;
 
-        List<Object> tableContent = createTableContentForTask(tasks, maxContentWidthString, 90, y, font, fontSize, contentStream, document, wrap, margin, yInitTable);
+        List<Object> tableContent = createTableContentForTask(tasks, maxContentWidthString, 90, y, font, fontSize,
+                contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableContent.get(0);
 
         List<Object> next = new ArrayList<>();
@@ -183,15 +194,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return next;
     }
 
-    public List<Object> createScoreTable(ScoreList scores, float x, float y, PDFont fontBold, int fontSizeBold, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float wrap, float margin) throws IOException {
+    private List<Object> createScoreTable(ScoreList scores, float x, float y, PDFont fontBold, int fontSizeBold,
+                                          PDFont font, int fontSize, PDPageContentStream contentStream,
+                                          PDDocument document, float wrap, float margin) throws IOException {
         List<String> headers = Arrays.asList("Date", "Test", "Score");
         List<String> maxContentWidthString = Arrays.asList("8888-88-88", "WWWWWWWWWWWWWWWWWW", "88.8");
         float yInitTable = (float) (y + textHeight(fontBold, fontSizeBold, 0) / 2 + margin);
-        List<Object> tableHeaders = createTableRow(headers, maxContentWidthString, x, y, fontBold, fontSizeBold, contentStream, document, wrap, margin, yInitTable);
+        List<Object> tableHeaders = createTableRow(headers, maxContentWidthString, x, y, fontBold, fontSizeBold,
+                contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableHeaders.get(0);
         y = (float) tableHeaders.get(2) - textHeight(fontBold, fontSizeBold, 0) / 2 - 2 * margin;
 
-        List<Object> tableContent = createTableContentForScore(scores, maxContentWidthString, 90, y, font, fontSize, contentStream, document, wrap, margin, yInitTable);
+        List<Object> tableContent = createTableContentForScore(scores, maxContentWidthString, 90, y, font,
+                fontSize, contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableContent.get(0);
 
         List<Object> next = new ArrayList<>();
@@ -201,22 +216,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         return next;
     }
 
-    public void createHorizontalLine(PDPageContentStream contentStream, float y) throws IOException {
+    private void createHorizontalLine(PDPageContentStream contentStream, float y) throws IOException {
         contentStream.drawLine(90, y, 522, y);
     }
 
-    public List<Object> createTableRow(List<String> headers, List<String> maxContentWidthString, float x, float y, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float wrap, float margin, float yInit) throws IOException {
+    private List<Object> createTableRow(List<String> headers, List<String> maxContentWidthString, float x, float y,
+                                        PDFont font, int fontSize, PDPageContentStream contentStream,
+                                        PDDocument document, float wrap, float margin, float yInit) throws IOException {
         float xInit = x;
         float yFinal = y;
         createHorizontalLine(contentStream, (float) (y + textHeight(font, fontSize, 0) / 2 + margin));
-        for(int i = 0; i < headers.size(); i++) {
+        for (int i = 0; i < headers.size(); i++) {
             float wrapCur;
             if (i != 0 && i != headers.size() - 1) {
-                wrapCur = wrap - (x - xInit) - 4 * margin - textLength(maxContentWidthString.get(i + 1), font, fontSize);
+                wrapCur = wrap - (x - xInit) - 4 * margin - textLength(maxContentWidthString.get(i + 1), font,
+                        fontSize);
             } else {
                 wrapCur = wrap - (x - xInit) - 2 * margin;
             }
-            List<Object> current = wrapText(headers.get(i), wrapCur, x + margin, y - margin, font, fontSize, contentStream, document, margin, yInit, maxContentWidthString);
+            List<Object> current = wrapText(headers.get(i), wrapCur, x + margin, y - margin, font, fontSize,
+                    contentStream, document, margin, yInit, maxContentWidthString);
             contentStream = (PDPageContentStream) current.get(0);
             yFinal = (float) current.get(2);
             yInit = (float) current.get(3);
@@ -230,11 +249,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return next;
     }
 
-    public List<Object> createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, float x, float y, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float wrap, float margin, float yInit) throws IOException {
+    private List<Object> createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, float x, float y,
+                                                   PDFont font, int fontSize, PDPageContentStream contentStream,
+                                                   PDDocument document, float wrap, float margin, float yInit)
+            throws IOException {
         float yFinal = y;
         for (int i = 0; i < tasks.size(); i++) {
             List<String> contents = Arrays.asList("In Progress", tasks.get(i).getName().fullName);
-            List<Object> row = createTableRow(contents, maxContentWidthString, x, y, font, fontSize, contentStream, document, wrap, margin, yInit);
+            List<Object> row = createTableRow(contents, maxContentWidthString, x, y, font, fontSize, contentStream,
+                    document, wrap, margin, yInit);
             contentStream = (PDPageContentStream) row.get(0);
             yInit = (float) row.get(3);
             yFinal = (float) row.get(2) - margin;
@@ -249,12 +272,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return next;
     }
 
-    public List<Object> createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, float x, float y, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float wrap, float margin, float yInit) throws IOException {
+    private List<Object> createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, float x,
+                                                    float y, PDFont font, int fontSize,
+                                                    PDPageContentStream contentStream, PDDocument document, float wrap,
+                                                    float margin, float yInit) throws IOException {
         float yFinal = y;
         for (int i = 0; i < scores.size(); i++) {
             Score currentScore = scores.get(i);
-            List<String> contents = Arrays.asList(currentScore.getDate().toString(), currentScore.getLabel().toString(), currentScore.getValue().toString());
-            List<Object> row = createTableRow(contents, maxContentWidthString, x, y, font, fontSize, contentStream, document, wrap, margin, yInit);
+            List<String> contents = Arrays.asList(currentScore.getDate().toString(), currentScore.getLabel().toString(),
+                    currentScore.getValue().toString());
+            List<Object> row = createTableRow(contents, maxContentWidthString, x, y, font, fontSize, contentStream,
+                    document, wrap, margin, yInit);
             contentStream = (PDPageContentStream) row.get(0);
             yInit = (float) row.get(3);
             yFinal = (float) row.get(2) - margin;
@@ -268,34 +296,38 @@ public class AddressBook implements ReadOnlyAddressBook {
         next.add(y);
         return next;
     }
-    public PDPageContentStream setUpContentStream(PDPageContentStream contentStream, PDFont font, int fontSize, float x, float y, PDDocument document) throws IOException {
+    private PDPageContentStream setUpContentStream(PDPageContentStream contentStream, PDFont font, int fontSize,
+                                                   float x, float y, PDDocument document) throws IOException {
         contentStream.beginText();
         contentStream.setFont(font, fontSize);
         contentStream.moveTextPositionByAmount(x, y);
         return contentStream;
     }
 
-    public float textHeight(PDFont font, int fontSize, float margin) {
+    private float textHeight(PDFont font, int fontSize, float margin) {
         return (font.getFontDescriptor().getCapHeight() / 1000 * fontSize) + 2 * margin;
     }
 
-    public float textLength(String curString, PDFont font, int fontSize) throws IOException {
+    private float textLength(String curString, PDFont font, int fontSize) throws IOException {
         return font.getStringWidth(curString) / 1000 * fontSize;
     }
 
-    public int getNumberOfCharsPossible(String curString, float wrap, PDFont font, int fontSize) throws IOException {
+    private int getNumberOfCharsPossible(String curString, float wrap, PDFont font, int fontSize) throws IOException {
         float len = 0;
         int count = 0;
-        for(int i = 0; i < curString.length(); i++) {
+        for (int i = 0; i < curString.length(); i++) {
             float lenCur = textLength(String.valueOf(curString.charAt(i)), font, fontSize);
-            if (len + lenCur > wrap) break;
+            if (len + lenCur > wrap) {
+                break;
+            }
             len += lenCur;
             count += 1;
         }
         return count;
     }
 
-    public void createVerticalLines(PDPageContentStream contentStream, float yInitTable, float yFinal, List<String> maxContentWidthString, float margin) throws IOException {
+    private void createVerticalLines(PDPageContentStream contentStream, float yInitTable, float yFinal,
+                                     List<String> maxContentWidthString, float margin) throws IOException {
         contentStream.drawLine(90, yInitTable, 90, yFinal);
         contentStream.drawLine(522, yInitTable, 522, yFinal);
         float xPos = 90;
@@ -306,7 +338,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
-    public PDPageContentStream handleNextPage(PDPageContentStream contentStream, PDDocument document, float yInitTable, float yFinal, List<String> maxContentWidthString, float margin) throws IOException {
+    private PDPageContentStream handleNextPage(PDPageContentStream contentStream, PDDocument document, float yInitTable,
+                                               float yFinal, List<String> maxContentWidthString, float margin)
+            throws IOException {
         createVerticalLines(contentStream, yInitTable, yFinal, maxContentWidthString, margin);
         contentStream.close();
         PDPage newPage = new PDPage();
@@ -315,7 +349,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return contentStream;
     }
 
-    public List<Object> wrapText(String text, float wrap, float xInit, float yInit, PDFont font, int fontSize, PDPageContentStream contentStream, PDDocument document, float margin, float yInitTable, List<String> maxContentWidthString) throws IOException {
+    private List<Object> wrapText(String text, float wrap, float xInit, float yInit, PDFont font, int fontSize,
+                                  PDPageContentStream contentStream, PDDocument document, float margin,
+                                  float yInitTable, List<String> maxContentWidthString) throws IOException {
         String[] textSplit = text.split(" ");
         float x = xInit;
         float y = yInit;
@@ -323,7 +359,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (int i = 0; i < textSplit.length; i++) {
             String curString = textSplit[i];
             lengthUsed += textLength(curString, font, fontSize);
-            int limit = (textLength(curString, font, fontSize) <= wrap) ? curString.length() : getNumberOfCharsPossible(curString, wrap, font, fontSize);
+            int limit = (textLength(curString, font, fontSize) <= wrap) ? curString.length()
+                    : getNumberOfCharsPossible(curString, wrap, font, fontSize);
             logger.info(String.valueOf(limit));
             if (textLength(curString, font, fontSize) <= wrap) {
                 curString = curString + " ";
@@ -340,7 +377,8 @@ public class AddressBook implements ReadOnlyAddressBook {
                 lengthUsed = textLength(curString, font, fontSize);
             }
             if (y <= 92) {
-                contentStream = handleNextPage(contentStream, document, yInitTable, yPrev - margin, maxContentWidthString, margin);
+                contentStream = handleNextPage(contentStream, document, yInitTable, yPrev - margin,
+                        maxContentWidthString, margin);
                 x = xInit;
                 y = 702;
                 yInitTable = y + textHeight(font, fontSize, 0) / 2 + 2 * margin;

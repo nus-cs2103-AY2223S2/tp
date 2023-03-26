@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.score.exceptions.DuplicateScoreException;
 import seedu.address.model.score.exceptions.ScoreNotFoundException;
-import seedu.address.model.task.Task;
 
 /**
  * A list of scores that enforces uniqueness between its elements and does not allow nulls.

@@ -119,6 +119,9 @@ public class PersonCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText()) && person.equals(card.person);
     }
 
+    /**
+     * Opens the export progress window or focuses on it if it's already opened.
+     */
     public void exportProgress() {
         this.exportProgressWindow.setCheckedPerson(this.person);
         if (!this.exportProgressWindow.isShowing()) {

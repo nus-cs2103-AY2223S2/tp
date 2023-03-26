@@ -8,9 +8,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.apache.pdfbox.pdmodel.PDDocument;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;

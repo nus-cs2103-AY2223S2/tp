@@ -209,6 +209,12 @@ public class ParserUtil {
         return new Date(trimmedDate);
     }
 
+    /**
+     * Parses a file name.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given file name is invalid.
+     */
     public static String parseFileName(Optional<String> fileNameOpt) throws ParseException {
         String fileName = fileNameOpt.isEmpty() ? "" : fileNameOpt.get();
         fileName += ".pdf";
@@ -216,12 +222,19 @@ public class ParserUtil {
         try {
             f.createNewFile();
             f.delete();
-        } catch(IOException e) {
-            throw new ParseException("File name should follow general file naming conventions\nAvoid special characters");
+        } catch (IOException e) {
+            throw new ParseException("File name should follow general file naming conventions\n"
+                    + "Avoid special characters");
         }
         return fileName;
     }
 
+    /**
+     * Parses a file path.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given file path is invalid.
+     */
     public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
         String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
         if (filePath.contains("/")) {

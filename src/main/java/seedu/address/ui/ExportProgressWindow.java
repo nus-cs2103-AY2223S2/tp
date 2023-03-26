@@ -2,25 +2,15 @@ package seedu.address.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -59,11 +49,6 @@ public class ExportProgressWindow extends UiPart<Stage> {
             resultDisplay.setText("Export " + this.person.getName().fullName + "'s progress");
             saveAsButton.setDisable(false);
         }
-//        root.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//            public void handle(WindowEvent we) {
-//                exportMessage.setText("");
-//            }
-//        });
     }
 
     /**
@@ -141,7 +126,8 @@ public class ExportProgressWindow extends UiPart<Stage> {
             saveAsButton.setDisable(true);
             try {
                 logic.exportProgress(this.person, selectedFile.getPath());
-                String commandResult = String.format(MESSAGE_SUCCESS, this.person.getName().fullName, selectedFile.getPath());
+                String commandResult = String.format(MESSAGE_SUCCESS, this.person.getName().fullName,
+                        selectedFile.getPath());
                 logger.info("Result: " + commandResult);
                 resultDisplay.setText(commandResult);
                 saveAsButton.setDisable(false);
