@@ -236,108 +236,139 @@ Format: `list`
 
 ### Adding An Internship Entry: `add`
 
-Do you have a new internship to track? Add it to InternBuddy using
+Do you have a new internship to track? Add it to InternBuddy using the `add` command.
 
-Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE`
-- The `STATUS` field  must have one of the following values: `new`, `applied`,
-  `assessment`, `interview`, `offered` or `rejected`.
-- The meaning of `DATE` would be interpreted with respect to the value of `STATUS`.
+Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`
 
-
-| Status       | Interpretation of Date       |
-|--------------|------------------------------|
-| `new`        | Deadline of Application      |
-| `applied`    | Date of Application          |
-| `assessment` | Date of Technical Assessment |
-| `interview`  | Date of Behavioral Interview |
-| `offered`    | Date of Offer                |
-| `rejected`   | Date of Rejection            |
+* The optional `COMMENT` parameter has a default value of `NA`. This means that if you do not specify any value for it,
+  the comment for the newly added internship will be `NA`.
+* The optional `TAG` parameter will be empty by default. This means that if you do not specify any value for it, there
+  will be no tags associated with the newly added internship.
 
 Examples:
-* `add n/Apple r/Software Engineer s/new d/2023-02-01` Adds a new internship entry with
-  company name `Apple`, role `Software Engineer`, status `new` and deadline
-  of application `2023-02-01`.
-* `add n/Amazon r/Cloud Architect s/assessment d/2023-02-01` Adds a new internship entry
-  with company name `Amazon`, role `Cloud Architect`, status `assessment` and
-  date of technical assessment `2023-02-01`.
-* `add n/Facebook s/new d/2023-02-01` Displays an error because the role is missing.
+* `add n/Deliveroo r/Software Engineer s/Assessment d/2023-02-01` Adds a new internship entry with
+  company name `Deliveroo`, role `Software Engineer`, status `Assessment` and date of technical assessment
+  `2023-02-01`.
+* `add n/Food Panda r/Web Developer s/New d/2023-02-01 c/I love Food Panda! t/React t/Front-end` Adds a new internship entry
+  with company name `Food Panda`, role `Web Developer`, status `New`, deadline of application `2023-02-01`,
+  comment `I love Food Panda` and tags `React` and `Front-End`.
+* `add n/Food Panda s/new d/2023-02-01` Displays an error because the `ROLE` parameter is missing.
 
 
-### Deleting an internship entry : `delete`
-Deletes the specified internship entry from InternBuddy.
+![Add Command](images/ug-add-example.png)
+   <p style="text-align: center;">Figure XX: Example of the add command in action</p>
 
-Format: `delete INDEX`
+<br/>
 
-* Deletes the internship entry at the specified `INDEX`.
-* The index refers to the index number shown in the displayed internship entries list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
-Example:
-* `list` followed by `delete 2` deletes the 2nd internship entry in InternBuddy.
+### Editing An Internship Entry: `edit`
 
-### Editing an internship entry : `edit`
+[TODO by Shawn]
 
-Edits an internship entry from the list of existing entries.
 
-Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE]`
+### Viewing An Internship Entry: `view`
+Want to view the details of a specific internship entry? You can do so using the `view` command.
 
-* The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the internship list displayed using the`list` command. 
-* At least one of the optional fields must be provided.
-* `STATUS` must have one of the following values: `new`, `applied`, `assessment`, `interview`, `offered` or `rejected`.
+Format: `view INDEX`
+* Views the details of the internship entry with index number `INDEX` as indicated in
+  the [List Panel](#exploring-the-graphical-user-interface).
+* The details will be shown in the [View Panel](#exploring-the-graphical-user-interface).
+* Apart from the internship details, a custom tips box is also included in the
+[View Panel](#exploring-the-graphical-user-interface), where the tips change according to the status of the
+internship entry.
 
 Examples:
-*  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
-*  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
+* `view 1` Assuming that you have at least three internships displayed in the
+[List Panel](#exploring-the-graphical-user-interface), this displays the details of the third internship in the
+[View Panel](#exploring-the-graphical-user-interface).
+* `view -1` Displays an error because `INDEX` must be a positive integer.
+* `view 8` Assuming that you have 7 internships displayed in the
+[List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
+than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
-### Clearing all internship entries
-Clears all internship entries from InternBuddy.
 
-Format: `clear`<br>
 
-![ClearEntriesWarningMessage](images/Clear-entries-warning-message.png)
+![View Command](images/ug-view-example.png)
+   <p style="text-align: center;">Figure XX: Example of the view command in action</p>
 
-### Getting help : `help`
+<br/>
 
-Displays the list of commands supported by InternBuddy.
+
+
+### Finding Internship Entries
+[TODO by Kai Xun]
+
+### Getting Upcoming Events And Deadlines
+[TODO by Shawn]
+
+### Deleting Internship Entries : `delete`
+[TODO by Christopher]
+
+### Clearing All Internship Entries : `clear`
+[TODO by Christopher]
+
+
+### Getting Help : `help`
+Forgot the commands for InternBuddy? Fret not! You can easily view the list of supported commands and their formats
+using the `help` command.
 
 Format: `help`
+* Opens a new window which displays the list of supported commands in InternBuddy, and provides a link to InternBuddy's
+  user guide where you can view more detailed information about each command.
+* You can click on the <button>Copy URL</button> button to copy the link to your clipboard.
 
 
-### Exiting the program : `exit`
+![Help Command](images/ug-help-window.png)
+   <p style="text-align: center;">Figure XX: Help Window</p>
 
-Exits the program.
+<br/>
+
+### Exiting InternBuddy : `exit`
+
+Done with tracking your internships for the day? Exit InternBuddy using the `exit` command.
 
 Format: `exit`
 
-### Saving the data
+### Saving Your Internship Data
 
-InternBuddy data are saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
+in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
+where you placed `internbuddy.json`. There is no need to save manually.
+
+[home folder](#appendix-b--customising-the-data-file)
 
 ### Loading the data
 
-InternBuddy data is loaded from the hard disk automatically at the beginning of each run. There is no need to load manually.
-If the data file is missing, InternBuddy will start with a data file containing the sample internship entries.
-If the data file is invalid, InternBuddy will start with an empty data file.
+InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
+manually.
+* If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
+entries.
+* If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
+  empty data file.
 
-### Editing the data file
+<div markdown="span" class="alert alert-danger">
 
-InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to
-update the data directly by editing that data file.<br>
+:warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
+InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
+with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
+<a href="#appendix-b--customising-the-data-file">Appendix B</a> for instructions on how to do so.
 
-![EditDataWarningMessage](images/Edit_data_warning_message.png)
-
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install InternBuddy in the other computer and overwrite the empty data file it creates with the file that
-contains the data of your previous InternBuddy home folder.
+**A**: Install InternBuddy in the other computer and overwrite the file `internbuddy.json` that it creates with the
+file `internbuddy.json` that is stored on your existing computer.
+
+**Q**: Does InternBuddy support undoing of commands? For example, can I undo a `delete` action?<br>
+**A**: Unfortunately, the current version of InternBuddy does not support the `undo` command. However, it is a feature
+that we are exploring and hope to implement in the future!
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
+## Command Summary
 
 | Action                        | Format, Examples                                                                                                                    |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
