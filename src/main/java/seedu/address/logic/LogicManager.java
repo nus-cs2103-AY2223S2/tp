@@ -119,4 +119,9 @@ public class LogicManager implements Logic {
     public ServiceDataMap getServiceDataMap() {
         return model.getServiceDataMap();
     }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return model.getSelectedCustomer();
+    }
 }

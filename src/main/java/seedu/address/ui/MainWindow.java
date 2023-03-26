@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
+    private CustomerDetailsPanel customerDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -65,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabs;
+    @FXML
+    private StackPane customerDetailsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -149,6 +153,8 @@ public class MainWindow extends UiPart<Stage> {
         initVehicleListPanel();
         initServiceListPanel();
 
+        initSelected();
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -211,6 +217,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void initSelected() {
+        customerDetailsPlaceholder.getChildren().clear();
+        customerDetailsPanel = new CustomerDetailsPanel(logic.getSelectedCustomer(), logic.getCustomerVehicleMap());
+        customerDetailsPlaceholder.getChildren().add(customerDetailsPanel.getRoot());
+    }
+
+
     /**
      * Executes the command and returns the result.
      *
@@ -222,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             updateSelectedTab(commandResult);
+            initSelected();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

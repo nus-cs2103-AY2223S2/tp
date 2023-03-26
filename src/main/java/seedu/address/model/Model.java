@@ -252,4 +252,14 @@ public interface Model {
     VehicleDataMap getVehicleDataMap();
 
     ServiceDataMap getServiceDataMap();
+
+    /**
+     * Sets currently selected customer
+     */
+    void selectCustomer(Customer customer);
+
+    /**
+     * Returns currently selected customer
+     */
+    Customer getSelectedCustomer();
 }

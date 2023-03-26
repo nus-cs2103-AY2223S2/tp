@@ -46,8 +46,8 @@ public class CustomerListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new CustomerCard(customer,
-                        vehicleLookup.getCustomerVehicles(customer),
-                        getIndex() + 1).getRoot());
+                        vehicleLookup.getCustomerCarsCount(customer),
+                        vehicleLookup.getCustomerMotorbikesCount(customer)).getRoot());
             }
         }
     }

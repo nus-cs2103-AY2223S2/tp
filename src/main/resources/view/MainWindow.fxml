@@ -89,7 +89,7 @@
                           </AnchorPane>
                           <AnchorPane minHeight="0.0" minWidth="360.0" styleClass="anchor-pane">
                             <children>
-                              <VBox fx:id="customerDetails" minWidth="340"
+                              <VBox fx:id="customerDetails" minHeight="380.0" minWidth="340"
                                     styleClass="detailsPane" prefWidth="340"
                                     AnchorPane.bottomAnchor="0.0"
                                     AnchorPane.leftAnchor="0.0"
@@ -99,7 +99,7 @@
                                   <Insets bottom="10" left="10" right="10" top="10"/>
                                 </padding>
                                 <children>
-                                  <StackPane fx:id="customerDetailsPanePlaceholder"
+                                  <StackPane fx:id="customerDetailsPlaceholder"
                                              VBox.vgrow="ALWAYS"/>
                                 </children>
                               </VBox>

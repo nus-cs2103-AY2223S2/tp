@@ -74,4 +74,6 @@ public interface Logic {
 
     /** Returns maps of services and their respective vehicle or technicians */
     ServiceDataMap getServiceDataMap();
+
+    Customer getSelectedCustomer();
 }

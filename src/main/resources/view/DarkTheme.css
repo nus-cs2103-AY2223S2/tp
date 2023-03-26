@@ -8,6 +8,11 @@
     src: url('../fonts/NunitoSans_Bold.ttf');
 }
 
+@font-face {
+    font-family: "Nunito Sans SemiBold Italic";
+    src: url('../fonts/NunitoSans_SemiBoldItalic.ttf');
+}
+
 .anchor-pane {
     -fx-background-color: #292929;
     -fx-background-radius: 10;
@@ -134,29 +139,35 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #292929;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #292929;
+}
+
+.list-cell:filled {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #FFFFFF;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #292929;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #292929;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #4d425f;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #5c3e91;
     -fx-border-width: 1;
 }
 
@@ -196,7 +207,7 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #292929;
 }
 
 .result-display {
@@ -239,8 +250,8 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #1E1E1E;
     -fx-border-width: 1px;
 }
 
@@ -271,6 +282,30 @@
     -fx-background-color: black;
 }
 
+.details-heading {
+    -fx-font-family: "Nunito Sans SemiBold Italic";
+    -fx-font-size: 12pt;
+}
+
+.details-id {
+    -fx-font-family: "Nunito Sans Regular";
+    -fx-font-size: 10pt;
+}
+
+.details-title {
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-font-size: 16pt;
+}
+
+.details-info-label {
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-font-size: 10pt;
+}
+
+.details-info {
+    -fx-font-family: "Nunito Sans Regular";
+    -fx-font-size: 10pt;
+}
 
 /*
  * Metro style Push Button
@@ -412,26 +447,23 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-text-fill: black;
+    -fx-background-color: #B47BF7;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-margin: 5 0 0 0;
 }
 
-#vehicles {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#vehicles .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+.customerVehicle {
+    -fx-text-fill: black;
+    -fx-background-color: #62DDEB;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-margin: 5 0 0 0;
 }
 
 #plateNumber, #vehiclePlateNumber {
@@ -444,4 +476,8 @@
     -fx-background-radius: 2;
     -fx-border-color: white;
     -fx-border-width: 1;
+}
+
+.details-box {
+    -fx-background-color: #292929;
 }
