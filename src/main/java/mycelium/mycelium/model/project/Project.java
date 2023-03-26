@@ -1,5 +1,7 @@
 package mycelium.mycelium.model.project;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -126,6 +128,37 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
             return true;
         }
         return other != null && this.name.equals(other.name);
+    }
+
+    /**
+     * Compares this project with other project based on deadline. Both projects must have deadline field
+     * to be compared. For now, two projects are considered equal if {@code equals} return true.
+     * Else, whichever project has earlier deadline, the function will return -1. In case when the
+     * deadline is the same, ties will be broken using name.
+     *
+     * @param other The other project
+     * @return 0 if two projects are equal with regards to {@code equals}
+     *          1 if this project has deadline after the given project or with same deadline but the name is
+     *          topologically smaller
+     *          -1 for the rest
+     */
+    public int compareToWithDeadline(Project other) {
+        LocalDate thisDeadline = this.getDeadline().get();
+        LocalDate otherDeadline = other.getDeadline().get();
+        requireNonNull(thisDeadline);
+        requireNonNull(otherDeadline);
+
+
+        if (this.equals(other)) {
+            return 0;
+        } else if (thisDeadline.isBefore(otherDeadline)) {
+            return -1;
+        } else if (thisDeadline.isEqual(otherDeadline)) {
+            return this.getName().getValue().compareTo(other.getName().getValue());
+        } else {
+            return 1;
+        }
+
     }
 
     @Override

@@ -24,6 +24,7 @@ import mycelium.mycelium.ui.commandbox.mode.Mode.ModeType;
 import mycelium.mycelium.ui.commandlog.CommandLog;
 import mycelium.mycelium.ui.entitypanel.EntityPanel;
 import mycelium.mycelium.ui.helpwindow.HelpWindow;
+import mycelium.mycelium.ui.statisticsbox.StatisticsBox;
 import mycelium.mycelium.ui.statusbarfooter.StatusBarFooter;
 
 /**
@@ -45,6 +46,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandLog commandLog;
 
     private EntityPanel entityPanel;
+    private StatisticsBox statisticsBox;
+
     private StatusBarFooter statusBarFooter;
 
     @FXML
@@ -58,6 +61,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane entityPanelPlaceholder;
+    @FXML
+    private StackPane statisticsBoxPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -108,6 +113,9 @@ public class MainWindow extends UiPart<Stage> {
 
         entityPanel = new EntityPanel(logic.getFilteredProjectList(), logic.getFilteredClientList());
         entityPanelPlaceholder.getChildren().add(entityPanel.getRoot());
+
+        statisticsBox = new StatisticsBox(logic);
+        statisticsBoxPlaceholder.getChildren().add(statisticsBox.getRoot());
 
         statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

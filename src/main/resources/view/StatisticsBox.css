@@ -1,0 +1,44 @@
+.chart-pie-label-line {
+    -fx-stroke: #FFFFFF;
+    -fx-fill: #FFFFFF;
+}
+
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}
+
+.chart-legend {
+   -fx-background-color:  #4682b4;
+   -fx-stroke: #FFFFFF;
+}
+
+.chart-legend-item{
+    -fx-text-fill: #FFFFFF;
+}
+
+.chart-title {
+  -fx-text-fill: #FFFFFF;
+  -fx-font-size: 1.6em;
+}
+
+.data0.chart-pie {
+    -fx-pie-color: #3BD16F;
+}
+
+.data1.chart-pie {
+    -fx-pie-color: #B00020;
+}
+
+.data2.chart-pie {
+    -fx-pie-color: #E5BF00;
+}
+
+.no-due-project {
+  -fx-text-fill: #FFFFFF;
+  -fx-font-size: 1em;
+}
+
+.message-box-bg {
+   -fx-background-color:  #dddddd;
+}

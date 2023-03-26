@@ -2,8 +2,11 @@ package mycelium.mycelium.model;
 
 import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
+import static mycelium.mycelium.commons.util.DateUtil.isBeforeToday;
+import static mycelium.mycelium.commons.util.DateUtil.isWithinThisAndNextWeek;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +22,7 @@ import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
 import mycelium.mycelium.model.util.exceptions.ItemNotFoundException;
@@ -234,6 +238,49 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
+    }
+
+    @Override
+    public ObservableList<Project> getDueProjectList() {
+        ObservableList<Project> sortedProjectList;
+        sortedProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
+                && p.getStatus() != ProjectStatus.DONE && isWithinThisAndNextWeek(p.getDeadline().get())
+                && !isBeforeToday(p.getDeadline().get())).sorted((p1, p2) -> p1.compareToWithDeadline(p2));
+
+        return sortedProjectList;
+    }
+
+    @Override
+    public ObservableList<Project> getOverdueProjectList() {
+        ObservableList<Project> overdueProjectList;
+        overdueProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
+                && p.getStatus() != ProjectStatus.DONE && isBeforeToday(p.getDeadline().get()))
+                .sorted((p1, p2) -> p1.compareToWithDeadline(p2));
+
+        return overdueProjectList;
+    }
+
+    @Override
+    public HashMap<String, Long> getProjectStatistics() {
+        HashMap<String, Long> projectStatusWithCount = new HashMap<>();
+
+        long notStarted = 0;
+        long done = 0;
+        long inProgress = 0;
+
+        notStarted = this.filteredProjects.stream().filter(project ->
+                project.getStatus() == ProjectStatus.NOT_STARTED).count();
+        projectStatusWithCount.put("Not Started", notStarted);
+
+        done = this.filteredProjects.stream().filter(project ->
+                project.getStatus() == ProjectStatus.DONE).count();
+        projectStatusWithCount.put("Done", done);
+
+        inProgress = this.filteredProjects.stream().filter(project ->
+                project.getStatus() == ProjectStatus.IN_PROGRESS).count();
+        projectStatusWithCount.put("In Progress", inProgress);
+
+        return projectStatusWithCount;
     }
 
     @Override

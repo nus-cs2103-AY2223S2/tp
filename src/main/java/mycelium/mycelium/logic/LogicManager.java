@@ -2,6 +2,7 @@ package mycelium.mycelium.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -68,6 +69,21 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
+    }
+
+    @Override
+    public ObservableList<Project> getDueProjectList() {
+        return model.getDueProjectList();
+    }
+
+    @Override
+    public ObservableList<Project> getOverdueProjectList() {
+        return model.getOverdueProjectList();
+    }
+
+    @Override
+    public HashMap<String, Long> getProjectStatistics() {
+        return model.getProjectStatistics();
     }
 
     @Override
