@@ -97,7 +97,7 @@
     -fx-padding: 2px ;
     -fx-background-color: transparent, -fx-background ;
     -fx-background-insets: 5px ;
-    -fx-background-radius: 10px ;
+    -fx-background-radius: 7px ;
 }
 
 .list-cell:filled {
