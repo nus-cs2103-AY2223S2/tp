@@ -58,7 +58,6 @@ public class MarkParcelCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
 
         if (parcelIndex.getZeroBased() >= targetPerson.getParcels().size()) {
