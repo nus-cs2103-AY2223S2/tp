@@ -13,6 +13,8 @@ public class Tag extends Field {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    private static final int MAX_VALUE_LENGTH = 16;
+
 
     /**
      * Constructs a {@code Tag}.
@@ -22,6 +24,19 @@ public class Tag extends Field {
     public Tag(String tagName) {
         super(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Truncates the value of this {@code Tag} if it is longer than {@code MAX_VALUE_LENGTH = 16}.
+     * Since most English words are shorter than 10 letters and {@code Tag}s are single words,
+     * a 16-letter limit should be enough.
+     * This method is used in displaying the {@code Tag}s in a {@code FlowPane}
+     * so that tags that are too long do not overflow the width of the parent.
+     */
+    public String truncateValue() {
+        return value.length() > MAX_VALUE_LENGTH
+                ? value.substring(0, MAX_VALUE_LENGTH) + "..."
+                : value;
     }
 
     /**
