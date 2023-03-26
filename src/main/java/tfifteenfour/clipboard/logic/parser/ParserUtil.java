@@ -39,8 +39,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses all {@code oneBasedIndex} separated by a "," in a string and returns them in an array. Trailing
-     * whitespaces will be trimmed.
+     * Parses {@code oneBasedIndexes} into an array of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if any index is invalid (not non-zero unsigned integer).
      */
     public static Index[] parseMultipleIndex(String oneBasedIndexes) throws ParseException {

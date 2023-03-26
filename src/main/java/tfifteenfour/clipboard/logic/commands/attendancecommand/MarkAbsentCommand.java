@@ -3,8 +3,8 @@ package tfifteenfour.clipboard.logic.commands.attendancecommand;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
-import java.util.List;
 
+import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
@@ -15,8 +15,7 @@ import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
-
-
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 
 
 /**
@@ -27,11 +26,11 @@ public class MarkAbsentCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the selected student at the index number as absent. \n"
+            + ": Marks the selected student at the index number as absent. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " 1,2,3,4,5";
 
-    public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked student as absent in session %1$s: \n%2$s";
 
     private final Index[] targetIndex;
 
@@ -52,7 +51,7 @@ public class MarkAbsentCommand extends Command {
         }
 
         Session session = currentSelection.getSelectedSession();
-        List<Student> studentList = session.getUnmodifiableStudentList();
+        ObservableList<StudentWithAttendance> studentList = session.getUnmodifiableStudentList();
         StringBuilder studentMarked = new StringBuilder();
 
         for (int i = 0; i < targetIndex.length; i++) {
@@ -61,10 +60,13 @@ public class MarkAbsentCommand extends Command {
             } else {
                 Student studentToMark = studentList.get(targetIndex[i].getZeroBased());
                 session.markAbsent(studentToMark);
-                studentMarked.append(studentToMark);
+                studentMarked.append(studentToMark.getName());
+                if (i != targetIndex.length - 1) {
+                    studentMarked.append(", ");
+                }
             }
         }
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentMarked), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, session, studentMarked), willModifyState);
     }
 
     @Override

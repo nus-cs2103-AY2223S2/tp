@@ -43,7 +43,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         try {
             addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Add type missing");
+            throw new ParseException("Add type missing. \n"
+                    + "Available option: add course, add group, add session, add student");
         }
 
         switch (addCommandType) {
@@ -88,7 +89,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private Session parseSessionInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         if (tokens.length != 3) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
         }
 
         Session session = ParserUtil.parseSession(tokens[2]);
