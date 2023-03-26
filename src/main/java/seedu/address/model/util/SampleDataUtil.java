@@ -1,5 +1,10 @@
 package seedu.address.model.util;
 
+import static seedu.address.model.person.status.LeadStatusName.QUALIFIED;
+import static seedu.address.model.person.status.LeadStatusName.UNCONTACTED;
+import static seedu.address.model.person.status.LeadStatusName.UNQUALIFIED;
+import static seedu.address.model.person.status.LeadStatusName.WORKING;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,7 +23,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Owner;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.Value;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -39,7 +50,8 @@ public class SampleDataUtil {
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 EMPTY_REMARK,
                 getTagSet("friends"),
-                EMPTY_TASK),
+                EMPTY_TASK,
+                new LeadStatus(UNCONTACTED.getLabel())),
             new Person(new Name("Bernice Yu"),
                 new Gender("female"),
                 new Phone("99272758"),
@@ -51,7 +63,8 @@ public class SampleDataUtil {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 EMPTY_REMARK,
                 getTagSet("colleagues", "friends"),
-                EMPTY_TASK),
+                EMPTY_TASK,
+                new LeadStatus(WORKING.getLabel())),
             new Person(new Name("Charlotte Oliveiro"),
                 new Gender("female"),
                 new Phone("93210283"),
@@ -63,7 +76,8 @@ public class SampleDataUtil {
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 EMPTY_REMARK,
                 getTagSet("neighbours"),
-                EMPTY_TASK),
+                EMPTY_TASK,
+                new LeadStatus(UNCONTACTED.getLabel())),
             new Person(new Name("David Li"),
                 new Gender("male"),
                 new Phone("91031282"),
@@ -75,7 +89,8 @@ public class SampleDataUtil {
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 EMPTY_REMARK,
                 getTagSet("family"),
-                EMPTY_TASK),
+                EMPTY_TASK,
+                new LeadStatus(UNQUALIFIED.getLabel())),
             new Person(new Name("Irfan Ibrahim"),
                 new Gender("male"),
                 new Phone("92492021"),
@@ -87,7 +102,8 @@ public class SampleDataUtil {
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 EMPTY_REMARK,
                 getTagSet("classmates"),
-                EMPTY_TASK),
+                EMPTY_TASK,
+                new LeadStatus(QUALIFIED.getLabel())),
             new Person(new Name("Roy Balakrishnan"),
                 new Gender("male"),
                 new Phone("92624417"),
@@ -99,7 +115,34 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 EMPTY_REMARK,
                 getTagSet("colleagues"),
-                EMPTY_TASK)
+                EMPTY_TASK,
+                new LeadStatus(QUALIFIED.getLabel()))
+        };
+    }
+
+    public static Transaction[] getSampleTransactions() {
+        return new Transaction[] {
+            new Transaction(new Description("18 AwfullyHot CoffeePots for Singapore National University"),
+                new Value("2700"),
+                new TxnStatus("closed"),
+                new Owner("Roy Balakrishnan")),
+            new Transaction(new Description("3 KoffeeMaster Espresso Machines for SalesPUNCH Inc."),
+                new Value("6000"),
+                new TxnStatus("open"),
+                new Owner("Irfan Ibrahim")),
+            new Transaction(new Description("150kg Grade 4 Busta Robusta Brazilian Coffe Beans for Singapore National "
+                    + "University"),
+                new Value("750"),
+                new TxnStatus("open"),
+                new Owner("Roy Balakrishnan")),
+            new Transaction(new Description("5 KoffeeGuru Espresso Machines for Mac King"),
+                new Value("12000"),
+                new TxnStatus("open"),
+                new Owner("Charlotte Oliveiro")),
+            new Transaction(new Description("3 FrappeBlaster Machine Rental for Corporate Event at Tesleh"),
+                new Value("750"),
+                new TxnStatus("open"),
+                new Owner("Bernice Yu"))
         };
     }
 
@@ -107,6 +150,10 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+
+        for (Transaction sampleTxn : getSampleTransactions()) {
+            sampleAb.addTransaction(sampleTxn);
         }
         return sampleAb;
     }
