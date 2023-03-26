@@ -87,7 +87,7 @@ public class SemYear implements Comparable<SemYear> {
      *
      * @param o the object to be compared.
      * @return a negative integer, zero, or a positive integer as this object
-     * is less than, equal to, or greater than the specified object.
+     *      is less than, equal to, or greater than the specified object.
      * @throws NullPointerException if the specified object is null
      * @throws ClassCastException   if the specified object's type prevents it
      *                              from being compared to this object.
@@ -101,7 +101,7 @@ public class SemYear implements Comparable<SemYear> {
         }
         String sem1 = o.toString().substring(3, 4);
         if (sem1.equals("T")) {
-              return -1;
+            return -1;
         }
         String sem2 = this.toString().substring(3, 4);
         if (sem2.equals("T")) {

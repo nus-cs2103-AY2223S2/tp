@@ -1,15 +1,13 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 
+/**
+ * The type Sort command parser.
+ */
 public class SortCommandParser implements Parser<SortCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.

@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     public TreeMap<? extends Object, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
-        return  model.sortModuleGroups(sort);
+        return model.sortModuleGroups(sort);
     }
 
     @Override

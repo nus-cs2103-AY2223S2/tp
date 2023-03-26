@@ -9,6 +9,7 @@ import static seedu.modtrek.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -140,6 +141,16 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
             throw new AssertionError("This method should not be called.");
         }
 

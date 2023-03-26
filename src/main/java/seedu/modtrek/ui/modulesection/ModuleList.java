@@ -26,7 +26,7 @@ public class ModuleList extends UiPart<Region> {
     /**
      * Instantiates a new ModuleList.
      *
-     * @param modules the entire list of modules
+     * @param modules        the entire list of modules
      * @param isFilteredList indicates if the list of modules is filtered by a search query
      */
     public ModuleList(ObservableList<Module> modules, boolean isFilteredList) {
@@ -38,6 +38,11 @@ public class ModuleList extends UiPart<Region> {
         displayModuleGroup(modules, isFilteredList);
     }
 
+    /**
+     * Instantiates a new Module list.
+     *
+     * @param moduleGroups the module groups
+     */
     public ModuleList(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
         super(FXML);
 

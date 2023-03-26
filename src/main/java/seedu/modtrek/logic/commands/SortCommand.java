@@ -8,16 +8,33 @@ import java.util.Locale;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;
 
-public class SortCommand extends Command{
+/**
+ * The type Sort command.
+ */
+public class SortCommand extends Command {
 
+    /**
+     * The constant COMMAND_WORD.
+     */
     public static final String COMMAND_WORD = "sort";
 
+    /**
+     * The constant MESSAGE_SUCCESS.
+     */
     public static final String MESSAGE_SUCCESS = "Listed modules by %s";
 
+    /**
+     * The constant MESSAGE_FAILURE.
+     */
     public static final String MESSAGE_FAILURE = "Sorry but I don't know how to sort modules that way.";
 
     private String sortOrder;
 
+    /**
+     * Instantiates a new Sort command.
+     *
+     * @param sortOrder the sort order
+     */
     public SortCommand(String sortOrder) {
         requireNonNull(sortOrder);
         checkArgument(isValid(sortOrder), MESSAGE_FAILURE);

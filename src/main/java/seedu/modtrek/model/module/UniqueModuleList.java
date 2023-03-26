@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.CommandResult;
-import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
@@ -28,7 +27,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Checks if the module is in this list.
      *
-     * @param toCheck
+     * @param toCheck the to check
      * @return boolean if module is in list
      */
     public boolean contains(Module toCheck) {
@@ -39,7 +38,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Adds module into the list. Module must not be null and must be unique.
      *
-     * @param toAdd
+     * @param toAdd the to add
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -52,8 +51,8 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Changes the module into the editedModule.
      *
-     * @param target
-     * @param editedModule
+     * @param target       the target
+     * @param editedModule the edited module
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -73,7 +72,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Removes the module from the list.
      *
-     * @param toRemove
+     * @param toRemove the to remove
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
@@ -85,7 +84,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Sets modules based on the replacement list.
      *
-     * @param replacement
+     * @param replacement the replacement
      */
     // For resetting
     public void setModules(UniqueModuleList replacement) {
@@ -97,7 +96,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Sets modules based on the list of modules.
      *
-     * @param modules
+     * @param modules the modules
      */
     // For resetting
     public void setModules(List<Module> modules) {
@@ -113,7 +112,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns an unmodifiable list.
      *
-     * @return
+     * @return observable list
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
@@ -122,7 +121,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns TreeMap of Modules sorted by SemYear
      *
-     * @return
+     * @return tree map
      */
     public TreeMap<SemYear, ObservableList<Module>> sortBySemYear() {
         TreeMap<SemYear, ObservableList<Module>> result = new TreeMap<>();
@@ -143,7 +142,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns TreeMap of Modules sorted by Credit
      *
-     * @return
+     * @return tree map
      */
     public TreeMap<Credit, ObservableList<Module>> sortByCredit() {
         TreeMap<Credit, ObservableList<Module>> result = new TreeMap<>();
@@ -164,7 +163,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns TreeMap of Modules sorted by Grade
      *
-     * @return
+     * @return tree map
      */
     public TreeMap<Grade, ObservableList<Module>> sortByGrade() {
         TreeMap<Grade, ObservableList<Module>> result = new TreeMap<>();
@@ -210,6 +209,12 @@ public class UniqueModuleList implements Iterable<Module> {
         return true;
     }
 
+    /**
+     * Sort module groups tree map.
+     *
+     * @param sort the sort
+     * @return the tree map
+     */
     public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
         switch (sort) {
         case GRADE:
@@ -221,6 +226,11 @@ public class UniqueModuleList implements Iterable<Module> {
         }
     }
 
+    /**
+     * Gets module groups.
+     *
+     * @return the module groups
+     */
     public TreeMap<?, ObservableList<Module>> getModuleGroups() {
         return moduleGroups;
     }

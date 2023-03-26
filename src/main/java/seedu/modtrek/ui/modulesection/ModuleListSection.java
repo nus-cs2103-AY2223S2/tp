@@ -14,6 +14,7 @@ import seedu.modtrek.ui.UiPart;
 public class ModuleListSection extends ModuleSection {
     /**
      * Instantiates a ModuleListSection.
+     *
      * @param modules The modules to display in the section.
      */
     public ModuleListSection(ObservableList<Module> modules) {
@@ -26,6 +27,11 @@ public class ModuleListSection extends ModuleSection {
         moduleSectionNav.getChildren().add(nav.getRoot());
     }
 
+    /**
+     * Instantiates a new Module list section.
+     *
+     * @param sortedLists the sorted lists
+     */
     public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedLists) {
         super();
 
@@ -43,6 +49,9 @@ public class ModuleListSection extends ModuleSection {
     private class ModuleSectionSortNav extends UiPart<Region> {
         private static final String FXML = "modulesection/ModuleSectionSortNav.fxml";
 
+        /**
+         * Instantiates a new Module section sort nav.
+         */
         public ModuleSectionSortNav() {
             super(FXML);
         }
