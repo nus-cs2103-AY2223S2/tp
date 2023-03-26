@@ -47,7 +47,7 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-            <StackPane fx:id="resultPersonPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="resultPersonListPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">

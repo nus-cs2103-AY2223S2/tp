@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
@@ -46,11 +49,16 @@ public class ShowRemarkCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        model.updateFilteredPersonList();
+
         Person personToShow = lastShownList.get(index.getZeroBased());
+        assert (personToShow != null);
+        List<String> personToShowNamePredicate = Arrays.asList(personToShow.getName().toString().split(" "));
+        assert (personToShowNamePredicate != null);
+        model.updateShowPerson(new NameContainsKeywordsPredicate(personToShowNamePredicate));
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
         return new CommandResult(String.format(message, toBeShown));
+
     }
 
     @Override
