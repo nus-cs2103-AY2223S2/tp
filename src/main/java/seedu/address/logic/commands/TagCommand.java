@@ -16,9 +16,9 @@ import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.model.scheduler.Module;
-import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.time.Day;
+import seedu.address.model.timetable.Module;
 
 /**
  * Adds a ModuleTag to a person.

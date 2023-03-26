@@ -14,10 +14,10 @@ import seedu.address.model.Model;
 import seedu.address.model.location.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.Scheduler;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.util.TimeUtil;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
+import seedu.address.model.timingrecommender.TimingRecommender;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.
@@ -70,15 +70,15 @@ public class MeetCommand extends Command {
 
         List<Location> locationsOfPersons = getAllAddresses(model);
         List<? extends Location> recommendations = giveRecommendations(locationsOfPersons);
-        Scheduler scheduler = new Scheduler(model).initialise(indices);
-        scheduler.addTimetable(EMPTY_TIMETABLE);
-        scheduler.addTimetable(EMPTY_TIMETABLE);
-        List<TimePeriod> recommendedTimings = scheduler.getAllTimings();
+        TimingRecommender timingRecommender = new TimingRecommender(model).initialise(indices);
+        timingRecommender.addTimetable(EMPTY_TIMETABLE);
+        timingRecommender.addTimetable(EMPTY_TIMETABLE);
+        List<TimePeriod> recommendedTimings = timingRecommender.getAllTimings();
         // only recommend locations if there is a common timing available amongst ALL participants
         if (recommendedTimings.isEmpty()) {
             return new CommandResult(MESSAGE_NO_COMMON_TIME);
         }
-        // Optional<TimePeriod> recommendedTimings = scheduler.giveLongestTimingRecommendations()'
+        // Optional<TimePeriod> recommendedTimings = timingrecommender.giveLongestTimingRecommendations()'
         // This section deals with porting the information over to the front end.
         // @zichen This is the entry point.
         StringBuilder sb = new StringBuilder();

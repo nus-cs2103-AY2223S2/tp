@@ -1,4 +1,4 @@
-package seedu.address.model.util;
+package seedu.address.commons.util;
 
 import java.util.List;
 import java.util.stream.Collectors;

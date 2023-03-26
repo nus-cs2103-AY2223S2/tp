@@ -33,13 +33,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimeBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.util.TimeUtil;
-
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 class TimeUtilTest {
 

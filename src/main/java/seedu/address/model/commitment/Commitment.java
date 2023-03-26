@@ -1,8 +1,11 @@
 package seedu.address.model.commitment;
 
+import java.util.ArrayList;
+
 import org.joda.time.LocalTime;
 
-import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
 
 /**
  * Represents a commitment.
@@ -16,8 +19,22 @@ public class Commitment {
     /**
      * Constructs a Commitment object
      */
-    public Commitment() {
+    public Commitment(LocalTime startTime, LocalTime endTime, Day day) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.day = day;
+    }
 
+    /**
+     * Checks if there is a sequence of timeslots to fit a commitment.
+     */
+    public boolean canFitIntoDaySchedule(ArrayList<HourBlock> slots) {
+        boolean canFit = true;
+        for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
+            System.out.println(String.format("%s, %s", i, slots.get(i)));
+            canFit &= slots.get(i).isFree();
+        }
+        return canFit;
     }
 
     public LocalTime getStartTime() {

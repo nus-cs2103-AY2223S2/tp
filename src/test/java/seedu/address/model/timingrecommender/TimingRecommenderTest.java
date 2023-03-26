@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler;
+package seedu.address.model.timingrecommender;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,10 +28,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimePeriod;
 
-class SchedulerTest {
+class TimingRecommenderTest {
 
     private Model model;
 
@@ -42,7 +42,7 @@ class SchedulerTest {
 
     @Test
     public void intialise_modelOnly_success() {
-        assertDoesNotThrow(() -> new Scheduler(model));
+        assertDoesNotThrow(() -> new TimingRecommender(model));
     }
 
     @Test
@@ -50,9 +50,9 @@ class SchedulerTest {
         ContactIndex[] indices = { new ContactIndex(2),
             new ContactIndex(5),
             new ContactIndex(13)};
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.initialise(new ArrayList<ContactIndex>(List.of(indices)));
-        assertEquals(3, scheduler.getParticipants().size());
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.initialise(new ArrayList<ContactIndex>(List.of(indices)));
+        assertEquals(3, timingRecommender.getParticipants().size());
     }
 
     @Test
@@ -60,9 +60,9 @@ class SchedulerTest {
         ContactIndex[] indices = { new ContactIndex(2),
             new ContactIndex(998),
             new ContactIndex(3)};
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.initialise(new ArrayList<ContactIndex>(List.of(indices)));
-        assertEquals(2, scheduler.getParticipants().size());
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.initialise(new ArrayList<ContactIndex>(List.of(indices)));
+        assertEquals(2, timingRecommender.getParticipants().size());
     }
 
     @Test
@@ -70,18 +70,18 @@ class SchedulerTest {
         ContactIndex[] indices = { new ContactIndex(999),
             new ContactIndex(998),
             new ContactIndex(997)};
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.initialise(new ArrayList<ContactIndex>(List.of(indices)));
-        assertTrue(scheduler.getSchedules().isEmpty());
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.initialise(new ArrayList<ContactIndex>(List.of(indices)));
+        assertTrue(timingRecommender.getSchedules().isEmpty());
     }
 
     @Test
     public void testRecommendations_twoTimetables_success() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(TIMETABLE_A);
-        scheduler.addTimetable(TIMETABLE_B);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(TIMETABLE_A);
+        timingRecommender.addTimetable(TIMETABLE_B);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -91,12 +91,12 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_threeTimetablesVariant1_success() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(TIMETABLE_A);
-        scheduler.addTimetable(TIMETABLE_B);
-        scheduler.addTimetable(TIMETABLE_C);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(TIMETABLE_A);
+        timingRecommender.addTimetable(TIMETABLE_B);
+        timingRecommender.addTimetable(TIMETABLE_C);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -106,12 +106,12 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_threeTimetablesVariant2_success() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(TIMETABLE_C);
-        scheduler.addTimetable(TIMETABLE_D);
-        scheduler.addTimetable(TIMETABLE_E);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(TIMETABLE_C);
+        timingRecommender.addTimetable(TIMETABLE_D);
+        timingRecommender.addTimetable(TIMETABLE_E);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -121,12 +121,12 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_threeTimetablesVariant4_success() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(TIMETABLE_A);
-        scheduler.addTimetable(TIMETABLE_D);
-        scheduler.addTimetable(TIMETABLE_E);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(TIMETABLE_A);
+        timingRecommender.addTimetable(TIMETABLE_D);
+        timingRecommender.addTimetable(TIMETABLE_E);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -136,11 +136,11 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_oneDayFullConflict_returnsWholeOtherDayTimeBlock() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_A);
-        scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_B);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_A);
+        timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_B);
         // expected longest interval 8am - 10pm
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
@@ -151,12 +151,12 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_oneDayFullConflictWithTimetableA_returnsWholeOtherDayTimeBlock() {
-        Scheduler scheduler = new Scheduler(model);
-        scheduler.addTimetable(TIMETABLE_A);
-        scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_A);
-        scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_B);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        timingRecommender.addTimetable(TIMETABLE_A);
+        timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_A);
+        timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_B);
         // expected longest interval 8am - 10pm
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
@@ -167,15 +167,15 @@ class SchedulerTest {
 
     @Test
     public void testRecommendations_emptyTimetable_emptyArrayList() {
-        Scheduler scheduler = new Scheduler(model);
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isEmpty());
     }
 
     @Test
     public void equalityCheck_sameObjectModel_equals() {
-        Scheduler scheduler = new Scheduler(model);
-        assertEquals(scheduler.getModel(), model);
+        TimingRecommender timingRecommender = new TimingRecommender(model);
+        assertEquals(timingRecommender.getModel(), model);
     }
 
 }
