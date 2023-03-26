@@ -16,6 +16,10 @@ TeachMeSenpai is a **desktop app targeted at private academic tutors who have ma
 3.  Copy the file to the folder you want to use as the home folder for your application.
 4.  Double-click the file to start the app.
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Features
 
 <div markdown="span" class="alert alert-primary">
@@ -42,11 +46,19 @@ TeachMeSenpai is a **desktop app targeted at private academic tutors who have ma
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Viewing help: `help`
 
 Shows a URL to the `User Guide` page.
 
 ![help popup gui](images/user-guide/help_popup.jpg)
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Exiting the program: `exit` / `bye` / `quit`
 
@@ -60,11 +72,19 @@ Exits the program.
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Listing all students: `list`
 
 Shows a list of the saved all students. Useful for resetting the list after using commands that modifies the list _(eg. [`find`](#findfilter-students-find))_.
 
 > Format: `list`
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Adding a student: `add`
 
@@ -91,6 +111,10 @@ _**Above: Before entering `add` command**_
 _**Above: After entering `add` command**_
 
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Editing a student: `edit`
 
@@ -124,6 +148,10 @@ _**Above: After entering `edit` command**_
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Editing remark of student: `remark`
 
 Edits a student's remark.
@@ -149,6 +177,10 @@ _**Above: Before entering `remark` command**_
 _**Above: After entering `remark` command**_
 
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Delete a student: `delete`
 
@@ -178,29 +210,9 @@ _**Above: After entering `delete` command**_
 
 </div>
 
-### Showing a student's remark: `show`
+[↑ Back to top](#table-of-contents)
 
-Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
-
-> Format: `show INDEX`
-
-Examples:
-
-- `show 2`
-
-<div align=center>
-
-![show before](images/user-guide/show_before.jpg)  
-_**Above: Before entering `show` command**_
-
-</div>
-
-<div align=center>
-
-![show after](images/user-guide/show_after.jpg)  
-_**Above: After entering `show` command**_
-
-</div>
+---
 
 ### Showing a student's remark: `show`
 
@@ -225,6 +237,38 @@ _**Above: Before entering `show` command**_
 _**Above: After entering `show` command**_
 
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### Showing a student's remark: `show`
+
+Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
+
+> Format: `show INDEX`
+
+Examples:
+
+- `show 2`
+
+<div align=center>
+
+![show before](images/user-guide/show_before.jpg)  
+_**Above: Before entering `show` command**_
+
+</div>
+
+<div align=center>
+
+![show after](images/user-guide/show_after.jpg)  
+_**Above: After entering `show` command**_
+
+</div>
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Find/filter students: `find`
 
@@ -257,13 +301,25 @@ _**Above: After entering `find` command**_
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Editing the data file
 
 > ❗ **Caution:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
+
+---
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -275,6 +331,10 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | Delete | `delete INDEX`<br>eg. `delete 3`                                                                |
 | Exit   | `exit`, `bye`, `quit`                                                                           |
 | List   | `list`                                                                                          |
+
+---
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -290,3 +350,6 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | r/     | Remark for student                        | `r/Good in German`               |
 | t/     | Tags of student                           | `t/submited t/late`              |
 | s/     | Subjects that the student is being taught | `s/Math s/Science`               |
+
+
+[↑ Back to top](#table-of-contents)
