@@ -275,7 +275,7 @@ The `GroupFindCommand` receives a  group and member of group predicate,
 
 The following activity diagram summarises what happens when a user executes an edit command:
 
-<img src="images/FindCommandActivityDiagram.png" width="200" />
+<img src="images/GroupFindCommandActivityDiagram.png" width="300" />
 
 #### Sequence Diagram
 
