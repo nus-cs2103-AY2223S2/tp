@@ -6,6 +6,8 @@ import codoc.model.person.Person;
 import codoc.ui.MainWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 
 /**
  * DetailedContact controller for showing contact details at DetailedInfoPanel.
@@ -32,9 +34,9 @@ public class DetailedContact extends DetailedInfo {
         super(FXML);
         this.mainWindow = mainWindow;
         Person protagonist = mainWindow.getLogic().getProtagonist();
-        github.setText(protagonist.getGithub().value);
         email.setText(protagonist.getEmail().value);
-        linkedin.setText(protagonist.getLinkedin().value);
+        github.setText(protagonist.getGithub().value == null ? "Not Added" : "@" + protagonist.getGithub().value);
+        linkedin.setText(protagonist.getLinkedin().value == null ? "Not Added" : protagonist.getLinkedin().value);
     }
 
     @FXML
