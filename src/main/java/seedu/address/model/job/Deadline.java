@@ -34,7 +34,7 @@ public class Deadline {
             LocalDate lDate = LocalDate.parse(test);
             return true;
         } else {
-            setMessageConstraint("Deadline should be in this format: {YYYY-MM-DD}");
+            setMessageConstraint("Deadline should be in this format: {YYYY-MM-DD} abn");
             return false;
         }
     }
