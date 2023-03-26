@@ -28,7 +28,7 @@ public class MarkPresentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the selected student at the index number as present. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " 1,2,3,4,5";
+            + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " 1,2,3,4,5";
 
     public static final String MESSAGE_SUCCESS = "Marked student as present: %1$s";
 
