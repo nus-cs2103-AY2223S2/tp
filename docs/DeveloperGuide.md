@@ -332,6 +332,50 @@ Given below is an updated `Model` component diagram.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
 
+### Find patient record by NRIC, Health conditions, Medicine feature
+
+###Implementation
+The implemented delete mechanism is facilitated by `FindCommandParser`. It extends `AddressBookParser` and implements
+the following operations:
+
+* `FindCommandParser#parse()` — Parses user input into a `Predicate` object according to the `Prefix` used. It then creates a `FindCommand` object
+and passes the `Predicate` into `FindCommand` object.
+
+These operations are exposed in the Model interface as Model#updateFilteredPersonList.
+
+Given below is an example usage scenario and how the find command works at each step
+
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
+
+Step 2. The administrator executes `find i/T0123456A T0124563B`. The `FindCommand` is executed and for each `NRIC`
+in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called, the model then filters the list of person to reflect 
+patients matching the 2 NRICs.
+
+The following sequence diagram shows how the delete command works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Deletion criteria**
+
+* **Alternative 1 (current choice):** Find by `NRIC`, `Health Conditions`, `Medicine`.
+    * Pros: 
+      * Very efficient as program will search for the record with specified `NRIC` and return the filtered person list
+      * Allows clinical administrator to filter for frequently used `Medicine` and stock up relevant supplies
+      * Allows clinical administrator to filter for common health conditions of patients at the clinic.
+    * Cons: 
+      * Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for
+        the top few records displayed.
+      * clinical administrator might need to type more since the `Attributes` to find by are generally longer in spelling.
+      
+
+* **Alternative 2:** Find by any `Attribute`. Eg. `Address`, `Phone` etc.
+    * Pros: More convenient for clinical administrator to search by any attributes that he deem easy to type
+    * Cons: Unlikely for the clinical administrator to use other attributes to find a particular patient.
+
+
+
 ### Delete patient record by NRIC feature
 
 #### Implementation
