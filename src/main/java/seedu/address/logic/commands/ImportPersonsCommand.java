@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORCE;
+
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +16,8 @@ public class ImportPersonsCommand extends Command {
     public static final String COMMAND_WORD = "import";
     static final String DUPLICATE_PERSON = "Duplicate person found";
     static final String SUCCESS = "Persons imported";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports persons in JSON format\n" + "Parameters: -f"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports persons in JSON format\n" + "Parameters: "
+            + PREFIX_FORCE
             + " to force imports regardless of duplicates";
     private final List<Person> people;
     private final boolean isForced;
