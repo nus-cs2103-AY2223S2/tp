@@ -38,24 +38,32 @@ public class SchedulePanel extends UiPart<Region> {
 
         FilteredList<Client> filteredList = new FilteredList<>(scheduleList, client -> !client.isAppointmentEmpty(client));
         ClientAppointmentComparator comparator = new ClientAppointmentComparator();
-        SortedList<Client> sortedList = new SortedList<>(filteredList, comparator);
-
-        sortedList.setComparator(comparator); // Set comparator to keep sorting up-to-date
-
-        scheduleView.setItems(sortedList);
 
         scheduleView.setCellFactory(listView -> new ScheduleViewCell());
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            // Remove clients with expired appointments from the filtered list
+            LocalDateTime currentTime = LocalDateTime.now();
+            filteredList.setPredicate(client -> {
+                for (Appointment appointment : client.getAppointments()) {
+                    if (currentTime.isBefore(appointment.getDateTime())) {
+                        return true; // Keep client in list
+                    }
+                }
+                return false; // Remove client from list
+            });
+            SortedList<Client> sortedList = new SortedList<>(filteredList, comparator);
+            sortedList.setComparator(comparator);
+            scheduleView.setItems(sortedList);
             LocalDateTime now = LocalDateTime.now();
-            for (Client client : sortedList) {
+            for (Client client : filteredList) {
                 for (Appointment appointment : client.getAppointments()) {
                     if (now.isAfter(appointment.getDateTime())) {
                         client.removeAppointment(appointment);
-                        scheduleView.refresh();
                     }
                 }
             }
+            scheduleView.refresh();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

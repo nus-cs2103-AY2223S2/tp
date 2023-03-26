@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.fitbook.commons.core.LogsCenter;
+import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Client;
 
 /**
@@ -34,8 +35,13 @@ public class ClientListPanel extends UiPart<Region> {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             LocalDateTime now = LocalDateTime.now();
             for (Client client : clientList) {
-                clientListView.refresh();
+                for (Appointment appointment : client.getAppointments()) {
+                    if (now.isAfter(appointment.getDateTime())) {
+                        client.removeAppointment(appointment);
+                    }
+                }
             }
+            clientListView.refresh();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

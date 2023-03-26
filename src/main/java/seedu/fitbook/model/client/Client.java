@@ -187,9 +187,7 @@ public class Client {
     public void appointmentValidityCheck(Set<Appointment> appointments) {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
         int i = 0;
-        //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
         while (i < this.appointments.size()) {
-            //System.out.println("hi");
             Appointment temp = appointmentIterator.next();
             if (temp.getDateTime().compareTo(LocalDateTime.now()) == -1) {
                 this.appointments.remove(temp);
@@ -201,5 +199,9 @@ public class Client {
     public boolean isAppointmentEmpty(Client client) {
         client.appointmentValidityCheck(client.getAppointments());
         return client.getAppointments().isEmpty();
+    }
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
     }
 }
