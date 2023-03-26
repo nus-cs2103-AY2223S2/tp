@@ -2,16 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.ModuleTag;
 
 /**
  * Sorts the persons by any field.
@@ -55,18 +51,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        // we copy here as the above personList is immutable
-        List<Person> sortedPersonList = new ArrayList<>(model.getFilteredPersonList());
-        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
-
-        // caches the common modules in each ModuleTagSet as running set
-        // intersection is expensive if we only use it in the compareTo method
-        sortedPersonList.forEach(person -> person.setCommonModules(userModuleTags));
-        sortedPersonList.sort(comparator);
-
-        // currently the only way to sort persons in the list
-        model.resetPersons();
-        sortedPersonList.forEach(model::addPerson);
+        model.updateObservablePersonList(comparator);
 
         return new CommandResult(
                 String.format("Sorted by:\n%s", comparatorDesc));

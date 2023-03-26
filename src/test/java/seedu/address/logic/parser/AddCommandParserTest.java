@@ -25,7 +25,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BEN).withGroupTags(CommandTestUtil.VALID_GROUP_2).build();
+        Person expectedPerson = new PersonBuilder(BEN)
+                .withGroupTags(CommandTestUtil.VALID_GROUP_2).withModuleTags().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BEN
@@ -60,57 +61,149 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BEN)
                 .withGroupTags(CommandTestUtil.VALID_GROUP_2, CommandTestUtil.VALID_GROUP_1)
+                .withModuleTags(CommandTestUtil.VALID_MODULE_2)
                 .build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
                 + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
                 + CommandTestUtil.TELEGRAM_DESC_BEN
                 + CommandTestUtil.VALID_GROUP_1_DESC
-                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPersonMultipleTags));
+                + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_2_DESC, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_tagsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(ALEX).withGroupTags().build();
+        Person expectedPerson = new PersonBuilder(ALEX).withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.PHONE_DESC_ALEX
-                        + CommandTestUtil.EMAIL_DESC_ALEX + CommandTestUtil.ADDRESS_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.ADDRESS_DESC_ALEX
                         + CommandTestUtil.TELEGRAM_DESC_ALEX,
                 new AddCommand(expectedPerson));
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_phoneMissing_default() {
+        // no phone
+        Person expectedPerson = new PersonBuilder(ALEX).withPhone("00000000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.ADDRESS_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_emailMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.ADDRESS_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.ADDRESS_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_addressMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withAddress("National University of Singapore")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withAddress("National University of Singapore")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_telegramMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withTelegramHandle("@alexquinn")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.ADDRESS_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withTelegramHandle("@benjaminkhoo")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.ADDRESS_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_multipleFieldsMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
+                .withAddress("National University of Singapore")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        expectedPerson = new PersonBuilder(ALEX).withPhone("00000000")
+                .withTelegramHandle("@alexquinn")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.ADDRESS_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
+                .withAddress("National University of Singapore")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                new AddCommand(expectedPerson));
+
+        expectedPerson = new PersonBuilder(BEN).withPhone("00000000")
+                .withTelegramHandle("@benjaminkhoo")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.ADDRESS_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+
+    @Test
+    public void parse_nameMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, CommandTestUtil.NAME_BEN + CommandTestUtil.PHONE_DESC_BEN
                         + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
                         + CommandTestUtil.TELEGRAM_DESC_BEN,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
-                        + CommandTestUtil.TELEGRAM_DESC_BEN,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_BEN + CommandTestUtil.ADDRESS_DESC_BEN
-                        + CommandTestUtil.TELEGRAM_DESC_BEN,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_BEN
-                        + CommandTestUtil.TELEGRAM_DESC_BEN,
-                expectedMessage);
-
-        // missing telegram prefix
-        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
-                        + CommandTestUtil.TELEGRAM_HANDLE_BEN,
                 expectedMessage);
 
         // all prefixes missing

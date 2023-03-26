@@ -11,12 +11,12 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as Storage1
 Class StorageManager
 
 package "EduMate Storage" MAIN_COLOR_BACKGROUND {
 Class "<<interface>>\nEduMateStorage" as EduMateStorage
-Class JsonEduMateStorage
+Class EduMateStorageManager
 Class JsonSerializableEduMate
 Class JsonAdaptedPerson
 Class JsonAdaptedUser
@@ -26,21 +26,21 @@ Class JsonAdaptedTag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storage1
 
-StorageManager .up.|> Storage
+StorageManager .up.|> Storage1
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" EduMateStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> EduMateStorage
+Storage1 -left-|> UserPrefsStorage
+Storage1 -right-|> EduMateStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonEduMateStorage .up.|> EduMateStorage
-JsonEduMateStorage ..> JsonSerializableEduMate
+EduMateStorageManager .up.|> EduMateStorage
+EduMateStorageManager ..> JsonSerializableEduMate
 JsonSerializableEduMate --> "*" JsonAdaptedPerson
 JsonSerializableEduMate --> JsonAdaptedUser
 JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedUser --> "*" JsonAdaptedTag
+JsonAdaptedUser --|> JsonAdaptedPerson
 
 @enduml

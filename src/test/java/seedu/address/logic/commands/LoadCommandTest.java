@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.results.LoadCommandResult;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,8 +24,8 @@ public class LoadCommandTest {
     private static final LoadCommand LOAD_COMMAND = new LoadCommand(PATH);
     private static final LoadCommand DIFF_COMMAND = new LoadCommand(DIFF_PATH);
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
     public void constructor_validArgs_success() {

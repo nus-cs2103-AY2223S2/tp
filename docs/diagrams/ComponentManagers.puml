@@ -4,27 +4,27 @@ skinparam arrowThickness 1.1
 
 
 package Logic LOGIC_COLOR_BACKGROUND {
-Class "<<interface>>\nLogic" as Logic LOGIC_COLOR
+Class "<<interface>>\nLogic" as Logic1 LOGIC_COLOR
 Class LogicManager LOGIC_COLOR
 }
 
 package Model MODEL_COLOR_BACKGROUND {
-Class "<<interface>>\nModel" as Model MODEL_COLOR
+Class "<<interface>>\nModel" as Model1 MODEL_COLOR
 Class ModelManager MODEL_COLOR
 }
 
 package Storage STORAGE_COLOR_BACKGROUND {
-Class "<<interface>>\nStorage" as Storage STORAGE_COLOR
+Class "<<interface>>\nStorage" as Storage1 STORAGE_COLOR
 Class StorageManager STORAGE_COLOR
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside .up.> Logic1
 
-LogicManager .[LOGIC_COLOR]up.|> Logic
-ModelManager .[MODEL_COLOR]up.|> Model
-StorageManager .[STORAGE_COLOR]up.|> Storage
+LogicManager .[LOGIC_COLOR]left.|> Logic1
+ModelManager .[MODEL_COLOR]left.|> Model1
+StorageManager .[STORAGE_COLOR]left.|> Storage1
 
-LogicManager -[LOGIC_COLOR]-> Model
+LogicManager -[LOGIC_COLOR]right-> Model
 LogicManager -[LOGIC_COLOR]-> Storage
 @enduml

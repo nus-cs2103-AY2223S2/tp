@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="351px" preserveAspectRatio="none" style="width:415px;height:351px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 415 351" width="415px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="214.75" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="183"
+              x="123.25" y="50"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="163" x="133.25"
+              y="72.8281">User enters delete command
+        </text>
+        <polygon fill="#F1F1F1"
+                 points="82.5,106.3441,82.5,106.3441,94.5,118.3441,82.5,130.3441,82.5,130.3441,70.5,118.3441,82.5,106.3441"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="86.5"
+              y="142.103">[Invalid argument]
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="143"
+              x="11" y="163.603"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="123" x="21"
+              y="186.4311">Error: Message usage
+        </text>
+        <ellipse cx="82.5" cy="230.9471" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="82.5" cy="230.9471" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <polygon fill="#F1F1F1"
+                 points="285,106.3441,285,106.3441,297,118.3441,285,130.3441,285,130.3441,273,118.3441,285,106.3441"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="289"
+              y="142.103">[Invalid index]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="3" x="297"
+              y="115.1211">&#160;
+        </text>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="167"
+              x="201.5" y="163.603"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="147" x="211.5"
+              y="186.4311">Error: Invalid person index
+        </text>
+        <ellipse cx="285" cy="230.9471" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="285" cy="230.9471" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="198"
+              x="115.75" y="261.9471"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="178" x="125.75"
+              y="284.7752">Person appears on view window
+        </text>
+        <ellipse cx="214.75" cy="329.2913" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="214.75" cy="329.2913" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="30" y2="50"/>
+        <polygon fill="#181818" points="210.75,40,214.75,50,218.75,40,214.75,44"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="199.9471" y2="219.9471"/>
+        <polygon fill="#181818" points="78.5,209.9471,82.5,219.9471,86.5,209.9471,82.5,213.9471"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="285" x2="285" y1="199.9471" y2="219.9471"/>
+        <polygon fill="#181818" points="281,209.9471,285,219.9471,289,209.9471,285,213.9471"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="130.3441" y2="163.603"/>
+        <polygon fill="#181818" points="78.5,153.603,82.5,163.603,86.5,153.603,82.5,157.603"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="285" x2="285" y1="130.3441" y2="163.603"/>
+        <polygon fill="#181818" points="281,153.603,285,163.603,289,153.603,285,157.603"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="94.5" x2="273" y1="118.3441" y2="118.3441"/>
+        <polygon fill="#181818" points="263,114.3441,273,118.3441,263,122.3441,267,118.3441"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="86.3441" y2="91.3441"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="82.5" y1="91.3441" y2="91.3441"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="91.3441" y2="106.3441"/>
+        <polygon fill="#181818" points="78.5,96.3441,82.5,106.3441,86.5,96.3441,82.5,100.3441"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="297" x2="403.5" y1="118.3441" y2="118.3441"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="403.5" x2="403.5" y1="118.3441" y2="246.9471"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="403.5" x2="214.75" y1="246.9471" y2="246.9471"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="246.9471" y2="261.9471"/>
+        <polygon fill="#181818" points="210.75,251.9471,214.75,261.9471,218.75,251.9471,214.75,255.9471"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="298.2913" y2="318.2913"/>
+        <polygon fill="#181818" points="210.75,308.2913,214.75,318.2913,218.75,308.2913,214.75,312.2913"
+                 style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[ROwn3i8m34JtV8N7zXVIcO41YOK9CKJaMYArJcIdBP-FIyLIuU5awUwUJckGwlnD8GIk4AM84HNqpDCKE7OkzTIqL5zWQkvdNiAO8WKPviaAZzQHdJ-9PF5qWMeOGFEctTVIcel3gFZBIHpnFa1-Nh4rcVV8WMKa1uwfT_wwfq8f2BRUtYLXfTLgUUtSLla0]-->
+    </g>
+</svg>

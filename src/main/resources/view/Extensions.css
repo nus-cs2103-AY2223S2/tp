@@ -1,4 +1,3 @@
-
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
@@ -24,17 +23,53 @@
 }
 
 .list-view .list-cell:filled:focused:selected > * > * > * > HBox > Label {
-    -fx-text-fill: #000000;
+    -fx-text-fill: white;
 }
 
 .list-view .list-cell:filled:focused:selected > * > * > * > Label {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: white;
 }
 
-.button:hover {
-    -fx-text-fill: #E63946;
-}
 
 .list-view .scroll-bar:vertical {
     -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar .thumb {
+    -fx-background-color:  rgb(227, 211, 238);
+    -fx-opacity: 0.2;
+    -fx-background-radius: 5;
+}
+
+.button {
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-color: rgba(0,0,0,0);
+}
+
+.text-area .scroll-bar .thumb{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-pref-width: 5px;
+    -fx-pref-height: 3px;
 }

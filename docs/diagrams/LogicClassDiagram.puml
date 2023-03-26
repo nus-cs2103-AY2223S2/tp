@@ -12,7 +12,7 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 
 
-Class "<<interface>>\nLogic" as Logic
+Class "<<interface>>\nLogic" as Logic1
 Class LogicManager
 }
 
@@ -23,9 +23,9 @@ package Storage STORAGE_COLOR_BACKGROUND {
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> Logic1
 
-LogicManager .right.|> Logic
+LogicManager .right.|> Logic1
 LogicManager -right->"1" EduMateParser
 EduMateParser ..> XYZCommand : creates >
 
@@ -39,7 +39,7 @@ Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
+Logic1 ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
 @enduml

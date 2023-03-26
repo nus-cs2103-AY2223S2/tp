@@ -16,4 +16,4 @@
   * For the detailed documentation of the AddressBook-Level3 project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
   * If you would like to contribute code to the AddressBook-Level3 project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html).

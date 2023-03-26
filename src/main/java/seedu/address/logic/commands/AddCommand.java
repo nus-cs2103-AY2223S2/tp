@@ -6,7 +6,6 @@ import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -60,12 +59,10 @@ public class AddCommand extends Command {
         if (model.hasPerson(this.candidatePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        // No duplicate person inside EduMate, then qualifies for a contact index
-        // the only place in the entire code that can set Contact Index.
-        IndexHandler indexHandler = new IndexHandler(model);
-        this.candidatePerson.setContactIndex(indexHandler.assignIndex());
-        model.addPerson(this.candidatePerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.candidatePerson));
+
+        Person indexedPerson = model.addPerson(candidatePerson);
+        model.updateObservablePersonList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, indexedPerson));
     }
 
     @Override

@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
@@ -155,6 +159,21 @@ public class ParserUtil {
     }
 
     /**
+     * To parse additional arguments for TagCommand.
+     * @param tags String to be parsed.
+     * @return ArrayList for arguments.
+     * @throws ParseException
+     */
+    public static ArrayList<String> parseMoreModules(String tags) throws ParseException {
+        String trimmedArgs = tags.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        }
+        // I can just set them as null and exceptions will be throw in TagCommand.
+        return new ArrayList<String>(Arrays.asList(trimmedArgs.split("\\s+")));
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code GroupTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -163,10 +182,11 @@ public class ParserUtil {
     public static ModuleTag parseModuleTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!ModuleTag.isValidTagName(trimmedTag)) {
+        ArrayList<String> args = parseMoreModules(trimmedTag);
+        if (!ModuleTag.isValidTagName(args.get(0))) {
             throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleTag(trimmedTag);
+        return new ModuleTag(args);
     }
 
     /**

@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
   {%- include head.html -%}
 
   <body>
-
     {%- include header.html -%}
 
     <main class="page-content" aria-label="Content">
+
+      <div class="sidebar">
+        {% if page.title == "User Guide" %}
+            {% include tocUg.html %}
+        {% elsif page.title == "Developer Guide" %}
+            {% include tocDg.html %}
+        {% endif %}
+      </div>
+
+      {% if page.title == "User Guide" or page.title == "Developer Guide" %}
+      <div class="wrapper" style="margin-right:22%;margin-left: 3%;" >
+        {{ content }}
+      </div>
+      {% else %}
       <div class="wrapper">
         {{ content }}
       </div>
+      {% endif %}
+
     </main>
-
   </body>
-
 </html>

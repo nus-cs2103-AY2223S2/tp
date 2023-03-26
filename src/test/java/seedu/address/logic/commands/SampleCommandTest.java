@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -16,7 +17,7 @@ public class SampleCommandTest {
     private static final int SAMPLE_SIZE = 25;
     private static final SampleCommand SAMPLE_COMMAND = new SampleCommand(SAMPLE_SIZE);
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
     public void execute_validSize_success() {

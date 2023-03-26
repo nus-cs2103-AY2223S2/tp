@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -104,7 +103,7 @@ public class EditCommand extends Command {
         editedPerson.setCommonModules(userModuleTags);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateObservablePersonList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -121,7 +120,7 @@ public class EditCommand extends Command {
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
-        model.getFilteredPersonList().forEach(person -> person.setCommonModules(userModuleTags));
+        model.getObservablePersonList().forEach(person -> person.setCommonModules(userModuleTags));
 
         model.setUser(editedUser);
         return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser));

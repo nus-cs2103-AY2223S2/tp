@@ -61,6 +61,8 @@ public class LogicManager implements Logic {
                 model.setEduMate(readOnlyEduMate);
             }
             storage.saveEduMate(model.getEduMate());
+            storage.saveEduMateHistory(commandText);
+            model.addEduMateHistory(commandText);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         } catch (DataConversionException dce) {
@@ -80,8 +82,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public String getPreviousCommand(boolean isUp) {
+        return model.getEduMateHistory().getPreviousCommand(isUp);
+    }
+
+    @Override
+    public ObservableList<Person> getObservablePersonList() {
+        return model.getObservablePersonList();
     }
 
     @Override

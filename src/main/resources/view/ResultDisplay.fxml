@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" styleClass="result-display-panel" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display-text">
+<StackPane fx:id="placeHolder" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="79.0" prefWidth="538.0" style="-fx-background-color: transparent;" styleClass="result-display-panel" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <TextArea fx:id="resultDisplay" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="79.0" prefWidth="538.0" styleClass="result-display-text" wrapText="true">
       <padding>
-         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         <Insets bottom="10.0" left="2.0" right="2.0" top="5.0" />
       </padding></TextArea>
 </StackPane>

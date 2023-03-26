@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -14,6 +16,19 @@ import seedu.address.model.location.LocationUtil;
 import seedu.address.model.person.ContactIndex;
 
 class MeetCommandTest {
+
+    // EMPTY TIMETABLE standard message
+    private static final String FULL_DAY_PERIOD = "Start: 8 AM  End: 10 PM";
+    private static final String EMPTY_TIMETABLE_MESSAGE = "MONDAY"
+        + "\n" + FULL_DAY_PERIOD
+        + "\n\n" + "TUESDAY"
+        + "\n" + FULL_DAY_PERIOD
+        + "\n\n" + "WEDNESDAY"
+        + "\n" + FULL_DAY_PERIOD
+        + "\n\n" + "THURSDAY"
+        + "\n" + FULL_DAY_PERIOD
+        + "\n\n" + "FRIDAY"
+        + "\n" + FULL_DAY_PERIOD;
 
     // 6 is EDWARD and 8 is GEORGE, both in Kent Ridge
     private static final Set<ContactIndex> INDICES =
@@ -25,28 +40,28 @@ class MeetCommandTest {
     private static final MeetCommand EAT_COMMAND =
             new MeetCommand(INDICES, LocationUtil.EAT_LOCATIONS, 3);
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
 
     @Test
-    public void execute() {
+    public void execute() throws CommandException {
         String expectedMessage;
-
         expectedMessage = MeetCommand.MESSAGE_SUCCESS
-                + "\n" + "NUS Medical Library"
-                + "\n" + "NUS Science Library"
-                + "\n" + "Frontier";
+            + "\n" + EMPTY_TIMETABLE_MESSAGE
+            + "\n\n" + "NUS Medical Library"
+            + "\n" + "NUS Science Library"
+            + "\n" + "Frontier";
         assertCommandSuccess(MEET_COMMAND, model, expectedMessage, expectedModel);
-
         expectedMessage = MeetCommand.MESSAGE_SUCCESS
-                + "\n" + "NUS Medical Library"
-                + "\n" + "NUS Science Library";
+            + "\n" + EMPTY_TIMETABLE_MESSAGE
+            + "\n\n" + "NUS Medical Library"
+            + "\n" + "NUS Science Library";
         assertCommandSuccess(STUDY_COMMAND, model, expectedMessage, expectedModel);
-
         expectedMessage = MeetCommand.MESSAGE_SUCCESS
-                + "\n" + "Frontier"
-                + "\n" + "Prince Georges Park"
-                + "\n" + "The Terrace";
+            + "\n" + EMPTY_TIMETABLE_MESSAGE
+            + "\n\n" + "Frontier"
+            + "\n" + "Prince Georges Park"
+            + "\n" + "The Terrace";
         assertCommandSuccess(EAT_COMMAND, model, expectedMessage, expectedModel);
     }
 }

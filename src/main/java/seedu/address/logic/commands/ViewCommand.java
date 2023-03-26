@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.model.Model;
@@ -15,11 +17,13 @@ import seedu.address.model.person.Person;
  */
 public class ViewCommand extends Command {
 
+
     public static final String COMMAND_WORD = "view";
     public static final String USAGE = "view <index> : Allows you to view the profile of the person who"
             + "has the index\n"
             + "view n/<name> : Allows you to view profile for the specific person"
             + "view : Shows your own profile instead";
+    private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
     private final Optional<String> name;
     private final Optional<ContactIndex> index;
 
@@ -42,6 +46,7 @@ public class ViewCommand extends Command {
     @Override
     public ViewCommandResult execute(Model model) throws CommandException {
         Optional<Person> person = retrievePerson(model);
+        logger.info(String.format("Attempting to execute in ViewCommand"));
         if (person.isEmpty()) {
             return new ViewCommandResult("No such person found!", model.getUser());
         }
@@ -55,7 +60,7 @@ public class ViewCommand extends Command {
      * @return
      */
     public Optional<Person> retrievePerson(Model model) {
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
         if (index.isPresent()) {
             return Optional.ofNullable(personList
                     .stream()
@@ -85,8 +90,8 @@ public class ViewCommand extends Command {
             ViewCommand otherCommand = (ViewCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getName().equals(getName());
-        } else {
-            return false;
         }
+        return false;
+
     }
 }

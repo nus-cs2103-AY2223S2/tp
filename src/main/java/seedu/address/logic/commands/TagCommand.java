@@ -1,20 +1,25 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Set;
+
+import org.joda.time.LocalTime;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.time.Day;
+import seedu.address.model.timetable.Module;
 
 /**
  * Adds a ModuleTag to a person.
@@ -30,6 +35,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person! \n";
     public static final String MESSAGE_TAG_USER_SUCCESS = "Module(s) tagged to User! \n";
     public static final String MESSAGE_NO_TAGS = "At least one Module must be provided.";
+    public static final String MESSAGE_INCORRECT_INPUT_FOR_LESSON = "The wrong types of arguments has been provided.";
 
     private final ContactIndex index;
     private final Set<ModuleTag> moduleTags;
@@ -76,11 +82,15 @@ public class TagCommand extends Command {
         // intersection is expensive if we only use it in the compareTo method
         personToEdit.setCommonModules(userModuleTags);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateObservablePersonList();
+
+        addLessons(personToEdit, oldModules);
+
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
-                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()));
+                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString() + '\n'
+                + "Lessons: " + personToEdit.getLessonsAsStr()));
     }
 
     /**
@@ -96,13 +106,62 @@ public class TagCommand extends Command {
 
         userModuleTags.addAll(this.moduleTags);
 
-        model.getFilteredPersonList().forEach(person ->
+        model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
+
+        addLessons(editedUser, userModuleTags);
 
         return new CommandResult(String.format(MESSAGE_TAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
-                + "Modules: " + editedUser.getImmutableModuleTags().toString()));
+                + "Modules: " + editedUser.getImmutableModuleTags().toString() + '\n'
+                + "Lessons: " + editedUser.getLessonsAsStr()));
 
+    }
+
+    public ContactIndex getIndex() {
+        return this.index;
+    }
+
+    public Set<ModuleTag> getModules() {
+        return this.moduleTags;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof TagCommand) {
+            TagCommand otherCommand = (TagCommand) other;
+            return otherCommand.getIndex().equals(getIndex())
+                    && otherCommand.getModules().equals(getModules());
+        }
+
+        return false;
+    }
+
+    private void addLessons(Person editedPerson, ModuleTagSet moduleTagSet) throws CommandException {
+        for (ModuleTag tag : moduleTags) {
+            String day = tag.getDayAsStr();
+            String startTime = tag.getStartTimeAsStr();
+            String endTime = tag.getEndTimeAsStr();
+            if (day == null || startTime == null || endTime == null) {
+                continue;
+            }
+
+            Module mod = new Module(tag.tagName);
+            int startHour = Integer.parseInt(startTime);
+            int endHour = Integer.parseInt(endTime);
+
+            LocalTime start = new LocalTime(startHour, 0);
+            LocalTime end = new LocalTime(endHour, 0);
+
+            Day schoolDay = Day.valueOf(day.toUpperCase());
+
+            Lesson lesson = new Lesson(mod, start, end, schoolDay, Location.NUS);
+
+            moduleTagSet.addLesson(tag, lesson);
+        }
     }
 
 }

@@ -3,7 +3,10 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,17 +21,23 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final Logic logic;
+
     @FXML
     private TextField commandTextField;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, Logic logic) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.logic = logic;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(event -> {
+            handleKeyPressed(event);
+        });
     }
 
     /**
@@ -47,6 +56,26 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    private void handleKeyPressed(KeyEvent event) {
+        String output = "";
+        if (event.getCode() == KeyCode.UP) {
+            // add a message to the text field when the up arrow key is pressed
+            output = logic.getPreviousCommand(true);
+        } else if (event.getCode() == KeyCode.DOWN) {
+            if (commandTextField.getText().length() == 0) {
+                return;
+            }
+            output = logic.getPreviousCommand(false);
+        }
+        if (output.equals("")) {
+            return;
+        }
+        assert (output != null);
+        commandTextField.setText(output + "\n");
+        commandTextField.positionCaret(commandTextField.getText().length());
+
     }
 
     /**

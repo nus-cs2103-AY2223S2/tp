@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -65,6 +66,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Optional<ReadOnlyEduMateHistory> readEduMateHistory() throws IOException {
+        return eduMateStorage.readEduMateHistory();
+    }
+
+    @Override
     public void saveEduMate(ReadOnlyEduMate eduMate) throws IOException {
         saveEduMate(eduMate, eduMateStorage.getEduMateFilePath());
     }
@@ -73,6 +79,16 @@ public class StorageManager implements Storage {
     public void saveEduMate(ReadOnlyEduMate eduMate, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         eduMateStorage.saveEduMate(eduMate, filePath);
+    }
+
+    @Override
+    public Path getEduMateHistoryFilePath() {
+        return eduMateStorage.getEduMateHistoryFilePath();
+    }
+
+    @Override
+    public void saveEduMateHistory(String input) throws IOException {
+        eduMateStorage.saveEduMateHistory(input);
     }
 
 }

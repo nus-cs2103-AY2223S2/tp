@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,10 +21,13 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.EduMate;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
@@ -84,32 +89,37 @@ public class AddCommandTest {
     @Test
     public void checkAssignedIndex_emptyModel_assign1() throws CommandException {
         Model model = new ModelManager();
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getObservablePersonList().isEmpty());
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getObservablePersonList().size());
         assertEquals(new ContactIndex(1), validPerson.getContactIndex());
     }
 
     @Test
     public void checkAssignedIndex_gapsInContactIndexSequence_assignLowestAvailableIndex() throws CommandException {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+        IndexHandler indexHandler = new IndexHandler(model);
         int[] indicesToDelete = new int[] {3, 6, 10};
         for (int idx : indicesToDelete) {
             new DeleteCommand(new ContactIndex(idx)).execute(model);
         }
+
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(new ContactIndex(3), validPerson.getContactIndex());
+        assertEquals(validPerson,
+                indexHandler.getPersonByIndex(new ContactIndex(3)).orElse(ALEX));
     }
 
     @Test
     public void checkAssignedIndex_consecutiveIndexPresent_assignLastIndex() throws CommandException {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-        int size = model.getFilteredPersonList().size();
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+        IndexHandler indexHandler = new IndexHandler(model);
+        int size = model.getObservablePersonList().size();
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(new ContactIndex(size + 1), validPerson.getContactIndex());
+        assertEquals(validPerson,
+                indexHandler.getPersonByIndex(new ContactIndex(size + 1)).orElse(ALEX));
     }
 
     /**
@@ -147,7 +157,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public Person addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,6 +168,16 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyEduMate getEduMate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEduMateHistory getEduMateHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEduMateHistory(String command) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,13 +212,23 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getObservablePersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateObservablePersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateObservablePersonList(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateObservablePersonList() {
+            return;
         }
     }
 
@@ -235,9 +265,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public Person addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+            return person;
         }
 
         @Override
@@ -246,7 +277,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getObservablePersonList() {
             return filteredList;
         }
     }

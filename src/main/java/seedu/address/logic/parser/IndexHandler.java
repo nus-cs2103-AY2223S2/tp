@@ -24,7 +24,7 @@ public class IndexHandler {
      * @return new Contact Index for new contact.
      */
     public ContactIndex assignIndex() {
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
         if (personList.isEmpty()) {
             return new ContactIndex(1);
         }
@@ -36,7 +36,7 @@ public class IndexHandler {
     }
 
     public Optional<Person> getPersonByIndex(ContactIndex index) {
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
 

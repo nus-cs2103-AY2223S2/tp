@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -44,11 +46,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    //@FXML
-    //private StackPane statusBarPlaceholder;
-
     @FXML
     private StackPane userProfilePlaceholder;
+
+    @FXML
+    private Label userName;
+
+    @FXML
+    private StackPane scheduledMeetsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -74,20 +79,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getObservablePersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        //StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEduMateFilePath());
-        //statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         userProfilePanel = new UserProfilePanel(logic);
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+
+        setUserName(logic.getUser());
     }
 
     /**
@@ -112,6 +116,26 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    @FXML
+    public void handleShowUserProfile() {
+        updateUserProfilePanel(logic.getUser());
+    }
+
+    /**
+     * Updates user profile panel with specified person.
+     * @param person The contact to show in user profile panel.
+     */
+    public void updateUserProfilePanel(Person person) {
+        userProfilePanel = new UserProfilePanel(person);
+        userProfilePlaceholder.getChildren().clear();
+        userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+    }
+
+    public void setUserName(User user) {
+        String name = String.valueOf(user.getName());
+        userName.setText(name);
     }
 
     void show() {

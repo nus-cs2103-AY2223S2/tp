@@ -16,6 +16,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path eduMateFilePath = Paths.get("data" , "edumate.json");
 
+    private Path eduMateHistoryFilePath = Paths.get("data", ".edumate_history");
+
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -49,6 +51,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getEduMateFilePath() {
         return eduMateFilePath;
+    }
+
+    public Path getEduMateHistoryFilePath() {
+        return eduMateHistoryFilePath;
     }
 
     public void setEduMateFilePath(Path eduMateFilePath) {

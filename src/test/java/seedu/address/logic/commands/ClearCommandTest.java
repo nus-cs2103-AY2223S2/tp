@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.EduMate;
+import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,8 +23,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyEduMate_success() {
-        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+        Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         expectedModel.setEduMate(new EduMate());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

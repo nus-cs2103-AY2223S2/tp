@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="701px" preserveAspectRatio="none" style="width:1089px;height:701px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 1089 701" width="1089px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <rect fill="#E6EFF9" height="682.1559" style="stroke:#181818;stroke-width:0.5;" width="826.5" x="60" y="6"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="34" x="454.75" y="19.897">Logic
+        </text>
+        <rect fill="#FBEAE7" height="682.1559" style="stroke:#181818;stroke-width:0.5;" width="195" x="888.5" y="6"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="40" x="964.5" y="19.897">Model
+        </text>
+        <rect fill="#FFFFFF" height="580.6759" style="stroke:#181818;stroke-width:1.0;" width="10" x="126" y="95.4799"/>
+        <rect fill="#FFFFFF" height="367.784" style="stroke:#181818;stroke-width:1.0;" width="10" x="311" y="127.186"/>
+        <rect fill="#FFFFFF" height="34.0679" style="stroke:#181818;stroke-width:1.0;" width="10" x="479.5"
+              y="151.186"/>
+        <rect fill="#FFFFFF" height="232.304" style="stroke:#181818;stroke-width:1.0;" width="10" x="479.5"
+              y="216.9599"/>
+        <rect fill="#FFFFFF" height="127.5479" style="stroke:#181818;stroke-width:1.0;" width="10" x="648" y="290.01"/>
+        <rect fill="#FFFFFF" height="135.4799" style="stroke:#181818;stroke-width:1.0;" width="10" x="648"
+              y="526.6759"/>
+        <rect fill="#FFFFFF" height="34.0679" style="stroke:#181818;stroke-width:1.0;" width="10" x="803" y="596.382"/>
+        <rect fill="#FFFFFF" height="51.7739" style="stroke:#181818;stroke-width:1.0;" width="10" x="934" y="334.0779"/>
+        <rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1032.5" y="558.382"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="131" x2="131" y1="61.7739"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="315.5" x2="315.5" y1="61.7739"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="484.5" x2="484.5" y1="167.2199"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="652.5" x2="652.5" y1="306.044"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="807.5" x2="807.5" y1="612.4159"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="938.5" x2="938.5" y1="350.1119"
+              y2="694.1559"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1037.5" x2="1037.5" y1="61.7739"
+              y2="694.1559"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="114"
+              x="74" y="27.706"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="100" x="81"
+              y="49.672">:LogicManager
+        </text>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121"
+              x="255.5" y="27.706"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107" x="262.5"
+              y="49.672">:EduMateParser
+        </text>
+        <rect fill="#D42E12" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64"
+              x="1005.5" y="27.706"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="1014.5"
+              y="49.672">:Model
+        </text>
+        <rect fill="#FFFFFF" height="580.6759" style="stroke:#181818;stroke-width:1.0;" width="10" x="126" y="95.4799"/>
+        <rect fill="#FFFFFF" height="367.784" style="stroke:#181818;stroke-width:1.0;" width="10" x="311" y="127.186"/>
+        <rect fill="#FFFFFF" height="34.0679" style="stroke:#181818;stroke-width:1.0;" width="10" x="479.5"
+              y="151.186"/>
+        <rect fill="#FFFFFF" height="232.304" style="stroke:#181818;stroke-width:1.0;" width="10" x="479.5"
+              y="216.9599"/>
+        <rect fill="#FFFFFF" height="127.5479" style="stroke:#181818;stroke-width:1.0;" width="10" x="648" y="290.01"/>
+        <rect fill="#FFFFFF" height="135.4799" style="stroke:#181818;stroke-width:1.0;" width="10" x="648"
+              y="526.6759"/>
+        <rect fill="#FFFFFF" height="34.0679" style="stroke:#181818;stroke-width:1.0;" width="10" x="803" y="596.382"/>
+        <rect fill="#FFFFFF" height="51.7739" style="stroke:#181818;stroke-width:1.0;" width="10" x="934" y="334.0779"/>
+        <rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1032.5" y="558.382"/>
+        <polygon fill="#181818" points="114,91.4799,124,95.4799,114,99.4799,118,95.4799"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="0" x2="120" y1="95.4799" y2="95.4799"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="9.5"
+              y="89.6709">execute("edit 1...")
+        </text>
+        <polygon fill="#181818" points="299,123.186,309,127.186,299,131.186,303,127.186"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="136" x2="305" y1="127.186" y2="127.186"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="156" x="145.5"
+              y="121.377">parseCommand("edit 1...")
+        </text>
+        <polygon fill="#181818" points="394.5,137.186,404.5,141.186,394.5,145.186,398.5,141.186"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="321" x2="400.5" y1="141.186" y2="141.186"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="156"
+              x="406.5" y="135.186"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="413.5"
+              y="157.1519">:EditCommandParser
+        </text>
+        <polygon fill="#181818" points="332,181.2539,322,185.2539,332,189.2539,328,185.2539"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="326" x2="483.5" y1="185.2539"
+              y2="185.2539"/>
+        <polygon fill="#181818" points="467.5,212.9599,477.5,216.9599,467.5,220.9599,471.5,216.9599"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="321" x2="473.5" y1="216.9599" y2="216.9599"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="366.75"
+              y="211.1509">parse("1...")
+        </text>
+        <rect fill="#C7CEC9" height="44.0501" style="stroke:#000000;stroke-width:1.5;" width="182" x="393.5"
+              y="224.9599"/>
+        <path d="M393.5,224.9599 L457.5,224.9599 L457.5,233.9599 L447.5,243.9599 L393.5,243.9599 L393.5,224.9599 "
+              fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="19" x="406.5" y="240.8569">ref
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="97" x="436"
+              y="260.788">Parse Arguments
+        </text>
+        <polygon fill="#181818" points="580.5,276.01,590.5,280.01,580.5,284.01,584.5,280.01"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="489.5" x2="586.5" y1="280.01" y2="280.01"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121"
+              x="592.5" y="274.01"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107" x="599.5"
+              y="295.976">e:EditCommand
+        </text>
+        <polygon fill="#181818" points="890.5,320.0779,900.5,324.0779,890.5,328.0779,894.5,324.0779"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="658" x2="896.5" y1="324.0779" y2="324.0779"/>
+        <rect fill="#D42E12" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="73"
+              x="902.5" y="318.0779"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="909.5"
+              y="340.0439">p:Person
+        </text>
+        <polygon fill="#181818" points="669,381.8519,659,385.8519,669,389.8519,665,385.8519"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="663" x2="938" y1="385.8519"
+              y2="385.8519"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="794.5"
+              y="380.0429">p
+        </text>
+        <polygon fill="#181818" points="500.5,413.5579,490.5,417.5579,500.5,421.5579,496.5,417.5579"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="494.5" x2="652" y1="417.5579"
+              y2="417.5579"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="567.75"
+              y="411.7489">e
+        </text>
+        <polygon fill="#181818" points="332,445.2639,322,449.2639,332,453.2639,328,449.2639"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="326" x2="483.5" y1="449.2639"
+              y2="449.2639"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="399.25"
+              y="443.4549">e
+        </text>
+        <line style="stroke:#A80036;stroke-width:2.0;" x1="475.5" x2="493.5" y1="454.2639" y2="472.2639"/>
+        <line style="stroke:#A80036;stroke-width:2.0;" x1="475.5" x2="493.5" y1="472.2639" y2="454.2639"/>
+        <polygon fill="#181818" points="147,490.9699,137,494.9699,147,498.9699,143,494.9699"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="141" x2="315" y1="494.9699"
+              y2="494.9699"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="222.5"
+              y="489.1609">e
+        </text>
+        <polygon fill="#181818" points="636,522.6759,646,526.6759,636,530.6759,640,526.6759"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="136" x2="642" y1="526.6759" y2="526.6759"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="364.5"
+              y="520.8669">execute()
+        </text>
+        <polygon fill="#181818" points="1020.5,554.382,1030.5,558.382,1020.5,562.382,1024.5,558.382"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="658" x2="1026.5" y1="558.382" y2="558.382"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="76" x="807.25"
+              y="552.573">setPerson(p)
+        </text>
+        <polygon fill="#181818" points="669,568.382,659,572.382,669,576.382,665,572.382"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="663" x2="1036.5" y1="572.382"
+              y2="572.382"/>
+        <polygon fill="#181818" points="731.5,582.382,741.5,586.382,731.5,590.382,735.5,586.382"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="658" x2="737.5" y1="586.382" y2="586.382"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="129"
+              x="743.5" y="580.382"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="115" x="750.5"
+              y="602.3479">:CommandResult
+        </text>
+        <polygon fill="#181818" points="669,626.4499,659,630.4499,669,634.4499,665,630.4499"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="663" x2="807" y1="630.4499"
+              y2="630.4499"/>
+        <polygon fill="#181818" points="147,658.1559,137,662.1559,147,666.1559,143,662.1559"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="141" x2="652" y1="662.1559"
+              y2="662.1559"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="377.5"
+              y="656.3469">result
+        </text>
+        <polygon fill="#181818" points="11,672.1559,1,676.1559,11,680.1559,7,676.1559"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="5" x2="130" y1="676.1559"
+              y2="676.1559"/><!--SRC=[ZLHDRzim3BthLsY-B3tOmAx6CA1BYwvOCXS1TWg6Gh7PLAXj6PBSjVz-igIaeloHtMJglKVoaV8dtfPrNm5L-hs6hEkRcf23UACRSUGbtHHtz-l7TR4fTe_VhzS_xtR5xrytf6DIyv9thDKqoIrqorfs19bGfcWO22KYtctLRvc61oQL9wB88fFhjMWQrbQ87KNd5I2KYCaBYJrY1wgljUMX26A2KJ9EEZkteeAQRekRsyq5Exly0QGIhLLtnv0N5MHrBNIKuQE0VVeDpoIdy0Pbhs6LWEcRVicoBBaYhDJyrVYFm8GWgf72KyffDnoy3pE2Y498AS55eu4HB6rpnP10CxuYumr8utf91SiAbmeuDRnAnasEv2GyKV5gI5Coza2lvR5leDLgofQfZb1DazdFIcvzGf61xgDdflycVjbId67eDpJjX4QYCqR1ZDl_DQa5lhVtymzULT1I9gNuIxMWdL1SSzE3VWPQWT9IlDE6oHUZTe1w09cBuLs89tlquWFbm6GsLTR-sIRvCx58Jl_o5aqyFzmOUXpZvnREulHmhyX5OmUo-olaL85sWrjr0TFU4k90qH332ZtERnNwvSK9yULP0OS9_cikP8vuyT95jae7crkw_TSqHR-s01Z6_m40]-->
+    </g>
+</svg>

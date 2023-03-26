@@ -1,0 +1,19 @@
+@startuml
+start
+:User enters edit command;
+if () then ([Invalid arguments])
+    :Error: Message usage;
+    stop
+elseif () then ([Invalid index])
+    :Error: Invalid person index;
+    stop
+elseif () then ([Name exists])
+    :Error: Duplicate person;
+    stop
+else ()
+endif
+:Common modules and contact index are computed;
+:Edited person is added to EduMate;
+:Success message is returned;
+stop
+@enduml

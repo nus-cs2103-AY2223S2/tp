@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
@@ -32,9 +31,9 @@ public class SampleCommand extends Command {
         requireNonNull(model);
 
         model.setEduMate(SampleDataUtil.getSampleEduMate(size));
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateObservablePersonList();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getObservablePersonList().size()));
     }
 
     @Override

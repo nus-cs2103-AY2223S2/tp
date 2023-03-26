@@ -100,8 +100,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getObservablePersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getObservablePersonList().remove(0));
     }
 
     @Test
@@ -116,10 +116,11 @@ public class ModelManagerTest {
         EduMate eduMate = new EduMateBuilder().withPerson(ALBERT).withPerson(BART).build();
         EduMate differentEduMate = new EduMate();
         UserPrefs userPrefs = new UserPrefs();
+        EduMateHistory eduMateHistory = new EduMateHistory();
 
         // same values -> returns true
-        modelManager = new ModelManager(eduMate, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(eduMate, userPrefs);
+        modelManager = new ModelManager(eduMate, userPrefs, eduMateHistory);
+        ModelManager modelManagerCopy = new ModelManager(eduMate, userPrefs, eduMateHistory);
         assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
@@ -132,43 +133,45 @@ public class ModelManagerTest {
         assertNotEquals(5, modelManager);
 
         // different eduMate -> returns false
-        assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs));
+        assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs, eduMateHistory));
 
         // different filteredList -> returns false
         createEqualsFilteredList(
-                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs);
+                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
-                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs);
+                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
-                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs);
+                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
-                Prefix.ADDRESS, ALBERT.getAddress().getValue().getName().split("\\s+"), eduMate, userPrefs);
+                Prefix.ADDRESS, ALBERT.getAddress().getValue().getName().split("\\s+"),
+                eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
                 Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
-                eduMate, userPrefs);
+                eduMate, userPrefs, eduMateHistory);
 
         createEqualsFilteredList(
                 Prefix.MODULE_TAG,
                 ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
-                eduMate, userPrefs);
+                eduMate, userPrefs, eduMateHistory);
 
         createEqualsFilteredList(
                 Prefix.GROUP_TAG,
                 ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
-                eduMate, userPrefs);
+                eduMate, userPrefs, eduMateHistory);
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateObservablePersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setEduMateFilePath(Paths.get("differentFilePath"));
-        assertNotEquals(modelManager, new ModelManager(eduMate, differentUserPrefs));
+        assertNotEquals(modelManager, new ModelManager(eduMate, differentUserPrefs, eduMateHistory));
     }
 
-    public void createEqualsFilteredList(Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs) {
-        modelManager.updateFilteredPersonList(
+    public void createEqualsFilteredList(
+            Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs, EduMateHistory eduMateHistory) {
+        modelManager.updateObservablePersonList(
                 new ContainsKeywordsPredicate(Arrays.asList(keywords), prefix));
-        assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs));
+        assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs, eduMateHistory));
     }
 }
