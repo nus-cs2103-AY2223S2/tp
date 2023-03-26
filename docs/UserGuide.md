@@ -27,9 +27,9 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 
    - `list` : Lists all patients.
 
-   - `add nric/S1234567A name/John Doe cond/Ligma` : Adds a patient named `John Doe` to MedInfo.
+   - `add nric/S1234567A name/John Doe` : Adds a patient named `John Doe` to MedInfo.
 
-   - `delete nric/S1234567A` : Deletes the newly added patient named `John Doe`'
+   - `delete 1` : Deletes the first patient on the currently displayed list
 
    - `exit` : Exits the app.
 
@@ -44,17 +44,17 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add nric/NRIC name/NAME`, `NRIC` and `NAME` are parameters which can be used as `add nric/S1234567A name/John Doe`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [cond/CONDITION]` can be used as `n/John Doe cond/Ligma` or as `n/John Doe`.
+  e.g `name/NAME [s/STATUS]` can be used as `name/John Doe s/GREEN` or as `name/John Doe`.
 
 [//]: # 'Might be used in future features'
 [//]: # '- Items with `…`​ after them can be used multiple times including zero times.<br>'
 [//]: # '  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.'
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `name/NAME s/STATUS`, `s/STATUS name/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `nric/S1234567X nric/S1234567A`, only `nric/S1234567A` will be taken.
@@ -75,18 +75,18 @@ Format: `help`
 
 ### Adding a patient to the system: `add`
 
-Adds the patient (NRIC, name and condition).
+Adds the patient (NRIC, name and status).
 
-Format: `add nric/NRIC name/NAME cond/CONDITION​`
+Format: `add nric/NRIC name/NAME [s/STATUS]​`
 
 <!-- EXAMPLE OF TIP -->
-<!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div> -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The default condition is set to `GRAY`.
+</div>
 
 Examples:
 
-- `add nric/S1234567A name/John Doe cond/Ligma`
+- `add nric/S1234567A name/John Doe s/RED`
 
 ### Listing all patients in the system: `list`
 
@@ -98,17 +98,17 @@ Format: `list`
 
 Edit an existing patient’s condition.
 
-Format: `edit nric/NRIC cond/NEW_CONDITION​`
+Format: `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`
 
 Examples:
 
-- `edit nric/S1234567A cond/Pneumonia` Edits the condition of the patient with NRIC `S1234567A` to be `Pneumonia`.
+- `edit 1 s/GREEN` Edits the status of the first currently displayed patient with to be `GREEN`.
 
 ### Finding patients by name in the system: `find`
 
 Shows a list of all patients with their details that match input name or NRIC.
 
-Format: `find name/NAME`, `find nric/NRIC`
+Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -127,13 +127,28 @@ Examples:
 
 Delete patient by NRIC.
 
-Format: `delete nric/NRIC`
+Format: `delete INDEX`
 
-- Deletes the patient at the specified `NRIC`.
+- Deletes the patient at the specified index as of the currently displayed list.
 
 Examples:
 
-`delete nric/S1234567A`
+`delete 1`
+
+### Adding a ward to the system: `addward`
+
+Adds the patient (NRIC, name and condition).
+
+Format: `addward name/NAME [c/CAPACITY]​`
+
+<!-- EXAMPLE OF TIP -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The default capacity is set to 10.
+</div>
+
+Examples:
+
+- `addward name/S1234567A c/25`
 
 ### Exiting the program : `exit`
 
@@ -145,7 +160,7 @@ Format: `exit`
 
 MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file [coming soon]
+### Editing the data file `[coming soon]`
 
 _Details coming soon ..._
 
@@ -163,7 +178,7 @@ _Details coming soon ..._
 
 ---
 
-## FAQ
+## FAQ :raising_hand:
 
 **Q**: I keep forgetting the commands, is there a quick way to get help?<br>
 
@@ -178,11 +193,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                  |
-| ---------- | ------------------------------------------------------------------------------------------------- |
-| **Add**    | `add nric/NRIC name/NAME cond/CONDITION​` <br> e.g., `add nric/S1234567A name/John Doe cond/Ligma |
-| **Delete** | `delete nric/NRIC`<br> e.g., `delete nric/S1234567A`                                              |
-| **Edit**   | `edit nric/NRIC cond/NEW_CONDITION​`<br> e.g.,`edit nric/S1234567A cond/Pneumonia`                |
-| **Find**   | `find name/NAME` or `find nric/NRIC`<br> e.g., `find name/John`                                   |
-| **List**   | `list`                                                                                            |
-| **Help**   | `help`                                                                                            |
+| Action       | Format, Examples                                                                           |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| **Add**      | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 1`                                                        |
+| **Edit**     | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
+| **Find**     | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
+| **Add Ward** | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
+| **List**     | `list`                                                                                     |
+| **Help**     | `help`                                                                                     |
