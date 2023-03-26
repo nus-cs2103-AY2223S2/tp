@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final int id;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +36,7 @@ public class Person {
         this.address = address;
         this.payRate = payRate;
         this.tags.addAll(tags);
+        this.id = name.hashCode();
     }
 
     public Name getName() {
@@ -51,6 +53,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**
@@ -99,7 +105,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, payRate, tags);
+        return Objects.hash(name, phone, address, payRate, tags, id);
     }
 
     @Override
