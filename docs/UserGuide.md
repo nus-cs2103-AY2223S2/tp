@@ -84,7 +84,7 @@ Examples:
 
 ### Deleting a person : `deletePerson`
 
-Delete a student given a student ID.
+Deletes a person at the specified person list index.
 
 Format: `deletePerson STUDENT_ID`
 
