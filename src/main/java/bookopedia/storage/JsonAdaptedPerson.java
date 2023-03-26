@@ -30,6 +30,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedParcel> parcels = new ArrayList<>();
+    private final List<JsonAdaptedParcelIsFragile> parcelsIsFragile = new ArrayList<>();
+    private final List<JsonAdaptedParcelIsBulky> parcelsIsBulky = new ArrayList<>();
     private final String deliveryStatus;
     private final int noOfDeliveryAttempts;
 
@@ -40,6 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("parcels") List<JsonAdaptedParcel> parcels,
+            @JsonProperty("parcelsIsFragile") List<JsonAdaptedParcelIsFragile> parcelsIsFragile,
+            @JsonProperty("parcelsIsBulky") List<JsonAdaptedParcelIsBulky> parcelsIsBulky,
             @JsonProperty("deliveryStatus") String deliveryStatus,
             @JsonProperty("noOfDeliveryAttempts") int noOfDeliveryAttempts) {
         this.name = name;
@@ -48,6 +52,12 @@ class JsonAdaptedPerson {
         this.address = address;
         if (parcels != null) {
             this.parcels.addAll(parcels);
+        }
+        if (parcelsIsFragile != null) {
+            this.parcelsIsFragile.addAll(parcelsIsFragile);
+        }
+        if (parcelsIsBulky != null) {
+            this.parcelsIsBulky.addAll(parcelsIsBulky);
         }
         this.deliveryStatus = deliveryStatus;
         this.noOfDeliveryAttempts = noOfDeliveryAttempts;
@@ -64,6 +74,12 @@ class JsonAdaptedPerson {
         parcels.addAll(source.getParcels().stream()
                 .map(JsonAdaptedParcel::new)
                 .collect(Collectors.toList()));
+        parcelsIsFragile.addAll(source.getParcels().stream()
+                .map(JsonAdaptedParcelIsFragile::new)
+                .collect(Collectors.toList()));
+        parcelsIsBulky.addAll(source.getParcels().stream()
+                .map(JsonAdaptedParcelIsBulky::new)
+                .collect(Collectors.toList()));
         deliveryStatus = source.getDeliveryStatus().name();
         noOfDeliveryAttempts = source.getNoOfDeliveryAttempts();
     }
@@ -75,8 +91,10 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Parcel> personParcels = new ArrayList<>();
-        for (JsonAdaptedParcel parcel : parcels) {
-            personParcels.add(parcel.toModelType());
+        for (int i = 0; i < parcels.size(); i++) {
+            personParcels.add(new Parcel(parcels.get(i).getParcelName(),
+                    parcelsIsFragile.get(i).getIsFragile(),
+                    parcelsIsBulky.get(i).getIsBulky()));
         }
 
         if (name == null) {

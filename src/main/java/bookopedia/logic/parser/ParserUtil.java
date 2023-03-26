@@ -10,6 +10,7 @@ import bookopedia.commons.core.index.Index;
 import bookopedia.commons.util.StringUtil;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.ParcelStatus;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
@@ -134,6 +135,20 @@ public class ParserUtil {
             return DeliveryStatus.valueOf(status.toUpperCase());
         } catch (IllegalArgumentException exception) {
             throw new ParseException(DeliveryStatus.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code ParcelStatus}.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static ParcelStatus parseParcelStatus(String status) throws ParseException {
+        requireNonNull(status);
+        try {
+            return ParcelStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException exception) {
+            throw new ParseException(ParcelStatus.MESSAGE_CONSTRAINTS);
         }
     }
 }
