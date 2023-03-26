@@ -77,9 +77,11 @@ public class Doctor extends Person {
     public String drAppointmentsToString() {
         ArrayList<Appointment> patientAppointments = getPatientAppointments();
         String string = "";
+        int count = 1;
         for (Appointment appointment : patientAppointments) {
             String appointmentBooking = appointment.getBooking().toString();
-            string += appointmentBooking + "; " + appointment.getPatientNric().toString() + "\n";
+            string += count + ". " + appointmentBooking + "; " + appointment.getPatientNric().toString() + "\n";
+            count++;
         }
         return string;
     }
