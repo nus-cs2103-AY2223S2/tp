@@ -71,7 +71,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 ### Adding a user: `addPerson`
 
-Adds a user to the records
+Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
