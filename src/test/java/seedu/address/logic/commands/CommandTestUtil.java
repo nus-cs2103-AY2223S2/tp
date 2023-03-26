@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -11,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.experimental.model.Model;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.experimental.model.Model;
 import seedu.address.model.entity.NameContainsKeywordsPredicate;
 import seedu.address.model.entity.Entity;
 
