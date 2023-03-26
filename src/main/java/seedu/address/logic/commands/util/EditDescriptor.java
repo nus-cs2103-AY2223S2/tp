@@ -10,8 +10,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -30,7 +30,7 @@ public class EditDescriptor {
     private Email email;
     private Address address;
     private Nric nric;
-    private Age age;
+    private BirthDate birthDate;
     private Region region;
     private RiskLevel riskLevel;
     private Set<MedicalQualificationTag> medicalTags;
@@ -53,7 +53,7 @@ public class EditDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setNric(toCopy.nric);
-        setAge(toCopy.age);
+        setBirthDate(toCopy.birthDate);
         setRegion(toCopy.region);
         setRiskLevel(toCopy.riskLevel);
         setMedicalTags(toCopy.medicalTags);
@@ -68,7 +68,8 @@ public class EditDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone,
-                email, address, nric, age, region, tags, riskLevel, medicalTags, availableDates);
+                email, address, nric, birthDate, region,
+                tags, riskLevel, medicalTags, availableDates);
     }
 
     public void setName(Name name) {
@@ -111,12 +112,12 @@ public class EditDescriptor {
         return Optional.ofNullable(nric);
     }
 
-    public void setAge(Age age) {
-        this.age = age;
+    public void setBirthDate(BirthDate birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public Optional<Age> getAge() {
-        return Optional.ofNullable(age);
+    public Optional<BirthDate> getBirthDate() {
+        return Optional.ofNullable(birthDate);
     }
 
     public void setRegion(Region region) {
@@ -205,7 +206,7 @@ public class EditDescriptor {
         Email updatedEmail = editDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
         Address updatedAddress = editDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
         Nric updatedNric = editDescriptor.getNric().orElse(elderlyToEdit.getNric());
-        Age updatedAge = editDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        BirthDate updatedBirthDate = editDescriptor.getBirthDate().orElse(elderlyToEdit.getBirthDate());
         Region updateRegion = editDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
         RiskLevel updatedRiskLevel = editDescriptor.getRiskLevel().orElse(elderlyToEdit.getRiskLevel());
         Set<Tag> updatedTags = editDescriptor.getTags().orElse(elderlyToEdit.getTags());
@@ -213,7 +214,7 @@ public class EditDescriptor {
                 .orElse(elderlyToEdit.getAvailableDates());
 
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags, updatedDates);
+                updatedNric, updatedBirthDate, updateRegion, updatedRiskLevel, updatedTags, updatedDates);
     }
 
     /**
@@ -233,7 +234,7 @@ public class EditDescriptor {
         Email updatedEmail = editDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
         Address updatedAddress = editDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
         Nric updatedNric = editDescriptor.getNric().orElse(volunteerToEdit.getNric());
-        Age updatedAge = editDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        BirthDate updatedBirthDate = editDescriptor.getBirthDate().orElse(volunteerToEdit.getBirthDate());
         Region updateRegion = editDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
         Set<MedicalQualificationTag> updatedMedicalTags = editDescriptor.getMedicalTags()
                 .orElse(volunteerToEdit.getMedicalTags());
@@ -242,7 +243,7 @@ public class EditDescriptor {
                 .orElse(volunteerToEdit.getAvailableDates());
 
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updateRegion, updatedTags, updatedMedicalTags, updatedDates);
+                updatedNric, updatedBirthDate, updateRegion, updatedTags, updatedMedicalTags, updatedDates);
     }
 
     @Override
@@ -265,7 +266,7 @@ public class EditDescriptor {
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
                 && getNric().equals(e.getNric())
-                && getAge().equals(e.getAge())
+                && getBirthDate().equals(e.getBirthDate())
                 && getRegion().equals(e.getRegion())
                 && getRiskLevel().equals(e.getRiskLevel())
                 && getMedicalTags().equals(e.getMedicalTags())
@@ -276,6 +277,6 @@ public class EditDescriptor {
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, email, address, nric,
-                age, region, riskLevel, medicalTags, availableDates, tags);
+                birthDate, region, riskLevel, medicalTags, availableDates, tags);
     }
 }

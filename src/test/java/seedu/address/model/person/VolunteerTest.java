@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -100,7 +100,7 @@ public class VolunteerTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different age -> returns false
-        editedAlice = new VolunteerBuilder(ALICE).withAge(VALID_AGE_BOB).build();
+        editedAlice = new VolunteerBuilder(ALICE).withBirthDate(VALID_BIRTH_DATE_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
         // different nric -> returns false

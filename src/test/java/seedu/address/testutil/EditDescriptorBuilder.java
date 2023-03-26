@@ -5,7 +5,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -39,7 +39,7 @@ public class EditDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setNric(person.getNric());
-        descriptor.setAge(person.getAge());
+        descriptor.setBirthDate(person.getBirthDate());
         descriptor.setRegion(person.getRegion());
         descriptor.setAvailableDates(person.getAvailableDates());
         descriptor.setTags(person.getTags());
@@ -102,10 +102,10 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Age} of the {@code EditDescriptor} that we are building.
+     * Sets the {@code BirthDate} of the {@code EditDescriptor} that we are building.
      */
-    public EditDescriptorBuilder withAge(String age) {
-        descriptor.setAge(new Age(age));
+    public EditDescriptorBuilder withBirthDate(String birthDate) {
+        descriptor.setBirthDate(new BirthDate(birthDate));
         return this;
     }
 
