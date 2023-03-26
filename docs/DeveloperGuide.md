@@ -4,7 +4,6 @@ title: Developer Guide
 ---
 
 * Table of Contents
-
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -81,7 +80,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/developerGuide/UiClassDiagram.png)
+<img src="images/developerGuide/UiClassDiagram.png" width="800" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ElderlyListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -113,7 +112,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_elderly S1234567I")` API call.
 
-![Interactions Inside the Logic Component for the `delete_elderly S1234567I` Command](images/DeleteSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagram.png" width="1200" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteElderlyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -129,7 +128,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/developerGuide/ModelDiagram.png" width="500" />
+<img src="images/developerGuide/ModelDiagram.png" width="600" />
 
 The `Model` component,
 
@@ -274,7 +273,7 @@ of `Model` respectively.
 
 As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
 the NRIC `S1234567I` belongs to an existing **volunteer**:
-![](images/developerGuide/EditSequenceDiagram.png)
+<img src="images/developerGuide/EditSequenceDiagram.png" width="1200"/>
 
 :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -293,7 +292,7 @@ used in the search.
 
 The Sequence Diagram below illustrates the execution of the ```find``` command.
 
-<img src="images/developerGuide/FindSequenceDiagram.png" width="500" />
+<img src="images/developerGuide/FindSequenceDiagram.png" width="1200" />
 
 The command execution flow is as given below
 1. The ```LogicManager``` will begin the execution of the command.
@@ -327,6 +326,22 @@ Two pairs are identical if they have the same elderly and volunteer NRIC.
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
+### Summary Statistics
+
+The `stats` command displays summary statistics about FriendlyLink, such as the total number of elderly, volunteers and unpaired persons.
+
+It is implemented using the `Summary` and `AggregateFunction` class.
+
+The `AggregateFunction`
+* describes a particular statistic of FriendlyLink with a number.
+* is an abstract class that requires concrete classes to override the `getDescription()` and `getResult()` method.
+
+The `Summary` object
+* formats the results to be displayed to the user.
+* takes in 0 or more `AggregateFunction`s to show their description and results.
+
+<img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
+ 
 ### Storage
 This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
 
@@ -336,7 +351,7 @@ Elderly, volunteers and pairs are stored in separate files to reduces the impact
 
 Persons saved contains all their attributes such as name, NRIC, in JSON format.
 * Single value attributes are stored as key value pairs, such as name and Nric.
-* Multiple value attributes such as tag aand available date sets are stored as JSON lists.
+* Multiple value attributes such as tag and available date sets are stored as JSON lists.
 
 #### Pairs
 
