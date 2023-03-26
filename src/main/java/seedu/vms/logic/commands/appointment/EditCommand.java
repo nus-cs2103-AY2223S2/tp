@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.CollectionUtil;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
@@ -88,7 +90,7 @@ public class EditCommand extends Command {
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased()).getValue();
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor, model);
 
         // Checks if patient manager contains the given index
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
@@ -155,7 +157,9 @@ public class EditCommand extends Command {
      * edited with {@code editAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
+                EditAppointmentDescriptor editAppointmentDescriptor,
+                Model model)
+                throws CommandException {
         assert appointmentToEdit != null;
 
         Index patientId = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
@@ -163,7 +167,14 @@ public class EditCommand extends Command {
                 .orElse(appointmentToEdit.getAppointmentTime());
         LocalDateTime endTime = editAppointmentDescriptor.getEndTime()
                 .orElse(appointmentToEdit.getAppointmentEndTime());
-        GroupName vaccine = editAppointmentDescriptor.getVaccine().orElse(appointmentToEdit.getVaccination());
+        GroupName vaccine;
+        try {
+            vaccine = editAppointmentDescriptor
+                    .getVaccine(model)
+                    .orElse(appointmentToEdit.getVaccination());
+        } catch (IllegalValueException ive) {
+            throw new CommandException(ive.getMessage());
+        }
 
         return new Appointment(patientId, startTime, endTime, vaccine);
     }
@@ -194,7 +205,7 @@ public class EditCommand extends Command {
         private Index patientId;
         private LocalDateTime startTime;
         private LocalDateTime endTime;
-        private GroupName vaccine;
+        private Retriever<String, VaxType> vaxRetriever;
 
         public EditAppointmentDescriptor() {
         }
@@ -207,14 +218,14 @@ public class EditCommand extends Command {
             setPatient(toCopy.patientId);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
-            setVaccine(toCopy.vaccine);
+            setVaccine(toCopy.vaxRetriever);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaccine);
+            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaxRetriever);
         }
 
         public void setPatient(Index patientId) {
@@ -241,33 +252,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(endTime);
         }
 
-        public void setVaccine(GroupName vaccine) {
-            this.vaccine = vaccine;
+        public void setVaccine(Retriever<String, VaxType> vaxRetriever) {
+            this.vaxRetriever = vaxRetriever;
         }
 
-        public Optional<GroupName> getVaccine() {
-            return Optional.ofNullable(vaccine);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditAppointmentDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
-
-            return getPatient().equals(e.getPatient())
-                    && getStartTime().equals(e.getStartTime())
-                    && getEndTime().equals(e.getEndTime())
-                    && getVaccine().equals(e.getVaccine());
+        public Optional<GroupName> getVaccine(Model model) throws IllegalValueException {
+            return Optional.ofNullable(model.getVaccination(vaxRetriever).getGroupName());
         }
     }
 }
