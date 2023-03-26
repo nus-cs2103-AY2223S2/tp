@@ -22,16 +22,16 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
 ## Downloading CoDoc
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
-   * if no, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
+   * If no, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
 2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/tag/v1.3.trial).
-3. Copy the file to the folder you want to use as the _home folder_ for your CoDoc program.<br>
+3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
    1. Create a new folder in your Desktop—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
 4. Open a command terminal
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
-   3. A window similar to the one below should appear in a few seconds.<br>![Ui](images/Ui.png)
+   3. A window similar to the one below should appear in a few seconds.<br>![Ui](images/Ui.png)<br>
 
 [^ Scroll back to *Tables of Contents*](#table-of-contents)
 ## Navigation
