@@ -25,29 +25,25 @@ TeachMeSenpai is a **desktop app targeted at private academic tutors who have ma
 
 ## Features
 
-<div markdown="span" class="alert alert-primary">
-
-<ins>:bulb: **Notes about the command format:**</ins>
-
--   Words in `UPPER_CASE` are the parameters to be supplied by the user.  
-    _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
-
--   Items in square brackets are optional.  
-    _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
-
--   Items with `...` after them can be used multiple times including zero times.  
-    _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
-
--   Parameters can be in any order.  
-    _(eg. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable)_
-
--   If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
-    _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
-
--   Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
-    _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
-
-</div>
+> <ins>:bulb: **Notes about the command format:**</ins>
+> 
+> - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+>   _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
+>
+> - Items in square brackets are optional.  
+>   _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
+> 
+> - Items with `...` after them can be used multiple times including zero times.  
+>   _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
+> 
+> - Parameters can be in any order.  
+>   _(eg. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable)_
+> 
+> - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
+>   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
+> 
+> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
+>   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
 [↑ Back to top](#table-of-contents)
 
