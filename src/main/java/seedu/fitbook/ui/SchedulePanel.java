@@ -2,11 +2,9 @@ package seedu.fitbook.ui;
 
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -26,7 +24,6 @@ import seedu.fitbook.model.client.ClientAppointmentComparator;
 public class SchedulePanel extends UiPart<Region> {
     private static final String FXML = "SchedulePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SchedulePanel.class);
-    // private FilteredList<Client> filteredList;
     @FXML
     private ListView<Client> scheduleView;
 
