@@ -14,15 +14,15 @@ import java.util.Optional;
 import java.util.Set;
 
 import expresslibrary.commons.core.index.Index;
-import expresslibrary.logic.commands.EditCommand;
-import expresslibrary.logic.commands.EditCommand.EditPersonDescriptor;
+import expresslibrary.logic.commands.EditPersonCommand;
+import expresslibrary.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditPersonCommandParser implements Parser<EditPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -31,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_TAG);
@@ -41,7 +41,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPersonCommand.MESSAGE_USAGE), pe);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -60,10 +61,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditPersonCommand(index, editPersonDescriptor);
     }
 
     /**

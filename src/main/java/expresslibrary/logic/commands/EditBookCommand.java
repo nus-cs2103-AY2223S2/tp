@@ -38,7 +38,7 @@ public class EditBookCommand extends Command {
             + "[" + PREFIX_AUTHOR + "AUTHOR] "
             + "[" + PREFIX_ISBN + "ISBN] "
             + "[" + PREFIX_BORROW_DATE + "BORROW_DATE] "
-            + "[" + PREFIX_DUE_DATE + "DUE_DATE] "
+            + "[" + PREFIX_DUE_DATE + "DUE_DATE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ISBN + "9876543210000 "
             + PREFIX_BORROW_DATE + "18/04/2022 "

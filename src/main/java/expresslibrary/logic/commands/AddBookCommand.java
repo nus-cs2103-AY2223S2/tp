@@ -18,15 +18,15 @@ public class AddBookCommand extends Command {
 
     public static final String COMMAND_WORD = "addBook";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to the express library. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to the express library. \n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_AUTHOR + "AUTHOR "
             + PREFIX_ISBN + "ISBN "
             + PREFIX_BORROW_DATE + "BORROWER_DATE "
-            + PREFIX_DUE_DATE + "DUE_DATE "
+            + PREFIX_DUE_DATE + "DUE_DATE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Diary of a Wimpy Kid"
+            + PREFIX_TITLE + "Diary of a Wimpy Kid "
             + PREFIX_AUTHOR + "Jeff Kinney "
             + PREFIX_ISBN + "9780810993136 "
             + PREFIX_BORROW_DATE + "22/03/2023 "

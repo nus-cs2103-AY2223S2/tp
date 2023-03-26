@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import expresslibrary.logic.commands.EditCommand.EditPersonDescriptor;
+import expresslibrary.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
