@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_STUDENT;
 
 import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,7 +23,7 @@ public class SortStudentCommandParser implements Parser<SortStudentCommand> {
      */
     public SortStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT_STUDENT);
 
         String group;
         String metric;
