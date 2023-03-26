@@ -23,7 +23,7 @@ public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
     private final Logger logger = LogsCenter.getLogger(InfoTab.class);
-    private UiEventListener<?> clickListener;
+    private MainWindow.ClickListener clickListener;
 
     private DetailedInfo detailedInfo;
 
@@ -59,7 +59,6 @@ public class InfoTab extends UiPart<Region> {
                 detailedInfo = new DetailedSkill(protagonist);
             }
         }
-        detailedInfo.setListener((MainWindow.ClickListener) clickListener);
 
         if (protagonist != null) {
             String profilePicturePath = protagonist.getProfilePicture().profilePicturePath;
@@ -82,25 +81,9 @@ public class InfoTab extends UiPart<Region> {
      * Set UiEventListener for InfoTab.
      * @param listener
      */
-    public void setClickListener(UiEventListener<?> listener) {
+    public void setClickListener(MainWindow.ClickListener listener) {
         this.clickListener = listener;
+        detailedInfo.setListener(clickListener);
     }
-
-    @FXML
-    private void viewContactTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view c");
-    }
-
-    @FXML
-    private void viewModulesTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view m");
-    }
-
-    @FXML
-    private void viewSkillsTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view s");
-    }
-
-
 
 }

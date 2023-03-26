@@ -3,7 +3,6 @@ package codoc.ui.infopanel;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.ui.MainWindow;
-import codoc.ui.UiEventListener;
 import codoc.ui.UiPart;
 import codoc.model.person.Person;
 import javafx.fxml.FXML;
@@ -29,8 +28,18 @@ public abstract class DetailedInfo extends UiPart<Region> {
     }
 
     @FXML
+    private void viewContactTab() throws CommandException, ParseException {
+        listener.viewContact();
+    }
+
+    @FXML
+    private void viewModulesTab() throws CommandException, ParseException {
+        listener.viewModule();
+    }
+
+    @FXML
     private void viewSkillsTab() throws CommandException, ParseException {
-        listener.viewTab();
+        listener.viewSkill();
     }
 
 }

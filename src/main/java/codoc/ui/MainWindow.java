@@ -125,6 +125,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(this);
+        personListPanel.setClickListener(clickListener);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -137,6 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+        infoTab.setClickListener(clickListener);
         infoTabPlaceholder.getChildren().add(infoTab.getRoot());
 
         courseListPanel = new CourseListPanel();
