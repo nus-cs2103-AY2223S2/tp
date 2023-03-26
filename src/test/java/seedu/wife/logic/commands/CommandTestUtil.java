@@ -36,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CHOCOLATE = "Chocolate";
     public static final String VALID_UNIT_CHOCOLATE = "Bar";
     public static final String VALID_QUANTITY_CHOCOLATE = "3";
-    public static final String VALID_EXPIRY_DATE_CHOCOLATE = "13-11-2024";
+    public static final String VALID_EXPIRY_DATE_CHOCOLATE = "14-11-2024";
     public static final String VALID_TAG_CHOCOLATE = "CHOCOLATE";
     public static final String NAME_DESC_MEIJI = " " + PREFIX_NAME + VALID_NAME_MEIJI;
     public static final String UNIT_DESC_MEIJI = " " + PREFIX_UNIT + VALID_UNIT_MEIJI;
