@@ -130,11 +130,11 @@ public class LogicTaskList {
      * @param pred
      * @return
      */
-    public LogicTaskList filter(Predicate<Task> pred) {
+    public List<Task> filter(Predicate<Task> pred) {
         List<Task> filteredTasks = stream()
                 .filter(pred)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return new LogicTaskList(filteredTasks);
+        return filteredTasks;
     }
 
     @Override

@@ -1,15 +1,17 @@
-package vimification.logic;
+package vimification.internal;
 
 import java.io.IOException;
 import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.CommandException;
-import vimification.logic.commands.CommandResult;
-import vimification.logic.commands.LogicCommand;
-import vimification.logic.parser.ParserException;
-import vimification.logic.parser.VimificationParser;
+import vimification.internal.command.Command;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
+import vimification.internal.parser.ParserException;
+import vimification.internal.parser.VimificationParser;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 import vimification.storage.Storage;
@@ -42,8 +44,9 @@ public class LogicManager implements Logic {
         logger.info("[USER COMMAND] " + commandText);
 
         // TODO : FIX THIS
-        LogicCommand command = vimificationParser.parse(commandText);
+        Command command = vimificationParser.parse(commandText);
         CommandResult result = command.execute(taskList);
+        updateViewTaskList(command);
 
         // TODO: Fix this later
         // Only save when the result indicates that the task list should be saved
@@ -53,6 +56,13 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
         }
         return result;
+    }
+
+    private void updateViewTaskList(Command command) {
+        ObservableList<Task> newViewTaskList = command.getViewTaskList();
+        if (newViewTaskList != null) {
+            viewTaskList.setAll(newViewTaskList);
+        }
     }
 
     // @Override

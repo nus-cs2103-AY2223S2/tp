@@ -1,4 +1,4 @@
-package vimification.logic.commands;
+package vimification.internal.command;
 
 /**
  * Represents an error which occurs during execution of a {@link Command}.

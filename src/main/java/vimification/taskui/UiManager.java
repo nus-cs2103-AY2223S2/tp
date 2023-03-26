@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import vimification.Gui;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.util.StringUtil;
-import vimification.logic.Logic;
+import vimification.internal.Logic;
 
 /**
  * The manager of the UI component.
