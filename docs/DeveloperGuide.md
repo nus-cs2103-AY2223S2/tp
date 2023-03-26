@@ -1287,6 +1287,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
    **Expected**: The List Panel shows the internship entries whose company name exactly matches with
    `Amazon` or `Google`. A success message is displayed in the Results Display.
+
 3. Finding through the filtered internship list
     1. `find n/Apple n/Google`
     2. `find n/Amazon`
@@ -1306,6 +1307,11 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
    **Expected**: An error message is displayed in the Results Display. This is because `Interviewing`
    is not a valid value for the `STATUS` parameter.
+
+6. `find n/Google n/Meta s/new s/applied`
+
+   **Expected**: The List Panel shows the internship entries whose company name exactly matches at least one of the company name fields and status matches at least one of the status fields.
+   This means that for the `find` command, whenever there are multiple instances of different fields, the internship entries filtered out must match at least one input from every different field.
 
 [More test cases will be added for combination of parameters...]
 

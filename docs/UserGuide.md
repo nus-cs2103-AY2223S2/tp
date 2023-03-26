@@ -318,7 +318,25 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 [TODO by Chuhao]
 
 ### Finding Internships : `find`
-[TODO by Kai Xun]
+Are you an experienced internship hunter with tons of internship entries? Our `find` command will help filter through all your internship entries and return the internship entries you're looking for.
+
+Format: `find [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
+
+* You have to provide at least one of the optional parameters. A `find` command without any parameters will result in an invalid command format error.
+* The find command works through an exact match, regardless of upper or lower case, of the parameter and the internship entry's corresponding attributes.
+* When multiple instances of the same type of field exists in user input (e.g. multiple `n/COMPANY_NAME` fields or multiple `r/ROLE` fields), only internships containing at least one of these fields of the same type will be filtered out.
+* When different types of fields, each with multiple instances, exist in user input (e.g. multiple `n/COMPANY_NAME` and multiple `r/ROLE` fields), only internships containing at least one of the inputs from every different type of field will be filtered out. 
+
+Examples:
+* `find n/Google Ltd` filters out all internships with company name 'Google Ltd'. Note that case matching is insensitive, so internships with the company name 'google ltd', 'gOOglE ltD' or more will also be deleted. However, matching must be exact, so inputs like 'goo' and 'google' will not filter out an internship with company name 'Google Ltd'.
+* `find n/Google n/Apple n/Meta` filters out all internships with company name 'Google', 'Apple' or 'Meta'.
+* `find n/Google n/Apple s/new` filters out all internships that has the `new` status and have company name 'Google' or 'Apple'.
+* `find n/Google n/Apple t/Python t/Java` filters out all internships with company names 'Google' or 'Apple' and have the tags 'Python' or 'Java'.
+
+
+
+![Find Command](images/ug-find-example.png)
+   <p style="text-align: center;">Figure XX: Example of the find command in action</p>
 
 ### Getting Upcoming Events and Deadlines : `upcoming`
 Want to view your upcoming events and deadlines? You can do so using the `upcoming` command.
