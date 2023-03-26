@@ -272,4 +272,14 @@ public interface Model {
      * Returns currently selected vehicle
      */
     Vehicle getSelectedVehicle();
+
+    /**
+     * Sets currently selected service
+     */
+    void selectService(Service service);
+
+    /**
+     * Returns currently selected service
+     */
+    Service getSelectedService();
 }

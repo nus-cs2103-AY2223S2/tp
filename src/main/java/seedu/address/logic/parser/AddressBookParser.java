@@ -6,36 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddCustomerCommand;
-import seedu.address.logic.commands.AddPartCommand;
-import seedu.address.logic.commands.AddServiceCommand;
-import seedu.address.logic.commands.AddTechnicianCommand;
-import seedu.address.logic.commands.AddVehicleCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteAppointmentCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteCustomerCommand;
-import seedu.address.logic.commands.DeleteServiceCommand;
-import seedu.address.logic.commands.DeleteTechnicianCommand;
-import seedu.address.logic.commands.DeleteVehicleCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListCustomersCommand;
-import seedu.address.logic.commands.ListServicesCommand;
-import seedu.address.logic.commands.ListVehiclesCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.ViewAppointmentCommand;
-import seedu.address.logic.commands.ViewCustomerCommand;
-import seedu.address.logic.commands.ViewPartCommand;
-import seedu.address.logic.commands.ViewTechnicianCommand;
-import seedu.address.logic.commands.ViewVehicleCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -141,6 +112,8 @@ public class AddressBookParser {
         case ViewTechnicianCommand.COMMAND_WORD:
             return new ViewTechnicianCommandParser().parse(arguments.trim());
 
+        case ViewServiceCommand.COMMAND_WORD:
+            return new ViewServiceCommandParser().parse(arguments.trim());
 
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments.trim());

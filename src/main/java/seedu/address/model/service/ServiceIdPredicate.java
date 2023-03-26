@@ -11,8 +11,8 @@ import seedu.address.commons.core.index.Index;
 public class ServiceIdPredicate implements Predicate<Service> {
     private final int id;
 
-    public ServiceIdPredicate(Index id) {
-        this.id = id.getZeroBased();
+    public ServiceIdPredicate(int id) {
+        this.id = id;
     }
 
     @Override

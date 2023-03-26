@@ -79,6 +79,8 @@ public interface Logic {
     Customer getSelectedCustomer();
 
     /** Returns currently selected vehicle*/
-
     Vehicle getSelectedVehicle();
+
+    /** Returns currently selected service*/
+    Service getSelectedService();
 }
