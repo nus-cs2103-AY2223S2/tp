@@ -87,6 +87,16 @@ Format: `help`
 
 ## Tanks
 
+Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the 
+first requirement of fish keeping. (Can't have a fish without a tank!) Similarly, *Fish Ahoy!* also requires you to add
+a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
+customize them with their own names and add in their respective fishes! <br>
+
+Currently, there are three operations around tanks:
+* [Adding a tank `tank add`](#adding-a-tank-add)
+* [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
+* [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+
 ### Adding a tank: `add`
 
 Adds a tank to the app.
