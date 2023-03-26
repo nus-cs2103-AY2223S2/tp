@@ -197,7 +197,8 @@ The `advance` command advances an `Person` in HMHero, which advances the `status
 
 
 The activity diagram is as such:
-[Add in later]()
+
+![Advance activity diagram](diagrams/AdvanceActivityDiagram.puml)
 
 Here is the activity diagram showing the process of the `advance` command:
 [Add in later]()
@@ -206,6 +207,8 @@ Here is the activity diagram showing the process of the `advance` command:
 1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
 1. If the name and phone is not provided, an error is thrown and the user is prompted to 
 enter the command correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it exists.
+      If it does not, then an error is raised to inform the user.
 1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
 1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
 correctly via an error message.
@@ -213,8 +216,6 @@ correctly via an error message.
 correctly via an error message.
 1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
 correctly via an error message.
-1. The applicant is cross-referenced in the `Model` to check if it exists. 
-If it does not, then an error is raised to inform the user.
 1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
 the user is prompted to enter the command correctly via an error message.
 

@@ -19,5 +19,4 @@ stop
 else ([No flag present])
 :Error: Invalid command format;
 stop
-
 @enduml
