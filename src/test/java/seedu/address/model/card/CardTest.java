@@ -1,8 +1,11 @@
 package seedu.address.model.card;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.address.testutil.TypicalCards.LOOP;
@@ -11,9 +14,36 @@ import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
 import seedu.address.testutil.CardBuilder;
 
 public class CardTest {
+
+    @Test
+    public void constructor_noTag_defaultTag() {
+        Card expectedCard = new Card(
+                new Question(VALID_QUESTION_PHOTOSYNTHESIS),
+                new Answer(VALID_ANSWER_PHOTOSYNTHESIS),
+                new Tag(TagName.UNTAGGED),
+                new Deck(VALID_DECK_SCIENCE));
+        Card cardWithoutTag = new Card(new Question(VALID_QUESTION_PHOTOSYNTHESIS),
+                new Answer(VALID_ANSWER_PHOTOSYNTHESIS),
+                null,
+                new Deck(VALID_DECK_SCIENCE));
+
+        assertEquals(expectedCard, cardWithoutTag);
+    }
+
+    @Test
+    public void constructor_missingDeck_throwsNullPointerException() {
+
+        assertThrows(NullPointerException.class, () -> new Card(
+                new Question(VALID_QUESTION_PHOTOSYNTHESIS),
+                new Answer(VALID_ANSWER_PHOTOSYNTHESIS),
+                new Tag(TagName.MEDIUM),
+                null));
+    }
 
     @Test
     public void isSameCard() {
@@ -82,7 +112,7 @@ public class CardTest {
     public void isInDeck() {
         Deck defaultDeck = new Deck(CardBuilder.DEFAULT_DECK);
         Deck otherDeck = new Deck("Other");
-        Card defaultCard = new CardBuilder().build();
+        Card defaultCard = new CardBuilder().withDeck(CardBuilder.DEFAULT_DECK).build();
 
         assertTrue(defaultCard.isInDeck(defaultDeck));
         assertFalse(defaultCard.isInDeck(otherDeck));
