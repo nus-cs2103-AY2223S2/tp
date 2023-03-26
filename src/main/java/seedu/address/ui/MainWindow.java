@@ -20,7 +20,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.ui.core.ItemListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,7 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ItemListPanel itemListPanel;
     private FlightListPanel flightListPanel;
     private CrewListPanel crewListPanel;
     private PlaneListPanel planeListPanel;
@@ -54,9 +52,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private ImageView wingmanLogo;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -141,10 +136,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         wingmanLogo.setImage(getImage(WINGMAN_LOGO));
-
-        itemListPanel = new ItemListPanel(logic.getFilteredItemList());
-        Region item = itemListPanel.getRoot();
-        personListPanelPlaceholder.getChildren().add(item);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
