@@ -2,6 +2,8 @@ package seedu.address.model.transaction;
 
 
 //import javax.management.Descriptor;
+import seedu.address.model.transaction.status.TxnStatus;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;

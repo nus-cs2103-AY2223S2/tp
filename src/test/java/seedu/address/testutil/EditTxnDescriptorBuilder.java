@@ -4,7 +4,7 @@ import seedu.address.logic.commands.txncommands.EditTxnCommand.EditTxnDescriptor
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
 
 /**

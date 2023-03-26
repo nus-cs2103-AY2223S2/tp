@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
 
 //import javax.lang.model.util.AbstractAnnotationValueVisitor6;

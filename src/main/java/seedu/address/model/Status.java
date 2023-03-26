@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 public abstract class Status {
 
-    public abstract String getInstantInISO();
+    public abstract String getInstantInIso();
 
     public abstract Instant getTimestamp();
 

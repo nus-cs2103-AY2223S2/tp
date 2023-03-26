@@ -22,7 +22,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
-import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.status.TxnStatus;
 import seedu.address.model.transaction.Value;
 
 //import javax.xml.validation.Validator;

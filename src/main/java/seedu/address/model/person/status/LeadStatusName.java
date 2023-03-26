@@ -5,10 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.HashMap;
 import java.util.Map;
 
+import seedu.address.model.StatusName;
+
 /**
  * Valid status names for lead statuses, and mappings to their symbols.
  */
-public enum LeadStatusName {
+public enum LeadStatusName implements StatusName {
     UNCONTACTED("Uncontacted", "U"),
     WORKING("Working", "W"),
     QUALIFIED("Qualified", "Q"),
@@ -42,7 +44,7 @@ public enum LeadStatusName {
      * Returns true if a given String key maps to a valid LeadStatusName.
      * For example, a valid key can be "X" or "Unqualified" for the LeadStatus of "Unqualified"
      */
-    public static boolean isValidLeadStatusName(String test) {
+    public static boolean isValidStatusName(String test) {
         return SYMBOL_LEAD_STATUS_MAP.containsKey(test)
                 || STRING_LEAD_STATUS_NAME_MAP.containsKey(test);
     }
@@ -50,10 +52,10 @@ public enum LeadStatusName {
     /**
      * Retrieves a LeadStatusName given a String, if it is valid.
      * @param name the search key for a LeadStatusName. Can be "X" or "Unqualified" for the LeadStatus of "Unqualified"
-     * @return a valid LeadStatus
+     * @return a valid LeadStatusName
      */
     public static LeadStatusName get(String name) {
-        checkArgument(isValidLeadStatusName(name), LeadStatus.MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatusName(name), LeadStatus.MESSAGE_CONSTRAINTS);
         if (STRING_LEAD_STATUS_NAME_MAP.containsKey(name)) {
             return STRING_LEAD_STATUS_NAME_MAP.get(name);
         } else {
