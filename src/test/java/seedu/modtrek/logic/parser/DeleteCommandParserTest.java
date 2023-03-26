@@ -1,6 +1,9 @@
 package seedu.modtrek.logic.parser;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CODE_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CODE_DESC_MA2002;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
@@ -23,13 +26,13 @@ import seedu.modtrek.model.module.Code;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         Set<Code> codesToDelete = new HashSet<>();
         codesToDelete.add(CS1101S.getCode());
-        assertParseSuccess(parser, " /m CS1101S", new DeleteCommand(false, codesToDelete));
+        assertParseSuccess(parser, CODE_DESC_CS1101S, new DeleteCommand(false, codesToDelete));
     }
 
     @Test
@@ -37,13 +40,18 @@ public class DeleteCommandParserTest {
         Set<Code> codesToDelete = new HashSet<>();
         codesToDelete.add(CS1101S.getCode());
         codesToDelete.add(MA2002.getCode());
-        assertParseSuccess(parser, " /m CS1101S /m MA2002", new DeleteCommand(false, codesToDelete));
+        assertParseSuccess(parser, CODE_DESC_CS1101S + CODE_DESC_MA2002, new DeleteCommand(false, codesToDelete));
     }
 
     @Test
     public void parse_validArgsAll_returnsDeleteCommand() {
         Set<Code> codesToDelete = new HashSet<>();
         assertParseSuccess(parser, "all", new DeleteCommand(true, codesToDelete));
+    }
+
+    @Test
+    public void parse_detailMissing_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_CODE, Code.MESSAGE_MISSING_DETAIL);
     }
 
     @Test

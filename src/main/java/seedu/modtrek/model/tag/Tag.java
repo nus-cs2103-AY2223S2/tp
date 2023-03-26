@@ -11,7 +11,9 @@ public class Tag {
 
     public static final int NUM_TAGS = 6;
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
+    public static final String MESSAGE_CONSTRAINTS = "Tag name should be one of possible curriculum requirements.";
+
+    public static final String MESSAGE_MISSING_DETAIL = "Missing tag after /t.";
 
     public final String tagName;
 
