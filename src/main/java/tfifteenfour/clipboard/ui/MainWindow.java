@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
@@ -26,6 +27,12 @@ import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -66,6 +73,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane rightPanelPlaceholder;
+
+    @FXML
+    private VBox moduleTabPlaceholder;
+
+    @FXML
+    private VBox groupTabPlaceholder;
+
+    @FXML
+    private VBox studentTabPlaceholder;
+
+    @FXML
+    private HBox navigationBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -138,6 +157,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+        groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
+        studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
     }
 
     /**
@@ -185,8 +208,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleHome() {
         showCoursePane();
+        showModuleTab();
         closeViewPane();
+        closeGroupTab();
+        closeStudentTab();
+        closeNavigationBar();
         logic.getCurrentSelection().navigateBackToCoursePage();
+    }
+
+    private void refreshNavigationBar() {
+        NavigationBar navigationBar = new NavigationBar(logic);
+        navigationBarPlaceholder.getChildren().clear();
+        navigationBarPlaceholder.getChildren().add(navigationBar.getRoot());
+    }
+
+    private void closeNavigationBar() {
+        navigationBarPlaceholder.getChildren().clear();
     }
 
     /**
@@ -236,6 +273,36 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
+    private void showModuleTab() {
+        moduleTabPlaceholder.getChildren().clear();
+        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+    }
+
+    private void showGroupTab() {
+        groupTabPlaceholder.getChildren().clear();
+        groupTabPlaceholder.getChildren().add(new ActiveGroupTab().getRoot());
+    }
+
+    private void showStudentTab() {
+        studentTabPlaceholder.getChildren().clear();
+        studentTabPlaceholder.getChildren().add(new ActiveStudentTab().getRoot());
+    }
+
+    private void closeModuleTab() {
+        moduleTabPlaceholder.getChildren().clear();
+        moduleTabPlaceholder.getChildren().add(new InactiveModuleTab().getRoot());
+    }
+
+    private void closeGroupTab() {
+        groupTabPlaceholder.getChildren().clear();
+        groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
+    }
+
+    private void closeStudentTab() {
+        studentTabPlaceholder.getChildren().clear();
+        studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
+    }
+
     /**
      * Handles UI for select command.
      */
@@ -243,6 +310,9 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
 
             showGroupPane(logic.getCurrentSelection().getSelectedCourse());
+            closeModuleTab();
+            showGroupTab();
+            refreshNavigationBar();
 
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
                 && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
@@ -253,6 +323,9 @@ public class MainWindow extends UiPart<Stage> {
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
 
             showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+            closeGroupTab();
+            showStudentTab();
+            refreshNavigationBar();
 
         }
     }
@@ -264,9 +337,15 @@ public class MainWindow extends UiPart<Stage> {
     private void handleBackCommand(BackCommand backCommand) {
         if (logic.getCurrentSelection().getCurrentPage().equals(PageType.COURSE_PAGE)) {
             showCoursePane();
+            showModuleTab();
+            closeGroupTab();
+            refreshNavigationBar();
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
             showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+            showGroupTab();
             closeViewPane();
+            closeStudentTab();
+            refreshNavigationBar();
         }
     }
 
