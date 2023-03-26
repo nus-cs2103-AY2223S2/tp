@@ -35,16 +35,10 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is chemical symbol for Oxygen?`.
-
-* Items in square brackets are optional.<br>
-  e.g `q/QUESTION [t/TAG]` can be used as `q/What is chemical symbol for Oxygen? t/chemistry` or as `q/What is chemical symbol for Oxygen?`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/chemistry`, `t/chemistry t/science` etc.
+  e.g. in `add q\QUESTION`, `QUESTION` is a parameter which can be used as `add q\What is chemical symbol for Oxygen?`.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d\science d\chemsitry`, only `d\chemsitry` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -55,13 +49,14 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 ## Main Mode
 
-Main mode will be started by default when the program is launched.
+Main mode will be started by default when the program is launched. 
+Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
 
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+[//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
 Format: `help`
 
@@ -76,26 +71,22 @@ Examples:
 
 ### Editing a Deck : `editDeck`
 
-Edits the name of a masterDeck.
+Edits the name of a deck.
 
-Format: `editDeck d\DECK_NAME`
-
-### Listing all Decks : `list`
-
-_**No Decks should not be selected to use this command.**_
-
-Shows a list of all Decks.
-
-Format: `list`
+Format: `editDeck INDEX d\ DECK_NAME`
 
 ### Selecting a Deck : `selectDeck`
 
-Selects a masterDeck. 
+Selects a deck from the list of decks. 
 
 Format: `selectDeck INDEX`
 
 Examples:
 * `selectDeck 2`
+
+## Deck Mode
+
+Deck mode refers to when a deck is selected and the user wishes to manage the list of cards within this selected deck.
 
 ### Unselecting a Deck : `unselectDeck`
 
