@@ -21,7 +21,7 @@ public class FindVaxTypeTest {
 
 
     @BeforeEach
-    public void addVaxType() {
+    public void addVaxType() throws Exception {
         model = new VaxTypeModelStub();
         model.manager.add(new VaxType(
                 new GroupName(VAX_NAME),

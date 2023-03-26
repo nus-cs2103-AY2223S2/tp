@@ -1,27 +1,25 @@
 package seedu.vms.logic.parser.vaccination;
 
-import seedu.vms.logic.commands.Command;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.logic.commands.vaccination.EditVaxTypeCommand;
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ParserUtil;
+import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 
 
 /**
  * Parser of vaccination type edit command.
  */
-public class EditVaxTypeParser extends VaxTypeValueParser {
+public class EditVaxTypeParser extends VaxTypeBuilderParser {
     public static final String COMMAND_WORD = "edit";
 
 
-    /**
-     * Constructs an {@code EditVaxTypeParser}.
-     */
-    public EditVaxTypeParser() {
-        super(true);
-    }
-
-
     @Override
-    protected Command getCommand(VaxTypeBuilder builder) {
-        return new EditVaxTypeCommand(builder);
+    public EditVaxTypeCommand parse(ArgumentMultimap argsMap) throws ParseException {
+        Retriever<String, VaxType> retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
+        VaxTypeBuilder builder = parseBuilder(argsMap);
+        return new EditVaxTypeCommand(retriever, builder);
     }
 }

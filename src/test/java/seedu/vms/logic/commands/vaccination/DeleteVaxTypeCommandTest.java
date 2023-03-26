@@ -22,7 +22,7 @@ public class DeleteVaxTypeCommandTest {
 
 
     @BeforeEach
-    public void addVaxType() {
+    public void addVaxType() throws Exception {
         model = new VaxTypeModelStub();
         model.manager.add(SampleVaxTypeData.TYPE_REAL);
     }

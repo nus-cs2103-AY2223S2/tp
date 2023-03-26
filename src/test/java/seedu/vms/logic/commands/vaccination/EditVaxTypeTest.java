@@ -49,7 +49,7 @@ public class EditVaxTypeTest {
 
 
     @BeforeEach
-    public void initializeModel() {
+    public void initializeModel() throws Exception {
         model = new VaxTypeModelStub();
         model.manager.add(ORIGINAL);
     }
@@ -78,7 +78,7 @@ public class EditVaxTypeTest {
 
 
     @Test
-    public void execute_existingRename_exceptionThrown() {
+    public void execute_existingRename_exceptionThrown() throws Exception {
         model.manager.add(EDITED_RENAME);
         assertThrows(CommandException.class, () -> attemptExecution(CMD_EXISTING_RENAME));
     }

@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.core.ValueChange;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.exceptions.LimitExceededException;
 
 
@@ -15,6 +17,8 @@ import seedu.vms.commons.exceptions.LimitExceededException;
 public class VaxTypeManager {
     public static final int DEFAULT_LIMIT = 30;
 
+    private static final String ERROR_FORMAT_DUPLICATE_VACCINATION = "Vaccination %s already exist";
+    private static final String ERROR_FORMAT_NONEXISTENT_VACCINATION = "Vaccination %s does not exist";
     private static final String ERROR_FORMAT_LIMIT_EXCEEDED = "Limit of %d exceeded";
 
     private final int limit;
@@ -61,19 +65,40 @@ public class VaxTypeManager {
 
 
     /**
-     * Adds the specified {@code VaxType}. If there is another {@code VaxType}
-     * with the same name as the specified, that {@code VaxType} is replaced.
+     * Adds the specified {@code VaxType}.
      *
      * @param vaxType - the {@code VaxType} to add.
+     * @throws IllegalValueException if the a vaccination with the same name
+     *      already exist.
      * @throws LimitExceededException if the set limit will be exceeded after
      *      this addition.
      */
-    public void add(VaxType vaxType) {
+    public VaxType add(VaxType vaxType) throws IllegalValueException {
+        if (typeMap.containsKey(vaxType.getName())) {
+            throw new IllegalValueException(String.format(ERROR_FORMAT_DUPLICATE_VACCINATION,
+                    vaxType.getName()));
+        }
         if (typeMap.size() >= limit) {
             throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
                     limit));
         }
         typeMap.put(vaxType.getName(), vaxType);
+        return vaxType;
+    }
+
+
+    public ValueChange<VaxType> set(String name, VaxType newValue) throws IllegalValueException {
+        if (!typeMap.containsKey(name)) {
+            throw new IllegalValueException(String.format(ERROR_FORMAT_NONEXISTENT_VACCINATION,
+                    name));
+        }
+        if (!(name.equals(newValue.getName())) && typeMap.containsKey(newValue.getName())) {
+            throw new IllegalValueException(String.format(ERROR_FORMAT_DUPLICATE_VACCINATION,
+                    newValue.getName()));
+        }
+        VaxType oldValue = typeMap.remove(name);
+        typeMap.put(newValue.getName(), newValue);
+        return new ValueChange<>(oldValue, newValue);
     }
 
 

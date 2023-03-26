@@ -11,7 +11,6 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
-import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.JsonAdaptedAge;
 import seedu.vms.storage.JsonAdaptedGroupName;
 
@@ -75,11 +74,11 @@ public class JsonAdaptedVaxType {
      *
      * @throws IllegalValueException if name field is missing.
      */
-    public VaxType toModelType(VaxTypeManager manager) throws IllegalValueException {
+    public VaxType toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }
-        VaxTypeBuilder builder = VaxTypeBuilder.of(name.toModelType());
+        VaxTypeBuilder builder = VaxTypeBuilder.of();
 
         if (groups != null) {
             builder = builder.setGroups(JsonAdaptedGroupName.toModelSet(groups));
@@ -101,7 +100,7 @@ public class JsonAdaptedVaxType {
             builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
-        return builder.create(manager).getNewValue().get();
+        return builder.create(name.toModelType());
     }
 
 

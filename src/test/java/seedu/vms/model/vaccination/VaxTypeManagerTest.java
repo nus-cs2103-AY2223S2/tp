@@ -24,7 +24,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void asUnmodifiableObservableMapTest() {
+    public void asUnmodifiableObservableMapTest() throws Exception {
         VaxTypeManager storage = new VaxTypeManager();
         ObservableMap<String, VaxType> mapView = storage.asUnmodifiableObservableMap();
 
@@ -50,7 +50,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void add_limitReached_exceptionThrown() {
+    public void add_limitReached_exceptionThrown() throws Exception {
         int setLimit = 5;
         VaxTypeManager manager = new VaxTypeManager(setLimit);
 
@@ -67,7 +67,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void resetData_validReset() {
+    public void resetData_validReset() throws Exception {
         int setLimit = 5;
         VaxTypeManager manager = new VaxTypeManager(setLimit);
         addToManager(manager, setLimit);
@@ -80,7 +80,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void resetData_limitReached_exceptionThrown() {
+    public void resetData_limitReached_exceptionThrown() throws Exception {
         int setLimit = 5;
         VaxTypeManager manager = new VaxTypeManager(setLimit);
         addToManager(manager, setLimit);
@@ -91,7 +91,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void containsCheck() {
+    public void containsCheck() throws Exception {
         VaxTypeManager storage = new VaxTypeManager();
         assertFalse(storage.contains(TYPE_1.getName()));
 
@@ -104,7 +104,7 @@ public class VaxTypeManagerTest {
 
 
     @Test
-    public void getTest() {
+    public void getTest() throws Exception {
         VaxTypeManager storage = new VaxTypeManager();
         assertFalse(storage.get(TYPE_1.getName()).isPresent());
 
@@ -116,7 +116,7 @@ public class VaxTypeManagerTest {
     }
 
 
-    private void addToManager(VaxTypeManager manager, int number) {
+    private void addToManager(VaxTypeManager manager, int number) throws Exception {
         for (int i = 0; i < number; i++) {
             manager.add(new VaxType(
                     new GroupName(String.valueOf(i)),

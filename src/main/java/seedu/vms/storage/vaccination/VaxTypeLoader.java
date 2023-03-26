@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
+import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 
@@ -69,11 +70,12 @@ public class VaxTypeLoader {
 
 
     private VaxTypeManager toModelType() throws IllegalValueException {
-        VaxTypeManager storage = new VaxTypeManager();
+        VaxTypeManager manager = new VaxTypeManager();
         for (JsonAdaptedVaxType adapted : types) {
-            adapted.toModelType(storage);
+            VaxType vaxType = adapted.toModelType();
+            manager.add(vaxType);
         }
-        return storage;
+        return manager;
     }
 
 

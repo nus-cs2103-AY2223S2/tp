@@ -28,7 +28,6 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -257,16 +256,17 @@ public class ModelManager implements Model {
     // =========== VaxTypeManager ==============================================================================
 
     @Override
-    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        ValueChange<VaxType> change = builder.create(vaxTypeManager);
+    public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
+        vaxTypeManager.add(vaxType);
+        ValueChange<VaxType> change = new ValueChange<>(null, vaxType);
         handleVaccinationChange(change);
         return change;
     }
 
 
     @Override
-    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        ValueChange<VaxType> change = builder.update(vaxTypeManager);
+    public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
+        ValueChange<VaxType> change = vaxTypeManager.set(name, newValue);
         handleVaccinationChange(change);
         return change;
     }

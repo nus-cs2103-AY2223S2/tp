@@ -20,7 +20,6 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -174,9 +173,9 @@ public interface Model {
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
-    ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+    ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException;
 
-    ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+    ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException;
 
     ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException;
 

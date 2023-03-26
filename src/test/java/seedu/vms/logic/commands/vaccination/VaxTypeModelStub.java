@@ -25,7 +25,6 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -255,17 +254,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.create(manager);
-    }
-
-
-    @Override
-    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.update(manager);
-    }
-
-    @Override
     public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
@@ -285,8 +273,20 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getVaccination'");
+        return retriever.retrieve(manager.asUnmodifiableObservableMap(), null);
+    }
+
+    @Override
+    public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
+        manager.add(vaxType);
+        ValueChange<VaxType> change = new ValueChange<>(null, vaxType);
+        return change;
+    }
+
+    @Override
+    public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
+        ValueChange<VaxType> change = manager.set(name, newValue);
+        return change;
     }
 
 }
