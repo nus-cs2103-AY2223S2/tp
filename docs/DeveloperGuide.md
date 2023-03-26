@@ -142,6 +142,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both patientist data and user preference data in json format, and read them back into corresponding objects.
+* reads patientist data into a patientist object which will contain a list of ward objects which individually contain a list of patient and staff objects.
 * inherits from both `PatientistStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -179,6 +180,22 @@ Furthermore, operations such as searching and deleting will become extremely cou
 ward along with all patients and staff inside, we would have to search through all `Patient` and `Staff` objects, look through
 their tags and delete them one by one. Wards will thus become a fully abstract concept not modelled anywhere in the code,
 which is not ideal as it is a core part of what our application seeks to manage.
+
+For these data to be stored for subsequent sessions, the `Storage` module had to be modified to store a list of wards containing
+`Patient` and `Staff` instead of a list of `Person`.
+
+Given below is an overview of how the `Storage` module behaves after launching the Patientist app.
+
+Step 1. The `Storage` module reads the data `JSON` file and deserialises it to form a `JsonSerializablePatientist` Object
+which contains a list of `JsonAdaptedWard` which is made for each `Ward` that is stored. Each `JsonAdaptedWard` contains
+a list of `JsonAdaptedPatient` and `JsonAdaptedStaff` which represents the numerous `Patient` and `Staff` that are in
+the `Ward`
+
+Step 2. The `Storage` module then calls creates the `Ward`, `Staff` and `Patient` using the blueprint provided by
+`JsonAdaptedWard`, `JsonAdaptedStaff` and `JsonAdaptedPatient` respectively. Once done, the newly created `Ward` objects
+are then stored in a new `Patientist` object, ready to be used.
+
+The opposite occurs after a command, allowing us to save the data into a `JSON` file.
 
 [DRAW THE UML DIAGRAMS AND WHATNOT EVENTUALLY...................]
 
