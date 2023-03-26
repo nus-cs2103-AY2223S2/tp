@@ -1,21 +1,24 @@
 package ezschedule.ui;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import ezschedule.model.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+/**
+ * A UI component that displays information of {@code Event} in the calender.
+ */
 public class CalenderBox extends UiPart<Region> {
 
     private static final String FXML = "CalenderBox.fxml";
+
+    private final List<Event> events;
+
     @FXML
     private StackPane calenderBoxPane;
     @FXML
@@ -24,39 +27,54 @@ public class CalenderBox extends UiPart<Region> {
     private VBox calenderEvents;
     @FXML
     private Rectangle calenderHighlight;
-    private List<Event> events;
 
-    public CalenderBox(String date, List<Event> events, ZonedDateTime today, ZonedDateTime dateFocus, int currentDate) {
+    public CalenderBox(String date, List<Event> events) {
         super(FXML);
         this.events = events;
+        if (date != null) {
+            setDate(date);
+            setBackgroundColor();
+            setEvents();
+        }
+    }
 
+    /**
+     * List all events for the clicked date.
+     */
+    @FXML
+    public void handleListEvents() {
+
+    }
+
+    private void setDate(String date) {
         calenderDate.setText(date);
-        calenderHighlight.setFill(Color.TRANSPARENT);
-        calenderHighlight.setStroke(Color.BLACK);
+    }
+
+    private void setBackgroundColor() {
+        calenderEvents.setStyle("-fx-background-color:GRAY");
+    }
+
+    private void setEvents() {
         if (events != null) {
             for (int i = 0; i < events.size(); i++) {
-                if (i >= 2) {
-                    Text moreActivities = new Text("...");
-                    calenderEvents.getChildren().add(moreActivities);
-                    moreActivities.setOnMouseClicked(mouseEvent -> {
-                        //On ... click print all activities for given date
-                        // TODO TO SHOW EVENTS
-                        System.out.println(events);
-                    });
+                if (i >= 1) {
+                    Text moreEvents = new Text("...");
+                    calenderEvents.getChildren().add(moreEvents);
                     break;
                 }
-                Text text = new Text(events.get(i).getName().toString());
-                calenderEvents.getChildren().add(text);
-                text.setOnMouseClicked(mouseEvent -> {
-                    //On Text clicked
-                    System.out.println(text.getText());
-                });
+                String eventName = getEventName(events.get(i));
+                Text event = new Text(eventName);
+                calenderEvents.getChildren().add(event);
             }
-            calenderEvents.setStyle("-fx-background-color:GRAY");
         }
+    }
 
-        if (today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate) {
-            calenderHighlight.setStroke(Color.BLUE);
+    private String getEventName(Event event) {
+        String name = event.getName().toString();
+        if (name.length() > 5) {
+            String firstFiveChars = name.substring(0, 5);
+            name = firstFiveChars + "...";
         }
+        return name;
     }
 }

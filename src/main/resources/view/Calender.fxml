@@ -31,13 +31,15 @@
     <HBox alignment="CENTER" layoutY="45.0" prefHeight="30.0">
         <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" wrappingWidth="65.0">
-            <HBox.margin>
-               <Insets />
-            </HBox.margin></Text>
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+            </Text>
             <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" wrappingWidth="65.0">
-            <HBox.margin>
-               <Insets />
-            </HBox.margin></Text>
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+            </Text>
             <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" textAlignment="CENTER" wrappingWidth="65.0" />
             <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" wrappingWidth="65.0" />
             <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" textAlignment="CENTER" wrappingWidth="65.0" />

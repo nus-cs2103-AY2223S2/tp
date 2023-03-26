@@ -34,8 +34,11 @@ public interface Logic {
 
     /**
      * Returns an unmodifiable view of the filtered list of events
-     *
-     * @return
+     */
+    ObservableList<Event> getEventList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of events
      */
     ObservableList<Event> getFilteredEventList();
 
