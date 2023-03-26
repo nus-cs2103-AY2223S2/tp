@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 
@@ -42,12 +44,12 @@ public class Session {
     /**
      * Returns an unmodifiable list of the students who are in the session.
      */
-    public ObservableList<Student> getUnmodifiableStudentList() {
-        UniqueStudentList students = new UniqueStudentList();
+    public ObservableList<StudentWithAttendance> getUnmodifiableStudentList() {
+        ObservableList<StudentWithAttendance> students = FXCollections.observableArrayList();
         for (Student student : attendance.keySet()) {
-            students.add(student);
+            students.add(new StudentWithAttendance(student, attendance.get(student)));
         }
-        return students.asUnmodifiableObservableList();
+        return students;
     }
 
     /**
@@ -55,10 +57,6 @@ public class Session {
      * @return The name of the session.
      */
     public String getSessionName() {
-        System.out.println("########\n "
-                + "ATTENDANCE for" + sessionName);
-        System.out.println(attendance.toString());
-        System.out.println("########");
         return this.sessionName;
     }
 
@@ -94,10 +92,13 @@ public class Session {
     }
 
     /**
-     * Sets the list of students who are in the session.
+     * Sets the list of students who are in the session.This will create a new hashMap and assign it
+     * to {@code attendance} instead of modifying {@code attendance}.
+     *
      * @param students The list of students who are in the session.
      */
     public void setStudents(UniqueStudentList students) {
+        assert attendance != null : "Attendance should not be null!";
         Map<Student, Integer> newAttendance = new HashMap<>();
         for (Student student : students) {
             newAttendance.put(student, attendance.getOrDefault(student, 0));
@@ -114,6 +115,7 @@ public class Session {
      */
     public void markPresent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
+        assert attendance != null : "Attendance should not be null!";
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();
@@ -130,6 +132,7 @@ public class Session {
      */
     public void markAbsent(Student student) throws StudentNotInSessionException {
         requireNonNull(student);
+        assert attendance != null : "Attendance should not be null!";
 
         if (!attendance.containsKey(student)) {
             throw new StudentNotInSessionException();
