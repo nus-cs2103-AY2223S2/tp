@@ -9,11 +9,12 @@ title: Where Got Time
 ![Ui](images/Ui.png)
 
 **Where Got Time (WGT) - a perfect desktop app dedicate to managing your events and plan out your
-meetings with your friends and family** It is developed for university student, who can type fast to efficiently 
+meetings with your friends and family.** It is developed for university student, who can type fast to efficiently
 keep track of all of their events and their friends' events via a Command Line Interface.
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+
+* If you are interested in using Where Got Time, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing Where Got Time, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
