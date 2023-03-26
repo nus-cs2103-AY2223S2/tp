@@ -8,10 +8,10 @@ import org.joda.time.LocalTime;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commitment.Commitment;
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 /**
  * Represents a timetable for a person.

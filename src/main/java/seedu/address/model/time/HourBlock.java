@@ -8,10 +8,9 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.commitment.Commitment;
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
 import seedu.address.model.time.exceptions.WrongTimeException;
 import seedu.address.model.time.util.TimeUtil;
-
+import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 /**
  * Represents an hour timeslot in a Timetable.

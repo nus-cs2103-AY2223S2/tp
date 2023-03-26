@@ -58,7 +58,7 @@ title: Developer Guide
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
      * [Recommenders](#recommenders)
-       * [Scheduler](#scheduler)
+       * [Scheduler](#timingRecommender)
        * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
@@ -814,7 +814,7 @@ will be free so that a meetup could be scheduled.
 
 
 :information_source: **Very Important Re-emphasis** <br>
-The scheduler will always recommend timeslots and **rank them in descending time** duration that
+The timingRecommender will always recommend timeslots and **rank them in descending time** duration that
 the participants could meet up.
 </div>
 
