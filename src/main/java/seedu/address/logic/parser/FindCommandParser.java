@@ -2,20 +2,16 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Arrays;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.note.Note;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NoteContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
@@ -25,7 +21,7 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private static final Prefix[] ALLOWED_PREFIXES = {PREFIX_NAME, PREFIX_PHONE, PREFIX_NOTE};
+    private static final Prefix[] ALLOWED_PREFIXES = {PREFIX_NAME, PREFIX_PHONE};
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -51,13 +47,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             findPredicate = findPredicate.and(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
         }
 
-        if (arePrefixesPresent(argMultimap, PREFIX_NOTE)) {
-            isPrefixInput = true;
-            Set<Note> noteList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTE));
-            for (Note n: noteList) {
-                findPredicate = findPredicate.and(new NoteContainsKeywordsPredicate(n.noteName));
-            }
-        }
 
         if (!isPrefixInput) { //if user did not input any prefix -> name or phone searching
             String trimmedArgs = args.trim();
