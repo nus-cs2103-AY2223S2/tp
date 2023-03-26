@@ -246,16 +246,10 @@ The following activity diagram summarizes what happens when a user enters a `fin
 In MedInfo, a user can list all patients using the `list` command.
 #### Implementation
 - The `list` command does not take in any arguments.
-- It is supported by the `FindCommandParser` which extracts one of the possible fields:
-    - Name entered in the command (prefixed by `name/`)
-    - NRIC entered in the command (prefixed by `nric/`)
-    - Status entered in the command (prefixed by `s/`)
-- If the user enters multiple fields, MedInfo highlights the error to the user.
 
 The following activity diagram summarizes what happens when a user enters a `find` command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
-
 
 
 ### \[Proposed\] Undo/redo feature
