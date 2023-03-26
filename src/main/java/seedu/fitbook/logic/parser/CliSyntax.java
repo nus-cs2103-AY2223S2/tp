@@ -19,5 +19,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROUTINE = new Prefix("r/");
     public static final Prefix PREFIX_EXERCISE = new Prefix("ex/");
     public static final Prefix PREFIX_EXERCISE_NUMBER = new Prefix("exno/");
-
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
 }
