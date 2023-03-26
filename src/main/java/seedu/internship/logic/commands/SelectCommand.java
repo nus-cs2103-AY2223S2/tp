@@ -16,20 +16,20 @@ import seedu.internship.model.internship.Internship;
 /**
  * View the details selected internship in the internship catalogue.
  */
-public class ViewCommand extends Command {
+public class SelectCommand extends Command {
 
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the internship identified by the index number used in the displayed internship list.\n"
+            + ": Selects the internship identified by the index number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewing Internship %1$s at %2$s";
+    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Selecting Internship %1$s at %2$s";
 
     private final Index targetIndex;
 
-    public ViewCommand(Index targetIndex) {
+    public SelectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -49,6 +49,9 @@ public class ViewCommand extends Command {
         model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
         ObservableList<Event> events = model.getFilteredEventList();
 
+        CommandResult cr = new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS,
+                internshipToView.getPosition(), internshipToView.getCompany()), internshipToView, events);
+
         return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
                 internshipToView.getCompany()), internshipToView, events);
     }
@@ -56,7 +59,7 @@ public class ViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                || (other instanceof SelectCommand // instanceof handles nulls
+                && targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
     }
 }

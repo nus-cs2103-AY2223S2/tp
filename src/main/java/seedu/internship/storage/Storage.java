@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.internship.commons.exceptions.DataConversionException;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
@@ -12,7 +13,7 @@ import seedu.internship.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends InternshipCatalogueStorage, UserPrefsStorage {
+public interface Storage extends InternshipCatalogueStorage, UserPrefsStorage, EventCatalogueStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -29,4 +30,12 @@ public interface Storage extends InternshipCatalogueStorage, UserPrefsStorage {
     @Override
     void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue) throws IOException;
 
+    @Override
+    Path getEventCatalogueFilePath();
+
+    @Override
+    Optional<ReadOnlyEventCatalogue> readEventCatalogue() throws DataConversionException, IOException;
+
+    @Override
+    void saveEventCatalogue(ReadOnlyEventCatalogue eventCatalogue) throws IOException;
 }

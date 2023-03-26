@@ -69,11 +69,11 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,20 +82,33 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+
+The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user. 
+
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
+
+![Subclasses of Page abstract class](images/PageClasses.png)
+
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI. 
+
+![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
+
+
+
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `InternshipCatalogueParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,7 +123,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -157,8 +170,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View Calendar feature
+
+#### Implementation
+
+The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX. 
+
+It is facilitated by `CalendarPage`, which upon creation will initialize a `Calendar`, a CalendarFX class that will then store all events it receives from the `Model` interface via a `CommandResult` into the `Calendar`. Then, the `Calendar` will be displayed in a `MonthPage`, a CalendarFX view that showcases all events by month in a grids.
+
+The following sequence diagram depicts the interactions between different components following the `execute("calendar")` API call . 
+
+![Sequence Diagram for execute("calendar")](images/ViewCalendarSequenceDiagram.png)
+
+To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
+
 ### Add Event feature 
-The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship . 
+The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
 
 #### Implementation
  1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`. 
@@ -182,12 +209,43 @@ The Sequence Diagram for the adding the event is
 ![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
 
 
-
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Select command feature
+
+#### Implementation
+
+The `select` command feature is standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
+
+* Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
+* Obtains a list of all the `Event` belonging to that `Internship`.
+* Returns a `CommandResult` containing the `Internship` and its list of `Event`, to be passed to the UI for display.
+
+Given below is an example usage scenario and how the select command behaves at each step.
+
+Step 1. The user enters the `select` command into the CLI: `select 2`.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `select`, creating a `SelectCommandParser` and passing it `"2"` by calling its `parser()` method.
+
+Step 3. `SelectCommandParser` parses the index `2` of the selected internship and creates a `SelectCommand` instance with that index and returns it up to `LogicManager`.
+
+Step 4. `LogicManager` calls the `execute()` method of the `SelectCommand` instance, which invokes `getFilteredInternshipList()` on `Model` to get a list of internships, and obtains the internship at index `2`.
+
+Step 5. `SelectCommand` then passes that `Internship` instance through `updateSelectedInternship()` on `Model` which invokes `updateCurrent()` on `InternshipCatalogue` which updates its `currentInternship` field to that instance of `Internship`.
+
+Step 6. `SelectCommand` also invokes `updateFilteredEventList()` and `getFilteredEventList()` on `Model` to obtain the list of `Event` belonging to that instance of `Internship` as `ObservableList<Event>`.
+
+Step 7. Finally, a `CommandResult` is created containing that `Internship` and its `ObservableList<Event>` and it is returned to `LogicManager` for use in the UI.
+
+The following sequence diagram shows how the select command works:
+
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SelectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -250,15 +308,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit description of an Internship Application**
+**Use case: Edit eventDescription of an Internship Application**
 
 **MSS**
 
 1. User requests to list all internship applications.
 2. System shows a list of all internship applications
 3. User specifies the ID of the internship application he wishes to edit.
-4. System shows current description of the internship application and prompts user to input a new description to edit it.
-5. User inputs the new description of the internship application.
+4. System shows current eventDescription of the internship application and prompts user to input a new eventDescription to edit it.
+5. User inputs the new eventDescription of the internship application.
 6. System updates the internship application with the new details.
 
 Use Case ends.
@@ -271,14 +329,14 @@ Use Case ends.
 
 * 5a. User cancels the operation midway.
 
-    * 5a1. System retains the original description and does not edit the internship application.
+    * 5a1. System retains the original eventDescription and does not edit the internship application.
 
       Use case ends.
 
-* 5b. User inputs invalid description.
+* 5b. User inputs invalid eventDescription.
 
     * 5b1. System shows an error message.
-    * 5b2. System retains the original description and does not edit the internship application.
+    * 5b2. System retains the original eventDescription and does not edit the internship application.
 
       Use case resumes at step 4.
 
@@ -324,7 +382,7 @@ Use Case ends.
 
   * 1b1. System displays all internships that have not had a change in status in a week.
 
-    Use case ends. 
+    Use case ends.
 
 * 2a. The list is empty.
     Use case ends.
@@ -344,7 +402,7 @@ Use case ends.
 
 **Extensions**
 
-* 4a. User decides to not delete the listing  
+* 4a. User decides to not delete the listing
 Use Case Ends.
 
 **Use case: List all internship applications with a deadline on a particular date**
