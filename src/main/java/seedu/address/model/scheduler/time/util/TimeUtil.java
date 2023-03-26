@@ -101,11 +101,14 @@ public class TimeUtil {
     public static boolean hasAnyClash(List<TimePeriod> timePeriods) {
         List<Pair<Integer, TimePeriod>> indexedTimePeriods = MathUtil.<TimePeriod>indexObjects(timePeriods);
         List<Pair<Integer, TimePeriod>> second = List.copyOf(indexedTimePeriods);
+
         List<List<Pair<Integer, TimePeriod>>> cartesianProductPairs =
             MathUtil.<Pair<Integer, TimePeriod>>getCartesianProduct(indexedTimePeriods, second);
+
         Stream<List<Pair<Integer, TimePeriod>>> cartesianProductTimePeriodStream = cartesianProductPairs.stream()
-            .filter(listPair -> !listPair.get(0).getKey().equals(listPair.get(1).getKey()))
+            .filter(listPair -> !listPair.get(0).getKey().equals(listPair.get(1).getKey())) // remove {A, A} sets
             .filter(listPair -> listPair.get(0).getValue().hasClash(listPair.get(1).getValue()));
+
         return cartesianProductTimePeriodStream.findAny().isPresent();
     }
 

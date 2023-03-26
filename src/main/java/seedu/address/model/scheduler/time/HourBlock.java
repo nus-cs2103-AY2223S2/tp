@@ -1,5 +1,7 @@
 package seedu.address.model.scheduler.time;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import org.joda.time.Hours;
@@ -73,6 +75,7 @@ public class HourBlock extends TimePeriod {
      * @param commitment
      */
     public void setCommitment(Commitment commitment) {
+        requireNonNull(commitment);
         if (!isFree()) {
             throw new CommitmentClashException(ALREADY_FILLED_MESSAGE);
         } else if (canFitCommitment(commitment)) {
