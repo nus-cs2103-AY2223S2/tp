@@ -156,7 +156,107 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented in MedInfo.
+
+### Adding a patient
+In MedInfo, a user can add a patient using the `add` command.
+#### Implementation
+- The `add` command takes in 2 compulsory fields (name and NRIC) and 1 optional field (status)
+- It is supported by the `AddCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `add` command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+Details:
+- The user enters an `add` command with the name and NRIC specified.
+- If the user entered a `Status` (prefixed by `s/`), the patient created will have that status.
+- The created patient is added to the model.
+
+
+### Adding a ward
+In MedInfo, a user can add a patient using the `addward` command.
+#### Implementation
+- The `add` command takes in 1 compulsory field (ward name) and 1 optional field (capacity)
+- It is supported by the `AddWardCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `addward` command:
+
+![AddWardActivityDiagram](images/AddWardActivityDiagram.png)
+
+Details:
+- The user enters an `addward` command with the ward name specified.
+- If the user entered a `Capacity` (prefixed by `c/`), the ward created will have that capacity.
+- The created ward is added to the model.
+
+
+### Editing a patient
+In MedInfo, a user can edit a patient using the `edit` command.
+#### Implementation
+- The `edit` command takes in 1 compulsory argument (index) and up to 3 optional fields (status, ward and discharge date).
+- It is supported by the `EditCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+Details:
+- The index is based on the last displayed list of patients. This design choice was made as:
+  - A user would most likely perform a `find` or `list` operation to confirm the patient to edit.
+  - Finding patient by NRIC would be too cumbersome for the user.
+- Name and NRIC are not editable as these are identifying fields of a patient.
+
+
+### Deleting a patient
+In MedInfo, a user can edit a patient using the `delete` command.
+#### Implementation
+- The `delete` command takes in 1 compulsory argument (index).
+- It is supported by the `DeleteCommandParser` that extracts the index from the entered command.
+
+The following activity diagram summarizes what happens when a user enters a `delete` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+Details:
+- When a user executes this command, they are greeted with an alert window to confirm deletion.
+  - Clicking 'OK' at this point will let MedInfo proceed with the deletion.
+  - Clicking 'Cancel' or closing the window will abort the deletion and trigger a `list` operation.
+- Aborting a deletion leads to a `list` operation so that the user can view all patients.
+- The index is based on the last displayed list of patients. This design choice was made as:
+    - A user would most likely perform a `find` or `list` operation to confirm the patient to delete.
+    - Finding patient by NRIC would be too cumbersome for the user.
+
+
+### Finding patients
+In MedInfo, a user can find patients matching certain conditions using the `find` command.
+#### Implementation
+- The `find` command takes in 1 compulsory field (one of either name, NRIC or status).
+- It is supported by the `FindCommandParser` which extracts one of the possible fields:
+  - Name entered in the command (prefixed by `name/`)
+  - NRIC entered in the command (prefixed by `nric/`)
+  - Status entered in the command (prefixed by `s/`)
+- If the user enters multiple fields, MedInfo highlights the error to the user.
+
+The following activity diagram summarizes what happens when a user enters a `find` command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+
+### List all patients
+In MedInfo, a user can list all patients using the `list` command.
+#### Implementation
+- The `list` command does not take in any arguments.
+- It is supported by the `FindCommandParser` which extracts one of the possible fields:
+    - Name entered in the command (prefixed by `name/`)
+    - NRIC entered in the command (prefixed by `nric/`)
+    - Status entered in the command (prefixed by `s/`)
+- If the user enters multiple fields, MedInfo highlights the error to the user.
+
+The following activity diagram summarizes what happens when a user enters a `find` command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+
 
 ### \[Proposed\] Undo/redo feature
 

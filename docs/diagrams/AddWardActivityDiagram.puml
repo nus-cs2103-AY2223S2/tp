@@ -1,0 +1,18 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes addward command;
+if () then ([Capacity present])
+    :Create ward with capacity;
+else ([else])
+    :Create ward with default capacity;
+endif
+:Add ward to model;
+stop
+
+@enduml
