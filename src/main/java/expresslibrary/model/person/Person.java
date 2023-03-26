@@ -25,6 +25,15 @@ public class Person {
     private final Set<Book> books = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     /**
      * Every field must be present and not null.
      */
@@ -94,6 +103,13 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a given string is a valid person.
+     */
+    public static boolean isValidPerson(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
