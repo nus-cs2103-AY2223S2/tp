@@ -1,13 +1,12 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static taa.logic.parser.CliSyntax.PREFIX_TIME;
+
 import java.util.stream.Stream;
 
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Alarm;
-
-import static taa.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static taa.logic.parser.CliSyntax.PREFIX_TIME;
-
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
 
