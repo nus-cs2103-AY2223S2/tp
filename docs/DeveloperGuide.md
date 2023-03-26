@@ -363,12 +363,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Precondition: The GP receptionist is logged into the system**
 
-**Guarantee: A new user account is created on the system with at least a name, NRIC, phone, email, and address**
+**Guarantee: A new user account is created on the system with at least a name, NRIC, phone, email, address, date of birth, gender and IC**
 
 **MSS**
 
 1. User requests to add a new patient to the system.
-2. The user enters patient details.
+2. User enters patient details.
    1. The following are required information:
          - Patient name
          - Phone Number
@@ -390,35 +390,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. the user is informed of this and show the correct format for the command
 
- Use case resume at step 2.
+      Use case resume at step 2.
 
 * 2b. If the patient name is already in use
 
     * 2b1. the user is informed that he or she must choose a different name
 
- Use case resume at step 2.
+      Use case resume at step 2.
 
-* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
+* 2c. If the input field is invalid
 
-    * 2c1. If the length of name exceed 50 character, the user is informed of this, and correct format for the command is displayed.
-
-	  * 2c2. If the phone number is invalid, the user is informed of this, and correct format for the command is displayed.
-
-	  * 2c3. If the email is invalid, the user is informed of this, and correct format for the command is displayed.
-
-  	* 2c4. If the address is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c5. If the birth date is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c6. If the gender is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c7. If the IC is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c8. If the drug allergy is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c9. If the emergency contact is invalid, the user is informed of this, and correct format for the command is displayed.
-
- Use case resume at step 2.
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
+     
+      Use case resume at step 2.
 
 **Use case: UC02 - Delete a patient**
 
@@ -501,85 +485,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. the user is informed of this and show the correct format for the command.
 
- Use case resume at step 2.
+     Use case resume at step 2.
 
-* 2b. If the trade name is already in use.
+* 2b. If the trade name is already in use 
 
-    * 2b1. the user is informed that he or she must choose a different name.
+    * 2b1. the user is informed that he or she must choose a different trade name.
 
- Use case resume at step 2.
+      Use case resume at step 2.
 
-* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed.
+* 2c. If the input field is invalid
 
-    * 2c1. If the length of tradeName exceed 50 character, the user is informed of this, and correct format for the command is displayed.
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
 
-	  * 2c2. If the active ingredient is invalid, the user is informed of this, and correct format for the command is displayed.
-
-	  * 2c3. If the direction is invalid, the user is informed of this, and correct format for the command is displayed.
-
-  	* 2c4. If the purpose is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c5. If the side effect is invalid, the user is informed of this, and correct format for the command is displayed.
-
-    * 2c6. If the storage count is invalid, the user is informed of this, and correct format for the command is displayed.
-
- Use case resume at step 2.
+      Use case resume at step 2.
 
 **Use case:  UC06 - Delete a drug**
 
-**Precondition: The GP receptionist is logged into the system**
-
-**MSS**
-
-1.  User <ins>lists all drugs(UC06).</ins>
-3.  User enters drug's trade name or index to delete a specific drug in the list.
-4.  System deletes the drug from the system.
-5.  System shows the updated drug list and the drug inventory analysis pie chart displays the updated percentages of each drug within storage.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 2a. The given trade name is invalid.
-
-    * 2a1. CareFlow shows an error message.
-
-      Use case resumes at step 2.
-
-* 2b. The given index is invalid.
-
-    * 2b1. CareFlow shows an error message.
-
-      Use case resumes at step 2.
+* Similar to UC02 except user enters trade name or index to delete the drug
 
 **Use case:  UC07 - List all drugs**
 
-**Precondition: The GP receptionist is logged into the system**
-
-**MSS**
-
-1.  User requests to list all drugs
-2.  System shows a list of drugs with the most displays the latest drug inventory analysis pie chart.
-
-    Use case ends.
+* Similar to UC03 
 
 **Use case:  UC08 - Find the drugs**
 
-**Precondition: The GP receptionist is logged into the system**
-
-**MSS**
-
-1.  User requests to find drugs.
-2.  User enter keyword that they want search for.
-2.  System return the list of drug that contain the keyword given by the user.
-
-    Use case ends.
-
-*{More to be added}*
+* Similar to UC04
 
 ### Non-Functional Requirements
 
