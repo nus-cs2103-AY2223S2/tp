@@ -31,7 +31,7 @@ public class MarkAbsentCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " 1,2,3,4,5";
 
-    public static final String MESSAGE_SUCCESS = "Marked student as absent: %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked student as absent in session %1$s: \n%2$s";
 
     private final Index[] targetIndex;
 
@@ -61,10 +61,13 @@ public class MarkAbsentCommand extends Command {
             } else {
                 Student studentToMark = studentList.get(targetIndex[i].getZeroBased());
                 session.markAbsent(studentToMark);
-                studentMarked.append(studentToMark);
+                studentMarked.append(studentToMark.getName());
+                if (i != targetIndex.length - 1) {
+                    studentMarked.append(", ");
+                }
             }
         }
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, studentMarked), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, session, studentMarked), willModifyState);
     }
 
     @Override

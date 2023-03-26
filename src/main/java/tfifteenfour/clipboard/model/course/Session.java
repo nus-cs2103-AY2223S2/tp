@@ -8,6 +8,7 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 
@@ -45,7 +46,11 @@ public class Session {
     public ObservableList<Student> getUnmodifiableStudentList() {
         UniqueStudentList students = new UniqueStudentList();
         for (Student student : attendance.keySet()) {
-            students.add(student);
+            students.add(new StudentWithAttendance(student, attendance.get(student)));
+        }
+
+        for (Student stu : students) {
+            System.out.println(stu);
         }
         return students.asUnmodifiableObservableList();
     }
@@ -119,6 +124,7 @@ public class Session {
             throw new StudentNotInSessionException();
         }
         attendance.put(student, 1);
+        getUnmodifiableStudentList();
         System.out.println("Marked student " + student.getName() + " present in session " + sessionName);
     }
 
@@ -136,6 +142,8 @@ public class Session {
             throw new StudentNotInSessionException();
         }
         attendance.put(student, 0);
+        getUnmodifiableStudentList();
+
         System.out.println("Marked student " + student.getName() + " absent in session " + sessionName);
     }
 
