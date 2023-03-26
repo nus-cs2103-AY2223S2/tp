@@ -308,6 +308,22 @@ The following sequence diagram shows how the `deltag` command.
 
 **insert sequence diagram
 
+#### Feature 3 - `untag`:
+The `untag` feature removes a specified tag from a food item.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `UntagCommand`. `UntagCommandParser` is used to parse and check whether the user input is valid - if the tag exists or does not exist in the food item's internal tag set. After which, an `UntagCommand` object is created with the specified tag name to be removed. The second stage requires UntagCommand#execute() to be called which then removes the tag from the food item.
+
+**Usage Scenario**
+
+1. The user specifies tag name to be removed for a food item index.
+2. If the food item does not have that tag, an error response is returned and users will be prompted to key in the command with a valid tag name.
+3. Completion of step 1 without any exceptions will result in successful removal of the specified `Tag` from the `Food` item.
+
+The sequence diagram of `untag` is similar to that of the `tag` command.
+
+
 ### \[Implementing\] Increase/Decrease quantity of a food item.
 
 #### Overview
@@ -455,23 +471,70 @@ The following activity diagram shows the usage of the `listbytag` command.
 
 **insert activity diagram
 
+### \[Implemented\] List Food by tag.
+
+#### Overview
+The List by tag feature is meant to be a list all the food by the specified tags.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
+#### Design considerations:
+
+* **Alternative 1:** The command parameter will be the tag name of the food to display
+    * Pros:
+        * Easily implemented. The command parameter will show the food with the specified tag name
+    * Cons:
+        * May not be convenient for the user, as the command allows only 1 tag name at a time.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to display.
+    * Pros:
+        * Convenient for the user to key in multiple tag names to display.
+    * Cons:
+        * Parameter for multiple tag names must be checked that it is not empty
+        * Users will have to use separate commands by `n/` which maybe a hassle
+
+_{more aspects and alternatives to be added}_
+
+**Implementation**
+The first stage of the implementation is parsing the user input to `ListByTagCommand`. `ListByTagCommandParser` is used
+to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
+tag name.
+
+The second stage requires ListByTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tags of the food item to be displayed.
+2. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
+3. If a valid tag is specified, the list indexed food item with the specified tags will be displayed.
+4. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
+   key in the command with a valid quantity.
+
+The following activity diagram shows the usage of the `listbytag` command.
+
+**insert activity diagram
+
 ### \[Implemented\] Dynamic Help
 
-The dynamic help mechanism allows the user to receive help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only receive general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
+![HelpCommandActivityDiagram.png](images%2FHelpCommandActivityDiagram.png)
+
+The dynamic help mechanism allows the user to receive in-app help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only received general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
 
 HelpMenu#getGeneralHelp() — Retrieves a general help message if the user inputs `help`.
 HelpMenu#getCommandHelp() — Retrieves the command specific help message.
 HelpMenu#parseCommand() — Parses the command input in `help COMMAND` to ensure it is a valid command.
 
-These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#getGeneralHelp() or HelpMenu#getCommandHelp() depending on the help command input after parsing the input with HelpMenu#parseCommand(). 
+These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#getGeneralHelp() or HelpMenu#getCommandHelp() depending on the help command input after parsing the input with HelpMenu#parseCommand().
 
-#### The help message is sent to the UI as follows:
+#### Feature Details:
 
 <div/>
 
 Step 1. After successful retrieval of the help message, the message is passed to the `HelpCommand` object returned by `HelpCommandParser`.
 
-Step 2. The `LogicManager` executes the `HelpCommand` object which generates a  containing a parameter for the help message.
+Step 2. The `LogicManager` executes the `HelpCommand` object which generates a `Command Result` object with the help message.
 
 Step 3. MainWindow#executeCommand() extracts the help message from the `CommandResult` and sends it to `HelpWindow` as the text to be set in the FXML `label`.
 
