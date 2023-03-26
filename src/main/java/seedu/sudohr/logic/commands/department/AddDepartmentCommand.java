@@ -16,9 +16,9 @@ public class AddDepartmentCommand extends Command {
 
     public static final String COMMAND_WORD = "adep";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a department to the SudoHR. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a department to the SudoHR. \n"
             + "Parameters: "
-            + PREFIX_DEPARTMENT_NAME + "NAME \n"
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DEPARTMENT_NAME + "Human Resources Department ";
 

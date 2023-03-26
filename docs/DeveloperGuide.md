@@ -273,6 +273,39 @@ Upon execution, it updates the department view.
 
 After that, the command result is returned.
 
+### Adding an employee to a department
+
+The `aetd` commands adds an existing `Employee` to an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![EditDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![EditDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentSequenceDiagram.png)
+
+#### Flow
+
+1. The user enters the command, eg. `aetd eid/100 n/Software Engineering`. It represents that the employee with ID 100
+is supposed to be added to the Software Engineering department.
+2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
+4. If the employee and department exists, the command checks if the same employee exists in the department.
+6. If there is no duplicate employee in the department, the model adds the employee to the department.
+
+After that, the command result is returned.
+
+#### Feature considerations
+
+There was a major design decision, which is to use `UniqueEmployeeList` for the employee list inside a `Department`.
+The idea is that a department should not contain duplicate employees. Hence, we made use of the existing
+`UniqueEmployeeList` class in `SudoHr`, instead of creating a new employee list class for Department. This logic is
+reused in `Leaves` as well.
+
+However, it should be noted that we still used defensive checks such as `department.hasEmployee` despite the
+`UniqueEmployeeList` having such checks internally already.
+
 # Leave-related features
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
