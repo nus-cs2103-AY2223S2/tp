@@ -17,10 +17,10 @@ public class LightCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if(cssFilePath.equals(model.getCssFilePath())) {
+        if (cssFilePath.equals(model.getCssFilePath())) {
             return new CommandResult(MESSAGE_ERROR);
         } else {
-            return new CommandResult(MESSAGE_SUCCESS,false);
+            return new CommandResult(MESSAGE_SUCCESS, false);
         }
     }
 }

@@ -152,6 +152,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes the theme based on the user command
+     */
     @FXML
     public void handleTheme(boolean isDarkTheme) {
         if (isDarkTheme == true) {
