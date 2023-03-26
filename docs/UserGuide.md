@@ -104,6 +104,7 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* The genre and tags provided must be in the list of existing genre and tags respectively.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
@@ -115,20 +116,21 @@ Examples:
 
 ### Locating bookmarks by title: `find`
 
-Finds bookmarks whose titles contain any of the given keywords.
+Find bookmarks whose specified fields contain the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]`
 
-* The search is case-insensitive. e.g `ranker` will match `Ranker`
-* The order of the keywords does not matter. e.g. `Guide Ranker` will match `Ranker Guide`
-* Only the title is searched.
+* At least one of the optional fields must be provided.
+* The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
+* The search for genre and tag is case-sensitive. e.g. `fantasy` will not match `Fantasy`
+* The genre and tags provided must be in the list of existing genre and tags respectively.
+* The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
+* Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
-* Titles matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Ranker's Chainsaw` will return `Ranker's Guide to an Ordinary Life`, `Chainsaw Man`
 
 Examples:
-* `find Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
-* `find ranker's demon` returns `Ranker's Guide to an Ordinary Life`, `Demon Slayer`<br>
+* `find n/ Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+* `find n/ ranker's g/ Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`<br>
 
 
 ### Deleting a person : `delete`
