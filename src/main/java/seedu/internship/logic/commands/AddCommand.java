@@ -13,7 +13,7 @@ import seedu.internship.model.internship.Internship;
 
 
 /**
- * Adds a internship to the internship catalogue.
+ * Adds an internship to the internship catalogue.
  */
 public class AddCommand extends Command {
 

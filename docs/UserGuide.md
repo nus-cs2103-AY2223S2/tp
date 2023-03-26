@@ -129,6 +129,18 @@ APPLICATION STATUS: APPLIED
 CONTACT: BOBTHEMANAGER@GMAIL.COM
 ~~~
 
+### Finding Internships: `find`
+
+Finds Internships by Position, Company, Status.
+
+Format: `find [p/ POSITION] [c/ COMPANY] [s/ STATUS]`
+
+* After keying in the `find` command, the program will filter the internship catalogue accordingly.
+
+Example: <br>
+After keying in `find` command followed by an existing `POSITION`, `COMPANY` OR `STATUS` or any combination of
+the three, TinS will display only internships with the specific `POSITION`, `COMPANY` OR `STATUS`. 
+
 ### Deleting a person : `delete`
 
 Deletes an internship along with its details.
