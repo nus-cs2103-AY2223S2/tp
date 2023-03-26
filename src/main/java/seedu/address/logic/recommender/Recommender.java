@@ -28,8 +28,8 @@ public class Recommender {
 
     private static final Logger logger = LogsCenter.getLogger(Recommender.class);
     private static final int RECOMMENDATION_LIMIT = 20;
-    private final LocationRecommender lr;
-    private final TimingRecommender sc;
+    private final LocationRecommender locationRecommender;
+    private final TimingRecommender timingRecommender;
     private final Model model;
     private Set<LocationTracker> locationTrackers;
 
@@ -38,8 +38,8 @@ public class Recommender {
      */
     public Recommender(Model model) {
         this.model = model;
-        lr = new LocationRecommender();
-        sc = new TimingRecommender(model);
+        locationRecommender = new LocationRecommender();
+        timingRecommender = new TimingRecommender(model);
         locationTrackers = new HashSet<>();
     }
 
@@ -49,7 +49,7 @@ public class Recommender {
     public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
         initialise(contactIndices, destinations);
         List<HourBlock> timingRecommendations =
-                sc.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
+                timingRecommender.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
                         .stream().map(TimePeriod::fragmentIntoHourBlocks)
                         .flatMap(List::stream)
                         .collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class Recommender {
 
         List<List<Location>> locationRecommendations = timingRecommendations.stream()
                 .map(this::getLocationsFromHourBlock)
-                .map(lr::recommend)
+                .map(locationRecommender::recommend)
                 .collect(Collectors.toList());
 
         List<Recommendation> recommendations = CollectionUtil
@@ -80,9 +80,9 @@ public class Recommender {
      * and {@code LocationTracker} for each person.
      */
     private void initialise(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
-        lr.initialise(destinations);
-        sc.initialise(contactIndices);
-        locationTrackers = sc.getParticipants().stream()
+        locationRecommender.initialise(destinations);
+        timingRecommender.initialise(contactIndices);
+        locationTrackers = timingRecommender.getParticipants().stream()
                 .map(LocationTracker::new)
                 .collect(Collectors.toSet());
     }
