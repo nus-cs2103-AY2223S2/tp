@@ -20,8 +20,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1_UPPERCASE;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2_UPPERCASE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
 import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withVariants(VALID_VARIANT_DENV2).build();
+        Person expectedPerson = new PersonBuilder(BOB).withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB
@@ -69,7 +69,7 @@ public class AddCommandParserTest {
 
         // multiple variants - all accepted
         Person expectedPersonMultipleVariants = new PersonBuilder(BOB)
-                .withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
+                .withVariants(VALID_VARIANT_DENV2_UPPERCASE, VALID_VARIANT_DENV1_UPPERCASE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
                 + VARIANT_DESC_DENV1 + VARIANT_DESC_DENV2, new AddCommand(expectedPersonMultipleVariants));
@@ -128,7 +128,7 @@ public class AddCommandParserTest {
 
         // invalid variant
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + INVALID_VARIANT_DESC + VALID_VARIANT_DENV2, Variant.MESSAGE_CONSTRAINTS);
+                + INVALID_VARIANT_DESC + VALID_VARIANT_DENV2_UPPERCASE, Variant.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + POSTAL_DESC_BOB + DATE_DESC_BOB + INVALID_AGE_DESC,

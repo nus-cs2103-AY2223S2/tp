@@ -20,8 +20,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1_UPPERCASE;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2_UPPERCASE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
 import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
-                .withVariants(VALID_VARIANT_DENV1, VALID_VARIANT_DENV2).build();
+                .withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,7 +164,7 @@ public class EditCommandParserTest {
 
         // variants
         userInput = targetIndex.getOneBased() + VARIANT_DESC_DENV2;
-        descriptor = new EditPersonDescriptorBuilder().withVariants(VALID_VARIANT_DENV2).build();
+        descriptor = new EditPersonDescriptorBuilder().withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -178,7 +178,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
-                .withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
+                .withVariants(VALID_VARIANT_DENV2_UPPERCASE, VALID_VARIANT_DENV1_UPPERCASE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

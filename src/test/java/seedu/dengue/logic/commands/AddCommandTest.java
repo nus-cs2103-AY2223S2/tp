@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1_LOWERCASE;
 import static seedu.dengue.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
