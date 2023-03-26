@@ -163,8 +163,24 @@ The borrow and return feature will allow the user to track the list of books eac
 
 It implements the following commands:
 
-* `borrow [person index] b\[book index]`
-* `return [index]`
+* `borrow [person index] b/[book index] d/[due date]`
+* `return [person index] b/[book index]`
+
+Given below is an example usage scenario of the borrow command:
+
+The user executes `borrow 1 b/2 d/23/11/2023` command to lend the 2nd Book in the Book list to the 1st Person in the Person list.
+
+The `BorrowCommand` class will first retrieve the Person object and Book object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToBorrow`.
+
+Then, it calls `borrowBook` on `editedPerson` and passes in the Book object `bookToBorrow`. This will add the Book to the Person's `Set` of books field. Similarly, the class also calls `loanBookTo` on `bookToBorrow` to update the Book's fields with the borrower and due date details.
+
+Given below is an example usage scenario of the return command:
+
+The user executes `return 2 b/1` command to return the 1st book in the Book list from the 2nd person in the Person list.
+
+The `ReturnCommand` class will first retrieve the Person object and Book object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToReturn`.
+
+Then, it calls `returnBook` on `editedPerson` and passes in the Book object `bookToReturn`. This will remove the Book from the Person's `Set` of books field. Similarly, the class also calls `returnBook` on `bookToReturn` to update and remove the Person from the Book's borrower field.
 
 ### \[Proposed\] Undo/redo feature
 

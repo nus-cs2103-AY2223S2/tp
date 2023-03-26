@@ -168,16 +168,32 @@ Format: `listBook`
 
 ### Borrowing a book : `borrow`
 
-Lend a book to a student given a book ID and student ID.
+Lend a book to a person given a book ID, person ID and due date.
 
-Format: `borrow STUDENT_ID`
+Format: `borrow PERSON_ID b/BOOK_INDEX d/DUE_DATE`
 
-* Deletes the person at the specified STUDENT_ID.
-* The index refers to the index number shown in the displayed person list.
+* Lends a book specified by the BOOK_INDEX to the person at the specified PERSON_ID.
+* The PERSON_ID index refers to the index number shown in the displayed person list.
+* The BOOK_INDEX refers to the index number shown in the displayed book list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the user records.
+* `list` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
+
+### Returning a book : `return`
+
+Return a person's borrowed book to the library given a book ID and person ID.
+
+Format: `return PERSON_ID b/BOOK_INDEX`
+
+* Returns a person's borrowed book specified by the BOOK_INDEX and specified PERSON_ID.
+* The PERSON_ID index refers to the index number shown in the displayed person list.
+* The BOOK_INDEX refers to the index number shown in the displayed book list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
+
 
 ### Common Functions
 
