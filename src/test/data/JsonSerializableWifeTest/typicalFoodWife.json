@@ -2,16 +2,18 @@
 	"_comment": "Wife save file which contains the same Food values as in TypicalFood#getTypicalFood()",
 	"foods": [
 		{
-			"name": "Meiji",
+			"name": "MEIJI",
 			"unit": "Carton",
 			"quantity": "2",
-			"expiryDate": "13-11-2024"
+			"expiryDate": "13-11-2024",
+			"tagged": []
 		},
 		{
 			"name": "Breyls",
 			"unit": "Bar",
 			"quantity": "3",
-			"expiryDate": "13-11-2024"
+			"expiryDate": "13-11-2024",
+			"tagged": []
 		}
 	],
 	"tags": ["New", "Used", "Dairy", "Chocolate"]

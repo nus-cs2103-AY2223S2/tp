@@ -41,12 +41,15 @@ public class JsonSerializableWifeTest {
                 JsonSerializableWife.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-    
-    // @Test
-    // public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-    //     JsonSerializableWife dataFromFile = JsonUtil.readJsonFile(DUPLICATE_FOOD_FILE,
-    //             JsonSerializableWife.class).get();
-    //     assertThrows(IllegalValueException.class, JsonSerializableWife.MESSAGE_DUPLICATE_FOODS,
-    //             dataFromFile::toModelType);
-    // }
+
+    @Test
+    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+        JsonSerializableWife dataFromFile = JsonUtil
+            .readJsonFile(DUPLICATE_FOOD_FILE, JsonSerializableWife.class).get();
+        assertThrows(
+            IllegalValueException.class,
+            dataFromFile::toModelType,
+            JsonSerializableWife.MESSAGE_DUPLICATE_FOODS
+        );
+    }
 }
