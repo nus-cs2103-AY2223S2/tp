@@ -16,7 +16,7 @@ import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.TypicalTag;
 
 /**
- * A class to test the NewTagCommand.
+ * A class to test the DeleteTagCommand.
  */
 public class DeleteTagCommandTest {
     private Model model;
