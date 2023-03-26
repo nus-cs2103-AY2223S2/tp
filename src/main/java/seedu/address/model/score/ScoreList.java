@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.score.exceptions.DuplicateScoreException;
 import seedu.address.model.score.exceptions.ScoreNotFoundException;
+import seedu.address.model.task.Task;
 
 /**
  * A list of scores that enforces uniqueness between its elements and does not allow nulls.
@@ -143,6 +144,13 @@ public class ScoreList implements Iterable<Score> {
             }
         }
         return true;
+    }
+
+    public int size() {
+        return internalList.size();
+    }
+    public Score get(int index) {
+        return internalList.get(index);
     }
 
 }
