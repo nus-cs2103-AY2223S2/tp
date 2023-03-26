@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.tag.Tag.TagName.UNTAGGED;
 
 import java.util.stream.Stream;
 
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -42,6 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             cardDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
+        } else {
+            cardDescriptor.setTag(new Tag(UNTAGGED));
         }
 
         return new AddCommand(cardDescriptor);

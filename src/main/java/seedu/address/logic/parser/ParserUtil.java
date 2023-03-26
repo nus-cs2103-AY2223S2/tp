@@ -76,7 +76,8 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag) || trimmedTag.toLowerCase().equals("untagged")) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        Tag.TagName tagName = Tag.TagName.valueOf(trimmedTag);
+        return new Tag(tagName);
     }
 
     /**

@@ -20,7 +20,7 @@ public class Tag {
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be either Easy, Medium, or Hard";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "\\b(easy|medium|hard)\\b";
 
     public final TagName tagName;
 
@@ -29,23 +29,16 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public Tag(TagName tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = TagName.valueOf(tagName.toUpperCase());
+        this.tagName = tagName;
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        requireNonNull(test);
-        try {
-            TagName.valueOf(test.toUpperCase());
-            return test.matches(VALIDATION_REGEX);
-        } catch (Exception e) {
-            return false;
-        }
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
