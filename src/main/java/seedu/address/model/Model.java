@@ -55,11 +55,6 @@ public interface Model {
     ObservableList<Item> getItemsList();
 
     /**
-     * Returns the list of flights.
-     */
-    ObservableList<Flight> getFlightList();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -71,6 +66,11 @@ public interface Model {
 
 
     //=========== Pilot methods ========================================================
+
+    /**
+     * Returns the list of pilots.
+     */
+    ObservableList<Pilot> getPilotList();
 
     /**
      * Returns the person manager.
@@ -180,6 +180,11 @@ public interface Model {
     //=========== Location methods ========================================================
 
     /**
+     * Returns the list of locations.
+     */
+    ObservableList<Location> getLocationList();
+
+    /**
      * Returns location object by location id
      *
      * @param id the location id
@@ -243,6 +248,11 @@ public interface Model {
 
 
     //=========== Crew methods ========================================================
+
+    /**
+     * Returns the list of crew.
+     */
+    ObservableList<Crew> getCrewList();
 
     /**
      * Returns the crew manager file path.
@@ -334,6 +344,11 @@ public interface Model {
 
     //=========== Plane methods ========================================================
 
+    /**
+     * Returns the list of planes.
+     */
+    ObservableList<Plane> getPlaneList();
+
     void setPlaneManager(ReadOnlyItemManager<Plane> manager);
 
     ReadOnlyItemManager<Plane> getPlaneManager();
@@ -380,6 +395,11 @@ public interface Model {
 
 
     //=========== Flight methods ========================================================
+
+    /**
+     * Returns the list of flights.
+     */
+    ObservableList<Flight> getFlightList();
 
     /**
      * Returns flight object by flight id

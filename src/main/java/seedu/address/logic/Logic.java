@@ -6,8 +6,12 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
+import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 
 /**
  * API of the Logic component
@@ -53,4 +57,32 @@ public interface Logic {
      * @return the filtered list of flights.
      */
     ObservableList<Flight> getFilteredFlightList();
+
+    /**
+     * Gets the filtered list of crew.
+     *
+     * @return the filtered list of crew.
+     */
+    ObservableList<Crew> getFilteredCrewList();
+
+    /**
+     * Gets the filtered list of planes.
+     *
+     * @return the filtered list of planes.
+     */
+    ObservableList<Plane> getFilteredPlaneList();
+
+    /**
+     * Gets the filtered list of pilots.
+     *
+     * @return the filtered list of pilots.
+     */
+    ObservableList<Pilot> getFilteredPilotList();
+
+    /**
+     * Gets the filtered list of locations.
+     *
+     * @return the filtered list of locations.
+     */
+    ObservableList<Location> getFilteredLocationList();
 }

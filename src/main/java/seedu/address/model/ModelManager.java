@@ -38,27 +38,31 @@ public class ModelManager implements Model {
     // pilot manager
     private final ItemManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
+    private final ObservableList<Pilot> pilotList;
     // TODO: migrate this to the ui layer -> this probably should be there.
 
     // location manager
     private final ItemManager<Location> locationManager;
     private final FilteredList<Location> filteredLocations;
+    private final ObservableList<Location> locationList;
 
     // crew manager
     private final ItemManager<Crew> crewManager;
     private final FilteredList<Crew> filteredCrew;
+    private final ObservableList<Crew> crewList;
 
     // plane manager
     private final ItemManager<Plane> planeManager;
     private final FilteredList<Plane> filteredPlanes;
+    private final ObservableList<Plane> planeList;
 
     // flight manager
     private final ItemManager<Flight> flightManager;
     private final FilteredList<Flight> filteredFlights;
+    private final ObservableList<Flight> flightList;
 
     // general utilities
     private final ObservableList<Item> itemsList;
-    private final ObservableList<Flight> flightList;
     private Optional<ObservableList<? extends Item>> lastBoundList = Optional.empty();
 
     /**
@@ -97,6 +101,11 @@ public class ModelManager implements Model {
 
         itemsList = FXCollections.observableArrayList();
         flightList = new FilteredList<>(filteredFlights);
+        crewList = new FilteredList<>(filteredCrew);
+        planeList = new FilteredList<>(filteredPlanes);
+        pilotList = new FilteredList<>(filteredPilots);
+        locationList = new FilteredList<>(filteredLocations);
+
         setOperationMode(userPrefs.getOperationMode());
     }
 
@@ -176,6 +185,26 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Flight> getFlightList() {
         return flightList;
+    }
+
+    @Override
+    public ObservableList<Crew> getCrewList() {
+        return crewList;
+    }
+
+    @Override
+    public ObservableList<Plane> getPlaneList() {
+        return planeList;
+    }
+
+    @Override
+    public ObservableList<Pilot> getPilotList() {
+        return pilotList;
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return locationList;
     }
 
     @Override
