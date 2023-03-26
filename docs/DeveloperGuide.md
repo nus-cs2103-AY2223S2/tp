@@ -58,7 +58,7 @@ title: Developer Guide
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
      * [Recommenders](#recommenders)
-       * [Scheduler](#timingRecommender)
+       * [Timing Recommender](#timingRecommender)
        * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
@@ -754,7 +754,7 @@ This feature is utilises the [`Recommender`](#recommenders)
 
 The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
 
-The `Scheduler` will check if the timing is a suitable for every participant to meet.
+The `TimingRecommender` will check if the timing is a suitable for every participant to meet.
 
 ## **Parsers**
 
@@ -789,25 +789,25 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 <br>
 
 The `Recommender` component,
-* consists of 2 sub-components (modules) : `LocationRecommender` and `Scheduler`
+* consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
 * recommends timing and location of meetups for relevant participants and the user.
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
-2. Triggers the `Scheduler` to recommend common available timings amongst users and participants.
-3. `Scheduler` passes the recommended timings to `LocationRecommender`
+2. Triggers the `TimingRecommender` to recommend common available timings amongst users and participants.
+3. `TimingRecommender` passes the recommended timings to `LocationRecommender`
 4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
    their `Location` at that particular timing.
 5. Feedbacks to user the recommended meetup locations and timings.
 
-#### Scheduler
-The `Scheduler`'s role is to recommend timings in which the user and all participants are available.
-The Scheduler uses the participants' schedule to find common time periods that everyone
+#### Timing Recommender
+The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
+The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<img src="images/RecommenderClassDiagram.png" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6.1</b> Activity Diagram for Scheduler</code>
+    <b>Figure 4.6.1</b> Activity Diagram for TimingRecommender</code>
 </div>
 
 <div markdown="span" class="alert alert-info">

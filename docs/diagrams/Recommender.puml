@@ -8,11 +8,11 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Recommender {
     class Recommender
-    class Scheduler
+    class TimingRecommender
     class LocationRecommender
 }
 
 LocationRecommender -u-> Recommender
-Scheduler -u-> Recommender
-LocationRecommender ..> Scheduler
+TimingRecommender -u-> Recommender
+LocationRecommender ..> TimingRecommender
 @enduml

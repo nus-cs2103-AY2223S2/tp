@@ -574,7 +574,7 @@ meet and you require a recommendation.
 
 Formats:
 * `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
-* `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indicies `5, 2, 8, 1, 3`
+* `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
 
 What you should see:<br>
