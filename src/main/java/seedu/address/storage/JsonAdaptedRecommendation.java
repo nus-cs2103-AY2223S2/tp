@@ -20,7 +20,8 @@ public class JsonAdaptedRecommendation {
     protected final boolean isSaved;
 
     /**
-     * Constructs a {@code JsonAdaptedRecommendation} with the given recommendation details.
+     * Constructs a {@code Recommendation} with the given
+     * {@code location}, {@code timePeriod}, {@code isSaved}.
      */
     @JsonCreator
     public JsonAdaptedRecommendation(

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalTime;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.scheduler.Timetable;
 import seedu.address.model.scheduler.time.Day;
@@ -12,7 +13,7 @@ import seedu.address.model.scheduler.time.TimeBlock;
 import seedu.address.model.scheduler.time.TimePeriod;
 
 /**
- * Json object to convert TimePeriods.
+ * Jackson-friendly version of {@link TimePeriod}.
  */
 public class JsonAdaptedTimePeriod {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "TimePeriod's %s field is missing!";
@@ -37,7 +38,7 @@ public class JsonAdaptedTimePeriod {
     }
 
     /**
-     * Constructor for a {@code JsonAdaptedTimePeriod} object.
+     * Converts a given {@code TimePeriod} into this class for Jackson use.
      */
     public JsonAdaptedTimePeriod(TimePeriod timePeriod) {
         startTime = timePeriod.getStartTime().getHourOfDay();
@@ -46,7 +47,10 @@ public class JsonAdaptedTimePeriod {
     }
 
     /**
-     * Converts the json object into a TimePeriod object.
+     * Converts this Jackson-friendly adapted TimePeriod object into
+     * the model's {@code TimePeriod} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
      */
     public TimePeriod toModelType() throws IllegalValueException {
         if (startTime < EARLIEST_TIMING || startTime > LATEST_TIMING) {
