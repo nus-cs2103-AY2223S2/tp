@@ -12,14 +12,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_DEPARTMENT = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-
     public static final Prefix[] PREFIX_LIST = {
-            PREFIX_NAME,
-            PREFIX_PHONE,
-            PREFIX_EMAIL,
-            PREFIX_ADDRESS,
-            PREFIX_DEPARTMENT,
-            PREFIX_TAG
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_DEPARTMENT,
+        PREFIX_TAG
     };
 
 }

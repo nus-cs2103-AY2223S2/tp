@@ -1,10 +1,6 @@
 package seedu.address.logic.commands;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -14,19 +10,29 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
-public class BatchExportCommand extends Command{
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.employee.Employee;
+
+/**
+ * Exports the database into a csv file with the employees.
+ */
+public class BatchExportCommand extends Command {
     public static final String COMMAND_WORD = "batchexport";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Exports the database to a CSV file.\n"
             + "Parameters: FILENAME (the exported CSV file will be saved in the data folder)\n"
             + "Example: " + COMMAND_WORD + " exported_database.csv";
     public static final String MESSAGE_WORKS = "Database exported to %s.";
-
     private final String fileName;
     private final Path filePath;
 
+    /**
+     * @param fileName of the input
+     */
     public BatchExportCommand(String fileName) {
         requireAllNonNull(fileName);
         this.fileName = fileName;
