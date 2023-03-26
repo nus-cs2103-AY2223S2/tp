@@ -42,6 +42,12 @@ TeachMeSenpai is a **desktop app targeted at private academic tutors who have ma
 
 </div>
 
+### Viewing help: `help`
+
+Shows a URL to the `User Guide` page.
+
+![help popup gui](images/user-guide/help_popup.jpg)
+
 ### Exiting the program: `exit` / `bye` / `quit`
 
 Exits the program.
