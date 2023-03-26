@@ -74,7 +74,7 @@ Keyboard keys are indicated using rounded buttons.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** If you are unsure of whether you have Java 11 installed, or need help installing
-it, you can refer to <a href="#appendix-a--installing-java-11">Appendix A</a>.
+it, you can refer to <a href="#appendix-a-installing-java-11">Appendix A</a>.
 
 </div>
 
