@@ -23,7 +23,6 @@ public class Session implements Comparable<Session> {
     private final String startDateTime;
     private final String endDateTime;
 
-
     /**
      * Every field must be present and not null.
      * @param startDateTime
