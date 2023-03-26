@@ -6,6 +6,7 @@ import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.ST2334;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
@@ -26,14 +27,14 @@ class FindCommandTest {
         ModuleCodePredicate secondPredicate =
                 new ModuleCodePredicate(ST2334.getCode().toString(), "", "", "", new HashSet<>());
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(firstPredicate, new ArrayList<>());
+        FindCommand findSecondCommand = new FindCommand(secondPredicate, new ArrayList<>());
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate, new ArrayList<>());
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false

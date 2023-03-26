@@ -7,6 +7,8 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.module.ModuleCodePredicate;
@@ -31,9 +33,20 @@ public class FindCommand extends Command {
             + "Example 2: " + COMMAND_WORD + " /m CS /g A";
 
     private final ModuleCodePredicate predicate;
+    private final List<String> filtersList;
 
-    public FindCommand(ModuleCodePredicate predicate) {
+    /**
+     * Creates a FindCommand object.
+     * @param predicate condition that satisfies the filters of the prefixes
+     * @param filtersList list of filters
+     */
+    public FindCommand(ModuleCodePredicate predicate, List<String> filtersList) {
         this.predicate = predicate;
+        this.filtersList = filtersList;
+    }
+
+    public List<String> getFiltersList() {
+        return filtersList;
     }
 
     @Override

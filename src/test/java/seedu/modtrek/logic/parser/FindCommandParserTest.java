@@ -14,7 +14,9 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,15 +68,17 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new ModuleCodePredicate("CS1101S",
-                        "", "", "", new HashSet<>()));
+                        "", "", "", new HashSet<>()), new ArrayList<>());
         assertParseSuccess(parser, "CS1101S", expectedFindCommand);
     }
 
     @Test
     public void parse_validArgsModuleCodePrefix_returnsFindCommand() {
+        List<String> filtersList = new ArrayList<>();
+        filtersList.add("/m CS");
         FindCommand expectedFindCommand =
                 new FindCommand(new ModuleCodePredicate("CS",
-                        "", "", "", new HashSet<>()));
+                        "", "", "", new HashSet<>()), filtersList);
         assertParseSuccess(parser, CODEPREFIX_DESC_CS, expectedFindCommand);
     }
 
@@ -82,8 +86,14 @@ public class FindCommandParserTest {
     public void parse_validArgsAllPrefix_returnsFindCommand() {
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("Computer Science Foundation"));
+        List<String> filtersList = new ArrayList<>();
+        filtersList.add("/m CS");
+        filtersList.add("/c 4");
+        filtersList.add("/y Y1S1");
+        filtersList.add("/g A");
+        filtersList.add("/t CSF");
         FindCommand expectedFindCommand =
-                new FindCommand(new ModuleCodePredicate("CS", "4", "Y1S1", "A", tags));
+                new FindCommand(new ModuleCodePredicate("CS", "4", "Y1S1", "A", tags), filtersList);
         assertParseSuccess(parser, CODEPREFIX_DESC_CS + CREDIT_DESC_CS1101S
                 + SEMYEAR_DESC_CS1101S + GRADE_DESC_CS1101S + TAG_DESC_CS1101S, expectedFindCommand);
     }

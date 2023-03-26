@@ -8,7 +8,9 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.modtrek.logic.commands.FindCommand;
@@ -41,6 +43,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
+        List<String> filtersList = new ArrayList<>();
+
         boolean isModulePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
         String codePrefixString = argMultimap.getValue(PREFIX_CODE).orElse("");
         if (isModulePrefixPresent && codePrefixString.isEmpty()) {
@@ -48,6 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!codePrefixString.isEmpty()) {
             codePrefixString = ParserUtil.parseCodePrefix(codePrefixString).toString();
+            filtersList.add(PREFIX_CODE + " " + codePrefixString);
         }
 
         boolean isCreditPrefixPresent = argMultimap.getValue(PREFIX_CREDIT).isPresent();
@@ -57,6 +62,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!creditString.isEmpty()) {
             creditString = ParserUtil.parseCredit(creditString).toString();
+            filtersList.add(PREFIX_CREDIT + " " + creditString);
         }
 
         boolean isSemYearPresent = argMultimap.getValue(PREFIX_SEMYEAR).isPresent();
@@ -66,6 +72,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!semYearString.isEmpty()) {
             semYearString = ParserUtil.parseSemYear(semYearString).toString();
+            filtersList.add(PREFIX_SEMYEAR + " " + semYearString);
         }
 
         boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
@@ -75,6 +82,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!gradeString.isEmpty()) {
             gradeString = ParserUtil.parseGrade(gradeString).toString();
+            filtersList.add(PREFIX_GRADE + " " + gradeString);
         }
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
@@ -82,6 +90,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        for (Tag tag : tagList) {
+            filtersList.add(PREFIX_TAG + " " + tag.tagName);
+        }
 
         ModuleCodePredicate moduleCodePredicate;
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -92,7 +103,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             moduleCodePredicate = new ModuleCodePredicate(codePrefixString, creditString,
                     semYearString, gradeString, (HashSet<Tag>) tagList);
         }
-        return new FindCommand(moduleCodePredicate);
+
+        return new FindCommand(moduleCodePredicate, filtersList);
     }
 
 }
