@@ -7,8 +7,9 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
 * Table of Contents
 {:toc}
-
+  
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## Quick start
 
@@ -200,7 +201,7 @@ ExecutivePro allows you to export the employee's data into a `.csv` file.
 
 Format: `batchexport FILENAME`
 
-Example:`batchexport executivepro.csv`
+Example:`batchexport exported_database.csv`
 
 Below are the steps to use this command:
 
@@ -216,8 +217,6 @@ If the command is successful, there should be CSV file that contains all the emp
 and it should look something like the below image.
 
 ![](images/UserGuide/exportedFileLocation.png)
-
-
 
 ### Listing all employees : `list`
 
@@ -317,7 +316,7 @@ _Details coming soon ..._
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing t/friends` |
 | **BatchAdd**    | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                      |
-| **BatchExport** | `batchexport FILENAME` <br> e.g., `batchexport executivepro.csv`                                                                                                                                                |
+| **BatchExport** | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                           |
 | **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
 | **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                 |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                      |
