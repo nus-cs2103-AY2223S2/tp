@@ -117,7 +117,8 @@ public class PersonDetailPanel extends UiPart<Region> {
                 new PersonDetailCard.DetailCardData("Gender", person.getGender().toString()),
                 new PersonDetailCard.DetailCardData("Race", person.getRace().toString()),
                 new PersonDetailCard.DetailCardData("Communication channels", person.getComms().toString()),
-                new PersonDetailCard.DetailCardData("Major", person.getMajor().toString()))
+                new PersonDetailCard.DetailCardData("Major", person.getMajor().toString()),
+                new PersonDetailCard.DetailCardData("Faculty", person.getFaculty().toString()))
                 .map(PersonDetailCard::new)
                 .map(PersonDetailCard::getRoot)
                 .collect(Collectors.toList());

@@ -10,6 +10,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
@@ -35,6 +36,7 @@ public class EditPersonDescriptor {
     private Race race;
     private Modules modules;
     private CommunicationChannel comms;
+    private Faculty faculty;
 
     public EditPersonDescriptor() {}
 
@@ -54,6 +56,7 @@ public class EditPersonDescriptor {
         setRace(toCopy.race);
         setModules(toCopy.modules);
         setComms(toCopy.comms);
+        setFaculty(toCopy.faculty);
     }
 
 
@@ -62,7 +65,8 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, gender, major, race, modules, comms);
+        return CollectionUtil
+                .isAnyNonNull(name, phone, email, address, tags, gender, major, race, modules, comms, faculty);
     }
 
     public void setIndex(Optional<Index> index) {
@@ -162,6 +166,14 @@ public class EditPersonDescriptor {
         this.comms = comms;
     }
 
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public Optional<Faculty> getFaculty() {
+        return Optional.ofNullable(this.faculty);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -186,6 +198,7 @@ public class EditPersonDescriptor {
                 && getMajor().equals(e.getMajor())
                 && getRace().equals(e.getRace())
                 && getModules().equals(e.getModules())
-                && getComms().equals(e.getComms());
+                && getComms().equals(e.getComms())
+                && getFaculty().equals(e.getFaculty());
     }
 }

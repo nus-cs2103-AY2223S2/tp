@@ -1,5 +1,6 @@
 package seedu.address.model.person.fields;
 
+import java.util.Collections;
 import java.util.Set;
 
 import seedu.address.model.person.fields.subfields.NusMod;
@@ -29,6 +30,10 @@ public class Modules {
             }
         }
         return true;
+    }
+
+    public Set<NusMod> getMods() {
+        return Collections.unmodifiableSet(mods);
     }
 
     @Override
