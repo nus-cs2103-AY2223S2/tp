@@ -22,24 +22,28 @@ public class TypicalCards {
 
     public static final Card LOOP = new CardBuilder().withQuestion("What is a loop")
             .withAnswer("A construct that repeats instructions until a condition is met")
-            .withTags("Hard").withDeck("Programming Concepts").build();
+            .withTag("Hard").withDeck("Programming Concepts").build();
     public static final Card VARIABLE = new CardBuilder().withQuestion("What is a variable")
             .withAnswer("A named memory location that stores a value")
-            .withTags("Hard").withDeck("Programming Concepts").build();
+            .withTag("Hard").withDeck("Programming Concepts").build();
     public static final Card ATOM = new CardBuilder().withQuestion("What is the structure of an atom")
             .withAnswer("Atoms consist of a nucleus containing protons and neutrons"
-                    + ", surrounded by electrons in shells or energy levels").withDeck("Science").build();
+                    + ", surrounded by electrons in shells or energy levels")
+            .withTag("Untagged").withDeck("Science").build();
     public static final Card LIFE = new CardBuilder().withQuestion("What is the basic unit of life")
-            .withAnswer("The cell is the basic unit of life").withTags("Medium")
+            .withAnswer("The cell is the basic unit of life").withTag("Medium")
             .withDeck("Science").build();
     public static final Card PRESIDENT = new CardBuilder()
             .withQuestion("Who was the first president of the United States")
-            .withAnswer("George Washington").withDeck("History").build();
+            .withAnswer("George Washington")
+            .withTag("Untagged").withDeck("History").build();
     public static final Card INDEPENDENCE = new CardBuilder().withQuestion("When did Singapore gain independence")
-            .withAnswer("9 August 1965").withDeck("History").build();
+            .withAnswer("9 August 1965").withTag("Untagged")
+            .withDeck("History").build();
     public static final Card EARTHQUAKE = new CardBuilder().withQuestion("What is an earthquake")
             .withAnswer("An earthquake is a sudden and rapid shaking "
                     + "of the earth caused by the shifting of tectonic plates")
+            .withTag("Untagged")
             .withDeck("Geography").build();
 
     // Manually added
@@ -52,9 +56,9 @@ public class TypicalCards {
 
     // Manually added - Card's details found in {@code CommandTestUtil}
     public static final Card GRAVITY = new CardBuilder().withQuestion(VALID_QUESTION_GRAVITY)
-            .withAnswer(VALID_ANSWER_GRAVITY).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE).build();
+            .withAnswer(VALID_ANSWER_GRAVITY).withTag(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE).build();
     public static final Card PHOTOSYNTHESIS = new CardBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-            .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM)
+            .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_HARD)
             .withDeck(VALID_DECK_SCIENCE)
             .build();
 

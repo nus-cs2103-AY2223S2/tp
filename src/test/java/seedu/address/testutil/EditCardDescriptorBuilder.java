@@ -1,9 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.cardcommands.EditCommand;
 import seedu.address.logic.commands.cardcommands.EditCommand.EditCardDescriptor;
 import seedu.address.model.card.Answer;
@@ -34,7 +30,7 @@ public class EditCardDescriptorBuilder {
         descriptor = new EditCardDescriptor();
         descriptor.setQuestion(card.getQuestion());
         descriptor.setAnswer(card.getAnswer());
-        descriptor.setTags(card.getTags());
+        descriptor.setTag(card.getTag());
     }
 
     /**
@@ -54,12 +50,10 @@ public class EditCardDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditCardDescriptor}
-     * that we are building.
+     * Sets the {@code Tag} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditCardDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditCardDescriptorBuilder withTag(String tagName) {
+        descriptor.setTag(new Tag(tagName));
         return this;
     }
 

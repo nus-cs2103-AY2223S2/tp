@@ -2,10 +2,7 @@ package seedu.address.model.card;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -23,17 +20,28 @@ public class Card {
 
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tag tag;
     private boolean isFlipped = true;
 
     /**
      * Every field must be present and not null.
      */
-    public Card(Question question, Answer answer, Set<Tag> tags, Deck deck) {
-        requireAllNonNull(question, answer, tags, deck);
+    public Card(Question question, Answer answer, Tag tag, Deck deck) {
+        requireAllNonNull(question, answer, deck);
         this.question = question;
         this.answer = answer;
-        this.tags.addAll(tags);
+        this.tag = tag;
+        this.deck = deck;
+    }
+
+    /**
+     * When tag is not given by user.
+     */
+    public Card(Question question, Answer answer, Deck deck) {
+        requireAllNonNull(question, answer, deck);
+        this.question = question;
+        this.answer = answer;
+        this.tag = new Tag("untagged");
         this.deck = deck;
     }
 
@@ -49,15 +57,19 @@ public class Card {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
+    }
+
+    public String getTagName() {
+        if (tag == null) {
+            return null;
+        }
+        return tag.tagName.name().toLowerCase();
     }
 
     public Deck getDeck() {
         return deck;
-    }
-    public void addTag(Tag tag) { // cannot modify directly!
-        this.tags.add(tag);
     }
 
     /**
@@ -125,14 +137,14 @@ public class Card {
         Card otherCard = (Card) other;
         return otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getAnswer().equals(getAnswer())
-                && otherCard.getTags().equals(getTags())
+                && otherCard.getTag().equals(getTag())
                 && otherCard.getDeck().equals(getDeck());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, tags);
+        return Objects.hash(question, answer, tag, deck);
     }
 
     @Override
@@ -142,11 +154,10 @@ public class Card {
                 .append("; Answer: ")
                 .append(getAnswer());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        if (getTag() != null) {
+            builder.append(getTag());
         }
+
         return builder.toString();
     }
 

@@ -1,14 +1,10 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Card objects.
@@ -18,10 +14,12 @@ public class CardBuilder {
     public static final String DEFAULT_QUESTION = "What is a default question";
     public static final String DEFAULT_ANSWER = "A default question is a standard, "
             + "common question used to provide basic information or understanding";
+
+    public static final String DEFAULT_TAG = "Hard";
     public static final String DEFAULT_DECK = "Default";
     private Question question;
     private Answer answer;
-    private Set<Tag> tags;
+    private Tag tag;
     private Deck deck;
 
 
@@ -31,7 +29,7 @@ public class CardBuilder {
     public CardBuilder() {
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
-        tags = new HashSet<>();
+        tag = new Tag(DEFAULT_TAG);
         deck = new Deck(DEFAULT_DECK);
     }
 
@@ -41,7 +39,7 @@ public class CardBuilder {
     public CardBuilder(Card cardToCopy) {
         question = cardToCopy.getQuestion();
         answer = cardToCopy.getAnswer();
-        tags = new HashSet<>(cardToCopy.getTags());
+        tag = cardToCopy.getTag();
         deck = cardToCopy.getDeck();
     }
 
@@ -54,10 +52,10 @@ public class CardBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Card} that we are building.
+     * Sets the {@code Tag} of the {@code Card} that we are building.
      */
-    public CardBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public CardBuilder withTag(String tagName) {
+        this.tag = new Tag(tagName);
         return this;
     }
 
@@ -78,7 +76,7 @@ public class CardBuilder {
     }
 
     public Card build() {
-        return new Card(question, answer, tags, deck);
+        return new Card(question, answer, tag, deck);
     }
 
 }

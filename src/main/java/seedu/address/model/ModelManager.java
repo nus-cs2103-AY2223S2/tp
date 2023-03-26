@@ -337,7 +337,7 @@ public class ModelManager implements Model {
     @Override
     public void tagCurrentCardInReview(Tag tag) {
         masterDeck.tagCard(filteredCards.get(0), tag);
-        currReview.tagCurrentCard(tag);
+        currReview.setCard(tag);
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 

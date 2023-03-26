@@ -42,7 +42,7 @@ public class EditCardDescriptorTest {
         assertFalse(DESC_GRAVITY.equals(editedGravity));
 
         // different tags -> returns false
-        editedGravity = new EditCardDescriptorBuilder(DESC_GRAVITY).withTags(VALID_TAG_HARD).build();
+        editedGravity = new EditCardDescriptorBuilder(DESC_GRAVITY).withTag(VALID_TAG_HARD).build();
         assertFalse(DESC_GRAVITY.equals(editedGravity));
     }
 }

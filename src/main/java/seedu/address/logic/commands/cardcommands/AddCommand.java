@@ -5,10 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
@@ -31,11 +28,11 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_QUESTION + "QUESTION "
             + PREFIX_ANSWER + "ANSWER "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "When was the RSA (Rivest–Shamir–Adleman) algorithm invented? "
             + PREFIX_ANSWER + "1977 by Ron Rivest, Adi Shamir, and Leonard Adleman "
-            + PREFIX_TAG + "CS2107";
+            + PREFIX_TAG + "hard";
 
     public static final String MESSAGE_SUCCESS = "New card added: %1$s";
     public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the this selected deck.";
@@ -81,7 +78,7 @@ public class AddCommand extends Command {
     public static class AddCardDescriptor {
         private Question question;
         private Answer answer;
-        private Set<Tag> tags;
+        private Tag tag;
         private Deck deck;
 
         public AddCardDescriptor() {}
@@ -90,12 +87,12 @@ public class AddCommand extends Command {
          * Constructor for a Card Descriptor to be used to create a card instance.
          * @param question Question of the card to create
          * @param answer Answer of the card to create
-         * @param tags Tags of the card to create
+         * @param tag Tag of the card to create
          */
-        public AddCardDescriptor(Question question, Answer answer, Set<Tag> tags) {
+        public AddCardDescriptor(Question question, Answer answer, Tag tag) {
             this.question = question;
             this.answer = answer;
-            this.tags = tags;
+            this.tag = tag;
         }
 
         /**
@@ -105,7 +102,7 @@ public class AddCommand extends Command {
         public AddCardDescriptor(AddCommand.AddCardDescriptor toCopy) {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setDeck(toCopy.deck);
         }
 
@@ -130,20 +127,18 @@ public class AddCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tag} to this object's {@code tag}.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Tag getTag() {
+            return tag;
         }
 
         /**
@@ -152,7 +147,10 @@ public class AddCommand extends Command {
          * @return The new Card instance.
          */
         public Card buildCard() {
-            return new Card(question, answer, tags, deck);
+            if (tag == null) {
+                return new Card(question, answer, deck);
+            }
+            return new Card(question, answer, tag, deck);
         }
 
         @Override
@@ -169,9 +167,13 @@ public class AddCommand extends Command {
 
             // state check
             AddCommand.AddCardDescriptor e = (AddCommand.AddCardDescriptor) other;
+            if (getTag() != null) {
+                return getQuestion().equals(e.getQuestion())
+                        && getAnswer().equals(e.getAnswer())
+                        && getTag().equals(e.getTag());
+            }
             return getQuestion().equals(e.getQuestion())
-                    && getAnswer().equals(e.getAnswer())
-                    && getTags().equals(e.getTags());
+                    && getAnswer().equals(e.getAnswer());
         }
     }
 }

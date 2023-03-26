@@ -71,9 +71,9 @@ public class AddCommandTest {
     @Test
     public void equals() {
         AddCommand.AddCardDescriptor questionGravity = new AddCardDescriptorBuilder()
-                .withQuestion("What is gravity").withAnswer("Not sure").withTags("easy").build();
+                .withQuestion("What is gravity").withAnswer("Not sure").withTag("easy").build();
         AddCommand.AddCardDescriptor questionPhoto = new AddCardDescriptorBuilder()
-                .withQuestion("What is photosynthesis").withAnswer("Not sure either").withTags("hard").build();
+                .withQuestion("What is photosynthesis").withAnswer("Not sure either").withTag("hard").build();
         AddCommand addACommand = new AddCommand(questionGravity);
         AddCommand addBCommand = new AddCommand(questionPhoto);
 

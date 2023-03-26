@@ -5,11 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -88,12 +85,12 @@ public class EditCommand extends Command {
 
         Question updatedQuestion = editCardDescriptor.getQuestion().orElse(cardToEdit.getQuestion());
         Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(cardToEdit.getAnswer());
-        Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(cardToEdit.getTags());
+        Tag updatedTag = editCardDescriptor.getTag().orElse(cardToEdit.getTag());
 
         assert cardToEdit.getDeck() != null : "The edited card must be inside a deck";
         Deck updatedDeck = cardToEdit.getDeck();
 
-        return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
+        return new Card(updatedQuestion, updatedAnswer, updatedTag, updatedDeck);
     }
 
     @Override
@@ -121,7 +118,7 @@ public class EditCommand extends Command {
     public static class EditCardDescriptor {
         private Question question;
         private Answer answer;
-        private Set<Tag> tags;
+        private Tag tag;
         private Deck deck;
 
         public EditCardDescriptor() {}
@@ -133,7 +130,7 @@ public class EditCommand extends Command {
         public EditCardDescriptor(EditCardDescriptor toCopy) {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setDeck(toCopy.deck);
         }
 
@@ -141,7 +138,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, answer, tags);
+            return CollectionUtil.isAnyNonNull(question, answer, tag);
         }
 
         public void setQuestion(Question question) {
@@ -169,20 +166,18 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tag} to this object's {@code tag}.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
         }
 
         @Override
@@ -202,7 +197,7 @@ public class EditCommand extends Command {
 
             return getQuestion().equals(e.getQuestion())
                     && getAnswer().equals(e.getAnswer())
-                    && getTags().equals(e.getTags());
+                    && getTag().equals(e.getTag());
         }
     }
 }

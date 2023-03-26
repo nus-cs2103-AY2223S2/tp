@@ -159,7 +159,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     public void moveCards(Deck oldDeck, Deck newDeck) {
         for (Card c : cards) {
             if (c.isInDeck(oldDeck)) {
-                Card editedCard = new Card(c.getQuestion(), c.getAnswer(), c.getTags(), newDeck);
+                Card editedCard = new Card(c.getQuestion(), c.getAnswer(), c.getTag(), newDeck);
                 setCard(c, editedCard);
             }
         }

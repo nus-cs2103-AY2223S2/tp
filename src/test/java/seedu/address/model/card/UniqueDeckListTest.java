@@ -43,7 +43,7 @@ public class UniqueDeckListTest {
     @Test
     public void contains_cardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCardList.add(LOOP);
-        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        Card editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertTrue(uniqueCardList.contains(editedLoop));
     }
 
@@ -85,7 +85,7 @@ public class UniqueDeckListTest {
     @Test
     public void setCard_editedCardHasSameIdentity_success() {
         uniqueCardList.add(LOOP);
-        Card editedGravity = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_GRAVITY).withTags(VALID_TAG_HARD)
+        Card editedGravity = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_GRAVITY).withTag(VALID_TAG_HARD)
                 .build();
         uniqueCardList.setCard(LOOP, editedGravity);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();

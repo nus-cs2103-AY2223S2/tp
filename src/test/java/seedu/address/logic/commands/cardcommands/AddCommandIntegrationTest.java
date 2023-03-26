@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newCard_success() {
-        Card validCard = new CardBuilder().build(); // Deck("Default")
+        Card validCard = new CardBuilder().build(); // Deck("Default") Tag("hard")
         AddCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(validCard).build();
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());

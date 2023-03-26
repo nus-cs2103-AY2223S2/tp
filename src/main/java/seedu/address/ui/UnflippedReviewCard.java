@@ -1,13 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -47,9 +46,9 @@ public class UnflippedReviewCard extends UiPart<Region> {
 
         answer.setText(EMPTY_STRING);
 
-        card.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new PersonCard.CardTag(tag.tagName)));
+        if (!card.getTag().tagName.equals(Tag.TagName.UNTAGGED)) {
+            tags.getChildren().add(new PersonCard.CardTag(card.getTagName()));
+        }
     }
 
     @Override

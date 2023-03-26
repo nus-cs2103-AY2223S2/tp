@@ -60,10 +60,10 @@ public class CommandTestUtil {
         DESC_GRAVITY = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_GRAVITY)
                 .withAnswer(VALID_ANSWER_GRAVITY)
-                .withTags(VALID_TAG_MEDIUM).build();
+                .withTag(VALID_TAG_MEDIUM).build();
         DESC_PHOTOSYNTHESIS = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
-                .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
+                .withTag(VALID_TAG_HARD).build();
     }
 
     /**

@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,7 +19,7 @@ class JsonAdaptedCard {
 
     private final String question;
     private final String answer;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String tagged;
     private final String deck;
 
     /**
@@ -33,12 +27,10 @@ class JsonAdaptedCard {
      */
     @JsonCreator
     public JsonAdaptedCard(@JsonProperty("question") String question, @JsonProperty("answer") String address,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("deck") String deck) {
+                           @JsonProperty("tagged") String tagged, @JsonProperty("deck") String deck) {
         this.question = question;
         this.answer = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tagged = tagged;
         this.deck = deck;
     }
 
@@ -48,9 +40,7 @@ class JsonAdaptedCard {
     public JsonAdaptedCard(Card source) {
         question = source.getQuestion().question;
         answer = source.getAnswer().answer;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tagged = source.getTagName();
         deck = source.getDeck().getDeckName();
     }
 
@@ -60,11 +50,6 @@ class JsonAdaptedCard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
     public Card toModelType() throws IllegalValueException {
-        final List<Tag> cardTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            cardTags.add(tag.toModelType());
-        }
-
         if (question == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName())
@@ -83,9 +68,16 @@ class JsonAdaptedCard {
         }
         final Answer modelAnswer = new Answer(answer);
 
-        final Set<Tag> modelTags = new HashSet<>(cardTags);
+        if (tagged == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+        }
+        if (!Tag.isValidTagName(tagged)) {
+            throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
+        }
+        final Tag modelTag = new Tag(tagged);
+
         final Deck modelDeck = new Deck(deck); // todo: any constraints on deck name?
-        return new Card(modelQuestion, modelAnswer, modelTags, modelDeck);
+        return new Card(modelQuestion, modelAnswer, modelTag, modelDeck);
     }
 
 }

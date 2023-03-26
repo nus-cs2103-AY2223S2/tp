@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
 
@@ -17,12 +16,6 @@ import seedu.address.testutil.CardBuilder;
 public class CardTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Card card = new CardBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> card.getTags().remove(0));
-    }
-
-    @Test
     public void isSameCard() {
         // same object -> returns true
         assertTrue(LOOP.isSameCard(LOOP));
@@ -31,7 +24,7 @@ public class CardTest {
         assertFalse(LOOP.isSameCard(null));
 
         // same question and answer and deck, all other attributes different -> returns true
-        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        Card editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertTrue(LOOP.isSameCard(editedLoop));
 
         // different question, all other attributes same -> returns false
@@ -81,7 +74,7 @@ public class CardTest {
         assertFalse(LOOP.equals(editedLoop));
 
         // different tags -> returns false
-        editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertFalse(LOOP.equals(editedLoop));
     }
 

@@ -72,12 +72,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Card} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_MEDIUM + TAG_DESC_HARD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_MEDIUM + TAG_EMPTY + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_MEDIUM + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
-
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS);
     }
@@ -85,12 +79,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_HARD
-                 + ANSWER_DESC_GRAVITY + QUESTION_DESC_GRAVITY + TAG_DESC_MEDIUM;
+        String userInput = targetIndex.getOneBased() + ANSWER_DESC_GRAVITY + QUESTION_DESC_GRAVITY
+                + TAG_DESC_HARD + TAG_DESC_MEDIUM;
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY)
                 .withAnswer(VALID_ANSWER_GRAVITY)
-                .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
+                .withTag(VALID_TAG_MEDIUM).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -124,7 +118,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_MEDIUM;
-        descriptor = new EditCardDescriptorBuilder().withTags(VALID_TAG_MEDIUM).build();
+        descriptor = new EditCardDescriptorBuilder().withTag(VALID_TAG_MEDIUM).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -137,19 +131,8 @@ public class EditCommandParserTest {
                 + ANSWER_DESC_PHOTOSYNTHESIS + TAG_DESC_HARD;
 
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM, VALID_TAG_HARD)
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTag(VALID_TAG_HARD)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

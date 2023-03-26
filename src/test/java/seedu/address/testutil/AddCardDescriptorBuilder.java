@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
@@ -33,7 +28,7 @@ public class AddCardDescriptorBuilder {
         descriptor = new AddCardDescriptor();
         descriptor.setQuestion(card.getQuestion());
         descriptor.setAnswer(card.getAnswer());
-        descriptor.setTags(card.getTags());
+        descriptor.setTag(card.getTag());
         descriptor.setDeck(card.getDeck());
     }
 
@@ -54,12 +49,11 @@ public class AddCardDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code AddCardDescriptor}
+     * Parses the {@code tag} into a {@code Tag} and set it to the {@code AddCardDescriptor}
      * that we are building.
      */
-    public AddCardDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public AddCardDescriptorBuilder withTag(String tag) {
+        descriptor.setTag(new Tag(tag));
         return this;
     }
 
@@ -69,9 +63,6 @@ public class AddCardDescriptorBuilder {
      * @return the AddCardDescriptor instance
      */
     public AddCardDescriptor build() {
-        if (descriptor.getTags().isEmpty()) {
-            descriptor.setTags(new HashSet<>()); // tags cannot be empty
-        }
         return descriptor;
     }
 
