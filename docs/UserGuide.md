@@ -62,7 +62,7 @@ Format: `help`
 
 ### Adding a new Deck : `addDeck`
 
-Adds a new masterDeck.
+Adds a new deck.
 
 Format: `addDeck DECK_NAME`
 
@@ -74,6 +74,14 @@ Examples:
 Edits the name of a deck.
 
 Format: `editDeck INDEX d\ DECK_NAME`
+
+### Deleting a Deck : `deleteDeck`
+
+Deletes an existing Deck in the masterDeck.
+
+Format: `deleteDeck INDEX`
+
+* Deletes the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
 
 ### Selecting a Deck : `selectDeck`
 
@@ -140,6 +148,14 @@ Format: `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
 Examples:
 *  `edit 1 q\What is chemical symbol for Carbon? a\C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
+
+### Deleting a Powercard : `delete`
+
+Deletes an existing Powercard in the **selected** Deck.
+
+Format: `delete INDEX`
+
+* Deletes the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
 
 ### Reviewing a masterDeck: `review`
 
@@ -265,7 +281,7 @@ Action | Format, Examples
 Add deck | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`
 Edit deck | `editDeck d\DECK_NAME` <br /> e.g., `editDeck d\Physics`
 Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
-Unselect Deck | `unselect`
+Delete Deck | `deleteDeck INDEX`
 Review      | `review`
 Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
 Clear       | `clear`
@@ -276,15 +292,13 @@ Exit        | `exit`
 
 Action | Format, Examples
 --------|------------------
-List     | `list`
 Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
 Unselect Deck | `unselect`
 Add Card    | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
 Edit Card   | `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `edit 1 q\What is chemical symbol for Caarbon? a\C t\Hard`
+Delete Card | `delete INDEX`
 Review      | `review`
 Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
-Clear       | `clear`
-Help        | `help`
 Exit        | `exit`
 
 ### Review mode
