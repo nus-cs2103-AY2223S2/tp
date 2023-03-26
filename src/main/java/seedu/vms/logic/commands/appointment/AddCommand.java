@@ -91,7 +91,8 @@ public class AddCommand extends Command {
         for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
             Appointment appointment = entry.getValue().getValue();
             if (appointment.getPatient().equals(patientId)
-                && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())
+                    && !appointment.getStatus()) {
                 throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
