@@ -128,11 +128,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        bodyPanel = new BodyPanel(logic);
-        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        bodyPanel = new BodyPanel(logic, resultDisplay);
+        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -241,9 +241,6 @@ public class MainWindow extends UiPart<Stage> {
     private void setPersonDetail() {
         ReadOnlyObjectProperty<Person> observableSelectedPerson = logic.getSelectedPerson();
         bodyPanel.getAddressPanel().getPersonDetailPanel().setPerson(observableSelectedPerson.getValue());
-        observableSelectedPerson.addListener((observable, oldValue, newValue) -> {
-            bodyPanel.getAddressPanel().getPersonDetailPanel().setPerson(newValue);
-        });
     }
 
     /**
@@ -253,8 +250,7 @@ public class MainWindow extends UiPart<Stage> {
         ReadOnlyObjectProperty<Index> observableSelectedIndex = logic.getSelectedIndex();
         bodyPanel.getAddressPanel().getPersonDetailPanel()
                 .setDisplayedIndex(observableSelectedIndex.getValue().getOneBased());
-        observableSelectedIndex.addListener((observable, oldValue, newValue) -> {
-            bodyPanel.getAddressPanel().getPersonDetailPanel().setDisplayedIndex(newValue.getOneBased());
-        });
+        bodyPanel.getAddressPanel().getPersonListPanel()
+                .bindSelectedIndex((observableSelectedIndex.getValue().getOneBased()));
     }
 }

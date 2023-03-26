@@ -15,6 +15,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 
@@ -33,11 +35,20 @@ public class PersonListPanel extends UiPart<Region> {
     private ListView<PersonListCellData> personListView;
     private int selectedIndex;
 
+    private List<PersonListCardData> allData;
+
+    private List<PersonListCardData> favData;
+
+    private final Logic logic;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic) {
         super(FXML);
+        this.allData = null;
+        this.favData = null;
+        this.logic = logic;
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
@@ -62,6 +73,7 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 panel.setPerson(newValue.getPerson());
                 panel.setDisplayedIndex(newValue.getIndex());
+                this.bindClickedIndex(newValue.getIndex());
             }
         });
     }
@@ -79,6 +91,36 @@ public class PersonListPanel extends UiPart<Region> {
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
         selectedIndex = EMPTY_INDEX;
+    }
+
+    /**
+     * Binds the CLI select output with the UI's selection, selects contact in {@code ListView}.
+     * @param commandIndex
+     */
+    public void bindSelectedIndex(int commandIndex) {
+        Objects.requireNonNull(this.allData);
+        MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
+        int actualIndex = this.getIndexOffset() + commandIndex;
+        for (PersonListCardData cardData: this.allData) {
+            if (cardData.index == commandIndex) {
+                model.select(actualIndex);
+                this.selectedIndex = actualIndex;
+            }
+        }
+    }
+
+    private void bindClickedIndex(int clickedIndex) {
+        Index oneBased = Index.fromOneBased(clickedIndex);
+        logic.setSelectedPerson(oneBased);
+        logic.setSelectedIndex(oneBased);
+    }
+
+    private int getIndexOffset() {
+        if (this.favData.isEmpty()) {
+            return 0; //magic num
+        } else {
+            return this.favData.size() + 1; //magic num
+        }
     }
 
     private void fillListView(Collection<? extends Person> people) {
@@ -99,6 +141,8 @@ public class PersonListPanel extends UiPart<Region> {
             items.add(new PersonListDividerData(String.format(DIVIDER_ALL, allData.size())));
             items.addAll(allData);
         }
+        this.allData = allData;
+        this.favData = favoriteData;
     }
 
     private List<PersonListCardData> assignIndices(Collection<? extends Person> people) {

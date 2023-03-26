@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,11 +25,9 @@ public class SelectCommand extends Command {
             + "by the index of the contact in current displayed list.\n "
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_INVALID_INDEX = "The provided contact index "
-            + "should be in the range of %d to %d (inclusive).";
     public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected User: %1$s";
 
+    public static final String MESSAGE_NO_CHANGE = "Already selected contact: %s";
     private final Index index;
 
     /**
@@ -47,11 +46,18 @@ public class SelectCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Person prevPerson = model.getSelectedPerson().get();
+        Index prevIndex = model.getSelectedIndex().get();
         model.setSelectedIndex(index);
         model.setSelectedPerson(index);
-        Person selectedPerson = model.getSelectedPerson().get();
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, selectedPerson),
-                false, false, true);
+        Person currPerson = model.getSelectedPerson().get();
+        Index currIndex = model.getSelectedIndex().get();
+        if (Objects.equals(prevPerson, currPerson) && Objects.equals(prevIndex, currIndex)) {
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false, true);
+        } else {
+            return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson),
+                    false, false, true);
+        }
     }
 
     @Override

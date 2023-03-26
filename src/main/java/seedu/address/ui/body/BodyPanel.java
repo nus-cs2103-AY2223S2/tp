@@ -11,6 +11,9 @@ import seedu.address.ui.UiPart;
 import seedu.address.ui.body.address.AddressPanel;
 import seedu.address.ui.body.calendar.CalendarPanel;
 import seedu.address.ui.body.user.UserPanel;
+import seedu.address.ui.result.ResultDisplay;
+
+import javax.xml.transform.Result;
 
 /**
  * A UI component representing the body section of the app with tabs.
@@ -24,14 +27,17 @@ public class BodyPanel extends UiPart<Region> {
     private final AddressPanel addressPanel;
     private final CalendarPanel calendarPanel;
     private final UserPanel userPanel;
+
+    private final ResultDisplay resultDisplay;
     /**
      * Creates a {@code BodyPanel} with the given {@code Logic}.
      */
-    public BodyPanel(Logic logic) {
+    public BodyPanel(Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
 
         this.logic = logic;
-        this.addressPanel = new AddressPanel(logic.getFilteredPersonList());
+        this.resultDisplay = resultDisplay;
+        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), this.logic);
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
@@ -100,6 +106,7 @@ public class BodyPanel extends UiPart<Region> {
                 return;
             }
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
+            resultDisplay.setFeedbackToUser("");
         });
     }
 }
