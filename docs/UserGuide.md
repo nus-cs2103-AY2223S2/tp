@@ -1,7 +1,9 @@
 ---
 layout: page
 title: User Guide
+toc: true
 ---
+
 # About
 <span style="font-family:Helvetica; font-size:1em;">
 CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
@@ -217,17 +219,17 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
-| Action             | Format, Examples                                                                                                                                                                                                                                        |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action             | Format, Examples                                                                                                                                                                                                                                         |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add	               | `add n/NAME y/YEAR c/COURSE e/EMAIL [g/GITHUB] [l/LINKEDIN] [m/YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java` |
-| View contact       | `view INDEX`<br />e.g., `view 3`                                                                                                                                                                                                                        |
-| View tab           | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`                                                                                                                                                                                                  |
-| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [g/GITHUB] [l/LINKEDIN] [m/MODINDEX YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                   |
-| Find	name          | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`                                                                                                                                                                                                  |
-| Find module        | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`                                                                                                                                                                                |
-| Find skills          | `finds SKILL [MORESKILLS]`<br />e.g., `finds java python`                                                                                                                                                                                               |
-| List               | `view` the default list of all contacts                                                                                                                                                                                                                 |
-| Delete             | `delete INDEX`<br />e.g., `delete 3`                                                                                                                                                                                                                    |
-| Clear all contacts | `clear`                                                                                                                                                                                                                                                 |
-| Exit               | `exit`                                                                                                                                                                                                                                                  |
-| Help               | `help`                                                                                                                                                                                                                                                  |
+| View contact       | `view INDEX`<br />e.g., `view 3`                                                                                                                                                                                                                         |
+| View tab           | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`                                                                                                                                                                                                   |
+| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [g/GITHUB] [l/LINKEDIN] [m/MODINDEX YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                    |
+| Find	name          | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`                                                                                                                                                                                                   |
+| Find module        | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`                                                                                                                                                                                 |
+| Find skills        | `finds SKILL [MORESKILLS]`<br />e.g., `finds java python`                                                                                                                                                                                                |
+| List               | `view` the default list of all contacts                                                                                                                                                                                                                  |
+| Delete             | `delete INDEX`<br />e.g., `delete 3`                                                                                                                                                                                                                     |
+| Clear all contacts | `clear`                                                                                                                                                                                                                                                  |
+| Exit               | `exit`                                                                                                                                                                                                                                                   |
+| Help               | `help`                                                                                                                                                                                                                                                   |
