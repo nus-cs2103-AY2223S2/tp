@@ -15,10 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.exceptions.CommandException;
-import taa.model.ClassList;
-import taa.model.Model;
-import taa.model.ReadOnlyAddressBook;
-import taa.model.ReadOnlyUserPrefs;
+import taa.model.*;
 import taa.model.student.Student;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
@@ -205,6 +202,11 @@ public class AddStudentCommandTest {
         @Override
         public void ungrade(String assignmentName, int studentId) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlarm(Alarm alarm) throws CommandException {
+            throw new AssertionError("This method should not be called");
         }
     }
 
