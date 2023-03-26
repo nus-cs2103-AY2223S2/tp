@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -20,6 +21,7 @@ import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -32,6 +34,9 @@ public class ParserUtil {
     public static final String MESSAGE_BLANK_ELEMENT = "Trailing or leading delimiters are not allowed";
 
     public static final String KEYWORD_EMPTY_LIST = "<EMPTY>";
+
+    public static final String RETRIEVER_TYPE_NAME = "NAME";
+    public static final String RETRIEVER_TYPE_INDEX = "INDEX";
 
     private static final String DEFAULT_DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
     private static final String FULL_DATE_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
@@ -187,6 +192,48 @@ public class ParserUtil {
             return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
         } catch (IllegalArgumentException illArgEx) {
             throw new ParseException("Unknown requirement type", illArgEx);
+        }
+    }
+
+
+    /**
+     * Parses a vaccination retriever.
+     */
+    public static Retriever<String, VaxType> parseVaxRetriever(String inputString)
+                throws ParseException {
+        List<String> argParts = parseParts(inputString);
+        if (argParts.size() > 2) {
+            throw new ParseException("Only a maximum of 2 parts is allowed");
+        }
+
+        String retrieverType = RETRIEVER_TYPE_NAME;
+        String retrieverValue = argParts.get(0);
+
+        if (retrieverValue.isBlank()) {
+            throw new ParseException("Retriever value cannot be empty");
+        }
+
+        if (argParts.size() > 1) {
+            retrieverType = argParts.get(0);
+            retrieverValue = argParts.get(1);
+        }
+
+        return formVaxRetriever(retrieverType.strip(), retrieverValue.strip());
+    }
+
+
+    private static Retriever<String, VaxType> formVaxRetriever(String retrieverType, String retrieverValue)
+                throws ParseException {
+        switch (retrieverType.toUpperCase()) {
+            case RETRIEVER_TYPE_NAME:
+                return Retriever.of(retrieverValue);
+
+            case RETRIEVER_TYPE_INDEX:
+                int index = Integer.parseInt(retrieverValue);
+                return Retriever.of(index);
+
+            default:
+                throw new ParseException("Unknown retriever type");
         }
     }
 
