@@ -276,40 +276,40 @@ _Details coming soon ..._
 
 ### Main mode
 
-Action | Format, Examples
---------|------------------
-Add deck | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`
-Edit deck | `editDeck d\DECK_NAME` <br /> e.g., `editDeck d\Physics`
-Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
-Delete Deck | `deleteDeck INDEX`
-Review      | `review`
-Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
-Clear       | `clear`
-Help        | `help`
-Exit        | `exit`
+| Action      | Format, Examples                                                        |
+|-------------|-------------------------------------------------------------------------|
+| Add deck    | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`                      |
+| Edit deck   | `editDeck d\DECK_NAME` <br /> e.g., `editDeck d\Physics`                |
+| Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                          |
+| Delete Deck | `deleteDeck INDEX`                                                      |
+| Review      | `review`                                                                |
+| Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30` |
+| Clear       | `clear`                                                                 |
+| Help        | `help`                                                                  |
+| Exit        | `exit`                                                                  |
 
 ### Deck mode
 
-Action | Format, Examples
---------|------------------
-Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`
-Unselect Deck | `unselect`
-Add Card    | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
-Edit Card   | `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `edit 1 q\What is chemical symbol for Caarbon? a\C t\Hard`
-Delete Card | `delete INDEX`
-Review      | `review`
-Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`
-Exit        | `exit`
+| Action        | Format, Examples                                                                                                                         |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| Select Deck   | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                                                                                           |
+| Unselect Deck | `unselect`                                                                                                                               |
+| Add Card      | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
+| Edit Card     | `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `edit 1 q\What is chemical symbol for Caarbon? a\C t\Hard`                     |
+| Delete Card   | `delete INDEX`                                                                                                                           |
+| Review        | `review`                                                                                                                                 |
+| Set limit     | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`                                                                  |
+| Exit          | `exit`                                                                                                                                   |
 
 ### Review mode
 
-Action | Format, Examples
---------|------------------
-End Review | `endReview`
-Previous Card | `[`
-Next Card | `]`
-Flip        | `\`
-Correct     | `'`
-Wrong       | `;`
-Tag        | `tag`
-Exit        | `exit`
+| Action        | Format, Examples |
+|---------------|------------------|
+| End Review    | `endReview`      |
+| Previous Card | `[`              |
+| Next Card     | `]`              |
+| Flip          | `\`              |
+| Correct       | `'`              |
+| Wrong         | `;`              |
+| Tag           | `tag`            |
+| Exit          | `exit`           |
