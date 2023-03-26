@@ -25,6 +25,19 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_multiplePrefixes_throwsParseException() {
+        assertParseFailure(parser, " n/ a/ Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/ i/ Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/ i/ a/ t/ tokyo",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/ i/ a/ Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+
+    @Test
     public void parse_validArgs_returnsFindNameCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
@@ -50,12 +63,11 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindNricCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
+        FindCommand nricFindCommand =
                 new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList("S0123456D")));
-        assertParseSuccess(parser, " i/S0123456D", expectedFindCommand);
-
+        assertParseSuccess(parser, " i/S0123456D", nricFindCommand);
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "\n i/S0123456D \n \t", expectedFindCommand);
+        assertParseSuccess(parser, "\n i/S0123456D \n \t", nricFindCommand);
     }
 
     @Test
@@ -74,7 +86,11 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         assertParseFailure(parser, " a/     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " a/ n/    ",
+        assertParseFailure(parser, " a/    ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " t/    ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " i/    ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
