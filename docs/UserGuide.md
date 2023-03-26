@@ -54,6 +54,12 @@ Exits the program.
 
 > Format: `exit`
 
+<div markdown="span" class="alert alert-info">
+
+:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+
+</div>
+
 ### Listing all students: `list`
 
 Shows a list of the saved all students.
@@ -64,7 +70,7 @@ Shows a list of the saved all students.
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [o/NOTE]`
+> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`
 
 Examples:
 
@@ -85,6 +91,20 @@ Deletes the specified student from the address book.
 Examples:
 
 - `list` followed by `delete 2` deletes the 2nd student in the address book.
+
+<div align=center>
+
+![delete before](images/user-guide/delete_before.jpg)  
+_**Above: Before entering `delete` command**_
+
+</div>
+
+<div align=center>
+
+![delete after](images/user-guide/delete_after.jpg)  
+_**Above: After entering `delete` command**_
+
+</div>
 
 ### Saving the data
 
