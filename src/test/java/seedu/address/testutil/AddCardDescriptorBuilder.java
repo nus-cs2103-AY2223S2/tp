@@ -1,12 +1,11 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.tag.Tag.*;
-
 import seedu.address.logic.commands.cardcommands.AddCommand.AddCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
 
 /**
  * A utility class to help with building AddCardDescriptor objects.
