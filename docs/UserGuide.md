@@ -109,15 +109,57 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 ## Commands
 ### add
 `add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...`<br>
+>
+> **Compulsory parameters:**
+> - n/NAME (eg. n/John Doe)
+> - e/EMAIL (eg. e/johndoe123@email.com)
+> - y/YEAR (eg. ay/3, ay/prof, ay/alum)
+> - c/COURSE (eg. c/Computer Science, c/Information Security)
+>
+> **Optional parameters:**
+> - ct/CONTACT (eg.ct/Telegram: @Johndoe123)
+> - sn/STUDENT NUMBER (eg. sn/E1234568)
+> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
+> - job/WORK (eg. job/Google Software Engineer, job/ATAP)
+> - skill/SKILL (eg. skill/C++, skill/Rust)
+> - link//LINK (eg. link//github.com/johndoe123)
+>
+> 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+>
+> **Examples:**
+> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe
+> - `add` n/John Doe e/johnd@example.com y/2 c/Computer Science
+    > ![Add Example](images/UiAddContact.png)
 
 ### find
 `find [OPTIONAL/PARAMETER]...`<br>
+>> find KEYWORD [MORE_KEYWORDS]
+> * The search is case-insensitive. e.g `hans` will match `Hans`
+> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> * Only the name is searched.
+> * Only full words will be matched e.g. `Han` will not match `Hans`
+> * Persons matching at least one keyword will be returned (i.e. `OR` search).
+    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+>
+> **Examples:**
+> - `find John` returns `john` and `John Doe`
+> - `find alex david` returns `Alex Yeoh`, `David Li`<br>
+    ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### view
 `view <PARAMETERS>`<br>
 
 ### edit
 `edit [OPTIONAL/PARAMETER]...`<br>
+> - Edits the person displayed in the view panel
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the input values.
+> - When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
+> - You can remove all the person’s skills by typing s/ without specifying any skills after it
+>
+> **Examples:**
+> - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
+> - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
 
 ### list
 `list`<br>
