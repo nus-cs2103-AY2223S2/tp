@@ -1,27 +1,40 @@
 package tfifteenfour.clipboard.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.commands.addcommand.AddCourseCommand;
-import tfifteenfour.clipboard.logic.commands.addcommand.AddGroupCommand;
+import tfifteenfour.clipboard.commons.util.CollectionUtil;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Email;
+import tfifteenfour.clipboard.model.student.Name;
+import tfifteenfour.clipboard.model.student.Phone;
+import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
-import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 public class NewEditCommandParser implements Parser<EditCommand> {
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public EditCommand parse(String args) throws ParseException {
         Index index;
@@ -47,9 +60,9 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             index = parseIndex(args);
             return new EditSessionCommand(index, newSession);
         case STUDENT:
-//            Student student = parseStudentInfo(args);
-//            index = parseIndex(args);
-//            return new EditStudentCommand(student);
+            EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
+            index = parseIndex(args);
+            return new EditStudentCommand(index, editStudentDescriptor);
         default:
             throw new ParseException("Invalid argument for add command");
         }
@@ -91,44 +104,36 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         return session;
     }
 
-//    private Student parseStudentInfo(String args) throws ParseException {
-//        requireNonNull(args);
-//        ArgumentMultimap argMultimap =
-//                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
-//                        PREFIX_COURSE, PREFIX_TAG);
-//
-//        Index index;
-//
-//        try {
-//            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-//        } catch (ParseException pe) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.MESSAGE_USAGE), pe);
-//        }
-//
-//        tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor editStudentDescriptor = new tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor();
-//        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-//            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-//        }
-//        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-//            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-//        }
-//        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-//            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-//        }
-//        if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
-//            editStudentDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
-//        }
-//        if (argMultimap.getValue(PREFIX_COURSE).isPresent()) {
-//            parseModulesForEdit(argMultimap.getAllValues(PREFIX_COURSE)).ifPresent(editStudentDescriptor::setModules);
-//        }
-//        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
-//
-//        if (!editStudentDescriptor.isAnyFieldEdited()) {
-//            throw new ParseException(tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.MESSAGE_NOT_EDITED);
-//        }
-//
-//        return new EditStudentCommand(index, editStudentDescriptor);
-//    }
+    private EditStudentDescriptor parseStudentInfo(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
+                        PREFIX_COURSE, PREFIX_TAG);
+
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
+            editStudentDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
+        }
+        if (argMultimap.getValue(PREFIX_COURSE).isPresent()) {
+            parseModulesForEdit(argMultimap.getAllValues(PREFIX_COURSE)).ifPresent(editStudentDescriptor::setModules);
+        }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
+
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(MESSAGE_NOT_EDITED);
+        }
+
+        return editStudentDescriptor;
+    }
 
     /**
      * Parses {@code Collection<String> modules} into a {@code Set<ModuleCode>} if {@code modules} is non-empty.
@@ -152,5 +157,129 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
+     */
+    public static class EditStudentDescriptor {
+        private Name name;
+        private Phone phone;
+        private Email email;
+        private StudentId studentId;
+        private Set<Course> modules;
+        private Set<Tag> tags;
+
+        public EditStudentDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
+            setName(toCopy.name);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
+            setStudentId(toCopy.studentId);
+            setModules(toCopy.modules);
+            setTags(toCopy.tags);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name, phone, email, studentId, modules, tags);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public void setStudentId(StudentId studentId) {
+            this.studentId = studentId;
+        }
+
+        public Optional<StudentId> getStudentId() {
+            return Optional.ofNullable(studentId);
+        }
+
+        /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<Course> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
+         * Returns an unmodifiable modules set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
+         */
+        public Optional<Set<Course>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditStudentDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
+
+            return getName().equals(e.getName())
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getStudentId().equals(e.getStudentId())
+                    && getModules().equals(e.getModules())
+                    && getTags().equals(e.getTags());
+        }
     }
 }

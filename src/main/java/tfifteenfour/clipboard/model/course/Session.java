@@ -106,11 +106,20 @@ public class Session {
             newAttendance.put(student, attendance.getOrDefault(student, 0));
         }
         attendance = newAttendance;
-        System.out.println(attendance.keySet());
     }
 
     public void setAttendance(Map<Student, Integer> attendance) {
         this.attendance = new HashMap<>(attendance);
+    }
+
+    public void replaceStudent(Student oldStudent, Student newStudent) {
+        if (!attendance.containsKey(oldStudent)) {
+            throw new StudentNotInSessionException();
+        } else {
+            int value = attendance.get(oldStudent);
+            attendance.remove(oldStudent);
+            attendance.put(newStudent, value);
+        }
     }
 
     /**
