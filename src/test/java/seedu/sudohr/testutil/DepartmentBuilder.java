@@ -1,5 +1,7 @@
 package seedu.sudohr.testutil;
 
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,8 +9,6 @@ import java.util.Set;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
-
-import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
 
 /**
  * A utility class to help with building Department objects.
