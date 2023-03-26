@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.ModelManager;
 import seedu.connectus.model.UserPrefs;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
+import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
@@ -29,10 +29,10 @@ public class SearchCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        FieldsContainKeywordsPredicate firstPredicate =
+                new FieldsContainKeywordsPredicate(Collections.singletonList("first"));
+        FieldsContainKeywordsPredicate secondPredicate =
+                new FieldsContainKeywordsPredicate(Collections.singletonList("second"));
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
         SearchCommand searchSecondCommand = new SearchCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class SearchCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FieldsContainKeywordsPredicate predicate = preparePredicate(" ");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FieldsContainKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class SearchCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private FieldsContainKeywordsPredicate preparePredicate(String userInput) {
+        return new FieldsContainKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

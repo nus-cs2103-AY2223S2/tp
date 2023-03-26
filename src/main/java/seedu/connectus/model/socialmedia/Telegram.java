@@ -16,7 +16,7 @@ public class Telegram {
             + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
             + "2. The username should contain at least 5 characters.";
     // alphanumeric and special characters, beginning with 0 or 1 "@"
-    private static final String USERNAME_REGEX = "\\w+";
+    private static final String USERNAME_REGEX = "\\w{5,}+";
 
     public final String value;
 
@@ -38,7 +38,7 @@ public class Telegram {
      * Returns if a given string is a valid telegram username.
      */
     public static boolean isValid(String test) {
-        return test.matches(USERNAME_REGEX);
+        return test.matches(USERNAME_REGEX) && test.length() > 4;
     }
 
     @Override
