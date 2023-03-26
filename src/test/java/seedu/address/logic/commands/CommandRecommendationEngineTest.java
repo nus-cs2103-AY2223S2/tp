@@ -34,7 +34,7 @@ public class CommandRecommendationEngineTest {
     public void recommendCommand_validCommand_success() {
         try {
             String expected = "add_volunteer n/<name> vnr/<nric> a/<address> p/<phone> "
-                    + "e/<email> t/<tag> re/<region> ag/<age> dr/<start_date,end_date>";
+                    + "e/<email> t/<tag> re/<region> mt/<medical_tag> ag/<age> dr/<start_date,end_date>";
             String actual = commandRecommendationEngine.recommendCommand("add_volunteer");
             assertEquals(expected, actual);
 
