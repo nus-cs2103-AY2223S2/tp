@@ -191,7 +191,7 @@ Figure 4 provides a summary of the parameters with their descriptions, prefixes 
 
 <p style="text-align: center;">Figure 4: Parameters with their descriptions, prefixes and constraints</p>
 
-### Details on **`STATUS`** and **`DATE`**
+### Details on `STATUS` and `DATE`
 The parameter `STATUS` is used to represent the current status of an internship application. It can only take on one
 of the following values: `New`, `Applied`, `Assessment`, `Interview`, `Offered`, `Accepted` and `Rejected`.
 Note that this is not case-sensitive. Figure 5 explains the meaning of each status.
@@ -293,13 +293,13 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 
 <br/>
 
-### Copying An Internship Entry to Clipboard
+### Copying An Internship Entry To Clipboard : `copy`
 [TODO by Chuhao]
 
-### Finding Internship Entries
+### Finding Internship Entries : `find`
 [TODO by Kai Xun]
 
-### Getting Upcoming Events And Deadlines
+### Getting Upcoming Events And Deadlines : `upcoming`
 [TODO by Shawn]
 
 ### Deleting Internship Entries : `delete`
@@ -455,7 +455,7 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Glossary**
+## Glossary
 
 
 | Term                           | Definition                                                                                                                                                                                                              |
@@ -470,7 +470,7 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 <p style="text-align: center;">Figure XX: Glossary for InternBuddy's User Guide</p>
 
 --------------------------------------------------------------------------------------------------------------------
-## **Acknowledgements**
+## Acknowledgements
 
 * InternBuddy is written in **Java 11**.
 * It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by

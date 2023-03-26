@@ -15,7 +15,7 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 
 ## Table of Contents
 * Table of Contents
-  {:toc}
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
