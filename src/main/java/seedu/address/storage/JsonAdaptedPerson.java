@@ -14,6 +14,7 @@ import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -32,7 +33,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String gender;
     private final String drugAllergy;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMedicine> medicines = new ArrayList<>();
 
@@ -44,6 +47,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("drugAllergy") String drugAllergy,
+                             @JsonProperty("gender") String gender,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
         this.nric = nric;
@@ -51,7 +55,9 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = String.valueOf(gender);
         this.drugAllergy = drugAllergy;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -69,7 +75,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        gender = source.getGender().gender;
         drugAllergy = source.getDrugAllergy().value;
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -110,6 +118,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -134,7 +150,6 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-
         if (drugAllergy == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DrugAllergy.class.getSimpleName()));
@@ -147,7 +162,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Medicine> modelMedicines = new HashSet<>(personMedicines);
         return new Person(modelNric, modelName, modelPhone, modelEmail,
-                modelAddress, modelAllergy, modelTags, modelMedicines);
+                modelAddress, modelAllergy, modelGender, modelTags, modelMedicines);
     }
 
 }

@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page 
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -331,6 +332,74 @@ Given below is an updated `Model` component diagram.
     * Pros: Will ensure no tampering of identifier for a `Person` object.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
+
+### Adding Health Conditions
+
+The proposed implementation of separate `Conditions` object to encapsulate health conditions of a patient.
+
+E.g., Diabetic, Dyslexic, Osteporotic.
+
+The addition of this field will allow staff to quickly filter by conditions, or quickly glance at a patient to
+identify what known conditions he/she has.
+
+#### Design considerations:
+
+**Aspect: Implementing a new object to represent conditions:**
+
+* **Alternative 1 (current choice):** Convert `Tag` objects to health conditions.
+    * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of 
+            HospiSearch. The highlighting of the tags can be repurposed to show a quick view of known conditions
+            a patient has.
+    * Cons: If a patient has many pre-existing conditions, this may end up as visual clutter. Furthermore, we may
+            wish for other details to be highlighted instead of health conditions.
+
+* **Alternative 2:** Implement `Conditions` as a separate object
+    * Pros: We can still tag a patient with details other than health conditions. The functionality of `Tag` will
+            not be deprecated.
+    * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
+            as obvious as well compared to the current display of tags.
+
+### Find patient record by NRIC, Health conditions, Medicine feature
+
+###Implementation
+The implemented delete mechanism is facilitated by `FindCommandParser`. It extends `AddressBookParser` and implements
+the following operations:
+
+* `FindCommandParser#parse()` — Parses user input into a `Predicate` object according to the `Prefix` used. It then creates a `FindCommand` object
+and passes the `Predicate` into `FindCommand` object.
+
+These operations are exposed in the Model interface as Model#updateFilteredPersonList.
+
+Given below is an example usage scenario and how the find command works at each step
+
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
+
+Step 2. The administrator executes `find i/T0123456A T0124563B`. The `FindCommand` is executed and for each `NRIC`
+in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called, the model then filters the list of person to reflect 
+patients matching the 2 NRICs.
+
+The following sequence diagram shows how the delete command works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Deletion criteria**
+
+* **Alternative 1 (current choice):** Find by `NRIC`, `Health Conditions`, `Medicine`.
+    * Pros: 
+      * Very efficient as program will search for the record with specified `NRIC` and return the filtered person list
+      * Allows clinical administrator to filter for frequently used `Medicine` and stock up relevant supplies
+      * Allows clinical administrator to filter for common health conditions of patients at the clinic.
+    * Cons: 
+      * Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for
+        the top few records displayed.
+      * clinical administrator might need to type more since the `Attributes` to find by are generally longer in spelling.
+      
+
+* **Alternative 2:** Find by any `Attribute`. Eg. `Address`, `Phone` etc.
+    * Pros: More convenient for clinical administrator to search by any attributes that he deem easy to type
+    * Cons: Unlikely for the clinical administrator to use other attributes to find a particular patient.
 
 ### Delete patient record by NRIC feature
 

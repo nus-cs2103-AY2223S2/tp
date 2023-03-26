@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -29,6 +30,7 @@ public class AddCommand extends Command {
         + PREFIX_EMAIL + "EMAIL "
         + PREFIX_ADDRESS + "ADDRESS "
         + PREFIX_DRUG_ALLERGY + "DRUG ALLERGIES "
+        + PREFIX_GENDER + "GENDER "
         + "[" + PREFIX_TAG + "TAG]..."
         + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
         + "Example: " + COMMAND_WORD + " "
@@ -37,6 +39,8 @@ public class AddCommand extends Command {
         + PREFIX_PHONE + "98765432 "
         + PREFIX_EMAIL + "johnd@example.com "
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+        + PREFIX_GENDER + "Male "
+        + PREFIX_DRUG_ALLERGY + "NKDA "
         + PREFIX_TAG + "Diabetic "
         + PREFIX_MEDICINE + "Lantus "
         + PREFIX_MEDICINE + "Soliqua 100/33";

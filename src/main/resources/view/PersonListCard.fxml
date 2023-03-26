@@ -65,5 +65,41 @@
       <padding>
          <Insets top="5.0" />
       </padding>
-    </GridPane>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+	  <Label fx:id="nric" styleClass="cell_big_label" text="\$nric" />
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+      </HBox>
+      <FlowPane fx:id="tags">
+            <padding>
+               <Insets bottom="2.0" top="5.0" />
+            </padding></FlowPane>
+      <Label fx:id="phone" prefHeight="17.0" prefWidth="329.0" styleClass="cell_small_label" text="\$phone">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
+      <Label fx:id="email" prefHeight="17.0" prefWidth="332.0" styleClass="cell_small_label" text="\$email">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
+      <Label fx:id="address" prefHeight="17.0" prefWidth="333.0" styleClass="cell_small_label" text="\$address">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
+      <Label fx:id="drugAllergy" prefHeight="13.0" prefWidth="211.0" styleClass="cell_small_label" text="\$drugAllergy" />
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+         </GridPane.margin>
+
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
 </HBox>

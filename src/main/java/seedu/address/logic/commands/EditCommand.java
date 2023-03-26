@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,6 +27,7 @@ import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -49,7 +51,8 @@ public class EditCommand extends Command {
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
-        + "[" + PREFIX_TAG + "TAG]..."
+        + "[" + PREFIX_GENDER + "GENDER] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
         + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
@@ -108,11 +111,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DrugAllergy updatedAllergy = editPersonDescriptor.getDrugAllergy().orElse(personToEdit.getDrugAllergy());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
 
         return new Person(updatedNric, updatedName, updatedPhone, updatedEmail,
-            updatedAddress, updatedAllergy, updatedTags, updatedMedicines);
+            updatedAddress, updatedAllergy, updatedGender, updatedTags, updatedMedicines);
     }
 
     @Override
@@ -143,6 +147,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Gender gender;
         private DrugAllergy drugAllergy;
         private Set<Tag> tags;
         private Set<Medicine> medicines;
@@ -160,6 +165,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setGender(toCopy.gender);
             setDrugAllergy(toCopy.drugAllergy);
             setTags(toCopy.tags);
             setMedicines(toCopy.medicines);
@@ -212,12 +218,21 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
         public void setDrugAllergy(DrugAllergy drugAllergy) {
             this.drugAllergy = drugAllergy;
         }
 
         public Optional<DrugAllergy> getDrugAllergy() {
             return Optional.ofNullable(drugAllergy);
+
         }
 
         /**

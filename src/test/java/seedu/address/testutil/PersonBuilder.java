@@ -7,6 +7,7 @@ import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -23,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-
+    public static final String DEFAULT_GENDER = "Male";
     public static final String DEFAULT_DRUG_ALLERGY = "NKDA";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private DrugAllergy drugAllergy;
+    private Gender gender;
     private Set<Tag> tags;
     private Set<Medicine> medicines;
 
@@ -46,6 +48,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         drugAllergy = new DrugAllergy(DEFAULT_DRUG_ALLERGY);
+        gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
         medicines = new HashSet<>();
     }
@@ -60,6 +63,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         drugAllergy = personToCopy.getDrugAllergy();
+        gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
         medicines = new HashSet<>(personToCopy.getMedicines());
     }
@@ -129,7 +133,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(nric, name, phone, email, address, drugAllergy, tags, medicines);
+        return new Person(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
     }
 
 }
