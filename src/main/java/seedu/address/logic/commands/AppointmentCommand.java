@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -59,19 +60,25 @@ public class AppointmentCommand extends Command {
         List<Person> persons = model.getFilteredPersonList();
 
         Patient appointmentPatient = null;
+        Doctor appointmentDoctor = null;
         for (Person person : persons) {
             if (person.isDoctor()) {
-                continue;
+                boolean isMatchDr = person.getNric().equals(appointment.getDrNric());
+                if (isMatchDr) {
+                    appointmentDoctor = (Doctor) person;
+                }
             }
-            Nric otherPatientNricAppointment = person.getNric();
-            if (patientNricAppointment.equals(otherPatientNricAppointment)) {
-                appointmentPatient = (Patient) person;
-                break;
+            if (person.isPatient()) {
+                Nric otherPatientNricAppointment = person.getNric();
+                if (patientNricAppointment.equals(otherPatientNricAppointment)) {
+                    appointmentPatient = (Patient) person;
+                }
             }
         }
         try {
             model.bookAppointment(appointment);
             appointmentPatient.addPatientAppointment(appointment);
+            appointmentDoctor.addPatientAppointment(appointment);
         } catch (DuplicateAppointmentException e) {
             throw new DuplicateAppointmentException();
         }
@@ -81,9 +88,16 @@ public class AppointmentCommand extends Command {
                 appointmentPatient.getMedication(), appointmentPatient.getTags(),
                 appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
 
+        Doctor editedDoctor = new Doctor(appointmentDoctor.getName(), appointmentDoctor.getPhone(),
+                appointmentDoctor.getEmail(), appointmentDoctor.getNric(), appointmentDoctor.getAddress(),
+                appointmentDoctor.getTags(),
+                appointmentDoctor.getPatientAppointments(), appointmentDoctor.getRole());
         model.setPerson(appointmentPatient, editedPatient);
+        model.setPerson(appointmentDoctor, editedDoctor);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
+        return new CommandResult(String.format(MESSAGE_SUCCESS
+                + appointmentDoctor.drAppointmentsToString(), appointment));
     }
 }
