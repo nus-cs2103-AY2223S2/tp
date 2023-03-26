@@ -41,6 +41,13 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if tagName is UNTAGGED.
+     */
+    public boolean isUntagged() {
+        return tagName.equals(TagName.UNTAGGED);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
