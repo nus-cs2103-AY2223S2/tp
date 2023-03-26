@@ -2,20 +2,18 @@ package tfifteenfour.clipboard.logic.commands.attendancecommand;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Map;
 
-import tfifteenfour.clipboard.commons.core.Messages;
-import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
-
-
-
+import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Student;
 
 
 /**
@@ -24,20 +22,12 @@ import tfifteenfour.clipboard.model.course.Group;
 public class AttendanceCommand extends Command {
     public static final String COMMAND_WORD = "attendance";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the sessions of the selected group at the index number in the current displayed list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Views the attendance of current session.\n"
+            + "Example: " + COMMAND_WORD;
 
-    private final Index targetIndex;
 
-    /**
-     * Creates a AttendanceCommand to select a group at the specified index
-     *
-     * @param targetIndex the index of the group to select
-     */
-    public AttendanceCommand(Index targetIndex) {
+    public AttendanceCommand() {
         super(false);
-        this.targetIndex = targetIndex;
     }
 
     /**
@@ -52,53 +42,21 @@ public class AttendanceCommand extends Command {
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
-        if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
-            throw new CommandException("Wrong page. Navigate to group page to view sessions");
+        if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE) {
+            throw new CommandException("Wrong page. Navigate to session page and select a session to view attendance.");
         }
 
-        Group selectedGroup = handleSelectGroup(model, currentSelection);
-        currentSelection.setCurrentPage(PageType.SESSION_PAGE);
-        return new CommandResult(this, String.format("Viewing session of : %s", selectedGroup), willModifyState);
+        Course course = currentSelection.getSelectedCourse();
+        Group group = currentSelection.getSelectedGroup();
+        Session session = currentSelection.getSelectedSession();
+        Map<Student, Integer> attendance = session.getAttendance();
+
+        int numOfTotalStudents = attendance.keySet().size();
+        int numOfPresentStudents = (int) attendance.values().stream().filter(x -> x == 1).count();
+
+        return new CommandResult(this, String.format(
+                "Attendance for %s %s %s:\n %d / %d",
+                course, group, session, numOfPresentStudents, numOfTotalStudents), willModifyState);
     }
 
-    /**
-     * Handles the selection of a group and updates the current selection
-     *
-     * @param model the model to execute the command on
-     * @param currentSelection the current selection of the user
-     * @return the selected group
-     * @throws CommandException if there is an error executing the command
-     */
-    private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
-        if (targetIndex.getZeroBased() >= groupList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
-        }
-        Group selectedGroup = groupList.get(targetIndex.getZeroBased());
-
-        currentSelection.selectGroup(selectedGroup);
-        return selectedGroup;
-    }
-
-    /**
-     * Checks if this AttendanceCommand is equal to another object
-     *
-     * @param other the object to compare to
-     * @return true if the objects are equal, false otherwise
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof AttendanceCommand)) {
-            return false;
-        }
-
-        // state check
-        AttendanceCommand e = (AttendanceCommand) other;
-        return targetIndex.equals(e.targetIndex);
-    }
 }
