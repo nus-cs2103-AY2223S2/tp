@@ -65,6 +65,14 @@ public class Calendar extends UiPart<Region> {
         drawCalendar();
     }
 
+    @FXML
+    void jumpToNow() {
+        date = ZonedDateTime.now();
+        monthMaxDate = date.getMonth().maxLength();
+        calendar.getChildren().clear();
+        drawCalendar();
+    }
+
     private void refreshCalendar() {
         calendar.getChildren().clear();
         drawCalendar();
