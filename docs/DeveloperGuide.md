@@ -343,7 +343,7 @@ The `AggregateFunction`
 * describes a particular statistic of FriendlyLink with a number.
 * is an abstract class that requires concrete classes to override the `getDescription()` and `getResult()` method.
 
-The `summary object`
+The `Summary` object
 * formats the results to be displayed to the user.
 * takes in 0 or more `AggregateFunction`s to show their description and results.
 
