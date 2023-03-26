@@ -141,29 +141,29 @@ public class ModelManagerTest {
 
     @Test
     public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer((Volunteer) null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer((Nric) null));
     }
 
     @Test
     public void hasElderly_elderlyNotInFriendlyLink_returnsFalse() {
-        assertFalse(modelManager.hasElderly(ALICE));
+        assertFalse(modelManager.hasElderly(ALICE.getNric()));
     }
 
     @Test
     public void hasVolunteer_volunteerNotInFriendlyLink_returnsFalse() {
-        assertFalse(modelManager.hasVolunteer(DANIEL));
+        assertFalse(modelManager.hasVolunteer(DANIEL.getNric()));
     }
 
     @Test
     public void hasElderly_elderlyInFriendlyLink_returnsTrue() {
         modelManager.addElderly(ALICE);
-        assertTrue(modelManager.hasElderly(ALICE));
+        assertTrue(modelManager.hasElderly(ALICE.getNric()));
     }
 
     @Test
     public void hasVolunteer_volunteerInFriendlyLink_returnsTrue() {
         modelManager.addVolunteer(DANIEL);
-        assertTrue(modelManager.hasVolunteer(DANIEL));
+        assertTrue(modelManager.hasVolunteer(DANIEL.getNric()));
     }
 
     @Test

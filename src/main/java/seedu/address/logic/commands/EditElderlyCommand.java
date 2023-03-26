@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -28,6 +29,7 @@ import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Edits the details of an existing elderly in FriendlyLink.
@@ -103,8 +105,12 @@ public class EditElderlyCommand extends Command {
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
         Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
 
-        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
+        Nric editedNric = editedElderly.getNric();
+        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+        if (model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
