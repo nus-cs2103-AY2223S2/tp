@@ -1,11 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DR_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;

@@ -25,9 +25,10 @@ public class AppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment booked: %1$s"; // todo patient name
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment slot is already booked";
 
-    public static final String MESSAGE_INVALID_PERSON = "This patient does not exist";
-    public static final String MESSAGE_INVALID_DOCTOR = "This doctor that you want to schedule an appointment with" +
-            " does not exist";
+    public static final String MESSAGE_INVALID_PERSON = "This patient that you want to schedule an appointment for"
+            + " does not exist";
+    public static final String MESSAGE_INVALID_DOCTOR = "This doctor that you want to schedule an appointment with"
+            + " does not exist";
 
     private final Appointment appointment;
 
@@ -51,7 +52,6 @@ public class AppointmentCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_DOCTOR);
         }
 
-        // todo only disallow appointment duplication per doctor and not the entire system
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }

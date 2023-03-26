@@ -12,7 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.

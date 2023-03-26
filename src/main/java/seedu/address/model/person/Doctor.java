@@ -12,6 +12,18 @@ import seedu.address.model.tag.Tag;
  */
 public class Doctor extends Person {
     private final ArrayList<Appointment> patientAppointments;
+
+    /**
+     * Creates Doctor object.
+     * @param name
+     * @param phone
+     * @param email
+     * @param nric
+     * @param address
+     * @param tags
+     * @param patientAppointments
+     * @param role
+     */
     public Doctor(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
                   ArrayList<Appointment> patientAppointments, Role role) {
         super(name, phone, email, nric, address, tags, patientAppointments, role);
