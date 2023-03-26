@@ -172,7 +172,7 @@ Format: `listBook`
 
 [//]: # (_Details coming soon ..._)
 
-Clears all entries from the address book.
+Clears all entries from the ExpressLibrary.
 
 Format: `clear`
 
