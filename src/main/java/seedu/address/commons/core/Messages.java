@@ -51,6 +51,7 @@ public class Messages {
         + "Lesson name: %s\n"
         + "Start Time: %s\n"
         + "End Time: %s\n";
-    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s** "
-            + "please enter full name(s)";
+    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s**."
+            + "\nPlease enter full name(s)";
+    public static final String MESSAGE_NO_SUCH_STUDENT = "No student found: **%s**.\nPlease check the name entered";
 }

@@ -280,6 +280,31 @@ While designing the Quick Access Buttons on the Student Card, several alternativ
     * Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
     * Can require additional resources and time to design and implement compared to other alternatives.
 
+
+### Create Lesson feature
+the `new-lesson` command adds a Lesson (specified with student name, lesson name, start time, and end time) to a particular Student. Given below is an example usage scenario and how the command works:
+
+Step1. The user inputs a `new-lesson` command with parameters name/John, lesson/Math lesson, start/2023-05-01 1200, and end/2023-05-01 1400. When Logic is called upon to execute a command, it uses the AddressBookParser class to parse the user command. The parser recognises the command words and calls the CreateLessonCommandParser.
+
+Step2. The `CreateLessonCommandParser` recognises each parameter passed in.
+
+Step3. `CreateLessonCommandParser` creates a new `CreateLessonCommand` with appropriate parameters.
+
+Step4. `CreateLessonCommand` is executed by LogicManager, creating a new Lesson object and then calls the `addLesson` method in Student
+
+Step5. The Student calls the `addLesson` method in the UniqueLessonList, adding the Lesson to his list of Lessons.
+
+Step6. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("new-lesson name/John lesson/Math lesson start/2023-05-01 1200 end/2023-05-01 1400") API call.
+
+<img src="images/CreateLessonSequenceDiagram.png" width="1000" />
+
+The following activity diagram summarizes what happens when a user executes a CreateLessonCommand:
+
+<img src="images/CreateLessonAD.png" width="600" />
+
+
 ### School and GradeLevel Fields
 
 #### v1.2 Implementation of School and GradeLevel Fields
@@ -298,6 +323,7 @@ show up in the Student Profile view.
 
 This is to reduce the number of Tags placed under each Student's name in the Students list view, making it look less 
 cluttered.
+
 
 ### \[Proposed\] Undo/redo feature
 
