@@ -14,6 +14,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
@@ -30,6 +31,7 @@ class JsonAdaptedBookmark {
     private final String genre;
     private final String author;
     private final String url;
+    private final String rating;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,13 +40,16 @@ class JsonAdaptedBookmark {
     @JsonCreator
     public JsonAdaptedBookmark(@JsonProperty("title") String title,
                                @JsonProperty("progress") JsonAdaptedProgress progress,
-                               @JsonProperty("genre") String genre, @JsonProperty("author") String author,
+                               @JsonProperty("genre") String genre,
+                               @JsonProperty("author") String author,
+                               @JsonProperty("rating") String rating,
                                @JsonProperty("url") String url,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.rating = rating;
         this.url = url;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -59,6 +64,7 @@ class JsonAdaptedBookmark {
         progress = new JsonAdaptedProgress(source.getProgress());
         genre = source.getGenre().value;
         author = source.getAuthor().value;
+        rating = source.getRating().value;
         url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -106,6 +112,15 @@ class JsonAdaptedBookmark {
             throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
         }
         final Author modelAuthor = new Author(author);
+
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
+
         if (url == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Url.class.getSimpleName()));
         }
@@ -116,7 +131,7 @@ class JsonAdaptedBookmark {
 
 
         final Set<Tag> modelTags = new HashSet<>(bookmarkTags);
-        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelUrl, modelTags);
+        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelRating, modelUrl, modelTags);
     }
 
 }
