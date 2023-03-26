@@ -30,9 +30,11 @@ public class MainWindow extends UiPart<Stage> {
     private final Stage primaryStage;
     private final Logic logic;
     private final HelpWindow helpWindow;
+
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
+
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
