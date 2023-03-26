@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,13 @@ public class UniquePersonList implements Iterable<Person> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns size of the current list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(Person toCheck) {
@@ -38,15 +46,51 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list shares at least one common person with the given argument.
+     */
+    public boolean containsAny(List<Person> toCheck) {
+        requireAllNonNull(toCheck);
+        HashSet<Person> existingPersons = internalList.stream().collect(Collectors.toCollection(HashSet::new));
+        return !toCheck.stream().allMatch(p -> existingPersons.add(p));
+    }
+
+    /**
+     * Returns the index of the first duplicate found between {@code newPersons} and the list.
+     * Returns -1 if none are found.
+     */
+    public int findDuplicateIndex(List<Person> newPersons) {
+        requireAllNonNull(newPersons);
+        HashSet<Person> existingPersons = internalList.stream().collect(Collectors.toCollection(HashSet::new));
+        for (int i = 0; i < newPersons.size(); i++) {
+            if (existingPersons.add(newPersons.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void addPerson(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds a list of persons to the list.
+     * Each person must not already exist in the list.
+     */
+    public void addPersons(List<Person> toAdd) {
+        requireNonNull(toAdd);
+        if (containsAny(toAdd)) {
+            throw new DuplicatePersonException();
+        }
+        internalList.addAll(toAdd);
     }
 
     /**
@@ -94,7 +138,6 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
     }
 
