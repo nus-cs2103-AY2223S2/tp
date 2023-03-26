@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -140,6 +142,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> filterReadOnlyPersonList(Predicate<Person> predicate) {
         return addressBook.getPersonList().filtered(predicate);
+    }
+
+    @Override
+    public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
+        for (Person person : addressBook.getPersonList()) {
+            List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
+                .filter(a -> a.getPersonId().equals(person.getId()));
+            person.setTasks(officeConnectModel.getTaskModelManager()
+                .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
+        }
     }
 
     @Override

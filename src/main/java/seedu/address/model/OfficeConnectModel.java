@@ -44,6 +44,13 @@ public class OfficeConnectModel {
         return assignTaskModelManager;
     }
 
+    public void setTaskPeoples(ObservableList<Person> peoples) {
+        for (Task t : taskModelManager.getReadOnlyRepository().getData()) {
+            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(t.getId()));
+            t.setPeoples(peoples.filtered(p -> assignTasks.stream().anyMatch(a ->a.getPersonId().equals(p.getId()))));
+        }
+    }
+
     /**
      * Checks if task model manager contains task
      * @param task task to be checked

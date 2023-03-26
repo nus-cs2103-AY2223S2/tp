@@ -94,4 +94,6 @@ public interface Model {
      * Filters the ReadOnly peron list by the given {@code predicate}.
      */
     ObservableList<Person> filterReadOnlyPersonList(Predicate<Person> predicate);
+
+    void setPeopleTasks(OfficeConnectModel officeConnectModel);
 }
