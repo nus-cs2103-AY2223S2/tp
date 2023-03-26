@@ -1,10 +1,31 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+# **FriendlyLink - Developer Guide**
 
+By: `Team CS2103T-W12-1` Since `Jan 2023` Licence: `MIT`
+
+1. [Acknowledgements](#acknowledgements)
+2. [Setting Up](#setting-up-getting-started)
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI Component](#ui-component)
+   3. [Logic Component](#logic-component)
+   4. [Model Component](#model-component)
+   5. [Storage Component](#storage-component)
+   6. [Common Classes](#common-classes)
+4. [Implementation](#implementation)
+   1. [Autocompletion](#command-autocompletion-real-time-input-validation-and-recommendation)
+   2. [Add and Delete Elderly and Volunteer](#add-and-delete-elderly-and-volunteer)
+   3. [Edit by Index and NRIC](#edit-by-index--nric)
+   4. [Find by Keyword](#find-by-keyword)
+   5. [Pairing and Unpairing of Elderly and Volunteers](#pairing-and-unpairing-of-elderly-and-volunteers)
+   6. [Storage](#storage)
+5. [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+   1. [Product Scope](#product-scope)
+   2. [User Stories](#user-stories)
+   3. [User Cases](#use-cases)
+   4. [Non-Functional Requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
+7. [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
