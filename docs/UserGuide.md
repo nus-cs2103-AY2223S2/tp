@@ -96,10 +96,8 @@ Examples:
 * `add n/James p/12345678` would create a contact named James with a phone number 12345678.
 * `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
 * `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
-* 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Please refer to [this section](#additonal_information_regarding_specific_fields) for details on how to use each information field prefix.
-</div>
+
+Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
 
 ### Listing all persons : `list`
 
@@ -111,7 +109,7 @@ Format: `list`
 
 Edits an existing person in the ConnectUS app.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccapos/POSITION]…​ [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
@@ -120,8 +118,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM
 * You can remove all the person’s tags by typing `edit -t` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
-*  `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
+* `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
 
 ### Deleting a person : `delete`
 
@@ -223,28 +223,39 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * Phone numbers should be at least 3 digits long.
 
 **Birthday**
+* Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
+* Birthdays should be of the format DD/MM/YYYY:
+  * `01/01/2000` would correspond to January 1st, 2000
+  * `16/05/1990` would correspond to May 16th, 1990.
 
 **Module**
+* Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+* Module names should be alphanumeric.
+* A person can have any number of modules assigned to it.
 
 **Tag**
+* Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
+* Tag names should be alphanumeric.
+* A person can have any number of tags assigned to it.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ConnectUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format                                                                                                                                                                                | Examples                                                                   |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [sm/ig/INSTAGRAM] [sm/wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`                | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000` |
-| **Clear**  | `clear`                                                                                                                                                                               |                                                                            |
-| **Delete** | `delete INDEX`                                                                                                                                                                        | `delete 3`                                                                 |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [sm/tg/TELEGRAM] [sm/ig/INSTAGRAM] [sm/wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                   |
-| **List**   | `list`                                                                                                                                                                                |                                                                            |
-| **Help**   | `help`                                                                                                                                                                                |                                                                            |
-| **Exit**   | `exit`                                                                                                                                                                                |                                                                            |
+| Action     | Format                                                                                                                                                                       | Examples                                                                               |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​`                                            | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000 mod/CS2103T` |
+| **Clear**  | `clear`                                                                                                                                                                      |                                                                                        |
+| **Delete** | `delete INDEX`                                                                                                                                                               | `delete 3`                                                                             |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                               |
+| **List**   | `list`                                                                                                                                                                       |                                                                                        |
+| **Help**   | `help`                                                                                                                                                                       |                                                                                        |
+| **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
+| **Exit**   | `exit`                                                                                                                                                                       |                                                                                        |
