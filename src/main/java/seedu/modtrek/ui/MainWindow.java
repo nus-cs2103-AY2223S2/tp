@@ -109,11 +109,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isDisplayProgress) {
                 resultsSection.displayProgress(logic.getDegreeProgression());
-            } else if (commandResult.getFeedbackToUser().contains("Listed")) {
-                resultsSection.displaySortedModules(logic.getDegreeProgression().getModuleGroups(),
-                        "SemYear");
             } else if (commandResult.isDisplayAllModules) {
-                resultsSection.displayAllModules(logic.getDegreeProgression().getModuleList());
+                resultsSection.displaySortedModules(logic.sortModuleGroups(commandResult.sort),
+                        String.valueOf(commandResult.sort));
             } else if (commandResult.isDisplayFilteredModules) {
                 resultsSection.displayFindModules(logic.getFilteredModuleList());
             } else {

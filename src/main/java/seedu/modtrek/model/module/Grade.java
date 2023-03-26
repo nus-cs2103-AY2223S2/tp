@@ -127,6 +127,6 @@ public class Grade implements Comparable<Grade> {
      */
     @Override
     public int compareTo(Grade o) {
-        return (int) (this.toPoints() - o.toPoints());
+        return (int) (o.toPoints() - this.toPoints());
     }
 }

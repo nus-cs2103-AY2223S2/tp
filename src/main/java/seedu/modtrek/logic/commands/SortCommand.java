@@ -16,8 +16,6 @@ public class SortCommand extends Command{
 
     public static final String MESSAGE_FAILURE = "Sorry but I don't know how to sort modules that way.";
 
-    public enum Sort { SEMYEAR, GRADE, CREDIT };
-
     private String sortOrder;
 
     public SortCommand(String sortOrder) {
@@ -28,7 +26,7 @@ public class SortCommand extends Command{
 
     private Boolean isValid(String sortOrder) {
         try {
-            Sort.valueOf(sortOrder.toUpperCase(Locale.ROOT));
+            CommandResult.Sort.valueOf(sortOrder.toUpperCase(Locale.ROOT));
             return true;
         } catch (IllegalArgumentException e) {
             return false;
@@ -44,6 +42,8 @@ public class SortCommand extends Command{
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder), true, false, false,
+                CommandResult.Sort.valueOf(sortOrder),
+                false);
     }
 }

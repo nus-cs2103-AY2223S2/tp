@@ -9,10 +9,15 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    public enum Sort { SEMYEAR, GRADE, CREDIT, CODE, TAG };
+    public static final Sort DEFAULT_SORT = Sort.SEMYEAR;
+
     /** Boolean to switch between screens */
     public final boolean isDisplayAllModules;
     public final boolean isDisplayFilteredModules;
     public final boolean isDisplayProgress;
+
+    public final Sort sort;
 
     private final String feedbackToUser;
 
@@ -23,11 +28,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean isDisplayAllModules,
-            boolean isDisplayProgress, boolean isDisplayFilteredModules, boolean exit) {
+            boolean isDisplayProgress, boolean isDisplayFilteredModules, Sort sort, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isDisplayAllModules = isDisplayAllModules;
         this.isDisplayProgress = isDisplayProgress;
         this.isDisplayFilteredModules = isDisplayFilteredModules;
+        this.sort = sort;
         this.exit = exit;
     }
 
@@ -36,7 +42,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, true, false, false, false);
+        this(feedbackToUser, true, false, false, DEFAULT_SORT,
+                false);
     }
 
     public String getFeedbackToUser() {

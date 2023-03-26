@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
+import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
 
@@ -102,7 +103,11 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     }
 
     public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
-        return modules.sortByGrade();
+        return modules.getModuleGroups();
+    }
+
+    public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
+        return modules.sortModuleGroups(sort);
     }
 
     //// util methods

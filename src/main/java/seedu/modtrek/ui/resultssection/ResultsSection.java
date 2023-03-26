@@ -123,7 +123,7 @@ public class ResultsSection extends UiPart<Region> {
             /* ObservableList<Module> modules sorted by a certain category, String category */) {
         // TODO: next iteration
         headerTitle.setText("My Modules");
-        headerSubtitle.setText("sorted by" + sort);
+        headerSubtitle.setText("sorted by " + sort);
 
         footerButtonGroup.selectModuleListButton();
         ModuleSection moduleListSection = new ModuleListSection(sortedLists);

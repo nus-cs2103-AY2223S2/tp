@@ -1,6 +1,7 @@
 package seedu.modtrek.logic;
 
 import java.nio.file.Path;
+import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
@@ -48,4 +49,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    TreeMap<? extends Object, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort);
 }

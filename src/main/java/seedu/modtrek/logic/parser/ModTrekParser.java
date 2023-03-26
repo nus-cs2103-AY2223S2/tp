@@ -78,7 +78,7 @@ public class ModTrekParser {
             return new ViewCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand("semyear");
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

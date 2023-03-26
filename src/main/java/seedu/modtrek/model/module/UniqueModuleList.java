@@ -9,6 +9,8 @@ import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
@@ -20,6 +22,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private TreeMap<?, ObservableList<Module>> moduleGroups = new TreeMap<>();
 
 
     /**
@@ -88,6 +91,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        moduleGroups = sortBySemYear();
     }
 
     /**
@@ -103,6 +107,7 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
+        moduleGroups = sortBySemYear();
     }
 
     /**
@@ -205,4 +210,18 @@ public class UniqueModuleList implements Iterable<Module> {
         return true;
     }
 
+    public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
+        switch (sort) {
+        case GRADE:
+            return sortByGrade();
+        case CREDIT:
+            return sortByCredit();
+        default:
+            return sortBySemYear();
+        }
+    }
+
+    public TreeMap<?, ObservableList<Module>> getModuleGroups() {
+        return moduleGroups;
+    }
 }

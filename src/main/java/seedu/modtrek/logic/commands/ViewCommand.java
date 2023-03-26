@@ -31,7 +31,8 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         if (isProgress) {
             String details = model.getDegreeProgression().getProgressionData().getFullDetails();
-            return new CommandResult(MESSAGE_PROGRESS_SUCCESS + details, false, true, false, false);
+            return new CommandResult(MESSAGE_PROGRESS_SUCCESS + details, false, true, false, CommandResult.DEFAULT_SORT,
+                    false);
         } else {
             return new CommandResult(MESSAGE_MODULES_SUCCESS);
         }
