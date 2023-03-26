@@ -305,16 +305,16 @@ public class FindCommandTest {
         }
         if (level == Level.MODULE) {
             return hasByTag
-                ? new ModuleTagContainsKeywordsPredicate(keywords)
-                : new ModuleContainsKeywordsPredicate(keywords);
+                        ? new ModuleTagContainsKeywordsPredicate(keywords)
+                        : new ModuleContainsKeywordsPredicate(keywords);
         }
         if (level == Level.LECTURE) {
             return hasByTag
-                ? new LectureTagContainsKeywordsPredicate(keywords)
-                : new LectureNameContainsKeywordsPredicate(keywords);
+                        ? new LectureTagContainsKeywordsPredicate(keywords)
+                        : new LectureNameContainsKeywordsPredicate(keywords);
         }
         return hasByTag
-            ? new VideoTagContainsKeywordsPredicate(keywords)
-            : new VideoNameContainsKeywordsPredicate(keywords);
+                    ? new VideoTagContainsKeywordsPredicate(keywords)
+                    : new VideoNameContainsKeywordsPredicate(keywords);
     }
 }
