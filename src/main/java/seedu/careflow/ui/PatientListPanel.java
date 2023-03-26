@@ -57,7 +57,7 @@ public class PatientListPanel extends UiPart<Region> {
         });
     }
 
-    private void setPatientDetailDisplay(Patient selectedPatient) {
+     public void setPatientDetailDisplay(Patient selectedPatient) {
         selectedName.setText(selectedPatient.getName().fullName);
         selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
         selectedAddress.setText("Address: " + selectedPatient.getAddress().value);

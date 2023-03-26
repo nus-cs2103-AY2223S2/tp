@@ -14,6 +14,7 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.drug.Drug;
+import seedu.careflow.ui.Ui;
 
 
 /**
@@ -56,7 +57,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(CareFlowModel model) throws CommandException {
+    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         requireNonNull(model);
         if (model.hasDrug(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DRUG);

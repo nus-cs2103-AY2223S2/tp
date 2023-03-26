@@ -31,7 +31,7 @@ public class PatientParser {
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommandParser().parse(arguments);
         case ViewCommand.COMMAND_WORD:
-                return new ViewCommandParser().parse(arguments);
+            return new ViewCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case ClearCommand.COMMAND_WORD:

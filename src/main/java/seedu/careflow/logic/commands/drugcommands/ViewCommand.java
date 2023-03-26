@@ -1,9 +1,9 @@
-package seedu.careflow.logic.commands.patientcommands;
+package seedu.careflow.logic.commands.drugcommands;
 
 
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.careflow.logic.parser.patientparser.PatientParser.OPERATION_TYPE;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 import java.util.List;
 
@@ -13,23 +13,23 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.drug.Drug;
 import seedu.careflow.ui.Ui;
 
 /**
- * Views a patient from the patient records
+ * Views a drug from the drug records
  */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD
-            + ": Views the patient identified by the index number used in the displayed patient list.\n"
+            + ": Views the drug identified by the index number used in the displayed drug list.\n"
             + "Parameters: "
             + PREFIX_INDEX + " INDEX (must be a positive integer)\n"
             + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " -i 1";
 
-    public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "Viewd patient: %1$s";
+    public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "Viewd drug: %1$s";
 
     private Index targetIndex;
 
@@ -39,10 +39,10 @@ public class ViewCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof seedu.careflow.logic.commands.patientcommands.ViewCommand) {
+        if (other instanceof seedu.careflow.logic.commands.drugcommands.ViewCommand) {
             if (targetIndex != null) {
                 return targetIndex.equals((
-                        (seedu.careflow.logic.commands.patientcommands.ViewCommand)
+                        (seedu.careflow.logic.commands.drugcommands.ViewCommand)
                                 other).targetIndex);
             }
         }
@@ -50,20 +50,20 @@ public class ViewCommand extends Command {
     }
 
     /**
-     *  Executes the Patient deletion
+     *  Executes the Drug deletion
      * @param model {@code Model} which the command should operate on.
      * @return The command result if deletion is successful
      * @throws CommandException If an error occurred during deletion
      */
     public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         requireNonNull(model);
-        List<Patient> patientList = model.getFilteredPatientList();
-        if (targetIndex.getZeroBased() >= patientList.size() || targetIndex.getZeroBased() < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        List<Drug> drugList = model.getFilteredDrugList();
+        if (targetIndex.getZeroBased() >= drugList.size() || targetIndex.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX);
         } else {
-            Patient patientToView = patientList.get(targetIndex.getZeroBased());
-            ui.showSelectedPatient(patientToView);
-            return new CommandResult(String.format(MESSAGE_VIEW_PATIENT_SUCCESS, patientToView));
+            Drug drugToView = drugList.get(targetIndex.getZeroBased());
+            ui.showSelectedDrug(drugToView);
+            return new CommandResult(String.format(MESSAGE_VIEW_PATIENT_SUCCESS, drugToView));
         }
     }
 }

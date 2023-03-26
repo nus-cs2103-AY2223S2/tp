@@ -81,6 +81,8 @@ public class MainApp extends Application {
         logic = new CareFlowLogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        logic.setUi(ui);
     }
 
     /**

@@ -13,6 +13,7 @@ import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.drug.TradeName;
+import seedu.careflow.ui.Ui;
 
 /**
  * Updates the storage count of an existing Drug in the drug inventory.
@@ -49,7 +50,7 @@ public class UpdateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(CareFlowModel model) throws CommandException {
+    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         requireNonNull(model);
         List<Drug> drugList = model.getFilteredDrugList();
         Drug toUpdate = null;

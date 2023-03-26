@@ -14,6 +14,7 @@ import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.patient.Ic;
 import seedu.careflow.model.patient.Patient;
+import seedu.careflow.ui.Ui;
 
 /**
  * Deletes a patient from the patient records
@@ -71,7 +72,7 @@ public class DeleteCommand extends Command {
      * @return The command result if deletion is successful
      * @throws CommandException If an error occurred during deletion
      */
-    public CommandResult execute(CareFlowModel model) throws CommandException {
+    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         requireNonNull(model);
         List<Patient> patientList = model.getFilteredPatientList();
         if (targetIc == null) {

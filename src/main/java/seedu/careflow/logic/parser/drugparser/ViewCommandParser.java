@@ -1,14 +1,13 @@
-package seedu.careflow.logic.parser.patientparser;
+package seedu.careflow.logic.parser.drugparser;
 
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
 
 import java.util.stream.Stream;
 
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.logic.commands.drugcommands.DeleteCommand;
-import seedu.careflow.logic.commands.patientcommands.ViewCommand;
+import seedu.careflow.logic.commands.drugcommands.ViewCommand;
 import seedu.careflow.logic.parser.*;
 import seedu.careflow.logic.parser.exceptions.ParseException;
 import seedu.careflow.model.drug.TradeName;
@@ -19,7 +18,7 @@ import seedu.careflow.model.drug.TradeName;
 public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * and returns an ViewCommand object for execution of deleting a patient.
+     * and returns an ViewCommand object for execution of deleting a drug.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

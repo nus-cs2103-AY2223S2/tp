@@ -62,7 +62,7 @@ public class DrugListPanel extends UiPart<Region> {
         });
     }
 
-    private void setDrugDetailDisplay(Drug selectedDrug) {
+    public void setDrugDetailDisplay(Drug selectedDrug) {
         selectedTradeName.setText(selectedDrug.getTradeName().tradeName);
         selectedActiveIngredient.setText("Active Ingredient: " + selectedDrug.getActiveIngredient().value);
         selectedDirection.setText("Direction: " + selectedDrug.getDirection().value);

@@ -9,6 +9,7 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.drug.TradeNameContainsKeywordsPredicate;
+import seedu.careflow.ui.Ui;
 
 /**
  * Finds a drug from the drug inventory
@@ -30,7 +31,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(CareFlowModel model) throws CommandException {
+    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredDrugList(predicate);
         return new CommandResult(

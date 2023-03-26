@@ -4,6 +4,7 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
+import seedu.careflow.ui.Ui;
 
 /**
  * Format full help instructions for every command for display.
@@ -16,7 +17,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(CareFlowModel model) throws CommandException {
+    public CommandResult execute(Ui ui, CareFlowModel model) throws CommandException {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

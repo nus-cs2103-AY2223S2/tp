@@ -22,6 +22,8 @@ import seedu.careflow.logic.CareFlowLogic;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.logic.parser.exceptions.ParseException;
+import seedu.careflow.model.drug.Drug;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -126,6 +128,22 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(light, KeyCombination.valueOf("CTRL+SHIFT+L"));
         setAccelerator(dark, KeyCombination.valueOf("CTRL+SHIFT+D"));
+    }
+
+    /**
+     * Display details of patient in patientListPanel
+     * @param selectedPatient the patient input by user
+     */
+    void showSelectedPatient(Patient selectedPatient) {
+        patientListPanel.setPatientDetailDisplay(selectedPatient);
+    }
+
+    /**
+     * Display details of patient in patientListPanel
+     * @param selectedDrug the patient input by user
+     */
+    void showSelectedDrug(Drug selectedDrug) {
+        drugListPanel.setDrugDetailDisplay(selectedDrug);
     }
 
     /**
