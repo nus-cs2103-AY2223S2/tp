@@ -11,6 +11,7 @@ public class Appointment {
 
     private final Nric nric;
     private final Booking booking;
+    private final Nric drNric;
 
     // todo add another Dr name field to link appmt to a doctor)
     /**
@@ -19,10 +20,11 @@ public class Appointment {
      * @param nric Person nric
      * @param booking timing
      */
-    public Appointment(Nric nric, Booking booking) {
+    public Appointment(Nric nric, Booking booking, Nric drNric) {
         requireAllNonNull(nric, booking);
         this.nric = nric;
         this.booking = booking;
+        this.drNric = drNric;
     }
 
     public Booking getBooking() {
@@ -31,6 +33,10 @@ public class Appointment {
 
     public Nric getPatientNric() {
         return nric;
+    }
+
+    public Nric getDrNric() {
+        return drNric;
     }
 
     /**
@@ -45,10 +51,25 @@ public class Appointment {
 
         String thisAppointmentDate = getBooking().toString();
         String otherAppointmentDate = otherAppointment.getBooking().toString();
-        String otherPatientNric = otherAppointment.getPatientNric().toString(); // todo change to nric
+        String otherPatientNric = otherAppointment.getPatientNric().toString();
         String thisPatientNric = nric.toString();
+        String otherAppointmentDrNric = otherAppointment.getDrNric().toString();
+        String thisAppointmentDrNric = otherAppointment.getDrNric().toString();
 
         return otherPatientNric.equals(thisPatientNric)
-                && thisAppointmentDate.equals(otherAppointmentDate);
+                && thisAppointmentDate.equals(otherAppointmentDate)
+                && thisAppointmentDrNric.equals(otherAppointmentDrNric);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("NRIC: ")
+                .append(getPatientNric())
+                .append("; Appointment: ")
+                .append(getBooking())
+                .append("; Doctor: ")
+                .append(getDrNric());
+        return builder.toString();
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
@@ -75,6 +76,11 @@ public class PersonCard extends UiPart<Region> {
             medication.setText(patient.getMedication().value);
             appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
         }
+        if (person.isDoctor()) {
+            Doctor doctor = (Doctor) person;
+            appointments.setText("Appointments: \n" + doctor.drAppointmentsToString());
+        }
+
     }
 
     @Override

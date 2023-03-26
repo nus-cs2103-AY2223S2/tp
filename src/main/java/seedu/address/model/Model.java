@@ -71,7 +71,11 @@ public interface Model {
      */
     boolean hasDoctor(Doctor doctor);
 
+    /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
     boolean hasPatientByNric(Nric nric);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -129,5 +133,9 @@ public interface Model {
 
     void bookAppointment(Appointment appointment);
 
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
+    boolean hasDrByNric(Nric drNric);
 
 }

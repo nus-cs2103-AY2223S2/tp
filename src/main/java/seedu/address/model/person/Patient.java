@@ -104,9 +104,11 @@ public class Patient extends Person {
     public String patientAppointmentstoString() {
         ArrayList<Appointment> patientAppointments = getPatientAppointments();
         String string = "";
+        int count = 1;
         for (Appointment appointment : patientAppointments) {
             String appointmentBooking = appointment.getBooking().toString();
-            string += appointmentBooking + "\n";
+            string += count + ". " + appointmentBooking + "; " + appointment.getDrNric().toString() + "\n";
+            count++;
         }
         return string;
     }
