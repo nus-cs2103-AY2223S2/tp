@@ -34,32 +34,34 @@ for advanced users to customise the usage of InternBuddy for a tailored user exp
 ### Using the User Guide
 This uses guide uses a set of formatting standards and visuals to better communicate information.
 
-#### Information Box
+**Information Box**
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Provides useful information that supplements the main text
 </div>
 
-#### Tip Box
+**Tip Box**
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:**  Suggestions on how to enhance your experience
 </div>
 
-#### Warning Box
+**Warning Box**
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
 carefully before committing
 </div>
 
-#### Syntax Highlighting
+**Syntax Highlighting**
+
 Commands, parameters, file paths and class names are highlighted.
 
 `command`, `PARAMETER`, `filepath.json`, `ClassName`
 
 
-#### Keyboard Actions
+**Keyboard Actions**
+
 Keyboard keys are indicated using rounded buttons.
 
 <button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
@@ -336,6 +338,11 @@ Your internship data for InternBuddy are saved automatically after any command t
 in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
 where you placed `internbuddy.json`. There is no need to save manually.
 
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** The file location of `internbuddy.json` is stated in the
+<a href="#exploring-the-graphical-user-interface">Location Bar</a> of the GUI.
+</div>
 
 
 ### Loading the data

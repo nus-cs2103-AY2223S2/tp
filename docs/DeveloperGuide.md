@@ -2,17 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
-It is optimized for typing where it allows users to complete internship management tasks much more efficiently
-via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
-using Java 11, and is available on the Windows, macOS and Linux operating systems.
-
-<br/>
-<p align="center">
-  <img width="300" height="175" src="images/internbuddy-computer.png">
-</p>
-
-
 ## Table of Contents
 * Table of Contents
 {:toc}
@@ -54,48 +43,54 @@ extends its functionality through this developer guide.
 This developer guide uses a set of formatting standards and syntax to better communicate
 information.
 
-#### Information Box
+**Information Box**
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Provides useful information that supplements the main text
 </div>
 
-#### Tip Box
+**Tip Box**
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:**  Suggestions on how to enhance your experience
 </div>
 
-#### Warning Box
+**Warning Box**
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
 carefully before committing
 </div>
 
-#### Syntax Highlighting
+**Syntax Highlighting**
+
 Commands, parameters, file paths and class names are highlighted.
 
 `command`, `PARAMETER`, `filepath.json`, `ClassName`
 
 
-#### Keyboard Actions
+**Keyboard Actions**
+
 Keyboard keys are indicated using rounded buttons.
 
 <button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
-After setting up and launching InternBuddy, you would see a GUI. The following diagram illustrates the main parts
+After setting up and launching InternBuddy, you would see a GUI. Figures 1 and 2 illustrate the main parts
 of InternBuddy's GUI, which are referenced throughout this developer guide.
 
 
 ![Graphical User Interface](images/gui-markup.png)
+
+<p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
+
+<br/>
 
 | Part            | Usage                                                                                        |
 |-----------------|----------------------------------------------------------------------------------------------|
@@ -105,7 +100,9 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 | View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
 | Location Bar    | States where your InternBuddy data file is located on your computer.                         |
 
+<p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
 
+<br/>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,10 +114,13 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 </div>
 
 ### Architecture
+The ***Architecture Diagram*** shown in Figure 3 explains the high-level design of the App.
+<p align="center">
+  <img src="images/ArchitectureDiagram.png" width="280" />
+</p>
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p style="text-align: center;">Figure 3: InternBuddy's architecture diagram</p>
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -134,7 +134,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI (User Interface) of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
@@ -142,26 +142,50 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+Figure 4 is a *Sequence Diagram* that shows how the components interact with each other for the scenario where the user
+issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+<p align="center">
+  <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+</p>
+
+<p style="text-align: center;">Figure 4: Sequence diagram that shows interactions between components </p>
+<br/>
+
+
+Each of the four main components (also shown in the Figure 4),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its
+functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components
+interact with a given component through its interface rather than the concrete class
+(reason: to prevent outside component's being coupled to the implementation of a component),
+as illustrated in the (partial) class diagram shown in Figure 5.
 
-<img src="images/ComponentManagers.png" width="300" />
+
+<p align="center">
+  <img src="images/ComponentManagers.png" width="300" />
+</p>
+
+<p style="text-align: center;">Figure 5: Partial class diagram for the logic, model and storage components </p>
+<br/>
+
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+  <img src="images/UiClassDiagram.png" />
+</p>
+
+<p style="text-align: center;">Figure 6: Class diagram for the UI component </p>
+<br/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
@@ -184,26 +208,48 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Figure 7 illustrates a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+  <img src="images/LogicClassDiagram.png" width="550"/>
+</p>
+
+<p style="text-align: center;">Figure 7: Partial class diagram for the logic component </p>
+<br/>
+
+
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternBuddyParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+Figure 8 below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<p style="text-align: center;">Figure 8: Sequence diagram for the delete command </p>
+<br/>
+
+
+
+
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** The lifeline for
+`DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a
+limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Figure 9 shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+  <img src="images/ParserClasses.png" width="600"/>
+</p>
+
+<p style="text-align: center;">Figure 9: Class diagram for parser classes in the logic component </p>
+<br/>
 
 How the parsing works:
 * When called upon to parse a user command, the `InternBuddyParser` class creates an `XYZCommandParser`
@@ -216,8 +262,12 @@ the `Parser` interface so that they can be treated similarly where possible e.g,
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/ModelClassDiagram.png" width="450" />
+</p>
 
+<p style="text-align: center;">Figure 10: Class diagram for the model component</p>
+<br/>
 
 The `Model` component,
 
@@ -232,17 +282,27 @@ which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` th
 model is given below. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
 to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
+
+<p align="center">
+  <img src="images/BetterModelClassDiagram.png" width="450" />
+</p>
+
+<p style="text-align: center;">Figure 11: Alternative model that is more OOP</p>
+<br/>
 
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<p align="center">
+  <img src="images/StorageClassDiagram.png" width="550" />
+</p>
+
+<p style="text-align: center;">Figure 12: Class diagram for the storage component</p>
+<br/>
+
 
 The `Storage` component,
 * can save both internship data and user preference data in json format, and read them back into corresponding objects.
@@ -251,7 +311,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.internship.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,12 +319,24 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to a limitation of PlantUML, the lifeline
+for objects in sequence diagrams would always reach the end of the diagrams. However, it is worthy to note that for objects
+with destroy markers (X), their lifelines would have ended at the markers.
 
-#### Implementation
+</div>
+
+### Add An Internship Entry - `add`
+
+**Implementation**
+
 The following sequence diagram provides an overview on how the `add` operation works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<p style="text-align: center;">Figure 13: Sequence diagram for the add command</p>
+<br/>
+
+
 
 The following gives a more detailed explanation of the `add` operation.
 ######  Step 1: Validate Input
@@ -325,12 +397,20 @@ The following gives a more detailed explanation of the `add` operation.
       UI panel may not be visible since it is added to the bottom. Without scrolling, users
       have to rely on the Results Display box to determine if the `AddCommand` is successful.
 
-### View Feature
+
+### Edit an Internship Entry - `edit`
+[TODO by Shawn]
+
+
+### View An Internship Entry - `view`
 
 #### Implementation
 The following sequence diagram provides an overview on how the `view` operation works.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+<p style="text-align: center;">Figure XX: Sequence diagram for the view command</p>
+<br/>
 
 The following gives a more detailed explanation of the `view` operation.
 ######  Step 1: Validate Input
@@ -370,7 +450,21 @@ The following gives a more detailed explanation of the `view` operation.
       is an issue in processing user input for the `ViewCommand`, there is a need to
       identify and isolate which of the 2 checks does the problem originate from.
 
-### \[Proposed\] Undo/redo feature
+
+### Copying An Internship Entry To Clipboard - `copy`
+[TODO by Chuhao]
+
+### Finding Internship Entries - `find`
+[TODO by Kai Xun]
+
+### Getting Upcoming Events and Deadlines - `upcoming`
+[TODO by Shawn]
+
+### Deleting Internship Entries - `delete`
+
+
+
+### \[Proposed\] Undo/redo feature - `undo`/`redo`
 
 #### Proposed Implementation
 
