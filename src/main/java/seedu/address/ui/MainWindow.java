@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String WELCOME_MESSAGE = "Welcome to TechTrack! \n\nHere are the list of commands available: "
             + "\n1. add n/{name} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
             + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
-            + "\n2. edit {index} [r/{ROLE}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
+            + "\n2. edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"
             + "\n3. find {keyword}"
             + "\n4. delete {index}"
