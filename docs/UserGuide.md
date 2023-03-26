@@ -275,3 +275,18 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | Delete | `delete INDEX`<br>eg. `delete 3`                                                                |
 | Exit   | `exit`, `bye`, `quit`                                                                           |
 | List   | `list`                                                                                          |
+
+---
+
+# Prefix summary
+
+| Prefix | Meaning                                   | Example                          |
+|--------|-------------------------------------------|----------------------------------|
+| n/     | Name of student                           | `n/Shao Hong`                    |
+| p/     | Phone number of student                   | `p/81234567`                     |
+| e/     | Email of student                          | `e/e07123456@u.edu.sg`           |
+| a/     | Address of student                        | `a/16 Bukit Timah Road, S156213` |
+| edu/   | Education level of student                | `edu/P6`                         |
+| r/     | Remark for student                        | `r/Good in German`               |
+| t/     | Tags of student                           | `t/submited t/late`              |
+| s/     | Subjects that the student is being taught | `s/Math s/Science`               |
