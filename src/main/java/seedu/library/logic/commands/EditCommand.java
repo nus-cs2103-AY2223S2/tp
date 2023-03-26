@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
@@ -24,6 +25,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
@@ -40,10 +42,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_AUTHOR + "AUTHOR] "
             + "[" + PREFIX_PROGRESS + "PROGRESS] "
             + "[" + PREFIX_GENRE + "GENRE] "
+            + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_URL + "URL] "
-            + "[" + PREFIX_AUTHOR + "AUTHOR] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PROGRESS + "Finished "
@@ -106,10 +109,12 @@ public class EditCommand extends Command {
         Progress updatedProgress = editBookmarkDescriptor.getProgress().orElse(bookmarkToEdit.getProgress());
         Genre updatedGenre = editBookmarkDescriptor.getGenre().orElse(bookmarkToEdit.getGenre());
         Author updatedAuthor = editBookmarkDescriptor.getAuthor().orElse(bookmarkToEdit.getAuthor());
+        Rating updatedRating = editBookmarkDescriptor.getRating().orElse(bookmarkToEdit.getRating());
         Url updatedUrl = editBookmarkDescriptor.getUrl().orElse(bookmarkToEdit.getUrl());
         Set<Tag> updatedTags = editBookmarkDescriptor.getTags().orElse(bookmarkToEdit.getTags());
 
-        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedUrl, updatedTags);
+        return new Bookmark(updatedTitle, updatedProgress, updatedGenre,
+                updatedAuthor, updatedRating, updatedUrl, updatedTags);
     }
 
     @Override
@@ -139,6 +144,7 @@ public class EditCommand extends Command {
         private Progress progress;
         private Genre genre;
         private Author author;
+        private Rating rating;
         private Set<Tag> tags;
         private Url url;
 
@@ -153,6 +159,7 @@ public class EditCommand extends Command {
             setProgress(toCopy.progress);
             setGenre(toCopy.genre);
             setAuthor(toCopy.author);
+            setRating(toCopy.rating);
             setTags(toCopy.tags);
             setUrl(toCopy.url);
         }
@@ -195,12 +202,21 @@ public class EditCommand extends Command {
         public Optional<Author> getAuthor() {
             return Optional.ofNullable(author);
         }
+
         public void setUrl(Url url) {
             this.url = url;
         }
 
         public Optional<Url> getUrl() {
             return Optional.ofNullable(url);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
         }
 
         /**
@@ -240,7 +256,8 @@ public class EditCommand extends Command {
                     && getGenre().equals(e.getGenre())
                     && getAuthor().equals(e.getAuthor())
                     && getTags().equals(e.getTags())
-                    && getUrl().equals(e.getUrl());
+                    && getUrl().equals(e.getUrl())
+                    && getRating().equals(e.getRating());
         }
     }
 }

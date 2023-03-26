@@ -15,6 +15,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.util.SampleDataUtil;
@@ -72,7 +73,7 @@ public class BookmarkListPanel extends UiPart<Region> {
             // just a default bookmark change
             String[] sampleProgress = {"1", "32", "56"};
             return new Bookmark(new Title("Attack on Titans"), new Progress(sampleProgress), new Genre("Fantasy"),
-                    new Author("Hajime Isayama"), new Url(""),
+                    new Author("Hajime Isayama"), new Rating("5"), new Url(""),
                     SampleDataUtil.getTagSet("friends"));
 
         }
