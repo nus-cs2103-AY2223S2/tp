@@ -20,11 +20,24 @@ public class Patient extends Person {
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Medication medication,
-                   Set<Tag> tags, ArrayList<Appointment> patientAppointments) {
-        super(name, phone, email, nric, address, tags, patientAppointments);
-        requireAllNonNull(name, phone, email, address, tags, patientAppointments);
+                   Set<Tag> tags, ArrayList<Appointment> patientAppointments, Role role) {
+        super(name, phone, email, nric, address, tags, patientAppointments, role);
+        requireAllNonNull(name, phone, email, address, tags, patientAppointments, role);
         this.medication = medication;
         this.patientAppointments = patientAppointments;
+    }
+
+    /**
+     * Returns true if both Patient have the same NRIC.
+     * This defines a weaker notion of equality between two patients.
+     */
+    public boolean isSamePatient(Patient otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getNric().equals(getNric());
     }
 
     public Medication getMedication() {
@@ -96,10 +109,5 @@ public class Patient extends Person {
             string += appointmentBooking + "; " + appointment.getDrNric().toString() + "\n";
         }
         return string;
-    }
-
-    @Override
-    public boolean isPatient() {
-        return true;
     }
 }

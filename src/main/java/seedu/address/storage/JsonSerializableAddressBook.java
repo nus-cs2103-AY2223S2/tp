@@ -13,6 +13,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -56,11 +58,19 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (jsonAdaptedPerson.toModelType().getRole().toString().equals("Patient")) {
+                Patient patient = (Patient) jsonAdaptedPerson.toModelType();
+                if (addressBook.hasPatient(patient)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                }
+                addressBook.addPatient(patient);
+            } else {
+                Doctor doctor = (Doctor) jsonAdaptedPerson.toModelType();
+                if (addressBook.hasDoctor(doctor)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                }
+                addressBook.addDoctor(doctor);
             }
-            addressBook.addPerson(person);
         }
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {

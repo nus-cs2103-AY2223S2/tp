@@ -46,14 +46,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addPatient() throws Exception {
-        Patient patient = new PersonBuilder().buildPatient();
+        Patient patient = new PersonBuilder("Patient").buildPatient();
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddPatientCommand(patient));
         assertEquals(new AddPatientCommand(patient), command);
     }
 
     @Test
     public void parseCommand_addDoctor() throws Exception {
-        Doctor doctor = new PersonBuilder().buildDoctor();
+        Doctor doctor = new PersonBuilder("Doctor").buildDoctor();
         AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddDoctorCommand(doctor));
         assertEquals(new AddDoctorCommand(doctor), command);
     }
