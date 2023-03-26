@@ -177,18 +177,20 @@ The `Student` object is composed of attributes:
 * `Education`: The education level of the student.
 * `Subject`: The subjects the tutor is teaching the student.
 * `Remark`: Remarks/notes the tutor has about the student.
+* `Tags`: Qualities a student has.
 
 ### Proposed Implementation
 The `add` command has the following fields:
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
 > Unless stated as`[COMPULSORY]`, the field is optional.
-* Prefix `\n` followed by the name of the student `[COMPULSORY]`.
-* Prefix `\p` followed by the phone number of the student.
-* Prefix `\e` followed by the student's email.
-* Prefix `\a` followed by the student's address.
-* Prefix `\edu` followed by the student's education level.
-* Prefix `\s` followed by the subject name.
-* Prefix `\r` followed by the remarks/notes on the student.
+* Prefix `n/` followed by the name of the student `[COMPULSORY]`.
+* Prefix `p/` followed by the phone number of the student.
+* Prefix `e/` followed by the student's email.
+* Prefix `a/` followed by the student's address.
+* Prefix `edu/` followed by the student's education level.
+* Prefix `s/` followed by the subject name.
+* Prefix `r/` followed by the remarks/notes on the student.
+* Prefix `t/` followed by the tags a student has.
 
 Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.: <br>
 
@@ -264,13 +266,14 @@ With a similar fields to the [Add feature](#add-feature), `edit` has an addition
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
 > Unless stated as`[COMPULSORY]`, the field is optional.
 * `INDEX` which represents the index number of the student to be edited in the list.
-* Prefix `\n` followed by the name of the student.
-* Prefix `\p` followed by the phone number of the student.
-* Prefix `\e` followed by the student's email.
-* Prefix `\a` followed by the student's address.
-* Prefix `\edu` followed by the student's education level.
-* Prefix `\s` followed by the subject name.
-* \[To be implemented\] Prefix `\r` followed by the remarks/notes on the student.
+* Prefix `n/` followed by the name of the student.
+* Prefix `p/` followed by the phone number of the student.
+* Prefix `e/` followed by the student's email.
+* Prefix `a/` followed by the student's address.
+* Prefix `edu/` followed by the student's education level.
+* Prefix `s/` followed by the subject name.
+* Prefix `t/` followed by the tag name.
+* \[To be implemented\] Prefix `r/` followed by the remarks/notes on the student.
 
 Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
 
@@ -585,34 +588,36 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                                                | So that I can…​                                                             |
-|----------|---------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| `* * *`  | tutor   | open the app                                                                                                | begin using the app                                                         |
-| `* * *`  | tutor   | close the app                                                                                               | leave the app                                                               |
-| `* * *`  | tutor   | add a student's name                                                                                        | track a student's progress by their name                                    |
-| `* * *`  | tutor   | include student's education level when adding the student (eg. P6)                                          | keep track of a student's education level                                   |
-| `* * *`  | tutor   | include student's phone number when adding the student (eg. 94206942)                                       | keep track of a student's phone number                                      |
-| `* * *`  | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                             | keep track of a student's email                                             |
-| `* * *`  | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                    | keep track of a student's address and go to the place easily                |
-| `* * *`  | tutor   | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                       | keep track of what subjects I'm teaching the student                        |
-| `* * *`  | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                      | store information for a particular student such as notes and remarks        |
-| `* * *`  | tutor   | delete a student entry from my list (by index)                                                              | remove all details related to a certain student                             |
-| `* * *`  | tutor   | have my changes saved automatically                                                                         | be sure that I won't lose my changes if I crash/close the app               |
-| `* * *`  | tutor   | view my list of students                                                                                    | keep track of who I'm currently teaching                                    |
-| `* * *`  | tutor   | View the address of a student                                                                               | know where to go if I need to provide tuition at their house                |
-| `* * *`  | tutor   | have my data persist between use sessions                                                                   | continue my session where I left off                                        |
-| `* * *`  | tutor   | find my students by searching their names                                                                   | quickly view that student's details                                         |
-| `* *`    | tutor   | filter my students by education level (eg. all P6 students)                                                 | view my students of the same education level                                |
-| `* * *`  | tutor   | edit a student's name                                                                                       | correct a student's name                                                    |
-| `* * *`  | tutor   | edit the subjects I'm teaching a particular student                                                         | update or correct a student's records                                       |
-| `* * *`  | tutor   | edit a student's education level                                                                            | update or correct a student's records                                       |
-| `* *`    | tutor   | filter my students by subjects                                                                              | view all the student's I'm teaching a particular subject to                 |
-| `* *`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                              | view all the students who live in a particular area                         |
-| `* *`    | tutor   | filter my students by email (eg. @gmail)                                                                    | view all the students with similar emails                                   |
-| `* *`    | tutor   | sort my students by their names                                                                             | view my students in a systematic manner                                     |
-| `* *`    | tutor   | sort my students by their education level                                                                   | view my students according to their education level                         | 
+| Priority | As a …​  | I want to …​                                                                                                   | So that I can…​                                                             |
+|----------|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | tutor    | open the app                                                                                                   | begin using the app                                                         |
+| `* * *`  | tutor    | close the app                                                                                                  | leave the app                                                               |
+| `* * *`  | tutor    | add a student's name                                                                                           | track a student's progress by their name                                    |
+| `* * *`  | tutor    | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
+| `* * *`  | tutor    | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
+| `* * *`  | tutor    | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
+| `* * *`  | tutor    | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
+| `* * *`  | tutor    | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                          | keep track of what subjects I'm teaching the student                        |
+| `* * *`  | tutor    | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
+| `* * *`  | tutor    | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
+| `* * *`  | tutor    | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
+| `* * *`  | tutor    | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
+| `* * *`  | tutor    | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
+| `* * *`  | tutor    | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
+| `* * *`  | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
+| `* * *`  | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
+| `* *`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
+| `* * *`  | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
+| `* * *`  | tutor    | edit the subjects I'm teaching a particular student                                                            | update or correct a student's records                                       |
+| `* * *`  | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
+| `* *`    | tutor    | filter my students by subjects                                                                                 | view all the student's I'm teaching a particular subject to                 |
+| `* *`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
+| `* *`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
+| `* *`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
+| `* *`    | tutor    | sort my students by their names                                                                                | view my students in a systematic manner                                     |
+| `* *`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         | 
 | `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
-| `* * *`  | new user | be able to ask for help                                                                                     | learn how to use the app                                                    |
+| `* * *`  | new user | be able to ask for help                                                                                        | learn how to use the app                                                    |
 
 
 
