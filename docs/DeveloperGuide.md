@@ -772,7 +772,7 @@ The `Storage` component,
 
 **API** : `Recommender.java` {to be filled in}
 
-<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClass.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -795,7 +795,7 @@ The `Scheduler`'s role is to recommend timings in which the user and all partici
 The Scheduler uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
+<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.6.1</b> Activity Diagram for Scheduler</code>
 </div>
