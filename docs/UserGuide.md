@@ -31,7 +31,8 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 4. Open a command terminal
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
-   3. A window similar to the one below should appear in a few seconds.<br>![Ui](images/Ui.png)<br>
+   3. A window similar to the one below should appear in a few seconds.
+   <br>![Ui](images/Ui.png)<br>
 
 [^ Scroll back to *Tables of Contents*](#table-of-contents)
 ## Navigation
