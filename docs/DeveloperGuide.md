@@ -286,8 +286,7 @@ The second stage requires CreateTagCommand#execute() to be called.
 
 The following sequence diagram shows how the `createtag` command.
 
-**insert sequence diagram
-
+<img src="images/CreateTagSequenceDiagram.png" width="574" />
 
 #### Feature 2 - `deltag`:
 The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
