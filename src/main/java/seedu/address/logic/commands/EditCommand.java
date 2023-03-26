@@ -9,9 +9,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -93,7 +99,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws ParseException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -112,7 +119,7 @@ public class EditCommand extends Command {
         if (newTagsType.stream().allMatch(element -> existingTagsType.contains(element))) {
             newTags.addAll(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
             newTags.addAll(personToEdit.getTags().stream().filter(x -> !newTagsType.contains(
-                editPersonDescriptor.containType(x))).collect(Collectors.toList()));
+                editPersonDescriptor.containTagType(x))).collect(Collectors.toList()));
             updatedTags = newTags;
         } else {
 
@@ -236,10 +243,16 @@ public class EditCommand extends Command {
         }
 
         public List<String> replaceExistingTags(Set<Tag> tags) {
-            return ((tags != null) ? containTagType(tags) : null);
+            return ((tags != null) ? containTagTypes(tags) : null);
         }
 
-        public List<String> containTagType(Set<Tag> tags) {
+        /**
+         * Checks if the tags contain what types
+         *
+         * @param tags annotation for correct labels in a list
+         * @return the types in from of list of tags
+         */
+        public List<String> containTagTypes(Set<Tag> tags) {
             List<String> tagType = new ArrayList<>();
             for (Tag tag : tags) {
                 if (tag instanceof ModuleTag) {
@@ -253,7 +266,13 @@ public class EditCommand extends Command {
             return tagType;
         }
 
-        public String containType(Tag tag) {
+        /**
+         * Checks if the tag contains what type
+         *
+         * @param tag annotation for correct label
+         * @return type in from of String of one tag
+         */
+        public String containTagType(Tag tag) {
             String tagType = "";
             if (tag instanceof ModuleTag) {
                 tagType = "Module";
