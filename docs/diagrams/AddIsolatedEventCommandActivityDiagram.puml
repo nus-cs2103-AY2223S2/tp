@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User executes command;
+
+if() then ([valid arguments])
+    if() then ([the event not in isolated event list\n or recurring event list])
+        :Add event in the addressBook;
+
+    else([else])
+        endif
+
+else([else])
+    endif
+
+stop
+
+@enduml
