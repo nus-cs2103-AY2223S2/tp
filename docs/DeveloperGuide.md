@@ -279,11 +279,11 @@ The `aetd` commands adds an existing `Employee` to an existing `Department` in S
 
 Activity Diagram:
 
-![EditDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentActivityDiagram.png)
+![AddEmployeeToDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentActivityDiagram.png)
 
 Sequence Diagram:
 
-![EditDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentSequenceDiagram.png)
+![AddEmployeeToDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentSequenceDiagram.png)
 
 #### Flow
 
@@ -303,8 +303,31 @@ The idea is that a department should not contain duplicate employees. Hence, we 
 `UniqueEmployeeList` class in `SudoHr`, instead of creating a new employee list class for Department. This logic is
 reused in `Leaves` as well.
 
-However, it should be noted that we still used defensive checks such as `department.hasEmployee` despite the
+It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
 `UniqueEmployeeList` having such checks internally already.
+
+### Removing an employee from a department
+
+The `refd` commands removes an `Employee` from an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![RemoveEmployeeFromDepartmentCommand](./images/commands/department/RemoveEmployeeFromDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![RemoveEmployeeFromDepartmentCommand](./images/commands/department/RemoveEmployeeFromDepartmentSequenceDiagram.png)
+
+#### Flow
+
+1. The user enters the command, eg. `refd eid/100 n/Software Engineering`. It represents that the employee with ID 100
+   is supposed to be removed from the Software Engineering department.
+2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
+4. If the employee and department exists, the command checks if the same employee exists in the department.
+6. If the employee exists in the department, the model removes the employee from the department.
+
+After that, the command result is returned.
 
 # Leave-related features
 

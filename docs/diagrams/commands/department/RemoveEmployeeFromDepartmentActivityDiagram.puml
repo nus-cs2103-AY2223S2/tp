@@ -13,9 +13,9 @@ if () then ([else])
  :Error: Department does not exist in SudoHR;
   stop
 ([Department exists in SudoHR])elseif () then ([else])
-  :Error: Employee already exists in the department;
+  :Error: Employee not found in the department;
   stop
- else ([Employee does not exist in the department])
+ else ([Employee found in the department])
 endif
   :refd command successfully executes.;
 stop
