@@ -1,12 +1,10 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.wife.model.food.Name;
 
 public class NameTest {
 
@@ -22,7 +20,7 @@ public class NameTest {
     }
 
     @Test
-    public void isValidName() {
+    public void isValid() {
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValid(null));
 
@@ -30,13 +28,13 @@ public class NameTest {
         assertFalse(Name.isValid("")); // empty string
         assertFalse(Name.isValid(" ")); // spaces only
         assertFalse(Name.isValid("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValid("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValid("Meiji*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValid("meiji")); // alphabets only
+        assertTrue(Name.isValid("chocolate milk")); // alphabets only
         assertTrue(Name.isValid("12345")); // numbers only
-        assertTrue(Name.isValid("meiji69")); // alphanumeric characters
-        assertTrue(Name.isValid("Meiji")); // with capital letters
-        assertTrue(Name.isValid("Mr Coconut Milkshake")); // long names
+        assertTrue(Name.isValid("m3iji")); // alphanumeric characters
+        assertTrue(Name.isValid("Chocolate Milk")); // with capital letters
+        assertTrue(Name.isValid("There is no restriction on length of food name")); // long names
     }
 }

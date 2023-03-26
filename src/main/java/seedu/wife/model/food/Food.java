@@ -60,6 +60,13 @@ public class Food {
     }
 
     /**
+     * Removes the specified element from tags if it is present (optional operation).
+     */
+    public boolean removeTag(Tag tag) {
+        return this.tags.remove(tag);
+    }
+
+    /**
      * Returns a new tag set for edit, which throws {@code UnsupportedOperationException}
      */
     public Set<Tag> getCurrentTags() {
@@ -83,7 +90,8 @@ public class Food {
             return true;
         }
         return otherFood != null
-                && foodName.equals(otherFood.getName());
+                && foodName.equals(otherFood.getName())
+                && expiryDate.equals(otherFood.getExpiryDate());
     }
 
     @Override

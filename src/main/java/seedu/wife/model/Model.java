@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Food> PREDICATE_SHOW_NO_FOODS = unused -> false;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 

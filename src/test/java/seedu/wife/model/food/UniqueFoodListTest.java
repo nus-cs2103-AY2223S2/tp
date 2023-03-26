@@ -1,9 +1,10 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_CHOCOLATE;
 import static seedu.wife.testutil.Assert.assertThrows;
 import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
@@ -15,8 +16,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.model.food.Food;
-import seedu.wife.model.food.UniqueFoodList;
 import seedu.wife.model.food.exceptions.DuplicateFoodException;
 import seedu.wife.model.food.exceptions.FoodNotFoundException;
 import seedu.wife.testutil.FoodBuilder;
@@ -45,7 +44,7 @@ public class UniqueFoodListTest {
     public void contains_foodWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFoodList.add(MEIJI);
         Food editedMeiji = new FoodBuilder(MEIJI)
-                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
                 .withTags(VALID_TAG_CHOCOLATE)
                 .build();
         assertTrue(uniqueFoodList.contains(editedMeiji));

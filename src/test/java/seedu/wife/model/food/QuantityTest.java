@@ -1,12 +1,10 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.wife.model.food.Quantity;
 
 public class QuantityTest {
 
@@ -24,7 +22,7 @@ public class QuantityTest {
     @Test
     public void isValid() {
         // null Quantity
-        // assertThrows(NullPointerException.class, () -> Quantity.isValid(null));
+        assertThrows(NullPointerException.class, () -> Quantity.isValid(null));
 
         // blank Quantity
         assertFalse(Quantity.isValid("")); // empty string
