@@ -1,4 +1,4 @@
-package seedu.dengue.ui.overview;
+package seedu.dengue.model.overview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import seedu.dengue.model.person.Person;
 public class PostalOverview extends Overview {
     private static final String POSTAL_TITLE = "Overview by Location";
 
-    private final PostalAnalyst analyst;
+    private PostalAnalyst analyst;
 
     /**
      * Constructs a {@code PostalOverview} instance with the given list of {@code Person}s.
@@ -27,6 +27,13 @@ public class PostalOverview extends Overview {
         this.analyst = new PostalAnalyst(persons);
     }
 
+    /**
+     * Constructs a {@code PostalOverview} instance with an empty list of {@code Person}s.
+     */
+    public PostalOverview() {
+        this(new ArrayList<>());
+    }
+
     @Override
     public String getOverviewTitle() {
         return POSTAL_TITLE;
@@ -35,6 +42,12 @@ public class PostalOverview extends Overview {
     @Override
     public PostalAnalyst getAnalyst() {
         return this.analyst;
+    }
+
+    @Override
+    public void update(List<Person> personList) {
+        List<Person> persons = new ArrayList<>(personList);
+        this.analyst = new PostalAnalyst(persons);
     }
 
     @Override

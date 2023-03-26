@@ -12,7 +12,7 @@ import seedu.dengue.model.variant.DengueVariant;
  */
 public class PostalAnalyst extends Analyst {
     private final int total;
-    private final EnumMap<DengueVariant, DataBin> bins;
+    private final EnumMap<DengueVariant, DataBin> bins; // TODO change to Location
 
     /**
      * Constructs a {@code PostalAnalyst} instance with the given list of {@code Person}s.
@@ -22,7 +22,7 @@ public class PostalAnalyst extends Analyst {
     public PostalAnalyst(List<Person> personList) {
         List<Person> persons = new ArrayList<>(personList);
         this.total = persons.size();
-        this.bins = null; //
+        this.bins = null; // TODO change to whatever
 
     }
 

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.overview.Overview;
 
 /**
  * The API of the Model component.
@@ -77,8 +78,22 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns the overview of the model.
+     */
+    Overview getOverview();
+
+    /**
+     * Sets the given overview as the new overview.
+     *
+     * @param overview The new overview type to replace the current.
+     */
+    void setOverview(Overview overview);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

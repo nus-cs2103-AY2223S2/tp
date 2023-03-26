@@ -118,6 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         overviewDisplay = new OverviewDisplay();
+        overviewDisplay.setOverview(logic.getOverview());
         overviewDisplayPlaceholder.getChildren().add(overviewDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -184,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            overviewDisplay.setOverview(logic.getOverview());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

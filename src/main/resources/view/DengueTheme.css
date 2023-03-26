@@ -355,3 +355,9 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.overview_title .overview_subtitle .overview_content {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}

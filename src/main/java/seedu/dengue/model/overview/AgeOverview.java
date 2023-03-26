@@ -1,4 +1,4 @@
-package seedu.dengue.ui.overview;
+package seedu.dengue.model.overview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import seedu.dengue.model.person.Person;
 public class AgeOverview extends Overview {
     private static final String AGE_TITLE = "Overview by Age";
 
-    private final AgeAnalyst analyst;
+    private AgeAnalyst analyst;
 
     /**
      * Constructs an {@code AgeOverview} instance with the given list of {@code Person}s.
@@ -27,6 +27,13 @@ public class AgeOverview extends Overview {
         this.analyst = new AgeAnalyst(persons);
     }
 
+    /**
+     * Constructs an {@code AgeOverview} instance with an empty list of {@code Person}s.
+     */
+    public AgeOverview() {
+        this(new ArrayList<>());
+    }
+
     @Override
     public String getOverviewTitle() {
         return AGE_TITLE;
@@ -35,6 +42,12 @@ public class AgeOverview extends Overview {
     @Override
     public AgeAnalyst getAnalyst() {
         return this.analyst;
+    }
+
+    @Override
+    public void update(List<Person> personList) {
+        List<Person> persons = new ArrayList<>(personList);
+        this.analyst = new AgeAnalyst(persons);
     }
 
     @Override

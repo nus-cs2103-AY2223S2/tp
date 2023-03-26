@@ -6,7 +6,7 @@ package seedu.dengue.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command!\n"
-            + "Valid commands: add, list, edit, find, delete, clear, help, exit";
+            + "Valid commands: add, list, edit, find, delete, clear, overview, help, exit";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n%1$s";
     public static final String MESSAGE_INVALID_POSTAL = "Invalid postal code!";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is too big!";
