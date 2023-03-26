@@ -60,7 +60,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    Popup popup = new Popup();
+    private final Popup popup = new Popup();
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -219,12 +219,9 @@ public class MainWindow extends UiPart<Stage> {
 
             Label label = new Label(e.getMessage().split("\n")[0]);
             label.setStyle(
-                    "-fx-background-color: #F0FFE3;" +
-                            "-fx-border-radius: 10; " +
-                            "-fx-background-radius: 10;" +
-                            "-fx-padding: 5;" +
-                            "-fx-opacity: 100%;" +
-                            "-fx-border-color: #457C51"
+                    "-fx-background-color: #F0FFE3;"
+                            + "-fx-border-radius: 10; -fx-background-radius: 10;"
+                            + "-fx-padding: 5; -fx-opacity: 100%; -fx-border-color: #457C51"
 
             );
             popup.getContent().remove(0, popup.getContent().size());

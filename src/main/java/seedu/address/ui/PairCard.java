@@ -72,15 +72,11 @@ public class PairCard extends UiPart<Region> {
         volunteerCard.getRoot().setMaxWidth(400);
         vbox.getStyleClass().add("popup");
         elderlyLabel.setStyle(
-                "-fx-font-size: 20;" +
-                        "-fx-text-fill: black;" +
-                        "-fx-font-weight: 700"
+                "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
         );
 
         volunteerLabel.setStyle(
-                "-fx-font-size: 20;" +
-                        "-fx-text-fill: black;" +
-                        "-fx-font-weight: 700"
+                "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
         );
 
         popover.getContent().add(vbox);
