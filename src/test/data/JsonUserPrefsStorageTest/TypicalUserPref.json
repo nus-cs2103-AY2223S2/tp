@@ -7,5 +7,5 @@
 			"y": 100
 		}
 	},
-	"wifeFilePath": "wife.json"
+	"wifeFilePath": "data/wife.json"
 }
