@@ -2,10 +2,16 @@ package arb.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.logging.Logger;
 
+import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
+import arb.model.client.Name;
 import arb.model.client.UniqueClientList;
 import arb.model.project.Project;
 import arb.model.project.UniqueProjectList;
@@ -22,6 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
     private final UniqueProjectList projects;
     private final UniqueTagMappingList tagMappings;
+
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -86,6 +94,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tagMappings.resetProjectTagMappings();
     }
 
+    public void resetClientLinkings() {
+        this.clients.resetProjectLinkings();
+    }
+
+    public void resetProjectLinkings() {
+        logger.info("Resetting project links");
+        this.projects.resetClientLinkings();
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -141,8 +158,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        clients.setClient(target, editedClient);
+        Iterator<Project> linkedProjects = target.getProjectsLinked().iterator();
+        while (linkedProjects.hasNext()) {
+            Project linkedProject = linkedProjects.next();
+            linkedProject.linkToClient(editedClient);
+            editedClient.linkProject(linkedProject);
+            projects.setProject(linkedProject, linkedProject);
+        }
         tagMappings.editClientTags(target, editedClient);
+        clients.setClient(target, editedClient);
     }
 
     /**
@@ -153,9 +177,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
-
-        projects.setProject(target, editedProject);
         tagMappings.editProjectTags(target, editedProject);
+        if (target.isClientPresent()) {
+            logger.info("This project " + target + " has a client present");
+            Client linkedClient = target.getLinkedClient().get();
+            logger.info("The client is " + linkedClient);
+            linkedClient.unlinkProject(target);
+            linkedClient.linkProject(editedProject);
+            editedProject.linkToClient(linkedClient);
+            clients.setClient(linkedClient, linkedClient);
+        }
+        projects.setProject(target, editedProject);
     }
 
     /**
@@ -164,6 +196,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) {
         clients.remove(key);
+        Iterator<Project> linkedProjectsIterator = key.getProjectsLinked().iterator();
+        while (linkedProjectsIterator.hasNext()) {
+            Project toRemove = linkedProjectsIterator.next();
+            toRemove.unlinkFromClient();
+            projects.setProject(toRemove, toRemove);
+        }
         tagMappings.deleteClientTags(key);
     }
 
@@ -174,6 +212,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeProject(Project key) {
         projects.remove(key);
         tagMappings.deleteProjectTags(key);
+        key.getLinkedClient().ifPresent(c -> {
+            c.unlinkProject(key);
+            clients.setClient(c, c);
+        });
     }
 
     /**
@@ -187,7 +229,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Links a project to {@code client}.
      */
     public void linkProjectToClient(Client client) {
-        projects.linkProjectToClient(client);
+        Optional<Client> previoulyLinkedClient = projects.linkProjectToClient(client);
+        clients.setClient(client, client);
+        logger.info("Linking project to client " + client);
+        logger.info("Previous client is " + previoulyLinkedClient.isPresent());
+        previoulyLinkedClient.ifPresent(c -> clients.setClient(c, c));
+    }
+
+    public void linkClientToProject(Name clientName, Project toLink) {
+        assert clients.contains(new Client(clientName, null, null, new HashSet<>()));
+        Iterator<Client> iterator = clients.iterator();
+        while (iterator.hasNext()) {
+            Client toMatch = iterator.next();
+            if (toMatch.getName().equals(clientName)) {
+                toMatch.linkProject(toLink);
+                toLink.linkToClient(toMatch);
+                return;
+            }
+        }
     }
 
     //// util methods

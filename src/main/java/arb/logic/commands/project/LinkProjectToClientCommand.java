@@ -41,9 +41,6 @@ public class LinkProjectToClientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        // add an error check here for this project is already linked?
-        // what if for edit we already have a linked project? Do we just make it do nothing instead?
-
         Client clientToLinkTo = lastShownList.get(targetIndex.getZeroBased());
         model.linkProjectToClient(clientToLinkTo);
         return new CommandResult(String.format(MESSAGE_LINK_PROJECT_TO_CLIENT_SUCCESS,

@@ -4,11 +4,17 @@ import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import arb.commons.core.LogsCenter;
+import arb.model.project.Project;
+import arb.model.project.UniqueProjectList;
 import arb.model.tag.Tag;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Client in the address book.
@@ -24,6 +30,9 @@ public class Client {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+    private final UniqueProjectList linkedProjects;
+
+    private static final Logger logger = LogsCenter.getLogger(Client.class);
     /**
      * Name and tags must be present and not null.
      */
@@ -33,6 +42,7 @@ public class Client {
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.tags.addAll(tags);
+        this.linkedProjects = new UniqueProjectList();
     }
 
     public Name getName() {
@@ -69,6 +79,30 @@ public class Client {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void linkProject(Project project) {
+        if (!linkedProjects.contains(project)) {
+            linkedProjects.add(project);
+            //assert false : getName() + ": " + linkedProjects.toString();
+        }
+    }
+
+    public void unlinkProject(Project project) {
+        logger.info("Entered unlink project");
+        assert linkedProjects.contains(project) : getName() + ": " + linkedProjects.toString();
+        linkedProjects.remove(project);
+    }
+
+    public void unlinkAllProjects() {
+        linkedProjects.setProjects(new UniqueProjectList());
+    }
+
+    public int getNumberOfProjectsLinked() {
+        return linkedProjects.asUnmodifiableObservableList().size();
+    }
+
+    public ObservableList<Project> getProjectsLinked() {
+        return linkedProjects.asUnmodifiableObservableList();
+    }
     /**
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
@@ -100,7 +134,8 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.phone.equals(phone)
                 && otherClient.email.equals(email)
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.linkedProjects.equals(linkedProjects);
     }
 
     @Override

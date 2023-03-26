@@ -123,6 +123,13 @@ public class Project {
         linkedClient = Optional.of(client);
     }
 
+    public void unlinkFromClient() {
+        linkedClient = Optional.empty();
+    }
+
+    public Optional<Client> getLinkedClient() {
+        return linkedClient;
+    }
     /**
      * Returns true if both projects have the same title.
      * This defines a weaker notion of equality between two projects.

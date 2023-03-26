@@ -8,7 +8,7 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.exceptions.ParseException;
 
-public class LinkProjectToClientParser implements Parser<LinkProjectToClientCommand> {
+public class LinkProjectToClientCommandParser implements Parser<LinkProjectToClientCommand> {
     /**
      * Parses the given {@code String} or arguments in the context of the LinkProjectToClientCommand
      * and returns a LinkProjectToClientCommand for execution.

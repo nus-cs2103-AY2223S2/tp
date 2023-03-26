@@ -103,13 +103,16 @@ public class ModelManager implements Model {
 
     @Override
     public void resetProjectList() {
+        logger.info("Resetting the project list");
         addressBook.resetProjectTagMappings();
+        addressBook.resetClientLinkings(); // unlink clients
         addressBook.setProjects(new ArrayList<Project>());
     }
 
     @Override
     public void resetClientList() {
         addressBook.resetClientTagMappings();
+        addressBook.resetProjectLinkings(); // unlink projects
         addressBook.setClients(new ArrayList<Client>());
     }
 

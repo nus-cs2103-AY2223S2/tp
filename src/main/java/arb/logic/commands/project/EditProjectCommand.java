@@ -24,6 +24,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
+import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -38,6 +39,7 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+    public static final String MESSAGE_CANNOT_FIND_CLIENT = "Cannot find client %1$s";
 
     private static final String MAIN_COMMAND_WORD = "edit-project";
     private static final String ALIAS_COMMAND_WORD = "ep";
@@ -92,10 +94,27 @@ public class EditProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
+        if (editProjectDescriptor.getClient().isPresent()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(editProjectDescriptor.getClient().get())));
+            if (model.getFilteredClientList().size() == 0) {
+                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT, editProjectDescriptor.getClient().get()));
+            } 
+            model.setToLinkProject(editedProject);            
+        }
         model.setProject(projectToEdit, editedProject);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject), ListType.PROJECT);
+
+        String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
+        ListType toBeShown = ListType.PROJECT;
+        if (editProjectDescriptor.getClient().isPresent()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(editProjectDescriptor.getClient().get())));
+            message = LinkProjectToClientCommand.MESSAGE_USAGE;
+            toBeShown = ListType.CLIENT;
+        } else {
+            model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+            model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
+        }
+        
+        return new CommandResult(message, editProjectDescriptor.getClient().isPresent(), toBeShown);
     }
 
     /**
@@ -151,6 +170,8 @@ public class EditProjectCommand extends Command {
 
         private Set<Tag> tags;
 
+        private String clientName;
+
         public EditProjectDescriptor() {}
 
         /**
@@ -161,13 +182,14 @@ public class EditProjectCommand extends Command {
             setDeadline(toCopy.deadline);
             setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setClient(toCopy.clientName);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, price, tags);
+            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientName);
         }
 
         public void setTitle(Title title) {
@@ -182,6 +204,10 @@ public class EditProjectCommand extends Command {
             this.price = price;
         }
 
+        public void setClient(String clientName) {
+            this.clientName = clientName;
+        }
+
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
@@ -192,6 +218,10 @@ public class EditProjectCommand extends Command {
 
         public Optional<Price> getPrice() {
             return Optional.ofNullable(price);
+        }
+
+        public Optional<String> getClient() {
+            return Optional.ofNullable(clientName);
         }
 
         /**
@@ -229,7 +259,8 @@ public class EditProjectCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline())
                     && getPrice().equals(e.getPrice())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getClient().equals(e.getClient());
         }
     }
 }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import arb.model.client.Client;
 import arb.model.project.exceptions.DuplicateProjectException;
@@ -103,11 +104,15 @@ public class UniqueProjectList implements Iterable<Project> {
      * Links {@code currentlyLinking} to {@code client}. Asserts that
      * {@code currentlyLinking} is not null.
      */
-    public void linkProjectToClient(Client client) {
+    public Optional<Client> linkProjectToClient(Client client) {
         assert currentlyLinking != null;
+        Optional<Client> previouslyLinkedClient = currentlyLinking.getLinkedClient();
+        previouslyLinkedClient.ifPresent(c -> c.unlinkProject(currentlyLinking));
         currentlyLinking.linkToClient(client);
+        client.linkProject(currentlyLinking);
         setProject(currentlyLinking, currentlyLinking);
         currentlyLinking = null;
+        return previouslyLinkedClient;
     }
 
     /** 
@@ -115,6 +120,15 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void setToLinkProject(Project project) {
         currentlyLinking = project;
+    }
+
+    public void resetClientLinkings() {
+        Iterator<Project> projectIterator = iterator();
+        while (projectIterator.hasNext()) {
+            Project project = projectIterator.next();
+            project.unlinkFromClient();
+            setProject(project, project);
+        }
     }
 
     /**
@@ -139,6 +153,16 @@ public class UniqueProjectList implements Iterable<Project> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("The list: ");
+        Iterator<Project> iterator = iterator();
+        while (iterator.hasNext()) {
+            sb.append(iterator.next());
+        }
+        return sb.toString();
     }
 
     /**

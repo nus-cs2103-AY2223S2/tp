@@ -11,7 +11,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
-import arb.logic.parser.project.LinkProjectToClientParser;
+import arb.logic.parser.project.LinkProjectToClientCommandParser;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private final LinkProjectToClientParser linkToClientParser;
+    private final LinkProjectToClientCommandParser linkToClientParser;
 
     private ListType currentListType;
     private boolean isInLinkMode;
@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        linkToClientParser = new LinkProjectToClientParser();
+        linkToClientParser = new LinkProjectToClientCommandParser();
         isInLinkMode = false;
     }
 

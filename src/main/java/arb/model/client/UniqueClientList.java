@@ -77,6 +77,7 @@ public class UniqueClientList implements Iterable<Client> {
         if (!internalList.remove(toRemove)) {
             throw new ClientNotFoundException();
         }
+        //toRemove.unlinkAllProjects();
     }
 
     public void setClients(UniqueClientList replacement) {
@@ -95,6 +96,15 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         internalList.setAll(clients);
+    }
+
+    public void resetProjectLinkings() {
+        Iterator<Client> clientIterator = iterator();
+        while (clientIterator.hasNext()) {
+            Client client = clientIterator.next();
+            client.unlinkAllProjects();
+            setClient(client, client);
+        }
     }
 
     /**
