@@ -38,7 +38,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | c/1                | course enrolled is Accounting—index 1 on the left panel |
    | e/e0823741@nus.edu | email is e0823741@nus.edu                               |
 2. `find` Bob in list of persons -> [find command](#find)
-   > find n/Bob y/2 c/Accounting <br>
+   > **find n/Bob y/2 c/Accounting** <br>
 
    | Parameters         | Description                                 | 
    |--------------------|---------------------------------------------|
