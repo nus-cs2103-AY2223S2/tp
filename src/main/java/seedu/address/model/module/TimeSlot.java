@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String)}
  */
 public class TimeSlot {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Timeslot should be of format \"ddMMyyyy HH:mm\" (Example: 230223 18:00)";
     public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}:[0-9]{2}$";

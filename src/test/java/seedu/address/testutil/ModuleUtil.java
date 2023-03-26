@@ -2,9 +2,9 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Set;
 
@@ -31,7 +31,7 @@ public class ModuleUtil {
     public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + module.getName().fullName + " ");
-        sb.append(PREFIX_TYPE + module.getType().value + " ");
+        sb.append(PREFIX_RESOURCE + module.getResource().value + " ");
         sb.append(PREFIX_TIMESLOT + module.getTimeSlot().value + " ");
         sb.append(PREFIX_ADDRESS + module.getAddress().value + " ");
         module.getTags().stream().forEach(
@@ -46,7 +46,7 @@ public class ModuleUtil {
     public static String getEditModuleDescriptorDetails(EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.value).append(" "));
+        descriptor.getResource().ifPresent(type -> sb.append(PREFIX_RESOURCE).append(type.value).append(" "));
         descriptor.getTimeSlot().ifPresent(timeSlot -> sb.append(PREFIX_TIMESLOT).append(timeSlot.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

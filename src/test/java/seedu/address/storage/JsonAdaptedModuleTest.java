@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Name;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,7 +25,7 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_TYPE = BENSON.getType().toString();
+    private static final String VALID_TYPE = BENSON.getResource().toString();
     private static final String VALID_TIMESLOT = BENSON.getTimeSlot().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
 
@@ -65,7 +65,7 @@ public class JsonAdaptedModuleTest {
         JsonAdaptedModule module =
                 new JsonAdaptedModule(VALID_NAME, INVALID_TYPE, VALID_TIMESLOT, VALID_ADDRESS, VALID_TAGS, VALID_REMARK,
                         VALID_DEADLINE, VALID_TEACHER);
-        String expectedMessage = Type.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Resource.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 
@@ -73,7 +73,7 @@ public class JsonAdaptedModuleTest {
     public void toModelType_nullType_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_NAME, null, VALID_TIMESLOT, VALID_ADDRESS,
                 VALID_TAGS, VALID_REMARK, VALID_DEADLINE, VALID_TEACHER);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Resource.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 

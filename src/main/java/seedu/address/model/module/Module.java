@@ -17,7 +17,7 @@ public class Module {
 
     // Compulsory fields
     private final Name name; //module name
-    private final Type type; // module type (tutorial, lecture, lab, assignment, project)
+    private final Resource resource; // module website
     private final TimeSlot timeSlot; // timeslot (should be optional)
 
     // Data fields
@@ -25,16 +25,16 @@ public class Module {
     private final Teacher teacher; // teacher (should be optional)
     private final Deadline deadline; // deadline (should be optional)
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>(); // module type (tutorial, lecture, lab, assignment, project)
 
     /**
      * name, type, timeSlot, address and tags fields are compulsory when inputting a new Module.
      */
-    public Module(Name name, Type type, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark,
+    public Module(Name name, Resource resource, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark,
                   Deadline deadline, Teacher teacher) {
-        requireAllNonNull(name, type, timeSlot, address, tags);
+        requireAllNonNull(name, resource, timeSlot, address, tags);
         this.name = name;
-        this.type = type;
+        this.resource = resource;
         this.timeSlot = timeSlot;
         this.address = address;
         this.tags.addAll(tags);
@@ -47,8 +47,8 @@ public class Module {
         return name;
     }
 
-    public Type getType() {
-        return type;
+    public Resource getResource() {
+        return resource;
     }
 
     public TimeSlot getTimeSlot() {
@@ -108,7 +108,7 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
-                && otherModule.getType().equals(getType())
+                && otherModule.getResource().equals(getResource())
                 && otherModule.getTimeSlot().equals(getTimeSlot())
                 && otherModule.getAddress().equals(getAddress())
                 && otherModule.getTags().equals(getTags())
@@ -120,15 +120,15 @@ public class Module {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, type, timeSlot, address, tags);
+        return Objects.hash(name, resource, timeSlot, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Type: ")
-                .append(getType())
+                .append("; Resource: ")
+                .append(getResource())
                 .append("; TimeSlot: ")
                 .append(getTimeSlot())
                 .append("; Address: ")

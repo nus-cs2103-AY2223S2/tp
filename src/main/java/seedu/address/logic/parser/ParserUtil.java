@@ -13,9 +13,9 @@ import seedu.address.model.module.Address;
 import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,18 +54,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String type} into a {@code Type}.
+     * Parses a {@code String resource} into a {@code Resource}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code type} is invalid.
      */
-    public static Type parseType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (!Type.isValidType(trimmedType)) {
-            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+    public static Resource parseResource(String resource) throws ParseException {
+        requireNonNull(resource);
+        String trimmedResource = resource.trim();
+        if (!Resource.isValidResource(trimmedResource)) {
+            throw new ParseException(Resource.MESSAGE_CONSTRAINTS);
         }
-        return new Type(trimmedType);
+        return new Resource(trimmedResource);
     }
 
     /**
@@ -129,9 +129,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static Teacher parseTeacher(String teacher) {
+    public static Teacher parseTeacher(String teacher) throws ParseException {
         requireNonNull(teacher);
         String trimmedTeacher = teacher.trim();
+        if (!Teacher.isValidTeacher(trimmedTeacher)) {
+            throw new ParseException(Teacher.MESSAGE_CONSTRAINTS);
+        }
         return new Teacher(trimmedTeacher);
     }
 

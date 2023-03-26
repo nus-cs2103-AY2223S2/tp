@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,8 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_TYPE_AMY = "11111111";
-    public static final String VALID_TYPE_BOB = "22222222";
+    public static final String VALID_RESOURCE_AMY = "11111111";
+    public static final String VALID_RESOURCE_BOB = "22222222";
     public static final String VALID_TIMESLOT_AMY = "amy@example.com";
     public static final String VALID_TIMESLOT_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
@@ -39,8 +39,8 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
-    public static final String TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_TYPE_BOB;
+    public static final String TYPE_DESC_AMY = " " + PREFIX_RESOURCE + VALID_RESOURCE_AMY;
+    public static final String TYPE_DESC_BOB = " " + PREFIX_RESOURCE + VALID_RESOURCE_BOB;
     public static final String TIMESLOT_DESC_AMY = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_AMY;
     public static final String TIMESLOT_DESC_BOB = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
@@ -49,7 +49,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE + "911a"; // 'a' not allowed in types
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_RESOURCE + "911a"; // 'a' not allowed in types
     public static final String INVALID_TIMESLOT_DESC = " " + PREFIX_TIMESLOT + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -62,10 +62,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditModuleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withType(VALID_TYPE_AMY).withTimeSlot(VALID_TIMESLOT_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withResource(VALID_RESOURCE_AMY).withTimeSlot(VALID_TIMESLOT_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withType(VALID_TYPE_BOB).withTimeSlot(VALID_TIMESLOT_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withResource(VALID_RESOURCE_BOB).withTimeSlot(VALID_TIMESLOT_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

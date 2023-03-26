@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
@@ -23,9 +24,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module tracker. \n"
             + "Parameters: "
             + PREFIX_NAME + "MODULE_NAME "
-            + PREFIX_TAG + "TYPE (Lecture, Tutorial, Lab) "
+            + PREFIX_TAG + "TAG (Lecture, Tutorial, Lab) "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_ADDRESS + "VENUE] "
+            + "[" + PREFIX_RESOURCE + "RESOURCE] "
             + "[" + PREFIX_TEACHER + "TEACHER] "
             + "[" + PREFIX_DEADLINE + "DEADLINES] "
             + "[" + PREFIX_REMARK + "REMARKS]\n"

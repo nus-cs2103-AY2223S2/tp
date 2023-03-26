@@ -6,9 +6,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different type -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withType(VALID_TYPE_BOB).build();
+        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withResource(VALID_RESOURCE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different timeSlot -> returns false

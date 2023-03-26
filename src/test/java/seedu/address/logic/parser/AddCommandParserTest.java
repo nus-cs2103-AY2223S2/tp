@@ -20,10 +20,10 @@ import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalModules.AMY;
@@ -35,8 +35,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ModuleBuilder;
 
@@ -91,7 +91,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing type prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_TYPE_BOB + TIMESLOT_DESC_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_RESOURCE_BOB + TIMESLOT_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing timeSlot prefix
@@ -103,7 +103,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_TYPE_BOB + VALID_TIMESLOT_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_RESOURCE_BOB + VALID_TIMESLOT_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
     }
 
@@ -115,7 +115,7 @@ public class AddCommandParserTest {
 
         // invalid type
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_TYPE_DESC + TIMESLOT_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Type.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Resource.MESSAGE_CONSTRAINTS);
 
         // invalid timeSlot
         assertParseFailure(parser, NAME_DESC_BOB + TYPE_DESC_BOB + INVALID_TIMESLOT_DESC + ADDRESS_DESC_BOB
