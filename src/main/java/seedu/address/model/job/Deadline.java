@@ -40,6 +40,19 @@ public class Deadline {
     }
 
     /**
+     * Returns true if a given string is a dateline that have not passed the current date.
+     */
+    public static boolean isNotPassed(String test) {
+        LocalDate lDate = LocalDate.parse(test);
+        if (lDate.isAfter(LocalDate.now())) {
+            return true;
+        } else {
+            setMessageConstraint("Deadline should not have passed");
+            return false;
+        }
+    }
+
+    /**
      * Sets the message constraint of deadline.
      *
      *  @param msg message constraint of the given deadline.

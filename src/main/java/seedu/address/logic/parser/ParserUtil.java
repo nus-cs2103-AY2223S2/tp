@@ -184,6 +184,9 @@ public class ParserUtil {
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.getMessageConstraint());
+        } else if (!Deadline.isNotPassed(trimmedDeadline)) {
+            throw new ParseException(Deadline.getMessageConstraint());
+
         }
         return new Deadline(trimmedDeadline);
     }
