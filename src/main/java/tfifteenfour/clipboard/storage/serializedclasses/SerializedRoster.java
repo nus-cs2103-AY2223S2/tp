@@ -32,7 +32,9 @@ public class SerializedRoster {
     }
 
     /**
-     * Converts this serialized roster to a {@code Roster} object
+     * Converts current {@code SerializedRoster} object into a {@code Roster} object
+     * and returns it.
+     * @return A {@code Roster} object that corresponds to this {@code SerializedRoster} object.
      */
     public Roster toModelType() {
         Roster newRoster = new Roster();

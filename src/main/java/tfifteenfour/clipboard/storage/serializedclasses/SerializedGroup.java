@@ -47,7 +47,8 @@ public class SerializedGroup {
     }
 
     /**
-     * Converts this serialized group to a {@code Group} object
+     * Converts current {@code SerializedGroup} object into a {@code Group} object and returns it.
+     * @return A {@code Group} object that corresponds to this {@code SerializedGroup} object.
      */
     public Group toModelType() {
         Group newGroup = new Group(this.groupName);
