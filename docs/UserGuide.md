@@ -113,6 +113,29 @@ Internship.
 Example: <br>
 ![internship_list_panel](images/internship_list_panel.png)
 
+### Finding Internships: `find`
+Finds Internships by Position, Company, Status.
+Format: `find [p/ POSITION] [c/ COMPANY] [s/ STATUS]`
+
+* After keying in the `find` command, the program will filter the internship catalogue accordingly.
+* To revert the list back to the original, just simply enter the `list` command.
+
+=======
+1. SOFTWARE ENGINEER, GOOGLE
+2. DATA ANALYST, SHOPBACK
+3. SOFTWARE ENGINEER, GRAB
+4. DATA SCIENTIST, ARTEFACT
+~~~
+
+~~~
+// input
+find p/ SOFTWARE ENGINEER
+~~~
+Result
+~~~
+1. SOFTWARE ENGINEER, GOOGLE
+2. SOFTWARE ENGINEER, GRAB
+
 ### Viewing Details of a Particular Internship : `select`
 
 View details of the internship selected by ID.
