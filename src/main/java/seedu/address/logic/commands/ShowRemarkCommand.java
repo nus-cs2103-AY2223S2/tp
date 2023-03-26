@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
+import javax.sql.rowset.Predicate;
+
 /**
  * Shows the remark of an existing person in the address book.
  */
@@ -44,7 +46,7 @@ public class ShowRemarkCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        model.updateFilteredPersonList();
         Person personToShow = lastShownList.get(index.getZeroBased());
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
