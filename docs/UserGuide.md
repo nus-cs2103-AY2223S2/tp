@@ -92,6 +92,32 @@ _**Above: After entering `add` command**_
 
 </div>
 
+### Editing remark of student: `remark`
+
+Edits a student's remark.
+
+> Format: `remark INDEX [r/REMARK]`
+
+Examples:
+
+- `remark 2 r/Not good in Japanese`
+- `remark 1 r/Bad in German`
+- `remark 3` _(removes student's remark)_
+
+<div align=center>
+
+![remark before](images/user-guide/remark_before.jpg)  
+_**Above: Before entering `remark` command**_
+
+</div>
+
+<div align=center>
+
+![remark after](images/user-guide/remark_after.jpg)  
+_**Above: After entering `remark` command**_
+
+</div>
+
 ### Delete a student: `delete`
 
 Deletes the specified student from the address book.
