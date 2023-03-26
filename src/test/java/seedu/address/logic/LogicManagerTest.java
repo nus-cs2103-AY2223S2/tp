@@ -3,6 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_ALL_PATIENTS_LISTED_OVERVIEW;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -56,29 +57,35 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
+        String expectedMessage = String.format(MESSAGE_ALL_PATIENTS_LISTED_OVERVIEW, 0);
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, expectedMessage, model);
     }
 
     /*
-    @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookIoExceptionThrowingStub(
-                temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
-                temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
-
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + NRIC_DESC_AMY;
-        Patient expectedPatient = new PatientBuilder(AMY).build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPatient(expectedPatient);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    }*/
+     * @Test
+     * public void execute_storageThrowsIoException_throwsCommandException() {
+     * // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+     * JsonAddressBookStorage addressBookStorage = new
+     * JsonAddressBookIoExceptionThrowingStub(
+     * temporaryFolder.resolve("ioExceptionAddressBook.json"));
+     * JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
+     * temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+     * StorageManager storage = new StorageManager(addressBookStorage,
+     * userPrefsStorage);
+     * logic = new LogicManager(model, storage);
+     * 
+     * // Execute add command
+     * String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + NRIC_DESC_AMY;
+     * Patient expectedPatient = new PatientBuilder(AMY).build();
+     * ModelManager expectedModel = new ModelManager();
+     * expectedModel.addPatient(expectedPatient);
+     * String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE +
+     * DUMMY_IO_EXCEPTION;
+     * assertCommandFailure(addCommand, CommandException.class, expectedMessage,
+     * expectedModel);
+     * }
+     */
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
