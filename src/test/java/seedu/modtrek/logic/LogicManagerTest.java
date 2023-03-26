@@ -11,11 +11,14 @@ import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.ListCommand;
@@ -48,6 +51,24 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
+    }
+
+    @Test
+    public void execute_findCommandGetFiltersList_success() throws CommandException, ParseException {
+        String validCommandModule = "find CS1101S";
+        assertCommandSuccess(validCommandModule, String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
+                model.getFilteredModuleList().size()), model);
+        List<String> filtersList = new ArrayList<>();
+        filtersList.add("CS1101S");
+        assertEquals(logic.getFiltersList(), filtersList);
+
+        String validCommandPrefix = "find /m CS /g A";
+        assertCommandSuccess(validCommandPrefix, String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
+                model.getFilteredModuleList().size()), model);
+        filtersList.clear();
+        filtersList.add("/m CS");
+        filtersList.add("/g A");
+        assertEquals(logic.getFiltersList(), filtersList);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Locale;
@@ -17,33 +18,36 @@ import seedu.modtrek.model.tag.Tag;
 public class TagCommandParser implements Parser<TagCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
-     *
-     * @param args
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
-        Code code;
         boolean isInclude;
 
         String preamble = argMultimap.getPreamble();
         String[] preambleParts = preamble.split(" ");
-        code = ParserUtil.parseCode(preambleParts[0]);
         if (preambleParts.length > 1 && preambleParts[1].toLowerCase(Locale.ROOT).equals("include")) {
             isInclude = true;
         } else if (preambleParts.length > 1 && preambleParts[1].toLowerCase(Locale.ROOT).equals("remove")) {
             isInclude = false;
         } else {
-            throw new ParseException("Did not specify whether to include or remove tags");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        }
+        Code code = ParserUtil.parseCode(preambleParts[0]);
+
+        boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
+        if (!isTagPresent) {
+            throw new ParseException(TagCommand.MESSAGE_MISSING_PREFIX);
+        }
+        if (argMultimap.getAllValues(PREFIX_TAG).contains("")) {
+            throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
         }
         Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        if (tag.isEmpty()) {
-            throw new ParseException("Did not specify prefix /t");
-        }
         return new TagCommand(code, isInclude, tag);
     }
 }
