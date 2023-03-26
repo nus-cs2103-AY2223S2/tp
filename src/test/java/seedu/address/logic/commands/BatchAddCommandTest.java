@@ -1,31 +1,18 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.*;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ExecutiveProDb;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeId;
-import seedu.address.testutil.EmployeeBuilder;
 
 class BatchAddCommandTest {
-    private static final Employee PAM = new EmployeeBuilder()
-            .withName("Pam Morty")
-            .withEmptyPhone()
-            .withEmail("paul@example.com")
-            .withEmptyAddress()
-            .withDepartment("Sales")
-            .withTags("Innovation")
-            .build();
 
     private Model model = new ModelManager(getTypicalExecutiveProDb(), new UserPrefs());
 
@@ -55,20 +42,20 @@ class BatchAddCommandTest {
     }
 
 
-//    @Test
-//    void execute_batchAdd_success() {
-//        Model emptyDatabase = new ModelManager(new ExecutiveProDb(), new UserPrefs());
-//        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "BatchAddSuccess.csv");
-//        BatchAddCommand batchAddCommand = new BatchAddCommand("BatchAddSuccess.csv");
-//        batchAddCommand.setFilePath(testData);
-//
-//        String expectedMessage = String.format(BatchAddCommand.MESSAGE_WORKS, 2);
-//        ModelManager expectedModel = new ModelManager(new ExecutiveProDb(), new UserPrefs());
-//        EmployeeId.setCount(1);
-//        expectedModel.addEmployee(AMY);
-//        expectedModel.addEmployee(BOB);
-//
-//        assertCommandSuccess(batchAddCommand, emptyDatabase, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    void execute_batchAdd_success() {
+    //        Model emptyDatabase = new ModelManager(new ExecutiveProDb(), new UserPrefs());
+    //        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "BatchAddSuccess.csv");
+    //        BatchAddCommand batchAddCommand = new BatchAddCommand("BatchAddSuccess.csv");
+    //        batchAddCommand.setFilePath(testData);
+    //
+    //        String expectedMessage = String.format(BatchAddCommand.MESSAGE_WORKS, 2);
+    //        ModelManager expectedModel = new ModelManager(new ExecutiveProDb(), new UserPrefs());
+    //        EmployeeId.setCount(1);
+    //        expectedModel.addEmployee(AMY);
+    //        expectedModel.addEmployee(BOB);
+    //
+    //        assertCommandSuccess(batchAddCommand, emptyDatabase, expectedMessage, expectedModel);
+    //    }
 
 }
