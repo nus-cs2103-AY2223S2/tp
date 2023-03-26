@@ -2,9 +2,6 @@ package seedu.address.model.service;
 
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.index.Index;
-
-
 /**
  * Tests that a {@code Service}'s id matches the id given.
  */

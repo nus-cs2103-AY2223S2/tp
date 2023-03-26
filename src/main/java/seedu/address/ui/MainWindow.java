@@ -1,9 +1,7 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,7 +16,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListServicesCommand;
+import seedu.address.logic.commands.ListVehiclesCommand;
+import seedu.address.logic.commands.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -27,11 +29,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
     public final String[] tabResultDisplayMessages = new String[6];
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
@@ -140,10 +142,10 @@ public class MainWindow extends UiPart<Stage> {
         customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
     }
 
-   private void initVehicleListPanel() {
+    private void initVehicleListPanel() {
         vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
                 logic.getVehicleDataMap());
-       vehicleListPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
+        vehicleListPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
     }
 
     private void initServiceListPanel() {

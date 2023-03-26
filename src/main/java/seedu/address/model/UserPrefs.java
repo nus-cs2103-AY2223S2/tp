@@ -61,6 +61,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public void setShopFilePath(Path shopFilePath) {
+        requireNonNull(shopFilePath);
+        this.shopFilePath = shopFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -1,15 +1,11 @@
 package seedu.address.ui;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.entity.person.Customer;
@@ -17,11 +13,8 @@ import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 /**
- * An UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a {@code Customer}.
  */
 public class CustomerDetailsPanel extends UiPart<Region> {
 
@@ -72,12 +65,12 @@ public class CustomerDetailsPanel extends UiPart<Region> {
         List<Vehicle> vehicles = dataMap.getCustomerVehicles(customer);
         List<Appointment> appointments = dataMap.getCustomerAppointments(customer);
 
-        vehiclesLabel.setText("Vehicles (" + vehicles.size() +")");
-        appointmentsLabel.setText("Appointments (" + appointments.size() +")");
+        vehiclesLabel.setText("Vehicles (" + vehicles.size() + ")");
+        appointmentsLabel.setText("Appointments (" + appointments.size() + ")");
 
         for (int i = 0; i < vehicles.size(); i++) {
             Vehicle v = vehicles.get(i);
-            Label vLabel = new Label(v.getId() +". "+ v.getBrand() + " (" + v.getPlateNumber() + ") "
+            Label vLabel = new Label(v.getId() + ". " + v.getBrand() + " (" + v.getPlateNumber() + ") "
                     + v.getType().getValue());
             vLabel.getStyleClass().add("details-info");
             customerVehicles.getChildren().add(vLabel);
@@ -85,7 +78,7 @@ public class CustomerDetailsPanel extends UiPart<Region> {
 
         for (int i = 0; i < appointments.size(); i++) {
             Appointment a = appointments.get(i);
-            Label aLabel = new Label(a.getId() +". "+ a.getTimeDate().format(dtf));
+            Label aLabel = new Label(a.getId() + ". " + a.getTimeDate().format(dtf));
             aLabel.getStyleClass().add("details-info");
             customerAppointments.getChildren().add(aLabel);
         }

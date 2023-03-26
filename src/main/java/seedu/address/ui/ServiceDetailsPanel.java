@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Map;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.service.PartMap;
@@ -14,21 +17,17 @@ import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
-
 /**
  * An UI component that displays information of a {@code Vehicle}.
  */
 public class ServiceDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "ServiceDetailsPanel.fxml";
-    private static final Color toRepair = Color.rgb(61,167,201);
-    private static final Color inProgress = Color.rgb(252,159,39);
-    private static final Color complete = Color.rgb(89,201,61);
-    private static final Color cancelled = Color.rgb(236,46,46);
-    private static final Color onHold = Color.rgb(255,230,0);
+    private static final Color toRepair = Color.rgb(61, 167, 201);
+    private static final Color inProgress = Color.rgb(252, 159, 39);
+    private static final Color complete = Color.rgb(89, 201, 61);
+    private static final Color cancelled = Color.rgb(236, 46, 46);
+    private static final Color onHold = Color.rgb(255, 230, 0);
 
     public final Service service;
     @FXML
@@ -70,7 +69,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
         setStatusCircle(service.getStatus());
 
         Vehicle v = dataMap.getServiceVehicle(service);
-        Label vehicleLabel = new Label(v.getId() +". "+ v.getBrand() + " (" + v.getPlateNumber() + ") "
+        Label vehicleLabel = new Label(v.getId() + ". " + v.getBrand() + " (" + v.getPlateNumber() + ") "
                 + v.getType().getValue());
         vehicleLabel.getStyleClass().add("details-info");
         vehicleAssignedTo.getChildren().add(vehicleLabel);
@@ -96,20 +95,20 @@ public class ServiceDetailsPanel extends UiPart<Region> {
 
     private void setStatusCircle(ServiceStatus status) {
         switch (status) {
-            case TO_REPAIR:
-                statusCircle.setFill(toRepair);
-                break;
-            case IN_PROGRESS:
-                statusCircle.setFill(inProgress);
-                break;
-            case COMPLETE:
-                statusCircle.setFill(complete);
-                break;
-            case CANCELLED:
-                statusCircle.setFill(cancelled);
-                break;
-            default:
-                statusCircle.setFill(onHold);
+        case TO_REPAIR:
+            statusCircle.setFill(toRepair);
+            break;
+        case IN_PROGRESS:
+            statusCircle.setFill(inProgress);
+            break;
+        case COMPLETE:
+            statusCircle.setFill(complete);
+            break;
+        case CANCELLED:
+            statusCircle.setFill(cancelled);
+            break;
+        default:
+            statusCircle.setFill(onHold);
         }
     }
 

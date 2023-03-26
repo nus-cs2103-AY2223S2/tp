@@ -99,7 +99,7 @@ public class CustomerVehicleMap {
         int count = 0;
         List<Vehicle> customerVehicles = this.getCustomerVehicles(customer);
         for (Vehicle vehicle : customerVehicles) {
-            if(vehicle.getType() == VehicleType.CAR) {
+            if (vehicle.getType() == VehicleType.CAR) {
                 count++;
             }
         }
@@ -117,7 +117,7 @@ public class CustomerVehicleMap {
         int count = 0;
         List<Vehicle> customerVehicles = this.getCustomerVehicles(customer);
         for (Vehicle vehicle : customerVehicles) {
-            if(vehicle.getType() == VehicleType.MOTORBIKE) {
+            if (vehicle.getType() == VehicleType.MOTORBIKE) {
                 count++;
             }
         }

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleIdPredicate;
 

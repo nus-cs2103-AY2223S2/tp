@@ -99,8 +99,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
+        public Path getShopFilePath() {
+            return null;
+        }
+
+        @Override
+        public void setShopFilePath(Path shopFilePath) {
+
         }
 
         @Override
@@ -315,6 +320,26 @@ public class AddCommandTest {
         @Override
         public Customer getSelectedCustomer() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectVehicle(Vehicle vehicle) {
+
+        }
+
+        @Override
+        public Vehicle getSelectedVehicle() {
+            return null;
+        }
+
+        @Override
+        public void selectService(Service service) {
+
+        }
+
+        @Override
+        public Service getSelectedService() {
+            return null;
         }
 
         @Override

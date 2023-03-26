@@ -83,7 +83,8 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
         final Set<Integer> modelVehicleIds = new HashSet<>(customerVehicleIds);
         final Set<Integer> modelAppointmentIds = new HashSet<>(customerAppointmentIds);
 
-        return new Customer(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getTags(), modelVehicleIds, modelAppointmentIds);
+        return new Customer(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(),
+                p.getTags(), modelVehicleIds, modelAppointmentIds);
     }
 
 }

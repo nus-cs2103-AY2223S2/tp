@@ -79,13 +79,13 @@ public class ModelManager implements Model {
         serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
                 this.shop.getVehicleList());
 
-        if(filteredCustomers.size() > 0) {
+        if (filteredCustomers.size() > 0) {
             selectedCustomer = filteredCustomers.get(0);
         }
-        if(filteredVehicles.size() > 0) {
+        if (filteredVehicles.size() > 0) {
             selectedVehicle = filteredVehicles.get(0);
         }
-        if(filteredServices.size() > 0) {
+        if (filteredServices.size() > 0) {
             selectedService = filteredServices.get(0);
         }
     }
@@ -136,6 +136,12 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setShopFilePath(Path shopFilePath) {
+        requireNonNull(shopFilePath);
+        userPrefs.setShopFilePath(shopFilePath);
     }
 
     //=========== AddressBook ================================================================================

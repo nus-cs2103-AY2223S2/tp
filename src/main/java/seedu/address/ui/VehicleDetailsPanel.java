@@ -1,22 +1,19 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.mapping.VehicleDataMap;
-import seedu.address.model.service.Service;
-import seedu.address.model.service.Vehicle;
-import seedu.address.model.service.appointment.Appointment;
-
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+
 /**
- * An UI component that displays information of a {@code Vehicle}.
+ * A UI component that displays information of a {@code Vehicle}.
  */
 public class VehicleDetailsPanel extends UiPart<Region> {
 

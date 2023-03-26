@@ -2,15 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
-
-import java.io.File;
 
 /**
  * An UI component that displays information of a {@code Customer}.
@@ -29,7 +27,7 @@ public class VehicleCard extends UiPart<Region> {
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
-     *      issue on AddressBook level 4</a>
+     * issue on AddressBook level 4</a>
      */
 
     public final Vehicle vehicle;
@@ -64,7 +62,7 @@ public class VehicleCard extends UiPart<Region> {
         plateNumber.setText(vehicle.getPlateNumber());
         brand.setText(vehicle.getBrand() + ",");
         type.setText(vehicle.getType().getValue());
-        if(vehicle.getType() == VehicleType.CAR){
+        if (vehicle.getType() == VehicleType.CAR) {
             typeImg.setImage(CarIcon);
         } else {
             typeImg.setImage(MotorbikeIcon);

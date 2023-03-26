@@ -1,17 +1,14 @@
 package seedu.address.ui;
 
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.service.Vehicle;
 
 /**
- * An UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a {@code Customer}.
  */
 public class CustomerCard extends UiPart<Region> {
 

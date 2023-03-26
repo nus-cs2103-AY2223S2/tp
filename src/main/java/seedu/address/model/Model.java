@@ -58,6 +58,11 @@ public interface Model {
     Path getShopFilePath();
 
     /**
+     * Sets the user prefs' shop file path.
+     */
+    void setShopFilePath(Path shopFilePath);
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
