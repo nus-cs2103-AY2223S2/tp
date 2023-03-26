@@ -22,7 +22,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label tags;
+    private FlowPane tags;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
