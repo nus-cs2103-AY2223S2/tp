@@ -335,6 +335,22 @@ Two pairs are identical if they have the same elderly and volunteer NRIC.
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
+### Summary Statistics
+
+The `stats` command displays summary statistics about FriendlyLink, such as the total number of elderly, volunteers and unpaired persons.
+
+It is implemented using the `Summary` and `AggregateFunction` class.
+
+The `AggregateFunction`
+* describes a particular statistic of FriendlyLink with a number.
+* is an abstract class that requires concrete classes to override the `getDescription()` and `getResult()` method.
+
+The `summary object`
+* formats the results to be displayed to the user.
+* takes in 0 or more `AggregateFunction`s to show their description and results.
+
+<img src="images/developerGuide/StatsCommandClassDiagram.png" width="900" />
+ 
 ### Storage
 This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
 
