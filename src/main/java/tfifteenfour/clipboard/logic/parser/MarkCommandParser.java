@@ -19,7 +19,7 @@ public class MarkCommandParser implements Parser<MarkPresentCommand> {
      */
     public MarkPresentCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index[] index = ParserUtil.parseMultipleIndex(args);
             return new MarkPresentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
