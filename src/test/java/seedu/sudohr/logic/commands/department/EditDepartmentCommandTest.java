@@ -33,7 +33,6 @@ public class EditDepartmentCommandTest {
 
     private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
 
-    // BUGGED
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Department editedDepartment = new DepartmentBuilder().build();
@@ -44,12 +43,11 @@ public class EditDepartmentCommandTest {
         String expectedMessage = String.format(EditDepartmentCommand.MESSAGE_EDIT_DEPARTMENT_SUCCESS, editedDepartment);
 
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
-        expectedModel.setDepartment(model.getDepartment(DEPARTMENT_NAME_FIRST), editedDepartment);
+        expectedModel.removeDepartment(new Department(DEPARTMENT_NAME_SECOND));
 
         model.removeDepartment(new Department(DEPARTMENT_NAME_FIRST));
 
-        // assertCommandSuccess(editDepartmentCommand, model, expectedMessage, expectedModel);
-        return;
+        assertCommandSuccess(editDepartmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
