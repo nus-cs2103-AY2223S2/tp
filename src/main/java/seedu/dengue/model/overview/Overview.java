@@ -1,9 +1,11 @@
-package seedu.dengue.ui.overview;
+package seedu.dengue.model.overview;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.dengue.logic.analyst.Analyst;
 import seedu.dengue.logic.analyst.DataBin;
+import seedu.dengue.model.person.Person;
 
 /**
  * The API of the Overview list.
@@ -32,6 +34,13 @@ public abstract class Overview {
      * @return The analyst associated with the overview.
      */
     public abstract Analyst getAnalyst();
+
+    /**
+     * Updates the analyst with the given {@code Person} list.
+     *
+     * @param personsList The new list of persons to analyse.
+     */
+    public abstract void update(List<Person> personsList);
 
     /**
      * Returns a standardized {@code String} representation of a given bin,

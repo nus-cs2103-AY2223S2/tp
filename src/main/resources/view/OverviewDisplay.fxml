@@ -2,9 +2,13 @@
 
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="overviewTitle" editable="false" styleClass="overview-title"/>
-  <TextArea fx:id="overviewContent" editable="false" styleClass="overview-content"/>
+           xmlns:fx="http://javafx.com/fxml/1">
+  <VBox>
+    <TextArea fx:id="overviewTitle" editable="false" styleClass="overview-title" />
+    <TextArea fx:id="overviewSubtitle" editable="false" styleClass="overview-subtitle" />
+    <TextArea fx:id="overviewContent" editable="false" styleClass="overview-content" />
+  </VBox>
 </StackPane>

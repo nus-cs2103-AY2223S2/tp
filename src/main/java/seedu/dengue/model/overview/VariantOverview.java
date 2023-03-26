@@ -1,4 +1,4 @@
-package seedu.dengue.ui.overview;
+package seedu.dengue.model.overview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class VariantOverview extends Overview {
     private static final String VARIANT_TITLE = "Overview by Variant";
     private static final int MAX_VARIANT_NAME_LEN = 5; // length of "DENV1", since all the same
 
-    private final VariantAnalyst analyst;
+    private VariantAnalyst analyst;
 
     /**
      * Constructs a {@code VariantOverview} instance with the given list of {@code Person}s.
@@ -28,6 +28,13 @@ public class VariantOverview extends Overview {
         this.analyst = new VariantAnalyst(persons);
     }
 
+    /**
+     * Constructs a {@code VariantOverview} instance with an empty list of {@code Person}s.
+     */
+    public VariantOverview() {
+        this(new ArrayList<>());
+    }
+
     @Override
     public String getOverviewTitle() {
         return VARIANT_TITLE;
@@ -36,6 +43,12 @@ public class VariantOverview extends Overview {
     @Override
     public VariantAnalyst getAnalyst() {
         return this.analyst;
+    }
+
+    @Override
+    public void update(List<Person> personList) {
+        List<Person> persons = new ArrayList<>(personList);
+        this.analyst = new VariantAnalyst(persons);
     }
 
     @Override

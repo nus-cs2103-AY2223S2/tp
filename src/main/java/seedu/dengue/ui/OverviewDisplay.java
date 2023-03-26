@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import seedu.dengue.ui.overview.Overview;
+import seedu.dengue.model.overview.Overview;
 
 /**
  * A ui for the current overview that is displayed on the right of the application.

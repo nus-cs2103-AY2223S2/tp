@@ -29,7 +29,7 @@ public class VariantAnalyst extends Analyst {
                 .forEach(variant -> {
                     DengueVariant variantName = variant.variantName;
                     if (!bins.containsKey(variantName)) {
-                            bins.put(variantName, new DataBin(variant.toString()));
+                        bins.put(variantName, new DataBin(variant.toString()));
                     }
                     bins.get(variantName).addPerson(person);
                 }));

@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.overview.Overview;
+import seedu.dengue.model.overview.AgeOverview;
 
 /**
  * Represents the in-memory model of the Dengue Hotspot Tracker data.
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final DengueHotspotTracker dengueHotspotTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Overview overview;
 
     /**
      * Initializes a ModelManager with the given dengueHotspotTracker and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.dengueHotspotTracker.getPersonList());
+        this.overview = new AgeOverview(); // TODO default is Postal
     }
 
     public ModelManager() {
@@ -129,6 +133,19 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Overview Stuff =============================================================
+
+    @Override
+    public Overview getOverview() {
+        this.overview.update(filteredPersons);
+        return this.overview;
+    }
+
+    @Override
+    public void setOverview(Overview newOverview) {
+        this.overview = newOverview;
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -145,7 +162,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return dengueHotspotTracker.equals(other.dengueHotspotTracker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && overview.equals(other.overview);
     }
-
 }
