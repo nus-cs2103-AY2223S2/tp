@@ -33,39 +33,44 @@ public class TypicalPersons {
         .withPhone("94351253")
         .withDrugAllergy("NKDA")
         .withGender("female")
-        .withTags("friends").build();
+        .withTags("Diabetic").build();
     public static final Person BENSON = new PersonBuilder().withNric("S2345678B")
         .withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withEmail("johnd@example.com").withPhone("98765432")
         .withDrugAllergy("NKDA")
-        .withTags("owesMoney", "friends")
+        .withTags("Osteoporotic", "Diabetic")
         .withGender("male")
         .withMedicines("Paracetamol").build();
     public static final Person CARL = new PersonBuilder().withNric("S3456789C")
         .withName("Carl Kurz").withPhone("95352563")
         .withEmail("heinz@example.com").withAddress("wall street")
         .withGender("male")
+        .withTags("Asthmatic")
         .withDrugAllergy("Penicilin").build();
     public static final Person DANIEL = new PersonBuilder().withNric("S0123456D")
         .withName("Daniel Meier").withPhone("87652533")
         .withEmail("cornelia@example.com").withAddress("10th street")
         .withDrugAllergy("Aspirin Panadol")
-        .withGender("male").withTags("friends").build();
+        .withTags("Epileptic")
+        .withGender("male").build();
     public static final Person ELLE = new PersonBuilder().withNric("S0000000E")
         .withName("Elle Meyer").withPhone("9482224")
         .withEmail("werner@example.com").withAddress("michegan ave")
         .withGender("female")
+        .withTags("Arthritic")
         .withDrugAllergy("NKDA").build();
     public static final Person FIONA = new PersonBuilder().withNric("S1111111F")
         .withName("Fiona Kunz").withPhone("9482427")
         .withEmail("lydia@example.com").withAddress("little tokyo")
         .withGender("female")
+        .withTags("Diabetic")
         .withDrugAllergy("Aspirin Panadol").build();
     public static final Person GEORGE = new PersonBuilder().withNric("S2222222G")
         .withName("George Best").withPhone("9482442")
         .withEmail("anna@example.com").withAddress("4th street")
         .withGender("male")
+        .withTags("Diabetic")
         .withDrugAllergy("Lidocaine").build();
 
 

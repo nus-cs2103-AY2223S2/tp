@@ -10,7 +10,7 @@
       "drugAllergy": "NKDA",
       "gender": "female",
       "tagged": [
-        "friends"
+        "Diabetic"
       ]
     },
     {
@@ -22,8 +22,8 @@
       "drugAllergy": "NKDA",
       "gender": "male",
       "tagged": [
-        "owesMoney",
-        "friends"
+        "Osteoporotic",
+        "Diabetic"
       ],
       "medicines": [
         "Paracetamol"
@@ -37,7 +37,9 @@
       "address": "wall street",
       "drugAllergy": "Penicilin",
       "gender": "male",
-      "tagged": []
+      "tagged": [
+        "Asthmatic"
+      ]
     },
     {
       "nric": "S0123456D",
@@ -48,7 +50,7 @@
       "drugAllergy": "Aspirin Panadol",
       "gender": "male",
       "tagged": [
-        "friends"
+        "Epileptic"
       ]
     },
     {
@@ -59,7 +61,9 @@
       "address": "michegan ave",
       "drugAllergy": "NKDA",
       "gender": "female",
-      "tagged": []
+      "tagged": [
+        "Arthritic"
+      ]
     },
     {
       "nric": "S1111111F",
@@ -69,7 +73,9 @@
       "address": "little tokyo",
       "drugAllergy": "Aspirin Panadol",
       "gender": "female",
-      "tagged": []
+      "tagged": [
+        "Diabetic"
+      ]
     },
     {
       "nric": "S2222222G",
@@ -79,7 +85,9 @@
       "address": "4th street",
       "drugAllergy": "Lidocaine",
       "gender": "male",
-      "tagged": []
+      "tagged": [
+        "Diabetic"
+      ]
     }
   ]
 }
