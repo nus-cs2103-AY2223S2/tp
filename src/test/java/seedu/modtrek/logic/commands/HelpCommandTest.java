@@ -67,4 +67,11 @@ public class HelpCommandTest {
                 false, false, false, false);
         assertCommandSuccess(new HelpCommand(ExitCommand.MESSAGE_USAGE), model, expectedCommandResult, expectedModel);
     }
+
+    @Test
+    public void execute_helpSort_success() {
+        CommandResult expectedCommandResult = new CommandResult(SortCommand.MESSAGE_USAGE,
+                false, false, false, false);
+        assertCommandSuccess(new HelpCommand(SortCommand.MESSAGE_USAGE), model, expectedCommandResult, expectedModel);
+    }
 }
