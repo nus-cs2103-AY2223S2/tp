@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExecutiveProDb;
-import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeId;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +8,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ExecutiveProDb;
+import seedu.address.model.Model;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
