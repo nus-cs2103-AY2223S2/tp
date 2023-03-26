@@ -20,17 +20,17 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) or above installed in your computer.
 
 2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
-   ![Latest](images/ConnectUSLatest.png)
+   ###![Latest](images/ConnectUSLatest.png) <br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
-   ![Home Folder](images/ConnectUSHomeFolder.png)
+   ###![Home Folder](images/ConnectUSHomeFolder.png)
 
 4. Double-click the `ConnectUS.jar` file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ###![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. <br>
-   ![Command Box](images/ConnectUSCommandBox.png) <br>
+   ###![Command Box](images/ConnectUSCommandBox.png) <br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
