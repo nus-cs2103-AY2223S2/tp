@@ -6,7 +6,16 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.*;
+import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.EditCommand;
+import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.HelpCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
+import seedu.internship.logic.commands.event.EventCommand;
+import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,6 +43,8 @@ public class InternshipCatalogueParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -41,14 +52,18 @@ public class InternshipCatalogueParser {
             return new DeleteCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case ViewCommand.COMMAND_WORD:
+        case SelectCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+        case EventCommand.COMMAND_WORD:
+            return new EventCatalogueParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

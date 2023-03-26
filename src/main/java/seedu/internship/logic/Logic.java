@@ -8,7 +8,9 @@ import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -31,13 +33,28 @@ public interface Logic {
      */
     ReadOnlyInternshipCatalogue getInternshipCatalogue();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns the EventCatalogue.
+     *
+     * @see seedu.internship.model.Model#getEventCatalogue()
+     */
+    ReadOnlyEventCatalogue getEventCatalogue();
+
+    /** Returns an unmodifiable view of the filtered list of internships */
     ObservableList<Internship> getFilteredInternshipList();
+
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Returns the user prefs' internship catalogue file path.
      */
     Path getInternshipCatalogueFilePath();
+
+    /**
+     * Returns the user prefs' event catalogue file path.
+     */
+    Path getEventCatalogueFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

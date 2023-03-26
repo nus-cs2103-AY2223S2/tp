@@ -13,5 +13,4 @@ public interface ReadOnlyInternshipCatalogue {
      * This list will not contain any duplicate internships.
      */
     ObservableList<Internship> getInternshipList();
-
 }
