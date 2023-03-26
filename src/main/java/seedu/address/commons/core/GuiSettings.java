@@ -21,6 +21,7 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
     private static final String DEFAULT_PHOTO_PATH = "/images/studentProfiles/student_";
+    private static final String DEFAULT_MORE_PHOTO = "/images/more_icon.png";
     private static final String DEFAULT_PHOTO_FORMAT = ".png";
     private static final int DEFAULT_PHOTO_START_INDEX = 1;
     private static final int DEFAULT_PHOTO_END_INDEX = 16;
@@ -46,6 +47,7 @@ public class GuiSettings implements Serializable {
     private final int circleRadius;
     private final String photoPath;
     private final String photoFormat;
+    private final String morePhoto;
     private final int photoStartIndex;
     private final int photoEndIndex;
     private final String tutorialIcon;
@@ -68,6 +70,7 @@ public class GuiSettings implements Serializable {
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
         photoPath = DEFAULT_PHOTO_PATH;
+        morePhoto = DEFAULT_MORE_PHOTO;
         photoFormat = DEFAULT_PHOTO_FORMAT;
         photoStartIndex = DEFAULT_PHOTO_START_INDEX;
         photoEndIndex = DEFAULT_PHOTO_END_INDEX;
@@ -93,6 +96,7 @@ public class GuiSettings implements Serializable {
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
         photoPath = DEFAULT_PHOTO_PATH;
+        morePhoto = DEFAULT_MORE_PHOTO;
         photoFormat = DEFAULT_PHOTO_FORMAT;
         photoStartIndex = DEFAULT_PHOTO_START_INDEX;
         photoEndIndex = DEFAULT_PHOTO_END_INDEX;
@@ -138,6 +142,10 @@ public class GuiSettings implements Serializable {
 
     public String getPhoto() {
         return photoPath;
+    }
+
+    public String getMorePhoto() {
+        return morePhoto;
     }
 
     public String getPhotoFormat() {
