@@ -17,7 +17,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 
@@ -43,7 +42,7 @@ public class GroupAddCommand extends Command {
 
     /**
      * command constructor
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param groupsToAdd details to edit the person with
      */
     public GroupAddCommand(Index index, Set<Tag> groupsToAdd) {
@@ -62,10 +61,9 @@ public class GroupAddCommand extends Command {
         Phone updatedPhone = person.getPhone();
         Address updatedAddress = person.getAddress();
         PayRate updatedPayRate = person.getPayRate();
-        Session updatedSession = person.getSession();
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(groups);
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, updatedSession, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, updatedTags);
     }
 
     /**

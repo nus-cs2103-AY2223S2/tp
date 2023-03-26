@@ -3,9 +3,6 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "address": "4th street",
-    "payRate": "invalidPay",
-    "sessionString": "15-03-2022 10:00 to 15-03-2022 12:00",
-    "hasPaid": "false",
-    "isPresent": "false"
+    "payRate": "invalidPay"
   } ]
 }
