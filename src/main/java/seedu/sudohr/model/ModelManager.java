@@ -353,6 +353,7 @@ public class ModelManager implements Model {
         return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEmployees.equals(other.filteredEmployees)
-                && filteredDepartments.equals(other.filteredDepartments);
+                && filteredDepartments.equals(other.filteredDepartments)
+                && filteredLeaves.equals(other.filteredLeaves);
     }
 }
