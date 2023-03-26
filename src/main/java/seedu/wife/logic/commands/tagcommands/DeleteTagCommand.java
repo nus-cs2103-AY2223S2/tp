@@ -2,6 +2,7 @@ package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
+import static seedu.wife.model.Model.PREDICATE_SHOW_NO_FOODS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,8 +23,8 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a pre-defined tag\n"
             + "Example: " + COMMAND_WORD + " n/vegetable";
-    public static final String TAG_DELETE_SUCCESS_MESSAGE = "Tag successfully deleted:";
-    public static final String TAG_DELETE_UNSUCCESS_MESSAGE = "The tag you are trying to delete does not exist.";
+    public static final String MESSAGE_TAG_DELETE_SUCCESS = "Tag successfully deleted:";
+    public static final String MESSAGE_TAG_DELETE_UNSUCCESS = "The tag you are trying to delete does not exist.";
     private Set<Tag> toDelete;
 
     /**
@@ -47,9 +48,8 @@ public class DeleteTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tag> lastShownTagList = List.copyOf(model.getTagList());
         List<Food> lastShownFoodList = List.copyOf(model.getFoodList());
-        String deletedTagSuccessMessage = TAG_DELETE_SUCCESS_MESSAGE;
+        String deletedTagSuccessMessage = MESSAGE_TAG_DELETE_SUCCESS;
 
         // Deletes tag from food
         for (Tag tag : toDelete) {
@@ -62,11 +62,17 @@ public class DeleteTagCommand extends Command {
         for (Tag tag : toDelete) {
             if (model.hasTag(tag)) {
                 model.deleteTag(tag);
-                deletedTagSuccessMessage += "\n" + this.toDelete;
+                deletedTagSuccessMessage += "\n" + tag;
             }
         }
-
+        
+        // Refreshes the list.
+        model.updateFilteredFoodList(PREDICATE_SHOW_NO_FOODS);
         model.updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+
+        if (deletedTagSuccessMessage.equals(MESSAGE_TAG_DELETE_SUCCESS)) {
+            throw new CommandException(MESSAGE_TAG_DELETE_UNSUCCESS);
+        }
 
         return new CommandResult(deletedTagSuccessMessage);
     }
