@@ -1,6 +1,13 @@
-# Developer Guide
+---
+layout: page
+title: Developer Guide
+---
+* Table of Contents
+  {:toc}
 
-# Acknowledgments
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
 
 Codebase foundation by AB3.
 
