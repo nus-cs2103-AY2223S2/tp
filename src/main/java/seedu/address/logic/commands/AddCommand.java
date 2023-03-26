@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DRUG_ALLERGY + "DRUG ALLERGIES "
-            + PREFIX_GENDER + "GENDER"
+            + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
