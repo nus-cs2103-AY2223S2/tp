@@ -64,6 +64,9 @@
     -fx-background-color: -dark-grey;
     -fx-background: -dark-grey;
 }
+.combo-box-base:hover {
+    -fx-opacity: 0.8;
+}
 .combo-box-popup .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
