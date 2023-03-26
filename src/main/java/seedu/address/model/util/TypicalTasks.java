@@ -1,5 +1,9 @@
 package seedu.address.model.util;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,9 +11,6 @@ import java.util.List;
 import seedu.address.model.Repository;
 import seedu.address.model.task.Task;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 /**
  * A utility class containing a list of {@code Tasks} objects to be used in tests.
