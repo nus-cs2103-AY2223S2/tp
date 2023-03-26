@@ -10,20 +10,36 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="drugListView" HBox.hgrow="ALWAYS" />
-    <ScrollPane fx:id="drugList" prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <ListView fx:id="drugListView" HBox.hgrow="ALWAYS"/>
+    <ScrollPane fx:id="drugDetailDisplay" prefWidth="300" minWidth="300" HBox.hgrow="NEVER" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
+                xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <padding>
-            <Insets top="5" right="5" bottom="5" left="15" />
+            <Insets top="5" right="5" bottom="5" left="5"/>
         </padding>
-        <content >
-            <VBox maxWidth="280" prefWidth="265" prefHeight="450" fx:id="detailDisplay">
-                <Label fx:id="selectedTradeName"  wrapText="true" text="Please select a drug" styleClass="cell_big_label" />
-                <Label fx:id="selectedActiveIngredient"  wrapText="true" styleClass="cell_small_label" />
-                <Label fx:id="selectedDirection"  wrapText="true" styleClass="cell_small_label" />
-                <Label fx:id="selectedPurposes"  wrapText="true" styleClass="cell_small_label"  />
-                <Label fx:id="selectedSideEffects"  wrapText="true" styleClass="cell_small_label"/>
-                <Label fx:id="selectedStorageCount"  wrapText="true" styleClass="cell_small_label"/>
+        <VBox fx:id="drugDetailContainer" maxWidth="280" prefWidth="265" >
+            <VBox>
+                <Label text="Please select a drug" fx:id="selectedTradeName" styleClass="cell_big_label"/>
             </VBox>
-        </content>
+            <VBox >
+                <Label fx:id="activeIngredientField" styleClass="field_label"/>
+                <Label fx:id="selectedActiveIngredient" styleClass="cell_small_label"/>
+            </VBox>
+            <VBox >
+                <Label fx:id="directionField" styleClass="field_label"/>
+                <Label fx:id="selectedDirection" styleClass="cell_small_label"/>
+            </VBox>
+            <VBox>
+                <Label fx:id="purposesField" styleClass="field_label"/>
+                <Label fx:id="selectedPurposes" styleClass="cell_small_label"/>
+            </VBox>
+            <VBox >
+                <Label fx:id="sideEffectsField" styleClass="field_label"/>
+                <Label fx:id="selectedSideEffects" styleClass="cell_small_label" />
+            </VBox>
+            <VBox >
+                <Label fx:id="storageCountField" styleClass="field_label"/>
+                <Label fx:id="selectedStorageCount" styleClass="cell_small_label"/>
+            </VBox>
+        </VBox>
     </ScrollPane>
 </HBox>

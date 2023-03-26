@@ -2,12 +2,21 @@ package seedu.careflow.ui;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import seedu.careflow.logic.CareFlowLogic;
+import seedu.careflow.model.patient.DrugAllergy;
 import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.Phone;
 
 /**
  * Panel containing the list of patients.
@@ -16,6 +25,10 @@ public class PatientListPanel extends UiPart<Region> {
     private static final String FXML = "PatientListPanel.fxml";
     @FXML
     private ListView<Patient> patientListView;
+    @FXML
+    private ScrollPane patientDetailDisplay;
+    @FXML
+    private VBox patientDetailContainer;
 
     @FXML
     private Label selectedName;
@@ -36,6 +49,23 @@ public class PatientListPanel extends UiPart<Region> {
     @FXML
     private Label selectedEmergencyContact;
 
+    @FXML
+    private Label phoneField;
+    @FXML
+    private Label addressField;
+    @FXML
+    private Label emailField;
+    @FXML
+    private Label birthDateField;
+    @FXML
+    private Label genderField;
+    @FXML
+    private Label icField;
+    @FXML
+    private Label drugAllergyField;
+    @FXML
+    private Label emergencyContactField;
+
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
@@ -44,41 +74,100 @@ public class PatientListPanel extends UiPart<Region> {
         // PERSON LIST
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell());
-        displayPatientDetail();
+
+        setClickEventListener();
+        setUpdateEventListener(logic);
+
+    }
+
+    /**
+     * Set up event listener to listen to updates within the ObservableList
+     */
+    private void setUpdateEventListener(CareFlowLogic logic) {
         logic.getFilteredPatientList().addListener(new ListChangeListener<Patient>() {
             @Override
             public void onChanged(Change<? extends Patient> c) {
                 Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-                setPatientDetailDisplay(selectedPatient);
+                updateDisplay(selectedPatient);
             }
         });
     }
 
-    private void displayPatientDetail() {
+    /**
+     * Set up event listener to listen to click events within patientListView
+     */
+    private void setClickEventListener() {
         patientListView.setOnMouseClicked(event -> {
             Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-            setPatientDetailDisplay(selectedPatient);
+            updateDisplay(selectedPatient);
         });
     }
 
-    private void setPatientDetailDisplay(Patient selectedPatient) {
+    /**
+     * Update the display inside {@code patientDetailDisplay} in response to changes inside the ObservableList or click
+     * @param selectedPatient the patient to be displayed
+     */
+    private void updateDisplay(Patient selectedPatient) {
+        Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
+                drugAllergyField, emergencyContactField};
+        Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
+                selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+        setupStyle();
+        setPatientFieldDisplay(fields);
+        updateDisplayedPatientDetail(selectedPatient, details);
+    }
+
+    /**
+     * Set up the display of relevant Patient fields
+     * @param fields fields to be displayed
+     */
+    private void setPatientFieldDisplay(Label[] fields) {
+        phoneField.setText("Tel");
+        addressField.setText("Address");
+        emailField.setText("Email");
+        birthDateField.setText("Date of Birth");
+        genderField.setText("Gender");
+        icField.setText("IC");
+        drugAllergyField.setText("Drug Allergy");
+        emergencyContactField.setText("Emergency Contact");
+        for(Label field: fields) {
+            field.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(4),
+                    new Insets(-3, -10, -3, -10))));
+            VBox parent = (VBox)field.getParent();
+            parent.setMargin(field, new Insets(0, 0, 10, 0));
+        }
+    }
+
+    /**
+     * Update the detail information to be displayed inside {@code patientDetailDisplay}
+     * @param selectedPatient the Patient whose information is to be displayed
+     * @param details the Labels to hold the information of the selected Patient
+     */
+    private void updateDisplayedPatientDetail(Patient selectedPatient, Label[] details) {
         selectedName.setText(selectedPatient.getName().fullName);
-        selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
-        selectedAddress.setText("Address: " + selectedPatient.getAddress().value);
-        selectedEmail.setText("Email: " + selectedPatient.getEmail().value);
-        selectedBirthDate.setText("Date of Birth: " + selectedPatient.getBirthDate().value);
-        selectedGender.setText("Gender: " + selectedPatient.getGender().value);
-        selectedIc.setText("Ic: " + selectedPatient.getIc().value);
-        if (selectedPatient.getDrugAllergy() == null) {
-            selectedDrugAllergy.setText("Drug Allergy: - ");
-        } else {
-            selectedDrugAllergy.setText("Drug Allergy: " + selectedPatient.getDrugAllergy().value);
+        selectedName.setPadding(new Insets(0, -10, 0, -10));
+        selectedPhone.setText(selectedPatient.getPhone().value);
+        selectedAddress.setText(selectedPatient.getAddress().value);
+        selectedEmail.setText(selectedPatient.getEmail().value);
+        selectedBirthDate.setText(selectedPatient.getBirthDate().value);
+        selectedGender.setText(selectedPatient.getGender().value);
+        selectedIc.setText(selectedPatient.getIc().value);
+        DrugAllergy drugAllergy = selectedPatient.getDrugAllergy();
+        selectedDrugAllergy.setText(drugAllergy == null?"N.A.": drugAllergy.value);
+        Phone emergenctContact = selectedPatient.getEmergencyContact();
+        selectedEmergencyContact.setText(emergenctContact == null? "N.A.": emergenctContact.value);
+        for (Label detail : details) {
+            detail.setWrapText(true);
+            detail.setMinWidth(0);
         }
-        if (selectedPatient.getEmergencyContact() == null) {
-            selectedEmergencyContact.setText("Emergency Contact: - ");
-        } else {
-            selectedEmergencyContact.setText("Emergency Contact: " + selectedPatient.getEmergencyContact().value);
-        }
+    }
+
+    /**
+     * Set up the styling and spacing of {@code patientDetailDisplay} region
+     */
+    private void setupStyle() {
+        patientDetailContainer.setSpacing(10);
+        patientDetailContainer.setPadding(new Insets(10, 0, 0, 20));
     }
 
     /**

@@ -64,9 +64,6 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem dark;
 
     @FXML
-    private StackPane patientDrugListPanelPlaceholder;
-
-    @FXML
     private StackPane drugListPanelPlaceholder;
 
     @FXML
