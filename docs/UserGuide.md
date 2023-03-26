@@ -18,7 +18,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
-[Scroll back up to *Tables of Contents*](#table-of-contents)
+[^ Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## Downloading CoDoc
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
@@ -32,11 +32,13 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
    3. A window similar to the one below should appear in a few seconds.
+   <img src="images/Ui.png"/>
+   <br>
 
 [^ Scroll back to *Tables of Contents*](#table-of-contents)
 
 ## Navigation
-[^ Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## Commands
 [^ Scroll back up to *Tables of Contents*](#table-of-contents)
