@@ -199,7 +199,7 @@ Examples:
 * `group_find CS2103` returns persons in the group `CS2103`
 * `group_find CS2103 CS2101` returns persons in the group `CS2103` and `CS2101`
 
-### Creating an event: 
+### Creating an event:
 Creates either an isolated or weekly recurring event.
 
 #### 1) Isolated event: `event_create`

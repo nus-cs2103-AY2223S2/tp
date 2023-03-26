@@ -9,7 +9,7 @@ title: Where Got Time
 ![Ui](images/Ui.png)
 
 **Where Got Time (WGT) - a perfect desktop app dedicate to managing your events and plan out your
-meetings with your friends and family.** It is developed for university student, who can type fast to efficiently 
+meetings with your friends and family.** It is developed for university student, who can type fast to efficiently
 keep track of all of their events and their friends' events via a Command Line Interface.
 
 
