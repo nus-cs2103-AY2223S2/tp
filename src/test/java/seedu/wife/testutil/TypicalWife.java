@@ -36,7 +36,7 @@ public class TypicalWife {
         for (Tag tag : TypicalTag.getTypicalTag()) {
             wife.createTag(tag);
         }
-        
+
         return wife;
     }
 }
