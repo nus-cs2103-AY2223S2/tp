@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: MediMate's Developer Guide
 ---
 * Table of Contents
 {:toc}
@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* To be added
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User    | Schedule appointments                                                              | Book and manage appointments to reduce workload                                                                                | 
 | `* * *`  | User    | Update appointment timing                                                          | Modify appointment times                                                                                                       | 
 | `* * *`  | User    | Mark appointments as done                                                          | Indicate when appointments are completed                                                                                       | 
-| `* * *`  | User    | Edit available medication amount                                                   | Maintain inventory and stock levels                                                                                            | 
+| `* *`    | User    | Edit available medication amount                                                   | Maintain inventory and stock levels                                                                                            | 
 | `* * *`  | User    | Search for patients by name                                                        | Locate patient records by name                                                                                                 | 
 | `* * *`  | User    | Search for patients by phone number                                                | Locate patient records by phone number                                                                                         | 
 | `* * *`  | User    | Search for patients by location                                                    | Locate patients by location                                                                                                    | 
@@ -309,8 +309,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | User    | Clear all contacts                                                                 | Delete all patient records                                                                                                     | 
 | `*`      | User    | Clear contacts by tags                                                             | Delete patient records based on tags                                                                                           | 
 | `*`      | User    | Clear contacts by location                                                         | Delete patient records based on location                                                                                       | 
-| `*`      | User    | Delete medication                                                                  | Remove a medication from the system                                                                                            | 
-| `*`      | User    | Delete appointment                                                                 | Remove an appointment from the system                                                                                          | 
+| `***`    | User    | Delete medication                                                                  | Remove a medication from the system                                                                                            | 
+| `***`    | User    | Delete appointment                                                                 | Remove an appointment from the system                                                                                          | 
 *{More to be added}*
 
 ### Use cases
@@ -411,6 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User clicks "Add" button above the patient list.
 2. user enters the required patient information, including name, phone number, email, and address.
+3. user can enter medical condition, age, appointment time, NRIC fields too. (Optional)
 3. user submits the patient information by clicking "OK" button.
 4. Medimate adds a patient and stores the information in the database.
 
@@ -420,10 +421,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2a. User input format is wrong.
-  * 2a1.  Medimate asks User for another correct input of the patient’s information.
-  * 2a2. User inputs a new line of patient’s information with the correct format.
-    
-    Use Case resumes at step 2.
+    * 2a1. Medimate asks User for another correct input of the patient’s information.
+    * 2a2. User inputs a new line of patient’s information with the correct format.
+
+      Use Case resumes at step 2.
   
 **Use case: View patients' document**
 
