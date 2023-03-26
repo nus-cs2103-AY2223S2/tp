@@ -66,6 +66,10 @@ public interface Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setShop(ReadOnlyShop shop);
 
     /**
      * Returns the AddressBook
