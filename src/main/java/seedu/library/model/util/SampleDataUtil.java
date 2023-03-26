@@ -12,6 +12,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
@@ -27,19 +28,19 @@ public class SampleDataUtil {
         String[] sampleProgressC = {"~", "~", "50"};
         return new Bookmark[] {
             new Bookmark(new Title("Rankers Guide"), new Progress(sampleProgressA),
-                    new Genre("Fantasy"), new Author("TeJe"),
+                    new Genre("Fantasy"), new Author("TeJe"), new Rating("4"),
                     EMPTY_URL,
                     getTagSet("Hunters")),
             new Bookmark(new Title("Chainsaw Man"), new Progress(sampleProgressB), new Genre("Action"),
-                    new Author("Tatsuki Fujimoto"),
+                    new Author("Tatsuki Fujimoto"), new Rating("5"),
                     EMPTY_URL,
                     getTagSet("Gore")),
             new Bookmark(new Title("Solo Leveling"), new Progress(sampleProgressC), new Genre("Fantasy"),
-                    new Author("Chugong"),
+                    new Author("Chugong"), new Rating("3"),
                     EMPTY_URL,
                     getTagSet("Hunters", "System", "Cheats")),
             new Bookmark(new Title("Dungeon Defense"), new Progress(sampleProgressA), new Genre("Fantasy"),
-                    new Author("Yoo Heonhwa"),
+                    new Author("Yoo Heonhwa"), new Rating("4"),
                     EMPTY_URL,
                     getTagSet("Antihero"))
         };
