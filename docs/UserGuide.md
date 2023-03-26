@@ -230,13 +230,13 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 --------------------------------------------------------------------------------------------------------------------
 ## Features
 
-### Listing All Internship Entries: `list`
+### Listing all Internships : `list`
 Shows the list of all internship entries that you have stored in InternBuddy.
 
 Format: `list`
 
 
-### Adding An Internship Entry: `add`
+### Adding an Internship : `add`
 
 Do you have a new internship to track? Add it to InternBuddy using the `add` command.
 
@@ -263,12 +263,12 @@ Examples:
 <br/>
 
 
-### Editing An Internship Entry: `edit`
+### Editing an Internship : `edit`
 
 [TODO by Shawn]
 
 
-### Viewing An Internship Entry: `view`
+### Viewing an Internship : `view`
 Want to view the details of a specific internship entry? You can do so using the `view` command.
 
 Format: `view INDEX`
@@ -295,19 +295,19 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 
 <br/>
 
-### Copying An Internship Entry To Clipboard : `copy`
+### Copying an Internship to Clipboard : `copy`
 [TODO by Chuhao]
 
-### Finding Internship Entries : `find`
+### Finding Internships : `find`
 [TODO by Kai Xun]
 
-### Getting Upcoming Events And Deadlines : `upcoming`
+### Getting Upcoming Events and Deadlines : `upcoming`
 [TODO by Shawn]
 
-### Deleting Internship Entries : `delete`
+### Deleting Internships : `delete`
 [TODO by Christopher]
 
-### Clearing All Internship Entries : `clear`
+### Clearing all Internships : `clear`
 [TODO by Christopher]
 
 
@@ -325,6 +325,13 @@ Format: `help`
    <p style="text-align: center;">Figure XX: Help Window</p>
 
 <br/>
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Clicking on the hyperlink in the help window may not work on some Linux
+devices as the functionality is dependent on Gnome libraries. If you are using a Linux device and
+the hyperlink does not work, you can click on the <Button>Copy URL</Button> button instead.
+</div>
 
 ### Exiting InternBuddy : `exit`
 

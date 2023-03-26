@@ -325,11 +325,11 @@ with destroy markers (X), their lifelines would have ended at the markers.
 
 </div>
 
-### Add An Internship Entry - `add`
+### Add An Internship - `add`
 
-**Implementation**
+#### Implementation
 
-The following sequence diagram provides an overview on how the `add` operation works.
+Figure 13 provides an overview on how the `add` operation works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
@@ -339,7 +339,8 @@ The following sequence diagram provides an overview on how the `add` operation w
 
 
 The following gives a more detailed explanation of the `add` operation.
-######  Step 1: Validate Input
+
+**Step 1: Validate Input**
 1. When the user enters an `add` command, the `AddCommandParser` parses the user's input.
 2. It checks for the following:
 - `n/` followed by the company's name [Compulsory]
@@ -352,7 +353,7 @@ The following gives a more detailed explanation of the `add` operation.
    does not meet the parameter requirements, a `ParserException` will be thrown.
 4. An `Internship` will be created from the parsed user's input.
 
-###### Step 2: Adding the Internship
+**Step 2: Adding the Internship**
 5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
    contains the `Internship` created in Step 4.
 6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
@@ -364,7 +365,7 @@ The following gives a more detailed explanation of the `add` operation.
 
 #### Design Considerations
 
-###### Whether to make all fields in the `add` command compulsory
+- Whether to make all fields in the `add` command compulsory
 1. **Alternative 1 (chosen): Make only essential fields compulsory**
     * Pros: More user-centric as not all users want to enter the optional information,
             which is not exactly critical in tracking internships.
@@ -378,7 +379,7 @@ The following gives a more detailed explanation of the `add` operation.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
             are forced to input something for the `Add` command to work.
 
-###### Whether to update the right UI panel according to the `add` command
+- Whether to update the right UI panel according to the `add` command
 
 1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
     * Pros: Better visual indication that the `add` command has been successfully executed.
@@ -398,14 +399,14 @@ The following gives a more detailed explanation of the `add` operation.
       have to rely on the Results Display box to determine if the `AddCommand` is successful.
 
 
-### Edit an Internship Entry - `edit`
+### Edit an Internship - `edit`
 [TODO by Shawn]
 
 
-### View An Internship Entry - `view`
+### View An Internship - `view`
 
 #### Implementation
-The following sequence diagram provides an overview on how the `view` operation works.
+Figure XX provides an overview on how the `view` operation works.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
@@ -413,7 +414,8 @@ The following sequence diagram provides an overview on how the `view` operation 
 <br/>
 
 The following gives a more detailed explanation of the `view` operation.
-######  Step 1: Validate Input
+
+**Step 1: Validate Input**
 1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
 2. It checks for the following:
 - The `INDEX` entered by the user must be able to be converted into a numeric index.
@@ -421,7 +423,7 @@ The following gives a more detailed explanation of the `view` operation.
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
 
-###### Step 2: Viewing the Internship
+**Step 2: Viewing the Internship**
 5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
    of `Internship` entries in the filtered `Internship` list of the `Model` component.
 6. If the `Index` is invalid, a `CommandException` will be thrown.
@@ -433,13 +435,14 @@ The following gives a more detailed explanation of the `view` operation.
 
 #### Design Considerations
 
-###### Whether to separate the checking of valid user input into 2 classes
+- Whether to separate the checking of valid user input into 2 classes
 1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
    parsed into an index, and whether it is a valid index**
     * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
       user input can be isolated to the `ViewCommand` class.
     * Cons: Breaks the abstraction where parsing of user input should be done by the `Parser`
       classes instead of a `Command` class.
+
 2. **Alternative 2 (chosen): Allow `ViewCommandParser` to handle checking of whether user input
    can be parsed into an index, and `ViewCommand` to handle checking of whether it
    is a valid index**
@@ -451,17 +454,17 @@ The following gives a more detailed explanation of the `view` operation.
       identify and isolate which of the 2 checks does the problem originate from.
 
 
-### Copying An Internship Entry To Clipboard - `copy`
+### Copy an Internship to Clipboard - `copy`
 [TODO by Chuhao]
 
-### Finding Internship Entries - `find`
+### Find Internships - `find`
 [TODO by Kai Xun]
 
-### Getting Upcoming Events and Deadlines - `upcoming`
+### Get Upcoming Events and Deadlines - `upcoming`
 [TODO by Shawn]
 
-### Deleting Internship Entries - `delete`
-
+### Delete Internship Entries - `delete`
+[TODO by Christopher]
 
 
 ### \[Proposed\] Undo/redo feature - `undo`/`redo`
@@ -576,7 +579,7 @@ Figure XX summarizes what happens when a user executes a new command:
 
 
 
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -735,7 +738,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -1039,7 +1042,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
    **Expected**: The most recent window size and location is retained.
 
-### List All Internships
+### List all Internships
 
 1. `list`
 
@@ -1273,7 +1276,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 [More test cases will be added for combination of parameters...]
 
 
-### Get internship entries with upcoming events or deadlines
+### Get Upcoming Events and Deadlines
 
 1. `upcoming`
 
@@ -1325,7 +1328,7 @@ optional parameter must be specified.
 [More test cases will be added for mixing of parameters and for filtered internship list... ]
 
 
-### Clear All Internships
+### Clear all Internships
 
 1. `clear`
 
@@ -1375,7 +1378,7 @@ optional parameter must be specified.
    **Expected**: InternBuddy closes.
 
 
-### Saving data
+### Save data
 
 1. Missing Data File
 
@@ -1408,6 +1411,7 @@ optional parameter must be specified.
 
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary
 
 | Term                           | Definition                                                                                                                                                                                                              |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1423,7 +1427,7 @@ optional parameter must be specified.
 
 
 --------------------------------------------------------------------------------------------------------------------
-## **Acknowledgements**
+## Acknowledgements
 
 * InternBuddy is written in **Java 11**.
 * It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
