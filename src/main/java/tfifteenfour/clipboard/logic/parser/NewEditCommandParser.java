@@ -7,6 +7,7 @@ import tfifteenfour.clipboard.logic.commands.addcommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -42,10 +43,12 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             index = parseIndex(args);
             return new EditGroupCommand(index, newGroup);
         case SESSION:
-//            Session session = parseSessionInfo(args);
-//            return new EditSessionCommand(session);
+            Session newSession = parseSessionInfo(args);
+            index = parseIndex(args);
+            return new EditSessionCommand(index, newSession);
         case STUDENT:
 //            Student student = parseStudentInfo(args);
+//            index = parseIndex(args);
 //            return new EditStudentCommand(student);
         default:
             throw new ParseException("Invalid argument for add command");
@@ -80,11 +83,11 @@ public class NewEditCommandParser implements Parser<EditCommand> {
 
     private Session parseSessionInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        if (tokens.length != 3) {
+        if (tokens.length != 4) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
         }
 
-        Session session = ParserUtil.parseSession(tokens[2]);
+        Session session = ParserUtil.parseSession(tokens[3]);
         return session;
     }
 

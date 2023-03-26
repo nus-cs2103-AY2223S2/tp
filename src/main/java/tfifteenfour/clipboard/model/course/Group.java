@@ -64,6 +64,10 @@ public class Group {
         return sessions.asUnmodifiableObservableList();
     }
 
+    public ObservableList<Session> getModifiableSessionList() {
+        return sessions.asModifiableObservableList();
+    }
+
     /**
      * Adds the given student to this group.
      * @param student Student to be added.

@@ -109,6 +109,10 @@ public class Session {
         System.out.println(attendance.keySet());
     }
 
+    public void setAttendance(Map<Student, Integer> attendance) {
+        this.attendance = new HashMap<>(attendance);
+    }
+
     /**
      * Marks the given student as present in this session.
      *
