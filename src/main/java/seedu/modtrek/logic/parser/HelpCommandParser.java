@@ -9,6 +9,7 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.TagCommand;
 import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -45,6 +46,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
                 return new HelpCommand(FindCommand.MESSAGE_USAGE);
             case "EXIT":
                 return new HelpCommand(ExitCommand.MESSAGE_USAGE);
+            case "SORT":
+                return new HelpCommand(SortCommand.MESSAGE_USAGE);
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

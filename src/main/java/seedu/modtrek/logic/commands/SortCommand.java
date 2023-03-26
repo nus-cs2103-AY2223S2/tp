@@ -29,6 +29,13 @@ public class SortCommand extends Command {
     public static final String MESSAGE_FAILURE = "Sorry but I don't know how to sort modules that way.";
 
     /**
+     * The constant MESSAGE_USAGE.
+     */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Sorts modules in module list view\n"
+            + "Parameters: prefix (eg. /g, /c ... etc)\n"
+            + "Example: sort /g\n";
+
+    /**
      * The enum Sort.
      */
     public enum Sort {
