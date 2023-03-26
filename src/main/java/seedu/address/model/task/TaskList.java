@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class TaskList implements Iterable<Task> {
             throw new DuplicateTaskException(); //TODO
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
