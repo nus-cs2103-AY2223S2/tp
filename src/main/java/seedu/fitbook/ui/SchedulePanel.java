@@ -33,7 +33,8 @@ public class SchedulePanel extends UiPart<Region> {
     public SchedulePanel(ObservableList<Client> scheduleList) {
         super(FXML);
 
-        FilteredList<Client> filteredList = new FilteredList<>(scheduleList, client -> !client.isAppointmentEmpty(client));
+        FilteredList<Client> filteredList = new FilteredList<>(scheduleList,
+                client -> !client.isAppointmentEmpty(client));
         ClientAppointmentComparator comparator = new ClientAppointmentComparator();
 
         scheduleView.setCellFactory(listView -> new ScheduleViewCell());
@@ -70,20 +71,6 @@ public class SchedulePanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code ScheduleCard}.
      */
     class ScheduleViewCell extends ListCell<Client> {
-        private ScheduleCard scheduleCard;
-        public ScheduleViewCell() {
-            // Add a listener to the textProperty of the cell
-            textProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue == null) {
-                    System.out.println("change detected");
-                    setGraphic(null);
-                    if (scheduleCard != null) {
-                        // Remove the ScheduleCard from the cell if it exists
-                        scheduleCard = null;
-                    }
-                }
-            });
-        }
         @Override
         protected void updateItem(Client client, boolean empty) {
             super.updateItem(client, empty);
