@@ -19,31 +19,34 @@ public class Order {
     private final Customer customer;
     private final Name name;
     private final Quantity quantity;
-    private final Status status;
     private final Address address;
 
     // Optional fields
+    private final Status status;
     private final CreatedDate createdDate;
     private final Note note;
 
     /**
-     * Order constructor with created date set to today.
+     * Order constructor with default values.
      */
-    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address) {
-        this(customer, name, quantity, status, address, new CreatedDate(LocalDate.now()), new Note(""));
+    public Order(Customer customer, Name name, Quantity quantity, Address address) {
+        this(customer, name, quantity, address,
+                Status.PENDING,
+                new CreatedDate(LocalDate.now()),
+                new Note(""));
     }
 
     /**
-     * Every field must be present and not null.
+     * Order constructor with optional fields.
      */
-    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address,
-                 CreatedDate createdDate, Note note) {
+    public Order(Customer customer, Name name, Quantity quantity, Address address,
+            Status status, CreatedDate createdDate, Note note) {
         requireAllNonNull(customer, name, quantity, status, address, createdDate);
         this.customer = customer;
         this.name = name;
         this.quantity = quantity;
-        this.status = status;
         this.address = address;
+        this.status = status;
         this.createdDate = createdDate;
         this.note = note;
     }
@@ -60,12 +63,12 @@ public class Order {
         return quantity;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
     public Address getAddress() {
         return address;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public CreatedDate getCreatedDate() {
@@ -82,7 +85,7 @@ public class Order {
      * @return A new Order instance.
      */
     public Order newOrderWithCustomer(Customer customer) {
-        return new Order(customer, getName(), getQuantity(), getStatus(), getAddress(), getCreatedDate(), getNote());
+        return new Order(customer, getName(), getQuantity(), getAddress(), getStatus(), getCreatedDate(), getNote());
     }
 
     /**
@@ -111,15 +114,15 @@ public class Order {
         return otherOrder.getCustomer().equals(getCustomer())
                 && otherOrder.getName().equals(getName())
                 && otherOrder.getQuantity().equals(getQuantity())
-                && otherOrder.getStatus().equals(getStatus())
                 && otherOrder.getAddress().equals(getAddress())
+                && otherOrder.getStatus().equals(getStatus())
                 && otherOrder.getCreatedDate().equals(getCreatedDate())
                 && otherOrder.getNote().equals(getNote());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customer, name, quantity, status, address, createdDate, note);
+        return Objects.hash(customer, name, quantity, address, status, createdDate, note);
     }
 
     @Override
@@ -129,10 +132,10 @@ public class Order {
                 .append(getName())
                 .append("; Quantity: ")
                 .append(getQuantity())
-                .append("; Status: ")
-                .append(getStatus())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Status: ")
+                .append(getStatus())
                 .append("; CreatedDate: ")
                 .append(getCreatedDate());
         return builder.toString();

@@ -20,16 +20,16 @@ public class OrderBuilder {
     public static final Customer DEFAULT_CUSTOMER = TypicalCustomers.ALICE;
     public static final String DEFAULT_NAME = "Banana Split";
     public static final int DEFAULT_QUANTITY = 2;
-    public static final Status DEFAULT_STATUS = Status.PAID;
     public static final String DEFAULT_ADDRESS = "11 Fabordrive, Singapore 3001298";
+    public static final Status DEFAULT_STATUS = Status.PAID;
     public static final LocalDate DEFAULT_DATE = LocalDate.of(2022, 12, 20);
     public static final String DEFAULT_NOTE = "";
 
     private Customer customer;
     private Name name;
     private Quantity quantity;
-    private Status status;
     private Address address;
+    private Status status;
     private CreatedDate createdDate;
     private Note note;
 
@@ -40,8 +40,8 @@ public class OrderBuilder {
         customer = DEFAULT_CUSTOMER;
         name = new Name(DEFAULT_NAME);
         quantity = new Quantity(DEFAULT_QUANTITY);
-        status = DEFAULT_STATUS;
         address = new Address(DEFAULT_ADDRESS);
+        status = DEFAULT_STATUS;
         createdDate = new CreatedDate(DEFAULT_DATE);
         note = new Note(DEFAULT_NOTE);
     }
@@ -53,8 +53,8 @@ public class OrderBuilder {
         customer = orderToCopy.getCustomer();
         name = orderToCopy.getName();
         quantity = orderToCopy.getQuantity();
-        status = orderToCopy.getStatus();
         address = orderToCopy.getAddress();
+        status = orderToCopy.getStatus();
         createdDate = orderToCopy.getCreatedDate();
         note = orderToCopy.getNote();
     }
@@ -84,18 +84,18 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Order} that we are building.
-     */
-    public OrderBuilder withStatus(String status) {
-        this.status = SampleDataUtil.getStatus(status);
-        return this;
-    }
-
-    /**
      * Sets the {@code Address} of the {@code Order} that we are building.
      */
     public OrderBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withStatus(String status) {
+        this.status = SampleDataUtil.getStatus(status);
         return this;
     }
 
@@ -116,7 +116,7 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        return new Order(customer, name, quantity, status, address, createdDate, note);
+        return new Order(customer, name, quantity, address, status, createdDate, note);
     }
 
 }

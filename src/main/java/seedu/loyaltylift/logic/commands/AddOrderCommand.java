@@ -6,7 +6,6 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
-import static seedu.loyaltylift.model.order.Status.PENDING;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +77,7 @@ public class AddOrderCommand extends Command {
         Address address = addOrderDescriptor.getAddress().orElse(taggedCustomer.getAddress());
         Quantity quantity = addOrderDescriptor.getQuantity().orElse(new Quantity(1));
 
-        return new Order(taggedCustomer, name, quantity, PENDING, address);
+        return new Order(taggedCustomer, name, quantity, address);
     }
 
     @Override

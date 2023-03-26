@@ -24,9 +24,9 @@ import seedu.loyaltylift.model.order.Order;
 public class TypicalOrders {
     // Manually added - Order's details found in {@code CommandTestUtil}
     public static final Order ORDER_A = new OrderBuilder().withName(VALID_NAME_A).withQuantity(VALID_QUANTITY_A)
-            .withStatus(VALID_STATUS_A).withAddress(VALID_ADDRESS_A).withCreatedDate(VALID_CREATED_DATE_A).build();
+            .withAddress(VALID_ADDRESS_A).withStatus(VALID_STATUS_A).withCreatedDate(VALID_CREATED_DATE_A).build();
     public static final Order ORDER_B = new OrderBuilder().withName(VALID_NAME_B).withQuantity(VALID_QUANTITY_B)
-            .withStatus(VALID_STATUS_B).withAddress(VALID_ADDRESS_B).withCreatedDate(VALID_CREATED_DATE_B).build();
+            .withAddress(VALID_ADDRESS_B).withStatus(VALID_STATUS_B).withCreatedDate(VALID_CREATED_DATE_B).build();
 
     // Manually added
     public static final Order ORDER_C = new OrderBuilder().withName("Melon Cookie")

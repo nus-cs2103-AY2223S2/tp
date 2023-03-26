@@ -30,15 +30,15 @@ public class JsonAdaptedOrderTest {
 
     private static final String INVALID_NAME = "T@rts";
     private static final Integer INVALID_QUANTITY = -1;
-    private static final String INVALID_STATUS = "something";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_STATUS = "something";
     private static final String INVALID_CREATED_DATE = "2020-05-02";
 
     private static final String VALID_CUSTOMER_UID = ORDER_A.getCustomer().getUid();
     private static final String VALID_NAME = ORDER_A.getName().fullName;
     private static final Integer VALID_QUANTITY = ORDER_A.getQuantity().value;
-    private static final String VALID_STATUS = ORDER_A.getStatus().toString().toUpperCase();
     private static final String VALID_ADDRESS = ORDER_A.getAddress().toString();
+    private static final String VALID_STATUS = ORDER_A.getStatus().toString().toUpperCase();
     private static final String VALID_CREATED_DATE = ORDER_A.getCreatedDate().toString();
     private static final String VALID_NOTE = ORDER_A.getNote().toString();
 
@@ -57,8 +57,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullCustomerAssociation_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                null, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                null, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD);
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -66,8 +66,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, INVALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, INVALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -75,8 +75,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, null, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, null, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -84,8 +84,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, INVALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, INVALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = Quantity.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -93,34 +93,17 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, null, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, null, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
-    }
-
-    @Test
-    public void toModelType_invalidStatus_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, INVALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
-        assertThrows(IllegalArgumentException.class, () -> order.toModelType(ADDRESS_BOOK));
-    }
-
-    @Test
-    public void toModelType_nullStatus_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, null,
-                VALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                INVALID_ADDRESS, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, INVALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -128,17 +111,34 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                null, VALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, null,
+                VALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
+    }
+
+    @Test
+    public void toModelType_invalidStatus_throwsIllegalValueException() {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                INVALID_STATUS, VALID_CREATED_DATE, VALID_NOTE);
+        assertThrows(IllegalArgumentException.class, () -> order.toModelType(ADDRESS_BOOK));
+    }
+
+    @Test
+    public void toModelType_nullStatus_throwsIllegalValueException() {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                null, VALID_CREATED_DATE, VALID_NOTE);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
 
     @Test
     public void toModelType_invalidCreatedDate_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, INVALID_CREATED_DATE, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, INVALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = CreatedDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -146,8 +146,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullCreatedDate_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, null, VALID_NOTE);
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, null, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
@@ -155,8 +155,8 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullNote_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(
-                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
-                VALID_ADDRESS, VALID_CREATED_DATE, null);
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_ADDRESS,
+                VALID_STATUS, VALID_CREATED_DATE, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }

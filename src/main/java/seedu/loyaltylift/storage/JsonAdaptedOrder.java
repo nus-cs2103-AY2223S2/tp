@@ -38,15 +38,17 @@ public class JsonAdaptedOrder {
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("customerId") String customerId,
-                            @JsonProperty("name") String name, @JsonProperty("phone") Integer quantity,
-                            @JsonProperty("email") String status, @JsonProperty("address") String address,
+                            @JsonProperty("name") String name,
+                            @JsonProperty("quantity") Integer quantity,
+                            @JsonProperty("address") String address,
+                            @JsonProperty("status") String status,
                             @JsonProperty("createdDate") String createdDate,
                             @JsonProperty("note") String note) {
         this.customerId = customerId;
         this.name = name;
         this.quantity = quantity;
-        this.status = status;
         this.address = address;
+        this.status = status;
         this.createdDate = createdDate;
         this.note = note;
     }
@@ -58,8 +60,8 @@ public class JsonAdaptedOrder {
         customerId = source.getCustomer().getUid();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
-        status = source.getStatus().toString().toUpperCase();
         address = source.getAddress().value;
+        status = source.getStatus().toString().toUpperCase();
         createdDate = source.getCreatedDate().toString();
         note = source.getNote().value;
     }
@@ -92,11 +94,6 @@ public class JsonAdaptedOrder {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        final Status modelStatus = Status.valueOf(status);
-
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -110,13 +107,17 @@ public class JsonAdaptedOrder {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName()));
         }
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        final Status modelStatus = Status.valueOf(status);
+
         LocalDate dateObject;
         try {
             dateObject = LocalDate.parse(createdDate, CreatedDate.DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(CreatedDate.MESSAGE_CONSTRAINTS);
         }
-
         if (!CreatedDate.isValidCreatedDate(dateObject)) {
             throw new IllegalValueException(CreatedDate.MESSAGE_CONSTRAINTS);
         }
@@ -127,6 +128,6 @@ public class JsonAdaptedOrder {
         }
         final Note modelNote = new Note(note);
 
-        return new Order(customer, modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate, modelNote);
+        return new Order(customer, modelName, modelQuantity, modelAddress, modelStatus, modelCreatedDate, modelNote);
     }
 }
