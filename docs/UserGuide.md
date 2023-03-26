@@ -42,7 +42,7 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 ### Viewing help : `help` [coming soon]
 
 
-### Adding a employee: `add`
+### Adding an employee: `add`
 
 Adds a employee to the ExecutivePro database.
 
@@ -62,7 +62,7 @@ Shows a list of all employees and their details in the ExecutivePro database.
 
 Format: `list`
 
-### Editing a employee : `edit`
+### Editing an employee : `edit`
 
 Edits an employee’s details in the ExecutivePro database.
 
@@ -91,7 +91,7 @@ Examples:
 * `find John` displays list of all employees whose full name contains a 'John' in it
 
 
-### Deleting a employee : `delete`
+### Deleting an employee : `delete`
 
 Deletes the specified employee from the ExecutivePro database.
 
@@ -115,6 +115,20 @@ Format: `theme THEME_NAME`
 
 Examples:
 `theme light` applies the Light theme to ExecutivePro's UI.
+
+### Setting an employee's picture : `setpicture`
+
+Opens the file explorer for the user to select a picture,
+then sets the selected picture for the specified employee.
+
+Format: `setpicture EMPLOYEE_ID`
+
+* Sets the picture of the employee with the specific `EMPLOYEE_ID`.
+* The EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
+* The EMPLOYEE_ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+`setpicture 2` sets the picture for the employee with EMPLOYEE_ID 2 in ExecutivePro.
 
 
 ### Exiting the program : `exit`
@@ -150,11 +164,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing t/friends` |
-| **Delete** | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
-| **Edit**   | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                 |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                      |
-| **List**   | `list`                                                                                                                                                                                                          |
-| **Help**   | `help`                                                                                                                                                                                                          |
+| Action         | Format, Examples                                                                                                                                                                                                |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing t/friends` |
+| **Delete**     | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **Edit**       | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                 |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                      |
+| **List**       | `list`                                                                                                                                                                                                          |
+| **Theme**      | `theme THEME_NAME`<br> e.g. `theme light`                                                                                                                                                                       |
+| **SetPicture** | `setpicture EMPLOYEE_ID`<br> e.g. `setpicture 2`                                                                                                                                                                |
+| **Help**       | `help`                                                                                                                                                                                                          |
