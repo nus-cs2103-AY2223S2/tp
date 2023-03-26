@@ -5,8 +5,21 @@ public enum Priority {
 
     private int level;
 
-    private Priority(int level) {
+    Priority(int level) {
         this.level = level;
+    }
+
+    public static Priority fromInt(int level) {
+        switch (level) {
+        case 1:
+            return VERY_URGENT;
+        case 2:
+            return URGENT;
+        case 3:
+            return NOT_URGENT;
+        default:
+            return UNKNOWN;
+        }
     }
 
     public int level() {

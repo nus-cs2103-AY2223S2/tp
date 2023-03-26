@@ -27,6 +27,10 @@ public abstract class Task {
         return description;
     }
 
+    public Priority getPriority() {
+        return priority;
+    }
+
     public boolean isDone() {
         return isDone;
     }
@@ -34,6 +38,15 @@ public abstract class Task {
     public void setDescription(String description) {
         requireNonNull(description);
         this.description = description;
+    }
+
+    public void setPriority(Priority priority) {
+        requireNonNull(priority);
+        this.priority = priority;
+    }
+
+    public void setPriority(int level) {
+        this.priority = Priority.fromInt(level);
     }
 
     public void mark() {
