@@ -376,12 +376,46 @@ file without using the GUI.
 
 :warning: **Warning:**  If you are new to InternBuddy or are not confident in reading JSON files, we would advise you against
 directly editing the `internbuddy.json` file. This is because if you accidentally make a mistake that leads to the JSON
-file not having correct format, InternBuddy would restart with the sample data file, wiping out any data that you had
+file not having the correct format, InternBuddy would restart with the sample data file, wiping out any data that you had
 previously.
 
 </div>
 
-Follow the following steps to properly edit the `internbuddy.json` file:
+The following steps outline how you can properly edit the `internbuddy.json` file:
+1. Open the `internbuddy.json` file by double-clicking on it. If you are prompted to select an application to open
+   the file, you can choose any text editor such as `Notepad`.
+2. Once opened, you will see the JSON data file in a format as shown in Figure XX. Each box contains the data for one
+   specific internship entry.
+3. Within each box, you can see that there are pairings where each pair is made up of a `PARAMETER` and `VALUE`.
+
+![Json Example](images/ug-appendix-b-json-example.png)
+   <p style="text-align: center;">Figure XX: Sample JSON data file</p>
+
+<br/>
+
+
+
+4. To manually change the value of a parameter, simply replace the text for `VALUE`. Figure XX illustrates an example
+   where we change the value of `STATUS` from `assessment` to `interview` for the internship entry with company name
+   `Google`. Once your changes have been made, you can save the file by pressing <button>CTRL</button> + <button>S</button>.
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  Make sure that you follow the [constraints](#descriptions-prefixes-and-constraints-for-parameters)
+when substituting in your own values. If the constraints are not satisfied, InternBuddy would not be able to
+read your data in `internbuddy.json` file and would restart with a new sample data file instead.
+
+</div>
+
+![Editing the JSON File](images/ug-appendix-b-json-change.png)
+   <p style="text-align: center;">Figure XX: Editing the JSON file</p>
+
+<br/>
+
+
+
+5. Launch InternBuddy and you will see that your data have been updated accordingly.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -399,7 +433,6 @@ Follow the following steps to properly edit the `internbuddy.json` file:
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * InternBuddy is written in **Java 11**.
@@ -409,3 +442,5 @@ Follow the following steps to properly edit the `internbuddy.json` file:
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
   and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
+
+--------------------------------------------------------------------------------------------------------------------
