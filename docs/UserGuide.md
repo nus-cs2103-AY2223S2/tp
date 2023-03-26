@@ -90,15 +90,51 @@ Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
 
-### Adding contact details: `add_contact`
+### Add contact details: `add_contact`
 
 Adds the contact details of a company to a specified application.
 
-Format: `add_contact INDEX p/PHONE NUMBER e/EMAIL`
+Format: `add_contact INDEX p/PHONE_NUMBER e/EMAIL`
+
+- Adds contact details to the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
+- `EMAIL` should be a valid email of the format `username@domain.com`.
 
 Examples:
-* `add_contact INDEX p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the application specified by the `INDEX` in the list of applications.
-* `add_contact INDEX e/someemail@gmail.com` adds the email `someemail@gmail.com` to the application specified by the `INDEX` in the list of applications.
+* `add_contact 1 p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the 1st application in the list of applications.
+* `add_contact 2 e/someemail@gmail.com` adds the email `someemail@gmail.com` to the 2nd application in the list of applications.
+
+### Edit contact details: `edit_contact`
+
+Edits the contact details of a company previously added to a specified application.
+
+Format: `edit_contact INDEX p/PHONE_NUMBER e/EMAIL`
+
+- Edits contact details of the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
+- `EMAIL` should be a valid email of the format `username@domain.com`.
+
+Examples:
+* `edit_contact 1 p/87654321 e/abc@gmail.com` updates the contact number and email of the company to `87654321` and `abc@gmail.com` respectively for the 1st application in the list of applications.
+* `edit_contact 2 e/someemail@gmail.com` updates the email of the company to `someemail@gmail.com` for the 2nd application in the list of applications.
+* `edit_contact 3 p/12345678` updates the contact number of the company to `12345678` for the 3rd application in the list of applications.
+
+### Delete contact details: `delete_contact`
+
+Deletes the contact details of a company previously added to a specified application.
+
+Format: `delete_contact INDEX`
+
+- Deletes contact details to the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `delete_contact 1` deletes the contact number and email of the company for the 1st application in the list of applications.
 
 ### Edit application status : `edit_status`
 
@@ -117,6 +153,76 @@ Format: `edit_status INDEX s/STATUS`
 
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
+
+### Add documents: `add_docs`
+
+Adds documents including a resume link and a cover letter link to a specified application.
+
+Format: `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+- `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+
+Examples:
+* `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter` adds the resume link `https://www.example.com/resume` 
+and cover letter link `https://www.example.com/coverletter` to the 1st application in the list of applications.
+* `add_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter` adds the resume link `https://www.goodresume.com/myresume`
+  and cover letter link `https://www.goodcoverletter.com/mycoverletter` to the 2nd application in the list of applications.
+
+### Edit documents: `edit_docs`
+
+Edits the documents which include the resume link and cover letter link previously added to a specified application.
+
+Format: `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+- `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+
+Examples:
+* `edit_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter` updates the resume link and cover letter link to `https://www.example.com/resume`
+  and `https://www.example.com/coverletter` respectively for the 1st application in the list of applications.
+* `edit_docs 2 rs/https://www.example.com/resume` updates the resume link to `https://www.example.com/resume` for the 2nd application in the list of applications.
+* `edit_docs 3 cl/https://www.example.com/coverletter` updates the cover letter link to `https://www.example.com/coverletter` for the 3rd application in the list of applications.
+
+### Delete documents: `delete_docs`
+
+Deletes the documents previously added to a specified application.
+
+Format: `delete_docs INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `delete_docs 1` deletes the documents for the 1st application in the list of applications.
+
+### Archive an internship application: `archive`
+
+Archives a specified application so that it would be hidden from the list of ongoing applications.
+
+Format: `archive INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `archive 1` archives the 1st application in the list of applications.
+
+### Unarchive an internship application: `unarchive`
+
+Unarchives a specified application that was previously archived so that it would be shown in the list of ongoing applications.
+
+Format: `unarchive INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `unarchive 1` unarchives the 1st application in the list of applications.
 
 ### Displaying list of internship applications:`list`
 
@@ -193,10 +299,17 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com`
+**Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
+**Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Archive** | `archive INDEX`<br> e.g., `archive 2`
 **Clear**  | `clear`                             
 **Clear_by**  | `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
-**Delete** | `delete INDEX`<br> e.g., `delete 2`                              
+**Delete** | `delete INDEX`<br> e.g., `delete 2`
+**Delete Contact** | `delete_contact INDEX` <br> e.g., `delete_contact 2`
+**Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
+**Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
+**Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit` 
 **List** |`list`
+**Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
