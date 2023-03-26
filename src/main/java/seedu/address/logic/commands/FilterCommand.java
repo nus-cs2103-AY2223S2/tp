@@ -18,7 +18,7 @@ public class FilterCommand extends Command {
             + "that matches with the filter condition (case-insensitive) and displays the "
             + " filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Supported filter types: primary, secondary, jc, poly, university, others, uncategorized.\n"
+            + "Supported filter types: primary, secondary, jc, poly, university.\n"
             + "Example: " + COMMAND_WORD + " secondary";
 
     private final TagContainsKeywordsPredicate predicate;
