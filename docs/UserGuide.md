@@ -72,7 +72,7 @@ Keyboard keys are indicated using rounded buttons.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** If you are unsure of whether you have Java 11 installed, or need help installing
-it, you can refer to <a href="#appendix">Appendix A</a>.
+it, you can refer to <a href="#appendix-a--installing-java-11">Appendix A</a>.
 
 </div>
 
@@ -293,7 +293,8 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 
 <br/>
 
-
+### Copying An Internship Entry to Clipboard
+[TODO by Chuhao]
 
 ### Finding Internship Entries
 [TODO by Kai Xun]
@@ -335,7 +336,7 @@ Your internship data for InternBuddy are saved automatically after any command t
 in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
 where you placed `internbuddy.json`. There is no need to save manually.
 
-[home folder](#appendix-b--customising-the-data-file)
+
 
 ### Loading the data
 
@@ -376,12 +377,16 @@ that we are exploring and hope to implement in the future!
 | Add                           | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`  <br> e.g., `add n/Apple r/Software Engineer s/New d/2023-03-01` |
 | Edit                          | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE] [c/COMMENT] [t/TAG]...`<br> e.g.,`edit 2 s/Assessment r/Software Developer`       |
 | View                          | `view INDEX`<br> e.g., `view 1`                                                                                                     |
+| Copy to Clipboard             | `copy INDEX`<br> e.g., `copy 1`                                                                                                     |
 | Find                          | `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `find n/Apple n/Google`                       |
-| Get upcoming events/deadlines | `upcoming`                                                                                                                          |
+| Get Upcoming Events/Deadlines | `upcoming`                                                                                                                          |
 | Delete                        | `delete INDEX`<br> e.g., `delete 3`                                                                                                 |
 | Clear                         | `clear`                                                                                                                             |
 | Help                          | `help`                                                                                                                              |
 | Exit                          | `exit`                                                                                                                              |
+
+
+<p style="text-align: center;">Figure XX: Commands in InternBuddy</p>
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -462,6 +467,7 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 | Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                     |
 | Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used. |
 
+<p style="text-align: center;">Figure XX: Glossary for InternBuddy's User Guide</p>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
