@@ -1,31 +1,69 @@
 {
   "categories" : [ {
+    "categoryName" : "fruits",
+    "summary" : ""
+  }, {
+    "categoryName" : "entertainment",
+    "summary" : ""
+  }, {
     "categoryName" : "food",
-    "summary" : "summary"
+    "summary" : ""
+  }, {
+    "categoryName" : "tech",
+    "summary" : ""
+  }, {
+    "categoryName" : "wqfoavj",
+    "summary" : ""
+  }, {
+    "categoryName" : "hello",
+    "summary" : ""
+  }, {
+    "categoryName" : "qvneivn",
+    "summary" : ""
+  }, {
+    "categoryName" : "wefjw",
+    "summary" : ""
+  }, {
+    "categoryName" : "HelloTest",
+    "summary" : "abcdefg"
+  }, {
+    "categoryName" : "a",
+    "summary" : ""
+  }, {
+    "categoryName" : "test",
+    "summary" : "test"
   } ],
   "expenses" : [ {
-    "name" : "apple",
-    "amount" : "1.5",
-    "date" : "2023-03-16",
+    "name" : "apples",
+    "amount" : "5.0",
+    "date" : "2023-03-10",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "fruits",
+      "summary" : ""
     }
   }, {
-    "name" : "orange",
+    "name" : "chicken rice",
+    "amount" : "8.0",
+    "date" : "2023-02-02",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : ""
+    }
+  }, {
+    "name" : "hello",
+    "amount" : "340.0",
+    "date" : "2023-03-22",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : ""
+    }
+  }, {
+    "name" : "filteredout",
     "amount" : "2.0",
     "date" : "2023-03-16",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
-    }
-  }, {
-    "name" : "Fuji Apple",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
-    "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "a",
+      "summary" : ""
     }
   } ]
 }

@@ -75,12 +75,12 @@ public class CommandTestUtil {
      * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualDataModel, CommandResult expectedCommandResult,
+                                            Model expectedDataModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualDataModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            assertEquals(expectedDataModel, actualDataModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -91,10 +91,10 @@ public class CommandTestUtil {
      * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    public static void assertCommandSuccess(Command command, Model actualDataModel, String expectedMessage,
+                                            Model expectedDataModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true);
+        assertCommandSuccess(command, actualDataModel, expectedCommandResult, expectedDataModel);
     }
 
     /**
@@ -120,15 +120,15 @@ public class CommandTestUtil {
      * {@code targetIndex} in the
      * {@code model}'s ExpenseTracker.
      */
-    public static void showExpenseAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenseList().size());
+    public static void showExpenseAtIndex(Model dataModel, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < dataModel.getFilteredExpenseList().size());
 
-        Expense expense = model.getFilteredExpenseList().get(targetIndex.getZeroBased());
+        Expense expense = dataModel.getFilteredExpenseList().get(targetIndex.getZeroBased());
         final String name = expense.getName();
         //TODO update predicates here when created
         //model.updateFilteredExpensesList(new NameContainsKeywordsPredicate(Arrays.asList(name)));
 
-        assertEquals(1, model.getFilteredExpenseList().size());
+        assertEquals(1, dataModel.getFilteredExpenseList().size());
     }
 
 }

@@ -66,10 +66,20 @@ class JsonSerializableExpenseTracker {
 
         for (JsonAdaptedExpense jsonAdaptedExpense : expenses) {
             Expense expense = jsonAdaptedExpense.toModelType();
+            Category associatedCategory = getAssociatedCategory(expense, expenseTracker);
+            if (associatedCategory == null) {
+                expenseTracker.addCategory(expense.getCategory());
+            } else {
+                expense.setCategory(associatedCategory);
+            }
             expenseTracker.addExpense(expense);
         }
 
         return expenseTracker;
+    }
+
+    private Category getAssociatedCategory(Expense expense, ExpenseTracker expenseTracker) {
+        return expenseTracker.getCategoryInstance(expense.getCategory());
     }
 
 }

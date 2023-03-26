@@ -33,17 +33,17 @@ public class DeleteExpenseCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Expense> lastShownList = model.getFilteredExpenseList();
+    public CommandResult execute(Model dataModel) throws CommandException {
+        requireNonNull(dataModel);
+        List<Expense> lastShownList = dataModel.getFilteredExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Expense expense = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteExpense(expense);
-        return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expense));
+        dataModel.deleteExpense(expense);
+        return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expense), true);
     }
 
     @Override

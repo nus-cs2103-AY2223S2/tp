@@ -76,7 +76,7 @@ public class JsonAdaptedExpense {
 
         final LocalDate modelDate = StorageUtility.parseDateFromJson(date);
 
-        final Category modelCategory = category.toModelType();
+        Category modelCategory = category.toModelType();
 
         return new Expense(modelName, modelAmount, modelDate, modelCategory);
     }

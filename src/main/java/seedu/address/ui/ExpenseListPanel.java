@@ -30,6 +30,13 @@ public class ExpenseListPanel extends UiPart<Region> {
     }
 
     /**
+     * Refreshes the list of expenses and its related data.
+     */
+    public void refreshList() {
+        expenseListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Expense} using a {@code ExpenseCard}.
      */
     class ExpenseListViewCell extends ListCell<Expense> {

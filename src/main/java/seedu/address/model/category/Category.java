@@ -18,9 +18,9 @@ public abstract class Category {
      * @param categoryName Name of the category
      * @param summary Short description of the category
      */
-    public Category(String categoryName, String description) {
+    public Category(String categoryName, String summary) {
         this.categoryName = categoryName;
-        this.summary = description;
+        this.summary = summary;
     }
     /**
      * Returns true if a given string is a valid category name.
@@ -43,8 +43,7 @@ public abstract class Category {
         if (this == toCheck) {
             return true;
         }
-
-        return toCheck != null && toCheck.getCategoryName().equals(this.getCategoryName());
+        return toCheck != null && toCheck.getCategoryName().equalsIgnoreCase(this.getCategoryName());
     }
 
     @Override
@@ -59,12 +58,8 @@ public abstract class Category {
 
         Category otherTypecasted = (Category) other;
 
-        if (this.getCategoryName().equals(otherTypecasted.getCategoryName())
-                && this.getSummary().equals(otherTypecasted.getSummary())) {
-            return true;
-        }
-
-        return false;
+        return this.getCategoryName().equals(otherTypecasted.getCategoryName())
+                && this.getSummary().equals(otherTypecasted.getSummary());
     }
 
     @Override

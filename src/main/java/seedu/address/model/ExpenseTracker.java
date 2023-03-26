@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
@@ -17,8 +18,10 @@ import seedu.address.model.expense.ExpenseList;
  */
 public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
+    private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -84,22 +87,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
-     * Returns true if a category with the given name exists in the list.
-     * @param categoryName The name of the category to check for existence in the
-     *                     list.
-     * @return true if a category with the given name exists in the list and false
-     *         otherwise.
-     */
-    public boolean hasCategoryName(String categoryName) {
-        for (Category c : categories.asUnmodifiableList()) {
-            if (Objects.equals(c.getCategoryName(), categoryName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Adds a category to the expense tracker.
      * The category must not already exist in the expense tracker.
      */
@@ -118,8 +105,14 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         categories.remove(key);
     }
 
+    /**
+     * Deletes the given category {@code key} in the UniqueCategoryList.
+     * Replaces all expenses with {@code key} with the MiscellaneousCategory object.
+     * @param key
+     */
     public void removeCategory(Category key) {
         categories.remove(key);
+        expenses.replaceDeletedCategory(key, MISCELLANEOUS_CATEGORY);
     }
 
     @Override
@@ -127,9 +120,9 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         return Objects.hash(categories, expenses);
     }
 
-    public Category getCategoryInstance(String categoryName) {
+    public Category getCategoryInstance(Category category) {
         for (Category c : categories.asUnmodifiableList()) {
-            if (Objects.equals(c.getCategoryName(), categoryName)) {
+            if (category.isSameCategory(c)) {
                 return c;
             }
         }

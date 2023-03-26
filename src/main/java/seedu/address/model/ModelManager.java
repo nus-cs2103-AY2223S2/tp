@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,7 +15,7 @@ import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the expense tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,9 +24,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
-
-    private final IntegerProperty expenseListCount = new SimpleIntegerProperty();
-    private final IntegerProperty categoryListCount = new SimpleIntegerProperty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,13 +41,6 @@ public class ModelManager implements Model {
         this(new ExpenseTracker(), new UserPrefs());
     }
 
-    public int getExpenseListCount() {
-        return expenseListCount.get();
-    }
-
-    public void updateExpenseListCount() {
-        expenseListCount.set(filteredExpenses.size());
-    }
 
     // =========== UserPrefs
     // ==================================================================================
@@ -103,7 +91,6 @@ public class ModelManager implements Model {
         return expenseTracker;
     }
 
-
     // =========== Expenses List Accessors
     // =============================================================
     @Override
@@ -141,17 +128,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Indicates if a category exists in the category list by name
-     * Used to determine if the category the user has specified already exists in the list,
-     * in order to reference that specific category
-     * @param categoryName the category name to check for
-     */
-    private boolean hasCategoryName(String categoryName) {
-        requireNonNull(categoryName);
-        return expenseTracker.hasCategoryName(categoryName);
-    }
-
-    /**
      * Indicates if a category exists in the category list
      * @param category the category to check for
      */
@@ -169,12 +145,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteCategory(Category target) {
         expenseTracker.removeCategory(target);
+        updateFilteredCategoryList(PREDICATE_SHOW_ALL_CATEGORY);
+        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
     @Override
-    public Category getCategoryInstance(String categoryName) {
-        if (hasCategoryName(categoryName)) {
-            return expenseTracker.getCategoryInstance(categoryName);
+    public Category getCategoryInstance(Category category) {
+        if (hasCategory(category)) {
+            return expenseTracker.getCategoryInstance(category);
         }
         return null;
     }
@@ -212,21 +190,12 @@ public class ModelManager implements Model {
     public void addExpense(Expense expense) {
         expenseTracker.addExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-        updateExpenseListCount();
     }
 
     @Override
     public void deleteExpense(Expense expense) {
         expenseTracker.removeExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-    }
-
-    /**
-     * Gets a count of the number of expenses in the currently filtered expense list
-     */
-    @Override
-    public int getFilteredExpenseListCount() {
-        return 0;
     }
 
     /**

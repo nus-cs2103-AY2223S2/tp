@@ -17,21 +17,25 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Whether the result is from an expense-related or category-related command. */
+    private final boolean isExpenseCommand;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isExpenseCommand) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.isExpenseCommand = isExpenseCommand;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+    public CommandResult(String feedbackToUser, boolean isExpenseCommand) {
+        this(feedbackToUser, false, false, isExpenseCommand);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +48,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isExpenseCommand() {
+        return isExpenseCommand;
     }
 
     @Override

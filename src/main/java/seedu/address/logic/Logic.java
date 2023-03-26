@@ -7,6 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
@@ -26,17 +27,15 @@ public interface Logic {
 
     /**
      * Returns the ExpenseTracker.
-     * @see seedu.address.model.Model#getExpenseTracker()
+     * @see Model#getExpenseTracker()
      */
-    ReadOnlyExpenseTracker getAddressBook();
+    ReadOnlyExpenseTracker getExpenseTracker();
 
     /** Returns an unmodifiable view of the list of categories */
     ObservableList<Category> getFilteredCategoryList();
 
     /** Returns an unmodifiable view of the filtered list of expenses */
     ObservableList<Expense> getFilteredExpenseList();
-
-    int getExpenseListCount();
 
     /**
      * Returns the user prefs' address book file path.

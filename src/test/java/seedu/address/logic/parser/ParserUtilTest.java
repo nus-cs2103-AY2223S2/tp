@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -192,5 +194,33 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTimespan_week_returnsFirstDayOfWeek() throws Exception {
+        LocalDate firstDayOfWeek = LocalDate.now().with(DayOfWeek.MONDAY);
+        assertEquals(firstDayOfWeek, ParserUtil.parseTimespan("week"));
+        assertEquals(firstDayOfWeek, ParserUtil.parseTimespan("w"));
+    }
+
+    @Test
+    public void parseTimespan_month_returnsFirstDayOfMonth() throws Exception {
+        LocalDate firstDayOfMonth = LocalDate.now().withDayOfMonth(1);
+        assertEquals(firstDayOfMonth, ParserUtil.parseTimespan("month"));
+        assertEquals(firstDayOfMonth, ParserUtil.parseTimespan("m"));
+    }
+
+    @Test
+    public void parseTimespan_year_returnsFirstDayOfYear() throws Exception {
+        LocalDate firstDayOfYear = LocalDate.now().withDayOfYear(1);
+        assertEquals(firstDayOfYear, ParserUtil.parseTimespan("year"));
+        assertEquals(firstDayOfYear, ParserUtil.parseTimespan("y"));
+    }
+
+    @Test
+    public void parseTimespan_invalidInput_failure() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimespan("invalid"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimespan("fortnight"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimespan(null));
     }
 }

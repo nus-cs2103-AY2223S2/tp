@@ -9,12 +9,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 public class ExitCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private Model dataModel = new ModelManager();
+    private Model expectedDataModel = new ModelManager();
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, true);
+        assertCommandSuccess(new ExitCommand(), dataModel, expectedCommandResult, expectedDataModel);
     }
 }

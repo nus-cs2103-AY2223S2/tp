@@ -6,16 +6,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCategory;
+import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.commands.AddExpenseCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCategory;
+import seedu.address.logic.commands.DeleteCategoryCommand;
 import seedu.address.logic.commands.DeleteExpenseCommand;
+import seedu.address.logic.commands.EditCategory;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditExpenseCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCategory;
+import seedu.address.logic.commands.ListCategoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -57,10 +59,10 @@ public class ExpenseTrackerParser {
             return new DeleteExpenseCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
-        case ListCategory.COMMAND_WORD:
-            return new ListCategory();
+        case ListCategoryCommand.COMMAND_WORD:
+            return new ListCategoryCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -71,11 +73,17 @@ public class ExpenseTrackerParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddCategory.COMMAND_WORD:
+        case AddCategoryCommand.COMMAND_WORD:
             return new AddCategoryParser().parse(arguments);
 
-        case DeleteCategory.COMMAND_WORD:
+        case DeleteCategoryCommand.COMMAND_WORD:
             return new DeleteCategoryParser().parse(arguments);
+
+        case EditCategory.COMMAND_WORD:
+            return new EditCategoryParser().parse(arguments);
+
+        case EditExpenseCommand.COMMAND_WORD:
+            return new EditExpenseCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

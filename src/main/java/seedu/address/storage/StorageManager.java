@@ -17,8 +17,8 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ExpenseTrackerStorage expenseBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final ExpenseTrackerStorage expenseBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code ExpenseTrackerStorage}
@@ -75,5 +75,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         expenseBookStorage.saveExpenseTracker(expenseTracker, filePath);
     }
-
 }
