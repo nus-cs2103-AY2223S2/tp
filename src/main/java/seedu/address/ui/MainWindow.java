@@ -40,7 +40,8 @@ public class MainWindow extends UiPart<Stage> {
             + "\n7. deadline asc/desc"
             + "\n8. list"
             + "\n9. clear"
-            + "\n10. exit";
+            + "\n10. help"
+            + "\n11. exit";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
