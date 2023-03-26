@@ -1,4 +1,4 @@
-package seedu.recipe.ui.events;
+package seedu.recipe.logic.commands.ui.events;
 
 import java.util.Map;
 

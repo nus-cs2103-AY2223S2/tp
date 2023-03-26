@@ -1,4 +1,4 @@
-package seedu.recipe.ui;
+package seedu.recipe.logic.commands.ui;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.ui.events.EditRecipeEvent;
+import seedu.recipe.logic.commands.ui.events.EditRecipeEvent;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
