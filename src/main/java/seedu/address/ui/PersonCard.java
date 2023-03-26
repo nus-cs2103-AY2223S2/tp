@@ -70,15 +70,23 @@ public class PersonCard extends UiPart<Region> {
             appointment.setText(person.getAppointment().toString());
             if (person.getMedicalCondition() != null) {
                 String s = person.getMedicalCondition().getValue();
-                medicalCondition.setText(s);
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
             }
         } else {
             appointment.setText("No appointment yet");
             if (person.getMedicalCondition() == null) {
-                medicalCondition.setText("");
+                medicalCondition.setText("Medical Condition: NA");
             } else {
                 String s = person.getMedicalCondition().getValue();
-                medicalCondition.setText(s);
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
             }
         }
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))

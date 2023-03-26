@@ -26,6 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -53,47 +54,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> medicalAge = argMultimap.getValue(PREFIX_AGE);
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
-        Person person;
-        LocalDateTime parsedTime = null;
-        if (time.isPresent()) {
-            if (time.get().trim().length() > 0) {
-                parsedTime = ParserUtil.parseTime(time.get());
-            }
-        }
-        if (medicalString.isEmpty()) {
-            if (medicalAge.isEmpty()) {
-                if (time.isEmpty()) {
-                    person = new Person(name, phone, email, address, tagList);
-                } else {
-                    person = new Person(name, phone, email, address, tagList, parsedTime);
-                }
-            } else {
-                Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                if (time.isEmpty()) {
-                    person = new Person(name, phone, email, address, age, tagList);
-                } else {
-                    person = new Person(name, phone, email, address, age, tagList, parsedTime);
-                }
-            }
-        } else {
-            MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
-            if (medicalAge.isEmpty()) {
-                if (time.isEmpty()) {
-                    person = new Person(name, phone, email, address, tagList, medicalCondition);
-                } else {
-                    person = new Person(name, phone, email, address, tagList,
-                        parsedTime, medicalCondition);
-                }
-            } else {
-                Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                if (time.isEmpty()) {
-                    person = new Person(name, phone, email, address, age, tagList, medicalCondition);
-                } else {
-                    person = new Person(name, phone, email, address, age, tagList,
-                        parsedTime, medicalCondition);
-                }
-            }
-        }
+        //LocalDateTime parsedTime = null;
+        String empty = "";
+        Age age = medicalAge.isEmpty() ? new Age(empty) : ParserUtil.parseAge((medicalAge.get().toString()));
+        MedicalCondition condition = medicalString.isEmpty() ? new MedicalCondition(empty)
+                : ParserUtil.parseMedicalCond(medicalString.get().toString());
+        LocalDateTime parsedTime = time.isPresent() && time.get().trim().length() > 0
+                ? ParserUtil.parseTime(time.get()) : null;
+        Person person = new Person(name, phone, email, address, tagList, parsedTime, condition, age);
         return new AddCommand(person);
     }
 
