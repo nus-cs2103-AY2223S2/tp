@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
@@ -19,20 +20,20 @@ import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
- * Adds a tag to a person identified using its displayed index from ConnectUS.
+ * Adds a tag (or module) to a person identified using its displayed index from ConnectUS.
  */
 public class AddTagToPersonCommand extends Command {
     public static final String COMMAND_WORD = "addt";
-    public static final String MESSAGE_USAGE = ": Adds a %s to the person identified."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag (or module) to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[ " + PREFIX_MODULE + " MODULE]"
-        + "[ " + PREFIX_TAG + " TAG]"
+        + "[" + PREFIX_MODULE + "MODULE] "
+        + "[" + PREFIX_TAG + "TAG]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_MODULE + "CS1231";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Person: %1$s";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added %2$s to Person: %1$s";
 
     private final Index index;
     private final AddTagDescriptor addTagDescriptor;
@@ -63,7 +64,27 @@ public class AddTagToPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson, getTagSuccessDetailsMessage()));
+    }
+
+    private String getTagSuccessDetailsMessage() {
+        StringBuilder sb = new StringBuilder(MESSAGE_ADD_TAG_SUCCESS.length() * 2);
+        if (!addTagDescriptor.tags.isEmpty()) {
+            sb.append("tag");
+            sb.append(addTagDescriptor.tags.size() > 1 ? "s " : " ");
+            sb.append(addTagDescriptor.tags.stream().map(tag -> tag.tagName)
+                .collect(Collectors.joining(", ")));
+        }
+
+        if (!addTagDescriptor.modules.isEmpty()) {
+            sb.append(sb.length() == 0 ? "" : " and ");
+            sb.append("module");
+            sb.append(addTagDescriptor.modules.size() > 1 ? "s " : " ");
+            sb.append(addTagDescriptor.modules.stream().map(module -> module.moduleName)
+                .collect(Collectors.joining(", ")));
+        }
+
+        return sb.toString();
     }
 
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
@@ -138,6 +159,10 @@ public class AddTagToPersonCommand extends Command {
          */
         public Optional<Set<Module>> getModules() {
             return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        }
+
+        public boolean isEmpty() {
+            return (tags == null || tags.isEmpty()) && (modules == null || modules.isEmpty());
         }
 
         @Override

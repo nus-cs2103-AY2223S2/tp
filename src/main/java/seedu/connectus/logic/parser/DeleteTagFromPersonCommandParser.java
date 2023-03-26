@@ -28,6 +28,10 @@ public class DeleteTagFromPersonCommandParser implements Parser<DeleteTagFromPer
             moduleIndex = argMultimap.getValue(PREFIX_MODULE).isPresent()
                 ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get())
                 : null;
+
+            if (tagIndex == null && moduleIndex == null) {
+                throw new ParseException("");
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagFromPersonCommand.MESSAGE_USAGE), pe);

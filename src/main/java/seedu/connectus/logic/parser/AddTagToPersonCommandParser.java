@@ -33,11 +33,16 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
         }
 
         var addTagDescriptor = new AddTagDescriptor(
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_TAG)).map(l -> l.stream().map(Tag::new).collect(
-                Collectors.toSet())).orElse(new HashSet<>()),
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_MODULE)).map(l -> l.stream().map(Module::new).collect(
-                Collectors.toSet())).orElse(new HashSet<>())
+            Optional.ofNullable(argMultimap.getAllValues(PREFIX_TAG)).map(l -> l.stream().filter(s -> !s.isBlank())
+                    .map(Tag::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
+            Optional.ofNullable(argMultimap.getAllValues(PREFIX_MODULE)).map(l -> l.stream().filter(s -> !s.isBlank())
+                .map(Module::new).collect(Collectors.toSet())).orElse(new HashSet<>())
         );
+
+        if (addTagDescriptor.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
+        }
 
         return new AddTagToPersonCommand(index, addTagDescriptor);
     }
