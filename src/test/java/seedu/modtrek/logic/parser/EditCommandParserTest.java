@@ -24,10 +24,12 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
-import static seedu.modtrek.logic.parser.CliSyntax.*;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +37,6 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Credit;
 import seedu.modtrek.model.module.Grade;
-import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.testutil.EditModuleDescriptorBuilder;

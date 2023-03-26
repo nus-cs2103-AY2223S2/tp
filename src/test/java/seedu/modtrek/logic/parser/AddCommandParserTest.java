@@ -27,7 +27,10 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
-import static seedu.modtrek.logic.parser.CliSyntax.*;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
@@ -100,7 +103,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_preamblePresent_failure() {
-        assertParseFailure(parser, " module"+ CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002,
+        assertParseFailure(parser, " module" + CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 

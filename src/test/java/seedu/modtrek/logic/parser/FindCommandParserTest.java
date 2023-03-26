@@ -6,7 +6,11 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.TAG_DESC_CS1101S;
-import static seedu.modtrek.logic.parser.CliSyntax.*;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -15,7 +19,11 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.*;
+import seedu.modtrek.model.module.CodePrefix;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 public class FindCommandParserTest {
