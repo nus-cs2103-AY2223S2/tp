@@ -14,7 +14,7 @@ import seedu.sudohr.model.employee.UniqueEmployeeList;
  * Represents a Leave in SudoHR.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Leave {
+public class Leave implements Comparable<Leave> {
 
     private final LeaveDate date;
     private final UniqueEmployeeList employees;
@@ -128,5 +128,10 @@ public class Leave {
                 .append(getDate())
                 .append("\n");
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Leave o) {
+        return this.date.compareTo(o.date);
     }
 }
