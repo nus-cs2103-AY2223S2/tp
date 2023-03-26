@@ -118,18 +118,11 @@ The first example contains strictly required information to identify a patient.
 
 The second example contains more information relevant to that patient.
 
-### Adding patient scheduled time : `addTime`
-_Details coming in v1.3 soon ..._
-
 ### Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
-
-### Listing patients by time : `listTime`
-
-_Details coming in v1.2 soon ..._
 
 ### Editing a patient : `edit`
 
@@ -148,6 +141,35 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+### Making Appointment to a patient : `makeApp`
+
+Makes an appointment with a patient(reschedule appointment allowed)
+
+Format: `makeApp INDEX /from {startTime} /to {endTime}`
+
+* Makes an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* startTime and endTime should be on the same date
+* endTime should not be before startTime
+* If a patient already had an appointment, will reschedule this appointment
+* New Appointment should not clash with any existing appointment with other patients
+
+Examples:
+* `makeApp 5 /from 2023-08-15 1430 /to 2023-08-15 1630` Makes an Appointment with 5th patient, starting from 
+14:30 to 16:30 on 2023-08-15
+
+### Marking Appointment with a patient: `markApp`
+
+Marks an appointment with a patient as done
+
+Format: `markApp INDEX`
+
+* Marks an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* The patient will now have no appointment
+* Can not mark with a patient who haven't got an appointment
+
+Examples:
+* `markApp 5` Marks an appointment with 5th patient as done.
+
 ### Locating patients by name : `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -165,6 +187,19 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Searching patients with Appointment on specified date
+
+Lists all patients with appointment on specified date
+
+Format: `searchDate {date}`
+
+* Lists all patients with appointment on {date}
+* Detailed time on that date is sorted for doctors to avoid clashes
+
+Examples:
+* `searchDate 2002-11-21` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
+  ![result for 'find alex david'](images/screenshot_of_searchDate.png)
 
 ### Deleting a patient : `delete`
 
