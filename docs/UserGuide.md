@@ -163,30 +163,29 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ### list
 `list`<br>
-* Shows all persons stored.
+> * Shows all persons stored.<br>
 
 ### delete
 `delete <INDEX>`<br>
-* Deletes the person at the specified INDEX.
-* INDEX refers to an index currently shown in the displayed person list.
-* INDEX must be a positive integer 1, 2, 3, ...
-* E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.
+> * Deletes the person at the specified INDEX.<br>
+> * INDEX refers to an index currently shown in the displayed person list.<br>
+> * INDEX must be a positive integer 1, 2, 3, ...<br>
+> * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
 
 ### clear
 `clear`<br>
-* :warning: Clears **all** entries from CoDoc.
+> * :warning: Clears **all** entries from CoDoc.<br>
 
 ### help:
 `help`<br>
-<img src="images/UiHelpMenu.png"/>
-* Opens help menu
-* Equivalent to clicking Help > Help F1 via the GUI
+> <img src="images/UiHelpMenu.png"/>
+> * Opens help menu <br>
+> * Equivalent to clicking Help > Help F1 via the GUI <br>
 
 ### exit:
 `exit`<br>
-* Exits the program.
-* Equivalent to clicking the close button via the GUI.
-<br>
+> * Exits the program. <br>
+> * Equivalent to clicking the close button via the GUI. <br>
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
@@ -222,18 +221,11 @@ _Details coming soon ..._
 
 
 ## Command Summary 
-| Actions                           | Example                                                                                                                                     |
-|-----------------------------------|----------------------------------------------|
-| Add person                        | add n/Bo m/AY2223S2 cs2101 s/python s/java |
-| Clear all persons                 | clear                                                                                                                                       |
-| Delete a person                   | delete 3                                                                                                                                    |
-| Edit contact in the right panel   | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
-| Find by attributes                | find n/David c/Computer Science m/CS2109S s/java sql                                                                                        |
-| List the full list of persons     | list                                                                                                                                        |
-| View contact                      | view 3                                                                                                                                      |
-| View tab                          | view c OR view m OR view s                                                                                                                  |
-| View user guide and command list  | help                                                                                                                                        |
-
+| Parameters         | Description                       |
+|--------------------|-----------------------------------|
+| view m             | view person's list of modules     |
+| view s             | view person's list of skills      |
+| view c             | view person's contact information |
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
