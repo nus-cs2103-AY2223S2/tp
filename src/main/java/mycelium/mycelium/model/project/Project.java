@@ -1,6 +1,7 @@
 package mycelium.mycelium.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -79,6 +80,7 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
                    Optional<String> description,
                    LocalDate acceptedOn,
                    Optional<LocalDate> deadline) {
+        requireAllNonNull(name, status, clientEmail, source, description, acceptedOn, deadline);
         this.name = name;
         this.status = status;
         this.clientEmail = clientEmail;
