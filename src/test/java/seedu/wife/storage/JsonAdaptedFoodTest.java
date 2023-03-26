@@ -41,8 +41,13 @@ public class JsonAdaptedFoodTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedFood food =
-                new JsonAdaptedFood(INVALID_NAME, VALID_UNIT, VALID_QUANTITY, VALID_EXPIRY_DATE, VALID_TAGS);
+        JsonAdaptedFood food = new JsonAdaptedFood(
+            INVALID_NAME,
+            VALID_UNIT,
+            VALID_QUANTITY,
+            VALID_EXPIRY_DATE,
+            VALID_TAGS
+        );
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
