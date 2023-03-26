@@ -1,6 +1,7 @@
 package bookopedia.logic.parser;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX;
 import static bookopedia.logic.commands.CommandTestUtil.INVALID_PARCEL_STATUS_DESC;
 import static bookopedia.logic.commands.CommandTestUtil.PARCEL_STATUS_FRAGILE;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -50,7 +51,19 @@ public class MarkParcelCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid parcel status
-        assertParseFailure(parser, "1" + INVALID_PARCEL_STATUS_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 pc/1 " + INVALID_PARCEL_STATUS_DESC, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidParcelIndex_failure() {
+        // invalid parcel index
+        assertParseFailure(parser, "1 pc/aaa s/fragile", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_emptyParcelStatus_failure() {
+        // invalid parcel index
+        assertParseFailure(parser, "1 pc/1", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
