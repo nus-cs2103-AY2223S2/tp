@@ -2,24 +2,13 @@
 layout: page
 title: Developer Guide
 ---
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
-It is optimized for typing where it allows users to complete internship management tasks much more efficiently
-via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
-using Java 11, and is available on the Windows, macOS and Linux operating systems.
-
-<br/>
-<p align="center">
-  <img width="300" height="175" src="images/internbuddy-computer.png">
-</p>
-
-
-## Table of Contents
+## **Table of Contents**
 * Table of Contents
-  {:toc}
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Introducing InternBuddy
+## **Introducing InternBuddy**
 
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
 It is optimized for typing where it allows users to complete internship management tasks much more efficiently
@@ -34,7 +23,7 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 
 
 --------------------------------------------------------------------------------------------------------------------
-## About the Developer Guide
+## **About the Developer Guide**
 
 ### Objectives of the Developer Guide
 This developer guide aims to provide developers with insights into the implementation details
@@ -54,48 +43,54 @@ extends its functionality through this developer guide.
 This developer guide uses a set of formatting standards and syntax to better communicate
 information.
 
-#### Information Box
+**Information Box**
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Provides useful information that supplements the main text
 </div>
 
-#### Tip Box
+**Tip Box**
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:**  Suggestions on how to enhance your experience
 </div>
 
-#### Warning Box
+**Warning Box**
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
 carefully before committing
 </div>
 
-#### Syntax Highlighting
+**Syntax Highlighting**
+
 Commands, parameters, file paths and class names are highlighted.
 
 `command`, `PARAMETER`, `filepath.json`, `ClassName`
 
 
-#### Keyboard Actions
+**Keyboard Actions**
+
 Keyboard keys are indicated using rounded buttons.
 
 <button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
-After setting up and launching InternBuddy, you would see a GUI. The following diagram illustrates the main parts
+After setting up and launching InternBuddy, you would see a GUI. Figures 1 and 2 illustrate the main parts
 of InternBuddy's GUI, which are referenced throughout this developer guide.
 
 
 ![Graphical User Interface](images/gui-markup.png)
+
+<p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
+
+<br/>
 
 | Part            | Usage                                                                                        |
 |-----------------|----------------------------------------------------------------------------------------------|
@@ -105,7 +100,9 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 | View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
 | Location Bar    | States where your InternBuddy data file is located on your computer.                         |
 
+<p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
 
+<br/>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,10 +114,13 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 </div>
 
 ### Architecture
+The ***Architecture Diagram*** shown in Figure 3 explains the high-level design of the App.
+<p align="center">
+  <img src="images/ArchitectureDiagram.png" width="280" />
+</p>
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p style="text-align: center;">Figure 3: InternBuddy's architecture diagram</p>
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -134,7 +134,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI (User Interface) of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
@@ -142,26 +142,50 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+Figure 4 is a *Sequence Diagram* that shows how the components interact with each other for the scenario where the user
+issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+<p align="center">
+  <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+</p>
+
+<p style="text-align: center;">Figure 4: Sequence diagram that shows interactions between components </p>
+<br/>
+
+
+Each of the four main components (also shown in the Figure 4),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its
+functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components
+interact with a given component through its interface rather than the concrete class
+(reason: to prevent outside component's being coupled to the implementation of a component),
+as illustrated in the (partial) class diagram shown in Figure 5.
 
-<img src="images/ComponentManagers.png" width="300" />
+
+<p align="center">
+  <img src="images/ComponentManagers.png" width="300" />
+</p>
+
+<p style="text-align: center;">Figure 5: Partial class diagram for the logic, model and storage components </p>
+<br/>
+
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+  <img src="images/UiClassDiagram.png" />
+</p>
+
+<p style="text-align: center;">Figure 6: Class diagram for the UI component </p>
+<br/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
@@ -184,26 +208,48 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Figure 7 illustrates a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+  <img src="images/LogicClassDiagram.png" width="550"/>
+</p>
+
+<p style="text-align: center;">Figure 7: Partial class diagram for the logic component </p>
+<br/>
+
+
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternBuddyParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+Figure 8 below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<p style="text-align: center;">Figure 8: Sequence diagram for the delete command </p>
+<br/>
+
+
+
+
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for
+`DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a
+limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Figure 9 shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+  <img src="images/ParserClasses.png" width="600"/>
+</p>
+
+<p style="text-align: center;">Figure 9: Class diagram for parser classes in the logic component </p>
+<br/>
 
 How the parsing works:
 * When called upon to parse a user command, the `InternBuddyParser` class creates an `XYZCommandParser`
@@ -216,8 +262,12 @@ the `Parser` interface so that they can be treated similarly where possible e.g,
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<p align="center">
+  <img src="images/ModelClassDiagram.png" width="450" />
+</p>
 
+<p style="text-align: center;">Figure 10: Class diagram for the model component</p>
+<br/>
 
 The `Model` component,
 
@@ -228,21 +278,31 @@ which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` th
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** An alternative (arguably, a more OOP)
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** An alternative (arguably, a more OOP)
 model is given below. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
 to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
+
+<p align="center">
+  <img src="images/BetterModelClassDiagram.png" width="450" />
+</p>
+
+<p style="text-align: center;">Figure 11: Alternative model that is more OOP</p>
+<br/>
 
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<p align="center">
+  <img src="images/StorageClassDiagram.png" width="550" />
+</p>
+
+<p style="text-align: center;">Figure 12: Class diagram for the storage component</p>
+<br/>
+
 
 The `Storage` component,
 * can save both internship data and user preference data in json format, and read them back into corresponding objects.
@@ -251,7 +311,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.internship.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,15 +319,28 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Feature
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** Due to a limitation of PlantUML, the lifeline
+for objects in sequence diagrams would always reach the end of the diagrams. However, it is worthy to note that for objects
+with destroy markers (X), their lifelines would have ended at the markers.
+
+</div>
+
+### Add an Internship - `add`
 
 #### Implementation
-The following sequence diagram provides an overview on how the `add` operation works.
+
+Figure 13 provides an overview on how the `add` operation works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+<p style="text-align: center;">Figure 13: Sequence diagram for the add command</p>
+<br/>
+
+
+
 The following gives a more detailed explanation of the `add` operation.
-######  Step 1: Validate Input
+
+**Step 1: Validate Input**
 1. When the user enters an `add` command, the `AddCommandParser` parses the user's input.
 2. It checks for the following:
 - `n/` followed by the company's name [Compulsory]
@@ -280,7 +353,7 @@ The following gives a more detailed explanation of the `add` operation.
    does not meet the parameter requirements, a `ParserException` will be thrown.
 4. An `Internship` will be created from the parsed user's input.
 
-###### Step 2: Adding the Internship
+**Step 2: Adding the Internship**
 5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
    contains the `Internship` created in Step 4.
 6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
@@ -292,7 +365,7 @@ The following gives a more detailed explanation of the `add` operation.
 
 #### Design Considerations
 
-###### Whether to make all fields in the `add` command compulsory
+- Whether to make all fields in the `add` command compulsory
 1. **Alternative 1 (chosen): Make only essential fields compulsory**
     * Pros: More user-centric as not all users want to enter the optional information,
             which is not exactly critical in tracking internships.
@@ -306,7 +379,7 @@ The following gives a more detailed explanation of the `add` operation.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
             are forced to input something for the `Add` command to work.
 
-###### Whether to update the right UI panel according to the `add` command
+- Whether to update the right UI panel according to the `add` command
 
 1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
     * Pros: Better visual indication that the `add` command has been successfully executed.
@@ -325,15 +398,24 @@ The following gives a more detailed explanation of the `add` operation.
       UI panel may not be visible since it is added to the bottom. Without scrolling, users
       have to rely on the Results Display box to determine if the `AddCommand` is successful.
 
-### View Feature
+
+### Edit an Internship - `edit`
+[TODO by Shawn]
+
+
+### View an Internship - `view`
 
 #### Implementation
-The following sequence diagram provides an overview on how the `view` operation works.
+Figure XX provides an overview on how the `view` operation works.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+<p style="text-align: center;">Figure XX: Sequence diagram for the view command</p>
+<br/>
+
 The following gives a more detailed explanation of the `view` operation.
-######  Step 1: Validate Input
+
+**Step 1: Validate Input**
 1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
 2. It checks for the following:
 - The `INDEX` entered by the user must be able to be converted into a numeric index.
@@ -341,7 +423,7 @@ The following gives a more detailed explanation of the `view` operation.
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
 
-###### Step 2: Viewing the Internship
+**Step 2: Viewing the Internship**
 5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
    of `Internship` entries in the filtered `Internship` list of the `Model` component.
 6. If the `Index` is invalid, a `CommandException` will be thrown.
@@ -353,13 +435,14 @@ The following gives a more detailed explanation of the `view` operation.
 
 #### Design Considerations
 
-###### Whether to separate the checking of valid user input into 2 classes
+- Whether to separate the checking of valid user input into 2 classes
 1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
    parsed into an index, and whether it is a valid index**
     * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
       user input can be isolated to the `ViewCommand` class.
     * Cons: Breaks the abstraction where parsing of user input should be done by the `Parser`
       classes instead of a `Command` class.
+
 2. **Alternative 2 (chosen): Allow `ViewCommandParser` to handle checking of whether user input
    can be parsed into an index, and `ViewCommand` to handle checking of whether it
    is a valid index**
@@ -370,15 +453,29 @@ The following gives a more detailed explanation of the `view` operation.
       is an issue in processing user input for the `ViewCommand`, there is a need to
       identify and isolate which of the 2 checks does the problem originate from.
 
-### \[Proposed\] Undo/redo feature
+
+### Copy an Internship to Clipboard - `copy`
+[TODO by Chuhao]
+
+### Find Internships - `find`
+[TODO by Kai Xun]
+
+### Get Upcoming Events and Deadlines - `upcoming`
+[TODO by Shawn]
+
+### Delete Internship Entries - `delete`
+[TODO by Christopher]
+
+
+### \[Proposed\] Undo/Redo Actions - `undo`/`redo`
 
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedInternBuddy`. It extends `InternBuddy` with an undo/redo history, stored internally as an `internBuddyStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedInternBuddy#commit()` — Saves the current address book state in its history.
-* `VersionedInternBuddy#undo()` — Restores the previous address book state from its history.
-* `VersionedInternBuddy#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInternBuddy#commit()` — Saves the current InternBuddy state in its history.
+* `VersionedInternBuddy#undo()` — Restores the previous InternBuddy state from its history.
+* `VersionedInternBuddy#redo()` — Restores a previously undone InternBuddy state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitInternBuddy()`, `Model#undoInternBuddy()` and `Model#redoInternBuddy()` respectively.
 
@@ -386,60 +483,107 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedInternBuddy` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center">
+  <img src="images/UndoRedoState0.png"/>
+</p>
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+<p style="text-align: center;">Figure XX: Step 1 of the undo/redo mechanism</p>
+<br/>
 
-![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitInternBuddy()`, causing another modified address book state to be saved into the `internBuddyStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 2. The user executes `delete 5` command to delete the 5th internship in InternBuddy. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of InternBuddy after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted InternBuddy state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
+<p align="center">
+  <img src="images/UndoRedoState1.png"/>
+</p>
+
+<p style="text-align: center;">Figure XX: Step 2 of the undo/redo mechanism</p>
+<br/>
+
+
+Step 3. The user executes `add n/Tesla …​` to add a new internship. The `add` command also calls `Model#commitInternBuddy()`, causing another modified InternBuddy state to be saved into the `internBuddyStateList`.
+
+<p align="center">
+  <img src="images/UndoRedoState2.png"/>
+</p>
+
+<p style="text-align: center;">Figure XX: Step 3 of the undo/redo mechanism</p>
+<br/>
+
+
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternBuddy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center">
+  <img src="images/UndoRedoState3.png"/>
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
+<p style="text-align: center;">Figure XX: Step 4 of the undo/redo mechanism</p>
+<br/>
+
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
 
-The following sequence diagram shows how the undo operation works:
+Figure XX is a sequence diagram that shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center">
+  <img src="images/UndoSequenceDiagram.png"/>
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<p style="text-align: center;">Figure XX: Sequence diagram for the undo command</p>
+<br/>
+
+
+The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores InternBuddy to that state.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest InternBuddy state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify InternBuddy, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest address book state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<p align="center">
+  <img src="images/UndoRedoState4.png"/>
+</p>
 
-</div>
+<p style="text-align: center;">Figure XX: Step 5 of the undo/redo mechanism</p>
+<br/>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all InternBuddy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Tesla …​` command. This is the behavior that most modern desktop applications follow.
 
-Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+<p align="center">
+  <img src="images/UndoRedoState5.png"/>
+</p>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p style="text-align: center;">Figure XX: Step 6 of the undo/redo mechanism</p>
+<br/>
 
-The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+Figure XX summarizes what happens when a user executes a new command:
 
-#### Design considerations:
+<p align="center">
+  <img src="images/CommitActivityDiagram.png" width="250" />
+</p>
+
+<p style="text-align: center;">Figure XX: Activity diagram for the activity of a user executing a new command</p>
+<br/>
+
+
+
+#### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire InternBuddy.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -448,11 +592,11 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### \[Proposed\] Data Archiving
+
+To be explored in v2.0...
 
 ### Edit feature
 
@@ -463,7 +607,7 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -594,7 +738,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -898,7 +1042,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
    **Expected**: The most recent window size and location is retained.
 
-### List All Internships
+### List all Internships
 
 1. `list`
 
@@ -1094,6 +1238,9 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    `INDEX` parameter is missing.
 
 
+### Copy an Internship to Clipboard
+[More test cases for `copy` will be added...]
+
 ### Find Internship Entries
 
 1. `find n/Amazon`
@@ -1126,10 +1273,10 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Results Display. This is because `Interviewing`
    is not a valid value for the `STATUS` parameter.
 
-[To add more test cases for combination of parameters...]
+[More test cases will be added for combination of parameters...]
 
 
-### Get internship entries with upcoming events or deadlines
+### Get Upcoming Events and Deadlines
 
 1. `upcoming`
 
@@ -1178,10 +1325,10 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
 optional parameter must be specified.
 
 
-[To add more test cases for mixing of parameters and for filtered internship list ]
+[More test cases will be added for mixing of parameters and for filtered internship list... ]
 
 
-### Clear All Internships
+### Clear all Internships
 
 1. `clear`
 
@@ -1231,7 +1378,7 @@ optional parameter must be specified.
    **Expected**: InternBuddy closes.
 
 
-### Saving data
+### Save Data
 
 1. Missing Data File
 
@@ -1264,19 +1411,28 @@ optional parameter must be specified.
 
 
 --------------------------------------------------------------------------------------------------------------------
-### Glossary
+## **Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Computing undergraduate**: Refers to a university undergraduate pursuing a Computing degree.
-* **Tech stack**: Refers to a set of technologies that a company uses to create or maintain a software system or product.
+| Term                           | Definition                                                                                                                                                                                                              |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                                    |
+| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                                       |
+| Computing undergraduate        | A university undergraduate pursuing a Computing degree.                                                                                                                                                                 |
+| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                            |
+| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                                |
+| Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                     |
+| Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used. |
+| Tech Stack                     | A set of technologies that an individual or company uses to create and/or maintain a software system or product.                                                                                                        |
 
 
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
-  [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-  and [TestFX](https://github.com/TestFX/TestFX) libraries. It
-  is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
+* InternBuddy is written in **Java 11**.
+* It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
   the [SE-EDU initiative](https://se-education.org).
-* InternBuddy also utilises code adapted from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) primarily for the purpose of GUI testing.
+* Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
+* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
