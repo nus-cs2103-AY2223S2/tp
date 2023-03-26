@@ -18,7 +18,7 @@ public class CompanyContainsKeywordsPredicate implements Predicate<Role> {
     @Override
     public boolean test(Role role) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(role.getCompany().value, keyword));
+                      .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(role.getCompany().value, keyword));
     }
 
     @Override
@@ -27,5 +27,4 @@ public class CompanyContainsKeywordsPredicate implements Predicate<Role> {
                 || (other instanceof CompanyContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((CompanyContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

@@ -18,30 +18,30 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.job.CompanyContainsKeywordsPredicate;
+import seedu.address.model.job.TagContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code CompanyCommand}.
+ * Contains integration tests (interaction with the Model) for {@code TagCommand}.
  */
-public class CompanyCommandTest {
+public class TagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        CompanyContainsKeywordsPredicate firstPredicate =
-                new CompanyContainsKeywordsPredicate(Collections.singletonList("first"));
-        CompanyContainsKeywordsPredicate secondPredicate =
-                new CompanyContainsKeywordsPredicate(Collections.singletonList("second"));
+        TagContainsKeywordsPredicate firstPredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("first"));
+        TagContainsKeywordsPredicate secondPredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        CompanyCommand findFirstCommand = new CompanyCommand(firstPredicate);
-        CompanyCommand findSecondCommand = new CompanyCommand(secondPredicate);
+        TagCommand findFirstCommand = new TagCommand(firstPredicate);
+        TagCommand findSecondCommand = new TagCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        CompanyCommand findFirstCommandCopy = new CompanyCommand(firstPredicate);
+        TagCommand findFirstCommandCopy = new TagCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -57,8 +57,8 @@ public class CompanyCommandTest {
     @Test
     public void execute_zeroKeywords_noRoleFound() {
         String expectedMessage = String.format(MESSAGE_ROLES_LISTED_OVERVIEW, 0);
-        CompanyContainsKeywordsPredicate predicate = preparePredicate(" ");
-        CompanyCommand command = new CompanyCommand(predicate);
+        TagContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TagCommand command = new TagCommand(predicate);
         expectedModel.updateFilteredRoleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredRoleList());
@@ -67,17 +67,17 @@ public class CompanyCommandTest {
     @Test
     public void execute_multipleKeywords_multipleRolesFound() {
         String expectedMessage = String.format(MESSAGE_ROLES_LISTED_OVERVIEW, 3);
-        CompanyContainsKeywordsPredicate predicate = preparePredicate("NUS");
-        CompanyCommand command = new CompanyCommand(predicate);
+        TagContainsKeywordsPredicate predicate = preparePredicate("Tech");
+        TagCommand command = new TagCommand(predicate);
         expectedModel.updateFilteredRoleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredRoleList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code CompanyContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
      */
-    private CompanyContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new CompanyContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TagContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

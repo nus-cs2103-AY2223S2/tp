@@ -9,13 +9,13 @@ import seedu.address.logic.commands.exceptions.exceptions.ParseException;
 import seedu.address.model.job.CompanyContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new SalaryCommand object
+ * Parses input arguments and creates a new CompanyCommand object
  */
 public class CompanyCommandParser implements Parser<CompanyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the Deadlineommand
-     * and returns a DeadlineCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CompanyCommand
+     * and returns a CompanyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CompanyCommand parse(String args) throws ParseException {
