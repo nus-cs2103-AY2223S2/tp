@@ -295,8 +295,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| Priority | As a …​                                    | I want to …​                                  | So that I can…​                      |
+| -------- | ------------------------------------------ |-----------------------------------------------|--------------------------------------|
+| `* * *`  | computing student                          | see some sample data                          | know how to use the program          |
 | `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                                      |
 | `* * *`  | computing student                          | delete an item                                | remove entries that I no longer need |             
 | `* * *`  | computing student                          | edit an item                                  |                                      |
@@ -306,13 +307,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | diligent student                           | add notes and remarks to my sc                |                                      |
 | `* *`    | unorganised user                           | search for my modules by name or type         | find specific information quickly    |
 
+
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a module**
+**Use case 1: Delete a module**
 
 **MSS**
 
@@ -335,6 +337,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case 2: Edit a module**
+
+**MSS**
+
+1.  User requests to list items
+2.  Contact nUS shows a list of items such as lectures
+3.  User requests to edit a specific attribute module in the list
+4.  Contact nUS edits the specific attribute of the module
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Contact nUS shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The given prefix is invalid.
+
+    * 3b1. Contact nUS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The type of the attribute is invalid.
+
+    * 3c1. Contact nUS shows an error message.
+  
+      Use case resumes at step 2.
+
+    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -350,6 +389,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module**: The module to be recorded in Contact nUS
+* **Address**: The location/venue for the class of a module
+* **Deadline**: The deadline for tasks of a module
+* **Name**: Name of a module
+* **Remark**: Additional information regarding a certain module
+* **Resource**: External website or links for a module
+* **Tag**: The type of the module (Lecture, Tutorial, Lab, etc.)
+* **Teacher**: The name of the teacher conducting the module
+* **TimeSlot**: The time of the class of a module
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -415,25 +463,25 @@ testers are expected to do more *exploratory* testing.
        
 ### Editing a module
 1 Editing a module 
-  1.  Test case: `edit 1 n/CS1101S`
+  1.  Test case: `edit 1 n/CS1101S` <br>
       Expected: The name of the first module in the list is edited, and is now CS1101S. Details of the updated module is shown in the status message. 
       
-  2. Test case: `edit 2 e/12pm - 2pm 
+  2. Test case: `edit 2 e/12pm - 2pm` <br>
      Expected: The time slot of the first module in the list is edited, and is now 12pm - 2pm. Details of the updated module is shown in the status message. 
   
-  3. Test case: `edit 1 p/Lecture 
+  3. Test case: `edit 1 p/Lecture` <br>
      Expected: The type of the first module in the list is edited, and is now Lecture. Details of the updated module is shown in the status message. 
 
 ### Finding a module/type
 1. Finding a module
   
-    1. Test case: `find CS2103T`<br>  
-       Expected: A module is found on the list. Details of the found module is shown in the list.
+    1. Test case: `find CS2103T`  
+       Expected: A module is found on the list. Details of the found module is shown in the list. <br>
 
-    2. Test case: `find tutorial`<br>  
-       Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list.
+    2. Test case: `find tutorial`  
+       Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list. <br>
        
-    3. Test case: `find tutorial lab`<br>  
-       Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in the list.
+    3. Test case: `find tutorial lab`  
+       Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in the list. <br>
      
     4. Note: Make sure to list the modules again when you want to find another module
