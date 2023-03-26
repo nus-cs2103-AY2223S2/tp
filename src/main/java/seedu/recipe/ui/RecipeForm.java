@@ -355,6 +355,21 @@ public class RecipeForm extends UiPart<Region> {
         }
     }
 
+    private TextField getNextTextField(TextField currentTextField) {
+        VBox parentBox = (VBox) currentTextField.getParent();
+        int currentIndex = parentBox.getChildren().indexOf(currentTextField);
+        int lastIndex = parentBox.getChildren().size() - 1;
+    
+        if (currentIndex < lastIndex) {
+            Node nextNode = parentBox.getChildren().get(currentIndex + 1);
+            if (nextNode instanceof TextField) {
+                return (TextField) nextNode;
+            }
+        }
+    
+        return null;
+    }
+
     private TextField createDynamicTextField(String text) {
         TextField textField = new TextField(text);
 
@@ -368,6 +383,7 @@ public class RecipeForm extends UiPart<Region> {
                 }
                 break;
             case DOWN:
+            //To-Do: Lump together with tab
                 break;
             case TAB:
                 TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
@@ -393,14 +409,16 @@ public class RecipeForm extends UiPart<Region> {
             } else {
                 // Check if any other TextField has gained focus or the focus owner is not a TextField
                 Node focusOwner = textField.getScene().getFocusOwner();
+                System.out.println("focus owner:" + parentBox);
                 boolean focusChangedToDifferentVBox = focusOwner instanceof TextField && !focusOwner.getParent().equals(parentBox);
                 boolean focusChangedToNonTextField = !(focusOwner instanceof TextField);
-        
+                System.out.println("parent box:" + parentBox);
+                System.out.println("parent box parent:" + parentBox.getParent());
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
-                if (parentBox.getChildren().indexOf(textField) == lastIndex
-                        && textField.getText().isEmpty()
-                        && (focusChangedToDifferentVBox || focusChangedToNonTextField)) {
-                    parentBox.getChildren().remove(textField);
+                if (getNextTextField(textField).getText().isEmpty() && textField.getText().isEmpty()) {
+                        System.out.println("removing" + textField);
+                        System.out.println("removing" + getNextTextField(textField));
+                    parentBox.getChildren().remove(getNextTextField(textField));
                 }
             }
         });
