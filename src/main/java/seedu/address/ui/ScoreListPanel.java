@@ -13,6 +13,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -20,6 +22,12 @@ import javafx.scene.paint.Color;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
+import seedu.address.model.score.ScoreList.ScoreSummary;
+
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.util.Callback;
 
 /**
  * Panel containing the list of scores.
@@ -42,6 +50,18 @@ public class ScoreListPanel extends UiPart<Region> {
     @FXML
     private Axis yAxis;
 
+    @FXML
+    private TableView<ScoreSummary> scoreStatistic;
+
+    @FXML
+    private TableColumn<ScoreSummary, Double> maxScore;
+    @FXML
+    private TableColumn<ScoreSummary, Double> minScore;
+    @FXML
+    private TableColumn<ScoreSummary, Double> average;
+    @FXML
+    private TableColumn<ScoreSummary, Double> percentage;
+
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      */
@@ -57,11 +77,59 @@ public class ScoreListPanel extends UiPart<Region> {
             scoreListView.setItems(person.getSortedScoreList());
             if (person.getSortedScoreList().size() != 0) {
                 newChart(person);
+                statisticTable(person);
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
                 nameChart.setText("No score chart for " + person.getName().fullName);
             }
         }
+
+
+    }
+
+    private void statisticTable(Person person) {
+        scoreStatistic.setVisible(true);
+
+        maxScore.setCellValueFactory(new PropertyValueFactory<>("maxScore"));
+        minScore.setCellValueFactory(new PropertyValueFactory<>("minScore"));
+        average.setCellValueFactory(new PropertyValueFactory<>("average"));
+        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+
+        maxScore.setSortable(false);
+        minScore.setSortable(false);
+        average.setSortable(false);
+        percentage.setSortable(false);
+        //scoreStatistic.getItems().addAll(person.getScoreSummary());
+        scoreStatistic.setItems(person.getScoreSummary());
+        /*
+        maxScore.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ScoreSummary, Double>, ObservableValue<Double>>() {
+            @Override
+            public ObservableValue<Double> call(TableColumn.CellDataFeatures<ScoreSummary, Double> param) {
+                return param.getValue().maxProperty();
+            }
+        });
+        */
+
+        /*
+        maxScore.setCellValueFactory(new PropertyValueFactory<>("maxScore"));
+        minScore.setCellValueFactory(new PropertyValueFactory<>("minScore"));
+        average.setCellValueFactory(new PropertyValueFactory<>("average"));
+        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+
+        scoreStatistic.setItems(person.getScoreSummary());
+
+        TableColumn maxScore = new TableColumn("Maximum Score");
+        TableColumn minScore = new TableColumn("Minimum Score");
+        TableColumn averageScore = new TableColumn("Average Score");
+        TableColumn percentage = new TableColumn("Percentage");
+        */
+        /*
+        maxScore.setCellValueFactory(new PropertyValueFactory <>("max Score"));
+        minScore.setCellValueFactory(new PropertyValueFactory <>("min score"));
+        averageScore.setCellValueFactory(new PropertyValueFactory <>("max Score"));
+        percentage.setCellValueFactory(new PropertyValueFactory <>("max Score"));
+        */
+        //scoreStatistic.getColumns().addAll(maxScore, minScore, averageScore, percentage);
     }
 
     private void newChart(Person person) {

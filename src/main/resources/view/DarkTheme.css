@@ -191,6 +191,81 @@
     -fx-alignment: CENTER;
 }
 
+/*Score Chart*/
+.chart-content {
+    -fx-padding: 10 10 10 10;
+}
+
+.axis {
+    -fx-font-size: 1.4em;
+    -fx-tick-label-fill: #914800;
+    -fx-font-family: "Tahoma";
+    -fx-tick-length: 20;
+    -fx-minor-tick-length: 10;
+}
+
+.axis-label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 17px;
+    -fx-text-fill: #605BF1;
+}
+
+.chart-plot-background {
+    -fx-background-color: #e2ecfe;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #3278fa;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #3278fa;
+}
+
+.chart-alternative-row-fill {
+    -fx-fill: #99bcfd;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+/*Score Chart Ends*/
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 0 0 4 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-label-padding: 0,0,0,0;
+    -fx-pref-height: 15px;
+}
+
+.table-view .table-cell {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 0 0 4 0;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell: even{
+    -fx-background-color: #1dbd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+/*table view*/
+
 .cell_big_label {
     -fx-font-family: "SansSerif";
     -fx-font-weight: bold;

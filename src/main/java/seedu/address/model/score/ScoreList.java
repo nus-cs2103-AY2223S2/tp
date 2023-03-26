@@ -3,10 +3,14 @@ package seedu.address.model.score;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.score.exceptions.DuplicateScoreException;
@@ -129,11 +133,95 @@ public class ScoreList implements Iterable<Score> {
 
     public ObservableList<Score> getRecentScoreList() {
         ObservableList<Score> sortedScoreList = getSortedScoreList();
-        //ObservableList<Score> recentScoreList = sortedScoreList.remove(5, sortedScoreList.size() - 1);
+        if (sortedScoreList.size() < 5) {
+            FXCollections.reverse(sortedScoreList);
+            return sortedScoreList;
+        }
         ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream().
                 limit(5).collect(java.util.stream.Collectors.toList()));
         FXCollections.reverse(recentScoreList);
         return recentScoreList;
+    }
+
+    public ObservableList<ScoreSummary> getScoreSummary() {
+        DecimalFormat df = new DecimalFormat("###.##");
+        ObservableList<Score> recentScoreList = getRecentScoreList();
+        DoubleSummaryStatistics scoreSummary = new DoubleSummaryStatistics();
+        for (int i = 0; i < recentScoreList.size(); i++) {
+            scoreSummary.accept(recentScoreList.get(i).getValue().value);
+        }
+        Double average = scoreSummary.getAverage();
+        Double maxValue = scoreSummary.getMax();
+        Double minValue = scoreSummary.getMin();
+        Double percentage = (recentScoreList.get(recentScoreList.size() - 1).getValue().value -
+                recentScoreList.get(0).getValue().value) / recentScoreList.get(0).getValue().value * 100;
+        df.format(average);
+        df.format(percentage);
+        ScoreSummary ss = new ScoreSummary(maxValue, minValue, average, percentage);
+        ObservableList<ScoreSummary> summary = FXCollections.observableArrayList();
+        summary.add(ss);
+        return summary;
+    }
+
+    public class ScoreSummary {
+
+        private Double maxScore;
+        private Double minScore;
+        private Double average;
+        private Double percentage;
+
+        public ScoreSummary(Double max, Double min, Double average, Double percentage) {
+            this.maxScore = max;
+            this.minScore = min;
+            this.average = average;
+            this.percentage = percentage;
+        }
+
+        public Double getMaxScore() {
+            return this.maxScore;
+        }
+
+        public Double getMinScore() {
+            return this.minScore;
+        }
+
+        public Double getAverage() {
+            return this.average;
+        }
+
+        public Double getPercentage() {
+            return this.percentage;
+        }
+        /*
+        private DoubleProperty maxScore;
+        private DoubleProperty minScore;
+        private DoubleProperty average;
+        private DoubleProperty percentage;
+
+        public ScoreSummary(Double max, Double min, Double average, Double percentage) {
+            this.maxScore = new SimpleDoubleProperty(this, "maxScore", max);
+            this.minScore = new SimpleDoubleProperty(this, "minScore", min);
+            this.average = new SimpleDoubleProperty(this, "average", average);
+            this.percentage = new SimpleDoubleProperty(this, "percentage", percentage);
+        }
+
+        public DoubleProperty maxProperty() {
+            return this.maxScore;
+        }
+
+        public DoubleProperty minProperty() {
+            return this.minScore;
+        }
+
+        public DoubleProperty averageProperty() {
+            return this.average;
+        }
+
+        public DoubleProperty percentageProperty() {
+            return this.percentage;
+        }
+
+         */
     }
 
     @Override

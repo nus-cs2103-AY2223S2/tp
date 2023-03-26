@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
+import seedu.address.model.score.ScoreList.ScoreSummary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -209,6 +210,12 @@ public class Person {
         ObservableList<Score> recentScoreList = this.scoreList.getRecentScoreList();
         return recentScoreList;
     }
+
+    public ObservableList<ScoreSummary> getScoreSummary() {
+        ObservableList<ScoreSummary> scoreSummary = this.scoreList.getScoreSummary();
+        return scoreSummary;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
