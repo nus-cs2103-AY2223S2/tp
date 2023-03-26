@@ -2,30 +2,45 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
+
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Please refer to the user guide at: " + USERGUIDE_URL;
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-
+    private final ObservableList<HelpCommand> data =
+            FXCollections.observableArrayList(
+                    new HelpCommand("Add", "add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS\n"),
+                    new HelpCommand("List", "list\n"),
+                    new HelpCommand("Clear", "clear\n"),
+                    new HelpCommand("Delete", "delete INDEX\n"),
+                    new HelpCommand("Edit", "edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]\n"),
+                    new HelpCommand("Find", "find [search term] [r/ROLE] [c/COMPANY_NAME] [s/STATUS]\n"),
+                    new HelpCommand("Help", "help\n")
+            );
     @FXML
     private Button copyButton;
-
     @FXML
-    private Label helpMessage;
+    private TableColumn<HelpCommand, String> commandColumn;
+    @FXML
+    private TableColumn<HelpCommand, String> formatColumn;
+    @FXML
+    private TableView<HelpCommand> helpTable;
+
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +49,13 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpTable.setEditable(true);
+        commandColumn.setCellValueFactory(
+                new PropertyValueFactory<>("command"));
+        formatColumn.setCellValueFactory(
+                new PropertyValueFactory<>("format"));
+        helpTable.setItems(data);
+        helpTable.getColumns().addAll(commandColumn, formatColumn);
     }
 
     /**
@@ -100,3 +121,5 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 }
+
+
