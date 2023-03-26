@@ -288,7 +288,8 @@ Clears all events in Paidlancers.
 
 - Clears all events in the event book.
 
-[//]: # (To put a caution here, this is a destructive command. Once you clear all events, there is no way to recover them.)
+>This is a destructive command. Once you clear all events, there is no way to recover them!
+>Please be careful when using this command.
 
 ### Open help window: `help` <a id = "open-help-window"></a>
 
