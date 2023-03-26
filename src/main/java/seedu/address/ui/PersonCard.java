@@ -86,8 +86,8 @@ public class PersonCard extends UiPart<Region> {
         }
         Documents documents = application.getDocuments();
         if (documents != null) {
-            resume.setText(documents.getResume().value);
-            coverLetter.setText(documents.getCoverLetter().value);
+            resume.setText(documents.getResumeLink().value);
+            coverLetter.setText(documents.getCoverLetterLink().value);
             resume.setVisible(true);
             coverLetter.setVisible(true);
             resume.setManaged(true);

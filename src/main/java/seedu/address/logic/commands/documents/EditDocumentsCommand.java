@@ -105,9 +105,9 @@ public class EditDocumentsCommand extends Command {
         InternshipStatus status = internshipToEditDocuments.getStatus();
         InterviewDate interviewDate = internshipToEditDocuments.getInterviewDate();
         ResumeLink resumeLink = editDocumentsDescriptor.getResumeLink()
-                .orElse(internshipToEditDocuments.getDocuments().getResume());
+                .orElse(internshipToEditDocuments.getDocuments().getResumeLink());
         CoverLetterLink coverLetterLink = editDocumentsDescriptor.getCoverLetterLink()
-                .orElse(internshipToEditDocuments.getDocuments().getCoverLetter());
+                .orElse(internshipToEditDocuments.getDocuments().getCoverLetterLink());
 
         Documents newDocuments = new Documents(resumeLink, coverLetterLink);
 

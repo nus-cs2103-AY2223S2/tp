@@ -23,11 +23,11 @@ public class Documents {
         this.coverLetterLink = coverLetterLink;
     }
 
-    public ResumeLink getResume() {
+    public ResumeLink getResumeLink() {
         return resumeLink;
     }
 
-    public CoverLetterLink getCoverLetter() {
+    public CoverLetterLink getCoverLetterLink() {
         return coverLetterLink;
     }
 
@@ -45,8 +45,8 @@ public class Documents {
         }
 
         Documents otherDocuments = (Documents) other;
-        return otherDocuments.getResume().equals(getResume())
-                && otherDocuments.getCoverLetter().equals(getCoverLetter());
+        return otherDocuments.getResumeLink().equals(getResumeLink())
+                && otherDocuments.getCoverLetterLink().equals(getCoverLetterLink());
     }
 
     @Override
@@ -58,9 +58,9 @@ public class Documents {
     @Override
     public String toString() {
         String builder = "Resume: "
-                + getResume()
+                + getResumeLink()
                 + "; Cover letter: "
-                + getCoverLetter();
+                + getCoverLetterLink();
 
         return builder;
     }

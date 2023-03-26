@@ -83,8 +83,8 @@ public class JsonAdaptedInternshipApplication {
             interviewDate = null;
         }
         if (source.getDocuments() != null) {
-            documents.add(source.getDocuments().getResume().value);
-            documents.add(source.getDocuments().getCoverLetter().value);
+            documents.add(source.getDocuments().getResumeLink().value);
+            documents.add(source.getDocuments().getCoverLetterLink().value);
         }
     }
 
