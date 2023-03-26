@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package Person_Model <<Rectangle>>{
 Class ModelManager
 Class FriendlyLink
 
@@ -18,6 +18,9 @@ Class Pair
 Class "{abstract} Person" as Person
 
 }
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> ModelManager
 
 ModelManager --> "1" FriendlyLink
 FriendlyLink *-left-> "1" UniqueElderlyList

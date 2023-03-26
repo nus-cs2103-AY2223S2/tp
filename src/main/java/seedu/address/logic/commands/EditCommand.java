@@ -15,12 +15,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditDescriptor;
@@ -111,9 +109,7 @@ public class EditCommand extends Command {
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
-        @SuppressWarnings("unchecked")
-        Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
-        model.updateFilteredElderlyList(predicate);
+        model.refreshAllFilteredLists();
         return new CommandResult(String.format(
                 EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
     }
@@ -126,9 +122,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
         model.setVolunteer(volunteerToEdit, editedVolunteer);
-        @SuppressWarnings("unchecked")
-        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
-        model.updateFilteredVolunteerList(predicate);
+        model.refreshAllFilteredLists();
         return new CommandResult(String.format(
                 EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
