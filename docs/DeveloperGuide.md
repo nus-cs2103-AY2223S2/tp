@@ -1310,8 +1310,12 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 6. `find n/Google n/Meta s/new s/applied`
 
-   **Expected**: The List Panel shows the internship entries whose company name exactly matches at least one of the company name fields and status matches at least one of the status fields.
+   **Expected**: The List Panel shows the internship entries whose company name exactly matches at least one of the company name fields ('Google' or 'Meta') and status matches at least one of the status fields ('new' or 'applied').
    This means that for the `find` command, whenever there are multiple instances of different fields, the internship entries filtered out must match at least one input from every different field.
+
+7. `find s/assessment s/interview r/frontend r/backend t/python t/java`
+
+   **Expected**: The List Panel shows the internship entries status matches at least one of the status fields ('assessment' or 'interview'), role matches at least one of the role fields ('frontend' or 'backend') and tag matches at least one of the tag fields ('python' or 'java').
 
 [More test cases will be added for combination of parameters...]
 
