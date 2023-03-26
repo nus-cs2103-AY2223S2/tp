@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -69,20 +70,16 @@ public class FilesManager {
      * @param fileName the file name
      */
     public void displayFile(String fileName) {
-        //String fileName = path.getFileName().toString();
         String filePath = this.path + "/" + fileName;
         Path path1 = Paths.get(filePath);
-        String extension = fileName.substring(
-                fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
-        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
-            ImageReader imageReader = new ImageReader(path1);
-            imageReader.displayImage();
-        } else if (extension.equals("pdf")) {
-            PdfReader pdfReader = new PdfReader(path1);
-            pdfReader.displayPdf();
+        String extension = getFileExtension(fileName);
+        if (isImage(extension)) {
+            displayImage(path1);
+        } else if (extension.equalsIgnoreCase("pdf")) {
+            displayPdf(path1);
         } else {
             //adding custom exception of Wrong File type exception
-            System.out.println("Invlid file type");
+            System.out.println("Invalid file type");
         }
     }
 
@@ -108,7 +105,7 @@ public class FilesManager {
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
-        if (!isEmptyDirectory()) {
+        if (!isEmptyDirectory() && Files.exists(directory) && Files.isDirectory(directory)) {
             try (Stream<Path> stream = Files.walk(directory)) {
                 stream.filter(Files::isRegularFile)
                         .forEach(files::add);
@@ -119,10 +116,14 @@ public class FilesManager {
     }
 
     private void setFileNames() {
-        fileNames = files.stream()
-                .map(Path::getFileName)
-                .map(Path::toString)
-                .collect(Collectors.toList());
+        if (files != null) {
+            fileNames = files.stream()
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toList());
+        } else {
+            fileNames = Collections.emptyList();
+        }
     }
 
     private boolean isEmptyDirectory() {
@@ -136,8 +137,28 @@ public class FilesManager {
         }
         return false;
     }
+
     public Person getPerson() {
         return this.person;
+    }
 
+    private String getFileExtension(String fileName) {
+        return fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+    }
+
+    private boolean isImage(String extension) {
+        return "jpg".equalsIgnoreCase(extension)
+                || "jpeg".equalsIgnoreCase(extension)
+                || "png".equalsIgnoreCase(extension);
+    }
+
+    private void displayImage(Path path1) {
+        ImageReader imageReader = new ImageReader(path1);
+        imageReader.displayImage();
+    }
+
+    private void displayPdf(Path path1) {
+        PdfReader pdfReader = new PdfReader(path1);
+        pdfReader.displayPdf();
     }
 }
