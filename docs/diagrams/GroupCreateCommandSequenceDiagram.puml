@@ -24,7 +24,7 @@ AddressBookParser -> GroupCreateCommandParser : parse(g/CS2103")
 activate GroupCreateCommandParser
 
 create GroupCreateCommand
-GroupCreateCommandParser -> GroupCreateCommand
+GroupCreateCommandParser -> GroupCreateCommand : groupToAdd
 activate GroupCreateCommand
 
 GroupCreateCommand --> GroupCreateCommandParser
