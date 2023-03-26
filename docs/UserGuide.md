@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+
+TeachMeSenpai is a **desktop app targeted at private academic tutors who have many students to keep track of.** It is tailored to assist the user in monitoring their schedule, students' progress, and details.
+
+---
+
 ## **Table of Contents**
 {:.no_toc}
 
@@ -9,8 +14,6 @@ title: User Guide
 {:toc}
 
 ---
-
-TeachMeSenpai is a **desktop app targeted at private academic tutors who have many students to keep track of.** It is tailored to assist the user in monitoring their schedule, students' progress, and details.
 
 ## Quick start
 
