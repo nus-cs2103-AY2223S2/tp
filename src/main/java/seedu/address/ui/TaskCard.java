@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.task.TaskStatus.INPROGRESS;
+
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -45,14 +48,15 @@ public class TaskCard extends UiPart<Region> {
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
+        requireAllNonNull(this.getClass().getResourceAsStream("/images/inProgress.png"),
+                this.getClass().getResourceAsStream("/images/late.png"),
+                this.getClass().getResourceAsStream("/images/complete.png"));
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName().fullName);
 
         TaskStatus statusOfTask = task.getStatus();
 
-        //Since the mark functions are not implemented, conditions will show as checked.
-        //Will need to update after the respective functions complete.
         switch (statusOfTask) {
 
         case INPROGRESS:
