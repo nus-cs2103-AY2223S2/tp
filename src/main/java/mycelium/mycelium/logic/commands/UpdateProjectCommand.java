@@ -124,28 +124,69 @@ public class UpdateProjectCommand extends Command {
             this.name = Optional.ofNullable(name);
         }
 
+        public void setName(Optional<NonEmptyString> name) {
+            requireNonNull(name);
+            this.name = name;
+        }
+
         public void setStatus(ProjectStatus status) {
             this.status = Optional.ofNullable(status);
+        }
+
+
+        public void setStatus(Optional<ProjectStatus> status) {
+            requireNonNull(status);
+            this.status = status;
         }
 
         public void setClientEmail(Email clientEmail) {
             this.clientEmail = Optional.ofNullable(clientEmail);
         }
 
+
+        public void setClientEmail(Optional<Email> clientEmail) {
+            requireNonNull(clientEmail);
+            this.clientEmail = clientEmail;
+        }
+
         public void setSource(NonEmptyString source) {
             this.source = Optional.ofNullable(source);
+        }
+
+
+        public void setSource(Optional<NonEmptyString> source) {
+            requireNonNull(source);
+            this.source = source;
         }
 
         public void setDescription(String description) {
             this.description = Optional.ofNullable(description);
         }
 
+
+        public void setDescription(Optional<String> description) {
+            requireNonNull(description);
+            this.description = description;
+        }
+
         public void setAcceptedOn(LocalDate acceptedOn) {
             this.acceptedOn = Optional.ofNullable(acceptedOn);
         }
 
+
+        public void setAcceptedOn(Optional<LocalDate> acceptedOn) {
+            requireNonNull(acceptedOn);
+            this.acceptedOn = acceptedOn;
+        }
+
         public void setDeadline(LocalDate deadline) {
             this.deadline = Optional.ofNullable(deadline);
+        }
+
+
+        public void setDeadline(Optional<LocalDate> deadline) {
+            requireNonNull(deadline);
+            this.deadline = deadline;
         }
 
         public Optional<NonEmptyString> getName() {
@@ -206,5 +247,6 @@ public class UpdateProjectCommand extends Command {
         public int hashCode() {
             return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
         }
+
     }
 }
