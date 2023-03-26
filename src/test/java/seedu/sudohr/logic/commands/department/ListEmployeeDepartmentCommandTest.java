@@ -26,7 +26,6 @@ public class ListEmployeeDepartmentCommandTest {
         expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
     }
 
-    // BUGGED
     @Test
     public void execute_listIsFiltered_shows2Departments() {
         expectedModel.updateFilteredDepartmentList(new DepartmentContainsEmployeePredicate(new Id("102")));
