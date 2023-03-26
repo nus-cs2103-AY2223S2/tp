@@ -38,15 +38,13 @@ public class ExportCommand extends Command {
      */
     public static String writeToCsvFile(FitBookModel model) throws CommandException {
         List<Client> clients = model.getFilteredClientList().stream().collect(Collectors.toList());
-        try {
-            File csv = new File(FILE_NAME_CLIENT + CSV_EXTENSION);
-            PrintWriter pw = new PrintWriter(csv);
+        try (PrintWriter pw = new PrintWriter(new File(FILE_NAME_CLIENT + CSV_EXTENSION))) {
             writeHeaderRow(pw);
             writeClientRows(pw, clients);
+            return ExportCommand.MESSAGE_SUCCESS;
         } catch (FileNotFoundException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
-        return ExportCommand.MESSAGE_SUCCESS;
     }
 
     /**
@@ -64,9 +62,16 @@ public class ExportCommand extends Command {
      */
     public static void writeClientRows(PrintWriter pw, List<Client> clients) {
         for (Client client : clients) {
-            pw.printf("%s, %s, %s, %s, %s, %s\n", client.getName(), client.getPhone(), client.getEmail(),
-                    client.getAddress().toString().replaceAll("[^a-zA-Z0-9]", " "),
-                    client.getWeight(), client.getGender());
+            // defensive check to ensure client details are not null in any cases
+            String name = client.getName() != null ? String.valueOf(client.getName()) : "";
+            String phone = client.getPhone() != null ? String.valueOf(client.getPhone()) : "";
+            String email = client.getEmail() != null ? String.valueOf(client.getEmail()) : "";
+            String address = client.getAddress() != null
+                    ? client.getAddress().toString().replaceAll("[^a-zA-Z0-9]", " ") : "";
+            String weight = client.getWeight() != null ? String.valueOf(client.getWeight()) : "";
+            String gender = client.getGender() != null ? String.valueOf(client.getGender()) : "";
+
+            pw.printf("%s, %s, %s, %s, %s, %s\n", name, phone, email, address, weight, gender);
         }
         pw.close();
     }
