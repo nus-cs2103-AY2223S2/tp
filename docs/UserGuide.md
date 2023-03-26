@@ -178,6 +178,54 @@ _**Above: After entering `delete` command**_
 
 </div>
 
+### Showing a student's remark: `show`
+
+Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
+
+> Format: `show INDEX`
+
+Examples:
+
+- `show 2`
+
+<div align=center>
+
+![show before](images/user-guide/show_before.jpg)  
+_**Above: Before entering `show` command**_
+
+</div>
+
+<div align=center>
+
+![show after](images/user-guide/show_after.jpg)  
+_**Above: After entering `show` command**_
+
+</div>
+
+### Showing a student's remark: `show`
+
+Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
+
+> Format: `show INDEX`
+
+Examples:
+
+- `show 2`
+
+<div align=center>
+
+![show before](images/user-guide/show_before.jpg)  
+_**Above: Before entering `show` command**_
+
+</div>
+
+<div align=center>
+
+![show after](images/user-guide/show_after.jpg)  
+_**Above: After entering `show` command**_
+
+</div>
+
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
