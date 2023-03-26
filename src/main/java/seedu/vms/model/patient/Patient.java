@@ -16,6 +16,8 @@ import seedu.vms.model.GroupName;
  * immutable.
  */
 public class Patient {
+    public static final int ALLERGY_LIMIT = 100;
+    public static final int VACCINE_LIMIT = 30;
 
     // Identity fields
     private final Name name;
