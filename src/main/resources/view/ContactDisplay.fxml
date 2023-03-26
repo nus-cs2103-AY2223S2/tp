@@ -4,30 +4,30 @@
 
 <?import javafx.geometry.Insets?>
 <GridPane fx:id="contactDisplay" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-          prefHeight="9999" prefWidth="800.0"
+          prefHeight="99999" minWidth="850.0" prefWidth="850.0"
           alignment="CENTER_LEFT" hgap="10" vgap="10">
     <padding>
-        <Insets top="5" right="10" bottom="5" left="10" />
+        <Insets top="5" bottom="5"/>
     </padding>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="225" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="250" prefWidth="250" />
     </columnConstraints>
     <VBox fx:id="doctorList" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1">
-        <StackPane fx:id="doctorListPanelPlaceholder" prefHeight="9999" VBox.vgrow="ALWAYS"/>
+        <StackPane fx:id="doctorListPanelPlaceholder" prefHeight="99999" VBox.vgrow="ALWAYS"/>
     </VBox>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="225" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="250" prefWidth="250" />
     </columnConstraints>
     <VBox fx:id="patientList" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="1">
-        <StackPane fx:id="patientListPanelPlaceholder" prefHeight="9999" VBox.vgrow="ALWAYS"/>
+        <StackPane fx:id="patientListPanelPlaceholder" prefHeight="99999" VBox.vgrow="ALWAYS"/>
     </VBox>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="300" prefWidth="300" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="350" prefWidth="350" />
     </columnConstraints>
     <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
-        <StackPane fx:id="enlargedPersonInfoCardPlaceholder" prefHeight="9999" VBox.vgrow="ALWAYS" />
+        <StackPane fx:id="enlargedPersonInfoCardPlaceholder" prefHeight="99999" VBox.vgrow="ALWAYS" />
     </VBox>
 </GridPane>

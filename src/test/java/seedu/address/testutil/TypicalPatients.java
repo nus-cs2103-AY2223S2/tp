@@ -1,5 +1,24 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DIAGNOSIS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DIAGNOSIS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HEIGHT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HEIGHT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +26,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.person.patient.Status;
+
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
@@ -73,7 +93,15 @@ public class TypicalPatients {
             .withRemark("Non compliant")
             .build();
 
-
+    // Manually added - Patient's details found in {@code CommandTestUtil}
+    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY).withHeight(VALID_HEIGHT_AMY).withWeight(VALID_WEIGHT_AMY)
+            .withDiagnosis(VALID_DIAGNOSIS_AMY).withStatus(VALID_STATUS_AMY).withRemark(VALID_REMARK_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withHeight(VALID_HEIGHT_BOB).withWeight(VALID_WEIGHT_BOB)
+            .withDiagnosis(VALID_DIAGNOSIS_BOB).withStatus(VALID_STATUS_BOB).withRemark(VALID_REMARK_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPatients() {} // prevents instantiation

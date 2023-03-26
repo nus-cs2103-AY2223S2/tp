@@ -89,7 +89,22 @@ A doctor can have any number of tags (including 0)
 
 Examples:
 
-* `add n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
+* `add-doc n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
+
+### Adding a patient: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+
+Adds a patient to the address book.
+
+Format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A patient can have any number of tags (including 0)
+</div>
+
+Examples:
+
+* `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
 ### Editing a doctor : `edit-doc`
 
@@ -115,12 +130,26 @@ Deletes the specified doctor from the address book.
 Format: `del-doc INDEX`
 
 * Deletes the doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `del-doc 2` deletes the 2nd doctor in the address book.
-* `find-doc Gabriel` followed by `delete 1` deletes the 1st doctor in the results of the `find-doc` command.
+* `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
+* `find-doc Gabriel` followed by `del-doc 1` deletes the 1st doctor in the results of the `find-doc` command.
+* 
+### Deleting a patient : `del-ptn`
+
+Deletes the specified patient from the address book.
+
+Format: `del-ptn INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
+* `find-ptn Gabriel` followed by `del-ptn 1` deletes the 1st patient in the results of the `find-ptn` command.
 
 ### Finding a doctor
 
@@ -166,12 +195,14 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Doctor** | `add-doc n/NAME p/PHONE_NUMBER` <br> E.g. `add-doc n/Gabriel p/81119666`
-**Delete Doctor** | `del-doc INDEX`<br> E.g. `del-doc 3`
-**Edit Doctor** | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`
-**Find Doctor** | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`
-**List Doctors** | `list-doc`
-**Help** | `help`
-**Exit** | `exit`
+| Action             | Format, Examples                                                                                                                                                                                                                              |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Doctor**     | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
+| **Add Patient**    | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
+| **Delete Doctor**  | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                          |
+| **Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                          |
+| **Edit Doctor**    | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
+| **Find Doctor**    | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`                                                                                                                                                                                                |
+| **List Doctors**   | `list-doc`                                                                                                                                                                                                                                    |
+| **Help**           | `help`                                                                                                                                                                                                                                        |
+| **Exit**           | `exit`                                                                                                                                                                                                                                        |
