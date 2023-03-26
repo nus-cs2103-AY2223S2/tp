@@ -41,7 +41,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public static boolean validate(ArgumentMultimap map) {
         String preamble = map.getPreamble().toLowerCase();
-        System.out.println(preamble);
         return preamble.equals("paired") || preamble.equals("unpaired");
     }
 }

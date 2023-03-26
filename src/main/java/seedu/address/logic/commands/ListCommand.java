@@ -25,10 +25,10 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
     public static final String MESSAGE_SUCCESS = "Listed all volunteers, elderly and pairs";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all volunteers and elderly pairs if nothing is"
-            + "specified after the command, else list all paired or unpaired volunteers and elderly if the"
-            + "\"paired\" or \"unpair\" (case-insensitive) word is given respectively after the the list command word"
-            + "Parameters: [paired/unpair]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all volunteers and elderly pairs if nothing is "
+            + "specified after the command, else list all paired or unpaired volunteers and elderly if the \"paired\""
+            + " or \"unpaired\" (case-insensitive) word is given respectively after the the list command word\n"
+            + "Parameters: [paired/unpaired]\n"
             + "Example: " + COMMAND_WORD + " paired";
     public static final String MESSAGE_SUCCESS_LIST_PAIRED =
             "Listed %1$s paired volunteer, %2$s paired elderly and all pairs";
@@ -59,15 +59,17 @@ public class ListCommand extends Command {
             model.refreshAllFilteredLists();
             return new CommandResult(MESSAGE_SUCCESS);
         case "unpaired":
-            model.updateFilteredElderlyList(getUnPairedElderlyPredicate(friendlyLink));
-            model.updateFilteredVolunteerList(getUnPairedVolunteerPredicate(friendlyLink));
-            model.updateFilteredPairList(showAllPairPredicate);
+            model.updateAllFilteredLists(
+                    getUnPairedElderlyPredicate(friendlyLink),
+                    getUnPairedVolunteerPredicate(friendlyLink),
+                    showAllPairPredicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS_LIST_UNPAIRED,
                     model.getFilteredVolunteerList().size(), model.getFilteredElderlyList().size()));
         case "paired":
-            model.updateFilteredElderlyList(getPairedElderlyPredicate(friendlyLink));
-            model.updateFilteredVolunteerList(getPairedVolunteerPredicate(friendlyLink));
-            model.updateFilteredPairList(showAllPairPredicate);
+            model.updateAllFilteredLists(
+                    getPairedElderlyPredicate(friendlyLink),
+                    getPairedVolunteerPredicate(friendlyLink),
+                    showAllPairPredicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS_LIST_PAIRED,
                     model.getFilteredVolunteerList().size(), model.getFilteredElderlyList().size()));
         default:

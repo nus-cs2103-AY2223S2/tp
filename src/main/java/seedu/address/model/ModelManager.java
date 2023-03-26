@@ -288,6 +288,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+            Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        updateFilteredElderlyList(elderlyPredicate);
+        updateFilteredVolunteerList(volunteerPredicate);
+        updateFilteredPairList(pairPredicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

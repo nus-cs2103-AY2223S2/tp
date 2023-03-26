@@ -191,4 +191,10 @@ class ModelStub implements Model {
     public void refreshAllFilteredLists() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+                                       Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        throw new AssertionError("This method should not be called.");
+    }
 }
