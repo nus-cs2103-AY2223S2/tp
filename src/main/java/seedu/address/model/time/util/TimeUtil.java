@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.joda.time.LocalTime;
 
 import javafx.util.Pair;
-import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.timetable.Timetable;
 import seedu.address.model.scheduler.time.Day;
 import seedu.address.model.scheduler.time.HourBlock;
 import seedu.address.model.scheduler.time.TimeBlock;

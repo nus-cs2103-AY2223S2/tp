@@ -24,40 +24,40 @@ title: Developer Guide
    * [UI Component](#ui-component)
    * [Key_Mapping](#key-mapping)
    * [Model Component](#model-component)
-   * [Person](#person)
-       * [Name](#name)
-       * [Address](#address)
-       * [Phone](#phone)
-       * [Email](#email)
-       * [Telegram Handle](#telegram-handle)
-       * [Group Tag Set](#group-tag-set)
-       * [Module Tag Set](#module-tag-set)
-   * [Tag](#tag)
-       * [Group Tag](#group-tag)
-       * [Module Tag](#module-tag)
-   * [Utils](#utils)
-     * [MathUtil](#math-util)
-     * [Sample Data Util](#sample-data-util)
+     * [Person](#person)
+         * [Name](#name)
+         * [Address](#address)
+         * [Phone](#phone)
+         * [Email](#email)
+         * [Telegram Handle](#telegram-handle)
+         * [Group Tag Set](#group-tag-set)
+         * [Module Tag Set](#module-tag-set)
+     * [Tag](#tag)
+         * [Group Tag](#group-tag)
+         * [Module Tag](#module-tag)
+     * [Utils](#utils)
+       * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
-   * [Commands](#commands)
-       * [Add Command](#add-command)
-       * [Edit Command](#edit-command)
-       * [Delete Command](#delete-command)
-       * [Tag Command](#tag-command)
-       * [View Command](#view-command)
-       * [Find Command](#find-command)
-       * [Sort Command](#sort-command)
-       * [List Command](#list-command)
-       * [Exit Command](#exit-command)
-       * [Meet Command](#meet-command)
-   * [Parsers](#parsers)
-     * [Argument Multimap](#argument-multimap)
-     * [Prefix](#prefix)
-   * [Recommender Component](#recommender-component)
-     * [Scheduler](#scheduler)
-     * [Location Recommender](#location-recommender)
+     * [Commands](#commands)
+         * [Add Command](#add-command)
+         * [Edit Command](#edit-command)
+         * [Delete Command](#delete-command)
+         * [Tag Command](#tag-command)
+         * [View Command](#view-command)
+         * [Find Command](#find-command)
+         * [Sort Command](#sort-command)
+         * [List Command](#list-command)
+         * [Exit Command](#exit-command)
+         * [Meet Command](#meet-command)
+     * [Parsers](#parsers)
+       * [Argument Multimap](#argument-multimap)
+       * [Prefix](#prefix)
+     * [Recommenders](#recommender)
+       * [Scheduler](#scheduler)
+       * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
+     * [MathUtil](#math-util)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
    * [Testing Models](#testing-models)
@@ -749,26 +749,7 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
----
-
-## **Storage Component**
-
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
-
-<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.5.1</b> Class Diagram for Storage Components
-</div>
-<br>
-
-The `Storage` component,
-* can save both address book data and user preference data in json format, command history in text format, and read them back into corresponding objects.
-* inherits from both `EduMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-
----
-
-## **Recommender Component**
+## **Recommenders**
 
 **API** : `Recommender.java` {to be filled in}
 
@@ -787,7 +768,7 @@ How the `Recommender` Component works:
 2. Triggers the `Scheduler` to recommend common available timings amongst users and participants.
 3. `Scheduler` passes the recommended timings to `LocationRecommender`
 4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
-their `Location` at that particular timing.
+   their `Location` at that particular timing.
 5. Feedbacks to user the recommended meetup locations and timings.
 
 #### Scheduler
@@ -810,6 +791,25 @@ the participants could meet up.
 #### Location Recommender
 
 {to be filled by Hafeez}
+
+---
+
+## **Storage Component**
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.5.1</b> Class Diagram for Storage Components
+</div>
+<br>
+
+The `Storage` component,
+* can save both address book data and user preference data in json format, command history in text format, and read them back into corresponding objects.
+* inherits from both `EduMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+---
 
 ## **Common Classes**
 
@@ -1174,6 +1174,9 @@ Expected Output in the Person List: New person added to EduMate.
 Expected Output in the Command Output Box: Error message for invalid command format.
 
 ### **View a person**
+`view`
+
+Expected Output in the Profile Panel: The user's (you) profile is shown.
 
 `view 5`
 
