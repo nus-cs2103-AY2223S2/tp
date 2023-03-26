@@ -60,8 +60,6 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.sortModuleGroups(CommandResult.Sort.valueOf(sortOrder));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder), true, false, false,
-                CommandResult.Sort.valueOf(sortOrder),
-                false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder));
     }
 }

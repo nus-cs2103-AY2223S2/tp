@@ -45,7 +45,6 @@ public class FindCommand extends Command {
                 false,
                 false,
                 true,
-                CommandResult.DEFAULT_SORT,
                 false);
     }
 

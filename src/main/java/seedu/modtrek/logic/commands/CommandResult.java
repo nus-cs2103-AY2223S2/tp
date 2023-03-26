@@ -51,11 +51,6 @@ public class CommandResult {
      */
     public final boolean isDisplayProgress;
 
-    /**
-     * The Sort.
-     */
-    public final Sort sort;
-
     private final String feedbackToUser;
 
     /** The application should exit. */
@@ -68,16 +63,14 @@ public class CommandResult {
      * @param isDisplayAllModules      the is display all modules
      * @param isDisplayProgress        the is display progress
      * @param isDisplayFilteredModules the is display filtered modules
-     * @param sort                     the sort
      * @param exit                     the exit
      */
     public CommandResult(String feedbackToUser, boolean isDisplayAllModules,
-            boolean isDisplayProgress, boolean isDisplayFilteredModules, Sort sort, boolean exit) {
+            boolean isDisplayProgress, boolean isDisplayFilteredModules, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isDisplayAllModules = isDisplayAllModules;
         this.isDisplayProgress = isDisplayProgress;
         this.isDisplayFilteredModules = isDisplayFilteredModules;
-        this.sort = sort;
         this.exit = exit;
     }
 
@@ -88,7 +81,7 @@ public class CommandResult {
      * @param feedbackToUser the feedback to user
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, true, false, false, DEFAULT_SORT,
+        this(feedbackToUser, true, false, false,
                 false);
     }
 
