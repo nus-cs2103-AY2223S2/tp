@@ -1,4 +1,4 @@
-package seedu.wife.commons.core.food;
+package seedu.wife.model.food;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,6 @@ import static seedu.wife.testutil.TypicalFood.MEIJI;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.model.food.Food;
 import seedu.wife.testutil.FoodBuilder;
 
 public class FoodTest {
@@ -32,22 +31,31 @@ public class FoodTest {
         // null -> returns false
         assertFalse(MEIJI.isSameFood(null));
 
-        // same name, all other attributes different -> returns true
-        Food editedMeiji = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_CHOCOLATE).withQuantity(VALID_QUANTITY_CHOCOLATE)
-                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE).build();
+        // same name and expiry date, all other attributes different -> returns true
+        Food editedMeiji = new FoodBuilder(MEIJI)
+                .withUnit(VALID_UNIT_CHOCOLATE)
+                .withQuantity(VALID_QUANTITY_CHOCOLATE)
+                .withTags(VALID_TAG_CHOCOLATE)
+                .build();
         assertTrue(MEIJI.isSameFood(editedMeiji));
 
         // different name, all other attributes same -> returns false
-        editedMeiji = new FoodBuilder(MEIJI).withName(VALID_NAME_CHOCOLATE).build();
+        editedMeiji = new FoodBuilder(MEIJI)
+                .withName(VALID_NAME_CHOCOLATE)
+                .build();
         assertFalse(MEIJI.isSameFood(editedMeiji));
 
         // name differs in case, all other attributes same -> returns false
-        Food editedChocolate = new FoodBuilder(CHOCOLATE).withName(VALID_NAME_CHOCOLATE.toLowerCase()).build();
+        Food editedChocolate = new FoodBuilder(CHOCOLATE)
+                .withName(VALID_NAME_CHOCOLATE.toLowerCase())
+                .build();
         assertFalse(CHOCOLATE.isSameFood(editedChocolate));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_CHOCOLATE + " ";
-        editedChocolate = new FoodBuilder(CHOCOLATE).withName(nameWithTrailingSpaces).build();
+        editedChocolate = new FoodBuilder(CHOCOLATE)
+                .withName(nameWithTrailingSpaces)
+                .build();
         assertFalse(CHOCOLATE.isSameFood(editedChocolate));
     }
 
@@ -73,15 +81,15 @@ public class FoodTest {
         Food editedMeiji = new FoodBuilder(MEIJI).withName(VALID_NAME_CHOCOLATE).build();
         assertFalse(MEIJI.equals(editedMeiji));
 
-        // different Unit -> returns false
+        // different unit -> returns false
         editedMeiji = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_CHOCOLATE).build();
         assertFalse(MEIJI.equals(editedMeiji));
 
-        // different email -> returns false
+        // different quantity -> returns false
         editedMeiji = new FoodBuilder(MEIJI).withQuantity(VALID_QUANTITY_CHOCOLATE).build();
         assertFalse(MEIJI.equals(editedMeiji));
 
-        // different address -> returns false
+        // different expiry date -> returns false
         editedMeiji = new FoodBuilder(MEIJI).withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).build();
         assertFalse(MEIJI.equals(editedMeiji));
 
