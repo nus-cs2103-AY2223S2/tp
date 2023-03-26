@@ -7,11 +7,12 @@ The Intern’s Ship (TinS) is a **desktop app for managing internships applicati
 Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can
 help you manage and keep track of your internship applications faster than traditional GUI apps.
 
-* Features (v1.2)
-  * Adding an internship application: add
-  * Listing all the company and position of the application : list
-  * Locating internship by name: view
-  * Deleting an internship : delete
+* Features (v1.3)
+  * Adding an internship application: `add`
+  * Listing all the company and position of the application : `list`
+  * Editing an internship application: `edit`
+  * Locating internship by name: `select`
+  * Deleting an internship : `delete`
   * Saving the data
 
 -----------------
@@ -45,14 +46,11 @@ help you manage and keep track of your internship applications faster than tradi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add JOBNAME`, `JOBNAME` is a parameter which can be used as `add Software Engineer`.
+  e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
+  used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
 * Items in square brackets are optional.<br>
-  e.g `[CONTACT_DETAILS]` meansthat the user input is optional. User can press the enter key to skip the input.
-
-* Question prompts are written in red.<br>
-  e.g. in `INPUT COMPANY NAME: COMPANY_NAME`, `INPUT COMPANY NAME:` is a question prompt by the program. Users are
-  required to input the necessary information after the prompt.
+  e.g `[TAG]` means that the user input is optional. User can press the enter key to skip the input.
 
 </div>
 
@@ -60,110 +58,128 @@ help you manage and keep track of your internship applications faster than tradi
 
 Adds an internship and its details to TinS
 
-Format: `add POSITION`
-```
-add software engineer
-INPUT COMPANY_NAME: COMPANY_NAME
-INPUT APPLICATION STATUS: APPLICATION_STATUS
-INPUT CONTACT DETAILS: [CONTACT_DETAILS]
-```
+Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...`
 
 * `POSITION`: Name of Internship Position
-* `COMPANY NAME` : Name of hiring company
-* `APPLICATION_STATUS` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`)
-* `CONTACT DETAILS` : Contact details of hiring manager (optional)
-* After keying in the  add command, the user will be prompted with these fields:
-    * `COMPANY_NAME`
-    * `APPLICATION_STATUS`
-    * `CONTACT_DETAILS (optional)`
+* `COMPANY_NAME` : Name of Hiring Company
+
+> Note: `POSITION` and `COMPANY_NAME` have to be unique. <br>
+> If there is an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` already saved in TinS:
+> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` is not valid
+> * Adding an Internship with `POSITION` as `Software Engineer 1` and `COMPANY_NAME` as `Grab` is valid
+> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab 1` is valid
+
+* `APPLICATION_STATUS` : Status of Application
+  * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer
+  values:
+    * `0` : Interested
+    * `1` : Applied
+    * `2` : Offered
+    * `3` : Rejected
+* `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details, Link to Webpage, Requirements of
+Internship)
+* `TAG` : Customised Tag
+  * This is optional.
+  * An Internship can have more than one tag.
 
 Example:
 ```
-add software engineer
-INPUT COMPANY_NAME: Google
-INPUT APPLICATION STATUS: applied
-INPUT CONTACT DETAILS: BobTheManager@gmail.com
+add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java t/Important t/Priority
 ```
 
 ### Listing all internships : `list`
 
-List all the internships (auto-generated ID, position, company name) in TinS.
+List all the internships in Internship List panel of TinS.
 
-* After keying in the `list` command, TinS returns the list of internships in the form of
-  `1. (<ID>) <POSITION>, <COMPANY NAME>`
-   * `ID` refers to the auto-generated ID created by TinS for this particular internship
+* After keying in the `list` command, TinS displays **all** the Internships stored in TinS in the Internship List panel on
+the left side of TinS Application.
+* Only the `POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS` and `TAG` are display in the Internship List panel for each
+Internship.
 
-Example: TinS should display a similar list to the one below, after the `list` command:
+Example:
+![internship_list_panel](images/internship_list_panel.png)
 
-~~~
-1. (SE_G1) SOFTWARE ENGINEER, GOOGLE
-2. (DA_S1) DATA ANALYST, SHOPBACK
-3. (SE_G2) SOFTWARE ENGINEER, GRAB
-4. (DS_A1) DATA SCIENTIST, ARTEFACT
-~~~
-
-### Viewing Details of internship : `view`
+### Viewing Details of a Particular Internship : `select`
 
 View details of the internship selected by ID.
 
-Format: `view ID`
+Format: `select ID`
 
-* `ID`: Identification number of the Internship.
-* After keying in the `VIEW` command, the program will return the details of the selected internship.
+* `ID`: The number of the selected internship in the Internship List Panel
+* After keying in the `select` command, the program will return the all details of the selected internship in the right
+panel.
 
-Example: <br>
-After keying in the `view` command followed by an existing `ID`, TinS will output
-all information of the internship with the specified `ID`, including position, company
-name, application status and contact info.
+Example:
+![view_internship](images/view_internship.png)
 
-~~~
-// input
-view SE_G1
-~~~
-~~~
-//output
-INTERNSHIP ID: SE_G1
-POSITION: SOFTWARE ENGINEER
-COMPANY NAME: GOOGLE
-APPLICATION STATUS: APPLIED
-CONTACT: BOBTHEMANAGER@GMAIL.COM
-~~~
-
-### Deleting a person : `delete`
+### Deleting an Internship : `delete`
 
 Deletes an internship along with its details.
 
 Format: `delete ID`
-* Deletes the person at the specified `ID`.
-* The ID the  Auto-Generated ID created by TInS.
-
-> Note: After keying in the  delete command, the user will be asked to confirm their action by typing in `YES` or `NO`.
+* Deletes the person at the specified `ID` in the Internship List Panel.
 
 Examples:
 
-`delete SE_G1`
-`ARE YOU SURE YOU WANT TO DELETE SOFTWARE ENGINEER, GOOGLE` : `YES`
-
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits and closes the TinS application.
 
 Format: `exit`
 
 ### Saving the data
 
-The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-_Details coming soon ..._
+The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+<table>
 
-Action | Format, Examples
---------|------------------
-**Add** | `add JOBNAME` (input other details when prompted) <br> e.g., `add software engineer`
-**Delete** | `delete ID`<br> e.g., `delete SE_G1`
-**List** | `list`
-**View** | `view ID`<br> e.g., `view SE_G1`
+<tr>
+<th>Action</th>
+<th>Format</th>
+</tr>
 
+<tr>
+<td><b>Add</b></td>
+<td><code>add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...</code><br>
+E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/Important t/Priority</code></td>
+</tr>
+
+<tr>
+<td><b>List</b></td>
+<td><code>list</td>
+</tr>
+
+<tr>
+<td><b>Edit</b></td>
+<td><code>edit ID [p/POSITION] [c/COMPANY_NAME] [s/APPLICATION_STATUS] [d/DESCRIPTION] [t/TAG] ...</code><br>
+E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the Internship List panel
+to Data Analyst</td>
+</tr>
+
+<tr>
+<td><b>Delete</b></td>
+<td><code>delete ID</code><br>
+E.g. <code>delete 1</code> deletes the first internship in the Internship List panel</td>
+</tr>
+
+<tr>
+<td><b>Select</b></td>
+<td><code>select ID</code><br>
+E.g. <code>select 1</code> selects the first internship in the Internship List panel</td>
+</tr>
+
+<tr>
+<td><b>Help</b></td>
+<td><code>help</code></td>
+</tr>
+
+<tr>
+<td><b>exit</b></td>
+<td><code>exit</code></td>
+</tr>
+
+</table>
