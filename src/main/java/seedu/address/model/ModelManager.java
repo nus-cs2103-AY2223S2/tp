@@ -42,6 +42,7 @@ public class ModelManager implements Model {
     private final Shop shop;
 
     private Customer selectedCustomer;
+    private Vehicle selectedVehicle;
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
@@ -79,6 +80,9 @@ public class ModelManager implements Model {
 
         if(filteredCustomers.size() > 0) {
             selectedCustomer = filteredCustomers.get(0);
+        }
+        if(filteredVehicles.size() > 0) {
+            selectedVehicle = filteredVehicles.get(0);
         }
     }
 
@@ -458,6 +462,16 @@ public class ModelManager implements Model {
     @Override
     public Customer getSelectedCustomer() {
         return selectedCustomer;
+    }
+
+    @Override
+    public void selectVehicle(Vehicle vehicle) {
+        selectedVehicle = vehicle;
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return selectedVehicle;
     }
 
 }

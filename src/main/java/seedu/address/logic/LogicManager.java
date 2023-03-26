@@ -124,4 +124,9 @@ public class LogicManager implements Logic {
     public Customer getSelectedCustomer() {
         return model.getSelectedCustomer();
     }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return model.getSelectedVehicle();
+    }
 }

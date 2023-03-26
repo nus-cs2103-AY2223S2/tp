@@ -77,7 +77,8 @@ public class CustomerDetailsPanel extends UiPart<Region> {
 
         for (int i = 0; i < vehicles.size(); i++) {
             Vehicle v = vehicles.get(i);
-            Label vLabel = new Label(v.getId() +". "+ v.getBrand() + ", " + v.getType());
+            Label vLabel = new Label(v.getId() +". "+ v.getBrand() + " (" + v.getPlateNumber() + ") "
+                    + v.getType().getValue());
             vLabel.getStyleClass().add("details-info");
             customerVehicles.getChildren().add(vLabel);
         }

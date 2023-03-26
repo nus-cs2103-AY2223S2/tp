@@ -308,6 +308,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void selectCustomer(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Customer getSelectedCustomer() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyShop getShop() {
             throw new AssertionError("This method should not be called.");
         }
