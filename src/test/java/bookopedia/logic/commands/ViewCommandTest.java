@@ -2,6 +2,7 @@ package bookopedia.logic.commands;
 
 import static bookopedia.testutil.Assert.assertThrows;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -41,5 +42,15 @@ public class ViewCommandTest {
         //this is temporary again...
         assertTrue(outputFromTestView.equals(new CommandResult(ViewCommand.MESSAGE_SUCCESS,
                 false, false, true, testTypicalPerson, validIndex.getZeroBased())));
+    }
+
+    @Test
+    public void execute_SuccessMessageCorrect() throws CommandException {
+        List<Person> listOfTypicalPersons = model.getFilteredPersonList();
+        Index validIndex = Index.fromZeroBased(0);
+        Person testTypicalPerson = listOfTypicalPersons.get(validIndex.getZeroBased());
+        ViewCommand testView = new ViewCommand(validIndex);
+        CommandResult outputFromTestView = testView.execute(model);
+        assertEquals(outputFromTestView.getFeedbackToUser(), testView.MESSAGE_SUCCESS);
     }
 }
