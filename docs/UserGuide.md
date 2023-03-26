@@ -4,20 +4,25 @@ TechTrack is a powerful internship/job tracking application that combines the fl
 
 Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
 
-1. [Quick Start](#quickstart)
+1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Add Roles: `add`](#addrole)
-   2. [Delete Role: `delete`](#deleterole)
-   3. [Edit Role: `edit`](#editrole)
-   4. [Find Role: `find`](#findrole)
-   5. [Sort by Salary: `salary`](#sortsalary)
-   6. [Sort by deadline: `deadline`](#sortdeadline)
-   7. [Find by Companies: `company`](#findcompanies)
-   8. [View more details: `view`](#view)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
+   1. [Creating Role Info](#creating-role-info)
+      1. [Add Roles: `add`](#adding-a-role-add)
+      2. [Edit Role: `edit`](#editing-a-role-edit)
+      3. [Delete Role: `delete`](#deleting-a-role-delete)
+   2. [Viewing Role Info](#viewing-role-info)
+      1. [Find Role: `find`](#findrole)
+      2. [Sort by Salary: `salary`](#sorting-by-salary)
+      3. [Sort by Deadline: `deadline`](#sorting-by-deadline)
+      4. [Find by Companies: `company`](#findcompanies)
+      5. [View more details: `view`](#viewing-a-role)
+   3. [General Commands](#general-commands)
+      1. [List all roles](#list-list)
+      2. [Clear all roles](#clear-clear)
+      3. [Help (Displays user guide)](#help-help)
+      4. [Exit TechTrack](#exit-exit)
 5. [FAQ](#faq)
-6. [Command Summary](#summary)
+6. [Command Summary](#command-summary)
 
 # Quick Start
 Ensure you have Java `11` or above installed in your Computer.
@@ -36,22 +41,19 @@ This section guides you on how to use features available in TechTrack.
 
 **The features of TechTrack can be split into 3 main categories:**
 
-* [Creating Role Info](#creating-patient-info)
-* [Retrieving Role Info](#retrieving-patient-info)
+* [Creating Role Info](#creating-role-info)
+* [Viewing Role Info](#viewing-role-info)
 * [General Commands](#general-commands)
 
-<sub><sup>[back to top](#back-to-topt)</sup></sub>
+<sub><sup>[back to top](#techtrack-user-guide)</sup></sub>
 
 ## Creating Role Info
 The commands in this segment are focused on creating, editing and removing data to and from the application.
 These commands are:
 
-* [Adding a Role](#adding-role)
-* [Editing a Role](#editing-role)
-* [Deleting a Role](#deleting-role)
-* [Viewing a role ](#viewing-role)
-* [Sorting a role by deadline](#sorting-role-deadline)
-* [Sorting a role by salary](#sorting-role-salary)
+* [Adding a Role](#adding-a-role-add)
+* [Editing a Role](#editing-a-role-edit)
+* [Deleting a Role](#deleting-a-role-delete)
 
 ### Adding a role: `add`
 
@@ -59,40 +61,45 @@ Adds a role to TechTrack.
 
 Format: `add {Prefix}/{Parameter}…​`
 
+Example: `add r/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
+
 **The prefixes and their respective parameters are as follows:**
 
-| Required | Prefix | Parameter           | Restrictions                                                             |
-|----------|--------|---------------------|--------------------------------------------------------------------------|
-| `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                                 |
-| `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                      |
-| `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.        |
-| `Yes`    | coy    | COMPANY             | Follow company format                                                    |
-| `Yes`    | jd     | JOB DESCRIPTION     |                                                                          |
-| `No`     | t      | TAGS                |                                                                          |
-| `Yes`    | $      | SALARY              | Positive integer only.                    **Compulsory for inpatients**. |
-| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over      |
-| `Yes`    | x      | EXPERIENCE REQUIRED | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                            |
+| Required | Prefix | Parameter           | Restrictions                                                        |
+|----------|--------|---------------------|---------------------------------------------------------------------|
+| `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                            |
+| `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                 |
+| `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.   |
+| `Yes`    | coy    | COMPANY             | Follow company format                                               |
+| `Yes`    | jd     | JOB DESCRIPTION     | At least 1 alphanumeric character                                   |
+| `No`     | t      | TAGS                | -                                                                   |
+| `Yes`    | $      | SALARY              | Positive integers only.                                             |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
+| `Yes`    | x      | EXPERIENCE REQUIRED | At least 1 alphanumeric character                                   |
 
 
-### Adding a role:
-Adds a role to the current list of roles
-FORMAT: add roleID
+### Editing a Role: `edit`:
+Edit any parameters of a preexisting role. 
 
-### Deleting a role:
-Deletes the role from the current list of roles.
-FORMAT: delete roleID
+Format: `edit {index} {Prefix}/{Parameter}…​`
 
-### Ranking the roles
-Rank the roles based on the priority chosen by the user.
-FORMAT: rank roleID LEVEL
+Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 
+e/johndoe@example.com jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-### Listing details for ranked roles:
-When the role clicks on the role, list details about the internship that they have ranked
-FORMAT: list
+### Deleting a role `delete`:
+Deletes the role from the current list of roles. Uses a 1-based index.
 
-### Save Data
-Saves data to a text file whenever there is a command that changes the role and gets the data when the program is run again.
-FORMAT: bye
+FORMAT: `delete {index}`
+
+Example: `delete 1`
+
+## Viewing Role Info
+The commands in this segment are focused on viewing formats and details of the preexisting roles.
+These commands are:
+
+* [Sorting a role by deadline](#sorting-by-deadline)
+* [Sorting a role by salary](#sorting-by-salary)
+* [Viewing a role ](#viewing-a-role)
 
 ### Sorting by Deadline
 
@@ -104,10 +111,38 @@ Sort the latest deadline first (e.g. deadline desc)
 
 ![Deadline](images/DeadlineCommand2.png)
 
+### Sorting by Salary
+...
+
+### Viewing a role
+Displays more details about a particular role.
+
+Format: `view {index}`
+
+Example: `view 1`
+
+## General Commands
+
+* [List all roles](#list-list)
+* [Clear all roles](#clear-clear)
+* [Help (Displays user guide)](#help-help)
+* [Exit TechTrack](#exit-exit)
+
+### List: `list`
+Lists all roles available in TechTrack.
+
+### Clear: `clear`
+Deletes all roles available in TechTrack.
+
+### Help: `help`
+Displays link to a user guide.
+
+### Exit: `exit`
+Exits TechTrack
+
 ## FAQ
 Q: How do I transfer my data to another Computer?
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
-
 
 ## Command Summary
 
@@ -115,7 +150,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 |----------|----------------------------------------|
 | add      | add roleID (e.g. add 221574)           |
 | delete   | delete roleID (e.g. delete 221574)     |
-| list     | list                                   |
+| ~~list~~     | list                                   |
 | rank     | rank roleID LEVEL (e.g. rank 221574 4) |
 | exit     | bye                                    |
 | deadline | asc/desc (e.g. deadline asc)           |
