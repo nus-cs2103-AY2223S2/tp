@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.InternshipBook;
@@ -25,6 +26,7 @@ import seedu.address.model.application.Application;
 import seedu.address.testutil.ApplicationBuilder;
 
 public class AddApplicationCommandTest {
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void constructor_nullApp_throwsNullPointerException() {
@@ -36,8 +38,10 @@ public class AddApplicationCommandTest {
         AddApplicationCommandTest.ModelStubAcceptingAppAdded modelStub = new AddApplicationCommandTest
                 .ModelStubAcceptingAppAdded();
         Application validApplication = new ApplicationBuilder().build();
+        AddApplicationCommand addCommand = new AddApplicationCommand(validApplication);
+        commandHistory.addCommand(addCommand.toString());
 
-        CommandResult commandResult = new AddApplicationCommand(validApplication).execute(modelStub);
+        CommandResult commandResult = addCommand.execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddApplicationCommand.MESSAGE_SUCCESS, validApplication), commandResult
                 .getFeedbackToUser());
@@ -51,7 +55,8 @@ public class AddApplicationCommandTest {
         AddApplicationCommandTest.ModelStub modelStub = new AddApplicationCommandTest.ModelStubWithApp(validApp);
 
         assertThrows(CommandException.class,
-                AddApplicationCommand.MESSAGE_DUPLICATE_APPLICATION, () -> addCommand.execute(modelStub));
+                AddApplicationCommand.MESSAGE_DUPLICATE_APPLICATION, (
+                ) -> addCommand.execute(modelStub, commandHistory));
     }
 
     @Test
@@ -174,6 +179,30 @@ public class AddApplicationCommandTest {
         public void addTaskToApplication(Application target, Application editedApplication) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public boolean canUndoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitInternshipBookChange() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -216,6 +245,9 @@ public class AddApplicationCommandTest {
         public ReadOnlyInternshipBook getInternshipBook() {
             return new InternshipBook();
         }
+
+        @Override
+        public void commitInternshipBookChange() {}
     }
 
 }
