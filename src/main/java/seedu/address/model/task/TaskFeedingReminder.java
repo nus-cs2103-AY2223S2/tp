@@ -16,7 +16,7 @@ public class TaskFeedingReminder extends Task {
      * @param t {@code Tank} with hungry fish
      */
     public TaskFeedingReminder(Tank t) {
-        super(new Description("Tank feeding reminder \n" + t.getUnfedFishesString()), t);
+        super(new Description("Tank feeding reminder \n" + t.getUnfedFishesString()), t, new Priority("high"));
         this.isReminder = true;
     }
 
@@ -26,7 +26,7 @@ public class TaskFeedingReminder extends Task {
      * @param t Tank associated with this reminder
      */
     public TaskFeedingReminder(Description d, Tank t) {
-        super(d, t);
+        super(d, t, new Priority("high"));
         this.isReminder = true;
     }
 

@@ -36,6 +36,7 @@
                 <VBox spacing="2">
                     <Label fx:id="description" styleClass="cell_big_label_task" text="\$description" />
                     <Label fx:id="tank" styleClass="cell_big_label_task" text="\$tank" />
+                    <Label fx:id="priority" styleClass="cell_big_label_task" text="\$priority" />
                 </VBox>
             </HBox>
         </VBox>

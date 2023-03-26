@@ -11,6 +11,7 @@ import seedu.address.model.TaskList;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**
@@ -19,8 +20,8 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task TASK_ONE = new Task(new Description("clean tank"),
-            new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook()));
-    public static final Task TASK_TWO = new Task(new Description("feed fish"), null);
+            new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook()), new Priority("medium"));
+    public static final Task TASK_TWO = new Task(new Description("feed fish"), null, null);
 
     private TypicalTasks() {} // prevents instantiation
 
