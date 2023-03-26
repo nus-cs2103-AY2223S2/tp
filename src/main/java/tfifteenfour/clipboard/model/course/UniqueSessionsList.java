@@ -11,7 +11,17 @@ import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateSessionException;
 import tfifteenfour.clipboard.model.course.exceptions.SessionNotFoundException;
 
-
+/**
+ * A list of sessions that enforces uniqueness between its elements and does not allow nulls.
+ * A session is considered unique by comparing using {@code Session#isSameSession(Session)}. As such,
+ * adding and updating of sessions uses Session#isSameSession(Session) for equality so as to ensure that
+ * the session being added or updated is unique in terms of identity in the UniqueSessionsList. However,
+ * the removal of a session uses Session#equals(Object) so as to ensure that the session with exactly
+ * the same fields will be removed.
+ * Supports a minimal set of list operations.
+ *
+ * @see Session#isSameSession(Session)
+ */
 public class UniqueSessionsList implements Iterable<Session> {
 
     private final ObservableList<Session> internalList = FXCollections.observableArrayList();
@@ -78,13 +88,13 @@ public class UniqueSessionsList implements Iterable<Session> {
      * Replaces the contents of this list with {@code Sessions}.
      * {@code Sessions} must not contain duplicate Sessions.
      */
-    public void setSessions(List<Session> Sessions) {
-        requireAllNonNull(Sessions);
-        if (!SessionsAreUnique(Sessions)) {
+    public void setSessions(List<Session> sessions) {
+        requireAllNonNull(sessions);
+        if (!sessionsAreUnique(sessions)) {
             throw new DuplicateSessionException();
         }
 
-        internalList.setAll(Sessions);
+        internalList.setAll(sessions);
     }
 
     /**
@@ -121,10 +131,10 @@ public class UniqueSessionsList implements Iterable<Session> {
     /**
      * Returns true if {@code Sessions} contains only unique Sessions.
      */
-    private boolean SessionsAreUnique(List<Session> Sessions) {
-        for (int i = 0; i < Sessions.size() - 1; i++) {
-            for (int j = i + 1; j < Sessions.size(); j++) {
-                if (Sessions.get(i).isSameSession(Sessions.get(j))) {
+    private boolean sessionsAreUnique(List<Session> sessions) {
+        for (int i = 0; i < sessions.size() - 1; i++) {
+            for (int j = i + 1; j < sessions.size(); j++) {
+                if (sessions.get(i).isSameSession(sessions.get(j))) {
                     return false;
                 }
             }

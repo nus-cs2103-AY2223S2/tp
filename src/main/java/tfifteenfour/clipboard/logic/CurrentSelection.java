@@ -64,6 +64,10 @@ public class CurrentSelection {
         this.currentPage = PageType.STUDENT_PAGE;
     }
 
+    /**
+     * Setter for selectedSession.
+     * @param session to be set.
+     */
     public void selectSession(Session session) {
         this.selectedSession = session;
         this.currentPage = PageType.SESSION_STUDENT_PAGE;
@@ -109,11 +113,17 @@ public class CurrentSelection {
         this.currentPage = PageType.GROUP_PAGE;
     }
 
+    /**
+     * Navigates current page from session page to group page.
+     */
     public void navigateBackFromSessionPage() {
         this.selectedGroup = NON_EXISTENT_GROUP;
         this.currentPage = PageType.GROUP_PAGE;
     }
 
+    /**
+     * Navigates current page from session student page to session page.
+     */
     public void navigateBackFromSessionStudentPage() {
         this.selectedSession = NON_EXISTENT_SESSION;
         this.currentPage = PageType.SESSION_PAGE;

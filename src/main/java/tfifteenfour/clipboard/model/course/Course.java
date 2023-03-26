@@ -23,7 +23,6 @@ public class Course {
 
     /**
      * Constructs a {@code courseCode}.
-     *
      * @param courseCode A valid module code.
      */
     public Course(String courseCode) {

@@ -10,7 +10,7 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 /**
- * Represents a Course in the CLIpboard.
+ * Represents a Group in the CLIpboard.
  * Guarantees: immutable; name is valid as declared in {@link #isValidGroupName(String)}
  */
 public class Group {
@@ -35,26 +35,39 @@ public class Group {
     private ArrayList<Assignment> assignments = new ArrayList<>();
     // ##############################################################
 
+    /**
+     * Constructs a group with the given group name.
+     * @param groupName A valid group name.
+     */
     public Group(String groupName) {
         this.groupName = groupName;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of students in this group.
+     */
     public ObservableList<Student> getUnmodifiableStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Student> getModifiableGrouplist() {
+    /**
+     * Returns a modifiable view of the list of students in this group.
+     */
+    public ObservableList<Student> getModifiableStudentlist() {
         return students.asModifiableObservableList();
     }
 
+    /**
+     * Returns an unmodifiable view of the list of sessions in this group.
+     */
     public ObservableList<Session> getUnmodifiableSessionList() {
         return sessions.asUnmodifiableObservableList();
     }
 
-
-
-
-
+    /**
+     * Adds the given student to this group.
+     * @param student Student to be added.
+     */
     public void addStudent(Student student) {
         this.students.add(student);
         for (Session session : sessions) {
@@ -62,19 +75,34 @@ public class Group {
         }
     }
 
+    /**
+     * Adds the given session to this group.
+     * @param session Session to be added.
+     */
     public void addSession(Session session) {
         this.sessions.add(session);
         session.setStudents(students);
     }
 
+    /**
+     * Adds the given assignment to this group.
+     * @param assignment Assignment to be added.
+     */
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
 
+    /**
+     * Deletes the given session from this group.
+     * @param session Session to be deleted.
+     */
     public void deleteSession(Session session) {
         this.sessions.remove(session);
     }
 
+    /**
+     * Returns the name of this group.
+     */
     public String getGroupName() {
         return this.groupName;
     }
@@ -92,18 +120,24 @@ public class Group {
     }
 
     /**
-     * Returns true if course has specified student.
+     * Returns true if this group contains the specified student.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
     }
 
+    /**
+     * Returns true if this group contains the specified session.
+     */
     public boolean hasSession(Session session) {
         requireNonNull(session);
         return sessions.contains(session);
     }
 
+    /**
+     * Returns true if the given string is a valid group name.
+     */
     public static boolean isValidGroupName(String test) {
         return test.matches(VALIDATION_REGEX);
     }

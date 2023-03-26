@@ -31,7 +31,6 @@ public class Session {
 
     /**
      * Constructs a {@code Session} with the given session name.
-     *
      * @param sessionName The name of the session.
      */
     public Session(String sessionName) {
@@ -42,7 +41,6 @@ public class Session {
 
     /**
      * Returns an unmodifiable list of the students who are in the session.
-     * @return An unmodifiable list of the students who are in the session.
      */
     public ObservableList<Student> getUnmodifiableStudentList() {
         UniqueStudentList students = new UniqueStudentList();
