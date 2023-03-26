@@ -49,7 +49,8 @@ public class ResultsSection extends UiPart<Region> {
 
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
                 displayProgress(logic.getDegreeProgression()), () ->
-                displayAllModules(logic.getDegreeProgression().getModuleList()), () ->
+                displaySortedModules(logic.getDegreeProgression().getModuleGroups(),
+                        logic.getDegreeProgression().getSort()), () ->
                 displayFindModules(logic.getFilteredModuleList()));
 
         displayProgress(logic.getDegreeProgression());
@@ -118,9 +119,7 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays all the modules, sorted by a given category.
      */
-    public void displaySortedModules(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort
-            /* ObservableList<Module> modules sorted by a certain category, String category */) {
-        // TODO: next iteration
+    public void displaySortedModules(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort) {
         headerTitle.setText("My Modules");
         headerSubtitle.setText("sorted by " + sort);
 
