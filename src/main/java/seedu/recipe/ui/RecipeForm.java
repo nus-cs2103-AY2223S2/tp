@@ -382,7 +382,7 @@ public class RecipeForm extends UiPart<Region> {
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textField.getParent();
             int lastIndex = parentBox.getChildren().size() - 1;
-        
+
             // Check if the TextField has gained focus
             if (newValue) {
                 // Check if it's the last TextField in the VBox
@@ -397,8 +397,7 @@ public class RecipeForm extends UiPart<Region> {
                 boolean focusChangedToNonTextField = !(focusOwner instanceof TextField);
         
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
-                if (parentBox.getChildren().indexOf(textField) == lastIndex
-                        && textField.getText().isEmpty()
+                if (textField.getText().isEmpty()
                         && (focusChangedToDifferentVBox || focusChangedToNonTextField)) {
                     parentBox.getChildren().remove(textField);
                 }
