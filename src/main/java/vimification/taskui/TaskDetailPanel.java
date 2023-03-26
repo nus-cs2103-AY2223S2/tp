@@ -3,9 +3,10 @@ package vimification.taskui;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import javafx.fxml.FXML;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
-import javafx.fxml.FXML;
+
 
 /**
  * Panel containing task details, such as description, the type of the task, etc.

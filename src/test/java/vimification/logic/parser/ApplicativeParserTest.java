@@ -103,7 +103,7 @@ public class ApplicativeParserTest {
     }
 
     @Test
-    public void oneOrMore_validInput_shouldStopAtCorrectPosition() {
+    public void many1_validInput_shouldStopAtCorrectPosition() {
         String input = "Shoot the Bullet";
         ApplicativeParser<List<String>> parser = ApplicativeParser
                 .nonWhitespaces()

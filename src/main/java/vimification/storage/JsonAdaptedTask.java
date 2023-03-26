@@ -1,9 +1,9 @@
 package vimification.storage;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.task.Task;
@@ -41,12 +41,10 @@ public abstract class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's
-     * {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted
-     *                               person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted
+     *         person.
      */
     public abstract Task toModelType() throws IllegalValueException;
 }
