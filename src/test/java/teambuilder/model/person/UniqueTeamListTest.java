@@ -1,13 +1,12 @@
 package teambuilder.model.person;
 
 import org.junit.jupiter.api.Test;
-import teambuilder.model.person.exceptions.DuplicatePersonException;
 import teambuilder.model.team.UniqueTeamList;
+import teambuilder.model.team.exceptions.DuplicateTeamException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.testutil.Assert.assertThrows;
-import static teambuilder.testutil.TypicalPersons.ALICE;
 import static teambuilder.testutil.TypicalTeams.TEAM_A;
 
 public class UniqueTeamListTest {
@@ -38,7 +37,7 @@ public class UniqueTeamListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueTeamList.add(TEAM_A);
-        assertThrows(DuplicatePersonException.class, () -> uniqueTeamList.add(TEAM_A));
+        assertThrows(DuplicateTeamException.class, () -> uniqueTeamList.add(TEAM_A));
     }
 
 
