@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric, do not include"
+        + " characters like @,#,*,- or white space between words";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -36,7 +37,7 @@ public class Tag {
      * @return the corresponding color code for css
      */
     public String tagColor() {
-        return "#3e7b91";
+        return "#000080";
     }
 
     @Override

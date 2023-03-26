@@ -131,6 +131,7 @@
     -fx-font-size: 15px;
     -fx-text-fill: #010504;
     -fx-padding: 5px;
+    -fx-text-alignment: center;
 }
 
 .stack-pane {
