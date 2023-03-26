@@ -25,7 +25,7 @@ public class DisplayTaskList {
         return result;
     }
 
-    public int length() {
+    public int size() {
         return displayList.size();
     }
 
