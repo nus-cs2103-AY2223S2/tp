@@ -61,12 +61,20 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     //// employee-level operations
 
     /**
-     * Returns true if an employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if an employee with the same identity as {@code employee} exists in the database.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return employees.contains(employee);
+        return employees.asUnmodifiableObservableList().stream().anyMatch(existingEmployee ->
+                existingEmployee.getName().equals(employee.getName())
+                        && existingEmployee.getPhone().equals(employee.getPhone())
+                        && existingEmployee.getEmail().equals(employee.getEmail())
+                        && existingEmployee.getAddress().equals(employee.getAddress())
+                        && existingEmployee.getDepartment().equals(employee.getDepartment())
+        );
     }
+
+
 
     /**
      * Returns an Optional object that may contain the Employee with a given employee ID {@code employeeId}.
@@ -92,6 +100,7 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     public void addEmployee(Employee p) {
         employees.add(p);
     }
+
 
     /**
      * Replaces the given employee {@code target} in the list with {@code editedPerson}.
