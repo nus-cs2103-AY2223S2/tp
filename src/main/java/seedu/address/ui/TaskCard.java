@@ -56,19 +56,19 @@ public class TaskCard extends UiPart<Region> {
         switch (statusOfTask) {
 
         case INPROGRESS:
-            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/inProgress.png")));
             break;
 
         case LATE:
-            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/uncheck.png")));
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/late.png")));
             break;
 
         case COMPLETE:
-            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/complete.png")));
             break;
 
         default:
-            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/inProgress.png")));
         }
     }
 
