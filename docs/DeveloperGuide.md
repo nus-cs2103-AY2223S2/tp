@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a1. ConnectUS adds the given information to the contact.
   * 4a2. ConnectUS displays confirmation message
   * 4a3. Updated contact is visible in the contacts list
-  
+
   Use case ends.
 
 
@@ -344,12 +344,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No keywords are provided
     * 1a1. ConnectUS displays error message
     Use case ends
-    
+
 * 1b. User requests to find a contact by tag
   * 1b1. ConnectUS displays confirmation message
   * 1b2. ConnectUS displays all contacts with given tag
   Use case ends
-  
+
 * 1c. User requests to find a contact by contact information
   * 1c1. ConnectUS displays confirmation message
   * 1c2. ConnectUS displays all contacts with given confirmation message
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list all contacts
 2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts 
+3. ConnectUS displays all contacts
 
    Use case ends
 
@@ -431,7 +431,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a contact with just name and email
     1. Prerequisites: None
    2. Test case: `add n/JohnDoe e/email@example.com`<br>
-   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list. 
+   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
    3. Test case: `add n/ e/email@example.com`<br>
    Expected: No contact is created. Error details shown in status message.
    4. _{ more test cases …​ }_
