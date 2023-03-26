@@ -2,11 +2,7 @@ package seedu.fitbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.StringUtil;
@@ -14,6 +10,7 @@ import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Address;
 import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Calorie;
+import seedu.fitbook.model.client.Date;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
 import seedu.fitbook.model.client.Goal;
@@ -276,5 +273,20 @@ public class ParserUtil {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
         return new Weight(trimmedWeight);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
     }
 }

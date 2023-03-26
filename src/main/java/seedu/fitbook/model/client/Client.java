@@ -2,10 +2,7 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.fitbook.model.tag.Tag;
 
@@ -87,6 +84,9 @@ public class Client {
 
     public WeightHistory getWeightHistory() {
         return weightHistory;
+    }
+    public List<Weight> getWeightList() {
+        return weightHistory.weights;
     }
 
     public boolean isAppointmentEmpty() {

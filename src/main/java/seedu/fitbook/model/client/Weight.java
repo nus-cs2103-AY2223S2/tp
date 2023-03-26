@@ -50,6 +50,14 @@ public class Weight {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public String getWeight() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return date + ":" + value;
