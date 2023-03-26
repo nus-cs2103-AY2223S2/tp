@@ -34,6 +34,7 @@ This user guide will help you get up to speed in no time!
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
+    * [Clear all Events](#clear-all-events)
 
     </details>
 - [FAQ](#faq)
@@ -272,6 +273,15 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
+### Clear all Events: `clear` <a id = "clear-all-events"></a>
+
+Clears all events in Paidlancers.
+
+**Format**: `clear`
+
+- Clears all events in the event book.
+
+
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
@@ -286,19 +296,20 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
-|                    Commands                     |               Command Format                |                                Example Usage                                |
-|:-----------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
-|         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
-| [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
-|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
-|       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
-|          [Unmark Event](#unmark-event)          |                `unmark INDEX`                 |                                  `unmark 2`                                   |
-|     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  |
-|       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
-|       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
-|         [Edit an Event](#edit-an-event)         |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-|    [View Total Revenue](#view-total-revenue)    |                  `revenue`               |                              `revenue`                               |
-|  [View Upcoming Events](#view-upcoming-events)  |                 `remind DAYS`            |                              `remind 2`                             |
+|                    Commands                     |                                 Command Format                                 |                                                     Example Usage                                                     |
+|:-----------------------------------------------:|:------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+|         [Add a Contact](#add-a-contact)         |                          `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
+| [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                           |                                               `linkcontact 2 91234567`                                                |
+|             [View Rate](#view-rate)             |                                  `rate INDEX`                                  |                                                       `rate 2`                                                        |
+|       [Marks Event as Done](#mark-event)        |                                  `mark INDEX`                                  |                                                       `mark 2`                                                        |
+|          [Unmark Event](#unmark-event)          |                                 `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
+|     [Create a new Event](#create-new-event)     |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`      | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
+|       [View Event List](#list-all-events)       |                                     `list`                                     |                                                        `list`                                                         |
+|       [Delete an Event](#delete-an-event)       |                                 `delete INDEX`                                 |                                                      `delete 2`                                                       |
+|         [Edit an Event](#edit-an-event)         | `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
+|    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                    |                                                       `revenue`                                                       |
+|  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                  |                                                      `remind 2`                                                       |
+|      [Clear all Events](#clear-all-events)      |                                    `clear`                                     |                                                        `clear`                                                        |
 
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
