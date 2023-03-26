@@ -13,7 +13,7 @@ title: User Guide
 FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs.
 With FriendlyLink, administrators can easily manage their database and pair volunteers with the elderly they want to
 help, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple,
-efficient, and effective, so that NPOs can focus on making a difference in their communities.
+efficient, and effective, so that VWOs can focus on making a difference in their communities.
 
 ---
 
