@@ -46,7 +46,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | y/2                | year of study is 2 AND...                   |
    | c/Accounting       | course enrolled is Accounting AND...        |
 3. **view** person at index 1 (should be Bob if you started from an empty list)
-   <br>`view 1`<br>
+   <br>`view 1`<br><br>
 4. **view** current person information -> [view command](#view)
    <br>`view m`
    <br>`view s`
@@ -76,11 +76,11 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | m/AY2223S2 CS2109S | AY2223S2 CS2109S in their set of modules    |
    | s/PYTHON           | PYTHON in their set of skills               |
 7. **delete** person at index 1 (should be Bob if you started from an empty list) -> [delete command](#delete)
-    <br>`delete 1`<br>
+    <br>`delete 1`<br><br>
 8. **list** all person -> [list command](#list)
-    <br>`list`<br>
+    <br>`list`<br><br>
 9. **exit** CoDoc -> [exit command](#exit)
-    <br>`exit`<br>
+    <br>`exit`<br><br>
    
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
