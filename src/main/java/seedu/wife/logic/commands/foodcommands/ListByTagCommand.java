@@ -12,7 +12,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all food in the WIFE to the user by specified tags.
  */
 public class ListByTagCommand extends Command {
 
