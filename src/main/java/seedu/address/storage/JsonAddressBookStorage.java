@@ -12,7 +12,9 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -22,13 +24,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
+    private Path exportFilePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    /**
+     * Constructs a {@code JsonAddressBookStorage} with the given {@code filePath and exportFilePath}.
+     */
+    public JsonAddressBookStorage(Path filePath, Path exportFilePath) {
         this.filePath = filePath;
+        this.exportFilePath = exportFilePath;
     }
 
     public Path getAddressBookFilePath() {
         return filePath;
+    }
+
+    public Path getExportFilePath() {
+        return exportFilePath;
     }
 
     @Override
@@ -77,4 +88,23 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 
+    @Override
+    public void exportPerson(Person personToExport) throws IOException {
+        exportPerson(personToExport, exportFilePath);
+    }
+
+    /**
+     * Similar to {@link #exportPerson(Person)}.
+     *
+     * @param exportFilePath location of the data. Cannot be null.
+     */
+    public void exportPerson(Person personToExport, Path exportFilePath) throws IOException {
+        requireNonNull(personToExport);
+        requireNonNull(exportFilePath);
+
+        FileUtil.createIfMissing(exportFilePath);
+        AddressBook exportAddressBook = new AddressBook();
+        exportAddressBook.addPerson(personToExport);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(exportAddressBook), exportFilePath);
+    }
 }
