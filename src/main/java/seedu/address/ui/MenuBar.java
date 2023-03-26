@@ -19,8 +19,9 @@ public class MenuBar extends UiPart<Region> {
      */
     public MenuBar() {
         super(FXML);
-        modeStatus.setText("Flight                                 Crew                                   Plane       " +
-                "                          Pilot                                   Location                                 ");
+        modeStatus.setText("Flight                                 Crew                                   Plane"
+                + "       " + "                          Pilot                                   "
+                + "Location                                 ");
     }
 
 }
