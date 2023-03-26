@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
@@ -189,6 +191,12 @@ public interface Model {
 
 
     void setDetailedVaxType(VaxType vaxType);
+
+
+    VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException;
+
+
+    void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
 
 
     /*

@@ -15,8 +15,10 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
@@ -323,6 +325,18 @@ public class AddCommandTest {
         public void setDetailedPatient(IdData<Patient> patient) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
+        }
+
+        @Override
+        public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'bindDisplayList'");
+        }
+
+        @Override
+        public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getVaccination'");
         }
     }
 

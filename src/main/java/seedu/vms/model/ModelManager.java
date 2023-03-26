@@ -10,9 +10,11 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
@@ -45,12 +47,13 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
+    private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
     private final FilteredIdDataMap<Keyword> filteredKeywordMap;
 
     private final VmsParser vmsParser;
 
-    private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
+    private ObservableList<VaxType> displayList = null;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
@@ -294,6 +297,18 @@ public class ModelManager implements Model {
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
         detailedVaxTypeProperty.set(vaxType);
+    }
+
+
+    @Override
+    public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+        this.displayList = displayList;
+    }
+
+
+    @Override
+    public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
+        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), displayList);
     }
 
     // =========== KeywordManager ==============================================================================
