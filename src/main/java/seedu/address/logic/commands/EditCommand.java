@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ROLE + "NAME] "
-            + "[" + PREFIX_CONTACT + "PHONE] "
+            + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_COMPANY + "ADDRESS] "
             + "[" + PREFIX_JOBDESCRIPTION + "JOBDESCRIPTION] "
