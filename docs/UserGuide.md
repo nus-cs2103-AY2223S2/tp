@@ -20,6 +20,7 @@ title: User Guide
       * [Deleting a fish `fish delete`](#deleting-a-fish-delete-fish)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
       * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)
+      * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-delete-task)
@@ -144,6 +145,30 @@ Format: `list fishes`
 Lists all fishes in a specific tank.
 
 Format: `list fish /tank <TANK_NAME>`
+
+### Sorting fishes: `fish sort`
+
+Sorts fishes by attributes and displays the results. This does not affect the data permanently. <br>
+
+Use this command to view the fish at once by the attribute you want. This can be helpful if you need to see which fish 
+has not been fed in a long time, or see which fish you need to attend to first. It can also be used to organize the 
+results to your liking.  
+
+Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
+
+Prefixes:
+* `by/` - Specifies attribute by which to sort fish. Possible attributes:
+  * `n`- Name
+  * `lfd` - Last Fed Date
+  * `s` - Species
+  * `fi` - Feeding Interval
+  * `tk` - Tank Name
+
+Optional Prefixes:
+* `tk/` - If added, will display a sorting by tank. For example, `fish sort by/n tk/2`, will sort the 2nd tank by name
+and display the results.
+  
+
 
 ## Tasks
 
