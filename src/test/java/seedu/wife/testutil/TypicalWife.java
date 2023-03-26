@@ -32,7 +32,7 @@ public class TypicalWife {
         for (Food food : TypicalFood.getTypicalFoodWithoutTag()) {
             wife.addFood(food);
         }
-        
+
         return wife;
     }
 }
