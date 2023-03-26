@@ -510,22 +510,22 @@ The following gives a more detailed explanation of the `upcoming` operation.
   - `ASSESSMENT`
   - `INTERVIEW`
   - `OFFERED`
-- The `DATE` must be within the upcoming week 
+- The `DATE` must be within the upcoming week.
 
 #### Design Considerations
 
-###### Whether the include  
-1. **Alternative 1 (chosen): Upcoming command should only limit to internships with status of `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
-    * Pros: More user-centric as not all users want to enter the optional information,
-      which is not exactly critical in tracking internships.
-    * Cons: As the status are closely tied to the interpretation of the `DATE`, may require the user to be clearer
-2. **Alternative 2: Any status**
-    * Pros: Easier to implement as there is no need to differentiate between compulsory
-      and optional fields during command parsing, and it is easier to compare between
-      different `Internship` since we just require an exact match of all fields.
-    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
-      are forced to input something for the `Add` command to work.
-
+###### Whether to include all possible statuses of internship
+1. **Alternative 1 (chosen): The predicate for the `upcoming` command should limit to internships that have the status `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
+    * Pros: Makes more sense practically as these statuses have dates that are tied to an event or deadline:
+      * `NEW` - Application deadline
+      * `ASSESSMENT` - Date of Assessment
+      * `INTERVIEW` - Date of Interview
+      * `Offered` - Deadline of offer acceptance
+    * Cons: If the instructions for using the command are not clearly explained in the user guide, users may have difficulty understanding the output that is generated
+2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
+    * Pros: May be more intuitive for users to understand
+    * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
+   
 ###### Whether to update the right UI panel according to the `add` command
 
 1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
