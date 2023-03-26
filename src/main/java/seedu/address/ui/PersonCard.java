@@ -49,6 +49,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label appointment;
 
+    @FXML
+    private Label nric;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -70,16 +73,30 @@ public class PersonCard extends UiPart<Region> {
             appointment.setText(person.getAppointment().toString());
             if (person.getMedicalCondition() != null) {
                 String s = person.getMedicalCondition().getValue();
-                medicalCondition.setText(s);
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
             }
         } else {
             appointment.setText("No appointment yet");
             if (person.getMedicalCondition() == null) {
-                medicalCondition.setText("");
+                medicalCondition.setText("Medical Condition: NA");
             } else {
                 String s = person.getMedicalCondition().getValue();
-                medicalCondition.setText(s);
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
             }
+        }
+        if (person.getNric() == null) {
+            nric.setText("");
+        } else {
+            String s = person.getNric().toString();
+            nric.setText(s);
         }
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -33,11 +35,17 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private String medicalCondition;
     private String age;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private LocalDateTime time = null;
     private String appointment;
+    private String nric;
+    private Optional<LocalDateTime> optionalTime;
+    private Optional<String> optionalAge;
+    private Optional<String> optionalMedicalCond;
+    private Optional<String> optionalAppointment;
+    private Optional<String> optionalNric;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +57,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("time") String time,
                              @JsonProperty("age") String age,
                              @JsonProperty("MedicalCondition") String medicalCondition,
-                             @JsonProperty("Appointment") String appointment) {
+                             @JsonProperty("Appointment") String appointment, @JsonProperty("NRIC") String nric) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -69,9 +77,14 @@ class JsonAdaptedPerson {
         }
         if (medicalCondition != null) {
             this.medicalCondition = medicalCondition;
+        } else {
+            this.medicalCondition = "";
         }
         if (appointment != null) {
             this.appointment = appointment;
+        }
+        if (nric != null) {
+            this.nric = nric;
         }
     }
 
@@ -92,6 +105,19 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.age = age;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+    }
+
+    public JsonAdaptedPerson(String name, String phone, String email, String address,
+                             String age, List<JsonAdaptedTag> tagged, String medicalCondition) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -121,14 +147,17 @@ class JsonAdaptedPerson {
         if (source.hasTime()) {
             time = source.getTime();
         }
-        if (source.getAge().getAge() != null) {
+        if (source.getAge() != null) {
             age = source.getAge().getAge();
         }
-        if (source.getMedicalCondition().getValue() != null) {
+        if (source.getMedicalCondition() != null) {
             medicalCondition = source.getMedicalCondition().getValue();
         }
         if (source.hasAppointment()) {
             appointment = source.getAppointment().toString();
+        }
+        if (source.getNric() != null) {
+            nric = source.getNric().getNumber();
         }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -178,6 +207,7 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
@@ -185,64 +215,44 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
 
+        if (medicalCondition == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalCondition.class.getSimpleName()));
+        }
+        if (!MedicalCondition.isValidCondition(medicalCondition)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        }
+        optionalTime = Optional.ofNullable(time);
+        optionalAge = Optional.ofNullable(age);
+        optionalMedicalCond = Optional.ofNullable(medicalCondition);
+        optionalAppointment = Optional.ofNullable(appointment);
+        optionalNric = Optional.ofNullable(nric);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Age modelAge = new Age(age);
-        final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
-
-        if (appointment == null) {
-            if (age != null && medicalCondition != null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                            modelAge, modelTags, modelMedical);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                            modelAge, modelTags, time, modelMedical);
-                }
-            }
-            if (age != null && medicalCondition == null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, time);
-                }
-            }
-            if (age == null && medicalCondition != null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time, modelMedical);
-                }
+        final Age modelAge = optionalAge != null && optionalAge.isPresent() ? new Age(optionalAge.get()) : new Age("");
+        final MedicalCondition modelMedical = optionalMedicalCond != null && optionalMedicalCond.isPresent()
+                ? new MedicalCondition(optionalMedicalCond.get()) : new MedicalCondition("");
+        final Nric modelNric = optionalNric != null && optionalNric.isPresent()
+                ? new Nric(optionalNric.get()) : new Nric("");
+        final LocalDateTime modelTime = optionalTime != null && optionalTime.isPresent()
+                ? optionalTime.get() : null;
+        final Appointment modelAppointment = optionalAppointment != null && optionalAppointment.isPresent()
+                ? ParserUtil.parseTimeFromAddressbook(appointment) : null;
+        if (modelAppointment == null) {
+            if (modelTime == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical,
+                        modelNric);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                        modelAge, modelTags, modelTime, modelMedical, modelNric);
             }
         } else {
-            Appointment modelAppointment = ParserUtil.parseTimeFromAddressbook(appointment);
-            if (age != null && medicalCondition != null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags,
-                            modelMedical, modelAppointment);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                            modelAge, modelTags, time, modelMedical, modelAppointment);
-                }
-            }
-            if (age != null && medicalCondition == null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge,
-                            modelTags, modelAppointment);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags,
-                            time, modelAppointment);
-                }
-            }
-            if (age == null && medicalCondition != null) {
-                if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                            modelMedical, modelAppointment);
-                } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                            time, modelMedical, modelAppointment);
-                }
+            if (modelTime == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                        modelAge, modelTags, modelMedical, modelAppointment, modelNric);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                        modelAge, modelTags, time, modelMedical, modelAppointment, modelNric);
             }
         }
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 }

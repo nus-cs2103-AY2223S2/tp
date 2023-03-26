@@ -97,7 +97,7 @@ public class ImageReader implements FileReader<BufferedImage> {
         BufferedImage image = loadFile(path);
         if (image != null) {
             //Scale the image to fit the window size
-            Image scaledImage = image.getScaledInstance(windowWidth, windowHeight, Image.SCALE_SMOOTH);
+            Image scaledImage = getScaledImage(image, windowWidth, windowHeight);
 
             //Create JFrame and JLabel
             JFrame frame = new JFrame();
@@ -105,10 +105,25 @@ public class ImageReader implements FileReader<BufferedImage> {
 
             //Set the frame properties
             frame.setSize(windowWidth, windowHeight);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.add(label);
             frame.setVisible(true);
         }
+    }
+
+    private Image getScaledImage(BufferedImage image, int width, int height) {
+        int imgWidth = image.getWidth();
+        int imgHeight = image.getHeight();
+        double imgRatio = (double) imgWidth / imgHeight;
+        double targetRatio = (double) width / height;
+
+        if (imgRatio > targetRatio) {
+            height = (int) (width / imgRatio);
+        } else {
+            width = (int) (height * imgRatio);
+        }
+
+        return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
     /**

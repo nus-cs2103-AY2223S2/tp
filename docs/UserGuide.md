@@ -18,6 +18,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
     - [`addTime`](#adding-patient-scheduled-time--addTime)
     - [`list`](#listing-all-patients--list)
     - [`listTime`](#listing-patients-by-time--listTime)
+    - [`list_name`](#listing-patients-by-name--list_name)
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
@@ -101,10 +102,10 @@ Format: `help`
 Adds a patient to the address book:
 * Enter the patient's name, phone number, email, and address.
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* You can also add patient's age, medical condition and time for first meeting.
+* You can also add patient's age, medical condition, time and NRIC for first meeting.
 * To record a patient's other information, add them as additional tags to the patient's profile.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION nric/S9935010Y`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
@@ -123,6 +124,17 @@ The second example contains more information relevant to that patient.
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+
+### Listing patients by name : `list_name`
+
+Shows a list of all patients in the address book by their name lexicographically.
+
+Format: `list_name`
+
+### Listing patients by time : `listTime`
+
+_Details coming in v1.2 soon ..._
 
 ### Editing a patient : `edit`
 
@@ -229,6 +241,21 @@ Examples:
 * `list` followed by `delete 2 3` deletes the 2nd person and 3rd in the address book.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
+### Uploading an Index File for a Patient: `upload`
+
+The upload index command allows you to upload an index file for a specific patient.
+This index file can contain additional information about the patient, such as medical history, 
+test results, or treatment plans [Files allowed are PDF and images]
+
+Format: `upload INDEX`
+* Uploads an index file for the patient at the specified INDEX. 
+* The index refers to the index number shown in the displayed patient list. 
+* The index must be a positive integer 1, 2, 3, …​
+* File must be type PDF or Image
+* 
+Examples: 
+* To upload an index file for the patient at index 2, type:upload 2
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the patient list.
@@ -276,4 +303,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**ListByName** | `list_name`
 **Help** | `help`

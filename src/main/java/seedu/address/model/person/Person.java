@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -30,119 +31,14 @@ public class Person {
     private MedicalCondition medicalCondition;
     private Age age;
     private Appointment appointment;
+    private Nric nric;
 
     /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags, LocalDateTime time) {
-        requireAllNonNull(name, phone, email, address, tags, age, time);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.medicalCondition = new MedicalCondition("");
-        this.age = age;
-    }
-
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.medicalCondition = new MedicalCondition("");
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time,
-                  Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags, appointment);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.medicalCondition = new MedicalCondition("");
-        this.appointment = appointment;
-    }
-
-    /**
-     * Every field must be present and not null, medical condition will be created without any tag
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  LocalDateTime time, MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.medicalCondition = medicalCondition;
-    }
-
-    /**
-     * Every field must be present and not null, medical condition will be created without any tag
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.medicalCondition = medicalCondition;
-        this.appointment = appointment;
-    }
-
-    /**
-     * Every field must be present and not null, medical condition will be created without any tag
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
-                  LocalDateTime time, MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.age = age;
-        this.medicalCondition = medicalCondition;
-    }
-
-    /**
-     * Every field must be present and not null, medical condition will be created without any tag
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
-                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.time = time;
-        this.age = age;
-        this.medicalCondition = medicalCondition;
-        this.appointment = appointment;
-    }
-
-    /**
-     * Alternative constructor for person with scheduled time.
+     * @param name the patient's name
+     * @param phone the patient's phone number
+     * @param email the patient's email address
+     * @param address the patient's residential address
+     * @param tags the patient's tag
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -150,76 +46,18 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
         this.age = new Age("");
-        this.tags.addAll(tags);
-        this.medicalCondition = new MedicalCondition("");
     }
 
     /**
-     * Alternative constructor for person with scheduled time.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = new Age("");
-        this.tags.addAll(tags);
-        this.medicalCondition = new MedicalCondition("");
-        this.appointment = appointment;
-    }
-
-    /**
-     * Alternative constructor for person with scheduled time.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age,
-                  Set<Tag> tags, LocalDateTime time, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.time = time;
-        this.tags.addAll(tags);
-        this.medicalCondition = new MedicalCondition("");
-        this.appointment = appointment;
-    }
-
-    /**
-     * Every filed must be present and not null
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
-                  MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.tags.addAll(tags);
-        this.medicalCondition = medicalCondition;
-    }
-
-    /**
-     * Every filed must be present and not null
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
-                  MedicalCondition medicalCondition, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.tags.addAll(tags);
-        this.medicalCondition = medicalCondition;
-        this.appointment = appointment;
-    }
-
-    /**
-     * Every filed must be present and not null
+     * @param name the patient's name
+     * @param phone the patient's phone number
+     * @param email the patient's email address
+     * @param address the patient's residential address
+     * @param age the patient's age
+     * @param tags the patient's tag
      */
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -227,16 +65,73 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.age = age;
         this.tags.addAll(tags);
+        this.age = age;
         this.medicalCondition = new MedicalCondition("");
     }
 
     /**
-     * Every filed must be present and not null
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param time             the patient's appointment time
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
      */
-    public Person(Name name, Phone phone, Email email, Address address, Age age,
-                  Set<Tag> tags, Appointment appointment) {
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
+        this.age = age;
+        this.nric = nric;
+        this.appointment = appointment;
+    }
+
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.age = age;
+        this.nric = nric;
+    }
+
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param time             the patient's next appointment time
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Nric nric) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -244,41 +139,34 @@ public class Person {
         this.address = address;
         this.age = age;
         this.tags.addAll(tags);
-        this.medicalCondition = new MedicalCondition("");
-        this.appointment = appointment;
+        this.medicalCondition = medicalCondition;
+        this.time = time;
+        this.nric = nric;
     }
-
     /**
-     * Every filed must be present and not null
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     * @param appointment      the patient;s next appointment
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  MedicalCondition medicalCondition) {
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Appointment appointment, Nric nric) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.age = new Age("");
-        this.tags.addAll(tags);
-        this.medicalCondition = medicalCondition;
-    }
-
-    /**
-     * Every filed must be present and not null
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  MedicalCondition medicalCondition, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = new Age("");
+        this.age = age;
         this.tags.addAll(tags);
         this.medicalCondition = medicalCondition;
         this.appointment = appointment;
+        this.nric = nric;
     }
-
     public Name getName() {
         return name;
     }
@@ -302,6 +190,10 @@ public class Person {
 
     public Appointment getAppointment() {
         return appointment;
+    }
+
+    public Nric getNric() {
+        return nric;
     }
 
     /**

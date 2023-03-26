@@ -3,6 +3,7 @@ package seedu.address.files;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -98,41 +100,58 @@ public class PdfReader implements FileReader<PDDocument> {
      * The DPI for rendering the PDF is set to the screen resolution.
      */
     public void displayPdf() {
-        try {
-            //Load the PDF document
-            PDDocument doc = loadFile(this.path.toRealPath());
-
-            //Create a PDF renderer
-            PDFRenderer renderer = new PDFRenderer(doc);
-
-            //Set the DPI for rendering the PDF
-            int dpi = Toolkit.getDefaultToolkit().getScreenResolution();
-
-            //Create a panel to hold the images of the pages
-            JPanel panel = new JPanel(new GridLayout(0, 1));
-            JScrollPane scrollPane = new JScrollPane(panel);
-
-            //Loop through each page in the PDF and render it as an image
-            for (int i = 0; i < doc.getNumberOfPages(); i++) {
-                BufferedImage image = renderer.renderImageWithDPI(i, dpi, ImageType.RGB);
-
-                //Add the image to the panel
-                JLabel label = new JLabel(new ImageIcon(image));
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-                panel.add(label);
+        try (PDDocument doc = loadFile(this.path.toRealPath())) {
+            if (doc == null) {
+                throw new IOException("Error loading the PDF document");
             }
-            //Display the images in a new window
-            JFrame frame = new JFrame();
-            frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
 
-            //Close the PDF document
-            doc.close();
+            PDFRenderer renderer = new PDFRenderer(doc);
+            int dpi = getScreenResolution();
+
+            JPanel panel = createPanelWithPdfPages(doc, renderer, dpi);
+            JScrollPane scrollPane = createScrollPane(panel);
+
+            displayPdfInFrame(scrollPane);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private int getScreenResolution() {
+        return Toolkit.getDefaultToolkit().getScreenResolution();
+    }
+
+    private JPanel createPanelWithPdfPages(PDDocument doc, PDFRenderer renderer, int dpi) throws IOException {
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+
+        for (int i = 0; i < doc.getNumberOfPages(); i++) {
+            BufferedImage image = renderer.renderImageWithDPI(i, dpi, ImageType.RGB);
+            JLabel label = new JLabel(new ImageIcon(image));
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            panel.add(label);
+        }
+
+        return panel;
+    }
+
+    private JScrollPane createScrollPane(JPanel panel) {
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+
+        return scrollPane;
+    }
+
+    private void displayPdfInFrame(JScrollPane scrollPane) {
+        JFrame frame = new JFrame();
+        frame.setTitle("PDF Viewer: " + getFileName(path));
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(800, 600));
+        frame.pack();
+        frame.setVisible(true);
     }
 
 }

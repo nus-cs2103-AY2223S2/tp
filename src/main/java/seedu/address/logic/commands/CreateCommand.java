@@ -55,4 +55,11 @@ public class CreateCommand extends Command {
         //changes still needed for FileManager to fully Integrate with UI
         return new CommandResult(String.format(MESSAGE_CREATE_MC_SUCCESS, persontoGenerate));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CreateCommand // instanceof handles nulls
+                && targetIndex.equals(((CreateCommand) other).targetIndex)); // state check
+    }
 }
