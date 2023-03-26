@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.recipe.logic.Logic;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
@@ -60,6 +61,7 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private FlowPane steps;
 
+    Logic logic;
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
      * @param recipe the {@code Recipe} to display
@@ -125,7 +127,7 @@ public class RecipeCard extends UiPart<Region> {
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
                 try {
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex);
+                    RecipeForm form = new RecipeForm(recipe, displayedIndex, logic);
                     form.display();
                 } catch (Exception e) {
                     System.out.println(e);
