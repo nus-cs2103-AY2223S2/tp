@@ -218,8 +218,6 @@ public class MainWindow extends UiPart<Stage> {
                 bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
                 this.setPersonDetail();
                 this.setDisplayedIndex();
-            } else {
-                bodyPanel.getAddressPanel().getPersonDetailPanel().clearPerson();
             }
 
             return commandResult;

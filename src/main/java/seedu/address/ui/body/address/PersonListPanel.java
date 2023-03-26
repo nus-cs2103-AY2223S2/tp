@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Panel containing the list of persons.
@@ -41,17 +42,21 @@ public class PersonListPanel extends UiPart<Region> {
 
     private final Logic logic;
 
+    private final ResultDisplay resultDisplay;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
         this.allData = null;
         this.favData = null;
         this.logic = logic;
+        this.resultDisplay = resultDisplay;
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
+            resultDisplay.setFeedbackToUser("Enter command below");
             int clickedIndex = personListView.getSelectionModel().getSelectedIndex();
             if (clickedIndex == selectedIndex) {
                 clearSelection();
@@ -76,6 +81,7 @@ public class PersonListPanel extends UiPart<Region> {
                 this.bindClickedIndex(newValue.getIndex());
             }
         });
+
     }
 
     /**
@@ -113,6 +119,7 @@ public class PersonListPanel extends UiPart<Region> {
         Index oneBased = Index.fromOneBased(clickedIndex);
         logic.setSelectedPerson(oneBased);
         logic.setSelectedIndex(oneBased);
+//        resultDisplay.setFeedbackToUser("");
     }
 
     private int getIndexOffset() {

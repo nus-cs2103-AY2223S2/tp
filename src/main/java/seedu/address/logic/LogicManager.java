@@ -124,6 +124,6 @@ public class LogicManager implements Logic {
     }
     @Override
     public void setSelectedIndex(Index index) {
-        model.setSelectedPerson(index);
+        model.setSelectedIndex(index);
     }
 }

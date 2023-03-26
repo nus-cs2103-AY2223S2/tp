@@ -7,6 +7,9 @@ import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.result.ResultDisplay;
+
+import java.util.ResourceBundle;
 
 /**
  * Panel for the address book.
@@ -27,11 +30,11 @@ public class AddressPanel extends UiPart<Region> {
      *
      * @param personObservableList Observable list of {@code Person}s to display.
      */
-    public AddressPanel(ObservableList<Person> personObservableList, Logic logic) {
+    public AddressPanel(ObservableList<Person> personObservableList, Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
         personDetailPanel = new PersonDetailPanel();
         personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
-        personListPanel = new PersonListPanel(personObservableList, personDetailPanel, logic);
+        personListPanel = new PersonListPanel(personObservableList, personDetailPanel, logic, resultDisplay);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 

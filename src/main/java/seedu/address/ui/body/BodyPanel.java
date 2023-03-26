@@ -37,7 +37,7 @@ public class BodyPanel extends UiPart<Region> {
 
         this.logic = logic;
         this.resultDisplay = resultDisplay;
-        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), this.logic);
+        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), this.logic, this.resultDisplay);
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
@@ -94,6 +94,7 @@ public class BodyPanel extends UiPart<Region> {
             }
             bodyTabs.getSelectionModel().select(newValue.getIndex().getZeroBased());
         });
+
     }
 
     /**
@@ -106,7 +107,7 @@ public class BodyPanel extends UiPart<Region> {
                 return;
             }
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
-            resultDisplay.setFeedbackToUser("");
+            resultDisplay.setFeedbackToUser("Enter command below");
         });
     }
 }
