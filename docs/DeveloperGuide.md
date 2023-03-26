@@ -325,7 +325,7 @@ with destroy markers (X), their lifelines would have ended at the markers.
 
 </div>
 
-### Add An Internship - `add`
+### Add an Internship - `add`
 
 #### Implementation
 
@@ -403,7 +403,7 @@ The following gives a more detailed explanation of the `add` operation.
 [TODO by Shawn]
 
 
-### View An Internship - `view`
+### View an Internship - `view`
 
 #### Implementation
 Figure XX provides an overview on how the `view` operation works.
@@ -1411,7 +1411,7 @@ optional parameter must be specified.
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Glossary
+## **Glossary**
 
 | Term                           | Definition                                                                                                                                                                                                              |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1427,7 +1427,7 @@ optional parameter must be specified.
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Acknowledgements
+## **Acknowledgements**
 
 * InternBuddy is written in **Java 11**.
 * It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
