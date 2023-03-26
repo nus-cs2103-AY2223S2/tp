@@ -304,15 +304,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit description of an Internship Application**
+**Use case: Edit eventDescription of an Internship Application**
 
 **MSS**
 
 1. User requests to list all internship applications.
 2. System shows a list of all internship applications
 3. User specifies the ID of the internship application he wishes to edit.
-4. System shows current description of the internship application and prompts user to input a new description to edit it.
-5. User inputs the new description of the internship application.
+4. System shows current eventDescription of the internship application and prompts user to input a new eventDescription to edit it.
+5. User inputs the new eventDescription of the internship application.
 6. System updates the internship application with the new details.
 
 Use Case ends.
@@ -325,14 +325,14 @@ Use Case ends.
 
 * 5a. User cancels the operation midway.
 
-    * 5a1. System retains the original description and does not edit the internship application.
+    * 5a1. System retains the original eventDescription and does not edit the internship application.
 
       Use case ends.
 
-* 5b. User inputs invalid description.
+* 5b. User inputs invalid eventDescription.
 
     * 5b1. System shows an error message.
-    * 5b2. System retains the original description and does not edit the internship application.
+    * 5b2. System retains the original eventDescription and does not edit the internship application.
 
       Use case resumes at step 4.
 
@@ -378,7 +378,7 @@ Use Case ends.
 
   * 1b1. System displays all internships that have not had a change in status in a week.
 
-    Use case ends. 
+    Use case ends.
 
 * 2a. The list is empty.
     Use case ends.
@@ -398,7 +398,7 @@ Use case ends.
 
 **Extensions**
 
-* 4a. User decides to not delete the listing  
+* 4a. User decides to not delete the listing
 Use Case Ends.
 
 **Use case: List all internship applications with a deadline on a particular date**

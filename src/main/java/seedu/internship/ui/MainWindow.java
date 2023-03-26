@@ -54,7 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
 
-
     /**
      * Creates a {@code MainWindow1} with the given {@code Stage} and {@code Logic}.
      */
@@ -190,8 +189,10 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            internshipInfoPanel.updateInfoPanel(commandResult.getInternship());
 
+            if (!commandResult.isEmptyInternship()) {
+                internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

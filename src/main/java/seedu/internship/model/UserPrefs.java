@@ -14,6 +14,7 @@ import seedu.internship.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path internshipCatalogueFilePath = Paths.get("data", "internshipcatalogue.json");
+    private Path eventCatalogueFilePath = Paths.get("data", "eventcatalogue.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,6 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setInternshipCatalogueFilePath(newUserPrefs.getInternshipCatalogueFilePath());
+        setEventCatalogueFilePath(newUserPrefs.getEventCatalogueFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -55,6 +57,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.internshipCatalogueFilePath = internshipCatalogueFilePath;
     }
 
+    public Path getEventCatalogueFilePath() {
+        return eventCatalogueFilePath;
+    }
+
+    public void setEventCatalogueFilePath(Path eventCatalogueFilePath) {
+        requireNonNull(eventCatalogueFilePath);
+        this.eventCatalogueFilePath = eventCatalogueFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -67,19 +78,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && internshipCatalogueFilePath.equals(o.internshipCatalogueFilePath);
+                && internshipCatalogueFilePath.equals(o.internshipCatalogueFilePath)
+                && eventCatalogueFilePath.equals(o.eventCatalogueFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, internshipCatalogueFilePath);
+        return Objects.hash(guiSettings, internshipCatalogueFilePath, eventCatalogueFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + internshipCatalogueFilePath);
+        sb.append("\nLocal data file location : " + internshipCatalogueFilePath + " | " + eventCatalogueFilePath);
         return sb.toString();
     }
 
