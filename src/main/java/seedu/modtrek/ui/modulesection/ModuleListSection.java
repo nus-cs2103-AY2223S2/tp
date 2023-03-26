@@ -1,6 +1,8 @@
 package seedu.modtrek.ui.modulesection;
 
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Region;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
@@ -31,8 +33,42 @@ public class ModuleListSection extends ModuleSection {
     private class ModuleSectionSortNav extends UiPart<Region> {
         private static final String FXML = "modulesection/ModuleSectionSortNav.fxml";
 
-        public ModuleSectionSortNav() {
+        private final String[] SELECTION = new String[] {"Year", "Code", "Credits", "Grade", "Tag"};
+
+        @FXML
+        private ComboBox sortDropdown;
+
+        public ModuleSectionSortNav(/* Logic logic */) {
             super(FXML);
+
+            setListeners(/* Logic logic */);
+        }
+
+        private void setListeners(/* Logic logic */) {
+            sortDropdown.setOnAction((event) -> {
+                int selectedIndex = sortDropdown.getSelectionModel().getSelectedIndex();
+                String selectedItem = SELECTION[selectedIndex];
+
+                switch (selectedItem) {
+                case "Year":
+                    // sort by year
+                    break;
+                case "Code":
+                    // sort by code
+                    break;
+                case "Credits":
+                    // sort by credits
+                    break;
+                case "Grade":
+                    // sort by grade
+                    break;
+                case "Tag":
+                    // sort by tag
+                    break;
+                default:
+                    // should not reach here
+                }
+            });
         }
     }
 }
