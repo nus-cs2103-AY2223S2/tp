@@ -1,7 +1,9 @@
+
+<img src="images/Reroll_Banner.png" />
 ---
 layout: page
 title: Developer Guide
-<img src="images/Reroll_Banner.png" />
+
 ---
 * Table of Contents
 {:toc}
