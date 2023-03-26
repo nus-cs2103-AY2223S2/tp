@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -140,10 +138,8 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Sorts the list of persons according to the given attribute.
-     * @param attribute the attribute to sort by. 1 indicates sorting by name,
-     *        2 indicates sorting by pay rate, and 3 indicates sorting by session start time.
+     * @param attribute the attribute to sort by. 1 indicates sorting by name, and 2 indicates sorting by pay rate.
      * @throws NumberFormatException if the pay rate is not in a valid format
-     * @throws DateTimeParseException if the session start time is not in a valid format
      */
     public void sort(int attribute) {
         if (attribute == 1) {
@@ -152,13 +148,6 @@ public class UniquePersonList implements Iterable<Person> {
         } else if (attribute == 2) {
             // Sort by pay rate
             internalList.sort(Comparator.comparing(person -> Integer.parseInt(person.getPayRate().toString())));
-        } else if (attribute == 3) {
-            internalList.sort(Comparator.comparing(person -> LocalDateTime.parse(
-                    person.getSession().getStartDateTime(),
-                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
-            ));
-        } else {
-            return;
         }
     }
 }

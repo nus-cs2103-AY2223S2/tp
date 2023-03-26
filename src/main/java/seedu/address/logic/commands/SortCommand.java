@@ -13,7 +13,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts list by given attribute\n"
-            + "Parameters: ATTRIBUTE (1, 2 or 3)\n"
+            + "Parameters: ATTRIBUTE (1 - pay rate or 2 - name)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons according to given attribute.\n";

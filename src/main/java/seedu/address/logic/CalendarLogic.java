@@ -1,3 +1,4 @@
+/*
 package seedu.address.logic;
 
 import static javafx.scene.paint.Color.WHITE;
@@ -17,9 +18,11 @@ import seedu.address.ui.calendar.CalendarDisplay;
 import seedu.address.ui.calendar.CalendarEventListPanel;
 
 //Solution below adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html
+*/
 /**
  * The manager of the logic for the Calendar.
- */
+ *//*
+
 public class CalendarLogic {
     private static final String[] MONTH_NAMES = { "January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December" };
@@ -40,10 +43,12 @@ public class CalendarLogic {
     private ObservableList<CalendarEvent> filteredCalendarEventList;
     private CalendarDisplay calendarDisplay;
 
-    /**
+    */
+/**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
-     */
+     *//*
+
     public CalendarLogic(Logic logic, Stage primaryStage, CalendarDisplay calendarDisplay) {
         requireAllNonNull(logic, primaryStage, calendarDisplay);
         this.logic = logic;
@@ -57,18 +62,22 @@ public class CalendarLogic {
         filteredCalendarEventList.addListener(temp);
     }
 
-    /**
+    */
+/**
      * Initialises the logic components for the Calendar.
-     */
+     *//*
+
     public void initialiseLogic() {
         calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
 
-    /**
+    */
+/**
      * Fills body of the Calendar with the individual date components.
-     */
+     *//*
+
     public void drawBody() {
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
@@ -107,9 +116,11 @@ public class CalendarLogic {
         return MONTH_NAMES[n];
     }
 
-    /**
+    */
+/**
      * Returns the {@code Text} representing the current month.
-     */
+     *//*
+
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
@@ -119,18 +130,22 @@ public class CalendarLogic {
         return header;
     }
 
-    /**
+    */
+/**
      * Refreshes the CalendarEvents.
-     */
+     *//*
+
     public void refresh() {
         calendarDisplay.resetGridPane();
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         calendarDisplay.drawCalendar();
     }
 
-    /**
+    */
+/**
      * Displays the CalendarEvents in the previous month.
-     */
+     *//*
+
     public void previous() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getPreviousMonth(currentMonth);
@@ -138,9 +153,11 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-    /**
+    */
+/**
      * Displays the CalendarEvents in the next month.
-     */
+     *//*
+
     public void next() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
@@ -187,3 +204,4 @@ public class CalendarLogic {
         return new GregorianCalendar(futureYear, futureMonth, 1);
     }
 }
+*/

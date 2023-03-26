@@ -21,7 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.calendar.CalendarDisplay;
+//import seedu.address.ui.calendar.CalendarDisplay;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private CalendarDisplay calendarDisplay;
+    //private CalendarDisplay calendarDisplay;
     private HelpWindow helpWindow;
     private TextField commandTextField;
 
@@ -107,7 +107,7 @@ public class MainWindow extends UiPart<Stage> {
     private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (calendarTab.isSelected() && !commandTextField.isFocused()) {
-                calendarDisplay.handleKeyPressed(event);
+                //calendarDisplay.handleKeyPressed(event);
             }
         });
     }
@@ -160,8 +160,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        calendarDisplay = new CalendarDisplay(logic, primaryStage);
-        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        //calendarDisplay = new CalendarDisplay(logic, primaryStage);
+        //calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
         registerCalendarNavigationForCalendarTab();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

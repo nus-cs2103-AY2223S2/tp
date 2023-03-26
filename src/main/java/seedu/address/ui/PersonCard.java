@@ -39,10 +39,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label payRate;
     @FXML
-    private Label sessions;
-    @FXML
-    private Label sessionDuration;
-    @FXML
     private FlowPane tags;
 
 
@@ -57,8 +53,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         payRate.setText(person.getPayRate().value);
-        sessions.setText(person.getSession().getStartDateTime() + " to " + person.getSession().getEndDateTime());
-        sessionDuration.setText(person.getSession().getSessionDuration().toString().substring(2));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

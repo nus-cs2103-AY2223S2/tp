@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.calendar.CalendarEvent;
+//import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -122,7 +122,7 @@ public interface Model {
      */
     void updateFilteredTagList(Predicate<Tag> predicate);
 
-    ObservableList<CalendarEvent> getFilteredCalendarEventList();
+    //ObservableList<CalendarEvent> getFilteredCalendarEventList();
 
     void updateCalendarEventList();
 }

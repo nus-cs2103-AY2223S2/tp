@@ -1,3 +1,4 @@
+/*
 package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,17 +10,21 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 
+*/
 /**
  * Represents a CalendarEvent in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
- */
+ *//*
+
 public class CalendarEvent implements Comparable<CalendarEvent> {
 
     private final Person person;
 
-    /**
+    */
+/**
      * Creates a CalendarEvent with the given name and appointment.
-     */
+     *//*
+
     public CalendarEvent(Person person) {
         requireAllNonNull(person);
 
@@ -93,3 +98,4 @@ public class CalendarEvent implements Comparable<CalendarEvent> {
 
 
 }
+*/
