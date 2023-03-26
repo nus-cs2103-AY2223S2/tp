@@ -15,26 +15,47 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+    private static final String INVALID_NRIC = "A0123456A";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DRUG_ALLERGY = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#Diabetic";
 
+
+    private static final String VALID_NRIC = "T0123456A";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_DRUG_ALLERGY = "NKDA";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "Diabetic";
     private static final String VALID_TAG_2 = "Osteoporotic";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void parseNric_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNric(INVALID_NRIC));
+    }
+
+    @Test
+    public void parseNric_validNric_success() throws Exception {
+        // No whitespaces
+        assertEquals(new Nric(VALID_NRIC), ParserUtil.parseNric(VALID_NRIC));
+
+        // Leading and trailing whitespaces
+        assertEquals(new Nric(VALID_NRIC), ParserUtil.parseNric("  " + VALID_NRIC + "  "));
+    }
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -100,6 +121,29 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseDrugAllergy_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDrugAllergy((String) null));
+    }
+
+    @Test
+    public void parseDrugAllergy_invalidValue_throwsNullPointerException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDrugAllergy(INVALID_DRUG_ALLERGY));
+    }
+
+    @Test
+    public void parseDrugAllergy_validValueWithoutWhitespace_returnsDrugAllergy() throws Exception {
+        DrugAllergy expectedDrugAllergy = new DrugAllergy(VALID_DRUG_ALLERGY);
+        assertEquals(expectedDrugAllergy, ParserUtil.parseDrugAllergy(VALID_DRUG_ALLERGY));
+    }
+
+    @Test
+    public void parseDrugAllergy_validValueWithWhitespace_returnsTrimmedDrugAllergy() throws Exception {
+        String drugAllergyWithWhitespace = WHITESPACE + VALID_DRUG_ALLERGY + WHITESPACE;
+        DrugAllergy expectedDrugAllergy = new DrugAllergy(VALID_DRUG_ALLERGY);
+        assertEquals(expectedDrugAllergy, ParserUtil.parseDrugAllergy(drugAllergyWithWhitespace));
     }
 
     @Test
