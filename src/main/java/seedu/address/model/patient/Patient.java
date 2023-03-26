@@ -141,13 +141,7 @@ public class Patient {
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
-        if (otherPatient == this) {
-            return true;
-        }
-
-        return otherPatient != null
-            && otherPatient.getNric().equals(this.getNric())
-            && otherPatient.getName().equals(this.getName());
+        return this.equals(otherPatient);
     }
 
     /**
@@ -180,9 +174,7 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getNric().equals(getNric())
-            && otherPatient.getName().equals(getName())
-            && otherPatient.getStatus().equals(getStatus())
-            && otherPatient.getWard().equals(getWard());
+            && otherPatient.getName().equals(getName());
     }
 
     @Override

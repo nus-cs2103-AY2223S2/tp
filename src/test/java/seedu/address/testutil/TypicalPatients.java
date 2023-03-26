@@ -17,26 +17,35 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.ward.Ward;
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
 
+    // Patients
     public static final Patient ALEX = new PatientBuilder().withNric("S1334567A")
-            .withName("Alex Smith").withStatus("GRAY").withWard("A1").withDischarge("12/02/2023 1400").build();
+            .withName("Alex Smith").withStatus("GRAY").withWard("Waiting Room").withDischarge("12/02/2023 1400").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
-            .withName("Benson Tillman").withStatus("GRAY").withWard("A2").withDischarge("12/02/2023 1500").build();
+            .withName("Benson Tillman").withStatus("GRAY").withWard("Waiting Room").withDischarge("12/02/2023 1500").build();
     public static final Patient CARL = new PatientBuilder().withNric("S2468024G")
-            .withName("Carl Leigh").withStatus("GRAY").withWard("A3").withDischarge("12/02/2023 1600").build();
+            .withName("Carl Leigh").withStatus("GREEN").withWard("Class A").withDischarge("12/02/2023 1600").build();
     public static final Patient DANIEL = new PatientBuilder().withNric("S1244567A")
-            .withName("Daniel Wellington").withStatus("GRAY").withWard("A4").withDischarge("13/02/2023 1400").build();
+            .withName("Daniel Wellington").withStatus("YELLOW").withWard("Class B").withDischarge("13/02/2023 1400").build();
     public static final Patient ELLE = new PatientBuilder().withNric("S1235567A")
-            .withName("Elle Schmidt").withStatus("GRAY").withWard("A5").withDischarge("13/02/2023 1500").build();
+            .withName("Elle Schmidt").withStatus("GREEN").withWard("Class C").withDischarge("13/02/2023 1500").build();
     public static final Patient FIONA = new PatientBuilder().withNric("S6969696B")
-            .withName("Fiona Shrekt").withStatus("GRAY").withWard("A6").withDischarge("13/02/2023 1600").build();
+            .withName("Fiona Shrekt").withStatus("RED").withWard("ICU").withDischarge("13/02/2023 1600").build();
     public static final Patient GEORGE = new PatientBuilder().withNric("S1224567A")
-            .withName("George Townsend").withStatus("GRAY").withWard("A7").withDischarge("14/02/2023 1400").build();
+            .withName("George Townsend").withStatus("RED").withWard("ICU").withDischarge("14/02/2023 1400").build();
+
+    // Wards
+    public static final Ward WaitingRoom = new Ward("Waiting Room");
+    public static final Ward A = new Ward("Class A");
+    public static final Ward B = new Ward("Class B");
+    public static final Ward C = new Ward("Class C");
+    public static final Ward ICU = new Ward("ICU");
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withNric("T2222222L")
@@ -59,6 +68,11 @@ public class TypicalPatients {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+
+        for (Ward ward : getTypicalWards()) {
+            ab.addWard(ward);
+        }
+
         for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
         }
@@ -67,5 +81,9 @@ public class TypicalPatients {
 
     public static List<Patient> getTypicalPatients() {
         return new ArrayList<>(Arrays.asList(ALEX, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Ward> getTypicalWards() {
+        return new ArrayList<>(Arrays.asList(WaitingRoom, A, B, C, ICU));
     }
 }

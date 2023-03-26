@@ -2,12 +2,14 @@ package seedu.address.model.ward;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.ward.Ward.wardWithName;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.model.ward.exceptions.DuplicateWardException;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
@@ -39,7 +41,6 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public UniqueWardList() {
         Ward waitingRoom = new Ward("Waiting Room");
-
         add(waitingRoom);
     }
 
@@ -51,11 +52,27 @@ public class UniqueWardList implements Iterable<Ward> {
     }
 
     /**
+     * Returns specified ward to edit.
+     */
+    public Ward getWard(String wardName) {
+        return internalList.get(internalList.indexOf(wardWithName(wardName)));
+    }
+    /**
      * Returns true if the list contains an equivalent ward as the given
-     * argument.
+     * {@code Ward}.
      */
     public boolean contains(Ward toCheck) {
         requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameWard);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent ward as the given
+     * {@code String}.
+     */
+    public boolean contains(String toCheckName) {
+        requireNonNull(toCheckName);
+        Ward toCheck = new Ward(toCheckName);
         return internalList.stream().anyMatch(toCheck::isSameWard);
     }
 
@@ -68,6 +85,19 @@ public class UniqueWardList implements Iterable<Ward> {
         if (!contains(toAdd)) {
             internalList.add(toAdd);
         }
+    }
+
+    /**
+     * Adds patient p to their assigned ward.
+     * @param p
+     */
+    public void addPatient(Patient p) {
+        requireNonNull(p);
+        String targetName = p.getWard();
+        int index = internalList.indexOf(wardWithName(targetName));
+        Ward target = internalList.get(index);
+        target.addPatient(p);
+        internalList.set(index, target);
     }
 
     /**
@@ -92,6 +122,40 @@ public class UniqueWardList implements Iterable<Ward> {
     }
 
     /**
+     * Replaces the ward {@code target} in the target's ward with {@code editedPatient}.
+     * {@code target} must exist in the ward.
+     */
+    public void setPatient(Patient target, Patient editedPatient) {
+        String targetName = target.getWard();
+        String editedName = editedPatient.getWard();
+        int targetIndex = internalList.indexOf(wardWithName(targetName));
+        int editedIndex = internalList.indexOf(wardWithName(editedName));
+
+        if (!targetName.equals(editedName)) {
+            changePatientWard(target, targetIndex, editedIndex);
+        } else {
+            Ward targetWard = internalList.get(targetIndex);
+            targetWard.setPatient(target, editedPatient);
+            internalList.set(targetIndex, targetWard);
+        }
+    }
+
+    /**
+     * Moves patient from one ward to another
+     * @param target The target patient
+     * @param from The patient's current ward index in internalList.
+     * @param to The patient's next ward index in internalList.
+     */
+    public void changePatientWard(Patient target, int from, int to) {
+        Ward start = internalList.get(from);
+        Ward end = internalList.get(to);
+        start.removePatient(target);
+        end.addPatient(target);
+        internalList.set(from, start);
+        internalList.set(to, end);
+    }
+
+    /**
      * Removes the equivalent ward from the list.
      * The ward must exist in the list.
      */
@@ -100,6 +164,18 @@ public class UniqueWardList implements Iterable<Ward> {
         if (!internalList.remove(toRemove)) {
             throw new WardNotFoundException();
         }
+    }
+
+    /**
+     * Removes the equivalent patient from their assigned ward.
+     */
+    public void remove(Patient toRemove) {
+        requireNonNull(toRemove);
+        String targetName = toRemove.getWard();
+        int index = internalList.indexOf(wardWithName(targetName));
+        Ward targetWard = internalList.get(index);
+        targetWard.removePatient(toRemove);
+        internalList.set(index, targetWard);
     }
 
     public void setWards(UniqueWardList replacement) {
@@ -157,4 +233,5 @@ public class UniqueWardList implements Iterable<Ward> {
         }
         return true;
     }
+
 }

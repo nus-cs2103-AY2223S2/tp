@@ -43,8 +43,8 @@ public class WardCard extends UiPart<Region> {
         super(FXML);
         this.ward = ward;
         id.setText(displayedIndex + ". ");
-        name.setText(ward.value);
-        capacity.setText(ward.getCapacityString());
+        name.setText(ward.name);
+        capacity.setText(ward.getOccupancyString());
 
     }
 

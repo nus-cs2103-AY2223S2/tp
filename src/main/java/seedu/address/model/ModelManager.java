@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,12 +113,12 @@ public class ModelManager implements Model {
     public void addPatient(Patient patient) {
         addressBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
     }
 
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
-
         addressBook.setPatient(target, editedPatient);
     }
 
