@@ -36,7 +36,6 @@ public class MainContent extends UiPart<Region> {
 
     public void setMiddlePanel(UiPart<Region> newPanel) {
         mainContent.getChildren().set(1, newPanel.getRoot());
-
     }
 
     @Override

@@ -190,6 +190,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Refreshes the UI to reflect changes
+     */
+    public void refreshPanes() {
+        tankListPanel.refresh();
+        taskListPanel.refresh();
+        fishListPanel.refresh();
+        sortedFishListPanel.refresh();
+    }
+
     public FishListPanel getFishListPanel() {
         return fishListPanel;
     }
@@ -217,6 +227,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleGuiChange();
             }
 
+            refreshPanes();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

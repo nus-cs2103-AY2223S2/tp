@@ -29,6 +29,10 @@ public class FishListPanel extends UiPart<Region> {
         fishListView.setCellFactory(listView -> new FishListViewCell());
     }
 
+    public void refresh() {
+        fishListView.refresh();
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Fish} using a {@code FishCard}.
      */
