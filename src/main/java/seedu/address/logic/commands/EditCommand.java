@@ -9,16 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -27,6 +27,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.tag.CommitmentTag;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -64,16 +66,14 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -84,7 +84,6 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -94,7 +93,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -102,7 +101,33 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<String> existingTagsType = editPersonDescriptor.replaceExistingTags(personToEdit.getTags())
+            .stream().distinct().collect(Collectors.toList());
+        List<String> newTagsType = editPersonDescriptor.replaceExistingTags(editPersonDescriptor.getTags().get())
+            .stream().distinct().collect(Collectors.toList());
+        System.out.println("Before: " + existingTagsType);
+        System.out.println("After: " + newTagsType);
+        Set<Tag> updatedTags;
+        Set<Tag> newTags = new HashSet<>();
+        if (newTagsType.stream().allMatch(element -> existingTagsType.contains(element))) {
+            newTags.addAll(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
+            newTags.addAll(personToEdit.getTags().stream().filter(x -> !newTagsType.contains(
+                editPersonDescriptor.containType(x))).collect(Collectors.toList()));
+            updatedTags = newTags;
+        } else {
+
+            Collection<String> stringTags = new ArrayList<>();
+            newTags.addAll(editPersonDescriptor.getTags().get());
+            newTags.addAll(personToEdit.getTags());
+
+            Collection<Tag> tags = Stream.of(newTags).flatMap(Collection::stream)
+                .collect(Collectors.toList());
+            for (Tag tag : tags) {
+                stringTags.add(tag.tagName);
+            }
+            updatedTags = ParserUtil.parseTags(stringTags);
+        }
+
         Image updatedImage = personToEdit.getImage();
 
         return new Person(updatedName, updatedStatus, updatedPhone, updatedEmail, updatedAddress,
@@ -208,6 +233,36 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        public List<String> replaceExistingTags(Set<Tag> tags) {
+            return ((tags != null) ? containTagType(tags) : null);
+        }
+
+        public List<String> containTagType(Set<Tag> tags) {
+            List<String> tagType = new ArrayList<>();
+            for (Tag tag : tags) {
+                if (tag instanceof ModuleTag) {
+                    tagType.add("Module");
+                } else if (tag instanceof CommitmentTag) {
+                    tagType.add("Commitment");
+                } else {
+                    tagType.add("Tag");
+                }
+            }
+            return tagType;
+        }
+
+        public String containType(Tag tag) {
+            String tagType = "";
+            if (tag instanceof ModuleTag) {
+                tagType = "Module";
+            } else if (tag instanceof CommitmentTag) {
+                tagType = "Commitment";
+            } else {
+                tagType = "Tag";
+            }
+            return tagType;
         }
 
         /**
