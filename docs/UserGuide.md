@@ -18,6 +18,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
     - [`addTime`](#adding-patient-scheduled-time--addTime)
     - [`list`](#listing-all-patients--list)
     - [`listTime`](#listing-patients-by-time--listTime)
+    - [`list_name`](#listing-patients-by-name--list_name)
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
@@ -126,6 +127,12 @@ _Details coming in v1.3 soon ..._
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+### Listing patients by name : `list_name`
+
+Shows a list of all patients in the address book by their name lexicographically.
+
+Format: `list_name`
 
 ### Listing patients by time : `listTime`
 
@@ -241,4 +248,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**ListByName** | `list_name`
 **Help** | `help`
