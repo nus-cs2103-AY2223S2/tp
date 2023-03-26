@@ -26,6 +26,7 @@ public class AddPatientWindow extends UiPart<Stage> {
     private final ErrorMessageDisplay errorMessageDisplay;
     private final TagsHandler tagsHandler;
     private final CommandBox.CommandExecutor commandExecutor;
+    private Stage addStage;
 
     @FXML
     private TextField address;
@@ -54,9 +55,11 @@ public class AddPatientWindow extends UiPart<Stage> {
     @FXML
     private TextField time;
 
-    public AddPatientWindow(CommandBox.CommandExecutor commandExecutor) {
-        super(FXML);
-        errorMessageDisplay = new ErrorMessageDisplay(errorMessagePlaceholder);
+
+    public AddPatientWindow(CommandBox.CommandExecutor commandExecutor, Stage addStage) {
+        super(FXML, addStage);
+        this.addStage = addStage;
+        this.errorMessageDisplay = new ErrorMessageDisplay(errorMessagePlaceholder);
         tagsHandler = new TagsHandler(tagField, tags, errorMessageDisplay);
         this.commandExecutor = commandExecutor;
     }
@@ -142,18 +145,20 @@ public class AddPatientWindow extends UiPart<Stage> {
         if (!getPatientMedicalConditionInput().isBlank()) {
             addPatientCommandInput += PREFIX_MEDICAL + getPatientMedicalConditionInput() + " ";
         }
-        if (!getPatientTimeInput().isBlank()) {
-            addPatientCommandInput += PREFIX_ADDRESS + getPatientAgeInput() + " ";
+        if (!getPatientAgeInput().isBlank()) {
+            addPatientCommandInput += PREFIX_AGE + getPatientAgeInput() + " ";
         }
 
         return addPatientCommandInput;
     }
 
+    @FXML
     public void handleAddPatientCommandInput() {
         String addPatientCommandInput = getAddPatientCommand();
         try {
             commandExecutor.execute(addPatientCommandInput);
             closeAddPatientWindow();
+            addStage.close();
         } catch (CommandException | ParseException e) {
             errorMessageDisplay.setError(e.getMessage());
         }

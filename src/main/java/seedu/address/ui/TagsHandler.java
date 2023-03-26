@@ -29,7 +29,7 @@ class TagsHandler {
         this.tagField = tagField;
         this.tags = tags;
         this.errorMessageDisplay = errorMessageDisplay;
-        uniqueTags = new HashSet<>();
+        this.uniqueTags = new HashSet<>();
 
         tagField.setOnKeyPressed(keyPressed -> {
             if (keyPressed.getCode() == KeyCode.ENTER) {

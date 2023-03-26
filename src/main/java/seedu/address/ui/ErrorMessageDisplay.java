@@ -17,6 +17,7 @@ public class ErrorMessageDisplay {
         this.errorMessagePlaceholder = errorMessagePlaceholder;
         errorMessageLabel = new Label();
         errorMessageLabel.setWrapText(true);
+        errorMessageLabel.getStyleClass().add("label-bright");
     }
 
     public void clearError() {

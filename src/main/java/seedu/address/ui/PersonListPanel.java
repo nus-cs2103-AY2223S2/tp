@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
+import java.util.Collections;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,16 +22,20 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private AddPatientWindow addPatientWindow;
 
     @FXML
     private ListView<Person> personListView;
+    @FXML
+    private Button addPatientButton;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow) {
+    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow, CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
+        this.addPatientWindow = new AddPatientWindow(commandExecutor, new Stage());
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         this.mainWindow = mainWindow;
@@ -46,6 +53,15 @@ public class PersonListPanel extends UiPart<Region> {
             }
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + "Something wrong happened when clicking the person.");
+        }
+    }
+
+    @FXML
+    private void showAddPatientWindow() {
+        if (!addPatientWindow.isShowing()) {
+            addPatientWindow.showAddPatientWindow();
+        } else {
+            addPatientWindow.requestFocus();
         }
     }
 

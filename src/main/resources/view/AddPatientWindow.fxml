@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,17 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root height="450" onCloseRequest="#handleCloseCustomerWindow" resizable="false" type="javafx.stage.Stage" width="720" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/art.png" />
-    </icons>
+<fx:root height="450" onCloseRequest="#closeAddPatientWindow" resizable="false" type="javafx.stage.Stage" width="720" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <stylesheets>
                 <URL value="@DarkTheme.css" />
             </stylesheets>
 
-            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="450" maxWidth="720" styleClass="edge-to-edge, addWindows">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="450" maxWidth="720" styleClass="edge-to-edge">
                 <BorderPane fx:id="customerContainer" style="-fx-background-color: #3C424B;">
                     <top>
                         <HBox style="-fx-background-color: #1E2229;">
@@ -63,7 +59,7 @@
                                        <Insets top="5.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <TextField fx:id="email1" maxWidth="200" minWidth="200" />
+                                 <TextField fx:id="age" maxWidth="200" minWidth="200" />
                               </children>
                            </HBox>
                            <HBox>
@@ -73,7 +69,7 @@
                                        <Insets top="5.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <TextField fx:id="phone1" maxWidth="200" minWidth="200" />
+                                 <TextField fx:id="time" maxWidth="200" minWidth="200" />
                               </children>
                            </HBox>
                         </children>
@@ -128,7 +124,7 @@
                                  <Insets top="5.0" />
                               </HBox.margin>
                            </Label>
-                           <TextField fx:id="address1" maxWidth="500" minWidth="500" />
+                           <TextField fx:id="medicalCondition" maxWidth="500" minWidth="500" />
                         </children>
                      </HBox>
 
@@ -139,7 +135,7 @@
                     </center>
                     <bottom>
                         <HBox alignment="BOTTOM_RIGHT">
-                            <Button fx:id="handleCustomerCommand" mnemonicParsing="false" onAction="#handleCustomerCommand" text="+  Add Patient">
+                            <Button fx:id="handleAddPatientCommandButton" mnemonicParsing="false" onAction="#handleAddPatientCommandInput" text="+  Add Patient">
                                 <HBox.margin>
                                     <Insets left="5.0" />
                                 </HBox.margin>
