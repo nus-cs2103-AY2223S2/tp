@@ -35,7 +35,7 @@ public class DetailedModule extends DetailedInfo {
         moduleListView.setItems(modules);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
         // Took forever to get this to work but now ListView sets max height based on number of items
-        moduleListView.setPrefHeight((52 * modules.size()) + 2);
+        // moduleListView.setPrefHeight((52 * modules.size()) + 2);
     }
 
     /**
