@@ -104,7 +104,7 @@ Format: `listPerson`
 ### Editing a person : `editPerson`
 
 
-Edits an existing person in the address book.
+Edits an existing person in the ExpressLibrary.
 
 Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
