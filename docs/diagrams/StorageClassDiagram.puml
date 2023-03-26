@@ -6,38 +6,48 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage{
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
-}
+    package "UserPrefs Storage" #F4F6F6{
+        Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+        Class JsonUserPrefsStorage
+    }
 
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
+    Class "<<interface>>\nCareFlowStorage" as CareFlowStorage
+    Class CareFlowStorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
-}
+    package "Patient Record Storage" #F4F6F6{
+        Class "<<interface>>\nPatientRecordStorage" as PatientRecordStorage
+        Class JsonPatientRecordStorage
+        Class JsonSerializablePatientRecord
+        Class JsonAdaptedPatient
+    }
+
+    package "Drug Inventory Storage" #F4F6F6{
+         Class "<<interface>>\nDrugInventoryStorage" as DrugInventoryStorage
+         Class JsonDrugInventoryStorage
+         Class JsonSerializableDrugInventory
+         Class JsonAdaptedDrug
+    }
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+CareFlowStorageManager .up.|> CareFlowStorage
+CareFlowStorageManager -up-> "1" UserPrefsStorage
+CareFlowStorageManager -up-> "1" PatientRecordStorage
+CareFlowStorageManager -up-> "1" DrugInventoryStorage
+CareFlowStorage -down-|> UserPrefsStorage
+CareFlowStorage -down-|> PatientRecordStorage
+CareFlowStorage -down-|> DrugInventoryStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
 
+JsonDrugInventoryStorage .up.|> DrugInventoryStorage
+JsonDrugInventoryStorage .down.> JsonSerializableDrugInventory
+JsonSerializableDrugInventory -down-> "*"JsonAdaptedDrug
+
+JsonPatientRecordStorage .up.|> PatientRecordStorage
+JsonPatientRecordStorage .down.> JsonSerializablePatientRecord
+JsonSerializablePatientRecord -down-> "*"JsonAdaptedPatient
 @enduml

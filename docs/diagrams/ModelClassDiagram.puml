@@ -5,46 +5,57 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyDrugInventory" as ReadOnlyDrugInventory
+Class "<<interface>>\nReadOnlyHospitalRecord" as ReadOnlyHospitalRecord
+Class "<<interface>>\nReadOnlyPatientRecord" as ReadOnlyPatientRecord
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
+Class "<<interface>>\nCareFlowModel" as CareFlowModel
+Class HospitalRecord
+Class PatientRecord
+Class DrugInventory
+Class CareFlowModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniquePatientList
+Class Patient
 
+Class UniqueDrugList
+Class Drug
+
+Class UniqueHospitalList
+Class Hospital
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> CareFlowModel
 
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+CareFlowModelManager .up.|> CareFlowModel
+PatientRecord .up.|> ReadOnlyPatientRecord
+DrugInventory .up.|> ReadOnlyDrugInventory
+HospitalRecord .up.|> ReadOnlyHospitalRecord
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+CareFlowModel ..> ReadOnlyPatientRecord
+CareFlowModel ..> ReadOnlyDrugInventory
+CareFlowModel ..> ReadOnlyHospitalRecord
+CareFlowModel ..> ReadOnlyUserPrefs
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+CareFlowModelManager --> "1" PatientRecord
+CareFlowModelManager --> "1" HospitalRecord
+CareFlowModelManager --> "1" DrugInventory
+CareFlowModelManager --> "1" UserPrefs
 
-ModelManager -->"~* filtered" Person
+PatientRecord *--> "1" UniquePatientList
+UniquePatientList --> "~* all" Patient
+
+HospitalRecord *--> "1" UniqueHospitalList
+UniqueHospitalList --> "~* all" Hospital
+
+DrugInventory *--> "1" UniqueDrugList
+UniqueDrugList --> "~* all" Drug
+
+'CareFlowModelManager -->"~* filtered" Patient
+'CareFlowModelManager -->"~* filtered" Drug
+'CareFlowModelManager -->"~* filtered" Hospital
+
 @enduml

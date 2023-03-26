@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param selectedPatient the patient input by user
      */
     void showSelectedPatient(Patient selectedPatient) {
-        patientListPanel.setPatientDetailDisplay(selectedPatient);
+        patientListPanel.updateDisplay(selectedPatient);
     }
 
     /**
@@ -143,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param selectedDrug the patient input by user
      */
     void showSelectedDrug(Drug selectedDrug) {
-        drugListPanel.setDrugDetailDisplay(selectedDrug);
+        drugListPanel.updateDisplay(selectedDrug);
     }
 
     /**

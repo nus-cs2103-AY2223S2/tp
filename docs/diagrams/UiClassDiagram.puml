@@ -23,8 +23,8 @@ Class HospitalCard
 Class DrugCard
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+package CareFlowModel <<Rectangle>> {
+Class HiddenCareFlowModel #FFFFFF
 }
 
 package CareFlowLogic <<Rectangle>> {
@@ -66,10 +66,10 @@ PieChart --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PatientCard ..> Model
-DrugCard ..> Model
-HospitalCard ..> Model
-PatientCard ..> Model
+PatientCard ..> CareFlowModel
+DrugCard ..> CareFlowModel
+HospitalCard ..> CareFlowModel
+PatientCard ..> CareFlowModel
 
 UiManager -right-> CareFlowLogic
 MainWindow -left-> CareFlowLogic

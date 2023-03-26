@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " 1"
+            + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " -i 1"
             + "\nOR\n"
             + OPERATION_TYPE + " " + COMMAND_WORD + ":  Deletes the the patient identified by the IC number.\n"
             + "Parameters: "
