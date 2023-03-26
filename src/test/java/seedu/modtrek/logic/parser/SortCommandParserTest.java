@@ -6,7 +6,6 @@ import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.SortCommand;
-import seedu.modtrek.logic.parser.exceptions.ParseException;
 
 public class SortCommandParserTest {
     private final SortCommandParser parser = new SortCommandParser();
