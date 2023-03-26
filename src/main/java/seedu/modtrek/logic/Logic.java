@@ -2,6 +2,7 @@ package seedu.modtrek.logic;
 
 import java.nio.file.Path;
 import java.util.TreeMap;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
@@ -24,6 +25,11 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Returns the list of filters from find command
+     */
+    List<String> getFiltersList();
 
     /**
      * Returns the AddressBook.

@@ -12,7 +12,9 @@ import java.util.Set;
 public class Grade implements Comparable<Grade> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should be either one of [A+, A, A-, B+, B, B-, C+, C, D+, D, F, S, U]";
+            "Grade should be either one of [A+, A, A-, B+, B, B-, C+, C, D+, D, F, S, U].";
+
+    public static final String MESSAGE_MISSING_DETAIL = "Missing grade after /g.";
 
     private static Map<String, Double> gradeToPoints = Map.ofEntries(
         Map.entry("A+", 5.0),

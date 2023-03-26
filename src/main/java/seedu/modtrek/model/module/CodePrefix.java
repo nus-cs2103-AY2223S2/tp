@@ -14,6 +14,8 @@ public class CodePrefix {
     public static final String MESSAGE_CONSTRAINTS =
             "Module code prefix is invalid. It should be between 2 and 4 alphabetic characters.";
 
+    public static final String MESSAGE_MISSING_DETAIL = "Missing module code prefix after /m.";
+
     private static final String VALIDATION_REGEX = "^[A-Z]{2,4}$";
 
     /**
