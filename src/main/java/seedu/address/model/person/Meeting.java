@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Meeting implements Comparable<Meeting> {
     protected LocalDateTime start;
     protected LocalDateTime end;
+    private DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
 
     /**
      * Constructor for Meeting
@@ -92,7 +93,6 @@ public class Meeting implements Comparable<Meeting> {
             return "No Meeting!";
         }
 
-        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
         String startDnT = start.format(customFormat);
         String endDnT = end.format(customFormat);
 
@@ -114,5 +114,13 @@ public class Meeting implements Comparable<Meeting> {
 
     public LocalDateTime getEnd() {
         return end;
+    }
+
+    public String getStartString() {
+        return start.format(customFormat);
+    }
+
+    public String getEndString() {
+        return end.format(customFormat);
     }
 }
