@@ -15,6 +15,8 @@ public class AvailableDate {
     public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n"
             + "Please ensure the specified dates follow this format: YYYY-MM-DD";
     public static final String INVALID_DATES_SPECIFIED = "Invalid dates specified.";
+    public static final String INVALID_NUMBER_OF_DATES =
+            "Invalid format for date ranges. Format should be <YYYY-MM-DD>, <YYYY-MM-DD>";
     public static final String VALIDATION_REGEX =
             "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$";
 
