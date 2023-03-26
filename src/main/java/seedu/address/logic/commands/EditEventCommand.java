@@ -7,12 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,15 +20,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Performance;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Photo;
-import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -49,7 +37,7 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
 
     private final Index index;
-    private Event editEvent;
+    private EditEventDescriptor editEventDescriptor;
     private final boolean isTutorial;
     private final boolean isLab;
     private final boolean isConsultation;
@@ -57,21 +45,21 @@ public class EditEventCommand extends Command {
     /**
      * Has parameters to pass data on whether the event is a tutorial, a lab or consultation for type casting
      * @param index
-     * @param editEvent
+     * @param editEventDescriptor
      * @param isTutorial
      * @param isLab
      * @param isConsultation
      */
-    public EditEventCommand(Index index, Event editEvent, boolean isTutorial,
+    public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor, boolean isTutorial,
                             boolean isLab, boolean isConsultation) {
         requireNonNull(index);
-        requireNonNull(editEvent);
+        requireNonNull(editEventDescriptor);
 
         this.index = index;
         this.isTutorial = isTutorial;
         this.isLab = isLab;
         this.isConsultation = isConsultation;
-        this.editEvent = editEvent;
+        this.editEventDescriptor = editEventDescriptor;
     }
 
     /**
@@ -106,7 +94,7 @@ public class EditEventCommand extends Command {
         }
 
         Tutorial tutorialToEdit = lastShownList.get(index.getZeroBased());
-        Tutorial editedTutorial = (Tutorial) editEvent;
+        Tutorial editedTutorial = createEditedTutorial(tutorialToEdit, editEventDescriptor);
 
         if (!tutorialToEdit.isSameTutorial(editedTutorial) && model.hasTutorial(editedTutorial)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -130,14 +118,14 @@ public class EditEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Lab tutorialToEdit = lastShownList.get(index.getZeroBased());
-        Lab editedLab = (Lab) editEvent;
+        Lab labToEdit = lastShownList.get(index.getZeroBased());
+        Lab editedLab = createEditedLab(labToEdit, editEventDescriptor);
 
-        if (!tutorialToEdit.isSameLab(editedLab) && model.hasLab(editedLab)) {
+        if (!labToEdit.isSameLab(editedLab) && model.hasLab(editedLab)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.setLab(tutorialToEdit, editedLab);
+        model.setLab(labToEdit, editedLab);
         model.updateFilteredLabList(PREDICATE_SHOW_ALL_LABS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedLab));
     }
@@ -155,24 +143,24 @@ public class EditEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Consultation tutorialToEdit = lastShownList.get(index.getZeroBased());
-        Consultation editedConsultation = (Consultation) editEvent;
+        Consultation consultationToEdit = lastShownList.get(index.getZeroBased());
+        Consultation editedConsultation = createEditedConsultation(consultationToEdit, editEventDescriptor);
 
-        if (!tutorialToEdit.isSameConsultation(editedConsultation) && model.hasConsultation(editedConsultation)) {
+        if (!consultationToEdit.isSameConsultation(editedConsultation)
+                && model.hasConsultation(editedConsultation)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.setConsultation(tutorialToEdit, editedConsultation);
+        model.setConsultation(consultationToEdit, editedConsultation);
         model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedConsultation));
     }
-
 
     /**
      * Creates and returns a {@code Person} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedTutorial(Event eventToEdit,
+    private static Tutorial createEditedTutorial(Event eventToEdit,
                                             EditEventCommand.EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
@@ -189,7 +177,7 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedLab(Event eventToEdit,
+    private static Lab createEditedLab(Event eventToEdit,
                                            EditEventCommand.EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
@@ -206,7 +194,7 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedConsultation(Event eventToEdit,
+    private static Consultation createEditedConsultation(Event eventToEdit,
                                            EditEventCommand.EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
@@ -232,7 +220,7 @@ public class EditEventCommand extends Command {
         // state check
         EditEventCommand e = (EditEventCommand) other;
         return index.equals(e.index)
-                && editEvent.equals(e.editEvent);
+                && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
 
@@ -257,7 +245,7 @@ public class EditEventCommand extends Command {
             setEventName(toCopy.name);
             setDate(toCopy.eventDate);
             setStudents(toCopy.students);
-            setAttachments(toCopy.attachments);
+            setAttachments(toCopy.attachments.get(0));
             setNotes(toCopy.notes);
         }
 
@@ -284,8 +272,9 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventDate);
         }
 
-        public void setAttachments(List<File> file) {
-            this.attachments = file;
+        public void setAttachments(File file) {
+            this.attachments.clear();
+            this.attachments.add(file);
         }
 
         public Optional<List<File>> getAttachment() {
