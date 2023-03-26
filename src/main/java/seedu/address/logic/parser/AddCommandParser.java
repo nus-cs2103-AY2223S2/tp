@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -40,7 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AGE, PREFIX_TAG, PREFIX_SCHEDULE, PREFIX_MEDICAL);
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AGE, PREFIX_TAG, PREFIX_SCHEDULE,
+                        PREFIX_MEDICAL, PREFIX_NRIC);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -54,14 +57,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> medicalAge = argMultimap.getValue(PREFIX_AGE);
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
-        //LocalDateTime parsedTime = null;
+        Optional<String> nric = argMultimap.getValue(PREFIX_NRIC);
         String empty = "";
         Age age = medicalAge.isEmpty() ? new Age(empty) : ParserUtil.parseAge((medicalAge.get().toString()));
         MedicalCondition condition = medicalString.isEmpty() ? new MedicalCondition(empty)
                 : ParserUtil.parseMedicalCond(medicalString.get().toString());
         LocalDateTime parsedTime = time.isPresent() && time.get().trim().length() > 0
                 ? ParserUtil.parseTime(time.get()) : null;
-        Person person = new Person(name, phone, email, address, tagList, parsedTime, condition, age);
+        Nric parsedNric = nric.isEmpty() ? new Nric("") : ParserUtil.parseNric(nric.get());
+        Person person = new Person(name, phone, email, address, age, tagList, parsedTime, condition, parsedNric);
         return new AddCommand(person);
     }
 
