@@ -75,14 +75,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskListPanel`, `TaskDetailPanel` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The `UI` consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskDetailPanel`, `TaskListPanel`, `CommandInput` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
 
 The `UI` component,
 
-- communicates with back-end via a single-entry point `Logic` component.
+- communicates with back-end via a single-entry point `Logic` component to exectue user commands.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
+- updates the UI every time a command is executed.
 
 ### Logic component
 
