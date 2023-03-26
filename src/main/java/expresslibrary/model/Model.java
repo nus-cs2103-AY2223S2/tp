@@ -106,6 +106,12 @@ public interface Model {
      */
     void deleteBook(Book target);
 
+    /**
+     * Returns {@code book} from this {@code ExpressLibrary}.
+     * {@code book} must exist in the express library.
+     */
+    Book getBook(Book book);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
