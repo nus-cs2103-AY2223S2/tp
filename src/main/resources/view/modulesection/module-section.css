@@ -23,6 +23,11 @@
     -fx-text-fill: -white;
 }
 
+.module-section-find-nav-label-placeholder {
+    -fx-font-family: 'Lexend Deca Semibold', sans-serif;
+    -fx-text-fill: -white;
+}
+
 .module-section-find-nav-filter-label {
     -fx-padding: 7 10;
 

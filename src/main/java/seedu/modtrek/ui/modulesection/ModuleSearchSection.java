@@ -55,6 +55,13 @@ public class ModuleSearchSection extends ModuleSection {
          * @param filters The list of filters.
          */
         private void displayFilters(List<String> filters) {
+            if (filters.size() == 0) {
+                Label placeholder = new Label("None");
+                placeholder.getStyleClass().addAll("module-section-find-nav-label-placeholder", "h3");
+                findNav.getChildren().add(placeholder);
+                return;
+            }
+
             for (String filter : filters) {
                 Label filterLabel = new Label(filter);
                 filterLabel.getStyleClass().add("module-section-find-nav-filter-label");
