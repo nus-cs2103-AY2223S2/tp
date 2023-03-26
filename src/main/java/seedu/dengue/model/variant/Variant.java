@@ -21,7 +21,7 @@ public class Variant {
     public Variant(String variantName) {
         requireNonNull(variantName);
         checkArgument(isValidVariantName(variantName), MESSAGE_CONSTRAINTS);
-        this.variantName = DengueVariant.valueOf(variantName);
+        this.variantName = DengueVariant.valueOf(variantName.toUpperCase());
     }
 
     /**
@@ -29,7 +29,7 @@ public class Variant {
      */
     public static boolean isValidVariantName(String test) {
         try {
-            DengueVariant.valueOf(test);
+            DengueVariant.valueOf(test.toUpperCase());
             return true;
         } catch (IllegalArgumentException ex) {
             return false;
