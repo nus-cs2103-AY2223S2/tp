@@ -2,8 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDuringTimePredicate;
 import seedu.address.model.appointment.TimeInTimeslotPredicate;
 
 /**
@@ -18,12 +22,20 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      */
     public FindAppointmentCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        // Check if the number of arguments is valid
+        String[] splitArgs = trimmedArgs.split(" ");
+        if (trimmedArgs.isEmpty() || !(splitArgs.length == 2 || splitArgs.length == 4)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
-        return new FindAppointmentCommand(new TimeInTimeslotPredicate(trimmedArgs));
+        Predicate<Appointment> predicate;
+        if (splitArgs.length == 4) {
+            predicate = new AppointmentDuringTimePredicate(trimmedArgs);
+        } else {
+            predicate = new TimeInTimeslotPredicate(trimmedArgs);
+        }
+        return new FindAppointmentCommand(predicate);
     }
 
 }

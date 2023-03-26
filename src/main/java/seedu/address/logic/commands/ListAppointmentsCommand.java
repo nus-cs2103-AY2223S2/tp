@@ -18,8 +18,6 @@ public class ListAppointmentsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        System.out.println("Appointments:");
-        model.getFilteredAppointmentList().forEach(System.out::println);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

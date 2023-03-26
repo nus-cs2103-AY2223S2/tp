@@ -39,7 +39,7 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(ReadOnlyPatientList patientList, Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
-        System.out.println(appointment.toString());
+        //System.out.println(appointment.toString());
         id.setText(displayedIndex + ". ");
         /*
         Patient thisPatient = patientList
