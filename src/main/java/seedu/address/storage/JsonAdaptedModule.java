@@ -63,12 +63,14 @@ class JsonAdaptedModule {
         name = source.getName().fullName;
         resource = source.getResource().value;
         timeSlot = source.getTimeSlot().value;
+        resource = source.getResource().value;
+        timeSlot = source.getTimeSlot().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
-        deadline = source.getDeadline().value;
+        deadline = source.getDeadline().toString();
         teacher = source.getTeacher().value;
     }
 

@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code Module}.
+ * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
@@ -59,12 +59,12 @@ public class ModuleCard extends UiPart<Region> {
         name.setText(module.getName().fullName);
         resource.setText("Resource: " + module.getResource().value);
         address.setText("Venue: " + module.getAddress().value);
-        timeSlot.setText("Time: " + module.getTimeSlot().value);
+        timeSlot.setText("Time: " + module.getTimeSlot().displayFormat());
         remark.setText("Remark: " + module.getRemark().value);
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        deadline.setText("Deadline: " + module.getDeadline().value);
+        deadline.setText("Deadline: " + module.getDeadline().displayFormat());
         teacher.setText("Teacher: " + module.getTeacher().value);
     }
 

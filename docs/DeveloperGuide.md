@@ -154,6 +154,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Find Command Implementation
+This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users to search for modules whose names or types contain any of the specified keywords (case-insensitive).
+
+FindCommand Class
+The FindCommand class is responsible for finding and listing all modules in the address book whose name contains any of the argument keywords. Keyword matching is case insensitive.
+The FindCommandParser is responsible for parsing the input given by the user.
+
+The FindCommand utilizes the FilteredList from JavaFx and uses a predicate to initialize a FindCommand object. This predicate is programmed such that it will match for the name of the module and type of the module.
+
+The predicate passed to the FindCommand constructor is from the class NameContainsKeywordsPredicate. This class has a test method which is used by the FilteredList.
+
+Given below is an example usage scenario and how the find command behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `find CS3263` command. The 'find CS3263' will be handled by the LogicManager and AddressBookParser which will extract out the needed argument, more importantly the predicate.
+
+Step 3. Now, the command is executed through the execute method which will update the list through `Model#updateFilteredModuleList`
+
+Step 4. The method set the predicate to the filtered list which will run the `NameContainsKeywordsPredicate#test()` to find the items based on name or type
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -274,12 +297,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                  |
-| `* * *`  | computing student                          | delete an item               | remove entries that I no longer need |             
-| `* * *`  | computing student                          | edit an item                  |                                    |
-| `* * *`  | computing student                                        | see all my lectures, deadlines, and tutorials          |                 |
-| `* *`    | TBD                                       | TBD   | TDB             |
-| `*`      | TBD | TBD          | TBD                                                |
+| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                                      |
+| `* * *`  | computing student                          | delete an item                                | remove entries that I no longer need |             
+| `* * *`  | computing student                          | edit an item                                  |                                      |
+| `* * *`  | computing student                          | see all my lectures, deadlines, and tutorials |                                      |
+| `* *`    | computing student                          | sort my lectures, deadlines, and tutorials    | prioritise certain modules           |
+| `* *`    | computing student                          | sort my exams by time                         | view my exam schedule                |
+| `* *`    | diligent student                           | add notes and remarks to my sc                |                                      |
+| `* *`    | unorganised user                           | search for my modules by name or type         | find specific information quickly    |
 
 *{More to be added}*
 
@@ -343,7 +368,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample modules. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -356,20 +381,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a module
 
-1. Deleting a module while all modules are being shown
-
-   1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
+1. Test case: `delete 1`<br>
+      Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
+      
+2. Test case: `delete 0`<br>
       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+4. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -377,4 +398,42 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Adding a module  
+
+1. Adding a module
+
+    1. Test case: `add n/CS2103T p/Tutorial a/COM1`<br>  
+       Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added module is shown in the status message. Empty optional fields are left as "None.".
+       
+    2. Test case: `add n/CS2101 p/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>  
+       Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3, timeslot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
+       
+    3. Test case: `add n/CS1101S`<br>
+       Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the status message.
+       
+### Editing a module
+1 Editing a module 
+  1.  Test case: `edit 1 n/CS1101S`
+      Expected: The name of the first module in the list is edited, and is now CS1101S. Details of the updated module is shown in the status message. 
+      
+  2. Test case: `edit 2 e/12pm - 2pm 
+     Expected: The time slot of the first module in the list is edited, and is now 12pm - 2pm. Details of the updated module is shown in the status message. 
+  
+  3. Test case: `edit 1 p/Lecture 
+     Expected: The type of the first module in the list is edited, and is now Lecture. Details of the updated module is shown in the status message. 
+
+### Finding a module/type
+1. Finding a module
+  
+    1. Test case: `find CS2103T`<br>  
+       Expected: A module is found on the list. Details of the found module is shown in the list.
+
+    2. Test case: `find tutorial`<br>  
+       Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list.
+       
+    3. Test case: `find tutorial lab`<br>  
+       Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in the list.
+     
+    4. Note: Make sure to list the modules again when you want to find another module

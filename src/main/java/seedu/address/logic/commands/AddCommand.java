@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS1101S "
             + PREFIX_TAG + "Lecture "
-            + PREFIX_TIMESLOT + "12 noon - 2pm "
+            + PREFIX_TIMESLOT + "210323 10:00"
             + PREFIX_ADDRESS + "COM1 ";
 
 

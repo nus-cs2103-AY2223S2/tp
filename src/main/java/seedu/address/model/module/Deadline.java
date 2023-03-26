@@ -1,14 +1,17 @@
 package seedu.address.model.module;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a Module's deadline.
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[^\\d].*";
+            "Deadline should be of format \"ddMMyyyy HH:mm\" (Example: 230223 18:00)";
+    public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}[:][0-9]{2}$";
 
-    public final String value;
+    public final LocalDateTime value;
 
     /**
      * Constructs an {@code Deadline}.
@@ -18,19 +21,51 @@ public class Deadline {
     public Deadline(String deadline) {
         //deadline is optional and hence we do not requireNonNull.
         //requireNonNull(deadline);
-        value = deadline;
+        value = convertStringToDate(deadline);
     }
 
     /**
      * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
+        if (test.equals("None.")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the conversion of String to a LocalDateTime
+     * @return LocalDateTime instance
+     */
+    private LocalDateTime convertStringToDate(String deadline) {
+        if (deadline.equals("None.")) {
+            return null;
+        }
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyy HH:mm");
+        return LocalDateTime.parse(deadline, dateTimeFormatter);
+    }
+
+    /**
+     * Returns String of desired display format
+     * @return Display format String
+     */
+    public String displayFormat() {
+        if (value == null) {
+            return "None.";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, HH:mm");
+        return formatter.format(value);
+    }
+
+
     @Override
     public String toString() {
-        return value;
+        if (value == null) {
+            return "None.";
+        }
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyy HH:mm");
+        return dateTimeFormatter.format(value);
     }
 
 
