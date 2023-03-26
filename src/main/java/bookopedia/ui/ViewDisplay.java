@@ -1,5 +1,8 @@
 package bookopedia.ui;
 
+import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import bookopedia.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,13 +10,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.util.Comparator;
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * An UI component that displays more information of a {@code Person}.
  */
-public class ViewDisplay extends UiPart<Region>{
+public class ViewDisplay extends UiPart<Region> {
     private static final String FXML = "ViewDisplay.fxml";
 
     public final Person person;

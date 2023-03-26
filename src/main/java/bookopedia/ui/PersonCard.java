@@ -1,8 +1,5 @@
 package bookopedia.ui;
 
-import java.util.Comparator;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import bookopedia.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

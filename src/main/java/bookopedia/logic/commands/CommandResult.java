@@ -1,10 +1,10 @@
 package bookopedia.logic.commands;
 
-import bookopedia.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import bookopedia.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -40,6 +40,14 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean view, Person person, int id) {
         this(feedbackToUser, false, false, view, person, id);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * except {@code view}, {@code person} and {@code id}.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false, null, -1);
     }
 
     /**

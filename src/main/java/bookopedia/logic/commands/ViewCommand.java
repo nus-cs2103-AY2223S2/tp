@@ -8,7 +8,6 @@ import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
-import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
 
 /**
