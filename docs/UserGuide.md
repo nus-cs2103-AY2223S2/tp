@@ -98,6 +98,10 @@ The examples given in this guide are formatted with the following conventions:
 
 1. Refer to the [Features](#features) below for details of each command.
 
+2. When you are ready to start, you can use the `clear` command to clear all the sample data.
+
+3. Happy ~~free~~ Paidlancing!
+
 --------------------------------------------------------------------------------------------------------------------
 
 [//]: # (Perhaps we could explain the difference between event and contact here?)
