@@ -24,23 +24,23 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Nric("S1234567A"), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                new DrugAllergy("NKDA"), getTagSet("Diabetes"), getMedicineSet("Lantus")),
+                new DrugAllergy("NKDA"), getTagSet("friends"), getMedicineSet("Lantus")),
             new Person(new Nric("S2345678B"), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new DrugAllergy("Panadol"), getTagSet("Arthritis", "Asthma"),
+                new DrugAllergy("Panadol"), getTagSet("colleagues", "friends"),
                 getMedicineSet("ibuprofen", "diclofenac")),
             new Person(new Nric("S3456789C"), new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                new DrugAllergy("Penicillin"), getTagSet(), getMedicineSet()),
+                new DrugAllergy("Penicillin"), getTagSet("neighbours"), getMedicineSet()),
             new Person(new Nric("S0012345D"), new Name("David Li"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                new DrugAllergy("Aspirin, Panadol"), getTagSet("Cancer"), getMedicineSet("DHAP", "DTIC")),
+                new DrugAllergy("Aspirin, Panadol"), getTagSet("family"), getMedicineSet("DHAP", "DTIC")),
             new Person(new Nric("S1212345E"), new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                new DrugAllergy("NKDA"), getTagSet("HIV"), getMedicineSet("NTRI")),
+                new DrugAllergy("NKDA"), getTagSet("classmates"), getMedicineSet("NTRI")),
             new Person(new Nric("S0001111F"), new Name("Roy Balakrishnan"), new Phone("92624417"),
                 new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new DrugAllergy("NKDA"), getTagSet("ADHD"), getMedicineSet())
+                new DrugAllergy("NKDA"), getTagSet("colleagues"), getMedicineSet())
         };
     }
 
