@@ -269,11 +269,11 @@ The find group feature allows users to supports find group(s) and persons who ar
 This is implemented using the `GroupFindCommand`, `GroupFindCommandParser`, `UniqueGroupList` and `UniquePersonList` 
 classes.
 
-The `GroupFindCommand` receives a  group and member of group predicate,
+The `GroupFindCommand` receives a group and member predicate,
 
 #### Activity diagram
 
-The following activity diagram summarises what happens when a user executes an edit command:
+The following activity diagram summarises what happens when a user executes a find command:
 
 <img src="images/GroupFindCommandActivityDiagram.png" width="300" />
 
@@ -291,7 +291,7 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 `GroupNameContainsKeywordsPredicate` and `MemberOfGroupPredicate`.
 4. The `GroupFindCommand` instance is then returned to the `LogicManager`
 5. The `LogicManager` then executes the `GroupFindCommand` instance which filters the `UniqueGroupList` and 
-`UniquePersonList` based on the group and person predicate
+`UniquePersonList` based on the group and member predicate
 6. Execution of `GroupFindCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
 
 ### \[Developed\] Editing a person
