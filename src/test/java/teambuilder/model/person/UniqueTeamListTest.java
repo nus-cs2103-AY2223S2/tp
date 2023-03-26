@@ -1,13 +1,14 @@
 package teambuilder.model.person;
 
-import org.junit.jupiter.api.Test;
-import teambuilder.model.team.UniqueTeamList;
-import teambuilder.model.team.exceptions.DuplicateTeamException;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.testutil.Assert.assertThrows;
 import static teambuilder.testutil.TypicalTeams.TEAM_A;
+
+import org.junit.jupiter.api.Test;
+
+import teambuilder.model.team.UniqueTeamList;
+import teambuilder.model.team.exceptions.DuplicateTeamException;
 
 public class UniqueTeamListTest {
 
