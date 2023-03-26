@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * A ui for the details of a specified person displayed at the right panel of TAB.
+ * The UI component that is responsible for displaying detailed information of a patient.
  */
 public class DetailDisplay extends UiPart<Region> {
 
@@ -59,7 +59,7 @@ public class DetailDisplay extends UiPart<Region> {
     }
 
     /**
-     * Displays information of a specified person.
+     * Displays information of a specified patient.
      */
     public void setInfo(Person person) {
         this.person = person;
@@ -95,7 +95,7 @@ public class DetailDisplay extends UiPart<Region> {
     }
 
     /**
-     * Clears any information being displayed.
+     * Clears all the inforamtion of the current displayed patient.
      */
     public void clearDetailDisplay() {
         name.setText(null);
@@ -108,34 +108,58 @@ public class DetailDisplay extends UiPart<Region> {
         medicalCondition.setText(null);
     }
 
+    /**
+     * Hide the appointment button.
+     */
     public void hideAppointmentButton() {
         appointmentButton.setVisible(false);
     }
 
+    /**
+     * Show the appointment button.
+     */
     public void showAppointmentButton() {
         appointmentButton.setVisible(true);
     }
 
+    /**
+     * Hide the generate button.
+     */
     public void hideGenerateButton() {
         generateButton.setVisible(false);
     }
 
+    /**
+     * Show the generate button.
+     */
     public void showGenerateButton() {
         generateButton.setVisible(true);
     }
 
+    /**
+     * Hide the upload button.
+     */
     public void hideUploadButton() {
         uploadButton.setVisible(false);
     }
 
+    /**
+     * Show the upload button.
+     */
     public void showUploadButton() {
         uploadButton.setVisible(true);
     }
 
+    /**
+     * Hide the view display pane.
+     */
     public void hideViewDisplay() {
         viewDisplay.setVisible(false);
     }
 
+    /**
+     * Show the view display pane.
+     */
     public void showViewDisplay() {
         viewDisplay.setVisible(true);
     }

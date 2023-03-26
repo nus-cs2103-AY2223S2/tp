@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this, this::executeCommand);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -155,7 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
+    public void show() {
         primaryStage.show();
     }
 
@@ -221,6 +221,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Execute the input command when click on the person card in the personListPanel.
+     *
+     * @param commandText Input command.
+     * @throws CommandException If an error occurs during execution of the command.
+     * @throws ParseException If a parse error occurs during execution of the command.
+     */
     public void handleClickInPersonListPanel(String commandText) throws CommandException, ParseException {
         this.executeCommand(commandText);
     }

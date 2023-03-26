@@ -41,6 +41,20 @@ public class PersonListPanel extends UiPart<Region> {
         this.mainWindow = mainWindow;
     }
 
+    /**
+     * Get the personListView of the panel.
+     * @return The personListView.
+     */
+    public ListView<Person> getPersonListView() {
+        return personListView;
+    }
+
+    /**
+     * Displays the detailed information of the patient.
+     *
+     * @throws CommandException If an error occurs during execution of the command.
+     * @throws ParseException If a parse error occurs during execution of the command.
+     */
     @FXML
     private void displayDetail() throws CommandException, ParseException {
         try {
@@ -56,6 +70,9 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Show the AddPatientWindow or requests that this AddPatientWindow get the input focus.
+     */
     @FXML
     private void showAddPatientWindow() {
         if (!addPatientWindow.isShowing()) {
