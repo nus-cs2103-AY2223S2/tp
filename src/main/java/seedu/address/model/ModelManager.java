@@ -128,8 +128,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return userPrefs.getShopFilePath();
     }
 
     @Override

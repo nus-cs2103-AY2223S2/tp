@@ -53,9 +53,9 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
 
     /**
      * Sets the user prefs' address book file path.
