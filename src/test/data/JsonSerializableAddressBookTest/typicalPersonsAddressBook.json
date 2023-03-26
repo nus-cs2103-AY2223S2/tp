@@ -7,6 +7,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "drugAllergy" : "NKDA",
+    "gender" : "female",
     "tagged" : [ "friends" ]
   }, {
     "nric": "S2345678B",
@@ -15,6 +16,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "drugAllergy" : "NKDA",
+    "gender" : "male",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "nric": "S3456789C",
@@ -23,6 +25,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "drugAllergy" : "Penicilin",
+    "gender" : "male",
     "tagged" : [ ]
   }, {
     "nric": "S0123456D",
@@ -31,6 +34,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "drugAllergy" : "Aspirin Panadol",
+    "gender" : "male",
     "tagged" : [ "friends" ]
   }, {
     "nric": "S0000000E",
@@ -39,6 +43,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "drugAllergy" : "NKDA",
+    "gender" : "female",
     "tagged" : [ ]
   }, {
     "nric": "S1111111F",
@@ -47,6 +52,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "drugAllergy" : "Aspirin Panadol",
+    "gender" : "female",
     "tagged" : [ ]
   }, {
     "nric": "S2222222G",
@@ -55,6 +61,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "drugAllergy" : "Lidocaine",
+    "gender" : "male",
     "tagged" : [ ]
   } ]
 }

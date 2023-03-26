@@ -20,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
 
     private final DrugAllergy drugAllergy;
 
@@ -30,13 +31,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+
     public Person(Nric nric, Name name, Phone phone, Email email, Address address,
-                  DrugAllergy drugAllergy, Set<Tag> tags) {
+                  DrugAllergy drugAllergy, Gender gender, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.gender = gender;
         this.address = address;
         this.drugAllergy = drugAllergy;
         this.tags.addAll(tags);
@@ -56,6 +59,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public Address getAddress() {
@@ -129,6 +136,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; Drug Allergy: ")
                 .append(getDrugAllergy());
 

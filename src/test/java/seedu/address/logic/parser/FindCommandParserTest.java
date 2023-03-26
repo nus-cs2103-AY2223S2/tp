@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -55,6 +56,17 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, "\n i/S0123456D \n \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindTagCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("Diabetic")));
+        assertParseSuccess(parser, " t/Diabetic", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "\n t/Diabetic \n \t", expectedFindCommand);
     }
 
     @Test
