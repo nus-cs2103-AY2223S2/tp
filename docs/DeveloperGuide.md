@@ -231,7 +231,12 @@ When adding a student entry, these were the alternatives considered.
 
 The `delete` implementation is identical to the implementation in AB3's codebase.
 
-#### Proposed Implementation
+Here is a sequence diagram showing the interactions between components when `delete 1` is run.: <br>
+
+![delete_sequence](images/DeleteSequenceDiagram2.png)
+
+### Proposed Implementation
+
 The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). 
 However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
 
@@ -273,7 +278,7 @@ With a similar fields to the [Add feature](#add-feature), `edit` has an addition
 * Prefix `edu/` followed by the student's education level.
 * Prefix `s/` followed by the subject name.
 * Prefix `t/` followed by the tag name.
-* \[To be implemented\] Prefix `r/` followed by the remarks/notes on the student.
+* Prefix `r/` followed by the remarks/notes on the student.
 
 Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
 
@@ -310,14 +315,15 @@ The reason for implementing this feature with `Predicate<Person>` is that it can
 
 
 Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
-// TODO sequence diagram
 
-#### Feature details
+![find_sequence](images/FindSequenceDiagram.png)
+
+### Feature details
 Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
 > Take a person's name to be `Michelle Yeoh`. <br>
 > An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh". <br>
 
-Furthermore, users are also allowed to specify the field that they want to find in by using the default prefixes given to them. 
+Furthermore, users are also allowed to specify the field that they want to find in by using the default [prefixes](#Add-feature) given to them. 
 > The prefixes refer to those that the user input in the `Add` command, eg.
 > ```
 > add n/Bob p/98712345 edu/P5
@@ -329,12 +335,11 @@ Furthermore, users are also allowed to specify the field that they want to find 
 > find edu/ p5
 > ```
 
-
 This allows the user to narrow down their `find` results even more.
 
 #### General Design Considerations
 The implementation of `find` is built on top of the original AB3 codebase's `find` command.
-We felt that the default `find` feature was too restrictive, after considering the fields in an entry our users might be more interested in
+We felt that the default `find` feature was too restrictive.
  ie. `Education` or `Address`.<br>
 
 Our implementation has some additions such as:
@@ -364,9 +369,15 @@ Our implementation has some additions such as:
 
 #### Implementation Details
 The `list` implementation is identical to the implementation in AB3's codebase.
-// TODO sequence diagram
+
+Here is a sequence diagram showing the interactions between components when `list` is run.: <br>
+
+![list_sequence](images/ListSequenceDiagram.png)
+
 #### Design Consideration
-// TODO
+The `list` command does not accept any arguments in order to make it as convenient for users to view their full list of students after a prior command such as `find` which displays
+a filtered list.
+
 #### \[Proposed\] Sort feature
 
 #### Proposed Implementation
@@ -411,7 +422,7 @@ The current implementation provides users with two different methods of entering
 
 ##### Proposed Implementation
 
-The proposed remark mechanism will be facilitated by a pop-up text box. This will allows users to format their remarks however they like, 
+The proposed remark mechanism will be facilitated by a pop-up text box. This will allow users to format their remarks however they like, 
 rather than being restricted to a single line in the command line (current implementation).
 
 #### General Design Considerations
@@ -742,6 +753,7 @@ Use case ends
 
 ### Glossary
 
+* **Tutors**: (NUS) Teaching Assistants.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
