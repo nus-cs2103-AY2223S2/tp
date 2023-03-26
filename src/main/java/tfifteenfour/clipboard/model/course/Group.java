@@ -101,6 +101,14 @@ public class Group {
     }
 
     /**
+     * Deletes the given student from this group.
+     * @param student Student to be deleted.
+     */
+    public void deleteStudent(Student student) {
+        this.students.remove(student);
+    }
+
+    /**
      * Returns the name of this group.
      */
     public String getGroupName() {

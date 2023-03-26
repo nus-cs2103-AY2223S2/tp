@@ -56,6 +56,7 @@ public class DeleteGroupCommand extends DeleteCommand {
         }
 
         Group groupToDelete = lastShownList.get(index.getZeroBased());
+        selectedCourse.deleteGroup(groupToDelete);
 
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToDelete, selectedCourse), willModifyState);
     }
