@@ -153,9 +153,118 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Developed\] Group create
+
+Users can create groups
+This is implemented using the `GroupCreateCommand`, `GroupCreateCommandParser` and
+`UniqueGroupList` classes.
+
+The `GroupCreateCommand` receives a `Group` to be added into `UniqueGroupList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group create command:
+
+<img src="images/GroupCreateCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupCreateCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group create `COMMAND_WORD`, the `AddressBookParser` creates a `GroupCreateCommandParser`
+to parse the user input.
+3. If `GroupCreateCommandParser` parse the command successfully, `GroupCreateCommand` is created.
+4. The `GroupCreateCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` in the
+   `UniqueGroupList` (If group does not exist).
+6. Execution of `GroupCreateCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Creating multiple groups**
+* **Alternative 1:** Create multiple `Group` in one user command.
+    * Pros: 
+      * Users can create multiple groups at once instead of creating each group one at a time.
+    * Cons: 
+      * More bug-prone due to duplicate groups.
+
+* **[Current implementation] Alternative 2:** Only allow one group to be added in one user command.
+    * Note: If user input more than one group, only the last group will be added.
+    * Pros: 
+      * Easy to implement.
+      * Less bug-prone as only one group has to be checked for validity.
+    * Cons: 
+      * Users have to key in the `group_create` command multiple times if they want to create multiple groups.
+
+* **Justification**
+    * As the other parameters such as phone and number only take the last occurrence of an input, it is best to
+      standardise the same for groups as well.
+    * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
+
+### \[Developed\] Group delete
+
+Users can delete groups
+
+This is implemented using the `GroupDeleteCommand`, `GroupDeleteCommandParser` and
+`UniqueGroupList` classes.
+
+The `GroupDeleteCommand` receives an `Index` of a `Group` to be deleted from the `UniqueGroupList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group delete command:
+
+<img src="images/GroupDeleteCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupDeleteCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group delete `COMMAND_WORD`, the `AddressBookParser` creates a `GroupDeleteCommandParser` 
+to parse the user input.
+3. If `GroupDeleteCommandParser` parse the command successfully, `GroupDeleteCommand` is created.
+4. The `GroupDeleteCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupDeleteCommand` instance which deletes the `Group` from the
+   `UniqueGroupList` (If the group exist).
+6. Execution of `GroupDeleteCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Deleting multiple groups**
+* **Alternative 1:** Delete multiple `Groups` in one user command.
+    * Pros: 
+      * Users can delete multiple groups at once instead of deleting each group one at a time.
+    * Cons: 
+      * More bug-prone due to multiple index given by user
+      * Once a group is delete, the index will shift, this will cause errors.
+
+* **[Current implementation] Alternative 2:** Only allow one group to be deleted in one user command.
+    * Pros: 
+      * Easy to implement.
+      * Less bug-prone as only one index has to be checked for validity
+    * Cons: 
+      * Users have to key in the `group_delete` command multiple times if they want to create multiple groups.
+
+* **Justification**
+    * When a group is deleted, the index of the groups will shift. Continuing to delete the remaining groups
+  based on index would result in the wrong group deleted.
+    * Handling the offset of the index due to a group deleted is challenging as users may not key in the index in
+  numerical order.
+
 ### \[Developed\] Editing a person
 
-Users can edit a person's `Name`, `Phone`, `Email`, `Address`, `Group` and `Tag`.
+Users can edit a person's `Name`, `Phone`, `Email`, `Address`, `Group` and `Tag`. 
+
+**Note:** Editing a person's event uses another command. Explanation is given at the end.
+
 This is implemented using the `EditCommand`, `EditPersonDescriptor` and `EditCommandParser` classes.
 
 The `EditCommand` receives an index of the person to be edited and an editable `EditPersonDescriptor` class which
@@ -175,8 +284,9 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
    parse the user command.
-2. The `AddressBookParser` then creates an EditCommandParser to parse the user input.
-3. If `EditCommandParser` parse the command successfully, EditCommand is created.
+2. If the user command has the edit `COMMAND_WORD`, the `AddressBookParser`  creates an `EditCommandParser` 
+to parse the user input.
+3. If `EditCommandParser` parse the command successfully, `EditCommand` is created.
 4. The `EditCommand` instance is then returned to the `LogicManager`
 5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the UniquePersonList and
    UniqueGroupList(If group is deleted).
@@ -186,12 +296,16 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 **Aspect: Overwriting or merging**
 * **Alternative 1:** Only allows group and tag to be overwritten.
-  * Pros: Easy implementation and reduces editing errors.
-  * Cons: Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
+  * Pros: 
+    * Easy implementation and reduces editing errors.
+  * Cons: 
+    * Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
   
 * **[Current implementation] Alternative 2:** Allows group and tag to be added on instead of overwritten.
-   * Pros: Users can just add on one or more group/tag instead of retyping existing group/tag.
-   * Cons: More bug-prone due to duplicate group/tag and adding to non-existing group.
+   * Pros: 
+     * Users can just add on one or more group/tag instead of retyping existing group/tag.
+   * Cons: 
+     * More bug-prone due to duplicate group/tag and adding to non-existing group.
 
 * **Justification**
   * Users had to retype existing groups/tags plus additional groups/tags they want to add on to a person.
@@ -199,12 +313,17 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 **Aspect: User command for GroupCommand**
 * **Alternative 1:** Edit the group attribute of a person with a separate command.
-   * Pros: Reduce coupling.
-   * Cons: More commands for user to work with.
+   * Pros: 
+     * Reduce coupling.
+   * Cons: 
+     * More commands for user to work with.
   
 * **[Current implementation] Alternative 2:** Edit the group attribute of a person using the existing edit command.
-   * Pros: Easy to implement, lesser commands for user to remember.
-   * Cons: Easy for user to make an erroneous command.
+   * Pros: 
+     * Easy to implement
+     * lesser commands for user to remember.
+   * Cons: 
+     * Easy for user to make an erroneous command.
 
 * **Justification**
   * As editing a group requires the same index as the existing `EditCommand`, it would be better to reuse the same
@@ -216,54 +335,6 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 existing command.
 * This significantly increases the chances of users inputting a wrong command
 * Hence, editing events using a separate command from the existing `EditCommand` is more convenient and appropriate.
-
-### \[Developed\] Group create
-
-Users can create/delete groups
-This is implemented using the `GroupCreateCommand`, `GroupCreateCommandParser` and 
-`UniqueGroupList` classes.
-
-The `GroupCreateCommand` receives a `Group` to be added into UniqueGroupList.
-
-#### Activity diagram
-
-The following activity diagram summarises what happens when a user executes a group create command:
-
-<img src="images/GroupCreateCommandActivityDiagram.png" width="200" />
-
-#### Sequence Diagram
-
-The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
-
-<img src="images/GroupCreateCommandSequenceDiagram.png" width="1000" />
-
-1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
-   parse the user command.
-2. The `AddressBookParser` then creates a GroupCreateCommandParser to parse the user input.
-3. If `GroupCreateCommandParser` parse the command successfully, GroupCreateCommand is created.
-4. The `GroupCreateCommand` instance is then returned to the `LogicManager`
-5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` in the 
-UniqueGroupList(If group does not exist).
-6. Execution of `GroupCreateCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
-
-#### Design consideration
-
-**Aspect: Creating multiple groups**
-* **Alternative 1:** Create multiple `Groups` using in one user command.
-    * Pros: Users can create multiple groups at once instead of creating each group one at a time.
-    * Cons: More bug-prone due to duplicate groups.
-
-* **[Current implementation] Alternative 2:** Only allow one group to be added in one user command.
-    * Note: If user input more than one group, only the last group will be added.
-    * Pros: Easy to implement.
-    * Pros: Less bug-prone as only one group has to be checked for validity.
-    * Cons: Users have to key in the `group_create` command multiple times if they want to create multiple groups.
-
-* **Justification**
-    * As the other parameters such as phone and number only take the last occurrence of an input, it is best to 
-standardise the same for groups as well.
-    * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
-
 
 ### \[Proposed\] Undo/redo feature
 
