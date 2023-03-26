@@ -12,24 +12,23 @@ import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
 
 
-
 /**
  * Parses input arguments and creates a new ListEmployeesInDepartmentCommand object.
  */
 public class ListEmployeesInDepartmentCommandParser implements Parser<ListEmployeesInDepartmentCommand> {
     @Override
     public ListEmployeesInDepartmentCommand parse(String args) throws ParseException {
-        ArgumentMultimap argumentMultimap =
+        ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);
 
-        if (argumentMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()
-                || !argumentMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DEPARTMENT_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListEmployeesInDepartmentCommand.MESSAGE_USAGE));
         }
 
         DepartmentName departmentName = ParserUtil.parseDepartmentName(
-                argumentMultimap.getValue(PREFIX_DEPARTMENT_NAME).get());
+                argMultimap.getValue(PREFIX_DEPARTMENT_NAME).get());
 
         return new ListEmployeesInDepartmentCommand(departmentName);
     }
