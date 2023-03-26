@@ -20,16 +20,17 @@ public class SkillContainsKeywordsPredicateTest {
         // Multiple skill where all match
         predicate = new SkillContainsKeywordsPredicate(List.of("PyTHON", "jAvA"));
         assertTrue(predicate.test(new PersonBuilder().withSkills("JaVa", "PYTHON").build()));
+
+        // Single skill that partially match
+        predicate = new SkillContainsKeywordsPredicate(List.of("jAvA"));
+        assertTrue(predicate.test(new PersonBuilder().withSkills("JaVaScript").build()));
+
     }
 
     @Test
     public void test_keywords_returnsFalse() {
-        // Single skill that does not match
-        SkillContainsKeywordsPredicate predicate = new SkillContainsKeywordsPredicate(List.of("jAvA"));
-        assertFalse(predicate.test(new PersonBuilder().withSkills("JaVaScript").build()));
-
         // Multiple skill where at least one has no match
-        predicate = new SkillContainsKeywordsPredicate(List.of("PyTHON", "JaVaScript"));
+        SkillContainsKeywordsPredicate predicate = new SkillContainsKeywordsPredicate(List.of("PyTHON", "JaVaScript"));
         assertFalse(predicate.test(new PersonBuilder().withSkills("JaVa", "PYTHON").build()));
     }
 }

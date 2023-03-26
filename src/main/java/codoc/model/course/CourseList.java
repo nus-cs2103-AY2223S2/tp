@@ -9,11 +9,19 @@ import java.util.Arrays;
 public class CourseList {
     public static final ArrayList<String> COURSE_LIST = new ArrayList<>(
             Arrays.asList(
-                    "Computer Science",
+                    "Accounting",
+                    "Architecture",
+                    "Business Administration",
                     "Business Analytics",
+                    "Computer Engineering",
+                    "Computer Science",
+                    "Economics",
+                    "Geography",
                     "Information Systems",
                     "Information Security",
-                    "Computer Engineering"
+                    "Life Sciences",
+                    "Pharmaceutical Science",
+                    "Physics"
             )
     );
 

@@ -1,5 +1,7 @@
 package codoc.model.person;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -24,6 +26,10 @@ public class CourseContainsKeywordsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof CourseContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((CourseContainsKeywordsPredicate) other).keywords)); // state check
+    }
+    @Override
+    public String toString() {
+        return PREFIX_COURSE + keywords.stream().reduce("", String::concat);
     }
 
 }

@@ -20,8 +20,10 @@ import codoc.model.Model;
 import codoc.model.ReadOnlyCodoc;
 import codoc.model.ReadOnlyUserPrefs;
 import codoc.model.person.Person;
+import codoc.model.person.UniquePersonList;
 import codoc.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 public class AddCommandTest {
 
@@ -144,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public String updateFilteredPersonList(Predicate<Person> predicate, String userInputs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,7 +194,13 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private final UniquePersonList uniquePersonList = new UniquePersonList();
+        private final FilteredList<Person> filteredPersons =
+                new FilteredList<>(uniquePersonList.asUnmodifiableObservableList());
 
+        public ModelStubAcceptingPersonAdded() {
+            uniquePersonList.add(Person.getDummyPerson());
+        }
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -203,6 +211,10 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return filteredPersons;
         }
 
         @Override

@@ -24,6 +24,29 @@ import codoc.model.skill.SkillContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    private static class PredicateStringPair {
+        private Predicate<Person> predicate;
+        private String string;
+
+        private PredicateStringPair() {
+            this.predicate = person -> true;
+            this.string = "";
+        }
+
+        private void appendString(String s) {
+            this.string = this.string.concat(" ").concat(s);
+        }
+        private void combinePredicate(Predicate<Person> namePredicate) {
+            this.predicate = this.predicate.and(namePredicate);
+        }
+        private Predicate<Person> getPredicate() {
+            return this.predicate;
+        }
+        private String getString() {
+            return this.string;
+        }
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -49,66 +72,65 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+        PredicateStringPair psp = new PredicateStringPair();
+        addNamePredicate(argMultimap, psp);
+        addYearPredicate(argMultimap, psp);
+        addCoursePredicate(argMultimap, psp);
+        addModulePredicate(argMultimap, psp);
+        addSkillPredicate(argMultimap, psp);
 
-        Predicate<Person> combinedPredicate = person -> true;
-        combinedPredicate = addNamePredicate(argMultimap, combinedPredicate);
-        combinedPredicate = addYearPredicate(argMultimap, combinedPredicate);
-        combinedPredicate = addCoursePredicate(argMultimap, combinedPredicate);
-        combinedPredicate = addModulePredicate(argMultimap, combinedPredicate);
-        combinedPredicate = addSkillPredicate(argMultimap, combinedPredicate);
+        return new FindCommand(psp.getPredicate(), psp.getString());
 
-        return new FindCommand(
-                combinedPredicate
-        );
     }
-    private Predicate<Person> addNamePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+
+    private void addNamePredicate(ArgumentMultimap argMultimap, PredicateStringPair psp) {
         String nameArgs = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
         if (!nameArgs.isEmpty()) {
             String[] nameKeywords = nameArgs.split("\\s+");
             Predicate<Person> namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-            combinedPredicate = combinedPredicate.and(namePredicate);
+            psp.appendString(namePredicate.toString());
+            psp.combinePredicate(namePredicate);
         }
-        return combinedPredicate;
     }
 
-    private Predicate<Person> addYearPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+    private void addYearPredicate(ArgumentMultimap argMultimap, PredicateStringPair psp) {
         String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElse("").trim();
         if (!yearArgs.isEmpty()) {
             String[]yearKeywords = yearArgs.split("\\s+");
             Predicate<Person> yearPredicate = new YearContainsKeywordsPredicate(Arrays.asList(yearKeywords));
-            combinedPredicate = combinedPredicate.and(yearPredicate);
+            psp.appendString(yearPredicate.toString());
+            psp.combinePredicate(yearPredicate);
         }
-        return combinedPredicate;
     }
 
-    private Predicate<Person> addCoursePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+    private void addCoursePredicate(ArgumentMultimap argMultimap, PredicateStringPair psp) {
         String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElse("").trim();
         if (!courseArgs.isEmpty()) {
             String[] courseKeywords = courseArgs.split("\\s+");
             Predicate<Person> coursePredicate = new CourseContainsKeywordsPredicate(Arrays.asList(courseKeywords));
-            combinedPredicate = combinedPredicate.and(coursePredicate);
+            psp.appendString(coursePredicate.toString());
+            psp.combinePredicate(coursePredicate);
         }
-        return combinedPredicate;
     }
 
-    private Predicate<Person> addModulePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+    private void addModulePredicate(ArgumentMultimap argMultimap, PredicateStringPair psp) {
         String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElse("").trim();
         if (!moduleArgs.isEmpty()) {
             String[] moduleKeywords = moduleArgs.split("\\s+");
             Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
-            combinedPredicate = combinedPredicate.and(modulePredicate);
+            psp.appendString(modulePredicate.toString());
+            psp.combinePredicate(modulePredicate);
         }
-        return combinedPredicate;
     }
 
-    private Predicate<Person> addSkillPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+    private void addSkillPredicate(ArgumentMultimap argMultimap, PredicateStringPair psp) {
         String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElse("").trim();
         if (!skillArgs.isEmpty()) {
             String[] skillKeywords = skillArgs.split("\\s+");
             Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
-            combinedPredicate = combinedPredicate.and(skillPredicate);
+            psp.appendString(skillPredicate.toString());
+            psp.combinePredicate(skillPredicate);
         }
-        return combinedPredicate;
     }
 
 }
