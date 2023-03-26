@@ -303,14 +303,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                  | I want to …​                 | So that I can…​                                                      |
-| -------- | ---------------------------------------- | ---------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | new user                                 | see usage instructions       | refer to instructions when I forget how to use the App               |
-| `* * *`  | user                                     | add a new task               |                                                                      |
-| `* * *`  | user                                     | delete a task                | remove entries that I no longer need                                 |
-| `* * *`  | user                                     | find a task by name          | locate details of tasks without having to go through the entire list |
-| `* *`    | user                                     | hide private contact details | minimize chance of someone else seeing them by accident              |
-| `*`      | user with many tasks in the address book | sort tasks by name           | locate a task easily                                                 |
+| Priority | As a …​                   | I want to …​                                                     | So that I can…​                                                                                         |
+| -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --- |
+| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce time spent on editing the task planner                                                           |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to do list                         | get an overview of all the things I need to do at one glance                                            |
+| `* * *`  | SoC Student who knows Vim | add entries of task for the things to do into the task planner   | keep track of things to do                                                                              |
+| `* * *`  | SoC Student who knows Vim | add priority to a task                                           | give higher priority to more important tasks which should be completed first                            |
+| `* * *`  | SoC Student who knows Vim | add tag to a task                                                | categorize the tasks                                                                                    |
+| `* * *`  | SoC Student who knows Vim | add deadline to a task                                           | keep track of the date that to complete the task                                                        |
+| `* * *`  | SoC Student who knows Vim | mark a task as completed                                         | keep track of tasks to is completed                                                                     |
+| `* * *`  | SoC Student who knows Vim | unmark a task as not completed                                   | change the status of the task to be not completed                                                       |
+| `* *`    | SoC Student who knows Vim | add recurrence to a task                                         | save time as I do not need to repeatedly create the same entries of tasks                               |
+| `* *`    | SoC Student who knows Vim | undo an action                                                   | revert to the previous state if something is done wrongly                                               |
+| `* *`    | SoC Student who knows Vim | edit a task’s description, tag, priority, or deadline            | change the details if added wrongly                                                                     |
+| `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove tasks that I no longer want to track                                                             |
+| `* * *`  | SoC Student who knows Vim | delete a task’s description, tag, priority, or deadline          | delete the details if no longer needed                                                                  |     |
+| `* * *`  | SoC Student who knows Vim | delete all completed task                                        | remove tasks that are completed to save memory                                                          |
+| `* * *`  | SoC Student who knows Vim | search for tasks which the descriptions contain certain keywords | find all task with the same keyword                                                                     |
+| `* * *`  | SoC Student who knows Vim | search for a task based on the specified priority level          | identify tasks with higher priority to complete them first                                              |
+| `* * *`  | SoC Student who knows Vim | search for tasks based on a specified list of tags               | find all the tasks in the specified categories                                                          |
+| `* * *`  | SoC Student who knows Vim | search for all tasks that are not completed                      | identify tasks to are not completed                                                                     |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines before a certain date and time     | find all tasks that need to be done before a certain date and time                                      |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines after a certain date and time      | find all tasks that need to be done after a certain date and time                                       |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines within a specified period of time  | find all tasks that need to be done within that specified period of time                                |
+| `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                 | view all the tasks in the order of upcoming deadlines and know which tasks I should be completing first |
+| `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                     | see which are the more important tasks I should focus on completing first                               |
+| `* *`    | SoC Student who knows Vim | config the storage location of the file                          | customize the location to my own preference for easy reference                                          |
+| `* * *`  | SoC Student who knows Vim | view tasks with priorities in different color                    | visualize the important tasks more easily                                                               |
+| `* * *`  | New user                  | I can use :help                                                  | to access a brief user guide of all the commands and intended use cases of each command                 |
 
 _{More to be added}_
 

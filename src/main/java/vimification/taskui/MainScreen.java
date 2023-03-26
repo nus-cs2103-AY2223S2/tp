@@ -127,6 +127,10 @@ public class MainScreen extends UiPart<VBox> {
         loadRightComponent(detailTask);
     }
 
+    public void clearRightComponent() {
+        rightComponent.getChildren().clear();
+    }
+
     private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
