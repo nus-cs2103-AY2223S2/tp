@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -173,7 +175,7 @@ public class AddCommandTest {
 
         @Override
         public void updatePersonInTeams(Person person) {
-            throw new AssertionError("This method should not be called.");
+            return;
         }
 
         @Override
@@ -188,7 +190,7 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Team> getTeamList() {
-            throw new AssertionError("This method should not be called.");
+            return new FilteredList<>(FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
         }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
