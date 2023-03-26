@@ -2,8 +2,6 @@ package codoc.ui.infopanel;
 
 import java.util.Comparator;
 
-import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 import javafx.collections.FXCollections;

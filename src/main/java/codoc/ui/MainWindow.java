@@ -223,9 +223,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * MainWindow's own listener class that listens to click events from Ui components.
+     */
     public class ClickListener implements UiEventListener<MainWindow> {
 
-        MainWindow listener;
+        private MainWindow listener;
 
         @Override
         public void setListener(MainWindow mainWindow) {

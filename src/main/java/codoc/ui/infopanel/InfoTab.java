@@ -3,11 +3,8 @@ package codoc.ui.infopanel;
 import java.util.logging.Logger;
 
 import codoc.commons.core.LogsCenter;
-import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
 import codoc.ui.MainWindow;
-import codoc.ui.UiEventListener;
 import codoc.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

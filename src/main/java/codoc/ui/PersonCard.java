@@ -42,8 +42,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
 
-    private MainWindow mainWindow;
-
     private int displayedIndex;
     private MainWindow.ClickListener clickListener;
 
