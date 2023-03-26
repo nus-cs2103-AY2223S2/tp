@@ -41,6 +41,19 @@ public class InternshipApplication {
     }
 
     /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews, Contact contact) {
+        requireAllNonNull(name, job);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.reviews.addAll(reviews);
+        this.contact = contact;
+        this.status = InternshipStatus.NA;
+        this.interviewDate = null;
+    }
+
+    /**
      * The company name and job title field must be present and not null.
      */
     public InternshipApplication(CompanyName companyName, JobTitle job, Set<Review> reviews,
