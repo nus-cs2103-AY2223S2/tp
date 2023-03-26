@@ -2,7 +2,7 @@ package seedu.address.model.commitment;
 
 import org.joda.time.LocalTime;
 
-import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.time.Day;
 
 /**
  * Represents a commitment.

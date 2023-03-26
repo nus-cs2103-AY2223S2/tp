@@ -15,9 +15,9 @@ import seedu.address.model.location.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.scheduler.Scheduler;
-import seedu.address.model.scheduler.Timetable;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.

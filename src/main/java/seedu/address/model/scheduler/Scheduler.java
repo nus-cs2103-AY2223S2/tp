@@ -13,10 +13,11 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.util.TimeUtil;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Represents an automatic scheduler.

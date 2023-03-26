@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Composes of all the Typical Timetables

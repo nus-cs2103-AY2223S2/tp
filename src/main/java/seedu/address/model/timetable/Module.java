@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler;
+package seedu.address.model.timetable;
 
 import java.util.ArrayList;
 import java.util.List;
