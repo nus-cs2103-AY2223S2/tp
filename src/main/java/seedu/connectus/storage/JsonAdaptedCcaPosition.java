@@ -14,7 +14,7 @@ class JsonAdaptedCcaPosition {
     private final String ccaPositionName;
 
     /**
-     * Constructs a {@code JsonAdaptedModule} with the given {@code moduleName}.
+     * Constructs a {@code JsonAdaptedCcaPosition} with the given {@code ccaPositionName}.
      */
     @JsonCreator
     public JsonAdaptedCcaPosition(String ccaPositionName) {
@@ -22,14 +22,14 @@ class JsonAdaptedCcaPosition {
     }
 
     /**
-     * Converts a given {@code Module} into this class for Jackson use.
+     * Converts a given {@code CcaPosition} into this class for Jackson use.
      */
     public JsonAdaptedCcaPosition(CcaPosition source) {
-        this.ccaPositionName = source.tagName;
+        this.ccaPositionName = source.ccaPositionName;
     }
 
     @JsonValue
-    public String getModuleName() {
+    public String getCcaPositionName() {
         return ccaPositionName;
     }
 
