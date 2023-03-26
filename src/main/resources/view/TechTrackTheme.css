@@ -323,6 +323,14 @@
     -fx-wrap-text: true;
 }
 
+.role-display-body-highlight {
+    -fx-font-size: 13pt;
+    -fx-wrap-text: true;
+    -fx-background-color: yellow;
+    -fx-background-radius: 5px;
+    -fx-text-fill: black
+}
+
 .role-display-tags {
     -fx-hgap: 7;
     -fx-vgap: 3;

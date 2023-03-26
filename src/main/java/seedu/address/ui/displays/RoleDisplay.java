@@ -1,5 +1,6 @@
 package seedu.address.ui.displays;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.geometry.Insets;
@@ -33,11 +34,40 @@ public final class RoleDisplay {
         Label salary = new Label("Salary: $" + roleToDisplay.getSalary().salary);
         salary.getStyleClass().add("role-display-body");
 
+        Label deadlineDesc = new Label("Deadline: ");
+        deadlineDesc.getStyleClass().add("role-display-body");
+        Label deadline = new Label();
+        LocalDate currDeadline = LocalDate.parse(roleToDisplay.getDeadline().deadline);
+        if (currDeadline.isBefore(LocalDate.now())) {
+            deadline.setText(" EXPIRED ");
+            deadline.getStyleClass().add("role-display-body-highlight");
+        } else {
+            deadline.setText(roleToDisplay.getDeadline().deadline);
+            deadline.getStyleClass().add("role-display-body");
+        }
+        HBox deadlineContainer = new HBox(deadlineDesc, deadline);
+
+        Label experience = new Label("Experience: " + roleToDisplay.getExperience().value);
+        experience.getStyleClass().add("role-display-body");
+
         Label jobDesc = new Label("Job Description: \n" + roleToDisplay.getJobDescription().value);
         jobDesc.getStyleClass().add("role-display-body");
 
-        VBox container = new VBox(title, tags, salary, jobDesc);
-        container.setPadding(new Insets(5, 5, 5, 5));
+        Label contactHeader = new Label("Contacts:");
+        contactHeader.getStyleClass().add("role-display-headers");
+
+        Label email = new Label("Email: " + roleToDisplay.getEmail());
+        email.getStyleClass().add("role-display-body");
+
+        Label phone = new Label("Phone No.: " + roleToDisplay.getPhone());
+        phone.getStyleClass().add("role-display-body");
+
+        Label website = new Label("Email: " + roleToDisplay.getWebsite());
+        website.getStyleClass().add("role-display-body");
+
+        VBox container = new VBox(title, tags, salary, deadlineContainer, experience, jobDesc, contactHeader, email,
+                phone, website);
+        container.setPadding(new Insets(5, 5, 5, 10));
         container.setSpacing(10);
         return container;
     }
