@@ -5,46 +5,46 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyEventBook" as ReadOnlyEventBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyContactList" as ReadOnlyConatctList
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+
+Class EventBook
 Class ModelManager
 Class UserPrefs
+Class ContactList
+Class Contact
 
 Class UniqueEventList
 Class Event
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
 
+Class UniqueContactList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+EventBook .up.|> ReadOnlyEventBook
+ContactList .up.|> ReadOnlyConatctList
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyEventBook
+Model .> ReadOnlyConatctList
+
 ModelManager -right-> "1" UserPrefs
+ModelManager -> "1" EventBook
+ModelManager -> "1" ContactList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueEventList
+ContactList *--> "1" UniqueContactList
+UniqueContactList --> "     ~* all" Contact
+EventBook *--> "1" UniqueEventList
 UniqueEventList --> "~* all" Event
-Event *--> Name
-Event *--> Phone
-Event *--> Email
-Event *--> Address
-Event *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Event *--> "0..1  " Contact
+
 
 ModelManager -->"~* filtered" Event
 @enduml

@@ -21,11 +21,12 @@ This user guide will help you get up to speed in no time!
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
+  - <details>
+    <summary>more</summary>
+    
     * [Add a Contact](#add-a-contact)
-  <!-- * [View Contact List](#list-all-contacts) -->
     * [Link Contact to Event](#link-contact-to-event)
     * [View Rate](#view-rate)
-    * [Tag Rate](#tag-rate)
     * [Mark Event as Done](#mark-event)
     * [Create New Event](#create-new-event)
     * [View Event List](#list-all-events)
@@ -33,6 +34,8 @@ This user guide will help you get up to speed in no time!
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
+
+    </details>
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -297,5 +300,9 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |    [View Total Revenue](#view-total-revenue)    |                  `revenue`               |                              `revenue`                               |
 |  [View Upcoming Events](#view-upcoming-events)  |                 `remind DAYS`            |                              `remind 2`                             |
 
-[Back to top](#)
+
+<div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
+  <a href="#top">Back to top</a>
+</div>
+<br>
 
