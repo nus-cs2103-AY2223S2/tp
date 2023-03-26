@@ -26,6 +26,12 @@
   }, {
     "categoryName" : "HelloTest",
     "summary" : "abcdefg"
+  }, {
+    "categoryName" : "a",
+    "summary" : ""
+  }, {
+    "categoryName" : "test",
+    "summary" : "test"
   } ],
   "expenses" : [ {
     "name" : "apples",
