@@ -12,7 +12,8 @@ public class RootNavCommand extends NavCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.navigateToRoot();
-        return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
+        listAtRoot(model);
+        return getSuccessfulCommandResult(model.getCurrentNavContext(), model);
     }
 
     @Override

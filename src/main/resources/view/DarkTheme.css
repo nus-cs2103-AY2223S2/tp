@@ -126,6 +126,11 @@
   -fx-text-fill: #010504;
 }
 
+.context_label {
+  -fx-font-size: 13px;
+  -fx-text-fill: white;
+}
+
 .stack-pane {
   -fx-background-color: derive(#1d1d1d, 20%);
 }
