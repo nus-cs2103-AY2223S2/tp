@@ -106,34 +106,34 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Commands
 ### add
-> `add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...`
+`add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...`
 ### find
-> `find [OPTIONAL/PARAMETER]...`
+`find [OPTIONAL/PARAMETER]...`
 ### view
-> `view <PARAMETERS>`
+`view <PARAMETERS>`
 ### edit
-> `edit [OPTIONAL/PARAMETER]...`
+`edit [OPTIONAL/PARAMETER]...`
 ### list
-> `list` <br>
+`list` <br>
 * Shows all persons stored.
 ### delete
-> `delete <INDEX>`
+`delete <INDEX>`
 * Deletes the person at the specified INDEX.
 * INDEX refers to an index currently shown in the displayed person list.
 * INDEX must be a positive integer 1, 2, 3, ...
 * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.
 
 ### clear
-> `clear`<br>
+`clear`
 * :warning: Clears **all** entries from CoDoc.
 ### help:
-> `help`<br>
+`help`
 * <img src="images/UiHelpMenu.png"/>
 * Opens help menu
 * Equivalent to clicking Help > Help F1 via the GUI
 
 ### exit:
-> `exit`<br>
+`exit`
 * Exits the program.
 * Equivalent to clicking the close button via the GUI.
 
