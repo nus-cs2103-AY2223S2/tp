@@ -1,7 +1,6 @@
 package bookopedia.logic.parser;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX;
 import static bookopedia.logic.commands.CommandTestUtil.INVALID_PARCEL_STATUS_DESC;
 import static bookopedia.logic.commands.CommandTestUtil.PARCEL_STATUS_FRAGILE;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;

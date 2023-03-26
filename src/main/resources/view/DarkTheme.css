@@ -353,7 +353,7 @@
 
 #parcels .label.isFragileAndBulky {
     -fx-text-fill: white;
-    -fx-background-color: linear-gradient(to right, blue 50%, red 50%);
+    -fx-background-color: linear-gradient(to right, red 50%, darkblue 50%);
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -362,7 +362,7 @@
 
 #parcels .label.isFragile {
     -fx-text-fill: white;
-    -fx-background-color: blue;
+    -fx-background-color: red;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -371,7 +371,7 @@
 
 #parcels .label.isBulky {
     -fx-text-fill: white;
-    -fx-background-color: red;
+    -fx-background-color: darkblue;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
