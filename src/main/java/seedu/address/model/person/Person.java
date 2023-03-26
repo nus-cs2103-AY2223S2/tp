@@ -279,6 +279,22 @@ public class Person {
         this.appointment = appointment;
     }
 
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Age age) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
+        this.age = age;
+    }
+
     public Name getName() {
         return name;
     }
