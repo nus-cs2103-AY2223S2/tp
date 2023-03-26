@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Developer Guide
+<img src="images/Reroll_Banner.png" />
 ---
 * Table of Contents
 {:toc}
@@ -18,13 +19,6 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -52,9 +46,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/RerollArchitectureSequenceDiagram.png" width="1000" />
 
 Each of the four main components (also shown in the diagram above),
 
