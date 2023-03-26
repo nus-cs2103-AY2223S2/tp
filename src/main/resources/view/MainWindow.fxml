@@ -35,7 +35,7 @@
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                     </padding>
                 </StackPane>
 
@@ -52,7 +52,6 @@
                      </padding></StackPane>
                </right>
                <center>
-      
                       <VBox fx:id="eventList" styleClass="pane-with-border" BorderPane.alignment="CENTER">
                           <padding>
                               <Insets bottom="10" left="10" right="10" top="10" />
