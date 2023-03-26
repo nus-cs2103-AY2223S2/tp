@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -17,8 +18,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.Tab;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,6 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    public final String[] tabResultDisplayMessages = new String[6];
 
     private Stage primaryStage;
     private Logic logic;
@@ -145,10 +146,18 @@ public class MainWindow extends UiPart<Stage> {
         serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
     }
 
+    private void initTabResultDisplayMessages() {
+        tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        initTabResultDisplayMessages();
+
         initCustomerListPanel();
         initVehicleListPanel();
         initServiceListPanel();
@@ -164,6 +173,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
+
+        tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
+        });
     }
 
     /**
@@ -212,6 +225,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updateSelectedTab(CommandResult commandResult) {
         int tabIndex = commandResult.getType().ordinal();
+        tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
         if (!tabs.getSelectionModel().isSelected(tabIndex) && commandResult.getType() != Tab.UNCHANGED) {
             tabs.getSelectionModel().select(tabIndex);
         }
@@ -233,8 +247,8 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             updateSelectedTab(commandResult);
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             initSelected();
 
             if (commandResult.isShowHelp()) {
