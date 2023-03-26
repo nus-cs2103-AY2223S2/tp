@@ -2,16 +2,18 @@ package seedu.careflow.logic.parser.patientparser;
 
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
 
 import java.util.stream.Stream;
 
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.logic.commands.drugcommands.DeleteCommand;
 import seedu.careflow.logic.commands.patientcommands.ViewCommand;
-import seedu.careflow.logic.parser.*;
+import seedu.careflow.logic.parser.ArgumentMultimap;
+import seedu.careflow.logic.parser.ArgumentTokenizer;
+import seedu.careflow.logic.parser.Parser;
+import seedu.careflow.logic.parser.ParserUtil;
+import seedu.careflow.logic.parser.Prefix;
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.drug.TradeName;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -45,5 +47,4 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

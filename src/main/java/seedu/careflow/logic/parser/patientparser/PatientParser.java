@@ -3,7 +3,13 @@ package seedu.careflow.logic.parser.patientparser;
 import static seedu.careflow.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.careflow.logic.commands.Command;
-import seedu.careflow.logic.commands.patientcommands.*;
+import seedu.careflow.logic.commands.patientcommands.AddCommand;
+import seedu.careflow.logic.commands.patientcommands.ClearCommand;
+import seedu.careflow.logic.commands.patientcommands.DeleteCommand;
+import seedu.careflow.logic.commands.patientcommands.FindCommand;
+import seedu.careflow.logic.commands.patientcommands.ListCommand;
+import seedu.careflow.logic.commands.patientcommands.UpdateCommand;
+import seedu.careflow.logic.commands.patientcommands.ViewCommand;
 import seedu.careflow.logic.parser.exceptions.ParseException;
 
 /**

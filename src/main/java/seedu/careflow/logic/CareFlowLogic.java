@@ -35,9 +35,9 @@ public interface CareFlowLogic {
 
     Ui getUI();
 
-        /**
-         * Returns the DrugInventory
-         */
+    /**
+     * Returns the DrugInventory
+     */
     ReadOnlyDrugInventory getDrugInventory();
 
     ReadOnlyHospitalRecords getHospitalRecord();
