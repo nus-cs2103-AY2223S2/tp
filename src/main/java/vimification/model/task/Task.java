@@ -61,6 +61,14 @@ public abstract class Task {
         return description.contains(keyword);
     }
 
+    public boolean checkPriority(Priority priority) {
+        return this.priority.equals(priority);
+    }
+
+    public boolean checkPriority(int level) {
+        return checkPriority(Priority.fromInt(level));
+    }
+
     public abstract Task clone();
 
     public boolean isSameTask(Task otherTask) {
