@@ -6,8 +6,6 @@ import codoc.model.person.Person;
 import codoc.ui.MainWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 
 /**
  * DetailedContact controller for showing contact details at DetailedInfoPanel.
