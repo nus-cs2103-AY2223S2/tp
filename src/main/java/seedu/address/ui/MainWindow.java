@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
+import seedu.address.model.job.Role;
+import seedu.address.ui.displays.RoleDisplay;
+import seedu.address.ui.displays.StringDisplay;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -114,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         roleListPanelPlaceholder.getChildren().add(roleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
+        resultDisplay.place(StringDisplay.of("Welcome to TechTrack!"));
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -172,11 +176,18 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult<?> executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            CommandResult<?> commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult.getOutput());
+
+            if (commandResult.getOutput() instanceof String) {
+                logger.info("Output type: String");
+                resultDisplay.place(StringDisplay.of((String) commandResult.getOutput()));
+            } else if (commandResult.getOutput() instanceof Role) {
+                logger.info("Output type: Role");
+                resultDisplay.place(RoleDisplay.of((Role) commandResult.getOutput()));
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -189,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.place(StringDisplay.of(e.getMessage()));
             throw e;
         }
     }

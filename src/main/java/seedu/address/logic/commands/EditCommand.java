@@ -86,7 +86,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<String> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Role> lastShownList = model.getFilteredRoleList();
 
@@ -103,7 +103,7 @@ public class EditCommand extends Command {
 
         model.setRole(roleToEdit, editedRole);
         model.updateFilteredRoleList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedRole));
+        return new CommandResult<>(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedRole));
     }
 
     /**

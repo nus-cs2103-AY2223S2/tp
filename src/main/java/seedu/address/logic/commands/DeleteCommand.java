@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<?> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Role> lastShownList = model.getFilteredRoleList();
 
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
 
         Role roleToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteRole(roleToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, roleToDelete));
+        return new CommandResult<>(String.format(MESSAGE_DELETE_PERSON_SUCCESS, roleToDelete));
     }
 
     @Override

@@ -1,28 +1,31 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A UI for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
-
-    private static final String FXML = "ResultDisplay.fxml";
-
     @FXML
-    private TextArea resultDisplay;
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox pane;
 
     public ResultDisplay() {
-        super(FXML);
+        super("ResultDisplay.fxml");
     }
 
-    public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        resultDisplay.setText(feedbackToUser);
+    /**
+     * Clears children nodes and places an item in the pane.
+     * @param item A node to be placed in the pane.
+     */
+    public void place(Node item) {
+        pane.getChildren().clear();
+        pane.getChildren().add(item);
+        scrollPane.setContent(pane);
     }
-
 }
