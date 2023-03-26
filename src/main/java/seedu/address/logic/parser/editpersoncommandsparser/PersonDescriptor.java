@@ -1,9 +1,6 @@
 package seedu.address.logic.parser.editpersoncommandsparser;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -17,20 +14,19 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 
 /**
- * Stores the details to edit the person with. Each non-empty field value will replace the
- * corresponding field value of the person.
+ * Stores the details of the person.
  */
-public class EditPersonDescriptor {
+public class PersonDescriptor {
 
     private Optional<Index> index;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Tags tags;
     private Gender gender;
     private Major major;
     private Race race;
@@ -38,13 +34,13 @@ public class EditPersonDescriptor {
     private CommunicationChannel comms;
     private Faculty faculty;
 
-    public EditPersonDescriptor() {}
+    public PersonDescriptor() {}
 
     /**
      * Copy constructor.
      * A defensive copy of {@code tags} is used internally.
      */
-    public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+    public PersonDescriptor(PersonDescriptor toCopy) {
         setIndex(toCopy.index);
         setName(toCopy.name);
         setPhone(toCopy.phone);
@@ -113,8 +109,8 @@ public class EditPersonDescriptor {
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+    public void setTags(Tags tags) {
+        this.tags = tags;
     }
 
     /**
@@ -122,8 +118,8 @@ public class EditPersonDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+    public Optional<Tags> getTags() {
+        return (tags != null) ? Optional.of(tags) : Optional.empty();
     }
 
     public void setGender(Gender gender) {
@@ -182,12 +178,12 @@ public class EditPersonDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditPersonDescriptor)) {
+        if (!(other instanceof PersonDescriptor)) {
             return false;
         }
 
         // state check
-        EditPersonDescriptor e = (EditPersonDescriptor) other;
+        PersonDescriptor e = (PersonDescriptor) other;
 
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())

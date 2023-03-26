@@ -3,7 +3,6 @@ package seedu.address.model.user;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
@@ -19,7 +18,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 
 
 /**
@@ -31,10 +30,29 @@ public class User extends Person {
     private final UniqueEventList events;
 
     /**
+     * Creates a new User by copying the fields of the Person passed in
+     */
+    public User(Person user, UniqueEventList events) {
+        super(user.getName(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getAddress(),
+                user.getGender(),
+                user.getMajor(),
+                user.getModules(),
+                user.getRace(),
+                user.getTags(),
+                user.getComms(),
+                user.getIsFavorite(),
+                user.getFaculty());
+        this.events = events;
+    }
+
+    /**
      * Every field must be present and not null. This constructor accepts a List of events.
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
-                Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
+                Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
                 Favorite favorite, Faculty faculty, List<Event> events) {
         super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         this.events = new UniqueEventList();
@@ -45,7 +63,7 @@ public class User extends Person {
      * Every field must be present and not null. This constructor accepts a UniqueEventList of events.
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
-                Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
+                Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
                 Favorite favorite, Faculty faculty, UniqueEventList events) {
         super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         Objects.requireNonNull(events);

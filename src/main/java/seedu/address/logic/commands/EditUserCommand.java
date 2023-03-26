@@ -8,31 +8,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Set;
-
 import javafx.beans.property.ReadOnlyObjectProperty;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.event.UniqueEventList;
-import seedu.address.model.person.fields.Address;
-import seedu.address.model.person.fields.CommunicationChannel;
-import seedu.address.model.person.fields.Email;
-import seedu.address.model.person.fields.Faculty;
-import seedu.address.model.person.fields.Favorite;
-import seedu.address.model.person.fields.Gender;
-import seedu.address.model.person.fields.Major;
-import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.Phone;
-import seedu.address.model.person.fields.Race;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditUserCommand extends Command {
+public class EditUserCommand extends EditPersonCommand {
 
     public static final String COMMAND_WORD = "edituser";
 
@@ -50,14 +37,14 @@ public class EditUserCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    private final EditPersonDescriptor editUserDescriptor;
+    private final PersonDescriptor editUserDescriptor;
 
     /**
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditUserCommand(EditPersonDescriptor editPersonDescriptor) {
+    public EditUserCommand(PersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
-        this.editUserDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editUserDescriptor = new PersonDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -78,29 +65,15 @@ public class EditUserCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static User createEditedUser(User user, EditPersonDescriptor editPersonDescriptor) {
+    private static User createEditedUser(User user, PersonDescriptor editPersonDescriptor) {
         assert user != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(user.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(user.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(user.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(user.getAddress());
-        Gender updatedGender = editPersonDescriptor.getGender().orElse(user.getGender());
-        Major updatedMajor = editPersonDescriptor.getMajor().orElse(user.getMajor());
-        Modules updatedModules = editPersonDescriptor.getModules().orElse(user.getModules());
-        Race updatedRace = editPersonDescriptor.getRace().orElse(user.getRace());
-        CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(user.getComms());
-        Favorite currentFavorite = user.getIsFavorite();
-        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(user.getFaculty());
+        Person updatedUser = createEditedPerson(user, editPersonDescriptor);
         UniqueEventList currentEvents = user.getEvents();
 
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(user.getTags());
-
-        return new User(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender, updatedMajor,
-                updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite, updatedFaculty, currentEvents);
+        return new User(updatedUser, currentEvents);
     }
 
-    public EditPersonDescriptor getEditUserDescriptor() {
+    public PersonDescriptor getEditUserDescriptor() {
         return this.editUserDescriptor;
     }
 
