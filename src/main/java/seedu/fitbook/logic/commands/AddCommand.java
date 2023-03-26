@@ -53,7 +53,6 @@ public class AddCommand extends Command {
             + PREFIX_WEIGHT + "23.2 "
             + PREFIX_GENDER + "M "
             + PREFIX_APPOINTMENT + "13-12-2200 19:00"
-            + PREFIX_ROUTINE + "1 "
             + PREFIX_GOAL + "lose weight "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney ";
@@ -76,19 +75,17 @@ public class AddCommand extends Command {
     /**
      * Changes the routine in the toAdd client with the matching one in the model.
      */
-    public void addRoutine(FitBookModel model) throws CommandException {
+    private void addRoutine(FitBookModel model) throws CommandException {
         Set<Routine> routineToAdd = toAdd.getRoutines();
         List<Routine> routinesModel = model.getFitBookExerciseRoutine().getRoutineList();
         List<RoutineName> routineNamesToAdd = new ArrayList<>();
         routineToAdd.forEach(routine -> routineNamesToAdd.add(routine.getRoutineName()));
         Set<Routine> finalRoutineToAdd = new HashSet<>();
-        routineNamesToAdd.forEach(routineName ->
-                routinesModel.forEach(routine -> {
-                    if (routineName.equals(routine.getRoutineName())) {
-                        finalRoutineToAdd.add(routine);
-                    }
-                })
-        );
+        routineNamesToAdd.forEach(routineName -> routinesModel.forEach(routine -> {
+            if (routineName.equals(routine.getRoutineName())) {
+                finalRoutineToAdd.add(routine);
+            }
+        }));
         if (routineNamesToAdd.size() != finalRoutineToAdd.size()) {
             throw new CommandException(MESSAGE_ROUTINE_NAME_INVALID);
         }

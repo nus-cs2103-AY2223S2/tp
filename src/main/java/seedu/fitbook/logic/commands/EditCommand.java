@@ -143,13 +143,11 @@ public class EditCommand extends Command {
             List<RoutineName> routineNamesToAdd = new ArrayList<>();
             routines.forEach(routine -> routineNamesToAdd.add(routine.getRoutineName()));
             Set<Routine> finalUpdatedRoutine = updatedRoutine;
-            routineNamesToAdd.forEach(routineName ->
-                    routinesModel.forEach( routine -> {
-                        if (routineName.equals(routine.getRoutineName())) {
-                            finalUpdatedRoutine.add(routine);
-                        }
-                    })
-            );
+            routineNamesToAdd.forEach(routineName -> routinesModel.forEach( routine -> {
+                if (routineName.equals(routine.getRoutineName())) {
+                    finalUpdatedRoutine.add(routine);
+                }
+            }));
             if (routineNamesToAdd.size() != updatedRoutine.size()) {
                 throw new CommandException(MESSAGE_ROUTINE_NAME_INVALID);
             }

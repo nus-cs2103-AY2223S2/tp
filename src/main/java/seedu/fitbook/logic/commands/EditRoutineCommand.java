@@ -86,7 +86,7 @@ public class EditRoutineCommand extends Command {
      * Creates and returns a {@code Routine} with the details of {@code routineToEdit}
      * edited with {@code editRoutineDescriptor}.
      */
-    private static Routine createEditedRoutine(Routine routineToEdit, EditRoutineDescriptor editRoutineDescriptor,
+    private Routine createEditedRoutine(Routine routineToEdit, EditRoutineDescriptor editRoutineDescriptor,
         FitBookModel model)
             throws CommandException {
         assert routineToEdit != null;
@@ -114,12 +114,12 @@ public class EditRoutineCommand extends Command {
     /**
      * Updates the {@code clients} with the updated {@code Routine} object.
      */
-    private static void updateClientRoutine(Routine routineToEdit, Routine updatedRoutine, FitBookModel model) {
+    private void updateClientRoutine(Routine routineToEdit, Routine updatedRoutine, FitBookModel model) {
         List<Client> clientList = model.getFitBook().getClientList();
         if (updatedRoutine.isSameRoutineName(routineToEdit)) {
-            clientList.forEach(client -> client.changeRoutineNameIfMatch(routineToEdit, updatedRoutine));
+            clientList.forEach(client -> client.changeRoutineIfRoutineNameMatch(routineToEdit, updatedRoutine));
         } else {
-            clientList.forEach(client -> client.changeExerciseIfMatch(updatedRoutine));
+            clientList.forEach(client -> client.changeExerciseIfRoutineNameMatch(updatedRoutine));
         }
     }
 

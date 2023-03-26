@@ -54,7 +54,7 @@ class JsonAdaptedClient {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("calorie") String calorie, @JsonProperty("goal") String goal,
+            @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("routines_names") List<JsonAdaptedRoutineName> routinesRoutineName,
             @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) {

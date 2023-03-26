@@ -39,6 +39,8 @@ public class EditRoutineCommandTest {
 
     private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
             getTypicalFitBookExerciseRoutine(), new UserPrefs());
+    private final String DEFAULT_EXERCISE_PLANK = "Plank";
+    private final String DEFAULT_EXERCISE_RUN = "4x5 1km Run";
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -55,7 +57,7 @@ public class EditRoutineCommandTest {
 
         FitBookModel expectedFitBookExerciseRoutineModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
-        editedRoutine.withExercises("Plank", "4x5 1km Run");
+        editedRoutine.withExercises(DEFAULT_EXERCISE_PLANK, DEFAULT_EXERCISE_RUN);
         expectedFitBookExerciseRoutineModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
 
         assertCommandSuccess(editRoutineCommandRoutine, editRoutineCommandExercise,
