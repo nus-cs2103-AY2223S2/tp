@@ -5,7 +5,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Quantity;
 
 /**
- * A utility class to help with building IncreasePersonDescriptor objects.
+ * A utility class to help with building IncreaseFoodDescriptor objects.
  */
 public class IncreaseFoodDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class IncreaseFoodDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Quantity} of the {@code IncreasePersonDescriptor} that we are building.
+     * Sets the {@code Quantity} of the {@code IncreaseFoodDescriptor} that we are building.
      */
     public IncreaseFoodDescriptorBuilder withQuantity(String quantity) {
         descriptor.setQuantity(new Quantity(quantity));
