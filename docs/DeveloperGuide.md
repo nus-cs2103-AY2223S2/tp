@@ -61,7 +61,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -130,7 +130,6 @@ The `Model` component,
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-</div>
 
 ### Storage component
 
@@ -368,7 +367,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
-| -------- | ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+|----------|--------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | staff member | add a patient                                      | record more information later                                                               |
 | `* * *`  | staff member | add a ward                                         | assign patients to the ward later                                                           |
 | `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
