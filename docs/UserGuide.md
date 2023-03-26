@@ -18,7 +18,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
    6. [delete](#delete)
    7. [clear](#clear)
    8. [help](#help)
-   9. [exit](#exit)
+   9. [exit](#exit--exit)
 5. [Data Management](#data-management)
 6. [FAQ](#faq)
 7. [Command Summary](#command-summary)
@@ -106,18 +106,43 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Commands
 ### add
+> `add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...`
 ### find
+> `find [OPTIONAL/PARAMETER]...`
 ### view
+> `view <PARAMETERS>`
 ### edit
+> `edit [OPTIONAL/PARAMETER]...`
 ### list
+> `list` <br>
+* Shows all persons stored.
 ### delete
+> `delete <INDEX>`
+* Deletes the person at the specified INDEX.
+* INDEX refers to an index currently shown in the displayed person list.
+* INDEX must be a positive integer 1, 2, 3, ...
+* E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.
+
 ### clear
-### help
-### exit
+> `clear`<br>
+* :warning: Clears **all** entries from CoDoc.
+### help:
+> `help`<br>
+* <img src="images/UiHelpMenu.png"/>
+* Opens help menu
+* Equivalent to clicking Help > Help F1 via the GUI
+
+### exit:
+> `exit`<br>
+* Exits the program.
+* Equivalent to clicking the close button via the GUI.
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
 ## Data Management
+**Q**: How do I save my person list?<br>
+**A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install CoDoc in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
