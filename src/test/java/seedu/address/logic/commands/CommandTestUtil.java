@@ -225,7 +225,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}.
+     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}
+     * in the {@code model}'s FriendlyLink.
      */
     public static void showVolunteerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredVolunteerList().size());
@@ -239,7 +240,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s FriendlyLink.
      */
     public static void showElderlyAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredElderlyList().size());
@@ -249,5 +250,18 @@ public class CommandTestUtil {
         model.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredElderlyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the pair at the given {@code targetIndex} in the
+     * {@code model}'s FriendlyLink.
+     */
+    public static void showPairAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPairList().size());
+
+        Pair pair = model.getFilteredPairList().get(targetIndex.getZeroBased());
+        model.updateFilteredPairList(pairElement -> pairElement.equals(pair));
+
+        assertEquals(1, model.getFilteredPairList().size());
     }
 }

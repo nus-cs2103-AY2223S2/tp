@@ -285,4 +285,10 @@ public interface Model {
      */
     void refreshAllFilteredLists();
 
+    /**
+     * updates all filtered lists with the given predicates.
+     */
+    void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+            Predicate<Volunteer> pairPredicate, Predicate<Pair> volunteerPredicate);
+
 }
