@@ -23,8 +23,8 @@ public class DistanceUtil {
      */
     public static double getDistance(Location firstLocation, Location secondLocation) {
         return DISTANCE_CONSTANT * Math.pow(
-                Math.pow(firstLocation.getLat() - secondLocation.getLat(), 2)
-                        + Math.pow(firstLocation.getLon() - secondLocation.getLon(), 2), 0.5);
+                Math.pow(firstLocation.getLatitude() - secondLocation.getLatitude(), 2)
+                        + Math.pow(firstLocation.getLongitude() - secondLocation.getLongitude(), 2), 0.5);
     }
 
     /**
@@ -33,13 +33,13 @@ public class DistanceUtil {
      */
     public static Location getMidpoint(Collection<? extends Location> locations) {
         double midLat = locations.stream()
-                .mapToDouble(Location::getLat)
+                .mapToDouble(Location::getLatitude)
                 .average()
-                .orElse(Location.NUS.getLat());
+                .orElse(Location.NUS.getLatitude());
         double midLon = locations.stream()
-                .mapToDouble(Location::getLon)
+                .mapToDouble(Location::getLongitude)
                 .average()
-                .orElse(Location.NUS.getLon());
+                .orElse(Location.NUS.getLongitude());
         return new Location(midLat, midLon);
     }
 
@@ -57,8 +57,10 @@ public class DistanceUtil {
 
         for (int i = 1; i <= n; i++) {
             double lambda = i * stepSize;
-            double newLatitude = getConvexCombination(startLocation.getLat(), endLocation.getLat(), lambda);
-            double newLongitude = getConvexCombination(startLocation.getLon(), endLocation.getLon(), lambda);
+            double newLatitude = getConvexCombination(startLocation.getLatitude(),
+                    endLocation.getLatitude(), lambda);
+            double newLongitude = getConvexCombination(startLocation.getLongitude(),
+                    endLocation.getLongitude(), lambda);
             assert Location.isValidLatitude(newLatitude);
             assert Location.isValidLongitude(newLongitude);
             locations.add(new Location(newLatitude, newLongitude));

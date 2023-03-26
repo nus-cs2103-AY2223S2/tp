@@ -12,8 +12,8 @@ import seedu.address.model.location.Location;
 public class JsonAdaptedLocation {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Location's %s field is missing!";
     protected final String name;
-    protected final double lat;
-    protected final double lon;
+    protected final double latitude;
+    protected final double longitude;
 
     /**
      * Constructs a {@code JsonAdaptedLocation} with the given location details.
@@ -21,11 +21,11 @@ public class JsonAdaptedLocation {
     @JsonCreator
     public JsonAdaptedLocation(
             @JsonProperty("name") String name,
-            @JsonProperty("lat") double lat,
-            @JsonProperty("lon") double lon) {
+            @JsonProperty("latitude") double latitude,
+            @JsonProperty("longitude") double longitude) {
         this.name = name;
-        this.lat = lat;
-        this.lon = lon;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     /**
@@ -34,8 +34,8 @@ public class JsonAdaptedLocation {
      */
     public JsonAdaptedLocation(Location location) {
         name = location.getName();
-        lat = location.getLat();
-        lon = location.getLon();
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
     }
 
     /**
@@ -47,6 +47,6 @@ public class JsonAdaptedLocation {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
 
-        return new Location(name, lat, lon);
+        return new Location(name, latitude, longitude);
     }
 }

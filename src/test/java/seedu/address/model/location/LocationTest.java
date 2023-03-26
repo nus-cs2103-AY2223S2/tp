@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 
 public class LocationTest {
 
-    private static final double VALID_LAT_1 = SERANGOON.getLat();
-    private static final double VALID_LON_1 = SERANGOON.getLon();
+    private static final double VALID_LAT_1 = SERANGOON.getLatitude();
+    private static final double VALID_LON_1 = SERANGOON.getLongitude();
     private static final String VALID_NAME_1 = SERANGOON.getName();
 
-    private static final double VALID_LAT_2 = PASIR_RIS.getLat();
-    private static final double VALID_LON_2 = PASIR_RIS.getLon();
+    private static final double VALID_LAT_2 = PASIR_RIS.getLatitude();
+    private static final double VALID_LON_2 = PASIR_RIS.getLongitude();
     private static final String VALID_NAME_2 = PASIR_RIS.getName();
 
-    private static final double VALID_LAT_3 = BEDOK.getLat();
-    private static final double VALID_LON_3 = BEDOK.getLon();
+    private static final double VALID_LAT_3 = BEDOK.getLatitude();
+    private static final double VALID_LON_3 = BEDOK.getLongitude();
     private static final String VALID_NAME_3 = BEDOK.getName();
 
     private static final List<Double> VALID_LAT_LIST =
@@ -129,21 +129,21 @@ public class LocationTest {
 
     @Test
     public void getLat() {
-        assertEquals(VALID_LOCATION_1.getLat(),
+        assertEquals(VALID_LOCATION_1.getLatitude(),
                 VALID_LAT_1);
-        assertEquals(VALID_LOCATION_2.getLat(),
+        assertEquals(VALID_LOCATION_2.getLatitude(),
                 VALID_LAT_2);
-        assertEquals(VALID_LOCATION_3.getLat(),
+        assertEquals(VALID_LOCATION_3.getLatitude(),
                 VALID_LAT_3);
     }
 
     @Test
     public void getLon() {
-        assertEquals(VALID_LOCATION_1.getLon(),
+        assertEquals(VALID_LOCATION_1.getLongitude(),
                 VALID_LON_1);
-        assertEquals(VALID_LOCATION_2.getLon(),
+        assertEquals(VALID_LOCATION_2.getLongitude(),
                 VALID_LON_2);
-        assertEquals(VALID_LOCATION_3.getLon(),
+        assertEquals(VALID_LOCATION_3.getLongitude(),
                 VALID_LON_3);
     }
 

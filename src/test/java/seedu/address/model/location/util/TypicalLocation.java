@@ -687,8 +687,8 @@ public class TypicalLocation {
  */
 class LocationBuilder {
     private static final String DEFAULT_NAME = Location.NUS.getName();
-    private static final double DEFAULT_LAT = Location.NUS.getLat();
-    private static final double DEFAULT_LON = Location.NUS.getLon();
+    private static final double DEFAULT_LAT = Location.NUS.getLatitude();
+    private static final double DEFAULT_LON = Location.NUS.getLongitude();
     private String name;
     private double lat;
     private double lon;
