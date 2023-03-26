@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +9,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.BatchExportCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Address;
@@ -178,4 +181,14 @@ public class ParserUtil {
         }
         return trimmedFileName;
     }
+    public static String parseExport(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
+    }
+
 }
