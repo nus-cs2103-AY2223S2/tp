@@ -6,9 +6,8 @@ title: User Guide
 <img src="images/logo.png">
 </p>
 
-Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
 * Table of Contents<br>
+  * [Introduction](#introduction)
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Help](#viewing-help--help)
@@ -30,6 +29,22 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Introduction
+
+Welcome to the *Fish Ahoy! User Guide*! <br>
+
+*Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
+Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
+
+*Fish Ahoy!* **simplifies** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
+**weekly tasks**, such as feeding and cleaning. 
+
+Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
+*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below and get started.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -39,11 +54,11 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-   ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-   * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
 
 
 6. Refer to the [Features](#Features) below for details of each command.
