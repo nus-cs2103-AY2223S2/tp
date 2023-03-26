@@ -42,6 +42,7 @@ public class TypicalRoles {
     public static final Role CARL = new RoleBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withCompany("NUS").withJobDescription("Electrical Engineer @ NUS")
             .withWebsite("www.google.com").withSalary("4000")
+            .withTags("Tech")
             .withDeadline("2023-10-20").withExperience("Python - 10 Years").build();
     public static final Role DANIEL = new RoleBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withCompany("Jane Street")
@@ -52,10 +53,12 @@ public class TypicalRoles {
     public static final Role ELLE = new RoleBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withCompany("NUS").withJobDescription("Analyst @ DBS")
             .withWebsite("www.google.com").withSalary("4000")
+            .withTags("Tech")
             .withDeadline("2023-10-20").withExperience("Lua - 2 Years").build();
     public static final Role FIONA = new RoleBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withCompany("NUS").withJobDescription("Analyst @ Goldman")
             .withWebsite("www.google.com").withSalary("4000")
+            .withTags("Tech")
             .withDeadline("2023-10-20").withExperience("Coffeescript - 3 Years").build();
     public static final Role GEORGE = new RoleBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withCompany("Mary Street").withJobDescription("Analyst @ CitiBank")
