@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.UniquePersonList;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.UniqueTeamList;
 
 /**
  * Wraps all data at the address-book level
@@ -25,6 +27,19 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
      */
     {
         persons = new UniquePersonList();
+    }
+
+    private final UniqueTeamList teams;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        teams = new UniqueTeamList();
     }
 
     public TeamBuilder() {}
@@ -93,6 +108,32 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         persons.remove(key);
     }
 
+    //// team-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teams.contains(team);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTeam(Team team) {
+        teams.add(team);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTeam(Team key) {
+        teams.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +145,11 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Team> getTeamList() {
+        return teams.asUnmodifiableObservableList();
     }
 
     @Override

@@ -15,6 +15,7 @@ import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.LogsCenter;
 import teambuilder.commons.core.Memento;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
+    private final FilteredList<Team> filteredTeams;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
     }
 
     public ModelManager() {
@@ -119,6 +122,34 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return addressBook.hasTeam(team);
+    }
+
+    @Override
+    public void addTeam(Team team) {
+        addressBook.addTeam(team);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void deleteTeam(Team target) {
+        addressBook.removeTeam(target);
+    }
+
+    //=========== Filtered Team List Accessors ===============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Team} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Team> getTeamList() {
+        return filteredTeams;
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.Originator;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 /**
  * The API of the Model component.
@@ -78,8 +79,28 @@ public interface Model extends Originator {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     */
+    boolean hasTeam(Team team);
+
+    /**
+     * Deletes the given team.
+     * The team must exist in the address book.
+     */
+    void deleteTeam(Team target);
+
+    /**
+     * Adds the given team.
+     * {@code team} must not already exist in the address book.
+     */
+    void addTeam(Team team);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getSortedPersonList();
+
+    /** Returns an unmodifiable view of the team list */
+    ObservableList<Team> getTeamList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

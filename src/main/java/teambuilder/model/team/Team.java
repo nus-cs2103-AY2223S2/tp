@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
+import teambuilder.model.person.Person;
 import teambuilder.model.tag.Tag;
 
 /**
@@ -37,6 +38,22 @@ public class Team {
         this.skillTags.addAll(skillTags);
     }
 
+    public TeamName getName() {
+        return this.teamName;
+    }
+
+    /**
+     * Returns true if both teams have the same name.
+     * This defines a weaker notion of equality between two teams.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        }
+
+        return otherTeam != null
+                && otherTeam.getName().equals(getName());
+    }
 
     @Override
     public int hashCode() {
