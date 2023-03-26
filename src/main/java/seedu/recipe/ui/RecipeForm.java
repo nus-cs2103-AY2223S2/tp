@@ -137,8 +137,8 @@ public class RecipeForm extends UiPart<Region> {
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
-            recipe.getIngredients().forEach(ingredient -> {
-                TextField ingredientField = createDynamicTextField(ingredient.toString());
+            recipe.getIngredients().forEach((ingredient, information) -> {
+                TextField ingredientField = new TextField(ingredient.toString());
                 ingredientsBox.getChildren().add(ingredientField);
             });
         } else {
