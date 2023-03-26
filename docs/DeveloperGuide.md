@@ -231,7 +231,7 @@ organization of items across multiple lists.
 
 The following UML diagram shows `Tag` and its associated class.
 
-*** insert uml
+<img src="images/BetterModelClassDiagram.png" width="574" />
 
 #### Design considerations:
 
