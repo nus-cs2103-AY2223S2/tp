@@ -12,13 +12,13 @@ Package Time <<Rectangle>> {
 }
 
 Class Timetable
-TimePeriod : Starttime
-Timetable *..> "70" HourBlock : consists of >
+
+Timetable *--- "70" HourBlock : consists of >
 Timetable -- Day
 HourBlock -u-|> TimePeriod
 TimeBlock -u-|> TimePeriod
 TimeBlock --right-- "*"HourBlock : < merge
 note left of HourBlock: Only consecutive,\ndisjoint HourBlocks can\nmerge to form TimeBlock.
-Day "1" *-right--> TimePeriod : has <
+Day "1" -right--> TimePeriod : has <
 
 @enduml

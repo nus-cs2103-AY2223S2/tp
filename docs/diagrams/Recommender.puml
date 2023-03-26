@@ -12,7 +12,8 @@ package Recommender {
     class LocationRecommender
 }
 
-LocationRecommender -u-> Recommender
-TimingRecommender -u-> Recommender
-LocationRecommender ..> TimingRecommender
+Recommender --> LocationRecommender
+Recommender --> TimingRecommender
+
+
 @enduml
