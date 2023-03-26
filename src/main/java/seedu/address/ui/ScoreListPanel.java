@@ -13,21 +13,23 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList.ScoreSummary;
 
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.util.Callback;
+
+
+
 
 /**
  * Panel containing the list of scores.
@@ -99,45 +101,110 @@ public class ScoreListPanel extends UiPart<Region> {
         minScore.setSortable(false);
         average.setSortable(false);
         percentage.setSortable(false);
-        //scoreStatistic.getItems().addAll(person.getScoreSummary());
-        scoreStatistic.setItems(person.getScoreSummary());
-        /*
-        maxScore.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ScoreSummary, Double>, ObservableValue<Double>>() {
-            @Override
-            public ObservableValue<Double> call(TableColumn.CellDataFeatures<ScoreSummary, Double> param) {
-                return param.getValue().maxProperty();
+
+        maxScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
+            public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
+                return new TableCell<ScoreSummary, Double>() {
+                    @Override
+                    public void updateItem(Double value, boolean empty) {
+                        super.updateItem(value, empty);
+                        Double scoreValue = param.getTableView().getItems().get(0).getMaxScore();
+                        if (!empty) {
+                            if (scoreValue >= 80) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(126, 190, 97));
+                            } else if (50 <= scoreValue) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(244, 181, 55));
+                            } else {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(194, 47, 40));
+                            }
+                        }
+                    }
+                };
             }
         });
-        */
 
-        /*
-        maxScore.setCellValueFactory(new PropertyValueFactory<>("maxScore"));
-        minScore.setCellValueFactory(new PropertyValueFactory<>("minScore"));
-        average.setCellValueFactory(new PropertyValueFactory<>("average"));
-        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+        minScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
+            public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
+                return new TableCell<ScoreSummary, Double>() {
+                    @Override
+                    public void updateItem(Double value, boolean empty) {
+                        super.updateItem(value, empty);
+                        Double scoreValue = param.getTableView().getItems().get(0).getMinScore();
+                        if (!empty) {
+                            if (scoreValue >= 80) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(126, 190, 97));
+                            } else if (50 <= scoreValue) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(244, 181, 55));
+                            } else {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(194, 47, 40));
+                            }
+                        }
+                    }
+                };
+            }
+        });
+
+        average.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
+            public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
+                return new TableCell<ScoreSummary, Double>() {
+                    @Override
+                    public void updateItem(Double value, boolean empty) {
+                        super.updateItem(value, empty);
+                        Double scoreValue = param.getTableView().getItems().get(0).getAverage();
+                        if (!empty) {
+                            if (scoreValue >= 80) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(126, 190, 97));
+                            } else if (50 <= scoreValue) {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(244, 181, 55));
+                            } else {
+                                setText(String.valueOf(scoreValue));
+                                setTextFill(Color.rgb(194, 47, 40));
+                            }
+                        }
+                    }
+                };
+            }
+        });
+
+        percentage.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
+            public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
+                return new TableCell<ScoreSummary, Double>() {
+                    @Override
+                    public void updateItem(Double value, boolean empty) {
+                        super.updateItem(value, empty);
+                        Double percentage = param.getTableView().getItems().get(0).getPercentage();
+                        if (!empty) {
+                            if (percentage >= 0) {
+                                setText(String.valueOf(percentage));
+                                setTextFill(Color.rgb(126, 190, 97));
+                            } else {
+                                setText(String.valueOf(percentage));
+                                setTextFill(Color.rgb(194, 47, 40));
+                            }
+                        }
+                    }
+                };
+            }
+        });
 
         scoreStatistic.setItems(person.getScoreSummary());
-
-        TableColumn maxScore = new TableColumn("Maximum Score");
-        TableColumn minScore = new TableColumn("Minimum Score");
-        TableColumn averageScore = new TableColumn("Average Score");
-        TableColumn percentage = new TableColumn("Percentage");
-        */
-        /*
-        maxScore.setCellValueFactory(new PropertyValueFactory <>("max Score"));
-        minScore.setCellValueFactory(new PropertyValueFactory <>("min score"));
-        averageScore.setCellValueFactory(new PropertyValueFactory <>("max Score"));
-        percentage.setCellValueFactory(new PropertyValueFactory <>("max Score"));
-        */
-        //scoreStatistic.getColumns().addAll(maxScore, minScore, averageScore, percentage);
     }
 
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
         nameChart.setText("Recent 5 scores for " + person.getName().fullName);
-        xAxis.setLabel("Date");
-        yAxis.setLabel("Score");
+        // xAxis.setLabel("Date");
+        // yAxis.setLabel("Score");
         scoreChart.setVisible(true);
+        scoreChart.setLegendVisible(false);
         XYChart.Series<String, Double> series = new XYChart.Series<>();
 
         Region chartContent = (Region) scoreChart.lookup(".chart-content");
@@ -156,7 +223,7 @@ public class ScoreListPanel extends UiPart<Region> {
             XYChart.Data<String, Double> data = new XYChart.Data<>(date, value);
             data.setNode(new HoveredThresholdNode(data.getYValue(), label));
             series.getData().add(data);
-         }
+        }
 
         scoreChart.getData().add(series);
     }
@@ -184,7 +251,7 @@ public class ScoreListPanel extends UiPart<Region> {
         }
 
         private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
-            final Label label = new Label(examLabel + ": " + scoreValue);
+            final Label label = new Label(examLabel + "\n \t" + scoreValue);
             label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
             label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: white; "
                     + "-fx-border-color: #605BF1; -fx-border-width: 2; ");

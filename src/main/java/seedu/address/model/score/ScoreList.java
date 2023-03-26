@@ -9,8 +9,6 @@ import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.score.exceptions.DuplicateScoreException;
@@ -124,27 +122,35 @@ public class ScoreList implements Iterable<Score> {
 
     /**
      * Gets the sorted score list with recent score at front.
-     * @return Sorted score list.
+     * @return A view of list of sorted score.
      */
     public ObservableList<Score> getSortedScoreList() {
         sortedScoreList.sort(Comparator.comparing(Score::getLocalDate).reversed());
         return sortedScoreList;
     }
 
+    /**
+     * Gets the recent 5 scores with recent score at back.
+     * @return A view of list of recent 5 scores.
+     */
     public ObservableList<Score> getRecentScoreList() {
         ObservableList<Score> sortedScoreList = getSortedScoreList();
         if (sortedScoreList.size() < 5) {
             FXCollections.reverse(sortedScoreList);
             return sortedScoreList;
         }
-        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream().
-                limit(5).collect(java.util.stream.Collectors.toList()));
+        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream()
+                        .limit(5).collect(java.util.stream.Collectors.toList()));
         FXCollections.reverse(recentScoreList);
         return recentScoreList;
     }
 
+    /**
+     * Gets the summary statistic of recent 5 scores.
+     * @return A view of list of recent 5 scores' summary statistic.
+     */
     public ObservableList<ScoreSummary> getScoreSummary() {
-        DecimalFormat df = new DecimalFormat("###.##");
+        DecimalFormat df = new DecimalFormat("#.##");
         ObservableList<Score> recentScoreList = getRecentScoreList();
         DoubleSummaryStatistics scoreSummary = new DoubleSummaryStatistics();
         for (int i = 0; i < recentScoreList.size(); i++) {
@@ -153,16 +159,19 @@ public class ScoreList implements Iterable<Score> {
         Double average = scoreSummary.getAverage();
         Double maxValue = scoreSummary.getMax();
         Double minValue = scoreSummary.getMin();
-        Double percentage = (recentScoreList.get(recentScoreList.size() - 1).getValue().value -
-                recentScoreList.get(0).getValue().value) / recentScoreList.get(0).getValue().value * 100;
-        df.format(average);
-        df.format(percentage);
+        Double percentage = (recentScoreList.get(recentScoreList.size() - 1).getValue().value
+                - recentScoreList.get(0).getValue().value) / recentScoreList.get(0).getValue().value * 100;
+        average = Double.valueOf(df.format(average));
+        percentage = Double.valueOf(df.format(percentage));
         ScoreSummary ss = new ScoreSummary(maxValue, minValue, average, percentage);
         ObservableList<ScoreSummary> summary = FXCollections.observableArrayList();
         summary.add(ss);
         return summary;
     }
 
+    /**
+     * Inner class
+     */
     public class ScoreSummary {
 
         private Double maxScore;
@@ -170,6 +179,9 @@ public class ScoreList implements Iterable<Score> {
         private Double average;
         private Double percentage;
 
+        /**
+         * Class constructor
+         */
         public ScoreSummary(Double max, Double min, Double average, Double percentage) {
             this.maxScore = max;
             this.minScore = min;
@@ -192,36 +204,6 @@ public class ScoreList implements Iterable<Score> {
         public Double getPercentage() {
             return this.percentage;
         }
-        /*
-        private DoubleProperty maxScore;
-        private DoubleProperty minScore;
-        private DoubleProperty average;
-        private DoubleProperty percentage;
-
-        public ScoreSummary(Double max, Double min, Double average, Double percentage) {
-            this.maxScore = new SimpleDoubleProperty(this, "maxScore", max);
-            this.minScore = new SimpleDoubleProperty(this, "minScore", min);
-            this.average = new SimpleDoubleProperty(this, "average", average);
-            this.percentage = new SimpleDoubleProperty(this, "percentage", percentage);
-        }
-
-        public DoubleProperty maxProperty() {
-            return this.maxScore;
-        }
-
-        public DoubleProperty minProperty() {
-            return this.minScore;
-        }
-
-        public DoubleProperty averageProperty() {
-            return this.average;
-        }
-
-        public DoubleProperty percentageProperty() {
-            return this.percentage;
-        }
-
-         */
     }
 
     @Override

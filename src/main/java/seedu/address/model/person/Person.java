@@ -201,16 +201,28 @@ public class Person {
         return filteredScores;
     }
 
+    /**
+     * Gets the sorted score list with recent score at front.
+     * @return A view of list of sorted scores.
+     */
     public ObservableList<Score> getSortedScoreList() {
         ObservableList<Score> sortedScoreList = this.scoreList.getSortedScoreList();
         return sortedScoreList;
     }
 
+    /**
+     * Gets the recent 5 scores with recent score at back.
+     * @return A view of list of recent 5 scores.
+     */
     public ObservableList<Score> getRecentScoreList() {
         ObservableList<Score> recentScoreList = this.scoreList.getRecentScoreList();
         return recentScoreList;
     }
 
+    /**
+     * Gets the summary statistic of recent 5 scores.
+     * @return A view of list of recent 5 scores' summary statistic.
+     */
     public ObservableList<ScoreSummary> getScoreSummary() {
         ObservableList<ScoreSummary> scoreSummary = this.scoreList.getScoreSummary();
         return scoreSummary;
