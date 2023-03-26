@@ -70,6 +70,34 @@
           <StackPane fx:id="flightListPanelPlaceholder" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"/>
         </VBox>
 
+        <VBox fx:id="crewList" styleClass="list-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="1" />
+          </padding>
+          <StackPane fx:id="crewListPanelPlaceholder" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox fx:id="planeList" styleClass="list-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="1" />
+          </padding>
+          <StackPane fx:id="planeListPanelPlaceholder" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox fx:id="pilotList" styleClass="list-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="1" />
+          </padding>
+          <StackPane fx:id="pilotListPanelPlaceholder" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox fx:id="locationList" styleClass="list-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="1" />
+          </padding>
+          <StackPane fx:id="locationListPanelPlaceholder" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
       </HBox >
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
 
