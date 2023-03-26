@@ -60,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private StackPane menuBarPlaceholder;
+
+    @FXML
     private StackPane flightListPanelPlaceholder;
 
     @FXML
@@ -144,6 +147,10 @@ public class MainWindow extends UiPart<Stage> {
             new StatusBarFooter(logic.getOperationMode());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        MenuBar menuBar =
+                new MenuBar();
+        menuBarPlaceholder.getChildren().add(menuBar.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
@@ -222,6 +229,10 @@ public class MainWindow extends UiPart<Stage> {
             StatusBarFooter statusBarFooter =
                     new StatusBarFooter(logic.getOperationMode());
             statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+            MenuBar menuBar =
+                    new MenuBar();
+            menuBarPlaceholder.getChildren().add(menuBar.getRoot());
 
             flightListPanel = new FlightListPanel(logic.getFilteredFlightList());
             Region flight = flightListPanel.getRoot();

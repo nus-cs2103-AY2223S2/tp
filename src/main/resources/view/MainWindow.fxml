@@ -41,7 +41,7 @@
           <StackPane HBox.hgrow="ALWAYS">
           <VBox HBox.hgrow="ALWAYS">
             <StackPane fx:id="commandBoxPlaceholder"  VBox.vgrow="NEVER"/>
-            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER" styleClass="result-bar"/>
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="80" minHeight="80" prefHeight="80" VBox.vgrow="NEVER" styleClass="result-bar"/>
           </VBox>
           </StackPane>
           <StackPane alignment="CENTER" styleClass="image-view" VBox.vgrow="NEVER">
@@ -54,14 +54,21 @@
           </StackPane>
         </HBox>
 
-      <ListView orientation="HORIZONTAL" style="-fx-background-color: #DAE3E6" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-        <padding>
-          <Insets bottom="10" left="10" right="10" top="10" />
-        </padding>
 
-        <VBox fx:id="flightList" styleClass="list-pane" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="1" />
+          <ListView>
+              <StackPane fx:id="menuBarPlaceholder" maxHeight="20" VBox.vgrow="NEVER"/>
+
+          <ListView orientation="HORIZONTAL" style="-fx-background-color: #DAE3E6" VBox.vgrow="ALWAYS"
+                    HBox.hgrow="ALWAYS">
+
+<!--            <padding>-->
+<!--              <Insets bottom="10" left="10" right="10" top="10"/>-->
+<!--            </padding>-->
+
+            <VBox fx:id="flightList" styleClass="list-pane" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS"
+                  HBox.hgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="1" />
           </padding>
           <StackPane fx:id="flightListPanelPlaceholder" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS"/>
         </VBox>
@@ -93,7 +100,8 @@
           </padding>
           <StackPane fx:id="locationListPanelPlaceholder" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS"/>
         </VBox>
-      </ListView >
+      </ListView>
+          </ListView>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
 
       </VBox>
