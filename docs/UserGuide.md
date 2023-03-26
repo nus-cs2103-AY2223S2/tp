@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 * Table of Contents
   {:toc}
 
@@ -9,11 +10,55 @@ title: User Guide
 
 ## Introduction
 
-FriendlyLink **streamlines volunteer and elderly management** for single administrators of small NPOs.
-With its easy-to-use **text-based interface** and contact management features, say goodbye to manual
-record-keeping and hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
+FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs.
+With FriendlyLink, administrators can easily manage their database and pair volunteers with the elderly they want to
+help, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple,
+efficient, and effective, so that NPOs can focus on making a difference in their communities.
 
-----------------------------------------------------
+---
+
+## Purpose of Guide
+
+This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as
+a refresher for any experienced or returning users, allowing you to make the most out of PennyWise.
+
+## How to use this User Guide
+
+These are some icons you may see throughout our user guide.
+
+### Information Box
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+This provides some additional information that you are recommended to know.
+</div>
+
+### Tip Box
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+This provides some quick and convenient hacks that you can use to optimize your experience with PennyWise.
+</div>
+
+### Danger Box
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+Danger zone! Do pay attention to the information here carefully.
+</div>
+
+### Formatting
+
+- `Highlights` are used to denote commands or output from the application.
+
+## Glossary
+
+| Term         | Definition                                                               |
+|--------------|--------------------------------------------------------------------------|
+| FriendlyLink | The name of the application                                              |
+| Volunteer    | Volunteers who are willing to pair up with and accompany Elderly members |
+| Elderly      | Elderly are people aged over 65                                          |
+| Pair         | The pair of people that consists of an elderly and a volunteer           | 
+| NRIC         | A unique identifier given to all Singaporeans                            |
+
+---
 
 ## Quick Start
 
@@ -49,8 +94,10 @@ record-keeping and hello to a more efficient and organised way of managing the v
 
 **Command Format**<br>
 
-* Words in `UPPER_CASE` are required attributes to be supplied by the users. <br> Example: `add_volunteer n/NAME vnr/NRIC`, `NAME` and `NRIC` are parameters that need to be supplied.
-* Attributes in `[]` are optional. <br> Example: `add_volunteer n/NAME vnr/NRIC [e/EMAIL] [re/REGION]`, then `EMAIL` and `REGION` are optional attributes.
+* Words in `UPPER_CASE` are required to be supplied by the users. <br> Example: `add_volunteer n/NAME vnr/NRIC`, `NAME`
+  and `NRIC` are attributes that need to be supplied.
+* Attributes in `[]` are optional. <br> Example: `add_volunteer n/NAME vnr/NRIC [e/EMAIL] [re/REGION]`, then `EMAIL`
+  and `REGION` are optional attributes.
 * Attributes with trailing `...` can be provided 0 or multiple times. <br> Example: `add_elderly n/NAME enr/NRIC [t/TAG]...`, then the elderly can have 0, 1, or many tags.
 * Attributes can be provided in any order. <br> Example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command and is specified multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -59,15 +106,6 @@ record-keeping and hello to a more efficient and organised way of managing the v
   Example: if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-[//]: # (Need to update help message pic)
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 --------------------------------------------------
 
@@ -88,7 +126,7 @@ Format: `add_elderly n/NAME enr/NRIC [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_D
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the elderly is available.
+* `START_DATE, END_DATE` represents the start and end of the dates that the elderly is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An elderly can have any number of tags and available dates.
@@ -96,16 +134,14 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
-* `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123 enr/S1234567C bd/1953-01-08 re/NORTH r/HIGH t/lonely t/diabetes`
-* `add_elderly n/Betsy Crowe a/Newgate Prison p/1234567 enr/T1234567D bd/1948-02-08 re/WEST r/LOW t/lonely dr/2023-02-14,2023-05-01 dr/2023-06-03,2023-06-17`
-* `add_elderly n/John Wick a/New yourk p/1234561 enr/T1254567D r/HIGH`
+* `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123 enr/S1234567C bd/1953-01-08 re/NORTH r/HIGH t/lonely `
 * `add_elderly n/Sally Black ag/70 enr/S8457677M`
 
 #### Adding a volunteer: `add_volunteer`
 
 Adds a volunteer to FriendlyLink.
 
-Format: `add_volunteer vnr/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​`
+Format: `add_volunteer vnr/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/START_DATE, END_DATE]…​`
 
 * Every volunteer must have a unique `NRIC`.
 * Alphabets in `NRIC` are case-insensitive.
@@ -113,7 +149,9 @@ Format: `add_volunteer vnr/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `HIGH`. Exmaple: `CPR BASIC`, `AED INTERMEDIATE`.
+* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME LEVEL`. The `LEVEL` can only take 3 values: `BASIC`
+  , `INTERMEDIATE` or `HIGH`. Exmaple: `CPR BASIC`, `AED INTERMEDIATE`.
+* `START_DATE, END_DATE` represents the start and end of the dates that the volunteer is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A volunteer can have any number of tags, medical qualifications and available dates. 
@@ -121,9 +159,7 @@ A volunteer can have any number of tags, medical qualifications and available da
 
 Examples:
 
-* `add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 bd/1999-08-05 vnr/S8457677H re/WEST t/graduate t/new`
-* `add_volunteer n/Betsy Crowe p/1234567 bd/1993-08-09 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED mt/BLS BASIC dr/2023-06-03,2023-06-17`
-* `add_volunteer n/John Wick e/johnwick@example.com a/New yourk p/1234561 vnr/T1254567D dr/2023-04-01,2023-04-15 dr/2023-03-01,2023-07-17`
+* `add_volunteer n/John Wick e/johnwick@example.com a/New yourk p/1234561 vnr/T1254567D dr/2023-04-01,2023-04-15`
 * `add_volunteer n/Sally White bd/1990-11-05 vnr/S8457677H`
 
 
@@ -150,8 +186,9 @@ Format: `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 </div>
 
 Examples:
-* `add_pair enr/S2235243I vnr/t0123423a` pairs up the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
-* `add_pair enr/s1135243A vnr/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
+
+* `add_pair enr/S2235243I vnr/t0123423a`
+* `add_pair enr/s1135243A vnr/S0773423a`
 
 ---------------------------------------------
 
@@ -276,8 +313,6 @@ Format: `find [n/NAME] [nr/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 
 Examples:
 
-* `find n/John Doe`
-* `find re/CENTRAL`
 * `find t/experienced p/1234567 e/betsycrowe@example.com a/Newgate Estate`
 * `find n/John Wick e/johnwick@example.com a/New York p/1234561 nr/T1254567D re/north r/low, t/funny dr/2023-04-01,2023-04-15`
 
@@ -311,11 +346,18 @@ Exits the program.
 
 Format: `exit`
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
 ---------------------------------------------
 
 ### Saving the data
 
-FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
 
 --------------------------------------------
 
@@ -334,22 +376,43 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 FriendlyLink provides auto-complete suggestions for the available commands, or attribute prefixes when adding new records of elderly or volunteers into the database.
 
 Example:
-* Typing `add` will suggest `add_elderly` or `add_volunteer`.
+
+* Typing `add_e` will suggest `add_elderly`.
 * Typing `fi` will suggest `find`.
 
-For adding records, if the user has not input all the available attributes for the new input elderly or volunteer, the auto-complete feature will automatically suggests all the remaining attributes. No new suggestions will be given if all possible attributes has at least one value provided.
+For adding records, if the user has not input all the available attributes for the new input elderly or volunteer, the
+auto-complete feature will automatically suggests all the remaining attributes. No new suggestions will be given if all
+possible attributes has at least one value provided.
 
 Example:
-* Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as these attributes have not been filled.
-* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`, FriendlyLink will not suggest anything as all possible attributes have at least one value.
+
+* Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
+  suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
+  these attributes have not been filled.
+*
+Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`
+, FriendlyLink will not suggest anything as all possible attributes have at least one value.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
+  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an
+  error will be thrown when the user confirms the command.
+* There is a known UI bug when the text in `commandTextField` overflows. To improve user experience, the recommendation
+  engine is disabled once overflow is detected.
+
+</div>
 
 ------------------------------------------
 
 ## Advanced Details
 
 ### Prefixes
+
 * Prefixes should be entered in all lower case (e.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/  Mary` is truncated to `n/Mary`)
+* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
 
 ### NRIC
 * NRIC is case-insensitive
@@ -387,7 +450,7 @@ Example:
 
 --------------------------------------------------
 
-## ShortCuts
+## Shortcuts
 
 * `CTRL+C`: Copy the text
 * `CTRL+V`: Paste the text into command box
@@ -404,21 +467,31 @@ Example:
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                                                                                                           |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Elderly**      | `add_elderly n/NAME enr/NRIC [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> e.g.,`add_elderly n/John p/98765432 e/johnd@example.com a/John street enr/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17` |
-| **Add Volunteer**    | `add_volunteer vnr/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​` <br> e.g.,`add_volunteer n/Doe p/98765432 e/johnd@example.com a/block 123 bd/1998-02-01 vnr/S8457677H re/WEST t/graduate mt/CPR BASIC`  |
-| **Add Pair**         | `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `add_pair enr/S2235243I vnr/t0123423a`                                                                                                                                                                                                                            |
-| **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [nr/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                    |
-| **Edit Volunteer**   | `edit_volunteer INDEX [n/NAME] [nr/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> e.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                         |
-| **Edit Person**      | `edit NRIC [n/NAME] [nr/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> e.g., `edit S1234567A p/12334455`                                                                                      |
-| **Delete Elderly**   | `delete_elderly NRIC`<br> e.g., `delete_ elderly S8238655C`                                                                                                                                                                                                                                                                |
-| **Delete Volunteer** | `delete_volunteer NRIC`<br> e.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                             |
-| **Delete Pair**      | `delete_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `delete_pair vnr/t0123423a enr/S2235243I`                                                                                                                                                                                                                      |
-| **Find People**      | `find [n/NAME] [nr/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> e.g., `find n/John Doe`                                                                                                 |
-| **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                    |
-| **Help**             | `help`                                                                                                                                                                                                                                                                                                                     |
-| **Exit Program**     | `exit`                                                                                                                                                                                                                                                                                                                     |
-
-[//]: # (| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |)
-
+| Action               | Format, Examples                                                                                                                                                                                                                                                                                                                |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add
+Elderly**      | `add_elderly n/NAME enr/NRIC [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_elderly n/John p/98765432 e/johnd@example.com a/John street enr/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17` |
+| **Add
+Volunteer**    | `add_volunteer vnr/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​` <br> <br> e.g.,`add_volunteer n/Doe p/98765432 e/johnd@example.com a/block 123 bd/1998-02-01 vnr/S8457677H re/WEST t/graduate mt/CPR BASIC`  |
+| **Add
+Pair**         | `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> <br> e.g., `add_pair enr/S2235243I vnr/t0123423a`                                                                                                                                                                                                                            |
+| **Edit
+Elderly**     | `edit_elderly INDEX [n/NAME] [nr/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                    |
+| **Edit
+Volunteer**   | `edit_volunteer INDEX [n/NAME] [nr/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                         |
+| **Edit
+Person**      | `edit NRIC [n/NAME] [nr/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit S1234567A p/12334455`                                                                                      |
+| **Delete
+Elderly**   | `delete_elderly NRIC`<br> <br> e.g., `delete_ elderly S8238655C`                                                                                                                                                                                                                                                                |
+| **Delete
+Volunteer** | `delete_volunteer NRIC`<br> <br> e.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                             |
+| **Delete
+Pair**      | `delete_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> <br> e.g., `delete_pair vnr/t0123423a enr/S2235243I`                                                                                                                                                                                                                      |
+| **Find
+People**      | `find [n/NAME] [nr/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> <br> e.g., `find n/John Doe`                                                                                                 |
+| **Summarise
+Data**   | `stats`                                                                                                                                                                                                                                                                                                                         |
+| **
+Help**             | `help`                                                                                                                                                                                                                                                                                                                          |
+| **Exit
+Program**     | `exit`                                                                                                                                                                                                                                                                                                                          |

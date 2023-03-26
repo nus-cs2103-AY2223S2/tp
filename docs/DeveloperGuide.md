@@ -202,18 +202,6 @@ correctness of the attributes specified, instead of depending on the parser for 
 `AddElderlyCommand` does not accept any arguments without a prefix but the user specifies anyhow, a **warning** will
 be given.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes:**<br>
-
-* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
-  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an error will be thrown when the user confirms the command.
-* There is a known UI bug regarding the recommendation engine when the text in `commandTextField` overflows. To improve
-  user experience, the recommendation engine is disabled once overflow is detected.
-
-</div>
-
-
 ### Add and Delete Elderly and Volunteer
 
 In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
