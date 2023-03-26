@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -9,6 +12,28 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
+     * Parses {@code args} into a {@code ListCommand} and returns it.
+     *
+     * @param args Arguments.
+     * @return {@code ListCommand} for execution.
+     * @throws ParseException If {@code args} does not conform the expected format.
+     */
+    @Override
+    public ListCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        String trimmedArgs = args.trim().toLowerCase();
+        switch (trimmedArgs) {
+        case "":
+        case "unpaired":
+        case "paired":
+            return new ListCommand(trimmedArgs);
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
@@ -16,18 +41,5 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public static boolean validate(ArgumentMultimap map) {
         return false;
-    }
-
-    /**
-     * Parses {@code userInput} into a command and returns it.
-     *
-     * @param userInput String from user.
-     * @return A {@code Command}.
-     * @throws ParseException If {@code userInput} does not conform the expected format.
-     */
-    @Override
-    public ListCommand parse(String userInput) throws ParseException {
-        assert false : "This method should not be invoked";
-        return null;
     }
 }
