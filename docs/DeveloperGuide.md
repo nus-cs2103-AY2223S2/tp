@@ -264,7 +264,7 @@ with an `Index`.
 
 ### \[Developed\] Find group(s)
 
-The find group feature allows users to supports find group(s) and persons who are in those group(s).
+The find group feature allows users to find group(s) and persons who are in those group(s).
 
 This is implemented using the `GroupFindCommand`, `GroupFindCommandParser`, `UniqueGroupList` and `UniquePersonList` 
 classes.
@@ -273,7 +273,7 @@ The `GroupFindCommand` receives a group and member predicate,
 
 #### Activity diagram
 
-The following activity diagram summarises what happens when a user executes a find command:
+The following activity diagram summarises what happens when a user executes a group find command:
 
 <img src="images/GroupFindCommandActivityDiagram.png" width="300" />
 
@@ -366,7 +366,7 @@ If shouldMerge is true, it adds on groups and tags (if specified), otherwise it 
     command.
   * Lesser commands for users to remember.
 
-#### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
+#### Differences between editing a person and a person's event(s)
 * As editing for events require two index, `[INDEX_OF_PERSON]` and `[INDEX_OF_EVENT]`, it is different from the 
 existing command.
 * This significantly increases the chances of users inputting a wrong command
