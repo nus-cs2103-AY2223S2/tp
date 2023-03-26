@@ -253,6 +253,11 @@ public class AddCommandTest {
         public void updateFilteredTankList(Predicate<Tank> predicate) {}
 
         @Override
+        public void setLastFedDateFishes(Tank tankToFeed, String formattedDate) {
+            //TODO tests
+        }
+
+        @Override
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
