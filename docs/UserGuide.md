@@ -1,33 +1,9 @@
-# FriendlyLink - User Guide
-
-By: `Team CS2103T-W12-1` Since `Jan 2023` Licence: `MIT`
-
-1. [Introduction](#introduction)
-2. [Quick Start](#quick-start)
-3. [Features](#features)
-    1. [Viewing help: `help`](#viewing-help--help)
-    2. [Adding records](#adding-records)
-        1. [Adding an elderly: `add_elderly`](#adding-an-elderly-add_elderly)
-        2. [Adding a volunteer: `add_volunteer`](#adding-a-volunteer-add_volunteer)
-        3. [Pair volunteer and elderly: `add_pair`](#pair-volunteer-and-elderly-add_pair)
-    3. [Editing records](#editing-records)
-        1. [Editing a elderly by index : `edit_elderly`](#editing-a-elderly-by-index--edit_elderly)
-        2. [Editing a volunteer by index : `edit_volunteer`](#editing-a-volunteer-by-index--edit_volunteer)
-        3. [Editing a person by NRIC: `edit`](#editing-a-person-by-nric-edit)
-    4. [Deleting records](#deleting-records)
-        1. [Deleting an elderly : `delete_elderly`](#deleting-an-elderly--delete_elderly)
-        2. [Deleting a volunteer : `delete_volunteer`](#deleting-a-volunteer--delete_volunteer)
-        3. [Unpair volunteer and elderly: `delete_pair`](#unpair-volunteer-and-elderly-delete_pair)
-    5. [Finding people and their related pairs: `find`](#finding-people-and-their-related-pairs-find)
-    6. [Show Summary Statistics: `stats`](#show-summary-statistics-stats)
-    7. [Exiting the program : `exit`](#exiting-the-program--exit)
-    8. [Saving the data](#saving-the-data)
-    9. [Editing the data file](#editing-the-data-file)
-    10. [Auto-complete](#auto-complete)
-4. [Advanced Details](#advanced-details)
-5. [Shortcuts](#shortcuts)
-6. [FAQ](#faq)
-7. [Command summary](#command-summary)
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+  {:toc}
 
 ----------------------------------------------------
 
