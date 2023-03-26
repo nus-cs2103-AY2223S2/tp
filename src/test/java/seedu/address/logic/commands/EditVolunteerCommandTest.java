@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
@@ -114,7 +114,7 @@ public class EditVolunteerCommandTest {
         EditDescriptor descriptor = new EditDescriptorBuilder(firstVolunteer).build();
         EditVolunteerCommand editVolunteerCommand = new EditVolunteerCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editVolunteerCommand, model, MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(editVolunteerCommand, model, MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
     }
 
     @Test
@@ -127,7 +127,7 @@ public class EditVolunteerCommandTest {
         EditVolunteerCommand editVolunteerCommand = new EditVolunteerCommand(INDEX_FIRST_PERSON,
                 new EditDescriptorBuilder(volunteerInList).build());
 
-        assertCommandFailure(editVolunteerCommand, model, MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(editVolunteerCommand, model, MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
     }
 
     @Test
