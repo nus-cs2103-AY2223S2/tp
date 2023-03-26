@@ -526,26 +526,6 @@ The following gives a more detailed explanation of the `upcoming` operation.
     * Pros: May be more intuitive for users to understand
     * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
    
-###### Whether to update the right UI panel according to the `add` command
-
-1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
-    * Pros: Better visual indication that the `add` command has been successfully executed.
-      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
-      the new entry will be placed at the bottom of the left UI panel, which is not visible
-      if the user's scroll position is at the top of the left UI panel. Therefore, updating
-      the right panel enhances visual indication to the user that the `Internship` has been
-      successfully added.
-    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
-      to update the selected `Internship` in the `Model` component in order to update
-      the right panel.
-
-2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
-    * Pros: No additional code is required in the `execute` method of `AddCommand`.
-    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
-      UI panel may not be visible since it is added to the bottom. Without scrolling, users
-      have to rely on the Results Display box to determine if the `AddCommand` is successful.
-
-
 ### Delete Internship Entries - `delete`
 #### Implementation
 The following sequence diagram provides an overview on how the `delete` operation works.
