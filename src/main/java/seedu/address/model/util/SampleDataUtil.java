@@ -22,6 +22,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Description;
@@ -35,6 +36,7 @@ import seedu.address.model.transaction.Value;
  */
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
+    public static final Task EMPTY_TASK = new Task("");
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"),
@@ -48,6 +50,7 @@ public class SampleDataUtil {
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 EMPTY_REMARK,
                 getTagSet("friends"),
+                EMPTY_TASK,
                 new LeadStatus(UNCONTACTED.getLabel())),
             new Person(new Name("Bernice Yu"),
                 new Gender("female"),
@@ -60,6 +63,7 @@ public class SampleDataUtil {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 EMPTY_REMARK,
                 getTagSet("colleagues", "friends"),
+                EMPTY_TASK,
                 new LeadStatus(WORKING.getLabel())),
             new Person(new Name("Charlotte Oliveiro"),
                 new Gender("female"),
@@ -72,6 +76,7 @@ public class SampleDataUtil {
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 EMPTY_REMARK,
                 getTagSet("neighbours"),
+                EMPTY_TASK,
                 new LeadStatus(UNCONTACTED.getLabel())),
             new Person(new Name("David Li"),
                 new Gender("male"),
@@ -84,6 +89,7 @@ public class SampleDataUtil {
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 EMPTY_REMARK,
                 getTagSet("family"),
+                EMPTY_TASK,
                 new LeadStatus(UNQUALIFIED.getLabel())),
             new Person(new Name("Irfan Ibrahim"),
                 new Gender("male"),
@@ -96,6 +102,7 @@ public class SampleDataUtil {
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 EMPTY_REMARK,
                 getTagSet("classmates"),
+                EMPTY_TASK,
                 new LeadStatus(QUALIFIED.getLabel())),
             new Person(new Name("Roy Balakrishnan"),
                 new Gender("male"),
@@ -108,6 +115,7 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 EMPTY_REMARK,
                 getTagSet("colleagues"),
+                EMPTY_TASK,
                 new LeadStatus(QUALIFIED.getLabel()))
         };
     }

@@ -2,64 +2,66 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -110,28 +113,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -140,19 +143,99 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Find by Tag Feature
+
+#### About
+
+The find tag feature allows the sales person to find contacts in the address book based on the tag/s associated with a contact.
+
+#### Implementation
+
+In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to process parameters of Set of Tags 
+
+The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `getFilteredList()` based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil`
+
+Reminder to add diagram pictures
+
+The following sequence diagram shows how the find tag operation works:
+
+Insert Image
+
+The following activity diagram shows what happens when a user executes a find tag command
+
+Insert Image
+
+### Sort feature
+
+#### About
+
+The sort feature is an inbuilt element of `SalesPunch` where it allows the sales person to sort the address book according to a certain attribute.
+
+#### Implementation
+
+The sort mechanism is facilitated by `SortCommandParser` where it parses sort commands, triggering and associating the given attribute to a `SortCommand` class which extends `Command`. When `SortCommand` gets executed, `ModelManager#sortPersonList()` sorts the address book according to the given attribute.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the given input is not a valid attribute of a `Person` class, it will throw an error indicating invalid attribute.
+
+</div>
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+### Lead Status feature
+
+The Lead Status feature aims to provide information about the contact based on when the status was last set.
+It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
+`LocalDateTime` timestamp.
+
+Because we would like to limit the types of statuses a contact should have, for consistency's sake, each
+type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for
+abbreviations of each status type.
+
+![](images/PersonLeadStatusDiagram.png)
+
+The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
+The user is able to change the lead status of a contact to any other lead status. The timestamp is updated to the
+`LocalDateTime.now()` of when the command is executed. If the lead status to change to is the same as the preexisting
+one, the command returns and does not alter the previous lead status (and timestamp).
+
+![](images/StatusSequenceDiagram.png)
+(to update seq diagram to reflect timestamp implementation)
+
+### Tasks Feature
+
+#### About
+
+The Tasks feature aims to provide information about the tasks to be done for contacts.
+
+#### Implementation
+
+Tasks are represented by a `Task` object that is stored as an attribute of `Person`, currently containing a String for
+the description of the task. In the future, it is possible to include various types of tasks such as events or 
+deadlines.
+
+Under the `Model` for `Person`, created an attribute `Task` to store the description of the task.
+The updating of the `Task` is done by editing the `Person` (contact) to have the new `Task`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -160,9 +243,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -223,14 +306,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -238,18 +322,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add transaction feature
 
---------------------------------------------------------------------------------------------------------------------
+#### Proposed Implementation
+
+The proposed add transaction mechanism is facilitated by `UniqueTransactionList`. It is similar to `UniquePersonList` which stores a list of unique transaction records.
+
+Given below is an example scenario and how to add transaction mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Storage` will check if there are existing transaction records in local storage. If transaction records are found, a `UniqueTransactionList` is created with existing transaction records. Else, an empty `UniqueTransactionList` is created in `AddressBook`.
+
+Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new transaction record. the `addtxn` command will be parsed by `AddTxnCommandParser` and a `AddTxnCommand` will be created. `AddTxnCommand#exexute()` add the input transaction record if it has a valid owner and it's not a duplicate of existing record, then it creates a `CommandResult` to provide feedback to the user.
+
+![AddTxnCommandSequenceDiagram](images/AddTxnCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How add transaction executes:**
+
+- **Alternative 1 (current choice):** Saves all transaction records in a separate list, each transaction has a non-null owner attribute indicates the other party involved in this transaction.
+
+  - Pros: Easy to implement, easy to search through all transaction records.
+  - Cons: May need long time to list down all transaction records under the save name.
+
+- **Alternative 2:** Each Person object has a transaction list attribute, to store transactions belong to him or her.
+  - Pros: Less time taken to identify transactions with the same person as no need to search through the whole transaction list.
+  - Cons: Difficult to carry out operations on all transactions.
+
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -257,20 +367,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Tech-nerds turned salespeople, who are used to a CLI-interface
-* Who have many contacts to trace
-* But don't want to deal with a cluttered interface, because updating a CRM can be a pain
-* And instead want a minimal and fast set-up to track their clients, tasks, and view stats
+- Tech-nerds turned salespeople, who are used to a CLI-interface
+- Who have many contacts to trace
+- But don't want to deal with a cluttered interface, because updating a CRM can be a pain
+- And instead want a minimal and fast set-up to track their clients, tasks, and view stats
 
 **Value proposition**: hyper-efficient CRM system for salespeople who don't want to work with a cluttered GUI
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                            | So that I can…​                                          |
-|----------|--------------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+| -------- | ------------------------------------------ | ------------------------------------------------------- | -------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                  | refer to instructions when I forget how to use the App   |
 | `* * *`  | salesperson                                | access and update customer information                  |                                                          |
 | `* * *`  | salesperson                                | add a new client                                        |                                                          |
@@ -281,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | frantic salesperson                        | be warned when I make certain actions in my application | won’t jeopardise my work through carelessness            |
 | `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                   |
 | `*`      | new user                                   | import my current database                              |                                                          |
-
+| `*`      | salesperson                                | record down all transactions with clients               |                                                          |
 
 ### Use cases
 
@@ -298,11 +407,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. AddressBook detects an error in the entered data.
-   * 1a1. AddressBook requests for the correct data.
-   * 1a2. User enters new data.
-   * Steps 1a1-1a2 are repeated until the data entered is correct.
-   * Use case resumes from step 2.
+- 1a. AddressBook detects an error in the entered data.
+
+  - 1a1. AddressBook requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
 
   Use case ends.
 
@@ -319,15 +429,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends.
 
-* 3a. AddressBook detects an error in the entered data.
-   * 3a1. AddressBook requests for the correct data.
-   * 3a2. User enters new data.
-   * Steps 3a1-3a2 are repeated until the data entered is correct.
-   * Use case resumes from step 4.
+- 3a. AddressBook detects an error in the entered data.
+
+  - 3a1. AddressBook requests for the correct data.
+  - 3a2. User enters new data.
+  - Steps 3a1-3a2 are repeated until the data entered is correct.
+  - Use case resumes from step 4.
 
   Use case ends.
 
@@ -337,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list 
+3.  User requests to delete a specific person in the list
 4.  AddressBook displays a confirmation message
 5.  User confirms to delete the specific person in the list
 6.  AddressBook deletes the person
@@ -346,17 +457,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+- 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  - 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -364,16 +475,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user should be able to work with 20 tasks per client without having noticeable sluggishness in performance for typical usage.
-5.  If a user wishes to use the email templating feature, a default mail app on their system is required. 
+5.  If a user wishes to use the email templating feature, a default mail app on their system is required.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
-* **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
-* **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Client. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
+- **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
+- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Client. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -397,7 +508,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

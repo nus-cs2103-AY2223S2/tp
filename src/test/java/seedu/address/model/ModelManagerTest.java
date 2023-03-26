@@ -15,9 +15,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+
 
 public class ModelManagerTest {
 
@@ -114,6 +117,18 @@ public class ModelManagerTest {
     @Test
     public void getFilteredTxnList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTransactionList().remove(0));
+    }
+
+    @Test
+    public void sortPersonList_validAttribute() {
+        ObservableList<Person> personList = modelManager.getFilteredPersonList();
+        modelManager.sortPersonList("name");
+        assertEquals(personList, modelManager.getFilteredPersonList());
+    }
+
+    @Test
+    public void sortPersonList_nullAttribute_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.sortPersonList(null));
     }
 
     @Test
