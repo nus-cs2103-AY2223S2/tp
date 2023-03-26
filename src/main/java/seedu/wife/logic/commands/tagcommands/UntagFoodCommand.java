@@ -38,6 +38,7 @@ public class UntagFoodCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         Food foodToUntag = UntagFoodCommand.getFoodToUntag(model, tag, index);
         Set<Tag> foodTags = foodToUntag.getCurrentTags();
 

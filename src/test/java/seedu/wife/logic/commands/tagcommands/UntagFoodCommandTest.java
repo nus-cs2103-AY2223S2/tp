@@ -18,7 +18,6 @@ import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.TagBuilder;
 import seedu.wife.testutil.TypicalTag;
 
-
 public class UntagFoodCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "%s successfully untagged from %s";
     private static final String EXPECTED_ERROR_TAG_NOT_FOUND = "There is no %s Tag!";
