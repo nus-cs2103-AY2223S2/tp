@@ -1,3 +1,6 @@
+# User Guide
+
+
 ## Table of contents
 
 1. [About HMHero](#1-about-hmhero)
@@ -1074,14 +1077,76 @@ Java dependencies:
 
 Documentation dependencies:
 * [PlantUML](https://plantuml.com/) for creating UML diagrams
+* [Jekyll](https://jekyllrb.com/)  for rendering the website
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 ## 11. Glossary
+
 ### A
-> #### ADDRESS (Placeholder)
+- [ADDRESS (Placeholder)](#address-placeholder)
+- [Address](#address)
+- [Admonitions](#admonitions)
+- [Applicant](#applicant)
+- [Application Stage](#application-stage)
+
+### C
+- [COMMAND_WORD (Placeholder)](#commandword-placeholder)
+- [Command](#command)
+- [Command Line (CLI)](#command-line)
+
+### E
+- [Placeholder](#email-placeholder)
+- [Email](#email)
+
+### F
+- [Flags](#flags)
+
+### G
+- [Graphical User Interface(GUI)](#graphical-user-interface)
+
+### H
+- [Help Window](#help-window)
+- [Hiring Manager](#hiring-manager)
+
+### I
+- [Input](#input)
+- [INTERVIEW_DATE (Placeholder)](#interviewdate-placeholder)
+- [Interview Date](#interview-date)
+
+### K
+- [KEYWORD (Placeholder)](#keyword-placeholder)
+
+### N
+- [NAME (Placeholder)](#name-placeholder)
+- [Name](#name)
+- [NOTES (Placeholder)](#notes-placeholder)
+- [Notes](#notes)
+
+### O
+- [Operating System (OS)](#operating-system)
+- [Output](#output)
+
+### P
+- [Parameter](#parameter)
+- [PHONE_NUMBER (Placeholder)](#phonenumber-placeholder)
+- [Phone Number](#phone-number)
+- [Placeholder](#placeholder)
+
+### S
+- [STATUS (Placeholder)](#status-placeholder)
+- [Status](#status)
+- [Syntax](#syntax)
+
+### U
+- [URL](#url)
+
+
+
+### A
+> #### ADDRESS Placeholder
 > The ADDRESS is a text representing the address of the applicants.
 > #### Address
 > The address of the applicant provided by the user.
@@ -1093,15 +1158,15 @@ Documentation dependencies:
 > All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 
 ### C
-> #### COMMAND_WORD (Placeholder)
+> #### COMMAND_WORD Placeholder
 > The COMMAND_WORD is a text indicating a command word of a command
 > #### Command
 > A feature or function that HMHero can perform.
-> #### Command Line (CLI)
+> #### Command Line 
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
 
 ### E
-> #### EMAIL (Placeholder)
+> #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
 > #### Email
 > The email address of the applicant provided by the user.
@@ -1111,7 +1176,7 @@ Documentation dependencies:
 > A marker to identify the type of input by the user. For instance, in `n/NAME`, `n/` is the flag.
 
 ### G
-> #### Graphical User Interface(GUI)
+> #### Graphical User Interface
 > A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
 
 ### H
@@ -1123,27 +1188,27 @@ Documentation dependencies:
 ### I
 > #### Input
 > The text that a user would enter into HMHero
-> #### INTERVIEW_DATE (Placeholder)
+> #### INTERVIEW_DATE Placeholder
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
 
 ### K
-> #### KEYWORD (Placeholder)
+> #### KEYWORD Placeholder
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
 
 ### N
-> #### NAME (Placeholder)
+> #### NAME Placeholder
 > The NAME is a text representing the name of the applicants.
 > #### Name
 > The name of the applicant provided by the user.
-> #### NOTES (Placeholder)
+> #### NOTES Placeholder
 > The NOTES are some texts that use to represent the skill set of the applicants.
 > #### Notes
 > The skill set the applicant possesses provided by the user.
 
 ### O
-> #### Operating System (OS)
+> #### Operating System
 > Is a software program that manages computer hardware and software resources, and provides common services for computer programs to run and interact with the computer hardware.
 > #### Output
 > The result after calling a Command. Results are displayed in the GUI.
@@ -1151,7 +1216,7 @@ Documentation dependencies:
 ### P
 > #### Parameter
 > Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
-> #### PHONE_NUMBER (Placeholder)
+> #### PHONE_NUMBER Placeholder
 > The PHONE_NUMBER is an integer representing the phone number of the applicant.
 > #### Phone Number
 > The phone number of the applicant provided by the user.
@@ -1159,7 +1224,7 @@ Documentation dependencies:
 > Placeholders in HMHero refers to the UPPER_CASE words that appear after the flags in commands that is provided by the user. For instance, `n/NAME`, `NAME` is a placeholder
 
 ### S
-> #### STATUS (Placeholder)
+> #### STATUS Placeholder
 > The STATUS is a text that represent the current state of the applicant.
 > #### Status
 > Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
