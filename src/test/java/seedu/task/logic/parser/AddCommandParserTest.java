@@ -141,6 +141,13 @@ public class AddCommandParserTest {
                         + PREFIX_DEADLINE + validDate + " " + PREFIX_FROM + validDate + " "
                         + PREFIX_TO + validDate,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        // Test if input has only from/to
+        assertParseFailure(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY + PREFIX_DESCRIPTION + " "
+                        + PREFIX_FROM + validDate,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY + PREFIX_DESCRIPTION + " "
+                        + PREFIX_TO + validDate,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
     @Test

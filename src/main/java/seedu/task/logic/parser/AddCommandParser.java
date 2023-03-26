@@ -43,11 +43,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
                             PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM, PREFIX_EFFORT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()
                 || (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)
-                    && (arePrefixesPresent(argMultimap, PREFIX_FROM)
-                        || arePrefixesPresent(argMultimap, PREFIX_TO)))) {
+                    && areSomePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO))
+                || ((areSomePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO)
+                && areSomePrefixesAbsent(argMultimap, PREFIX_FROM, PREFIX_TO)))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -148,4 +149,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if at least one of the prefixes contains non empty values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areSomePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areSomePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
+    }
 }
