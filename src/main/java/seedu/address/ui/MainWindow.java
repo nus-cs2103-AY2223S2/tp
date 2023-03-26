@@ -13,17 +13,13 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -89,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        importWindow = new ImportWindow();
+        importWindow = new ImportWindow(this.logic);
     }
 
     public Stage getPrimaryStage() {
@@ -170,12 +166,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        // if (!helpWindow.isShowing()) {
-        //     helpWindow.show();
-        // } else {
-        //     helpWindow.focus();
-        // }
-        importWindow.show();
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+
     }
 
     /**
@@ -183,26 +179,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleImport() {
-        logger.info("Import Button Clicked");
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Backup File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.json"));
-        File backupFile = fileChooser.showOpenDialog(primaryStage);
-
-        if (backupFile == null) {
-            logger.info("No file selected");
-            return;
-        }
-
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(backupFile.toPath());
-
-        try {
-            this.logic.setAddressBook(addressBookStorage.readAddressBook().get());
-        } catch (DataConversionException | IOException e) {
-            logger.info("Error reading backup file");
-        } catch (CommandException e) {
-            logger.info("Error setting address book");
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        } else {
+            importWindow.focus();
         }
     }
 

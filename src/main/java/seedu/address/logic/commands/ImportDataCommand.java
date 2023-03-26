@@ -45,9 +45,9 @@ public class ImportDataCommand extends Command {
             ReadOnlyAddressBook data = addressBookStorage.readAddressBook().get();
             model.setAddressBook(data);
         } catch (DataConversionException d) {
-            throw new CommandException("Error reading file");
+            throw new CommandException("Wrong data format");
         } catch (IOException e) {
-            throw new CommandException("Error importing data");
+            throw new CommandException("Error while importing data");
         } catch (NoSuchElementException e) {
             throw new CommandException("Error missing file");
         }
