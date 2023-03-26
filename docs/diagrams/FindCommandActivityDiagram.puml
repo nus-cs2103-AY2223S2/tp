@@ -11,10 +11,7 @@ if () then ([Phone flag
 present])
     :Create Phone Predicate;
 endif
-if () then ([Note flag
-present])
-    :Create Note Predicate(s);
-endif
+
 if () then ([else])
 :Apply logical AND to all existing Predicates;
 :Find command successfully executes;

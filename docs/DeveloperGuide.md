@@ -267,7 +267,7 @@ a default behaviour when rejecting an applicant's status.
 #### Overview
 
 The `find` command filters applicants based on fields specified by the user. 
-Fields have to be denoted by flags. Allowed fields for filtering are `name`, `phone` and `note`.
+Fields have to be denoted by flags. Allowed fields for filtering are `name` and `phone`.
 
 The activity diagram is as such:
 
