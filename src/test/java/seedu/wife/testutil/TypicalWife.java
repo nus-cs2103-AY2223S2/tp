@@ -32,11 +32,7 @@ public class TypicalWife {
         for (Food food : TypicalFood.getTypicalFoodWithoutTag()) {
             wife.addFood(food);
         }
-
-        for (Tag tag : TypicalTag.getTypicalTag()) {
-            wife.createTag(tag);
-        }
-
+        
         return wife;
     }
 }
