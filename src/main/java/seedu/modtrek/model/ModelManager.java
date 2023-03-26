@@ -141,6 +141,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getSort() {
+        return degreeProgression.getSort();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

@@ -124,6 +124,8 @@ public interface Model {
 
     void sortModuleGroups(SortCommand.Sort sort);
 
+    String getSort();
+
     /**
      * Updates the filter of the filtered Module list to filter by the given {@code predicate}.
      *

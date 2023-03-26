@@ -155,6 +155,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public String getSort() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
