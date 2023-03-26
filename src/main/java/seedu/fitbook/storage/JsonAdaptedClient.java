@@ -190,7 +190,5 @@ class JsonAdaptedClient {
         final List<Weight> modelWeightHistory = new ArrayList<>(clientWeightHistory);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
                 modelWeight, modelGender, modelCalorie, modelGoal, modelTags, modelWeightHistory);
-
     }
-
 }
