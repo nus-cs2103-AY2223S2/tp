@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 
 /**
  * Panel containing the list of student attendance.
@@ -18,12 +18,12 @@ public class AttendanceListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CourseListPanel.class);
 
     @FXML
-    private ListView<Student> attendanceListView;
+    private ListView<StudentWithAttendance> attendanceListView;
 
     /**
      * Creates a {@code AttendanceListPanel} with the given {@code ObservableList}.
      */
-    public AttendanceListPanel(ObservableList<Student> studentList) {
+    public AttendanceListPanel(ObservableList<StudentWithAttendance> studentList) {
         super(FXML);
         attendanceListView.setItems(studentList);
         attendanceListView.setCellFactory(listView -> new AttendanceListViewCell());
@@ -32,21 +32,25 @@ public class AttendanceListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code AttendanceListCard}.
      */
-    class AttendanceListViewCell extends ListCell<Student> {
+    class AttendanceListViewCell extends ListCell<StudentWithAttendance> {
         @Override
-        protected void updateItem(Student student, boolean empty) {
+        protected void updateItem(StudentWithAttendance student, boolean empty) {
             super.updateItem(student, empty);
 
             if (empty || student == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AttendanceListCard(student, getIndex() + 1).getRoot());
+                if (student.getAttendance() == 1) {
+                    setGraphic(new AttendanceListCard(student, getIndex() + 1).getRoot());
+                } else {
+                    setGraphic(new AbsentListCard(student, getIndex() + 1).getRoot());
+                }
             }
         }
     }
 
-    public void setAttendanceListView(ObservableList<Student> studentList) {
+    public void setAttendanceListView(ObservableList<StudentWithAttendance> studentList) {
         attendanceListView.setItems(studentList);
     }
 

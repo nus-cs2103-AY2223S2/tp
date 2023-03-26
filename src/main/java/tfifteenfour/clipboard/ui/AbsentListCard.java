@@ -13,9 +13,9 @@ import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 /**
  * An UI component that displays the attendance information of a {@code Student}.
  */
-public class AttendanceListCard extends UiPart<Region> {
+public class AbsentListCard extends UiPart<Region> {
 
-    private static final String FXML = "AttendanceListCard.fxml";
+    private static final String FXML = "AbsentListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -38,9 +38,9 @@ public class AttendanceListCard extends UiPart<Region> {
     private Label studentId;
 
     /**
-     * Creates an AttendanceListCard with the given StudentWithAttendance and index to display.
+     * Creates a AbsentListCard with the given {@code StudentWithAttendance} and index to display.
      */
-    public AttendanceListCard(StudentWithAttendance student, int displayedIndex) {
+    public AbsentListCard(StudentWithAttendance student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
@@ -61,7 +61,7 @@ public class AttendanceListCard extends UiPart<Region> {
         }
 
         // state check
-        AttendanceListCard card = (AttendanceListCard) other;
+        AbsentListCard card = (AbsentListCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }
