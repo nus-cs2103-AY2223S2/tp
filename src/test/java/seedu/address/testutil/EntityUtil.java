@@ -8,8 +8,7 @@ import seedu.address.model.entity.Entity;
 
 
 /**
- * A utility class for Entity
- *.
+ * A utility class for Entity.
  */
 public class EntityUtil {
 

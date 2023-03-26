@@ -12,8 +12,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.experimental.model.Model;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.entity.NameContainsKeywordsPredicate;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.NameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.

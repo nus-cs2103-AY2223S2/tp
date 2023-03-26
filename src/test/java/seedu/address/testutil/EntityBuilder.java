@@ -3,8 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 import seedu.address.model.tag.Tag;
 
 /**
