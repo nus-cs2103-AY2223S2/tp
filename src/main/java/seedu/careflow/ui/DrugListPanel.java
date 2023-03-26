@@ -99,11 +99,13 @@ public class DrugListPanel extends UiPart<Region> {
      * Update the display inside {@code drugDetailDisplay} in response to changes inside the ObservableList or click
      * @param selectedDrug the drug to be displayed
      */
-    private void updateDisplay(Drug selectedDrug) {
-        Label[] fields = new Label[]{activeIngredientField, directionField, purposesField,
+    public void updateDisplay(Drug selectedDrug) {
+        Label[] fields = new Label[]{
+            activeIngredientField, directionField, purposesField,
             sideEffectsField, storageCountField};
-        Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient, selectedDirection,
-            selectedPurposes, selectedSideEffects, selectedStorageCount};
+        Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient,
+            selectedDirection, selectedPurposes,
+            selectedSideEffects, selectedStorageCount};
         setupStyle();
         setDrugFieldsDisplay(fields);
         updateDisplayedDrugDetail(selectedDrug, details);

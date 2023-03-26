@@ -1,4 +1,5 @@
 package seedu.careflow.ui;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -107,7 +108,7 @@ public class PatientListPanel extends UiPart<Region> {
      * Update the display inside {@code patientDetailDisplay} in response to changes inside the ObservableList or click
      * @param selectedPatient the patient to be displayed
      */
-    private void updateDisplay(Patient selectedPatient) {
+    public void updateDisplay(Patient selectedPatient) {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
             drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
