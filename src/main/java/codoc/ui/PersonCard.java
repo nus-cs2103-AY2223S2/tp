@@ -42,16 +42,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
 
-    private MainWindow mainWindow;
-
     private int displayedIndex;
+    private MainWindow.ClickListener clickListener;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(MainWindow mainWindow, Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex) {
         super(FXML);
-        this.mainWindow = mainWindow;
         this.person = person;
         this.displayedIndex = displayedIndex;
         id.setText(displayedIndex + "");
@@ -64,10 +62,16 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
     }
 
+    public void setClickListener(MainWindow.ClickListener listener) {
+        this.clickListener = listener;
+    }
+
     @FXML
     private void viewPerson() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view " + displayedIndex);
+        String index = id.getText();
+        clickListener.viewIndex(index);
     }
+
 
     @Override
     public boolean equals(Object other) {

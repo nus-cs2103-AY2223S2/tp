@@ -16,6 +16,7 @@ import javafx.scene.layout.Region;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private MainWindow.ClickListener clickListener;
 
     @FXML
     private ListView<Person> personListView;
@@ -27,26 +28,21 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         ObservableList<Person> personList = mainWindow.getLogic().getFilteredPersonList();
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell(mainWindow));
-        personListView.setSelectionModel(null);
-        personListView.setOnMousePressed(event -> {
-            try {
-                int index = personListView.getSelectionModel().getSelectedIndex();
-                // do something with selected person
-            } catch (NullPointerException e) {
-                // do nothing
-            }
-        });
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
+     * Set UiEventListener for InfoTab.
+     * @param listener
+     */
+    public void setClickListener(MainWindow.ClickListener listener) {
+        this.clickListener = listener;
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
-        private MainWindow mainWindow;
-        public PersonListViewCell(MainWindow mainWindow) {
-            this.mainWindow = mainWindow;
-        }
 
         @Override
         protected void updateItem(Person person, boolean empty) {
@@ -56,7 +52,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(mainWindow, person, getIndex() + 1).getRoot());
+                PersonCard item = new PersonCard(person, getIndex() + 1);
+                item.setClickListener(clickListener);
+                setGraphic(item.getRoot());
             }
         }
     }

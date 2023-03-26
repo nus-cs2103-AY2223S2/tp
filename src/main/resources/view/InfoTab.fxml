@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19"
+<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0">
