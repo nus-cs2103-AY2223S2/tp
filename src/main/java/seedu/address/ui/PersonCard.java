@@ -26,6 +26,8 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    private final String drugAllergies = "Allergies: ";
+
     @FXML
     private HBox cardPane;
     @FXML
