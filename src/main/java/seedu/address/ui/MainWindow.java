@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
     private TaskListPanel taskListPanel;
     private ScoreListPanel scoreListPanel;
 
@@ -88,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        importWindow = new ImportWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -168,11 +170,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+        // if (!helpWindow.isShowing()) {
+        //     helpWindow.show();
+        // } else {
+        //     helpWindow.focus();
+        // }
+        importWindow.show();
     }
 
     /**
