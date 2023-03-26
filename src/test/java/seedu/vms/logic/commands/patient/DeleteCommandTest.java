@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.vms.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.vms.testutil.TypicalIndexes.INDEX_NINE_NINE_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
@@ -83,9 +84,7 @@ public class DeleteCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
-        Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of patient manager list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPatientManager().getMapView().size());
+        Index outOfBoundIndex = INDEX_NINE_NINE_PATIENT;
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
