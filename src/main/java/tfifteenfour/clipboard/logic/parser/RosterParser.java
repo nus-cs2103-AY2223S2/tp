@@ -17,9 +17,10 @@ import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddCommand;
-import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
@@ -112,6 +113,9 @@ public class RosterParser {
 
         case MarkAbsentCommand.COMMAND_WORD:
             return new UnmarkCommandParser().parse(arguments);
+
+        case AttendanceCommand.COMMAND_WORD:
+            return new AttendanceCommand();
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
