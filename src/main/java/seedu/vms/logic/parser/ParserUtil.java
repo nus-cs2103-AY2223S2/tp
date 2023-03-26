@@ -229,8 +229,8 @@ public class ParserUtil {
                 return Retriever.of(retrieverValue);
 
             case RETRIEVER_TYPE_INDEX:
-                int index = Integer.parseInt(retrieverValue);
-                return Retriever.of(index);
+                Index index = parseIndex(retrieverValue);
+                return Retriever.of(index.getZeroBased());
 
             default:
                 throw new ParseException("Unknown retriever type");
