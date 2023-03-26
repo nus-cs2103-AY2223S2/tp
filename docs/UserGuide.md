@@ -60,20 +60,50 @@ improving the efficiency of grocery shopping.
 
 </div>
 
-### Viewing help : `help`
+### Getting help: `help`
 
-Shows a list of available commands as well as their correct formats
+Dynamic helps functionality provides general help as well as command specific help that includes command formats and example usages.
 
-Format: `help`
+Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view general help
 
-Example:
-`help` returns 
+##### List of COMMAND_NAME
+- Food Commands:
+  * add
+  * delete
+  * delbytag
+  * edit
+  * find
+  * inc
+  * list
+  * view
+
+- Tag Commands:
+  * tag
+  * untag
+  * createtag
+  * deltag
+  * listbytag
+  * listtag
+
+- General Commands:
+  * clear
+  * exit
+  * help
+
+
+Example 1:
+`help` displays a general help message
 ```
-Command Examples:
-Add food item - add <Food Name>
-Update food item - update <Food Name>
-Delete food item - delete <Index>
-Tag food item - tag <Index> /with <Tag Name>
+Type 'help COMMAND' to see specific help for a command.
+Commands Available: add, delete, edit, find, list, view, tag, clear, exit
+
+For more information refer to the user guide: https://ay2223s2-cs2103t-t11-1.github.io/tp/UserGuide.html
+```
+Example 2:
+`help add` displays the command format and example usages specific to the `add` command
+```
+Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...
+Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033 t/VEGETABLES t/HEALTHY
 ```
 
 
