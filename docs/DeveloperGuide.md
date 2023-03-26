@@ -209,11 +209,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 - 2a. The list is empty.
 
     Use case ends.
-    
+
 - 3a. The given index is invalid.
     - 3a1. ListingBook shows an error message.
     - Use case resumes at step 2.
-    
+ 
 - 3b. The placeholders used are invalid.
     - 3b1. ListingBook shows an error message.
     - Use case resumes at step 2.
@@ -264,7 +264,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 - 2a. The list is empty.
 
     Use case ends.
-    
+
 ### **Use case: Undo**
 
 **MSS**
@@ -273,7 +273,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 3. ListingBook displays reversed list of job listings.
 
     Use case ends.
-    
+ 
 **Extensions**
 - 2a. Previous command does not change the ListingBook.
 
@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 - 4b. The list is empty.
 
     Use case ends.
-    
+
 **Use case: Delete an applicant from a job listing**
 
 **MSS**
