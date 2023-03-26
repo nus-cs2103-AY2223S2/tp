@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRUG_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -177,6 +178,11 @@ public class AddCommandParserTest {
         // invalid gender
         assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB + INVALID_GENDER_DESC + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
+
+        // multiple gender
+        assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB + INVALID_GENDER_DESC_2 + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid tag

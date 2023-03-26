@@ -32,34 +32,46 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withDrugAllergy("NKDA")
-            .withTags("friends").build();
+            .withTags("Diabetic")
+            .build();
     public static final Person BENSON = new PersonBuilder().withNric("S2345678B")
             .withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withDrugAllergy("NKDA")
-            .withTags("owesMoney", "friends").build();
+            .withTags("Osteoporotic", "Diabetic")
+            .build();
     public static final Person CARL = new PersonBuilder().withNric("S3456789C")
             .withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withDrugAllergy("Penicilin").build();
+            .withDrugAllergy("Penicilin")
+            .withTags("Asthmatic")
+            .build();
     public static final Person DANIEL = new PersonBuilder().withNric("S0123456D")
             .withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withDrugAllergy("Aspirin Panadol").withTags("friends").build();
+            .withDrugAllergy("Aspirin Panadol")
+            .withTags("Epileptic")
+            .build();
     public static final Person ELLE = new PersonBuilder().withNric("S0000000E")
             .withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withDrugAllergy("NKDA").build();
+            .withDrugAllergy("NKDA")
+            .withTags("Arthritic")
+            .build();
 
     public static final Person FIONA = new PersonBuilder().withNric("S1111111F")
             .withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withDrugAllergy("Aspirin Panadol").build();
+            .withDrugAllergy("Aspirin Panadol")
+            .withTags("Diabetic")
+            .build();
     public static final Person GEORGE = new PersonBuilder().withNric("S2222222G")
             .withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withDrugAllergy("Lidocaine").build();
+            .withDrugAllergy("Lidocaine")
+            .withTags("Diabetic")
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("S3333333H")
