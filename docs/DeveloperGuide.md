@@ -142,9 +142,10 @@ The `Model` component,
   
 
 #### Relationship Between `Internship` and `Event` entities
-Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two .
-Also to make insertions and deletions of events easier , each event instance stores the internship instance it is associated with.Due to this ,
-extra precuations are taken during internship deletions , making sure the corresponding events are deleted as well.
+Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
+Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
+associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
+events are deleted as well.
 
 
 <img src="images/InternshipEventModelClassDiagram.png" width="250" />
@@ -211,12 +212,6 @@ The Activity Diagram for Add event is
 The Sequence Diagram for the adding the event is
 ![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
 
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Select command feature
 
 #### Implementation
@@ -247,9 +242,31 @@ The following sequence diagram shows how the select command works:
 
 ![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SelectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
+lifeline reaches the end of diagram.
 
-</div>
+### Clash Command feature
+
+#### Implementation
+The purpose of the `clash` command is for users to finding events with clashing timing, enabling them to reschedule
+clashing events.
+
+The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
+`execute()` method.
+
+Given below is an example usage scenario and how the select command behaves at each step.
+
+Step 1. The user enters the `clash` command into the CLI.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
+
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, 
+which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
+
+Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
+all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
+of events that it clashes with.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
