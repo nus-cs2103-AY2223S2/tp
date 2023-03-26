@@ -91,4 +91,11 @@ public class SortCommand extends Command {
         model.sortModuleGroups(SortCommand.Sort.valueOf(sortOrder));
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortOrder.equals(((SortCommand) other).sortOrder)); // state check
+    }
 }
