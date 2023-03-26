@@ -166,7 +166,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<Object> scoreTable = createScoreTable(key.getScoreList(), xInit, yInit, fontBold, 16, font,
                 14, contentStream, document, horizontalWrap, margin);
         contentStream = (PDPageContentStream) scoreTable.get(0);
-        yInit = (float) scoreTable.get(2);
 
         contentStream.close();
         return document;

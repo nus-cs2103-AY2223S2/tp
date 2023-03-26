@@ -136,6 +136,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
                 resultDisplay.setText("Error!\n" + e.getMessage());
                 saveAsButton.setDisable(false);
             }
+
         }
     }
 }
