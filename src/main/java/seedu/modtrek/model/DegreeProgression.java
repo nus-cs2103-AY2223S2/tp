@@ -110,6 +110,11 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
         return modules.sortModuleGroups(sort);
     }
 
+    @Override
+    public String getSort() {
+        return modules.getSort();
+    }
+
     //// util methods
 
     @Override

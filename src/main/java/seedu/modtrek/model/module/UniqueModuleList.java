@@ -2,6 +2,7 @@ package seedu.modtrek.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.modtrek.logic.commands.CommandResult.DEFAULT_SORT;
 
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +23,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
     private TreeMap<?, ObservableList<Module>> moduleGroups = new TreeMap<>();
+    private CommandResult.Sort sort = DEFAULT_SORT;
 
 
     /**
@@ -46,6 +48,7 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
+        sortModuleGroups(sort);
     }
 
     /**
@@ -67,6 +70,7 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.set(index, editedModule);
+        sortModuleGroups(sort);
     }
 
     /**
@@ -79,6 +83,7 @@ public class UniqueModuleList implements Iterable<Module> {
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
+        sortModuleGroups(sort);
     }
 
     /**
@@ -91,6 +96,7 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         moduleGroups = sortBySemYear();
+        sort = CommandResult.Sort.SEMYEAR;
     }
 
     /**
@@ -107,6 +113,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
         internalList.setAll(modules);
         moduleGroups = sortBySemYear();
+        sort = CommandResult.Sort.SEMYEAR;
     }
 
     /**
@@ -216,6 +223,7 @@ public class UniqueModuleList implements Iterable<Module> {
      * @return the tree map
      */
     public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
+        this.sort = sort;
         switch (sort) {
         case GRADE:
             moduleGroups = sortByGrade();
@@ -236,5 +244,9 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public TreeMap<?, ObservableList<Module>> getModuleGroups() {
         return moduleGroups;
+    }
+
+    public String getSort() {
+        return sort.name();
     }
 }

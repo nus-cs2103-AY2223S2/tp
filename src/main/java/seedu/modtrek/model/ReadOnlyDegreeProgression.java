@@ -24,4 +24,6 @@ public interface ReadOnlyDegreeProgression {
     DegreeProgressionData getProgressionData();
 
     TreeMap<? extends Object, ObservableList<Module>> getModuleGroups();
+
+    String getSort();
 }
