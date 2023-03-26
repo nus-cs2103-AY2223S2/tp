@@ -50,9 +50,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (isPrefixesPresent(argMultimap, PREFIX_NAME)
                 && argMultimap.getPreamble().isEmpty()) {
             names = getKeywords(argMultimap.getValue(PREFIX_NAME).get());
-            for (int i = 0; i < names.length;  i++) {
-                System.out.println(names[i]);
-            }
 
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(names)));
 
