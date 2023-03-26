@@ -46,64 +46,60 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> filtersList = new ArrayList<>();
 
         boolean isModulePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
-        String codePrefixString = argMultimap.getValue(PREFIX_CODE).orElse("");
-        if (isModulePrefixPresent && codePrefixString.isEmpty()) {
+        if (isModulePrefixPresent && argMultimap.getAllValues(PREFIX_CODE).contains("")) {
             throw new ParseException(CodePrefix.MESSAGE_MISSING_DETAIL);
         }
-        if (!codePrefixString.isEmpty()) {
-            codePrefixString = ParserUtil.parseCodePrefix(codePrefixString).toString();
-            filtersList.add(PREFIX_CODE + " " + codePrefixString);
+        Set<String> codePrefixSet = ParserUtil.parseCodePrefixes(argMultimap.getAllValues(PREFIX_CODE));
+        for (String codePrefix : codePrefixSet) {
+            filtersList.add(PREFIX_CODE + " " + codePrefix);
         }
 
         boolean isCreditPrefixPresent = argMultimap.getValue(PREFIX_CREDIT).isPresent();
-        String creditString = argMultimap.getValue(PREFIX_CREDIT).orElse("");
-        if (isCreditPrefixPresent && creditString.isEmpty()) {
+        if (isCreditPrefixPresent && argMultimap.getAllValues(PREFIX_CREDIT).contains("")) {
             throw new ParseException(Credit.MESSAGE_MISSING_DETAIL);
         }
-        if (!creditString.isEmpty()) {
-            creditString = ParserUtil.parseCredit(creditString).toString();
-            filtersList.add(PREFIX_CREDIT + " " + creditString);
+        Set<Credit> creditSet = ParserUtil.parseCredits(argMultimap.getAllValues(PREFIX_CREDIT));
+        for (Credit credit : creditSet) {
+            filtersList.add(PREFIX_CREDIT + " " + credit.toString());
         }
 
         boolean isSemYearPresent = argMultimap.getValue(PREFIX_SEMYEAR).isPresent();
-        String semYearString = argMultimap.getValue(PREFIX_SEMYEAR).orElse("");
-        if (isSemYearPresent && semYearString.isEmpty()) {
+        if (isSemYearPresent && argMultimap.getAllValues(PREFIX_SEMYEAR).contains("")) {
             throw new ParseException(SemYear.MESSAGE_MISSING_DETAIL);
         }
-        if (!semYearString.isEmpty()) {
-            semYearString = ParserUtil.parseSemYear(semYearString).toString();
-            filtersList.add(PREFIX_SEMYEAR + " " + semYearString);
+        Set<SemYear> semYearSet = ParserUtil.parseSemYears(argMultimap.getAllValues(PREFIX_SEMYEAR));
+        for (SemYear semYear : semYearSet) {
+            filtersList.add(PREFIX_SEMYEAR + " " + semYear.toString());
         }
 
         boolean isGradePresent = argMultimap.getValue(PREFIX_GRADE).isPresent();
-        String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
-        if (isGradePresent && gradeString.isEmpty()) {
+        if (isGradePresent && argMultimap.getAllValues(PREFIX_GRADE).contains("")) {
             throw new ParseException(Grade.MESSAGE_MISSING_DETAIL);
         }
-        if (!gradeString.isEmpty()) {
-            gradeString = ParserUtil.parseGrade(gradeString).toString();
-            filtersList.add(PREFIX_GRADE + " " + gradeString);
+        Set<Grade> gradeSet = ParserUtil.parseGrades(argMultimap.getAllValues(PREFIX_GRADE));
+        for (Grade grade : gradeSet) {
+            filtersList.add(PREFIX_GRADE + " " + grade.toString());
         }
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         if (isTagPresent && argMultimap.getAllValues(PREFIX_TAG).contains("")) {
             throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);
         }
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        for (Tag tag : tagList) {
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        for (Tag tag : tagSet) {
             filtersList.add(PREFIX_TAG + " " + tag.tagName);
         }
 
         ModuleCodePredicate moduleCodePredicate;
         if (!argMultimap.getPreamble().isEmpty()) {
             Code code = ParserUtil.parseCode(argMultimap.getPreamble());
-            moduleCodePredicate = new ModuleCodePredicate(code.toString(), "",
-                    "", "", new HashSet<>());
+            moduleCodePredicate = new ModuleCodePredicate(true, code.toString(), new HashSet<>(),
+                    new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
             filtersList.clear();
             filtersList.add(code.toString());
         } else {
-            moduleCodePredicate = new ModuleCodePredicate(codePrefixString, creditString,
-                    semYearString, gradeString, (HashSet<Tag>) tagList);
+            moduleCodePredicate = new ModuleCodePredicate(false, "", codePrefixSet,
+                    creditSet, semYearSet, gradeSet, tagSet);
         }
 
         return new FindCommand(moduleCodePredicate, filtersList);
