@@ -1,15 +1,7 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Name;
-import seedu.address.model.tag.Tag;
-import seedu.address.logic.commands.AddEntityCommand;
-import seedu.address.testutil.EntityBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -17,13 +9,18 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEntities.AMY;
 import static seedu.address.testutil.TypicalEntities.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddEntityCommand;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Name;
+import seedu.address.testutil.EntityBuilder;
 
 public class AddEntityCommandParserTest {
     private AddEntityCommandParser parser = new AddEntityCommandParser();
