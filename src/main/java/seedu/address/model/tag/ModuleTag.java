@@ -9,19 +9,12 @@ public class ModuleTag extends Tag {
         super(tagName);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof ModuleTag
-            && tagName.equals(((ModuleTag) other).tagName));
-    }
-
     /**
      * @return the corresponding color code for css
      */
     @Override
     public String tagColor() {
-        return "#006400";
+        return "#193E04";
     }
 
     @Override
