@@ -224,7 +224,7 @@ public class ParserUtil {
     public static Day parseDay(String dayAsStr) throws ParseException {
         String upperDayAsStr = dayAsStr.toUpperCase();
         for (Day day : Day.values()) {
-            if (day.toString().contains(upperDayAsStr)) {
+            if (day.toString().startsWith(upperDayAsStr)) {
                 return day;
             }
         }
