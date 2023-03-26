@@ -27,6 +27,7 @@ public class AlertCommandParserTest {
         // Test for multiple arguments but all valid (should take the last one)
         assertParseSuccess(parser, "1 1 1 1 1 2", new AlertCommand(2));
         assertParseSuccess(parser, "1  1   1  2", new AlertCommand(2));
+        assertParseSuccess(parser, "a 1 2 3", new AlertCommand(3));
     }
 
     @Test
@@ -35,7 +36,7 @@ public class AlertCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
 
         // Test if there are multi arguments but some are invalid
-        assertParseFailure(parser, "a 1 2 3",
+        assertParseFailure(parser, "1 2 b",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
     }
 

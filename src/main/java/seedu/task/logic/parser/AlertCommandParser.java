@@ -21,11 +21,10 @@ public class AlertCommandParser implements Parser<AlertCommand> {
                 return new AlertCommand();
             }
             // assume that args might have multiple integers, of which we should take the last one
-            // first check if any of the arguments are non-integers
-            if (!onlyDigits(args)) {
+            String[] timeframes = args.split(" ");
+            if (!onlyDigits(timeframes[timeframes.length - 1])) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
             }
-            String[] timeframes = args.split(" ");
             int timeframe = ParserUtil.parseTimeFrame(timeframes[timeframes.length - 1].trim());
             return new AlertCommand(timeframe);
         } catch (ParseException pe) {
