@@ -17,31 +17,6 @@ Codebase foundation by AB3.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-## Before writing code
-
-1. **Configure the coding style** 
-
-    If using IDEA, follow the guide *[[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html)* to set up IDEA’s coding style to match ours.
-
-
-<aside>
-💡 Tip: Optionally, you can follow the guide *[[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html)* to find how to use the CheckStyle within IDEA e.g., to report problems *as* you write code.
-
-</aside>
-
-1. **Set up CI**
-
-    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up is required.
-
-2. **Learn the design**
-
-    When you are ready to start coding, we recommend that you get a sense of the overall design by reading about [AddressBook’s architecture](https://se-education.org/addressbook-level3/DeveloperGuide.html#architecture).
-
-3. **Do the tutorials** These tutorials will help you get acquainted with the codebase.
-    - [Tracing code](https://se-education.org/addressbook-level3/tutorials/TracingCode.html)
-    - [Adding a new command](https://se-education.org/addressbook-level3/tutorials/AddRemark.html)
-    - [Removing fields](https://se-education.org/addressbook-level3/tutorials/RemovingFields.html)
-
 ---
 
 # Appendix: Requirements
