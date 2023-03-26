@@ -155,15 +155,33 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Optional address, email, phone fields
+### Add Command
+The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
-### Birthday field
+The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
-### Social media field
+The sequence of the `add` command is as follows:
 
-### Module tag field
+1. `add INPUT` is entered.<br>
+2. `Logic Manger` calls the `ConnectUsParser#parseCommand` with the `INPUT`.<br>
+3. `ConnectUsParser` parses the command word, creating an instance of `AddCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.<br>
+4. `AddCommandParser` creates the corresponding `Person` object. This `Person` object is taken as the input of a new `AddCommand` object created by `AddCommandParser`.<br>
+5. `Logic Manager` executes `AddCommand#execute`, adding the `Person` to the model through `AddCommand` calling `Model#addPerson`.<br>
+6. `AddCommand` returns a `Command Result` with the result of the execution.
 
-### CCA and CCA position tag field
+If duplicate parameters are entered (e.g. `add n/Jason p/91234567 p/12345678`, where the phone parameter is entered twice), only the last instance, `p/12345678` will be taken.
+
+The `AddCommandParser` creates the corresponding `Person` object, which is then taken as an input by the `AddCommand` object that it creates and returns. `Logic Manager` then runs `AddCommand`, which then adds the `Person` to the model.
+
+The following sequence diagram shows how `add` works:
+
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+
+![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsSequenceDiagram.png)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
