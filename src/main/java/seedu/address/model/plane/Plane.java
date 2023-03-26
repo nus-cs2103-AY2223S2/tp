@@ -129,7 +129,6 @@ public class Plane implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", UUID_STRING, id),
                 String.format("%s: %s", MODEL_STRING, model),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())

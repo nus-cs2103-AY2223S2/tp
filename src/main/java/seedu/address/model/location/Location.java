@@ -105,8 +105,7 @@ public class Location implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", NAME_STRING, name),
-                String.format("%s: %s", ID_STRING, id));
+                String.format("%s: %s", NAME_STRING, name));
     }
 
     /**
