@@ -54,12 +54,12 @@ public class ListCommandTest {
         ListCommand listCommand = new ListCommand("paired");
         String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_PAIRED, 2, 3);
         Predicate<Elderly> elderlyPredicate = elderly -> {
-            String age = elderly.getAge().value;
-            return age.equals("20") || age.equals("23") || age.equals("31");
+            String name = elderly.getName().fullName;
+            return name.contains("Alice") || name.contains("Benson") || name.contains("Carl");
         };
         Predicate<Volunteer> volunteerPredicate = volunteer -> {
-            String age = volunteer.getAge().value;
-            return age.equals("25") || age.equals("28");
+            String name = volunteer.getName().fullName;
+            return name.contains("Daniel") || name.contains("Elle");
         };
         expectedModel.updateFilteredElderlyList(elderlyPredicate);
         expectedModel.updateFilteredVolunteerList(volunteerPredicate);
@@ -76,12 +76,12 @@ public class ListCommandTest {
         showPairAtIndex(model, INDEX_FIRST_PERSON);
 
         Predicate<Elderly> elderlyPredicate = elderly -> {
-            String age = elderly.getAge().value;
-            return age.equals("20") || age.equals("23") || age.equals("31");
+            String name = elderly.getName().fullName;
+            return name.contains("Alice") || name.contains("Benson") || name.contains("Carl");
         };
         Predicate<Volunteer> volunteerPredicate = volunteer -> {
-            String age = volunteer.getAge().value;
-            return age.equals("25") || age.equals("28");
+            String name = volunteer.getName().fullName;
+            return name.contains("Daniel") || name.contains("Elle");
         };
         expectedModel.updateFilteredElderlyList(elderlyPredicate);
         expectedModel.updateFilteredVolunteerList(volunteerPredicate);
@@ -93,12 +93,12 @@ public class ListCommandTest {
         ListCommand listCommand = new ListCommand("unpaired");
         String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_UNPAIRED, 5, 4);
         Predicate<Elderly> elderlyPredicate = elderly -> {
-            String age = elderly.getAge().value;
-            return !(age.equals("20") || age.equals("23") || age.equals("31"));
+            String name = elderly.getName().fullName;
+            return !(name.contains("Alice") || name.contains("Benson") || name.contains("Carl"));
         };
         Predicate<Volunteer> volunteerPredicate = volunteer -> {
-            String age = volunteer.getAge().value;
-            return !(age.equals("25") || age.equals("28"));
+            String name = volunteer.getName().fullName;
+            return !(name.contains("Daniel") || name.contains("Elle"));
         };
         expectedModel.updateFilteredElderlyList(elderlyPredicate);
         expectedModel.updateFilteredVolunteerList(volunteerPredicate);
@@ -115,12 +115,12 @@ public class ListCommandTest {
         showPairAtIndex(model, INDEX_FIRST_PERSON);
 
         Predicate<Elderly> elderlyPredicate = elderly -> {
-            String age = elderly.getAge().value;
-            return !(age.equals("20") || age.equals("23") || age.equals("31"));
+            String name = elderly.getName().fullName;
+            return !(name.contains("Alice") || name.contains("Benson") || name.contains("Carl"));
         };
         Predicate<Volunteer> volunteerPredicate = volunteer -> {
-            String age = volunteer.getAge().value;
-            return !(age.equals("25") || age.equals("28"));
+            String name = volunteer.getName().fullName;
+            return !(name.contains("Daniel") || name.contains("Elle"));
         };
         expectedModel.updateFilteredElderlyList(elderlyPredicate);
         expectedModel.updateFilteredVolunteerList(volunteerPredicate);
