@@ -2,6 +2,10 @@ package seedu.connectus.testutil;
 
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
@@ -11,10 +15,6 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
+            .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS).withCcaPositions(VALID_CCA_POSITION_DIRECTOR)
             .withCcaPositions(VALID_CCA_NES).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)

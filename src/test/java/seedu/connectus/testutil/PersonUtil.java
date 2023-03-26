@@ -1,10 +1,10 @@
 package seedu.connectus.testutil;
 
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
@@ -14,9 +14,9 @@ import java.util.Set;
 import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.connectus.model.person.Person;
-import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**

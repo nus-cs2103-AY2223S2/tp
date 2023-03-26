@@ -3,13 +3,13 @@ package seedu.connectus.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -100,11 +100,11 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different ccas -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_ICS).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_NES).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different ccaPositions -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_POSITION_DIRECTOR).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_POSITION_PRESIDENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

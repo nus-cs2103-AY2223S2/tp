@@ -3,13 +3,13 @@ package seedu.connectus.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -46,7 +46,6 @@ public class CommandTestUtil {
     public static final String VALID_CCA_POSITION_DIRECTOR = "DIRECTOR";
     public static final String VALID_CCA_POSITION_PRESIDENT = "PRESIDENT";
 
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -70,7 +69,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS2!03T"; //! not allowed in modules
     public static final String INVALID_CCA_DESC = " " + PREFIX_CCA + "*ICS*"; //* not allowed in ccas
-    public static final String INVALID_CCA_POSITION_DESC = " " + PREFIX_CCA_POSITION + "PRESIDENT!"; //! not allowed in ccas
+    public static final String INVALID_CCA_POSITION_DESC = " "
+            + PREFIX_CCA_POSITION + "PRESIDENT!"; //! not allowed in ccas
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
