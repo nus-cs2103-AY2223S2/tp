@@ -65,6 +65,8 @@ class JsonAdaptedPerson {
         }
         if (medicalCondition != null) {
             this.medicalCondition = medicalCondition;
+        } else {
+            this.medicalCondition = "";
         }
     }
 
