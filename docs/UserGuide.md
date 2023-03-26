@@ -84,13 +84,23 @@ Format: `selectDeck INDEX`
 Examples:
 * `selectDeck 2`
 
+### Reviewing a masterDeck: `review`
+
+Begins reviewing the **selected** Deck. 
+Changes current mode to Review Mode.
+
+Format: `review INDEX`
+
+Examples:
+* `review 2`
+
 ## Deck Mode
 
 Deck mode refers to when a deck is selected and the user wishes to manage the list of cards within this selected deck.
 
 ### Unselecting a Deck : `unselectDeck`
 
-Unselects the current masterDeck.
+Unselects the currently selected deck and return to Main mode.
 
 Format: `unselectDeck`
 
@@ -100,14 +110,12 @@ Examples:
 
 ### Adding a Powercard: `add`
 
-_**User must select a masterDeck to use this command.**_
-
 Adds a Powercard to the **selected** Deck.
 
-Format: `add q\QUESTION a\ANSWER [t\TAG]`
+Format: `add q\QUESTION a\ANSWER t\TAG`
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A card can have any number of tags (including 0)
+Tagging is optional and should be of value Easy, Medium, or Hard.
 </div> -->
 
 Examples:
@@ -116,17 +124,13 @@ Examples:
 
 ### Listing all Powercards : `list`
 
-_**User must select a masterDeck to use this command.**_
-
-Shows a list of all Powercard in the **selected** Deck.
+Shows a list of all Powercards in the **selected** Deck.
 
 Format: `list`
 
 ### Editing a Powercard : `edit`
 
-_**User must select a masterDeck to use this command.**_
-
-Edits an existing Powercard in a Deck. 
+Edits an existing Powercard in the **selected** Deck. 
 
 Format: `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
@@ -139,9 +143,8 @@ Examples:
 
 ### Reviewing a masterDeck: `review`
 
-_**User must select a masterDeck to use this command.**_
-
-Begins reviewing the selected masterDeck.
+Begins reviewing the **selected** Deck.
+Changes current mode to Review Mode.
 
 Format: `review INDEX`
 
@@ -179,7 +182,7 @@ Review mode is started when `review INDEX` has been entered on the main mode.
 
 ### Flipping the Powercard: `flip`
 
-Flips the Powercard to check the answer of it.
+Flips the Powercard to check the answer.
 
 Format: `[`
 
