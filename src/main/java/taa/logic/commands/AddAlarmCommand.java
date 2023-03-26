@@ -1,18 +1,18 @@
 package taa.logic.commands;
 
-import taa.logic.commands.exceptions.CommandException;
-import taa.model.Alarm;
-
-import taa.model.Model;
-
-
 import static java.util.Objects.requireNonNull;
 
+import taa.logic.commands.exceptions.CommandException;
+import taa.model.Alarm;
+import taa.model.Model;
 
+/**
+ * Defines the add alarm command
+ */
 public class AddAlarmCommand extends Command {
 
-    private final Alarm alarm;
     public static final String COMMAND_WORD = "add_alarm";
+    private final Alarm alarm;
 
     public AddAlarmCommand(Alarm alarm) {
         this.alarm = alarm;

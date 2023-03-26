@@ -1,5 +1,8 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static taa.logic.parser.CliSyntax.PREFIX_TIME;
+
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
 import taa.logic.parser.exceptions.ParseException;
@@ -7,11 +10,18 @@ import taa.model.Alarm;
 
 import java.util.stream.Stream;
 
-import static taa.logic.parser.CliSyntax.*;
-
+/**
+ * Defines the parser for the add alarm command.
+ */
 public class AddAlarmCommandParser {
 
-    public AddAlarmCommand parse(String string) throws ParseException{
+    /**
+     * Parses the add alarm command and returns an AddAlarmCommand instance after execution
+     * @param string user input to be parsed
+     * @return the parsed AddAlarmCommand instance
+     * @throws ParseException for invalid user input
+     */
+    public AddAlarmCommand parse(String string) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(string, PREFIX_TIME, PREFIX_COMMENT);
 

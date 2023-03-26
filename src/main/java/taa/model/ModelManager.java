@@ -9,10 +9,16 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Duration;
+
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
@@ -23,10 +29,6 @@ import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javafx.util.Duration;
 
 /**
  * Represents the in-memory model of the address book data.
