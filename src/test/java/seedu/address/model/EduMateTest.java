@@ -22,8 +22,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.recommendation.Recommendation;
-import seedu.address.model.recommendation.exceptions.DuplicateRecommendationException;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalUser;
 
@@ -57,7 +57,7 @@ public class EduMateTest {
         User validUser = TypicalUser.getTypicalUser();
         EduMateStub newData = new EduMateStub(newPersons, validUser);
 
-        assertThrows(DuplicateRecommendationException.class, () -> eduMate.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> eduMate.resetData(newData));
     }
 
     @Test
