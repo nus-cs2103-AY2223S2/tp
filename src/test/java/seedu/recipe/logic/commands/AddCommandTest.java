@@ -34,10 +34,9 @@ public class AddCommandTest {
     public void execute_recipeAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingRecipeAdded modelStub = new ModelStubAcceptingRecipeAdded();
         Recipe validRecipe = new RecipeBuilder().build();
-
         CommandResult commandResult = new AddCommand(validRecipe).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe.getTitle()),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validRecipe), modelStub.recipesAdded);
     }
 
@@ -46,32 +45,31 @@ public class AddCommandTest {
         Recipe validRecipe = new RecipeBuilder().build();
         AddCommand addCommand = new AddCommand(validRecipe);
         ModelStub modelStub = new ModelStubWithRecipe(validRecipe);
-
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RECIPE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Recipe corndogs = new RecipeBuilder().withTitle("Corndogs").build();
+        Recipe pizza = new RecipeBuilder().withTitle("Pizza").build();
         Recipe chicken = new RecipeBuilder().withTitle("Chicken").build();
-        AddCommand addCorndogsCommand = new AddCommand(corndogs);
-        AddCommand addChickenCommand = new AddCommand(chicken);
+        AddCommand addCommandPizza = new AddCommand(pizza);
+        AddCommand addCommandChicken = new AddCommand(chicken);
 
         // same object -> returns true
-        assertTrue(addCorndogsCommand.equals(addCorndogsCommand));
+        assertTrue(addCommandPizza.equals(addCommandPizza));
 
         // same values -> returns true
-        AddCommand addCorndogsCommandCopy = new AddCommand(corndogs);
-        assertTrue(addCorndogsCommand.equals(addCorndogsCommandCopy));
+        AddCommand addCommandPizzaCopy = new AddCommand(pizza);
+        assertTrue(addCommandPizza.equals(addCommandPizzaCopy));
 
         // different types -> returns false
-        assertFalse(addCorndogsCommand.equals(1));
+        assertFalse(addCommandPizza.equals(1));
 
         // null -> returns false
-        assertFalse(addCorndogsCommand.equals(null));
+        assertFalse(addCommandPizza.equals(null));
 
-        // different person -> returns false
-        assertFalse(addCorndogsCommand.equals(addChickenCommand));
+        // different recipe -> returns false
+        assertFalse(addCommandPizza.equals(addCommandChicken));
     }
 
     /**
@@ -150,7 +148,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single recipe.
      */
     private class ModelStubWithRecipe extends ModelStub {
         private final Recipe recipe;

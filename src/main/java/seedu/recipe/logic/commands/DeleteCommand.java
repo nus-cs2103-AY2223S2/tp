@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
 
         Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteRecipe(recipeToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete.getTitle()));
     }
 
     @Override
