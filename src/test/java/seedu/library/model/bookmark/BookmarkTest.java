@@ -76,7 +76,7 @@ public class BookmarkTest {
         editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+        // different genre -> returns false
         editedAlice = new BookmarkBuilder(ALICE).withGenre(VALID_GENRE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

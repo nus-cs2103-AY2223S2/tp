@@ -31,7 +31,7 @@ public class ParserUtilTest {
     private static final String VALID_PROGRESS_INPUT = "1 57 25";
     private static final String[] VALID_PROGRESS_ARRAY = new String[]{"1", "57", "25"};
     private static final String VALID_AUTHOR = "123 Main Street #0505";
-    private static final String VALID_GENRE = "rachel@example.com";
+    private static final String VALID_GENRE = "Fantasy";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
