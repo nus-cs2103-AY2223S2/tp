@@ -2,31 +2,31 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER;
 
-import seedu.address.logic.commands.SortStudentCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */
-public class SortStudentCommandParser implements Parser<SortStudentCommand> {
+public class FilterCommandParser implements Parser<FilterCommand> {
 
     public static final int groupIndex = 1;
     public static final int metricIndex = 2;
-    public static final int orderIndex = 3;
+    public static final int thresholdIndex = 3;
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SortStudentCommand parse(String args) throws ParseException {
+    public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT_STUDENT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILTER);
 
         String group;
         String metric;
-        boolean increasingOrder;
+        int threshold;
 
         try {
             String[] terms = args.split("\\s+");
@@ -35,11 +35,11 @@ public class SortStudentCommandParser implements Parser<SortStudentCommand> {
             } else {
                 group = terms[groupIndex];
                 metric = terms[metricIndex];
-                increasingOrder = (terms[orderIndex].equals("reverse")) ? false : true;
+                threshold = Integer.valueOf(terms[thresholdIndex]);
             }
         } catch (IllegalArgumentException iae) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortStudentCommand.MESSAGE_USAGE), iae);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), iae);
         }
-        return new SortStudentCommand(group, metric, increasingOrder);
+        return new FilterCommand(group, metric, threshold);
     }
 }
