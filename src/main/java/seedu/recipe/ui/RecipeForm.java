@@ -2,9 +2,9 @@ package seedu.recipe.ui;
 
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
@@ -19,12 +19,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import seedu.recipe.commons.core.LogsCenter;
+import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.logic.Logic;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
@@ -59,12 +60,15 @@ public class RecipeForm extends UiPart<Region> {
 
     @FXML
     private Button cancelButton;
-    private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private final Logic logic;
+    //Data fields
     private int displayedIndex;
     private Map<String, String> initialValues;
     private Recipe recipe;
+
+    //Logic executors and system logging
+    private final CommandExecutor commandExecutor;
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FunctionalInterface
     interface CustomFocusChangeListener {
@@ -77,10 +81,10 @@ public class RecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to edit or null for creating a new recipe.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public RecipeForm(Recipe recipe, int displayedIndex, Logic logic) {
+    public RecipeForm(Recipe recipe, int displayedIndex, CommandExecutor commandExecutor) {
         super(FXML);
         this.recipe = recipe;
-        this.logic = logic;
+        this.commandExecutor = commandExecutor;
         this.displayedIndex = displayedIndex;
         if (recipe != null) {
             populateFields();
@@ -207,7 +211,7 @@ public class RecipeForm extends UiPart<Region> {
                 currentValue = tagsField.getText();
                 break;
             default:
-                currentValue = ""; 
+                currentValue = "";
                 break;
             }
 
@@ -222,11 +226,11 @@ public class RecipeForm extends UiPart<Region> {
         cardPane.fireEvent(editEvent);
         */
         try {
-        System.out.println(changedValues);
-        //EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex, changedValues);
-        //handleEditRecipeEvent(editEvent);
-        handleEditRecipeEvent(displayedIndex, changedValues);
-        closeForm();
+            System.out.println(changedValues);
+            //EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex, changedValues);
+            //handleEditRecipeEvent(editEvent);
+            handleEditRecipeEvent(displayedIndex, changedValues);
+            closeForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -357,20 +361,21 @@ public class RecipeForm extends UiPart<Region> {
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             int currentIndex = ((VBox) textField.getParent()).getChildren().indexOf(textField);
             switch (event.getCode()) {
-                case UP:
-                    if (currentIndex > 0) {
-                        TextField prevField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex - 1);
-                        prevField.requestFocus();
-                    }
-                    break;
-                case DOWN:
-                case TAB:
-                    TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
-                    nextField.requestFocus();
-                    event.consume();
-                    break;
-                default:
-                    break;
+            case UP:
+                if (currentIndex > 0) {
+                    TextField prevField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex - 1);
+                    prevField.requestFocus();
+                }
+                break;
+            case DOWN:
+                break;
+            case TAB:
+                TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
+                nextField.requestFocus();
+                event.consume();
+                break;
+            default:
+                break;
             }
         });
 
@@ -399,10 +404,10 @@ public class RecipeForm extends UiPart<Region> {
                 }
             }
         });
-        
+
         return textField;
     }
-    
+
     /**
      * Closes the form without saving any changes.
      */
@@ -431,9 +436,10 @@ public class RecipeForm extends UiPart<Region> {
             }
         });
         window.setScene(scene);
-        window.showAndWait();    }
+        window.showAndWait();
+    }
 
-        /**
+    /**
      * Executes the command based on the given {@code commandText} and returns the result.
      * Updates the UI components based on the command result.
      *
@@ -444,7 +450,7 @@ public class RecipeForm extends UiPart<Region> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = commandExecutor.execute(commandText);
             //logger.info("Result: " + commandResult.getFeedbackToUser());
             //resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;

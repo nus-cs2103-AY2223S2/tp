@@ -177,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         assert statusbarPlaceholder != null : "Status bar placeholder cannot be null";
         assert commandBoxPlaceholder != null : "Command box placeholder cannot be null";
 
-        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
+        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList(), this::executeCommand);
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
