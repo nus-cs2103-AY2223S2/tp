@@ -33,7 +33,9 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `clear` : Deletes all Bookmarks.
    
+
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
+
    
    * `exit` : Exits the app.
 
@@ -104,6 +106,7 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* The genre and tags provided must be in the list of existing genre and tags respectively.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
@@ -115,20 +118,24 @@ Examples:
 
 ### Locating bookmarks by title: `find`
 
-Finds those bookmarks whose titles contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Find bookmarks whose specified fields contain the given keywords.
 
-* The search is case-insensitive. e.g. `ranker` will match `Ranker`
-* The order of the keywords does not matter. e.g. `Guide Ranker` will match `Ranker Guide`
-* Only the title is searched.
+
+Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
+
+
+* At least one of the optional fields must be provided.
+* The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
+* The search for genre and tag is case-sensitive. e.g. `fantasy` will not match `Fantasy`
+* The genre and tags provided must be in the list of existing genre and tags respectively.
+* The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
+* Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
-* Titles matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Ranker's Chainsaw` will return `Ranker's Guide to an Ordinary Life`, `Chainsaw Man`
 
 Examples:
-* `find Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
-* `find ranker's demon` returns `Ranker's Guide to an Ordinary Life`, `Demon Slayer`<br>
+* `find n/ Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+* `find n/ ranker's g/ Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`<br>
 
 
 ### Deleting a person : `delete`
@@ -143,7 +150,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
-* `find Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+* `find n/ Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
 ### Going to a url : `goto`
 
@@ -157,7 +164,7 @@ Format: `goto INDEX`
 
 Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
-* `find Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
+* `find n/ Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
@@ -205,7 +212,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chainsaw Man`
+**Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
 **Help** | `help`

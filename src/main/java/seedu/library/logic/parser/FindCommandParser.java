@@ -87,7 +87,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         List<String> genreKeywords = Arrays.asList(
                 argMultimap.getValue(PREFIX_GENRE).get().trim().split("\\s+"));
-        if (genreKeywords.stream().anyMatch(keyword -> Genre.isValidGenre(keyword))) {
+        if (genreKeywords.stream().anyMatch(keyword -> !Genre.isValidGenre(keyword))) {
             throw new ParseException(MESSAGE_INVALID_GENRE);
         }
         return genreKeywords;
@@ -99,7 +99,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         List<String> tagKeywords = Arrays.asList(
                 argMultimap.getValue(PREFIX_TAG).get().trim().split("\\s+"));
-        if (tagKeywords.stream().anyMatch(keyword -> Tag.isValidTagName("[" + keyword + "]"))) {
+        if (tagKeywords.stream().anyMatch(keyword -> !Tag.isValidTagName(keyword))) {
             throw new ParseException(MESSAGE_INVALID_TAG);
         }
         return tagKeywords;
