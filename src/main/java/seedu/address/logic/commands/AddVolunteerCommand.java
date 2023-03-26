@@ -40,6 +40,7 @@ public class AddVolunteerCommand extends Command {
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
         COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
         COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_tag>");
         COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
     }
