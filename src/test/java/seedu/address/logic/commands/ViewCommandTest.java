@@ -2,12 +2,24 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 
 public class ViewCommandTest {
+
+    @Test
+    public void constructor_nullRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ViewCommand(null));
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        ViewCommand view1Based1 = new ViewCommand(Index.fromOneBased(1));
+        assertThrows(NullPointerException.class, () -> view1Based1.execute(null));
+    }
 
     @Test
     public void equals() {
@@ -30,4 +42,5 @@ public class ViewCommandTest {
         // different role -> returns false
         assertFalse(view0Based0.equals(view0Based1));
     }
+
 }

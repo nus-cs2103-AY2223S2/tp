@@ -76,4 +76,5 @@ public class CommandResultTest {
         assertNotEquals(commandResultAlice.hashCode(),
                 new CommandResult<>(new RoleBuilder().withName("Alice").build(), false, true).hashCode());
     }
+
 }
