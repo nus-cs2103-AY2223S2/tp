@@ -5,8 +5,6 @@ import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.task.logic.commands.AlertCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 
-import java.util.Arrays;
-
 /**
  * Parses input arguments and creates a new AlertCommand object
  */

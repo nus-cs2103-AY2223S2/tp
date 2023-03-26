@@ -31,10 +31,12 @@ public class AlertCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
 
         // Test if there are multi arguments but some are invalid
-        assertParseFailure(parser, "a 1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a 1 2 3",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AlertCommand.MESSAGE_USAGE));
     }
 
     @Test
