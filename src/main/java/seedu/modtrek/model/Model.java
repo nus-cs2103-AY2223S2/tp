@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
-import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 

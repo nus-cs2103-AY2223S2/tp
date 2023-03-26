@@ -1,7 +1,6 @@
 package seedu.modtrek.logic;
 
 import java.nio.file.Path;
-import java.util.TreeMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;

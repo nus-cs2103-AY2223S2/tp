@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
-import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;

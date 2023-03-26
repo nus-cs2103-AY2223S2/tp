@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
-import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 
