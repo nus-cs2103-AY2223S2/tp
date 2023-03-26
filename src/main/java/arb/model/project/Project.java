@@ -118,11 +118,17 @@ public class Project {
         this.status.setFalse();
     }
 
+    /**
+     * Links {@code client} to this project.
+     */
     public void linkToClient(Client client) {
         requireNonNull(client);
         linkedClient = Optional.of(client);
     }
 
+    /**
+     * Unlinks any linked client from this project.
+     */
     public void unlinkFromClient() {
         linkedClient = Optional.empty();
     }

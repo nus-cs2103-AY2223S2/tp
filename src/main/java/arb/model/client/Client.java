@@ -4,13 +4,10 @@ import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 
-import arb.commons.core.LogsCenter;
 import arb.model.project.Project;
 import arb.model.project.UniqueProjectList;
 import arb.model.tag.Tag;
@@ -32,7 +29,6 @@ public class Client {
 
     private final UniqueProjectList linkedProjects;
 
-    private static final Logger logger = LogsCenter.getLogger(Client.class);
     /**
      * Name and tags must be present and not null.
      */
@@ -79,19 +75,26 @@ public class Client {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Links {@code project} to this client.
+     */
     public void linkProject(Project project) {
         if (!linkedProjects.contains(project)) {
             linkedProjects.add(project);
-            //assert false : getName() + ": " + linkedProjects.toString();
         }
     }
 
+    /**
+     * Unlinks {@code project} from this client.
+     */
     public void unlinkProject(Project project) {
-        logger.info("Entered unlink project");
         assert linkedProjects.contains(project) : getName() + ": " + linkedProjects.toString();
         linkedProjects.remove(project);
     }
 
+    /**
+     * Unlinks all linked projects from this client.
+     */
     public void unlinkAllProjects() {
         linkedProjects.setProjects(new UniqueProjectList());
     }
@@ -100,7 +103,7 @@ public class Client {
         return linkedProjects.asUnmodifiableObservableList().size();
     }
 
-    public ObservableList<Project> getProjectsLinked() {
+    public ObservableList<Project> getLinkedProjects() {
         return linkedProjects.asUnmodifiableObservableList();
     }
     /**
@@ -141,7 +144,7 @@ public class Client {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, tags, linkedProjects);
     }
 
     @Override

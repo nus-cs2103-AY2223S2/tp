@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import arb.commons.core.LogsCenter;
 import arb.commons.exceptions.IllegalValueException;
 import arb.model.AddressBook;
-import arb.model.client.Client;
 import arb.model.client.Name;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
@@ -117,11 +116,11 @@ public class JsonAdaptedProject {
         if (linkedClient != null && !Name.isValidName(linkedClient)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        if (linkedClient != null && !ab.hasClient(new Client(new Name(linkedClient), null, null, new HashSet<>()))) {
+        if (linkedClient != null && !ab.hasClient(new Name(linkedClient))) {
             throw new IllegalValueException("This client is not found in the addressbook!");
         }
         if (linkedClient != null) {
-            ab.linkClientToProject(new Name(linkedClient), project);
+            ab.linkProjectToClient(new Name(linkedClient), project);
         }
 
         return project;

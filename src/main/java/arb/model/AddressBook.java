@@ -2,8 +2,6 @@ package arb.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,11 +23,13 @@ import javafx.collections.ObservableList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
+
     private final UniqueClientList clients;
     private final UniqueProjectList projects;
     private final UniqueTagMappingList tagMappings;
 
-    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
+    private Optional<Project> projectToLink;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -42,6 +42,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients = new UniqueClientList();
         projects = new UniqueProjectList();
         tagMappings = new UniqueTagMappingList();
+        projectToLink = Optional.empty();
     }
 
     public AddressBook() {}
@@ -94,10 +95,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tagMappings.resetProjectTagMappings();
     }
 
+    /**
+     * Unlinks all linked projects from clients in the client list.
+     */
     public void resetClientLinkings() {
+        logger.info("Resetting client links");
         this.clients.resetProjectLinkings();
     }
 
+    /**
+     * Unlinks all linked clients from projects in the project list.
+     */
     public void resetProjectLinkings() {
         logger.info("Resetting project links");
         this.projects.resetClientLinkings();
@@ -122,6 +130,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
+    }
+
+    /**
+     * Returns true if a client with {@code clientName} exists in the client list.
+     */
+    public boolean hasClient(Name clientName) {
+        requireNonNull(clientName);
+        return clients.contains(clientName);
     }
 
     /**
@@ -157,14 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
-
-        Iterator<Project> linkedProjects = target.getProjectsLinked().iterator();
-        while (linkedProjects.hasNext()) {
-            Project linkedProject = linkedProjects.next();
-            linkedProject.linkToClient(editedClient);
-            editedClient.linkProject(linkedProject);
-            projects.setProject(linkedProject, linkedProject);
-        }
+        projects.transferLinkedProjects(target, editedClient);
         tagMappings.editClientTags(target, editedClient);
         clients.setClient(target, editedClient);
     }
@@ -178,15 +187,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
         tagMappings.editProjectTags(target, editedProject);
-        if (target.isClientPresent()) {
-            logger.info("This project " + target + " has a client present");
-            Client linkedClient = target.getLinkedClient().get();
-            logger.info("The client is " + linkedClient);
-            linkedClient.unlinkProject(target);
-            linkedClient.linkProject(editedProject);
-            editedProject.linkToClient(linkedClient);
-            clients.setClient(linkedClient, linkedClient);
-        }
+        clients.transferLinkedClients(target, editedProject);
         projects.setProject(target, editedProject);
     }
 
@@ -196,12 +197,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) {
         clients.remove(key);
-        Iterator<Project> linkedProjectsIterator = key.getProjectsLinked().iterator();
-        while (linkedProjectsIterator.hasNext()) {
-            Project toRemove = linkedProjectsIterator.next();
-            toRemove.unlinkFromClient();
-            projects.setProject(toRemove, toRemove);
-        }
+        projects.removeAllLinks(key);
         tagMappings.deleteClientTags(key);
     }
 
@@ -211,42 +207,49 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProject(Project key) {
         projects.remove(key);
+        clients.unlinkClientFromProject(key);
         tagMappings.deleteProjectTags(key);
-        key.getLinkedClient().ifPresent(c -> {
-            c.unlinkProject(key);
-            clients.setClient(c, c);
-        });
     }
 
     /**
      * Sets the {@code project} that should be linked to a client.
      */
-    public void setToLinkProject(Project project) {
-        projects.setToLinkProject(project);
+    public void setProjectToLink(Project project) {
+        requireNonNull(project);
+        this.projectToLink = Optional.of(project);
     }
 
-    /** 
-     * Links a project to {@code client}.
+    /**
+     * Links {@code projectToLink} to {@code client}.
      */
     public void linkProjectToClient(Client client) {
-        Optional<Client> previoulyLinkedClient = projects.linkProjectToClient(client);
-        clients.setClient(client, client);
-        logger.info("Linking project to client " + client);
-        logger.info("Previous client is " + previoulyLinkedClient.isPresent());
-        previoulyLinkedClient.ifPresent(c -> clients.setClient(c, c));
+        assert projectToLink.isPresent();
+        clients.unlinkClientFromProject(projectToLink.get());
+        projects.linkProjectToClient(projectToLink.get(), client);
+        clients.linkClientToProject(client, projectToLink.get());
+        logger.info("Linking project " + projectToLink.get() + " to client " + client);
+        this.projectToLink = Optional.empty();
     }
 
-    public void linkClientToProject(Name clientName, Project toLink) {
-        assert clients.contains(new Client(clientName, null, null, new HashSet<>()));
-        Iterator<Client> iterator = clients.iterator();
-        while (iterator.hasNext()) {
-            Client toMatch = iterator.next();
-            if (toMatch.getName().equals(clientName)) {
-                toMatch.linkProject(toLink);
-                toLink.linkToClient(toMatch);
-                return;
-            }
-        }
+    /**
+     * Links the project {@code toLink} to the client with {@code clientName}.
+     */
+    public void linkProjectToClient(Name clientName, Project toLink) {
+        clients.linkClientToProject(clientName, toLink);
+    }
+
+    /**
+     * Marks {@code project} as done.
+     */
+    public void markProjectAsDone(Project project) {
+        projects.markProjectAsDone(project);
+    }
+
+    /**
+     * Marks {@code project} as not done.
+     */
+    public void markProjectAsNotDone(Project project) {
+        projects.markProjectAsNotDone(project);
     }
 
     //// util methods
@@ -280,11 +283,12 @@ public class AddressBook implements ReadOnlyAddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                 && clients.equals(((AddressBook) other).clients)
                 && projects.equals(((AddressBook) other).projects)
-                && tagMappings.equals(((AddressBook) other).tagMappings));
+                && tagMappings.equals(((AddressBook) other).tagMappings)
+                && projectToLink.equals(((AddressBook) other).projectToLink));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clients, projects, tagMappings);
+        return Objects.hash(clients, projects, tagMappings, projectToLink);
     }
 }

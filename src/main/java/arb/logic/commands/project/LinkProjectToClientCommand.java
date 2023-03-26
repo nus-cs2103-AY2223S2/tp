@@ -13,6 +13,10 @@ import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 
+/**
+ * Links {@code projectToBeLinked} in the model to the client identified using its displayed index from
+ * the address book.
+ */
 public class LinkProjectToClientCommand extends Command {
 
     public static final String MESSAGE_LINK_PROJECT_TO_CLIENT_SUCCESS = "Successfully linked the project to %1$s";
@@ -23,7 +27,8 @@ public class LinkProjectToClientCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteProjectCommand to delete the specified {@code Project}
+     * Creates a LinkProjectToClient to link the client at {@code targetIndex} to
+     * {@code projectToBeLinked} in the model.
      */
     public LinkProjectToClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -32,8 +37,8 @@ public class LinkProjectToClientCommand extends Command {
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
-        assert currentListBeingShown == ListType.CLIENT : "This command should only be executed " +
-                "with a client list being shown";
+        assert currentListBeingShown == ListType.CLIENT : "This command should only be executed "
+                + "with a client list being shown";
 
         List<Client> lastShownList = model.getSortedClientList();
 

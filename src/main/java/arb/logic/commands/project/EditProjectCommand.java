@@ -95,25 +95,28 @@ public class EditProjectCommand extends Command {
         }
 
         if (editProjectDescriptor.getClient().isPresent()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(editProjectDescriptor.getClient().get())));
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
+                    .asList(editProjectDescriptor.getClient().get())));
             if (model.getFilteredClientList().size() == 0) {
-                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT, editProjectDescriptor.getClient().get()));
-            } 
-            model.setToLinkProject(editedProject);            
+                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
+                        editProjectDescriptor.getClient().get()));
+            }
+            model.setProjectToLink(editedProject);
         }
         model.setProject(projectToEdit, editedProject);
 
         String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
         ListType toBeShown = ListType.PROJECT;
         if (editProjectDescriptor.getClient().isPresent()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(editProjectDescriptor.getClient().get())));
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
+                    .asList(editProjectDescriptor.getClient().get())));
             message = LinkProjectToClientCommand.MESSAGE_USAGE;
             toBeShown = ListType.CLIENT;
         } else {
             model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
             model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         }
-        
+
         return new CommandResult(message, editProjectDescriptor.getClient().isPresent(), toBeShown);
     }
 

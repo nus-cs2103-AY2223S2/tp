@@ -66,14 +66,15 @@ public class AddProjectCommand extends Command {
         if (model.hasProject(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
+
         String message = String.format(MESSAGE_SUCCESS, toAdd);
         ListType toBeShown = ListType.PROJECT;
         if (clientToBeLinked.isPresent()) {
             model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(clientToBeLinked.get())));
             if (model.getFilteredClientList().size() == 0) {
                 throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT, clientToBeLinked.get()));
-            } 
-            model.setToLinkProject(toAdd);            
+            }
+            model.setProjectToLink(toAdd);
         }
         model.addProject(toAdd);
 

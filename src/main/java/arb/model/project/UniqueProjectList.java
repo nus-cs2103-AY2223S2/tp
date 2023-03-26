@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import arb.model.client.Client;
 import arb.model.project.exceptions.DuplicateProjectException;
@@ -30,7 +29,6 @@ public class UniqueProjectList implements Iterable<Project> {
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private Project currentlyLinking = null;
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.
@@ -101,34 +99,69 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
-     * Links {@code currentlyLinking} to {@code client}. Asserts that
-     * {@code currentlyLinking} is not null.
+     * Links {@code client} to {@code project}.
      */
-    public Optional<Client> linkProjectToClient(Client client) {
-        assert currentlyLinking != null;
-        Optional<Client> previouslyLinkedClient = currentlyLinking.getLinkedClient();
-        previouslyLinkedClient.ifPresent(c -> c.unlinkProject(currentlyLinking));
-        currentlyLinking.linkToClient(client);
-        client.linkProject(currentlyLinking);
-        setProject(currentlyLinking, currentlyLinking);
-        currentlyLinking = null;
-        return previouslyLinkedClient;
+    public void linkProjectToClient(Project project, Client client) {
+        requireAllNonNull(project, client);
+        project.linkToClient(client);
+        setProject(project, project);
     }
 
-    /** 
-     * Sets {@code currentlyLinking} to {@code project}.
+    /**
+     * Unlinks the linked client from {@code project}.
      */
-    public void setToLinkProject(Project project) {
-        currentlyLinking = project;
+    public void unlinkProjectFromClient(Project project) {
+        requireNonNull(project);
+        project.unlinkFromClient();
+        setProject(project, project);
     }
 
+    /**
+     * Unlinks all linked clients from the projects in the list.
+     */
     public void resetClientLinkings() {
-        Iterator<Project> projectIterator = iterator();
-        while (projectIterator.hasNext()) {
-            Project project = projectIterator.next();
-            project.unlinkFromClient();
-            setProject(project, project);
+        internalList.stream().forEach(p -> unlinkProjectFromClient(p));
+    }
+
+    /**
+     * Transfers all projects linked to {@code original} to {@code target}.
+     */
+    public void transferLinkedProjects(Client original, Client target) {
+        Iterator<Project> linkedProjects = original.getLinkedProjects().iterator();
+        while (linkedProjects.hasNext()) {
+            Project linkedProject = linkedProjects.next();
+            linkedProject.linkToClient(target);
+            target.linkProject(linkedProject);
+            setProject(linkedProject, linkedProject);
         }
+    }
+
+    /**
+     * Unlinks all linked projects from {@code client}.
+     */
+    public void removeAllLinks(Client client) {
+        Iterator<Project> linkedProjectsIterator = client.getLinkedProjects().iterator();
+        while (linkedProjectsIterator.hasNext()) {
+            Project toRemove = linkedProjectsIterator.next();
+            toRemove.unlinkFromClient();
+            setProject(toRemove, toRemove);
+        }
+    }
+
+    /**
+     * Marks {@code project} as done.
+     */
+    public void markProjectAsDone(Project project) {
+        project.markAsDone();
+        setProject(project, project);
+    }
+
+    /**
+     * Marks {@code project} as not done.
+     */
+    public void markProjectAsNotDone(Project project) {
+        project.markAsUndone();
+        setProject(project, project);
     }
 
     /**

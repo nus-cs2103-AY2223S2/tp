@@ -56,9 +56,7 @@ public class MarkProjectCommand extends Command {
         }
 
         Project projectToMark = lastShownList.get(targetIndex.getZeroBased());
-        projectToMark.markAsDone();
-
-        model.setProject(projectToMark, projectToMark);
+        model.markProjectAsDone(projectToMark);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_MARK_PROJECT_SUCCESS, projectToMark), ListType.PROJECT);
