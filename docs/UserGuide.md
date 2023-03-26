@@ -6,7 +6,7 @@ title: User Guide
 <img src="images/logo.png">
 </p>
 
-* Table of Contents<br>
+# Table of Contents
   * [Introduction](#introduction)
   * [Quickstart](#quick-start)
   * [Features](#features)
@@ -165,8 +165,9 @@ Prefixes:
   * `tk` - Tank Name
 
 Optional Prefixes:
-* `tk/` - If added, will display a sorting by tank. For example, `fish sort by/n tk/2`, will sort the 2nd tank by name
-and display the results.
+* `tk/` - If added, will display a sorting by tank. For example, `fish sort by/n` will sort all the fishes by name and 
+  display the results. In comparison,`fish sort by/n tk/2` will **only** sort the fishes in the 2nd tank by name and 
+  display the results.
   
 
 
