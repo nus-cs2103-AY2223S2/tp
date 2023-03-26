@@ -5,7 +5,7 @@ import static seedu.library.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the rating of a book in the library.
- * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
 
@@ -17,11 +17,11 @@ public class Rating {
 
     /**
      * Constructs a {@code Rating}.
-     * @param rating
+     * @param rating of a book.
      */
     public Rating(String rating) {
         requireNonNull(rating);
-        checkArgument(isRating(rating), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
         value = rating;
     }
 
@@ -32,7 +32,7 @@ public class Rating {
     /**
      * Returns true if a given string is a valid url.
      */
-    public static boolean isRating(String rating) {
+    public static boolean isValidRating(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
