@@ -67,6 +67,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         this.primaryStage = primaryStage;
         this.logic = logic;
         logic.setCloseAction(() -> Platform.runLater(this::handleExit));
+        logic.setShowHelpAction(() -> Platform.runLater(this::handleHelp));
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());

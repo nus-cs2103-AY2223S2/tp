@@ -70,4 +70,7 @@ public interface Logic {
 
 
     void setCloseAction(Runnable closeAction);
+
+
+    void setShowHelpAction(Runnable showHelpAction);
 }
