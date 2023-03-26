@@ -23,6 +23,9 @@ public class AddVaxTypeCommand extends Command {
     private final VaxTypeBuilder builder;
 
 
+    /**
+     * Constructs an {@code AddVaxTypeCommand}.
+     */
     public AddVaxTypeCommand(GroupName name, VaxTypeBuilder builder) {
         this.name = name;
         this.builder = Objects.requireNonNull(builder);

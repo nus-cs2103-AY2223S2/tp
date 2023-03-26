@@ -26,6 +26,7 @@ public class EditVaxTypeCommand extends Command {
     /**
      * Constructs a {@code EditVaxTypeCommand}.
      *
+     * @param retriever - the retriever to retrieve the vaccination to edit.
      * @param builder - the builder to use to update the vaccination type.
      */
     public EditVaxTypeCommand(Retriever<String, VaxType> retriever, VaxTypeBuilder builder) {

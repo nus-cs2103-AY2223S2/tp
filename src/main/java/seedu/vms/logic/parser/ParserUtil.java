@@ -225,15 +225,15 @@ public class ParserUtil {
     private static Retriever<String, VaxType> formVaxRetriever(String retrieverType, String retrieverValue)
                 throws ParseException {
         switch (retrieverType.toUpperCase()) {
-            case RETRIEVER_TYPE_NAME:
-                return Retriever.of(retrieverValue);
+        case RETRIEVER_TYPE_NAME:
+            return Retriever.of(retrieverValue);
 
-            case RETRIEVER_TYPE_INDEX:
-                Index index = parseIndex(retrieverValue);
-                return Retriever.of(index.getZeroBased());
+        case RETRIEVER_TYPE_INDEX:
+            Index index = parseIndex(retrieverValue);
+            return Retriever.of(index.getZeroBased());
 
-            default:
-                throw new ParseException("Unknown retriever type");
+        default:
+            throw new ParseException("Unknown retriever type");
         }
     }
 

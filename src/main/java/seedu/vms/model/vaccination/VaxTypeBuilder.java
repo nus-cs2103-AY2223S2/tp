@@ -11,8 +11,7 @@ import seedu.vms.model.GroupName;
 
 
 /**
- * A factory class to create, rename or edit {@link VaxType} to its set
- * {@link VaxTypeManager}.
+ * A factory class to create a {@code VaxType}.
  */
 public class VaxTypeBuilder {
     private static final String FORMAT_IVE_MESSAGE = "The following vaccination constraints have been violated\n%s";
@@ -40,10 +39,6 @@ public class VaxTypeBuilder {
 
     /**
      * Factory method to create a {@code VaxTypeBuilder}.
-     *
-     * @param refName - the name of the existing vaccination type to build
-     *      from.
-     * @param setName - the name of the {@code VaxType} to create.
      */
     public static VaxTypeBuilder of() {
         return new VaxTypeBuilder(Optional.empty(),
@@ -95,12 +90,12 @@ public class VaxTypeBuilder {
 
 
     /**
-     * Builds the vaccination type and adds it to the specified
-     * {@code VaxTypeManager}.
+     * Creates the a vaccination of the specified name with parameters that the
+     * builder is set to produce.
      *
      * @return the built {@code VaxType}.
-     * @throws IllegalValueException if the a vaccination type might be
-     *      replaced.
+     * @throws IllegalValueException if the vaccination cannot be created due
+     *      to illegally set parameters.
      */
     public VaxType create(GroupName name) throws IllegalValueException {
         return build(new VaxType(
@@ -114,13 +109,12 @@ public class VaxTypeBuilder {
 
 
     /**
-     * Builds and updates the vaccination type in the specified
-     * {@code VaxTypeManager}.
+     * Creates a vaccination based on the given reference and the parameters
+     * that the builder is set to produce.
      *
      * @return the built {@code VaxType}.
-     * @throws IllegalValueException if the reference vaccination is not
-     *      present or if the vaccination type is being renamed to one that
-     *      already exists.
+     * @throws IllegalValueException if the vaccination cannot be created due
+     *      to illegally set parameters.
      */
     public VaxType update(VaxType reference) throws IllegalValueException {
         return build(reference);

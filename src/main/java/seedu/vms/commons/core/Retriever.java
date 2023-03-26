@@ -30,14 +30,6 @@ public abstract class Retriever<K, V> {
     }
 
 
-    private static <K, V> V retrieveFromMap(Map<? extends K, V> map, K key) throws IllegalValueException {
-        if (!map.containsKey(key)) {
-            throw new IllegalValueException(String.format("%s does not exist", key.toString()));
-        }
-        return map.get(key);
-    }
-
-
     /**
      * Creates a {@code Retriever} that will retrieve the data at the specified
      * index in a list.
@@ -52,6 +44,14 @@ public abstract class Retriever<K, V> {
                 return retrieveFromList(list, index);
             }
         };
+    }
+
+
+    private static <K, V> V retrieveFromMap(Map<? extends K, V> map, K key) throws IllegalValueException {
+        if (!map.containsKey(key)) {
+            throw new IllegalValueException(String.format("%s does not exist", key.toString()));
+        }
+        return map.get(key);
     }
 
 

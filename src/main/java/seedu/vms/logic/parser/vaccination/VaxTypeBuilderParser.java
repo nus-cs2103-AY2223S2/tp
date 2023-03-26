@@ -17,6 +17,9 @@ import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 
 
+/**
+ * A command parser to parse commands that require {@link VaxTypeBuilder}.
+ */
 public abstract class VaxTypeBuilderParser implements CommandParser {
     private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
     private static final String FIELD_NAME_GRP_SET = "Group set";
@@ -26,6 +29,15 @@ public abstract class VaxTypeBuilderParser implements CommandParser {
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
 
+    /**
+     * Parses a {@link VaxTypeBuilder} from the given argument map. However,
+     * unlike {@link #parseBuilder(ArgumentMultimap)}, the rename parameters
+     * are ignored.
+     *
+     * @param argsMap - the argument map to parse.
+     * @return the parsed builder.
+     * @throws ParseException if the builder cannot be parsed.
+     */
     protected VaxTypeBuilder parseBuilderNoRename(ArgumentMultimap argsMap) throws ParseException {
         VaxTypeBuilder builder = VaxTypeBuilder.of();
 
@@ -49,6 +61,13 @@ public abstract class VaxTypeBuilderParser implements CommandParser {
     }
 
 
+    /**
+     * Parses a {@link VaxTypeBuilder} from the given argument map.
+     *
+     * @param argsMap - the argument map to parse.
+     * @return the parsed builder.
+     * @throws ParseException if the builder cannot be parsed.
+     */
     protected VaxTypeBuilder parseBuilder(ArgumentMultimap argsMap) throws ParseException {
         VaxTypeBuilder builder = parseBuilderNoRename(argsMap);
 
