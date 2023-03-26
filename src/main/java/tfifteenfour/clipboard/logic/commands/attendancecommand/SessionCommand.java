@@ -15,14 +15,11 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
 
-
-
-
 /**
  * Command that allows the user to view the sessions of a selected group
  */
-public class AttendanceCommand extends Command {
-    public static final String COMMAND_WORD = "attendance";
+public class SessionCommand extends Command {
+    public static final String COMMAND_WORD = "session";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the sessions of the selected group at the index number in the current displayed list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -31,11 +28,11 @@ public class AttendanceCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a AttendanceCommand to select a group at the specified index
+     * Creates a SessionCommand to select a group at the specified index
      *
      * @param targetIndex the index of the group to select
      */
-    public AttendanceCommand(Index targetIndex) {
+    public SessionCommand(Index targetIndex) {
         super(false);
         this.targetIndex = targetIndex;
     }
@@ -81,7 +78,7 @@ public class AttendanceCommand extends Command {
     }
 
     /**
-     * Checks if this AttendanceCommand is equal to another object
+     * Checks if this SessionCommand is equal to another object
      *
      * @param other the object to compare to
      * @return true if the objects are equal, false otherwise
@@ -93,12 +90,12 @@ public class AttendanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AttendanceCommand)) {
+        if (!(other instanceof SessionCommand)) {
             return false;
         }
 
         // state check
-        AttendanceCommand e = (AttendanceCommand) other;
+        SessionCommand e = (SessionCommand) other;
         return targetIndex.equals(e.targetIndex);
     }
 }
