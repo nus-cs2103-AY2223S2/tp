@@ -1,6 +1,7 @@
 package bookopedia.ui;
 
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import bookopedia.model.person.Person;
 import javafx.fxml.FXML;
@@ -56,9 +57,20 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        AtomicInteger parcelIndex = new AtomicInteger();
         person.getParcels().stream()
                 .sorted(Comparator.comparing(parcel -> parcel.parcelName))
-                .forEach(parcel -> parcels.getChildren().add(new Label(parcel.parcelName)));
+                .forEach(parcel -> {
+                    Label label = new Label(parcelIndex.incrementAndGet() + ". " + parcel.parcelName);
+                    if (parcel.isFragile() && parcel.isBulky()) {
+                        label.getStyleClass().add("isFragileAndBulky");
+                    } else if (parcel.isFragile()) {
+                        label.getStyleClass().add("isFragile");
+                    } else if (parcel.isBulky()) {
+                        label.getStyleClass().add("isBulky");
+                    }
+                    parcels.getChildren().add(label);
+                });
         deliveryStatus.setText(person.getDeliveryStatus().toString());
         deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
         noOfDeliveryAttempts.setText(String.format("Number of Attempts: %d", person.getNoOfDeliveryAttempts()));

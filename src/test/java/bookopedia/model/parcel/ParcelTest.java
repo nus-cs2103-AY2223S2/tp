@@ -13,8 +13,8 @@ public class ParcelTest {
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Parcel(invalidTagName));
+        String invalidParcelName = "";
+        assertThrows(IllegalArgumentException.class, () -> new Parcel(invalidParcelName));
     }
 
     @Test

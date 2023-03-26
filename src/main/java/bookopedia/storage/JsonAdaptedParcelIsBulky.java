@@ -8,27 +8,28 @@ import bookopedia.model.parcel.Parcel;
 /**
  * Jackson-friendly version of {@link Parcel}.
  */
-class JsonAdaptedParcel {
+class JsonAdaptedParcelIsBulky {
 
-    private final String parcelName;
+    private final boolean isBulky;
 
     /**
-     * Constructs a {@code JsonAdaptedParcel} with the given {@code parcelName}.
+     * Constructs a {@code JsonAdaptedParcelIsBulky} with the given {@code isBulky}.
      */
     @JsonCreator
-    public JsonAdaptedParcel(String parcelName) {
-        this.parcelName = parcelName;
+    public JsonAdaptedParcelIsBulky(boolean isBulky) {
+        this.isBulky = isBulky;
     }
 
     /**
      * Converts a given {@code Parcel} into this class for Jackson use.
      */
-    public JsonAdaptedParcel(Parcel source) {
-        parcelName = source.parcelName;
+    public JsonAdaptedParcelIsBulky(Parcel source) {
+        isBulky = source.isBulky();
     }
 
     @JsonValue
-    public String getParcelName() {
-        return parcelName;
+    public boolean getIsBulky() {
+        return isBulky;
     }
+
 }

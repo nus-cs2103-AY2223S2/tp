@@ -6,6 +6,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "parcels" : [ "shopee" ],
+    "parcelsIsFragile" : [ false ],
+    "parcelsIsBulky" : [ false ],
     "deliveryStatus": "FAILED",
     "noOfDeliveryAttempts": 0
   }, {
@@ -14,6 +16,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "parcels" : [ "nike", "adidas" ],
+    "parcelsIsFragile" : [ false, false ],
+    "parcelsIsBulky" : [ false, false ],
     "deliveryStatus": "OTW",
     "noOfDeliveryAttempts": 0
   }, {
@@ -22,6 +26,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "parcels" : [ ],
+    "parcelsIsFragile" : [ ],
+    "parcelsIsBulky" : [ ],
     "deliveryStatus": "DONE",
     "noOfDeliveryAttempts": 0
   }, {
@@ -30,6 +36,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "parcels" : [ "friends" ],
+    "parcelsIsFragile" : [ false ],
+    "parcelsIsBulky" : [ false ],
     "deliveryStatus": "PENDING",
     "noOfDeliveryAttempts": 0
   }, {
@@ -38,6 +46,8 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "parcels" : [ ],
+    "parcelsIsFragile" : [ ],
+    "parcelsIsBulky" : [ ],
     "deliveryStatus": "PENDING",
     "noOfDeliveryAttempts": 0
   }, {
@@ -46,6 +56,8 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "parcels" : [ ],
+    "parcelsIsFragile" : [ ],
+    "parcelsIsBulky" : [ ],
     "deliveryStatus": "PENDING",
     "noOfDeliveryAttempts": 0
   }, {
@@ -54,6 +66,8 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "parcels" : [ ],
+    "parcelsIsFragile" : [ ],
+    "parcelsIsBulky" : [ ],
     "deliveryStatus": "PENDING",
     "noOfDeliveryAttempts": 0
   } ]

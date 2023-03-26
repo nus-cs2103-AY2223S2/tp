@@ -22,7 +22,7 @@ public class AddParcelCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds parcel to an existing person. "
             + "Parameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_PARCEL + "PARCEL";
+            + CliSyntax.PREFIX_PARCEL + "PARCEL (must be alphanumeric) ";
 
     public static final String MESSAGE_SUCCESS = "Added %1$s to %2$s's delivery";
 
@@ -52,9 +52,7 @@ public class AddParcelCommand extends Command {
         Person personToAddParcel = lastShownList.get(targetIndex.getZeroBased());
 
         final Set<Parcel> updatedParcels = new HashSet<>();
-        for (Parcel parcel : personToAddParcel.getParcels()) {
-            updatedParcels.add(parcel);
-        }
+        updatedParcels.addAll(personToAddParcel.getParcels());
         updatedParcels.add(newParcel);
         Person updatedPerson = new Person(personToAddParcel.getName(), personToAddParcel.getPhone(),
                 personToAddParcel.getEmail(), personToAddParcel.getAddress(), updatedParcels,

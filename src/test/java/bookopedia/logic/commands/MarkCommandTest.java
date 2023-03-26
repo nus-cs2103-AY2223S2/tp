@@ -5,6 +5,8 @@ import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,6 @@ import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
 import bookopedia.model.person.Person;
 import bookopedia.testutil.PersonBuilder;
-
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for MarkCommand.
@@ -102,5 +103,27 @@ public class MarkCommandTest {
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex, DeliveryStatus.OTW);
 
         assertCommandFailure(markCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        MarkCommand addFirstOtwCommand = new MarkCommand(INDEX_FIRST_PERSON, DeliveryStatus.OTW);
+        MarkCommand addFirstFailCommand = new MarkCommand(INDEX_FIRST_PERSON, DeliveryStatus.FAILED);
+
+        // same object -> returns true
+        assertTrue(addFirstOtwCommand.equals(addFirstOtwCommand));
+
+        // same values -> returns true
+        MarkCommand addFirstOtwCommandCopy = new MarkCommand(INDEX_FIRST_PERSON, DeliveryStatus.OTW);
+        assertTrue(addFirstOtwCommand.equals(addFirstOtwCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addFirstFailCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addFirstOtwCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addFirstOtwCommand.equals(addFirstFailCommand));
     }
 }
