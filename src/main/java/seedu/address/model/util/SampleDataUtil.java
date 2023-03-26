@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -22,22 +23,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Nric("S1234567A"), new Name("Alex Yeoh"), new Phone("87438807"),
                     new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("Diabetic")),
+                new DrugAllergy("NKDA"), getTagSet("Diabetic")),
             new Person(new Nric("S2345678B"), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("Osteoporotic", "Diabetic")),
+                new DrugAllergy("Panadol"), getTagSet("Osteoporotic", "Diabetic")),
             new Person(new Nric("S3456789C"), new Name("Charlotte Oliveiro"), new Phone("93210283"),
                     new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("Asthmatic")),
+                new DrugAllergy("Penicillin"), getTagSet("Asthmatic")),
             new Person(new Nric("S0012345D"), new Name("David Li"), new Phone("91031282"),
                     new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("Epileptic")),
+                new DrugAllergy("Aspirin Panadol"), getTagSet("Epileptic")),
             new Person(new Nric("S1212345E"), new Name("Irfan Ibrahim"), new Phone("92492021"),
                     new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("Arthritic")),
+                new DrugAllergy("NKDA"), getTagSet("Arthritic")),
             new Person(new Nric("S0001111F"), new Name("Roy Balakrishnan"), new Phone("92624417"),
                     new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("Diabetic"))
+                    new DrugAllergy("NKDA"), getTagSet("Diabetic"))
         };
     }
 
