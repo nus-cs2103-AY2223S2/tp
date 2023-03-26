@@ -49,9 +49,9 @@ All commands case insensitive
 1. `name/` -> name: name 
 2. `email/` -> email: valid email 
 3. `phone/` -> phone: valid phone 
-4. `deadline/` -> deadline: valid date / date-time 
-5. `client/` -> client: index of the client in the client list
-
+4. `deadline/` -> deadline: valid date / date-time
+5. `price/` -> price: valid price
+6. `client/` -> client: keywords to search for clients to link to a project
 
 ## Features
 
@@ -108,19 +108,26 @@ List out all clients.
 
 Format: `list client`
 
-### Adding a project: `add project`
+### Adding a project: `add-project`
 
-Adds a project to the application with the supplied details. The details that can be supplied are the name and deadline of the client.
+Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
 Only the name of the project is compulsory. 
 
-The deadline must be in a valid date or date and time format.
+Deadlines can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
 
-Format: `add project name/NAME [deadline/DEADLINE]`
+Prices must be in a recognisable price format, such as `3.08` or `5`.
+
+Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
+
+Format: `add-project name/NAME [deadline/DEADLINE] [price/PRICE] [tag/TAG] [client/CLIENT]`
+
+Alias: `ap`
 
 Examples:
-* `add project name/Background Commission deadline/2023-05-05`
-* `add project name/Oil Paintingg`
+* `add-project name/Background Commission deadline/2023-05-05 price/500 tag/painting client/alice client/wheeler` Adds a project with the name Background Commision, a deadline of 5th May 2023, a price of $500, tagged painting, and links this project to a client whose name contains any of the keywords `alice` or `wheeler`.
+* `add-project name/Oil Painting`
+* `ap n/Background Commission d/2023-05-05 pr/500 t/painting c/alice c/wheeler`
 
 ### Listing all projects : `list project`
 
@@ -142,17 +149,30 @@ Examples:
 *  `edit client 1 email/new@email.com` Edits the email address of the 1st client to be `new@email.com`.
 *  `edit client 3 name/Alice Risa phone/1234` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. 
 
-### Editing a project : `edit project`
+### Editing a project : `edit-project`
 
 Edits the project details at the given index of the project list, changing only the given field(s).
 Fields that can be changed:
 * Name
 * Deadline
+* Price
+* Tags
+* Linked client
 
-Format: `edit project <index> [name/NAME] [deadline/DEADLINE]`
+If an empty prefix is given for a field that is optional, e.g. `deadline/`, the field's value is cleared for the project. In this example, the project's deadline will be removed.
+
+The steps to link to a client remain the same as in [adding a project](#adding-a-project-add-project) and can be found [here](#linking-a-project-to-a-client).
+
+At least one field to edit must be provided.
+
+Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
+
+Alias: `ep`
 
 Example:
-*  `edit project 2 name/The Starry Night` Edits the name of the 1st project to be `The Starry Night`.
+*  `edit-project 2 name/The Starry Night` Edits the name of the 2nd project in the list to be `The Starry Night`.
+* `edit-project 2 client/alice` Links the 2nd project in the list to a client whose name contains the keyword `alice`.
+* `ep 2 n/The Starry Night pr/500`
 
 ### Deleting a client : `delete client`
 
@@ -191,7 +211,7 @@ Examples:
 
 ### Unmark a project as done : `unmark INDEX`
 
-Unmarks the specified project as undone from the artistic artistic addressbook.
+Unmarks the specified project as undone from the artistic addressbook.
 
 Format: `unmark INDEX`
 
@@ -201,6 +221,23 @@ Format: `unmark INDEX`
 
 Examples:
 * `list project` followed by `unmark 2` marks the 2nd project in the list of projects as not done
+
+### Linking a Project to a Client
+
+This is only applicable if you have specified the client option when [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
+
+The artistic addressbook will display a list of clients that match the provided keywords. Entering an index specifies the client in the list to link to a project.
+
+Examples:
+* `1` links the 1st client in the shown list of clients
+
+### Listing all tags : `list-tag`
+
+Lists all tags that exist in the artistic addressbook. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
+
+Format: `list-tag`
+
+Alias: `lt`
 
 ### Exiting the program : `exit`
 
