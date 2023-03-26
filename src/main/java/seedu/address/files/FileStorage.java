@@ -166,30 +166,4 @@ public class FileStorage {
         });
     }
 
-
-    /*
-    private void imgToPdf(File file) {
-        if (isImageFile(file)) {
-            try {
-                BufferedImage image = ImageIO.read(file);
-                PDDocument document = new PDDocument();
-                PDPage page = new PDPage();
-                document.addPage(page);
-                PDImageXObject pdfImage = LosslessFactory.createFromImage(document, image);
-                PDImageXObject pdImageObject = PDImageXObject.createFromFileByContent(file, document);
-                int width = image.getWidth();
-                int height = image.getHeight();
-                PDRectangle pageSize = new PDRectangle(width, height);
-                PDPage page1 = new PDPage(pageSize);
-                document.addPage(page1);
-                File pdfFile = new File(file.getAbsoluteFile() + ".pdf");
-                document.save(pdfFile);
-                document.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    */
-
 }

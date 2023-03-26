@@ -45,4 +45,11 @@ public class UploadFileCommand extends Command {
         filesManager.addFile();
         return new CommandResult(String.format(MESSAGE_UPLOAD_SUCCESS, personToUpload));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UploadFileCommand // instanceof handles nulls
+                && targetIndex.equals(((UploadFileCommand) other).targetIndex)); // state check
+    }
 }
