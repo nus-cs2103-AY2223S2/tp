@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -136,8 +137,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
-        return degreeProgression.sortModuleGroups(sort);
+    public void sortModuleGroups(SortCommand.Sort sort) {
+        degreeProgression.sortModuleGroups(sort);
     }
 
     @Override

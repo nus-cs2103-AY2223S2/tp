@@ -10,35 +10,6 @@ import java.util.Objects;
 public class CommandResult {
 
     /**
-     * The enum Sort.
-     */
-    public enum Sort {
-        /**
-         * Semyear sort.
-         */
-        SEMYEAR,
-        /**
-         * Grade sort.
-         */
-        GRADE,
-        /**
-         * Credit sort.
-         */
-        CREDIT,
-        /**
-         * Code sort.
-         */
-        CODE,
-        /**
-         * Tag sort.
-         */
-        TAG };
-    /**
-     * The constant DEFAULT_SORT.
-     */
-    public static final Sort DEFAULT_SORT = Sort.SEMYEAR;
-
-    /**
      * Boolean to switch between screens
      */
     public final boolean isDisplayAllModules;

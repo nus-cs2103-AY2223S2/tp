@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
+        public void sortModuleGroups(SortCommand.Sort sort) {
             throw new AssertionError("This method should not be called.");
         }
 

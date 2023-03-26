@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -120,9 +121,9 @@ public interface Model {
      */
     ObservableList<Module> getFilteredModuleList();
 
-    TreeMap<? extends Object, ObservableList<Module>> getModuleGroups();
+    TreeMap<?, ObservableList<Module>> getModuleGroups();
 
-    TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort);
+    void sortModuleGroups(SortCommand.Sort sort);
 
     /**
      * Updates the filter of the filtered Module list to filter by the given {@code predicate}.

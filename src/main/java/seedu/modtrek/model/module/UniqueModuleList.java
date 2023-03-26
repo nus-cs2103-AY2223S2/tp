@@ -2,7 +2,7 @@ package seedu.modtrek.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.modtrek.logic.commands.CommandResult.DEFAULT_SORT;
+import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
@@ -23,7 +23,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
     private TreeMap<?, ObservableList<Module>> moduleGroups = new TreeMap<>();
-    private CommandResult.Sort sort = DEFAULT_SORT;
+    private SortCommand.Sort sort = DEFAULT_SORT;
 
 
     /**
@@ -96,7 +96,7 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         moduleGroups = sortBySemYear();
-        sort = CommandResult.Sort.SEMYEAR;
+        sort = SortCommand.Sort.SEMYEAR;
     }
 
     /**
@@ -113,7 +113,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
         internalList.setAll(modules);
         moduleGroups = sortBySemYear();
-        sort = CommandResult.Sort.SEMYEAR;
+        sort = SortCommand.Sort.SEMYEAR;
     }
 
     /**
@@ -222,7 +222,7 @@ public class UniqueModuleList implements Iterable<Module> {
      * @param sort the sort
      * @return the tree map
      */
-    public TreeMap<?, ObservableList<Module>> sortModuleGroups(CommandResult.Sort sort) {
+    public TreeMap<?, ObservableList<Module>> sortModuleGroups(SortCommand.Sort sort) {
         this.sort = sort;
         switch (sort) {
         case GRADE:
