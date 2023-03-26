@@ -14,12 +14,7 @@ import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyShop;
-import seedu.address.model.entity.person.Address;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Email;
-import seedu.address.model.entity.person.Name;
-import seedu.address.model.entity.person.Person;
-import seedu.address.model.entity.person.Phone;
+import seedu.address.model.entity.person.*;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -79,6 +74,21 @@ public class SampleDataUtil {
                 new Address("Blk 47 Tampines Street 20, #17-35"), new HashSet<>(), new HashSet<>(),
                     getIntegerSet(7)),
             };
+    }
+
+    public static Technician[] getSampleTechnicians() {
+        return new Technician[]{
+            new Technician(IdGenerator.generateStaffId(), new Name("James Tan"), new Phone("89764362"),
+                    new Email("jamestan@example.com"),
+                    new Address("Blk 586 Bedok Street 23, #08-46"),
+                    getTagSet("big boss")),
+            new Technician(IdGenerator.generateStaffId(), new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("good technician")),
+            new Technician(IdGenerator.generateStaffId(), new Name("Loh Jia Yu"), new Phone("968685152"), new Email("lohjy@example.com"),
+                    new Address("Blk 73 Hahn Quay Street 67, #04-45"),
+                    getTagSet("new technician")),
+        };
     }
 
     public static Appointment[] getSampleAppointments() {
@@ -151,25 +161,25 @@ public class SampleDataUtil {
         return new Service[]{
             new Service(IdGenerator.generateServiceId(), 1, LocalDate.parse("02/03/2022", dtf),
                 samplePartsC, "Engine oil leak",
-                LocalDate.parse("10/04/2022", dtf), ServiceStatus.COMPLETE),
+                LocalDate.parse("10/04/2022", dtf), ServiceStatus.COMPLETE, getIntegerSet(1)),
             new Service(IdGenerator.generateServiceId(), 3, LocalDate.parse("15/01/2023", dtf),
                 samplePartsD, "Battery replacement",
                 LocalDate.parse("30/01/2023", dtf), ServiceStatus.CANCELLED),
             new Service(IdGenerator.generateServiceId(), 2, LocalDate.parse("15/02/2023", dtf),
                 samplePartsB, "Gearbox dead",
-                LocalDate.parse("05/04/2023", dtf), ServiceStatus.IN_PROGRESS),
+                LocalDate.parse("05/04/2023", dtf), ServiceStatus.IN_PROGRESS, getIntegerSet(2, 3)),
             new Service(IdGenerator.generateServiceId(), 4, LocalDate.parse("02/03/2022", dtf),
                 samplePartsC, "Engine oil leak",
-                LocalDate.parse("10/04/2022", dtf), ServiceStatus.ON_HOLD),
+                LocalDate.parse("10/04/2022", dtf), ServiceStatus.ON_HOLD, getIntegerSet(1)),
             new Service(IdGenerator.generateServiceId(), 1, LocalDate.parse("16/03/2023", dtf),
                 samplePartsA, "Wheels and suspension got rekt",
-                LocalDate.parse("28/03/2023", dtf), ServiceStatus.IN_PROGRESS),
+                LocalDate.parse("28/03/2023", dtf), ServiceStatus.IN_PROGRESS, getIntegerSet(1)),
             new Service(IdGenerator.generateServiceId(), 6, LocalDate.parse("16/03/2023", dtf),
                 samplePartsE, "Brake pads worn out",
-                LocalDate.parse("02/04/2023", dtf), ServiceStatus.TO_REPAIR),
+                LocalDate.parse("02/04/2023", dtf), ServiceStatus.TO_REPAIR, getIntegerSet(1, 3)),
             new Service(IdGenerator.generateServiceId(), 5, LocalDate.parse("16/03/2023", dtf),
                 new PartMap(), "Just a simple inspection",
-                LocalDate.parse("18/03/2023", dtf), ServiceStatus.TO_REPAIR),
+                LocalDate.parse("18/03/2023", dtf), ServiceStatus.TO_REPAIR, getIntegerSet(2)),
             };
     }
 
@@ -203,6 +213,10 @@ public class SampleDataUtil {
 
         for (Appointment sampleAppointment : getSampleAppointments()) {
             sampleSh.addAppointment(sampleAppointment);
+        }
+
+        for (Technician sampleTechnician : getSampleTechnicians()) {
+            sampleSh.addTechnician(sampleTechnician);
         }
         return sampleSh;
     }

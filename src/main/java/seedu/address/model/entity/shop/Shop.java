@@ -311,11 +311,11 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the technicians list with {@code technicians}.
+     * {@code technicians} must not contain duplicate technicians.
      */
-    public void setTechnicians(List<Technician> persons) {
-        technicians.setTechnicians(persons);
+    public void setTechnicians(List<Technician> technicians) {
+        this.technicians.setTechnicians(technicians);
     }
 
     @Override
@@ -419,6 +419,7 @@ public class Shop implements ReadOnlyShop {
         setServices(newData.getServiceList());
         setTechnicians(newData.getTechnicianList());
         setAppointments(newData.getAppointmentList());
+        setTechnicians(newData.getTechnicianList());
     }
 
     //// Delete operations
