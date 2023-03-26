@@ -184,6 +184,10 @@ public class Client {
         appointments.remove(appointment);
     }
 
+    /**
+     * Removes appointments that has expired. (passed current date and time).
+     * @param appointments The set of appointments.
+     */
     public void appointmentValidityCheck(Set<Appointment> appointments) {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
         int i = 0;
@@ -196,11 +200,10 @@ public class Client {
         }
     }
 
-    public boolean isAppointmentEmpty(Client client) {
-        client.appointmentValidityCheck(client.getAppointments());
-        return client.getAppointments().isEmpty();
-    }
-
+    /**
+     * adds an appointment to the appointment set
+     * @param appointment
+     */
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
     }

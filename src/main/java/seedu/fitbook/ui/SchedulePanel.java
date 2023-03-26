@@ -34,7 +34,7 @@ public class SchedulePanel extends UiPart<Region> {
         super(FXML);
 
         FilteredList<Client> filteredList = new FilteredList<>(scheduleList,
-                client -> !client.isAppointmentEmpty(client));
+                client -> !client.isAppointmentEmpty());
         ClientAppointmentComparator comparator = new ClientAppointmentComparator();
 
         scheduleView.setCellFactory(listView -> new ScheduleViewCell());
@@ -78,7 +78,7 @@ public class SchedulePanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if(!client.isAppointmentEmpty(client)) {
+                if (!client.isAppointmentEmpty()) {
                     setGraphic(new ScheduleCard(client, getIndex() + 1).getRoot());
                 } else {
                     setGraphic(null);

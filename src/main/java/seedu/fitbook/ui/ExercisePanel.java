@@ -1,6 +1,5 @@
 package seedu.fitbook.ui;
 
-import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.animation.KeyFrame;
@@ -11,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.fitbook.commons.core.LogsCenter;
-import seedu.fitbook.model.client.Appointment;
-import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
 
 /**

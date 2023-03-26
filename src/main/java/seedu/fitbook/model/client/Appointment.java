@@ -22,7 +22,7 @@ public class Appointment implements Comparable<Appointment> {
             "Appointment should only be after the current date and time.";
     public static final String VALIDATION_REGEX =
             "^(?:0[1-9]|[1-2][0-9]|3[0-1])-(?:0[1-9]|1[0-2])-(?:[0-9]{4}) (?:[01][0-9]|2[0-3]):(?:[0-5][0-9])$";
-    public static final DateTimeFormatter dateTimeFormatter =
+    private static final DateTimeFormatter dateTimeFormatter =
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public final DateTimeFormatter dateTimeFormatterForStr = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
 
