@@ -57,7 +57,7 @@ public class ExecutiveProParser {
         case BatchExportCommand.COMMAND_WORD:
             return new BatchExportCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
+        case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:

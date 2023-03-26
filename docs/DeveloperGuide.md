@@ -273,7 +273,7 @@ Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
 
 ### Find Feature: `find`
-This command displays all employees whose full names partially or fully match the keyword inpuuted by the user.  
+This command displays all employees whose full names partially or fully match the keyword inputed by the user.
 
 #### Implementation
 
@@ -295,7 +295,7 @@ Step 4. The `FilteredList` now only contains those employees which satisfy the `
 
 Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of matching employees to the user.
 
-#### Future Considerations 
+#### Future Considerations
 
 Add functionality to find employees based on other details such as Department, Roles etc.
 

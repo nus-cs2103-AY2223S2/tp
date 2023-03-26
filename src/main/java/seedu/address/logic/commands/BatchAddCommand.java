@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExecutiveProDb;
-import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeId;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,10 +12,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ExecutiveProDb;
+import seedu.address.model.Model;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
-public class BatchAddCommand extends Command{
+/**
+ * Adds multiple employees to the database.
+ */
+public class BatchAddCommand extends Command {
     public static final String COMMAND_WORD = "batchadd";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds multiple employees into the database from a csv file \n"
@@ -93,7 +96,7 @@ public class BatchAddCommand extends Command{
         }
         List<Employee> copyEmployeeList = new ArrayList<>();
 
-        for(Employee employee : model.getExecutiveProDb().getEmployeeList()) {
+        for (Employee employee : model.getExecutiveProDb().getEmployeeList()) {
             copyEmployeeList.add(employee);
         }
 
@@ -108,7 +111,7 @@ public class BatchAddCommand extends Command{
             EmployeeId.setCount(currEmployeeId);
             throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
         }
-        return new CommandResult(String.format(MESSAGE_WORKS,addCommandList.size()));
+        return new CommandResult(String.format(MESSAGE_WORKS, addCommandList.size()));
     }
 
     @Override
