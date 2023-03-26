@@ -26,7 +26,7 @@ public class Ward {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String value;
+    public final WardName value;
     private final Capacity capacity;
 
     private UniquePatientList patients;
@@ -36,7 +36,7 @@ public class Ward {
      *
      * @param name A valid name.
      */
-    public Ward(String name) {
+    public Ward(WardName name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.value = name;
@@ -50,7 +50,7 @@ public class Ward {
      * @param name A valid name.
      * @param capacity A specified capacity.
      */
-    public Ward(String name, Capacity capacity) {
+    public Ward(WardName name, Capacity capacity) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.value = name;
@@ -77,7 +77,7 @@ public class Ward {
         return patients2.size() <= capacity.getValue();
     }
 
-    public String getName() {
+    public WardName getName() {
         return value;
     }
 
