@@ -24,14 +24,14 @@ AddressBookParser -> GroupDeleteCommandParser : parse("1")
 activate GroupDeleteCommandParser
 
 create GroupDeleteCommand
-GroupDeleteCommandParser -> GroupDeleteCommand
+GroupDeleteCommandParser -> GroupDeleteCommand : index
 activate GroupDeleteCommand
 
 GroupDeleteCommand --> GroupDeleteCommandParser
 deactivate GroupDeleteCommand
 
 GroupDeleteCommandParser --> AddressBookParser : g
-deactivate GroupCreateCommandParser
+deactivate GroupDeleteCommandParser
 
 AddressBookParser --> LogicManager : g
 deactivate AddressBookParser
