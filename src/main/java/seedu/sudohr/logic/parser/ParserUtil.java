@@ -1,6 +1,7 @@
 package seedu.sudohr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -166,6 +167,24 @@ public class ParserUtil {
         }
 
         return new LeaveDate(leaveDate);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+        return localDate;
     }
 
     /**
