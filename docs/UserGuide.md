@@ -295,7 +295,6 @@ Examples:
 Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
 Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
 
-
 <a name = "parent" />
 
 ## General Command for parent related features
@@ -329,8 +328,6 @@ Format: `list`
 
 Examples of Full Command:
 * `list parent` <br>
-  Sample output: <parent name> <parent phone number> <parent email>
-* `parent list` <br><br>
 
 **Expected Outcome:**
 ![list message](images/listParent.png)
