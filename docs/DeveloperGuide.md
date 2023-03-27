@@ -130,6 +130,10 @@ The `Model` component,
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
 </div>
 
 ### Storage component
@@ -274,7 +278,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
-| -------- | ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| -------- | ------------ |----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | staff member | add a patient                                      | record more information later                                                               |
 | `* * *`  | staff member | add a ward                                         | assign patients to the ward later                                                           |
 | `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
@@ -315,43 +319,41 @@ _{More to be added}_
 
 1. User requests to add a new patient to MedInfo.
 2. The user enters patient details.
-   1. The following are required information:
-      - Name
-      - NRIC
-   2. The following are non-required information:
-      - Status
-      - Ward
+    1. The following are required information:
+        - Name
+        - NRIC
+    2. The following are non-required information:
+        - Status
+        - Ward
 3. The system adds the user into the MedInfo system.
 4. The system shows the new created user in the patient list.
 
    Use case ends.
 
 **Extensions**
+* 2a. If any of the required fields are not completed.
 
-- 2a. If any of the required fields are not completed.
-
-  - 2a1. the user is informed of this and show the correct format for the command
+    * 2a1. the user is informed of this and show the correct format for the command
 
 Use case resumes at step 2.
 
-- 2b. If the entered NRIC is already present in another record in the system.
+* 2b. If the entered NRIC is already present in another record in the system.
 
-  - 2b1. the user is informed that the NRIC is already present in the system.
+    * 2b1. the user is informed that the NRIC is already present in the system.
 
   Use case resumes at step 2.
 
-- 2c. If the input field is invalid.
+* 2c. If the input field is invalid.
 
-  - 2c1. the user is informed of this, and correct format for the command is displayed.
-  
-  Use case resumes at step 2.
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
 
+    Use case resumes at step 2.
 
-- 2d. If the entered ward is not present in the system.
-    
-  - 2d1. the user is informed that the ward does not exist in the system.
-  
-  Use case resumes at step 2.
+* 2d. If the entered ward is not present in the system.
+
+    * 2d1. the user is informed that the ward does not exist in the system.
+
+    Use case resumes at step 2.
 
 
 **Use case: UC02 - Delete a patient**
@@ -379,12 +381,10 @@ Use case resumes at step 2.
       Use case resumes at step 2.
 
 - 4a. The user cancels the deletion in the confirmation window
-
     - 4a1. MedInfo shows the patient list
 
-  - 4b1. MedInfo shows an error message.
+      Use case resumes at step 2
 
-    Use case resumes at step 2.
 
 **Use case: UC03 - Edit a patient**
 
@@ -408,24 +408,23 @@ Use case resumes at step 2.
 - 2a. The list is empty.
 
   Use case ends.
-
 - 3a. The requested patient's NRIC is invalid.
 
-  - 3a1. MedInfo shows an error message.
+    - 3a1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 - 3b. The requested patient's NRIC does not exist in the system.
 
-  - 3b1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 - 3c. User tries to edit a non-editable field (Name/NRIC).
 
-  - 3c1. MedInfo shows an error message.
+    - 3c1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 
 **Use case: UC04 - Find a patient**
@@ -441,21 +440,22 @@ Use case resumes at step 2.
 
 - 1a. The requested patient's NRIC does not exist in the system.
 
-  - 1a1. MedInfo does not list any patients.
+    - 1a1. MedInfo does not list any patients.
 
-    Use case ends.
+      Use case ends.
 
 - 1b. The requested patient's Name does not exist in the system.
 
-  - 1b1. MedInfo does not list any patients.
+    - 1b1. MedInfo does not list any patients.
 
-    Use case ends.
+      Use case ends.
 
 - 1c. The requested patient's Status does not exist in the system.
 
-  - 1c1. MedInfo does not list any patients.
+    - 1c1. MedInfo does not list any patients.
 
-    Use case ends.
+      Use case ends.
+
 
 **Use case: UC05 - Clear all patients**
 
