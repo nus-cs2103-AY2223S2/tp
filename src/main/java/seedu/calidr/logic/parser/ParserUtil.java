@@ -264,6 +264,10 @@ public class ParserUtil {
         LocalDateTime from = parseDateTime(fromDateTime);
         LocalDateTime to = parseDateTime(toDateTime);
 
+        if (!EventDateTimes.isValidEventDateTimes(from, to)) {
+            throw new ParseException(EventDateTimes.MESSAGE_CONSTRAINTS);
+        }
+
         return new EventDateTimes(from, to);
     }
 
