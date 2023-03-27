@@ -396,4 +396,9 @@ public class Class {
         }
         return aClass != null && aClass.getClassName().equals(getClassName());
     }
+
+    @Override
+    public String toString() {
+        return this.className;
+    }
 }

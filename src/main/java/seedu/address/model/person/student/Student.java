@@ -272,7 +272,7 @@ public class Student extends Person {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Student Class: ")
-                .append(getClass())
+                .append(getStudentClass().getClassName())
                 .append("; Index Number: ")
                 .append(getIndexNumber())
                 .append("; Sex: ")

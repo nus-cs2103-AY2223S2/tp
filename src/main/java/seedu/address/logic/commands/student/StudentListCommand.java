@@ -20,6 +20,7 @@ public class StudentListCommand extends StudentCommand {
             + "Example: " + "student 1A " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Students from Class ";
+    public static final String MESSAGE_NO_STUDENTS = "There are no students in this class!";
     private final ClassContainsKeywordsPredicate predicate;
 
     private Class sc;
@@ -36,6 +37,10 @@ public class StudentListCommand extends StudentCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
+        if (model.getFilteredStudentList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_STUDENTS,
+                    true, this.sc);
+        }
         return new CommandResult(MESSAGE_SUCCESS + this.sc.getClassName() + " listed!",
                 true, this.sc);
     }
