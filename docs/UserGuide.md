@@ -7,8 +7,7 @@ for use via a Command Line Interface (CLI), while still having a Graphical User 
 on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more 
 reliably than traditional GUI based apps.
 
-![LogInPage](../docs/images/LogIn.jpeg)
-![MainScreen](../docs/images/MainScreen.jpeg)
+![MainScreen](../docs/images/Ui.png)
 
 * Table of Contents
 {:toc}
