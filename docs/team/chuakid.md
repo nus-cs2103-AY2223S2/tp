@@ -14,6 +14,7 @@ Given below are my contributions to the project.
 * Export and Import of contacts
 * Export and Import of meetings
 * Added UI for meetings
+* Improved UI with different color scheme and scaling panels
 
 ## Project management
 
