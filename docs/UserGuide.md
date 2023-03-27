@@ -399,12 +399,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format, Examples                                                                                                                                                      |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a contact**  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Reset all data**    | `clear`                                                                                                                                                               |
+| **Delete a contact**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit a contact**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find a contact**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List all contacts** | `list`                                                                                                                                                                |
+| **Help**              | `help`                                                                                                                                                                |
+| **List all meetings** | `listm`                                                                                                                                                               |
+| **Create a meeting**  | `addm m/TITLE dt/DATE_TIME p/CONTACT_NAME... l/LOCATION des/DESCRIPTION`                                                                                              |
+| **Edit a meeting**    | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
+| **Delete a meeting**  | `delm INDEX` <br> e.g., `deletem 3`                                                                                                                                   |
+| **Export a contact**  | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
+| **Export a meeting**  | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
+| **Import a contact**  | `import VALID_JSON`                                                                                                                                                   |
+| **Import a meeting**  | `importm VALID_JSON`                                                                                                                                                  |
+| **Sort meetings**     | `sortm SORT_FIELD` <br> e.g., `sortm dt/`                                                                                                                             |
