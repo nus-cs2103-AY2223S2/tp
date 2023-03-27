@@ -1,14 +1,13 @@
 package vimification.model.task;
 
 public enum Priority {
-    VERY_URGENT(1), URGENT(2), NOT_URGENT(1), UNKNOWN(0);
+    UNKNOWN, NOT_URGENT, URGENT, VERY_URGENT;
 
-    private int level;
-
-    Priority(int level) {
-        this.level = level;
-    }
-
+    /*
+     * Possible helper function used by the parser. Help parser to process Integer input (as an
+     * alternative input) to return the corresponding Priority enum. 1 being the highest priority, 3
+     * being the lowest priority. Other integers will be treated as unknown priority
+     */
     public static Priority fromInt(int level) {
         switch (level) {
         case 1:
@@ -20,10 +19,6 @@ public enum Priority {
         default:
             return UNKNOWN;
         }
-    }
-
-    public int level() {
-        return level;
     }
 
     @Override
