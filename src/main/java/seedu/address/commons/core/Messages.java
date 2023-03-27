@@ -35,14 +35,23 @@ public class Messages {
         + "Deleted from the %s\n";
     public static final String MESSAGE_INVALID_LESSON_DISPLAYED_INDEX = "The lesson index provided is invalid";
 
+    public static final String MESSAGE_INVALID_EXAM_DISPLAYED_INDEX = "The exam index provided is invalid";
+    public static final String MESSAGE_EXAM_DELETED_SUCCESS = "Exam: %s, %s\n"
+        + "Deleted from the %s\n";
+
     public static final String MESSAGE_EXAM_ADDED_SUCCESS = "New exam added: \n%s \n"
             + "To the following students: \n%s";
     public static final String MESSAGE_EXAMS_LISTED_OVERVIEW = "%d exams from %d students listed: \n%s";
-    public static final String MESSAGE_ALL_EXAMS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
+    public static final String MESSAGE_ALL_EXAMS_LISTED_OVERVIEW = "%d exams from all students listed:\n%s";
     public static final String MESSAGE_NO_EXAM_FOUND = "No exam is found!";
     public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
             + "Homework name: %s\n"
             + "Deadline: %s\n";
-    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s** "
-            + "please enter full name(s)";
+    public static final String MESSAGE_LESSON_UPDATED_SUCCESS = "Lesson %s of student %s is updated to:\n"
+        + "Lesson name: %s\n"
+        + "Start Time: %s\n"
+        + "End Time: %s\n";
+    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s**."
+            + "\nPlease enter full name(s)";
+    public static final String MESSAGE_NO_SUCH_STUDENT = "No student found: **%s**.\nPlease check the name entered";
 }

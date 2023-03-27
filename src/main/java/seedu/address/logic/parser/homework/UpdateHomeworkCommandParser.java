@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -20,13 +21,13 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 
 /**
  * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
  */
 public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand> {
-    private List<String> names;
+    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
      * and returns an UpdateHomeworkCommand object for execution.
@@ -77,7 +78,7 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
             deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
 
-        return new UpdateHomeworkCommand(names, index, new NameContainsKeywordsPredicate(nameKeywords),
+        return new UpdateHomeworkCommand(names, index, new NamePredicate(nameKeywords),
                 homeworkName, deadline);
     }
 

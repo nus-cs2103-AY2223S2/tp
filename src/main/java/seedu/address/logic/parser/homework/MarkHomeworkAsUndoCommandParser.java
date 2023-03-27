@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,7 +23,7 @@ import seedu.address.model.student.NamePredicate;
  * Parses input arguments and creates a new MarkHomeworkAsDoneCommand object
  */
 public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUndoCommand> {
-    private List<String> names;
+    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the MarkHomeworkAsDoneCommand
      * and returns a MarkHomeworkAsDoneCommand object for execution.

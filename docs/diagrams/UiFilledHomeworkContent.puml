@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+
+Class DetailedInfoSection
+Class DetailedContent
+Class HeaderBar
+
+Class GeneralHomeworkContent
+Class FilledHomeworkContent
+Class HomeworkListPanel
+Class HomeworkCard
+Class HomeworkPieChart
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" DetailedInfoSection
+DetailedInfoSection *-down-> "1" HeaderBar
+DetailedInfoSection *-down-> "1" DetailedContent
+FilledHomeworkContent *-down-> "1" HomeworkListPanel
+FilledHomeworkContent *-down-> "1" HomeworkPieChart
+HomeworkListPanel -down-> "*" HomeworkCard
+
+MainWindow -left-|> UiPart
+DetailedInfoSection --|> UiPart
+HeaderBar --|> UiPart
+DetailedContent --|> UiPart
+HomeworkListPanel --|> UiPart
+HomeworkCard --|> UiPart
+HomeworkPieChart --|> UiPart
+
+DetailedInfoSection ..> Model
+UiManager -right-> Logic
+MainWindow -left-> Logic
+GeneralHomeworkContent -up-|> DetailedContent
+FilledHomeworkContent -up-|> GeneralHomeworkContent
+
+MainWindow -[hidden]-|> UiPart
+@enduml

@@ -4,16 +4,14 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
-import seedu.address.ui.UiPart;
 import seedu.address.ui.UiUtil;
 
 /**
  * A UI component that displays detailed information of a {@code Student}.
  */
-public class ProfileContent extends UiPart<Region> {
+public class ProfileContent extends DetailedContent {
     private static final Logger logger = LogsCenter.getLogger(ProfileContent.class);
     private static final String FXML = "ProfileContent.fxml";
     private static final int MAX_LINE_LENGTH = 40;

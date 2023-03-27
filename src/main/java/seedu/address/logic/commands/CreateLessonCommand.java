@@ -27,7 +27,7 @@ public class CreateLessonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
-        + PREFIX_LESSON + "EXAM_NAME "
+        + PREFIX_LESSON + "LESSON_NAME "
         + PREFIX_STARTTIME + "Start time "
         + PREFIX_ENDTIME + "End time\n"
         + "Example: " + COMMAND_WORD + " "
@@ -64,15 +64,25 @@ public class CreateLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder nonExistNames = new StringBuilder();
+        for (String name : names) {
+            if (model.noSuchStudent(name)) {
+                nonExistNames.append(name).append(", ");
+            }
+        }
+        if (nonExistNames.length() != 0) {
+            nonExistNames = new StringBuilder(nonExistNames.substring(0, nonExistNames.length() - 2));
+            throw new CommandException(String.format(Messages.MESSAGE_NO_SUCH_STUDENT, nonExistNames));
+        }
         StringBuilder dupNames = new StringBuilder();
         for (String name : names) {
             if (model.hasDuplicateName(name)) {
                 dupNames.append(name).append(", ");
             }
-            if (dupNames.length() != 0) {
-                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-            }
+        }
+        if (dupNames.length() != 0) {
+            dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+            throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
         }
         model.updateFilteredStudentList(predicate);
 

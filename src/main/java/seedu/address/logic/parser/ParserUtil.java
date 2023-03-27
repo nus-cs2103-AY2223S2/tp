@@ -167,6 +167,49 @@ public class ParserUtil {
 
     /**
      * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     * in {@link #ACCEPTABLE_DATETIME_FORMATS}.
+     *
+     * @param date The date string to be parsed
+     * @return The parsed LocalDateTime object
+     * @throws ParseException if the date string does not match any of the acceptable date time formats
+     */
+    public static LocalDateTime parseStartTime(String date) throws ParseException {
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(date,
+                    DateTimeFormatter.ofPattern(dateTimeFormat));
+            } catch (Exception e) {
+                // Go to the next dateTimeFormat
+            }
+        }
+
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
+    }
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     * in {@link #ACCEPTABLE_DATETIME_FORMATS}.
+     *
+     * @param date The date string to be parsed
+     * @return The parsed LocalDateTime object
+     * @throws ParseException if the date string does not match any of the acceptable date time formats
+     */
+    public static LocalDateTime parseEndTime(String date) throws ParseException {
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(date,
+                    DateTimeFormatter.ofPattern(dateTimeFormat));
+            } catch (Exception e) {
+                // Go to the next dateTimeFormat
+            }
+        }
+
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
+    }
+
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
      *
      * @param status The status string to be parsed
      * @return The parsed Boolean object

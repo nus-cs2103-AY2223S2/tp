@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+
+Class DetailedInfoSection
+Class DetailedContent
+Class HeaderBar
+
+Class GeneralLessonsContent
+Class FilledLessonsContent
+Class PastLessonsListPanel
+Class UpcomingLessonsListPanel
+Class LessonsCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" DetailedInfoSection
+DetailedInfoSection *-down-> "1" HeaderBar
+DetailedInfoSection *-down-> "1" DetailedContent
+FilledLessonsContent *-down-> "1" PastLessonsListPanel
+FilledLessonsContent *-down-> "1" UpcomingLessonsListPanel
+PastLessonsListPanel -down-> "*" LessonsCard
+UpcomingLessonsListPanel -down-> "*" LessonsCard
+
+MainWindow -left-|> UiPart
+DetailedInfoSection --|> UiPart
+HeaderBar --|> UiPart
+DetailedContent --|> UiPart
+PastLessonsListPanel --|> UiPart
+UpcomingLessonsListPanel --|> UiPart
+LessonsCard --|> UiPart
+
+DetailedInfoSection ..> Model
+UiManager -right-> Logic
+MainWindow -left-> Logic
+GeneralLessonsContent -up-|> DetailedContent
+FilledLessonsContent -up-|> GeneralLessonsContent
+
+MainWindow -[hidden]-|> UiPart
+@enduml

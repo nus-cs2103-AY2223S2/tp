@@ -11,11 +11,11 @@ import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
 import seedu.address.ui.detail.ProfileContent;
 import seedu.address.ui.exam.EmptyExamsContent;
-import seedu.address.ui.exam.ExamsContent;
+import seedu.address.ui.exam.FilledExamsContent;
 import seedu.address.ui.homework.EmptyHomeworkContent;
-import seedu.address.ui.homework.HomeworkContent;
+import seedu.address.ui.homework.FilledHomeworkContent;
 import seedu.address.ui.lesson.EmptyLessonsContent;
-import seedu.address.ui.lesson.LessonsContent;
+import seedu.address.ui.lesson.FilledLessonsContent;
 
 /**
  * A UI component that displays information of a {@code Person}.
@@ -96,7 +96,7 @@ public class StudentCard extends UiPart<Region> {
         if (student.getHomeworkList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyHomeworkContent(student));
         } else {
-            mainWindow.setDetailedContent(new HomeworkContent(student));
+            mainWindow.setDetailedContent(new FilledHomeworkContent(student));
         }
     }
 
@@ -110,7 +110,7 @@ public class StudentCard extends UiPart<Region> {
         if (student.getLessonsList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyLessonsContent(student));
         } else {
-            mainWindow.setDetailedContent(new LessonsContent(student));
+            mainWindow.setDetailedContent(new FilledLessonsContent(student));
         }
     }
 
@@ -124,7 +124,7 @@ public class StudentCard extends UiPart<Region> {
         if (student.getExamsList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyExamsContent(student));
         } else {
-            mainWindow.setDetailedContent(new ExamsContent(student));
+            mainWindow.setDetailedContent(new FilledExamsContent(student));
         }
     }
 

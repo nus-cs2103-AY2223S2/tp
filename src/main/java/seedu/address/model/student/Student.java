@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -299,6 +300,16 @@ public class Student {
         return Collections.unmodifiableList(filteredLessonsList);
     }
 
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireAllNonNull(target, editedLesson);
+        lessonsList.setLesson(target, editedLesson);
+    }
+
+    public void setExam(Exam target, Exam editedLesson) {
+        requireAllNonNull(target, editedLesson);
+        examList.setExam(target, editedLesson);
+    }
+
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -341,7 +352,7 @@ public class Student {
 
         // filter exam list for pending exams
         for (Exam exam : examList) {
-            if (exam.getStatus().equals(Exam.ExamStatus.Upcoming)) {
+            if (exam.getStartTime().isAfter(LocalDateTime.now())) {
                 upcomingExamList.add(exam);
             }
         }
@@ -469,19 +480,17 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\n")
+                .append("Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\n")
+                .append("Address: ")
                 .append(getAddress())
-                .append("; Tags: ");
+                .append("\n")
+                .append("Tags: ");
         getTags().forEach(builder::append);
-        builder.append("; Homework: ");
-        getHomeworkList().forEach(builder::append);
-        builder.append("; Lessons: ");
-        getLessonsList().forEach(builder::append);
-
         return builder.toString();
     }
 

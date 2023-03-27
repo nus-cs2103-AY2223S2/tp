@@ -9,7 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.student.exceptions.DuplicateLessonException;
+import seedu.address.model.student.exceptions.EntryNotFoundException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**
@@ -98,6 +100,21 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         }
         internalList.setAll(lessons);
         internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+    }
+
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireAllNonNull(target, editedLesson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EntryNotFoundException();
+        }
+
+        if (!target.isSameTimeLesson(editedLesson) && contains(editedLesson)) {
+            throw new DuplicateEntryException();
+        }
+
+        internalList.set(index, editedLesson);
     }
 
     /**
