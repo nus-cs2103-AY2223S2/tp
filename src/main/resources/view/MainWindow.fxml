@@ -47,11 +47,12 @@
 
       <VBox VBox.vgrow="ALWAYS" minWidth="1030" >
         <HBox VBox.vgrow="ALWAYS" prefWidth="1030">
-        <VBox fx:id="volunteerList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <VBox fx:id="elderlyList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10.0" left="25.0" right="10.0" top="10.0"/>
           </padding>
-          <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="elderlyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+
         </VBox>
 
           <VBox fx:id="pairList" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="450">
@@ -61,11 +62,11 @@
             <StackPane fx:id="pairListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-        <VBox fx:id="elderlyList"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+        <VBox fx:id="volunteerList"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
           <padding>
             <Insets bottom="10.0" left="10.0" right="25.0" top="10.0"/>
           </padding>
-          <StackPane fx:id="elderlyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
         </HBox>
