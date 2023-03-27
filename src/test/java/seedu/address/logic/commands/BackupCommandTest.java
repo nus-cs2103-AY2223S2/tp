@@ -40,6 +40,9 @@ public class BackupCommandTest {
     }
 
     @Test
+    public void execute_ValidIndex_
+
+    @Test
     public void equals() {
         Index one = Index.fromOneBased(1);
         Index two = Index.fromOneBased(2);
@@ -62,6 +65,8 @@ public class BackupCommandTest {
         // different person -> returns false
         assertFalse(backupCommandOne.equals(backupCommandTwo));
     }
+
+    private void cleanUp()
 
     /**
      * A default model stub that have all of the methods failing.
