@@ -1,20 +1,72 @@
 ---
 layout: page
 title: User Guide
+
 ---
 
-Mycelium is a desktop application aimed at helping **freelance web developers manage clients and projects** from multiple online sources. All interactions with Mycelium are through text commands, allowing for efficient manipulation of data while benefiting from the ease of viewing offered by the Graphical User Interface.
+Mycelium is a desktop application aimed at helping **freelance web developers
+manage clients and projects** from multiple online sources. All interactions
+with Mycelium are through text commands, allowing for efficient manipulation of
+data while benefiting from the ease of viewing offered by the Graphical User
+Interface.
 
-* Table of Contents
+# Using this Guide
+
+If it is your first time here, the easiest way to get started is to head over
+to [Quick Start](#quick-start), which will guide you through the installation
+process and basic usage.
+
+Alternatively, you may wish to use this guide as a reference for commands and
+hotkeys. The three main parts of this guide contain descriptions on how to use
+commands for managing clients and projects, as well as the available hotkeys.
+
+**TODO: add internal links for the para above**
+
+# Table of Contents
 {:toc}
+
+# Quick Start
+
+Mycelium runs on Java 11, so you should first head over to [Oracle's
+website](https://www.oracle.com/java/technologies/downloads/) to install Java
+11 if your system does not already have it installed. Alternatively, you might
+be able to install Java 11 from your preferred package manager, such as
+[Homebrew](https://formulae.brew.sh/formula/openjdk@11) for Mac or
+[Pacman](https://archlinux.org/packages/extra/x86_64/jdk11-openjdk/) for Arch
+Linux.
+
+Once you have Java 11, we can get started with our first steps using Mycelium.
+
+1. Download the latest release from our [releases
+   page](https://github.com/AY2223S2-CS2103T-W14-1/tp/releases)
+1. Place the `.jar` file in an *empty directory* of your choice
+1. In a terminal, navigate to the directory, and run the following command
+
+```
+java -jar mycelium.jar
+```
+
+If you see a window like the one shown below, then you have successfully
+installed and launched Mycelium! Notice that some mock data has been populated
+to help you get a feel for the application. Feel free to delete them later. 
+
+**TODO: add a screenshot**
+
+At this point, we recommend that you jump over to the [Command
+Summary](#command-summary) and [HotKey Summary](#hotkey-summary) section to get
+an overview of the commands and hotkeys which are the bread and butter of
+Mycelium. You may visit the relevant sections later for more details on your
+preferred use case.
+
+**TODO: add internal links for para above**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Main View - Projects and Clients
+# Main View - Projects and Clients
 
 Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
 
-### Projects Tab
+## Projects Tab
 
 The Projects tab lists all the projects you've created. Each project block contains the project’s
 
@@ -26,7 +78,7 @@ The Projects tab lists all the projects you've created. Each project block conta
 - Accepted date
 - Deadline
 
-### Clients Tab
+## Clients Tab
 
 The Clients tab lists all the clients you've created. Each client block contains the client’s
 
@@ -38,28 +90,43 @@ The Clients tab lists all the clients you've created. Each client block contains
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Command Layout
 
-Commands in Mycelium take the general form of `command_name [arguments]`. Arguments may be compulsory or optional. For optional arguments, Mycelium uses sensible defaults in their place.
+# Command Layout
 
-All arguments take the structure of `-arg arg_data`, and multiple arguments can be specified consecutively. Note that if `arg_data` consists of multiple white-space separated tokens, then it must be surrounded by single quotation marks.
+Commands in Mycelium take the general form of `command_name [arguments...]`.
+Arguments may be compulsory or optional. If you do not provide the optional
+arguments, Mycelium will use sensible defaults in their place.
 
-As an example, the command below creates a new project with the name *Mycelium Desktop*, for client *Spiderman*, and sourced from *fiverr.com*.
+All arguments take the structure of `-arg arg_data`. Some commands may take
+multiple arguments, in which case you may specify them in any order.
+Furthermore, if duplicate argument flags are provided, then only the *last one*
+is used. Finally, note that `arg_data` can consist of multiple whitespace
+separated tokens.
+
+As an example, the command below creates a new project with the name *Mycelium
+Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
+about what the arguments mean for now, this example is just meant to
+demonstrate the layout.) 
 
 ```bash
-p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com
+p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
-### A note on dates
+You will also discover that all command names in Mycelium are at most two
+characters long. This terseness is *intentional* to allow for faster
+keystrokes.
 
-For arguments which expect a date, Mycelium only accepts input of the format dd/MM/yyyy.
-For example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+## A note on dates
+
+Some arguments are in the form of dates. For these, Mycelium only accepts input
+of the format dd/MM/yyyy. For example, "14/03/2023" is okay, but "14/3/2023",
+or "14-03-2023" are not okay.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Managing Clients
+# Managing Clients
 
-### Creating a client contact: `c`
+## Creating a client contact: `c`
 
 Creates a new client contact.
 
@@ -90,7 +157,7 @@ The following command creates a new client with name *Alice Baker*, whose email 
 c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
 ```
 
-### Deleting a client contact: `dc`
+## Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
 
@@ -104,58 +171,163 @@ Deletes an *existing* client contact.
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 --------------------------------------------------------------------------------------------------------------------
-## Managing Projects
+# Managing Projects
 
-### Creating a project: `p`
+## Creating a project: `p`
 
 Creates a new project.
 
 **Compulsory Arguments**
 
-- **`-pn project_name`**
-    - The project’s name, which must be *unique.*
-    - If another project with the same name already exists, then the command *overrides* the existing project with the new details.
-- **`-e client_email`**
-    - The email of the client who submitted this project. Note that this client must have already been created in Mycelium.
+* `-pn project_name`
+    * The project’s name, which must be *unique*. Case sensitive.
+* `-e client_email`
+    * The email of the client who submitted this project. Note that this client
+      does not need to exist in Mycelium.
 
 **Optional Arguments**
 
-- **`-s status`**
-    - The `status` should be set to either **`not_started` , `in_progress` , or `done` .**
-    - **Default:** **`not_started`**
-- **`-src source`**
-    - The platform the project is sourced from, such as Fiverr. This can be any arbitrary string.
+- `-s status`
+    - Here `status` should be set, verbatim, to one of `not_started`,
+      `in_progress`, or `done`.
+    - **Default:** `not_started`
+- `-src source`
+    - The platform the project is sourced from, such as Fiverr. This can be any
+      arbitrary non-empty string.
     - **Default:** *null*
-- **`-d description`**
+- `-d description`
     - A short description of the project.
     - **Default:** *null*
-- **`-ad accepted_date`**
+- `-ad accepted_date`
     - The date that the project was accepted.
     - **Default**: the current date
-- **`-dd deadline_date`**
-    - The due date of the project.
+- `-dd deadline_date`
+    - The deadline of the project.
     - **Default:** *null*
 
 **Examples**
 
-The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*, with a deadline on *30 February, 2075*.
+The following command creates a new project whose name is *Mycelium Desktop*,
+submitted from the client *spiderman@gmail.com* from *fiverr.com*, with a
+deadline on *30 February, 2075*.
 
-```bash
-p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
+```
+p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
 
-### Deleting a project: `dp`
+If the project is added successfully, you should see the following message in the output box:
 
-Deletes an *existing* project.
+```
+New project added: Mycelium Desktop from client spiderman@gmail.com
+```
+
+**Notes**
+
+* The client specified by the `-e` argument does not need to exist in Mycelium.
+  You can add them later if you wish.
+* If you attempt to create a project with a name which already exists in
+  Mycelium, an error will be displayed to block the operation.
+
+## Deleting a project: `dp`
+
+Deletes an existing project.
 
 **Compulsory Arguments**
 
 - `-pn project_name`
-    - Name of the project to delete.
+    - Name of the project to delete. Case sensitive.
 
 **Examples**
 
-Running `dp -pn Mycelium` would delete the project with name *Mycelium*.
+The following command deletes a project with name *Mycelium Desktop*.
+
+```
+dp -pn Mycelium Desktop
+```
+
+If successful, you should see the following message in the output box. (In this
+example, the project's client is *spiderman@gmail.com*).
+
+```
+Deleted Project: Mycelium Desktop from client spiderman@gmail.com
+```
+
+**Notes**
+
+* If you attempt to delete a project which does not exist in Mycelium, an error
+  will be displayed and no changes will be made to your data.
+* Deletion is irreversible!
+
+## Updating a project: `up`
+
+Performs partial updates an existing project.
+
+**Compulsory Arguments**
+
+* `-pn project_name`
+    * Name of the project to update. Case sensitive.
+
+**Optional Arguments**
+
+* `-pn2 new_project_name`
+    * A new project name.
+    * **Default:** *null*
+* `-e client_email`
+    * A new client email.
+    * **Default:** *null*
+* `-s status`
+    * A new project status. Should be set, verbatim, to one of `not_started`,
+      `in_progress`, or `done`.
+    * **Default:** *null*
+* `-src source`
+    * A new source for the project. Can be any arbitrary non-empty string.
+    * **Default:** *null*
+* `-d description`
+    * A new description for the project.
+    * **Default:** *null*
+* `-ad accepted_date`
+    * A new accepted-on date for the project.
+    * **Default:** *null*
+* `-dd deadline_date`
+    * A new deadline for the project.
+    * **Default:** *null*
+
+Each of these arguments, if specified, will be used to (paritially) update the
+target project.
+
+<div markdown="span" class="alert alert-info">
+:information_source: Notice that the arguments here are similar to that of
+creating a project. You may refer to the section above on [creating a
+project](#creating-a-project:-p) for further details on what each argument
+means.
+</div>
+
+**Examples**
+
+Suppose we have a project named *Mycelium Desktop*, and wish to update
+
+1. its name to *Mycelium Mobile*; and
+1. its status to `in_progress`.
+
+The following command will do the trick.
+
+```
+up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
+```
+
+**TODO: add output**
+
+**Notes**
+
+* It is not possible to "unset" an optional field. For example, Mycelium allows
+  projects to have deadlines. Suppose that you have project, *X*, which
+  currently has a deadline. Then it is not possible to use the `up` command to
+  unset the deadline.
+* The target project should already exist in Mycelium. Otherwise, an error will
+  be displayed and no changes are made to the data.
+* If the project's name is updated, then it must be a unique name. Suppose we
+  currently have the projects *foo* and *bar*. An attempt to update *foo*'s
+  name to *bar* will result in an error, and the operation will be blocked.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,8 +385,7 @@ In **search mode**, the command box is highlighted light blue and the input is u
 
 If you have a project or client selected, pressing ***Enter*** in **search mode** switches back to **command mode** and appends the name or email of the selected project or client respectively to the command box. This is useful if you want to quickly reference a project or client in your command.
 
-
-## Command summary
+# Command summary
 
 Action | Format
 --------|------------------

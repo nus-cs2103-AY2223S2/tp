@@ -2,10 +2,10 @@ package mycelium.mycelium.logic.commands;
 
 import static mycelium.mycelium.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static mycelium.mycelium.testutil.TypicalPersons.CARL;
-import static mycelium.mycelium.testutil.TypicalPersons.ELLE;
-import static mycelium.mycelium.testutil.TypicalPersons.FIONA;
-import static mycelium.mycelium.testutil.TypicalPersons.getTypicalAddressBook;
+import static mycelium.mycelium.testutil.TypicalEntities.CARL;
+import static mycelium.mycelium.testutil.TypicalEntities.ELLE;
+import static mycelium.mycelium.testutil.TypicalEntities.FIONA;
+import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
 import mycelium.mycelium.commons.util.JsonUtil;
 import mycelium.mycelium.model.AddressBook;
-import mycelium.mycelium.testutil.TypicalPersons;
+import mycelium.mycelium.testutil.TypicalEntities;
 
 public class JsonSerializableAddressBookTest {
 
@@ -29,7 +29,7 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
             JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalAddressBook = TypicalPersons.getTypicalAddressBook();
+        AddressBook typicalAddressBook = TypicalEntities.getTypicalAddressBook();
         assertEquals(typicalAddressBook, addressBookFromFile);
     }
 
