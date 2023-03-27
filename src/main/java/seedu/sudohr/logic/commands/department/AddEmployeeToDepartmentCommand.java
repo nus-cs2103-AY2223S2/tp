@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
@@ -29,7 +30,6 @@ public class AddEmployeeToDepartmentCommand extends Command {
     public static final String MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS = "New employee %1$s is added to %2$s";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the department.";
     public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The given department does not exist in SudoHR.";
-    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
 
     private final Id toAdd;
     private final DepartmentName departmentName;
@@ -52,7 +52,7 @@ public class AddEmployeeToDepartmentCommand extends Command {
         Department department = model.getDepartment(departmentName);
 
         if (employee == null) {
-            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
         }
 
         if (department == null) {

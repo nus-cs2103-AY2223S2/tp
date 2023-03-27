@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
@@ -20,11 +21,7 @@ import seedu.sudohr.model.leave.LeaveDate;
 public class DeleteEmployeeFromLeaveCommand extends Command {
     public static final String COMMAND_WORD = "deleteEmployeeLeave";
 
-    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
-
     public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
-
-    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index is invalid";
 
     public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
 
@@ -50,7 +47,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         Employee employeeToDelete = model.getEmployee(employeeId);
 
         if (employeeToDelete == null) {
-            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
         }
 
         Leave leaveToDelete = new Leave(dateToDelete);

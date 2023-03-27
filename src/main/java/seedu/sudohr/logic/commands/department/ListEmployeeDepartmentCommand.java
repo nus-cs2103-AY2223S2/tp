@@ -21,8 +21,6 @@ public class ListEmployeeDepartmentCommand extends Command {
             + "Parameters: Employee ID\n"
             + "Example: " + COMMAND_WORD + PREFIX_EMPLOYEE + "100";
 
-    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
-
     private final DepartmentContainsEmployeePredicate predicate;
 
     public ListEmployeeDepartmentCommand(DepartmentContainsEmployeePredicate predicate) {
@@ -35,7 +33,7 @@ public class ListEmployeeDepartmentCommand extends Command {
         model.updateFilteredDepartmentList(predicate);
 
         if (model.getEmployee(predicate.getId()) == null) {
-            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
         }
 
         return new CommandResult(
