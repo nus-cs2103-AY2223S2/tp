@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="1100" minWidth="1700" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
+<fx:root minHeight="900" minWidth="1400" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/app_icon.png"/>
