@@ -3,6 +3,8 @@ package seedu.address.model.tank.readings;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.tank.Tank;
+
 /**
  * Represents a Tank's last fed date number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAmmoniaLevel(String)}
@@ -25,8 +27,8 @@ public class AmmoniaLevel extends Reading {
      * @param value A valid AmmoniaLevel;
      * @param date A valid date;
      */
-    public AmmoniaLevel(String value, String date) {
-        super(date);
+    public AmmoniaLevel(String value, String date, Tank tank) {
+        super(date, tank);
         requireNonNull(value);
         checkArgument(isValidAmmoniaLevel(value), MESSAGE_CONSTRAINTS);
         this.value = Integer.parseInt(value);

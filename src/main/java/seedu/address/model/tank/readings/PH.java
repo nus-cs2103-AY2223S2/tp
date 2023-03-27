@@ -3,6 +3,8 @@ package seedu.address.model.tank.readings;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.tank.Tank;
+
 /**
  * Represents a Tank's PH Level in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPH(String)}
@@ -25,8 +27,8 @@ public class PH extends Reading {
      * @param value A valid PH;
      * @param date A valid date;
      */
-    public PH(String value, String date) {
-        super(date);
+    public PH(String value, String date, Tank tank) {
+        super(date, tank);
         requireNonNull(value);
         checkArgument(isValidPH(value), MESSAGE_CONSTRAINTS);
         this.value = Integer.parseInt(value);

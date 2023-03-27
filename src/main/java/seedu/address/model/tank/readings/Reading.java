@@ -6,7 +6,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 
 import seedu.address.model.date.DateUtil;
+import seedu.address.model.tank.Tank;
 
+/**
+ * abstract class for Readings
+ */
 abstract class Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,12 +20,20 @@ abstract class Reading {
     public final LocalDate localDate;
     public final String alphaNumericDate;
 
-    public Reading(String date) {
+    public final Tank tank;
+
+    /**
+     * Constructor for reading
+     * @param date date reading was recorded
+     * @param tank the tank this reading belongs to
+     */
+    public Reading(String date, Tank tank) {
         requireNonNull(date);
         checkArgument(isValidReading(date), MESSAGE_CONSTRAINTS);
         dateString = date;
         localDate = DateUtil.parseStringToDate(date);
         alphaNumericDate = DateUtil.getTaskDescriptionDateFormat(localDate);
+        this.tank = tank;
     }
 
     public boolean isValidReading(String test) {
