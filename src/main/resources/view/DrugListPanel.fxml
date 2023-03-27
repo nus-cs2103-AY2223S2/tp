@@ -11,12 +11,12 @@
 <?import javafx.scene.control.ScrollPane?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <ListView fx:id="drugListView" HBox.hgrow="ALWAYS"/>
-    <ScrollPane fx:id="drugDetailDisplay" prefWidth="300" minWidth="300" HBox.hgrow="NEVER" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
+    <ScrollPane fx:id="drugDetailDisplay" prefWidth="300" minWidth="300" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
                 xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <padding>
-            <Insets top="5" right="5" bottom="5" left="5"/>
+            <Insets top="5" right="5" bottom="5" left="15"/>
         </padding>
-        <VBox fx:id="drugDetailContainer" maxWidth="280" prefWidth="265" >
+        <VBox fx:id="drugDetailContainer" maxWidth="280" prefWidth="265" prefHeight="450">
             <VBox>
                 <Label text="Please select a drug" fx:id="selectedTradeName" styleClass="cell_big_label"/>
             </VBox>
