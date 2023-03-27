@@ -12,6 +12,12 @@ import static seedu.address.model.util.TypicalPersons.VALID_PHONE_AMY;
 import static seedu.address.model.util.TypicalPersons.VALID_PHONE_BOB;
 import static seedu.address.model.util.TypicalPersons.VALID_TAG_FRIEND;
 import static seedu.address.model.util.TypicalPersons.VALID_TAG_HUSBAND;
+import static seedu.address.model.util.TypicalTasks.VALID_CONTENT_SEND_EMAIL;
+import static seedu.address.model.util.TypicalTasks.VALID_CONTENT_SUBMIT_REPORT;
+import static seedu.address.model.util.TypicalTasks.VALID_ID;
+import static seedu.address.model.util.TypicalTasks.VALID_STATUS_UNDONE;
+import static seedu.address.model.util.TypicalTasks.VALID_TITLE_SEND_EMAIL;
+import static seedu.address.model.util.TypicalTasks.VALID_TITLE_SUBMIT_REPORT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,6 +46,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditTaskCommand.EditTaskDescriptor DESC_SEND_EMAIL;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_SUBMIT_REPORT;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -46,6 +56,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_SEND_EMAIL = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_SEND_EMAIL)
+                .withContent(VALID_CONTENT_SEND_EMAIL)
+                .withStatus(VALID_STATUS_UNDONE).withId(VALID_ID).build();
+        DESC_SUBMIT_REPORT = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_SUBMIT_REPORT)
+                .withContent(VALID_CONTENT_SUBMIT_REPORT)
+                .withStatus(VALID_STATUS_UNDONE).withId(VALID_ID).build();
     }
 
     /**
@@ -60,7 +76,6 @@ public class CommandTestUtil {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
-            System.out.println(ce.getMessage());
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
@@ -188,6 +203,7 @@ public class CommandTestUtil {
             RepositoryModelManager<Task> expectedModelTaskModelManager = expectedModel.getTaskModelManager();
             assertEquals(actualModelTaskModelManager, expectedModelTaskModelManager);
         } catch (CommandException ce) {
+            System.out.println(ce.getMessage());
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

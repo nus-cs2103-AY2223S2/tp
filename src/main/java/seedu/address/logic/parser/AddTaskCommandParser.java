@@ -32,7 +32,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
-        Title title = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_TITLE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Task task = new Task(title, content, status);
         return new AddTaskCommand(task);
     }

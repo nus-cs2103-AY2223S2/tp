@@ -219,16 +219,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    void parseSubject_validString_returnsSubject() throws ParseException {
+    void parseTitle_validString_returnsSubject() throws ParseException {
         String validSubject = "Math";
-        Title title = ParserUtil.parseSubject(validSubject);
+        Title title = ParserUtil.parseTitle(validSubject);
         assertEquals(validSubject, title.toString(), "Parsed title should be equal to the input string");
     }
 
     @Test
-    void parseSubject_invalidString_throwsParseException() {
+    void parseTitle_invalidString_throwsParseException() {
         String invalidSubject = "Invalid_Subject";
-        assertThrows(ParseException.class, Title.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseSubject(invalidSubject));
+        assertThrows(ParseException.class, Title.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseTitle(invalidSubject));
     }
 
     @Test

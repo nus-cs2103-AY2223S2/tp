@@ -151,7 +151,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code subject} is invalid.
      */
-    public static Title parseSubject(String subject) throws ParseException {
+    public static Title parseTitle(String subject) throws ParseException {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
         if (!Title.isValidTitle(trimmedSubject)) {
