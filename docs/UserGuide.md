@@ -390,8 +390,8 @@ _Details coming soon ..._
 
 ### Expense Commands 
 | Action                                                  | Format                                                             | Examples                             |
-|---------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------|
-| [**Add Expense**](#adding-an-expense-add)               | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                 | `add c/Food p/20 n/Mac d/14/2/23`    |
+|---------------------------------------------------------|--------------------------------------------------------------------|-------------------------------------|
+| [**Add Expense**](#adding-an-expense-add)               | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                 | `add c/Food p/20 n/Mac d/14/2/23`    |                                                         |                                                                    
 | [**Delete Expense**](#deleting-an-expense--delete)      | `delete INDEX`                                                     | `delete 1`                           |
 | [**Edit Expense**](#editing-an-expense--eexp)           | `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]` | `eexp 1 c/Food n/Mac d/20/4/23 p/10` |
 | [**List Expenses**](#listing-expenses--list)            | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                             | `list c/Food t/month`                |
