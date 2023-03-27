@@ -152,10 +152,10 @@ public class Gui extends Application {
     }
 
     private MacroMap initMacroMap() {
-        return null;
+        return new MacroMap();
     }
 
     private CommandStack initCommandStack() {
-        return null;
+        return new CommandStack();
     }
 }
