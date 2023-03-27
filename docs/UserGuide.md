@@ -236,13 +236,13 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 **Module**
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
-* The prefix for a module is `/mod`.
+* The prefix for a module is `mod/`.
 * Module names should be alphanumeric.
 * A person can have any number of modules assigned to it.
 
 **Tag**
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
-* The prefix for a tag is `/t`.
+* The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
 * A person can have any number of tags assigned to it.
 
