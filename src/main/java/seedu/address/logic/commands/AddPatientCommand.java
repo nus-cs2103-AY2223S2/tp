@@ -30,6 +30,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_DIAGNOSIS + "DIAGNOSIS "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_REMARK + "REMARK "
+            + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -38,7 +39,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_WEIGHT + "70.5 "
             + PREFIX_DIAGNOSIS + "Fever "
             + PREFIX_STATUS + "Outpatient "
-            + PREFIX_REMARK + "Patient was given paracetamol for fever "
+            + PREFIX_REMARK + "No known allergies "
             + PREFIX_TAG + "friends";
 
 
