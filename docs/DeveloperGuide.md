@@ -806,7 +806,12 @@ Similar to **UC04 Sort Contacts**, except,
     * 2b1. SOCket shows an error message.
 
       Use case ends.
-*{More to be added}*
+
+**Use case: UC20 Delete a project**
+
+Similar to **UC03 Delete a contact**, except,
+* a list of projects is shown instead of contacts.
+* a project is deleted instead of a contact.
 
 ### Non-Functional Requirements
 
