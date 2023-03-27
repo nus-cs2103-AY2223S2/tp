@@ -25,4 +25,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_END_DATE_TIME = new Prefix("e/");
     public static final Prefix PREFIX_RECURRENCE = new Prefix("r/");
 
+    public static final Prefix PREFIX_PERSON_TO_TAG = new Prefix("pt/");
+
+    public static final Prefix PREFIX_EVENT_TO_TAG = new Prefix("et/");
+
 }

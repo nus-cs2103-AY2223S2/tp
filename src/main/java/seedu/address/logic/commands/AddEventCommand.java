@@ -53,6 +53,7 @@ public class AddEventCommand extends Command {
         if (model.hasEvent(toDo)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+
         if (!DateTime.isValidInterval(toDo.getStartDateTime(), toDo.getEndDateTime())) {
             throw new CommandException(MESSAGE_INVALID_INTERVAL);
         }
