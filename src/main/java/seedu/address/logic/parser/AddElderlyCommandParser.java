@@ -37,8 +37,7 @@ import seedu.address.model.tag.Tag;
 public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * AddElderlyCommand
+     * Parses the given {@code String} of arguments in the context of the AddElderlyCommand
      * and returns an AddElderlyCommand object for execution.
      * Name, Nric, birthdate, region and risk must be specified.
      *
@@ -50,11 +49,10 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
     public AddElderlyCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_NRIC,
-                PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG };
-        Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC_ELDERLY, PREFIX_BIRTH_DATE,
-                PREFIX_REGION, PREFIX_RISK };
+        Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC,
+            PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG };
+        Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_BIRTH_DATE,
+            PREFIX_REGION, PREFIX_RISK };
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 

@@ -35,11 +35,11 @@ public class AddVolunteerCommand extends Command {
     static {
         COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
         COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
         COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
         COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_qualification>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
         COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
@@ -48,9 +48,6 @@ public class AddVolunteerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a volunteer to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "

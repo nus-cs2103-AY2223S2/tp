@@ -150,18 +150,6 @@ public class AddVolunteerCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
-
         // missing nric prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + VALID_NRIC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
@@ -195,11 +183,6 @@ public class AddVolunteerCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE
                 + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Address.MESSAGE_CONSTRAINTS);
 
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
