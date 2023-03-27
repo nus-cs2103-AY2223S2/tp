@@ -115,7 +115,7 @@ public interface Model {
 
     void addEvent(Event event);
 
-    // void setEvent(Event eventToEdit, Event editedEvent);
+    void setEvent(Event target, Event editedEvent);
 
     ObservableList<Event> getEvents();
 

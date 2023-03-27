@@ -89,5 +89,9 @@ public class User extends Person {
     public UniqueEventList getEvents() {
         return this.events;
     }
+
+    public void setEvent(Event target, Event editedEvent) {
+        this.events.setEvent(target, editedEvent);
+    }
 }
 

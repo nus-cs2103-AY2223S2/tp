@@ -162,6 +162,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setEvent(Event target, Event editedEvent) {
+        this.userData.setEvent(target, editedEvent);
+    }
+
+    @Override
     public ObservableList<Event> getEvents() {
         return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
     }

@@ -75,8 +75,8 @@ public class UserData implements ReadOnlyUserData {
         this.user.getValue().addEvent(e);
     }
 
-    public UniqueEventList getEvents() {
-        return this.user.getValue().getEvents();
+    public void setEvent(Event target, Event editedEvent) {
+        this.user.getValue().setEvent(target, editedEvent);
     }
 
     @Override
