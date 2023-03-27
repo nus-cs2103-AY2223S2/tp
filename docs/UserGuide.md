@@ -345,31 +345,43 @@ Examples:
 
 <a name = "deleteparent" />
 
-### Deleting parent particulars: `delete`
+### Deleting parent: `delete`
 
-Deleting parent/ specified parent information from the database
+Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database
 
-Format: `delete n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/<AGE> imgP/<ABSOLUTE_PATH_TO_IMAGE> e/<EMAIL_ADDRESS> a/<RESIDENTIAL_ADDRESS>] `
+Format: `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`
 
 Examples:
-* `parent delete n/TanAhNiu pnP/91234567` <br>
-  Deletes TanAhNiu from powerConnect
-* `parent 1A 03 delete TanAhCow Mother` <br>
-  Deletes TanAhCow’s relationship of Mother with <Index number of student>
+* `parent delete n/TanAhCow pnP/91234567` <br>
+* `parent delete n/TanAhNiu pnP/91234566 e/bestniuinthetown@gmail.com` <br>
 
-Throws:
-* WrongParticularException
-  - The description field does not exist
-  - Description is invalid (eg. age is not a number..)
+Expected Outcome: <br>
+```
+Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: Insert parent email here!; Parent Phone: 91234567;
+```
+```
+Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
+```
+**Note:** 
+1. User *CANNOT* delete the parent/NOK if the parent/NOK has students *BINDED* to him/her. System will display an error message for this. <br><br>
 
-User should follow the same format <br>
-`Warning:` If no descriptions are given, the whole parent will be removed from the database <br><br>
+<a name = "general"/>
+
+## General Features <br>
+
+<a name = "listing"/>
+
+### Listing students / parents: `list`
+
+Lists all students / parents as specified in command <br>
+
+Format: `list student` `list parent` <br><br>
 
 <a name = "help"/>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides a link to our UserGuide.
 
 ![help message](images/helpMessage.png)
 
@@ -383,11 +395,15 @@ Exits the program.
 
 Format: `exit` <br><br>
 
-### Saving the data
+<a name = "savingdata"/>
+
+## Saving the data
 
 PowerConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. <br><br>
 
-### Editing the data file
+<a name = "editdatafile"/>
+
+## Editing the data file
 
 PowerConnect data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -395,21 +411,15 @@ PowerConnect data are saved as a JSON file `[JAR file location]/data/addressbook
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. <br><br>
 </div>
 
-### Archiving data files `[coming in v2.0]`
+<a name = "images"/>
 
-_Details coming soon ..._
-
-<a name = "addfeatures"/>
-
-### Additional Features
-
-### Images 
+## Images 
 
 In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
 Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
 
-Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br>
+Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "faq" /></a>
@@ -422,23 +432,25 @@ Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <
 --------------------------------------------------------------------------------------------------------------------
 <a name = "summary" /> </a>
 
+## Command Summary
 
-## Command Summary Student `student <CLASS>`
+### Command Summary for Student `student <CLASS>`
 
-| Action      | Format, Examples                                                                                                                                                                                                    |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`                                                                    |
-| **Grade**   | `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`                                                                                                                                                                 |
-| **Comment** | `comment <INDEX_NUMBER> note/<COMMENT>`                                                                                                                                                                             |
-| **List**    | `list`                                                                                                                                                                                                              |
-| **Edit**    | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]` |
-| **Find**    | `find <INDEX_NUMBER> `                                                                                                                                                                                              |
-| **Delete**  | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`                                                                                                            |
+| Action      | Format, Examples                                                                                                                                                                                                   |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                   |
+| **Grade**   | `grade in/[INDEX_NUMBER] test/[TEST_NAME] hw/[HOMEWORK_NAME] [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                                |
+| **Comment** | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                            |
+| **List**    | `list`                                                                                                                                                                                                             |
+| **Edit**    | `edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE] id/[INDEX_NUMBER] imgS/[IMAGE] cca/[CCA]  att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] pn/[PARENT NAME] pnP/[PARENT PHONE NUMBER] rls/[RELATIONSHIP] ] ` |
+| **Find**    | `find <NAME> `                                                                                                                                                                                              |
+| **Delete**  | `delete in/<INDEX_NUMBER>`                                                                                                           |
 
-## Command Summary Parent `parent <CLASS>`
+## Command Summary for Parent / NOK `parent`
 
-| Action     | Format, Examples                                                                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `                |
-| **List**   | `list`                                                                                                                                            |
-| **Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]` |
+| Action     | Format, Examples                                                                                                                                 |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`            |
+| **List**   | `list`                                                                                                                                           |
+| **Edit** | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
+| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]` |
