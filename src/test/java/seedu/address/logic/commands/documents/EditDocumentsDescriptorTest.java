@@ -36,11 +36,11 @@ public class EditDocumentsDescriptorTest {
         EditDocumentsCommand.EditDocumentsDescriptor editedGoogleDocuments =
                 new EditDocumentsDescriptorBuilder(DESC_DOCUMENTS_GOOGLE)
                         .withResumeLink(VALID_RESUME_LINK_NETFLIX).build();
-        assertNotEquals(DESC_DOCUMENTS_NETFLIX, editedGoogleDocuments);
+        assertNotEquals(DESC_DOCUMENTS_GOOGLE, editedGoogleDocuments);
 
         // different cover letter link -> returns false
         editedGoogleDocuments = new EditDocumentsDescriptorBuilder(DESC_DOCUMENTS_GOOGLE)
                 .withCoverLetterLink(VALID_COVER_LETTER_LINK_NETFLIX).build();
-        assertNotEquals(DESC_DOCUMENTS_NETFLIX, editedGoogleDocuments);
+        assertNotEquals(DESC_DOCUMENTS_GOOGLE, editedGoogleDocuments);
     }
 }
