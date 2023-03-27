@@ -25,14 +25,15 @@ If this is the first time you are using this user guide, we highly recommend you
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out!**](#try-it-out-)
+    3. [**Try it out! (Recommended)**](#try-it-out-)
     4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
     2. [**Profile Panel**](#profile-panel)
     3. [**Command Box**](#command-box)
     4. [**Command Response**](#command-response)
-6. [**Commands**](#commands)
+6. [**Set Your Own Profile**](#set-your-own-profile)
+7. [**Commands**](#commands)
     1. [**How to interpret the command format**](#how-to-interpret-the-command-format)
     2. [**Arguments**](#arguments)
     3. [**Basic Commands**](#basic-commands)
@@ -53,12 +54,12 @@ If this is the first time you are using this user guide, we highly recommend you
             1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
     5. [**Other Commands**](#other-commands)
         1. [**Exit the application**](#exit-the-application)
-7. [**FAQ**](#faq)
-8. [**Summary**](#summary)
+8. [**FAQ**](#faq)
+9. [**Summary**](#summary)
     1. [**Prefixes**](#prefixes)
     2. [**Command Summary**](#command-summary)
-9. [**Troubleshooting**](#troubleshooting)
-    1. [**How to check your Java version**](#how-to-check-your-java-version)
+10. [**Troubleshooting**](#troubleshooting)
+     1. [**How to check your Java version**](#how-to-check-your-java-version)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -123,7 +124,7 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
    ![Ui](images/Ui.png)
    <br>
 
-### Try it out!
+### Try it out! (Recommended)
 
 Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
 
@@ -161,6 +162,44 @@ Should you get stuck at any point, it is likely that the solution can be found i
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## Set Up Your Own Profile
+
+After getting comfortable trying EduMate, you are now ready to start personalising it!
+
+1. Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
+(if you have tried out `sample` from earlier)
+2. On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
+a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+You do not have to enter all your information at once! You can omit some of the information
+and **its corresponding prefix** and enter them in the future!
+<br>
+
+Moreover, eduMate will replace the missing fields with placeholders which you
+can then edit over later!
+
+</div>
+
+3. To add the modules that you are studying as such :
+`tag m/[MODULE_CODE] DAY START_TIME END_TIME`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
+
+</div>
+
+4. To add group tags {Kenny Please}
+5. You are done! **ENJOY!**
+
+
+[Return to the top](#table-of-contents)
+
+------------
 
 ## Commands
 
