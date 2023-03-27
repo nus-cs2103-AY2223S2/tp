@@ -23,6 +23,7 @@ Java dependencies:
 * [JUnit 5](https://github.com/junit-team/junit5) for testing
 
 Documentation dependencies:
+* [Jekyll](https://jekyllrb.com/) for conversion of .md files to .html files for rendering of website
 * [PlantUML](https://plantuml.com/) for UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
