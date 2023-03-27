@@ -104,7 +104,7 @@ public class ClientCard extends UiPart<Region> {
         genderList.setImage(
                 new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
         phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/AddressIcon.png")));
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
     }
@@ -135,10 +135,10 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
-            logger.info("The calorie is invalid.");
             calorie.setText(client.getCalorie().value + " cal");
             caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
+            logger.info("The calorie is invalid.");
             calorie.setManaged(false);
             caloriesIcon.setManaged(false);
         }

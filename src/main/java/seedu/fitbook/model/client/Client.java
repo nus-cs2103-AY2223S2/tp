@@ -177,4 +177,9 @@ public class Client {
         }
         return builder.toString();
     }
+
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
 }

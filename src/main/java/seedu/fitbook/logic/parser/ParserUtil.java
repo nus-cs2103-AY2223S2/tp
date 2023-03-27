@@ -179,6 +179,9 @@ public class ParserUtil {
         if (!Appointment.isValidDate(trimmedAppointment)) {
             throw new ParseException(Appointment.MESSAGE_DATE_CONSTRAINTS);
         }
+        if (Appointment.isDatePassed(trimmedAppointment)) {
+            throw new ParseException(Appointment.DATE_CONSTRAINTS);
+        }
         return new Appointment(trimmedAppointment);
     }
 
