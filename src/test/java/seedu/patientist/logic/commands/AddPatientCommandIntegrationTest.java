@@ -32,6 +32,7 @@ public class AddPatientCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
         expectedModel.addPatient(validPatient, expectedModel.getWard(VALID_WARD_AMY));
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(new AddPatientCommand(VALID_WARD_AMY, validPatient), model,
                 String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);

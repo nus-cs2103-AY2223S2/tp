@@ -1,7 +1,8 @@
 package seedu.patientist.testutil;
 
 import seedu.patientist.model.Patientist;
-import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -11,9 +12,14 @@ import seedu.patientist.model.person.Person;
 public class PatientistBuilder {
 
     private Patientist patientist;
+    private Ward ward = new Ward("Ward");
 
+    /**
+     * Constructor for PatientistBuilder.
+     */
     public PatientistBuilder() {
         patientist = new Patientist();
+        patientist.addWard(ward);
     }
 
     public PatientistBuilder(Patientist patientist) {
@@ -23,8 +29,8 @@ public class PatientistBuilder {
     /**
      * Adds a new {@code Person} to the {@code Patientist} that we are building.
      */
-    public PatientistBuilder withPerson(Person person) {
-        //patientist.addPerson(person); todo
+    public PatientistBuilder withPerson(Patient patient) {
+        patientist.addPatient(patient, ward);
         return this;
     }
 

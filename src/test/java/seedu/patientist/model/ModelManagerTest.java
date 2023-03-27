@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.patientist.testutil.Assert.assertThrows;
-import static seedu.patientist.testutil.TypicalPersons.ALICE;
-import static seedu.patientist.testutil.TypicalPersons.BENSON;
+import static seedu.patientist.testutil.TypicalPatients.AMY;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.NameContainsKeywordsPredicate;
+import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.PatientistBuilder;
 
 public class ModelManagerTest {
@@ -79,13 +80,15 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasPerson(AMY));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        //modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        Ward ward = new Ward("Temp");
+        modelManager.addWard(ward);
+        modelManager.addPatient(AMY, ward);
+        assertTrue(modelManager.hasPerson(AMY));
     }
 
     @Test
@@ -95,7 +98,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Patientist patientist = new PatientistBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Patientist patientist = new PatientistBuilder().withPerson(AMY).withPerson(BOB).build();
         Patientist differentPatientist = new Patientist();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +120,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPatientist, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = AMY.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(patientist, userPrefs)));
 

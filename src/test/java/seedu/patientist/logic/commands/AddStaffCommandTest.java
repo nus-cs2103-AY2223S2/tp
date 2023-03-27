@@ -29,12 +29,12 @@ import seedu.patientist.testutil.StaffBuilder;
 public class AddStaffCommandTest {
 
     @Test
-    public void constructor_nullPatient_throwsNullPointerException() {
+    public void constructor_nullStaff_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddStaffCommand(null));
     }
 
     @Test
-    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_staffAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStaffAdded modelStub = new ModelStubAcceptingStaffAdded();
         Staff validStaff = new StaffBuilder().build();
 
@@ -111,11 +111,6 @@ public class AddStaffCommandTest {
         public void setPatientistFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
-
-        //@Override
-        //public void addPerson(Person person) {
-        //throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public void setPatientist(ReadOnlyPatientist patientist) {
@@ -274,12 +269,6 @@ public class AddStaffCommandTest {
             requireNonNull(person);
             return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
         }
-
-        //@Override
-        //public void addPerson(Person person) {
-        //requireNonNull(person);
-        //staffAdded.add((Staff) person);
-        //}
 
         @Override
         public ReadOnlyPatientist getPatientist() {
