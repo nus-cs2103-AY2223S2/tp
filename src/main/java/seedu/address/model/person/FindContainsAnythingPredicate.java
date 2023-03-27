@@ -2,19 +2,17 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.util.StringUtil;
-
-import java.util.logging.*;
-
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class FindContainsAnythingPredicate implements Predicate<Person> {
+    private static Logger logger = Logger.getLogger("FindAnythingLogger");
     private final List<String> keywords;
-
-    private static Logger logger = Logger.getLogger("Foo");
 
     public FindContainsAnythingPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -23,7 +21,6 @@ public class FindContainsAnythingPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         logger.log(Level.INFO, person.toString());
-
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsAnythingIgnoreCase(person.toStringSpaceDelimited(), keyword));
     }

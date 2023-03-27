@@ -77,7 +77,6 @@ public class AddressBookParser {
 
         case FindLeadStatusCommand.COMMAND_WORD:
             return new FindLeadStatusCommandParser().parse(arguments);
-        
         case FindAllCommand.COMMAND_WORD:
             return new FindAllCommandParser().parse(arguments);
 

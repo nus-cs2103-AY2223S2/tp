@@ -221,6 +221,10 @@ public class Person {
         return Objects.hash(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags);
     }
 
+    /**
+     * Returns the appended string of person object delimited by a " "
+     * @return String
+     */
     public String toStringSpaceDelimited() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
