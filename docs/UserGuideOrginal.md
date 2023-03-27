@@ -6,26 +6,20 @@ title: User Guide
 <img src="images/sprINT.png">
 </div>
 
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-## 1. **Introduction**
-
-### 1.1 What is sprINT
-
 Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
 optimised for use via a Command Line Interface (CLI) while still incorporating the benefits of a Graphical User
 Interface (GUI).
 
-If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximize speed and efficiency,
+If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximize speed and efficiency, 
 making it a great asset in managing your internship applications.
+
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Quick start**
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -40,55 +34,25 @@ making it a great asset in managing your internship applications.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all application entries.
+   * `list` : Lists all application entries.
 
-    * `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an
-      application for Software Engineer Intern position @ Goggle that I'm interested in. Deadline of application is 1st of
-      January.
+   * `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an
+   application for Software Engineer Intern position @ Goggle that I'm interested in. Deadline of application is 1st of
+   January.
 
-    * `delete-app 3` : Deletes the 3rd application shown in the current list.
+   * `delete-app 3` : Deletes the 3rd application shown in the current list.
 
-    * `clear` : Deletes all application entries.
+   * `clear` : Deletes all application entries.
 
-    * `exit` : Exits the app.
-
+   * `exit` : Exits the app.
+   
 Refer to the [Command summary](#Command summary) section below for a list of all the commands you can try.
 
 6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
-## 3. **Features**
-
-Before you begin reading, here are some special notations to help you along the way.
-
-**Tips**
-
-Tips are useful suggestions that will help you have a better experience with Class-ify.
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Tips are useful.
-</div>
-
-**Notes**
-
-Notes are important information that you should pay attention to when using Class-ify.
-
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** Take notes when you see this icon.
-</div>
-
-**Caution**
-
-Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
-will delete all data stored locally and this action is irreversible. You will lose your data permanently.
-
-<div markdown="span" class="alert alert-warning">:exclamation:
-**Caution:** Stop and read carefully when you see this!
-</div>
-
-<div style="page-break-after: always;"></div>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -114,13 +78,20 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 </div>
 
-### 3.1 Managing applications
+### Viewing help : `help`
 
-### 3.1.1  Adding an application : `add-app`
+Shows a message with a link to the user guide.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+
+### Adding an application : `add-app` 
 
 Adds an internship application to be tracked.
 
-Format: `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​`
+Format: `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Job Description and Deadline are optional fields for an application.
@@ -131,7 +102,18 @@ Examples:
 * `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested`
 * `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
-### 3.1.2  Editing an application : `edit-app`
+
+### Listing all internship applications : `list`
+
+Shows a list of all internship applications, in the order of when they are added. Application
+entries that are added more recently will be shown on top.
+
+Format: `list`
+
+Example:
+* `list` Returns the current list of internship applications tracked by sprINT.
+
+### Editing an internship : `edit-app`
 
 Edits an existing internship application to be tracked.
 
@@ -148,7 +130,7 @@ Examples:
 *  `edit-app 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
 *  `edit-app 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
 
-### 3.1.3  Deleting an application : `delte-app`
+### Deleting an application : `delete-app`
 
 Deletes the specified application from the internship book.
 
@@ -162,9 +144,24 @@ Examples:
 * `list` followed by `delete-app 2` deletes the 2nd application in the internship book.
 * `find Google` followed by `delete-app 1` deletes the 1st application shown in the results of the `find` command.
 
-### 3.2 Managing application tasks
+### Finding internship applications by keywords : `find`
 
-### 3.2.1  Adding an application task : `add-task`
+Finds internship applications with information containing any of the given keywords.
+
+Format: `find keyword(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
+
+* The search is case-insensitive. e.g. `goggle` will match `Goggle`.
+* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in all prefixes.
+* In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `role`, `company name` and `status` respectively.
+* When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
+* Only full words will be matched e.g. `Han` will not match `Hans` but `Goggle` will match with `Goggle LLC`.
+
+Examples:
+* `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
+* `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
+* `find r/SWE Intern c/Mata s/Offered` returns internship application(s) for the role of `SWE Intern` at `Mata` that is of the status `Offered`.<br>
+
+### Adding a task to an application : `add-task`
 
 Adds an upcoming task to an existing application.
 
@@ -173,26 +170,26 @@ Format: `add-task d/DESCRIPTION by/DEADLINE`
 
 Example:
 Suppose that you have recently applied to `Goggle` for their `Software Engineering Intern` role, and made an entry
-for it in the internship book.
+for it in the internship book. 
 Then, `Goggle` reaches out to you for a technical interview on the 24th July 2023. You can choose to add this
 as a task to the application entry you have created (suppose it is showing up as the first one in the list) by typing:
 `add-task 1 d/Technical Interview by/24-07-2023`
 
-### 3.2.2  Editing an application task : `edit-task`
+### Editing an internship's task : `edit-task`
 
 Edits an upcoming task for an application entry.
 
 Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 
-* Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
-  application list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
+application list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
 
 Example:
-`edit-task 1 d/Accept offer by/09-07-2023` Edits the description and deadline of the task for the 1st application to be
+`edit-task 1 d/Accept offer by/09-07-2023` Edits the description and deadline of the task for the 1st application to be 
 `Accept offer` and `09-07-2023` respectively.
 
-### 3.2.3  Deleting an application task : `delete-task`
+### Deleting an application's task : `delete-task`
 
 Deletes the task of the specified application.
 
@@ -211,58 +208,19 @@ Examples:
 * `list` followed by `delete-task 2` deletes the task for the 2nd application.
 * `find Google` followed by `delete-task 1` deletes the task of the 1st application to be shown in the results of the `find` command.
 
-### 3.3 Managing display for applications
+### Sorting internship applications by specified order : `sort`
 
-### 3.3.1  Listing all applications : `list`
-
-Shows a list of all internship applications, in the order of when they are added. Application
-entries that are added more recently will be shown on top.
-
-Format: `list`
-
-Example:
-* `list` Returns the current list of internship applications tracked by sprINT.
-
-### 3.3.2  Finding applications : `find`
-
-Finds internship applications with information containing any of the given keywords.
-
-Format: `find keyword(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
-
-* The search is case-insensitive. e.g. `goggle` will match `Goggle`.
-* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in all prefixes.
-* In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `role`, `company name` and `status` respectively.
-* When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
-* Only full words will be matched e.g. `Han` will not match `Hans` but `Goggle` will match with `Goggle LLC`.
-
-Examples:
-* `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
-* `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
-* `find r/SWE Intern c/Mata s/Offered` returns internship application(s) for the role of `SWE Intern` at `Mata` that is of the status `Offered`.<br>
-
-### 3.3.3  Soring applications : `sort`
-
-Sorts internship applications in the order you want.
+Sorts internship applications in the order you want. 
 
 Format: `sort ORDER`: `sort alphabetical` or `sort deadline`
 
 Currently, there are two orders you can choose:
 1. `sort alphabetical` sorts applications by their company names in alphabetical order. Should
-   there be multiple applications to the same company, they will be ranked alphabetically by their roles.
+there be multiple applications to the same company, they will be ranked alphabetically by their roles.
 2. `sort deadline` sorts applications by the deadline of their upcoming task. Earlier deadlines will be higher
-   up in the list.
+up in the list.
 
-### 3.4 Miscellaneous
-
-### 3.4.1  Viewing help : `help`
-
-Shows a pop-up window of summary of commands and their formats.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### 3.4.2  Undoing a command : `undo`
+### Undoing a command : `undo`
 
 Undos the previous command that you have typed in.
 
@@ -272,24 +230,24 @@ You can use this command if you have accidentally deleted an applicatione entry 
 
 Format: `undo`
 
-### 3.4.3  Clearing all applications : `clear`
+### Clearing all entries : `clear` 
 
 Clears all entries from the internship book.
 
 Format: `clear`
 
-### 3.4.4  Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window.
 
 Format: `exit`
 
-### 3.4.5  Saving the data
+### Saving the data
 
 Data in the internship book are automatically saved in the hard disk after any command that modifies the data. There is no need to save manually.
 
-### 3.4.6  Editing the data file
+### Editing the data file
 
 Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
@@ -297,16 +255,20 @@ Data in the internship book are saved as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.4.7  Archiving the data files : [coming in v2.0]
+### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
-## 4. **FAQ**
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
 
-## 5. **Command Summary**
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
 
 | Action                       | Format, Examples                                                                                                                               |
 |------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
