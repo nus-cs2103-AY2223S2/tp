@@ -46,6 +46,10 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 2;
 }
 
+p {
+  text-align: justify;
+}
+
 hr {
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
