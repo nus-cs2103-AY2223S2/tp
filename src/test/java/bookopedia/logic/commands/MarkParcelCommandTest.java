@@ -2,10 +2,12 @@ package bookopedia.logic.commands;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX;
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static bookopedia.commons.core.Messages.MESSAGE_NO_PARCELS;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static bookopedia.testutil.TypicalPersons.ALICE;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +21,7 @@ import bookopedia.model.ModelManager;
 import bookopedia.model.ParcelStatus;
 import bookopedia.model.UserPrefs;
 import bookopedia.model.person.Person;
-
+import bookopedia.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for MarkParcelCommand.
@@ -79,6 +81,20 @@ public class MarkParcelCommandTest {
                 Index.fromOneBased(100), ParcelStatus.FRAGILE);
 
         assertCommandFailure(markParcelCommand, model, String.format(MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX, 1));
+    }
+
+    @Test
+    public void execute_noParcels_failure() {
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark).withParcels().build();
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(
+                INDEX_FIRST_PERSON.getZeroBased()), updatedPersonToMark);
+
+        MarkParcelCommand markParcelCommand = new MarkParcelCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,
+                ParcelStatus.FRAGILE);
+
+        assertCommandFailure(markParcelCommand, expectedModel, String.format(MESSAGE_NO_PARCELS, ALICE.getName()));
     }
 
     @Test
