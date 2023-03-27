@@ -23,7 +23,7 @@ public class Card {
 
     // Data fields
     private final Tag tag;
-    private boolean isFlipped = true;
+    private final boolean isFlipped;
 
     /**
      * Every field must be present and not null.
@@ -34,7 +34,19 @@ public class Card {
         this.answer = answer;
         this.tag = Optional.ofNullable(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
+        this.isFlipped = true;
     }
+
+    private Card(Card toUpdate, boolean isFlipped) {
+        requireAllNonNull(toUpdate, isFlipped);
+        this.question = toUpdate.question;
+        this.answer = toUpdate.answer;
+        this.tag = toUpdate.tag;
+        this.deck = toUpdate.deck;
+        this.isFlipped = isFlipped;
+    }
+
+
 
     public Question getQuestion() {
         return question;
@@ -95,24 +107,17 @@ public class Card {
     }
 
     /**
-     * Sets card as flipped.
+     * Builds a flipped card.
      */
-    public void setAsFlipped() {
-        this.isFlipped = true;
+    public Card buildFlippedCard() {
+        return new Card(this, true);
     }
 
     /**
-     * Sets card as unflipped.
+     * Builds an unflipped card.
      */
-    public void setAsUnflipped() {
-        this.isFlipped = false;
-    }
-
-    /**
-     * Flips/unflips card as specified.
-     */
-    public void setFlip(boolean isFlipped) {
-        this.isFlipped = isFlipped;
+    public Card buildUnflippedCard() {
+        return new Card(this, false);
     }
 
     /**
