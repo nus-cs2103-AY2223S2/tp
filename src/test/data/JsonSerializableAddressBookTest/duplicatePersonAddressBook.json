@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "businessSize" : "2",
     "company" : "software engineering is not cs",
+    "priority" : "HIGH",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "businessSize" : "2",
     "company" : "software engineering is not cs",
+    "priority" : "HIGH",
     "address": "4th street"
   } ]
 }

@@ -13,6 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_BUSINESS_SIZE = new Prefix("s/");
 
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
+
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
 }
