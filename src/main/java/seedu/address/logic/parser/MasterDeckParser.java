@@ -24,13 +24,13 @@ import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
 import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
-import seedu.address.logic.commands.reviewcommands.MarkCorrectCommand;
-import seedu.address.logic.commands.reviewcommands.MarkWrongCommand;
 import seedu.address.logic.commands.reviewcommands.NextCardCommand;
 import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
 import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
-import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagEasyCommand;
+import seedu.address.logic.commands.reviewcommands.TagHardCommand;
+import seedu.address.logic.commands.reviewcommands.TagMediumCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -115,14 +115,14 @@ public class MasterDeckParser {
         case NextCardCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
 
-        case MarkCorrectCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkCorrectCommand.COMMAND_WORD));
+        case TagEasyCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagEasyCommand.COMMAND_WORD));
 
-        case MarkWrongCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkWrongCommand.COMMAND_WORD));
+        case TagMediumCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
 
-        case TagCardDuringReviewCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagCardDuringReviewCommand.COMMAND_WORD));
+        case TagHardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
 
         case EndReviewCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
@@ -196,14 +196,14 @@ public class MasterDeckParser {
         case NextCardCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
 
-        case MarkCorrectCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkCorrectCommand.COMMAND_WORD));
+        case TagEasyCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagEasyCommand.COMMAND_WORD));
 
-        case MarkWrongCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkWrongCommand.COMMAND_WORD));
+        case TagMediumCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
 
-        case TagCardDuringReviewCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagCardDuringReviewCommand.COMMAND_WORD));
+        case TagHardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
 
         case EndReviewCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
@@ -277,14 +277,14 @@ public class MasterDeckParser {
         case NextCardCommand.COMMAND_WORD:
             return new NextCardCommand();
 
-        case MarkCorrectCommand.COMMAND_WORD:
-            return new MarkCorrectCommand();
+        case TagEasyCommand.COMMAND_WORD:
+            return new TagEasyCommand();
 
-        case MarkWrongCommand.COMMAND_WORD:
-            return new MarkWrongCommand();
+        case TagMediumCommand.COMMAND_WORD:
+            return new TagMediumCommand();
 
-        case TagCardDuringReviewCommand.COMMAND_WORD:
-            return new TagCardDuringReviewCommandParser().parse(arguments);
+        case TagHardCommand.COMMAND_WORD:
+            return new TagHardCommand();
 
         case EndReviewCommand.COMMAND_WORD:
             return new EndReviewCommand();

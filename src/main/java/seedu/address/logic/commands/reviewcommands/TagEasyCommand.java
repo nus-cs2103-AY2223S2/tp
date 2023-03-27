@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reviewcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.tag.Tag.TagName.EASY;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
@@ -9,26 +10,21 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
 /**
- * The TagCardDuringReviewCommand class is responsible for tagging the
- * current card being reviewed with a specified tag.
+ * The TagEasyCommand class is responsible for tagging the
+ * current card being reviewed with the EASY tag.
  */
-public class TagCardDuringReviewCommand extends Command {
-    public static final String COMMAND_WORD = "tag";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Easy/Medium/Hard";
+public class TagEasyCommand extends Command {
+    public static final String COMMAND_WORD = "l";
 
     public static final String MESSAGE_SUCCESS = "Card is tagged with %1$s!";
 
     private final Tag tag;
 
     /**
-     * Constructs a new TagCardDuringReviewCommand object with the specified tag name.
-     *
-     * @param tag the name of the tag to assign to the current card being reviewed
+     * Constructs a new TagEasyCommand object with the specified tag name.
      */
-    public TagCardDuringReviewCommand(Tag tag) {
-        requireNonNull(tag);
-        this.tag = tag;
+    public TagEasyCommand() {
+        this.tag = new Tag(EASY);
     }
 
     /**
