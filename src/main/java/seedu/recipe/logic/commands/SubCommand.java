@@ -9,7 +9,6 @@ import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
@@ -54,12 +53,7 @@ public class SubCommand extends Command {
             if (tokens.containsKey(queryIngredient)) {
                 //inquire for subs
                 IngredientInformation rInfo = tokens.get(queryIngredient);
-                if (!rInfo.getSubstitutions().isEmpty()) {
-                    // List of substitutions within that recipe
-                    List<Ingredient> subs = rInfo.getSubstitutions();
-                    // store substitutions into subList, ensuring no duplication
-                    subList.addAll(subs);
-                }
+                subList.addAll(rInfo.getSubstitutions());
             }
         }
 
