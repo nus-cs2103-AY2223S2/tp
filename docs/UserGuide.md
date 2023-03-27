@@ -6,7 +6,23 @@ title: User Guide
 ## Table of Contents
 
 * Table of Contents
-{:toc}
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
+
+SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCket can get your contact management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About this User Guide
+
+The SOCket User Guide helps you quickly familiarise yourself with the features and command syntax of SOCket, imparting the knowledge necessary for you to utilise SOCket's functions. More experienced users can use the **[Command summary](#command-summary)** as a quick reference for the syntax of SOCket's commands.
+
+You can use the links in the **[Table of Contents](#table-of-contents)** to quickly navigate through this document. To help you get started, refer to the **[Quick start](#quick-start)** section of the SOCket User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,15 +57,15 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to SOCket.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to SOCket.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -66,6 +82,9 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+* Words in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
+  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -81,6 +100,7 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+
 </div>
 
 ### General Commands
@@ -89,7 +109,7 @@ General commands to improve your experience with SOCket.
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Displays window showing the list of commands and a clickable URL to access help page.
 
 ![help message](images/helpMessage.png)
 
@@ -199,10 +219,8 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
     * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
-
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+Example:
+* `find n/alex david` returns `Alex Yeoh`, `David Li`
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### Deleting a person : `delete`
@@ -220,15 +238,20 @@ Examples:
 
 #### Removing a person's field : `remove`
 
-Removes the specific field value based on the given input
+Removes the specific field value based on the given person
 
 Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
 
 * Removes field value of person at the specific `INDEX`.
+* At least one of the optional fields must be provided.
 * Removes all the corresponding field value in respect of the `KEYWORD`.
-    * e.g. `l/Java` will remove `Java` in person’s **Language** field.
+    * e.g. `l/Java` will remove `Java` in person’s languages.
 * Removes the entire field value when that field has no keyword provided.
     * e.g. `t/` will remove all the tags associate to the person.
+
+Examples: 
+* `remove 1 p/ l/Java` Removes phone number and `Java` from languages from first person in the list.
+![remove.png](images%2Fremove.png)
 
 #### Clearing all persons or tags : `clear`
 
@@ -277,7 +300,45 @@ Commands that help you make changes to the project list.
 
 #### Adding a project: `addpj`
 
+Adds a project to SOCket.
+
+Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
+
+* If a field flag is specified, it cannot be blank.
+    * e.g `n/  ` is not allowed
+* Project Name should contain only alphanumeric & space.
+    * e.g `n/project 1`
+* Repository Host should:
+    * contain alphanumeric & hyphens only.
+    * not start or end with hyphen.
+    * not exceed 39 characters.
+    * e.g `h/project-1`
+* Repository Name should:
+    * contain alphanumeric, periods, hyphens, or underscores only.
+    * not exceed 100 characters.
+    * e.g `r/project_1`
+* Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
+    * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
+* A project is considered to be the same if it has the same project name.
+
+Examples:
+* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
+  ![result for `addpj`](images/addpjResult.png)
+
 #### Editing a project: `editpj`
+
+Edits an existing project in SOCket.
+
+Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeting]`
+
+* Edits the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed project list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editpj 1 n/Project Alpha d/02/01/23-2359`Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
+![result for `editpj`](images/editpj.png)
 
 #### Deleting a project: `deletepj`
 
@@ -289,9 +350,25 @@ Format: `deletepj INDEX`
 * The index refers to the index number shown in the displayed project list.
 
 Examples:
-* `delete 2` deletes the 2nd project in SOCket.
+* `deletepj 2` deletes the 2nd project in SOCket.
 
 #### Removing a project's field: `removepj`
+
+Removes the specific field based on the given project in SOCket. 
+
+Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
+
+* Removes field value of project at the specific `INDEX`.
+* At least one of the optional fields must be provided.
+* Removes all the corresponding field value in respect of the `KEYWORD`.
+    * e.g. `r/alex-yeoh` will remove project’s repository name.
+* Removes the entire field value when that field has no keyword provided.
+    * e.g. `m/` will remove project's meeting.
+
+Examples: 
+* `removepj 1 r/` Removes repository name from first project in the project list.
+  ![result for `removepj`](images/removepj.png)
+* `removepj 1 d/01/01/2023-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
 
 #### Clearing all projects: `clearpj`
 
@@ -303,12 +380,11 @@ Format: `clearpj`
 
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
-
 Format: `sortpj [CATEGORY]`
 
 * If no category is provided, the projects are sorted by their deadlines alphanumerically
 * If a category is provided, the projects are sorted by that category alphanumerically
-  * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+    * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**
@@ -317,6 +393,17 @@ Examples:
   ![result for `sortpj deadline`](images/SortpjByName.png)
 
 #### Assign a person to a project: `assign`
+
+Format: `assign PERSON_INDEX PROJECT_INDEX`
+
+* `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* `PROJECT_INDEX` refers to the index number shown in the displayed project list.
+
+Examples:
+* Before Assigned
+  ![result for before assigned](images/AssignBefore.png)
+* After Assigned
+  ![result for after assigned](images/AssignAfter.png)
 
 #### Unassign a person from a project: `unassign`
 
@@ -358,26 +445,26 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                             |
-|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| **Add**         | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
-| **Clear**       | `clear`                                                                                                                                                                                                      |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
-| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`                                                                       |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                   |
-| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                    |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`                                                                                                                             |
-| **List**        | `list [t/tag]`                                                                                                                                                                                               |
-| **Add Project** |                                                                                                                                                                                                              |
-| **Clear Projects** | `clearpj`                                                                                                                                                                                                    |
-| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                             |
-| **Remove Project** |                                                                                                                                                                                                              |    
-| **Edit Project** |                                                                                                                                                                                                              |
-| **Assign**      |                                                                                                                                                                                                              |
-| **Unassign**    | `unassign INDEX n/NAME` <br> e.g., `unassign 1 n/John Doe`                                                                                                                                                   |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                               |                                                                                                                                                                                                              |
-| **Help**        | `help`                                                                                                                                                                                                       |
-| **Undo**        | `undo`                                                                                                                                                                                                       |
-| **Redo**        | `redo`                                                                                                                                                                                                       |
-| **View**        | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                              |
-| **Exit**        | `exit`                                                                                                                                                                                                       |
+| Action          | Format, Examples                                                                                                                                                                                            |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| **Add**         | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
+| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                                                |
+| **Delete**      | `delete INDEX`                                                                                                                                                                         |
+| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                                       |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                  |
+| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                   |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                                             |
+| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                          |
+| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                                    |
+| **Clear Projects** | `clearpj`                                                                                                                                                                                                   |
+| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                            |
+| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                                       |    
+| **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                                            |
+| **Assign**      | `assign PERSON_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                                   |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                                   |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                              | 
+| **View**        | `view INDEX`                                                                                                                                                                                                      |
+| **Undo**        | `undo`                                                                                                                                                                                                      |
+| **Redo**        | `redo`                                                                                                                                                                                                      |
+| **Help**        | `help`                                                                                                                                                                              |
+| **Exit**        | `exit`                                                                                                                                                                                                      |
