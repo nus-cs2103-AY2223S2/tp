@@ -162,12 +162,13 @@ Should you get stuck at any point, it is likely that the solution can be found i
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## Set Up Your Own Profile
+## Set Your Own Profile
 
 After getting comfortable trying EduMate, you are now ready to start personalising it!
 
 Step 1. Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
 (if you have tried out `sample` from earlier) <br>
+
 Step 2. On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
 a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
@@ -194,6 +195,7 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 </div>
 
 Step 4. To add group tags {Kenny Please} <br>
+
 Step 5. You are done! **ENJOY!** <br>
 
 
