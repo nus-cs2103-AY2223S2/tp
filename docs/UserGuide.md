@@ -259,8 +259,7 @@ Format: `sort [CATEGORY]`
   <img src="images/SortByName.png" width="600" />
   <figcaption>Sorted by Name.</figcaption>
 </figure>
-
-
+<br>
 <figure>
     <img src="images/SortByAddress.png" width="600" />
     <figcaption>Sorted by Address.</figcaption>
@@ -313,8 +312,7 @@ Format: `sortpj [CATEGORY]`
   <img src="images/SortpjByDeadline.png" width="600" />
   <figcaption>Sorted by Deadline.</figcaption>
 </figure>
-
-
+<br>
 <figure>
     <img src="images/SortpjByName.png" width="600" />
     <figcaption>Sorted by Name.</figcaption>
@@ -337,8 +335,7 @@ Format: `unassign INDEX n/NAME`
   <img src="images/UnassignBefore.png" width="600" />
   <figcaption>Before Unassign.</figcaption>
 </figure>
-
-
+<br>
 <figure>
     <img src="images/UnassignAfter.png" width="600" />
     <figcaption>After Unassign.</figcaption>
