@@ -50,18 +50,21 @@ reliably than traditional GUI based apps.
 2. Download the latest release of Patientist from [here](https://github.com/AY2223S2-CS2103T-T12-1/tp/releases/latest).
 3. Copy the file to the folder you'd like to use as the _home folder_ for your Patientist app.
 4. Double-click the .jar file to open the app. There will be some sample data to play around with.
-5. Type in commands and press ENTER to execute the command. **`help`** would be a good first command to use to get a sensing of how to use this app.
+5. Type in commands and press ENTER to execute the command. `help` would be a good first command to use to get a sensing of how to use this app.
 6. Refer to the [Features](#features) or [Command Summary](#command-summary) sections to see the details for each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Features
+
+
 ## Notes about formatting
 * Words in UPPER_CASE are user supplied parameters, e.g. `addpat n/NAME`: `NAME` is a parameter, and the command can be used as add `n/John Doe`
 * Items in square brackets are optional parameters, e.g. `addpat n/NAME [t/TAG]` can be used as `addpat n/John Doe t/urgent` or simply as `addpat n/John Doe`
 * Items with … after them can be specified 0 or more times, e.g. `[t/TAG]...` means it is valid to not include a tag, or you can chain 1 or more `t/TAG` expressions
 * Extraneous parameters for commands that take in exactly 0 parameters will be ignored
-# Features
-
 ---
+
 ## Viewing help: help
 Shows a popup explaining how to access the user guide, which is the help page.
 
