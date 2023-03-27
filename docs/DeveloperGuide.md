@@ -304,9 +304,31 @@ Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/jav
 
 ### DateTime parsing
 
+Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`. 
+
+The `dateTime` of a `Meeting` requires users to input a date, but leaves the time of the meeting to be optional. Internally, `DateTime` stores the date using [`LocalDate`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html) and the time using [`LocalTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html). However, since the time is an optional field, the optionality of the time is implemented by wrapping `LocalTime` with the Java [`Optional`](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) class.  This brings about various benefits and is further discussed below.
+
+Moreover, `DateTime` allows for various formats of parsing in a `dateTime` value (22/02 3.30PM, 2202 1530, 22.02.2023 etc). This is facilitated by first having a list of formats for dates and times separately. Moreover, separators (`.`, `:`, `/` etc) are maintained and inserted for each format dynamically. For example:
+
+* `dd{SEP}MM{SEP}yyyy` specifies the format for `dd/MM/yyyy`, `dd.MM.yyyy` and `dd-MM-yyyy` for separators `/`, `.` and `-` respectively.
+
+This way, formats are easily extensible and maintainable. The parsing of `dateTime` inputs into `LocalDate` and `LocalTime` objects are facilitated by breaking up the input into 2 parts: date and time, before using `LocalDate#parse` and `LocalTime#parse` respectively.
+
+#### Design Considerations
+
+**Aspect: How to encapsulate the time of a `Meeting` which is optional**
+
+* **Alternative 1**: Have the time set to `null` if user does not provide the time.
+  * This would risk [`NullPointerException`](https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html) being thrown if the time is not provided but there are attempts of accessing the time.
+  * As a result of the point above, there will be many instances of null checks, which would contribute to unnecessary code verbosity.
+* **Alternative 2**: Make use of `LocalTime.MAX` to represent that the time is not provided.
+  * This alternative removes the risk of `NullPointerException` that comes with Alternative 1.
+  * However, there would still be many instances of checks whether the time equals to `LocalTime.MAX`, which would contribute to unnecessary code verbosity.
+* **Alternative 3 (current choice)**: Utilise Java `Optional` to wrap the time.
+  * By doing so, there will not be any `NullPointerException` and enables us to make use of the provided methods (`orElse` etc.) that helps to carry out the logic based on the presence of the time.
+
 ### Sort Meeting commands
 `SortMeetingCommand` is a Java class that sorts the meeting objects stored in a Model object based on a specified attribute. This command allows the user to sort meetings by their title, date and time, location, or description. The user can also specify whether the sorting should be done in reverse order. The sorting is done by creating a Comparator for the specified attribute and passing it to the Model object's sortFilteredMeetingList method. The execute method of this class takes a `Model` object as an argument, applies the correct `Comparator` based on the prefix given by the user, and then returns a `CommandResult` object with a success message indicating the attribute that the meetings have been sorted by. If an invalid prefix is provided, a `CommandException` is thrown.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
