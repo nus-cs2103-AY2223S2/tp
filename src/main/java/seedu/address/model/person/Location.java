@@ -5,12 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's value in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidIndustry(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
-public class Industry {
+public class Location {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Industry should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Location should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the value must not be a whitespace,
@@ -21,20 +21,20 @@ public class Industry {
     public final String value;
 
     /**
-     * Constructs a {@code Industry}.
+     * Constructs a {@code Location}.
      *
-     * @param industry A valid industry.
+     * @param location A valid location.
      */
-    public Industry(String industry) {
-        requireNonNull(industry);
-        checkArgument(isValidIndustry(industry), MESSAGE_CONSTRAINTS);
-        this.value = industry;
+    public Location(String location) {
+        requireNonNull(location);
+        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        this.value = location;
     }
 
     /**
      * Returns true if a given string is a valid value.
      */
-    public static boolean isValidIndustry(String test) {
+    public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -46,8 +46,8 @@ public class Industry {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Industry // instanceof handles nulls
-                && value.equals(((Industry) other).value)); // state check
+                || (other instanceof Location // instanceof handles nulls
+                && value.equals(((Location) other).value)); // state check
     }
 
     @Override
