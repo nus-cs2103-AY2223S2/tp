@@ -639,7 +639,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: UC02 - Add an event**
+**Use Case: UC02 - Add an isolated event**
 
 **MSS**
 
@@ -655,14 +655,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty
 
     Use case ends.
+  
+* 3a. The given index of the person is invalid
+  * 3a1. WGT shows an error message.
+  
+    Use case resumes at step 2.
+* 3b. User enters the wrong name or date format
+  * 3b1. WGT shows an error message.
 
-* 3a. The given index is invalid
+    Use case resumes at step 2.
+
+* 3c. The starting time is later than the ending time of the isolated event
+    * 3c1. WGT shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3d. The Isolated event period clashes with an existing isolated event or a recurring event
+  * 3d1. WGT shows an error message.
+
+    Use case resumes at step 2.
+  
+**Use Case: UC03 - Add a recurring event**
+
+Similar to UC02
+
+**Use Case: UC04 - Editing isolated event**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to edit an event to a specific isolated event that belong to the person in the list
+4. WGT edits the specified isolated event belonging to the person
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty
+
+    Use case ends.
+
+* 3a. The given index of the person is invalid
 
   * 3a1. WGT shows an error message.
 
     Use case resumes at step 2.
+  
+* 3b. The given index of the isolated event is invalid
 
-**Use Case: UC03 - Find FTS**
+  * 3b1. WGT shows an error message.
+    
+    Use case resumes at step 2.
+* 3c. User enters the wrong name or date format 
+  * 3c1. WGT shows an error message.
+  
+      Use case resumes at step 2.
+* 3d. User newly edited isolated event clashes with an existing Isolated or Recurring events
+  * 3d1. WGT shows an error message.
+
+    Use case resumes at step 2.
+
+**Use Case: UC04 - Editing recurring event**
+
+Similar to UC03
+
+**Use Case: UC05 - Find FTS**
 
 **MSS**
 
@@ -685,7 +742,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: UC04 - Make Group**
+**Use Case: UC06 - Make Group**
 
 **MSS**
 
