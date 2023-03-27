@@ -27,6 +27,7 @@ public class Pet {
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
     private final LocalDateTime timestamp;
+    private final Cost cost;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +41,7 @@ public class Pet {
         this.email = email;
         this.address = address;
         this.timestamp = timestamp;
+        this.cost = new Cost(timestamp);
         this.deadline = deadline;
         this.tags.addAll(tags);
     }
@@ -65,6 +67,10 @@ public class Pet {
 
     public LocalDateTime getTimeStamp() {
         return timestamp;
+    }
+
+    public Cost getCost() {
+        return cost;
     }
 
     public Deadline getDeadline() {
@@ -120,7 +126,7 @@ public class Pet {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(ownerName, name, phone, email, address, timestamp, deadline, tags);
+        return Objects.hash(ownerName, name, phone, email, address, cost, deadline, tags);
     }
 
     @Override
@@ -135,8 +141,8 @@ public class Pet {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Timestamp: ")
-                .append(getTimeStamp())
+                .append("; Cost: ")
+                .append(getCost())
                 .append("; Deadline: ")
                 .append(getDeadline());
 
