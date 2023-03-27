@@ -1,9 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -13,6 +11,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.NricContainsKeywordsPredicate;
 import seedu.address.model.patient.StatusContainsKeywordsPredicate;
+import seedu.address.model.patient.WardNameContainsKeywordsPredicate;
+
 
 
 
@@ -28,11 +28,11 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS, PREFIX_WARD);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS)
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS, PREFIX_WARD)
                 || !argMultimap.getPreamble().isEmpty()
-                || manyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS)) {
+                || manyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS, PREFIX_WARD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -46,11 +46,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             checkArgsEmpty(trimmedNric);
             String [] nricKeywords = trimmedNric.split("\\s+");
             return new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList(nricKeywords)));
-        } else {
+        } else if (anyPrefixesPresent(argMultimap, PREFIX_STATUS)) {
             String trimmedStatus = argMultimap.getValue(PREFIX_STATUS).get();
             checkArgsEmpty(trimmedStatus);
             String [] statusKeywords = trimmedStatus.split("\\s+");
             return new FindCommand(new StatusContainsKeywordsPredicate(Arrays.asList(statusKeywords)));
+        } else {
+            String trimmedWardName = argMultimap.getValue(PREFIX_WARD).get();
+            checkArgsEmpty(trimmedWardName);
+            String [] statusKeywords = trimmedWardName.split("\\s+");
+            return new FindCommand(new WardNameContainsKeywordsPredicate(Arrays.asList(statusKeywords)));
         }
     }
 
