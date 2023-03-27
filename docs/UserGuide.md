@@ -11,7 +11,7 @@ We're focused on:
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
 - **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
 
-This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions used in ConnectUS.
+This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
@@ -26,21 +26,27 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 
 ## 3. Using this guide
 
-### 3.1 Navigation
-If you're a first time user 
+### 3.1 Notation
+- [Links](#31-notation) will help you navigate through this document.
+- **Bolded words** are phrases that you should pay attention to.
+- <u>Underlined words</u> can be found in the [glossary](#glossary).
 
+### 3.2 Navigation
+- If this is your **first time** using ConnectUS, head over to our [installation](#4-installation) guide for instructions on setting up ConnectUS, and our [quick start guide](#5-quick-start-guide) to begin using ConnectUS.
 
-### 3.2 Notation
+- If you need a **refresher on command syntax**, head over to the [command summary](#command-summary) for a table of commands and syntax examples.
 
-- For instructions on setting up ConnectUS, please refer to [Quick start](#quick-start).
-- For a table of commands, please refer to [Command summary](#command-summary).
-- For detailed instructions on how to use each command, please refer to [Features](#features).
+- For detailed instructions about the features we offer and how to use each command, please refer to [Features](#features).
 
-## Quick start
+- Refer to the [glossary](#glossary) for definitions of terms used in ConnectUS.
 
-1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) or above installed in your computer.
+## 4. Installation
 
-2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases).<br>
+If you have yet to install ConnectUS, simply follow these steps to set it up:
+
+1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
+
+2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
    ![Latest](images/ConnectUSLatest.png)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app.<br>
@@ -50,7 +56,11 @@ If you're a first time user
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Congratulations! You have successfully set up ConnectUS.
+
+## 5. Quick Start Guide
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
    Some example commands you can try:
 
@@ -64,11 +74,11 @@ If you're a first time user
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 6. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,7 +107,7 @@ If you're a first time user
 
 </div>
 
-### Viewing help : `help`
+### 6.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -105,14 +115,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### 6.2 Adding a contact: `add`
 
-Adds a person to the ConnectUS app.
+Adds a contact to the ConnectUS app.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [ccapos/POSITION]…​ [t/TAG]…​` 
+Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [ccapos/POSITION]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags, modules and CCAs! (including 0)
+A contact can have any number of tags, modules and CCAs! (including 0)
 </div>
 
 Examples:
@@ -123,73 +133,73 @@ Examples:
 
 Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
-### Listing all persons : `list`
+### 6.3 Listing all contacts : `list`
 
-Shows a list of all persons in the ConnectUS app.
+Shows a list of all contact in the ConnectUS app.
 
 Format: `list`
 
-### Editing a person : `edit`
+### 6.4 Editing a contact : `edit`
 
-Edits an existing person in the ConnectUS app.
+Edits an existing contact in the ConnectUS app.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can remove all the person’s tags by typing `edit -t` without specifying any tags after it.
+* You can remove all the contact’s tags by typing `edit -t` without specifying any tags after it.
 
 Examples:
-* `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
-* `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st contact to be `12345678` and `james@example.com` respectively.
+* `edit 2 n/Betsy Crower -t` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
-### Deleting a person : `delete`
+### 6.5 Deleting a contact : `delete`
 
-Deletes the specified person from the ConnectUS app.
+Deletes the specified contact from the ConnectUS app.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the ConnectUS app.
-* `search Betsy` followed by `delete 1` deletes the 1st person in the results of the `search` command.
+* `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
+* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
 
-### Searching for personal information : `search`
+### 6.6 Searching for contact information : `search`
 
-Finds persons whose information fields and tags contain any of the given keywords.
+Finds contacts whose information fields and tags contain any of the given keywords.
 
 Format: `search KEYWORD`
 
 Examples:
-* `search january` returns all persons whose information fields contain the keyword `january`.
-* `search alex may` returns all persons whose information fields contain the keywords `alex` and `may`.
+* `search january` returns all contacts whose information fields contain the keyword `january`.
+* `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
 
-* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the persons whose information fields contain the keyword `january`.
+* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 
-### Clearing all entries : `clear`
+### 6.7 Clearing all entries : `clear`
 
-Clears all entries from the ConnectUS app.
+Clears all contacts from the ConnectUS app.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### 6.8 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 6.9 Saving the data
 
 ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 6.10 Editing the data file
 
 ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -197,20 +207,20 @@ ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
 </div>
 
-### Additional information regarding specific fields
+## 7. Additional information regarding specific fields
 
-**Name:**
+### 7.1 Name:
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
-**Phone:**
+### 7.2 Phone:
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain numeric characters.
 * Phone numbers should be at least 3 digits long.
 
-**Email**
+### 7.3 Email
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -221,12 +231,12 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
         - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-**Address**
+### 7.4 Address
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including special characters.
 
-**Instagram**
+### 7.5 Instagram
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
@@ -234,49 +244,55 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * The dots `.` must not be consecutive or at the end.
     * The username should contain at most 30 characters.
 
-**Telegram**
+### 7.6 Telegram
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character `_`.
     * The username should contain at least 5 characters.
 
-**WhatsApp**
+### 7.7 WhatsApp
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
     * Phone numbers should only contain numeric characters.
     * Phone numbers should be at least 3 digits long.
 
-**Birthday**
+### 7.8 Birthday
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
-**Module**
-* Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
-* The prefix for a module is `mod/`.
-* Module names should be alphanumeric.
-* A person can have any number of modules assigned to it.
-
-**Tag**
+### 7.9 Tag
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
 * The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
-* A person can have any number of tags assigned to it.
+* A contact can have any number of tags assigned to it.
+
+### 7.10 Module
+* Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+* The prefix for a module is `mod/`.
+* Module names should be alphanumeric.
+* A contact can have any number of modules assigned to it.
+
+### 7.11 CCA
+* CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
+* The prefix for a CCA is `cca/`.
+* CCA names should be alphanumeric.
+* A contact can have any number of CCAs assigned to it.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 8. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ConnectUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 9. Command summary
 
 | Action     | Format                                                                                                                                                                       | Examples                                                                               |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
@@ -288,3 +304,5 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 | **Help**   | `help`                                                                                                                                                                       |                                                                                        |
 | **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
 | **Exit**   | `exit`                                                                                                                                                                       |                                                                                        |
+
+## 10. Glossary
