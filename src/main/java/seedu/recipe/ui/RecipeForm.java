@@ -100,6 +100,103 @@ public class RecipeForm extends UiPart<Region> {
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
+    
+    /**
+     * Saves the changes made to the recipe and closes the form.
+     * If any fields have been modified, the new values are stored
+     * in a map of changed values.
+     */
+    private void saveRecipe() {
+        // Check which fields have been changed
+        Map<String, String> changedValues = new HashMap<>();
+        for (Map.Entry<String, String> entry : initialValues.entrySet()) {
+            String key = entry.getKey();
+            String initialValue = entry.getValue();
+            String currentValue = null;
+
+            switch (key) {
+            case "name":
+                currentValue = nameField.getText();
+                break;
+            case "duration":
+                currentValue = durationField.getText();
+                break;
+            case "portion":
+                currentValue = portionField.getText();
+                break;
+            case "ingredients":
+                currentValue = ingredientsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "steps":
+                currentValue = stepsBox.getChildren().stream()
+                    .map(node -> ((TextField) node).getText())
+                    .collect(Collectors.joining(", "));
+                break;
+            case "tags":
+                currentValue = tagsField.getText();
+                break;
+            default:
+                currentValue = "";
+                break;
+            }
+
+            if (!initialValue.equals(currentValue)) {
+                changedValues.put(key, currentValue);
+            }
+        }
+        try {
+            // Add Recipe
+            if (initialValues.isEmpty()) {
+                handleAddRecipeEvent(changedValues);
+            }
+            handleEditRecipeEvent(displayedIndex, changedValues);
+            closeForm();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Closes the form without saving any changes.
+     */
+    private void closeForm() {
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
+    }
+
+    /**
+     * Displays the form in a new window.
+     * The window's title will be "Add Recipe" if creating a new recipe,
+     * or "Edit Recipe" if editing an existing recipe.
+     */
+    public void display() {
+        Stage window = new Stage();
+        // Ensures users do not exit the view by clicking outside
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
+
+        //Set dimensions, scene graph
+        window.setMinWidth(500);
+        window.setMinHeight(700);
+        VBox vbox = new VBox(getRoot());
+        Scene scene = new Scene(vbox);
+
+        //Event handler for Escape Key
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                window.close();
+            }
+        });
+
+        //Display
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
+    /*----------------------------------------------------------------------------------------------------------- */
+    // The following functions are helper functions used in the main code above. 
 
     /**
      * Stores the initial values of the form fields in a HashMap.
@@ -120,6 +217,7 @@ public class RecipeForm extends UiPart<Region> {
             .collect(Collectors.joining(", ")));
 
         initialValues.put("tags", tagsField.getText());
+        System.out.println("Initial size" + initialValues.size());
     }
 
     /**
@@ -177,75 +275,67 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Executes the command based on the given {@code commandText} and returns the result.
-     * Updates the UI components based on the command result.
+     * Helper method to add all the changed field data into an existing StringBuilder instance.
      *
-     * @param commandText the command text to execute.
-     * @return the resulting {@code CommandResult} after executing the command.
-     * @throws CommandException if the command execution fails.
-     * @throws ParseException if the command text cannot be parsed.
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = commandExecutor.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            throw e;
+    public StringBuilder collectFields(StringBuilder commands, Map<String, String> changedValues) {
+        // Check if the name has been changed and append the name prefix and value.
+        if (changedValues.containsKey("name")) {
+            commands.append(" n/");
+            commands.append(changedValues.get("name"));
         }
+
+        // Check if the duration has been changed and append the duration prefix and value.
+        if (changedValues.containsKey("duration")) {
+            commands.append(" d/");
+            commands.append(changedValues.get("duration"));
+        }
+        
+        // Check if the ingredients have been changed and append the ingredients prefix and value.
+        if (changedValues.containsKey("ingredients")) {
+            String[] ingredients = changedValues.get("ingredients").split(", ");
+            for (String ingredient : ingredients) {
+                commands.append(" i/");
+                commands.append(ingredient);
+            }
+        }
+
+        // Check if the steps have been changed and append the steps prefix and value.
+        if (changedValues.containsKey("steps")) {
+            String[] steps = changedValues.get("steps").split(", ");
+            for (String step : steps) {
+                commands.append(" s/");
+                commands.append(step);
+            }
+        }
+
+        // Check if the tags have been changed and append the tags prefix and value.
+        if (changedValues.containsKey("tags")) {
+            String[] tags = changedValues.get("tags").split(", ");
+            for (String tag : tags) {
+                commands.append(" t/");
+                commands.append(tag);
+            }
+        }
+        return commands;
     }
-    
-    /**
-     * Saves the changes made to the recipe and closes the form.
-     * If any fields have been modified, the new values are stored
-     * in a map of changed values.
+
+       /**
+     * Handles the add recipe event by adding the recipe with the changed values.
+     *
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private void saveRecipe() {
-        // Check which fields have been changed
-        Map<String, String> changedValues = new HashMap<>();
-        for (Map.Entry<String, String> entry : initialValues.entrySet()) {
-            String key = entry.getKey();
-            String initialValue = entry.getValue();
-            String currentValue = null;
-
-            switch (key) {
-            case "name":
-                currentValue = nameField.getText();
-                break;
-            case "duration":
-                currentValue = durationField.getText();
-                break;
-            case "portion":
-                currentValue = portionField.getText();
-                break;
-            case "ingredients":
-                currentValue = ingredientsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
-                    .collect(Collectors.joining(", "));
-                break;
-            case "steps":
-                currentValue = stepsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
-                    .collect(Collectors.joining(", "));
-                break;
-            case "tags":
-                currentValue = tagsField.getText();
-                break;
-            default:
-                currentValue = "";
-                break;
-            }
-
-            if (!initialValue.equals(currentValue)) {
-                changedValues.put(key, currentValue);
-            }
-        }
+    private void handleAddRecipeEvent(Map<String, String> changedValues) {
         try {
-            handleEditRecipeEvent(displayedIndex, changedValues);
-            closeForm();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            StringBuilder commands = new StringBuilder();
+            commands = collectFields(commands, changedValues);
+            System.out.println(changedValues);
+            String commandText = "add " + commands.toString(); 
+            System.out.println(commandText);
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to add recipe.");
         }
     }
 
@@ -255,53 +345,15 @@ public class RecipeForm extends UiPart<Region> {
      * @param index        The index of the recipe to be edited.
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private void handleEditRecipeEvent(int index, Map<String, String> changedValues ) {
+    private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
         try {
             StringBuilder commands = new StringBuilder();
 
             // Add the index of the item to edit.
             commands.append(index);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (changedValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(changedValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (changedValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(changedValues.get("duration"));
-            }
-            
-            // Check if the ingredients have been changed and append the ingredients prefix and value.
-            if (changedValues.containsKey("ingredients")) {
-                String[] ingredients = changedValues.get("ingredients").split(", ");
-                for (String ingredient : ingredients) {
-                    commands.append(" i/");
-                    commands.append(ingredient);
-                }
-            }
-
-            // Check if the steps have been changed and append the steps prefix and value.
-            if (changedValues.containsKey("steps")) {
-                String[] steps = changedValues.get("steps").split(", ");
-                for (String step : steps) {
-                    commands.append(" s/");
-                    commands.append(step);
-                }
-            }
-
-            // Check if the tags have been changed and append the tags prefix and value.
-            if (changedValues.containsKey("tags")) {
-                String[] tags = changedValues.get("tags").split(", ");
-                for (String tag : tags) {
-                    commands.append(" t/");
-                    commands.append(tag);
-                }
-            }
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "edit " + commands.toString(); // 1-indexed
+            commands = collectFields(commands, changedValues);
+            System.out.println(changedValues);
+            String commandText = "edit " + commands.toString(); 
             System.out.println(commandText);
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
@@ -429,41 +481,23 @@ public class RecipeForm extends UiPart<Region> {
 
         return textField;
     }
-
-    /**
-     * Closes the form without saving any changes.
+        /**
+     * Executes the command based on the given {@code commandText} and returns the result.
+     * Updates the UI components based on the command result.
+     *
+     * @param commandText the command text to execute.
+     * @return the resulting {@code CommandResult} after executing the command.
+     * @throws CommandException if the command execution fails.
+     * @throws ParseException if the command text cannot be parsed.
      */
-    private void closeForm() {
-        Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
-    }
-
-    /**
-     * Displays the form in a new window.
-     * The window's title will be "Add Recipe" if creating a new recipe,
-     * or "Edit Recipe" if editing an existing recipe.
-     */
-    public void display() {
-        Stage window = new Stage();
-        // Ensures users do not exit the view by clicking outside
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
-
-        //Set dimensions, scene graph
-        window.setMinWidth(500);
-        window.setMinHeight(700);
-        VBox vbox = new VBox(getRoot());
-        Scene scene = new Scene(vbox);
-
-        //Event handler for Escape Key
-        scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                window.close();
-            }
-        });
-
-        //Display
-        window.setScene(scene);
-        window.showAndWait();
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = commandExecutor.execute(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            throw e;
+        }
     }
 }
