@@ -2,12 +2,9 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meetup.MeetUp;
-import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
-
-import java.util.Set;
 
 /**
  * Unmodifiable view of an address book
@@ -39,6 +36,6 @@ public interface ReadOnlyEduMate {
     ObservableList<MeetUp> getMeetUpList();
 
     //todo double check new addition
-    Set<ContactIndex> getParticipantList();
+    Participants getParticipantList();
 
 }

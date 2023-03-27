@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.OrganiseCommand;
+import seedu.address.model.Participants;
 import seedu.address.model.location.Location;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
@@ -28,6 +29,7 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         if (argumentMultimap.getValue(Prefix.DAY).isPresent()) {
             List<String> indexArray = Arrays.stream(argumentMultimap.getPreamble().split(" ")).filter(x -> !x.isEmpty()).collect(Collectors.toList());
             Set<ContactIndex> indices = ParserUtil.parseIndices(indexArray);
+            Participants participants = new Participants(indices);
             System.out.println(indices.toString()); //todo remove
 
             if (argumentMultimap.getValue(Prefix.DAY).isEmpty()) {
@@ -65,7 +67,9 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
             System.out.println(startHour);
             System.out.println(endHour);
 
-            return new OrganiseCommand(day, startHour, endHour, location, indices);
+
+
+            return new OrganiseCommand(day, startHour, endHour, location, participants);
         }
 
         try {

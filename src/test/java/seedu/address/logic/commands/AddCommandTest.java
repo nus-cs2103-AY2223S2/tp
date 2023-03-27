@@ -20,14 +20,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
-import seedu.address.model.EduMate;
-import seedu.address.model.EduMateHistory;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyEduMate;
-import seedu.address.model.ReadOnlyEduMateHistory;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
@@ -304,7 +297,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Set<ContactIndex> getParticipants() {
+        public Participants getParticipants() {
             return null;
         }
 

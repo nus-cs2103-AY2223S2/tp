@@ -7,7 +7,6 @@ import java.util.*;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.UniqueMeetUpList;
-import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
@@ -23,7 +22,7 @@ public class EduMate implements ReadOnlyEduMate {
 
     private final UniquePersonList persons;
     private final UniqueMeetUpList meets; //todo check again before push
-    protected Set<ContactIndex> participants; //todo check again before push
+    protected Participants participants; //todo check again before push
     private User user;
     private final UniqueRecommendationList recommendations;
 
@@ -38,7 +37,7 @@ public class EduMate implements ReadOnlyEduMate {
         persons = new UniquePersonList();
         user = SampleDataUtil.getSampleUser();
         meets = new UniqueMeetUpList(); //todo check again before push
-        participants = new HashSet<>(); //todo check again before push
+        participants = new Participants(); //todo check again before push
         recommendations = new UniqueRecommendationList();
     }
 
@@ -78,11 +77,11 @@ public class EduMate implements ReadOnlyEduMate {
         meets.add(meetUp);
     }
 
-    public Set<ContactIndex> getParticipantList() {
+    public Participants getParticipantList() {
         return participants;
     }
 
-    public void setParticipants(Set<ContactIndex> participants) {
+    public void setParticipants(Participants participants) {
         this.participants = participants;
     }
     //// list overwrite operations

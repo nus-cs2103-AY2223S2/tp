@@ -13,4 +13,6 @@ public class Participants {
     public Participants(Set<ContactIndex> contactIndexSet) {
         participants = contactIndexSet;
     }
+
+    public Participants() {};
 }

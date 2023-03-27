@@ -310,7 +310,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Set<ContactIndex> getParticipants() {
+    public Participants getParticipants() {
         return eduMate.getParticipantList();
     }
 
