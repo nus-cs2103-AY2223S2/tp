@@ -19,7 +19,6 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCourseCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteGroupCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteSessionCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -35,7 +34,7 @@ import tfifteenfour.clipboard.model.student.StudentId;
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
-    private final String MESSAGE_USAGE = "delete: Deletes the item at index specified in parameter. "
+    private static final String MESSAGE_USAGE = "delete: Deletes the item at index specified in parameter. "
             + "Parameters: ITEM_TYPE INDEX\n"
             + "Note: INDEX must be a positive integer.\n"
             + "Examples: delete course 1, delete session 3";
