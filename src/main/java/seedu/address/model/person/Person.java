@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,12 +12,16 @@ import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
+import seedu.address.model.person.fields.Field;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.SuperField;
+import seedu.address.model.person.fields.Tags;
+import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**
@@ -36,10 +40,8 @@ public class Person {
     private final Race race;
     private final CommunicationChannel comms;
     private final Faculty faculty;
-
-    // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tags tags;
 
     private final Favorite isFavorite;
 
@@ -47,13 +49,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
-                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms, Faculty faculty) {
+                  Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms, Faculty faculty) {
         requireAllNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
         this.gender = gender;
         this.major = major;
         this.modules = modules;
@@ -68,7 +70,7 @@ public class Person {
      * Require all fields to be present and not null
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
-                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
+                  Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
                   Favorite favorite, Faculty faculty) {
         requireAllNonNull(name, favorite);
         this.name = name;
@@ -77,7 +79,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
         this.gender = gender;
         this.major = major;
         this.modules = modules;
@@ -96,7 +98,7 @@ public class Person {
         this.phone = new Phone("");
         this.email = new Email("");
         this.address = new Address("");
-        this.tags.addAll(new HashSet<>());
+        this.tags = new Tags(new HashSet<>());
         this.gender = new Gender("");
         this.major = new Major("");
         this.modules = new Modules(new HashSet<>());
@@ -116,56 +118,67 @@ public class Person {
 
 
     public Name getName() {
-        return name;
+        return this.name;
     }
 
     public Phone getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public Email getEmail() {
-        return email;
+        return this.email;
     }
 
     public Address getAddress() {
-        return address;
+        return this.address;
     }
 
     public Favorite getIsFavorite() {
-        return isFavorite;
+        return this.isFavorite;
     }
 
     public Gender getGender() {
-        return gender;
+        return this.gender;
     }
 
     public Major getMajor() {
-        return major;
+        return this.major;
     }
 
     public Race getRace() {
-        return race;
+        return this.race;
     }
 
     public CommunicationChannel getComms() {
-        return comms;
+        return this.comms;
     }
 
     public Modules getModules() {
-        return modules;
+        return this.modules;
     }
 
     public Faculty getFaculty() {
-        return faculty;
+        return this.faculty;
     }
 
+    public Tags getTags() {
+        return this.tags;
+    }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable NusMod set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<NusMod> getSetOfMods() {
+        return this.modules.getValues();
+    }
+
+    /**
+     * Returns an immutable Tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getSetOfTags() {
+        return this.tags.getValues();
     }
 
     /**
@@ -200,6 +213,57 @@ public class Person {
     }
 
     /**
+     * Returns true if for all the fields specified,
+     * there exists a keyword linked to that field, where that person's field contains that keyword,
+     * returns false otherwise.
+     *
+     * For the more mathematically inclined,
+     * {∀field ∈ Fields: ∃keyword ∈ field.keywords s.t. Person.field.contains(keyword) == true}.
+     * where Fields is the fields specified in the FindCommand, field.keywords is the keywords associated with that
+     * field and Person.field is the field we are testing against.
+     */
+    public boolean contains(HashMap<PredicateKey, Set<String>> keywords) {
+
+        HashMap<PredicateKey, Field> fieldMap = new HashMap<>();
+        fieldMap.put(PredicateKey.NAME, this.name);
+        fieldMap.put(PredicateKey.ADDRESS, this.address);
+        fieldMap.put(PredicateKey.COMMS, this.comms);
+        fieldMap.put(PredicateKey.EMAIL, this.email);
+        fieldMap.put(PredicateKey.GENDER, this.gender);
+        fieldMap.put(PredicateKey.MAJOR, this.major);
+        fieldMap.put(PredicateKey.PHONE, this.phone);
+        fieldMap.put(PredicateKey.RACE, this.race);
+        fieldMap.put(PredicateKey.FACULTY, this.faculty);
+
+        for (PredicateKey key : keywords.keySet()) {
+            Field field = fieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
+        }
+
+        HashMap<PredicateKey, SuperField<? extends Field>> superFieldMap = new HashMap<>();
+        superFieldMap.put(PredicateKey.TAG, this.tags);
+        superFieldMap.put(PredicateKey.MODULES, this.modules);
+
+        for (PredicateKey key : keywords.keySet()) {
+            SuperField<? extends Field> field = superFieldMap.get(key);
+            if (field == null) {
+                continue;
+            }
+            if (!field.contains(keywords.get(key))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -218,7 +282,7 @@ public class Person {
                 && otherPerson.getPhone().equals(this.getPhone())
                 && otherPerson.getEmail().equals(this.getEmail())
                 && otherPerson.getAddress().equals(this.getAddress())
-                && otherPerson.getTags().equals(this.getTags())
+                && otherPerson.getSetOfTags().equals(this.getSetOfTags())
                 && otherPerson.getGender().equals(this.getGender())
                 && otherPerson.getMajor().equals(this.getMajor())
                 && otherPerson.getRace().equals(this.getRace())
@@ -253,12 +317,11 @@ public class Person {
                 .append("; Faculty: ")
                 .append(this.getFaculty());
 
-        Set<Tag> tags = getTags();
+        Set<Tag> tags = getSetOfTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
     }
-
 }
