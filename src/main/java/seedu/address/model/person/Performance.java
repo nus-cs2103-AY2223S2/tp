@@ -72,5 +72,7 @@ public class Performance {
         return 100 - Integer.parseInt(value);
     }
 
-    public int getPerformanceValue() { return Integer.parseInt(value); }
+    public int getPerformanceValue() {
+        return Integer.parseInt(value);
+    }
 }
