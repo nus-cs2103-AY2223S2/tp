@@ -1,7 +1,6 @@
 package seedu.recipe.logic.commands;
 
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.RecipeForm;
 
