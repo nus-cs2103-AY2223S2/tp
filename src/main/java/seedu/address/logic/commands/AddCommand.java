@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_LAST_FED_DATE + "01/01/2023 "
             + PREFIX_SPECIES + "Guppy "
             + PREFIX_FEEDING_INTERVAL + "0d5h "
-            + PREFIX_TANK + "1"
+            + PREFIX_TANK + "1 "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New fish added: %1$s";

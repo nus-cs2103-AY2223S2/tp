@@ -93,6 +93,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         fishes.remove(key);
     }
 
+    /**
+     * Sets the lastFedDate field of all fishes in this {@code fishes} list
+     * with new LastFedDate object with {@code newDate}.
+     */
+    public void setLastFedDateFishes(String newDate) {
+        requireNonNull(newDate);
+
+        fishes.setLastFedDateFishes(newDate);
+    }
+
     //// util methods
 
     @Override

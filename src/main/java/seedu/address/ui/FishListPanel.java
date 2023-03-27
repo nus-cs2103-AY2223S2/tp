@@ -29,6 +29,10 @@ public class FishListPanel extends UiPart<Region> {
         fishListView.setCellFactory(listView -> new FishListViewCell());
     }
 
+    public void refreshCard() {
+        fishListView.refresh();
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Fish} using a {@code FishCard}.
      */
@@ -44,6 +48,7 @@ public class FishListPanel extends UiPart<Region> {
                 setGraphic(new FishCard(fish, getIndex() + 1).getRoot());
             }
         }
+
     }
 
 }
